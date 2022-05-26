@@ -29,7 +29,7 @@ necessary actions yourself.
 
 # Installation
 
-Add the JitPack repository to your root build.gradle file:
+Add the JitPack repository to your root build.gradle.kts file:
 
 ```gradle
 repositories {
