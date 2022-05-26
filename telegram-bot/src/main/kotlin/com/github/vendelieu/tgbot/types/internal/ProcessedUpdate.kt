@@ -1,0 +1,113 @@
+package com.github.vendelieu.tgbot.types.internal
+
+import com.github.vendelieu.tgbot.types.Update
+import com.github.vendelieu.tgbot.types.User
+
+data class ProcessedUpdate(
+    val type: UpdateType,
+    val text: String? = null,
+    val user: User,
+    val fullUpdate: Update,
+)
+
+internal fun processUpdateDto(update: Update): ProcessedUpdate = when {
+    update.message != null -> ProcessedUpdate(
+        type = UpdateType.MESSAGE,
+        text = update.message.text,
+        user = update.message.from!!,
+        fullUpdate = update
+    )
+
+    update.editedMessage != null -> ProcessedUpdate(
+        type = UpdateType.EDIT_MESSAGE,
+        text = update.editedMessage.text,
+        user = update.editedMessage.from!!,
+        fullUpdate = update
+    )
+
+    update.channelPost != null -> ProcessedUpdate(
+        type = UpdateType.CHANNEL_POST,
+        text = update.channelPost.text,
+        user = update.channelPost.from ?: User(-0, false, ""),
+        fullUpdate = update
+    )
+
+    update.editedChannelPost != null -> ProcessedUpdate(
+        type = UpdateType.EDITED_CHANNEL_POST,
+        text = update.editedChannelPost.text,
+        user = update.editedChannelPost.from ?: User(-0, false, ""),
+        fullUpdate = update
+    )
+
+    update.inlineQuery != null -> ProcessedUpdate(
+        type = UpdateType.INLINE_QUERY,
+        text = update.inlineQuery.query,
+        user = update.inlineQuery.from,
+        fullUpdate = update
+    )
+
+    update.chosenInlineResult != null -> ProcessedUpdate(
+        type = UpdateType.CHOSEN_INLINE_RESULT,
+        text = update.chosenInlineResult.query,
+        user = update.chosenInlineResult.from,
+        fullUpdate = update
+    )
+
+    update.callbackQuery != null -> ProcessedUpdate(
+        type = UpdateType.CALLBACK_QUERY,
+        text = update.callbackQuery.data,
+        user = update.callbackQuery.from,
+        fullUpdate = update
+    )
+
+    update.shippingQuery != null -> ProcessedUpdate(
+        type = UpdateType.SHIPPING_QUERY,
+        text = update.shippingQuery.invoicePayload,
+        user = update.shippingQuery.from,
+        fullUpdate = update
+    )
+
+    update.preCheckoutQuery != null -> ProcessedUpdate(
+        type = UpdateType.PRE_CHECKOUT_QUERY,
+        text = update.preCheckoutQuery.invoicePayload,
+        user = update.preCheckoutQuery.from,
+        fullUpdate = update
+    )
+
+    update.poll != null -> ProcessedUpdate(
+        type = UpdateType.POLL,
+        text = update.poll.question,
+        user = User(-0, false, ""),
+        fullUpdate = update
+    )
+
+    update.pollAnswer != null -> ProcessedUpdate(
+        type = UpdateType.POLL_ANSWER,
+        text = null,
+        user = update.pollAnswer.user,
+        fullUpdate = update
+    )
+
+    update.myChatMember != null -> ProcessedUpdate(
+        type = UpdateType.MY_CHAT_MEMBER,
+        text = null,
+        user = update.myChatMember.from,
+        fullUpdate = update
+    )
+
+    update.chatMember != null -> ProcessedUpdate(
+        type = UpdateType.CHAT_MEMBER,
+        text = null,
+        user = update.chatMember.from,
+        fullUpdate = update
+    )
+
+    update.chatJoinRequest != null -> ProcessedUpdate(
+        type = UpdateType.CHAT_JOIN_REQUEST,
+        text = null,
+        user = update.chatJoinRequest.from,
+        fullUpdate = update
+    )
+
+    else -> ProcessedUpdate(UpdateType.UNKNOWN, "", User(-0, false, ""), update)
+}

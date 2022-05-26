@@ -1,0 +1,15 @@
+package com.github.vendelieu.tgbot.interfaces
+
+import com.github.vendelieu.tgbot.TelegramBot
+import com.github.vendelieu.tgbot.interfaces.features.Feature
+import com.github.vendelieu.tgbot.types.internal.Response
+import kotlinx.coroutines.Deferred
+
+interface SimpleAction<ReturnType> : TgAction, Feature {
+    suspend fun send(to: com.github.vendelieu.tgbot.TelegramBot) {
+        to.makeSilentRequest(method, parameters)
+    }
+}
+
+suspend inline fun <reified ReturnType> SimpleAction<ReturnType>.sendAsync(via: com.github.vendelieu.tgbot.TelegramBot): Deferred<Response<ReturnType>> =
+    via.makeRequestAsync(method, parameters, ReturnType::class.java, bunchResponseInnerType())
