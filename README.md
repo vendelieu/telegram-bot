@@ -33,7 +33,7 @@ Add the JitPack repository to your root build.gradle file:
 
 ```gradle
 repositories {
-    maven("https://jitpack.io")
+    maven { setUrl("https://jitpack.io") }
 }
 ```
 
