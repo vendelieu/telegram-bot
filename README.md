@@ -48,7 +48,7 @@ dependencies {
 
 # Samples
 
-You can see the samples in the [samples' folder](https://github.com/vendelieu/telegram-bot/tree/master/telegram-bot)
+You can see the samples in the [samples' folder](https://github.com/vendelieu/telegram-bot/tree/master/samples)
 there you can find:
 
 - Conversation - An example of using Inputs and storing data in UserData.
