@@ -250,8 +250,8 @@ the data storage tools of your choice.
 To install, all you need to do is assign via TelegramBot:
 
 ```kotlin
-fun main() = runBlocking {
-    val bot = TelegramBot("BOT_TOKEN", javaClass.`package`)
+suspend fun main() {
+    val bot = TelegramBot("BOT_TOKEN", object {}.javaClass.`package`)
     bot.userData = BotUserDataImpl()
     bot.chatData = BotChatDataImpl()
 
@@ -262,8 +262,14 @@ fun main() = runBlocking {
 
 @TelegramCommand(["/start"])
 suspend fun start(user: User, bot: TelegramBot) {
-    bot.userData?.set("test", "value") // now we can use it in any part of our code
+    bot.userData?.set(user.id, "test", "value") // now we can use it in any part of our code
     message { "Hello" }.send(to = user, via = bot)
+}
+
+@TelegramCommand(["/test"])
+suspend fun test(user: User, bot: TelegramBot) {
+  val testVal = bot.userData?.get(user.id, "test").toString()
+  message { "stored value: $testVal" }.send(to = user, via = bot)
 }
 ```
 
