@@ -268,19 +268,19 @@ suspend fun start(user: User, bot: TelegramBot) {
 
 @TelegramCommand(["/test"])
 suspend fun test(user: User, bot: TelegramBot) {
-  val testVal = bot.userData?.get(user.id, "test").toString()
-  message { "stored value: $testVal" }.send(to = user, via = bot)
+    val testVal = bot.userData?.get(user.id, "test").toString()
+    message { "stored value: $testVal" }.send(to = user, via = bot)
 }
 ```
 
 ### DI
 
-Also if you want to use some libraries for Dependency Injection you can redefine the `ClassManager` interface using your
+Also, if you want to use some libraries for Dependency Injection you can redefine the `ClassManager` interface using your
 preferred mechanism and pass it on when initializing the bot.
 
 ```kotlin
-fun main() = runBlocking {
-    val bot = TelegramBot("BOT_TOKEN", javaClass.`package`, classManager = ClassManagerImpl())
+suspend fun main() {
+    val bot = TelegramBot("BOT_TOKEN", object {}.javaClass.`package`, classManager = ClassManagerImpl())
 
     bot.update.setListener {
         bot.update.handle(it)
