@@ -8,13 +8,11 @@ class UserDataImpl : BotUserData {
 
     override fun del(telegramId: Long, key: String) {
         storage.invalidate("${telegramId}_$key")
-        return true
     }
 
     override fun get(telegramId: Long, key: String): Any? = storage.getIfPresent("${telegramId}_$key")
 
     override fun set(telegramId: Long, key: String, value: Any?) {
         storage.put("${telegramId}_$key", value)
-        return true
     }
 }
