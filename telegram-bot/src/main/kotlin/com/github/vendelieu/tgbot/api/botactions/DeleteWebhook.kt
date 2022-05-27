@@ -5,7 +5,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class DeleteWebhookAction(dropPendingUpdates: Boolean = false) : SimpleAction<Boolean> {
     override val method: TgMethod = TgMethod("deleteWebhook")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["dropPendingUpdates"] = dropPendingUpdates

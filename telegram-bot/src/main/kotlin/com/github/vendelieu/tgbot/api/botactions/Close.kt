@@ -5,7 +5,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class CloseAction : SimpleAction<Boolean> {
     override val method: TgMethod = TgMethod("close")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun close() = CloseAction()

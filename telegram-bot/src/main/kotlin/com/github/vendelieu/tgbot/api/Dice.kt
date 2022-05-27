@@ -16,7 +16,7 @@ class SendDiceAction(emoji: String? = null) :
     OptionsFeature<SendDiceAction, DiceOptions>,
     MarkupFeature<SendDiceAction> {
     override val method: TgMethod = TgMethod("sendDice")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
     override var options = DiceOptions()
 
     init {

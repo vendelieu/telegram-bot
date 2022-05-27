@@ -31,7 +31,7 @@ class SendVideoAction :
     }
 
     override var options = VideoOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun video(block: () -> String) = SendVideoAction(block())

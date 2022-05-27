@@ -5,7 +5,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class UnpinAllChatMessageAction : Action<Boolean> {
     override val method: TgMethod = TgMethod("unpinAllChatMessages")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun unpinAllChatMessage() = UnpinAllChatMessageAction()

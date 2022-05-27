@@ -6,7 +6,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class SetChatMenuButtonAction(menuButton: MenuButton) : Action<Boolean> {
     override val method: TgMethod = TgMethod("setChatMenuButton")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["menu_button"] = menuButton

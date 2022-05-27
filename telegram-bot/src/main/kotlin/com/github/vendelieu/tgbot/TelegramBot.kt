@@ -134,7 +134,7 @@ class TelegramBot(
         dataField: String,
         filename: String,
         data: ByteArray,
-        parameters: Map<String, Any>? = null,
+        parameters: Map<String, Any?>? = null,
         contentType: ContentType,
         returnType: Class<T>,
         innerType: Class<I>? = null,
@@ -152,8 +152,8 @@ class TelegramBot(
                             }
                         ) { buildPacket { writeFully(data) } }
 
-                        parameters?.entries?.forEach {
-                            append(FormPart(it.key, it.value))
+                        parameters?.entries?.forEach { entry ->
+                            entry.value?.also { append(FormPart(entry.key, it)) }
                         }
                     }
                 )
@@ -205,7 +205,7 @@ class TelegramBot(
         dataField: String,
         filename: String,
         data: ByteArray,
-        parameters: Map<String, Any>? = null,
+        parameters: Map<String, Any?>? = null,
         contentType: ContentType,
     ) = httpClient.post(method.toUrl()) {
         contentType(ContentType.Application.Json)
@@ -220,8 +220,8 @@ class TelegramBot(
                         }
                     ) { buildPacket { writeFully(data) } }
 
-                    parameters?.entries?.forEach {
-                        append(FormPart(it.key, it.value))
+                    parameters?.entries?.forEach { entry ->
+                        entry.value?.also { append(FormPart(entry.key, it)) }
                     }
                     logger.debug("RequestBody: ${mapper.writeValueAsString(parameters)}")
                 }

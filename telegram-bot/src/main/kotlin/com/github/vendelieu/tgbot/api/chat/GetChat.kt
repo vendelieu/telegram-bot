@@ -6,7 +6,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class GetChatAction : Action<Chat> {
     override val method: TgMethod = TgMethod("getChat")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun getChat() = GetChatAction()

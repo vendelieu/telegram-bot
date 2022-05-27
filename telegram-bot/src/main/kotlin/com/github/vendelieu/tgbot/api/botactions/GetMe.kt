@@ -6,7 +6,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class GetMeAction : SimpleAction<User> {
     override val method: TgMethod = TgMethod("getMe")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun getMe() = GetMeAction()

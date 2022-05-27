@@ -11,7 +11,7 @@ class AnswerInlineQueryAction(inlineQueryId: String, results: List<InlineQueryRe
     SimpleAction<Boolean>, OptionAble, OptionsFeature<AnswerInlineQueryAction, AnswerInlineQueryOptions> {
     override val method: TgMethod = TgMethod("answerInlineQuery")
     override var options = AnswerInlineQueryOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["inline_query_id"] = inlineQueryId

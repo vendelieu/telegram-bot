@@ -12,7 +12,7 @@ class AnswerCallbackQueryAction(callbackQueryId: String) :
     OptionsFeature<AnswerCallbackQueryAction, AnswerCallbackQueryOptions> {
     override val method: TgMethod = TgMethod("answerCallbackQuery")
     override var options = AnswerCallbackQueryOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["callback_query_id"] = callbackQueryId

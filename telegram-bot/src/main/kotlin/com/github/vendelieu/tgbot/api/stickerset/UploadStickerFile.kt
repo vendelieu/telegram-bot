@@ -14,7 +14,7 @@ class UploadStickerFileAction(pngSticker: ByteArray) : MediaAction<File> {
         setMedia(pngSticker)
     }
 
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun uploadStickerFile(ba: ByteArray) = UploadStickerFileAction(ba)

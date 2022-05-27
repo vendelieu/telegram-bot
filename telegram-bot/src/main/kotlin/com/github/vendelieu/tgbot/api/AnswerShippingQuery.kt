@@ -11,7 +11,7 @@ class AnswerShippingQueryAction(
     errorMessage: String? = null,
 ) : SimpleAction<Boolean> {
     override val method: TgMethod = TgMethod("answerShippingQuery")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["shipping_query_id"] = shippingQueryId

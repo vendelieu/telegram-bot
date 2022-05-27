@@ -6,7 +6,7 @@ import io.ktor.http.*
 
 class SetStickerSetThumbAction(name: String, userId: Long, thumb: ByteArray) : MediaAction<Boolean> {
     override val method: TgMethod = TgMethod("setStickerSetThumb")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         setDataField("thumb")

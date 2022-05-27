@@ -25,7 +25,7 @@ class SendInvoiceAction(
     MarkupFeature<SendInvoiceAction> {
     override val method: TgMethod = TgMethod("sendInvoice")
     override var options = InvoiceOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["title"] = title

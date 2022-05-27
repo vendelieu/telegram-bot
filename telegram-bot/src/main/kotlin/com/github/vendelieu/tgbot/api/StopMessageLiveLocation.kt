@@ -8,7 +8,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class StopMessageLiveLocationAction() : Action<Message>, MarkupAble, MarkupFeature<StopMessageLiveLocationAction> {
     override val method: TgMethod = TgMethod("stopMessageLiveLocation")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     constructor(messageId: Long) : this() {
         parameters["message_id"] = messageId

@@ -13,7 +13,7 @@ class CreateChatInviteLinkAction :
     OptionsFeature<CreateChatInviteLinkAction, ChatInviteLinkOptions> {
     override val method: TgMethod = TgMethod("createChatInviteLink")
     override var options = ChatInviteLinkOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun createChatInviteLink() = CreateChatInviteLinkAction()

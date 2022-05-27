@@ -6,7 +6,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class GetStickerSetAction(name: String) : SimpleAction<StickerSet> {
     override val method: TgMethod = TgMethod("getStickerSet")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["name"] = name

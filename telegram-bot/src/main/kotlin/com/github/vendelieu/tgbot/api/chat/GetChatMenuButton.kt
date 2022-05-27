@@ -6,7 +6,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class GetChatMenuButtonAction : Action<MenuButton> {
     override val method: TgMethod = TgMethod("getChatMenuButton")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun getChatMenuButton() = GetChatMenuButtonAction()

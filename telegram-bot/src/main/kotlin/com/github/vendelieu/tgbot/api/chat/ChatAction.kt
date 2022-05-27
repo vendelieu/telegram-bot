@@ -6,7 +6,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class SendChatAction(action: ChatAction) : Action<Boolean> {
     override val method: TgMethod = TgMethod("sendChatAction")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["action"] = action

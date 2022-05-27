@@ -10,7 +10,7 @@ import com.github.vendelieu.tgbot.types.internal.options.SetGameScoreOptions
 class SetGameScoreAction : Action<Message>, OptionAble, OptionsFeature<SetGameScoreAction, SetGameScoreOptions> {
     override val method: TgMethod = TgMethod("setGameScore")
     override var options = SetGameScoreOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     constructor(userId: Long, messageId: Long, score: Long) {
         parameters["user_id"] = userId

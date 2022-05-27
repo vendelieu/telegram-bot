@@ -13,7 +13,7 @@ class ForwardMessageAction(fromChatId: Int, messageId: Long) :
     OptionsFeature<ForwardMessageAction, ForwardMessageOptions> {
     override val method: TgMethod = TgMethod("forwardMessage")
     override var options = ForwardMessageOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["from_chat_id"] = fromChatId

@@ -31,7 +31,7 @@ class SendAnimationAction :
     }
 
     override var options = AnimationOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun animation(block: () -> String) = SendAnimationAction(block())

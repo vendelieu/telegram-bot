@@ -32,7 +32,7 @@ class SendVideoNoteAction :
     }
 
     override var options = VideoNoteOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun videoNote(block: () -> String) = SendVideoNoteAction(block())

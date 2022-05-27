@@ -9,7 +9,7 @@ class SetMyDefaultAdministratorRightsAction(
     forChannel: Boolean? = null,
 ) : SimpleAction<Boolean> {
     override val method: TgMethod = TgMethod("setMyDefaultAdministratorRights")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         if (rights != null) parameters["rights"] = rights

@@ -6,7 +6,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class SetPassportDataErrorsAction(userId: Long, errors: List<PassportElementError>) : SimpleAction<Boolean> {
     override val method: TgMethod = TgMethod("setPassportDataErrors")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["user_id"] = userId

@@ -64,7 +64,7 @@ class AddStickerToSetAction : MediaAction<Boolean> {
         setMedia(sticker)
     }
 
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun createNewStickerSet(

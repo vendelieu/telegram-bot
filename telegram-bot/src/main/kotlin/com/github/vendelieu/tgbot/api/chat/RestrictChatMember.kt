@@ -10,7 +10,7 @@ class RestrictChatMemberAction(
     untilDate: Int? = null,
 ) : Action<Boolean> {
     override val method: TgMethod = TgMethod("restrictChatMember")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["user_id"] = userId

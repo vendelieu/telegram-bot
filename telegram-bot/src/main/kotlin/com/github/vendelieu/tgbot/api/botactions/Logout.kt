@@ -5,7 +5,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class LogoutAction : SimpleAction<Boolean> {
     override val method: TgMethod = TgMethod("logOut")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun logout() = LogoutAction()

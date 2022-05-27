@@ -31,7 +31,7 @@ class SendPhotoAction :
     }
 
     override var options = PhotoOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun photo(block: () -> String) = SendPhotoAction(block())

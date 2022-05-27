@@ -7,7 +7,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 class GetMyDefaultAdministratorRightsAction(forChannel: Boolean? = null) :
     SimpleAction<ChatAdministratorRights> {
     override val method: TgMethod = TgMethod("getMyDefaultAdministratorRights")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         if (forChannel != null) parameters["for_channel"] = forChannel

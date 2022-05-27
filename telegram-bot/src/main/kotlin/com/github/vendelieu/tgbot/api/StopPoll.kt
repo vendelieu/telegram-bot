@@ -8,7 +8,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class StopPollAction(messageId: Long) : Action<Poll>, MarkupAble, MarkupFeature<SendPollAction> {
     override val method: TgMethod = TgMethod("stopPoll")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["message_id"] = messageId

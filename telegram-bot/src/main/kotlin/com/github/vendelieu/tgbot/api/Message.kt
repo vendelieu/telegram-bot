@@ -12,7 +12,7 @@ class SendMessageAction(
 ) : Action<Message>, AllFeaturesAble, AllFeaturesPack<SendMessageAction, MessageOptions> {
     override val method: TgMethod = TgMethod("sendMessage")
     override var options = MessageOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["text"] = data

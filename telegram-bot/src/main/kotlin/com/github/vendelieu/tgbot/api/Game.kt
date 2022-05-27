@@ -18,7 +18,7 @@ class SendGameAction(
     MarkupFeature<SendGameAction> {
     override val method: TgMethod = TgMethod("sendGame")
     override var options = GameOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["game_short_name"] = gameShortName

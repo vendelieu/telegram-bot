@@ -11,7 +11,7 @@ class SetMyCommandsAction(
     languageCode: String? = null,
 ) : SimpleAction<Boolean> {
     override val method: TgMethod = TgMethod("setMyCommands")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["commands"] = commands

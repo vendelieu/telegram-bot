@@ -13,7 +13,7 @@ class EditMessageTextAction :
     AllFeaturesAble,
     AllFeaturesPack<EditMessageTextAction, EditMessageOptions> {
     override val method: TgMethod = TgMethod("editMessageText")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
     override var options = EditMessageOptions()
 
     constructor(messageId: Long, text: String) {
@@ -36,7 +36,7 @@ class EditMessageCaptionAction() :
     CaptionFeature<EditMessageCaptionAction> {
     override val method: TgMethod = TgMethod("editMessageCaption")
     override var options = EditCaptionOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     constructor(messageId: Long) : this() {
         parameters["message_id"] = messageId
@@ -45,7 +45,7 @@ class EditMessageCaptionAction() :
 
 class EditMessageMediaAction : Action<Message>, MarkupAble, MarkupFeature<EditMessageMediaAction> {
     override val method: TgMethod = TgMethod("editMessageMedia")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     constructor(inputMedia: InputMedia) {
         parameters["media"] = inputMedia
@@ -59,7 +59,7 @@ class EditMessageMediaAction : Action<Message>, MarkupAble, MarkupFeature<EditMe
 
 class EditMessageMarkupAction() : Action<Message>, MarkupAble, MarkupFeature<EditMessageMarkupAction> {
     override val method: TgMethod = TgMethod("editMessageReplyMarkup")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     constructor(messageId: Long) : this() {
         parameters["message_id"] = messageId

@@ -19,7 +19,7 @@ class SendLocationAction(
     MarkupFeature<SendLocationAction> {
     override val method: TgMethod = TgMethod("sendLocation")
     override var options = LocationOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["latitude"] = latitude

@@ -9,7 +9,7 @@ class AnswerPreCheckoutQueryAction(
     errorMessage: String? = null,
 ) : SimpleAction<Boolean> {
     override val method: TgMethod = TgMethod("answerPreCheckoutQuery")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["pre_checkout_query_id"] = preCheckoutQueryId

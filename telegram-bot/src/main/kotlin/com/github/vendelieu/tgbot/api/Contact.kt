@@ -18,7 +18,7 @@ class SendContactAction(
     OptionsFeature<SendContactAction, ContactOptions>,
     MarkupFeature<SendContactAction> {
     override val method: TgMethod = TgMethod("sendContact")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
     override var options = ContactOptions()
 
     init {

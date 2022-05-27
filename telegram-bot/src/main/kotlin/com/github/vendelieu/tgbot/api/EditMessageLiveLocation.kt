@@ -17,7 +17,7 @@ class EditMessageLiveLocationAction :
     MarkupFeature<EditMessageLiveLocationAction> {
     override val method: TgMethod = TgMethod("editMessageLiveLocation")
     override var options = EditMessageLiveLocationOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     constructor(messageId: Long, latitude: Float, longitude: Float) {
         parameters["message_id"] = messageId

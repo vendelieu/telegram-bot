@@ -14,7 +14,7 @@ class SendMediaGroupAction :
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions>,
     MultiResponseOf<Message> {
     override val method: TgMethod = TgMethod("sendMediaGroup")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
     override var options = MediaGroupOptions()
 
     constructor(vararg media: InputMedia.Audio) {

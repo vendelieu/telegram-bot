@@ -17,7 +17,7 @@ class SendPollAction(question: String, pollOptions: Array<String>) :
     MarkupFeature<SendPollAction> {
     override val method: TgMethod = TgMethod("sendPoll")
     override var options = PollOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["question"] = question

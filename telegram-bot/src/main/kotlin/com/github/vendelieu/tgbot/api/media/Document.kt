@@ -31,7 +31,7 @@ class SendDocumentAction :
     }
 
     override var options = DocumentOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun document(block: () -> String) = SendDocumentAction(block())

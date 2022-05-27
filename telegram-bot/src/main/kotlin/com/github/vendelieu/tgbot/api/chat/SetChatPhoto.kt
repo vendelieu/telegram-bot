@@ -20,7 +20,7 @@ class SetChatPhotoAction : MediaAction<Boolean> {
         setMedia(chatPhoto)
     }
 
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun setChatPhoto(block: () -> String) = SetChatPhotoAction(block())

@@ -15,7 +15,7 @@ class CopyMessageAction :
     MarkupFeature<CopyMessageAction>,
     CaptionFeature<CopyMessageAction> {
     override val method: TgMethod = TgMethod("copyMessage")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
     override var options = CopyMessageOptions()
 
     constructor(fromChatId: Int, messageId: Long) {

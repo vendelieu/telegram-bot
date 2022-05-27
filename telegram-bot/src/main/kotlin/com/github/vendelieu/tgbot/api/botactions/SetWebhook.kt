@@ -12,7 +12,7 @@ class SetWebhookAction(url: String) :
     OptionsFeature<SetWebhookAction, SetWebhookOptions> {
     override val method: TgMethod = TgMethod("setWebhook")
     override var options = SetWebhookOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["url"] = url

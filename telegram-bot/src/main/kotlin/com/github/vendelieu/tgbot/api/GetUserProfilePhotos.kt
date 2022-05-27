@@ -10,7 +10,7 @@ class GetUserProfilePhotosAction(
     limit: Int? = null,
 ) : SimpleAction<UserProfilePhotos> {
     override val method: TgMethod = TgMethod("getUserProfilePhotos")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["user_id"] = userId

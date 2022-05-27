@@ -6,7 +6,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class GetChatMemberAction(userId: Long) : Action<ChatMember> {
     override val method: TgMethod = TgMethod("getChatMember")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["user_id"] = userId

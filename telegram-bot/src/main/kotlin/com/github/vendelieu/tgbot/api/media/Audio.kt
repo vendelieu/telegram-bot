@@ -31,7 +31,7 @@ class SendAudioAction :
     }
 
     override var options = AudioOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun audio(block: () -> String) = SendAudioAction(block())

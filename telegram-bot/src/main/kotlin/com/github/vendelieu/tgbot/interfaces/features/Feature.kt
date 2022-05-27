@@ -3,7 +3,7 @@ package com.github.vendelieu.tgbot.interfaces.features
 import com.github.vendelieu.tgbot.interfaces.TgAction
 
 interface Feature {
-    val parameters: MutableMap<String, Any>
+    val parameters: MutableMap<String, Any?>
 }
 
 interface Features : TgAction

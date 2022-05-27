@@ -7,7 +7,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class GetGameHighScoresAction : Action<GameHighScore>, Feature {
     override val method: TgMethod = TgMethod("getGameHighScores")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     constructor(userId: Long, messageId: Long) {
         parameters["user_id"] = userId

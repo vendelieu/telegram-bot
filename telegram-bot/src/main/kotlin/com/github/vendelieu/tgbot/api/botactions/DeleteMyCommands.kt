@@ -9,7 +9,7 @@ class DeleteMyCommandsAction(
     languageCode: String? = null,
 ) : SimpleAction<Boolean> {
     override val method: TgMethod = TgMethod("deleteMyCommands")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         if (scope != null) parameters["scope"] = scope

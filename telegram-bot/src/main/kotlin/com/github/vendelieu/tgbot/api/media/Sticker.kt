@@ -32,7 +32,7 @@ class SendStickerAction :
     }
 
     override var options = CommonOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 }
 
 fun sticker(block: () -> String) = SendStickerAction(block())

@@ -5,7 +5,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class ApproveChatJoinRequestAction(userId: String) : Action<Boolean> {
     override val method: TgMethod = TgMethod("approveChatJoinRequest")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["user_id"] = userId

@@ -5,7 +5,7 @@ import com.github.vendelieu.tgbot.types.internal.TgMethod
 
 class PinChatMessageAction(messageId: Long, disableNotification: Boolean? = null) : Action<Boolean> {
     override val method: TgMethod = TgMethod("pinChatMessage")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["message_id"] = messageId

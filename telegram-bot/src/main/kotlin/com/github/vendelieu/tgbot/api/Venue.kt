@@ -22,7 +22,7 @@ class SendVenueAction(
     MarkupFeature<SendVenueAction> {
     override val method: TgMethod = TgMethod("sendVenue")
     override var options = VenueOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["latitude"] = latitude

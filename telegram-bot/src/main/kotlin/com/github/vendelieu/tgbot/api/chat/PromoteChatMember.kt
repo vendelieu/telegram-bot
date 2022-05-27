@@ -12,7 +12,7 @@ class PromoteChatMemberAction(userId: Long) :
     OptionsFeature<PromoteChatMemberAction, PromoteChatMemberOptions> {
     override val method: TgMethod = TgMethod("promoteChatMember")
     override var options = PromoteChatMemberOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
         parameters["user_id"] = userId

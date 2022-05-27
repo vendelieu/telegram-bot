@@ -10,7 +10,7 @@ class GetMyCommandsAction(
     languageCode: String? = null,
 ) : SimpleAction<List<BotCommand>>, MultiResponseOf<BotCommand> {
     override val method: TgMethod = TgMethod("getMyCommands")
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : MultipleResponse> TgAction.bunchResponseInnerType(): Class<T> = getInnerType() as Class<T>

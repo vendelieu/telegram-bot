@@ -14,7 +14,7 @@ class GetUpdatesAction :
     MultiResponseOf<Update> {
     override val method: TgMethod = TgMethod("getUpdates")
     override var options = GetUpdatesOptions()
-    override val parameters: MutableMap<String, Any> = mutableMapOf()
+    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : MultipleResponse> TgAction.bunchResponseInnerType(): Class<T> = getInnerType() as Class<T>
