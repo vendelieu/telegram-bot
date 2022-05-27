@@ -1,4 +1,5 @@
 # Kotlin Telegram Bot
+
 [![](https://jitpack.io/v/vendelieu/telegram-bot.svg)](https://jitpack.io/#vendelieu/telegram-bot)
 
 Kotlin based wrapper over Telegram API.
@@ -33,11 +34,11 @@ Add the JitPack repository to your root build.gradle.kts file:
 
 ```gradle
 repositories {
-    maven { setUrl("https://jitpack.io") }
+    maven("https://jitpack.io")
 }
 ```
 
-Now add the library itself to the dependencies module that you need it.
+Now add the library itself to the dependencies' module that you need it.
 
 ```gradle
 dependencies {
@@ -45,13 +46,27 @@ dependencies {
 }
 ```
 
+# Samples
+
+You can see the samples in the [samples' folder](https://github.com/vendelieu/telegram-bot/tree/master/telegram-bot)
+there you can find:
+
+- Conversation - An example of using Inputs and storing data in UserData.
+- Echo - Echo bot :)
+- Exception-handling - Simple example of exception handling
+- Ktor-webhook - An example of using webhook with Ktor
+- Poll - An example of how to build a bot questionnaire.
+
 # Usage
 
 ```kotlin
-fun main() = runBlocking {
-    val bot = TelegramBot("BOT_TOKEN", javaClass.`package`)
-    // javaClass.`package` - is the package in which commands/inputs etc. will be searched for further updates.
-    // In this case it will take the current one for the class in which the bot is running.
+suspend fun main() {
+    val bot = TelegramBot("BOT_TOKEN", object {}.javaClass.`package`)
+    /**
+     * Second parameter is the package in which commands/inputs will be searched.
+     * In this case it will take the current one for the class in which the bot is running.
+     * If your main function is in a class, you can just use javaClass.`package` instead of declaring an object.
+     */
 
     bot.updateHandler.setListener { // set long-polling listener and use defined action over updates. 
         bot.updateHandler.handleUpdate(it)
