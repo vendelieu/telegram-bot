@@ -23,7 +23,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
         Companion.media = media
     }
 
-    override suspend fun send(to: String, via: com.github.vendelieu.tgbot.TelegramBot, isInline: Boolean) {
+    override suspend fun send(to: String, via: TelegramBot, isInline: Boolean) {
         parameters[if (!isInline) "chat_id" else "inline_message_id"] = to
 
         if (id != null) {
@@ -39,7 +39,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
         )
     }
 
-    override suspend fun send(to: Long, via: com.github.vendelieu.tgbot.TelegramBot, isInline: Boolean) {
+    override suspend fun send(to: Long, via: TelegramBot, isInline: Boolean) {
         parameters[if (!isInline) "chat_id" else "inline_message_id"] = to
 
         if (id != null) {
@@ -55,7 +55,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
         )
     }
 
-    override suspend fun send(to: User, via: com.github.vendelieu.tgbot.TelegramBot, isInline: Boolean) {
+    override suspend fun send(to: User, via: TelegramBot, isInline: Boolean) {
         parameters["chat_id"] = if (!isInline) to.id else to.username!!
 
         if (id != null) {
@@ -74,7 +74,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
     suspend fun MediaAction<Req_R>.internalSendAsync(
         returnType: Class<Req_R>,
         to: ActionRecipientRef,
-        via: com.github.vendelieu.tgbot.TelegramBot,
+        via: TelegramBot,
         isInline: Boolean,
     ): Deferred<Response<Req_R>> {
         parameters[if (!isInline) "chat_id" else "inline_message_id"] = to.get()
@@ -115,21 +115,21 @@ sealed class ActionRecipientRef {
 
 suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
     to: String,
-    via: com.github.vendelieu.tgbot.TelegramBot,
+    via: TelegramBot,
     isInline: Boolean = false,
 ): Deferred<Response<Req_R>> =
     internalSendAsync(Req_R::class.java, ActionRecipientRef.StringRecipient(to), via, isInline)
 
 suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
     to: Long,
-    via: com.github.vendelieu.tgbot.TelegramBot,
+    via: TelegramBot,
     isInline: Boolean = false,
 ): Deferred<Response<Req_R>> =
     internalSendAsync(Req_R::class.java, ActionRecipientRef.LongRecipient(to), via, isInline)
 
 suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
     to: User,
-    via: com.github.vendelieu.tgbot.TelegramBot,
+    via: TelegramBot,
     isInline: Boolean = false,
 ): Deferred<Response<Req_R>> =
     internalSendAsync(Req_R::class.java, ActionRecipientRef.LongRecipient(to.id), via, isInline)

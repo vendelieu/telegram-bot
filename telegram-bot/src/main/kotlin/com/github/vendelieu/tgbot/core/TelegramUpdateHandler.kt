@@ -23,7 +23,7 @@ import kotlin.coroutines.coroutineContext
  */
 class TelegramUpdateHandler internal constructor(
     private val actions: Actions,
-    private val bot: com.github.vendelieu.tgbot.TelegramBot,
+    private val bot: TelegramBot,
     private val classManager: ClassManager,
     private val inputHandler: BotWaitingInput,
 ) {

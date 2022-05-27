@@ -7,17 +7,17 @@ import com.github.vendelieu.tgbot.types.internal.Response
 import kotlinx.coroutines.Deferred
 
 interface Action<ReturnType> : TgAction, Feature {
-    suspend fun send(to: String, via: com.github.vendelieu.tgbot.TelegramBot, isInline: Boolean = false) {
+    suspend fun send(to: String, via: TelegramBot, isInline: Boolean = false) {
         parameters[if (!isInline) "chat_id" else "inline_message_id"] = to
         via.makeSilentRequest(method, parameters)
     }
 
-    suspend fun send(to: Long, via: com.github.vendelieu.tgbot.TelegramBot, isInline: Boolean = false) {
+    suspend fun send(to: Long, via: TelegramBot, isInline: Boolean = false) {
         parameters[if (!isInline) "chat_id" else "inline_message_id"] = to
         via.makeSilentRequest(method, parameters)
     }
 
-    suspend fun send(to: User, via: com.github.vendelieu.tgbot.TelegramBot, isInline: Boolean = false) {
+    suspend fun send(to: User, via: TelegramBot, isInline: Boolean = false) {
         parameters[if (!isInline) "chat_id" else "inline_message_id"] = if (!isInline) to.id else to.username!!
         via.makeSilentRequest(method, parameters)
     }
@@ -25,7 +25,7 @@ interface Action<ReturnType> : TgAction, Feature {
 
 suspend inline fun <reified ReturnType> Action<ReturnType>.sendAsync(
     to: Long,
-    via: com.github.vendelieu.tgbot.TelegramBot,
+    via: TelegramBot,
     isInline: Boolean = false,
 ): Deferred<Response<ReturnType>> {
     parameters[if (!isInline) "chat_id" else "inline_message_id"] = to
@@ -34,7 +34,7 @@ suspend inline fun <reified ReturnType> Action<ReturnType>.sendAsync(
 
 suspend inline fun <reified ReturnType> Action<ReturnType>.sendAsync(
     to: User,
-    via: com.github.vendelieu.tgbot.TelegramBot,
+    via: TelegramBot,
     isInline: Boolean = false,
 ): Deferred<Response<ReturnType>> {
     parameters[if (!isInline) "chat_id" else "inline_message_id"] = if (!isInline) to.id else to.username!!
@@ -43,7 +43,7 @@ suspend inline fun <reified ReturnType> Action<ReturnType>.sendAsync(
 
 suspend inline fun <reified ReturnType> Action<ReturnType>.sendAsync(
     to: String,
-    via: com.github.vendelieu.tgbot.TelegramBot,
+    via: TelegramBot,
     isInline: Boolean = false,
 ): Deferred<Response<ReturnType>> {
     parameters[if (!isInline) "chat_id" else "inline_message_id"] = to
