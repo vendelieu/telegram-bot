@@ -40,14 +40,14 @@ import org.slf4j.LoggerFactory
 class TelegramBot(
     private val token: String,
     commandsPackage: Package,
-    val inputHandler: BotWaitingInput = BotWaitingInputMapImpl(),
+    val input: BotWaitingInput = BotWaitingInputMapImpl(),
     classManager: ClassManager = ClassManagerImpl(),
     private val apiHost: String = "api.telegram.org",
 ) {
     private val logger = LoggerFactory.getLogger("TgRequestLogging")
     private fun TgMethod.toUrl() = TELEGRAM_API_URL_PATTERN.format(apiHost, token) + name
 
-    val updateHandler = TelegramUpdateHandler(collect(commandsPackage.name), this, classManager, inputHandler)
+    val update = TelegramUpdateHandler(collect(commandsPackage.name), this, classManager, input)
 
     var userData: BotUserData? = null
         set(value) {

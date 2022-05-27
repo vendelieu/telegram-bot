@@ -19,8 +19,6 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.slf4j:slf4j-api:1.7.36")
-    compileOnly(group = "ch.qos.logback", name = "logback-classic", version = logbackVer)
     compileOnly(group = "ch.qos.logback", name = "logback-core", version = logbackVer)
 
     implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", jacksonVer)
@@ -38,7 +36,7 @@ dependencies {
 }
 
 group = "com.github.vendelieu"
-version = "1.0.0"
+version = "1.1.0"
 
 tasks.jar {
     manifest {
@@ -55,7 +53,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.vendelieu"
             artifactId = "telegram-bot"
-            version = "1.0.0"
+            version = "1.1.0"
 
             from(components["kotlin"])
         }

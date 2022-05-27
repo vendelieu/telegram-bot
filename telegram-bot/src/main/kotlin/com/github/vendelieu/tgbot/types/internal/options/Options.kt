@@ -5,7 +5,7 @@ import com.github.vendelieu.tgbot.utils.StringManipulations.camel2SnakeCase
 import kotlin.reflect.full.memberProperties
 
 interface Options {
-    fun getParams(): Map<String, Any>
+    fun getParams(): Map<String, Any?>
 }
 
 interface OptionsInterface<O> : Options {
@@ -14,7 +14,7 @@ interface OptionsInterface<O> : Options {
         get() = this as O
 
     override fun getParams() =
-        thisAsO!!::class.memberProperties.associate { camel2SnakeCase(it.name) to (it.getter.call(thisAsO) ?: "") }
+        thisAsO!!::class.memberProperties.associate { camel2SnakeCase(it.name) to (it.getter.call(thisAsO)) }
 }
 
 interface OptionsParseMode : Options {

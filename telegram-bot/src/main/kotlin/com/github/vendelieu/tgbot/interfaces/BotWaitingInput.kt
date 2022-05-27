@@ -1,7 +1,7 @@
 package com.github.vendelieu.tgbot.interfaces
 
 interface BotWaitingInput {
-    fun set(telegramId: Long, identifier: String): Boolean
+    fun set(telegramId: Long, identifier: String)
     fun get(telegramId: Long): String?
-    fun del(telegramId: Long): Boolean
+    fun del(telegramId: Long)
 }

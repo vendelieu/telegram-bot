@@ -6,14 +6,14 @@ import com.github.vendelieu.tgbot.interfaces.BotUserData
 class UserDataImpl : BotUserData {
     private val storage = Caffeine.newBuilder().weakKeys().build<String, Any?>()
 
-    override fun del(telegramId: Long, key: String): Boolean {
+    override fun del(telegramId: Long, key: String) {
         storage.invalidate("${telegramId}_$key")
         return true
     }
 
     override fun get(telegramId: Long, key: String): Any? = storage.getIfPresent("${telegramId}_$key")
 
-    override fun set(telegramId: Long, key: String, value: Any?): Boolean {
+    override fun set(telegramId: Long, key: String, value: Any?) {
         storage.put("${telegramId}_$key", value)
         return true
     }

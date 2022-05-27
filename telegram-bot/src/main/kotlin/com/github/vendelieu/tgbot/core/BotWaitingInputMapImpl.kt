@@ -10,15 +10,13 @@ import java.util.*
 class BotWaitingInputMapImpl : BotWaitingInput {
     private val storage = Collections.synchronizedMap(WeakHashMap<Long, String>())
 
-    override fun set(telegramId: Long, identifier: String): Boolean {
+    override fun set(telegramId: Long, identifier: String) {
         storage[telegramId] = identifier
-        return true
     }
 
     override fun get(telegramId: Long): String? = storage[telegramId]
 
-    override fun del(telegramId: Long): Boolean {
+    override fun del(telegramId: Long) {
         storage.remove(telegramId)
-        return true
     }
 }

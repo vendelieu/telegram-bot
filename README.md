@@ -42,7 +42,7 @@ Now add the library itself to the dependencies' module that you need it.
 
 ```gradle
 dependencies {
-    implementation("com.github.vendelieu:telegram-bot:1.0.0")
+    implementation("com.github.vendelieu:telegram-bot:1.1.0")
 }
 ```
 
@@ -68,8 +68,8 @@ suspend fun main() {
      * If your main function is in a class, you can just use javaClass.`package` instead of declaring an object.
      */
 
-    bot.updateHandler.setListener { // set long-polling listener and use defined action over updates. 
-        bot.updateHandler.handleUpdate(it)
+    bot.update.setListener { // set long-polling listener and use defined action over updates. 
+        bot.update.handle(it)
     }
 }
 
@@ -79,7 +79,7 @@ suspend fun start(user: User, bot: TelegramBot) {
 }
 ```
 
-for webhook handling you can use any server and use `bot.updateHandler.handleUpdate`
+for webhook handling you can use any server and use `bot.update.handle`
 and for set webhook you can use this method:
 
 ```kotlin
@@ -126,7 +126,7 @@ The library also provides an input waiting interface that can be used for multis
 @TelegramCommand(["/start"])
 suspend fun start(user: User, bot: TelegramBot) {
     message { "Hello, please enter your name:" }.send(to = user, via = bot)
-    bot.inputHandler?.set(user.id, "nameInputCatch")
+    bot.input.set(user.id, "nameInputCatch")
 }
 
 @TelegramInput(["nameInputCatch"])
@@ -255,8 +255,8 @@ fun main() = runBlocking {
     bot.userData = BotUserDataImpl()
     bot.chatData = BotChatDataImpl()
 
-    bot.updateHandler.setListener {
-        bot.updateHandler.handleUpdate(it)
+    bot.update.setListener {
+        bot.update.handle(it)
     }
 }
 
@@ -276,8 +276,8 @@ preferred mechanism and pass it on when initializing the bot.
 fun main() = runBlocking {
     val bot = TelegramBot("BOT_TOKEN", javaClass.`package`, classManager = ClassManagerImpl())
 
-    bot.updateHandler.setListener {
-        bot.updateHandler.handleUpdate(it)
+    bot.update.setListener {
+        bot.update.handle(it)
     }
 }
 ```

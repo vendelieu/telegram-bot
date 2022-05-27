@@ -6,7 +6,7 @@ import com.github.vendelieu.tgbot.api.message
 suspend fun main() {
     val bot = TelegramBot("BOT_TOKEN", object {}.javaClass.`package`)
 
-    bot.updateHandler.setListener {
-        bot.updateHandler.handleUpdate(it)
+    bot.update.setListener {
+        bot.update.handle(it)
     }
 }

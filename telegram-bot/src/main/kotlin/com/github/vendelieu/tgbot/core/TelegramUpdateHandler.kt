@@ -159,7 +159,7 @@ class TelegramUpdateHandler internal constructor(
      * @param update
      * @return null on success or [Throwable].
      */
-    suspend fun handleUpdate(update: Update): Throwable? = processUpdateDto(update).run {
+    suspend fun handle(update: Update): Throwable? = processUpdateDto(update).run {
         logger.trace("Handling update: $update")
         val commandAction = if (text != null) findAction(text) else null
         val inputAction = if (commandAction == null) inputHandler.get(user.id)?.let { findAction(it, false) }

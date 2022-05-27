@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.vendelieu:telegram-bot:1.0.0")
+    implementation("com.github.vendelieu:telegram-bot:1.1.0")
 
     implementation("ch.qos.logback:logback-classic:1.2.11")
 }
