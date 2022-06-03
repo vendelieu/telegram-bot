@@ -42,7 +42,7 @@ Now add the library itself to the dependencies' module that you need it.
 
 ```gradle
 dependencies {
-    implementation("com.github.vendelieu:telegram-bot:1.1.0")
+    implementation("com.github.vendelieu:telegram-bot:1.1.1")
 }
 ```
 
@@ -61,11 +61,9 @@ there you can find:
 
 ```kotlin
 suspend fun main() {
-    val bot = TelegramBot("BOT_TOKEN", object {}.javaClass.`package`)
+    val bot = TelegramBot("BOT_TOKEN", "com.example.controllers")
     /**
      * Second parameter is the package in which commands/inputs will be searched.
-     * In this case it will take the current one for the class in which the bot is running.
-     * If your main function is in a class, you can just use javaClass.`package` instead of declaring an object.
      */
 
     bot.update.setListener { // set long-polling listener and use defined action over updates. 
@@ -251,7 +249,7 @@ To install, all you need to do is assign via TelegramBot:
 
 ```kotlin
 suspend fun main() {
-    val bot = TelegramBot("BOT_TOKEN", object {}.javaClass.`package`)
+    val bot = TelegramBot("BOT_TOKEN", "com.example.controllers")
     bot.userData = BotUserDataImpl()
     bot.chatData = BotChatDataImpl()
 
@@ -280,7 +278,7 @@ preferred mechanism and pass it on when initializing the bot.
 
 ```kotlin
 suspend fun main() {
-    val bot = TelegramBot("BOT_TOKEN", object {}.javaClass.`package`, classManager = ClassManagerImpl())
+    val bot = TelegramBot("BOT_TOKEN", "com.example.controllers", classManager = ClassManagerImpl())
 
     bot.update.setListener {
         bot.update.handle(it)

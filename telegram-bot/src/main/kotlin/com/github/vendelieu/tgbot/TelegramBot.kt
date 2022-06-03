@@ -31,15 +31,16 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.jackson.*
 import io.ktor.utils.io.core.*
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import org.slf4j.LoggerFactory
 
-@Suppress("CanBeParameter", "MemberVisibilityCanBePrivate")
+@Suppress("CanBeParameter", "MemberVisibilityCanBePrivate", "unused")
 class TelegramBot(
     private val token: String,
-    commandsPackage: Package,
+    commandsPackage: String,
     val input: BotWaitingInput = BotWaitingInputMapImpl(),
     classManager: ClassManager = ClassManagerImpl(),
     private val apiHost: String = "api.telegram.org",
@@ -47,7 +48,7 @@ class TelegramBot(
     private val logger = LoggerFactory.getLogger("TgRequestLogging")
     private fun TgMethod.toUrl() = TELEGRAM_API_URL_PATTERN.format(apiHost, token) + name
 
-    val update = TelegramUpdateHandler(collect(commandsPackage.name), this, classManager, input)
+    val update = TelegramUpdateHandler(collect(commandsPackage), this, classManager, input)
 
     var userData: BotUserData? = null
         set(value) {
@@ -114,6 +115,40 @@ class TelegramBot(
         httpClient.get(TELEGRAM_FILE_URL_PATTERN.format(apiHost, token, file.filePath)).readBytes()
     } else null
 
+    private fun multipartBodyBuilder(
+        dataField: String,
+        filename: String,
+        contentType: ContentType,
+        data: ByteArray,
+        parameters: Map<String, Any?>? = null,
+    ) = MultiPartFormDataContent(
+        formData {
+            appendInput(
+                key = dataField,
+                headers = Headers.build {
+                    append(HttpHeaders.ContentDisposition, "filename=$filename")
+                    append(HttpHeaders.ContentType, contentType)
+                }
+            ) { buildPacket { writeFully(data) } }
+
+            parameters?.entries?.forEach { entry ->
+                entry.value?.also { append(FormPart(entry.key, it)) }
+            }
+        }
+    )
+
+    private fun <T, I : MultipleResponse> CoroutineScope.handleResponseAsync(
+        response: HttpResponse,
+        returnType: Class<T>,
+        innerType: Class<I>? = null
+    ) = async {
+        val jsonResponse = mapper.readTree(response.bodyAsText())
+        logger.debug("Response: ${jsonResponse.toPrettyString()}")
+
+        if (jsonResponse["ok"].asBoolean()) mapper.convertSuccessResponse(jsonResponse, returnType, innerType)
+        else mapper.convertValue(jsonResponse, Failure::class.java)
+    }
+
     /**
      * Make a request with the ability to asynchronously process the response.
      *
@@ -139,34 +174,12 @@ class TelegramBot(
         returnType: Class<T>,
         innerType: Class<I>? = null,
     ): Deferred<Response<T>> = coroutineScope {
-        val request = httpClient.post(method.toUrl()) {
+        val response = httpClient.post(method.toUrl()) {
             contentType(ContentType.Application.Json)
-            setBody(
-                MultiPartFormDataContent(
-                    formData {
-                        appendInput(
-                            key = dataField,
-                            headers = Headers.build {
-                                append(HttpHeaders.ContentDisposition, "filename=$filename")
-                                append(HttpHeaders.ContentType, contentType)
-                            }
-                        ) { buildPacket { writeFully(data) } }
-
-                        parameters?.entries?.forEach { entry ->
-                            entry.value?.also { append(FormPart(entry.key, it)) }
-                        }
-                    }
-                )
-            )
+            setBody(multipartBodyBuilder(dataField, filename, contentType, data, parameters))
         }
 
-        return@coroutineScope async {
-            val response = mapper.readTree(request.bodyAsText())
-            logger.debug("Response: ${response.toPrettyString()}")
-
-            if (response["ok"].asBoolean()) mapper.convertSuccessResponse(response, returnType, innerType)
-            else mapper.convertValue(response, Failure::class.java)
-        }
+        return@coroutineScope handleResponseAsync(response, returnType, innerType)
     }
 
     suspend fun <T, I : MultipleResponse> makeRequestAsync(
@@ -175,17 +188,12 @@ class TelegramBot(
         returnType: Class<T>,
         innerType: Class<I>? = null,
     ): Deferred<Response<T>> = coroutineScope {
-        val request = httpClient.post(method.toUrl()) {
+        val response = httpClient.post(method.toUrl()) {
             contentType(ContentType.Application.Json)
             setBody(data)
         }
-        return@coroutineScope async {
-            val response = mapper.readTree(request.bodyAsText())
-            logger.debug("Response: ${response.toPrettyString()}")
 
-            if (response["ok"].asBoolean()) mapper.convertSuccessResponse(response, returnType, innerType)
-            else mapper.convertValue(response, Failure::class.java)
-        }
+        return@coroutineScope handleResponseAsync(response, returnType, innerType)
     }
 
     /**
@@ -209,24 +217,9 @@ class TelegramBot(
         contentType: ContentType,
     ) = httpClient.post(method.toUrl()) {
         contentType(ContentType.Application.Json)
-        setBody(
-            MultiPartFormDataContent(
-                formData {
-                    appendInput(
-                        key = dataField,
-                        headers = Headers.build {
-                            append(HttpHeaders.ContentDisposition, "filename=$filename")
-                            append(HttpHeaders.ContentType, contentType)
-                        }
-                    ) { buildPacket { writeFully(data) } }
+        setBody(multipartBodyBuilder(dataField, filename, contentType, data, parameters))
 
-                    parameters?.entries?.forEach { entry ->
-                        entry.value?.also { append(FormPart(entry.key, it)) }
-                    }
-                    logger.debug("RequestBody: ${mapper.writeValueAsString(parameters)}")
-                }
-            )
-        )
+        logger.debug("RequestBody: ${mapper.writeValueAsString(parameters)}")
     }
 
     internal suspend fun pullUpdates(offset: Int? = null): List<Update>? {

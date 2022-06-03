@@ -12,7 +12,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 suspend fun main() {
-    val bot = TelegramBot("BOT_TOKEN", object {}.javaClass.`package`)
+    val bot = TelegramBot("BOT_TOKEN", "com.github.vendelieu.samples.controller")
 
     setWebhook("https://0.0.0.0/BOT_TOKEN").send(bot)
 
