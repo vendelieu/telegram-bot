@@ -1,17 +1,30 @@
 package com.github.vendelieu.tgbot.types
 
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.github.vendelieu.tgbot.interfaces.MultipleResponse
 
-sealed class ChatMember : MultipleResponse {
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "status"
+)
+@JsonSubTypes(
+    JsonSubTypes.Type(value = ChatMember.Owner::class, name = "creator"),
+    JsonSubTypes.Type(value = ChatMember.Administrator::class, name = "administrator"),
+    JsonSubTypes.Type(value = ChatMember.Member::class, name = "member"),
+    JsonSubTypes.Type(value = ChatMember.Restricted::class, name = "restricted"),
+    JsonSubTypes.Type(value = ChatMember.Left::class, name = "left"),
+    JsonSubTypes.Type(value = ChatMember.Banned::class, name = "kicked"),
+)
+sealed class ChatMember(val status: String) : MultipleResponse {
     data class Owner(
-        val status: String,
         val user: User,
         val isAnonymous: Boolean,
         val customTitle: String? = null,
-    ) : ChatMember()
+    ) : ChatMember("creator")
 
     data class Administrator(
-        val status: String,
         val user: User,
         val canBeEdited: Boolean,
         val isAnonymous: Boolean,
@@ -25,15 +38,13 @@ sealed class ChatMember : MultipleResponse {
         val canEditMessages: Boolean? = null,
         val canPinMessages: Boolean? = null,
         val customTitle: String? = null,
-    ) : ChatMember()
+    ) : ChatMember("administrator")
 
     data class Member(
-        val status: String,
         val user: User,
-    ) : ChatMember()
+    ) : ChatMember("member")
 
     data class Restricted(
-        val status: String,
         val user: User,
         val isMember: Boolean,
         val canChangeInfo: Boolean,
@@ -45,16 +56,14 @@ sealed class ChatMember : MultipleResponse {
         val canSendOtherMessages: Boolean,
         val canAddWebPagePreviews: Boolean,
         val untilDate: Int,
-    ) : ChatMember()
+    ) : ChatMember("restricted")
 
     data class Left(
-        val status: String,
         val user: User,
-    ) : ChatMember()
+    ) : ChatMember("left")
 
     data class Banned(
-        val status: String,
         val user: User,
         val untilDate: Int,
-    ) : ChatMember()
+    ) : ChatMember("kicked")
 }

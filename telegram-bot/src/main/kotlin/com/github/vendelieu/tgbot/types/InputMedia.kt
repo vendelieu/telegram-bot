@@ -1,5 +1,20 @@
 package com.github.vendelieu.tgbot.types
 
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "type"
+)
+@JsonSubTypes(
+    JsonSubTypes.Type(value = InputMedia.Audio::class, name = "audio"),
+    JsonSubTypes.Type(value = InputMedia.Document::class, name = "document"),
+    JsonSubTypes.Type(value = InputMedia.Photo::class, name = "photo"),
+    JsonSubTypes.Type(value = InputMedia.Video::class, name = "video"),
+    JsonSubTypes.Type(value = InputMedia.Animation::class, name = "animation"),
+)
 sealed class InputMedia(val type: String) {
     data class Audio(
         val media: String,

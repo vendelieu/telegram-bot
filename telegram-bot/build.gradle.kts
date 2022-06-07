@@ -36,7 +36,7 @@ dependencies {
 }
 
 group = "com.github.vendelieu"
-version = "1.1.1"
+version = "1.1.2"
 
 tasks.jar {
     manifest {
@@ -53,7 +53,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.vendelieu"
             artifactId = "telegram-bot"
-            version = "1.1.1"
+            version = project.version.toString()
 
             from(components["kotlin"])
         }
