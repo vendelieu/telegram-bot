@@ -5,8 +5,23 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.vendelieu.tgbot.interfaces.MultipleResponse
 import com.github.vendelieu.tgbot.types.internal.Success
 import com.github.vendelieu.tgbot.types.internal.Uri
+import kotlinx.coroutines.CoroutineName
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import java.lang.reflect.Method
+import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
+
+/**
+ * Creates new coroutine context from parent one and adds supervisor job.
+ *
+ * @param parentContext Context that will be merged with the created one.
+ */
+internal class CreateNewCoroutineContext(parentContext: CoroutineContext) : CoroutineScope {
+    override val coroutineContext: CoroutineContext =
+        parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
+}
 
 internal object StringManipulations {
     private val regex = "([a-z])([A-Z]+)".toRegex()
@@ -33,10 +48,9 @@ internal fun <T, I : MultipleResponse> ObjectMapper.convertSuccessResponse(
     jsonNode: JsonNode,
     type: Class<T>?,
     innerType: Class<I>? = null,
-): Success<T> {
-    return if (innerType == null) convertValue(jsonNode, typeFactory.constructParametricType(Success::class.java, type))
+): Success<T> =
+    if (innerType == null) convertValue(jsonNode, typeFactory.constructParametricType(Success::class.java, type))
     else Success(
         ok = true,
         result = convertValue(jsonNode["result"], typeFactory.constructCollectionType(List::class.java, innerType))
     )
-}

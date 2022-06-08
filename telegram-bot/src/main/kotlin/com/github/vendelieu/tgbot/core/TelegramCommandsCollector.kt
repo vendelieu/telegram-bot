@@ -7,9 +7,7 @@ import com.github.vendelieu.tgbot.annotations.TelegramUnhandled
 import com.github.vendelieu.tgbot.types.internal.Actions
 import com.github.vendelieu.tgbot.types.internal.Invocation
 import org.reflections.Reflections
-import org.reflections.scanners.MethodAnnotationsScanner
-import org.reflections.scanners.SubTypesScanner
-import org.reflections.scanners.TypeAnnotationsScanner
+import org.reflections.scanners.Scanners
 import java.lang.reflect.Parameter
 
 /**
@@ -30,9 +28,7 @@ internal object TelegramCommandsCollector {
     fun collect(packageName: String): Actions = with(
         Reflections(
             packageName,
-            MethodAnnotationsScanner(),
-            TypeAnnotationsScanner(),
-            SubTypesScanner()
+            Scanners.MethodsAnnotated
         )
     ) {
         val commands = mutableMapOf<String, Invocation>()

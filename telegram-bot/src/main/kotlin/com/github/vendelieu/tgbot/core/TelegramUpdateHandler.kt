@@ -3,11 +3,15 @@ package com.github.vendelieu.tgbot.core
 import com.github.vendelieu.tgbot.TelegramBot
 import com.github.vendelieu.tgbot.interfaces.BotWaitingInput
 import com.github.vendelieu.tgbot.interfaces.ClassManager
+import com.github.vendelieu.tgbot.interfaces.MagicObject
 import com.github.vendelieu.tgbot.types.Update
 import com.github.vendelieu.tgbot.types.internal.*
+import com.github.vendelieu.tgbot.utils.CreateNewCoroutineContext
 import com.github.vendelieu.tgbot.utils.invokeSuspend
 import com.github.vendelieu.tgbot.utils.parseUri
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.slf4j.LoggerFactory
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.coroutineContext
@@ -27,19 +31,9 @@ class TelegramUpdateHandler internal constructor(
     private val classManager: ClassManager,
     private val inputHandler: BotWaitingInput,
 ) {
-    private val logger = LoggerFactory.getLogger("TelegramUpdateHandler")
+    private val logger = LoggerFactory.getLogger(this::class.java)
     private lateinit var listener: suspend CoroutineContext.(Update) -> Unit
     private var handlerActive: Boolean = false
-
-    /**
-     * Creates new coroutine context from parent one and adds supervisor job.
-     *
-     * @param parentContext Context that will be merged with the created one.
-     */
-    internal class CreateNewCoroutineContext(parentContext: CoroutineContext) : CoroutineScope {
-        override val coroutineContext: CoroutineContext =
-            parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
-    }
 
     /**
      * Function that starts the listening event.
@@ -90,10 +84,10 @@ class TelegramUpdateHandler internal constructor(
     private fun findAction(text: String, command: Boolean = true): Activity? {
         val message = text.parseUri()
         val invocation = (
-            if (command) actions.commands else {
-                actions.inputs
-            }
-            )[message.request]
+                if (command) actions.commands else {
+                    actions.inputs
+                }
+                )[message.request]
         return if (invocation != null) Activity(invocation = invocation, parameters = message.params) else null
     }
 
@@ -118,6 +112,7 @@ class TelegramUpdateHandler internal constructor(
                     return@forEach
                 }
                 val parameterName = invocation.namedParameters.getOrDefault(p.name, p.name)
+                val typeName = p.parameterizedType.typeName
                 if (parameters.keys.contains(parameterName)) when (p.parameterizedType.typeName) {
                     "java.lang.String" -> add(parameters[parameterName].toString())
                     "java.lang.Integer", "int" -> add(parameters[parameterName]?.toIntOrNull())
@@ -126,10 +121,11 @@ class TelegramUpdateHandler internal constructor(
                     "java.lang.Float", "float" -> add(parameters[parameterName]?.toFloatOrNull())
                     "java.lang.Double", "double" -> add(parameters[parameterName]?.toDoubleOrNull())
                     else -> add(null)
-                } else when (p.parameterizedType.typeName) {
-                    "com.github.vendelieu.tgbot.types.User" -> add(update.user)
-                    "com.github.vendelieu.tgbot.TelegramBot" -> add(bot)
-                    "com.github.vendelieu.tgbot.types.internal.ProcessedUpdate" -> add(update)
+                } else when {
+                    typeName == "com.github.vendelieu.tgbot.types.User" -> add(update.user)
+                    typeName == "com.github.vendelieu.tgbot.TelegramBot" -> add(bot)
+                    typeName == "com.github.vendelieu.tgbot.types.internal.ProcessedUpdate" -> add(update)
+                    bot.magicObjects.contains(p.type) -> add(bot.magicObjects[p.type]?.get(update, bot))
                     else -> add(null)
                 }
             }

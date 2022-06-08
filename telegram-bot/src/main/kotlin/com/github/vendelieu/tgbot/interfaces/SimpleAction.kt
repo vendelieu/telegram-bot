@@ -11,5 +11,5 @@ interface SimpleAction<ReturnType> : TgAction, Feature {
     }
 }
 
-suspend inline fun <reified ReturnType> SimpleAction<ReturnType>.sendAsync(via: TelegramBot): Deferred<Response<ReturnType>> =
-    via.makeRequestAsync(method, parameters, ReturnType::class.java, bunchResponseInnerType())
+suspend inline fun <reified ReturnType> SimpleAction<ReturnType>.sendAsync(to: TelegramBot): Deferred<Response<ReturnType>> =
+    to.makeRequestAsync(method, parameters, ReturnType::class.java, bunchResponseInnerType())
