@@ -29,14 +29,14 @@ dependencies {
     implementation("io.ktor:ktor-client-logging:$ktorVer")
     implementation("io.ktor:ktor-serialization-jackson:$ktorVer")
 
-    implementation(group = "org.reflections", name = "reflections", version = "0.9.12")
+    implementation(group = "org.reflections", name = "reflections", version = "0.10.2")
     implementation(kotlin("reflect"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
 }
 
 group = "com.github.vendelieu"
-version = "1.1.2"
+version = "1.2.2"
 
 tasks.jar {
     manifest {
