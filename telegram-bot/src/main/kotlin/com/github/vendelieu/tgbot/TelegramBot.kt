@@ -45,8 +45,10 @@ class TelegramBot(
     classManager: ClassManager = ClassManagerImpl(),
     private val apiHost: String = "api.telegram.org",
 ) {
-    private val logger = LoggerFactory.getLogger("TgRequestLogging")
+    private val logger = LoggerFactory.getLogger(this::class.java)
     private fun TgMethod.toUrl() = TELEGRAM_API_URL_PATTERN.format(apiHost, token) + name
+
+    internal val magicObjects = mutableMapOf<Class<*>, MagicObject<*>>()
 
     val update = TelegramUpdateHandler(collect(commandsPackage), this, classManager, input)
 
@@ -96,6 +98,14 @@ class TelegramBot(
     }
 
     /**
+     * Gives the ability to expand magical objects
+     *
+     * @param clazz The class in the final method that will return
+     * @param magicObject Implementation of the [MagicObject] interface to be able to generate more contextual object.
+     */
+    fun <T> addMagicObject(clazz: Class<T>, magicObject: () -> MagicObject<T>) = magicObjects.put(clazz, magicObject())
+
+    /**
      * Get direct url from [File] if [File.filePath] is present
      *
      * @param file
@@ -140,7 +150,7 @@ class TelegramBot(
     private fun <T, I : MultipleResponse> CoroutineScope.handleResponseAsync(
         response: HttpResponse,
         returnType: Class<T>,
-        innerType: Class<I>? = null
+        innerType: Class<I>? = null,
     ) = async {
         val jsonResponse = mapper.readTree(response.bodyAsText())
         logger.debug("Response: ${jsonResponse.toPrettyString()}")
