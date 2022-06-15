@@ -38,6 +38,7 @@ class TelegramUpdateHandler internal constructor(
      * @param offset
      */
     private tailrec suspend fun runListener(offset: Int? = null): Int {
+        logger.trace("Running listener with offset - $offset")
         if (!handlerActive) return 0
         var lastUpdateId: Int = offset ?: 0
         bot.pullUpdates(offset)?.forEach {
@@ -58,6 +59,7 @@ class TelegramUpdateHandler internal constructor(
      * @receiver [CoroutineContext]
      */
     suspend fun setListener(block: suspend TelegramUpdateHandler.(Update) -> Unit) {
+        logger.trace("The listener is set.")
         listener = block
         handlerActive = true
         runListener()
@@ -68,6 +70,7 @@ class TelegramUpdateHandler internal constructor(
      *
      */
     fun stopListener() {
+        logger.trace("The listener is stopped.")
         handlerActive = false
     }
 
@@ -102,6 +105,7 @@ class TelegramUpdateHandler internal constructor(
         parameters: Map<String, String>,
     ): Throwable? {
         var isSuspend = false
+        logger.trace("Parsing arguments for Update#${update.fullUpdate.updateId}")
         val processedParameters = buildList {
             invocation.method.parameters.forEach { p ->
                 if (p.type.name == "kotlin.coroutines.Continuation") {
@@ -129,6 +133,7 @@ class TelegramUpdateHandler internal constructor(
         }
 
         bot.chatData?.run {
+            logger.trace("Handling BotContext for Update#${update.fullUpdate.updateId}")
             if (!update.user.isPresent()) return@run
             val prevClassName = get(update.user.id, "PrevInvokedClass")?.toString()
             if (prevClassName != invocation.clazz.name) delPrevChatSection(update.user.id)
@@ -136,6 +141,7 @@ class TelegramUpdateHandler internal constructor(
             set(update.user.id, "PrevInvokedClass", invocation.clazz.name)
         }
 
+        logger.trace("Invoking function for Update#${update.fullUpdate.updateId}")
         invocation.runCatching {
             if (isSuspend) method.invokeSuspend(classManager.getInstance(clazz), *processedParameters.toTypedArray())
             else method.invoke(classManager.getInstance(clazz), *processedParameters.toTypedArray())
@@ -157,6 +163,7 @@ class TelegramUpdateHandler internal constructor(
         val commandAction = if (text != null) findAction(text) else null
         val inputAction = if (commandAction == null) inputHandler.get(user.id)?.let { findAction(it, false) }
         else null
+        logger.trace("Result of finding action - command: $commandAction, input: $inputAction")
         inputHandler.del(user.id)
 
         return when {
