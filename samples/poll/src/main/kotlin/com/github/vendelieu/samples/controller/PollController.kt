@@ -40,9 +40,4 @@ class PollController {
             explanation = "Who gave this man a time machine?"
         }.send(user, bot)
     }
-
-    @TelegramUnhandled
-    fun handle(update: ProcessedUpdate) {
-        println("User#${update.user.id} chose ${update.fullUpdate.pollAnswer?.optionIds}")
-    }
 }

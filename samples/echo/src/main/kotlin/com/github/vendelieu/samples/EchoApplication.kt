@@ -8,5 +8,10 @@ suspend fun main() {
 
     bot.update.setListener {
         message(it.message?.text ?: "").send(it.message?.from?.id ?: 0, bot)
+//        handle(it) { // same in manual handling mode
+//            onMessage {
+//                message { it.message?.text ?: "" }.send(it.message!!.from!!.id, bot)
+//            }
+//        }
     }
 }

@@ -7,6 +7,11 @@ suspend fun main() {
     val bot = TelegramBot("BOT_TOKEN", "com.github.vendelieu.samples.controller")
 
     bot.update.setListener {
-        bot.update.handle(it)
+        handle(it)
+        handle(it) {
+            onPollAnswer { pollAnswer ->
+                println("User#${it.message?.from?.id} chose ${pollAnswer.optionIds}")
+            }
+        }
     }
 }

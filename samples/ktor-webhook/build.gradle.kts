@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.vendelieu:telegram-bot:1.2.2")
+    implementation("com.github.vendelieu:telegram-bot:1.3.0")
 
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
