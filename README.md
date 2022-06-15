@@ -1,6 +1,7 @@
 # Kotlin Telegram Bot [![](https://jitpack.io/v/vendelieu/telegram-bot.svg)](https://jitpack.io/#vendelieu/telegram-bot) [![Supported version](https://img.shields.io/badge/Telegram%20Bot%20API-6.0-blue)](https://core.telegram.org/bots/api-changelog#april-16-2022)
 
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
+[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 
 Kotlin based wrapper over Telegram API.
 
@@ -40,7 +41,7 @@ Now add the library itself to the dependencies' module that you need it.
 
 ```gradle
 dependencies {
-    implementation("com.github.vendelieu:telegram-bot:1.2.2")
+    implementation("com.github.vendelieu:telegram-bot:1.3.0")
 }
 ```
 
@@ -65,7 +66,7 @@ suspend fun main() {
      */
 
     bot.update.setListener { // set long-polling listener and use defined action over updates. 
-        bot.update.handle(it)
+        handle(it)
     }
 }
 
@@ -75,7 +76,23 @@ suspend fun start(user: User, bot: TelegramBot) {
 }
 ```
 
-for webhook handling you can use any server and use `bot.update.handle`
+It is also possible to process manually:
+
+```kotlin
+suspend fun main() {
+    val bot = TelegramBot("BOT_TOKEN", "com.example.controllers")
+
+    bot.update.setListener { update ->
+        handle(update) {
+            onCommand("/start") {
+                message { "Hello" }.send(update.message!!.from!!.id, bot)
+            }
+        }
+    }
+}
+```
+
+for webhook handling you can use any server and `bot.update.handle()` function, \
 and for set webhook you can use this method:
 
 ```kotlin
@@ -267,7 +284,7 @@ suspend fun main() {
     bot.chatData = BotChatDataImpl()
 
     bot.update.setListener {
-        bot.update.handle(it)
+        handle(it)
     }
 }
 
@@ -295,7 +312,7 @@ suspend fun main() {
     val bot = TelegramBot("BOT_TOKEN", "com.example.controllers", classManager = ClassManagerImpl())
 
     bot.update.setListener {
-        bot.update.handle(it)
+        handle(it)
     }
 }
 ```
