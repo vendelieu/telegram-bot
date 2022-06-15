@@ -36,7 +36,7 @@ dependencies {
 }
 
 group = "com.github.vendelieu"
-version = "1.2.2"
+version = "1.3.0"
 
 tasks.jar {
     manifest {
@@ -51,7 +51,7 @@ tasks.compileKotlin {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "com.github.vendelieu"
+            groupId = project.group.toString()
             artifactId = "telegram-bot"
             version = project.version.toString()
 
