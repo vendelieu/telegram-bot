@@ -1,6 +1,6 @@
 package com.github.vendelieu.tgbot.types.internal
 
-data class Uri(
-    val request: String,
+data class StructuredRequest(
+    val command: String,
     val params: Map<String, String>
 )

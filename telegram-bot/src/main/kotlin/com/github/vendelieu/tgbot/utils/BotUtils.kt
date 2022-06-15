@@ -3,8 +3,8 @@ package com.github.vendelieu.tgbot.utils
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.vendelieu.tgbot.interfaces.MultipleResponse
+import com.github.vendelieu.tgbot.types.internal.StructuredRequest
 import com.github.vendelieu.tgbot.types.internal.Success
-import com.github.vendelieu.tgbot.types.internal.Uri
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -30,12 +30,21 @@ internal object StringManipulations {
     fun camel2SnakeCase(str: String) = regex.replace(str, replacement).lowercase()
 }
 
-internal fun String.parseUri(): Uri {
+internal fun String.parseQuery(): StructuredRequest {
     val reqParams = split('?')
 
-    return Uri(
-        request = reqParams.first(),
+    return StructuredRequest(
+        command = reqParams.first(),
         params = reqParams.last().split('&').associate { it.substringBefore('=') to it.substringAfter('=') }
+    )
+}
+
+internal fun String.parseKeyValueBySpace(): StructuredRequest {
+    val parsedString = split(' ')
+
+    return StructuredRequest(
+        parsedString.first(),
+        parsedString.chunked(2).associate { it.first() to (it.lastOrNull() ?: "") }
     )
 }
 

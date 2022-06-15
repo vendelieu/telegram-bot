@@ -3,15 +3,12 @@ package com.github.vendelieu.tgbot.core
 import com.github.vendelieu.tgbot.TelegramBot
 import com.github.vendelieu.tgbot.interfaces.BotWaitingInput
 import com.github.vendelieu.tgbot.interfaces.ClassManager
-import com.github.vendelieu.tgbot.interfaces.MagicObject
 import com.github.vendelieu.tgbot.types.Update
 import com.github.vendelieu.tgbot.types.internal.*
 import com.github.vendelieu.tgbot.utils.CreateNewCoroutineContext
 import com.github.vendelieu.tgbot.utils.invokeSuspend
-import com.github.vendelieu.tgbot.utils.parseUri
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.github.vendelieu.tgbot.utils.parseQuery
+import kotlinx.coroutines.*
 import org.slf4j.LoggerFactory
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.coroutineContext
@@ -23,8 +20,8 @@ import kotlin.coroutines.coroutineContext
  * @property bot An instance of [TelegramBot]
  * @property classManager An instance of the class that will be used to call functions.
  * @property inputHandler An instance of the class that stores the input waiting points.
- * @constructor Create empty Telegram update handler
  */
+@Suppress("unused", "MemberVisibilityCanBePrivate")
 class TelegramUpdateHandler internal constructor(
     private val actions: Actions,
     private val bot: TelegramBot,
@@ -32,7 +29,7 @@ class TelegramUpdateHandler internal constructor(
     private val inputHandler: BotWaitingInput,
 ) {
     private val logger = LoggerFactory.getLogger(this::class.java)
-    private lateinit var listener: suspend CoroutineContext.(Update) -> Unit
+    private lateinit var listener: suspend TelegramUpdateHandler.(Update) -> Unit
     private var handlerActive: Boolean = false
 
     /**
@@ -45,7 +42,7 @@ class TelegramUpdateHandler internal constructor(
         var lastUpdateId: Int = offset ?: 0
         bot.pullUpdates(offset)?.forEach {
             CreateNewCoroutineContext(coroutineContext).launch(Dispatchers.IO) {
-                listener(coroutineContext, it)
+                listener(this@TelegramUpdateHandler, it)
             }
             lastUpdateId = it.updateId + 1
         }
@@ -60,7 +57,7 @@ class TelegramUpdateHandler internal constructor(
      * @param block action that will be applied.
      * @receiver [CoroutineContext]
      */
-    suspend fun setListener(block: suspend CoroutineContext.(Update) -> Unit) {
+    suspend fun setListener(block: suspend TelegramUpdateHandler.(Update) -> Unit) {
         listener = block
         handlerActive = true
         runListener()
@@ -82,12 +79,12 @@ class TelegramUpdateHandler internal constructor(
      * @return [Activity] if actions was found or null.
      */
     private fun findAction(text: String, command: Boolean = true): Activity? {
-        val message = text.parseUri()
+        val message = text.parseQuery()
         val invocation = (
-                if (command) actions.commands else {
-                    actions.inputs
-                }
-                )[message.request]
+            if (command) actions.commands else {
+                actions.inputs
+            }
+            )[message.command]
         return if (invocation != null) Activity(invocation = invocation, parameters = message.params) else null
     }
 
@@ -173,5 +170,10 @@ class TelegramUpdateHandler internal constructor(
                 null
             }
         }
+    }
+
+    suspend fun handle(update: Update, block: suspend ManualHandlingDsl.(Update) -> Unit) {
+        logger.trace("Manually handling update: $update")
+        block(ManualHandlingDsl(inputHandler, update), update)
     }
 }
