@@ -5,7 +5,7 @@ import com.github.vendelieu.tgbot.interfaces.features.Feature
 import com.github.vendelieu.tgbot.types.GameHighScore
 import com.github.vendelieu.tgbot.types.internal.TgMethod
 
-class GetGameHighScoresAction : Action<GameHighScore>, Feature {
+class GetGameHighScoresAction : Action<GameHighScore> {
     override val method: TgMethod = TgMethod("getGameHighScores")
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
