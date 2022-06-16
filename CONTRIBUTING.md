@@ -17,7 +17,7 @@ use [Github Flow](https://guides.github.com/introduction/flow/index.html)). We a
 2. If you've added code that should be tested, add tests.
 3. If you've changed APIs, update the documentation.
 4. Ensure the test suite passes.
-5. Make sure your code lints.
+5. Make sure your code lints (run Gradle ktlintFormat command).
 6. Issue that pull request!
 
 ## Any contributions you make will be under the Apache 2.0 Software License
