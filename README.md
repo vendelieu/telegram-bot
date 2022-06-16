@@ -2,6 +2,7 @@
 
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
 [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+[![Github Wiki](https://img.shields.io/badge/Github-Wiki-green)](https://github.com/vendelieu/telegram-bot/wiki)
 
 Kotlin based wrapper over Telegram API.
 
