@@ -47,8 +47,25 @@ class TelegramBotTest {
         assertTrue(silentReq.bodyAsText().isNotBlank())
         assertTrue(silentReq.bodyAsText().contains("\"ok\":true"))
         assertTrue(silentReq.bodyAsText().contains("\"text\":\"test\""))
+    }
 
+    @Test
+    fun `failure response handling`(): Unit = runBlocking {
+        val failureReq = bot.makeRequestAsync(
+            TgMethod("sendMessage"),
+            mapOf("text" to "test"),
+            Message::class.java,
+            (null as Class<MultipleResponse>?)
+        ).await()
 
+        assertFalse(failureReq.isSuccess())
+        assertNull(failureReq.getOrNull())
+
+        failureReq.onFailure {
+            assertFalse(it.ok)
+            assertEquals(400, it.errorCode)
+            assertEquals("Bad Request: chat_id is empty", it.description)
+        }
     }
 
     @Test
@@ -101,7 +118,7 @@ class TelegramBotTest {
                 "photo",
                 "image.jpg",
                 image,
-                mapOf("chat_id" to "519279767"),
+                mapOf("chat_id" to System.getenv("TELEGRAM_ID")),
                 ContentType.Image.JPEG,
                 Message::class.java,
                 (null as Class<MultipleResponse>?)
