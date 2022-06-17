@@ -27,8 +27,8 @@ interface CaptionFeature<Return : CaptionAble> : Feature {
     /**
      * Caption entities
      */
-    fun captionEntities(block: () -> Array<MessageEntity>): Return {
-        parameters["caption_entities"] = block()
+    fun captionEntities(entities: Array<MessageEntity>): Return {
+        parameters["caption_entities"] = entities
         return thisAsReturn
     }
 
