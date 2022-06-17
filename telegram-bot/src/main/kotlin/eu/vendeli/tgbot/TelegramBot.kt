@@ -267,7 +267,6 @@ class TelegramBot(
         parameters: Map<String, Any?>? = null,
         contentType: ContentType,
     ) = httpClient.post(method.toUrl()) {
-        contentType(ContentType.Application.Json)
         setBody(multipartBodyBuilder(dataField, filename, contentType, data, parameters))
 
         logger.debug("RequestBody: ${mapper.writeValueAsString(parameters)}")
