@@ -6,6 +6,11 @@ package eu.vendeli.tgbot.interfaces
  * @constructor Create empty I class manager
  */
 interface ClassManager {
+    /**
+     * Get instance of Class where Command/Input holds.
+     *
+     * @param clazz
+     * @param initParams
+     */
     fun getInstance(clazz: Class<*>, vararg initParams: Any?): Any
-    // if you want to use DI
 }

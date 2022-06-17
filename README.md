@@ -1,8 +1,8 @@
-# Kotlin Telegram Bot [![](https://jitpack.io/v/vendelieu/telegram-bot.svg)](https://jitpack.io/#vendelieu/telegram-bot) [![Supported version](https://img.shields.io/badge/Telegram%20Bot%20API-6.0-blue)](https://core.telegram.org/bots/api-changelog#april-16-2022)
+# Kotlin Telegram Bot [![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot) [![Supported version](https://img.shields.io/badge/Telegram%20Bot%20API-6.0-blue)](https://core.telegram.org/bots/api-changelog#april-16-2022)
 
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
-[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 [![Github Wiki](https://img.shields.io/badge/Github-Wiki-green)](https://github.com/vendelieu/telegram-bot/wiki)
+[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 
 Kotlin based wrapper over Telegram API.
 
