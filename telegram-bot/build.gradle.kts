@@ -32,10 +32,10 @@ dependencies {
     implementation(group = "org.reflections", name = "reflections", version = "0.10.2")
     implementation(kotlin("reflect"))
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
 }
 
-group = "com.github.vendelieu"
+group = "eu.vendeli"
 version = "1.3.0"
 
 tasks.jar {
@@ -46,6 +46,7 @@ tasks.jar {
 
 tasks.compileKotlin {
     incremental = true
+    kotlinOptions.allWarningsAsErrors = true
 }
 
 publishing {

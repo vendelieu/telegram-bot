@@ -1,10 +1,10 @@
-package com.github.vendelieu.samples
+package eu.vendeli.samples
 
-import com.github.vendelieu.tgbot.TelegramBot
-import com.github.vendelieu.tgbot.api.message
+import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.api.message
 
 suspend fun main() {
-    val bot = TelegramBot("BOT_TOKEN", "com.github.vendelieu.samples.controller")
+    val bot = TelegramBot("BOT_TOKEN", "eu.vendeli.samples.controller")
 
     bot.update.setListener {
         handle(it)

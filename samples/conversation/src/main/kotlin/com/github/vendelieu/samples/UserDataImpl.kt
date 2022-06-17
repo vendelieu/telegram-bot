@@ -1,7 +1,7 @@
-package com.github.vendelieu.samples
+package eu.vendeli.samples
 
 import com.github.benmanes.caffeine.cache.Caffeine
-import com.github.vendelieu.tgbot.interfaces.BotUserData
+import eu.vendeli.tgbot.interfaces.BotUserData
 
 class UserDataImpl : BotUserData {
     private val storage = Caffeine.newBuilder().weakKeys().build<String, Any?>()

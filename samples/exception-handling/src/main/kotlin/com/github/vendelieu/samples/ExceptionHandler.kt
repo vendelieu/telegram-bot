@@ -1,6 +1,6 @@
-package com.github.vendelieu.samples
+package eu.vendeli.samples
 
-import com.github.vendelieu.tgbot.types.Update
+import eu.vendeli.tgbot.types.Update
 import org.slf4j.LoggerFactory
 
 object ExceptionHandler {

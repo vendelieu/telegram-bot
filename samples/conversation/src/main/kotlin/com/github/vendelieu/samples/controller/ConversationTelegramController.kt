@@ -1,12 +1,12 @@
-package com.github.vendelieu.samples.controller
+package eu.vendeli.samples.controller
 
-import com.github.vendelieu.tgbot.TelegramBot
-import com.github.vendelieu.tgbot.annotations.TelegramCommand
-import com.github.vendelieu.tgbot.annotations.TelegramInput
-import com.github.vendelieu.tgbot.api.message
-import com.github.vendelieu.tgbot.types.User
-import com.github.vendelieu.tgbot.types.internal.ProcessedUpdate
-import com.github.vendelieu.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.TelegramCommand
+import eu.vendeli.tgbot.annotations.TelegramInput
+import eu.vendeli.tgbot.api.message
+import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.UpdateType
 
 class ConversationTelegramController {
     @TelegramCommand(["/start"])

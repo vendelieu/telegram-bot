@@ -8,11 +8,11 @@ Kotlin based wrapper over Telegram API.
 
 # Installation
 
-Add the JitPack repository to your root build.gradle.kts file:
+Add the MavenCentral repository to your root build.gradle.kts file:
 
 ```gradle
 repositories {
-    maven("https://jitpack.io")
+    mavenCentral()
 }
 ```
 
@@ -20,7 +20,7 @@ Now add the library itself to the dependencies' module that you need it.
 
 ```gradle
 dependencies {
-    implementation("com.github.vendelieu:telegram-bot:1.3.0")
+    implementation("eu.vendeli:telegram-bot:1.3.0")
 }
 ```
 

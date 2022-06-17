@@ -1,14 +1,14 @@
-package com.github.vendelieu.samples.controller
+package eu.vendeli.samples.controller
 
-import com.github.vendelieu.tgbot.TelegramBot
-import com.github.vendelieu.tgbot.annotations.TelegramCommand
-import com.github.vendelieu.tgbot.annotations.TelegramUnhandled
-import com.github.vendelieu.tgbot.api.message
-import com.github.vendelieu.tgbot.api.poll
-import com.github.vendelieu.tgbot.types.PollType
-import com.github.vendelieu.tgbot.types.User
-import com.github.vendelieu.tgbot.types.internal.ProcessedUpdate
-import com.github.vendelieu.tgbot.utils.inlineKeyboardMarkup
+import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.TelegramCommand
+import eu.vendeli.tgbot.annotations.TelegramUnhandled
+import eu.vendeli.tgbot.api.message
+import eu.vendeli.tgbot.api.poll
+import eu.vendeli.tgbot.types.PollType
+import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.utils.inlineKeyboardMarkup
 
 class PollController {
     @TelegramCommand(["/start"])

@@ -1,6 +1,6 @@
-package com.github.vendelieu.samples.controller
+package eu.vendeli.samples.controller
 
-import com.github.vendelieu.tgbot.annotations.TelegramCommand
+import eu.vendeli.tgbot.annotations.TelegramCommand
 
 class ExceptionThrowingController {
 

@@ -7,10 +7,10 @@ plugins {
     kotlin("jvm") version "1.6.21"
 }
 
-group = "com.github.vendelieu.samples"
+group = "eu.vendeli.samples"
 version = "0.0.1"
 application {
-    mainClass.set("com.github.vendelieu.samples.ApplicationKt")
+    mainClass.set("eu.vendeli.samples.ApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
@@ -18,11 +18,10 @@ application {
 
 repositories {
     mavenCentral()
-    maven("https://jitpack.io")
 }
 
 dependencies {
-    implementation("com.github.vendelieu:telegram-bot:1.3.0")
+    implementation("eu.vendeli:telegram-bot:1.3.0")
 
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
