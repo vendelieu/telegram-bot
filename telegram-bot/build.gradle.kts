@@ -6,6 +6,7 @@ plugins {
     `java-library`
     id("org.jetbrains.dokka") version "1.6.21"
     id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
+    signing
 }
 
 val logbackVer: String by project
@@ -51,12 +52,52 @@ tasks.compileKotlin {
 
 publishing {
     publications {
+        artifacts.archives(tasks.javadoc)
+
         create<MavenPublication>("maven") {
             groupId = project.group.toString()
             artifactId = "telegram-bot"
             version = project.version.toString()
 
-            from(components["kotlin"])
+            pom {
+                name.set(artifactId)
+                description.set(
+                    "A lightweight, feature-rich wrapper for the Telegram Bot API, " +
+                        "providing a handy Kotlin DSL to quickly build your bot. "
+                )
+                url.set("https://github.com/vendelieu/telegram-bot")
+                licenses {
+                    license {
+                        name.set("Apache 2.0")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("Vendelieu")
+                        name.set("Vendelieu")
+                        email.set("vendelieu@gmail.com")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:github.com/vendelieu/telegram-bot.git")
+                    developerConnection.set("scm:git:ssh://github.com/vendelieu/telegram-bot.git")
+                    url.set("https://github.com/vendelieu/telegram-bot.git")
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                credentials {
+                    username = System.getenv()["SONATYPE_USERNAME"]
+                    password = System.getenv()["SONATYPE_PASSWORD"]
+                }
+                url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            }
+        }
+        signing {
+            sign(publishing.publications["maven"])
         }
     }
 }
