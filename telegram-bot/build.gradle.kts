@@ -37,7 +37,7 @@ dependencies {
 }
 
 group = "eu.vendeli"
-version = "1.3.2"
+version = "1.3.3"
 
 tasks.jar {
     manifest {

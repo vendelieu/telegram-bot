@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("eu.vendeli:telegram-bot:1.3.2")
+    implementation("eu.vendeli:telegram-bot:1.3.3")
 
     implementation("ch.qos.logback:logback-classic:1.2.11")
     implementation("com.github.ben-manes.caffeine:caffeine:3.1.0")
