@@ -12,6 +12,7 @@ plugins {
 val logbackVer: String by project
 val jacksonVer: String by project
 val ktorVer: String by project
+val junitVer: String by project
 
 val javaTargetVersion = JavaVersion.VERSION_1_8
 
@@ -34,21 +35,17 @@ dependencies {
     implementation(kotlin("reflect"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
+
+    testImplementation("ch.qos.logback:logback-classic:1.2.11")
+    testImplementation("org.junit.jupiter:junit-jupiter:$junitVer")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVer")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVer")
+    testImplementation("io.mockk:mockk:1.12.4")
+    testImplementation("io.ktor:ktor-server-test-host:$ktorVer")
 }
 
 group = "eu.vendeli"
-version = "1.3.3"
-
-tasks.jar {
-    manifest {
-        attributes(mapOf("Implementation-Title" to project.name, "Implementation-Version" to project.version))
-    }
-}
-
-tasks.compileKotlin {
-    incremental = true
-    kotlinOptions.allWarningsAsErrors = true
-}
+version = "1.3.4"
 
 publishing {
     publications {
@@ -112,6 +109,21 @@ tasks.withType<DokkaTask>().configureEach {
             moduleName.set("Telegram Bot")
         }
     }
+}
+
+tasks.jar {
+    manifest {
+        attributes(mapOf("Implementation-Title" to project.name, "Implementation-Version" to project.version))
+    }
+}
+
+tasks.compileKotlin {
+    incremental = true
+    kotlinOptions.allWarningsAsErrors = true
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
 
 java {
