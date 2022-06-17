@@ -52,8 +52,6 @@ tasks.compileKotlin {
 
 publishing {
     publications {
-        artifacts.archives(tasks.javadoc)
-
         create<MavenPublication>("maven") {
             groupId = project.group.toString()
             artifactId = "telegram-bot"
@@ -85,6 +83,8 @@ publishing {
                     url.set("https://github.com/vendelieu/telegram-bot.git")
                 }
             }
+
+            from(components["java"])
         }
 
         repositories {
@@ -116,6 +116,7 @@ tasks.withType<DokkaTask>().configureEach {
 
 java {
     withSourcesJar()
+    withJavadocJar()
     sourceCompatibility = javaTargetVersion
     targetCompatibility = javaTargetVersion
 }
