@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly(group = "ch.qos.logback", name = "logback-core", version = logbackVer)
+    compileOnly(group = "ch.qos.logback", name = "logback-classic", version = logbackVer)
 
     implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", jacksonVer)
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVer")

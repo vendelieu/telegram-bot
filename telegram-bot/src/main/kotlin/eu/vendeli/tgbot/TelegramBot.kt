@@ -205,7 +205,6 @@ class TelegramBot(
         innerType: Class<I>? = null,
     ): Deferred<Response<T>> = coroutineScope {
         val response = httpClient.post(method.toUrl()) {
-            contentType(ContentType.Application.Json)
             setBody(multipartBodyBuilder(dataField, filename, contentType, data, parameters))
         }
 
