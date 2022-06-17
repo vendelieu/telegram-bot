@@ -38,8 +38,10 @@ class TelegramBotTest {
 
     @Test
     fun `test silent requesting`() = runBlocking {
-        var silentReq =
-            bot.makeSilentRequest(TgMethod("sendMessage"), mapOf("text" to "test", "chat_id" to "519279767"))
+        var silentReq = bot.makeSilentRequest(
+            TgMethod("sendMessage"),
+            mapOf("text" to "test", "chat_id" to System.getenv("TELEGRAM_ID"))
+        )
 
         assertEquals(silentReq.status, HttpStatusCode.OK)
         assertTrue(silentReq.bodyAsText().isNotBlank())
@@ -84,7 +86,7 @@ class TelegramBotTest {
             "photo",
             "image.jpg",
             image,
-            mapOf("chat_id" to "519279767"),
+            mapOf("chat_id" to System.getenv("TELEGRAM_ID")),
             ContentType.Image.JPEG
         )
 
