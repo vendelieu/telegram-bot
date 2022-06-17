@@ -90,7 +90,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
      * @param isInline Whether the request is inline.
      */
     suspend fun MediaAction<Req_R>.internalSend(to: ActionRecipientRef, via: TelegramBot, isInline: Boolean) {
-        parameters[if (!isInline) "chat_id" else "inline_message_id"] = to
+        parameters[if (!isInline) "chat_id" else "inline_message_id"] = to.get()
 
         if (id != null) {
             parameters[dataField] = id!!
