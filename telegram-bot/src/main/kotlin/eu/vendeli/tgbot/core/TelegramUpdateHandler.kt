@@ -91,6 +91,12 @@ class TelegramUpdateHandler internal constructor(
         return if (invocation != null) Activity(invocation = invocation, parameters = message.params) else null
     }
 
+    /**
+     * Update parsing method
+     *
+     * @param update
+     * @return [Update] or null
+     */
     fun parseUpdate(update: String): Update? {
         logger.trace("Trying to parse update from string - $update")
         return bot.mapper.runCatching { readValue(update, Update::class.java) }.onFailure {
