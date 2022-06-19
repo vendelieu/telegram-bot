@@ -81,7 +81,7 @@ class TelegramBot(
             if (field == null) field = value
         }
 
-    private val mapper = ObjectMapper().apply {
+    internal val mapper = ObjectMapper().apply {
         propertyNamingStrategy = PropertyNamingStrategies.SNAKE_CASE
 
         registerModules(

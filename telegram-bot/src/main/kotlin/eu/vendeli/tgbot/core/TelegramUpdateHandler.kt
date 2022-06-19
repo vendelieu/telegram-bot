@@ -91,6 +91,27 @@ class TelegramUpdateHandler internal constructor(
         return if (invocation != null) Activity(invocation = invocation, parameters = message.params) else null
     }
 
+    fun parseUpdate(update: String): Update? {
+        logger.trace("Trying to parse update from string - $update")
+        return bot.mapper.runCatching { readValue(update, Update::class.java) }.onFailure {
+            logger.debug("error during the update parsing process.", it)
+        }.onSuccess { logger.trace("Successfully parsed update to $it") }.getOrNull()
+    }
+
+    /**
+     * [Update] extension function that helps to handle the update (annotations mode)
+     *
+     */
+    @JvmName("handleIt")
+    suspend fun Update.handle() = handle(this)
+
+    /**
+     * [Update] extension function that helps to handle the update (manual mode)
+     *
+     */
+    @JvmName("handleItManually")
+    suspend fun Update.handle(block: suspend ManualHandlingDsl.(Update) -> Unit) = handle(this, block)
+
     /**
      * Function used to call functions with certain parameters processed after receiving update.
      *
