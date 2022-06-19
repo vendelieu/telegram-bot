@@ -45,7 +45,7 @@ dependencies {
 }
 
 group = "eu.vendeli"
-version = "1.3.5"
+version = "1.3.6-alpha-1"
 
 publishing {
     publications {
