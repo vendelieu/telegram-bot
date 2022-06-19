@@ -22,7 +22,7 @@ interface BotChatData {
      * @param key
      * @param value
      */
-    fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean>
+    suspend fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean>
 
     /**
      * Get ChatData value
@@ -38,7 +38,7 @@ interface BotChatData {
      * @param telegramId
      * @param key
      */
-    fun getAsync(telegramId: Long, key: String): Deferred<Any?>
+    suspend fun getAsync(telegramId: Long, key: String): Deferred<Any?>
 
     /**
      * Delete value
@@ -55,7 +55,7 @@ interface BotChatData {
      * @param telegramId
      * @param key
      */
-    fun delAsync(telegramId: Long, key: String): Deferred<Boolean>
+    suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean>
 
     /**
      * Delete previous chat section data, method used to bind data to a class.
@@ -63,4 +63,11 @@ interface BotChatData {
      * @param telegramId
      */
     fun delPrevChatSection(telegramId: Long)
+
+    /**
+     * Asynchronously delete previous chat section data, method used to bind data to a class.
+     *
+     * @param telegramId
+     */
+    suspend fun delPrevChatSectionAsync(telegramId: Long): Deferred<Boolean>
 }

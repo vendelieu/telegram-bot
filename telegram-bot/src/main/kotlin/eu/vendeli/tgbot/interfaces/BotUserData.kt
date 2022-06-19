@@ -22,7 +22,7 @@ interface BotUserData {
      * @param key
      * @param value
      */
-    fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean>
+    suspend fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean>
 
     /**
      * Get UserData value
@@ -38,7 +38,7 @@ interface BotUserData {
      * @param telegramId
      * @param key
      */
-    fun getAsync(telegramId: Long, key: String): Deferred<Any?>
+    suspend fun getAsync(telegramId: Long, key: String): Deferred<Any?>
 
     /**
      * Del UserData value
@@ -54,5 +54,5 @@ interface BotUserData {
      * @param telegramId
      * @param key
      */
-    fun delAsync(telegramId: Long, key: String)
+    suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean>
 }

@@ -21,7 +21,7 @@ interface BotWaitingInput {
      * @param telegramId
      * @param identifier
      */
-    fun setAsync(telegramId: Long, identifier: String): Deferred<Boolean>
+    suspend fun setAsync(telegramId: Long, identifier: String): Deferred<Boolean>
 
     /**
      * Get current waiting input of user.
@@ -35,7 +35,7 @@ interface BotWaitingInput {
      *
      * @param telegramId
      */
-    fun getAsync(telegramId: Long): String?
+    suspend fun getAsync(telegramId: Long): Deferred<String?>
 
     /**
      * Delete current waiting input of user.
@@ -49,5 +49,5 @@ interface BotWaitingInput {
      *
      * @param telegramId
      */
-    fun delAsync(telegramId: Long)
+    suspend fun delAsync(telegramId: Long): Deferred<Boolean>
 }
