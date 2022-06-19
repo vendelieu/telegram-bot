@@ -19,7 +19,9 @@ suspend fun main() {
     embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
         routing {
             post("/BOT_TOKEN") {
-                bot.update.handle(call.receive())
+                bot.update.apply {
+                    parseUpdate(call.receive())?.handle()
+                }
                 call.respond(HttpStatusCode.OK)
             }
         }

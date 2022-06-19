@@ -17,5 +17,8 @@ dependencies {
     implementation("eu.vendeli:telegram-bot:1.3.5")
 
     implementation("ch.qos.logback:logback-classic:1.2.11")
-    implementation("com.github.ben-manes.caffeine:caffeine:3.1.0")
+    implementation(group = "org.redisson", name = "redisson", version = "3.17.0") {
+        exclude("com.fasterxml.jackson.core", "jackson-databind")
+    }
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
 }
