@@ -156,10 +156,10 @@ class TelegramUpdateHandler internal constructor(
         bot.chatData?.run {
             logger.trace("Handling BotContext for Update#${update.fullUpdate.updateId}")
             if (!update.user.isPresent()) return@run
-            val prevClassName = get(update.user.id, "PrevInvokedClass")?.toString()
-            if (prevClassName != invocation.clazz.name) delPrevChatSection(update.user.id)
+            val prevClassName = getAsync(update.user.id, "PrevInvokedClass").await()?.toString()
+            if (prevClassName != invocation.clazz.name) delPrevChatSectionAsync(update.user.id).await()
 
-            set(update.user.id, "PrevInvokedClass", invocation.clazz.name)
+            setAsync(update.user.id, "PrevInvokedClass", invocation.clazz.name).await()
         }
 
         logger.trace("Invoking function for Update#${update.fullUpdate.updateId}")
@@ -182,10 +182,11 @@ class TelegramUpdateHandler internal constructor(
     suspend fun handle(update: Update): Throwable? = processUpdateDto(update).run {
         logger.trace("Handling update: $update")
         val commandAction = if (text != null) findAction(text) else null
-        val inputAction = if (commandAction == null) inputHandler.get(user.id)?.let { findAction(it, false) }
-        else null
+        val inputAction = if (commandAction == null) inputHandler.getAsync(user.id).await()?.let {
+            findAction(it, false)
+        } else null
         logger.trace("Result of finding action - command: $commandAction, input: $inputAction")
-        inputHandler.del(user.id)
+        inputHandler.delAsync(user.id).await()
 
         return when {
             commandAction != null -> invokeMethod(this, commandAction.invocation, commandAction.parameters)
