@@ -48,7 +48,6 @@ interface BotChatData {
      */
     fun del(telegramId: Long, key: String)
 
-
     /**
      * Asynchronously delete value
      *

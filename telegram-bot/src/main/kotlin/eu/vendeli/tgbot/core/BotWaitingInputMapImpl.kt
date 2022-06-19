@@ -1,6 +1,9 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.interfaces.BotWaitingInput
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import java.util.*
 
 /**
@@ -20,6 +23,13 @@ class BotWaitingInputMapImpl : BotWaitingInput {
         storage[telegramId] = identifier
     }
 
+    override suspend fun setAsync(telegramId: Long, identifier: String): Deferred<Boolean> = coroutineScope {
+        async {
+            set(telegramId, identifier)
+            return@async true
+        }
+    }
+
     /**
      * Get waiting input of user
      *
@@ -28,6 +38,12 @@ class BotWaitingInputMapImpl : BotWaitingInput {
      */
     override fun get(telegramId: Long): String? = storage[telegramId]
 
+    override suspend fun getAsync(telegramId: Long): Deferred<String?> = coroutineScope {
+        async {
+            get(telegramId)
+        }
+    }
+
     /**
      * Delete waiting input
      *
@@ -35,5 +51,12 @@ class BotWaitingInputMapImpl : BotWaitingInput {
      */
     override fun del(telegramId: Long) {
         storage.remove(telegramId)
+    }
+
+    override suspend fun delAsync(telegramId: Long): Deferred<Boolean> = coroutineScope {
+        async {
+            del(telegramId)
+            return@async true
+        }
     }
 }
