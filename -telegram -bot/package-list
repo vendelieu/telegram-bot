@@ -923,7 +923,7 @@ $dokka.location:eu.vendeli.tgbot.types.internal.options/VideoNoteOptions/VideoNo
 $dokka.location:eu.vendeli.tgbot.types.internal.options/VideoNoteOptions/allowSendingWithoutReply/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.options/-video-note-options/allow-sending-without-reply.html
 $dokka.location:eu.vendeli.tgbot.types.internal.options/VideoNoteOptions/disableNotification/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.options/-video-note-options/disable-notification.html
 $dokka.location:eu.vendeli.tgbot.types.internal.options/VideoNoteOptions/duration/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.options/-video-note-options/duration.html
-$dokka.location:eu.vendeli.tgbot.types.internal.options/VideoNoteOptions/height/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.options/-video-note-options/height.html
+$dokka.location:eu.vendeli.tgbot.types.internal.options/VideoNoteOptions/length/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.options/-video-note-options/length.html
 $dokka.location:eu.vendeli.tgbot.types.internal.options/VideoNoteOptions/protectContent/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.options/-video-note-options/protect-content.html
 $dokka.location:eu.vendeli.tgbot.types.internal.options/VideoNoteOptions/replyToMessageId/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.options/-video-note-options/reply-to-message-id.html
 $dokka.location:eu.vendeli.tgbot.types.internal.options/VideoNoteOptions/thumb/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.options/-video-note-options/thumb.html
