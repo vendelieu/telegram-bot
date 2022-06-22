@@ -8,6 +8,6 @@ data class Audio(
     val title: String? = null,
     val fileName: String? = null,
     val mimeType: String? = null,
-    val fileSize: Int? = null,
+    val fileSize: Long? = null,
     val thumb: PhotoSize?,
 )
