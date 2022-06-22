@@ -10,6 +10,7 @@ data class Sticker(
     val thumb: PhotoSize? = null,
     val emoji: String? = null,
     val setName: String? = null,
+    val premiumAnimation: File? = null,
     val maskPosition: MaskPosition? = null,
     val fileSize: Int?,
 )

@@ -6,6 +6,35 @@ enum class ChatType(private val literal: String) {
     override fun toString(): String = literal
 }
 
+/**
+ * Chat
+ *
+ * @property id
+ * @property type
+ * @property title
+ * @property username
+ * @property firstName
+ * @property lastName
+ * @property photo
+ * @property bio
+ * @property hasPrivateForwards
+ * @property joinToSendMessages True, if users need to join the supergroup before they can send messages.
+ * Returned only in getChat.
+ * @property joinByRequest True, if all users directly joining the supergroup need to be approved by supergroup
+ * administrators. Returned only in getChat.
+ * @property description
+ * @property inviteLink
+ * @property pinnedMessage
+ * @property permissions
+ * @property slowModeDelay
+ * @property messageAutoDeleteTime
+ * @property hasProtectedContent
+ * @property stickerSetName
+ * @property canSetStickerSet
+ * @property linkedChatId
+ * @property location
+ * @constructor Create empty Chat
+ */
 data class Chat(
     val id: Long,
     val type: ChatType,
@@ -16,6 +45,8 @@ data class Chat(
     val photo: ChatPhoto? = null,
     val bio: String? = null,
     val hasPrivateForwards: Boolean? = null,
+    val joinToSendMessages: Boolean? = null,
+    val joinByRequest: Boolean? = null,
     val description: String? = null,
     val inviteLink: String? = null,
     val pinnedMessage: Message? = null,

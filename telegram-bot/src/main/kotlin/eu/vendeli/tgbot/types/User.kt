@@ -7,6 +7,8 @@ data class User(
     val lastName: String? = null,
     val username: String? = null,
     val languageCode: String? = null,
+    val isPremium: Boolean? = null,
+    val addedToAttachmentMenu: Boolean? = null,
     val canJoinGroups: Boolean? = null,
     val canReadAllGroupMessages: Boolean? = null,
     val supportsInlineQueries: Boolean? = null,
