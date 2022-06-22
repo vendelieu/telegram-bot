@@ -9,4 +9,4 @@ data class VoiceOptions(
     override var protectContent: Boolean? = null,
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
-) : OptionsInterface<VoiceOptions>, IOptionsCommon, OptionsParseMode
+) : OptionsInterface<VoiceOptions>, OptionsCommon, OptionsParseMode

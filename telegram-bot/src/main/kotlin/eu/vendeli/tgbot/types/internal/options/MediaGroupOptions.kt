@@ -5,4 +5,4 @@ data class MediaGroupOptions(
     override var protectContent: Boolean? = null,
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
-) : OptionsInterface<MediaGroupOptions>, IOptionsCommon
+) : OptionsInterface<MediaGroupOptions>, OptionsCommon

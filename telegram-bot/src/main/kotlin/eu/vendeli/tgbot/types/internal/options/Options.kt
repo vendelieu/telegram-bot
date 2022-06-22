@@ -21,11 +21,11 @@ interface OptionsParseMode : Options {
     var parseMode: ParseMode?
 }
 
-interface IFileOptions : Options {
+interface FileOptions : Options {
     var fileName: String?
 }
 
-interface IOptionsCommon : Options {
+interface OptionsCommon : Options {
     var disableNotification: Boolean?
     var replyToMessageId: Long?
     var allowSendingWithoutReply: Boolean?

@@ -8,4 +8,4 @@ data class CopyMessageOptions(
     override var parseMode: ParseMode? = null,
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
-) : OptionsInterface<CopyMessageOptions>, OptionsParseMode, IOptionsCommon
+) : OptionsInterface<CopyMessageOptions>, OptionsParseMode, OptionsCommon

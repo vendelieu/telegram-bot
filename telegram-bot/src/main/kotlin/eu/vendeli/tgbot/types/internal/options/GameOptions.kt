@@ -5,4 +5,4 @@ data class GameOptions(
     override var protectContent: Boolean? = null,
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
-) : OptionsInterface<GameOptions>, IOptionsCommon
+) : OptionsInterface<GameOptions>, OptionsCommon

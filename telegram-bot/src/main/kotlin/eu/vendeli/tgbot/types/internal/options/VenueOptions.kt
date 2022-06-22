@@ -9,4 +9,4 @@ data class VenueOptions(
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
-) : OptionsInterface<VenueOptions>, IOptionsCommon
+) : OptionsInterface<VenueOptions>, OptionsCommon

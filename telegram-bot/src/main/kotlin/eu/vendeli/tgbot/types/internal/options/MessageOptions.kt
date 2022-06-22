@@ -9,4 +9,4 @@ data class MessageOptions(
     override var disableNotification: Boolean? = null,
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
-) : OptionsInterface<MessageOptions>, IOptionsCommon, OptionsParseMode
+) : OptionsInterface<MessageOptions>, OptionsCommon, OptionsParseMode

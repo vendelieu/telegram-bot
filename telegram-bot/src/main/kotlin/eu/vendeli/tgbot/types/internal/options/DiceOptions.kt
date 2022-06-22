@@ -5,4 +5,4 @@ data class DiceOptions(
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
-) : OptionsInterface<DiceOptions>, IOptionsCommon
+) : OptionsInterface<DiceOptions>, OptionsCommon

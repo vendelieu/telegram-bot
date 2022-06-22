@@ -9,4 +9,4 @@ data class LocationOptions(
     override var protectContent: Boolean? = null,
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
-) : OptionsInterface<LocationOptions>, IOptionsCommon
+) : OptionsInterface<LocationOptions>, OptionsCommon

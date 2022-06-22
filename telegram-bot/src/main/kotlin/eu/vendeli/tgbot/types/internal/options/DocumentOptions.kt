@@ -12,4 +12,4 @@ data class DocumentOptions(
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
-) : OptionsInterface<DocumentOptions>, IOptionsCommon, OptionsParseMode, IFileOptions
+) : OptionsInterface<DocumentOptions>, OptionsCommon, OptionsParseMode, FileOptions

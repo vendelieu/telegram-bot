@@ -8,4 +8,4 @@ data class PhotoOptions(
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
-) : OptionsInterface<PhotoOptions>, IOptionsCommon, OptionsParseMode
+) : OptionsInterface<PhotoOptions>, OptionsCommon, OptionsParseMode

@@ -15,4 +15,4 @@ data class VideoOptions(
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
-) : OptionsInterface<VideoOptions>, IOptionsCommon, OptionsParseMode, IFileOptions
+) : OptionsInterface<VideoOptions>, OptionsCommon, OptionsParseMode, FileOptions

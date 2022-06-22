@@ -5,4 +5,4 @@ class CommonOptions(
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
-) : IOptionsCommon, OptionsInterface<CommonOptions>
+) : OptionsCommon, OptionsInterface<CommonOptions>

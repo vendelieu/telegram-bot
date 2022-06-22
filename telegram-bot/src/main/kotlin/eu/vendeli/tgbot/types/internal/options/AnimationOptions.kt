@@ -13,4 +13,4 @@ data class AnimationOptions(
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
-) : OptionsInterface<AnimationOptions>, IOptionsCommon, OptionsParseMode
+) : OptionsInterface<AnimationOptions>, OptionsCommon, OptionsParseMode
