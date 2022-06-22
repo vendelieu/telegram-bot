@@ -34,7 +34,7 @@ dependencies {
     implementation(group = "org.reflections", name = "reflections", version = "0.10.2")
     implementation(kotlin("reflect"))
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
 
     testImplementation("ch.qos.logback:logback-classic:1.2.11")
     testImplementation("org.junit.jupiter:junit-jupiter:$junitVer")
