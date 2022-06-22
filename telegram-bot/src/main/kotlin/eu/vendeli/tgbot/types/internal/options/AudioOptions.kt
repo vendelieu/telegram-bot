@@ -13,4 +13,4 @@ data class AudioOptions(
     override var protectContent: Boolean? = null,
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
-) : OptionsInterface<AudioOptions>, IOptionsCommon, OptionsParseMode
+) : OptionsInterface<AudioOptions>, OptionsCommon, OptionsParseMode
