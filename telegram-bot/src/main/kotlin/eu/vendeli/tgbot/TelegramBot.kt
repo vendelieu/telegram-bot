@@ -23,6 +23,7 @@ import eu.vendeli.tgbot.utils.TELEGRAM_FILE_URL_PATTERN
 import eu.vendeli.tgbot.utils.convertSuccessResponse
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
@@ -206,6 +207,9 @@ class TelegramBot(
     ): Deferred<Response<T>> = coroutineScope {
         val response = httpClient.post(method.toUrl()) {
             setBody(multipartBodyBuilder(dataField, filename, contentType, data, parameters))
+            onUpload { bytesSentTotal, contentLength ->
+                logger.trace("Sent $bytesSentTotal bytes from $contentLength, for $method method with $parameters")
+            }
         }
 
         return@coroutineScope handleResponseAsync(response, returnType, innerType)
@@ -267,6 +271,9 @@ class TelegramBot(
         contentType: ContentType,
     ) = httpClient.post(method.toUrl()) {
         setBody(multipartBodyBuilder(dataField, filename, contentType, data, parameters))
+        onUpload { bytesSentTotal, contentLength ->
+            logger.trace("Sent $bytesSentTotal bytes from $contentLength, for $method method with $parameters")
+        }
 
         logger.debug("RequestBody: ${mapper.writeValueAsString(parameters)}")
     }
