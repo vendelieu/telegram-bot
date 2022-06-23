@@ -2,77 +2,44 @@ package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.types.MaskPosition
+import eu.vendeli.tgbot.types.internal.StickerFile
 import eu.vendeli.tgbot.types.internal.StickerMediaType
 import eu.vendeli.tgbot.types.internal.TgMethod
-import io.ktor.http.*
 
 @Suppress("UNUSED_PARAMETER")
-class CreateNewStickerSetAction : MediaAction<Boolean> {
+class CreateNewStickerSetAction(
+    name: String,
+    title: String,
+    emojis: String,
+    sticker: StickerFile,
+    containsMasks: Boolean? = null,
+    maskPosition: MaskPosition? = null,
+) : MediaAction<Boolean> {
     override val method: TgMethod = TgMethod("createNewStickerSet")
-
-    constructor(
-        name: String,
-        title: String,
-        emojis: String,
-        sticker: ByteArray,
-        containsMasks: Boolean? = null,
-        maskPosition: MaskPosition? = null,
-        type: StickerMediaType.Png = StickerMediaType.Png,
-    ) {
-        parameters["title"] = title
-        parameters["name"] = name
-        parameters["emojis"] = emojis
-        if (containsMasks != null) parameters["contains_masks"] = containsMasks
-        if (maskPosition != null) parameters["mask_position"] = maskPosition
-
-        setDataField("png_sticker")
-        setDefaultType(ContentType.Image.PNG)
-        setMedia(sticker)
-    }
-
-    constructor(
-        name: String,
-        title: String,
-        emojis: String,
-        sticker: ByteArray,
-        containsMasks: Boolean? = null,
-        maskPosition: MaskPosition? = null,
-        type: StickerMediaType.Tgs = StickerMediaType.Tgs,
-    ) {
-        parameters["title"] = title
-        parameters["name"] = name
-        parameters["emojis"] = emojis
-        if (containsMasks != null) parameters["contains_masks"] = containsMasks
-        if (maskPosition != null) parameters["mask_position"] = maskPosition
-
-        setDataField("tgs_sticker")
-        setDefaultType(ContentType.MultiPart.FormData)
-        setMedia(sticker)
-    }
-
-    constructor(
-        name: String,
-        title: String,
-        emojis: String,
-        sticker: ByteArray,
-        containsMasks: Boolean? = null,
-        maskPosition: MaskPosition? = null,
-        type: StickerMediaType.Webm = StickerMediaType.Webm,
-    ) {
-        parameters["title"] = title
-        parameters["name"] = name
-        parameters["emojis"] = emojis
-        if (containsMasks != null) parameters["contains_masks"] = containsMasks
-        if (maskPosition != null) parameters["mask_position"] = maskPosition
-
-        setDataField("webm_sticker")
-        setDefaultType(ContentType.MultiPart.FormData)
-        setMedia(sticker)
-    }
-
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
+
+    init {
+        parameters["title"] = title
+        parameters["name"] = name
+        parameters["emojis"] = emojis
+        if (containsMasks != null) parameters["contains_masks"] = containsMasks
+        if (maskPosition != null) parameters["mask_position"] = maskPosition
+
+        when (sticker) {
+            is StickerFile.PNG -> setDataField("png_sticker")
+            is StickerFile.TGS -> setDataField("tgs_sticker")
+            is StickerFile.WEBM -> setDataField("webm_sticker")
+        }
+        setDefaultType(sticker.contentType)
+        setMedia(sticker.file)
+    }
 }
 
+@Deprecated(
+    "Obsolete implementation.", ReplaceWith(
+        "createNewStickerSet(name, title, emojis, sticker, containsMasks, maskPosition)"
+    ), DeprecationLevel.WARNING
+)
 fun createNewStickerSet(
     name: String,
     title: String,
@@ -81,8 +48,13 @@ fun createNewStickerSet(
     type: StickerMediaType.Png,
     containsMasks: Boolean? = null,
     maskPosition: MaskPosition? = null,
-) = CreateNewStickerSetAction(name, title, emojis, sticker, containsMasks, maskPosition, type)
+) = CreateNewStickerSetAction(name, title, emojis, StickerFile.PNG(sticker), containsMasks, maskPosition)
 
+@Deprecated(
+    "Obsolete implementation.", ReplaceWith(
+        "createNewStickerSet(name, title, emojis, sticker, containsMasks, maskPosition)"
+    ), DeprecationLevel.WARNING
+)
 fun createNewStickerSet(
     name: String,
     title: String,
@@ -91,8 +63,13 @@ fun createNewStickerSet(
     type: StickerMediaType.Tgs,
     containsMasks: Boolean? = null,
     maskPosition: MaskPosition? = null,
-) = CreateNewStickerSetAction(name, title, emojis, sticker, containsMasks, maskPosition, type)
+) = CreateNewStickerSetAction(name, title, emojis, StickerFile.TGS(sticker), containsMasks, maskPosition)
 
+@Deprecated(
+    "Obsolete implementation.", ReplaceWith(
+        "createNewStickerSet(name, title, emojis, sticker, containsMasks, maskPosition)"
+    ), DeprecationLevel.WARNING
+)
 fun createNewStickerSet(
     name: String,
     title: String,
@@ -101,4 +78,14 @@ fun createNewStickerSet(
     type: StickerMediaType.Webm,
     containsMasks: Boolean? = null,
     maskPosition: MaskPosition? = null,
-) = CreateNewStickerSetAction(name, title, emojis, sticker, containsMasks, maskPosition, type)
+) = CreateNewStickerSetAction(name, title, emojis, StickerFile.WEBM(sticker), containsMasks, maskPosition)
+
+
+fun createNewStickerSet(
+    name: String,
+    title: String,
+    emojis: String,
+    sticker: StickerFile,
+    containsMasks: Boolean? = null,
+    maskPosition: MaskPosition? = null,
+) = CreateNewStickerSetAction(name, title, emojis, sticker, containsMasks, maskPosition)

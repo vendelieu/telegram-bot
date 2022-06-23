@@ -2,94 +2,40 @@ package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.types.MaskPosition
-import eu.vendeli.tgbot.types.internal.StickerMediaType
+import eu.vendeli.tgbot.types.internal.StickerFile
 import eu.vendeli.tgbot.types.internal.TgMethod
-import io.ktor.http.*
+import kotlin.collections.MutableMap
+import kotlin.collections.mutableMapOf
+import kotlin.collections.set
 
 @Suppress("UNUSED_PARAMETER")
-class AddStickerToSetAction : MediaAction<Boolean> {
+class AddStickerToSetAction(
+    name: String,
+    emojis: String,
+    sticker: StickerFile,
+    maskPosition: MaskPosition? = null,
+) : MediaAction<Boolean> {
     override val method: TgMethod = TgMethod("addStickerToSet")
-
-    constructor(
-        name: String,
-        emojis: String,
-        sticker: ByteArray,
-        containsMasks: Boolean? = null,
-        maskPosition: MaskPosition? = null,
-        type: StickerMediaType.Png = StickerMediaType.Png,
-    ) {
-        parameters["name"] = name
-        parameters["emojis"] = emojis
-        if (containsMasks != null) parameters["contains_masks"] = containsMasks
-        if (maskPosition != null) parameters["mask_position"] = maskPosition
-
-        setDataField("png_sticker")
-        setDefaultType(ContentType.Image.PNG)
-        setMedia(sticker)
-    }
-
-    constructor(
-        name: String,
-        emojis: String,
-        sticker: ByteArray,
-        containsMasks: Boolean? = null,
-        maskPosition: MaskPosition? = null,
-        type: StickerMediaType.Tgs = StickerMediaType.Tgs,
-    ) {
-        parameters["name"] = name
-        parameters["emojis"] = emojis
-        if (containsMasks != null) parameters["contains_masks"] = containsMasks
-        if (maskPosition != null) parameters["mask_position"] = maskPosition
-
-        setDataField("tgs_sticker")
-        setDefaultType(ContentType.MultiPart.FormData)
-        setMedia(sticker)
-    }
-
-    constructor(
-        name: String,
-        emojis: String,
-        sticker: ByteArray,
-        containsMasks: Boolean? = null,
-        maskPosition: MaskPosition? = null,
-        type: StickerMediaType.Webm = StickerMediaType.Webm,
-    ) {
-        parameters["name"] = name
-        parameters["emojis"] = emojis
-        if (containsMasks != null) parameters["contains_masks"] = containsMasks
-        if (maskPosition != null) parameters["mask_position"] = maskPosition
-
-        setDataField("webm_sticker")
-        setDefaultType(ContentType.MultiPart.FormData)
-        setMedia(sticker)
-    }
-
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
+
+    init {
+        parameters["name"] = name
+        parameters["emojis"] = emojis
+        if (maskPosition != null) parameters["mask_position"] = maskPosition
+
+        when (sticker) {
+            is StickerFile.PNG -> setDataField("png_sticker")
+            is StickerFile.TGS -> setDataField("tgs_sticker")
+            is StickerFile.WEBM -> setDataField("webm_sticker")
+        }
+        setDefaultType(sticker.contentType)
+        setMedia(sticker.file)
+    }
 }
 
-fun createNewStickerSet(
+fun addStickerToSet(
     name: String,
     emojis: String,
-    sticker: ByteArray,
-    type: StickerMediaType.Png,
-    containsMasks: Boolean? = null,
+    sticker: StickerFile,
     maskPosition: MaskPosition? = null,
-) = AddStickerToSetAction(name, emojis, sticker, containsMasks, maskPosition, type)
-
-fun createNewStickerSet(
-    name: String,
-    emojis: String,
-    sticker: ByteArray,
-    type: StickerMediaType.Tgs,
-    containsMasks: Boolean? = null,
-    maskPosition: MaskPosition? = null,
-) = AddStickerToSetAction(name, emojis, sticker, containsMasks, maskPosition, type)
-
-fun createNewStickerSet(
-    name: String,
-    emojis: String,
-    sticker: ByteArray,
-    type: StickerMediaType.Webm,
-    containsMasks: Boolean? = null,
-    maskPosition: MaskPosition? = null,
-) = AddStickerToSetAction(name, emojis, sticker, containsMasks, maskPosition, type)
+) = AddStickerToSetAction(name, emojis, sticker, maskPosition)
