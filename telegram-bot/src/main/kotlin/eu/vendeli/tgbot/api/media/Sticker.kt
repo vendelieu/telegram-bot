@@ -6,9 +6,9 @@ import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionAble
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CommonOptions
-import io.ktor.http.*
 
 class SendStickerAction :
     MediaAction<Message>,
@@ -20,7 +20,7 @@ class SendStickerAction :
 
     init {
         setDataField("sticker")
-        setDefaultType(ContentType.Image.JPEG)
+        setDefaultType(MediaContentType.ImageJpeg)
     }
 
     constructor(stickerId: String) {

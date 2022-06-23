@@ -3,9 +3,9 @@ package eu.vendeli.tgbot.api.media
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.features.*
 import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.DocumentOptions
-import io.ktor.http.*
 
 class SendDocumentAction :
     MediaAction<Message>,
@@ -19,7 +19,7 @@ class SendDocumentAction :
 
     init {
         setDataField("document")
-        setDefaultType(ContentType.Text.Plain)
+        setDefaultType(MediaContentType.Text)
     }
 
     constructor(documentId: String) {

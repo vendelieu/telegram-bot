@@ -1,6 +1,5 @@
 package eu.vendeli.tgbot.types.internal.options
 
-
 /**
  * Create invoice link options
  *

@@ -1,15 +1,15 @@
 package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
-import io.ktor.http.*
 
 class SetChatPhotoAction : MediaAction<Boolean> {
     override val method: TgMethod = TgMethod("setChatPhoto")
 
     init {
         setDataField("photo")
-        setDefaultType(ContentType.Image.JPEG)
+        setDefaultType(MediaContentType.ImageJpeg)
     }
 
     constructor(chatPhotoId: String) {

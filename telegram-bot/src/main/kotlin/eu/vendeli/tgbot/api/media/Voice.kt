@@ -3,9 +3,9 @@ package eu.vendeli.tgbot.api.media
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.features.*
 import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VoiceOptions
-import io.ktor.http.*
 
 class SendVoiceAction :
     MediaAction<Message>,
@@ -19,7 +19,7 @@ class SendVoiceAction :
 
     init {
         setDataField("voice")
-        setDefaultType(ContentType.Audio.OGG)
+        setDefaultType(MediaContentType.Voice)
     }
 
     constructor(voiceId: String) {

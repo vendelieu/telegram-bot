@@ -3,8 +3,9 @@ package eu.vendeli.tgbot.interfaces
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActionRecipientRef
+import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.Response
-import io.ktor.http.*
+import eu.vendeli.tgbot.types.internal.toContentType
 import kotlinx.coroutines.Deferred
 
 /**
@@ -27,7 +28,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
      *
      * @param defaultType
      */
-    fun MediaAction<Req_R>.setDefaultType(defaultType: ContentType) {
+    fun MediaAction<Req_R>.setDefaultType(defaultType: MediaContentType) {
         Companion.defaultType = defaultType
     }
 
@@ -98,10 +99,10 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
         } else via.makeSilentRequest(
             method,
             dataField,
-            (parameters["file_name"]?.toString() ?: "$dataField.${defaultType.contentSubtype}"),
+            (parameters["file_name"]?.toString() ?: "$dataField.$defaultType"),
             media,
             parameters,
-            defaultType
+            defaultType.toContentType()
         )
     }
 
@@ -128,10 +129,10 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
         } else via.makeRequestAsync(
             method,
             dataField,
-            (parameters["file_name"]?.toString() ?: "$dataField.${defaultType.contentSubtype}"),
+            (parameters["file_name"]?.toString() ?: "$dataField.$defaultType"),
             media,
             parameters,
-            defaultType,
+            defaultType.toContentType(),
             returnType,
             bunchResponseInnerType()
         )
@@ -139,7 +140,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
 
     companion object {
         var dataField: String = "media"
-        var defaultType: ContentType = ContentType.Any
+        var defaultType: MediaContentType = MediaContentType.Text
         var id: String? = null
         var media: ByteArray = ByteArray(0)
     }

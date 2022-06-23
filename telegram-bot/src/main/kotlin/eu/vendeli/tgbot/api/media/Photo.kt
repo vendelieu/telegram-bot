@@ -3,9 +3,9 @@ package eu.vendeli.tgbot.api.media
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.features.*
 import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PhotoOptions
-import io.ktor.http.*
 
 class SendPhotoAction :
     MediaAction<Message>,
@@ -19,7 +19,7 @@ class SendPhotoAction :
 
     init {
         setDataField("photo")
-        setDefaultType(ContentType.Image.JPEG)
+        setDefaultType(MediaContentType.ImageJpeg)
     }
 
     constructor(photoId: String) {

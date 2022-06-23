@@ -8,7 +8,6 @@ import eu.vendeli.tgbot.types.LabeledPrice
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CreateInvoiceLinkOptions
 
-
 /**
  * Create invoice link -
  * use this method to create a link for an invoice. Returns the created invoice link as String on success.
