@@ -2,6 +2,7 @@ package eu.vendeli.tgbot.types
 
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
+import eu.vendeli.tgbot.types.internal.ImplicitFile
 
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
@@ -18,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
 sealed class InputMedia(val type: String) {
     data class Audio(
         val media: String,
-        val thumb: String,
+        val thumb: ImplicitFile<*>,
         val caption: String? = null,
         val parseMode: String? = null,
         val captionEntities: List<MessageEntity>? = null,
@@ -29,7 +30,7 @@ sealed class InputMedia(val type: String) {
 
     data class Document(
         val media: String,
-        val thumb: String,
+        val thumb: ImplicitFile<*>,
         val caption: String? = null,
         val parseMode: String? = null,
         val captionEntities: List<MessageEntity>? = null,
@@ -45,7 +46,7 @@ sealed class InputMedia(val type: String) {
 
     data class Video(
         val media: String,
-        val thumb: String,
+        val thumb: ImplicitFile<*>,
         val caption: String? = null,
         val parseMode: String? = null,
         val captionEntities: List<MessageEntity>? = null,
@@ -57,7 +58,7 @@ sealed class InputMedia(val type: String) {
 
     data class Animation(
         val media: String,
-        val thumb: String,
+        val thumb: ImplicitFile<*>,
         val caption: String? = null,
         val parseMode: String? = null,
         val captionEntities: List<MessageEntity>? = null,

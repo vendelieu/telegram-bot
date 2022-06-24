@@ -1,11 +1,11 @@
 package eu.vendeli.tgbot.types.internal.options
 
-import java.io.File
+import eu.vendeli.tgbot.types.internal.ImplicitFile
 
 data class VideoNoteOptions(
     var duration: Int? = null,
     var length: Int? = null,
-    var thumb: File? = null,
+    var thumb: ImplicitFile<*>? = null,
     override var disableNotification: Boolean? = null,
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,

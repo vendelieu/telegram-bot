@@ -1,10 +1,10 @@
 package eu.vendeli.tgbot.types.internal.options
 
 import eu.vendeli.tgbot.types.ParseMode
-import java.io.File
+import eu.vendeli.tgbot.types.internal.ImplicitFile
 
 data class DocumentOptions(
-    var thumb: File? = null,
+    var thumb: ImplicitFile<*>? = null,
     var disableContentTypeDetection: Boolean? = null,
     override var fileName: String? = null,
     override var parseMode: ParseMode? = null,

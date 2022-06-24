@@ -1,13 +1,13 @@
 package eu.vendeli.tgbot.types.internal.options
 
 import eu.vendeli.tgbot.types.ParseMode
-import java.io.File
+import eu.vendeli.tgbot.types.internal.ImplicitFile
 
 data class AnimationOptions(
     var duration: Int? = null,
     var width: Int? = null,
     var height: Int? = null,
-    var thumb: File? = null,
+    var thumb: ImplicitFile<*>? = null,
     override var parseMode: ParseMode? = null,
     override var disableNotification: Boolean? = null,
     override var replyToMessageId: Long? = null,

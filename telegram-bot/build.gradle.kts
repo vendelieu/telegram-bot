@@ -45,7 +45,7 @@ dependencies {
 }
 
 group = "eu.vendeli"
-version = "1.4.1"
+version = "1.4.2"
 
 publishing {
     publications {
@@ -58,7 +58,7 @@ publishing {
                 name.set(artifactId)
                 description.set(
                     "A lightweight, feature-rich wrapper for the Telegram Bot API, " +
-                        "providing a handy Kotlin DSL to quickly build your bot. "
+                            "providing a handy Kotlin DSL to quickly build your bot. "
                 )
                 url.set("https://github.com/vendelieu/telegram-bot")
                 licenses {
@@ -119,7 +119,6 @@ tasks.jar {
 
 tasks.compileKotlin {
     incremental = true
-    kotlinOptions.allWarningsAsErrors = true
 }
 
 tasks.test {

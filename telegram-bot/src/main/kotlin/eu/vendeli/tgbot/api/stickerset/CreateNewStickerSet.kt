@@ -36,10 +36,13 @@ class CreateNewStickerSetAction(
 }
 
 @Deprecated(
-    "Obsolete implementation.", ReplaceWith(
+    "Obsolete implementation.",
+    ReplaceWith(
         "createNewStickerSet(name, title, emojis, sticker, containsMasks, maskPosition)"
-    ), DeprecationLevel.WARNING
+    ),
+    DeprecationLevel.WARNING
 )
+@Suppress("UNUSED_PARAMETER")
 fun createNewStickerSet(
     name: String,
     title: String,
@@ -51,10 +54,13 @@ fun createNewStickerSet(
 ) = CreateNewStickerSetAction(name, title, emojis, StickerFile.PNG(sticker), containsMasks, maskPosition)
 
 @Deprecated(
-    "Obsolete implementation.", ReplaceWith(
+    "Obsolete implementation.",
+    ReplaceWith(
         "createNewStickerSet(name, title, emojis, sticker, containsMasks, maskPosition)"
-    ), DeprecationLevel.WARNING
+    ),
+    DeprecationLevel.WARNING
 )
+@Suppress("UNUSED_PARAMETER")
 fun createNewStickerSet(
     name: String,
     title: String,
@@ -66,10 +72,13 @@ fun createNewStickerSet(
 ) = CreateNewStickerSetAction(name, title, emojis, StickerFile.TGS(sticker), containsMasks, maskPosition)
 
 @Deprecated(
-    "Obsolete implementation.", ReplaceWith(
+    "Obsolete implementation.",
+    ReplaceWith(
         "createNewStickerSet(name, title, emojis, sticker, containsMasks, maskPosition)"
-    ), DeprecationLevel.WARNING
+    ),
+    DeprecationLevel.WARNING
 )
+@Suppress("UNUSED_PARAMETER")
 fun createNewStickerSet(
     name: String,
     title: String,
@@ -79,7 +88,6 @@ fun createNewStickerSet(
     containsMasks: Boolean? = null,
     maskPosition: MaskPosition? = null,
 ) = CreateNewStickerSetAction(name, title, emojis, StickerFile.WEBM(sticker), containsMasks, maskPosition)
-
 
 fun createNewStickerSet(
     name: String,
