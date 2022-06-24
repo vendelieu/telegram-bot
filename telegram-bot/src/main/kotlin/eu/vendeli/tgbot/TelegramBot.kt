@@ -163,7 +163,7 @@ class TelegramBot(
             ) { buildPacket { writeFully(data) } }
 
             parameters?.entries?.forEach { entry ->
-                entry.value?.also { append(FormPart(entry.key, it)) }
+                entry.value?.also { append(FormPart(entry.key, mapper.writeValueAsString(it).replace("\"", ""))) }
             }
         }
     )
