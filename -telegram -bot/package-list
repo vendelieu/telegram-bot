@@ -940,7 +940,6 @@ $dokka.location:eu.vendeli.tgbot.types.internal.options/VoiceOptions/parseMode/#
 $dokka.location:eu.vendeli.tgbot.types.internal.options/VoiceOptions/protectContent/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.options/-voice-options/protect-content.html
 $dokka.location:eu.vendeli.tgbot.types.internal.options/VoiceOptions/replyToMessageId/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.options/-voice-options/reply-to-message-id.html
 $dokka.location:eu.vendeli.tgbot.types.internal////PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/index.html
-$dokka.location:eu.vendeli.tgbot.types.internal//a/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/a.html
 $dokka.location:eu.vendeli.tgbot.types.internal//getOrNull/eu.vendeli.tgbot.types.internal.Response[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/get-or-null.html
 $dokka.location:eu.vendeli.tgbot.types.internal//isSuccess/eu.vendeli.tgbot.types.internal.Response[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/is-success.html
 $dokka.location:eu.vendeli.tgbot.types.internal//onFailure/eu.vendeli.tgbot.types.internal.Response[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function1[eu.vendeli.tgbot.types.internal.Failure,TypeParam(bounds=[kotlin.Any?])?]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/on-failure.html
