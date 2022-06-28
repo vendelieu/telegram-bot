@@ -147,6 +147,31 @@ class TelegramBot(
         httpClient.get(TELEGRAM_FILE_URL_PATTERN.format(apiHost, token, file.filePath)).readBytes()
     } else null
 
+
+    /**
+     * Function for processing updates by long-pulling using annotation commands.
+     *
+     * Note that when using this method, other processing will be interrupted and reassigned.
+     */
+    suspend fun handleUpdates() {
+        update.setListener {
+            handle(it)
+        }
+    }
+
+    /**
+     * Function for processing updates by long-pulling using manual handling.
+     *
+     * Note that when using this method, other processing will be interrupted and reassigned.
+     *
+     * @param block [ManualHandlingDsl]
+     */
+    suspend fun handleUpdates(block: suspend ManualHandlingDsl.(Update) -> Unit) {
+        update.setListener {
+            handle(it, block)
+        }
+    }
+
     private fun multipartBodyBuilder(
         dataField: String,
         filename: String,
