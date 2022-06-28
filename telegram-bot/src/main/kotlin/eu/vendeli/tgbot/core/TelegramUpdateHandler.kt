@@ -59,6 +59,7 @@ class TelegramUpdateHandler internal constructor(
      * @receiver [CoroutineContext]
      */
     suspend fun setListener(block: suspend TelegramUpdateHandler.(Update) -> Unit) {
+        if (handlerActive) stopListener()
         logger.trace("The listener is set.")
         listener = block
         handlerActive = true
