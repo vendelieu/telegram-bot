@@ -33,3 +33,4 @@ application.properties
 ### VS Code ###
 .vscode/
 /build/
+/telegram-bot/out/
