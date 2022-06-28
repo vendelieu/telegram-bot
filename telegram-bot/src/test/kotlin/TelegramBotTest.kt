@@ -1,5 +1,6 @@
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.getFile
+import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.interfaces.MagicObject
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.sendAsync
@@ -22,7 +23,7 @@ class TelegramBotTest {
 
     @BeforeAll
     fun prepareTestBot() {
-        bot = TelegramBot(System.getenv("BOT_TOKEN"), "eu.vendeli")
+        bot = TelegramBot(System.getenv("BOT_TOKEN"))
     }
 
     @Test
@@ -128,8 +129,11 @@ class TelegramBotTest {
 
     @Test
     fun `getting file url`() = runBlocking {
-        val file = getFile("AgACAgIAAxkDAAMXYqzlFz9qLAOjLNB9heo0yzcffbkAAkW9MRuMEWlJQw2ZmuUMkRABAAMCAANtAAMkBA")
-            .sendAsync(bot).await().getOrNull()
+        val image = classloader.getResource("image.png")?.readBytes() ?: ByteArray(0)
+        val fileId = photo(image).sendAsync(System.getenv("TELEGRAM_ID").toLong(), bot).await()
+            .getOrNull()?.photo?.first()?.fileId ?: throw NullPointerException()
+
+        val file = getFile(fileId).sendAsync(bot).await().getOrNull()
 
         assertNotNull(file)
 
