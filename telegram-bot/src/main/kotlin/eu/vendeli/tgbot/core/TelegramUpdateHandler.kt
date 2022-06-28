@@ -23,7 +23,7 @@ import kotlin.coroutines.coroutineContext
  */
 @Suppress("unused", "MemberVisibilityCanBePrivate")
 class TelegramUpdateHandler internal constructor(
-    private val actions: Actions,
+    private val actions: Actions? = null,
     private val bot: TelegramBot,
     private val classManager: ClassManager,
     private val inputHandler: BotWaitingInput,
@@ -84,10 +84,10 @@ class TelegramUpdateHandler internal constructor(
     private fun findAction(text: String, command: Boolean = true): Activity? {
         val message = text.parseQuery()
         val invocation = (
-            if (command) actions.commands else {
-                actions.inputs
-            }
-            )[message.command]
+                if (command) actions?.commands else {
+                    actions?.inputs
+                }
+                )?.get(message.command)
         return if (invocation != null) Activity(invocation = invocation, parameters = message.params) else null
     }
 
@@ -199,7 +199,7 @@ class TelegramUpdateHandler internal constructor(
             inputAction != null && update.message?.from?.isBot == false -> invokeMethod(
                 this, inputAction.invocation, inputAction.parameters
             )
-            actions.unhandled != null -> invokeMethod(this, actions.unhandled, emptyMap())
+            actions?.unhandled != null -> invokeMethod(this, actions.unhandled, emptyMap())
             else -> {
                 logger.info("update: $update not handled.")
                 null

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import eu.vendeli.tgbot.core.BotWaitingInputMapImpl
 import eu.vendeli.tgbot.core.ClassManagerImpl
+import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.core.TelegramCommandsCollector.collect
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.interfaces.*
@@ -51,7 +52,7 @@ import org.slf4j.LoggerFactory
 @Suppress("CanBeParameter", "MemberVisibilityCanBePrivate", "unused")
 class TelegramBot(
     private val token: String,
-    commandsPackage: String,
+    commandsPackage: String? = null,
     val input: BotWaitingInput = BotWaitingInputMapImpl(),
     classManager: ClassManager = ClassManagerImpl(),
     private val apiHost: String = "api.telegram.org",
@@ -64,7 +65,7 @@ class TelegramBot(
     /**
      * Current bot [TelegramUpdateHandler] instance
      */
-    val update = TelegramUpdateHandler(collect(commandsPackage), this, classManager, input)
+    val update = TelegramUpdateHandler(commandsPackage?.let { collect(it) }, this, classManager, input)
 
     /**
      * Parameter to manage UserData, can be set once per instance.
