@@ -8,7 +8,5 @@ suspend fun main() {
 
     bot.userData = UserDataImpl()
 
-    bot.update.setListener {
-        handle(it)
-    }
+    bot.handleUpdates()
 }
