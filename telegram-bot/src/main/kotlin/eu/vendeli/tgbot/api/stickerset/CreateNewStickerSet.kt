@@ -3,7 +3,6 @@ package eu.vendeli.tgbot.api.stickerset
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.types.MaskPosition
 import eu.vendeli.tgbot.types.internal.StickerFile
-import eu.vendeli.tgbot.types.internal.StickerMediaType
 import eu.vendeli.tgbot.types.internal.TgMethod
 
 @Suppress("UNUSED_PARAMETER")
@@ -34,60 +33,6 @@ class CreateNewStickerSetAction(
         setMedia(sticker.file)
     }
 }
-
-@Deprecated(
-    "Obsolete implementation.",
-    ReplaceWith(
-        "createNewStickerSet(name, title, emojis, sticker, containsMasks, maskPosition)"
-    ),
-    DeprecationLevel.WARNING
-)
-@Suppress("UNUSED_PARAMETER")
-fun createNewStickerSet(
-    name: String,
-    title: String,
-    emojis: String,
-    sticker: ByteArray,
-    type: StickerMediaType.Png,
-    containsMasks: Boolean? = null,
-    maskPosition: MaskPosition? = null,
-) = CreateNewStickerSetAction(name, title, emojis, StickerFile.PNG(sticker), containsMasks, maskPosition)
-
-@Deprecated(
-    "Obsolete implementation.",
-    ReplaceWith(
-        "createNewStickerSet(name, title, emojis, sticker, containsMasks, maskPosition)"
-    ),
-    DeprecationLevel.WARNING
-)
-@Suppress("UNUSED_PARAMETER")
-fun createNewStickerSet(
-    name: String,
-    title: String,
-    emojis: String,
-    sticker: ByteArray,
-    type: StickerMediaType.Tgs,
-    containsMasks: Boolean? = null,
-    maskPosition: MaskPosition? = null,
-) = CreateNewStickerSetAction(name, title, emojis, StickerFile.TGS(sticker), containsMasks, maskPosition)
-
-@Deprecated(
-    "Obsolete implementation.",
-    ReplaceWith(
-        "createNewStickerSet(name, title, emojis, sticker, containsMasks, maskPosition)"
-    ),
-    DeprecationLevel.WARNING
-)
-@Suppress("UNUSED_PARAMETER")
-fun createNewStickerSet(
-    name: String,
-    title: String,
-    emojis: String,
-    sticker: ByteArray,
-    type: StickerMediaType.Webm,
-    containsMasks: Boolean? = null,
-    maskPosition: MaskPosition? = null,
-) = CreateNewStickerSetAction(name, title, emojis, StickerFile.WEBM(sticker), containsMasks, maskPosition)
 
 fun createNewStickerSet(
     name: String,
