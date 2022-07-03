@@ -1,3 +1,5 @@
+![logo](https://user-images.githubusercontent.com/3987067/177022538-6dd410e2-ec65-42d6-8d5f-0f8e4a0de577.png)
+
 # Kotlin Telegram Bot [![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot) [![Supported version](https://img.shields.io/badge/Telegram%20Bot%20API-6.1-blue)](https://core.telegram.org/bots/api-changelog#june-20-2022)
 
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
