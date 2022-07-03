@@ -20,7 +20,7 @@ Now add the library itself to the dependencies' module that you need it.
 
 ```gradle
 dependencies {
-    implementation("eu.vendeli:telegram-bot:1.4.2")
+    implementation("eu.vendeli:telegram-bot:1.5.0")
 }
 ```
 
@@ -44,9 +44,8 @@ suspend fun main() {
      * Second parameter is the package in which commands/inputs will be searched.
      */
 
-    bot.update.setListener { // set long-polling listener and use defined action over updates. 
-        handle(it)
-    }
+    bot.handleUpdates()
+    // start long-polling listener
 }
 
 @TelegramCommand(["/start"])
@@ -61,17 +60,21 @@ It is also possible to process manually:
 suspend fun main() {
     val bot = TelegramBot("BOT_TOKEN", "com.example.controllers")
 
-    bot.update.setListener { update ->
-        handle(update) {
-            onCommand("/start") {
-                message { "Hello" }.send(update.message!!.from!!.id, bot)
-            }
+    bot.handleUpdates { update ->
+        onCommand("/start") {
+            message { "Hello" }.send(update.message!!.from!!.id, bot)
         }
     }
 }
 ```
 
-for webhook handling you can use any server and `bot.update.handle()` function, \
+It is also possible to process in more detail with a manual listener setting
+with [bot.update.setListener](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.core/-telegram-update-handler/set-listener.html)
+{} function.
+
+for webhook handling you can use any server
+and [`bot.update.handle()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.core/-telegram-update-handler/handle.html)
+function, \
 and for set webhook you can use this method:
 
 ```kotlin
