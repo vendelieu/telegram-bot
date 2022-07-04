@@ -16,12 +16,18 @@ class TelegramUpdateHandlerTest {
 
     @Test
     fun `parsing test`(): Unit = runBlocking {
-        val update = """
+        val updates = """
             {"ok":true,"result":[{"update_id":53192527,
             "message":{"message_id":10831,"from":{"id":1,"is_bot":false,"first_name":"John Doe","username":"username","language_code":"en"},"chat":{"id":1,"first_name":"John Doe","username":"username","type":"private"},"date":1656908266,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}]}
         """.trimIndent()
-        val parsedUpdate = bot.update.parseUpdates(update)
-        Assertions.assertEquals(53192527, parsedUpdate?.first()?.updateId)
-        Assertions.assertEquals(10831, parsedUpdate?.first()?.message?.messageId)
+        val parsedUpdates = bot.update.parseUpdates(updates)
+        Assertions.assertEquals(53192527, parsedUpdates?.first()?.updateId)
+        Assertions.assertEquals(10831, parsedUpdates?.first()?.message?.messageId)
+
+        val update = """{"update_id":53192527,
+            "message":{"message_id":10831,"from":{"id":1,"is_bot":false,"first_name":"John Doe","username":"username","language_code":"en"},"chat":{"id":1,"first_name":"John Doe","username":"username","type":"private"},"date":1656908266,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}"""
+        val parsedUpdate = bot.update.parseUpdate(update)
+        Assertions.assertEquals(53192527, parsedUpdate?.updateId)
+        Assertions.assertEquals(10831, parsedUpdate?.message?.messageId)
     }
 }

@@ -96,18 +96,33 @@ class TelegramUpdateHandler internal constructor(
     }
 
     /**
-     * Update parsing method
+     * Updates parsing method
      *
      * @param update
      * @return [Update] or null
      */
-    fun parseUpdates(update: String): List<Update>? {
+    fun parseUpdate(update: String): Update? {
         logger.trace("Trying to parse update from string - $update")
         return bot.mapper.runCatching {
-            readValue(update, jacksonTypeRef<Response<List<Update>>>()).getOrNull()
+            readValue(update, Update::class.java)
         }.onFailure {
             logger.debug("error during the update parsing process.", it)
         }.onSuccess { logger.trace("Successfully parsed update to $it") }.getOrNull()
+    }
+
+    /**
+     * Updates parsing method
+     *
+     * @param updates
+     * @return [Update] or null
+     */
+    fun parseUpdates(updates: String): List<Update>? {
+        logger.trace("Trying to parse bunch of updates from string - $updates")
+        return bot.mapper.runCatching {
+            readValue(updates, jacksonTypeRef<Response<List<Update>>>()).getOrNull()
+        }.onFailure {
+            logger.debug("error during the bunch updates parsing process.", it)
+        }.onSuccess { logger.trace("Successfully parsed updates to $it") }.getOrNull()
     }
 
     /**
