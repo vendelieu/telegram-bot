@@ -3,8 +3,8 @@ package eu.vendeli.tgbot.utils
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.StructuredRequest
-import eu.vendeli.tgbot.types.internal.Success
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -57,9 +57,11 @@ internal fun <T, I : MultipleResponse> ObjectMapper.convertSuccessResponse(
     jsonNode: JsonNode,
     type: Class<T>?,
     innerType: Class<I>? = null,
-): Success<T> =
-    if (innerType == null) convertValue(jsonNode, typeFactory.constructParametricType(Success::class.java, type))
-    else Success(
-        ok = true,
+): Response.Success<T> =
+    if (innerType == null) convertValue(
+        jsonNode,
+        typeFactory.constructParametricType(Response.Success::class.java, type)
+    )
+    else Response.Success(
         result = convertValue(jsonNode["result"], typeFactory.constructCollectionType(List::class.java, innerType))
     )

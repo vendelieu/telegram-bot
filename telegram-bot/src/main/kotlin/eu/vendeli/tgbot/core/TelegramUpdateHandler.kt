@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.core
 
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.BotWaitingInput
 import eu.vendeli.tgbot.interfaces.ClassManager
@@ -8,7 +9,9 @@ import eu.vendeli.tgbot.types.internal.*
 import eu.vendeli.tgbot.utils.CreateNewCoroutineContext
 import eu.vendeli.tgbot.utils.invokeSuspend
 import eu.vendeli.tgbot.utils.parseQuery
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.slf4j.LoggerFactory
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.coroutineContext
@@ -85,10 +88,10 @@ class TelegramUpdateHandler internal constructor(
     private fun findAction(text: String, command: Boolean = true): Activity? {
         val message = text.parseQuery()
         val invocation = (
-                if (command) actions?.commands else {
-                    actions?.inputs
-                }
-                )?.get(message.command)
+            if (command) actions?.commands else {
+                actions?.inputs
+            }
+            )?.get(message.command)
         return if (invocation != null) Activity(invocation = invocation, parameters = message.params) else null
     }
 
@@ -98,9 +101,11 @@ class TelegramUpdateHandler internal constructor(
      * @param update
      * @return [Update] or null
      */
-    fun parseUpdate(update: String): Update? {
+    fun parseUpdates(update: String): List<Update>? {
         logger.trace("Trying to parse update from string - $update")
-        return bot.mapper.runCatching { readValue(update, Update::class.java) }.onFailure {
+        return bot.mapper.runCatching {
+            readValue(update, jacksonTypeRef<Response<List<Update>>>()).getOrNull()
+        }.onFailure {
             logger.debug("error during the update parsing process.", it)
         }.onSuccess { logger.trace("Successfully parsed update to $it") }.getOrNull()
     }

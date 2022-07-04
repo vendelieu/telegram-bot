@@ -16,9 +16,9 @@ import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.interfaces.*
 import eu.vendeli.tgbot.types.File
 import eu.vendeli.tgbot.types.Update
-import eu.vendeli.tgbot.types.internal.Failure
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.utils.TELEGRAM_API_URL_PATTERN
 import eu.vendeli.tgbot.utils.TELEGRAM_FILE_URL_PATTERN
 import eu.vendeli.tgbot.utils.convertSuccessResponse
@@ -147,7 +147,6 @@ class TelegramBot(
         httpClient.get(TELEGRAM_FILE_URL_PATTERN.format(apiHost, token, file.filePath)).readBytes()
     } else null
 
-
     /**
      * Function for processing updates by long-pulling using annotation commands.
      *
@@ -198,12 +197,12 @@ class TelegramBot(
         response: HttpResponse,
         returnType: Class<T>,
         innerType: Class<I>? = null,
-    ) = async {
+    ): Deferred<Response<out T>> = async {
         val jsonResponse = mapper.readTree(response.bodyAsText())
         logger.debug("Response: ${jsonResponse.toPrettyString()}")
 
         if (jsonResponse["ok"].asBoolean()) mapper.convertSuccessResponse(jsonResponse, returnType, innerType)
-        else mapper.convertValue(jsonResponse, Failure::class.java)
+        else mapper.convertValue(jsonResponse, Response.Failure::class.java)
     }
 
     /**
@@ -230,7 +229,7 @@ class TelegramBot(
         contentType: ContentType,
         returnType: Class<T>,
         innerType: Class<I>? = null,
-    ): Deferred<Response<T>> = coroutineScope {
+    ): Deferred<Response<out T>> = coroutineScope {
         val response = httpClient.post(method.toUrl()) {
             setBody(multipartBodyBuilder(dataField, filename, contentType, data, parameters))
             onUpload { bytesSentTotal, contentLength ->
@@ -257,7 +256,7 @@ class TelegramBot(
         data: Any? = null,
         returnType: Class<T>,
         innerType: Class<I>? = null,
-    ): Deferred<Response<T>> = coroutineScope {
+    ): Deferred<Response<out T>> = coroutineScope {
         val response = httpClient.post(method.toUrl()) {
             contentType(ContentType.Application.Json)
             setBody(data)
@@ -305,13 +304,11 @@ class TelegramBot(
     }
 
     internal suspend fun pullUpdates(offset: Int? = null): List<Update>? {
+        logger.trace("Pulling updates.")
         val request = httpClient.post(TgMethod("getUpdates").toUrl()) {
             contentType(ContentType.Application.Json)
             offset?.also { setBody(mapOf("offset" to it)) }
         }
-        val response = mapper.readTree(request.bodyAsText())
-
-        return if (response["ok"].asBoolean()) mapper.convertValue(response["result"], jacksonTypeRef<List<Update>>())
-        else null
+        return mapper.readValue(request.bodyAsText(), jacksonTypeRef<Response<List<Update>>>()).getOrNull()
     }
 }

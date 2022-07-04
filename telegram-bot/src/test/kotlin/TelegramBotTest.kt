@@ -39,7 +39,7 @@ class TelegramBotTest {
 
     @Test
     fun `test silent requesting`() = runBlocking {
-        var silentReq = bot.makeSilentRequest(
+        val silentReq = bot.makeSilentRequest(
             TgMethod("sendMessage"),
             mapOf("text" to "test", "chat_id" to System.getenv("TELEGRAM_ID"))
         )

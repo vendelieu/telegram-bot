@@ -120,7 +120,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
         to: ActionRecipientRef,
         via: TelegramBot,
         isInline: Boolean,
-    ): Deferred<Response<Req_R>> {
+    ): Deferred<Response<out Req_R>> {
         parameters[if (!isInline) "chat_id" else "inline_message_id"] = to.get()
 
         return if (id != null) {
@@ -159,7 +159,7 @@ suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
     to: String,
     via: TelegramBot,
     isInline: Boolean = false,
-): Deferred<Response<Req_R>> =
+): Deferred<Response<out Req_R>> =
     internalSendAsync(Req_R::class.java, ActionRecipientRef.StringRecipient(to), via, isInline)
 
 /**
@@ -175,7 +175,7 @@ suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
     to: Long,
     via: TelegramBot,
     isInline: Boolean = false,
-): Deferred<Response<Req_R>> =
+): Deferred<Response<out Req_R>> =
     internalSendAsync(Req_R::class.java, ActionRecipientRef.LongRecipient(to), via, isInline)
 
 /**
@@ -191,5 +191,5 @@ suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
     to: User,
     via: TelegramBot,
     isInline: Boolean = false,
-): Deferred<Response<Req_R>> =
+): Deferred<Response<out Req_R>> =
     internalSendAsync(Req_R::class.java, ActionRecipientRef.LongRecipient(to.id), via, isInline)

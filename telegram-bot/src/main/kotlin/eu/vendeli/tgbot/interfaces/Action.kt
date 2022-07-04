@@ -60,7 +60,7 @@ suspend inline fun <reified ReturnType> Action<ReturnType>.sendAsync(
     to: Long,
     via: TelegramBot,
     isInline: Boolean = false,
-): Deferred<Response<ReturnType>> {
+): Deferred<Response<out ReturnType>> {
     parameters[if (!isInline) "chat_id" else "inline_message_id"] = to
     return via.makeRequestAsync(method, parameters, ReturnType::class.java, bunchResponseInnerType())
 }
@@ -76,7 +76,7 @@ suspend inline fun <reified ReturnType> Action<ReturnType>.sendAsync(
     to: User,
     via: TelegramBot,
     isInline: Boolean = false,
-): Deferred<Response<ReturnType>> {
+): Deferred<Response<out ReturnType>> {
     parameters[if (!isInline) "chat_id" else "inline_message_id"] = if (!isInline) to.id else to.username!!
     return via.makeRequestAsync(method, parameters, ReturnType::class.java, bunchResponseInnerType())
 }
@@ -92,7 +92,7 @@ suspend inline fun <reified ReturnType> Action<ReturnType>.sendAsync(
     to: String,
     via: TelegramBot,
     isInline: Boolean = false,
-): Deferred<Response<ReturnType>> {
+): Deferred<Response<out ReturnType>> {
     parameters[if (!isInline) "chat_id" else "inline_message_id"] = to
     return via.makeRequestAsync(method, parameters, ReturnType::class.java, bunchResponseInnerType())
 }

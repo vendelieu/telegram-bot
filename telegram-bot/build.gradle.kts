@@ -56,10 +56,7 @@ publishing {
 
             pom {
                 name.set(artifactId)
-                description.set(
-                    "A lightweight, feature-rich wrapper for the Telegram Bot API, " +
-                            "providing a handy Kotlin DSL to quickly build your bot. "
-                )
+                description.set("Telegram Bot API wrapper, with handy Kotlin DSL.")
                 url.set("https://github.com/vendelieu/telegram-bot")
                 licenses {
                     license {
