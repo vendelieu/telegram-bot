@@ -60,7 +60,7 @@ It is also possible to process manually:
 
 ```kotlin
 suspend fun main() {
-    val bot = TelegramBot("BOT_TOKEN", "com.example.controllers")
+    val bot = TelegramBot("BOT_TOKEN")
 
     bot.handleUpdates { update ->
         onCommand("/start") {
