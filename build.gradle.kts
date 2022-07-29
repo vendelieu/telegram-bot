@@ -4,7 +4,6 @@ allprojects {
     }
 }
 
-
 tasks.create<Delete>("clean") {
     delete.add(rootProject.buildDir)
 }

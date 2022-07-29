@@ -27,12 +27,9 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVer")
 
     implementation("io.ktor:ktor-client-cio:$ktorVer")
-    implementation("io.ktor:ktor-client-content-negotiation:$ktorVer")
     implementation("io.ktor:ktor-client-logging:$ktorVer")
-    implementation("io.ktor:ktor-serialization-jackson:$ktorVer")
 
     implementation(group = "org.reflections", name = "reflections", version = "0.10.2")
-    implementation(kotlin("reflect"))
 
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
 
@@ -105,12 +102,6 @@ tasks.withType<DokkaTask>().configureEach {
         named("main") {
             moduleName.set("Telegram Bot")
         }
-    }
-}
-
-tasks.jar {
-    manifest {
-        attributes(mapOf("Implementation-Title" to project.name, "Implementation-Version" to project.version))
     }
 }
 
