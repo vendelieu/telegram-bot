@@ -9,7 +9,7 @@ interface Options {
 }
 
 interface OptionsInterface<O> : Options {
-    @Suppress("LeakingThis", "UNCHECKED_CAST")
+    @Suppress("UNCHECKED_CAST")
     private val thisAsO: O
         get() = this as O
 

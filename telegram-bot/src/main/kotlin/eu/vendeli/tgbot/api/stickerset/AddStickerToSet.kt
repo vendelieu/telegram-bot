@@ -8,7 +8,6 @@ import kotlin.collections.MutableMap
 import kotlin.collections.mutableMapOf
 import kotlin.collections.set
 
-@Suppress("UNUSED_PARAMETER")
 class AddStickerToSetAction(
     name: String,
     emojis: String,

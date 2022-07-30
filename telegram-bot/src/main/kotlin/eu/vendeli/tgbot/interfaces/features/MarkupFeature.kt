@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.interfaces.Keyboard
  * @param Return Action itself.
  */
 interface MarkupFeature<Return : MarkupAble> : Feature {
-    @Suppress("LeakingThis", "UNCHECKED_CAST")
+    @Suppress("UNCHECKED_CAST")
     private val thisAsReturn: Return
         get() = this as Return
 

@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.utils.EntitiesBuilder
  * @param Return Action class itself.
  */
 interface CaptionFeature<Return : CaptionAble> : Feature {
-    @Suppress("LeakingThis", "UNCHECKED_CAST")
+    @Suppress("UNCHECKED_CAST")
     private val thisAsReturn: Return
         get() = this as Return
 

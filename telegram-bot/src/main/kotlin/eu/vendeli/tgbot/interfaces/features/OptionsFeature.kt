@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.types.internal.options.Options
  * @param Opts Options Class
  */
 interface OptionsFeature<Return : OptionAble, Opts : Options> : Feature {
-    @Suppress("LeakingThis", "UNCHECKED_CAST")
+    @Suppress("UNCHECKED_CAST")
     private val thisAsReturn: Return
         get() = this as Return
 

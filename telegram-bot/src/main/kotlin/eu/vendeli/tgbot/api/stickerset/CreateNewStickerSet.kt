@@ -5,7 +5,6 @@ import eu.vendeli.tgbot.types.MaskPosition
 import eu.vendeli.tgbot.types.internal.StickerFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 
-@Suppress("UNUSED_PARAMETER")
 class CreateNewStickerSetAction(
     name: String,
     title: String,
