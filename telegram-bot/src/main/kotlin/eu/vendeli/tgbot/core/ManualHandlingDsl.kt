@@ -4,10 +4,7 @@ import eu.vendeli.tgbot.core.ManualHandlingDsl.ArgsMode.Query
 import eu.vendeli.tgbot.core.ManualHandlingDsl.ArgsMode.SpaceKeyValue
 import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.types.*
-import eu.vendeli.tgbot.types.internal.CommandContext
-import eu.vendeli.tgbot.types.internal.CommandSelector
-import eu.vendeli.tgbot.types.internal.ManualActions
-import eu.vendeli.tgbot.types.internal.SingleInputChain
+import eu.vendeli.tgbot.types.internal.*
 import eu.vendeli.tgbot.utils.parseKeyValueBySpace
 import eu.vendeli.tgbot.utils.parseQuery
 
@@ -152,14 +149,14 @@ class ManualHandlingDsl internal constructor(
     /**
      * The action that is performed when the input is matched.
      */
-    fun onInput(identifier: String, block: suspend () -> Unit) {
+    fun onInput(identifier: String, block: suspend Update.() -> Unit) {
         manualActions.onInput[identifier] = SingleInputChain(identifier, block)
     }
 
     /**
      * Action that will be applied when none of the other handlers process the data
      */
-    fun whenNotHandled(block: suspend () -> Unit) {
+    fun whenNotHandled(block: suspend Update.() -> Unit) {
         manualActions.whenNotHandled = block
     }
 
@@ -170,7 +167,7 @@ class ManualHandlingDsl internal constructor(
      * @param block action that will be applied if input will match
      * @return [SingleInputChain] for further chaining
      */
-    fun inputChain(identifier: String, block: suspend () -> Unit): SingleInputChain {
+    fun inputChain(identifier: String, block: suspend Update.() -> Unit): SingleInputChain {
         val firstChain = SingleInputChain(identifier, block)
         manualActions.onInput[identifier] = firstChain
 
@@ -183,7 +180,7 @@ class ManualHandlingDsl internal constructor(
      * @param block action that will be applied if the inputs match the current chain level
      * @return [SingleInputChain] for further chaining
      */
-    fun SingleInputChain.andThen(block: suspend () -> Unit): SingleInputChain {
+    fun SingleInputChain.andThen(block: suspend Update.() -> Unit): SingleInputChain {
         val nextLevel = this.currentLevel + 1
         val newId = if (this.currentLevel > 0) this.id.replace(
             "_chain_lvl_${this.currentLevel}",
@@ -199,8 +196,11 @@ class ManualHandlingDsl internal constructor(
      * Condition, which will cause the chain to be interrupted if it matches.
      *
      */
-    fun SingleInputChain.breakIf(block: () -> Boolean): SingleInputChain {
-        manualActions.onInput[this.id]?.breakCondition = block
+    fun SingleInputChain.breakIf(
+        condition: Update.() -> Boolean,
+        block: (suspend Update.() -> Unit)? = null,
+    ): SingleInputChain {
+        manualActions.onInput[this.id]?.breakPoint = InputBreakPoint(condition, block)
         return this
     }
 
@@ -223,7 +223,7 @@ class ManualHandlingDsl internal constructor(
                     // find action which match command
                     val action = manualActions.commands.filter { it.key.match(r.command) }.values.firstOrNull()
                     // invoke if found
-                    action?.invoke(CommandContext(r.params, update.message?.from!!))
+                    action?.invoke(CommandContext(update, r.params, update.message?.from!!))
 
                     // if there's no command > then try process input
                     if (action == null) {
@@ -232,12 +232,15 @@ class ManualHandlingDsl internal constructor(
                             // search matching input handler for listening point
                             manualActions.onInput[it]?.also { chain ->
                                 // invoke it if found
-                                chain.inputAction.invoke()
+                                chain.inputAction.invoke(update)
                                 // if there's chaining point and breaking condition wasn't match then set new listener
-                                if (chain.tail != null && chain.breakCondition?.invoke() == false) inputListener.set(
-                                    message.from.id,
-                                    chain.tail!!
-                                )
+                                if (chain.tail != null && chain.breakPoint?.condition?.invoke(update) == false) {
+                                    chain.breakPoint?.action?.invoke(update)
+                                    inputListener.set(
+                                        message.from.id,
+                                        chain.tail!!
+                                    )
+                                }
                             }
                         }
                     } else inputListener.del(message.from!!.id) // if action for command nevertheless was found > clean listener
@@ -257,7 +260,7 @@ class ManualHandlingDsl internal constructor(
             inlineQuery != null -> manualActions.onInlineQuery?.invoke(inlineQuery)
             preCheckoutQuery != null -> manualActions.onPreCheckoutQuery?.invoke(preCheckoutQuery)
             shippingQuery != null -> manualActions.onShippingQuery?.invoke(shippingQuery)
-            else -> manualActions.whenNotHandled?.invoke()
+            else -> manualActions.whenNotHandled?.invoke(update)
         }
         Unit
     }

@@ -27,7 +27,7 @@ data class ManualActions(
     var onInlineQuery: (suspend InlineQuery.() -> Unit)? = null,
     var onPreCheckoutQuery: (suspend PreCheckoutQuery.() -> Unit)? = null,
     var onShippingQuery: (suspend ShippingQuery.() -> Unit)? = null,
-    var whenNotHandled: (suspend () -> Unit)? = null,
+    var whenNotHandled: (suspend Update.() -> Unit)? = null,
     var onInput: MutableMap<String, SingleInputChain> = mutableMapOf(),
     var commands: MutableMap<CommandSelector, suspend CommandContext.() -> Unit> = mutableMapOf(),
 )

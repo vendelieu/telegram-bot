@@ -13,7 +13,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.slf4j.LoggerFactory
-import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.coroutineContext
 
 /**
@@ -138,7 +137,7 @@ class TelegramUpdateHandler internal constructor(
      *
      */
     @JvmName("handleItManually")
-    suspend fun Update.handle(block: suspend ManualHandlingDsl.(Update) -> Unit) = handle(this, block)
+    suspend fun Update.handle(block: suspend ManualHandlingDsl.() -> Unit) = handle(this, block)
 
     /**
      * Function used to call functions with certain parameters processed after receiving update.
@@ -235,10 +234,10 @@ class TelegramUpdateHandler internal constructor(
      * @param update
      * @param block
      */
-    suspend fun handle(update: Update, block: suspend ManualHandlingDsl.(Update) -> Unit) {
+    suspend fun handle(update: Update, block: suspend ManualHandlingDsl.() -> Unit) {
         logger.trace("Manually handling update: $update")
         manualHandlingBehavior.apply {
-            block(update)
+            block()
             CreateNewCoroutineContext(coroutineContext).launch(Dispatchers.IO) {
                 process(update)
             }
