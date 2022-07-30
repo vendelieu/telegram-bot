@@ -2,7 +2,7 @@ package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.core.ManualHandlingDsl.ArgsMode.Query
 import eu.vendeli.tgbot.core.ManualHandlingDsl.ArgsMode.SpaceKeyValue
-import eu.vendeli.tgbot.interfaces.BotWaitingInput
+import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.types.*
 import eu.vendeli.tgbot.utils.parseKeyValueBySpace
 import eu.vendeli.tgbot.utils.parseQuery
@@ -12,14 +12,11 @@ import kotlin.coroutines.coroutineContext
 /**
  * DSL for manual update management.
  *
- * @property waitingInput
- * @property update
- * @constructor Create empty Manual handling dsl
+ * @property inputListener
  */
 @Suppress("unused", "MemberVisibilityCanBePrivate")
 class ManualHandlingDsl internal constructor(
-    private val waitingInput: BotWaitingInput,
-    private val update: Update,
+    private val inputListener: BotInputListener,
 ) {
     /**
      * Argument parsing mode

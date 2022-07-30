@@ -8,10 +8,10 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
-import eu.vendeli.tgbot.core.BotWaitingInputMapImpl
+import eu.vendeli.tgbot.core.BotInputListenerMapImpl
 import eu.vendeli.tgbot.core.ClassManagerImpl
 import eu.vendeli.tgbot.core.ManualHandlingDsl
-import eu.vendeli.tgbot.core.TelegramCommandsCollector.collect
+import eu.vendeli.tgbot.core.TelegramActionsCollector.collect
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.interfaces.*
 import eu.vendeli.tgbot.types.File
@@ -43,17 +43,17 @@ import org.slf4j.LoggerFactory
  * Telegram bot main instance
  *
  * @property token Token of your bot
- * @property input Input handling instance
+ * @property inputListener Input handling instance
  * @property apiHost Host of telegram api
  *
  * @param commandsPackage The place where the search for commands and inputs will be done.
  * @param classManager The manager that will be used to get classes.
  */
-@Suppress("CanBeParameter", "MemberVisibilityCanBePrivate", "unused")
+@Suppress("MemberVisibilityCanBePrivate", "unused")
 class TelegramBot(
     private val token: String,
     commandsPackage: String? = null,
-    val input: BotWaitingInput = BotWaitingInputMapImpl(),
+    val inputListener: BotInputListener = BotInputListenerMapImpl(),
     classManager: ClassManager = ClassManagerImpl(),
     private val apiHost: String = "api.telegram.org",
 ) {
@@ -65,7 +65,7 @@ class TelegramBot(
     /**
      * Current bot [TelegramUpdateHandler] instance
      */
-    val update = TelegramUpdateHandler(commandsPackage?.let { collect(it) }, this, classManager, input)
+    val update = TelegramUpdateHandler(commandsPackage?.let { collect(it) }, this, classManager, inputListener)
 
     /**
      * Parameter to manage UserData, can be set once per instance.

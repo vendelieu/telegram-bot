@@ -7,6 +7,6 @@ package eu.vendeli.tgbot.annotations
  */
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class TelegramCommand(
+annotation class CommandHandler(
     val value: Array<String>
 )

@@ -8,4 +8,4 @@ package eu.vendeli.tgbot.annotations
  */
 @Target(AnnotationTarget.VALUE_PARAMETER)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class TelegramParameter(val name: String)
+annotation class CallbackParam(val name: String)

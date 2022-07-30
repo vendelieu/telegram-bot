@@ -1,16 +1,16 @@
 package eu.vendeli.tgbot.core
 
-import eu.vendeli.tgbot.interfaces.BotWaitingInput
+import eu.vendeli.tgbot.interfaces.BotInputListener
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import java.util.*
 
 /**
- * [BotWaitingInput] implementation based on Collections.synchronizedMap(WeakHashMap<>())
+ * [BotInputListener] implementation based on Collections.synchronizedMap(WeakHashMap<>())
  *
  */
-class BotWaitingInputMapImpl : BotWaitingInput {
+class BotInputListenerMapImpl : BotInputListener {
     private val storage = Collections.synchronizedMap(WeakHashMap<Long, String>())
 
     /**

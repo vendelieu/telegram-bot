@@ -2,7 +2,7 @@ package eu.vendeli.tgbot.core
 
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.interfaces.BotWaitingInput
+import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.*
@@ -22,14 +22,14 @@ import kotlin.coroutines.coroutineContext
  * @property actions The list of actions the handler will work with.
  * @property bot An instance of [TelegramBot]
  * @property classManager An instance of the class that will be used to call functions.
- * @property inputHandler An instance of the class that stores the input waiting points.
+ * @property inputListener An instance of the class that stores the input waiting points.
  */
 @Suppress("unused", "MemberVisibilityCanBePrivate")
 class TelegramUpdateHandler internal constructor(
     private val actions: Actions? = null,
     private val bot: TelegramBot,
     private val classManager: ClassManager,
-    private val inputHandler: BotWaitingInput,
+    private val inputListener: BotInputListener,
 ) {
     private val logger = LoggerFactory.getLogger(this::class.java)
     private lateinit var listener: suspend TelegramUpdateHandler.(Update) -> Unit
@@ -209,11 +209,11 @@ class TelegramUpdateHandler internal constructor(
     suspend fun handle(update: Update): Throwable? = processUpdateDto(update).run {
         logger.trace("Handling update: $update")
         val commandAction = if (text != null) findAction(text) else null
-        val inputAction = if (commandAction == null) inputHandler.getAsync(user.id).await()?.let {
+        val inputAction = if (commandAction == null) inputListener.getAsync(user.id).await()?.let {
             findAction(it, false)
         } else null
         logger.trace("Result of finding action - command: $commandAction, input: $inputAction")
-        inputHandler.delAsync(user.id).await()
+        inputListener.delAsync(user.id).await()
 
         return when {
             commandAction != null -> invokeMethod(this, commandAction.invocation, commandAction.parameters)
