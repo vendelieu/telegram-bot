@@ -21,8 +21,6 @@ repositories {
 }
 
 dependencies {
-    compileOnly(group = "ch.qos.logback", name = "logback-classic", version = logbackVer)
-
     implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", jacksonVer)
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVer")
 
@@ -32,6 +30,8 @@ dependencies {
     implementation(group = "org.reflections", name = "reflections", version = "0.10.2")
 
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
+
+    api(group = "ch.qos.logback", name = "logback-classic", version = logbackVer)
 
     testImplementation("ch.qos.logback:logback-classic:1.2.11")
     testImplementation("org.junit.jupiter:junit-jupiter:$junitVer")
