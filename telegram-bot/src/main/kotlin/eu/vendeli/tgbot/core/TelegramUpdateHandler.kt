@@ -34,6 +34,7 @@ class TelegramUpdateHandler internal constructor(
     private val logger = LoggerFactory.getLogger(this::class.java)
     private lateinit var listener: suspend TelegramUpdateHandler.(Update) -> Unit
     private var handlerActive: Boolean = false
+    private var manualHandlingBehavior = ManualHandlingDsl(inputListener)
 
     /**
      * Function that starts the listening event.
@@ -236,6 +237,11 @@ class TelegramUpdateHandler internal constructor(
      */
     suspend fun handle(update: Update, block: suspend ManualHandlingDsl.(Update) -> Unit) {
         logger.trace("Manually handling update: $update")
-        block(ManualHandlingDsl(inputHandler, update), update)
+        manualHandlingBehavior.apply {
+            block(update)
+            CreateNewCoroutineContext(coroutineContext).launch(Dispatchers.IO) {
+                process(update)
+            }
+        }
     }
 }
