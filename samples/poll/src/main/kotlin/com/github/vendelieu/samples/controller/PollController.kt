@@ -11,7 +11,7 @@ import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.utils.inlineKeyboardMarkup
 
 class PollController {
-    @TelegramCommand(["/start"])
+    @CommandHandler(["/start"])
     suspend fun start(user: User, bot: TelegramBot) {
         message { "Hello!" }.send(user, bot)
 
@@ -32,7 +32,7 @@ class PollController {
         }.send(user.id, bot)
     }
 
-    @TelegramCommand(["morePolls"])
+    @CommandHandler(["morePolls"])
     suspend fun anotherPoll(user: User, bot: TelegramBot) {
         poll("What color is the dress?", "Blue-black", "White-gold").options {
             allowsMultipleAnswers = true

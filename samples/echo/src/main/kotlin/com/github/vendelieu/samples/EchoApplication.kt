@@ -10,7 +10,7 @@ suspend fun main() {
         message(it.message?.text ?: "").send(it.message?.from?.id ?: 0, bot)
 //        handle(it) { // same in manual handling mode
 //            onMessage {
-//                message { it.message?.text ?: "" }.send(it.message!!.from!!.id, bot)
+//                message { data.message?.text ?: "" }.send(data.message!!.from!!, bot)
 //            }
 //        }
     }

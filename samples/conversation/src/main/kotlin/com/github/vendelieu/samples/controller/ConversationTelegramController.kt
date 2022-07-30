@@ -9,18 +9,18 @@ import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 
 class ConversationTelegramController {
-    @TelegramCommand(["/start"])
+    @CommandHandler(["/start"])
     suspend fun start(user: User, bot: TelegramBot) {
         message { "Hello, my name is Adam, and you?" }.send(user, bot)
 
-        bot.input.set(user.id, "name")
+        bot.inputListener.set(user.id, "name")
     }
 
-    @TelegramInput(["name"])
+    @InputHandler(["name"])
     suspend fun name(update: ProcessedUpdate, bot: TelegramBot) {
         if (update.type != UpdateType.MESSAGE) {
             message { "Please say your name, because that's what well-mannered people do :)" }.send(update.user, bot)
-            bot.input.set(update.user.id, "name")
+            bot.inputListener.set(update.user.id, "name")
         }
 
         bot.userData?.set(update.user.id, "name", update.text)
@@ -28,15 +28,15 @@ class ConversationTelegramController {
         message { "Oh, ${update.text}, nice to meet you!" }
         message { "How old are you?" }.send(update.user, bot)
 
-        bot.input.set(update.user.id, "age")
+        bot.inputListener.set(update.user.id, "age")
     }
 
-    @TelegramInput(["age"])
+    @InputHandler(["age"])
     suspend fun age(update: ProcessedUpdate, bot: TelegramBot) {
         if (update.type != UpdateType.MESSAGE || update.text?.toIntOrNull() == null) {
             message { "Perhaps it's not nice to ask your age, but maybe you can tell me anyway." }
                 .send(update.user, bot)
-            bot.input.set(update.user.id, "age")
+            bot.inputListener.set(update.user.id, "age")
         }
 
         val name = bot.userData?.get(update.user.id, "name").toString()

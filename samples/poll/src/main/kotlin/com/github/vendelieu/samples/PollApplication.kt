@@ -9,8 +9,8 @@ suspend fun main() {
     bot.update.setListener {
         handle(it)
         handle(it) {
-            onPollAnswer { pollAnswer ->
-                println("User#${it.message?.from?.id} chose ${pollAnswer.optionIds}")
+            onPollAnswer {
+                println("User#${update.message?.from?.id} chose ${data.optionIds}")
             }
         }
     }
