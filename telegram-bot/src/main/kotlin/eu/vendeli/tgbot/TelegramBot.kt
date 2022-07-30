@@ -25,13 +25,11 @@ import eu.vendeli.tgbot.utils.convertSuccessResponse
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
-import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.client.request.forms.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
-import io.ktor.serialization.jackson.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
@@ -106,9 +104,6 @@ class TelegramBot(
     }
 
     private val httpClient = HttpClient(CIO) {
-        install(ContentNegotiation) {
-            register(ContentType.Application.Json, JacksonConverter(mapper))
-        }
         install("RequestLogging") {
             sendPipeline.intercept(HttpSendPipeline.Monitoring) {
                 logger.trace("TgApiRequest: {} {}", context.method, context.url.buildString())
@@ -188,7 +183,7 @@ class TelegramBot(
             ) { buildPacket { writeFully(data) } }
 
             parameters?.entries?.forEach { entry ->
-                entry.value?.also { append(FormPart(entry.key, mapper.writeValueAsString(it).replace("\"", ""))) }
+                entry.value?.also { append(FormPart(entry.key, mapper.writeValueAsString(it))) }
             }
         }
     )
@@ -259,7 +254,7 @@ class TelegramBot(
     ): Deferred<Response<out T>> = coroutineScope {
         val response = httpClient.post(method.toUrl()) {
             contentType(ContentType.Application.Json)
-            setBody(data)
+            setBody(mapper.writeValueAsString(data))
         }
 
         return@coroutineScope handleResponseAsync(response, returnType, innerType)
@@ -272,9 +267,10 @@ class TelegramBot(
      * @param data The data itself.
      */
     suspend fun makeSilentRequest(method: TgMethod, data: Any? = null) = httpClient.post(method.toUrl()) {
+        val requestBody = mapper.writeValueAsString(data)
         contentType(ContentType.Application.Json)
-        setBody(data)
-        logger.debug("RequestBody: ${mapper.writeValueAsString(data)}")
+        setBody(requestBody)
+        logger.debug("RequestBody: $requestBody")
     }
 
     /**
@@ -299,8 +295,7 @@ class TelegramBot(
         onUpload { bytesSentTotal, contentLength ->
             logger.trace("Sent $bytesSentTotal bytes from $contentLength, for $method method with $parameters")
         }
-
-        logger.debug("RequestBody: ${mapper.writeValueAsString(parameters)}")
+        logger.debug("RequestBody: $parameters")
     }
 
     internal suspend fun pullUpdates(offset: Int? = null): List<Update>? {
