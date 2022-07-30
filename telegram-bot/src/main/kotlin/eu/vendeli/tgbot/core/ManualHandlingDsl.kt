@@ -37,98 +37,98 @@ class ManualHandlingDsl internal constructor(
     /**
      * Action that is performed on the presence of Message in the Update.
      */
-    fun onMessage(block: suspend Message.() -> Unit) {
+    fun onMessage(block: suspend ActionContext<Message>.() -> Unit) {
         manualActions.onMessage = block
     }
 
     /**
      * Action that is performed on the presence of EditedMessage in the Update.
      */
-    fun onEditedMessage(block: suspend Message.() -> Unit) {
+    fun onEditedMessage(block: suspend ActionContext<Message>.() -> Unit) {
         manualActions.onEditedMessage = block
     }
 
     /**
      * Action that is performed on the presence of PollAnswer in the Update.
      */
-    fun onPollAnswer(block: suspend PollAnswer.() -> Unit) {
+    fun onPollAnswer(block: suspend ActionContext<PollAnswer>.() -> Unit) {
         manualActions.onPollAnswer = block
     }
 
     /**
      * Action that is performed on the presence of CallbackQuery in the Update.
      */
-    fun onCallbackQuery(block: suspend CallbackQuery.() -> Unit) {
+    fun onCallbackQuery(block: suspend ActionContext<CallbackQuery>.() -> Unit) {
         manualActions.onCallbackQuery = block
     }
 
     /**
      * Action that is performed on the presence of Poll in the Update.
      */
-    fun onPoll(block: suspend Poll.() -> Unit) {
+    fun onPoll(block: suspend ActionContext<Poll>.() -> Unit) {
         manualActions.onPoll = block
     }
 
     /**
      * Action that is performed on the presence of ChatJoinRequest in the Update.
      */
-    fun onChatJoinRequest(block: suspend ChatJoinRequest.() -> Unit) {
+    fun onChatJoinRequest(block: suspend ActionContext<ChatJoinRequest>.() -> Unit) {
         manualActions.onChatJoinRequest = block
     }
 
     /**
      * Action that is performed on the presence of ChatMember in the Update.
      */
-    fun onChatMember(block: suspend ChatMemberUpdated.() -> Unit) {
+    fun onChatMember(block: suspend ActionContext<ChatMemberUpdated>.() -> Unit) {
         manualActions.onChatMember = block
     }
 
     /**
      * Action that is performed on the presence of MyChatMember in the Update.
      */
-    fun onMyChatMember(block: suspend ChatMemberUpdated.() -> Unit) {
+    fun onMyChatMember(block: suspend ActionContext<ChatMemberUpdated>.() -> Unit) {
         manualActions.onMyChatMember = block
     }
 
     /**
      * Action that is performed on the presence of ChannelPost in the Update.
      */
-    fun onChannelPost(block: suspend Message.() -> Unit) {
+    fun onChannelPost(block: suspend ActionContext<Message>.() -> Unit) {
         manualActions.onChannelPost = block
     }
 
     /**
      * Action that is performed on the presence of EditedChannelPost in the Update.
      */
-    fun onEditedChannelPost(block: suspend Message.() -> Unit) {
+    fun onEditedChannelPost(block: suspend ActionContext<Message>.() -> Unit) {
         manualActions.onEditedChannelPost = block
     }
 
     /**
      * Action that is performed on the presence of ChosenInlineResult in the Update.
      */
-    fun onChosenInlineResult(block: suspend ChosenInlineResult.() -> Unit) {
+    fun onChosenInlineResult(block: suspend ActionContext<ChosenInlineResult>.() -> Unit) {
         manualActions.onChosenInlineResult = block
     }
 
     /**
      * Action that is performed on the presence of InlineQuery in the Update.
      */
-    fun onInlineQuery(block: suspend InlineQuery.() -> Unit) {
+    fun onInlineQuery(block: suspend ActionContext<InlineQuery>.() -> Unit) {
         manualActions.onInlineQuery = block
     }
 
     /**
      * Action that is performed on the presence of PreCheckoutQuery in the Update.
      */
-    fun onPreCheckoutQuery(block: suspend PreCheckoutQuery.() -> Unit) {
+    fun onPreCheckoutQuery(block: suspend ActionContext<PreCheckoutQuery>.() -> Unit) {
         manualActions.onPreCheckoutQuery = block
     }
 
     /**
      * Action that is performed on the presence of ShippingQuery in the Update.
      */
-    fun onShippingQuery(block: suspend ShippingQuery.() -> Unit) {
+    fun onShippingQuery(block: suspend ActionContext<ShippingQuery>.() -> Unit) {
         manualActions.onShippingQuery = block
     }
 
@@ -213,7 +213,7 @@ class ManualHandlingDsl internal constructor(
         when {
             message != null -> {
                 // invoke 'on-message' action
-                manualActions.onMessage?.invoke(message)
+                manualActions.onMessage?.invoke(ActionContext(update, message))
                 // find command by chosen format from text
                 val structuredRequest = if (argsParsingMode == Query) message.text?.parseQuery()
                 else message.text?.parseKeyValueBySpace()
@@ -247,19 +247,37 @@ class ManualHandlingDsl internal constructor(
                 }
             }
 
-            editedMessage != null -> manualActions.onEditedMessage?.invoke(editedMessage)
-            pollAnswer != null -> manualActions.onPollAnswer?.invoke(pollAnswer)
-            callbackQuery != null -> manualActions.onCallbackQuery?.invoke(callbackQuery)
-            poll != null -> manualActions.onPoll?.invoke(poll)
-            chatJoinRequest != null -> manualActions.onChatJoinRequest?.invoke(chatJoinRequest)
-            chatMember != null -> manualActions.onChatMember?.invoke(chatMember)
-            myChatMember != null -> manualActions.onMyChatMember?.invoke(myChatMember)
-            channelPost != null -> manualActions.onChannelPost?.invoke(channelPost)
-            editedChannelPost != null -> manualActions.onEditedChannelPost?.invoke(editedChannelPost)
-            chosenInlineResult != null -> manualActions.onChosenInlineResult?.invoke(chosenInlineResult)
-            inlineQuery != null -> manualActions.onInlineQuery?.invoke(inlineQuery)
-            preCheckoutQuery != null -> manualActions.onPreCheckoutQuery?.invoke(preCheckoutQuery)
-            shippingQuery != null -> manualActions.onShippingQuery?.invoke(shippingQuery)
+            editedMessage != null -> manualActions.onEditedMessage?.invoke(ActionContext(update, editedMessage))
+            pollAnswer != null -> manualActions.onPollAnswer?.invoke(ActionContext(update, pollAnswer))
+            callbackQuery != null -> manualActions.onCallbackQuery?.invoke(ActionContext(update, callbackQuery))
+            poll != null -> manualActions.onPoll?.invoke(ActionContext(update, poll))
+            chatJoinRequest != null -> manualActions.onChatJoinRequest?.invoke(ActionContext(update, chatJoinRequest))
+            chatMember != null -> manualActions.onChatMember?.invoke(ActionContext(update, chatMember))
+            myChatMember != null -> manualActions.onMyChatMember?.invoke(ActionContext(update, myChatMember))
+            channelPost != null -> manualActions.onChannelPost?.invoke(ActionContext(update, channelPost))
+            inlineQuery != null -> manualActions.onInlineQuery?.invoke(ActionContext(update, inlineQuery))
+            shippingQuery != null -> manualActions.onShippingQuery?.invoke(ActionContext(update, shippingQuery))
+            preCheckoutQuery != null -> manualActions.onPreCheckoutQuery?.invoke(
+                ActionContext(
+                    update,
+                    preCheckoutQuery
+                )
+            )
+
+            editedChannelPost != null -> manualActions.onEditedChannelPost?.invoke(
+                ActionContext(
+                    update,
+                    editedChannelPost
+                )
+            )
+
+            chosenInlineResult != null -> manualActions.onChosenInlineResult?.invoke(
+                ActionContext(
+                    update,
+                    chosenInlineResult
+                )
+            )
+
             else -> manualActions.whenNotHandled?.invoke(update)
         }
         Unit
