@@ -64,32 +64,39 @@ suspend fun main() {
 
     bot.handleUpdates { update ->
         onCommand("/start") {
-            message { "Hello" }.send(update.message!!.from!!.id, bot)
+            message { "Hello, what's your name?" }.send(user, bot)
+            bot.inputListener.set(user.id, "conversation")
+        }
+        inputChain("conversation") {
+            message { "Nice to meet you, ${message?.text}" }.send(message!!.from!!, bot)
+            message { "What is your favorite food?" }.send(message.from, bot)
+        }.breakIf({ message?.text == "peanut butter" }) { // chain break condition
+            message { "Oh, too bad, I'm allergic to it." }.send(message!!.from!!, bot)
+            // action that will be applied when match
+        }.andThen {
+            // ...
         }
     }
 }
 ```
 
-It is also possible to process in more detail with a manual listener setting
-with [bot.update.setListener](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.core/-telegram-update-handler/set-listener.html)
-{} function.
+It is also possible to do more advanced processing with a manual listener setting
+with [`bot.update.setListener {}`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.core/-telegram-update-handler/set-listener.html)
+function.
 
 for webhook handling you can use any server
 and [`bot.update.handle()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.core/-telegram-update-handler/handle.html)
-function, \
+function (or use this function if you're directly setting listener), \
 and for set webhook you can use this method:
 
 ```kotlin
 setWebhook("https://site.com").send(bot)
 ```
 
-also it is possible directly instantiate actions
-
-```kotlin
-SendMessageAction("Hello").send(to = user, via = bot)
-```
-
-if you want to operate with response you can use `sendAsync()` instead of `send()` method, which returns `Response`:
+if you want to operate with response you can
+use [`sendAsync()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/send-async.html)
+instead of `send()` method, which
+returns [`Response`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-response/index.html):
 
 ```kotlin
 message { "test" }.sendAsync(user, bot).await().onFailure {
@@ -97,8 +104,15 @@ message { "test" }.sendAsync(user, bot).await().onFailure {
 }
 ```
 
-Any async request returns a `Response` on which you can also use methods `getOrNull()` or `isSuccess()`.
+Any async request returns
+a [`Response`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-response/index.html)
+on which you can also use
+methods [`getOrNull()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/get-or-null.html)
+, [`isSuccess()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/is-success.html)
+, [`onFailure()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/on-failure.html)
+.
 
 # More about
 
-You can also read more information in the [wiki](https://github.com/vendelieu/telegram-bot/wiki).
+You can also read more information in the [wiki](https://github.com/vendelieu/telegram-bot/wiki), and you're always
+welcome in [chat](https://t.me/vennyTgBotAPI).
