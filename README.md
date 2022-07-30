@@ -1,10 +1,11 @@
-![logo](https://user-images.githubusercontent.com/3987067/180802441-966bb058-919b-4e1c-82c1-2b210cc9a94e.png)
+![Telegram bot api library logo](https://user-images.githubusercontent.com/3987067/180802441-966bb058-919b-4e1c-82c1-2b210cc9a94e.png)
 
-# Kotlin Telegram Bot [![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot) [![Supported version](https://img.shields.io/badge/Telegram%20Bot%20API-6.1-blue)](https://core.telegram.org/bots/api-changelog#june-20-2022)
+# Kotlin Telegram Bot
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot)
+[![Supported version](https://img.shields.io/badge/Bot%20API-6.1-blue)](https://core.telegram.org/bots/api-changelog#june-20-2022)
 
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
-[![Github Wiki](https://img.shields.io/badge/Github-Wiki-green)](https://github.com/vendelieu/telegram-bot/wiki)
-[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin) [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/vennyTgBotAPI)
 
 Kotlin based wrapper over Telegram API.
 
@@ -50,7 +51,7 @@ suspend fun main() {
     // start long-polling listener
 }
 
-@TelegramCommand(["/start"])
+@CommandHandler(["/start"])
 suspend fun start(user: User, bot: TelegramBot) {
     message { "Hello" }.send(to = user, via = bot)
 }
