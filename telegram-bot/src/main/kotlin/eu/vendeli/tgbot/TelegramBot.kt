@@ -300,10 +300,9 @@ class TelegramBot(
 
     internal suspend fun pullUpdates(offset: Int? = null): List<Update>? {
         logger.trace("Pulling updates.")
-        val request = httpClient.post(TgMethod("getUpdates").toUrl()) {
-            contentType(ContentType.Application.Json)
-            offset?.also { setBody(mapOf("offset" to it)) }
-        }
+        val request = httpClient.post(
+            TgMethod("getUpdates").toUrl() + (offset?.let { "?offset=$it" } ?: "")
+        )
         return mapper.readValue(request.bodyAsText(), jacksonTypeRef<Response<List<Update>>>()).getOrNull()
     }
 }
