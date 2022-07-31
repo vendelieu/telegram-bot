@@ -28,6 +28,7 @@ dependencies {
     implementation("io.ktor:ktor-client-logging:$ktorVer")
 
     implementation(group = "org.reflections", name = "reflections", version = "0.10.2")
+    implementation(kotlin("reflect"))
 
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
 
