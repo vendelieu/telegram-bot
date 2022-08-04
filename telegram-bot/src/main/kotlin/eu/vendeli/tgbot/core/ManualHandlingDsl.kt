@@ -149,7 +149,7 @@ class ManualHandlingDsl internal constructor(
     /**
      * The action that is performed when the input is matched.
      */
-    fun onInput(identifier: String, block: suspend Update.() -> Unit) {
+    fun onInput(identifier: String, block: suspend InputContext.() -> Unit) {
         manualActions.onInput[identifier] = SingleInputChain(identifier, block)
     }
 
@@ -167,7 +167,7 @@ class ManualHandlingDsl internal constructor(
      * @param block action that will be applied if input will match
      * @return [SingleInputChain] for further chaining
      */
-    fun inputChain(identifier: String, block: suspend Update.() -> Unit): SingleInputChain {
+    fun inputChain(identifier: String, block: suspend InputContext.() -> Unit): SingleInputChain {
         val firstChain = SingleInputChain(identifier, block)
         manualActions.onInput[identifier] = firstChain
 
@@ -180,11 +180,10 @@ class ManualHandlingDsl internal constructor(
      * @param block action that will be applied if the inputs match the current chain level
      * @return [SingleInputChain] for further chaining
      */
-    fun SingleInputChain.andThen(block: suspend Update.() -> Unit): SingleInputChain {
+    fun SingleInputChain.andThen(block: suspend InputContext.() -> Unit): SingleInputChain {
         val nextLevel = this.currentLevel + 1
         val newId = if (this.currentLevel > 0) this.id.replace(
-            "_chain_lvl_${this.currentLevel}",
-            "_chain_lvl_$nextLevel"
+            "_chain_lvl_${this.currentLevel}", "_chain_lvl_$nextLevel"
         ) else this.id + "_chain_lvl_1"
 
         manualActions.onInput[this.id]?.tail = newId
@@ -197,8 +196,8 @@ class ManualHandlingDsl internal constructor(
      *
      */
     fun SingleInputChain.breakIf(
-        condition: Update.() -> Boolean,
-        block: (suspend Update.() -> Unit)? = null,
+        condition: InputContext.() -> Boolean,
+        block: (suspend InputContext.() -> Unit)? = null,
     ): SingleInputChain {
         manualActions.onInput[this.id]?.breakPoint = InputBreakPoint(condition, block)
         return this
@@ -230,16 +229,15 @@ class ManualHandlingDsl internal constructor(
                         inputListener.getAsync(message.from!!.id).await()?.also {
                             inputListener.del(message.from.id) // clean listener after input caught
                             // search matching input handler for listening point
-                            manualActions.onInput[it]?.also { chain ->
+                            val foundChain = manualActions.onInput[it]
+                            if (foundChain != null && update.message != null && update.message?.from != null) {
+                                val inputContext = InputContext(update.message.from, update.message)
                                 // invoke it if found
-                                chain.inputAction.invoke(update)
+                                foundChain.inputAction.invoke(inputContext)
                                 // if there's chaining point and breaking condition wasn't match then set new listener
-                                if (chain.tail != null && chain.breakPoint?.condition?.invoke(update) == false) {
-                                    chain.breakPoint?.action?.invoke(update)
-                                    inputListener.set(
-                                        message.from.id,
-                                        chain.tail!!
-                                    )
+                                if (foundChain.tail != null && foundChain.breakPoint?.condition?.invoke(inputContext) == false) {
+                                    foundChain.breakPoint?.action?.invoke(inputContext)
+                                    inputListener.set(message.from.id, foundChain.tail!!)
                                 }
                             }
                         }
@@ -259,22 +257,19 @@ class ManualHandlingDsl internal constructor(
             shippingQuery != null -> manualActions.onShippingQuery?.invoke(ActionContext(update, shippingQuery))
             preCheckoutQuery != null -> manualActions.onPreCheckoutQuery?.invoke(
                 ActionContext(
-                    update,
-                    preCheckoutQuery
+                    update, preCheckoutQuery
                 )
             )
 
             editedChannelPost != null -> manualActions.onEditedChannelPost?.invoke(
                 ActionContext(
-                    update,
-                    editedChannelPost
+                    update, editedChannelPost
                 )
             )
 
             chosenInlineResult != null -> manualActions.onChosenInlineResult?.invoke(
                 ActionContext(
-                    update,
-                    chosenInlineResult
+                    update, chosenInlineResult
                 )
             )
 
