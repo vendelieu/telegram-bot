@@ -230,7 +230,7 @@ class ManualHandlingDsl internal constructor(
                             inputListener.del(message.from.id) // clean listener after input caught
                             // search matching input handler for listening point
                             val foundChain = manualActions.onInput[it]
-                            if (foundChain != null && update.message != null && update.message?.from != null) {
+                            if (foundChain != null && update.message != null && update.message.from != null) {
                                 val inputContext = InputContext(update.message.from, update.message)
                                 // invoke it if found
                                 foundChain.inputAction.invoke(inputContext)
