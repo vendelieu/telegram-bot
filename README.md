@@ -69,10 +69,10 @@ suspend fun main() {
             bot.inputListener.set(user.id, "conversation")
         }
         inputChain("conversation") {
-            message { "Nice to meet you, ${message?.text}" }.send(message!!.from!!, bot)
-            message { "What is your favorite food?" }.send(message.from, bot)
-        }.breakIf({ message?.text == "peanut butter" }) { // chain break condition
-            message { "Oh, too bad, I'm allergic to it." }.send(message!!.from!!, bot)
+            message { "Nice to meet you, ${message.text}" }.send(user, bot)
+            message { "What is your favorite food?" }.send(user, bot)
+        }.breakIf({ message.text == "peanut butter" }) { // chain break condition
+            message { "Oh, too bad, I'm allergic to it." }.send(user, bot)
             // action that will be applied when match
         }.andThen {
             // ...
