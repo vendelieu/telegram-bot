@@ -28,14 +28,14 @@ internal fun processUpdateDto(update: Update): ProcessedUpdate = when {
     update.channelPost != null -> ProcessedUpdate(
         type = UpdateType.CHANNEL_POST,
         text = update.channelPost.text,
-        user = update.channelPost.from ?: User(-0, false, ""),
+        user = update.channelPost.from ?: User.EMPTY,
         fullUpdate = update
     )
 
     update.editedChannelPost != null -> ProcessedUpdate(
         type = UpdateType.EDITED_CHANNEL_POST,
         text = update.editedChannelPost.text,
-        user = update.editedChannelPost.from ?: User(-0, false, ""),
+        user = update.editedChannelPost.from ?: User.EMPTY,
         fullUpdate = update
     )
 
@@ -77,7 +77,7 @@ internal fun processUpdateDto(update: Update): ProcessedUpdate = when {
     update.poll != null -> ProcessedUpdate(
         type = UpdateType.POLL,
         text = update.poll.question,
-        user = User(-0, false, ""),
+        user = User.EMPTY,
         fullUpdate = update
     )
 
@@ -109,5 +109,5 @@ internal fun processUpdateDto(update: Update): ProcessedUpdate = when {
         fullUpdate = update
     )
 
-    else -> ProcessedUpdate(UpdateType.UNKNOWN, "", User(-0, false, ""), update)
+    else -> ProcessedUpdate(UpdateType.UNKNOWN, "", User.EMPTY, update)
 }

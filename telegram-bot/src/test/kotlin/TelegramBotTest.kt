@@ -87,7 +87,7 @@ class TelegramBotTest {
                 ProcessedUpdate(
                     UpdateType.MESSAGE,
                     null,
-                    User(-0, false, ""),
+                    User.EMPTY,
                     Update(-1)
                 ),
                 bot
