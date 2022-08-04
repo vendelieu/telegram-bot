@@ -1,10 +1,10 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.6.21"
+    id("org.jetbrains.kotlin.jvm") version "1.7.10"
     `maven-publish`
     `java-library`
-    id("org.jetbrains.dokka") version "1.6.21"
+    id("org.jetbrains.dokka") version "1.7.10"
     id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
     signing
 }
@@ -30,7 +30,7 @@ dependencies {
     implementation(group = "org.reflections", name = "reflections", version = "0.10.2")
     implementation(kotlin("reflect"))
 
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     api(group = "ch.qos.logback", name = "logback-classic", version = logbackVer)
 
@@ -38,7 +38,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:$junitVer")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVer")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVer")
-    testImplementation("io.mockk:mockk:1.12.4")
+    testImplementation("io.mockk:mockk:1.12.5")
     testImplementation("io.ktor:ktor-server-test-host:$ktorVer")
 }
 
