@@ -19,9 +19,9 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 sealed class InputMedia(val type: String) {
     data class Audio(
         val media: String,
-        val thumb: ImplicitFile<*>,
+        val thumb: ImplicitFile<*>? = null,
         val caption: String? = null,
-        val parseMode: String? = null,
+        val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val duration: Int? = null,
         val performer: String? = null,
@@ -30,9 +30,9 @@ sealed class InputMedia(val type: String) {
 
     data class Document(
         val media: String,
-        val thumb: ImplicitFile<*>,
+        val thumb: ImplicitFile<*>? = null,
         val caption: String? = null,
-        val parseMode: String? = null,
+        val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val disableTypeDetection: Boolean? = null,
     ) : InputMedia(type = "document")
@@ -40,15 +40,15 @@ sealed class InputMedia(val type: String) {
     data class Photo(
         val media: String,
         val caption: String? = null,
-        val parseMode: String? = null,
+        val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
     ) : InputMedia(type = "photo")
 
     data class Video(
         val media: String,
-        val thumb: ImplicitFile<*>,
+        val thumb: ImplicitFile<*>? = null,
         val caption: String? = null,
-        val parseMode: String? = null,
+        val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val width: Int? = null,
         val height: Int? = null,
@@ -58,9 +58,9 @@ sealed class InputMedia(val type: String) {
 
     data class Animation(
         val media: String,
-        val thumb: ImplicitFile<*>,
+        val thumb: ImplicitFile<*>? = null,
         val caption: String? = null,
-        val parseMode: String? = null,
+        val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val width: Int? = null,
         val height: Int? = null,
