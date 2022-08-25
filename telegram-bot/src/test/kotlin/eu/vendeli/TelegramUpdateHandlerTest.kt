@@ -1,3 +1,5 @@
+package eu.vendeli
+
 import eu.vendeli.tgbot.TelegramBot
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions

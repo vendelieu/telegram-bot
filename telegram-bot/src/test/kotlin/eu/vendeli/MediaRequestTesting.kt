@@ -1,3 +1,5 @@
+package eu.vendeli
+
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.interfaces.sendAsync
