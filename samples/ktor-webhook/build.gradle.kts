@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-    implementation("eu.vendeli:telegram-bot:2.0.1")
+    implementation("eu.vendeli:telegram-bot:2.1.0")
 
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
