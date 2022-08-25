@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.types
 
+import eu.vendeli.tgbot.interfaces.MultipleResponse
+
 data class Sticker(
     val fileId: String,
     val fileUniqueId: String,
@@ -13,4 +15,4 @@ data class Sticker(
     val premiumAnimation: File? = null,
     val maskPosition: MaskPosition? = null,
     val fileSize: Int?,
-)
+) : MultipleResponse
