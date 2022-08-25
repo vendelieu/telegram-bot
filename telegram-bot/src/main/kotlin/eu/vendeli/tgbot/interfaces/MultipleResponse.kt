@@ -19,6 +19,6 @@ interface MultiResponseOf<Type : MultipleResponse>
  * @param Type
  * @return
  */
-@Suppress("unused")
+@Suppress("UnusedReceiverParameter")
 internal inline fun <reified Type : MultipleResponse> MultiResponseOf<Type>.getInnerType(): Class<Type> =
     Type::class.java
