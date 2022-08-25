@@ -19,6 +19,7 @@ enum class ChatType(private val literal: String) {
  * @property photo
  * @property bio
  * @property hasPrivateForwards
+ * @property hasRestrictedVoiceAndVideoMessages
  * @property joinToSendMessages True, if users need to join the supergroup before they can send messages.
  * Returned only in getChat.
  * @property joinByRequest True, if all users directly joining the supergroup need to be approved by supergroup
@@ -46,6 +47,7 @@ data class Chat(
     val photo: ChatPhoto? = null,
     val bio: String? = null,
     val hasPrivateForwards: Boolean? = null,
+    val hasRestrictedVoiceAndVideoMessages: Boolean? = null,
     val joinToSendMessages: Boolean? = null,
     val joinByRequest: Boolean? = null,
     val description: String? = null,
