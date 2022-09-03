@@ -22,7 +22,7 @@ sealed class Response<T>(val ok: Boolean) {
     data class Failure(
         val errorCode: Int,
         val description: String? = null,
-        val responseParameters: ResponseParameters? = null
+        val parameters: ResponseParameters? = null
     ) : Response<Nothing>(false)
 }
 

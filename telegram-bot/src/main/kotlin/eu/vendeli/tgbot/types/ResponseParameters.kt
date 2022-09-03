@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types
 
 data class ResponseParameters(
-    val migrateToChatId: Long,
-    val retryAfter: Int
+    val migrateToChatId: Long? = null,
+    val retryAfter: Int? = null
 )
