@@ -1049,7 +1049,7 @@ $dokka.location:eu.vendeli.tgbot.types.internal/Response.Failure///PointingToDec
 $dokka.location:eu.vendeli.tgbot.types.internal/Response.Failure/Failure/#kotlin.Int#kotlin.String?#eu.vendeli.tgbot.types.ResponseParameters?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-response/-failure/-failure.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Response.Failure/description/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-response/-failure/description.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Response.Failure/errorCode/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-response/-failure/error-code.html
-$dokka.location:eu.vendeli.tgbot.types.internal/Response.Failure/responseParameters/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-response/-failure/response-parameters.html
+$dokka.location:eu.vendeli.tgbot.types.internal/Response.Failure/parameters/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-response/-failure/parameters.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Response.Success///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-response/-success/index.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Response.Success/Success/#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-response/-success/-success.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Response.Success/result/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-response/-success/result.html
@@ -2090,7 +2090,7 @@ $dokka.location:eu.vendeli.tgbot.types/ReplyKeyboardRemove/ReplyKeyboardRemove/#
 $dokka.location:eu.vendeli.tgbot.types/ReplyKeyboardRemove/removeKeyboard/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-reply-keyboard-remove/remove-keyboard.html
 $dokka.location:eu.vendeli.tgbot.types/ReplyKeyboardRemove/selective/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-reply-keyboard-remove/selective.html
 $dokka.location:eu.vendeli.tgbot.types/ResponseParameters///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-response-parameters/index.html
-$dokka.location:eu.vendeli.tgbot.types/ResponseParameters/ResponseParameters/#kotlin.Long#kotlin.Int/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-response-parameters/-response-parameters.html
+$dokka.location:eu.vendeli.tgbot.types/ResponseParameters/ResponseParameters/#kotlin.Long?#kotlin.Int?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-response-parameters/-response-parameters.html
 $dokka.location:eu.vendeli.tgbot.types/ResponseParameters/migrateToChatId/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-response-parameters/migrate-to-chat-id.html
 $dokka.location:eu.vendeli.tgbot.types/ResponseParameters/retryAfter/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-response-parameters/retry-after.html
 $dokka.location:eu.vendeli.tgbot.types/SentWebAppMessage///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-sent-web-app-message/index.html
