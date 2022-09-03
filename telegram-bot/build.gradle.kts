@@ -67,6 +67,7 @@ publishing {
                         id.set("Vendelieu")
                         name.set("Vendelieu")
                         email.set("vendelieu@gmail.com")
+                        url.set("https://vendeli.eu")
                     }
                 }
                 scm {
