@@ -81,28 +81,6 @@ class TelegramBot(
             if (field == null) field = value
         }
 
-    internal val mapper = ObjectMapper().apply {
-        propertyNamingStrategy = PropertyNamingStrategies.SNAKE_CASE
-
-        registerModules(
-            KotlinModule.Builder().apply {
-                withReflectionCacheSize(512)
-                configure(KotlinFeature.NullToEmptyCollection, false)
-                configure(KotlinFeature.NullToEmptyMap, false)
-                configure(KotlinFeature.NullIsSameAsDefault, false)
-                configure(KotlinFeature.SingletonSupport, false)
-                configure(KotlinFeature.StrictNullChecks, false)
-            }.build()
-        )
-
-        configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true)
-        configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, true)
-
-        setSerializationInclusion(JsonInclude.Include.NON_NULL)
-
-        configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-    }
-
     private val httpClient = HttpClient(CIO) {
         install("RequestLogging") {
             sendPipeline.intercept(HttpSendPipeline.Monitoring) {
@@ -304,5 +282,29 @@ class TelegramBot(
             TgMethod("getUpdates").toUrl() + (offset?.let { "?offset=$it" } ?: "")
         )
         return mapper.readValue(request.bodyAsText(), jacksonTypeRef<Response<List<Update>>>()).getOrNull()
+    }
+
+    companion object {
+        internal val mapper = ObjectMapper().apply {
+            propertyNamingStrategy = PropertyNamingStrategies.SNAKE_CASE
+
+            registerModules(
+                KotlinModule.Builder().apply {
+                    withReflectionCacheSize(512)
+                    configure(KotlinFeature.NullToEmptyCollection, false)
+                    configure(KotlinFeature.NullToEmptyMap, false)
+                    configure(KotlinFeature.NullIsSameAsDefault, false)
+                    configure(KotlinFeature.SingletonSupport, false)
+                    configure(KotlinFeature.StrictNullChecks, false)
+                }.build()
+            )
+
+            configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true)
+            configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, true)
+
+            setSerializationInclusion(JsonInclude.Include.NON_NULL)
+
+            configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+        }
     }
 }
