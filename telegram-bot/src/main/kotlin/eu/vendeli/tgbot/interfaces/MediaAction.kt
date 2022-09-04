@@ -55,10 +55,9 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
      *
      * @param to Recipient
      * @param via Instance of the bot through which the request will be made.
-     * @param isInline Whether the request is inline.
      */
-    override suspend fun send(to: String, via: TelegramBot, isInline: Boolean) {
-        internalSend(ActionRecipientRef.StringRecipient(to), via, isInline)
+    override suspend fun send(to: String, via: TelegramBot) {
+        internalSend(ActionRecipientRef.StringRecipient(to), via)
     }
 
     /**
@@ -66,10 +65,9 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
      *
      * @param to Recipient
      * @param via Instance of the bot through which the request will be made.
-     * @param isInline Whether the request is inline.
      */
-    override suspend fun send(to: Long, via: TelegramBot, isInline: Boolean) {
-        internalSend(ActionRecipientRef.LongRecipient(to), via, isInline)
+    override suspend fun send(to: Long, via: TelegramBot) {
+        internalSend(ActionRecipientRef.LongRecipient(to), via)
     }
 
     /**
@@ -77,10 +75,9 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
      *
      * @param to Recipient
      * @param via Instance of the bot through which the request will be made.
-     * @param isInline Whether the request is inline.
      */
-    override suspend fun send(to: User, via: TelegramBot, isInline: Boolean) {
-        internalSend(ActionRecipientRef.LongRecipient(to.id), via, isInline)
+    override suspend fun send(to: User, via: TelegramBot) {
+        internalSend(ActionRecipientRef.LongRecipient(to.id), via)
     }
 
     /**
@@ -88,10 +85,9 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
      *
      * @param to Recipient
      * @param via Instance of the bot through which the request will be made.
-     * @param isInline Whether the request is inline.
      */
-    suspend fun MediaAction<Req_R>.internalSend(to: ActionRecipientRef, via: TelegramBot, isInline: Boolean) {
-        parameters[if (!isInline) "chat_id" else "inline_message_id"] = to.get()
+    suspend fun MediaAction<Req_R>.internalSend(to: ActionRecipientRef, via: TelegramBot) {
+        parameters["chat_id"] = to.get()
 
         if (id != null) {
             parameters[dataField] = id!!
@@ -112,16 +108,14 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
      * @param returnType response type
      * @param to Recipient
      * @param via Instance of the bot through which the request will be made.
-     * @param isInline Whether the request is inline.
      * @return [Deferred]<[Response]<[Req_R]>>
      */
     suspend fun MediaAction<Req_R>.internalSendAsync(
         returnType: Class<Req_R>,
         to: ActionRecipientRef,
         via: TelegramBot,
-        isInline: Boolean,
     ): Deferred<Response<out Req_R>> {
-        parameters[if (!isInline) "chat_id" else "inline_message_id"] = to.get()
+        parameters["chat_id"] = to.get()
 
         return if (id != null) {
             parameters[dataField] = id!!
@@ -152,15 +146,12 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
  * @param Req_R
  * @param to Recipient
  * @param via Instance of the bot through which the request will be made.
- * @param isInline Whether the request is inline.
  * @return [Deferred]<[Response]<[Req_R]>>
  */
 suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
     to: String,
     via: TelegramBot,
-    isInline: Boolean = false,
-): Deferred<Response<out Req_R>> =
-    internalSendAsync(Req_R::class.java, ActionRecipientRef.StringRecipient(to), via, isInline)
+): Deferred<Response<out Req_R>> = internalSendAsync(Req_R::class.java, ActionRecipientRef.StringRecipient(to), via)
 
 /**
  * Make request with ability operating over response.
@@ -168,15 +159,12 @@ suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
  * @param Req_R
  * @param to Recipient
  * @param via Instance of the bot through which the request will be made.
- * @param isInline Whether the request is inline.
  * @return [Deferred]<[Response]<[Req_R]>>
  */
 suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
     to: Long,
     via: TelegramBot,
-    isInline: Boolean = false,
-): Deferred<Response<out Req_R>> =
-    internalSendAsync(Req_R::class.java, ActionRecipientRef.LongRecipient(to), via, isInline)
+): Deferred<Response<out Req_R>> = internalSendAsync(Req_R::class.java, ActionRecipientRef.LongRecipient(to), via)
 
 /**
  * Make request with ability operating over response.
@@ -184,12 +172,9 @@ suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
  * @param Req_R
  * @param to Recipient
  * @param via Instance of the bot through which the request will be made.
- * @param isInline Whether the request is inline.
  * @return [Deferred]<[Response]<[Req_R]>>
  */
 suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
     to: User,
     via: TelegramBot,
-    isInline: Boolean = false,
-): Deferred<Response<out Req_R>> =
-    internalSendAsync(Req_R::class.java, ActionRecipientRef.LongRecipient(to.id), via, isInline)
+): Deferred<Response<out Req_R>> = internalSendAsync(Req_R::class.java, ActionRecipientRef.LongRecipient(to.id), via)
