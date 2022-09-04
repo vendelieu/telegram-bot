@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.interfaces.features
 
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.interfaces.ParametersBase
 import eu.vendeli.tgbot.types.internal.options.Options
 
@@ -24,7 +26,7 @@ interface OptionsFeature<Return : OptionAble, Opts : Options> : ParametersBase {
      */
     fun options(block: Opts.() -> Unit): Return {
         options = options.apply(block)
-        parameters.putAll(options.getParams())
+        parameters.putAll(mapper.convertValue(options, jacksonTypeRef<Map<String, Any?>>()))
         return thisAsReturn
     }
 }

@@ -23,13 +23,6 @@ internal class CreateNewCoroutineContext(parentContext: CoroutineContext) : Coro
         parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
 }
 
-internal object StringManipulations {
-    private val regex = "([a-z])([A-Z]+)".toRegex()
-    private const val replacement = "$1_$2"
-
-    fun camel2SnakeCase(str: String) = regex.replace(str, replacement).lowercase()
-}
-
 internal fun String.parseQuery(): StructuredRequest {
     val reqParams = split('?')
 
