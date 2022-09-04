@@ -2,10 +2,7 @@ package eu.vendeli.tgbot.interfaces
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.ActionRecipientRef
-import eu.vendeli.tgbot.types.internal.MediaContentType
-import eu.vendeli.tgbot.types.internal.Response
-import eu.vendeli.tgbot.types.internal.toContentType
+import eu.vendeli.tgbot.types.internal.*
 import kotlinx.coroutines.Deferred
 
 /**
@@ -15,40 +12,19 @@ import kotlinx.coroutines.Deferred
  */
 interface MediaAction<Req_R> : Action<Req_R>, TgAction {
     /**
-     * A method that sets the name of the parameter that will contain the media data.
-     *
-     * @param dataField
+     * The name of the field that will store the data.
      */
-    fun MediaAction<Req_R>.setDataField(dataField: String) {
-        Companion.dataField = dataField
-    }
+    val MediaAction<Req_R>.dataField: String
 
     /**
-     * Set content type of media.
-     *
-     * @param defaultType
+     * Content type of media.
      */
-    fun MediaAction<Req_R>.setDefaultType(defaultType: MediaContentType) {
-        Companion.defaultType = defaultType
-    }
+    val MediaAction<Req_R>.defaultType: MediaContentType
 
     /**
-     * Set file-id instead of sending media bytearray.
-     *
-     * @param id
+     * Media itself.
      */
-    fun MediaAction<Req_R>.setId(id: String) {
-        Companion.id = id
-    }
-
-    /**
-     * Set media in bytearray format.
-     *
-     * @param media
-     */
-    fun MediaAction<Req_R>.setMedia(media: ByteArray) {
-        Companion.media = media
-    }
+    val MediaAction<Req_R>.media: ImplicitFile<*>
 
     /**
      * Make a request for action.
@@ -89,17 +65,21 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
     suspend fun MediaAction<Req_R>.internalSend(to: ActionRecipientRef, via: TelegramBot) {
         parameters["chat_id"] = to.get()
 
-        if (id != null) {
-            parameters[dataField] = id!!
-            via.makeSilentRequest(method, parameters)
-        } else via.makeSilentRequest(
-            method,
-            dataField,
-            (parameters["file_name"]?.toString() ?: "$dataField.$defaultType"),
-            media,
-            parameters,
-            defaultType.toContentType()
-        )
+        when (media) {
+            is ImplicitFile.FileId -> {
+                parameters[dataField] = media.file
+                via.makeSilentRequest(method, parameters)
+            }
+
+            is ImplicitFile.InputFile -> via.makeSilentRequest(
+                method,
+                dataField,
+                (parameters["file_name"]?.toString() ?: "$dataField.$defaultType"),
+                media.file as ByteArray,
+                parameters,
+                defaultType.toContentType()
+            )
+        }
     }
 
     /**
@@ -117,26 +97,23 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
     ): Deferred<Response<out Req_R>> {
         parameters["chat_id"] = to.get()
 
-        return if (id != null) {
-            parameters[dataField] = id!!
-            via.makeRequestAsync(method, parameters, returnType, bunchResponseInnerType())
-        } else via.makeRequestAsync(
-            method,
-            dataField,
-            (parameters["file_name"]?.toString() ?: "$dataField.$defaultType"),
-            media,
-            parameters,
-            defaultType.toContentType(),
-            returnType,
-            bunchResponseInnerType()
-        )
-    }
+        return when (media) {
+            is ImplicitFile.FileId -> {
+                parameters[dataField] = media.file
+                via.makeRequestAsync(method, parameters, returnType, bunchResponseInnerType())
+            }
 
-    companion object {
-        var dataField: String = "media"
-        var defaultType: MediaContentType = MediaContentType.Text
-        var id: String? = null
-        var media: ByteArray = ByteArray(0)
+            is ImplicitFile.InputFile -> via.makeRequestAsync(
+                method,
+                dataField,
+                (parameters["file_name"]?.toString() ?: "$dataField.$defaultType"),
+                media.file as ByteArray,
+                parameters,
+                defaultType.toContentType(),
+                returnType,
+                bunchResponseInnerType()
+            )
+        }
     }
 }
 
