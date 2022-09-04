@@ -24,4 +24,10 @@ sealed class StickerFile(val file: ByteArray) {
     class WEBM(file: ByteArray) : StickerFile(file) {
         override val contentType = MediaContentType.VideoWebm
     }
+
+    /**
+     * Converts Sticker to [ImplicitFile.InputFile](ImplicitFile.InputFile)
+     *
+     */
+    fun toImplicitFile() = ImplicitFile.InputFile(this.file)
 }
