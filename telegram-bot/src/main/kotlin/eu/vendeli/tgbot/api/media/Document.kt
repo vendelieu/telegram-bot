@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.DocumentOptions
 
-class SendDocumentAction(document: ImplicitFile<*>) :
+class SendDocumentAction(private val document: ImplicitFile<*>) :
     MediaAction<Message>,
     CaptionAble,
     OptionAble,
@@ -17,18 +17,15 @@ class SendDocumentAction(document: ImplicitFile<*>) :
     OptionsFeature<SendDocumentAction, DocumentOptions>,
     MarkupFeature<SendDocumentAction> {
     override val method: TgMethod = TgMethod("sendDocument")
-
-    init {
-        when (document) {
-            is ImplicitFile.FileId -> setId(document.file)
-            is ImplicitFile.InputFile -> setMedia(document.file)
-        }
-        setDataField("document")
-        setDefaultType(MediaContentType.Text)
-    }
-
     override var options = DocumentOptions()
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
+
+    override val MediaAction<Message>.defaultType: MediaContentType
+        get() = MediaContentType.Text
+    override val MediaAction<Message>.media: ImplicitFile<*>
+        get() = document
+    override val MediaAction<Message>.dataField: String
+        get() = "document"
 }
 
 fun document(block: () -> String) = SendDocumentAction(ImplicitFile.FileId(block()))

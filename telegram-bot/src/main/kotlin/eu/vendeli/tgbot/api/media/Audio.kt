@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AudioOptions
 
-class SendAudioAction(audio: ImplicitFile<*>) :
+class SendAudioAction(private val audio: ImplicitFile<*>) :
     MediaAction<Message>,
     OptionAble,
     MarkupAble,
@@ -17,18 +17,16 @@ class SendAudioAction(audio: ImplicitFile<*>) :
     MarkupFeature<SendAudioAction>,
     CaptionFeature<SendAudioAction> {
     override val method: TgMethod = TgMethod("sendAudio")
-
-    init {
-        when (audio) {
-            is ImplicitFile.FileId -> setId(audio.file)
-            is ImplicitFile.InputFile -> setMedia(audio.file)
-        }
-        setDataField("audio")
-        setDefaultType(MediaContentType.Audio)
-    }
-
     override var options = AudioOptions()
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
+
+    override val MediaAction<Message>.defaultType: MediaContentType
+        get() = MediaContentType.Audio
+    override val MediaAction<Message>.media: ImplicitFile<*>
+        get() = audio
+    override val MediaAction<Message>.dataField: String
+        get() = "audio"
+
 }
 
 fun audio(block: () -> String) = SendAudioAction(ImplicitFile.FileId(block()))
