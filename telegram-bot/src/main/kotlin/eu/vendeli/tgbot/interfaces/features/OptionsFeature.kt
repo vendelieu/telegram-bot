@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.interfaces.features
 
+import eu.vendeli.tgbot.interfaces.ParametersBase
 import eu.vendeli.tgbot.types.internal.options.Options
 
 /**
@@ -8,7 +9,7 @@ import eu.vendeli.tgbot.types.internal.options.Options
  * @param Return Action itself.
  * @param Opts Options Class
  */
-interface OptionsFeature<Return : OptionAble, Opts : Options> : Feature {
+interface OptionsFeature<Return : OptionAble, Opts : Options> : ParametersBase {
     @Suppress("UNCHECKED_CAST")
     private val thisAsReturn: Return
         get() = this as Return

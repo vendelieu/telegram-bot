@@ -1,7 +1,6 @@
 package eu.vendeli.tgbot.interfaces
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.interfaces.features.Feature
 import eu.vendeli.tgbot.types.internal.Response
 import kotlinx.coroutines.Deferred
 
@@ -10,7 +9,7 @@ import kotlinx.coroutines.Deferred
  *
  * @param ReturnType response type.
  */
-interface SimpleAction<ReturnType> : TgAction, Feature {
+interface SimpleAction<ReturnType> : TgAction, ParametersBase {
     /**
      * Send request for action.
      *

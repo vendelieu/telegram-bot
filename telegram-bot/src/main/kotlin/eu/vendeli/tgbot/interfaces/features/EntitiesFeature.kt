@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.interfaces.features
 
+import eu.vendeli.tgbot.interfaces.ParametersBase
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.utils.EntitiesBuilder
 
@@ -8,7 +9,7 @@ import eu.vendeli.tgbot.utils.EntitiesBuilder
  *
  * @param Return Action class itself.
  */
-interface EntitiesFeature<Return : EntityAble> : Feature {
+interface EntitiesFeature<Return : EntityAble> : ParametersBase {
     @Suppress("UNCHECKED_CAST")
     private val thisAsReturn: Return
         get() = this as Return
