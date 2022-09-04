@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.MediaGroupOptions
 
-class SendMediaGroupAction :
+class SendMediaGroupAction(vararg media: InputMedia) :
     Action<List<Message>>,
     OptionAble,
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions>,
@@ -17,19 +17,7 @@ class SendMediaGroupAction :
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
     override var options = MediaGroupOptions()
 
-    constructor(vararg media: InputMedia.Audio) {
-        parameters["media"] = media
-    }
-
-    constructor(vararg media: InputMedia.Document) {
-        parameters["media"] = media
-    }
-
-    constructor(vararg media: InputMedia.Photo) {
-        parameters["media"] = media
-    }
-
-    constructor(vararg media: InputMedia.Video) {
+    init {
         parameters["media"] = media
     }
 
