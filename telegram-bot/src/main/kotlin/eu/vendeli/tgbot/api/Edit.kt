@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.InlineMode
 import eu.vendeli.tgbot.interfaces.features.*
 import eu.vendeli.tgbot.types.InputMedia
 import eu.vendeli.tgbot.types.Message
@@ -10,6 +11,7 @@ import eu.vendeli.tgbot.types.internal.options.EditMessageOptions
 
 class EditMessageTextAction :
     Action<Message>,
+    InlineMode<Message>,
     AllFeaturesAble,
     AllFeaturesPack<EditMessageTextAction, EditMessageOptions> {
     override val method: TgMethod = TgMethod("editMessageText")
@@ -28,6 +30,7 @@ class EditMessageTextAction :
 
 class EditMessageCaptionAction() :
     Action<Message>,
+    InlineMode<Message>,
     OptionAble,
     MarkupAble,
     CaptionAble,
@@ -43,7 +46,7 @@ class EditMessageCaptionAction() :
     }
 }
 
-class EditMessageMediaAction : Action<Message>, MarkupAble, MarkupFeature<EditMessageMediaAction> {
+class EditMessageMediaAction : Action<Message>, InlineMode<Message>, MarkupAble, MarkupFeature<EditMessageMediaAction> {
     override val method: TgMethod = TgMethod("editMessageMedia")
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
@@ -57,7 +60,8 @@ class EditMessageMediaAction : Action<Message>, MarkupAble, MarkupFeature<EditMe
     }
 }
 
-class EditMessageMarkupAction() : Action<Message>, MarkupAble, MarkupFeature<EditMessageMarkupAction> {
+class EditMessageMarkupAction() : Action<Message>, InlineMode<Message>, MarkupAble,
+    MarkupFeature<EditMessageMarkupAction> {
     override val method: TgMethod = TgMethod("editMessageReplyMarkup")
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
 

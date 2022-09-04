@@ -1,10 +1,12 @@
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.InlineMode
 import eu.vendeli.tgbot.types.GameHighScore
+import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 
-class GetGameHighScoresAction : Action<GameHighScore> {
+class GetGameHighScoresAction : Action<GameHighScore>, InlineMode<Message> {
     override val method: TgMethod = TgMethod("getGameHighScores")
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
 

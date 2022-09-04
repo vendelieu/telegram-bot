@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.InlineMode
 import eu.vendeli.tgbot.interfaces.features.MarkupAble
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionAble
@@ -11,6 +12,7 @@ import eu.vendeli.tgbot.types.internal.options.EditMessageLiveLocationOptions
 
 class EditMessageLiveLocationAction :
     Action<Message>,
+    InlineMode<Message>,
     OptionAble,
     MarkupAble,
     OptionsFeature<EditMessageLiveLocationAction, EditMessageLiveLocationOptions>,
