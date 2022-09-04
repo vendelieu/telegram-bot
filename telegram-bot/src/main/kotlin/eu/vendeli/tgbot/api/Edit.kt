@@ -60,7 +60,10 @@ class EditMessageMediaAction : Action<Message>, InlineMode<Message>, MarkupAble,
     }
 }
 
-class EditMessageMarkupAction() : Action<Message>, InlineMode<Message>, MarkupAble,
+class EditMessageMarkupAction() :
+    Action<Message>,
+    InlineMode<Message>,
+    MarkupAble,
     MarkupFeature<EditMessageMarkupAction> {
     override val method: TgMethod = TgMethod("editMessageReplyMarkup")
     override val parameters: MutableMap<String, Any?> = mutableMapOf()

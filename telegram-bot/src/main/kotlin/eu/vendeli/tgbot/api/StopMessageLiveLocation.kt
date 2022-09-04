@@ -7,7 +7,10 @@ import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 
-class StopMessageLiveLocationAction() : Action<Message>, InlineMode<Message>, MarkupAble,
+class StopMessageLiveLocationAction() :
+    Action<Message>,
+    InlineMode<Message>,
+    MarkupAble,
     MarkupFeature<StopMessageLiveLocationAction> {
     override val method: TgMethod = TgMethod("stopMessageLiveLocation")
     override val parameters: MutableMap<String, Any?> = mutableMapOf()

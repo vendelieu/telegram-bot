@@ -8,8 +8,11 @@ import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.SetGameScoreOptions
 
-class SetGameScoreAction : Action<Message>,
-    InlineMode<Message>, OptionAble, OptionsFeature<SetGameScoreAction, SetGameScoreOptions> {
+class SetGameScoreAction :
+    Action<Message>,
+    InlineMode<Message>,
+    OptionAble,
+    OptionsFeature<SetGameScoreAction, SetGameScoreOptions> {
     override val method: TgMethod = TgMethod("setGameScore")
     override var options = SetGameScoreOptions()
     override val parameters: MutableMap<String, Any?> = mutableMapOf()

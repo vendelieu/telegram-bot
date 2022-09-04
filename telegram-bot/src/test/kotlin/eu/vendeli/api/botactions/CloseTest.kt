@@ -41,5 +41,4 @@ class CloseTest {
             assertTrue((it.parameters?.retryAfter ?: 0) > 0)
         }
     }
-
 }

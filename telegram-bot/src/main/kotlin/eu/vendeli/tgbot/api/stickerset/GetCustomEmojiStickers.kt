@@ -9,7 +9,8 @@ import eu.vendeli.tgbot.types.internal.TgMethod
  *
  * @param customEmojiIds List of custom emoji identifiers. At most 200 custom emoji identifiers can be specified.
  */
-class GetCustomEmojiStickersAction(customEmojiIds: List<String>) : SimpleAction<List<Sticker>>,
+class GetCustomEmojiStickersAction(customEmojiIds: List<String>) :
+    SimpleAction<List<Sticker>>,
     MultiResponseOf<Sticker> {
     override val method: TgMethod = TgMethod("getCustomEmojiStickers")
     override val parameters: MutableMap<String, Any?> = mutableMapOf()

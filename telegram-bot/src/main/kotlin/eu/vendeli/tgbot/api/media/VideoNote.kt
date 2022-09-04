@@ -11,8 +11,12 @@ import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoNoteOptions
 
-class SendVideoNoteAction(private val videoNote: ImplicitFile<*>) : MediaAction<Message>, OptionAble, MarkupAble,
-    OptionsFeature<SendVideoNoteAction, VideoNoteOptions>, MarkupFeature<SendVideoNoteAction> {
+class SendVideoNoteAction(private val videoNote: ImplicitFile<*>) :
+    MediaAction<Message>,
+    OptionAble,
+    MarkupAble,
+    OptionsFeature<SendVideoNoteAction, VideoNoteOptions>,
+    MarkupFeature<SendVideoNoteAction> {
     override val method: TgMethod = TgMethod("sendVideoNote")
     override var options = VideoNoteOptions()
     override val parameters: MutableMap<String, Any?> = mutableMapOf()

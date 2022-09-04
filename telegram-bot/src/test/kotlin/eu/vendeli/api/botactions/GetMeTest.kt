@@ -29,5 +29,4 @@ class GetMeTest {
         assertTrue(result.getOrNull()?.isBot ?: false)
         assertEquals(System.getenv("BOT_ID").toLong(), result.getOrNull()?.id)
     }
-
 }

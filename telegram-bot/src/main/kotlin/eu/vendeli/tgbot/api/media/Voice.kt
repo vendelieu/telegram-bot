@@ -8,8 +8,14 @@ import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VoiceOptions
 
-class SendVoiceAction(private val voice: ImplicitFile<*>) : MediaAction<Message>, OptionAble, MarkupAble, CaptionAble,
-    OptionsFeature<SendVoiceAction, VoiceOptions>, MarkupFeature<SendVoiceAction>, CaptionFeature<SendVoiceAction> {
+class SendVoiceAction(private val voice: ImplicitFile<*>) :
+    MediaAction<Message>,
+    OptionAble,
+    MarkupAble,
+    CaptionAble,
+    OptionsFeature<SendVoiceAction, VoiceOptions>,
+    MarkupFeature<SendVoiceAction>,
+    CaptionFeature<SendVoiceAction> {
     override val method: TgMethod = TgMethod("sendVoice")
     override var options = VoiceOptions()
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
