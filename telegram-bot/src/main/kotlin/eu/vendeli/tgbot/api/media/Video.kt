@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoOptions
 
-class SendVideoAction(video: ImplicitFile<*>) :
+class SendVideoAction(private val video: ImplicitFile<*>) :
     MediaAction<Message>,
     OptionAble,
     MarkupAble,
@@ -17,18 +17,15 @@ class SendVideoAction(video: ImplicitFile<*>) :
     MarkupFeature<SendVideoAction>,
     CaptionFeature<SendVideoAction> {
     override val method: TgMethod = TgMethod("sendVideo")
-
-    init {
-        when (video) {
-            is ImplicitFile.FileId -> setId(video.file)
-            is ImplicitFile.InputFile -> setMedia(video.file)
-        }
-        setDataField("video")
-        setDefaultType(MediaContentType.VideoMp4)
-    }
-
     override var options = VideoOptions()
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
+
+    override val MediaAction<Message>.defaultType: MediaContentType
+        get() = MediaContentType.VideoMp4
+    override val MediaAction<Message>.media: ImplicitFile<*>
+        get() = video
+    override val MediaAction<Message>.dataField: String
+        get() = "video"
 }
 
 fun video(block: () -> String) = SendVideoAction(ImplicitFile.FileId(block()))

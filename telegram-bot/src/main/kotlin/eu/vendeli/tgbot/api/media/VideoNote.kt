@@ -6,35 +6,25 @@ import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionAble
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoNoteOptions
 
-class SendVideoNoteAction :
-    MediaAction<Message>,
-    OptionAble,
-    MarkupAble,
-    OptionsFeature<SendVideoNoteAction, VideoNoteOptions>,
-    MarkupFeature<SendVideoNoteAction> {
+class SendVideoNoteAction(private val videoNote: ImplicitFile<*>) : MediaAction<Message>, OptionAble, MarkupAble,
+    OptionsFeature<SendVideoNoteAction, VideoNoteOptions>, MarkupFeature<SendVideoNoteAction> {
     override val method: TgMethod = TgMethod("sendVideoNote")
-
-    init {
-        setDataField("video_note")
-        setDefaultType(MediaContentType.VideoMp4)
-    }
-
-    constructor(videoNoteId: String) {
-        setId(videoNoteId)
-    }
-
-    constructor(videoNote: ByteArray) {
-        setMedia(videoNote)
-    }
-
     override var options = VideoNoteOptions()
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
+
+    override val MediaAction<Message>.defaultType: MediaContentType
+        get() = MediaContentType.VideoMp4
+    override val MediaAction<Message>.media: ImplicitFile<*>
+        get() = videoNote
+    override val MediaAction<Message>.dataField: String
+        get() = "video_note"
 }
 
-fun videoNote(block: () -> String) = SendVideoNoteAction(block())
+fun videoNote(block: () -> String) = SendVideoNoteAction(ImplicitFile.FileId(block()))
 
-fun videoNote(ba: ByteArray) = SendVideoNoteAction(ba)
+fun videoNote(ba: ByteArray) = SendVideoNoteAction(ImplicitFile.InputFile(ba))

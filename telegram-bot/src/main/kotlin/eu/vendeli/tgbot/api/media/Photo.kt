@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PhotoOptions
 
-class SendPhotoAction(photo: ImplicitFile<*>) :
+class SendPhotoAction(private val photo: ImplicitFile<*>) :
     MediaAction<Message>,
     OptionAble,
     MarkupAble,
@@ -17,18 +17,15 @@ class SendPhotoAction(photo: ImplicitFile<*>) :
     MarkupFeature<SendPhotoAction>,
     CaptionFeature<SendPhotoAction> {
     override val method: TgMethod = TgMethod("sendPhoto")
-
-    init {
-        when (photo) {
-            is ImplicitFile.FileId -> setId(photo.file)
-            is ImplicitFile.InputFile -> setMedia(photo.file)
-        }
-        setDataField("photo")
-        setDefaultType(MediaContentType.ImageJpeg)
-    }
-
     override var options = PhotoOptions()
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
+
+    override val MediaAction<Message>.defaultType: MediaContentType
+        get() = MediaContentType.ImageJpeg
+    override val MediaAction<Message>.media: ImplicitFile<*>
+        get() = photo
+    override val MediaAction<Message>.dataField: String
+        get() = "photo"
 }
 
 fun photo(block: () -> String) = SendPhotoAction(ImplicitFile.FileId(block()))

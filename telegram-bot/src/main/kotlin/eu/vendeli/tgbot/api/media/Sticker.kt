@@ -6,35 +6,29 @@ import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionAble
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CommonOptions
 
-class SendStickerAction :
+class SendStickerAction(private val sticker: ImplicitFile<*>) :
     MediaAction<Message>,
     OptionAble,
     MarkupAble,
     OptionsFeature<SendStickerAction, CommonOptions>,
     MarkupFeature<SendStickerAction> {
     override val method: TgMethod = TgMethod("sendSticker")
-
-    init {
-        setDataField("sticker")
-        setDefaultType(MediaContentType.ImageJpeg)
-    }
-
-    constructor(stickerId: String) {
-        setId(stickerId)
-    }
-
-    constructor(sticker: ByteArray) {
-        setMedia(sticker)
-    }
-
     override var options = CommonOptions()
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
+
+    override val MediaAction<Message>.defaultType: MediaContentType
+        get() = MediaContentType.ImageJpeg
+    override val MediaAction<Message>.media: ImplicitFile<*>
+        get() = sticker
+    override val MediaAction<Message>.dataField: String
+        get() = "sticker"
 }
 
-fun sticker(block: () -> String) = SendStickerAction(block())
+fun sticker(block: () -> String) = SendStickerAction(ImplicitFile.FileId(block()))
 
-fun sticker(ba: ByteArray) = SendStickerAction(ba)
+fun sticker(ba: ByteArray) = SendStickerAction(ImplicitFile.InputFile(ba))

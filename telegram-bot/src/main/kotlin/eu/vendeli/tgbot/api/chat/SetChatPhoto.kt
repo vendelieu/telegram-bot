@@ -1,28 +1,22 @@
 package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 
-class SetChatPhotoAction : MediaAction<Boolean> {
+class SetChatPhotoAction(private val photo: ImplicitFile<*>) : MediaAction<Boolean> {
     override val method: TgMethod = TgMethod("setChatPhoto")
-
-    init {
-        setDataField("photo")
-        setDefaultType(MediaContentType.ImageJpeg)
-    }
-
-    constructor(chatPhotoId: String) {
-        setId(chatPhotoId)
-    }
-
-    constructor(chatPhoto: ByteArray) {
-        setMedia(chatPhoto)
-    }
-
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
+
+    override val MediaAction<Boolean>.defaultType: MediaContentType
+        get() = MediaContentType.ImageJpeg
+    override val MediaAction<Boolean>.media: ImplicitFile<*>
+        get() = photo
+    override val MediaAction<Boolean>.dataField: String
+        get() = "photo"
 }
 
-fun setChatPhoto(block: () -> String) = SetChatPhotoAction(block())
+fun setChatPhoto(block: () -> String) = SetChatPhotoAction(ImplicitFile.FileId(block()))
 
-fun setChatPhoto(ba: ByteArray) = SetChatPhotoAction(ba)
+fun setChatPhoto(ba: ByteArray) = SetChatPhotoAction(ImplicitFile.InputFile(ba))
