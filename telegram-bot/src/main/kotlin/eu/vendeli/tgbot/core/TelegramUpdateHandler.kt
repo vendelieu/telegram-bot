@@ -2,6 +2,7 @@ package eu.vendeli.tgbot.core
 
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.types.Update
@@ -103,7 +104,7 @@ class TelegramUpdateHandler internal constructor(
      */
     fun parseUpdate(update: String): Update? {
         logger.trace("Trying to parse update from string - $update")
-        return bot.mapper.runCatching {
+        return mapper.runCatching {
             readValue(update, Update::class.java)
         }.onFailure {
             logger.debug("error during the update parsing process.", it)
@@ -118,7 +119,7 @@ class TelegramUpdateHandler internal constructor(
      */
     fun parseUpdates(updates: String): List<Update>? {
         logger.trace("Trying to parse bunch of updates from string - $updates")
-        return bot.mapper.runCatching {
+        return mapper.runCatching {
             readValue(updates, jacksonTypeRef<Response<List<Update>>>()).getOrNull()
         }.onFailure {
             logger.debug("error during the bunch updates parsing process.", it)
@@ -220,6 +221,7 @@ class TelegramUpdateHandler internal constructor(
             inputAction != null && update.message?.from?.isBot == false -> invokeMethod(
                 this, inputAction.invocation, inputAction.parameters
             )
+
             actions?.unhandled != null -> invokeMethod(this, actions.unhandled, emptyMap())
             else -> {
                 logger.info("update: $update not handled.")
