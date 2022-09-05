@@ -161,4 +161,74 @@ class TelegramBotTest {
         val fileBA = bot.getFileContent(file)
         assertNotNull(fileBA)
     }
+
+    @Test
+    fun `try to get file without filePath`() = runBlocking {
+        val file = File("", "")
+        assertNull(bot.getFileDirectUrl(file))
+        assertNull(bot.getFileContent(file))
+    }
+
+    companion object {
+        val userDataImpl = object : BotUserData {
+            override fun set(telegramId: Long, key: String, value: Any?) {
+                TODO("Not yet implemented")
+            }
+
+            override suspend fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean> {
+                TODO("Not yet implemented")
+            }
+
+            override fun get(telegramId: Long, key: String): Any? {
+                TODO("Not yet implemented")
+            }
+
+            override suspend fun getAsync(telegramId: Long, key: String): Deferred<Any?> {
+                TODO("Not yet implemented")
+            }
+
+            override fun del(telegramId: Long, key: String) {
+                TODO("Not yet implemented")
+            }
+
+            override suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean> {
+                TODO("Not yet implemented")
+            }
+        }
+
+        val chatDataImpl = object : BotChatData {
+            override fun set(telegramId: Long, key: String, value: Any?) {
+                TODO("Not yet implemented")
+            }
+
+            override suspend fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean> {
+                TODO("Not yet implemented")
+            }
+
+            override fun get(telegramId: Long, key: String): Any? {
+                TODO("Not yet implemented")
+            }
+
+            override suspend fun getAsync(telegramId: Long, key: String): Deferred<Any?> {
+                TODO("Not yet implemented")
+            }
+
+            override fun del(telegramId: Long, key: String) {
+                TODO("Not yet implemented")
+            }
+
+            override suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean> {
+                TODO("Not yet implemented")
+            }
+
+            override fun delPrevChatSection(telegramId: Long) {
+                TODO("Not yet implemented")
+            }
+
+            override suspend fun delPrevChatSectionAsync(telegramId: Long): Deferred<Boolean> {
+                TODO("Not yet implemented")
+            }
+
+        }
+    }
 }
