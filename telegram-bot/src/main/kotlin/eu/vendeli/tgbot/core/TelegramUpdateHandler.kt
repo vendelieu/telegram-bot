@@ -10,9 +10,7 @@ import eu.vendeli.tgbot.types.internal.*
 import eu.vendeli.tgbot.utils.CreateNewCoroutineContext
 import eu.vendeli.tgbot.utils.invokeSuspend
 import eu.vendeli.tgbot.utils.parseQuery
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.slf4j.LoggerFactory
 import kotlin.coroutines.coroutineContext
 
@@ -43,7 +41,7 @@ class TelegramUpdateHandler internal constructor(
      */
     private tailrec suspend fun runListener(offset: Int? = null): Int {
         logger.trace("Running listener with offset - $offset")
-        if (!handlerActive) return 0
+        if (!handlerActive) coroutineContext.job.cancel("The listener is stopped.")
         var lastUpdateId: Int = offset ?: 0
         bot.pullUpdates(offset)?.forEach {
             CreateNewCoroutineContext(coroutineContext).launch(Dispatchers.IO) {
