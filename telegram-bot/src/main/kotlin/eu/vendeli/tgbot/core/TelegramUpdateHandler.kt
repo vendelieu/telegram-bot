@@ -41,7 +41,10 @@ class TelegramUpdateHandler internal constructor(
      */
     private tailrec suspend fun runListener(offset: Int? = null): Int {
         logger.trace("Running listener with offset - $offset")
-        if (!handlerActive) coroutineContext.job.cancel("The listener is stopped.")
+        if (!handlerActive) {
+            coroutineContext.cancelChildren()
+            return 0
+        }
         var lastUpdateId: Int = offset ?: 0
         bot.pullUpdates(offset)?.forEach {
             CreateNewCoroutineContext(coroutineContext).launch(Dispatchers.IO) {
