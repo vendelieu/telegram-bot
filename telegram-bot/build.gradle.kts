@@ -38,8 +38,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:$junitVer")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVer")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVer")
-    testImplementation("io.mockk:mockk:1.12.5")
-    testImplementation("io.ktor:ktor-server-test-host:$ktorVer")
+    testImplementation("io.ktor:ktor-client-mock:$ktorVer")
 }
 
 group = "eu.vendeli"
