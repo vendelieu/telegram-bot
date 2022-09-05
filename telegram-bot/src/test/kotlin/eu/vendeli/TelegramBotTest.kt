@@ -3,15 +3,15 @@ package eu.vendeli
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
-import eu.vendeli.tgbot.interfaces.MagicObject
-import eu.vendeli.tgbot.interfaces.MultipleResponse
-import eu.vendeli.tgbot.interfaces.sendAsync
+import eu.vendeli.tgbot.interfaces.*
+import eu.vendeli.tgbot.types.File
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeAll
@@ -69,6 +69,22 @@ class TelegramBotTest {
             assertEquals(400, it.errorCode)
             assertEquals("Bad Request: chat_id is empty", it.description)
         }
+    }
+
+    @Test
+    fun `user data setting`() {
+        assertNull(bot.userData)
+        bot.userData = userDataImpl
+        assertNotNull(bot.userData)
+        assertEquals(userDataImpl, bot.userData)
+    }
+
+    @Test
+    fun `chat data setting`() {
+        assertNull(bot.chatData)
+        bot.chatData = chatDataImpl
+        assertNotNull(bot.chatData)
+        assertEquals(chatDataImpl, bot.chatData)
     }
 
     @Test
