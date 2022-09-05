@@ -81,7 +81,7 @@ class TelegramBot(
             if (field == null) field = value
         }
 
-    private val httpClient = HttpClient(CIO) {
+    internal var httpClient = HttpClient(CIO) {
         install("RequestLogging") {
             sendPipeline.intercept(HttpSendPipeline.Monitoring) {
                 logger.trace("TgApiRequest: {} {}", context.method, context.url.buildString())
