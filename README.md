@@ -1,6 +1,7 @@
 ![Telegram bot api library logo](https://user-images.githubusercontent.com/3987067/180802441-966bb058-919b-4e1c-82c1-2b210cc9a94e.png)
 
 # Kotlin Telegram Bot
+
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot)
 [![Supported version](https://img.shields.io/badge/Bot%20API-6.2-blue)](https://core.telegram.org/bots/api-changelog#august-12-2022)
 
@@ -29,14 +30,19 @@ dependencies {
 
 # Samples
 
-You can see the samples in the [samples' folder](https://github.com/vendelieu/telegram-bot/tree/master/samples)
-there you can find:
+You can see the samples in the [telegram-bot_template](https://github.com/vendelieu/telegram-bot_template) repository.
+In the basic branch itself there is an empty draft that can be used to create any bot you want.
 
-- Conversation - An example of using Inputs and storing data in UserData.
-- Echo - Echo bot :)
-- Exception-handling - Simple example of exception handling
-- Ktor-webhook - An example of using webhook with Ktor
-- Poll - An example of how to build a bot questionnaire.
+there you can find in the appropriate branches:
+
+- [Conversation](https://github.com/vendelieu/telegram-bot_template/tree/conversation) - An example of using Inputs and
+  storing data in UserData.
+- [Echo](https://github.com/vendelieu/telegram-bot_template/tree/echo) - Echo bot :)
+- [Exception-handling](https://github.com/vendelieu/telegram-bot_template/tree/exception-handling) - Simple example of
+  exception handling
+- [Ktor-webhook](https://github.com/vendelieu/telegram-bot_template/tree/ktor-webhook) - An example of using webhook
+  with Ktor
+- [Poll](https://github.com/vendelieu/telegram-bot_template/tree/poll) - An example of how to build a bot questionnaire.
 
 # Usage
 
