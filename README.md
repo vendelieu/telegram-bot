@@ -59,8 +59,17 @@ suspend fun main() {
 
 @CommandHandler(["/start"])
 suspend fun start(user: User, bot: TelegramBot) {
-    message { "Hello" }.send(to = user, via = bot)
+    message { "Hello, what's your name?" }.send(user, bot)
+    bot.inputListener.set(user.id, "conversation")
 }
+
+@InputHandler(["conversation"])
+suspend fun startConversation(user: User, bot: TelegramBot) {
+    message { "Nice to meet you, ${message.text}" }.send(user, bot)
+    message { "What is your favorite food?" }.send(user, bot)
+    bot.inputListener.set(user.id, "conversation-2step")
+}
+//..
 ```
 
 It is also possible to process manually:
