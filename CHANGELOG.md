@@ -1,5 +1,13 @@
 # Telegram-bot changelog
 
+### 2.2.1
+
+* Process actions from callback requests in manual mode.
+* Upgrade dependencies versions:
+  * `Logback`: `1.2.11` -> `1.4.0`
+  * `Jackson`: `2.13.3` -> `2.13.4`
+  * `Ktor`: `2.0.3` -> `2.1.0`
+
 ## 2.2.0
 
 * Fixed error response additional parameter name and its parameters optionality bug.
