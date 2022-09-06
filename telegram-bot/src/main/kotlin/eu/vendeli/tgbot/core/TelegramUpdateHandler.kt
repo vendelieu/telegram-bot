@@ -32,7 +32,7 @@ class TelegramUpdateHandler internal constructor(
     private val logger = LoggerFactory.getLogger(this::class.java)
     private lateinit var listener: suspend TelegramUpdateHandler.(Update) -> Unit
     private var handlerActive: Boolean = false
-    private val manualHandlingBehavior by lazy { ManualHandlingDsl(inputListener) }
+    private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot, inputListener) }
 
     /**
      * Function that starts the listening event.

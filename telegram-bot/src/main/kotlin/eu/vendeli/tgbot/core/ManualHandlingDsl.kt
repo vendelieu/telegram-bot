@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.core
 
+import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.api.answerCallbackQuery
 import eu.vendeli.tgbot.core.ManualHandlingDsl.ArgsMode.Query
 import eu.vendeli.tgbot.core.ManualHandlingDsl.ArgsMode.SpaceKeyValue
 import eu.vendeli.tgbot.interfaces.BotInputListener
@@ -15,6 +17,7 @@ import eu.vendeli.tgbot.utils.parseQuery
  */
 @Suppress("unused", "MemberVisibilityCanBePrivate")
 class ManualHandlingDsl internal constructor(
+    private val bot: TelegramBot,
     private val inputListener: BotInputListener,
 ) {
     private val manualActions = ManualActions()
@@ -204,6 +207,47 @@ class ManualHandlingDsl internal constructor(
     }
 
     /**
+     * Method that tries to find action in given text and invoke action matches it
+     *
+     * @param update
+     * @param from
+     * @param text
+     */
+    private suspend fun checkMessageForActions(update: Update, from: User?, text: String?) {
+        // parse text to chosen format
+        val parsedText = if (argsParsingMode == Query) text?.parseQuery()
+        else text?.parseKeyValueBySpace() // will be null only when text itself is null
+
+        // if there's no action then break
+        if (parsedText == null || from == null) return
+
+        // find action which match command
+        val action = manualActions.commands.filter { it.key.match(parsedText.command) }.values.firstOrNull()
+        // invoke if found
+        action?.invoke(CommandContext(update, parsedText.params, from))
+
+        // if there's no command > then try process input
+        if (action == null) {
+            inputListener.getAsync(from.id).await()?.also {
+                inputListener.del(from.id) // clean listener after input caught
+                // search matching input handler for listening point
+                val foundChain = manualActions.onInput[it]
+                if (foundChain != null && update.message != null) {
+                    val inputContext = InputContext(from, update)
+                    // invoke it if found
+                    foundChain.inputAction.invoke(inputContext)
+                    // if there's chaining point and breaking condition wasn't match then set new listener
+                    if (foundChain.tail != null && foundChain.breakPoint?.condition?.invoke(inputContext) == false) {
+                        foundChain.breakPoint?.action?.invoke(inputContext)
+                        inputListener.set(from.id, foundChain.tail!!)
+                    }
+                }
+            }
+        } else inputListener.del(from.id) // if action for command nevertheless was found > clean listener
+
+    }
+
+    /**
      * Process update by manual defined actions.
      *
      * @param update
@@ -213,41 +257,27 @@ class ManualHandlingDsl internal constructor(
             message != null -> {
                 // invoke 'on-message' action
                 manualActions.onMessage?.invoke(ActionContext(update, message))
-                // find command by chosen format from text
-                val structuredRequest = if (argsParsingMode == Query) message.text?.parseQuery()
-                else message.text?.parseKeyValueBySpace()
-
-                // process command if there's one
-                structuredRequest?.also { r ->
-                    // find action which match command
-                    val action = manualActions.commands.filter { it.key.match(r.command) }.values.firstOrNull()
-                    // invoke if found
-                    action?.invoke(CommandContext(update, r.params, update.message?.from!!))
-
-                    // if there's no command > then try process input
-                    if (action == null) {
-                        inputListener.getAsync(message.from!!.id).await()?.also {
-                            inputListener.del(message.from.id) // clean listener after input caught
-                            // search matching input handler for listening point
-                            val foundChain = manualActions.onInput[it]
-                            if (foundChain != null && update.message != null && update.message.from != null) {
-                                val inputContext = InputContext(update.message.from, update.message)
-                                // invoke it if found
-                                foundChain.inputAction.invoke(inputContext)
-                                // if there's chaining point and breaking condition wasn't match then set new listener
-                                if (foundChain.tail != null && foundChain.breakPoint?.condition?.invoke(inputContext) == false) {
-                                    foundChain.breakPoint?.action?.invoke(inputContext)
-                                    inputListener.set(message.from.id, foundChain.tail!!)
-                                }
-                            }
-                        }
-                    } else inputListener.del(message.from!!.id) // if action for command nevertheless was found > clean listener
-                }
+                checkMessageForActions(update, update.message?.from, update.message?.text)
             }
 
             editedMessage != null -> manualActions.onEditedMessage?.invoke(ActionContext(update, editedMessage))
             pollAnswer != null -> manualActions.onPollAnswer?.invoke(ActionContext(update, pollAnswer))
-            callbackQuery != null -> manualActions.onCallbackQuery?.invoke(ActionContext(update, callbackQuery))
+            callbackQuery != null -> {
+                /**
+                 * Disclaimer from Telegram Docs:
+                 * NOTE: After the user presses a callback button,
+                 * Telegram clients will display a progress bar until you call answerCallbackQuery.
+                 * It is, therefore, necessary to react by calling answerCallbackQuery
+                 * even if no notification to the user is needed (e.g., without specifying any of the optional parameters).
+                 *
+                 * So if there's no action for onCallbackQuery we're automatically responding, to complete api contract.
+                 */
+                manualActions.onCallbackQuery?.invoke(ActionContext(update, callbackQuery)) ?: answerCallbackQuery(
+                    callbackQuery.id
+                ).send(callbackQuery.from, bot)
+                if (callbackQuery.data != null) checkMessageForActions(update, callbackQuery.from, callbackQuery.data)
+            }
+
             poll != null -> manualActions.onPoll?.invoke(ActionContext(update, poll))
             chatJoinRequest != null -> manualActions.onChatJoinRequest?.invoke(ActionContext(update, chatJoinRequest))
             chatMember != null -> manualActions.onChatMember?.invoke(ActionContext(update, chatMember))
