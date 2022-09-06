@@ -1027,8 +1027,8 @@ $dokka.location:eu.vendeli.tgbot.types.internal/InputBreakPoint/InputBreakPoint/
 $dokka.location:eu.vendeli.tgbot.types.internal/InputBreakPoint/action/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-input-break-point/action.html
 $dokka.location:eu.vendeli.tgbot.types.internal/InputBreakPoint/condition/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-input-break-point/condition.html
 $dokka.location:eu.vendeli.tgbot.types.internal/InputContext///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-input-context/index.html
-$dokka.location:eu.vendeli.tgbot.types.internal/InputContext/InputContext/#eu.vendeli.tgbot.types.User#eu.vendeli.tgbot.types.Message/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-input-context/-input-context.html
-$dokka.location:eu.vendeli.tgbot.types.internal/InputContext/message/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-input-context/message.html
+$dokka.location:eu.vendeli.tgbot.types.internal/InputContext/InputContext/#eu.vendeli.tgbot.types.User#eu.vendeli.tgbot.types.Update/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-input-context/-input-context.html
+$dokka.location:eu.vendeli.tgbot.types.internal/InputContext/update/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-input-context/update.html
 $dokka.location:eu.vendeli.tgbot.types.internal/InputContext/user/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-input-context/user.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Invocation///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-invocation/index.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Invocation/Invocation/#java.lang.Class[*]#java.lang.reflect.Method#kotlin.collections.Map[kotlin.String,kotlin.String]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-invocation/-invocation.html
