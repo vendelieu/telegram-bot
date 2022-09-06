@@ -34,7 +34,7 @@ dependencies {
 
     api(group = "ch.qos.logback", name = "logback-classic", version = logbackVer)
 
-    testImplementation("ch.qos.logback:logback-classic:1.2.11")
+    testImplementation("ch.qos.logback:logback-classic:$logbackVer")
     testImplementation("org.junit.jupiter:junit-jupiter:$junitVer")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVer")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVer")
