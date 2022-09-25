@@ -1,6 +1,6 @@
 ![Telegram bot api library logo](https://user-images.githubusercontent.com/3987067/180802441-966bb058-919b-4e1c-82c1-2b210cc9a94e.png)
 
-# Kotlin Telegram Bot
+# Telegram Bot
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot)
 [![Supported version](https://img.shields.io/badge/Bot%20API-6.2-blue)](https://core.telegram.org/bots/api-changelog#august-12-2022)
