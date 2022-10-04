@@ -43,6 +43,8 @@ there you can find in the appropriate branches:
 - [Ktor-webhook](https://github.com/vendelieu/telegram-bot_template/tree/ktor-webhook) - An example of using webhook
   with Ktor
 - [Poll](https://github.com/vendelieu/telegram-bot_template/tree/poll) - An example of how to build a bot questionnaire.
+- [Spring Boot usage](https://github.com/vendelieu/telegram-bot_template/tree/spring-bot) - An example of using the bot
+  organically in the Spring ecosystem, using its built-in DI.
 
 # Usage
 
