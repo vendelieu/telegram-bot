@@ -1,5 +1,10 @@
 # Telegram-bot changelog
 
+### 2.2.2
+
+* Change ActionRecipientRef class to Recipient and add universal `from` method
+* Fix `forwardMessage`, `copyMessage` methods, add required chatId parameters
+
 ### 2.2.1
 
 * Process actions from callback requests in manual mode.
