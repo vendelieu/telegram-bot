@@ -33,7 +33,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
      * @param via Instance of the bot through which the request will be made.
      */
     override suspend fun send(to: String, via: TelegramBot) {
-        internalSend(ActionRecipientRef.StringRecipient(to), via)
+        internalSend(Recipient.String(to), via)
     }
 
     /**
@@ -43,7 +43,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
      * @param via Instance of the bot through which the request will be made.
      */
     override suspend fun send(to: Long, via: TelegramBot) {
-        internalSend(ActionRecipientRef.LongRecipient(to), via)
+        internalSend(Recipient.Long(to), via)
     }
 
     /**
@@ -53,7 +53,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
      * @param via Instance of the bot through which the request will be made.
      */
     override suspend fun send(to: User, via: TelegramBot) {
-        internalSend(ActionRecipientRef.LongRecipient(to.id), via)
+        internalSend(Recipient.Long(to.id), via)
     }
 
     /**
@@ -62,7 +62,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
      * @param to Recipient
      * @param via Instance of the bot through which the request will be made.
      */
-    suspend fun MediaAction<Req_R>.internalSend(to: ActionRecipientRef, via: TelegramBot) {
+    suspend fun MediaAction<Req_R>.internalSend(to: Recipient, via: TelegramBot) {
         parameters["chat_id"] = to.get()
 
         when (media) {
@@ -92,7 +92,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
      */
     suspend fun MediaAction<Req_R>.internalSendAsync(
         returnType: Class<Req_R>,
-        to: ActionRecipientRef,
+        to: Recipient,
         via: TelegramBot,
     ): Deferred<Response<out Req_R>> {
         parameters["chat_id"] = to.get()
@@ -128,7 +128,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
 suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
     to: String,
     via: TelegramBot,
-): Deferred<Response<out Req_R>> = internalSendAsync(Req_R::class.java, ActionRecipientRef.StringRecipient(to), via)
+): Deferred<Response<out Req_R>> = internalSendAsync(Req_R::class.java, Recipient.String(to), via)
 
 /**
  * Make request with ability operating over response.
@@ -141,7 +141,7 @@ suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
 suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
     to: Long,
     via: TelegramBot,
-): Deferred<Response<out Req_R>> = internalSendAsync(Req_R::class.java, ActionRecipientRef.LongRecipient(to), via)
+): Deferred<Response<out Req_R>> = internalSendAsync(Req_R::class.java, Recipient.Long(to), via)
 
 /**
  * Make request with ability operating over response.
@@ -154,4 +154,4 @@ suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
 suspend inline fun <reified Req_R> MediaAction<Req_R>.sendAsync(
     to: User,
     via: TelegramBot,
-): Deferred<Response<out Req_R>> = internalSendAsync(Req_R::class.java, ActionRecipientRef.LongRecipient(to.id), via)
+): Deferred<Response<out Req_R>> = internalSendAsync(Req_R::class.java, Recipient.Long(to.id), via)
