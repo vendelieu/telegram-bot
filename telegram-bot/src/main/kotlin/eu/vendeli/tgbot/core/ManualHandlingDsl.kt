@@ -221,30 +221,28 @@ class ManualHandlingDsl internal constructor(
         // if there's no action then break
         if (parsedText == null || from == null) return
 
-        // find action which match command
-        val action = manualActions.commands.filter { it.key.match(parsedText.command) }.values.firstOrNull()
-        // invoke if found
-        action?.invoke(CommandContext(update, parsedText.params, from))
-
-        // if there's no command > then try process input
-        if (action == null) {
-            inputListener.getAsync(from.id).await()?.also {
-                inputListener.del(from.id) // clean listener after input caught
-                // search matching input handler for listening point
-                val foundChain = manualActions.onInput[it]
-                if (foundChain != null && update.message != null) {
-                    val inputContext = InputContext(from, update)
-                    // invoke it if found
-                    foundChain.inputAction.invoke(inputContext)
-                    // if there's chaining point and breaking condition wasn't match then set new listener
-                    if (foundChain.tail != null && foundChain.breakPoint?.condition?.invoke(inputContext) == false) {
-                        foundChain.breakPoint?.action?.invoke(inputContext)
-                        inputListener.set(from.id, foundChain.tail!!)
-                    }
+        // find action which match command and invoke it
+        manualActions.commands.filter { it.key.match(parsedText.command) }.values.firstOrNull()?.also {
+            inputListener.del(from.id) // clean input listener
+            it.invoke(CommandContext(update, parsedText.params, from))
+            return
+        }
+        // if there's no command -> then try process input
+        inputListener.getAsync(from.id).await()?.also {
+            inputListener.del(from.id) // clean listener after input caught
+            // search matching input handler for listening point
+            val foundChain = manualActions.onInput[it]
+            if (foundChain != null && update.message != null) {
+                val inputContext = InputContext(from, update)
+                // invoke it if found
+                foundChain.inputAction.invoke(inputContext)
+                // if there's chaining point and breaking condition wasn't match then set new listener
+                if (foundChain.tail != null && foundChain.breakPoint?.condition?.invoke(inputContext) == false) {
+                    foundChain.breakPoint?.action?.invoke(inputContext)
+                    inputListener.set(from.id, foundChain.tail!!)
                 }
             }
-        } else inputListener.del(from.id) // if action for command nevertheless was found > clean listener
-
+        }
     }
 
     /**
