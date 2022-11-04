@@ -13,6 +13,7 @@ import eu.vendeli.tgbot.core.ClassManagerImpl
 import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.core.TelegramActionsCollector.collect
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
+import eu.vendeli.tgbot.enums.HttpLogLevel
 import eu.vendeli.tgbot.interfaces.*
 import eu.vendeli.tgbot.types.File
 import eu.vendeli.tgbot.types.Update
@@ -40,6 +41,8 @@ import org.slf4j.LoggerFactory
 /**
  * Telegram bot main instance
  *
+ * use [Builder] to create [TelegramBot] instance
+ *
  * @property token Token of your bot
  * @property inputListener Input handling instance
  * @property apiHost Host of telegram api
@@ -50,15 +53,43 @@ import org.slf4j.LoggerFactory
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class TelegramBot(
     private val token: String,
-    commandsPackage: String? = null,
-    val inputListener: BotInputListener = BotInputListenerMapImpl(),
-    classManager: ClassManager = ClassManagerImpl(),
-    private val apiHost: String = "api.telegram.org",
+    commandsPackage: String?,
+    val inputListener: BotInputListener,
+    classManager: ClassManager,
+    private val apiHost: String,
+    private val httpLogLevel: HttpLogLevel
 ) {
     private val logger = LoggerFactory.getLogger(this::class.java)
     private fun TgMethod.toUrl() = TELEGRAM_API_URL_PATTERN.format(apiHost, token) + name
 
     internal val magicObjects = mutableMapOf<Class<*>, MagicObject<*>>()
+
+    var disableHttpLogs = false
+
+    class Builder(private val token: String, private val builder: Builder.() -> Unit = {}) {
+
+        var classManager: ClassManager = ClassManagerImpl()
+        var controllersPackage: String? = null
+        var apiHost = "api.telegram.org"
+        var httpLogLevel = HttpLogLevel.NONE
+        var inputListener: BotInputListener = BotInputListenerMapImpl()
+
+        /**
+         * Create instance [TelegramBot]
+         */
+        fun build(): TelegramBot {
+            apply(builder)
+            return TelegramBot(
+                token = token,
+                commandsPackage = controllersPackage,
+                inputListener = inputListener,
+                classManager = classManager,
+                apiHost = apiHost,
+                httpLogLevel = httpLogLevel
+            )
+        }
+
+    }
 
     /**
      * Current bot [TelegramUpdateHandler] instance
@@ -88,7 +119,10 @@ class TelegramBot(
             }
         }
         install(Logging) {
-            level = LogLevel.HEADERS
+            level = LogLevel.valueOf(httpLogLevel.name)
+            filter {
+                !disableHttpLogs
+            }
         }
     }
 

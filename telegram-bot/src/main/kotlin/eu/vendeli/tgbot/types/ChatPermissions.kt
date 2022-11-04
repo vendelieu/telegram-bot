@@ -1,12 +1,12 @@
 package eu.vendeli.tgbot.types
 
 data class ChatPermissions(
-    val canSendMessages: Boolean? = null,
-    val canSendMediaMessages: Boolean? = null,
-    val canSendPolls: Boolean? = null,
-    val canSendOtherMessages: Boolean? = null,
-    val canAddWebPagePreviews: Boolean? = null,
-    val canChangeInfo: Boolean? = null,
-    val canInviteUsers: Boolean? = null,
-    val canPinMessages: Boolean? = null
+    var canSendMessages: Boolean? = null,
+    var canSendMediaMessages: Boolean? = null,
+    var canSendPolls: Boolean? = null,
+    var canSendOtherMessages: Boolean? = null,
+    var canAddWebPagePreviews: Boolean? = null,
+    var canChangeInfo: Boolean? = null,
+    var canInviteUsers: Boolean? = null,
+    var canPinMessages: Boolean? = null
 )

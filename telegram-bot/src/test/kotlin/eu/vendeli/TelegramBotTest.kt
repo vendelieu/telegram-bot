@@ -25,7 +25,7 @@ class TelegramBotTest {
 
     @BeforeAll
     fun prepareTestBot() {
-        bot = TelegramBot(System.getenv("BOT_TOKEN"))
+        bot = TelegramBot.Builder(System.getenv("BOT_TOKEN")).build()
     }
 
     @Test

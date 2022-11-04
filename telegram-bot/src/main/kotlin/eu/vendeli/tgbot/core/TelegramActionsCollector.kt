@@ -32,6 +32,7 @@ internal object TelegramActionsCollector {
     ) {
         val commands = mutableMapOf<String, Invocation>()
         val inputs = mutableMapOf<String, Invocation>()
+        val unhandleds = mutableListOf<Invocation>()
 
         getMethodsAnnotatedWith(CommandHandler::class.java).forEach { m ->
             (m.annotations.find { it is CommandHandler } as CommandHandler).value.forEach { v ->
@@ -49,12 +50,16 @@ internal object TelegramActionsCollector {
             }
         }
 
+        getMethodsAnnotatedWith(UnprocessedHandler::class.java).forEach { m ->
+            unhandleds.add(Invocation(
+                clazz = m.declaringClass, method = m, namedParameters = m.parameters.getParameters()
+            ))
+        }
+
         return@with Actions(
-            commands = commands, inputs = inputs,
-            unhandled =
-            getMethodsAnnotatedWith(UnprocessedHandler::class.java).firstOrNull()?.let { m ->
-                Invocation(clazz = m.declaringClass, method = m)
-            }
+            commands = commands,
+            inputs = inputs,
+            unhandled = unhandleds
         )
     }
 }

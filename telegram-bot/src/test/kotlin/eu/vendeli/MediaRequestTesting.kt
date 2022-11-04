@@ -16,7 +16,9 @@ class MediaRequestTesting {
 
     @BeforeAll
     fun prepareTestBot() {
-        bot = TelegramBot(System.getenv("BOT_TOKEN"), "eu.vendeli")
+        bot = TelegramBot.Builder(System.getenv("BOT_TOKEN")) {
+            controllersPackage = "eu.vendeli"
+        }.build()
     }
 
     @Test

@@ -13,6 +13,7 @@ import eu.vendeli.tgbot.utils.parseQuery
 import kotlinx.coroutines.*
 import org.slf4j.LoggerFactory
 import kotlin.coroutines.coroutineContext
+import kotlin.coroutines.CoroutineContext
 
 /**
  * A class that handles updates.
@@ -223,7 +224,13 @@ class TelegramUpdateHandler internal constructor(
                 this, inputAction.invocation, inputAction.parameters
             )
 
-            actions?.unhandled != null -> invokeMethod(this, actions.unhandled, emptyMap())
+            actions?.unhandled?.isNotEmpty() == true -> {
+                actions.unhandled.forEach {
+                    invokeMethod(this, it, emptyMap())
+                }
+                null
+            }
+
             else -> {
                 logger.info("update: $update not handled.")
                 null
