@@ -3,16 +3,14 @@ package eu.vendeli.tgbot.utils
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.enums.HttpLogLevel
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.StructuredRequest
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
-import kotlinx.coroutines.CoroutineName
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.*
 import java.lang.reflect.Method
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
@@ -74,7 +72,9 @@ internal suspend fun TelegramBot.botHttpRequest(url: String? = null, method: Htt
                 apply(builder)
             }
         } catch (e: Throwable) {
-            logger.error(e.stackTraceToString())
+            if (e is CancellationException) throw e
+            if (!disableHttpLogs && httpLogLevel != HttpLogLevel.NONE)
+                logger.error(e.stackTraceToString())
         }
     }
     return null

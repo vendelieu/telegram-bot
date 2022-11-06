@@ -62,10 +62,10 @@ class TelegramBot(
     val inputListener: BotInputListener,
     classManager: ClassManager,
     private val apiHost: String,
-    private val httpLogLevel: HttpLogLevel,
     private val requestTimeoutMillis: Long?,
     private val connectTimeoutMillis: Long?,
     private val socketTimeoutMillis: Long?,
+    internal val httpLogLevel: HttpLogLevel,
     internal val maxRequestRetry: Int
 ) {
     internal val logger = LoggerFactory.getLogger(this::class.java)
