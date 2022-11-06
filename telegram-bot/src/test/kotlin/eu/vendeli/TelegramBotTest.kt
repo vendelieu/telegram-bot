@@ -44,7 +44,7 @@ class TelegramBotTest {
         val silentReq = bot.makeSilentRequest(
             TgMethod("sendMessage"),
             mapOf("text" to "test", "chat_id" to System.getenv("TELEGRAM_ID"))
-        )
+        )!!
 
         assertEquals(silentReq.status, HttpStatusCode.OK)
         assertTrue(silentReq.bodyAsText().isNotBlank())
@@ -124,7 +124,7 @@ class TelegramBotTest {
             image,
             mapOf("chat_id" to System.getenv("TELEGRAM_ID")),
             ContentType.Image.JPEG
-        )
+        )!!
 
         assertEquals(mediaReq.status, HttpStatusCode.OK)
         assertTrue(mediaReq.bodyAsText().isNotBlank())

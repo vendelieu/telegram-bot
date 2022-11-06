@@ -19,6 +19,7 @@ class AnnotationsTest {
 
         assertEquals(3, actionsFromAnnotations.commands.size)
         assertEquals(3, actionsFromAnnotations.inputs.size)
+        assertEquals(4, actionsFromAnnotations.unhandled.size)
 
         assertTrue(actionsFromAnnotations.commands.keys.contains("test"))
         assertTrue(actionsFromAnnotations.commands.keys.contains("test2"))

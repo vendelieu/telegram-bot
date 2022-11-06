@@ -36,3 +36,19 @@ object TestObj {
     fun test2() {
     }
 }
+
+class tgUnprocessedHandleModel {
+
+    @UnprocessedHandler
+    fun test1() {
+    }
+
+    @UnprocessedHandler
+    fun test2() {
+    }
+
+}
+
+@UnprocessedHandler
+fun onTest() {
+}
