@@ -51,11 +51,13 @@ there you can find in the appropriate branches:
 # Usage
 
 ```kotlin
-suspend fun main() {
-    val bot = TelegramBot("BOT_TOKEN", "com.example.controllers")
-    /**
-     * Second parameter is the package in which commands/inputs will be searched.
-     */
+fun main(): Unit = runBlocking {
+    val bot = TelegramBot.Builder("BOT_TOKEN") {
+      /**
+       * controllers is the package in which commands/inputs will be searched.
+       */
+      controllersPackage = ExampleController::class.java.packageName // or "com.example.controllers"
+    }.build()
 
     bot.handleUpdates()
     // start long-polling listener
@@ -79,8 +81,8 @@ suspend fun startConversation(user: User, bot: TelegramBot) {
 It is also possible to process manually:
 
 ```kotlin
-suspend fun main() {
-    val bot = TelegramBot("BOT_TOKEN")
+fun main(): Unit = runBlocking {
+    val bot = TelegramBot.Builder("BOT_TOKEN").build()
 
     bot.handleUpdates { update ->
         onCommand("/start") {
