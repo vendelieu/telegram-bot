@@ -2,9 +2,13 @@ package eu.vendeli.tgbot.utils
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.StructuredRequest
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -58,3 +62,20 @@ internal fun <T, I : MultipleResponse> ObjectMapper.convertSuccessResponse(
     else Response.Success(
         result = convertValue(jsonNode["result"], typeFactory.constructCollectionType(List::class.java, innerType))
     )
+
+
+internal suspend fun TelegramBot.botHttpRequest(url: String? = null, method: HttpMethod = HttpMethod.Get, builder: HttpRequestBuilder.() -> Unit = {}): HttpResponse? {
+    val r = maxRequestRetry.let { if (it < 1 ) 1 else it }
+    repeat(r) {
+        try {
+            return httpClient.request {
+                this.method = method
+                if (url != null) url(url)
+                apply(builder)
+            }
+        } catch (e: Throwable) {
+            logger.error(e.stackTraceToString())
+        }
+    }
+    return null
+}

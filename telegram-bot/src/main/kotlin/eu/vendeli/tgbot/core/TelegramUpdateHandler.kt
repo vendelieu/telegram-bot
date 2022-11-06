@@ -211,7 +211,13 @@ class TelegramUpdateHandler internal constructor(
      */
     suspend fun handle(update: Update): Throwable? = processUpdateDto(update).run {
         logger.trace("Handling update: $update")
-        val commandAction = if (text != null) findAction(text) else null
+        val commandAction = text?.run {
+            // to fix command not detected if text contains @ like /rules@bot
+            findAction(if (contains("@"))
+                split("@")[0]
+            else
+                this)
+        }
         val inputAction = if (commandAction == null) inputListener.getAsync(user.id).await()?.let {
             findAction(it, false)
         } else null

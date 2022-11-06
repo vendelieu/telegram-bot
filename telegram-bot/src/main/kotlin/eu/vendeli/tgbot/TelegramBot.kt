@@ -8,6 +8,10 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import eu.vendeli.tgbot.TelegramBot.Builder
+import eu.vendeli.tgbot.annotations.CommandHandler
+import eu.vendeli.tgbot.annotations.InputHandler
+import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.core.BotInputListenerMapImpl
 import eu.vendeli.tgbot.core.ClassManagerImpl
 import eu.vendeli.tgbot.core.ManualHandlingDsl
@@ -22,6 +26,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.utils.TELEGRAM_API_URL_PATTERN
 import eu.vendeli.tgbot.utils.TELEGRAM_FILE_URL_PATTERN
+import eu.vendeli.tgbot.utils.botHttpRequest
 import eu.vendeli.tgbot.utils.convertSuccessResponse
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
@@ -57,35 +62,93 @@ class TelegramBot(
     val inputListener: BotInputListener,
     classManager: ClassManager,
     private val apiHost: String,
-    private val httpLogLevel: HttpLogLevel
+    private val httpLogLevel: HttpLogLevel,
+    private val requestTimeoutMillis: Long?,
+    private val connectTimeoutMillis: Long?,
+    private val socketTimeoutMillis: Long?,
+    internal val maxRequestRetry: Int
 ) {
-    private val logger = LoggerFactory.getLogger(this::class.java)
+    internal val logger = LoggerFactory.getLogger(this::class.java)
     private fun TgMethod.toUrl() = TELEGRAM_API_URL_PATTERN.format(apiHost, token) + name
 
     internal val magicObjects = mutableMapOf<Class<*>, MagicObject<*>>()
 
+    /**
+     * to disable http request logging
+     *
+     * @see Builder.httpLogLevel
+     */
     var disableHttpLogs = false
 
+    /**
+     * @property [token] Token of your bot
+     */
     class Builder(private val token: String, private val builder: Builder.() -> Unit = {}) {
 
+        /**
+         * The manager that will be used to get classes.
+         */
         var classManager: ClassManager = ClassManagerImpl()
+
+        /**
+         * The place where the search for [CommandHandler], [InputHandler] and [UnprocessedHandler]'s will be done.
+         */
         var controllersPackage: String? = null
+
+        /**
+         * Host of telegram api
+         */
         var apiHost = "api.telegram.org"
+
+        /**
+         * Specifies the log the logging level.
+         */
         var httpLogLevel = HttpLogLevel.NONE
+
+        /**
+         * Input handling instance
+         */
         var inputListener: BotInputListener = BotInputListenerMapImpl()
+
+        /**
+         * Specifies a request timeout in milliseconds.
+         * The request timeout is the time period required to process an HTTP call: from sending a request to receiving a response.
+         */
+        var requestTimeoutMillis: Long? = null
+
+        /**
+         * Specifies a connection timeout in milliseconds.
+         * The connection timeout is the time period in which a client should establish a connection with a server.
+         */
+        var connectTimeoutMillis: Long? = null
+
+        /**
+         * Specifies a socket timeout (read and write) in milliseconds. The socket timeout is the maximum time of inactivity between two data packets when exchanging data with a server.
+         */
+        var socketTimeoutMillis: Long? = null
+
+        /**
+         * Specifies a http request maximum retry if had some exceptions
+         */
+        var maxRequestRetry = 3
 
         /**
          * Create instance [TelegramBot]
          */
         fun build(): TelegramBot {
             apply(builder)
+            if (maxRequestRetry < 0) maxRequestRetry = 0
             return TelegramBot(
                 token = token,
                 commandsPackage = controllersPackage,
                 inputListener = inputListener,
                 classManager = classManager,
                 apiHost = apiHost,
-                httpLogLevel = httpLogLevel
+                httpLogLevel = httpLogLevel,
+                requestTimeoutMillis = requestTimeoutMillis,
+                connectTimeoutMillis = connectTimeoutMillis,
+                socketTimeoutMillis = socketTimeoutMillis,
+                maxRequestRetry = maxRequestRetry
             )
         }
 
@@ -124,6 +187,13 @@ class TelegramBot(
                 !disableHttpLogs
             }
         }
+        install(HttpTimeout) {
+            this@TelegramBot.let {
+                requestTimeoutMillis =  it.requestTimeoutMillis
+                connectTimeoutMillis = it.connectTimeoutMillis
+                socketTimeoutMillis = it.socketTimeoutMillis
+            }
+        }
     }
 
     /**
@@ -151,7 +221,8 @@ class TelegramBot(
      * @return [ByteArray]
      */
     suspend fun getFileContent(file: File): ByteArray? = if (file.filePath != null) {
-        httpClient.get(TELEGRAM_FILE_URL_PATTERN.format(apiHost, token, file.filePath)).readBytes()
+        botHttpRequest(TELEGRAM_FILE_URL_PATTERN.format(apiHost, token, file.filePath))?.readBytes()
+        //httpClient.get(TELEGRAM_FILE_URL_PATTERN.format(apiHost, token, file.filePath)).readBytes()
     } else null
 
     /**
@@ -201,11 +272,11 @@ class TelegramBot(
     )
 
     private fun <T, I : MultipleResponse> CoroutineScope.handleResponseAsync(
-        response: HttpResponse,
+        response: HttpResponse?,
         returnType: Class<T>,
         innerType: Class<I>? = null,
     ): Deferred<Response<out T>> = async {
-        val jsonResponse = mapper.readTree(response.bodyAsText())
+        val jsonResponse = mapper.readTree(response?.bodyAsText() ?: "")
         logger.debug("Response: ${jsonResponse.toPrettyString()}")
 
         if (jsonResponse["ok"].asBoolean()) mapper.convertSuccessResponse(jsonResponse, returnType, innerType)
@@ -237,7 +308,7 @@ class TelegramBot(
         returnType: Class<T>,
         innerType: Class<I>? = null,
     ): Deferred<Response<out T>> = coroutineScope {
-        val response = httpClient.post(method.toUrl()) {
+        val response = botHttpRequest(method.toUrl(), HttpMethod.Post) {
             setBody(multipartBodyBuilder(dataField, filename, contentType, data, parameters))
             onUpload { bytesSentTotal, contentLength ->
                 logger.trace("Sent $bytesSentTotal bytes from $contentLength, for $method method with $parameters")
@@ -264,7 +335,7 @@ class TelegramBot(
         returnType: Class<T>,
         innerType: Class<I>? = null,
     ): Deferred<Response<out T>> = coroutineScope {
-        val response = httpClient.post(method.toUrl()) {
+        val response = botHttpRequest(method.toUrl(), HttpMethod.Post) {
             contentType(ContentType.Application.Json)
             setBody(mapper.writeValueAsString(data))
         }
@@ -278,7 +349,7 @@ class TelegramBot(
      * @param method The telegram api method to which the request will be made.
      * @param data The data itself.
      */
-    suspend fun makeSilentRequest(method: TgMethod, data: Any? = null) = httpClient.post(method.toUrl()) {
+    suspend fun makeSilentRequest(method: TgMethod, data: Any? = null) = botHttpRequest(method.toUrl(), HttpMethod.Post) {
         val requestBody = mapper.writeValueAsString(data)
         contentType(ContentType.Application.Json)
         setBody(requestBody)
@@ -302,7 +373,7 @@ class TelegramBot(
         data: ByteArray,
         parameters: Map<String, Any?>? = null,
         contentType: ContentType,
-    ) = httpClient.post(method.toUrl()) {
+    ) = botHttpRequest(method.toUrl(), HttpMethod.Post) {
         setBody(multipartBodyBuilder(dataField, filename, contentType, data, parameters))
         onUpload { bytesSentTotal, contentLength ->
             logger.trace("Sent $bytesSentTotal bytes from $contentLength, for $method method with $parameters")
@@ -312,10 +383,11 @@ class TelegramBot(
 
     internal suspend fun pullUpdates(offset: Int? = null): List<Update>? {
         logger.trace("Pulling updates.")
-        val request = httpClient.post(
-            TgMethod("getUpdates").toUrl() + (offset?.let { "?offset=$it" } ?: "")
-        )
-        return mapper.readValue(request.bodyAsText(), jacksonTypeRef<Response<List<Update>>>()).getOrNull()
+        val res = botHttpRequest(TgMethod("getUpdates").toUrl() + (offset?.let { "?offset=$it" } ?: ""), HttpMethod.Post) ?: return null
+//        val request = httpClient.post(
+//            TgMethod("getUpdates").toUrl() + (offset?.let { "?offset=$it" } ?: "")
+//        )
+        return mapper.readValue(res.bodyAsText(), jacksonTypeRef<Response<List<Update>>>()).getOrNull()
     }
 
     companion object {
