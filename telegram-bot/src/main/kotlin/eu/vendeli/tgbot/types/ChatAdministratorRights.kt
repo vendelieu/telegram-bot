@@ -11,4 +11,5 @@ data class ChatAdministratorRights(
     val canPostMessages: Boolean? = null,
     val canEditMessages: Boolean? = null,
     val canPinMessages: Boolean? = null,
+    val canManageTopics: Boolean? = null,
 )

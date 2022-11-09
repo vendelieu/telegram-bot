@@ -8,5 +8,6 @@ data class ChatPermissions(
     val canAddWebPagePreviews: Boolean? = null,
     val canChangeInfo: Boolean? = null,
     val canInviteUsers: Boolean? = null,
-    val canPinMessages: Boolean? = null
+    val canPinMessages: Boolean? = null,
+    val canManageTopics: Boolean? = null,
 )
