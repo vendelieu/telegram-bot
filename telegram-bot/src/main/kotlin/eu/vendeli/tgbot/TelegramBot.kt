@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot
 
+import ch.qos.logback.classic.Logger
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -8,14 +9,13 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
-import eu.vendeli.tgbot.core.BotInputListenerMapImpl
-import eu.vendeli.tgbot.core.ClassManagerImpl
 import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.core.TelegramActionsCollector.collect
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.interfaces.*
 import eu.vendeli.tgbot.types.File
 import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.internal.BotConfiguration
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.getOrNull
@@ -41,29 +41,30 @@ import org.slf4j.LoggerFactory
  * Telegram bot main instance
  *
  * @property token Token of your bot
- * @property inputListener Input handling instance
- * @property apiHost Host of telegram api
- *
  * @param commandsPackage The place where the search for commands and inputs will be done.
- * @param classManager The manager that will be used to get classes.
+
  */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class TelegramBot(
     private val token: String,
     commandsPackage: String? = null,
-    val inputListener: BotInputListener = BotInputListenerMapImpl(),
-    classManager: ClassManager = ClassManagerImpl(),
-    private val apiHost: String = "api.telegram.org",
+    botConfiguration: BotConfiguration.() -> Unit = {}
 ) {
-    private val logger = LoggerFactory.getLogger(this::class.java)
-    private fun TgMethod.toUrl() = TELEGRAM_API_URL_PATTERN.format(apiHost, token) + name
+    private val config = BotConfiguration().apply(botConfiguration)
+    private val logger = LoggerFactory.getLogger(javaClass).apply {
+        (this as Logger).level = config.logging.botLogLevel
+    }
+
+    private fun TgMethod.toUrl() = TELEGRAM_API_URL_PATTERN.format(config.apiHost, token) + name
 
     internal val magicObjects = mutableMapOf<Class<*>, MagicObject<*>>()
 
     /**
      * Current bot [TelegramUpdateHandler] instance
      */
-    val update = TelegramUpdateHandler(commandsPackage?.let { collect(it) }, this, classManager, inputListener)
+    val update = TelegramUpdateHandler(
+        commandsPackage?.let { collect(it) }, this, config.classManager, config.inputListener
+    )
 
     /**
      * Parameter to manage UserData, can be set once per instance.
@@ -88,7 +89,25 @@ class TelegramBot(
             }
         }
         install(Logging) {
-            level = LogLevel.HEADERS
+            level = config.logging.httpLogLevel
+        }
+
+        install(HttpTimeout) {
+            config.httpClient.also {
+                requestTimeoutMillis = it.requestTimeoutMillis
+                connectTimeoutMillis = it.connectTimeoutMillis
+                socketTimeoutMillis = it.socketTimeoutMillis
+            }
+        }
+
+        install(HttpRequestRetry) {
+            maxRetries = config.httpClient.maxRequestRetry
+            retryIf { _, response ->
+                !response.status.isSuccess()
+            }
+            delayMillis { retry ->
+                retry * config.httpClient.retryDelay
+            }
         }
     }
 
@@ -107,7 +126,7 @@ class TelegramBot(
      * @return direct url to file
      */
     fun getFileDirectUrl(file: File): String? =
-        if (file.filePath != null) TELEGRAM_FILE_URL_PATTERN.format(apiHost, token, file.filePath)
+        if (file.filePath != null) TELEGRAM_FILE_URL_PATTERN.format(config.apiHost, token, file.filePath)
         else null
 
     /**
@@ -117,7 +136,7 @@ class TelegramBot(
      * @return [ByteArray]
      */
     suspend fun getFileContent(file: File): ByteArray? = if (file.filePath != null) {
-        httpClient.get(TELEGRAM_FILE_URL_PATTERN.format(apiHost, token, file.filePath)).readBytes()
+        httpClient.get(TELEGRAM_FILE_URL_PATTERN.format(config.apiHost, token, file.filePath)).readBytes()
     } else null
 
     /**
