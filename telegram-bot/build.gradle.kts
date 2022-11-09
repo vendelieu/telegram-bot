@@ -24,6 +24,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", jacksonVer)
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVer")
 
+    implementation("io.ktor:ktor-client-core:$ktorVer")
     implementation("io.ktor:ktor-client-cio:$ktorVer")
     implementation("io.ktor:ktor-client-logging:$ktorVer")
 
