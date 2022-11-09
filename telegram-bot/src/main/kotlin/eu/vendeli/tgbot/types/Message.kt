@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.interfaces.MultipleResponse
 
 data class Message(
     val messageId: Long,
+    val messageThreadId: Long? = null,
     val from: User? = null,
     val senderChat: Chat? = null,
     val date: Int,
@@ -14,6 +15,7 @@ data class Message(
     val forwardSignature: String? = null,
     val forwardSenderName: String? = null,
     val forwardDate: Int? = null,
+    val isTopicMessage: Boolean? = null,
     val isAutomaticForward: Boolean? = null,
     val replyToMessage: Message? = null,
     val viaBot: User? = null,
@@ -56,6 +58,9 @@ data class Message(
     val connectedWebsite: String? = null,
     val passportData: PassportData? = null,
     val proximityAlertTriggered: ProximityAlertTriggered? = null,
+    val forumTopicCreated: ForumTopicCreated? = null,
+    val forumTopicClosed: ForumTopicClosed? = null,
+    val forumTopicReopened: ForumTopicReopened? = null,
     val videoChatScheduled: VideoChatScheduled? = null,
     val videoChatStarted: VideoChatStarted? = null,
     val videoChatEnded: VideoChatEnded? = null,
