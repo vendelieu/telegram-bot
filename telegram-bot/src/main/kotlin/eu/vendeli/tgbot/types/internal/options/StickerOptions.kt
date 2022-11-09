@@ -1,8 +1,9 @@
 package eu.vendeli.tgbot.types.internal.options
 
-class CommonOptions(
+data class StickerOptions(
     override var disableNotification: Boolean? = null,
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
-) : OptionsCommon, OptionsInterface<CommonOptions>
+    override var messageThreadId: Long? = null
+) : OptionsInterface<StickerOptions>, OptionsCommon

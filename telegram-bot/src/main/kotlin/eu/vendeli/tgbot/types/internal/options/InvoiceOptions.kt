@@ -17,4 +17,5 @@ data class InvoiceOptions(
     override var disableNotification: Boolean? = null,
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
+    override var messageThreadId: Long? = null
 ) : OptionsInterface<InvoiceOptions>, OptionsCommon

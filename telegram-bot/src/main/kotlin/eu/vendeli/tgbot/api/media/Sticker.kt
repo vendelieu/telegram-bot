@@ -8,17 +8,17 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
+import eu.vendeli.tgbot.types.internal.options.StickerOptions
 import eu.vendeli.tgbot.types.internal.TgMethod
-import eu.vendeli.tgbot.types.internal.options.CommonOptions
 
 class SendStickerAction(private val sticker: ImplicitFile<*>) :
     MediaAction<Message>,
     OptionAble,
     MarkupAble,
-    OptionsFeature<SendStickerAction, CommonOptions>,
+    OptionsFeature<SendStickerAction, StickerOptions>,
     MarkupFeature<SendStickerAction> {
     override val method: TgMethod = TgMethod("sendSticker")
-    override var options = CommonOptions()
+    override var options = StickerOptions()
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     override val MediaAction<Message>.defaultType: MediaContentType
