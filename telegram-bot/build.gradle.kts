@@ -1,10 +1,10 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.7.10"
+    id("org.jetbrains.kotlin.jvm") version "1.7.20"
     `maven-publish`
     `java-library`
-    id("org.jetbrains.dokka") version "1.7.10"
+    id("org.jetbrains.dokka") version "1.7.20"
     id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
     signing
 }
