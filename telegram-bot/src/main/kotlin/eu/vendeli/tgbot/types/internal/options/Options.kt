@@ -23,4 +23,5 @@ interface OptionsCommon : Options {
     var replyToMessageId: Long?
     var allowSendingWithoutReply: Boolean?
     var protectContent: Boolean?
+    var messageThreadId: Long?
 }
