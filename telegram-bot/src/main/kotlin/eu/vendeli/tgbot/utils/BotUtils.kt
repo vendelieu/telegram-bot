@@ -58,5 +58,3 @@ internal fun <T, I : MultipleResponse> ObjectMapper.convertSuccessResponse(
     else Response.Success(
         result = convertValue(jsonNode["result"], typeFactory.constructCollectionType(List::class.java, innerType))
     )
-
-val EMPTY_MAP = emptyMap<String, String>()
