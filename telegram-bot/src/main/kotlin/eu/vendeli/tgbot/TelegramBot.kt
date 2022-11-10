@@ -12,7 +12,10 @@ import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.core.TelegramActionsCollector.collect
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
-import eu.vendeli.tgbot.interfaces.*
+import eu.vendeli.tgbot.interfaces.BotChatData
+import eu.vendeli.tgbot.interfaces.BotUserData
+import eu.vendeli.tgbot.interfaces.MagicObject
+import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.File
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.BotConfiguration
@@ -51,8 +54,10 @@ class TelegramBot(
     botConfiguration: BotConfiguration.() -> Unit = {}
 ) {
     private val config = BotConfiguration().apply(botConfiguration)
-    private val logger = LoggerFactory.getLogger(javaClass).apply {
-        (this as Logger).level = config.logging.botLogLevel
+    private val logger = LoggerFactory.getLogger(javaClass)
+
+    init {
+        (LoggerFactory.getLogger("eu.vendeli.tgbot") as Logger).level = config.logging.botLogLevel
     }
 
     private fun TgMethod.toUrl() = TELEGRAM_API_URL_PATTERN.format(config.apiHost, token) + name
