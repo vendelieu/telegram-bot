@@ -14,7 +14,7 @@ jobs:
         with:
           java-version: 11
       - name: Build documentation
-        run: ./gradlew clean dokkaHtml
+        run: ./gradlew clean dokkaHtml -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonaTypePassword=${{secrets.SONATYPE_PASSWORD}}
       - name: Publish documentation
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
