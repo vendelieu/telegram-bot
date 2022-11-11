@@ -44,8 +44,9 @@ import org.slf4j.LoggerFactory
  * Telegram bot main instance
  *
  * @property token Token of your bot
+ *
  * @param commandsPackage The place where the search for commands and inputs will be done.
-
+ * @param botConfiguration Lambda function to customize the bot's instance. Watch [BotConfiguration]
  */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class TelegramBot(

@@ -17,6 +17,10 @@ enum class ChatType(private val literal: String) {
  * @property firstName
  * @property lastName
  * @property photo
+ * @property activeUsernames If non-empty, the list of all active chat usernames; for private chats, supergroups and channels.
+ * Returned only in [getChat].
+ * @property emojiStatusCustomEmojiId Custom emoji identifier of emoji status of the other party in a private chat.
+ * Returned only in [getChat].
  * @property bio
  * @property hasPrivateForwards
  * @property hasRestrictedVoiceAndVideoMessages
