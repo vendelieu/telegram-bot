@@ -51,7 +51,7 @@ there you can find in the appropriate branches:
 # Usage
 
 ```kotlin
-suspend fun main() {
+fun main() = runBlocking {
     val bot = TelegramBot("BOT_TOKEN", "com.example.controllers")
     /**
      * Second parameter is the package in which commands/inputs will be searched.
@@ -76,10 +76,10 @@ suspend fun startConversation(user: User, bot: TelegramBot) {
 //..
 ```
 
-It is also possible to process manually:
+It is also possible to process updates manually:
 
 ```kotlin
-suspend fun main() {
+fun main() = runBlocking {
     val bot = TelegramBot("BOT_TOKEN")
 
     bot.handleUpdates { update ->
@@ -99,6 +99,24 @@ suspend fun main() {
     }
 }
 ```
+
+You can also change additional parameters of the bot:
+
+```kotlin
+// ...
+val bot = TelegramBot("BOT_TOKEN") {
+    inputListener = RedisInputListenerImpl()
+    classManager = KoinClassManagerImpl()
+    logging {
+        botLogLevel = Level.DEBUG
+    }
+}
+// ...
+```
+
+A more complete list of settings can be found
+in [BotConfiguration](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-bot-configuration/index.html)
+class.
 
 It is also possible to do more advanced processing with a manual listener setting
 with [`bot.update.setListener {}`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.core/-telegram-update-handler/set-listener.html)
