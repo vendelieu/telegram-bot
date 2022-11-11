@@ -14,7 +14,7 @@ val jacksonVer: String by project
 val ktorVer: String by project
 val junitVer: String by project
 
-val javaTargetVersion = JavaVersion.VERSION_1_8
+val javaTargetVersion = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
