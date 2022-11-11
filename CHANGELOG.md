@@ -1,5 +1,25 @@
 # Telegram-bot changelog
 
+## 2.3.0
+
+* Add `messageThreadId`,`isTopicMessage`, `forumTopicCreated`, `forumTopicClosed`, `forumTopicReopened` to `Message`
+* Created new related types `ForumTopicCreated`, `ForumTopicClosed`, `ForumTopicReopened`
+* Add `isForum`, `activeUsernames`, `emojiStatusCustomEmojiId` to `Chat`
+* Add `canManageTopics` to `PromoteChatMemberOptions`, `ChatAdministratorRights`, `ChatMember`, `ChatPermissions`
+* Add `messageThreadId` to `OptionsCommon` interface and all related options
+
+
+* Fixed a bug throwing `IllegalArgumentException` caused by `ClassManagerImpl`
+* Added saving instances to the `ClassManagerImpl`, to improve memory handling
+* Made `ChatPermissions` mutable to fix some functions wrong logic.
+* Added handling of commands containing at character, i.e. such as `/command@bot`
+* Expanded and moved configuration of `TelegramBot` instance to more handy variant, see `BotConfiguration` in docs.
+* Upgrade dependencies versions:
+    * `Logback`: `1.4.0` -> `1.4.4`
+    * `Jackson`: `2.13.4` -> `2.14.0`
+    * `Ktor`: `2.1.0` -> `2.1.3`
+    * `Kotlin`: `1.7.10` -> `1.7.20`
+
 ### 2.2.2
 
 * Change ActionRecipientRef class to Recipient and add universal `from` method
@@ -9,9 +29,9 @@
 
 * Process actions from callback requests in manual mode.
 * Upgrade dependencies versions:
-  * `Logback`: `1.2.11` -> `1.4.0`
-  * `Jackson`: `2.13.3` -> `2.13.4`
-  * `Ktor`: `2.0.3` -> `2.1.0`
+    * `Logback`: `1.2.11` -> `1.4.0`
+    * `Jackson`: `2.13.3` -> `2.13.4`
+    * `Ktor`: `2.0.3` -> `2.1.0`
 
 ## 2.2.0
 
