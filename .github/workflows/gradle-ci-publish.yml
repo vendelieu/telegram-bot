@@ -25,4 +25,4 @@ jobs:
         uses: eskatos/gradle-command-action@v1
         with:
           gradle-version: current
-          arguments: publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PSONATYPE_USERNAME=${{secrets.SONATYPE_USERNAME}} -PSONATYPE_PASSWORD=${{secrets.SONATYPE_PASSWORD}}
+          arguments: publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonaTypePassword=${{secrets.SONATYPE_PASSWORD}}

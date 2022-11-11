@@ -8,6 +8,8 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
     signing
 }
+val sonatypeUsername: String by project
+val sonatypePassword: String by project
 
 val logbackVer: String by project
 val jacksonVer: String by project
@@ -83,8 +85,8 @@ publishing {
         repositories {
             maven {
                 credentials {
-                    username = System.getenv()["SONATYPE_USERNAME"]
-                    password = System.getenv()["SONATYPE_PASSWORD"]
+                    username = sonatypeUsername
+                    password = sonatypePassword
                 }
                 url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
             }
