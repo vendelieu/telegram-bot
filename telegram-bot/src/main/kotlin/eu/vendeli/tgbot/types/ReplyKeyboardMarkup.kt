@@ -20,6 +20,34 @@ class ReplyKeyboardMarkup : Keyboard {
         keyboard.add(buttons.toList())
     }
 
+    constructor(
+        resizeKeyboard: Boolean? = null,
+        oneTimeKeyboard: Boolean? = null,
+        inputFieldPlaceholder: String? = null,
+        selective: Boolean? = null,
+        vararg buttons: List<KeyboardButton>
+    ) {
+        this.resizeKeyboard = resizeKeyboard
+        this.oneTimeKeyboard = oneTimeKeyboard
+        this.inputFieldPlaceholder = inputFieldPlaceholder
+        this.selective = selective
+        keyboard.addAll(buttons)
+    }
+
+    constructor(
+        resizeKeyboard: Boolean? = null,
+        oneTimeKeyboard: Boolean? = null,
+        inputFieldPlaceholder: String? = null,
+        selective: Boolean? = null,
+        vararg buttons: KeyboardButton
+    ) {
+        this.resizeKeyboard = resizeKeyboard
+        this.oneTimeKeyboard = oneTimeKeyboard
+        this.inputFieldPlaceholder = inputFieldPlaceholder
+        this.selective = selective
+        keyboard.add(buttons.toList())
+    }
+
     @JsonCreator
     constructor(
         @JsonProperty("keyboard") keyboard: MutableList<List<KeyboardButton>>,
