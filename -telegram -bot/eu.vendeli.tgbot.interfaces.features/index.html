@@ -6,10 +6,18 @@
     <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../";</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
 <link href="../../styles/style.css" rel="Stylesheet">
 <link href="../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -21,6 +29,7 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
@@ -31,7 +40,7 @@ if(savedDarkMode === true){
             </a>
     </div>
     <div>
-2.2.2    </div>
+2.3.0    </div>
     <div class="pull-right d-flex">
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
@@ -43,9 +52,9 @@ if(savedDarkMode === true){
     </div>
     <div id="main">
 <div class="main-content" id="content" pageIds="Telegram Bot::eu.vendeli.tgbot.interfaces.features////PointingToDeclaration//-880831646">
-  <div class="breadcrumbs"><a href="../../index.html">Telegram Bot</a><span class="delimiter">/</span><a href="index.html">eu.vendeli.tgbot.interfaces.features</a></div>
+  <div class="breadcrumbs"><a href="../../index.html">Telegram Bot</a><span class="delimiter">/</span><span class="current">eu.vendeli.tgbot.interfaces.features</span></div>
   <div class="cover ">
-    <h1 class="cover"><span>Package eu.</span><wbr></wbr><span>vendeli.</span><wbr></wbr><span>tgbot.</span><wbr></wbr><span>interfaces.</span><wbr></wbr><span>features</span></h1>
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button></div>
@@ -61,7 +70,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-all-features-able/index.html">AllFeaturesAble</a> : <a href="-option-able/index.html">OptionAble</a>, <a href="-markup-able/index.html">MarkupAble</a>, <a href="-entity-able/index.html">EntityAble</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Mark the Action as able to have <a href="-options-feature/index.html">OptionsFeature</a>, <a href="-markup-feature/index.html">MarkupFeature</a>, <a href="-entities-feature/index.html">EntitiesFeature</a>.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-all-features-able/index.html">AllFeaturesAble</a> : <a href="-option-able/index.html">OptionAble</a>, <a href="-markup-able/index.html">MarkupAble</a>, <a href="-entity-able/index.html">EntityAble</a></div><div class="brief "><p class="paragraph">Mark the Action as able to have <a href="-options-feature/index.html">OptionsFeature</a>, <a href="-markup-feature/index.html">MarkupFeature</a>, <a href="-entities-feature/index.html">EntitiesFeature</a>.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -76,7 +85,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-all-features-pack/index.html">AllFeaturesPack</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-all-features-pack/index.html">Return</a><span class="token operator"> : </span><a href="-all-features-able/index.html">AllFeaturesAble</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-all-features-pack/index.html">Opts</a><span class="token operator"> : </span><a href="../eu.vendeli.tgbot.types.internal.options/-options/index.html">Options</a><span class="token operator">&gt;</span> : <a href="-options-feature/index.html">OptionsFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-all-features-pack/index.html">Return</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-all-features-pack/index.html">Opts</a><span class="token operator">&gt; </span>, <a href="-markup-feature/index.html">MarkupFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-all-features-pack/index.html">Return</a><span class="token operator">&gt; </span>, <a href="-entities-feature/index.html">EntitiesFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-all-features-pack/index.html">Return</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">interface that adds OptionsFeature, MarkupFeature, EntitiesFeature to the action</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-all-features-pack/index.html">AllFeaturesPack</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-all-features-pack/index.html">Return</a><span class="token operator"> : </span><a href="-all-features-able/index.html">AllFeaturesAble</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-all-features-pack/index.html">Opts</a><span class="token operator"> : </span><a href="../eu.vendeli.tgbot.types.internal.options/-options/index.html">Options</a><span class="token operator">&gt;</span> : <a href="-options-feature/index.html">OptionsFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-all-features-pack/index.html">Return</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-all-features-pack/index.html">Opts</a><span class="token operator">&gt; </span>, <a href="-markup-feature/index.html">MarkupFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-all-features-pack/index.html">Return</a><span class="token operator">&gt; </span>, <a href="-entities-feature/index.html">EntitiesFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-all-features-pack/index.html">Return</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">interface that adds OptionsFeature, MarkupFeature, EntitiesFeature to the action</p></div></div></div>
               </div>
             </div>
           </div>
@@ -91,7 +100,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-caption-able/index.html">CaptionAble</a> : <a href="-features/index.html">Features</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Mark the Action as able to have <a href="-caption-feature/index.html">CaptionFeature</a>.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-caption-able/index.html">CaptionAble</a> : <a href="-features/index.html">Features</a></div><div class="brief "><p class="paragraph">Mark the Action as able to have <a href="-caption-feature/index.html">CaptionFeature</a>.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -106,7 +115,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-caption-feature/index.html">CaptionFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-caption-feature/index.html">Return</a><span class="token operator"> : </span><a href="-caption-able/index.html">CaptionAble</a><span class="token operator">&gt;</span> : <a href="../eu.vendeli.tgbot.interfaces/-parameters-base/index.html">ParametersBase</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Caption feature, see <a href="https://github.com/vendelieu/telegram-bot/wiki/Features">Features article</a></p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-caption-feature/index.html">CaptionFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-caption-feature/index.html">Return</a><span class="token operator"> : </span><a href="-caption-able/index.html">CaptionAble</a><span class="token operator">&gt;</span> : <a href="../eu.vendeli.tgbot.interfaces/-parameters-base/index.html">ParametersBase</a></div><div class="brief "><p class="paragraph">Caption feature, see <a href="https://github.com/vendelieu/telegram-bot/wiki/Features">Features article</a></p></div></div></div>
               </div>
             </div>
           </div>
@@ -121,7 +130,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-entities-feature/index.html">EntitiesFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-entities-feature/index.html">Return</a><span class="token operator"> : </span><a href="-entity-able/index.html">EntityAble</a><span class="token operator">&gt;</span> : <a href="../eu.vendeli.tgbot.interfaces/-parameters-base/index.html">ParametersBase</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Entities feature, see <a href="https://github.com/vendelieu/telegram-bot/wiki/Features">Features article</a></p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-entities-feature/index.html">EntitiesFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-entities-feature/index.html">Return</a><span class="token operator"> : </span><a href="-entity-able/index.html">EntityAble</a><span class="token operator">&gt;</span> : <a href="../eu.vendeli.tgbot.interfaces/-parameters-base/index.html">ParametersBase</a></div><div class="brief "><p class="paragraph">Entities feature, see <a href="https://github.com/vendelieu/telegram-bot/wiki/Features">Features article</a></p></div></div></div>
               </div>
             </div>
           </div>
@@ -136,7 +145,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-entity-able/index.html">EntityAble</a> : <a href="-features/index.html">Features</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Mark the Action as able to have <a href="-entities-feature/index.html">EntitiesFeature</a>.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-entity-able/index.html">EntityAble</a> : <a href="-features/index.html">Features</a></div><div class="brief "><p class="paragraph">Mark the Action as able to have <a href="-entities-feature/index.html">EntitiesFeature</a>.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -151,7 +160,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-features/index.html">Features</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">The ancestor interface of all Features</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-features/index.html">Features</a></div><div class="brief "><p class="paragraph">The ancestor interface of all Features</p></div></div></div>
               </div>
             </div>
           </div>
@@ -166,7 +175,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-markup-able/index.html">MarkupAble</a> : <a href="-features/index.html">Features</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Mark the Action as able to have <a href="-markup-feature/index.html">MarkupFeature</a>.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-markup-able/index.html">MarkupAble</a> : <a href="-features/index.html">Features</a></div><div class="brief "><p class="paragraph">Mark the Action as able to have <a href="-markup-feature/index.html">MarkupFeature</a>.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -181,7 +190,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-markup-feature/index.html">MarkupFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-markup-feature/index.html">Return</a><span class="token operator"> : </span><a href="-markup-able/index.html">MarkupAble</a><span class="token operator">&gt;</span> : <a href="../eu.vendeli.tgbot.interfaces/-parameters-base/index.html">ParametersBase</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Markup feature, see <a href="https://github.com/vendelieu/telegram-bot/wiki/Features">Features article</a></p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-markup-feature/index.html">MarkupFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-markup-feature/index.html">Return</a><span class="token operator"> : </span><a href="-markup-able/index.html">MarkupAble</a><span class="token operator">&gt;</span> : <a href="../eu.vendeli.tgbot.interfaces/-parameters-base/index.html">ParametersBase</a></div><div class="brief "><p class="paragraph">Markup feature, see <a href="https://github.com/vendelieu/telegram-bot/wiki/Features">Features article</a></p></div></div></div>
               </div>
             </div>
           </div>
@@ -196,7 +205,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-option-able/index.html">OptionAble</a> : <a href="-features/index.html">Features</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Mark the Action as able to have <a href="-options-feature/index.html">OptionsFeature</a>.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-option-able/index.html">OptionAble</a> : <a href="-features/index.html">Features</a></div><div class="brief "><p class="paragraph">Mark the Action as able to have <a href="-options-feature/index.html">OptionsFeature</a>.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -211,7 +220,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-options-feature/index.html">OptionsFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-options-feature/index.html">Return</a><span class="token operator"> : </span><a href="-option-able/index.html">OptionAble</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-options-feature/index.html">Opts</a><span class="token operator"> : </span><a href="../eu.vendeli.tgbot.types.internal.options/-options/index.html">Options</a><span class="token operator">&gt;</span> : <a href="../eu.vendeli.tgbot.interfaces/-parameters-base/index.html">ParametersBase</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Options feature, see <a href="https://github.com/vendelieu/telegram-bot/wiki/Features">Features article</a></p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-options-feature/index.html">OptionsFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-options-feature/index.html">Return</a><span class="token operator"> : </span><a href="-option-able/index.html">OptionAble</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-options-feature/index.html">Opts</a><span class="token operator"> : </span><a href="../eu.vendeli.tgbot.types.internal.options/-options/index.html">Options</a><span class="token operator">&gt;</span> : <a href="../eu.vendeli.tgbot.interfaces/-parameters-base/index.html">ParametersBase</a></div><div class="brief "><p class="paragraph">Options feature, see <a href="https://github.com/vendelieu/telegram-bot/wiki/Features">Features article</a></p></div></div></div>
               </div>
             </div>
           </div>
