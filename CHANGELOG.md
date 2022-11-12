@@ -1,5 +1,10 @@
 # Telegram-bot changelog
 
+### 2.3.1
+
+* Returned `inputListener` parameter to bot instance.
+* Add `HttpLogLevel` proxy class for http logs managing.
+
 ## 2.3.0
 
 * Add `messageThreadId`,`isTopicMessage`, `forumTopicCreated`, `forumTopicClosed`, `forumTopicReopened` to `Message`
