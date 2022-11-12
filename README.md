@@ -153,4 +153,4 @@ methods [`getOrNull()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bo
 # More about
 
 You can also read more information in the [wiki](https://github.com/vendelieu/telegram-bot/wiki), and you're always
-welcome in [chat](https://t.me/vennyTgBotAPI).
+welcome in [chat](https://t.me/vennyTgBot).
