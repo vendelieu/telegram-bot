@@ -55,6 +55,7 @@ class TelegramBot(
     botConfiguration: BotConfiguration.() -> Unit = {}
 ) {
     private val config = BotConfiguration().apply(botConfiguration)
+    val inputListener = config.inputListener
     private val logger = LoggerFactory.getLogger(javaClass)
 
     init {
@@ -95,7 +96,7 @@ class TelegramBot(
             }
         }
         install(Logging) {
-            level = config.logging.httpLogLevel
+            level = config.logging.httpLogLevel.toKtorLvl()
         }
 
         install(HttpTimeout) {
