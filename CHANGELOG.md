@@ -1,5 +1,8 @@
 # Telegram-bot changelog
 
+### 2.3.2
+* Fix class initialization bug.
+
 ### 2.3.1
 
 * Returned `inputListener` parameter to bot instance.
