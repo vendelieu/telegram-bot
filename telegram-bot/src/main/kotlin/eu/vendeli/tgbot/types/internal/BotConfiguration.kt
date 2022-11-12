@@ -5,7 +5,7 @@ import eu.vendeli.tgbot.core.BotInputListenerMapImpl
 import eu.vendeli.tgbot.core.ClassManagerImpl
 import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.interfaces.ClassManager
-import io.ktor.client.plugins.logging.*
+import eu.vendeli.tgbot.types.HttpLogLevel
 
 /**
  * The class containing the bot's configuration.
@@ -45,7 +45,7 @@ data class BotConfiguration(
  */
 data class LoggingConfiguration(
     var botLogLevel: Level = Level.INFO,
-    var httpLogLevel: LogLevel = LogLevel.NONE,
+    var httpLogLevel: HttpLogLevel = HttpLogLevel.NONE,
 )
 
 /**
