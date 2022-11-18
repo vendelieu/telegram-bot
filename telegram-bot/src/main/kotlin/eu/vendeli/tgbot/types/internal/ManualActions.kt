@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.internal
 
-import eu.vendeli.tgbot.types.*
+import eu.vendeli.tgbot.utils.*
 
 sealed class CommandSelector {
     data class String(val command: kotlin.String) : CommandSelector()
@@ -13,21 +13,21 @@ sealed class CommandSelector {
 }
 
 data class ManualActions(
-    var onMessage: (suspend ActionContext<Message>.() -> Unit)? = null,
-    var onEditedMessage: (suspend ActionContext<Message>.() -> Unit)? = null,
-    var onPollAnswer: (suspend ActionContext<PollAnswer>.() -> Unit)? = null,
-    var onCallbackQuery: (suspend ActionContext<CallbackQuery>.() -> Unit)? = null,
-    var onPoll: (suspend ActionContext<Poll>.() -> Unit)? = null,
-    var onChatJoinRequest: (suspend ActionContext<ChatJoinRequest>.() -> Unit)? = null,
-    var onChatMember: (suspend ActionContext<ChatMemberUpdated>.() -> Unit)? = null,
-    var onMyChatMember: (suspend ActionContext<ChatMemberUpdated>.() -> Unit)? = null,
-    var onChannelPost: (suspend ActionContext<Message>.() -> Unit)? = null,
-    var onEditedChannelPost: (suspend ActionContext<Message>.() -> Unit)? = null,
-    var onChosenInlineResult: (suspend ActionContext<ChosenInlineResult>.() -> Unit)? = null,
-    var onInlineQuery: (suspend ActionContext<InlineQuery>.() -> Unit)? = null,
-    var onPreCheckoutQuery: (suspend ActionContext<PreCheckoutQuery>.() -> Unit)? = null,
-    var onShippingQuery: (suspend ActionContext<ShippingQuery>.() -> Unit)? = null,
-    var whenNotHandled: (suspend Update.() -> Unit)? = null,
-    var onInput: MutableMap<String, SingleInputChain> = mutableMapOf(),
-    var commands: MutableMap<CommandSelector, suspend CommandContext.() -> Unit> = mutableMapOf(),
+    var onMessage: OnMessageAction? = null,
+    var onEditedMessage: OnEditedMessageAction? = null,
+    var onPollAnswer: OnPollAnswerAction? = null,
+    var onCallbackQuery: OnCallbackQueryAction? = null,
+    var onPoll: OnPollAction? = null,
+    var onChatJoinRequest: OnChatJoinRequestAction? = null,
+    var onChatMember: OnChatMemberAction? = null,
+    var onMyChatMember: OnMyChatMemberAction? = null,
+    var onChannelPost: OnChannelPostAction? = null,
+    var onEditedChannelPost: OnEditedChannelPostAction? = null,
+    var onChosenInlineResult: OnChosenInlineResultAction? = null,
+    var onInlineQuery: OnInlineQueryAction? = null,
+    var onPreCheckoutQuery: OnPreCheckoutQueryAction? = null,
+    var onShippingQuery: OnShippingQueryAction? = null,
+    var whenNotHandled: WhenNotHandledAction? = null,
+    var onInput: InputActions = mutableMapOf(),
+    var commands: CommandActions = mutableMapOf(),
 )
