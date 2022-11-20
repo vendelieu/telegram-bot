@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.core.ManualHandlingDsl.ArgsMode.SpaceKeyValue
 import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.types.*
 import eu.vendeli.tgbot.types.internal.*
+import eu.vendeli.tgbot.utils.*
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.parseKeyValueBySpace
 import eu.vendeli.tgbot.utils.parseQuery
@@ -41,98 +42,98 @@ class ManualHandlingDsl internal constructor(
     /**
      * Action that is performed on the presence of Message in the Update.
      */
-    fun onMessage(block: suspend ActionContext<Message>.() -> Unit) {
+    fun onMessage(block: OnMessageAction) {
         manualActions.onMessage = block
     }
 
     /**
      * Action that is performed on the presence of EditedMessage in the Update.
      */
-    fun onEditedMessage(block: suspend ActionContext<Message>.() -> Unit) {
+    fun onEditedMessage(block: OnEditedMessageAction) {
         manualActions.onEditedMessage = block
     }
 
     /**
      * Action that is performed on the presence of PollAnswer in the Update.
      */
-    fun onPollAnswer(block: suspend ActionContext<PollAnswer>.() -> Unit) {
+    fun onPollAnswer(block: OnPollAnswerAction) {
         manualActions.onPollAnswer = block
     }
 
     /**
      * Action that is performed on the presence of CallbackQuery in the Update.
      */
-    fun onCallbackQuery(block: suspend ActionContext<CallbackQuery>.() -> Unit) {
+    fun onCallbackQuery(block: OnCallbackQueryAction) {
         manualActions.onCallbackQuery = block
     }
 
     /**
      * Action that is performed on the presence of Poll in the Update.
      */
-    fun onPoll(block: suspend ActionContext<Poll>.() -> Unit) {
+    fun onPoll(block: OnPollAction) {
         manualActions.onPoll = block
     }
 
     /**
      * Action that is performed on the presence of ChatJoinRequest in the Update.
      */
-    fun onChatJoinRequest(block: suspend ActionContext<ChatJoinRequest>.() -> Unit) {
+    fun onChatJoinRequest(block: OnChatJoinRequestAction) {
         manualActions.onChatJoinRequest = block
     }
 
     /**
      * Action that is performed on the presence of ChatMember in the Update.
      */
-    fun onChatMember(block: suspend ActionContext<ChatMemberUpdated>.() -> Unit) {
+    fun onChatMember(block: OnChatMemberAction) {
         manualActions.onChatMember = block
     }
 
     /**
      * Action that is performed on the presence of MyChatMember in the Update.
      */
-    fun onMyChatMember(block: suspend ActionContext<ChatMemberUpdated>.() -> Unit) {
+    fun onMyChatMember(block: OnChatMemberAction) {
         manualActions.onMyChatMember = block
     }
 
     /**
      * Action that is performed on the presence of ChannelPost in the Update.
      */
-    fun onChannelPost(block: suspend ActionContext<Message>.() -> Unit) {
+    fun onChannelPost(block: OnChannelPostAction) {
         manualActions.onChannelPost = block
     }
 
     /**
      * Action that is performed on the presence of EditedChannelPost in the Update.
      */
-    fun onEditedChannelPost(block: suspend ActionContext<Message>.() -> Unit) {
+    fun onEditedChannelPost(block: OnEditedChannelPostAction) {
         manualActions.onEditedChannelPost = block
     }
 
     /**
      * Action that is performed on the presence of ChosenInlineResult in the Update.
      */
-    fun onChosenInlineResult(block: suspend ActionContext<ChosenInlineResult>.() -> Unit) {
+    fun onChosenInlineResult(block: OnChosenInlineResultAction) {
         manualActions.onChosenInlineResult = block
     }
 
     /**
      * Action that is performed on the presence of InlineQuery in the Update.
      */
-    fun onInlineQuery(block: suspend ActionContext<InlineQuery>.() -> Unit) {
+    fun onInlineQuery(block: OnInlineQueryAction) {
         manualActions.onInlineQuery = block
     }
 
     /**
      * Action that is performed on the presence of PreCheckoutQuery in the Update.
      */
-    fun onPreCheckoutQuery(block: suspend ActionContext<PreCheckoutQuery>.() -> Unit) {
+    fun onPreCheckoutQuery(block: OnPreCheckoutQueryAction) {
         manualActions.onPreCheckoutQuery = block
     }
 
     /**
      * Action that is performed on the presence of ShippingQuery in the Update.
      */
-    fun onShippingQuery(block: suspend ActionContext<ShippingQuery>.() -> Unit) {
+    fun onShippingQuery(block: OnShippingQueryAction) {
         manualActions.onShippingQuery = block
     }
 
@@ -146,7 +147,7 @@ class ManualHandlingDsl internal constructor(
     fun onCommand(
         command: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        block: suspend CommandContext.() -> Unit
+        block: OnCommandAction
     ) {
         manualActions.commands[CommandSelector.String(command, rateLimits)] = block
     }
@@ -161,7 +162,7 @@ class ManualHandlingDsl internal constructor(
     fun onCommand(
         command: Regex,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        block: suspend CommandContext.() -> Unit
+        block: OnCommandAction
     ) {
         manualActions.commands[CommandSelector.Regex(command, rateLimits)] = block
     }
@@ -176,7 +177,7 @@ class ManualHandlingDsl internal constructor(
     fun onInput(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        block: suspend InputContext.() -> Unit
+        block: OnInputAction
     ) {
         manualActions.onInput[identifier] = SingleInputChain(identifier, block, rateLimits)
     }
@@ -184,7 +185,7 @@ class ManualHandlingDsl internal constructor(
     /**
      * Action that will be applied when none of the other handlers process the data
      */
-    fun whenNotHandled(block: suspend Update.() -> Unit) {
+    fun whenNotHandled(block: WhenNotHandledAction) {
         manualActions.whenNotHandled = block
     }
 
@@ -199,7 +200,7 @@ class ManualHandlingDsl internal constructor(
     fun inputChain(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        block: suspend InputContext.() -> Unit
+        block: OnInputAction
     ): SingleInputChain {
         val firstChain = SingleInputChain(identifier, block, rateLimits)
         manualActions.onInput[identifier] = firstChain
@@ -216,7 +217,7 @@ class ManualHandlingDsl internal constructor(
      */
     fun SingleInputChain.andThen(
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        block: suspend InputContext.() -> Unit
+        block: OnInputAction
     ): SingleInputChain {
         val nextLevel = this.currentLevel + 1
         val newId = if (this.currentLevel > 0) this.id.replace(
@@ -234,7 +235,7 @@ class ManualHandlingDsl internal constructor(
      */
     fun SingleInputChain.breakIf(
         condition: InputContext.() -> Boolean,
-        block: (suspend InputContext.() -> Unit)? = null,
+        block: OnInputAction? = null,
     ): SingleInputChain {
         manualActions.onInput[this.id]?.breakPoint = InputBreakPoint(condition, block)
         return this
