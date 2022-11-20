@@ -3,8 +3,10 @@ package eu.vendeli.tgbot.types.internal
 import eu.vendeli.tgbot.utils.*
 
 sealed class CommandSelector {
-    data class String(val command: kotlin.String) : CommandSelector()
-    data class Regex(val regex: kotlin.text.Regex) : CommandSelector()
+    abstract val rateLimits: RateLimits
+
+    data class String(val command: kotlin.String, override val rateLimits: RateLimits) : CommandSelector()
+    data class Regex(val regex: kotlin.text.Regex, override val rateLimits: RateLimits) : CommandSelector()
 
     fun match(command: kotlin.String): Boolean = when (this) {
         is String -> command == this.command

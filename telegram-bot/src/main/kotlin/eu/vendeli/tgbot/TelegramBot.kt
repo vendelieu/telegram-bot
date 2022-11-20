@@ -54,7 +54,7 @@ class TelegramBot(
     commandsPackage: String? = null,
     botConfiguration: BotConfiguration.() -> Unit = {}
 ) {
-    private val config = BotConfiguration().apply(botConfiguration)
+    internal val config = BotConfiguration().apply(botConfiguration)
     val inputListener = config.inputListener
     private val logger = LoggerFactory.getLogger(javaClass)
 
@@ -70,7 +70,11 @@ class TelegramBot(
      * Current bot [TelegramUpdateHandler] instance
      */
     val update = TelegramUpdateHandler(
-        commandsPackage?.let { collect(it) }, this, config.classManager, config.inputListener
+        actions = commandsPackage?.let { collect(it) },
+        bot = this,
+        classManager = config.classManager,
+        inputListener = config.inputListener,
+        rateLimiter = config.rateLimiter
     )
 
     /**
