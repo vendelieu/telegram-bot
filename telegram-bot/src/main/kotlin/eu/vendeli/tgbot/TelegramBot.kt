@@ -22,6 +22,7 @@ import eu.vendeli.tgbot.types.internal.BotConfiguration
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.utils.*
 import eu.vendeli.tgbot.utils.TELEGRAM_API_URL_PATTERN
 import eu.vendeli.tgbot.utils.TELEGRAM_FILE_URL_PATTERN
 import eu.vendeli.tgbot.utils.convertSuccessResponse
@@ -52,7 +53,7 @@ import org.slf4j.LoggerFactory
 class TelegramBot(
     private val token: String,
     commandsPackage: String? = null,
-    botConfiguration: BotConfiguration.() -> Unit = {}
+    botConfiguration: BotConfigurator = {}
 ) {
     internal val config = BotConfiguration().apply(botConfiguration)
     val inputListener = config.inputListener
@@ -168,7 +169,7 @@ class TelegramBot(
      *
      * @param block [ManualHandlingDsl]
      */
-    suspend fun handleUpdates(block: suspend ManualHandlingDsl.() -> Unit) {
+    suspend fun handleUpdates(block: ManualHandlingBlock) {
         update.setListener {
             handle(it, block)
         }

@@ -8,10 +8,7 @@ import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.*
-import eu.vendeli.tgbot.utils.CreateNewCoroutineContext
-import eu.vendeli.tgbot.utils.checkIsLimited
-import eu.vendeli.tgbot.utils.invokeSuspend
-import eu.vendeli.tgbot.utils.parseQuery
+import eu.vendeli.tgbot.utils.*
 import kotlinx.coroutines.*
 import org.slf4j.LoggerFactory
 import kotlin.coroutines.coroutineContext
@@ -33,7 +30,7 @@ class TelegramUpdateHandler internal constructor(
     internal val rateLimiter: RateLimitMechanism
 ) {
     internal val logger = LoggerFactory.getLogger(this::class.java)
-    private lateinit var listener: suspend TelegramUpdateHandler.(Update) -> Unit
+    private lateinit var listener: InputListenerBlock
     private var handlerActive: Boolean = false
     private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot, inputListener) }
 
@@ -66,7 +63,7 @@ class TelegramUpdateHandler internal constructor(
      * @param block action that will be applied.
      * @receiver [CoroutineContext]
      */
-    suspend fun setListener(block: suspend TelegramUpdateHandler.(Update) -> Unit) {
+    suspend fun setListener(block: InputListenerBlock) {
         if (handlerActive) stopListener()
         logger.trace("The listener is set.")
         listener = block
@@ -144,7 +141,7 @@ class TelegramUpdateHandler internal constructor(
      *
      */
     @JvmName("handleItManually")
-    suspend fun Update.handle(block: suspend ManualHandlingDsl.() -> Unit) = handle(this, block)
+    suspend fun Update.handle(block: ManualHandlingBlock) = handle(this, block)
 
     /**
      * Function used to call functions with certain parameters processed after receiving update.
@@ -248,7 +245,7 @@ class TelegramUpdateHandler internal constructor(
      * @param update
      * @param block
      */
-    suspend fun handle(update: Update, block: suspend ManualHandlingDsl.() -> Unit) {
+    suspend fun handle(update: Update, block: ManualHandlingBlock) {
         logger.trace("Manually handling update: $update")
         manualHandlingBehavior.apply {
             block()

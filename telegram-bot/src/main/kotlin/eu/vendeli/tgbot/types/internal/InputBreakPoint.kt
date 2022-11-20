@@ -1,6 +1,8 @@
 package eu.vendeli.tgbot.types.internal
 
+import eu.vendeli.tgbot.utils.OnInputAction
+
 data class InputBreakPoint(
     val condition: InputContext.() -> Boolean,
-    val action: (suspend InputContext.() -> Unit)? = null,
+    val action: OnInputAction? = null,
 )
