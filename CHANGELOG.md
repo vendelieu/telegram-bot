@@ -1,13 +1,17 @@
 # Telegram-bot changelog
 
+### 2.4.1
+
+* Fix annotation limits not working
+
 ## 2.4.0
 
 * Added a new mechanism to limit requests from users, both general requests and specifically for commands/inputs in both
   modes (annotations, manual).
 * Long data types are replaced by shorter ones using aliases.
 * Upgrade dependencies versions:
-  * `Logback`: `1.4.4` -> `1.4.5`
-  * `Kotlin`: `1.7.20` -> `1.7.21`
+    * `Logback`: `1.4.4` -> `1.4.5`
+    * `Kotlin`: `1.7.20` -> `1.7.21`
 
 ### 2.3.2
 
