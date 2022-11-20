@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.core.ManualHandlingDsl.ArgsMode.SpaceKeyValue
 import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.types.*
 import eu.vendeli.tgbot.types.internal.*
+import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.parseKeyValueBySpace
 import eu.vendeli.tgbot.utils.parseQuery
 
@@ -137,23 +138,47 @@ class ManualHandlingDsl internal constructor(
 
     /**
      * The action that is performed when the command is matched.
+     *
+     * @param command The command that will be processed.
+     * @param rateLimits Restriction of command requests.
+     * @param block Action that will be applied.
      */
-    fun onCommand(command: String, block: suspend CommandContext.() -> Unit) {
-        manualActions.commands[CommandSelector.String(command)] = block
+    fun onCommand(
+        command: String,
+        rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        block: suspend CommandContext.() -> Unit
+    ) {
+        manualActions.commands[CommandSelector.String(command, rateLimits)] = block
     }
 
     /**
      * The action that is performed when the command is matched.
+     *
+     * @param command The command that will be processed.
+     * @param rateLimits Restriction of command requests.
+     * @param block Action that will be applied.
      */
-    fun onCommand(command: Regex, block: suspend CommandContext.() -> Unit) {
-        manualActions.commands[CommandSelector.Regex(command)] = block
+    fun onCommand(
+        command: Regex,
+        rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        block: suspend CommandContext.() -> Unit
+    ) {
+        manualActions.commands[CommandSelector.Regex(command, rateLimits)] = block
     }
 
     /**
      * The action that is performed when the input is matched.
+     *
+     * @param identifier Input identifier.
+     * @param rateLimits Restriction of input requests.
+     * @param block Action that will be applied.
      */
-    fun onInput(identifier: String, block: suspend InputContext.() -> Unit) {
-        manualActions.onInput[identifier] = SingleInputChain(identifier, block)
+    fun onInput(
+        identifier: String,
+        rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        block: suspend InputContext.() -> Unit
+    ) {
+        manualActions.onInput[identifier] = SingleInputChain(identifier, block, rateLimits)
     }
 
     /**
@@ -167,11 +192,16 @@ class ManualHandlingDsl internal constructor(
      * Dsl for creating chain of input processing
      *
      * @param identifier id of input
+     * @param rateLimits Restriction of input requests.
      * @param block action that will be applied if input will match
      * @return [SingleInputChain] for further chaining
      */
-    fun inputChain(identifier: String, block: suspend InputContext.() -> Unit): SingleInputChain {
-        val firstChain = SingleInputChain(identifier, block)
+    fun inputChain(
+        identifier: String,
+        rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        block: suspend InputContext.() -> Unit
+    ): SingleInputChain {
+        val firstChain = SingleInputChain(identifier, block, rateLimits)
         manualActions.onInput[identifier] = firstChain
 
         return firstChain
@@ -180,17 +210,21 @@ class ManualHandlingDsl internal constructor(
     /**
      * Adding a chain to the input data processing
      *
+     * @param rateLimits Restriction of input requests.
      * @param block action that will be applied if the inputs match the current chain level
      * @return [SingleInputChain] for further chaining
      */
-    fun SingleInputChain.andThen(block: suspend InputContext.() -> Unit): SingleInputChain {
+    fun SingleInputChain.andThen(
+        rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        block: suspend InputContext.() -> Unit
+    ): SingleInputChain {
         val nextLevel = this.currentLevel + 1
         val newId = if (this.currentLevel > 0) this.id.replace(
             "_chain_lvl_${this.currentLevel}", "_chain_lvl_$nextLevel"
         ) else this.id + "_chain_lvl_1"
 
         manualActions.onInput[this.id]?.tail = newId
-        manualActions.onInput[newId] = SingleInputChain(newId, block, nextLevel)
+        manualActions.onInput[newId] = SingleInputChain(newId, block, rateLimits, nextLevel)
         return this
     }
 
@@ -222,9 +256,11 @@ class ManualHandlingDsl internal constructor(
         if (parsedText == null || from == null) return
 
         // find action which match command and invoke it
-        manualActions.commands.filter { it.key.match(parsedText.command) }.values.firstOrNull()?.also {
+        manualActions.commands.filter { it.key.match(parsedText.command) }.entries.firstOrNull()?.also {
             inputListener.del(from.id) // clean input listener
-            it.invoke(CommandContext(update, parsedText.params, from))
+            // check for limit exceed
+            if(bot.update.checkIsLimited(it.key.rateLimits, update.message?.from?.id, parsedText.command)) return
+            it.value.invoke(CommandContext(update, parsedText.params, from))
             return
         }
         // if there's no command -> then try process input
@@ -233,6 +269,8 @@ class ManualHandlingDsl internal constructor(
             // search matching input handler for listening point
             val foundChain = manualActions.onInput[it]
             if (foundChain != null && update.message != null) {
+                // check for limit exceed
+                if(bot.update.checkIsLimited(foundChain.rateLimits, update.message.from?.id, foundChain.id)) return
                 val inputContext = InputContext(from, update)
                 // invoke it if found
                 foundChain.inputAction.invoke(inputContext)
@@ -251,6 +289,7 @@ class ManualHandlingDsl internal constructor(
      * @param update
      */
     suspend fun process(update: Update) = with(update) {
+        if (bot.update.checkIsLimited(bot.config.rateLimits, update.message?.from?.id)) return@with
         when {
             message != null -> {
                 // invoke 'on-message' action

@@ -5,9 +5,11 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.interfaces.ClassManager
+import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.*
 import eu.vendeli.tgbot.utils.CreateNewCoroutineContext
+import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.invokeSuspend
 import eu.vendeli.tgbot.utils.parseQuery
 import kotlinx.coroutines.*
@@ -25,11 +27,12 @@ import kotlin.coroutines.coroutineContext
 @Suppress("unused", "MemberVisibilityCanBePrivate")
 class TelegramUpdateHandler internal constructor(
     private val actions: Actions? = null,
-    private val bot: TelegramBot,
+    internal val bot: TelegramBot,
     private val classManager: ClassManager,
     private val inputListener: BotInputListener,
+    internal val rateLimiter: RateLimitMechanism
 ) {
-    private val logger = LoggerFactory.getLogger(this::class.java)
+    internal val logger = LoggerFactory.getLogger(this::class.java)
     private lateinit var listener: suspend TelegramUpdateHandler.(Update) -> Unit
     private var handlerActive: Boolean = false
     private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot, inputListener) }
@@ -89,12 +92,14 @@ class TelegramUpdateHandler internal constructor(
      */
     private fun findAction(text: String, command: Boolean = true): Activity? {
         val message = text.parseQuery()
-        val invocation = (
-            if (command) actions?.commands else {
-                actions?.inputs
-            }
-            )?.get(message.command)
-        return if (invocation != null) Activity(invocation = invocation, parameters = message.params) else null
+        val invocation = (if (command) actions?.commands else {
+            actions?.inputs
+        })?.get(message.command)
+        return if (invocation != null) Activity(
+            id = message.command,
+            invocation = invocation,
+            parameters = message.params
+        ) else null
     }
 
     /**
@@ -210,12 +215,18 @@ class TelegramUpdateHandler internal constructor(
      */
     suspend fun handle(update: Update): Throwable? = processUpdateDto(update).run {
         logger.trace("Handling update: $update")
+        val telegramId = update.message?.from?.id
+        if (checkIsLimited(bot.config.rateLimits, telegramId)) return@run null
+
         val commandAction = if (text != null) findAction(text.substringBefore('@')) else null
         val inputAction = if (commandAction == null) inputListener.getAsync(user.id).await()?.let {
             findAction(it, false)
         } else null
         logger.trace("Result of finding action - command: $commandAction, input: $inputAction")
         inputListener.delAsync(user.id).await()
+
+        val action = commandAction ?: inputAction
+        if (action != null && checkIsLimited(action.rateLimits, telegramId, action.id)) return@run null
 
         return when {
             commandAction != null -> invokeMethod(this, commandAction.invocation, commandAction.parameters)

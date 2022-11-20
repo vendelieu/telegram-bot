@@ -2,7 +2,9 @@ package eu.vendeli.tgbot.utils
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.types.internal.RateLimits
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.StructuredRequest
 import kotlinx.coroutines.CoroutineName
@@ -45,6 +47,22 @@ internal suspend fun Method.invokeSuspend(obj: Any, vararg args: Any?): Any? =
     suspendCoroutineUninterceptedOrReturn { cont ->
         invoke(obj, *args, cont)
     }
+
+internal suspend fun TelegramUpdateHandler.checkIsLimited(
+    limits: RateLimits,
+    telegramId: Long?,
+    actionId: String? = null
+): Boolean {
+    if(limits.period == 0L && limits.rate == 0L || telegramId == null) return false
+
+    logger.trace("Checking the request for exceeding the limits${if (actionId != null) " for ${actionId}}" else ""}.")
+    if (rateLimiter.isLimited(limits, telegramId, actionId)) {
+        logger.info("User #$telegramId has exceeded the request limit${if (actionId != null) " for ${actionId}}" else ""}.")
+        rateLimiter.exceededLimitResponse(telegramId, bot)
+        return true
+    }
+    return false
+}
 
 internal fun <T, I : MultipleResponse> ObjectMapper.convertSuccessResponse(
     jsonNode: JsonNode,
