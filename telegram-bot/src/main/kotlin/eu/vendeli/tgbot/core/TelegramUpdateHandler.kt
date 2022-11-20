@@ -95,7 +95,8 @@ class TelegramUpdateHandler internal constructor(
         return if (invocation != null) Activity(
             id = message.command,
             invocation = invocation,
-            parameters = message.params
+            parameters = message.params,
+            rateLimits = invocation.rateLimits
         ) else null
     }
 
