@@ -3,8 +3,10 @@ package eu.vendeli.tgbot.types.internal
 import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.core.BotInputListenerMapImpl
 import eu.vendeli.tgbot.core.ClassManagerImpl
+import eu.vendeli.tgbot.core.TokenBucketLimiterImpl
 import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.interfaces.ClassManager
+import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.types.HttpLogLevel
 
 /**
@@ -18,9 +20,11 @@ data class BotConfiguration(
     var apiHost: String = "api.telegram.org",
     var inputListener: BotInputListener = BotInputListenerMapImpl(),
     var classManager: ClassManager = ClassManagerImpl(),
+    var rateLimiter: RateLimitMechanism = TokenBucketLimiterImpl()
 ) {
     internal var httpClient = HttpConfiguration()
     internal var logging = LoggingConfiguration()
+    internal var rateLimits = RateLimits()
 
     /**
      * Function for configuring the http client. See [HttpConfiguration].
@@ -34,6 +38,13 @@ data class BotConfiguration(
      */
     fun logging(block: LoggingConfiguration.() -> Unit) {
         this.logging.block()
+    }
+
+    /**
+     * Function for configuring requests limiting. See [RateLimits].
+     */
+    fun rateLimits(block: RateLimits.() -> Unit) {
+        this.rateLimits.block()
     }
 }
 
@@ -68,3 +79,18 @@ data class HttpConfiguration(
     var maxRequestRetry: Int = 3,
     var retryDelay: Long = 3000L
 )
+
+/**
+ * A class containing the configuration of constraints for incoming requests.
+ *
+ * @property period The period for which requests will be regulated.
+ * @property rate The number of allowed requests for the specified period.
+ */
+data class RateLimits(
+    var period: Long = 1000L,
+    var rate: Long = 20L,
+) {
+    internal companion object {
+        val NOT_LIMITED = RateLimits(0L, 0L)
+    }
+}
