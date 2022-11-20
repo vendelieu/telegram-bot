@@ -1,7 +1,7 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.7.20"
+    id("org.jetbrains.kotlin.jvm") version "1.7.21"
     `maven-publish`
     `java-library`
     id("org.jetbrains.dokka") version "1.7.20"
