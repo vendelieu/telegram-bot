@@ -24,7 +24,7 @@ data class BucketState(
 /**
  * Default implementation of query limitation via [Token bucket](https://en.wikipedia.org/wiki/Token_bucket) algorithm.
  */
-class TokenBucketLimiterImpl : RateLimitMechanism {
+open class TokenBucketLimiterImpl : RateLimitMechanism {
     private val state: ConcurrentHashMap<String, AtomicReference<BucketState>> = ConcurrentHashMap()
     private val instant: Instant get() = run { Instant.now() }
 
