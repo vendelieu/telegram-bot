@@ -83,7 +83,7 @@ data class HttpConfiguration(
 /**
  * A class containing the configuration of constraints for incoming requests.
  *
- * @property period The period for which requests will be regulated.
+ * @property period The period for which requests will be regulated. (in milliseconds)
  * @property rate The number of allowed requests for the specified period.
  */
 data class RateLimits(
