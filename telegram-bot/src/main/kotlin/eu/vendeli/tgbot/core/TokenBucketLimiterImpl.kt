@@ -11,10 +11,19 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.time.Duration.Companion.milliseconds
 
+/**
+ * A class that stores data about limits.
+ *
+ * @property remainingTokens Remaining number of requests.
+ * @property lastUpdated Last update.
+ */
 data class BucketState(
     val remainingTokens: Long, val lastUpdated: Instant
 )
 
+/**
+ * Default implementation of query limitation via [Token bucket](https://en.wikipedia.org/wiki/Token_bucket) algorithm.
+ */
 class TokenBucketLimiterImpl : RateLimitMechanism {
     private val state: ConcurrentHashMap<String, AtomicReference<BucketState>> = ConcurrentHashMap()
     private val instant: Instant get() = run { Instant.now() }

@@ -87,8 +87,8 @@ data class HttpConfiguration(
  * @property rate The number of allowed requests for the specified period.
  */
 data class RateLimits(
-    var period: Long = 1000L,
-    var rate: Long = 20L,
+    var period: Long = 0L,
+    var rate: Long = 0L,
 ) {
     internal companion object {
         val NOT_LIMITED = RateLimits(0L, 0L)
