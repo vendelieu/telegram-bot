@@ -100,6 +100,8 @@ fun main() = runBlocking {
 }
 ```
 
+### Configuration
+
 You can also change additional parameters of the bot:
 
 ```kotlin
@@ -118,18 +120,48 @@ A more complete list of settings can be found
 in [BotConfiguration](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-bot-configuration/index.html)
 class.
 
+### Requests limiting
+
+Library as well supports limiting requests from users:
+
+```kotlin
+// ...
+val bot = TelegramBot("BOT_TOKEN") {
+    rateLimits { // general limits
+        period = ...
+        rate = ...
+    }
+}
+
+// Limits on certain actions
+@CommandHandler(["/start"], RateLimits(period = 1000L, rate = 1L)) // or InputListener
+suspend fun start(user: User, bot: TelegramBot) {
+    ...
+}
+// In manual mode
+onCommand("/start", RateLimits(period = 1000L, rate = 1L)) {
+    ...
+}
+// ...
+```
+
+### A little about processing
+
 It is also possible to do more advanced processing with a manual listener setting
 with [`bot.update.setListener {}`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.core/-telegram-update-handler/set-listener.html)
-function.
+function. (For example, you can use both processing methods, as in
+the [poll example](https://github.com/vendelieu/telegram-bot_template/blob/poll/src/main/kotlin/com/example/poll/PollApplication.kt)
+.)
 
 for webhook handling you can use any server
 and [`bot.update.handle()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.core/-telegram-update-handler/handle.html)
-function (or use this function if you're directly setting listener), \
-and for set webhook you can use this method:
+function, and for set webhook you can use `setWebhook` method:
 
 ```kotlin
 setWebhook("https://site.com").send(bot)
 ```
+
+### Processing responses
 
 if you want to operate with response you can
 use [`sendAsync()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/send-async.html)
@@ -148,7 +180,6 @@ on which you can also use
 methods [`getOrNull()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/get-or-null.html)
 , [`isSuccess()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/is-success.html)
 , [`onFailure()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/on-failure.html)
-.
 
 # More about
 
