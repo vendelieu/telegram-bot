@@ -191,8 +191,13 @@ class TelegramBot(
                 }
             ) { buildPacket { writeFully(data) } }
 
+            val jsonContentHeaders = Headers.build {
+                append(HttpHeaders.ContentType, ContentType.Application.Json)
+            }
             parameters?.entries?.forEach { entry ->
-                entry.value?.also { append(FormPart(entry.key, mapper.writeValueAsString(it))) }
+                entry.value?.also {
+                    append(FormPart(entry.key, it, jsonContentHeaders))
+                }
             }
         }
     )
