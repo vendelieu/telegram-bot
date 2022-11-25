@@ -18,4 +18,7 @@ class UploadStickerFileAction(private val pngSticker: ImplicitFile<*>) : MediaAc
         get() = "png_sticker"
 }
 
-fun uploadStickerFile(ba: ByteArray) = UploadStickerFileAction(ImplicitFile.InputFile(ba))
+fun uploadStickerFile(string: () -> String) = UploadStickerFileAction(ImplicitFile.FromString(string()))
+fun uploadStickerFile(ba: ByteArray) = UploadStickerFileAction(ImplicitFile.FromByteArray(ba))
+
+fun uploadStickerFile(file: java.io.File) = UploadStickerFileAction(ImplicitFile.FromFile(file))

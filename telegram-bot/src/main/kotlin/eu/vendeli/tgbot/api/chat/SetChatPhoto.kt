@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
+import java.io.File
 
 class SetChatPhotoAction(private val photo: ImplicitFile<*>) : MediaAction<Boolean> {
     override val method: TgMethod = TgMethod("setChatPhoto")
@@ -17,6 +18,8 @@ class SetChatPhotoAction(private val photo: ImplicitFile<*>) : MediaAction<Boole
         get() = "photo"
 }
 
-fun setChatPhoto(block: () -> String) = SetChatPhotoAction(ImplicitFile.FileId(block()))
+fun setChatPhoto(block: () -> String) = SetChatPhotoAction(ImplicitFile.FromString(block()))
 
-fun setChatPhoto(ba: ByteArray) = SetChatPhotoAction(ImplicitFile.InputFile(ba))
+fun setChatPhoto(ba: ByteArray) = SetChatPhotoAction(ImplicitFile.FromByteArray(ba))
+
+fun setChatPhoto(file: File) = SetChatPhotoAction(ImplicitFile.FromFile(file))

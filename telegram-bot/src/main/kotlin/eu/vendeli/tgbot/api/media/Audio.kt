@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AudioOptions
+import java.io.File
 
 class SendAudioAction(private val audio: ImplicitFile<*>) :
     MediaAction<Message>,
@@ -29,6 +30,8 @@ class SendAudioAction(private val audio: ImplicitFile<*>) :
 
 }
 
-fun audio(block: () -> String) = SendAudioAction(ImplicitFile.FileId(block()))
+fun audio(block: () -> String) = SendAudioAction(ImplicitFile.FromString(block()))
 
-fun audio(ba: ByteArray) = SendAudioAction(ImplicitFile.InputFile(ba))
+fun audio(ba: ByteArray) = SendAudioAction(ImplicitFile.FromByteArray(ba))
+
+fun audio(file: File) = SendAudioAction(ImplicitFile.FromFile(file))

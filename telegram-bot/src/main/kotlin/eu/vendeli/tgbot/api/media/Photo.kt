@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PhotoOptions
+import java.io.File
 
 class SendPhotoAction(private val photo: ImplicitFile<*>) :
     MediaAction<Message>,
@@ -28,6 +29,8 @@ class SendPhotoAction(private val photo: ImplicitFile<*>) :
         get() = "photo"
 }
 
-fun photo(block: () -> String) = SendPhotoAction(ImplicitFile.FileId(block()))
+fun photo(block: () -> String) = SendPhotoAction(ImplicitFile.FromString(block()))
 
-fun photo(ba: ByteArray) = SendPhotoAction(ImplicitFile.InputFile(ba))
+fun photo(ba: ByteArray) = SendPhotoAction(ImplicitFile.FromByteArray(ba))
+
+fun photo(file: File) = SendPhotoAction(ImplicitFile.FromFile(file))

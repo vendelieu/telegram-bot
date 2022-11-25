@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.DocumentOptions
+import java.io.File
 
 class SendDocumentAction(private val document: ImplicitFile<*>) :
     MediaAction<Message>,
@@ -28,6 +29,8 @@ class SendDocumentAction(private val document: ImplicitFile<*>) :
         get() = "document"
 }
 
-fun document(block: () -> String) = SendDocumentAction(ImplicitFile.FileId(block()))
+fun document(block: () -> String) = SendDocumentAction(ImplicitFile.FromString(block()))
 
-fun document(ba: ByteArray) = SendDocumentAction(ImplicitFile.InputFile(ba))
+fun document(ba: ByteArray) = SendDocumentAction(ImplicitFile.FromByteArray(ba))
+
+fun document(file: File) = SendDocumentAction(ImplicitFile.FromFile(file))

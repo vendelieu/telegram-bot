@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoOptions
+import java.io.File
 
 class SendVideoAction(private val video: ImplicitFile<*>) :
     MediaAction<Message>,
@@ -28,6 +29,8 @@ class SendVideoAction(private val video: ImplicitFile<*>) :
         get() = "video"
 }
 
-fun video(block: () -> String) = SendVideoAction(ImplicitFile.FileId(block()))
+fun video(block: () -> String) = SendVideoAction(ImplicitFile.FromString(block()))
 
-fun video(ba: ByteArray) = SendVideoAction(ImplicitFile.InputFile(ba))
+fun video(ba: ByteArray) = SendVideoAction(ImplicitFile.FromByteArray(ba))
+
+fun video(file: File) = SendVideoAction(ImplicitFile.FromFile(file))

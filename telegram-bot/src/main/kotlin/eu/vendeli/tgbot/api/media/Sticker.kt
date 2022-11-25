@@ -10,6 +10,7 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.options.StickerOptions
 import eu.vendeli.tgbot.types.internal.TgMethod
+import java.io.File
 
 class SendStickerAction(private val sticker: ImplicitFile<*>) :
     MediaAction<Message>,
@@ -29,6 +30,8 @@ class SendStickerAction(private val sticker: ImplicitFile<*>) :
         get() = "sticker"
 }
 
-fun sticker(block: () -> String) = SendStickerAction(ImplicitFile.FileId(block()))
+fun sticker(block: () -> String) = SendStickerAction(ImplicitFile.FromString(block()))
 
-fun sticker(ba: ByteArray) = SendStickerAction(ImplicitFile.InputFile(ba))
+fun sticker(ba: ByteArray) = SendStickerAction(ImplicitFile.FromByteArray(ba))
+
+fun sticker(file: File) = SendStickerAction(ImplicitFile.FromFile(file))

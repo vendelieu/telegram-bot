@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AnimationOptions
+import java.io.File
 
 class SendAnimationAction(private val animation: ImplicitFile<*>) :
     MediaAction<Message>,
@@ -28,6 +29,8 @@ class SendAnimationAction(private val animation: ImplicitFile<*>) :
         get() = "animation"
 }
 
-fun animation(block: () -> String) = SendAnimationAction(ImplicitFile.FileId(block()))
+fun animation(block: () -> String) = SendAnimationAction(ImplicitFile.FromString(block()))
 
-fun animation(ba: ByteArray) = SendAnimationAction(ImplicitFile.InputFile(ba))
+fun animation(ba: ByteArray) = SendAnimationAction(ImplicitFile.FromByteArray(ba))
+
+fun animation(file: File) = SendAnimationAction(ImplicitFile.FromFile(file))

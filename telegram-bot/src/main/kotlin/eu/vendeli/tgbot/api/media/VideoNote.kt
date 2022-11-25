@@ -10,6 +10,7 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoNoteOptions
+import java.io.File
 
 class SendVideoNoteAction(private val videoNote: ImplicitFile<*>) :
     MediaAction<Message>,
@@ -29,6 +30,8 @@ class SendVideoNoteAction(private val videoNote: ImplicitFile<*>) :
         get() = "video_note"
 }
 
-fun videoNote(block: () -> String) = SendVideoNoteAction(ImplicitFile.FileId(block()))
+fun videoNote(block: () -> String) = SendVideoNoteAction(ImplicitFile.FromString(block()))
 
-fun videoNote(ba: ByteArray) = SendVideoNoteAction(ImplicitFile.InputFile(ba))
+fun videoNote(ba: ByteArray) = SendVideoNoteAction(ImplicitFile.FromByteArray(ba))
+
+fun videoNote(file: File) = SendVideoNoteAction(ImplicitFile.FromFile(file))
