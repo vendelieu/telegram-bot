@@ -43,7 +43,7 @@ class TelegramBotTest {
     fun `test silent requesting`() = runBlocking {
         val silentReq = bot.makeSilentRequest(
             TgMethod("sendMessage"),
-            mapOf("text" to "test", "chat_id" to System.getenv("TELEGRAM_ID"))
+            mapOf("text" to "test", "chat_id" to System.getenv("TELEGRAM_ID").toLong())
         )
 
         assertEquals(silentReq.status, HttpStatusCode.OK)
@@ -122,7 +122,7 @@ class TelegramBotTest {
             "photo",
             "image.jpg",
             image,
-            mapOf("chat_id" to System.getenv("TELEGRAM_ID")),
+            mapOf("chat_id" to System.getenv("TELEGRAM_ID").toLong()),
             ContentType.Image.JPEG
         )
 
@@ -137,7 +137,7 @@ class TelegramBotTest {
                 "photo",
                 "image.jpg",
                 image,
-                mapOf("chat_id" to System.getenv("TELEGRAM_ID")),
+                mapOf("chat_id" to System.getenv("TELEGRAM_ID").toLong()),
                 ContentType.Image.JPEG,
                 Message::class.java,
                 (null as Class<MultipleResponse>?)
