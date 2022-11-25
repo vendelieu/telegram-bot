@@ -1,5 +1,11 @@
 # Telegram-bot changelog
 
+### 2.4.2
+
+* Fix bug when in the media request additional options violates the query itself.
+* Refactor MediaGroup action, implement a separate processing mechanism from usual media actions that takes into account
+  the possibility of sending different types of attachments (string, bytearray, file).
+
 ### 2.4.1
 
 * Fix annotation limits not working
