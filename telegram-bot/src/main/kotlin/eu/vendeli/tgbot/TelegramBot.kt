@@ -23,9 +23,6 @@ import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.utils.*
-import eu.vendeli.tgbot.utils.TELEGRAM_API_URL_PATTERN
-import eu.vendeli.tgbot.utils.TELEGRAM_FILE_URL_PATTERN
-import eu.vendeli.tgbot.utils.convertSuccessResponse
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
@@ -57,13 +54,13 @@ class TelegramBot(
 ) {
     internal val config = BotConfiguration().apply(botConfiguration)
     val inputListener = config.inputListener
-    private val logger = LoggerFactory.getLogger(javaClass)
+    internal val logger = LoggerFactory.getLogger(javaClass)
 
     init {
         (LoggerFactory.getLogger("eu.vendeli.tgbot") as Logger).level = config.logging.botLogLevel
     }
 
-    private fun TgMethod.toUrl() = TELEGRAM_API_URL_PATTERN.format(config.apiHost, token) + name
+    internal fun TgMethod.toUrl() = TELEGRAM_API_URL_PATTERN.format(config.apiHost, token) + name
 
     internal val magicObjects = mutableMapOf<Class<*>, MagicObject<*>>()
 
@@ -202,7 +199,7 @@ class TelegramBot(
         }
     )
 
-    private fun <T, I : MultipleResponse> CoroutineScope.handleResponseAsync(
+    internal fun <T, I : MultipleResponse> CoroutineScope.handleResponseAsync(
         response: HttpResponse,
         returnType: Class<T>,
         innerType: Class<I>? = null,

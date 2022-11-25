@@ -17,8 +17,10 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
     JsonSubTypes.Type(value = InputMedia.Animation::class, name = "animation"),
 )
 sealed class InputMedia(val type: String) {
+    abstract var media: ImplicitFile<*>
+
     data class Audio(
-        val media: String,
+        override var media: ImplicitFile<*>,
         val thumb: ImplicitFile<*>? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
@@ -29,7 +31,7 @@ sealed class InputMedia(val type: String) {
     ) : InputMedia(type = "audio")
 
     data class Document(
-        val media: String,
+        override var media: ImplicitFile<*>,
         val thumb: ImplicitFile<*>? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
@@ -38,14 +40,14 @@ sealed class InputMedia(val type: String) {
     ) : InputMedia(type = "document")
 
     data class Photo(
-        val media: String,
+        override var media: ImplicitFile<*>,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
     ) : InputMedia(type = "photo")
 
     data class Video(
-        val media: String,
+        override var media: ImplicitFile<*>,
         val thumb: ImplicitFile<*>? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
@@ -57,7 +59,7 @@ sealed class InputMedia(val type: String) {
     ) : InputMedia(type = "video")
 
     data class Animation(
-        val media: String,
+        override var media: ImplicitFile<*>,
         val thumb: ImplicitFile<*>? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,

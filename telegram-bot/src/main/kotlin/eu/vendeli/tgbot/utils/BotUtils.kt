@@ -2,15 +2,18 @@ package eu.vendeli.tgbot.utils
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.internal.RateLimits
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.StructuredRequest
-import kotlinx.coroutines.CoroutineName
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
+import eu.vendeli.tgbot.types.internal.TgMethod
+import io.ktor.client.plugins.*
+import io.ktor.client.request.*
+import io.ktor.client.request.forms.*
+import io.ktor.http.*
+import kotlinx.coroutines.*
 import java.lang.reflect.Method
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
@@ -62,6 +65,62 @@ internal suspend fun TelegramUpdateHandler.checkIsLimited(
         return true
     }
     return false
+}
+
+suspend fun <T, I : MultipleResponse> TelegramBot.makeBunchMediaRequestAsync(
+    method: TgMethod,
+    files: Map<String, ByteArray>,
+    parameters: Map<String, Any?>? = null,
+    contentType: ContentType,
+    returnType: Class<T>,
+    innerType: Class<I>? = null,
+): Deferred<Response<out T>> = coroutineScope {
+    val response = httpClient.post(method.toUrl()) {
+        setBody(MultiPartFormDataContent(
+            formData {
+                files.forEach {
+                    append(it.key, it.value, Headers.build {
+                        append(HttpHeaders.ContentDisposition, "filename=${it.key}")
+                        append(HttpHeaders.ContentType, contentType)
+                    })
+                }
+                parameters?.entries?.forEach { entry ->
+                    entry.value?.also { append(FormPart(entry.key, TelegramBot.mapper.writeValueAsString(it))) }
+                }
+            }
+        ))
+        onUpload { bytesSentTotal, contentLength ->
+            logger.trace("Sent $bytesSentTotal bytes from $contentLength, for $method with $parameters")
+        }
+    }
+
+    return@coroutineScope handleResponseAsync(response, returnType, innerType)
+}
+
+suspend fun TelegramBot.makeSilentBunchMediaRequest(
+    method: TgMethod,
+    files: Map<String, ByteArray>,
+    parameters: Map<String, Any?>? = null,
+    contentType: ContentType
+) {
+    httpClient.post(method.toUrl()) {
+        setBody(MultiPartFormDataContent(
+            formData {
+                files.forEach {
+                    append(it.key, it.value, Headers.build {
+                        append(HttpHeaders.ContentDisposition, "filename=${it.key}")
+                        append(HttpHeaders.ContentType, contentType)
+                    })
+                }
+                parameters?.entries?.forEach { entry ->
+                    entry.value?.also { append(FormPart(entry.key, TelegramBot.mapper.writeValueAsString(it))) }
+                }
+            }
+        ))
+        onUpload { bytesSentTotal, contentLength ->
+            logger.trace("Sent $bytesSentTotal bytes from $contentLength, for $method with $parameters")
+        }
+    }
 }
 
 internal fun <T, I : MultipleResponse> ObjectMapper.convertSuccessResponse(
