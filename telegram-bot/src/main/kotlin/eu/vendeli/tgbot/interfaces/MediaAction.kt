@@ -3,7 +3,12 @@ package eu.vendeli.tgbot.interfaces
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.*
+import io.ktor.http.*
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.io.File
+import java.nio.file.Files
 
 /**
  * Media action, see [Actions article](https://github.com/vendelieu/telegram-bot/wiki/Actions)
@@ -66,18 +71,32 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
         parameters["chat_id"] = to.get()
 
         when (media) {
-            is ImplicitFile.FileId -> {
+            is ImplicitFile.FromString -> {
                 parameters[dataField] = media.file
                 via.makeSilentRequest(method, parameters)
             }
 
-            is ImplicitFile.InputFile -> via.makeSilentRequest(
+            is ImplicitFile.FromByteArray -> via.makeSilentRequest(
                 method,
                 dataField,
                 (parameters["file_name"]?.toString() ?: "$dataField.$defaultType"),
                 media.file as ByteArray,
                 parameters,
                 defaultType.toContentType()
+            )
+
+            is ImplicitFile.FromFile -> via.makeSilentRequest(
+                method,
+                dataField,
+                (parameters["file_name"]?.toString() ?: (media.file as File).name),
+                (media.file as File).readBytes(),
+                parameters,
+                withContext(Dispatchers.IO) {
+                    ContentType.parse(
+                        Files.probeContentType((media.file as File).toPath())
+                            ?: return@withContext defaultType.toContentType()
+                    )
+                },
             )
         }
     }
@@ -98,18 +117,34 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
         parameters["chat_id"] = to.get()
 
         return when (media) {
-            is ImplicitFile.FileId -> {
+            is ImplicitFile.FromString -> {
                 parameters[dataField] = media.file
                 via.makeRequestAsync(method, parameters, returnType, bunchResponseInnerType())
             }
 
-            is ImplicitFile.InputFile -> via.makeRequestAsync(
+            is ImplicitFile.FromByteArray -> via.makeRequestAsync(
                 method,
                 dataField,
                 (parameters["file_name"]?.toString() ?: "$dataField.$defaultType"),
                 media.file as ByteArray,
                 parameters,
                 defaultType.toContentType(),
+                returnType,
+                bunchResponseInnerType()
+            )
+
+            is ImplicitFile.FromFile -> via.makeRequestAsync(
+                method,
+                dataField,
+                (parameters["file_name"]?.toString() ?: (media.file as File).name),
+                (media.file as File).readBytes(),
+                parameters,
+                withContext(Dispatchers.IO) {
+                    ContentType.parse(
+                        Files.probeContentType((media.file as File).toPath())
+                            ?: return@withContext defaultType.toContentType()
+                    )
+                },
                 returnType,
                 bunchResponseInnerType()
             )
