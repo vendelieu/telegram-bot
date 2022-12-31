@@ -1,31 +1,28 @@
 package eu.vendeli
 
+import BotTestContext
 import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.core.TokenBucketLimiterImpl
 import eu.vendeli.tgbot.types.*
-import eu.vendeli.tgbot.types.internal.RateLimits
 import eu.vendeli.tgbot.types.internal.Response
+import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import io.kotest.core.spec.IsolationMode
+import io.kotest.matchers.shouldBe
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
 import io.ktor.utils.io.*
-import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestInstance
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.random.Random.Default.nextInt
 import kotlin.random.Random.Default.nextLong
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class RateLimitingTest {
-    private lateinit var bot: TelegramBot
+class RateLimitingTest : BotTestContext(false) {
+    override fun isolationMode(): IsolationMode = IsolationMode.InstancePerTest
 
     @BeforeAll
-    fun prepareTestBot() {
+    fun prepareBot() {
         bot = TelegramBot("not necessary") {
             rateLimiter = TokenBucketLimiterImpl()
             logging {
@@ -55,29 +52,30 @@ class RateLimitingTest {
     }
 
     @Test
-    fun `test limit exceeding`() = runBlocking {
+    suspend fun `test limit exceeding`() {
         val hitsCounter = AtomicInteger(0)
-        val loopsCounter = AtomicInteger(0)
+        val loopCounter = AtomicInteger(0)
 
         bot.update.setListener {
+            if (loopCounter.incrementAndGet() == 10) stopListener()
             bot.update.handle(it) {
                 onMessage {
                     hitsCounter.incrementAndGet()
                 }
             }
-            if (loopsCounter.incrementAndGet() == 10) stopListener()
         }
-        assertEquals(hitsCounter.get(), 5)
-        assertEquals(loopsCounter.get(), 10)
+        hitsCounter.get() shouldBe 5
+        loopCounter.get() shouldBe 10
     }
 
     @Test
-    fun `test certain command limit exceeding`() = runBlocking {
+    suspend fun `test certain command limit exceeding`() {
         val messageHitsCounter = AtomicInteger(0)
         val commandHitsCounter = AtomicInteger(0)
         val loopsCounter = AtomicInteger(0)
 
         bot.update.setListener {
+            if (loopsCounter.incrementAndGet() == 20) stopListener()
             bot.update.handle(it) {
                 onMessage {
                     messageHitsCounter.incrementAndGet()
@@ -86,10 +84,9 @@ class RateLimitingTest {
                     commandHitsCounter.incrementAndGet()
                 }
             }
-            if (loopsCounter.incrementAndGet() == 20) stopListener()
         }
-        assertEquals(messageHitsCounter.get(), 5)
-        assertEquals(commandHitsCounter.get(), 2)
-        assertEquals(loopsCounter.get(), 20)
+        messageHitsCounter.get() shouldBe 5
+        commandHitsCounter.get() shouldBe 2
+        loopsCounter.get() shouldBe 20
     }
 }

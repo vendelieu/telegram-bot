@@ -1,16 +1,15 @@
 import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.HttpLogLevel
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.TestInstance
+import io.kotest.core.spec.style.AnnotationSpec
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-abstract class BotTestContext {
+abstract class BotTestContext(private val withPreparedBot: Boolean = true) : AnnotationSpec() {
     protected lateinit var bot: TelegramBot
+    protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
     @BeforeAll
     fun prepareTestBot() {
-        bot = TelegramBot(System.getenv("BOT_TOKEN"), "eu.vendeli") {
+        if (withPreparedBot) bot = TelegramBot(System.getenv("BOT_TOKEN"), "eu.vendeli") {
             logging {
                 botLogLevel = Level.TRACE
                 httpLogLevel = HttpLogLevel.ALL

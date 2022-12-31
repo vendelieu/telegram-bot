@@ -1,31 +1,33 @@
 package eu.vendeli
 
 import eu.vendeli.tgbot.core.TelegramActionsCollector
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.TestInstance
+import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.collections.shouldContain
+import io.kotest.matchers.maps.shouldNotBeEmpty
+import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class AnnotationsTest {
     @ParameterizedTest
     @ValueSource(strings = ["eu", "eu.vendeli", "other.pckg"])
     fun `annotated methods scanning test`(pckg: String) {
         val actionsFromAnnotations = TelegramActionsCollector.collect(pckg)
 
-        assertTrue(actionsFromAnnotations.commands.isNotEmpty())
-        assertTrue(actionsFromAnnotations.inputs.isNotEmpty())
-        assertNotNull(actionsFromAnnotations.unhandled)
+        actionsFromAnnotations.commands.shouldNotBeEmpty()
+        actionsFromAnnotations.inputs.shouldNotBeEmpty()
+        actionsFromAnnotations.unhandled.shouldNotBeNull()
 
-        assertEquals(3, actionsFromAnnotations.commands.size)
-        assertEquals(3, actionsFromAnnotations.inputs.size)
+        actionsFromAnnotations.commands.size shouldBe 3
+        actionsFromAnnotations.inputs.size shouldBe 3
 
-        assertTrue(actionsFromAnnotations.commands.keys.contains("test"))
-        assertTrue(actionsFromAnnotations.commands.keys.contains("test2"))
-        assertTrue(actionsFromAnnotations.commands.keys.contains("test3"))
+        actionsFromAnnotations.commands.keys shouldContain "test"
+        actionsFromAnnotations.commands.keys shouldContain "test2"
+        actionsFromAnnotations.commands.keys shouldContain "test3"
 
-        assertTrue(actionsFromAnnotations.inputs.keys.contains("testInp"))
-        assertTrue(actionsFromAnnotations.inputs.keys.contains("testInp2"))
-        assertTrue(actionsFromAnnotations.inputs.keys.contains("testInp3"))
+        actionsFromAnnotations.inputs.keys shouldContain "testInp"
+        actionsFromAnnotations.inputs.keys shouldContain "testInp2"
+        actionsFromAnnotations.inputs.keys shouldContain "testInp3"
     }
 }

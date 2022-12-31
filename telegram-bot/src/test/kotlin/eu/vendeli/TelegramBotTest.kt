@@ -1,5 +1,6 @@
 package eu.vendeli
 
+import BotTestContext
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
@@ -9,34 +10,32 @@ import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.*
+import eu.vendeli.tgbot.utils.makeRequestAsync
+import eu.vendeli.tgbot.utils.makeSilentRequest
+import io.kotest.assertions.throwables.shouldNotThrow
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.booleans.shouldBeFalse
+import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.equality.shouldBeEqualToComparingFields
+import io.kotest.matchers.nulls.shouldBeNull
+import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
+import io.kotest.matchers.string.shouldNotBeBlank
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestInstance
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class TelegramBotTest {
-    private lateinit var bot: TelegramBot
-    private var classloader = Thread.currentThread().contextClassLoader
-
-    @BeforeAll
-    fun prepareTestBot() {
-        bot = TelegramBot(System.getenv("BOT_TOKEN"))
-    }
-
+class TelegramBotTest : BotTestContext() {
     @Test
     fun `requests testing`() = runBlocking {
         val getMeReq = bot.makeRequestAsync(
             TgMethod("getMe"), null, User::class.java, (null as Class<MultipleResponse>?)
         ).await().getOrNull()
 
-        assertNotNull(getMeReq)
-        assertEquals("testbot", getMeReq?.firstName)
-        assertTrue(getMeReq?.isBot ?: false)
+        getMeReq.shouldNotBeNull()
+        getMeReq.isBot.shouldBeTrue()
     }
 
     @Test
@@ -46,14 +45,14 @@ class TelegramBotTest {
             mapOf("text" to "test", "chat_id" to System.getenv("TELEGRAM_ID").toLong())
         )
 
-        assertEquals(silentReq.status, HttpStatusCode.OK)
-        assertTrue(silentReq.bodyAsText().isNotBlank())
-        assertTrue(silentReq.bodyAsText().contains("\"ok\":true"))
-        assertTrue(silentReq.bodyAsText().contains("\"text\":\"test\""))
+        silentReq.status shouldBe HttpStatusCode.OK
+        silentReq.bodyAsText().shouldNotBeBlank()
+        silentReq.bodyAsText() shouldContain "\"ok\":true"
+        silentReq.bodyAsText() shouldContain "\"text\":\"test\""
     }
 
     @Test
-    fun `failure response handling`(): Unit = runBlocking {
+    suspend fun `failure response handling`() {
         val failureReq = bot.makeRequestAsync(
             TgMethod("sendMessage"),
             mapOf("text" to "test"),
@@ -61,61 +60,66 @@ class TelegramBotTest {
             (null as Class<MultipleResponse>?)
         ).await()
 
-        assertFalse(failureReq.isSuccess())
-        assertNull(failureReq.getOrNull())
+        failureReq.isSuccess().shouldBeFalse()
+        failureReq.getOrNull().shouldBeNull()
 
         failureReq.onFailure {
-            assertFalse(it.ok)
-            assertEquals(400, it.errorCode)
-            assertEquals("Bad Request: chat_id is empty", it.description)
+            it.ok.shouldBeFalse()
+            it.errorCode shouldBe 400
+            it.description shouldBe "Bad Request: chat_id is empty"
         }
     }
 
     @Test
     fun `user data setting`() {
-        assertNull(bot.userData)
-        bot.userData = userDataImpl
-        assertNotNull(bot.userData)
-        assertEquals(userDataImpl, bot.userData)
+        val bot = TelegramBot("") {
+            context {
+                userData = userDataImpl
+            }
+        }
+
+        shouldNotThrow<NotImplementedError> { bot.userData }
+        bot.userData shouldBeEqualToComparingFields userDataImpl
+    }
+
+    @Test
+    fun `chat data not set`() {
+        shouldThrow<NotImplementedError> {
+            bot.chatData
+        }
     }
 
     @Test
     fun `chat data setting`() {
-        assertNull(bot.chatData)
-        bot.chatData = chatDataImpl
-        assertNotNull(bot.chatData)
-        assertEquals(chatDataImpl, bot.chatData)
+        val bot = TelegramBot("") {
+            context {
+                chatData = chatDataImpl
+            }
+        }
+
+        shouldNotThrow<NotImplementedError> { bot.chatData }
+        bot.chatData shouldBeEqualToComparingFields chatDataImpl
     }
 
     @Test
     fun `adding magic object`() {
         bot.addMagicObject(TgMethod::class.java) {
             object : MagicObject<TgMethod> {
-                override fun get(update: ProcessedUpdate, bot: TelegramBot): TgMethod? {
-                    return TgMethod("test")
-                }
+                override fun get(update: ProcessedUpdate, bot: TelegramBot): TgMethod =
+                    TgMethod("test")
             }
         }
 
-        assertNotNull(bot.magicObjects[TgMethod::class.java])
+        bot.magicObjects[TgMethod::class.java].shouldNotBeNull()
 
-        assertEquals(
-            TgMethod("test"),
-            bot.magicObjects[TgMethod::class.java]?.get(
-                ProcessedUpdate(
-                    UpdateType.MESSAGE,
-                    null,
-                    User.EMPTY,
-                    Update(-1)
-                ),
-                bot
-            )
-        )
+        bot.magicObjects[TgMethod::class.java]?.get(dummyProcessedUpdate, bot)
+            ?.shouldBeEqualToComparingFields(TgMethod("test"))
     }
 
     @Test
     fun `media request handling`() = runBlocking {
-        val image = classloader.getResource("image.png")?.readBytes() ?: ByteArray(0)
+        val image = classloader.getResource("image.png")?.readBytes()
+        image.shouldNotBeNull()
 
         val mediaReq = bot.makeSilentRequest(
             TgMethod("sendPhoto"),
@@ -126,109 +130,87 @@ class TelegramBotTest {
             ContentType.Image.JPEG
         )
 
-        assertEquals(mediaReq.status, HttpStatusCode.OK)
-        assertTrue(mediaReq.bodyAsText().isNotBlank())
-        assertTrue(mediaReq.bodyAsText().contains("\"ok\":true"))
-        assertTrue(mediaReq.bodyAsText().contains("\"file_id\""))
-
-        assertTrue(
-            bot.makeRequestAsync(
-                TgMethod("sendPhoto"),
-                "photo",
-                "image.jpg",
-                image,
-                mapOf("chat_id" to System.getenv("TELEGRAM_ID").toLong()),
-                ContentType.Image.JPEG,
-                Message::class.java,
-                (null as Class<MultipleResponse>?)
-            ).await().isSuccess()
-        )
+        mediaReq.status shouldBe HttpStatusCode.OK
+        mediaReq.bodyAsText().isNotBlank().shouldBeTrue()
+        mediaReq.bodyAsText() shouldContain "\"ok\":true"
+        mediaReq.bodyAsText() shouldContain "\"file_id\""
+        bot.makeRequestAsync(
+            TgMethod("sendPhoto"),
+            "photo",
+            "image.jpg",
+            image,
+            mapOf("chat_id" to System.getenv("TELEGRAM_ID").toLong()),
+            ContentType.Image.JPEG,
+            Message::class.java,
+            (null as Class<MultipleResponse>?)
+        ).await().isSuccess().shouldBeTrue()
     }
 
     @Test
     fun `getting file url`() = runBlocking {
-        val image = classloader.getResource("image.png")?.readBytes() ?: ByteArray(0)
+        val image = classloader.getResource("image.png")?.readBytes()
+        image.shouldNotBeNull()
+
         val fileId = photo(image).sendAsync(System.getenv("TELEGRAM_ID").toLong(), bot).await()
             .getOrNull()?.photo?.first()?.fileId ?: throw NullPointerException()
 
         val file = getFile(fileId).sendAsync(bot).await().getOrNull()
 
-        assertNotNull(file)
-
-        val fileUrl = bot.getFileDirectUrl(file!!)
-        assertNotNull(fileUrl)
+        file.shouldNotBeNull()
+        val fileUrl = bot.getFileDirectUrl(file)
+        fileUrl.shouldNotBeNull()
 
         val fileBA = bot.getFileContent(file)
-        assertNotNull(fileBA)
+        fileBA.shouldNotBeNull()
     }
 
     @Test
     fun `try to get file without filePath`() = runBlocking {
         val file = File("", "")
-        assertNull(bot.getFileDirectUrl(file))
-        assertNull(bot.getFileContent(file))
+        bot.getFileDirectUrl(file).shouldBeNull()
+        bot.getFileContent(file).shouldBeNull()
     }
 
     companion object {
+        val dummyProcessedUpdate = ProcessedUpdate(
+            UpdateType.MESSAGE,
+            null,
+            User.EMPTY,
+            Update(-1)
+        )
+
         val userDataImpl = object : BotUserData {
-            override fun set(telegramId: Long, key: String, value: Any?) {
+            override fun set(telegramId: Long, key: String, value: Any?) = TODO("Not yet implemented")
+            override suspend fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean> =
                 TODO("Not yet implemented")
-            }
 
-            override suspend fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean> {
+            override fun get(telegramId: Long, key: String): Any = TODO("Not yet implemented")
+            override suspend fun getAsync(telegramId: Long, key: String): Deferred<Any?> =
                 TODO("Not yet implemented")
-            }
 
-            override fun get(telegramId: Long, key: String): Any? {
+            override fun del(telegramId: Long, key: String) = TODO("Not yet implemented")
+            override suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean> =
                 TODO("Not yet implemented")
-            }
-
-            override suspend fun getAsync(telegramId: Long, key: String): Deferred<Any?> {
-                TODO("Not yet implemented")
-            }
-
-            override fun del(telegramId: Long, key: String) {
-                TODO("Not yet implemented")
-            }
-
-            override suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean> {
-                TODO("Not yet implemented")
-            }
         }
 
         val chatDataImpl = object : BotChatData {
-            override fun set(telegramId: Long, key: String, value: Any?) {
+            override fun set(telegramId: Long, key: String, value: Any?) = TODO("Not yet implemented")
+            override suspend fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean> =
                 TODO("Not yet implemented")
-            }
 
-            override suspend fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean> {
+            override fun get(telegramId: Long, key: String): Any =
                 TODO("Not yet implemented")
-            }
 
-            override fun get(telegramId: Long, key: String): Any? {
+            override suspend fun getAsync(telegramId: Long, key: String): Deferred<Any?> =
                 TODO("Not yet implemented")
-            }
 
-            override suspend fun getAsync(telegramId: Long, key: String): Deferred<Any?> {
+            override fun del(telegramId: Long, key: String) = TODO("Not yet implemented")
+            override suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean> =
                 TODO("Not yet implemented")
-            }
 
-            override fun del(telegramId: Long, key: String) {
+            override fun delPrevChatSection(telegramId: Long) = TODO("Not yet implemented")
+            override suspend fun delPrevChatSectionAsync(telegramId: Long): Deferred<Boolean> =
                 TODO("Not yet implemented")
-            }
-
-            override suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean> {
-                TODO("Not yet implemented")
-            }
-
-            override fun delPrevChatSection(telegramId: Long) {
-                TODO("Not yet implemented")
-            }
-
-            override suspend fun delPrevChatSectionAsync(telegramId: Long): Deferred<Boolean> {
-                TODO("Not yet implemented")
-            }
-
         }
     }
 }

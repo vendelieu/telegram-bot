@@ -1,44 +1,49 @@
 package eu.vendeli.api.botactions
 
-import eu.vendeli.tgbot.TelegramBot
+import BotTestContext
 import eu.vendeli.tgbot.api.botactions.close
 import eu.vendeli.tgbot.interfaces.sendAsync
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
-import kotlinx.coroutines.runBlocking
+import io.kotest.core.annotation.Ignored
+import io.kotest.matchers.booleans.shouldBeFalse
+import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.nulls.shouldBeNull
+import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
+import kotlinx.coroutines.delay
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
+import kotlin.time.Duration.Companion.seconds
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
-class CloseTest {
-    private lateinit var bot: TelegramBot
-
-    @BeforeAll
-    fun prepareTestBot() {
-        bot = TelegramBot(System.getenv("BOT_TOKEN"), "eu.vendeli")
-    }
-
+@Ignored("should have big delay")
+class CloseTest : BotTestContext() {
     @Test
     @Order(1)
-    fun `close method testing`(): Unit = runBlocking {
+    suspend fun `close method testing`() {
         val result = close().sendAsync(bot).await()
-        assertTrue(result.ok)
-        assertTrue(result.isSuccess())
-        assertNotNull(result.getOrNull())
+        result.onFailure { failure ->
+            failure.parameters?.retryAfter?.also {
+                delay(it.seconds)
+            }
+        }
+        result.ok.shouldBeTrue()
+        result.isSuccess().shouldBeTrue()
+        result.getOrNull().shouldNotBeNull()
     }
 
     @Test
     @Order(2)
-    fun `getting too many requests`(): Unit = runBlocking {
+    suspend fun `getting too many requests`() {
         val result = close().sendAsync(bot).await()
-        assertFalse(result.ok)
-        assertNull(result.getOrNull())
+        result.ok.shouldBeFalse()
+        result.getOrNull().shouldBeNull()
         result.onFailure {
-            assertEquals(429, it.errorCode)
-            assertNotNull(it.parameters?.retryAfter)
-            assertTrue((it.parameters?.retryAfter ?: 0) > 0)
+            it.errorCode shouldBe 429
+            it.parameters?.retryAfter.shouldNotBeNull()
+            ((it.parameters?.retryAfter ?: 0) > 0).shouldBeTrue()
         }
     }
 }

@@ -1,7 +1,7 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.7.21"
+    id("org.jetbrains.kotlin.jvm") version "1.8.0"
     `maven-publish`
     `java-library`
     id("org.jetbrains.dokka") version "1.7.20"
@@ -15,6 +15,7 @@ val logbackVer: String by project
 val jacksonVer: String by project
 val ktorVer: String by project
 val junitVer: String by project
+val kotestVer: String by project
 
 val javaTargetVersion = JavaVersion.VERSION_11
 
@@ -38,8 +39,8 @@ dependencies {
     api(group = "ch.qos.logback", name = "logback-classic", version = logbackVer)
 
     testImplementation("ch.qos.logback:logback-classic:$logbackVer")
-    testImplementation("org.junit.jupiter:junit-jupiter:$junitVer")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVer")
+    testImplementation("io.kotest:kotest-runner-junit5:$kotestVer")
+    testImplementation("io.kotest:kotest-assertions-core:$kotestVer")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVer")
     testImplementation("io.ktor:ktor-client-mock:$ktorVer")
 }
@@ -110,9 +111,12 @@ tasks.withType<DokkaTask>().configureEach {
 }
 
 tasks.compileKotlin {
+    kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
     incremental = true
 }
-
+tasks.compileTestKotlin {
+    kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
+}
 tasks.test {
     useJUnitPlatform()
 }
