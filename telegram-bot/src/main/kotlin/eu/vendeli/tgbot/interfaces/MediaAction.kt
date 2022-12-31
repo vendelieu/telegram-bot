@@ -15,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.nio.file.Files
+import kotlin.collections.set
 
 /**
  * Media action, see [Actions article](https://github.com/vendelieu/telegram-bot/wiki/Actions)

@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.types.WebAppInfo
  * Builder which is used to assemble the inline markup buttons.
  * [InlineKeyboardButton API](https://core.telegram.org/bots/api#inlinekeyboardbutton)
  */
-@Suppress("unused", "MemberVisibilityCanBePrivate", "UNUSED_PARAMETER")
+@Suppress("unused", "MemberVisibilityCanBePrivate", "TooManyFunctions")
 class InlineKeyboardMarkupBuilder {
     private val buttons = mutableListOf<InlineKeyboardButton?>()
 
@@ -137,20 +137,6 @@ class InlineKeyboardMarkupBuilder {
      * @param value
      */
     infix fun String.switchInlineQuery(value: String) = switchInlineQuery(this) { value }
-
-    /**
-     * Callback game button infix interface
-     *
-     * @param value
-     */
-    infix fun String.callbackGame(value: Unit) = callbackGame(this)
-
-    /**
-     * Pay button infix interface
-     *
-     * @param value
-     */
-    infix fun String.pay(value: Unit) = pay(this)
 
     /**
      * The function that collects and returns [InlineKeyboardMarkup]

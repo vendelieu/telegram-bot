@@ -1,7 +1,11 @@
 @file:Suppress("MatchingDeclarationName")
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.*
+import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.MultiResponseOf
+import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.interfaces.TgAction
+import eu.vendeli.tgbot.interfaces.getInnerType
 import eu.vendeli.tgbot.types.ChatMember
 import eu.vendeli.tgbot.types.internal.TgMethod
 

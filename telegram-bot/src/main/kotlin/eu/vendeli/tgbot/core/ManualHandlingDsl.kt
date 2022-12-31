@@ -40,7 +40,7 @@ import eu.vendeli.tgbot.utils.parseQuery
  *
  * @property inputListener
  */
-@Suppress("unused", "MemberVisibilityCanBePrivate")
+@Suppress("unused", "MemberVisibilityCanBePrivate", "TooManyFunctions")
 class ManualHandlingDsl internal constructor(
     private val bot: TelegramBot,
     private val inputListener: BotInputListener,

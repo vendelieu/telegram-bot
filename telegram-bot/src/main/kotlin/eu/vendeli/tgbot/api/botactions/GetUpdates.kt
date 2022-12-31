@@ -1,9 +1,13 @@
 @file:Suppress("MatchingDeclarationName")
 package eu.vendeli.tgbot.api.botactions
 
-import eu.vendeli.tgbot.interfaces.*
+import eu.vendeli.tgbot.interfaces.MultiResponseOf
+import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.OptionAble
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
+import eu.vendeli.tgbot.interfaces.getInnerType
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.GetUpdatesOptions
