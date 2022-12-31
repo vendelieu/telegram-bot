@@ -2,7 +2,6 @@ package eu.vendeli.tgbot.utils.builders
 
 import eu.vendeli.tgbot.types.EntityType
 import eu.vendeli.tgbot.types.MessageEntity
-import eu.vendeli.tgbot.types.User
 
 /**
  * Entities builder which is used in EntitiesFeature
@@ -24,10 +23,10 @@ class EntitiesBuilder {
         type: EntityType,
         offset: Int,
         length: Int,
-        url: String? = null,
-        user: User? = null,
-        language: String? = null,
+        block: EntityData.() -> Unit
     ) {
-        listOfEntities.add(MessageEntity(type, offset, length, url, user, language))
+        EntityData().apply(block).also {
+            listOfEntities.add(MessageEntity(type, offset, length, it.url, it.user, it.language))
+        }
     }
 }

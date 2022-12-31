@@ -243,9 +243,14 @@ class ManualHandlingDsl internal constructor(
         block: OnInputAction
     ): SingleInputChain {
         val nextLevel = currentLevel + 1
-        val newId = if (currentLevel > 0) id.replace(
-            "_chain_lvl_$currentLevel", "_chain_lvl_$nextLevel"
-        ) else id + "_chain_lvl_1"
+        val newId = if (currentLevel > 0) {
+            id.replace(
+                "_chain_lvl_$currentLevel",
+                "_chain_lvl_$nextLevel"
+            )
+        } else {
+            id + "_chain_lvl_1"
+        }
 
         manualActions.onInput[id]?.tail = newId
         manualActions.onInput[newId] = SingleInputChain(newId, block, rateLimits, nextLevel)
@@ -324,19 +329,10 @@ class ManualHandlingDsl internal constructor(
             editedMessage != null -> manualActions.onEditedMessage?.invoke(ActionContext(update, editedMessage))
             pollAnswer != null -> manualActions.onPollAnswer?.invoke(ActionContext(update, pollAnswer))
             callbackQuery != null -> {
-                /**
-                 * Disclaimer from Telegram Docs:
-                 * NOTE: After the user presses a callback button,
-                 * Telegram clients will display a progress bar until you call answerCallbackQuery.
-                 * It is, therefore, necessary to react by calling answerCallbackQuery
-                 * even if no notification to the user is needed
-                 * (e.g., without specifying any of the optional parameters).
-                 *
-                 * So if there's no action for onCallbackQuery we're automatically responding, to complete api contract.
-                 */
                 manualActions.onCallbackQuery?.invoke(ActionContext(update, callbackQuery)) ?: answerCallbackQuery(
                     callbackQuery.id
                 ).send(callbackQuery.from, bot)
+
                 if (callbackQuery.data != null) checkMessageForActions(update, callbackQuery.from, callbackQuery.data)
             }
 
@@ -349,19 +345,22 @@ class ManualHandlingDsl internal constructor(
             shippingQuery != null -> manualActions.onShippingQuery?.invoke(ActionContext(update, shippingQuery))
             preCheckoutQuery != null -> manualActions.onPreCheckoutQuery?.invoke(
                 ActionContext(
-                    update, preCheckoutQuery
+                    update,
+                    preCheckoutQuery
                 )
             )
 
             editedChannelPost != null -> manualActions.onEditedChannelPost?.invoke(
                 ActionContext(
-                    update, editedChannelPost
+                    update,
+                    editedChannelPost
                 )
             )
 
             chosenInlineResult != null -> manualActions.onChosenInlineResult?.invoke(
                 ActionContext(
-                    update, chosenInlineResult
+                    update,
+                    chosenInlineResult
                 )
             )
 

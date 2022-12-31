@@ -1,4 +1,5 @@
 @file:Suppress("MatchingDeclarationName")
+
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
@@ -6,20 +7,13 @@ import eu.vendeli.tgbot.interfaces.features.MarkupAble
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionAble
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.Currency
-import eu.vendeli.tgbot.types.LabeledPrice
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.InvoiceOptions
+import eu.vendeli.tgbot.utils.builders.InvoiceData
 
-class SendInvoiceAction(
-    title: String,
-    description: String,
-    payload: String,
-    providerToken: String,
-    currency: Currency,
-    prices: Array<out LabeledPrice>,
-) : Action<Message>,
+class SendInvoiceAction(data: InvoiceData) :
+    Action<Message>,
     OptionAble,
     MarkupAble,
     OptionsFeature<SendInvoiceAction, InvoiceOptions>,
@@ -29,20 +23,18 @@ class SendInvoiceAction(
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     init {
-        parameters["title"] = title
-        parameters["description"] = description
-        parameters["payload"] = payload
-        parameters["provider_token"] = providerToken
-        parameters["currency"] = currency.name
-        parameters["prices"] = prices
+        data.checkIsAllFieldsPresent()
+
+        parameters["title"] = data.title
+        parameters["description"] = data.description
+        parameters["payload"] = data.payload
+        parameters["provider_token"] = data.providerToken
+        parameters["currency"] = data.currency.name
+        parameters["prices"] = data.prices
     }
 }
 
-fun invoice(
-    title: String,
-    description: String,
-    payload: String,
-    providerToken: String,
-    currency: Currency,
-    vararg prices: LabeledPrice,
-) = SendInvoiceAction(title, description, payload, providerToken, currency, prices)
+fun invoice(block: InvoiceData.() -> Unit) =
+    SendInvoiceAction(InvoiceData().apply(block))
+
+fun invoice(data: InvoiceData) = SendInvoiceAction(data)
