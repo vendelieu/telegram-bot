@@ -53,8 +53,21 @@ class TelegramBot(
     botConfiguration: BotConfigurator = {}
 ) {
     internal val config = BotConfiguration().apply(botConfiguration)
-    val inputListener = config.inputListener
-    internal val logger = LoggerFactory.getLogger(javaClass)
+
+    /**
+     * A tool for managing input waiting.
+     */
+    val inputListener get() = config.inputListener
+
+    /**
+     * A tool for managing User context.
+     */
+    val userData get() = config.context.userData
+
+    /**
+     * A tool for managing Chat context.
+     */
+    val chatData get() = config.context.chatData
 
     init {
         (LoggerFactory.getLogger("eu.vendeli.tgbot") as Logger).level = config.logging.botLogLevel

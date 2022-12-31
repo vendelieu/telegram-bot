@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.internal
 
+import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.OnInputAction
 
 class SingleInputChain(

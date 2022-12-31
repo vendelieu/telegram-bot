@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
-import eu.vendeli.tgbot.types.internal.RateLimits
+import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import kotlinx.coroutines.delay
 import java.time.Instant
 import java.time.temporal.ChronoUnit
@@ -26,7 +26,7 @@ data class BucketState(
  */
 open class TokenBucketLimiterImpl : RateLimitMechanism {
     private val state: ConcurrentHashMap<String, AtomicReference<BucketState>> = ConcurrentHashMap()
-    private val instant: Instant get() = run { Instant.now() }
+    private val instant: Instant get() { return Instant.now() }
 
     private suspend fun compareAndSet(key: String, compareAndSetFunction: (current: BucketState?) -> BucketState) {
         val currentState = state[key]

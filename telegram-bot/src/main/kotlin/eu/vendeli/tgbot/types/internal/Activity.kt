@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.types.internal
 
+import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+
 data class Activity(
     val id: String,
     val invocation: Invocation,

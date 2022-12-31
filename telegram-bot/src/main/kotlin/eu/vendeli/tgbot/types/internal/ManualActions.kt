@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.internal
 
+import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.*
 
 sealed class CommandSelector {
@@ -10,7 +11,7 @@ sealed class CommandSelector {
 
     fun match(command: kotlin.String): Boolean = when (this) {
         is String -> command == this.command
-        is Regex -> this.regex.matches(command)
+        is Regex -> regex.matches(command)
     }
 }
 

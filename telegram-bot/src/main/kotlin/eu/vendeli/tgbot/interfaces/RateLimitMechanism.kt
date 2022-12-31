@@ -2,7 +2,7 @@ package eu.vendeli.tgbot.interfaces
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.message
-import eu.vendeli.tgbot.types.internal.RateLimits
+import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 
 /**
  * Interface to implement features for request limits.

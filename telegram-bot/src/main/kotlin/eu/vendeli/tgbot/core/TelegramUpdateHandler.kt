@@ -29,8 +29,10 @@ class TelegramUpdateHandler internal constructor(
     private val inputListener: BotInputListener,
     internal val rateLimiter: RateLimitMechanism
 ) {
-    internal val logger = LoggerFactory.getLogger(this::class.java)
+    internal val logger = LoggerFactory.getLogger(javaClass)
     private lateinit var listener: InputListenerBlock
+
+    @Volatile
     private var handlerActive: Boolean = false
     private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot, inputListener) }
 
@@ -39,7 +41,7 @@ class TelegramUpdateHandler internal constructor(
      *
      * @param offset
      */
-    private tailrec suspend fun runListener(offset: Int? = null): Int {
+    private tailrec suspend fun runListener(offset: Int? = null): Int = with(bot.config.updatesListener) {
         logger.trace("Running listener with offset - $offset")
         if (!handlerActive) {
             coroutineContext.cancelChildren()
@@ -47,12 +49,12 @@ class TelegramUpdateHandler internal constructor(
         }
         var lastUpdateId: Int = offset ?: 0
         bot.pullUpdates(offset)?.forEach {
-            CreateNewCoroutineContext(coroutineContext).launch(Dispatchers.IO) {
+            CreateNewCoroutineContext(coroutineContext + dispatcher).launch {
                 listener(this@TelegramUpdateHandler, it)
             }
             lastUpdateId = it.updateId + 1
         }
-        delay(100)
+        delay(pullingDelay)
         return runListener(lastUpdateId)
     }
 
@@ -61,7 +63,6 @@ class TelegramUpdateHandler internal constructor(
      * When set, it starts an update processing cycle.
      *
      * @param block action that will be applied.
-     * @receiver [CoroutineContext]
      */
     suspend fun setListener(block: InputListenerBlock) {
         if (handlerActive) stopListener()
@@ -183,11 +184,11 @@ class TelegramUpdateHandler internal constructor(
                     else -> add(null)
                 }
             }
-        }
+        }.toTypedArray()
 
-        bot.chatData?.run {
-            logger.trace("Handling BotContext for Update#${update.fullUpdate.updateId}")
+        bot.config.context._chatData?.run {
             if (!update.user.isPresent()) return@run
+            logger.trace("Handling BotContext for Update#${update.fullUpdate.updateId}")
             val prevClassName = getAsync(update.user.id, "PrevInvokedClass").await()?.toString()
             if (prevClassName != invocation.clazz.name) delPrevChatSectionAsync(update.user.id).await()
 
@@ -250,9 +251,7 @@ class TelegramUpdateHandler internal constructor(
         logger.trace("Manually handling update: $update")
         manualHandlingBehavior.apply {
             block()
-            CreateNewCoroutineContext(coroutineContext).launch(Dispatchers.IO) {
-                process(update)
-            }
+            process(update)
         }
     }
 }

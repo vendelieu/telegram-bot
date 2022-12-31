@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.types.internal.Actions
 import eu.vendeli.tgbot.types.internal.Invocation
-import eu.vendeli.tgbot.types.internal.RateLimits
+import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import org.reflections.Reflections
 import org.reflections.scanners.Scanners
 import java.lang.reflect.Parameter
@@ -17,7 +17,8 @@ import java.lang.reflect.Parameter
  */
 internal object TelegramActionsCollector {
     private fun Array<Parameter>.getParameters() =
-        filter { it.annotations.any { a -> a is CallbackParam } }.associate { p -> p.name to (p.annotations.first { it is CallbackParam } as CallbackParam).name }
+        filter { it.annotations.any { a -> a is CallbackParam } }
+            .associate { p -> p.name to (p.annotations.first { it is CallbackParam } as CallbackParam).name }
 
     /**
      * Function that collects a list of actions that the bot will operate with.
