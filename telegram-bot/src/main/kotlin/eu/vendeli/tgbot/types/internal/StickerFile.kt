@@ -29,5 +29,5 @@ sealed class StickerFile(val file: ByteArray) {
      * Converts Sticker to [ImplicitFile.FromByteArray](ImplicitFile.FromByteArray)
      *
      */
-    fun toImplicitFile() = ImplicitFile.FromByteArray(this.file)
+    fun toImplicitFile() = ImplicitFile.FromByteArray(file)
 }

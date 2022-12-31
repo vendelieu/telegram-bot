@@ -8,8 +8,8 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
-import eu.vendeli.tgbot.types.internal.options.StickerOptions
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.types.internal.options.StickerOptions
 import java.io.File
 
 class SendStickerAction(private val sticker: ImplicitFile<*>) :

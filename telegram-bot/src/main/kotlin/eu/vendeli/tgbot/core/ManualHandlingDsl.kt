@@ -5,12 +5,11 @@ import eu.vendeli.tgbot.api.answerCallbackQuery
 import eu.vendeli.tgbot.core.ManualHandlingDsl.ArgsMode.Query
 import eu.vendeli.tgbot.core.ManualHandlingDsl.ArgsMode.SpaceKeyValue
 import eu.vendeli.tgbot.interfaces.BotInputListener
-import eu.vendeli.tgbot.types.*
+import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.*
+import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.*
-import eu.vendeli.tgbot.utils.checkIsLimited
-import eu.vendeli.tgbot.utils.parseKeyValueBySpace
-import eu.vendeli.tgbot.utils.parseQuery
 
 /**
  * DSL for manual update management.
@@ -219,12 +218,12 @@ class ManualHandlingDsl internal constructor(
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
         block: OnInputAction
     ): SingleInputChain {
-        val nextLevel = this.currentLevel + 1
-        val newId = if (this.currentLevel > 0) this.id.replace(
-            "_chain_lvl_${this.currentLevel}", "_chain_lvl_$nextLevel"
-        ) else this.id + "_chain_lvl_1"
+        val nextLevel = currentLevel + 1
+        val newId = if (currentLevel > 0) id.replace(
+            "_chain_lvl_$currentLevel", "_chain_lvl_$nextLevel"
+        ) else id + "_chain_lvl_1"
 
-        manualActions.onInput[this.id]?.tail = newId
+        manualActions.onInput[id]?.tail = newId
         manualActions.onInput[newId] = SingleInputChain(newId, block, rateLimits, nextLevel)
         return this
     }
@@ -237,7 +236,7 @@ class ManualHandlingDsl internal constructor(
         condition: InputContext.() -> Boolean,
         block: OnInputAction? = null,
     ): SingleInputChain {
-        manualActions.onInput[this.id]?.breakPoint = InputBreakPoint(condition, block)
+        manualActions.onInput[id]?.breakPoint = InputBreakPoint(condition, block)
         return this
     }
 
@@ -306,7 +305,8 @@ class ManualHandlingDsl internal constructor(
                  * NOTE: After the user presses a callback button,
                  * Telegram clients will display a progress bar until you call answerCallbackQuery.
                  * It is, therefore, necessary to react by calling answerCallbackQuery
-                 * even if no notification to the user is needed (e.g., without specifying any of the optional parameters).
+                 * even if no notification to the user is needed
+                 * (e.g., without specifying any of the optional parameters).
                  *
                  * So if there's no action for onCallbackQuery we're automatically responding, to complete api contract.
                  */

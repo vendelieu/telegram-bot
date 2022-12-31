@@ -4,7 +4,7 @@ import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.BotCommand
 import eu.vendeli.tgbot.types.BotCommandScope
 import eu.vendeli.tgbot.types.internal.TgMethod
-import eu.vendeli.tgbot.utils.BotCommandsBuilder
+import eu.vendeli.tgbot.utils.builders.BotCommandsBuilder
 
 class SetMyCommandsAction(
     commands: List<BotCommand>,

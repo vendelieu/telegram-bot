@@ -1,4 +1,4 @@
-package eu.vendeli.tgbot.utils
+package eu.vendeli.tgbot.utils.builders
 
 import eu.vendeli.tgbot.types.BotCommand
 

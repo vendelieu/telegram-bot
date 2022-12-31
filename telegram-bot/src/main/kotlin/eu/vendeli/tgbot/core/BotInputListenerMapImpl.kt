@@ -4,14 +4,14 @@ import eu.vendeli.tgbot.interfaces.BotInputListener
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import java.util.*
+import java.util.concurrent.ConcurrentHashMap
 
 /**
- * [BotInputListener] implementation based on Collections.synchronizedMap(WeakHashMap<>())
+ * [BotInputListener] implementation based on ConcurrentHashMap<Long, String>
  *
  */
 class BotInputListenerMapImpl : BotInputListener {
-    private val storage = Collections.synchronizedMap(WeakHashMap<Long, String>())
+    private val storage = ConcurrentHashMap<Long, String>()
 
     /**
      * Set new waiting input

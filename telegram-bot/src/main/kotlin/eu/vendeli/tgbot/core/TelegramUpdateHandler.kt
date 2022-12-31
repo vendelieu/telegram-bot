@@ -1,15 +1,19 @@
 package eu.vendeli.tgbot.core
 
-import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.types.Update
-import eu.vendeli.tgbot.types.internal.*
+import eu.vendeli.tgbot.types.internal.Actions
+import eu.vendeli.tgbot.types.internal.Activity
+import eu.vendeli.tgbot.types.internal.Invocation
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.utils.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.slf4j.LoggerFactory
 import kotlin.coroutines.coroutineContext
 
@@ -90,9 +94,9 @@ class TelegramUpdateHandler internal constructor(
      */
     private fun findAction(text: String, command: Boolean = true): Activity? {
         val message = text.parseQuery()
-        val invocation = (if (command) actions?.commands else {
+        val invocation = if (command) actions?.commands else {
             actions?.inputs
-        })?.get(message.command)
+        }?.get(message.command)
         return if (invocation != null) Activity(
             id = message.command,
             invocation = invocation,
@@ -197,8 +201,8 @@ class TelegramUpdateHandler internal constructor(
 
         logger.trace("Invoking function for Update#${update.fullUpdate.updateId}")
         invocation.runCatching {
-            if (isSuspend) method.invokeSuspend(classManager.getInstance(clazz), *processedParameters.toTypedArray())
-            else method.invoke(classManager.getInstance(clazz), *processedParameters.toTypedArray())
+            if (isSuspend) method.invokeSuspend(classManager.getInstance(clazz), *processedParameters)
+            else method.invoke(classManager.getInstance(clazz), *processedParameters)
         }.onFailure {
             logger.debug("Method {$invocation} invocation error at handling update: $update", it)
             return it
@@ -212,7 +216,7 @@ class TelegramUpdateHandler internal constructor(
      * @param update
      * @return null on success or [Throwable].
      */
-    suspend fun handle(update: Update): Throwable? = processUpdateDto(update).run {
+    suspend fun handle(update: Update): Throwable? = processUpdate(update).run {
         logger.trace("Handling update: $update")
         val telegramId = update.message?.from?.id
         if (checkIsLimited(bot.config.rateLimits, telegramId)) return@run null

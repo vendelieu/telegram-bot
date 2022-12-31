@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.types.*
 import eu.vendeli.tgbot.types.internal.*
+import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 
 typealias OnMessageAction = suspend ActionContext<Message>.() -> Unit
 typealias OnEditedMessageAction = suspend ActionContext<Message>.() -> Unit

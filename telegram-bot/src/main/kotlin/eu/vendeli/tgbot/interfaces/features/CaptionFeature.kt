@@ -2,7 +2,7 @@ package eu.vendeli.tgbot.interfaces.features
 
 import eu.vendeli.tgbot.interfaces.ParametersBase
 import eu.vendeli.tgbot.types.MessageEntity
-import eu.vendeli.tgbot.utils.EntitiesBuilder
+import eu.vendeli.tgbot.utils.builders.EntitiesBuilder
 
 /**
  * Caption feature, see [Features article](https://github.com/vendelieu/telegram-bot/wiki/Features)

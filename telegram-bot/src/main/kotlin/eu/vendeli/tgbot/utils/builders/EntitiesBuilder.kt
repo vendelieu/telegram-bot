@@ -1,4 +1,4 @@
-package eu.vendeli.tgbot.utils
+package eu.vendeli.tgbot.utils.builders
 
 import eu.vendeli.tgbot.types.EntityType
 import eu.vendeli.tgbot.types.MessageEntity

@@ -3,6 +3,8 @@ package eu.vendeli.tgbot.interfaces
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.Response
+import eu.vendeli.tgbot.utils.makeRequestAsync
+import eu.vendeli.tgbot.utils.makeSilentRequest
 import kotlinx.coroutines.Deferred
 
 /**
