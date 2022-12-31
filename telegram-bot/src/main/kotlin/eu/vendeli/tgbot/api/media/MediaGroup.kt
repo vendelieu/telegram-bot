@@ -21,7 +21,7 @@ import eu.vendeli.tgbot.utils.makeBunchMediaRequestAsync
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentBunchMediaRequest
 import eu.vendeli.tgbot.utils.makeSilentRequest
-import io.ktor.util.reflect.*
+import io.ktor.util.reflect.instanceOf
 import kotlinx.coroutines.Deferred
 import kotlin.collections.set
 

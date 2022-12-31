@@ -5,11 +5,17 @@ import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
-import io.ktor.client.plugins.*
-import io.ktor.client.request.*
-import io.ktor.client.request.forms.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
+import io.ktor.client.plugins.onUpload
+import io.ktor.client.request.forms.FormPart
+import io.ktor.client.request.forms.MultiPartFormDataContent
+import io.ktor.client.request.forms.formData
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
+import io.ktor.client.statement.HttpResponse
+import io.ktor.http.ContentType
+import io.ktor.http.Headers
+import io.ktor.http.HttpHeaders
+import io.ktor.util.InternalAPI
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.coroutineScope
 
@@ -27,6 +33,7 @@ suspend fun TelegramBot.makeBunchMediaReq(
                         it.key, it.value,
                         Headers.build {
                             append(HttpHeaders.ContentDisposition, "filename=${it.key}")
+                            @OptIn(InternalAPI::class)
                             append(HttpHeaders.ContentType, contentType)
                         }
                     )

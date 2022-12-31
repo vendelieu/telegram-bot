@@ -18,8 +18,10 @@ import eu.vendeli.tgbot.utils.TELEGRAM_API_URL_PATTERN
 import eu.vendeli.tgbot.utils.TELEGRAM_FILE_URL_PATTERN
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
 import eu.vendeli.tgbot.utils.getConfiguredMapper
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
+import io.ktor.client.request.get
+import io.ktor.client.request.post
+import io.ktor.client.statement.bodyAsText
+import io.ktor.client.statement.readBytes
 import org.slf4j.LoggerFactory
 
 /**
