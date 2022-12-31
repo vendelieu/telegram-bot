@@ -111,7 +111,7 @@ class TelegramUpdateHandler internal constructor(
      * @param update
      * @return [Update] or null
      */
-    fun parseUpdate(update: String): Update? {
+    private fun parseUpdate(update: String): Update? {
         logger.trace("Trying to parse update from string - $update")
         return mapper.runCatching {
             readValue(update, Update::class.java)
@@ -121,33 +121,15 @@ class TelegramUpdateHandler internal constructor(
     }
 
     /**
-     * Updates parsing method
-     *
-     * @param updates
-     * @return [Update] or null
+     * A method for annotation handling updates from a string.
      */
-    fun parseUpdates(updates: String): List<Update>? {
-        logger.trace("Trying to parse bunch of updates from string - $updates")
-        return mapper.runCatching {
-            readValue(updates, jacksonTypeRef<Response<List<Update>>>()).getOrNull()
-        }.onFailure {
-            logger.debug("error during the bunch updates parsing process.", it)
-        }.onSuccess { logger.trace("Successfully parsed updates to $it") }.getOrNull()
-    }
+    suspend fun parseAndHandleUpdate(update: String) = parseUpdate(update)?.let { handle(it) }
 
     /**
-     * [Update] extension function that helps to handle the update (annotations mode)
-     *
+     * A method for manual handling updates from a string.
      */
-    @JvmName("handleIt")
-    suspend fun Update.handle() = handle(this)
-
-    /**
-     * [Update] extension function that helps to handle the update (manual mode)
-     *
-     */
-    @JvmName("handleItManually")
-    suspend fun Update.handle(block: ManualHandlingBlock) = handle(this, block)
+    suspend fun parseAndHandleUpdate(update: String, block: ManualHandlingBlock) =
+        parseUpdate(update)?.let { handle(it, block) }
 
     /**
      * Function used to call functions with certain parameters processed after receiving update.
