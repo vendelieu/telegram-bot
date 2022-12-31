@@ -1,3 +1,4 @@
+@file:Suppress("MatchingDeclarationName")
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
@@ -11,8 +12,10 @@ import eu.vendeli.tgbot.types.internal.options.ForwardMessageOptions
 /**
  * Use this action to forward messages of any kind. Service messages can't be forwarded.
  *
- * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
- * @param fromChatId Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername)
+ * @param chatId Unique identifier for the target chat or username of the target channel
+ * (in the format @channelusername)
+ * @param fromChatId Unique identifier for the chat where the original message was sent
+ * (or channel username in the format @channelusername)
  * @param messageId Message identifier in the chat specified in fromChatId
  */
 class ForwardMessageAction(chatId: Recipient, fromChatId: Recipient, messageId: Long) :
@@ -33,13 +36,14 @@ class ForwardMessageAction(chatId: Recipient, fromChatId: Recipient, messageId: 
 /**
  * Use this method to forward messages of any kind. Service messages can't be forwarded.
  *
- * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
- * @param fromChatId Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername)
+ * @param chatId Unique identifier for the target chat or username of the target channel
+ * (in the format @channelusername)
+ * @param fromChatId Unique identifier for the chat where the original message was sent
+ * (or channel username in the format @channelusername)
  * @param messageId Message identifier in the chat specified in fromChatId
  */
 fun forwardMessage(chatId: Long, fromChatId: Long, messageId: Long) =
     ForwardMessageAction(Recipient.from(chatId), Recipient.from(fromChatId), messageId)
-
 
 fun forwardMessage(chatId: String, fromChatId: Long, messageId: Long) =
     ForwardMessageAction(Recipient.from(chatId), Recipient.from(fromChatId), messageId)

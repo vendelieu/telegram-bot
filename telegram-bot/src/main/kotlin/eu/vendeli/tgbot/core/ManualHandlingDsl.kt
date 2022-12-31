@@ -7,9 +7,33 @@ import eu.vendeli.tgbot.core.ManualHandlingDsl.ArgsMode.SpaceKeyValue
 import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.*
+import eu.vendeli.tgbot.types.internal.ActionContext
+import eu.vendeli.tgbot.types.internal.CommandContext
+import eu.vendeli.tgbot.types.internal.CommandSelector
+import eu.vendeli.tgbot.types.internal.InputBreakPoint
+import eu.vendeli.tgbot.types.internal.InputContext
+import eu.vendeli.tgbot.types.internal.ManualActions
+import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import eu.vendeli.tgbot.utils.*
+import eu.vendeli.tgbot.utils.OnCallbackQueryAction
+import eu.vendeli.tgbot.utils.OnChannelPostAction
+import eu.vendeli.tgbot.utils.OnChatJoinRequestAction
+import eu.vendeli.tgbot.utils.OnChatMemberAction
+import eu.vendeli.tgbot.utils.OnChosenInlineResultAction
+import eu.vendeli.tgbot.utils.OnCommandAction
+import eu.vendeli.tgbot.utils.OnEditedChannelPostAction
+import eu.vendeli.tgbot.utils.OnEditedMessageAction
+import eu.vendeli.tgbot.utils.OnInlineQueryAction
+import eu.vendeli.tgbot.utils.OnInputAction
+import eu.vendeli.tgbot.utils.OnMessageAction
+import eu.vendeli.tgbot.utils.OnPollAction
+import eu.vendeli.tgbot.utils.OnPollAnswerAction
+import eu.vendeli.tgbot.utils.OnPreCheckoutQueryAction
+import eu.vendeli.tgbot.utils.OnShippingQueryAction
+import eu.vendeli.tgbot.utils.WhenNotHandledAction
+import eu.vendeli.tgbot.utils.checkIsLimited
+import eu.vendeli.tgbot.utils.parseKeyValueBySpace
+import eu.vendeli.tgbot.utils.parseQuery
 
 /**
  * DSL for manual update management.
@@ -259,7 +283,7 @@ class ManualHandlingDsl internal constructor(
         manualActions.commands.filter { it.key.match(parsedText.command) }.entries.firstOrNull()?.also {
             inputListener.del(from.id) // clean input listener
             // check for limit exceed
-            if(bot.update.checkIsLimited(it.key.rateLimits, update.message?.from?.id, parsedText.command)) return
+            if (bot.update.checkIsLimited(it.key.rateLimits, update.message?.from?.id, parsedText.command)) return
             it.value.invoke(CommandContext(update, parsedText.params, from))
             return
         }
@@ -270,7 +294,7 @@ class ManualHandlingDsl internal constructor(
             val foundChain = manualActions.onInput[it]
             if (foundChain != null && update.message != null) {
                 // check for limit exceed
-                if(bot.update.checkIsLimited(foundChain.rateLimits, update.message.from?.id, foundChain.id)) return
+                if (bot.update.checkIsLimited(foundChain.rateLimits, update.message.from?.id, foundChain.id)) return
                 val inputContext = InputContext(from, update)
                 // invoke it if found
                 foundChain.inputAction.invoke(inputContext)

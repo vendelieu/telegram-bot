@@ -18,7 +18,8 @@ import kotlin.time.Duration.Companion.milliseconds
  * @property lastUpdated Last update.
  */
 data class BucketState(
-    val remainingTokens: Long, val lastUpdated: Instant
+    val remainingTokens: Long,
+    val lastUpdated: Instant
 )
 
 /**
@@ -45,7 +46,6 @@ open class TokenBucketLimiterImpl : RateLimitMechanism {
             return compareAndSet(key, compareAndSetFunction)
         }
     }
-
 
     override suspend fun isLimited(limits: RateLimits, telegramId: Long, actionId: String?): Boolean {
         val storageKey = if (actionId == null) "$telegramId" else "$telegramId-$actionId"

@@ -12,7 +12,12 @@ import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.internal.getOrNull
-import eu.vendeli.tgbot.utils.*
+import eu.vendeli.tgbot.utils.BotConfigurator
+import eu.vendeli.tgbot.utils.ManualHandlingBlock
+import eu.vendeli.tgbot.utils.TELEGRAM_API_URL_PATTERN
+import eu.vendeli.tgbot.utils.TELEGRAM_FILE_URL_PATTERN
+import eu.vendeli.tgbot.utils.getConfiguredHttpClient
+import eu.vendeli.tgbot.utils.getConfiguredMapper
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import org.slf4j.LoggerFactory

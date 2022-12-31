@@ -3,7 +3,8 @@ package eu.vendeli.tgbot.interfaces
 import kotlinx.coroutines.Deferred
 
 /**
- * Bot input listener, see [Waiting Input example in article](https://github.com/vendelieu/telegram-bot/wiki/Updates-handling#input-waiting)
+ * Bot input listener, see
+ * [Waiting Input example in article](https://github.com/vendelieu/telegram-bot/wiki/Updates-handling#input-waiting)
  *
  */
 interface BotInputListener {

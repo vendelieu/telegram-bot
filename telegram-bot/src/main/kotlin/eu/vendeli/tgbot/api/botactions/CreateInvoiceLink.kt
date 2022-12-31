@@ -1,3 +1,4 @@
+@file:Suppress("MatchingDeclarationName")
 package eu.vendeli.tgbot.api.botactions
 
 import eu.vendeli.tgbot.interfaces.SimpleAction
@@ -14,7 +15,8 @@ import eu.vendeli.tgbot.types.internal.options.CreateInvoiceLinkOptions
  *
  * @param title Product name, 1-32 characters
  * @param description Product description, 1-255 characters
- * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
+ * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user,
+ * use for your internal processes.
  * @param providerToken Payment provider token, obtained via BotFather
  * @param currency Three-letter ISO 4217 currency code
  * @param prices Price breakdown (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.)

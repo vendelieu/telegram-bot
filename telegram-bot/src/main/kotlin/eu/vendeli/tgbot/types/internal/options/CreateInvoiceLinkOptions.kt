@@ -12,7 +12,8 @@ package eu.vendeli.tgbot.types.internal.options
  * must be positive, passed in a strictly increased order and must not exceed max_tip_amount.
  * @property providerData JSON-serialized data about the invoice, which will be shared with the payment provider.
  * A detailed description of required fields should be provided by the payment provider.
- * @property photoUrl URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service.
+ * @property photoUrl URL of the product photo for the invoice.
+ * Can be a photo of the goods or a marketing image for a service.
  * @property photoSize Photo size in bytes
  * @property photoWidth Photo width
  * @property photoHeight Photo height

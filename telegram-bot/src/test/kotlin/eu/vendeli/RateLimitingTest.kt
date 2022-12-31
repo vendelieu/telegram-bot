@@ -5,7 +5,11 @@ import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.core.TokenBucketLimiterImpl
-import eu.vendeli.tgbot.types.*
+import eu.vendeli.tgbot.types.Chat
+import eu.vendeli.tgbot.types.ChatType
+import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import io.kotest.core.spec.IsolationMode
@@ -42,13 +46,15 @@ class RateLimitingTest : BotTestContext(false) {
                 Update(nextInt(), testMsg),
             )
         )
-        bot.httpClient = HttpClient(MockEngine {
-            respond(
-                content = ByteReadChannel(mapper.writeValueAsBytes(apiResponse)),
-                status = HttpStatusCode.OK,
-                headers = headersOf(HttpHeaders.ContentType, "application/json")
-            )
-        })
+        bot.httpClient = HttpClient(
+            MockEngine {
+                respond(
+                    content = ByteReadChannel(mapper.writeValueAsBytes(apiResponse)),
+                    status = HttpStatusCode.OK,
+                    headers = headersOf(HttpHeaders.ContentType, "application/json")
+                )
+            }
+        )
     }
 
     @Test

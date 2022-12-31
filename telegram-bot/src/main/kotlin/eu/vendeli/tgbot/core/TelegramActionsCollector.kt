@@ -58,10 +58,12 @@ internal object TelegramActionsCollector {
             }
         }
 
-        return@with Actions(commands = commands,
+        return@with Actions(
+            commands = commands,
             inputs = inputs,
             unhandled = getMethodsAnnotatedWith(UnprocessedHandler::class.java).firstOrNull()?.let { m ->
                 Invocation(clazz = m.declaringClass, method = m, rateLimits = RateLimits.NOT_LIMITED)
-            })
+            }
+        )
     }
 }

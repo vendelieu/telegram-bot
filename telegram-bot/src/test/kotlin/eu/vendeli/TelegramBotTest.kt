@@ -4,12 +4,21 @@ import BotTestContext
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
-import eu.vendeli.tgbot.interfaces.*
+import eu.vendeli.tgbot.interfaces.BotChatData
+import eu.vendeli.tgbot.interfaces.BotUserData
+import eu.vendeli.tgbot.interfaces.MagicObject
+import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.interfaces.sendAsync
 import eu.vendeli.tgbot.types.File
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.*
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.types.internal.isSuccess
+import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import io.kotest.assertions.throwables.shouldNotThrow
@@ -184,8 +193,8 @@ class TelegramBotTest : BotTestContext() {
             override suspend fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean> =
                 TODO("Not yet implemented")
 
-            override fun get(telegramId: Long, key: String): Any = TODO("Not yet implemented")
-            override suspend fun getAsync(telegramId: Long, key: String): Deferred<Any?> =
+            override fun <T> get(telegramId: Long, key: String): T = TODO("Not yet implemented")
+            override suspend fun <T> getAsync(telegramId: Long, key: String): Deferred<T?> =
                 TODO("Not yet implemented")
 
             override fun del(telegramId: Long, key: String) = TODO("Not yet implemented")
@@ -198,10 +207,10 @@ class TelegramBotTest : BotTestContext() {
             override suspend fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean> =
                 TODO("Not yet implemented")
 
-            override fun get(telegramId: Long, key: String): Any =
+            override fun <T> get(telegramId: Long, key: String): T =
                 TODO("Not yet implemented")
 
-            override suspend fun getAsync(telegramId: Long, key: String): Deferred<Any?> =
+            override suspend fun <T> getAsync(telegramId: Long, key: String): Deferred<T?> =
                 TODO("Not yet implemented")
 
             override fun del(telegramId: Long, key: String) = TODO("Not yet implemented")

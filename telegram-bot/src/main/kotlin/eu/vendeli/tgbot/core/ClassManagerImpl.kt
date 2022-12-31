@@ -25,5 +25,4 @@ class ClassManagerImpl : ClassManager {
             clazz.declaredConstructors.first().newInstance(initParams)
         }.also { instances[clazz.name] = it }
     }
-
 }

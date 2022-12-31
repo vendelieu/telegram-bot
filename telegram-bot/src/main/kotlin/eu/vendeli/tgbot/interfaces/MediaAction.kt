@@ -2,7 +2,11 @@ package eu.vendeli.tgbot.interfaces
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.*
+import eu.vendeli.tgbot.types.internal.ImplicitFile
+import eu.vendeli.tgbot.types.internal.MediaContentType
+import eu.vendeli.tgbot.types.internal.Recipient
+import eu.vendeli.tgbot.types.internal.Response
+import eu.vendeli.tgbot.types.internal.toContentType
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import io.ktor.http.*

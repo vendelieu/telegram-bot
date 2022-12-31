@@ -19,19 +19,24 @@ suspend fun TelegramBot.makeBunchMediaReq(
     parameters: Map<String, Any?>? = null,
     contentType: ContentType
 ): HttpResponse = httpClient.post(method.toUrl()) {
-    setBody(MultiPartFormDataContent(
-        formData {
-            files.forEach {
-                append(it.key, it.value, Headers.build {
-                    append(HttpHeaders.ContentDisposition, "filename=${it.key}")
-                    append(HttpHeaders.ContentType, contentType)
-                })
+    setBody(
+        MultiPartFormDataContent(
+            formData {
+                files.forEach {
+                    append(
+                        it.key, it.value,
+                        Headers.build {
+                            append(HttpHeaders.ContentDisposition, "filename=${it.key}")
+                            append(HttpHeaders.ContentType, contentType)
+                        }
+                    )
+                }
+                parameters?.entries?.forEach { entry ->
+                    entry.value?.also { append(FormPart(entry.key, TelegramBot.mapper.writeValueAsString(it))) }
+                }
             }
-            parameters?.entries?.forEach { entry ->
-                entry.value?.also { append(FormPart(entry.key, TelegramBot.mapper.writeValueAsString(it))) }
-            }
-        }
-    ))
+        )
+    )
     onUpload { bytesSentTotal, contentLength ->
         logger.trace("Sent $bytesSentTotal bytes from $contentLength, for $method with $parameters")
     }

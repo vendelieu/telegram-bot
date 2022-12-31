@@ -1,7 +1,23 @@
 package eu.vendeli.tgbot.types.internal
 
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import eu.vendeli.tgbot.utils.*
+import eu.vendeli.tgbot.utils.CommandActions
+import eu.vendeli.tgbot.utils.InputActions
+import eu.vendeli.tgbot.utils.OnCallbackQueryAction
+import eu.vendeli.tgbot.utils.OnChannelPostAction
+import eu.vendeli.tgbot.utils.OnChatJoinRequestAction
+import eu.vendeli.tgbot.utils.OnChatMemberAction
+import eu.vendeli.tgbot.utils.OnChosenInlineResultAction
+import eu.vendeli.tgbot.utils.OnEditedChannelPostAction
+import eu.vendeli.tgbot.utils.OnEditedMessageAction
+import eu.vendeli.tgbot.utils.OnInlineQueryAction
+import eu.vendeli.tgbot.utils.OnMessageAction
+import eu.vendeli.tgbot.utils.OnMyChatMemberAction
+import eu.vendeli.tgbot.utils.OnPollAction
+import eu.vendeli.tgbot.utils.OnPollAnswerAction
+import eu.vendeli.tgbot.utils.OnPreCheckoutQueryAction
+import eu.vendeli.tgbot.utils.OnShippingQueryAction
+import eu.vendeli.tgbot.utils.WhenNotHandledAction
 
 sealed class CommandSelector {
     abstract val rateLimits: RateLimits

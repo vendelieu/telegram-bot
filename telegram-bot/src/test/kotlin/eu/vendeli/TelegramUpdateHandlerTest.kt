@@ -12,16 +12,17 @@ import io.ktor.utils.io.*
 class TelegramUpdateHandlerTest : BotTestContext() {
     @Test
     suspend fun `listener workflow`() {
-        bot.httpClient = HttpClient(MockEngine {
-            respond(
-                content = ByteReadChannel(updates),
-                status = HttpStatusCode.OK,
-                headers = headersOf(HttpHeaders.ContentType, "application/json")
-            )
-        })
+        bot.httpClient = HttpClient(
+            MockEngine {
+                respond(
+                    content = ByteReadChannel(updates),
+                    status = HttpStatusCode.OK,
+                    headers = headersOf(HttpHeaders.ContentType, "application/json")
+                )
+            }
+        )
 
         var update: Update? = null
-
 
         bot.update.setListener {
             update = it
@@ -40,5 +41,4 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             "message":{"message_id":10831,"from":{"id":1,"is_bot":false,"first_name":"John Doe","username":"username","language_code":"en"},"chat":{"id":1,"first_name":"John Doe","username":"username","type":"private"},"date":1656908266,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}]}
         """.trimIndent()
     }
-
 }

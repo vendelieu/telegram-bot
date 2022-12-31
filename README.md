@@ -81,23 +81,23 @@ It is also possible to process updates manually:
 
 ```kotlin
 fun main() = runBlocking {
-    val bot = TelegramBot("BOT_TOKEN")
+  val bot = TelegramBot("BOT_TOKEN")
 
-    bot.handleUpdates { update ->
-        onCommand("/start") {
-            message { "Hello, what's your name?" }.send(user, bot)
-            bot.inputListener.set(user.id, "conversation")
-        }
-        inputChain("conversation") {
-            message { "Nice to meet you, ${message.text}" }.send(user, bot)
-            message { "What is your favorite food?" }.send(user, bot)
-        }.breakIf({ message.text == "peanut butter" }) { // chain break condition
-            message { "Oh, too bad, I'm allergic to it." }.send(user, bot)
-            // action that will be applied when match
-        }.andThen {
-            // ...
-        }
+  bot.handleUpdates { update ->
+    onCommand("/start") {
+      message { "Hello, what's your name?" }.send(user, bot)
+      bot.inputListener.set(user.id, "conversation")
     }
+    inputChain("conversation") {
+      message { "Nice to meet you, ${message.text}" }.send(user, bot)
+      message { "What is your favorite food?" }.send(user, bot)
+    }.breakIf({ message.text == "peanut butter" }) { // chain break condition
+      message { "Oh, too bad, I'm allergic to it." }.send(user, bot)
+      // action that will be applied when match
+    }.andThen {
+      // next input point if break condition doesn't match
+    }
+  }
 }
 ```
 
@@ -137,11 +137,11 @@ val bot = TelegramBot("BOT_TOKEN") {
 // Limits on certain actions
 @CommandHandler(["/start"], RateLimits(period = 1000L, rate = 1L)) // or InputListener
 suspend fun start(user: User, bot: TelegramBot) {
-    ...
+    // ...
 }
 // In manual mode
 onCommand("/start", RateLimits(period = 1000L, rate = 1L)) {
-    ...
+    // ...
 }
 // ...
 ```

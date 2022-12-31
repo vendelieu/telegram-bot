@@ -58,12 +58,14 @@ class MediaRequestTesting : BotTestContext() {
 
         @Suppress("UNCHECKED_CAST")
         val mediaGroupReq = bot.makeBunchMediaRequestAsync(
-            TgMethod("sendMediaGroup"), mapOf(
+            TgMethod("sendMediaGroup"),
+            mapOf(
                 "test.png" to image,
                 "test2.png" to image,
                 "test3.png" to image,
                 "test4.png" to image,
-            ), parameters = mapOf(
+            ),
+            parameters = mapOf(
                 "chat_id" to System.getenv("TELEGRAM_ID").toLong(),
                 "media" to listOf(
                     mapOf("type" to "photo", "media" to "attach://test.png"),
@@ -71,7 +73,8 @@ class MediaRequestTesting : BotTestContext() {
                     mapOf("type" to "photo", "media" to "attach://test3.png"),
                     mapOf("type" to "photo", "media" to "attach://test4.png"),
                 )
-            ), ContentType.Image.PNG, List::class.java, Message::class.java
+            ),
+            ContentType.Image.PNG, List::class.java, Message::class.java
         ).await().getOrNull() as? List<Message>
 
         mediaGroupReq.shouldNotBeNull()

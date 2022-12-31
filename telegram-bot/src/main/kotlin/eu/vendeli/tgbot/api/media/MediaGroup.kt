@@ -1,3 +1,4 @@
+@file:Suppress("MatchingDeclarationName")
 package eu.vendeli.tgbot.api.media
 
 import eu.vendeli.tgbot.TelegramBot
@@ -7,10 +8,15 @@ import eu.vendeli.tgbot.interfaces.features.OptionAble
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.InputMedia
 import eu.vendeli.tgbot.types.Message
-import eu.vendeli.tgbot.types.internal.*
+import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.ImplicitFile.FromFile
 import eu.vendeli.tgbot.types.internal.ImplicitFile.FromString
+import eu.vendeli.tgbot.types.internal.MediaContentType
+import eu.vendeli.tgbot.types.internal.Recipient
+import eu.vendeli.tgbot.types.internal.Response
+import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.MediaGroupOptions
+import eu.vendeli.tgbot.types.internal.toContentType
 import eu.vendeli.tgbot.utils.makeBunchMediaRequestAsync
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentBunchMediaRequest
@@ -69,7 +75,6 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
         get() = media
     override val MediaAction<List<Message>>.dataField: String
         get() = "media"
-
 
     override suspend fun MediaAction<List<Message>>.internalSendAsync(
         returnType: Class<List<Message>>,

@@ -1,3 +1,4 @@
+@file:Suppress("MatchingDeclarationName")
 package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.interfaces.MediaAction
@@ -29,7 +30,6 @@ class CreateNewStickerSetAction(
             is StickerFile.TGS -> "tgs_sticker"
             is StickerFile.WEBM -> "webm_sticker"
         }
-
 
     init {
         parameters["title"] = title

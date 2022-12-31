@@ -1,8 +1,16 @@
+@file:Suppress("MatchingDeclarationName")
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.InlineMode
-import eu.vendeli.tgbot.interfaces.features.*
+import eu.vendeli.tgbot.interfaces.features.AllFeaturesAble
+import eu.vendeli.tgbot.interfaces.features.AllFeaturesPack
+import eu.vendeli.tgbot.interfaces.features.CaptionAble
+import eu.vendeli.tgbot.interfaces.features.CaptionFeature
+import eu.vendeli.tgbot.interfaces.features.MarkupAble
+import eu.vendeli.tgbot.interfaces.features.MarkupFeature
+import eu.vendeli.tgbot.interfaces.features.OptionAble
+import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.InputMedia
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod

@@ -7,17 +7,15 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
 import io.kotest.core.annotation.Ignored
+import io.kotest.core.spec.Order
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.delay
-import org.junit.jupiter.api.*
-import org.junit.jupiter.api.Assertions.*
 import kotlin.time.Duration.Companion.seconds
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 @Ignored("should have big delay")
 class CloseTest : BotTestContext() {
     @Test

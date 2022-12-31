@@ -1,3 +1,4 @@
+@file:Suppress("MatchingDeclarationName")
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action

@@ -1,7 +1,6 @@
 package eu.vendeli
 
 import eu.vendeli.tgbot.core.TelegramActionsCollector
-import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.maps.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull

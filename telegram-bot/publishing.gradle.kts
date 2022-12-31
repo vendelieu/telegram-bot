@@ -4,7 +4,6 @@ val sonatypePassword: String by project
 apply(plugin = "maven-publish")
 apply(plugin = "signing")
 
-
 configure<PublishingExtension> {
     publications {
         create<MavenPublication>("maven") {

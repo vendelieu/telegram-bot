@@ -4,7 +4,8 @@ package eu.vendeli.tgbot.types.internal.configuration
  * A class containing the configuration for the bot http client.
  *
  * @property requestTimeoutMillis Specifies a request timeout in milliseconds.
- * The request timeout is the time period required to process an HTTP call: from sending a request to receiving a response.
+ * The request timeout is the time period required to process an HTTP call:
+ * from sending a request to receiving a response.
  * @property connectTimeoutMillis Specifies a connection timeout in milliseconds.
  * The connection timeout is the time period in which a client should establish a connection with a server.
  * @property socketTimeoutMillis Specifies a socket timeout (read and write) in milliseconds.
