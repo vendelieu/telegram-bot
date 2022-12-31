@@ -30,7 +30,7 @@ interface BotUserData {
      * @param telegramId
      * @param key
      */
-    fun get(telegramId: Long, key: String): Any?
+    fun <T> get(telegramId: Long, key: String): T?
 
     /**
      * Asynchronously get UserData value
@@ -38,7 +38,7 @@ interface BotUserData {
      * @param telegramId
      * @param key
      */
-    suspend fun getAsync(telegramId: Long, key: String): Deferred<Any?>
+    suspend fun <T> getAsync(telegramId: Long, key: String): Deferred<T?>
 
     /**
      * Del UserData value
