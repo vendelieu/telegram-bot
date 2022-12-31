@@ -42,6 +42,7 @@ suspend fun TelegramBot.makeBunchMediaReq(
     }
 }
 
+@Suppress("LongParameterList")
 suspend fun <T, I : MultipleResponse> TelegramBot.makeBunchMediaRequestAsync(
     method: TgMethod,
     files: Map<String, ByteArray>,

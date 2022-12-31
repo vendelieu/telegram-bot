@@ -2,6 +2,7 @@ package eu.vendeli.tgbot.utils.builders
 
 import eu.vendeli.tgbot.types.InlineKeyboardButton
 import eu.vendeli.tgbot.types.InlineKeyboardMarkup
+import eu.vendeli.tgbot.types.LoginUrl
 import eu.vendeli.tgbot.types.WebAppInfo
 
 /**
@@ -54,7 +55,7 @@ class InlineKeyboardMarkupBuilder {
      * @param name
      * @param value
      */
-    fun loginUrl(name: String, value: () -> eu.vendeli.tgbot.types.LoginUrl): InlineKeyboardMarkupBuilder {
+    fun loginUrl(name: String, value: () -> LoginUrl): InlineKeyboardMarkupBuilder {
         buttons.add(InlineKeyboardButton(name, loginUrl = value()))
         return this
     }
@@ -128,7 +129,7 @@ class InlineKeyboardMarkupBuilder {
      *
      * @param value
      */
-    infix fun String.loginUrl(value: eu.vendeli.tgbot.types.LoginUrl) = loginUrl(this) { value }
+    infix fun String.loginUrl(value: LoginUrl) = loginUrl(this) { value }
 
     /**
      * Switch inline query button infix interface

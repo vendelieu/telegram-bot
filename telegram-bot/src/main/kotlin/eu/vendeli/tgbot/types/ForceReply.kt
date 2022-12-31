@@ -6,5 +6,6 @@ data class ForceReply(
     val inputFieldPlaceHolder: String? = null,
     val selective: Boolean? = null,
 ) : Keyboard {
+    @Suppress("unused", "MemberNameEqualsClassName")
     val forceReply: Boolean = true
 }

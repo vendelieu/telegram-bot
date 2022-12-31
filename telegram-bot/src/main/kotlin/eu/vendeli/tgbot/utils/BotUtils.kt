@@ -1,3 +1,4 @@
+@file:Suppress("MatchingDeclarationName")
 package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.core.TelegramUpdateHandler

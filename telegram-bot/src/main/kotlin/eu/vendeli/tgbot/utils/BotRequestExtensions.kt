@@ -55,6 +55,7 @@ private fun multipartBodyBuilder(
  * @param innerType Parameter used to identify the type in the data array.
  * @return [Deferred]<[Response]<[T]>>
  */
+@Suppress("LongParameterList")
 suspend fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
     method: TgMethod,
     dataField: String,
@@ -123,6 +124,7 @@ suspend fun TelegramBot.makeSilentRequest(method: TgMethod, data: Any? = null) =
  * @param parameters Additional parameters.
  * @param contentType The type of content that will be passed in the headers.
  */
+@Suppress("LongParameterList")
 suspend fun TelegramBot.makeSilentRequest(
     method: TgMethod,
     dataField: String,

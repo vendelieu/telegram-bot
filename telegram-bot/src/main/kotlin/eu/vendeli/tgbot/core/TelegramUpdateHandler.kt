@@ -10,7 +10,13 @@ import eu.vendeli.tgbot.types.internal.Actions
 import eu.vendeli.tgbot.types.internal.Activity
 import eu.vendeli.tgbot.types.internal.Invocation
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
-import eu.vendeli.tgbot.utils.*
+import eu.vendeli.tgbot.utils.CreateNewCoroutineContext
+import eu.vendeli.tgbot.utils.InputListenerBlock
+import eu.vendeli.tgbot.utils.ManualHandlingBlock
+import eu.vendeli.tgbot.utils.checkIsLimited
+import eu.vendeli.tgbot.utils.invokeSuspend
+import eu.vendeli.tgbot.utils.parseQuery
+import eu.vendeli.tgbot.utils.processUpdate
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -175,7 +181,7 @@ class TelegramUpdateHandler internal constructor(
         bot.config.context._chatData?.run {
             if (!update.user.isPresent()) return@run
             logger.trace("Handling BotContext for Update#${update.fullUpdate.updateId}")
-            val prevClassName = getAsync(update.user.id, "PrevInvokedClass").await()?.toString()
+            val prevClassName = getAsync<String>(update.user.id, "PrevInvokedClass").await()
             if (prevClassName != invocation.clazz.name) delPrevChatSectionAsync(update.user.id).await()
 
             setAsync(update.user.id, "PrevInvokedClass", invocation.clazz.name).await()
