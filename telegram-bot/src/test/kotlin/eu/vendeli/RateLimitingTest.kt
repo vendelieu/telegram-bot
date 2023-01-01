@@ -3,29 +3,13 @@ package eu.vendeli
 import BotTestContext
 import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.core.TokenBucketLimiterImpl
-import eu.vendeli.tgbot.types.Chat
-import eu.vendeli.tgbot.types.ChatType
-import eu.vendeli.tgbot.types.Message
-import eu.vendeli.tgbot.types.Update
-import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.shouldBe
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.mock.MockEngine
-import io.ktor.client.engine.mock.respond
-import io.ktor.http.HttpHeaders
-import io.ktor.http.HttpStatusCode
-import io.ktor.http.headersOf
-import io.ktor.utils.io.ByteReadChannel
 import java.util.concurrent.atomic.AtomicInteger
-import kotlin.random.Random.Default.nextInt
-import kotlin.random.Random.Default.nextLong
 
-class RateLimitingTest : BotTestContext(false) {
+class RateLimitingTest : BotTestContext(false, true) {
     override fun isolationMode(): IsolationMode = IsolationMode.InstancePerTest
 
     @BeforeAll
@@ -40,24 +24,6 @@ class RateLimitingTest : BotTestContext(false) {
                 rate = 5
             }
         }
-        val testUser = User(1, false, "Test")
-        val testMsg =
-            Message(nextLong(), from = testUser, chat = Chat(1, ChatType.Private), date = nextInt(), text = "/start")
-        val apiResponse = Response.Success(
-            listOf(
-                Update(nextInt(), testMsg),
-                Update(nextInt(), testMsg),
-            ),
-        )
-        bot.httpClient = HttpClient(
-            MockEngine {
-                respond(
-                    content = ByteReadChannel(mapper.writeValueAsBytes(apiResponse)),
-                    status = HttpStatusCode.OK,
-                    headers = headersOf(HttpHeaders.ContentType, "application/json"),
-                )
-            },
-        )
     }
 
     @Test

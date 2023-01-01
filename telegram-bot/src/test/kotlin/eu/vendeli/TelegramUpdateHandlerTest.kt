@@ -2,8 +2,10 @@ package eu.vendeli
 
 import BotTestContext
 import eu.vendeli.tgbot.types.Update
+import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.shouldNotBeSameInstanceAs
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
@@ -38,10 +40,48 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         update?.message?.from?.firstName shouldBe "John Doe"
     }
 
+    @Test
+    suspend fun `exception catching via manual handling`() {
+        doMockHttp()
+
+        bot.update.caughtExceptions.tryReceive().getOrNull().shouldBeNull()
+
+        bot.handleUpdates {
+            onMessage {
+                throw NoSuchElementException("test")
+            }
+            bot.update.stopListener()
+        }
+        val ex = bot.update.caughtExceptions.tryReceive().getOrNull()
+        ex.shouldNotBeNull()
+
+        ex shouldNotBeSameInstanceAs NoSuchElementException::class
+        ex.message shouldBe "test"
+    }
+
+    @Test
+    suspend fun `exception catching via annotation handling`() {
+        doMockHttp("test")
+
+        bot.update.caughtExceptions.tryReceive().getOrNull().shouldBeNull()
+        bot.update.setListener {
+            handle(it)
+            stopListener()
+        }
+
+        val annotationEx = bot.update.caughtExceptions.tryReceive().getOrNull()
+        annotationEx.shouldNotBeNull()
+
+        annotationEx shouldNotBeSameInstanceAs IllegalArgumentException::class
+        annotationEx.message shouldBe "test2"
+    }
+
     companion object {
         val updates = """
             {"ok":true,"result":[{"update_id":53192527,
-            "message":{"message_id":10831,"from":{"id":1,"is_bot":false,"first_name":"John Doe","username":"username","language_code":"en"},"chat":{"id":1,"first_name":"John Doe","username":"username","type":"private"},"date":1656908266,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}]}
+            "message":{"message_id":10831,"from":{"id":1,"is_bot":false,"first_name":"John Doe","username":"username","language_code":"en"},
+            "chat":{"id":1,"first_name":"John Doe","username":"username","type":"private"},"date":1656908266,"text":"/start",
+            "entities":[{"offset":0,"length":6,"type":"bot_command"}]}}]}
         """.trimIndent()
     }
 }

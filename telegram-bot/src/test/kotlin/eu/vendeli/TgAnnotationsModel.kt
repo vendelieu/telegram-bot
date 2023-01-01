@@ -10,6 +10,7 @@ class TgAnnotationsModel {
 
     @CommandHandler(["test"])
     fun test() {
+        throw IllegalArgumentException("test2")
     }
 
     @InputHandler(["testInp"])

@@ -200,7 +200,7 @@ class TelegramUpdateHandler internal constructor(
             else method.invoke(classManager.getInstance(clazz), *processedParameters)
         }.onFailure {
             logger.error("Method {$invocation} invocation error at handling update: $update", it)
-            caughtExceptions.send(it)
+            caughtExceptions.send(it.cause ?: it)
         }.onSuccess { logger.debug("Handled update#${update.fullUpdate.updateId} to method $invocation") }
     }
 
