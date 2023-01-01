@@ -5,6 +5,7 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.interfaces.BotChatData
+import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.interfaces.BotUserData
 import eu.vendeli.tgbot.interfaces.MagicObject
 import eu.vendeli.tgbot.interfaces.MultipleResponse
@@ -31,6 +32,7 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotBeBlank
+import io.kotest.matchers.types.shouldNotBeSameInstanceAs
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
@@ -80,6 +82,18 @@ class TelegramBotTest : BotTestContext() {
             it.errorCode shouldBe 400
             it.description shouldBe "Bad Request: chat_id is empty"
         }
+    }
+
+    @Test
+    fun `input listener setting`() {
+        bot.inputListener shouldNotBeSameInstanceAs inputListenerImpl // check default impl
+        val bot = TelegramBot("") {
+            context {
+                inputListener = inputListenerImpl
+            }
+        }
+
+        bot.inputListener shouldBeEqualToComparingFields inputListenerImpl
     }
 
     @Test
@@ -190,6 +204,17 @@ class TelegramBotTest : BotTestContext() {
             User.EMPTY,
             Update(-1),
         )
+
+        val inputListenerImpl = object : BotInputListener {
+            override fun set(telegramId: Long, identifier: String) = TODO("Not yet implemented")
+            override suspend fun setAsync(telegramId: Long, identifier: String): Deferred<Boolean> =
+                TODO("Not yet implemented")
+
+            override fun get(telegramId: Long): String = TODO("Not yet implemented")
+            override suspend fun getAsync(telegramId: Long): Deferred<String?> = TODO("Not yet implemented")
+            override fun del(telegramId: Long) = TODO("Not yet implemented")
+            override suspend fun delAsync(telegramId: Long): Deferred<Boolean> = TODO("Not yet implemented")
+        }
 
         val userDataImpl = object : BotUserData {
             override fun set(telegramId: Long, key: String, value: Any?) = TODO("Not yet implemented")
