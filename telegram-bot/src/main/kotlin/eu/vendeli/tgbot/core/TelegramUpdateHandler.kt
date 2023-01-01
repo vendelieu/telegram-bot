@@ -18,6 +18,8 @@ import eu.vendeli.tgbot.utils.invokeSuspend
 import eu.vendeli.tgbot.utils.parseQuery
 import eu.vendeli.tgbot.utils.processUpdate
 import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.slf4j.LoggerFactory
@@ -45,6 +47,7 @@ class TelegramUpdateHandler internal constructor(
     @Volatile
     private var handlerActive: Boolean = false
     private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot, inputListener) }
+    val caughtExceptions by lazy { Channel<Throwable>(CONFLATED) }
 
     /**
      * Function that starts the listening event.
@@ -60,7 +63,10 @@ class TelegramUpdateHandler internal constructor(
         var lastUpdateId: Int = offset ?: 0
         bot.pullUpdates(offset)?.forEach {
             CreateNewCoroutineContext(coroutineContext + dispatcher).launch {
-                listener(this@TelegramUpdateHandler, it)
+                listener.runCatching { listener(this@TelegramUpdateHandler, it) }.onFailure { e ->
+                    logger.error("Error at manually processing update: $it", e)
+                    caughtExceptions.send(e)
+                }
             }
             lastUpdateId = it.updateId + 1
         }
@@ -150,7 +156,7 @@ class TelegramUpdateHandler internal constructor(
         update: ProcessedUpdate,
         invocation: Invocation,
         parameters: Map<String, String>,
-    ): Throwable? {
+    ) {
         var isSuspend = false
         logger.trace("Parsing arguments for Update#${update.fullUpdate.updateId}")
         val processedParameters = buildList {
@@ -193,10 +199,9 @@ class TelegramUpdateHandler internal constructor(
             if (isSuspend) method.invokeSuspend(classManager.getInstance(clazz), *processedParameters)
             else method.invoke(classManager.getInstance(clazz), *processedParameters)
         }.onFailure {
-            logger.debug("Method {$invocation} invocation error at handling update: $update", it)
-            return it
+            logger.error("Method {$invocation} invocation error at handling update: $update", it)
+            caughtExceptions.send(it)
         }.onSuccess { logger.debug("Handled update#${update.fullUpdate.updateId} to method $invocation") }
-        return null
     }
 
     /**
@@ -205,7 +210,7 @@ class TelegramUpdateHandler internal constructor(
      * @param update
      * @return null on success or [Throwable].
      */
-    suspend fun handle(update: Update): Throwable? = processUpdate(update).run {
+    suspend fun handle(update: Update) = processUpdate(update).run {
         logger.trace("Handling update: $update")
         val telegramId = update.message?.from?.id
         if (checkIsLimited(bot.config.rateLimits, telegramId)) return@run null
@@ -218,21 +223,20 @@ class TelegramUpdateHandler internal constructor(
         inputListener.delAsync(user.id).await()
 
         val action = commandAction ?: inputAction
-        if (action != null && checkIsLimited(action.rateLimits, telegramId, action.id)) return@run null
+        if (action != null && checkIsLimited(action.rateLimits, telegramId, action.id)) {
+            return@run null
+        }
 
-        return when {
+        when {
             commandAction != null -> invokeMethod(this, commandAction.invocation, commandAction.parameters)
-            inputAction != null && update.message?.from?.isBot == false -> invokeMethod(
-                this,
-                inputAction.invocation,
-                inputAction.parameters,
-            )
+
+            inputAction != null && update.message?.from?.isBot == false -> {
+                invokeMethod(this, inputAction.invocation, inputAction.parameters)
+            }
 
             actions?.unhandled != null -> invokeMethod(this, actions.unhandled, emptyMap())
-            else -> {
-                logger.info("update: $update not handled.")
-                null
-            }
+
+            else -> logger.info("update: $update not handled.")
         }
     }
 
