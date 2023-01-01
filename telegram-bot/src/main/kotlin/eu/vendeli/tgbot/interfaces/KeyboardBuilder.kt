@@ -4,6 +4,18 @@ abstract class KeyboardBuilder<T : Button> {
     protected abstract val buttons: MutableList<T?>
 
     /**
+     * Adds a line break, so that the following buttons will be on a new line.
+     */
+    fun newLine() {
+        buttons.add(null)
+    }
+
+    /**
+     * @see [newLine]
+     */
+    fun br() = newLine()
+
+    /**
      * The function that collects and returns [Keyboard]
      *
      * @return

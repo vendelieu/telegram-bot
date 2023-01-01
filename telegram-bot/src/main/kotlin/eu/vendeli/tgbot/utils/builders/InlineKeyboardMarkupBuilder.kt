@@ -41,7 +41,7 @@ class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
      * Web app info button
      *
      * @param name
-     * @param value
+     * @param value Web app url
      * @receiver
      * @return
      */
@@ -91,18 +91,6 @@ class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
         buttons.add(InlineKeyboardButton(name, pay = true))
         return this
     }
-
-    /**
-     * Adds a line break, so that the following buttons will be on a new line.
-     */
-    fun newLine() {
-        buttons.add(null)
-    }
-
-    /**
-     * @see [newLine]
-     */
-    fun br() = newLine()
 
     /**
      * Callback button infix interface
