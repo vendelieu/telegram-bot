@@ -1,2 +1,9 @@
+root = true
+
 [*.{kt,kts}]
-disabled_rules = no-wildcard-imports
+max_line_length = 140
+indent_size = 4
+insert_final_newline = true
+ij_kotlin_allow_trailing_comma = true
+ij_kotlin_allow_trailing_comma_on_call_site = true
+ktlint_disabled_rules = multiline-if-else
