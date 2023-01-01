@@ -129,12 +129,12 @@ class TelegramUpdateHandler internal constructor(
     /**
      * A method for annotation handling updates from a string.
      */
-    suspend fun parseAndHandleUpdate(update: String) = parseUpdate(update)?.let { handle(it) }
+    suspend fun parseAndHandle(update: String) = parseUpdate(update)?.let { handle(it) }
 
     /**
      * A method for manual handling updates from a string.
      */
-    suspend fun parseAndHandleUpdate(update: String, block: ManualHandlingBlock) =
+    suspend fun parseAndHandle(update: String, block: ManualHandlingBlock) =
         parseUpdate(update)?.let { handle(it, block) }
 
     /**
