@@ -14,4 +14,5 @@ data class AnimationOptions(
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
     override var messageThreadId: Long? = null,
-) : OptionsInterface<AnimationOptions>, OptionsCommon, OptionsParseMode
+    override var hasSpoiler: Boolean? = null,
+) : OptionsInterface<AnimationOptions>, OptionsCommon, OptionsParseMode, MediaSpoiler

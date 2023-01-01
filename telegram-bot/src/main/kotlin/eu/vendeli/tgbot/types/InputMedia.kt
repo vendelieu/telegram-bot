@@ -44,6 +44,7 @@ sealed class InputMedia(val type: String) {
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
+        val hasSpoiler: Boolean? = null,
     ) : InputMedia(type = "photo")
 
     data class Video(
@@ -56,6 +57,7 @@ sealed class InputMedia(val type: String) {
         val height: Int? = null,
         val duration: Int? = null,
         val supportsStreaming: Boolean? = null,
+        val hasSpoiler: Boolean? = null,
     ) : InputMedia(type = "video")
 
     data class Animation(
@@ -67,5 +69,6 @@ sealed class InputMedia(val type: String) {
         val width: Int? = null,
         val height: Int? = null,
         val duration: Int? = null,
+        val hasSpoiler: Boolean? = null,
     ) : InputMedia(type = "animation")
 }

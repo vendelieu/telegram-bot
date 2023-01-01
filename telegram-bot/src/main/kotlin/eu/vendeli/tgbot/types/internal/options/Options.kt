@@ -14,6 +14,10 @@ interface OptionsParseMode : Options {
     var parseMode: ParseMode?
 }
 
+interface MediaSpoiler : Options {
+    var hasSpoiler: Boolean?
+}
+
 interface FileOptions : Options {
     var fileName: String?
 }

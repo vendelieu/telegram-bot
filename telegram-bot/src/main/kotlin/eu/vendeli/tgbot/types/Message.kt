@@ -67,4 +67,5 @@ data class Message(
     val videoChatParticipantsInvited: VideoChatParticipantsInvited? = null,
     val webAppData: WebAppData? = null,
     val replyMarkup: InlineKeyboardMarkup? = null,
+    val hasMediaSpoiler: Boolean? = null,
 ) : MultipleResponse

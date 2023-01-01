@@ -9,4 +9,5 @@ data class PhotoOptions(
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
     override var messageThreadId: Long? = null,
-) : OptionsInterface<PhotoOptions>, OptionsCommon, OptionsParseMode
+    override var hasSpoiler: Boolean? = null,
+) : OptionsInterface<PhotoOptions>, OptionsCommon, OptionsParseMode, MediaSpoiler
