@@ -70,4 +70,6 @@ data class Chat(
     val canSetStickerSet: Boolean? = null,
     val linkedChatId: Long? = null,
     val location: ChatLocation? = null,
+    val hasHiddenMembers: Boolean? = null,
+    val hasAggressiveAntiSpamEnabled: Boolean? = null,
 )
