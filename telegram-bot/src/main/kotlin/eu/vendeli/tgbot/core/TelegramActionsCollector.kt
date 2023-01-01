@@ -28,8 +28,9 @@ internal object TelegramActionsCollector {
      */
     fun collect(packageName: String): Actions = with(
         Reflections(
-            packageName, Scanners.MethodsAnnotated
-        )
+            packageName,
+            Scanners.MethodsAnnotated,
+        ),
     ) {
         val commands = mutableMapOf<String, Invocation>()
         val inputs = mutableMapOf<String, Invocation>()
@@ -41,7 +42,7 @@ internal object TelegramActionsCollector {
                     clazz = m.declaringClass,
                     method = m,
                     namedParameters = m.parameters.getParameters(),
-                    rateLimits = RateLimits(annotation.rateLimits.period, annotation.rateLimits.rate)
+                    rateLimits = RateLimits(annotation.rateLimits.period, annotation.rateLimits.rate),
                 )
             }
         }
@@ -53,7 +54,7 @@ internal object TelegramActionsCollector {
                     clazz = m.declaringClass,
                     method = m,
                     namedParameters = m.parameters.getParameters(),
-                    rateLimits = RateLimits(annotation.rateLimits.period, annotation.rateLimits.rate)
+                    rateLimits = RateLimits(annotation.rateLimits.period, annotation.rateLimits.rate),
                 )
             }
         }
@@ -63,7 +64,7 @@ internal object TelegramActionsCollector {
             inputs = inputs,
             unhandled = getMethodsAnnotatedWith(UnprocessedHandler::class.java).firstOrNull()?.let { m ->
                 Invocation(clazz = m.declaringClass, method = m, rateLimits = RateLimits.NOT_LIMITED)
-            }
+            },
         )
     }
 }

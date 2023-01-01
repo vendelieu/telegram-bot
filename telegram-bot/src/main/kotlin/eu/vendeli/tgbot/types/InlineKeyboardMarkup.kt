@@ -7,10 +7,6 @@ import eu.vendeli.tgbot.interfaces.Keyboard
 class InlineKeyboardMarkup : Keyboard {
     var inlineKeyboard: MutableList<List<InlineKeyboardButton>> = mutableListOf()
 
-    constructor(vararg buttons: List<InlineKeyboardButton>) {
-        inlineKeyboard = mutableListOf(* buttons)
-    }
-
     constructor(vararg buttons: InlineKeyboardButton) {
         inlineKeyboard = mutableListOf(buttons.toList())
     }

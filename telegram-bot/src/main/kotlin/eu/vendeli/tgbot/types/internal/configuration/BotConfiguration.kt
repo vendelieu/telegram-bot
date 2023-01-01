@@ -18,7 +18,7 @@ data class BotConfiguration(
     var apiHost: String = "api.telegram.org",
     var inputListener: BotInputListener = BotInputListenerMapImpl(),
     var classManager: ClassManager = ClassManagerImpl(),
-    var rateLimiter: RateLimitMechanism = TokenBucketLimiterImpl()
+    var rateLimiter: RateLimitMechanism = TokenBucketLimiterImpl(),
 ) {
     internal val httpClient = HttpConfiguration()
     internal val logging = LoggingConfiguration()

@@ -18,10 +18,10 @@ internal fun <T, I : MultipleResponse> ObjectMapper.convertSuccessResponse(
 ): Response.Success<T> =
     if (innerType == null) convertValue(
         jsonNode,
-        typeFactory.constructParametricType(Response.Success::class.java, type)
+        typeFactory.constructParametricType(Response.Success::class.java, type),
     )
     else Response.Success(
-        result = convertValue(jsonNode["result"], typeFactory.constructCollectionType(List::class.java, innerType))
+        result = convertValue(jsonNode["result"], typeFactory.constructCollectionType(List::class.java, innerType)),
     )
 
 internal fun <T, I : MultipleResponse> CoroutineScope.handleResponseAsync(

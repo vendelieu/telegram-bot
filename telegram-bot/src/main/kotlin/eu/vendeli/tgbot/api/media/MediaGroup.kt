@@ -1,4 +1,5 @@
 @file:Suppress("MatchingDeclarationName")
+
 package eu.vendeli.tgbot.api.media
 
 import eu.vendeli.tgbot.TelegramBot
@@ -87,7 +88,12 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
             return via.makeRequestAsync(method, parameters, returnType, bunchResponseInnerType())
 
         return via.makeBunchMediaRequestAsync(
-            method, files, parameters = parameters, defaultType.toContentType(), returnType, Message::class.java
+            method,
+            files,
+            parameters = parameters,
+            defaultType.toContentType(),
+            returnType,
+            Message::class.java,
         )
     }
 

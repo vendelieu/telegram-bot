@@ -35,13 +35,15 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.runBlocking
 
 class TelegramBotTest : BotTestContext() {
     @Test
-    fun `requests testing`() = runBlocking {
+    suspend fun `requests testing`() {
         val getMeReq = bot.makeRequestAsync(
-            TgMethod("getMe"), null, User::class.java, (null as Class<MultipleResponse>?)
+            TgMethod("getMe"),
+            null,
+            User::class.java,
+            (null as Class<MultipleResponse>?),
         ).await().getOrNull()
 
         getMeReq.shouldNotBeNull()
@@ -49,10 +51,10 @@ class TelegramBotTest : BotTestContext() {
     }
 
     @Test
-    fun `test silent requesting`() = runBlocking {
+    suspend fun `test silent requesting`() {
         val silentReq = bot.makeSilentRequest(
             TgMethod("sendMessage"),
-            mapOf("text" to "test", "chat_id" to System.getenv("TELEGRAM_ID").toLong())
+            mapOf("text" to "test", "chat_id" to System.getenv("TELEGRAM_ID").toLong()),
         )
 
         silentReq.status shouldBe HttpStatusCode.OK
@@ -67,7 +69,7 @@ class TelegramBotTest : BotTestContext() {
             TgMethod("sendMessage"),
             mapOf("text" to "test"),
             Message::class.java,
-            (null as Class<MultipleResponse>?)
+            (null as Class<MultipleResponse>?),
         ).await()
 
         failureReq.isSuccess().shouldBeFalse()
@@ -127,7 +129,7 @@ class TelegramBotTest : BotTestContext() {
     }
 
     @Test
-    fun `media request handling`() = runBlocking {
+    suspend fun `media request handling`() {
         val image = classloader.getResource("image.png")?.readBytes()
         image.shouldNotBeNull()
 
@@ -137,7 +139,7 @@ class TelegramBotTest : BotTestContext() {
             "image.jpg",
             image,
             mapOf("chat_id" to System.getenv("TELEGRAM_ID").toLong()),
-            ContentType.Image.JPEG
+            ContentType.Image.JPEG,
         )
 
         mediaReq.status shouldBe HttpStatusCode.OK
@@ -152,12 +154,12 @@ class TelegramBotTest : BotTestContext() {
             mapOf("chat_id" to System.getenv("TELEGRAM_ID").toLong()),
             ContentType.Image.JPEG,
             Message::class.java,
-            (null as Class<MultipleResponse>?)
+            (null as Class<MultipleResponse>?),
         ).await().isSuccess().shouldBeTrue()
     }
 
     @Test
-    fun `getting file url`() = runBlocking {
+    suspend fun `getting file url`() {
         val image = classloader.getResource("image.png")?.readBytes()
         image.shouldNotBeNull()
 
@@ -175,7 +177,7 @@ class TelegramBotTest : BotTestContext() {
     }
 
     @Test
-    fun `try to get file without filePath`() = runBlocking {
+    suspend fun `try to get file without filePath`() {
         val file = File("", "")
         bot.getFileDirectUrl(file).shouldBeNull()
         bot.getFileContent(file).shouldBeNull()
@@ -186,7 +188,7 @@ class TelegramBotTest : BotTestContext() {
             UpdateType.MESSAGE,
             null,
             User.EMPTY,
-            Update(-1)
+            Update(-1),
         )
 
         val userDataImpl = object : BotUserData {

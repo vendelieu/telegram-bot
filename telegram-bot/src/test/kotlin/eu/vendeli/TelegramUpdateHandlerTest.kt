@@ -20,9 +20,9 @@ class TelegramUpdateHandlerTest : BotTestContext() {
                 respond(
                     content = ByteReadChannel(updates),
                     status = HttpStatusCode.OK,
-                    headers = headersOf(HttpHeaders.ContentType, "application/json")
+                    headers = headersOf(HttpHeaders.ContentType, "application/json"),
                 )
-            }
+            },
         )
 
         var update: Update? = null

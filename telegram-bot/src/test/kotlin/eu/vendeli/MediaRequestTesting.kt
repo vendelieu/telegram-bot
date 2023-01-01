@@ -27,7 +27,7 @@ class MediaRequestTesting : BotTestContext() {
     @Test
     suspend fun `media requests testing`() {
         val image = bot.httpClient.get(
-            "https://storage.myseldon.com/news-pict-fe/FEB5B36049C75ADDFF40C00221D2D9D5"
+            "https://storage.myseldon.com/news-pict-fe/FEB5B36049C75ADDFF40C00221D2D9D5",
         ).readBytes()
 
         val imageFile = withContext(Dispatchers.IO) {
@@ -72,9 +72,11 @@ class MediaRequestTesting : BotTestContext() {
                     mapOf("type" to "photo", "media" to "attach://test2.png"),
                     mapOf("type" to "photo", "media" to "attach://test3.png"),
                     mapOf("type" to "photo", "media" to "attach://test4.png"),
-                )
+                ),
             ),
-            ContentType.Image.PNG, List::class.java, Message::class.java
+            ContentType.Image.PNG,
+            List::class.java,
+            Message::class.java,
         ).await().getOrNull() as? List<Message>
 
         mediaGroupReq.shouldNotBeNull()
@@ -106,8 +108,8 @@ class MediaRequestTesting : BotTestContext() {
             InputMedia.Photo(ImplicitFile.FromByteArray(imageBytes)),
             InputMedia.Photo(
                 ImplicitFile.FromString(
-                    "https://storage.myseldon.com/news-pict-fe/FEB5B36049C75ADDFF40C00221D2D9D5"
-                )
+                    "https://storage.myseldon.com/news-pict-fe/FEB5B36049C75ADDFF40C00221D2D9D5",
+                ),
             ),
         ).sendAsync(System.getenv("TELEGRAM_ID").toLong(), bot).await().getOrNull()
 
@@ -120,7 +122,7 @@ class MediaRequestTesting : BotTestContext() {
         assertThrows<IllegalArgumentException>("All elements must be of the same specific type") {
             SendMediaGroupAction(
                 InputMedia.Photo(ImplicitFile.FromString("")),
-                InputMedia.Audio(ImplicitFile.FromString(""))
+                InputMedia.Audio(ImplicitFile.FromString("")),
             )
         }
     }
@@ -130,7 +132,7 @@ class MediaRequestTesting : BotTestContext() {
         assertThrows<IllegalArgumentException>("Only Audio/Document/Photo/Video is possible.") {
             SendMediaGroupAction(
                 InputMedia.Animation(ImplicitFile.FromString("")),
-                InputMedia.Photo(ImplicitFile.FromString(""))
+                InputMedia.Photo(ImplicitFile.FromString("")),
             )
         }
     }

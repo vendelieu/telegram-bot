@@ -10,5 +10,5 @@ package eu.vendeli.tgbot.annotations
 @Retention(AnnotationRetention.RUNTIME)
 annotation class CommandHandler(
     val value: Array<String>,
-    val rateLimits: RateLimits = RateLimits(0, 0)
+    val rateLimits: RateLimits = RateLimits(0, 0),
 )

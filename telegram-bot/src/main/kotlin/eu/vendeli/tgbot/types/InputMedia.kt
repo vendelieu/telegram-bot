@@ -7,7 +7,7 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
-    property = "type"
+    property = "type",
 )
 @JsonSubTypes(
     JsonSubTypes.Type(value = InputMedia.Audio::class, name = "audio"),

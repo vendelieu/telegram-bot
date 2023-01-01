@@ -47,16 +47,16 @@ class RateLimitingTest : BotTestContext(false) {
             listOf(
                 Update(nextInt(), testMsg),
                 Update(nextInt(), testMsg),
-            )
+            ),
         )
         bot.httpClient = HttpClient(
             MockEngine {
                 respond(
                     content = ByteReadChannel(mapper.writeValueAsBytes(apiResponse)),
                     status = HttpStatusCode.OK,
-                    headers = headersOf(HttpHeaders.ContentType, "application/json")
+                    headers = headersOf(HttpHeaders.ContentType, "application/json"),
                 )
-            }
+            },
         )
     }
 

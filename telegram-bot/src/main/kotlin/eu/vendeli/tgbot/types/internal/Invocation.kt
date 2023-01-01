@@ -7,5 +7,5 @@ data class Invocation(
     val clazz: Class<*>,
     val method: Method,
     val namedParameters: Map<String, String> = mapOf(),
-    val rateLimits: RateLimits
+    val rateLimits: RateLimits,
 )

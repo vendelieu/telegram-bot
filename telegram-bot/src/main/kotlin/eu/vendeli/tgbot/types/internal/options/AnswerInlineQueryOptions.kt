@@ -5,5 +5,5 @@ data class AnswerInlineQueryOptions(
     var isPersonal: Boolean? = null,
     var nextOffset: String? = null,
     var switchPmText: String? = null,
-    var switchPmParameter: String? = null
+    var switchPmParameter: String? = null,
 ) : OptionsInterface<AnswerInlineQueryOptions>

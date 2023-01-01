@@ -14,14 +14,13 @@ import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
+import io.ktor.http.append
 import io.ktor.http.contentType
-import io.ktor.util.InternalAPI
 import io.ktor.utils.io.core.buildPacket
 import io.ktor.utils.io.core.writeFully
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.coroutineScope
 
-@OptIn(InternalAPI::class)
 private fun multipartBodyBuilder(
     dataField: String,
     filename: String,
@@ -35,7 +34,7 @@ private fun multipartBodyBuilder(
             headers = Headers.build {
                 append(HttpHeaders.ContentDisposition, "filename=$filename")
                 append(HttpHeaders.ContentType, contentType)
-            }
+            },
         ) { buildPacket { writeFully(data) } }
 
         val jsonContentHeaders = Headers.build {
@@ -46,7 +45,7 @@ private fun multipartBodyBuilder(
                 append(FormPart(entry.key, it, jsonContentHeaders))
             }
         }
-    }
+    },
 )
 
 /**

@@ -1,4 +1,5 @@
 @file:Suppress("MatchingDeclarationName")
+
 package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.interfaces.SimpleAction

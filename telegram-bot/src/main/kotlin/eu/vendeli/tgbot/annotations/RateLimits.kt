@@ -10,5 +10,5 @@ package eu.vendeli.tgbot.annotations
 @Retention(AnnotationRetention.RUNTIME)
 annotation class RateLimits(
     val period: Long = 0L,
-    val rate: Long = 0L
+    val rate: Long = 0L,
 )

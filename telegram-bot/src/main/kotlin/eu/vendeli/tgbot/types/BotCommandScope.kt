@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "type",
-    defaultImpl = BotCommandScope.Default::class
+    defaultImpl = BotCommandScope.Default::class,
 )
 @JsonSubTypes(
     JsonSubTypes.Type(value = BotCommandScope.Default::class, name = "default"),

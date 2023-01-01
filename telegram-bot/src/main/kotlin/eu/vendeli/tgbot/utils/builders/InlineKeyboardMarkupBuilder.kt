@@ -170,4 +170,4 @@ class InlineKeyboardMarkupBuilder {
  */
 fun inlineKeyboardMarkup(
     block: InlineKeyboardMarkupBuilder.() -> Unit,
-) = InlineKeyboardMarkup(*InlineKeyboardMarkupBuilder().apply(block).build().toTypedArray())
+) = InlineKeyboardMarkup(InlineKeyboardMarkupBuilder().apply(block).build())

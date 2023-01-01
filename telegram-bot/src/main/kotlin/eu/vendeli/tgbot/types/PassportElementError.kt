@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "source",
-    defaultImpl = PassportElementError.Unspecified::class
+    defaultImpl = PassportElementError.Unspecified::class,
 )
 @JsonSubTypes(
     JsonSubTypes.Type(value = PassportElementError.DataField::class, name = "data"),

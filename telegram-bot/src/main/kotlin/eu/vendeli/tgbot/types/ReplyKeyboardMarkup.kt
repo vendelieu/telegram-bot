@@ -25,7 +25,7 @@ class ReplyKeyboardMarkup : Keyboard {
         oneTimeKeyboard: Boolean? = null,
         inputFieldPlaceholder: String? = null,
         selective: Boolean? = null,
-        vararg buttons: List<KeyboardButton>
+        vararg buttons: List<KeyboardButton>,
     ) {
         this.resizeKeyboard = resizeKeyboard
         this.oneTimeKeyboard = oneTimeKeyboard
@@ -39,7 +39,7 @@ class ReplyKeyboardMarkup : Keyboard {
         oneTimeKeyboard: Boolean? = null,
         inputFieldPlaceholder: String? = null,
         selective: Boolean? = null,
-        vararg buttons: KeyboardButton
+        vararg buttons: KeyboardButton,
     ) {
         this.resizeKeyboard = resizeKeyboard
         this.oneTimeKeyboard = oneTimeKeyboard

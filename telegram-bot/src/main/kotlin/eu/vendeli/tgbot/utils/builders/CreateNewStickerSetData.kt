@@ -14,7 +14,7 @@ class CreateNewStickerSetData {
 
     internal fun checkIsAllFieldsPresent() {
         require(
-            ::name.isInitialized && ::title.isInitialized && ::emojis.isInitialized && ::sticker.isInitialized
+            ::name.isInitialized && ::title.isInitialized && ::emojis.isInitialized && ::sticker.isInitialized,
         ) { "All fields must be initialized" }
     }
 }

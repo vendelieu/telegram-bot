@@ -7,5 +7,5 @@ data class ContactOptions(
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
-    override var messageThreadId: Long? = null
+    override var messageThreadId: Long? = null,
 ) : OptionsInterface<ContactOptions>, OptionsCommon

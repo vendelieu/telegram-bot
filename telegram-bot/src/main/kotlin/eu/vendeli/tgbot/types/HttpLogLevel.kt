@@ -11,7 +11,8 @@ enum class HttpLogLevel {
     HEADERS,
     BODY,
     INFO,
-    NONE;
+    NONE,
+    ;
 
     internal fun toKtorLvl() = when (this) {
         ALL -> LogLevel.ALL

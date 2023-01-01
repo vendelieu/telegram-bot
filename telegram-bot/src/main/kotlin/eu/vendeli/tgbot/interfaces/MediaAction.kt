@@ -89,7 +89,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
                 (parameters["file_name"]?.toString() ?: "$dataField.$defaultType"),
                 media.file as ByteArray,
                 parameters,
-                defaultType.toContentType()
+                defaultType.toContentType(),
             )
 
             is ImplicitFile.FromFile -> via.makeSilentRequest(
@@ -101,7 +101,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
                 withContext(Dispatchers.IO) {
                     ContentType.parse(
                         Files.probeContentType((media.file as File).toPath())
-                            ?: return@withContext defaultType.toContentType()
+                            ?: return@withContext defaultType.toContentType(),
                     )
                 },
             )
@@ -137,7 +137,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
                 parameters,
                 defaultType.toContentType(),
                 returnType,
-                bunchResponseInnerType()
+                bunchResponseInnerType(),
             )
 
             is ImplicitFile.FromFile -> via.makeRequestAsync(
@@ -149,11 +149,11 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
                 withContext(Dispatchers.IO) {
                     ContentType.parse(
                         Files.probeContentType((media.file as File).toPath())
-                            ?: return@withContext defaultType.toContentType()
+                            ?: return@withContext defaultType.toContentType(),
                     )
                 },
                 returnType,
-                bunchResponseInnerType()
+                bunchResponseInnerType(),
             )
         }
     }

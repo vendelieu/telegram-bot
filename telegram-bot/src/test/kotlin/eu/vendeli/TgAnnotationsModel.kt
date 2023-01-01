@@ -1,4 +1,5 @@
 @file:Suppress("EmptyFunctionBlock")
+
 package eu.vendeli
 
 import eu.vendeli.tgbot.annotations.CommandHandler

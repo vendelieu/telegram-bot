@@ -22,7 +22,7 @@ import eu.vendeli.tgbot.utils.builders.InvoiceData
  * @param prices Price breakdown (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.)
  */
 class CreateInvoiceLinkAction(
-    invoiceData: InvoiceData
+    invoiceData: InvoiceData,
 ) : SimpleAction<String>, OptionAble, OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions> {
     override var options = CreateInvoiceLinkOptions()
     override val method: TgMethod = TgMethod("createInvoiceLink")

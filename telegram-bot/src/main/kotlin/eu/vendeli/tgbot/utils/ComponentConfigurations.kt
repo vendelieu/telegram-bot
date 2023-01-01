@@ -57,7 +57,7 @@ internal fun TelegramBot.Companion.getConfiguredMapper() = ObjectMapper().apply 
             configure(KotlinFeature.NullIsSameAsDefault, false)
             configure(KotlinFeature.SingletonSupport, false)
             configure(KotlinFeature.StrictNullChecks, false)
-        }.build()
+        }.build(),
     )
 
     configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true)

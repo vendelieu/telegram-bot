@@ -15,7 +15,7 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.http.ContentType
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
-import io.ktor.util.InternalAPI
+import io.ktor.http.append
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.coroutineScope
 
@@ -23,26 +23,26 @@ suspend fun TelegramBot.makeBunchMediaReq(
     method: TgMethod,
     files: Map<String, ByteArray>,
     parameters: Map<String, Any?>? = null,
-    contentType: ContentType
+    contentType: ContentType,
 ): HttpResponse = httpClient.post(method.toUrl()) {
     setBody(
         MultiPartFormDataContent(
             formData {
                 files.forEach {
                     append(
-                        it.key, it.value,
+                        it.key,
+                        it.value,
                         Headers.build {
                             append(HttpHeaders.ContentDisposition, "filename=${it.key}")
-                            @OptIn(InternalAPI::class)
                             append(HttpHeaders.ContentType, contentType)
-                        }
+                        },
                     )
                 }
                 parameters?.entries?.forEach { entry ->
                     entry.value?.also { append(FormPart(entry.key, TelegramBot.mapper.writeValueAsString(it))) }
                 }
-            }
-        )
+            },
+        ),
     )
     onUpload { bytesSentTotal, contentLength ->
         logger.trace("Sent $bytesSentTotal bytes from $contentLength, for $method with $parameters")
@@ -67,7 +67,7 @@ suspend fun TelegramBot.makeSilentBunchMediaRequest(
     method: TgMethod,
     files: Map<String, ByteArray>,
     parameters: Map<String, Any?>? = null,
-    contentType: ContentType
+    contentType: ContentType,
 ) {
     makeBunchMediaReq(method, files, parameters, contentType)
 }

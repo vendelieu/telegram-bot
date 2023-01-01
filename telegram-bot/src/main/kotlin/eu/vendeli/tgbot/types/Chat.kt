@@ -2,7 +2,8 @@ package eu.vendeli.tgbot.types
 
 enum class ChatType(private val literal: String) {
     Private("private"), Group("group"), Supergroup("supergroup"), Channel("channel"),
-    Sender("sender");
+    Sender("sender"),
+    ;
 
     override fun toString(): String = literal
 }

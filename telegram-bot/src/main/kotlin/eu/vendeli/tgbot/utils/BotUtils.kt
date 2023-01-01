@@ -1,4 +1,5 @@
 @file:Suppress("MatchingDeclarationName")
+
 package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
@@ -27,7 +28,7 @@ internal fun String.parseQuery(): StructuredRequest {
 
     return StructuredRequest(
         command = reqParams.first(),
-        params = reqParams.last().split('&').associate { it.substringBefore('=') to it.substringAfter('=') }
+        params = reqParams.last().split('&').associate { it.substringBefore('=') to it.substringAfter('=') },
     )
 }
 
@@ -36,7 +37,7 @@ internal fun String.parseKeyValueBySpace(): StructuredRequest {
 
     return StructuredRequest(
         parsedString.first(),
-        parsedString.chunked(2).associate { it.first() to (it.lastOrNull() ?: "") }
+        parsedString.chunked(2).associate { it.first() to (it.lastOrNull() ?: "") },
     )
 }
 
@@ -48,7 +49,7 @@ internal suspend fun Method.invokeSuspend(obj: Any, vararg args: Any?): Any? =
 internal suspend fun TelegramUpdateHandler.checkIsLimited(
     limits: RateLimits,
     telegramId: Long?,
-    actionId: String? = null
+    actionId: String? = null,
 ): Boolean {
     if (limits.period == 0L && limits.rate == 0L || telegramId == null) return false
 

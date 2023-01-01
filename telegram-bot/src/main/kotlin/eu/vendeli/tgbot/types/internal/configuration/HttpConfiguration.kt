@@ -19,5 +19,5 @@ data class HttpConfiguration(
     var connectTimeoutMillis: Long? = null,
     var socketTimeoutMillis: Long? = null,
     var maxRequestRetry: Int = 3,
-    var retryDelay: Long = 3000L
+    var retryDelay: Long = 3000L,
 )

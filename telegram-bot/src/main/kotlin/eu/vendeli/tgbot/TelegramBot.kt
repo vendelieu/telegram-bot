@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory
 class TelegramBot(
     private val token: String,
     commandsPackage: String? = null,
-    botConfiguration: BotConfigurator = {}
+    botConfiguration: BotConfigurator = {},
 ) {
     internal val config = BotConfiguration().apply(botConfiguration)
 
@@ -71,7 +71,7 @@ class TelegramBot(
         bot = this,
         classManager = config.classManager,
         inputListener = config.inputListener,
-        rateLimiter = config.rateLimiter
+        rateLimiter = config.rateLimiter,
     )
 
     internal var httpClient = getConfiguredHttpClient()
@@ -131,7 +131,7 @@ class TelegramBot(
     internal suspend fun pullUpdates(offset: Int? = null): List<Update>? {
         logger.trace("Pulling updates.")
         val request = httpClient.post(
-            TgMethod("getUpdates").toUrl() + (offset?.let { "?offset=$it" } ?: "")
+            TgMethod("getUpdates").toUrl() + (offset?.let { "?offset=$it" } ?: ""),
         )
         return mapper.readValue(request.bodyAsText(), jacksonTypeRef<Response<List<Update>>>()).getOrNull()
     }

@@ -19,7 +19,7 @@ class InvoiceData {
         payload: String,
         providerToken: String,
         currency: Currency,
-        prices: List<LabeledPrice>
+        prices: List<LabeledPrice>,
     ) {
         this.title = title
         this.description = description
@@ -32,8 +32,8 @@ class InvoiceData {
     internal fun checkIsAllFieldsPresent() {
         require(
             ::title.isInitialized && ::description.isInitialized &&
-                    ::payload.isInitialized && ::providerToken.isInitialized &&
-                    ::currency.isInitialized && ::prices.isInitialized
+                ::payload.isInitialized && ::providerToken.isInitialized &&
+                ::currency.isInitialized && ::prices.isInitialized,
         ) {
             "All fields must be initialized"
         }

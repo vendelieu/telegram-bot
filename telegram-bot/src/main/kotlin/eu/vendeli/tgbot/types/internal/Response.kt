@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.types.ResponseParameters
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "ok",
-    defaultImpl = Response.Success::class
+    defaultImpl = Response.Success::class,
 )
 @JsonSubTypes(
     JsonSubTypes.Type(value = Response.Success::class, name = "true"),
@@ -16,13 +16,13 @@ import eu.vendeli.tgbot.types.ResponseParameters
 )
 sealed class Response<T>(val ok: Boolean) {
     data class Success<T>(
-        val result: T
+        val result: T,
     ) : Response<T>(true)
 
     data class Failure(
         val errorCode: Int,
         val description: String? = null,
-        val parameters: ResponseParameters? = null
+        val parameters: ResponseParameters? = null,
     ) : Response<Nothing>(false)
 }
 

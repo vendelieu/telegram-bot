@@ -19,7 +19,7 @@ import kotlin.time.Duration.Companion.milliseconds
  */
 data class BucketState(
     val remainingTokens: Long,
-    val lastUpdated: Instant
+    val lastUpdated: Instant,
 )
 
 /**
@@ -39,7 +39,7 @@ open class TokenBucketLimiterImpl : RateLimitMechanism {
         // Check if an item was added or updated after currentState read
         if ((currentState == null && putResult != null) || currentState?.compareAndSet(
                 currentStateValue,
-                newStateValue
+                newStateValue,
             ) == false
         ) {
             delay(100.milliseconds)
@@ -61,7 +61,8 @@ open class TokenBucketLimiterImpl : RateLimitMechanism {
                 hasTokens = totalTokens > 0
 
                 current.copy(
-                    remainingTokens = max(0, totalTokens - 1), lastUpdated = lastUpdated
+                    remainingTokens = max(0, totalTokens - 1),
+                    lastUpdated = lastUpdated,
                 )
             }
         }

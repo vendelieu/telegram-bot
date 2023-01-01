@@ -37,7 +37,7 @@ class TelegramUpdateHandler internal constructor(
     internal val bot: TelegramBot,
     private val classManager: ClassManager,
     private val inputListener: BotInputListener,
-    internal val rateLimiter: RateLimitMechanism
+    internal val rateLimiter: RateLimitMechanism,
 ) {
     internal val logger = LoggerFactory.getLogger(javaClass)
     private lateinit var listener: InputListenerBlock
@@ -107,7 +107,7 @@ class TelegramUpdateHandler internal constructor(
             id = message.command,
             invocation = invocation,
             parameters = message.params,
-            rateLimits = invocation.rateLimits
+            rateLimits = invocation.rateLimits,
         ) else null
     }
 
@@ -145,6 +145,7 @@ class TelegramUpdateHandler internal constructor(
      * @param parameters
      * @return null on success or [Throwable].
      */
+    @Suppress("CyclomaticComplexMethod", "SpreadOperator")
     private suspend fun invokeMethod(
         update: ProcessedUpdate,
         invocation: Invocation,
@@ -222,7 +223,9 @@ class TelegramUpdateHandler internal constructor(
         return when {
             commandAction != null -> invokeMethod(this, commandAction.invocation, commandAction.parameters)
             inputAction != null && update.message?.from?.isBot == false -> invokeMethod(
-                this, inputAction.invocation, inputAction.parameters
+                this,
+                inputAction.invocation,
+                inputAction.parameters,
             )
 
             actions?.unhandled != null -> invokeMethod(this, actions.unhandled, emptyMap())

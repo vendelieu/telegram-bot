@@ -6,5 +6,5 @@ data class ShippingAddress(
     val city: String,
     val streetLine1: String,
     val streetLine2: String,
-    val postCode: String
+    val postCode: String,
 )

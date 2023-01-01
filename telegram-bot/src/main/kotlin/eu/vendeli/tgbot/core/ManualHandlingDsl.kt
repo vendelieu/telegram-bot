@@ -170,7 +170,7 @@ class ManualHandlingDsl internal constructor(
     fun onCommand(
         command: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        block: OnCommandAction
+        block: OnCommandAction,
     ) {
         manualActions.commands[CommandSelector.String(command, rateLimits)] = block
     }
@@ -185,7 +185,7 @@ class ManualHandlingDsl internal constructor(
     fun onCommand(
         command: Regex,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        block: OnCommandAction
+        block: OnCommandAction,
     ) {
         manualActions.commands[CommandSelector.Regex(command, rateLimits)] = block
     }
@@ -200,7 +200,7 @@ class ManualHandlingDsl internal constructor(
     fun onInput(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        block: OnInputAction
+        block: OnInputAction,
     ) {
         manualActions.onInput[identifier] = SingleInputChain(identifier, block, rateLimits)
     }
@@ -223,7 +223,7 @@ class ManualHandlingDsl internal constructor(
     fun inputChain(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        block: OnInputAction
+        block: OnInputAction,
     ): SingleInputChain {
         val firstChain = SingleInputChain(identifier, block, rateLimits)
         manualActions.onInput[identifier] = firstChain
@@ -240,13 +240,13 @@ class ManualHandlingDsl internal constructor(
      */
     fun SingleInputChain.andThen(
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        block: OnInputAction
+        block: OnInputAction,
     ): SingleInputChain {
         val nextLevel = currentLevel + 1
         val newId = if (currentLevel > 0) {
             id.replace(
                 "_chain_lvl_$currentLevel",
-                "_chain_lvl_$nextLevel"
+                "_chain_lvl_$nextLevel",
             )
         } else {
             id + "_chain_lvl_1"
@@ -317,6 +317,7 @@ class ManualHandlingDsl internal constructor(
      *
      * @param update
      */
+    @Suppress("CyclomaticComplexMethod")
     suspend fun process(update: Update) = with(update) {
         if (bot.update.checkIsLimited(bot.config.rateLimits, update.message?.from?.id)) return@with
         when {
@@ -330,7 +331,7 @@ class ManualHandlingDsl internal constructor(
             pollAnswer != null -> manualActions.onPollAnswer?.invoke(ActionContext(update, pollAnswer))
             callbackQuery != null -> {
                 manualActions.onCallbackQuery?.invoke(ActionContext(update, callbackQuery)) ?: answerCallbackQuery(
-                    callbackQuery.id
+                    callbackQuery.id,
                 ).send(callbackQuery.from, bot)
 
                 if (callbackQuery.data != null) checkMessageForActions(update, callbackQuery.from, callbackQuery.data)
@@ -346,22 +347,22 @@ class ManualHandlingDsl internal constructor(
             preCheckoutQuery != null -> manualActions.onPreCheckoutQuery?.invoke(
                 ActionContext(
                     update,
-                    preCheckoutQuery
-                )
+                    preCheckoutQuery,
+                ),
             )
 
             editedChannelPost != null -> manualActions.onEditedChannelPost?.invoke(
                 ActionContext(
                     update,
-                    editedChannelPost
-                )
+                    editedChannelPost,
+                ),
             )
 
             chosenInlineResult != null -> manualActions.onChosenInlineResult?.invoke(
                 ActionContext(
                     update,
-                    chosenInlineResult
-                )
+                    chosenInlineResult,
+                ),
             )
 
             else -> manualActions.whenNotHandled?.invoke(update)

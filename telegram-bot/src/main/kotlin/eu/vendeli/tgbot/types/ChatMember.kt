@@ -7,7 +7,7 @@ import eu.vendeli.tgbot.interfaces.MultipleResponse
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
-    property = "status"
+    property = "status",
 )
 @JsonSubTypes(
     JsonSubTypes.Type(value = ChatMember.Owner::class, name = "creator"),

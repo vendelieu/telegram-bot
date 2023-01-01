@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "type",
-    defaultImpl = MenuButton.Default::class
+    defaultImpl = MenuButton.Default::class,
 )
 @JsonSubTypes(
     JsonSubTypes.Type(value = MenuButton.Commands::class, name = "commands"),

@@ -84,7 +84,8 @@ enum class Currency {
     UZS,
     VND,
     YER,
-    ZAR;
+    ZAR,
+    ;
 
     override fun toString(): String = name
 }
