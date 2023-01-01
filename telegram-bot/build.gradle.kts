@@ -4,8 +4,8 @@ plugins {
     kotlin("jvm") version "1.8.0"
     `java-library`
     id("org.jetbrains.dokka") version "1.7.20"
-    id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
-    signing
+    id("org.jmailen.kotlinter") version "3.13.0"
+    id("io.gitlab.arturbosch.detekt") version "1.22.0"
 }
 
 val logbackVer: String by project
@@ -57,6 +57,12 @@ tasks.withType<DokkaTask>().configureEach {
             moduleName.set("Telegram Bot")
         }
     }
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    allRules = false
+    config = files("$rootDir/detekt.yml")
 }
 
 tasks.compileKotlin {
