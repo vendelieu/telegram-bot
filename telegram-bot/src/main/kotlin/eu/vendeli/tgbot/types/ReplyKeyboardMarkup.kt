@@ -21,48 +21,16 @@ class ReplyKeyboardMarkup : Keyboard {
         keyboard.add(buttons.toList())
     }
 
-    constructor(
-        resizeKeyboard: Boolean? = null,
-        oneTimeKeyboard: Boolean? = null,
-        inputFieldPlaceholder: String? = null,
-        selective: Boolean? = null,
-        isPersistent: Boolean? = null,
-        vararg buttons: List<KeyboardButton>,
-    ) {
-        this.resizeKeyboard = resizeKeyboard
-        this.oneTimeKeyboard = oneTimeKeyboard
-        this.inputFieldPlaceholder = inputFieldPlaceholder
-        this.selective = selective
-        this.isPersistent = isPersistent
-        keyboard.addAll(buttons)
-    }
-
-    constructor(
-        resizeKeyboard: Boolean? = null,
-        oneTimeKeyboard: Boolean? = null,
-        inputFieldPlaceholder: String? = null,
-        selective: Boolean? = null,
-        isPersistent: Boolean? = null,
-        vararg buttons: KeyboardButton,
-    ) {
-        this.resizeKeyboard = resizeKeyboard
-        this.oneTimeKeyboard = oneTimeKeyboard
-        this.inputFieldPlaceholder = inputFieldPlaceholder
-        this.selective = selective
-        this.isPersistent = isPersistent
-        keyboard.add(buttons.toList())
-    }
-
     @JsonCreator
     constructor(
-        @JsonProperty("keyboard") keyboard: MutableList<List<KeyboardButton>>,
+        @JsonProperty("keyboard") keyboard: List<List<KeyboardButton>>,
         @JsonProperty("resize_keyboard") resizeKeyboard: Boolean? = null,
         @JsonProperty("one_time_keyboard") oneTimeKeyboard: Boolean? = null,
         @JsonProperty("input_field_placeholder") inputFieldPlaceholder: String? = null,
         @JsonProperty("selective") selective: Boolean? = null,
         @JsonProperty("is_persistent") isPersistent: Boolean? = null,
     ) {
-        this.keyboard = keyboard
+        this.keyboard = keyboard.toMutableList()
         this.resizeKeyboard = resizeKeyboard
         this.oneTimeKeyboard = oneTimeKeyboard
         this.inputFieldPlaceholder = inputFieldPlaceholder

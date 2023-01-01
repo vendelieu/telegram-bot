@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.types
 
+import eu.vendeli.tgbot.interfaces.Button
+
 data class InlineKeyboardButton(
     val text: String,
     val url: String? = null,
@@ -9,4 +11,4 @@ data class InlineKeyboardButton(
     val switchInlineQuery: String? = null,
     val callbackGame: CallbackGame? = null,
     val pay: Boolean? = null,
-)
+) : Button

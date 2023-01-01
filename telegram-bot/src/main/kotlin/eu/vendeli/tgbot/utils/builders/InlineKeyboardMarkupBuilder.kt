@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.utils.builders
 
+import eu.vendeli.tgbot.interfaces.KeyboardBuilder
 import eu.vendeli.tgbot.types.InlineKeyboardButton
 import eu.vendeli.tgbot.types.InlineKeyboardMarkup
 import eu.vendeli.tgbot.types.LoginUrl
@@ -10,8 +11,8 @@ import eu.vendeli.tgbot.types.WebAppInfo
  * [InlineKeyboardButton API](https://core.telegram.org/bots/api#inlinekeyboardbutton)
  */
 @Suppress("unused", "MemberVisibilityCanBePrivate", "TooManyFunctions")
-class InlineKeyboardMarkupBuilder {
-    private val buttons = mutableListOf<InlineKeyboardButton?>()
+class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
+    override val buttons = mutableListOf<InlineKeyboardButton?>()
 
     /**
      * Url button
@@ -137,36 +138,10 @@ class InlineKeyboardMarkupBuilder {
      * @param value
      */
     infix fun String.switchInlineQuery(value: String) = switchInlineQuery(this) { value }
-
-    /**
-     * The function that collects and returns [InlineKeyboardMarkup]
-     *
-     * @return
-     */
-    fun build(): List<List<InlineKeyboardButton>> {
-        val builtButtons = mutableListOf<List<InlineKeyboardButton>>()
-
-        val buttonsIterator = buttons.iterator()
-        var currentLine: MutableList<InlineKeyboardButton> = mutableListOf()
-
-        while (buttonsIterator.hasNext()) {
-            val item = buttonsIterator.next()
-            if (item == null) {
-                builtButtons.add(currentLine)
-                currentLine = mutableListOf()
-                continue
-            }
-            currentLine.add(item)
-        }
-        if (currentLine.isNotEmpty()) builtButtons.add(currentLine)
-
-        return builtButtons
-    }
 }
 
 /**
- * Lightweight interface for [InlineKeyboardMarkupBuilder].
- * @param block
+ * User-friendly DSL for creating [InlineKeyboardMarkup]. See [InlineKeyboardMarkupBuilder].
  */
 fun inlineKeyboardMarkup(
     block: InlineKeyboardMarkupBuilder.() -> Unit,
