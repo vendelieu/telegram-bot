@@ -151,7 +151,6 @@ class MarkupBuilderTest : BotTestContext() {
 
     @Test
     fun `check unary plus button adding`() {
-
         val operatorButtons = replyKeyboardMarkup {
             +"test"
             br()
