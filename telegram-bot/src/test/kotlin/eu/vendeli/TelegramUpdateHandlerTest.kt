@@ -52,11 +52,14 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             }
             bot.update.stopListener()
         }
-        val ex = bot.update.caughtExceptions.tryReceive().getOrNull()
-        ex.shouldNotBeNull()
+        val throwableUpdatePair = bot.update.caughtExceptions.tryReceive().getOrNull()
+        throwableUpdatePair.shouldNotBeNull()
 
-        ex shouldNotBeSameInstanceAs NoSuchElementException::class
-        ex.message shouldBe "test"
+        throwableUpdatePair.first shouldNotBeSameInstanceAs NoSuchElementException::class
+        throwableUpdatePair.first.message shouldBe "test"
+
+        throwableUpdatePair.second.message.shouldNotBeNull()
+        throwableUpdatePair.second.message?.text shouldBe "/start"
     }
 
     @Test
@@ -69,11 +72,14 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             stopListener()
         }
 
-        val annotationEx = bot.update.caughtExceptions.tryReceive().getOrNull()
-        annotationEx.shouldNotBeNull()
+        val throwableUpdatePair = bot.update.caughtExceptions.tryReceive().getOrNull()
+        throwableUpdatePair.shouldNotBeNull()
 
-        annotationEx shouldNotBeSameInstanceAs IllegalArgumentException::class
-        annotationEx.message shouldBe "test2"
+        throwableUpdatePair.first shouldNotBeSameInstanceAs IllegalArgumentException::class
+        throwableUpdatePair.first.message shouldBe "test2"
+
+        throwableUpdatePair.second.message.shouldNotBeNull()
+        throwableUpdatePair.second.message?.text shouldBe "test"
     }
 
     companion object {

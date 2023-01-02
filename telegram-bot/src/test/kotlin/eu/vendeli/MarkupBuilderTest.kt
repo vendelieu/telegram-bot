@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.types.LoginUrl
 import eu.vendeli.tgbot.types.WebAppInfo
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
 import eu.vendeli.tgbot.utils.builders.replyKeyboardMarkup
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -146,5 +147,40 @@ class MarkupBuilderTest : BotTestContext() {
         fullyBuiltKeyboard.isPersistent shouldBe true
         fullyBuiltKeyboard.inputFieldPlaceholder shouldBe "test"
         fullyBuiltKeyboard.selective shouldBe null
+    }
+
+    @Test
+    fun `check unary plus button adding`() {
+
+        val operatorButtons = replyKeyboardMarkup {
+            +"test"
+            br()
+            +"test2"
+
+            options {
+                selective = false
+            }
+        }
+
+        operatorButtons.keyboard.run {
+            this shouldHaveSize 2
+            first().first().text shouldBe "test"
+            first().first().requestContact.shouldBeNull()
+            first().first().requestPoll.shouldBeNull()
+            first().first().requestLocation.shouldBeNull()
+            first().first().webApp.shouldBeNull()
+
+            shouldThrow<IndexOutOfBoundsException> { first()[1] }
+
+            get(1).first().text shouldBe "test2"
+            first().first().requestContact.shouldBeNull()
+            first().first().requestPoll.shouldBeNull()
+            first().first().requestLocation.shouldBeNull()
+            first().first().webApp.shouldBeNull()
+
+            shouldThrow<IndexOutOfBoundsException> { get(1)[1] }
+        }
+
+        operatorButtons.selective shouldBe false
     }
 }
