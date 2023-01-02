@@ -1,5 +1,11 @@
 # Telegram-bot changelog
 
+### 2.5.1
+
+* Add method for only text buttons into `replyKeyboardButton()` builder.
+* Fix not passing isPersistent parameter in `replyKeyboardMarkup()` builder.
+* Pass `Update` next to exception in `TelegramUpdateHandler.caughtExceptions`.
+
 ## 2.5.0
 
 #### Telegram Api related changes
