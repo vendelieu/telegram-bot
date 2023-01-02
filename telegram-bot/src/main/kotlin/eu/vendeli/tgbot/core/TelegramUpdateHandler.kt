@@ -47,7 +47,7 @@ class TelegramUpdateHandler internal constructor(
     @Volatile
     private var handlerActive: Boolean = false
     private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot, inputListener) }
-    val caughtExceptions by lazy { Channel<Throwable>(CONFLATED) }
+    val caughtExceptions by lazy { Channel<Pair<Throwable, Update>>(CONFLATED) }
 
     /**
      * Function that starts the listening event.
@@ -63,9 +63,9 @@ class TelegramUpdateHandler internal constructor(
         var lastUpdateId: Int = offset ?: 0
         bot.pullUpdates(offset)?.forEach {
             CreateNewCoroutineContext(coroutineContext + dispatcher).launch {
-                listener.runCatching { listener(this@TelegramUpdateHandler, it) }.onFailure { e ->
-                    logger.error("Error at manually processing update: $it", e)
-                    caughtExceptions.send(e)
+                listener.runCatching { listener(this@TelegramUpdateHandler, it) }.onFailure { exception ->
+                    logger.error("Error at manually processing update: $it", exception)
+                    caughtExceptions.send(exception to it)
                 }
             }
             lastUpdateId = it.updateId + 1
@@ -200,7 +200,7 @@ class TelegramUpdateHandler internal constructor(
             else method.invoke(classManager.getInstance(clazz), *processedParameters)
         }.onFailure {
             logger.error("Method {$invocation} invocation error at handling update: $update", it)
-            caughtExceptions.send(it.cause ?: it)
+            caughtExceptions.send((it.cause ?: it) to update.fullUpdate)
         }.onSuccess { logger.debug("Handled update#${update.fullUpdate.updateId} to method $invocation") }
     }
 
