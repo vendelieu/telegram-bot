@@ -22,7 +22,7 @@ jobs:
         env:
           TELEGRAM_ID: ${{ secrets.TELEGRAM_ID }}
           BOT_ID: ${{ secrets.BOT_ID }}
-          BOT_TOKEN: "${{ secrets.TOKEN }}"
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         with:
           gradle-version: current
           arguments: build -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
