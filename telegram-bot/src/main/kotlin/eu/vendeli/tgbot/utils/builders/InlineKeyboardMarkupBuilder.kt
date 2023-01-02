@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.utils.builders
 
 import eu.vendeli.tgbot.interfaces.KeyboardBuilder
+import eu.vendeli.tgbot.types.CallbackGame
 import eu.vendeli.tgbot.types.InlineKeyboardButton
 import eu.vendeli.tgbot.types.InlineKeyboardMarkup
 import eu.vendeli.tgbot.types.LoginUrl
@@ -78,7 +79,7 @@ class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
      * @param name
      */
     fun callbackGame(name: String): InlineKeyboardMarkupBuilder {
-        buttons.add(InlineKeyboardButton(name, callbackGame = eu.vendeli.tgbot.types.CallbackGame))
+        buttons.add(InlineKeyboardButton(name, callbackGame = CallbackGame))
         return this
     }
 

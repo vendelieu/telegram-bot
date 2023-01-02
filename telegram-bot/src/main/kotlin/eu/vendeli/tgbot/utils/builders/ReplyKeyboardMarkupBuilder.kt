@@ -14,6 +14,10 @@ class ReplyKeyboardMarkupBuilder : KeyboardBuilder<KeyboardButton>() {
     override val buttons: MutableList<KeyboardButton?> = mutableListOf()
     internal val options = ReplyKeyboardMarkupOptions()
 
+    operator fun String.unaryPlus() {
+        buttons.add(KeyboardButton(this))
+    }
+
     /**
      * Configure optional markup parameters. See [ReplyKeyboardMarkupOptions].
      */
