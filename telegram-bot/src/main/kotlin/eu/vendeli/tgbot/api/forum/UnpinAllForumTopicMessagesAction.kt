@@ -11,7 +11,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
  * the can_pin_messages administrator right in the supergroup.
  * Returns True on success.
  */
-class UnpinAllForumTopicMessages(messageThreadId: Int) : SimpleAction<Boolean> {
+class UnpinAllForumTopicMessagesAction(messageThreadId: Int) : SimpleAction<Boolean> {
     override val method: TgMethod = TgMethod("unpinAllForumTopicMessages")
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
@@ -26,4 +26,4 @@ class UnpinAllForumTopicMessages(messageThreadId: Int) : SimpleAction<Boolean> {
  * the can_pin_messages administrator right in the supergroup.
  * Returns True on success.
  */
-fun unpinAllForumTopicMessages(messageThreadId: Int) = UnpinAllForumTopicMessages(messageThreadId)
+fun unpinAllForumTopicMessages(messageThreadId: Int) = UnpinAllForumTopicMessagesAction(messageThreadId)
