@@ -136,7 +136,7 @@ class TelegramBot(
         return mapper.readValue(request.bodyAsText(), jacksonTypeRef<Response<List<Update>>>()).getOrNull()
     }
 
-    companion object {
+    internal companion object {
         internal val logger = LoggerFactory.getLogger(TelegramBot::class.java)
         internal val mapper = getConfiguredMapper()
     }
