@@ -140,5 +140,11 @@ class MarkupBuilderTest : BotTestContext() {
 
             get(1)[1].requestPoll.shouldBeNull()
         }
+
+        fullyBuiltKeyboard.resizeKeyboard shouldBe true
+        fullyBuiltKeyboard.oneTimeKeyboard shouldBe false
+        fullyBuiltKeyboard.isPersistent shouldBe true
+        fullyBuiltKeyboard.inputFieldPlaceholder shouldBe "test"
+        fullyBuiltKeyboard.selective shouldBe null
     }
 }
