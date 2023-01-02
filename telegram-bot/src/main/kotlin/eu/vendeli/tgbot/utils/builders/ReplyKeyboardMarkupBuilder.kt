@@ -66,6 +66,13 @@ class ReplyKeyboardMarkupBuilder : KeyboardBuilder<KeyboardButton>() {
 fun replyKeyboardMarkup(block: ReplyKeyboardMarkupBuilder.() -> Unit): ReplyKeyboardMarkup {
     val builder = ReplyKeyboardMarkupBuilder().apply(block)
     return builder.options.run {
-        ReplyKeyboardMarkup(builder.build(), resizeKeyboard, oneTimeKeyboard, inputFieldPlaceholder, selective)
+        ReplyKeyboardMarkup(
+            builder.build(),
+            resizeKeyboard,
+            oneTimeKeyboard,
+            inputFieldPlaceholder,
+            selective,
+            isPersistent,
+        )
     }
 }
