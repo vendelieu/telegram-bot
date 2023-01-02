@@ -1,5 +1,40 @@
 # Telegram-bot changelog
 
+## 2.5.0
+
+#### Telegram Api related changes
+
+* Add the field `isPersistent` to the class `ReplyKeyboardMarkup`.
+* Add `hasSpoiler` to `photo()` `video()` `animation()` options and into `InputMedia.Photo` `InputMedia.Video`
+  `InputMedia.Animation`. Also `hasMediaSpoiler` to `Message`.
+* Add `hasHiddenMembers`, `hasAggressiveAntiSpamEnabled` parameters to `Chat`.
+* Add messageThreadId parameter to `chatAction()`.
+* Add `forumTopicEdited`, `generalForumTopicHidden`, `generalForumTopicUnhidden`, `writeAccessAllowed` to `Message`.
+* Add topic management methods.
+
+#### Bot internal improvements
+
+* Deleted some too verbose constructors of `ReplyKeyboardMarkup`.
+* Created new convenient DSL for creating markup - `replyKeyboardMarkup()`, similar to inline keyboard version, see
+  examples in wiki.
+* A new parameter `TelegramUpdateHandler.caughtExceptions` was introduced, where centralized caught errors will be sent.
+  Exceptions that occurred during manual update processing are now also intercepted.
+* Changed `invoice()`(`sendInvoice`), `createInvoiceLink`(`createInvoiceLink`) parameters defining by moving it to
+  lambda. For more convenience and less verbosity.
+* Changed `createNewStickerSet()`(`createNewStickerSet`) parameters defining by moving it to lambda.
+* Improved entity defining in `EntitiesBuilder` moving optional parameters to lambda.
+* Add generics to `BotContext`(`chatData`, `userData`) interfaces.
+* Deleted private `Update` extensions for handling and move string update handling to new
+  function `TelegramUpdateHandler.parseAndHandle`.
+* Add some update listener configuring variables to `TelegramBot.botConfiguration` - `updatesListener()`.
+* Moved `BotContext`(`chatData`, `userData`) configuring to `TelegramBot.botConfiguration` - `context()`.
+  And now they are not null, but you can get an exception if you try to access without setting.
+* Upgrade dependencies versions:
+  * `Gradle`: `7.5.0` -> `7.6.0`
+  * `Jackson`: `2.14.0` -> `2.14.1`
+  * `Ktor`: `2.1.3` -> `2.2.1`
+  * `Kotlin`: `1.7.21` -> `1.8.0`
+
 ### 2.4.2
 
 * Fix bug when in the media request additional options violates the query itself.
