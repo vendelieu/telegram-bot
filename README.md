@@ -3,10 +3,10 @@
 # Telegram Bot
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot)
-[![Supported version](https://img.shields.io/badge/Bot%20API-6.3-blue)](https://core.telegram.org/bots/api-changelog#november-5-2022)
+[![Supported version](https://img.shields.io/badge/Bot%20API-6.4-blue)](https://core.telegram.org/bots/api-changelog#december-30-2022)
 
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
-[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin) [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/vennyTgBot) 
+[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin) [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/vennyTgBot)
 [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Channel&color=blue&logo=telegram)](https://t.me/v_telegramBot)
 
 Kotlin based wrapper over Telegram API.
@@ -25,7 +25,7 @@ Now add the library itself to the dependencies' module that you need it.
 
 ```gradle
 dependencies {
-    implementation("eu.vendeli:telegram-bot:2.4.2")
+    implementation("eu.vendeli:telegram-bot:2.5.0")
 }
 ```
 
@@ -52,8 +52,8 @@ there you can find in the appropriate branches:
 # Usage
 
 ```kotlin
-fun main() = runBlocking {
-    val bot = TelegramBot("BOT_TOKEN", "com.example.controllers")
+suspend fun main() {
+  val bot = TelegramBot("BOT_TOKEN", "com.example.controllers")
     /**
      * Second parameter is the package in which commands/inputs will be searched.
      */

@@ -43,21 +43,9 @@ dependencies {
 }
 
 group = "eu.vendeli"
-version = "2.4.2"
+version = "2.5.0"
 
 apply(from = "publishing.gradle.kts")
-
-tasks.dokkaHtml.configure {
-    outputDirectory.set(buildDir.resolve("dokka"))
-}
-
-tasks.withType<DokkaTask>().configureEach {
-    dokkaSourceSets {
-        named("main") {
-            moduleName.set("Telegram Bot")
-        }
-    }
-}
 
 detekt {
     buildUponDefaultConfig = true
@@ -65,15 +53,31 @@ detekt {
     config = files("$rootDir/detekt.yml")
 }
 
-tasks.compileKotlin {
-    kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
-    incremental = true
-}
-tasks.compileTestKotlin {
-    kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
-}
-tasks.test {
-    useJUnitPlatform()
+tasks {
+    compileKotlin {
+        kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
+        incremental = true
+    }
+
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    dokkaHtml.configure {
+        outputDirectory.set(buildDir.resolve("dokka"))
+    }
+
+    withType<DokkaTask>().configureEach {
+        dokkaSourceSets {
+            named("main") {
+                moduleName.set("Telegram Bot")
+            }
+        }
+    }
 }
 
 java {
