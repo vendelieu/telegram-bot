@@ -118,7 +118,7 @@ val bot = TelegramBot("BOT_TOKEN") {
 ```
 
 A more complete list of settings can be found
-in [BotConfiguration](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-bot-configuration/index.html)
+in [BotConfiguration](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal.configuration/-bot-configuration/index.html)
 class.
 
 ### Requests limiting
@@ -135,7 +135,7 @@ val bot = TelegramBot("BOT_TOKEN") {
 }
 
 // Limits on certain actions
-@CommandHandler(["/start"], RateLimits(period = 1000L, rate = 1L)) // or InputListener
+@CommandHandler(["/start"], RateLimits(period = 1000L, rate = 1L)) // or InputHandler
 suspend fun start(user: User, bot: TelegramBot) {
     // ...
 }

@@ -14,6 +14,9 @@ class ReplyKeyboardMarkupBuilder : KeyboardBuilder<KeyboardButton>() {
     override val buttons: MutableList<KeyboardButton?> = mutableListOf()
     internal val options = ReplyKeyboardMarkupOptions()
 
+    /**
+     * Use this function to add buttons without parameters, e.g. +"Button name".
+     */
     operator fun String.unaryPlus() {
         buttons.add(KeyboardButton(this))
     }
