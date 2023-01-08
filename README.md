@@ -155,7 +155,7 @@ the [poll example](https://github.com/vendelieu/telegram-bot_template/blob/poll/
 .)
 
 for webhook handling you can use any server
-and [`bot.update.handle()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.core/-telegram-update-handler/handle.html)
+and [`bot.update.parseAndHandle()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.core/-telegram-update-handler/parse-and-handle.html)
 function, and for set webhook you can use `setWebhook` method:
 
 ```kotlin
