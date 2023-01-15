@@ -1,5 +1,10 @@
 # Telegram-bot changelog
 
+### 2.5.2
+
+* Add new method for defining behaviour of update processing.
+  to avoid redefining in webhook processing.
+
 ### 2.5.1
 
 * Add method for only text buttons into `replyKeyboardButton()` builder.
