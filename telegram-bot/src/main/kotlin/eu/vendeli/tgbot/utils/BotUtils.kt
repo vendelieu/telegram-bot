@@ -18,7 +18,7 @@ import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
  *
  * @param parentContext Context that will be merged with the created one.
  */
-internal class CreateNewCoroutineContext(parentContext: CoroutineContext) : CoroutineScope {
+internal class NewCoroutineContext(parentContext: CoroutineContext) : CoroutineScope {
     override val coroutineContext: CoroutineContext =
         parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
 }

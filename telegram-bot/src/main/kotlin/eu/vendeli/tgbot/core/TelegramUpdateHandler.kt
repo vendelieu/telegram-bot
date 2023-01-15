@@ -10,9 +10,9 @@ import eu.vendeli.tgbot.types.internal.Actions
 import eu.vendeli.tgbot.types.internal.Activity
 import eu.vendeli.tgbot.types.internal.Invocation
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
-import eu.vendeli.tgbot.utils.CreateNewCoroutineContext
-import eu.vendeli.tgbot.utils.InputListenerBlock
+import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
+import eu.vendeli.tgbot.utils.NewCoroutineContext
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.invokeSuspend
 import eu.vendeli.tgbot.utils.parseQuery
@@ -42,7 +42,7 @@ class TelegramUpdateHandler internal constructor(
     internal val rateLimiter: RateLimitMechanism,
 ) {
     internal val logger = LoggerFactory.getLogger(javaClass)
-    private lateinit var listener: InputListenerBlock
+    private lateinit var handlingBehaviour: HandlingBehaviourBlock
 
     @Volatile
     private var handlerActive: Boolean = false
@@ -61,14 +61,16 @@ class TelegramUpdateHandler internal constructor(
             return 0
         }
         var lastUpdateId: Int = offset ?: 0
-        bot.pullUpdates(offset)?.forEach {
-            CreateNewCoroutineContext(coroutineContext + dispatcher).launch {
-                listener.runCatching { listener(this@TelegramUpdateHandler, it) }.onFailure { exception ->
-                    logger.error("Error at manually processing update: $it", exception)
-                    caughtExceptions.send(exception to it)
+        bot.pullUpdates(offset)?.forEach { update ->
+            NewCoroutineContext(coroutineContext + dispatcher).launch {
+                handlingBehaviour.runCatching {
+                    invoke(this@TelegramUpdateHandler, update)
+                }.onFailure { exception ->
+                    logger.error("Error at manually processing update: $update", exception)
+                    caughtExceptions.send(exception to update)
                 }
             }
-            lastUpdateId = it.updateId + 1
+            lastUpdateId = update.updateId + 1
         }
         delay(pullingDelay)
         return runListener(lastUpdateId)
@@ -80,10 +82,10 @@ class TelegramUpdateHandler internal constructor(
      *
      * @param block action that will be applied.
      */
-    suspend fun setListener(block: InputListenerBlock) {
+    suspend fun setListener(block: HandlingBehaviourBlock) {
         if (handlerActive) stopListener()
         logger.trace("The listener is set.")
-        listener = block
+        handlingBehaviour = block
         handlerActive = true
         runListener()
     }
@@ -133,15 +135,19 @@ class TelegramUpdateHandler internal constructor(
     }
 
     /**
-     * A method for annotation handling updates from a string.
+     * A function for defining the behavior to handle updates.
      */
-    suspend fun parseAndHandle(update: String) = parseUpdate(update)?.let { handle(it) }
+    fun setBehaviour(block: HandlingBehaviourBlock) {
+        logger.trace("Handling behaviour is set.")
+        handlingBehaviour = block
+    }
 
     /**
-     * A method for manual handling updates from a string.
+     * A method for handling updates from a string.
+     * Define processing behaviour before calling, see [setBehaviour].
      */
-    suspend fun parseAndHandle(update: String, block: ManualHandlingBlock) =
-        parseUpdate(update)?.let { handle(it, block) }
+    suspend fun parseAndHandle(update: String) =
+        parseUpdate(update)?.let { handlingBehaviour(this, it) }
 
     /**
      * Function used to call functions with certain parameters processed after receiving update.

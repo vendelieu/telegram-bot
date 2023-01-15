@@ -41,6 +41,6 @@ typealias OnInputAction = suspend InputContext.() -> Unit
 typealias InputActions = MutableMap<String, SingleInputChain>
 typealias CommandActions = MutableMap<CommandSelector, suspend CommandContext.() -> Unit>
 
-typealias InputListenerBlock = suspend TelegramUpdateHandler.(Update) -> Unit
+typealias HandlingBehaviourBlock = suspend TelegramUpdateHandler.(Update) -> Unit
 typealias ManualHandlingBlock = suspend ManualHandlingDsl.() -> Unit
 typealias BotConfigurator = BotConfiguration.() -> Unit
