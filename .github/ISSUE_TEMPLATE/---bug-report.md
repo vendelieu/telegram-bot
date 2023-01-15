@@ -12,10 +12,10 @@ A clear and concise description of what the bug is.
 
 **To Reproduce**
 Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+1. Try to ...
+2. Use ... method.
+3. Pass ... parameters.
+4. See error.
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
@@ -24,4 +24,4 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Additional context**
-Add any other context about the problem here.
+Add any other context/stacktrace about the problem here.
