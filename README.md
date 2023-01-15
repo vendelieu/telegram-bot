@@ -25,7 +25,7 @@ Now add the library itself to the dependencies' module that you need it.
 
 ```gradle
 dependencies {
-    implementation("eu.vendeli:telegram-bot:2.5.1")
+    implementation("eu.vendeli:telegram-bot:2.5.2")
 }
 ```
 
