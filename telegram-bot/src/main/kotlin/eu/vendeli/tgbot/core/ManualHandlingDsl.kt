@@ -263,9 +263,10 @@ class ManualHandlingDsl internal constructor(
      */
     fun SingleInputChain.breakIf(
         condition: InputContext.() -> Boolean,
+        repeat: Boolean = true,
         block: OnInputAction? = null,
     ): SingleInputChain {
-        manualActions.onInput[id]?.breakPoint = InputBreakPoint(condition, block)
+        manualActions.onInput[id]?.breakPoint = InputBreakPoint(condition, block, repeat)
         return this
     }
 
@@ -285,11 +286,11 @@ class ManualHandlingDsl internal constructor(
         if (parsedText == null || from == null) return
 
         // find action which match command and invoke it
-        manualActions.commands.filter { it.key.match(parsedText.command) }.entries.firstOrNull()?.also {
+        manualActions.commands.filter { it.key.match(parsedText.command) }.entries.firstOrNull()?.run {
             inputListener.del(from.id) // clean input listener
             // check for limit exceed
-            if (bot.update.checkIsLimited(it.key.rateLimits, update.message?.from?.id, parsedText.command)) return
-            it.value.invoke(CommandContext(update, parsedText.params, from))
+            if (bot.update.checkIsLimited(key.rateLimits, update.message?.from?.id, parsedText.command)) return
+            value.invoke(CommandContext(update, parsedText.params, from))
             return
         }
         // if there's no command -> then try process input
@@ -304,9 +305,12 @@ class ManualHandlingDsl internal constructor(
                 // invoke it if found
                 foundChain.inputAction.invoke(inputContext)
                 // if there's chaining point and breaking condition wasn't match then set new listener
-                if (foundChain.tail != null && foundChain.breakPoint?.condition?.invoke(inputContext) == false) {
+                val breakPointStatus = foundChain.breakPoint?.condition?.invoke(inputContext) == true
+                if (foundChain.tail != null && !breakPointStatus) {
                     foundChain.breakPoint?.action?.invoke(inputContext)
                     inputListener.set(from.id, foundChain.tail!!)
+                } else if (breakPointStatus && foundChain.breakPoint?.repeat == true) {
+                    inputListener.set(from.id, foundChain.id)
                 }
             }
         }
@@ -330,9 +334,8 @@ class ManualHandlingDsl internal constructor(
             editedMessage != null -> manualActions.onEditedMessage?.invoke(ActionContext(update, editedMessage))
             pollAnswer != null -> manualActions.onPollAnswer?.invoke(ActionContext(update, pollAnswer))
             callbackQuery != null -> {
-                manualActions.onCallbackQuery?.invoke(ActionContext(update, callbackQuery)) ?: answerCallbackQuery(
-                    callbackQuery.id,
-                ).send(callbackQuery.from, bot)
+                manualActions.onCallbackQuery?.invoke(ActionContext(update, callbackQuery))
+                    ?: answerCallbackQuery(callbackQuery.id).send(callbackQuery.from, bot)
 
                 if (callbackQuery.data != null) checkMessageForActions(update, callbackQuery.from, callbackQuery.data)
             }
