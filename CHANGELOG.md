@@ -1,5 +1,9 @@
 # Telegram-bot changelog
 
+### 2.5.3
+
+* Add repeat parameter for `InputChain.breakIf()`
+
 ### 2.5.2
 
 * Add new method for defining behaviour of update processing.
