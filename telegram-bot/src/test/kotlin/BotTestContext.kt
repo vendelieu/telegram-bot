@@ -41,7 +41,7 @@ abstract class BotTestContext(
         if (mockHttp) doMockHttp()
     }
 
-    fun doMockHttp(messageText: String = "/start") {
+    fun doMockHttp(messageText: String = "/start", updates: List<Update>? = mockedUpdates) {
         val testMsg = Message(
             Random.nextLong(),
             from = User(1, false, "Test"),
@@ -50,7 +50,7 @@ abstract class BotTestContext(
             text = messageText,
         )
         val apiResponse = Response.Success(
-            mockedUpdates ?: listOf(
+            updates ?: listOf(
                 Update(Random.nextInt(), testMsg),
                 Update(Random.nextInt(), testMsg),
             ),
