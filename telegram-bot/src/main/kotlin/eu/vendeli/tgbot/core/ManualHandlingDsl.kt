@@ -305,7 +305,7 @@ class ManualHandlingDsl internal constructor(
                 // invoke it if found
                 foundChain.inputAction.invoke(inputContext)
                 // if there's chaining point and breaking condition wasn't match then set new listener
-                val breakPointStatus = foundChain.breakPoint?.condition?.invoke(inputContext) == true
+                val breakPointStatus = foundChain.breakPoint?.condition?.invoke(inputContext) == false
                 if (foundChain.tail != null && !breakPointStatus) {
                     foundChain.breakPoint?.action?.invoke(inputContext)
                     inputListener.set(from.id, foundChain.tail!!)

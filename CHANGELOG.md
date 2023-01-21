@@ -1,5 +1,9 @@
 # Telegram-bot changelog
 
+### 2.5.4
+
+* Fix test and improve `inputChain` logic.
+
 ### 2.5.3
 
 * Add repeat parameter for `InputChain.breakIf()`
