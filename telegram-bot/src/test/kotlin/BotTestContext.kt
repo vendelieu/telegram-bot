@@ -52,7 +52,6 @@ abstract class BotTestContext(
         val apiResponse = Response.Success(
             updates ?: listOf(
                 Update(Random.nextInt(), testMsg),
-                Update(Random.nextInt(), testMsg),
             ),
         )
         bot.httpClient = HttpClient(
