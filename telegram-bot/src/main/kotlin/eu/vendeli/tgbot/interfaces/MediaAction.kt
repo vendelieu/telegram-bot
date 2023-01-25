@@ -126,7 +126,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
         return when (media) {
             is ImplicitFile.FromString -> {
                 parameters[dataField] = media.file
-                via.makeRequestAsync(method, parameters, returnType, bunchResponseInnerType())
+                via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
             }
 
             is ImplicitFile.FromByteArray -> via.makeRequestAsync(
@@ -137,7 +137,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
                 parameters,
                 defaultType.toContentType(),
                 returnType,
-                bunchResponseInnerType(),
+                wrappedDataType,
             )
 
             is ImplicitFile.FromFile -> via.makeRequestAsync(
@@ -153,7 +153,7 @@ interface MediaAction<Req_R> : Action<Req_R>, TgAction {
                     )
                 },
                 returnType,
-                bunchResponseInnerType(),
+                wrappedDataType,
             )
         }
     }

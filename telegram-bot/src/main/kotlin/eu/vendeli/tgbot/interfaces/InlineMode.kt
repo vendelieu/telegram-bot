@@ -35,5 +35,5 @@ suspend inline fun <reified ReturnType> InlineMode<ReturnType>.sendInlineAsync(
     via: TelegramBot,
 ): Deferred<Response<out ReturnType>> {
     parameters["inline_message_id"] = inlineMessageId
-    return via.makeRequestAsync(method, parameters, ReturnType::class.java, bunchResponseInnerType())
+    return via.makeRequestAsync(method, parameters, ReturnType::class.java, wrappedDataType)
 }

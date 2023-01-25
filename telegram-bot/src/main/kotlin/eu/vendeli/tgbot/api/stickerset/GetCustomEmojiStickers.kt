@@ -2,10 +2,8 @@
 
 package eu.vendeli.tgbot.api.stickerset
 
-import eu.vendeli.tgbot.interfaces.MultiResponseOf
-import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.interfaces.TgAction
+import eu.vendeli.tgbot.interfaces.WrappedTypeOf
 import eu.vendeli.tgbot.interfaces.getInnerType
 import eu.vendeli.tgbot.types.Sticker
 import eu.vendeli.tgbot.types.internal.TgMethod
@@ -17,7 +15,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
  */
 class GetCustomEmojiStickersAction(customEmojiIds: List<String>) :
     SimpleAction<List<Sticker>>,
-    MultiResponseOf<Sticker> {
+    WrappedTypeOf<Sticker> {
     override val method: TgMethod = TgMethod("getCustomEmojiStickers")
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
@@ -25,8 +23,7 @@ class GetCustomEmojiStickersAction(customEmojiIds: List<String>) :
         parameters["custom_emoji_ids"] = customEmojiIds
     }
 
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : MultipleResponse> TgAction.bunchResponseInnerType(): Class<T> = getInnerType() as Class<T>
+    override val wrappedDataType = getInnerType()
 }
 
 /**

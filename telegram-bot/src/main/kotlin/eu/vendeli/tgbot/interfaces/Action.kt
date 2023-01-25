@@ -58,7 +58,7 @@ suspend inline fun <reified ReturnType> Action<ReturnType>.sendAsync(
     via: TelegramBot,
 ): Deferred<Response<out ReturnType>> {
     parameters["chat_id"] = to
-    return via.makeRequestAsync(method, parameters, ReturnType::class.java, bunchResponseInnerType())
+    return via.makeRequestAsync(method, parameters, ReturnType::class.java, wrappedDataType)
 }
 
 /**
@@ -72,7 +72,7 @@ suspend inline fun <reified ReturnType> Action<ReturnType>.sendAsync(
     via: TelegramBot,
 ): Deferred<Response<out ReturnType>> {
     parameters["chat_id"] = to.id
-    return via.makeRequestAsync(method, parameters, ReturnType::class.java, bunchResponseInnerType())
+    return via.makeRequestAsync(method, parameters, ReturnType::class.java, wrappedDataType)
 }
 
 /**
@@ -86,5 +86,5 @@ suspend inline fun <reified ReturnType> Action<ReturnType>.sendAsync(
     via: TelegramBot,
 ): Deferred<Response<out ReturnType>> {
     parameters["chat_id"] = to
-    return via.makeRequestAsync(method, parameters, ReturnType::class.java, bunchResponseInnerType())
+    return via.makeRequestAsync(method, parameters, ReturnType::class.java, wrappedDataType)
 }

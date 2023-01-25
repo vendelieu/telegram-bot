@@ -12,9 +12,7 @@ interface TgAction {
     val method: TgMethod
 
     /**
-     * Method through which the type for multiple response is obtained.
-     *
-     * @param T inner type of multiple response.
+     * Parameter through which the type for multiple response is obtained.
      */
-    fun <T : MultipleResponse> TgAction.bunchResponseInnerType(): Class<T>? = null
+    val wrappedDataType get(): Class<out MultipleResponse>? = null
 }

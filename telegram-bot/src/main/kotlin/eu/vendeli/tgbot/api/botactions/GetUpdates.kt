@@ -2,10 +2,8 @@
 
 package eu.vendeli.tgbot.api.botactions
 
-import eu.vendeli.tgbot.interfaces.MultiResponseOf
-import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.interfaces.TgAction
+import eu.vendeli.tgbot.interfaces.WrappedTypeOf
 import eu.vendeli.tgbot.interfaces.features.OptionAble
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.interfaces.getInnerType
@@ -17,13 +15,12 @@ class GetUpdatesAction :
     SimpleAction<List<Update>>,
     OptionAble,
     OptionsFeature<GetUpdatesAction, GetUpdatesOptions>,
-    MultiResponseOf<Update> {
+    WrappedTypeOf<Update> {
     override val method: TgMethod = TgMethod("getUpdates")
     override var options = GetUpdatesOptions()
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : MultipleResponse> TgAction.bunchResponseInnerType(): Class<T> = getInnerType() as Class<T>
+    override val wrappedDataType = getInnerType()
 }
 
 fun getUpdates() = GetUpdatesAction()

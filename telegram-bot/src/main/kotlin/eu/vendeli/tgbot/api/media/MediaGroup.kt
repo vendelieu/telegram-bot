@@ -4,7 +4,7 @@ package eu.vendeli.tgbot.api.media
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.MediaAction
-import eu.vendeli.tgbot.interfaces.MultiResponseOf
+import eu.vendeli.tgbot.interfaces.WrappedTypeOf
 import eu.vendeli.tgbot.interfaces.features.OptionAble
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.InputMedia
@@ -30,7 +30,7 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
     MediaAction<List<Message>>,
     OptionAble,
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions>,
-    MultiResponseOf<Message> {
+    WrappedTypeOf<Message> {
     private val isAllMediaFromString = inputMedia.all { it.media.instanceOf(FromString::class) }
     private val files by lazy { mutableMapOf<String, ByteArray>() }
     override val method: TgMethod = TgMethod("sendMediaGroup")
@@ -85,7 +85,7 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
         parameters["chat_id"] = to.get()
 
         if (isAllMediaFromString)
-            return via.makeRequestAsync(method, parameters, returnType, bunchResponseInnerType())
+            return via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
 
         return via.makeBunchMediaRequestAsync(
             method,
@@ -108,7 +108,7 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
             return
         }
 
-        return via.makeSilentBunchMediaRequest(method, files, parameters = parameters, defaultType.toContentType())
+        return via.makeSilentBunchMediaRequest(method, files, parameters, defaultType.toContentType())
     }
 }
 

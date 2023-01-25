@@ -11,7 +11,7 @@ interface MultipleResponse
  *
  * @param Type
  */
-interface MultiResponseOf<Type : MultipleResponse>
+interface WrappedTypeOf<Type : MultipleResponse>
 
 /**
  * Extension function to get a nested type.
@@ -20,5 +20,5 @@ interface MultiResponseOf<Type : MultipleResponse>
  * @return
  */
 @Suppress("UnusedReceiverParameter")
-internal inline fun <reified Type : MultipleResponse> MultiResponseOf<Type>.getInnerType(): Class<Type> =
+internal inline fun <reified Type : MultipleResponse> WrappedTypeOf<Type>.getInnerType(): Class<Type> =
     Type::class.java
