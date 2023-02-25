@@ -3,6 +3,9 @@
 package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
+import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.internal.StructuredRequest
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import kotlinx.coroutines.CoroutineName
@@ -62,3 +65,11 @@ internal suspend fun TelegramUpdateHandler.checkIsLimited(
     }
     return false
 }
+
+@Suppress("UnusedReceiverParameter")
+internal inline fun <reified Type : MultipleResponse> SimpleAction<List<Type>>.getInnerType(): Class<Type> =
+    Type::class.java
+
+@Suppress("UnusedReceiverParameter")
+internal inline fun <reified Type : MultipleResponse> Action<List<Type>>.getInnerType(): Class<Type> =
+    Type::class.java

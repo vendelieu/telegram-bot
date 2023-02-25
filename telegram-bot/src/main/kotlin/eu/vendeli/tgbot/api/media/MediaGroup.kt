@@ -4,7 +4,6 @@ package eu.vendeli.tgbot.api.media
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.MediaAction
-import eu.vendeli.tgbot.interfaces.WrappedTypeOf
 import eu.vendeli.tgbot.interfaces.features.OptionAble
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.InputMedia
@@ -29,8 +28,7 @@ import kotlin.collections.set
 class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
     MediaAction<List<Message>>,
     OptionAble,
-    OptionsFeature<SendMediaGroupAction, MediaGroupOptions>,
-    WrappedTypeOf<Message> {
+    OptionsFeature<SendMediaGroupAction, MediaGroupOptions> {
     private val isAllMediaFromString = inputMedia.all { it.media.instanceOf(FromString::class) }
     private val files by lazy { mutableMapOf<String, ByteArray>() }
     override val method: TgMethod = TgMethod("sendMediaGroup")
@@ -40,8 +38,9 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
     init {
         // check api restricts
         val mediaType = inputMedia.first().type
-        require(inputMedia.all { it.type != "animation" }) { "Only Audio/Document/Photo/Video is possible." }
-        require(inputMedia.all { it.type == mediaType }) { "All elements must be of the same specific type" }
+        require(inputMedia.all { it.type == mediaType && it.type != "animation" }) {
+            "All elements must be of the same specific type and animation is not supported by telegram api"
+        }
 
         // reorganize the media following appropriate approaches
         if (isAllMediaFromString) parameters[dataField] = inputMedia
