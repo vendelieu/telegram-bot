@@ -15,7 +15,7 @@ import eu.vendeli.tgbot.utils.ManualHandlingBlock
 import eu.vendeli.tgbot.utils.NewCoroutineContext
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.invokeSuspend
-import eu.vendeli.tgbot.utils.parseQuery
+import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.processUpdate
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
@@ -107,7 +107,7 @@ class TelegramUpdateHandler internal constructor(
      * @return [Activity] if actions was found or null.
      */
     private fun findAction(text: String, command: Boolean = true): Activity? {
-        val message = text.parseQuery()
+        val message = parseCommand(text)
         val invocation = if (command) actions?.commands else {
             actions?.inputs
         }?.get(message.command)
