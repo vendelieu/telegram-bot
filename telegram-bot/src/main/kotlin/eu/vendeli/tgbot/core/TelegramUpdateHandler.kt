@@ -233,6 +233,8 @@ class TelegramUpdateHandler internal constructor(
             return@run null
         }
 
+        actions?.updateHandlers?.get(type)?.also { invokeMethod(this, it, emptyMap()) }
+
         when {
             commandAction != null -> invokeMethod(this, commandAction.invocation, commandAction.parameters)
 
