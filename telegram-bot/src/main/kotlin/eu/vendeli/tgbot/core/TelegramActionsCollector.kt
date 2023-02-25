@@ -4,8 +4,10 @@ import eu.vendeli.tgbot.annotations.CallbackParam
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
+import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.internal.Actions
 import eu.vendeli.tgbot.types.internal.Invocation
+import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import org.reflections.Reflections
 import org.reflections.scanners.Scanners
@@ -34,6 +36,7 @@ internal object TelegramActionsCollector {
     ) {
         val commands = mutableMapOf<String, Invocation>()
         val inputs = mutableMapOf<String, Invocation>()
+        val updateHandlers = mutableMapOf<UpdateType, Invocation>()
 
         getMethodsAnnotatedWith(CommandHandler::class.java).forEach { m ->
             val annotation = (m.annotations.find { it is CommandHandler } as CommandHandler)
@@ -59,9 +62,15 @@ internal object TelegramActionsCollector {
             }
         }
 
+        getMethodsAnnotatedWith(UpdateHandler::class.java).forEach { m->
+            val annotation = (m.annotations.find { it is UpdateHandler } as UpdateHandler)
+            updateHandlers[annotation.type] = Invocation(clazz = m.declaringClass, method = m, rateLimits = RateLimits.NOT_LIMITED)
+        }
+
         return@with Actions(
             commands = commands,
             inputs = inputs,
+            updateHandlers = updateHandlers,
             unhandled = getMethodsAnnotatedWith(UnprocessedHandler::class.java).firstOrNull()?.let { m ->
                 Invocation(clazz = m.declaringClass, method = m, rateLimits = RateLimits.NOT_LIMITED)
             },
