@@ -26,22 +26,64 @@ internal class NewCoroutineContext(parentContext: CoroutineContext) : CoroutineS
         parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
 }
 
-internal fun String.parseQuery(): StructuredRequest {
-    val reqParams = split('?')
+internal fun TelegramUpdateHandler.parseCommand(
+    text: String,
+): StructuredRequest = with(bot.config.commandParsing) {
+    var command = ""
+    var commandFound = false
+    val params = mutableMapOf<String, String>()
 
-    return StructuredRequest(
-        command = reqParams.first(),
-        params = reqParams.last().split('&').associate { it.substringBefore('=') to it.substringAfter('=') },
-    )
-}
+    var isParamNameFound = false
+    var paramNameBuffer = ""
+    var paramValBuffer = ""
 
-internal fun String.parseKeyValueBySpace(): StructuredRequest {
-    val parsedString = split(' ')
+    text.forEach { i ->
+        when {
+            i == commandDelimiter -> {
+                commandFound = true
+            }
 
-    return StructuredRequest(
-        parsedString.first(),
-        parsedString.chunked(2).associate { it.first() to (it.lastOrNull() ?: "") },
-    )
+            !commandFound && commandDelimiter != ' ' && restrictSpacesInCommands && i == ' ' -> {
+                commandFound = true
+            }
+
+            !commandFound -> {
+                command += i
+            }
+
+            i == parametersDelimiter -> {
+                if (paramValBuffer.isEmpty()) {
+                    params["param_${params.keys.indices.last + 2}"] = paramNameBuffer
+                } else {
+                    params[paramNameBuffer] = paramValBuffer
+                }
+                paramNameBuffer = ""
+                paramValBuffer = ""
+
+                isParamNameFound = false
+            }
+
+            i == parameterValueDelimiter -> {
+                isParamNameFound = true
+            }
+
+            !isParamNameFound -> {
+                paramNameBuffer += i
+            }
+
+            else -> {
+                paramValBuffer += i
+            }
+        }
+    }
+    if (paramNameBuffer.isNotEmpty() && paramValBuffer.isNotEmpty()) {
+        params[paramNameBuffer] = paramValBuffer
+    }
+    if (paramNameBuffer.isNotEmpty() && paramValBuffer.isEmpty()) {
+        params["param_${params.keys.indices.last + 2}"] = paramNameBuffer
+    }
+
+    return StructuredRequest(command = command, params = params)
 }
 
 internal suspend fun Method.invokeSuspend(obj: Any, vararg args: Any?): Any? =

@@ -25,6 +25,7 @@ data class BotConfiguration(
     internal val rateLimits = RateLimits()
     internal val updatesListener = UpdatesListenerConfiguration()
     internal val context = ContextConfiguration()
+    internal val commandParsing = CommandParsingConfiguration()
 
     /**
      * Function for configuring the http client. See [HttpConfiguration].
@@ -54,7 +55,17 @@ data class BotConfiguration(
         updatesListener.block()
     }
 
+    /**
+     * Function for bot context configuration. See [ContextConfiguration].
+     */
     fun context(block: ContextConfiguration.() -> Unit) {
         context.block()
+    }
+
+    /**
+     * Function for specifying command parsing pattern. See [CommandParsingConfiguration].
+     */
+    fun commandParsing(block: CommandParsingConfiguration.() -> Unit) {
+        commandParsing.block()
     }
 }

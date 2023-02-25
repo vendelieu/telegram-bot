@@ -2,8 +2,6 @@ package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.answerCallbackQuery
-import eu.vendeli.tgbot.core.ManualHandlingDsl.ArgsMode.Query
-import eu.vendeli.tgbot.core.ManualHandlingDsl.ArgsMode.SpaceKeyValue
 import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
@@ -32,8 +30,7 @@ import eu.vendeli.tgbot.utils.OnPreCheckoutQueryAction
 import eu.vendeli.tgbot.utils.OnShippingQueryAction
 import eu.vendeli.tgbot.utils.WhenNotHandledAction
 import eu.vendeli.tgbot.utils.checkIsLimited
-import eu.vendeli.tgbot.utils.parseKeyValueBySpace
-import eu.vendeli.tgbot.utils.parseQuery
+import eu.vendeli.tgbot.utils.parseCommand
 
 /**
  * DSL for manual update management.
@@ -46,21 +43,6 @@ class ManualHandlingDsl internal constructor(
     private val inputListener: BotInputListener,
 ) {
     private val manualActions = ManualActions()
-
-    /**
-     * Argument parsing mode
-     * @property Query command?key=value&another=value
-     * @property SpaceKeyValue command key value another value
-     * (note that if the key-value pair is not fulfilled, the value will be empty string)
-     */
-    enum class ArgsMode {
-        Query, SpaceKeyValue
-    }
-
-    /**
-     * Arguments parsing mode
-     */
-    var argsParsingMode: ArgsMode = Query
 
     /**
      * Action that is performed on the presence of Message in the Update.
@@ -279,8 +261,7 @@ class ManualHandlingDsl internal constructor(
      */
     private suspend fun checkMessageForActions(update: Update, from: User?, text: String?) {
         // parse text to chosen format
-        val parsedText = if (argsParsingMode == Query) text?.parseQuery()
-        else text?.parseKeyValueBySpace() // will be null only when text itself is null
+        val parsedText = text?.let { bot.update.parseCommand(it) }
 
         // if there's no action then break
         if (parsedText == null || from == null) return
