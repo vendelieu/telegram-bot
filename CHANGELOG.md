@@ -21,7 +21,7 @@
 * Upgrade dependencies versions:
   * `Jackson`: `2.14.1` -> `2.14.2`
   * `Ktor`: `2.2.1` -> `2.2.3`
-  * `Kotlin`: `1.8.-` -> `1.8.10`
+  * `Kotlin`: `1.8.0` -> `1.8.10`
 
 ### 2.5.4
 
