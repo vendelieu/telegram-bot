@@ -26,6 +26,7 @@ internal class NewCoroutineContext(parentContext: CoroutineContext) : CoroutineS
         parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
 }
 
+@Suppress("CyclomaticComplexMethod", "NestedBlockDepth")
 internal fun TelegramUpdateHandler.parseCommand(
     text: String,
 ): StructuredRequest = with(bot.config.commandParsing) {

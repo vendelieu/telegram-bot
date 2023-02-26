@@ -2,6 +2,7 @@ package eu.vendeli
 
 import BotTestContext
 import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.utils.parseCommand
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -80,6 +81,39 @@ class TelegramUpdateHandlerTest : BotTestContext() {
 
         throwableUpdatePair.second.message.shouldNotBeNull()
         throwableUpdatePair.second.message?.text shouldBe "test"
+    }
+
+    @Test
+    fun `valid command parsing`() {
+        val deeplinkParse = bot.update.parseCommand("/start deeplinkcode")
+        deeplinkParse.command shouldBe "/start"
+        deeplinkParse.params.size shouldBe 1
+        deeplinkParse.params.entries.first().key shouldBe "param_1"
+        deeplinkParse.params.entries.first().value shouldBe "deeplinkcode"
+
+        val commandParse = bot.update.parseCommand("command?p1=v1&v2&p3=v3")
+        commandParse.command shouldBe "command"
+        commandParse.params.size shouldBe 3
+
+        val params = commandParse.params.entries
+        params.first().key shouldBe "p1"
+        params.first().value shouldBe "v1"
+
+        params.elementAt(1).key shouldBe "param_2"
+        params.elementAt(1).value shouldBe "v2"
+
+        params.elementAt(2).key shouldBe "p3"
+        params.elementAt(2).value shouldBe "v3"
+
+        bot.config.commandParsing.apply {
+            commandDelimiter = '_'
+        }
+
+        val underscoreCommand = bot.update.parseCommand("/test_123")
+        underscoreCommand.command shouldBe "/test"
+        underscoreCommand.params.size shouldBe 1
+        underscoreCommand.params.entries.first().key shouldBe "param_1"
+        underscoreCommand.params.entries.first().value shouldBe "123"
     }
 
     companion object {

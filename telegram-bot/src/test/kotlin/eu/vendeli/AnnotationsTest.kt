@@ -1,6 +1,7 @@
 package eu.vendeli
 
 import eu.vendeli.tgbot.core.TelegramActionsCollector
+import eu.vendeli.tgbot.types.internal.UpdateType
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.maps.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -28,5 +29,8 @@ class AnnotationsTest {
         actionsFromAnnotations.inputs.keys shouldContain "testInp"
         actionsFromAnnotations.inputs.keys shouldContain "testInp2"
         actionsFromAnnotations.inputs.keys shouldContain "testInp3"
+
+        actionsFromAnnotations.updateHandlers.size shouldBe 2
+        actionsFromAnnotations.updateHandlers[UpdateType.MESSAGE].shouldNotBeNull()
     }
 }
