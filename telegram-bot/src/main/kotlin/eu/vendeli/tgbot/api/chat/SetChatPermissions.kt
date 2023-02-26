@@ -15,6 +15,8 @@ class SetChatPermissionsAction(
 
     init {
         parameters["permissions"] = permissions
+        if (useIndependentChatPermissions != null)
+            parameters["use_independent_chat_permissions"] = useIndependentChatPermissions
     }
 }
 
