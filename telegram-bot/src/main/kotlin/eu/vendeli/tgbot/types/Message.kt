@@ -55,6 +55,8 @@ data class Message(
     val pinnedMessage: Message? = null,
     val invoice: Invoice? = null,
     val successfulPayment: SuccessfulPayment? = null,
+    val userShared: UserShared? = null,
+    val chatShared: ChatShared? = null,
     val connectedWebsite: String? = null,
     val writeAccessAllowed: WriteAccessAllowed? = null,
     val passportData: PassportData? = null,
