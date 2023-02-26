@@ -11,6 +11,8 @@ abstract class KeyboardBuilder<T : Button> {
     }
 
     /**
+     * Same as [newLine].
+     *
      * @see [newLine]
      */
     fun br() = newLine()

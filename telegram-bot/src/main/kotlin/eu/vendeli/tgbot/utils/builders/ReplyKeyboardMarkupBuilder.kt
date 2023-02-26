@@ -3,6 +3,8 @@ package eu.vendeli.tgbot.utils.builders
 import eu.vendeli.tgbot.interfaces.KeyboardBuilder
 import eu.vendeli.tgbot.types.KeyboardButton
 import eu.vendeli.tgbot.types.KeyboardButtonPollType
+import eu.vendeli.tgbot.types.KeyboardButtonRequestChat
+import eu.vendeli.tgbot.types.KeyboardButtonRequestUser
 import eu.vendeli.tgbot.types.ReplyKeyboardMarkup
 import eu.vendeli.tgbot.types.WebAppInfo
 import eu.vendeli.tgbot.types.internal.options.ReplyKeyboardMarkupOptions
@@ -18,7 +20,7 @@ class ReplyKeyboardMarkupBuilder : KeyboardBuilder<KeyboardButton>() {
      * Use this function to add buttons without parameters, e.g. +"Button name".
      */
     operator fun String.unaryPlus() {
-        buttons.add(KeyboardButton(this))
+        buttons += KeyboardButton(this)
     }
 
     /**
@@ -27,13 +29,35 @@ class ReplyKeyboardMarkupBuilder : KeyboardBuilder<KeyboardButton>() {
     fun options(block: ReplyKeyboardMarkupOptions.() -> Unit) = options.block()
 
     /**
+     * Button for requesting user.
+     *
+     * If specified, pressing the button will open a list of suitable users.
+     * Tapping on any user will send their identifier to the bot in a “user_shared” service message.
+     * Available in private chats only.
+     */
+    infix fun String.requestUser(value: KeyboardButtonRequestUser) {
+        buttons += KeyboardButton(this, requestUser = value)
+    }
+
+    /**
+     * Button for requesting chat.
+     *
+     * If specified, pressing the button will open a list of suitable users.
+     * Tapping on any user will send their identifier to the bot in a “user_shared” service message.
+     * Available in private chats only.
+     */
+    infix fun String.requestChat(value: KeyboardButtonRequestChat) {
+        buttons += KeyboardButton(this, requestChat = value)
+    }
+
+    /**
      * Button for requesting contact from user.
      *
      * If True, the user's phone number will be sent as a contact when the button is pressed.
      * Available in private chats only.
      */
     infix fun String.requestContact(value: Boolean) {
-        buttons.add(KeyboardButton(this, requestContact = value))
+        buttons += KeyboardButton(this, requestContact = value)
     }
 
     /**
@@ -43,7 +67,7 @@ class ReplyKeyboardMarkupBuilder : KeyboardBuilder<KeyboardButton>() {
      * Available in private chats only.
      */
     infix fun String.requestLocation(value: Boolean) {
-        buttons.add(KeyboardButton(this, requestLocation = value))
+        buttons += KeyboardButton(this, requestLocation = value)
     }
 
     /**
@@ -53,7 +77,7 @@ class ReplyKeyboardMarkupBuilder : KeyboardBuilder<KeyboardButton>() {
      * Available in private chats only.
      */
     infix fun String.requestPoll(value: KeyboardButtonPollType) {
-        buttons.add(KeyboardButton(this, requestPoll = value))
+        buttons += KeyboardButton(this, requestPoll = value)
     }
 
     /**
@@ -63,7 +87,7 @@ class ReplyKeyboardMarkupBuilder : KeyboardBuilder<KeyboardButton>() {
      * The Web App will be able to send a “web_app_data” service message. Available in private chats only.
      */
     infix fun String.webApp(value: WebAppInfo) {
-        buttons.add(KeyboardButton(this, webApp = value))
+        buttons += KeyboardButton(this, webApp = value)
     }
 }
 

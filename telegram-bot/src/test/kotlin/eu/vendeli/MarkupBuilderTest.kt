@@ -2,6 +2,8 @@ package eu.vendeli
 
 import BotTestContext
 import eu.vendeli.tgbot.types.KeyboardButtonPollType
+import eu.vendeli.tgbot.types.KeyboardButtonRequestChat
+import eu.vendeli.tgbot.types.KeyboardButtonRequestUser
 import eu.vendeli.tgbot.types.LoginUrl
 import eu.vendeli.tgbot.types.WebAppInfo
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
@@ -97,49 +99,96 @@ class MarkupBuilderTest : BotTestContext() {
             newLine()
             "test3" webApp WebAppInfo("test")
             "test4" requestContact false
+            br()
+            "test5" requestUser KeyboardButtonRequestUser(1, userIsBot = true, userIsPremium = false)
+            "test6" requestChat KeyboardButtonRequestChat(2, chatIsChannel = false, chatIsForum = true)
         }
 
-        fullyBuiltKeyboard.keyboard shouldHaveSize 2 // two rows
+        fullyBuiltKeyboard.keyboard shouldHaveSize 3 // three rows
 
         fullyBuiltKeyboard.keyboard.run {
             // 1 row 1 element
-            first().first().text shouldBe "test1"
+            val row1el1 = first().first()
+            row1el1.text shouldBe "test1"
 
-            first().first().requestLocation shouldBe true
+            row1el1.requestLocation shouldBe true
 
-            first().first().requestPoll.shouldBeNull()
-            first().first().requestContact.shouldBeNull()
-            first().first().webApp.shouldBeNull()
+            row1el1.requestChat.shouldBeNull()
+            row1el1.requestUser.shouldBeNull()
+            row1el1.requestPoll.shouldBeNull()
+            row1el1.requestContact.shouldBeNull()
+            row1el1.webApp.shouldBeNull()
 
             // 1 row 2 element
-            first()[1].text shouldBe "test2"
+            val row1el2 = first()[1]
+            row1el2.text shouldBe "test2"
 
-            first()[1].requestPoll.shouldNotBeNull()
-            first()[1].requestPoll?.type.shouldBeNull()
+            row1el2.requestPoll.shouldNotBeNull()
+            row1el2.requestPoll?.type.shouldBeNull()
 
-            first()[1].requestLocation.shouldBeNull()
-            first()[1].requestContact.shouldBeNull()
-            first()[1].webApp.shouldBeNull()
+            row1el2.requestChat.shouldBeNull()
+            row1el2.requestUser.shouldBeNull()
+            row1el2.requestLocation.shouldBeNull()
+            row1el2.requestContact.shouldBeNull()
+            row1el2.webApp.shouldBeNull()
 
             // 2 row 1 element
-            get(1).first().text shouldBe "test3"
+            val row2el1 = get(1).first()
+            row2el1.text shouldBe "test3"
 
-            get(1).first().webApp.shouldNotBeNull()
-            get(1).first().webApp?.url shouldBe "test"
+            row2el1.webApp.shouldNotBeNull()
+            row2el1.webApp?.url shouldBe "test"
 
-            get(1).first().requestLocation.shouldBeNull()
-            get(1).first().requestContact.shouldBeNull()
-            get(1).first().requestPoll.shouldBeNull()
+            row2el1.requestChat.shouldBeNull()
+            row2el1.requestUser.shouldBeNull()
+            row2el1.requestLocation.shouldBeNull()
+            row2el1.requestContact.shouldBeNull()
+            row2el1.requestPoll.shouldBeNull()
 
             // 2 row 2 element
-            get(1)[1].text shouldBe "test4"
-            get(1)[1].webApp.shouldBeNull()
-            get(1)[1].requestLocation.shouldBeNull()
+            val row2el2 = get(1)[1]
+            row2el2.text shouldBe "test4"
+            row2el2.webApp.shouldBeNull()
+            row2el2.requestLocation.shouldBeNull()
+            row2el2.requestPoll.shouldBeNull()
+            row2el2.requestChat.shouldBeNull()
+            row2el2.requestUser.shouldBeNull()
 
-            get(1)[1].requestContact.shouldNotBeNull()
-            get(1)[1].requestContact shouldBe false
+            row2el2.requestContact.shouldNotBeNull()
+            row2el2.requestContact shouldBe false
 
-            get(1)[1].requestPoll.shouldBeNull()
+
+            // 3 row 1 element
+            val row3el1 = get(2).first()
+            row3el1.text shouldBe "test5"
+            row3el1.webApp.shouldBeNull()
+            row3el1.requestLocation.shouldBeNull()
+            row3el1.requestContact.shouldBeNull()
+            row3el1.requestContact.shouldBeNull()
+            row3el1.requestPoll.shouldBeNull()
+            row3el1.requestChat.shouldBeNull()
+
+            row3el1.requestUser.shouldNotBeNull()
+            row3el1.requestUser?.requestId shouldBe 1
+            row3el1.requestUser?.userIsBot shouldBe true
+            row3el1.requestUser?.userIsPremium shouldBe false
+
+            // 3 row 2 element
+            val row3el2 = get(2)[1]
+            row3el2.text shouldBe "test6"
+            row3el2.webApp.shouldBeNull()
+            row3el2.requestLocation.shouldBeNull()
+            row3el2.requestContact.shouldBeNull()
+            row3el2.requestContact.shouldBeNull()
+            row3el2.requestPoll.shouldBeNull()
+            row3el2.requestUser.shouldBeNull()
+
+            row3el2.requestChat.run {
+                shouldNotBeNull()
+                requestId shouldBe 2
+                chatIsChannel shouldBe false
+                chatIsForum shouldBe true
+            }
         }
 
         fullyBuiltKeyboard.resizeKeyboard shouldBe true
@@ -172,10 +221,10 @@ class MarkupBuilderTest : BotTestContext() {
             shouldThrow<IndexOutOfBoundsException> { first()[1] }
 
             get(1).first().text shouldBe "test2"
-            first().first().requestContact.shouldBeNull()
-            first().first().requestPoll.shouldBeNull()
-            first().first().requestLocation.shouldBeNull()
-            first().first().webApp.shouldBeNull()
+            get(1).first().requestContact.shouldBeNull()
+            get(1).first().requestPoll.shouldBeNull()
+            get(1).first().requestLocation.shouldBeNull()
+            get(1).first().webApp.shouldBeNull()
 
             shouldThrow<IndexOutOfBoundsException> { get(1)[1] }
         }
