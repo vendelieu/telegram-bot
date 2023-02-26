@@ -1,5 +1,28 @@
 # Telegram-bot changelog
 
+## 2.6.0
+
+#### Telegram Api related changes
+
+* Added the class `KeyboardButtonRequestUser` and the field `requestUser` to the class `KeyboardButton`.
+* Added the class `KeyboardButtonRequestChat` and the field `requestChat` to the class `KeyboardButton`.
+* Added the classes `UserShared`, `ChatShared` and the fields `userShared`, and `chatShared` to the class `Message`.
+* Replaced the fields `canSendMediaMessages` in the classes `ChatMemberRestricted` and `ChatPermissions`
+  with separate fields `canSendAudios`, `canSendDocuments`, `canSendPhotos`, `canSendVideos`, `canSendVideoNotes`,
+  and `canSendVoiceNotes` for different media types.
+* Added the parameter `useIndependentChatPermissions` to the methods `restrictChatMember` and `setChatPermissions`.
+* Added the field `userChatId` to the class `ChatJoinRequest`.
+
+#### Bot internal improvements
+
+* Add new `UpdateHandler` annotation to handle update events.
+* Improved command parsing mechanism and make it more flexible and configurable.
+  See `commandParsing` section of bot configuration.
+* Upgrade dependencies versions:
+  * `Jackson`: `2.14.1` -> `2.14.2`
+  * `Ktor`: `2.2.1` -> `2.2.3`
+  * `Kotlin`: `1.8.-` -> `1.8.10`
+
 ### 2.5.4
 
 * Fix test and improve `inputChain` logic.
