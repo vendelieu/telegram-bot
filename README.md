@@ -3,7 +3,7 @@
 # Telegram Bot
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot)
-[![Supported version](https://img.shields.io/badge/Bot%20API-6.4-blue)](https://core.telegram.org/bots/api-changelog#december-30-2022)
+[![Supported version](https://img.shields.io/badge/Bot%20API-6.5-blue)](https://core.telegram.org/bots/api-changelog#february-3-2023)
 
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
 [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin) [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/vennyTgBot)
@@ -25,7 +25,7 @@ Now add the library itself to the dependencies' module that you need it.
 
 ```gradle
 dependencies {
-    implementation("eu.vendeli:telegram-bot:2.5.4")
+    implementation("eu.vendeli:telegram-bot:2.6.0")
 }
 ```
 
