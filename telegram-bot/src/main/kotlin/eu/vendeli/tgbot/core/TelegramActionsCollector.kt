@@ -62,9 +62,15 @@ internal object TelegramActionsCollector {
             }
         }
 
-        getMethodsAnnotatedWith(UpdateHandler::class.java).forEach { m->
+        getMethodsAnnotatedWith(UpdateHandler::class.java).forEach { m ->
             val annotation = (m.annotations.find { it is UpdateHandler } as UpdateHandler)
-            updateHandlers[annotation.type] = Invocation(clazz = m.declaringClass, method = m, rateLimits = RateLimits.NOT_LIMITED)
+            annotation.type.forEach { type ->
+                updateHandlers[type] = Invocation(
+                    clazz = m.declaringClass,
+                    method = m,
+                    rateLimits = RateLimits.NOT_LIMITED
+                )
+            }
         }
 
         return@with Actions(

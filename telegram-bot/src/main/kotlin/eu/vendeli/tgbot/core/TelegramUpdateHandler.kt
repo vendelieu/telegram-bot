@@ -216,6 +216,7 @@ class TelegramUpdateHandler internal constructor(
      * @param update
      * @return null on success or [Throwable].
      */
+    @Suppress("CyclomaticComplexMethod")
     suspend fun handle(update: Update) = processUpdate(update).run {
         logger.trace("Handling update: $update")
         val telegramId = update.message?.from?.id

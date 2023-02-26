@@ -5,6 +5,8 @@ package other.pckg
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
+import eu.vendeli.tgbot.annotations.UpdateHandler
+import eu.vendeli.tgbot.types.internal.UpdateType
 
 class TgAnnotationsModel {
 
@@ -18,6 +20,10 @@ class TgAnnotationsModel {
 
     @UnprocessedHandler
     fun test3() {
+    }
+
+    @UpdateHandler([UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY])
+    fun updateHandler() {
     }
 }
 

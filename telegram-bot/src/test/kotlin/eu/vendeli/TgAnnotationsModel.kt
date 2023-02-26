@@ -5,6 +5,8 @@ package eu.vendeli
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
+import eu.vendeli.tgbot.annotations.UpdateHandler
+import eu.vendeli.tgbot.types.internal.UpdateType
 
 class TgAnnotationsModel {
 
@@ -28,6 +30,10 @@ suspend fun testMethod() {
 
 @InputHandler(["testInp2"])
 suspend fun testMethod2() {
+}
+
+@UpdateHandler([UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY])
+fun updateHandler() {
 }
 
 object TestObj {
