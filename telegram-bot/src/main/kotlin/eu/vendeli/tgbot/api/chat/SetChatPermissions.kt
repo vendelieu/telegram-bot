@@ -6,7 +6,10 @@ import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.ChatPermissions
 import eu.vendeli.tgbot.types.internal.TgMethod
 
-class SetChatPermissionsAction(permissions: ChatPermissions) : Action<Boolean> {
+class SetChatPermissionsAction(
+    permissions: ChatPermissions,
+    useIndependentChatPermissions: Boolean? = null,
+) : Action<Boolean> {
     override val method: TgMethod = TgMethod("setChatPermissions")
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
@@ -15,6 +18,12 @@ class SetChatPermissionsAction(permissions: ChatPermissions) : Action<Boolean> {
     }
 }
 
-fun setChatPermissions(permissions: ChatPermissions) = SetChatPermissionsAction(permissions)
-fun setChatPermissions(permissions: ChatPermissions.() -> Unit) =
-    SetChatPermissionsAction(ChatPermissions().apply(permissions))
+fun setChatPermissions(
+    permissions: ChatPermissions,
+    useIndependentChatPermissions: Boolean? = null,
+) = SetChatPermissionsAction(permissions)
+
+fun setChatPermissions(
+    useIndependentChatPermissions: Boolean? = null,
+    permissions: ChatPermissions.() -> Unit,
+) = SetChatPermissionsAction(ChatPermissions().apply(permissions))

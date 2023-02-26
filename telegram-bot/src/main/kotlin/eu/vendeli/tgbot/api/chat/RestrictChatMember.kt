@@ -10,6 +10,7 @@ class RestrictChatMemberAction(
     userId: Long,
     permissions: ChatPermissions,
     untilDate: Int? = null,
+    useIndependentChatPermissions: Boolean? = null,
 ) : Action<Boolean> {
     override val method: TgMethod = TgMethod("restrictChatMember")
     override val parameters: MutableMap<String, Any?> = mutableMapOf()
@@ -21,8 +22,15 @@ class RestrictChatMemberAction(
     }
 }
 
-fun restrictChatMember(userId: Long, untilDate: Int? = null, chatPermissions: ChatPermissions.() -> Unit) =
-    RestrictChatMemberAction(userId, ChatPermissions().apply(chatPermissions), untilDate)
+fun restrictChatMember(
+    userId: Long, untilDate: Int? = null,
+    useIndependentChatPermissions: Boolean? = null,
+    chatPermissions: ChatPermissions.() -> Unit,
+) = RestrictChatMemberAction(userId, ChatPermissions().apply(chatPermissions), untilDate, useIndependentChatPermissions)
 
-fun restrictChatMember(userId: Long, chatPermissions: ChatPermissions, untilDate: Int? = null) =
-    RestrictChatMemberAction(userId, chatPermissions, untilDate)
+fun restrictChatMember(
+    userId: Long,
+    chatPermissions: ChatPermissions,
+    untilDate: Int? = null,
+    useIndependentChatPermissions: Boolean? = null,
+) = RestrictChatMemberAction(userId, chatPermissions, untilDate, useIndependentChatPermissions)
