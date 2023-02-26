@@ -19,6 +19,8 @@ class RestrictChatMemberAction(
         parameters["user_id"] = userId
         parameters["permissions"] = permissions
         if (untilDate != null) parameters["until_date"] = untilDate
+        if (useIndependentChatPermissions != null)
+            parameters["use_independent_chat_permissions"] = useIndependentChatPermissions
     }
 }
 
