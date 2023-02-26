@@ -79,6 +79,7 @@ class MarkupBuilderTest : BotTestContext() {
     }
 
     @Test
+    @Suppress("LongMethod")
     fun `building reply keyboard markup`() {
         val replyMarkup = replyKeyboardMarkup {
             "test" requestContact true
@@ -156,7 +157,6 @@ class MarkupBuilderTest : BotTestContext() {
 
             row2el2.requestContact.shouldNotBeNull()
             row2el2.requestContact shouldBe false
-
 
             // 3 row 1 element
             val row3el1 = get(2).first()

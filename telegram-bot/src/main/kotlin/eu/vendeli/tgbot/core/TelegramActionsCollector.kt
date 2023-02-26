@@ -68,7 +68,7 @@ internal object TelegramActionsCollector {
                 updateHandlers[type] = Invocation(
                     clazz = m.declaringClass,
                     method = m,
-                    rateLimits = RateLimits.NOT_LIMITED
+                    rateLimits = RateLimits.NOT_LIMITED,
                 )
             }
         }
