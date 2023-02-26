@@ -25,7 +25,8 @@ class RestrictChatMemberAction(
 }
 
 fun restrictChatMember(
-    userId: Long, untilDate: Int? = null,
+    userId: Long,
+    untilDate: Int? = null,
     useIndependentChatPermissions: Boolean? = null,
     chatPermissions: ChatPermissions.() -> Unit,
 ) = RestrictChatMemberAction(userId, ChatPermissions().apply(chatPermissions), untilDate, useIndependentChatPermissions)

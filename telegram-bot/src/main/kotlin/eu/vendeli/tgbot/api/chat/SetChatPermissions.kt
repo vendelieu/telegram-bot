@@ -23,9 +23,9 @@ class SetChatPermissionsAction(
 fun setChatPermissions(
     permissions: ChatPermissions,
     useIndependentChatPermissions: Boolean? = null,
-) = SetChatPermissionsAction(permissions)
+) = SetChatPermissionsAction(permissions, useIndependentChatPermissions)
 
 fun setChatPermissions(
     useIndependentChatPermissions: Boolean? = null,
     permissions: ChatPermissions.() -> Unit,
-) = SetChatPermissionsAction(ChatPermissions().apply(permissions))
+) = SetChatPermissionsAction(ChatPermissions().apply(permissions), useIndependentChatPermissions)

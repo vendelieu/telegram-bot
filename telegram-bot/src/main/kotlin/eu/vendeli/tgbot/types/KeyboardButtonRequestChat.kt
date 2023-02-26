@@ -8,5 +8,5 @@ data class KeyboardButtonRequestChat(
     val chatIsCreated: Boolean? = null,
     val userAdministratorRights: ChatAdministratorRights? = null,
     val botAdministratorRights: ChatAdministratorRights? = null,
-    val botIsMember: Boolean? = null
+    val botIsMember: Boolean? = null,
 )
