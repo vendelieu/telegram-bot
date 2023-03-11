@@ -22,7 +22,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.slf4j.LoggerFactory
+import mu.KotlinLogging
 import kotlin.coroutines.coroutineContext
 
 /**
@@ -41,7 +41,7 @@ class TelegramUpdateHandler internal constructor(
     private val inputListener: BotInputListener,
     internal val rateLimiter: RateLimitMechanism,
 ) {
-    internal val logger = LoggerFactory.getLogger(javaClass)
+    internal val logger = KotlinLogging.logger {}
     private lateinit var handlingBehaviour: HandlingBehaviourBlock
 
     @Volatile
@@ -55,7 +55,7 @@ class TelegramUpdateHandler internal constructor(
      * @param offset
      */
     private tailrec suspend fun runListener(offset: Int? = null): Int = with(bot.config.updatesListener) {
-        logger.trace("Running listener with offset - $offset")
+        logger.trace { "Running listener with offset - $offset" }
         if (!handlerActive) {
             coroutineContext.cancelChildren()
             return 0
@@ -84,7 +84,7 @@ class TelegramUpdateHandler internal constructor(
      */
     suspend fun setListener(block: HandlingBehaviourBlock) {
         if (handlerActive) stopListener()
-        logger.trace("The listener is set.")
+        logger.trace { "The listener is set." }
         handlingBehaviour = block
         handlerActive = true
         runListener()
@@ -95,7 +95,7 @@ class TelegramUpdateHandler internal constructor(
      *
      */
     fun stopListener() {
-        logger.trace("The listener is stopped.")
+        logger.trace { "The listener is stopped." }
         handlerActive = false
     }
 
@@ -126,19 +126,19 @@ class TelegramUpdateHandler internal constructor(
      * @return [Update] or null
      */
     private fun parseUpdate(update: String): Update? {
-        logger.trace("Trying to parse update from string - $update")
+        logger.trace { "Trying to parse update from string - $update" }
         return mapper.runCatching {
             readValue(update, Update::class.java)
         }.onFailure {
-            logger.debug("error during the update parsing process.", it)
-        }.onSuccess { logger.trace("Successfully parsed update to $it") }.getOrNull()
+            logger.debug(it) { "error during the update parsing process." }
+        }.onSuccess { logger.trace { "Successfully parsed update to $it" } }.getOrNull()
     }
 
     /**
      * A function for defining the behavior to handle updates.
      */
     fun setBehaviour(block: HandlingBehaviourBlock) {
-        logger.trace("Handling behaviour is set.")
+        logger.trace { "Handling behaviour is set." }
         handlingBehaviour = block
     }
 
@@ -164,7 +164,7 @@ class TelegramUpdateHandler internal constructor(
         parameters: Map<String, String>,
     ) {
         var isSuspend = false
-        logger.trace("Parsing arguments for Update#${update.fullUpdate.updateId}")
+        logger.trace { "Parsing arguments for Update#${update.fullUpdate.updateId}" }
         val processedParameters = buildList {
             invocation.method.parameters.forEach { p ->
                 if (p.type.name == "kotlin.coroutines.Continuation") {
@@ -193,21 +193,21 @@ class TelegramUpdateHandler internal constructor(
 
         bot.config.context._chatData?.run {
             if (!update.user.isPresent()) return@run
-            logger.trace("Handling BotContext for Update#${update.fullUpdate.updateId}")
+            logger.trace { "Handling BotContext for Update#${update.fullUpdate.updateId}" }
             val prevClassName = getAsync<String>(update.user.id, "PrevInvokedClass").await()
             if (prevClassName != invocation.clazz.name) delPrevChatSectionAsync(update.user.id).await()
 
             setAsync(update.user.id, "PrevInvokedClass", invocation.clazz.name).await()
         }
 
-        logger.trace("Invoking function for Update#${update.fullUpdate.updateId}")
+        logger.trace { "Invoking function for Update#${update.fullUpdate.updateId}" }
         invocation.runCatching {
             if (isSuspend) method.invokeSuspend(classManager.getInstance(clazz), *processedParameters)
             else method.invoke(classManager.getInstance(clazz), *processedParameters)
         }.onFailure {
             logger.error("Method {$invocation} invocation error at handling update: $update", it)
             caughtExceptions.send((it.cause ?: it) to update.fullUpdate)
-        }.onSuccess { logger.debug("Handled update#${update.fullUpdate.updateId} to method $invocation") }
+        }.onSuccess { logger.debug { "Handled update#${update.fullUpdate.updateId} to method $invocation" } }
     }
 
     /**
@@ -218,7 +218,7 @@ class TelegramUpdateHandler internal constructor(
      */
     @Suppress("CyclomaticComplexMethod")
     suspend fun handle(update: Update) = processUpdate(update).run {
-        logger.trace("Handling update: $update")
+        logger.trace { "Handling update: $update" }
         val telegramId = update.message?.from?.id
         if (checkIsLimited(bot.config.rateLimits, telegramId)) return@run null
 
@@ -226,7 +226,7 @@ class TelegramUpdateHandler internal constructor(
         val inputAction = if (commandAction == null) inputListener.getAsync(user.id).await()?.let {
             findAction(it, false)
         } else null
-        logger.trace("Result of finding action - command: $commandAction, input: $inputAction")
+        logger.trace { "Result of finding action - command: $commandAction, input: $inputAction" }
         inputListener.delAsync(user.id).await()
 
         val action = commandAction ?: inputAction
@@ -245,7 +245,7 @@ class TelegramUpdateHandler internal constructor(
 
             actions?.unhandled != null -> invokeMethod(this, actions.unhandled, emptyMap())
 
-            else -> logger.info("update: $update not handled.")
+            else -> logger.info { "update: $update not handled." }
         }
     }
 
@@ -256,7 +256,7 @@ class TelegramUpdateHandler internal constructor(
      * @param block
      */
     suspend fun handle(update: Update, block: ManualHandlingBlock) {
-        logger.trace("Manually handling update: $update")
+        logger.trace { "Manually handling update: $update" }
         manualHandlingBehavior.apply {
             block()
             process(update)

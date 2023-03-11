@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.internal.Actions
 import eu.vendeli.tgbot.types.internal.Invocation
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import mu.KotlinLogging
 import org.reflections.Reflections
 import org.reflections.scanners.Scanners
 import java.lang.reflect.Parameter
@@ -18,6 +19,8 @@ import java.lang.reflect.Parameter
  *
  */
 internal object TelegramActionsCollector {
+    private val logger = KotlinLogging.logger {}
+
     private fun Array<Parameter>.getParameters() =
         filter { it.annotations.any { a -> a is CallbackParam } }
             .associate { p -> p.name to (p.annotations.first { it is CallbackParam } as CallbackParam).name }
@@ -73,13 +76,29 @@ internal object TelegramActionsCollector {
             }
         }
 
+        val unhandled = getMethodsAnnotatedWith(UnprocessedHandler::class.java).firstOrNull()?.let { m ->
+            Invocation(clazz = m.declaringClass, method = m, rateLimits = RateLimits.NOT_LIMITED)
+        }
+
+        val totalActions = commands.size + inputs.size + updateHandlers.size + (if (unhandled != null) 1 else 0)
+        logger.info {
+            buildString {
+                append("Found $totalActions total actions.\n")
+                append("Commands:\n")
+                append(commands.entries.joinToString("\n", postfix = "\n") { "${it.key} -> ${it.value.method}" })
+                append("Inputs:\n")
+                append(inputs.entries.joinToString("\n", postfix = "\n") { "${it.key} -> ${it.value.method}" })
+                append("Update handlers:\n")
+                append(updateHandlers.entries.joinToString("\n", postfix = "\n") { "${it.key} -> ${it.value.method}" })
+                append("Unhandled: ${unhandled?.method}")
+            }
+        }
+
         return@with Actions(
             commands = commands,
             inputs = inputs,
             updateHandlers = updateHandlers,
-            unhandled = getMethodsAnnotatedWith(UnprocessedHandler::class.java).firstOrNull()?.let { m ->
-                Invocation(clazz = m.declaringClass, method = m, rateLimits = RateLimits.NOT_LIMITED)
-            },
+            unhandled = unhandled,
         )
     }
 }

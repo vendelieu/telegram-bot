@@ -77,7 +77,7 @@ suspend fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
     val response = httpClient.post(method.toUrl()) {
         setBody(multipartBodyBuilder(dataField, filename, contentType, data, parameters))
         onUpload { bytesSentTotal, contentLength ->
-            logger.trace("Sent $bytesSentTotal bytes from $contentLength, for $method method with $parameters")
+            logger.trace { "Sent $bytesSentTotal bytes from $contentLength, for $method method with $parameters" }
         }
     }
 
@@ -119,7 +119,7 @@ suspend fun TelegramBot.makeSilentRequest(method: TgMethod, data: Any? = null) =
     val requestBody = TelegramBot.mapper.writeValueAsString(data)
     contentType(ContentType.Application.Json)
     setBody(requestBody)
-    logger.debug("RequestBody: $requestBody")
+    logger.debug { "RequestBody: $requestBody" }
 }
 
 /**
@@ -143,7 +143,7 @@ suspend fun TelegramBot.makeSilentRequest(
 ) = httpClient.post(method.toUrl()) {
     setBody(multipartBodyBuilder(dataField, filename, contentType, data, parameters))
     onUpload { bytesSentTotal, contentLength ->
-        logger.trace("Sent $bytesSentTotal bytes from $contentLength, for $method method with $parameters")
+        logger.trace { "Sent $bytesSentTotal bytes from $contentLength, for $method method with $parameters" }
     }
-    logger.debug("RequestBody: $parameters")
+    logger.debug { "RequestBody: $parameters" }
 }

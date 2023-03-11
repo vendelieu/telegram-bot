@@ -20,7 +20,7 @@ import io.ktor.http.isSuccess
 internal fun TelegramBot.getConfiguredHttpClient() = HttpClient(CIO) {
     install("RequestLogging") {
         sendPipeline.intercept(HttpSendPipeline.Monitoring) {
-            logger.trace("TgApiRequest: {} {}", context.method, context.url.buildString())
+            logger.trace { "TgApiRequest: ${context.method} ${context.url.buildString()}" }
         }
     }
     install(Logging) {
