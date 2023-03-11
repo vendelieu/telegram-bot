@@ -19,7 +19,7 @@ import io.ktor.http.append
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.coroutineScope
 
-suspend fun TelegramBot.makeBunchMediaReq(
+internal suspend inline fun TelegramBot.makeBunchMediaReq(
     method: TgMethod,
     files: Map<String, ByteArray>,
     parameters: Map<String, Any?>? = null,
@@ -50,7 +50,7 @@ suspend fun TelegramBot.makeBunchMediaReq(
 }
 
 @Suppress("LongParameterList")
-suspend fun <T, I : MultipleResponse> TelegramBot.makeBunchMediaRequestAsync(
+internal suspend inline fun <T, I : MultipleResponse> TelegramBot.makeBunchMediaRequestAsync(
     method: TgMethod,
     files: Map<String, ByteArray>,
     parameters: Map<String, Any?>? = null,
@@ -63,7 +63,7 @@ suspend fun <T, I : MultipleResponse> TelegramBot.makeBunchMediaRequestAsync(
     return@coroutineScope handleResponseAsync(response, returnType, innerType)
 }
 
-suspend fun TelegramBot.makeSilentBunchMediaRequest(
+internal suspend inline fun TelegramBot.makeSilentBunchMediaRequest(
     method: TgMethod,
     files: Map<String, ByteArray>,
     parameters: Map<String, Any?>? = null,

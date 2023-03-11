@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.types.internal
 
+import eu.vendeli.tgbot.types.StickerFormat
+
 /**
  * Sticker set file options
  *
@@ -10,20 +12,16 @@ package eu.vendeli.tgbot.types.internal
  *  or a WEBM video with the thumbnail up to 32 kilobytes in size;
  *  see [video sticker technical requirements](https://core.telegram.org/stickers#video-sticker-requirements).
  */
-sealed class StickerFile(val file: ByteArray) {
-    abstract val contentType: MediaContentType
+sealed class StickerFile(
+    val file: ByteArray,
+    val stickerFormat: StickerFormat,
+    internal val contentType: MediaContentType,
+) {
+    class PNG(file: ByteArray) : StickerFile(file, StickerFormat.Static, MediaContentType.ImagePng)
 
-    class PNG(file: ByteArray) : StickerFile(file) {
-        override val contentType = MediaContentType.ImagePng
-    }
+    class TGS(file: ByteArray) : StickerFile(file, StickerFormat.Animated, MediaContentType.ImageTgs)
 
-    class TGS(file: ByteArray) : StickerFile(file) {
-        override val contentType = MediaContentType.ImageTgs
-    }
-
-    class WEBM(file: ByteArray) : StickerFile(file) {
-        override val contentType = MediaContentType.VideoWebm
-    }
+    class WEBM(file: ByteArray) : StickerFile(file, StickerFormat.Video, MediaContentType.VideoWebm)
 
     /**
      * Converts Sticker to [ImplicitFile.FromByteArray](ImplicitFile.FromByteArray)

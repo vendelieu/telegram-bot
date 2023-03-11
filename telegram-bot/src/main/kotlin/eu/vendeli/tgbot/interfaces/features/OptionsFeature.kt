@@ -2,7 +2,7 @@ package eu.vendeli.tgbot.interfaces.features
 
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
-import eu.vendeli.tgbot.interfaces.ParametersBase
+import eu.vendeli.tgbot.interfaces.IActionState
 import eu.vendeli.tgbot.types.internal.options.Options
 
 /**
@@ -11,7 +11,7 @@ import eu.vendeli.tgbot.types.internal.options.Options
  * @param Return Action itself.
  * @param Opts Options Class
  */
-interface OptionsFeature<Return : OptionAble, Opts : Options> : ParametersBase {
+interface OptionsFeature<Return, Opts : Options> : IActionState, Feature {
     @Suppress("UNCHECKED_CAST")
     private val thisAsReturn: Return
         get() = this as Return

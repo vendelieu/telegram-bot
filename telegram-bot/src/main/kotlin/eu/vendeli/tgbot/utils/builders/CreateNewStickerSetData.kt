@@ -10,7 +10,8 @@ class CreateNewStickerSetData {
     lateinit var emojis: String
     lateinit var sticker: StickerFile
     var maskPosition: MaskPosition? = null
-    var stickerType: StickerType = StickerType.Regular
+    var stickerType: StickerType? = null
+    var needsRepainting: Boolean? = null
 
     internal fun checkIsAllFieldsPresent() {
         require(

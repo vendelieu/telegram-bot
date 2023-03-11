@@ -9,7 +9,6 @@ import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.interfaces.BotUserData
 import eu.vendeli.tgbot.interfaces.MagicObject
 import eu.vendeli.tgbot.interfaces.MultipleResponse
-import eu.vendeli.tgbot.interfaces.sendAsync
 import eu.vendeli.tgbot.types.File
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update

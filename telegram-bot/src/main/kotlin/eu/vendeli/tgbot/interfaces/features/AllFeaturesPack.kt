@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.types.internal.options.Options
  * @param Return Action class itself.
  * @param Opts Options class.
  */
-interface AllFeaturesPack<Return : AllFeaturesAble, Opts : Options> :
+interface AllFeaturesPack<Return, Opts : Options> :
     OptionsFeature<Return, Opts>,
     MarkupFeature<Return>,
     EntitiesFeature<Return>

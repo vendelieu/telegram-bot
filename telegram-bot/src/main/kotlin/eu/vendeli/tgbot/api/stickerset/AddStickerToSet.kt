@@ -2,44 +2,33 @@
 
 package eu.vendeli.tgbot.api.stickerset
 
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
-import eu.vendeli.tgbot.types.MaskPosition
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
-import eu.vendeli.tgbot.types.internal.StickerFile
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.types.sticker.InputSticker
+import eu.vendeli.tgbot.utils.getReturnType
 import kotlin.collections.set
 
 class AddStickerToSetAction(
     name: String,
-    emojis: String,
-    private val sticker: StickerFile,
-    maskPosition: MaskPosition? = null,
-) : MediaAction<Boolean> {
+    private val input: InputSticker,
+) : MediaAction<Boolean>, ActionState() {
     override val method: TgMethod = TgMethod("addStickerToSet")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
 
     override val MediaAction<Boolean>.defaultType: MediaContentType
-        get() = sticker.contentType
+        get() = MediaContentType.Any
     override val MediaAction<Boolean>.media: ImplicitFile<*>
-        get() = sticker.toImplicitFile()
+        get() = input.sticker
     override val MediaAction<Boolean>.dataField: String
-        get() = when (sticker) {
-            is StickerFile.PNG -> "png_sticker"
-            is StickerFile.TGS -> "tgs_sticker"
-            is StickerFile.WEBM -> "webm_sticker"
-        }
+        get() = "sticker"
 
     init {
         parameters["name"] = name
-        parameters["emojis"] = emojis
-        if (maskPosition != null) parameters["mask_position"] = maskPosition
+        parameters["sticker"] = input
     }
 }
 
-fun addStickerToSet(
-    name: String,
-    emojis: String,
-    sticker: StickerFile,
-    maskPosition: MaskPosition? = null,
-) = AddStickerToSetAction(name, emojis, sticker, maskPosition)
+fun addStickerToSet(name: String, input: InputSticker) = AddStickerToSetAction(name, input)

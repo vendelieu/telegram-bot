@@ -3,16 +3,15 @@
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.features.CaptionAble
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
-import eu.vendeli.tgbot.interfaces.features.MarkupAble
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
-import eu.vendeli.tgbot.interfaces.features.OptionAble
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.MessageId
 import eu.vendeli.tgbot.types.internal.Recipient
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CopyMessageOptions
+import eu.vendeli.tgbot.utils.getReturnType
 
 /**
  * Use this method to copy messages of any kind. Service messages and invoice messages can't be copied.
@@ -32,16 +31,13 @@ class CopyMessageAction(
     messageId: Long,
 ) :
     Action<MessageId>,
-    OptionAble,
-    MarkupAble,
-    CaptionAble,
+    ActionState(),
     OptionsFeature<CopyMessageAction, CopyMessageOptions>,
     MarkupFeature<CopyMessageAction>,
     CaptionFeature<CopyMessageAction> {
     override val method: TgMethod = TgMethod("copyMessage")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
     override var options = CopyMessageOptions()
-
     init {
         parameters["chat_id"] = chatId.get()
         parameters["from_chat_id"] = fromChatId.get()

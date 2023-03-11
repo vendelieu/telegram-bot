@@ -11,7 +11,7 @@ import kotlinx.coroutines.Deferred
  *
  * @param ReturnType response type.
  */
-interface SimpleAction<ReturnType> : TgAction, ParametersBase {
+interface SimpleAction<ReturnType> : TgAction<ReturnType>, IActionState {
     /**
      * Send request for action.
      *
@@ -20,15 +20,13 @@ interface SimpleAction<ReturnType> : TgAction, ParametersBase {
     suspend fun send(to: TelegramBot) {
         to.makeSilentRequest(method, parameters)
     }
-}
 
-/**
- * Send async request for action.
- *
- * @param ReturnType response type.
- * @param to recipient.
- */
-suspend inline fun <reified ReturnType> SimpleAction<ReturnType>.sendAsync(
-    to: TelegramBot,
-): Deferred<Response<out ReturnType>> =
-    to.makeRequestAsync(method, parameters, ReturnType::class.java, wrappedDataType)
+    /**
+     * Send async request for action.
+     *
+     * @param to recipient.
+     */
+    suspend fun sendAsync(
+        to: TelegramBot,
+    ): Deferred<Response<out ReturnType>> = to.makeRequestAsync(method, parameters, returnType, wrappedDataType)
+}

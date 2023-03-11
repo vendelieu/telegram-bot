@@ -11,7 +11,7 @@ import kotlinx.coroutines.Deferred
  *
  * @param ReturnType
  */
-interface InlineMode<ReturnType> : TgAction, ParametersBase {
+interface InlineMode<ReturnType> : TgAction<ReturnType>, IActionState {
     /**
      * Make inline request for action.
      *
@@ -22,18 +22,18 @@ interface InlineMode<ReturnType> : TgAction, ParametersBase {
         parameters["inline_message_id"] = inlineMessageId
         via.makeSilentRequest(method, parameters)
     }
-}
 
-/**
- * Make a request for action returning its [Response].
- *
- * @param inlineMessageId Identifier of the inline message
- * @param via Instance of the bot through which the request will be made.
- */
-suspend inline fun <reified ReturnType> InlineMode<ReturnType>.sendInlineAsync(
-    inlineMessageId: String,
-    via: TelegramBot,
-): Deferred<Response<out ReturnType>> {
-    parameters["inline_message_id"] = inlineMessageId
-    return via.makeRequestAsync(method, parameters, ReturnType::class.java, wrappedDataType)
+    /**
+     * Make a request for action returning its [Response].
+     *
+     * @param inlineMessageId Identifier of the inline message
+     * @param via Instance of the bot through which the request will be made.
+     */
+    suspend fun sendInlineAsync(
+        inlineMessageId: String,
+        via: TelegramBot,
+    ): Deferred<Response<out ReturnType>> {
+        parameters["inline_message_id"] = inlineMessageId
+        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
+    }
 }

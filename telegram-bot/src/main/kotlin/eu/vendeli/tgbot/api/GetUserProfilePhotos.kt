@@ -2,17 +2,19 @@
 
 package eu.vendeli.tgbot.api
 
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.UserProfilePhotos
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.utils.getReturnType
 
 class GetUserProfilePhotosAction(
     userId: Long,
     offset: Int? = null,
     limit: Int? = null,
-) : SimpleAction<UserProfilePhotos> {
+) : SimpleAction<UserProfilePhotos>, ActionState() {
     override val method: TgMethod = TgMethod("getUserProfilePhotos")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
 
     init {
         parameters["user_id"] = userId

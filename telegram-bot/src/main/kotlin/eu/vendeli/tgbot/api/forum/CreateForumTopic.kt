@@ -2,9 +2,11 @@
 
 package eu.vendeli.tgbot.api.forum
 
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.ForumTopic
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.utils.getReturnType
 
 /**
  * Use this method to create a topic in a forum supergroup chat.
@@ -16,9 +18,9 @@ class CreateForumTopicAction(
     name: String,
     iconColor: Int? = null,
     iconCustomEmojiId: String? = null,
-) : SimpleAction<ForumTopic> {
+) : SimpleAction<ForumTopic>, ActionState() {
     override val method: TgMethod = TgMethod("createForumTopic")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
 
     init {
         parameters["name"] = name

@@ -2,18 +2,20 @@
 
 package eu.vendeli.tgbot.api
 
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.ShippingOption
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.utils.getReturnType
 
 class AnswerShippingQueryAction(
     shippingQueryId: String,
     ok: Boolean = true,
     shippingOptions: List<ShippingOption>? = null,
     errorMessage: String? = null,
-) : SimpleAction<Boolean> {
+) : SimpleAction<Boolean>, ActionState() {
     override val method: TgMethod = TgMethod("answerShippingQuery")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
 
     init {
         parameters["shipping_query_id"] = shippingQueryId

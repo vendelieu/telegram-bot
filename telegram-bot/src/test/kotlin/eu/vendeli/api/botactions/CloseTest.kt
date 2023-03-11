@@ -2,7 +2,6 @@ package eu.vendeli.api.botactions
 
 import BotTestContext
 import eu.vendeli.tgbot.api.botactions.close
-import eu.vendeli.tgbot.interfaces.sendAsync
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
