@@ -13,6 +13,7 @@ import mu.KotlinLogging
 import org.reflections.Reflections
 import org.reflections.scanners.Scanners
 import java.lang.reflect.Parameter
+import kotlin.reflect.jvm.kotlinFunction
 
 /**
  * Collects commands and inputs before the program starts in a particular package by key annotations.
@@ -83,14 +84,23 @@ internal object TelegramActionsCollector {
         val totalActions = commands.size + inputs.size + updateHandlers.size + (if (unhandled != null) 1 else 0)
         logger.info {
             buildString {
-                append("Found $totalActions total actions.\n")
-                append("Commands:\n")
-                append(commands.entries.joinToString("\n", postfix = "\n") { "${it.key} -> ${it.value.method}" })
-                append("Inputs:\n")
-                append(inputs.entries.joinToString("\n", postfix = "\n") { "${it.key} -> ${it.value.method}" })
-                append("Update handlers:\n")
-                append(updateHandlers.entries.joinToString("\n", postfix = "\n") { "${it.key} -> ${it.value.method}" })
-                append("Unhandled: ${unhandled?.method}")
+                append("Found total $totalActions actions.\n")
+                append(
+                    commands.entries.joinToString("\n", "Commands:\n", "\n") {
+                        "${it.key} -> ${it.value.method.kotlinFunction}"
+                    },
+                )
+                append(
+                    inputs.entries.joinToString("\n", "Inputs:\n", "\n") {
+                        "${it.key} -> ${it.value.method.kotlinFunction}"
+                    },
+                )
+                append(
+                    updateHandlers.entries.joinToString("\n", "Update handlers:\n", "\n") {
+                        "${it.key} -> ${it.value.method.kotlinFunction}"
+                    },
+                )
+                append("Unhandled: ${unhandled?.method?.kotlinFunction}")
             }
         }
 
