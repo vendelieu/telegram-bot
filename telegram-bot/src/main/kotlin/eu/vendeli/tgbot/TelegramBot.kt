@@ -1,6 +1,5 @@
 package eu.vendeli.tgbot
 
-import ch.qos.logback.classic.Logger
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.core.TelegramActionsCollector.collect
@@ -18,11 +17,12 @@ import eu.vendeli.tgbot.utils.TELEGRAM_API_URL_PATTERN
 import eu.vendeli.tgbot.utils.TELEGRAM_FILE_URL_PATTERN
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
 import eu.vendeli.tgbot.utils.getConfiguredMapper
+import eu.vendeli.tgbot.utils.level
 import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.statement.bodyAsText
 import io.ktor.client.statement.readBytes
-import org.slf4j.LoggerFactory
+import mu.KotlinLogging.logger
 
 /**
  * Telegram bot main instance
@@ -56,7 +56,7 @@ class TelegramBot(
     val chatData get() = config.context.chatData
 
     init {
-        (LoggerFactory.getLogger("eu.vendeli.tgbot") as Logger).level = config.logging.botLogLevel
+        logger("eu.vendeli.tgbot").level = config.logging.botLogLevel
     }
 
     internal fun TgMethod.toUrl() = TELEGRAM_API_URL_PATTERN.format(config.apiHost, token) + name
@@ -129,7 +129,7 @@ class TelegramBot(
     }
 
     internal suspend fun pullUpdates(offset: Int? = null): List<Update>? {
-        logger.trace("Pulling updates.")
+        logger.trace { "Pulling updates." }
         val request = httpClient.post(
             TgMethod("getUpdates").toUrl() + (offset?.let { "?offset=$it" } ?: ""),
         )
@@ -137,7 +137,7 @@ class TelegramBot(
     }
 
     internal companion object {
-        internal val logger = LoggerFactory.getLogger(TelegramBot::class.java)
+        internal val logger = logger {}
         internal val mapper = getConfiguredMapper()
     }
 }

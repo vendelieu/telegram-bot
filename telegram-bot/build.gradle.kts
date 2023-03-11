@@ -8,6 +8,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
 }
 
+val loggingVer: String by project
 val logbackVer: String by project
 val jacksonVer: String by project
 val ktorVer: String by project
@@ -28,14 +29,14 @@ dependencies {
     implementation("io.ktor:ktor-client-cio:$ktorVer")
     implementation("io.ktor:ktor-client-logging:$ktorVer")
 
+    implementation("io.github.microutils:kotlin-logging-jvm:$loggingVer")
+    implementation(group = "ch.qos.logback", name = "logback-classic", version = logbackVer)
+
     implementation(group = "org.reflections", name = "reflections", version = "0.10.2")
     implementation(kotlin("reflect"))
 
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
-    api(group = "ch.qos.logback", name = "logback-classic", version = logbackVer)
-
-    testImplementation("ch.qos.logback:logback-classic:$logbackVer")
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVer")
     testImplementation("io.kotest:kotest-assertions-core:$kotestVer")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVer")

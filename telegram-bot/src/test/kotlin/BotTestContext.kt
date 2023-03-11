@@ -1,5 +1,5 @@
 
-import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Level.TRACE
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.Chat
 import eu.vendeli.tgbot.types.ChatType
@@ -30,7 +30,7 @@ abstract class BotTestContext(
     fun prepareTestBot() {
         if (withPreparedBot) bot = TelegramBot(System.getenv("BOT_TOKEN"), "eu.vendeli") {
             logging {
-                botLogLevel = Level.TRACE
+                botLogLevel = TRACE
                 httpLogLevel = HttpLogLevel.ALL
             }
             httpClient {

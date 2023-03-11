@@ -2,10 +2,13 @@
 
 package eu.vendeli.tgbot.utils
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.StructuredRequest
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import kotlinx.coroutines.CoroutineName
@@ -99,10 +102,10 @@ internal suspend fun TelegramUpdateHandler.checkIsLimited(
 ): Boolean {
     if (limits.period == 0L && limits.rate == 0L || telegramId == null) return false
 
-    logger.trace("Checking the request for exceeding the limits${if (actionId != null) " for $actionId}" else ""}.")
+    logger.trace { "Checking the request for exceeding the limits${if (actionId != null) " for $actionId}" else ""}." }
     if (rateLimiter.isLimited(limits, telegramId, actionId)) {
         val loggingTail = if (actionId != null) " for $actionId}" else ""
-        logger.info("User #$telegramId has exceeded the request limit$loggingTail.")
+        logger.info { "User #$telegramId has exceeded the request limit$loggingTail." }
         rateLimiter.exceededLimitResponse(telegramId, bot)
         return true
     }
