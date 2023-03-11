@@ -2,12 +2,13 @@
 
 package eu.vendeli.tgbot.api.botactions
 
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.interfaces.features.OptionAble
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CreateInvoiceLinkOptions
 import eu.vendeli.tgbot.utils.builders.InvoiceData
+import eu.vendeli.tgbot.utils.getReturnType
 
 /**
  * Create invoice link -
@@ -23,10 +24,10 @@ import eu.vendeli.tgbot.utils.builders.InvoiceData
  */
 class CreateInvoiceLinkAction(
     invoiceData: InvoiceData,
-) : SimpleAction<String>, OptionAble, OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions> {
+) : SimpleAction<String>, OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions>, ActionState() {
     override var options = CreateInvoiceLinkOptions()
     override val method: TgMethod = TgMethod("createInvoiceLink")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
 
     init {
         invoiceData.checkIsAllFieldsPresent()

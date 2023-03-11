@@ -2,6 +2,12 @@ package eu.vendeli.tgbot.types
 
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 
+enum class StickerFormat {
+    Static, Animated, Video;
+
+    override fun toString(): String = name.lowercase()
+}
+
 data class Sticker(
     val fileId: String,
     val fileUniqueId: String,
@@ -14,5 +20,6 @@ data class Sticker(
     val setName: String? = null,
     val premiumAnimation: File? = null,
     val maskPosition: MaskPosition? = null,
-    val fileSize: Int?,
+    val needsRepainting: Boolean? = null,
+    val fileSize: Int? = null,
 ) : MultipleResponse

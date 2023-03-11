@@ -12,7 +12,7 @@ import kotlinx.coroutines.Deferred
  *
  * @param ReturnType response type.
  */
-interface Action<ReturnType> : TgAction, ParametersBase {
+interface Action<ReturnType> : TgAction<ReturnType>, IActionState {
     /**
      * Make a request for action.
      *
@@ -45,46 +45,46 @@ interface Action<ReturnType> : TgAction, ParametersBase {
         parameters["chat_id"] = to.id
         via.makeSilentRequest(method, parameters)
     }
-}
 
-/**
- * Make a request for action returning its [Response].
- *
- * @param to Recipient
- * @param via Instance of the bot through which the request will be made.
- */
-suspend inline fun <reified ReturnType> Action<ReturnType>.sendAsync(
-    to: Long,
-    via: TelegramBot,
-): Deferred<Response<out ReturnType>> {
-    parameters["chat_id"] = to
-    return via.makeRequestAsync(method, parameters, ReturnType::class.java, wrappedDataType)
-}
+    /**
+     * Make a request for action returning its [Response].
+     *
+     * @param to Recipient
+     * @param via Instance of the bot through which the request will be made.
+     */
+    suspend fun sendAsync(
+        to: Long,
+        via: TelegramBot,
+    ): Deferred<Response<out ReturnType>> {
+        parameters["chat_id"] = to
+        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
+    }
 
-/**
- * Make a request for action returning its [Response].
- *
- * @param to Recipient
- * @param via Instance of the bot through which the request will be made.
- */
-suspend inline fun <reified ReturnType> Action<ReturnType>.sendAsync(
-    to: User,
-    via: TelegramBot,
-): Deferred<Response<out ReturnType>> {
-    parameters["chat_id"] = to.id
-    return via.makeRequestAsync(method, parameters, ReturnType::class.java, wrappedDataType)
-}
+    /**
+     * Make a request for action returning its [Response].
+     *
+     * @param to Recipient
+     * @param via Instance of the bot through which the request will be made.
+     */
+    suspend fun sendAsync(
+        to: User,
+        via: TelegramBot,
+    ): Deferred<Response<out ReturnType>> {
+        parameters["chat_id"] = to.id
+        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
+    }
 
-/**
- * Make a request for action returning its [Response].
- *
- * @param to Recipient
- * @param via Instance of the bot through which the request will be made.
- */
-suspend inline fun <reified ReturnType> Action<ReturnType>.sendAsync(
-    to: String,
-    via: TelegramBot,
-): Deferred<Response<out ReturnType>> {
-    parameters["chat_id"] = to
-    return via.makeRequestAsync(method, parameters, ReturnType::class.java, wrappedDataType)
+    /**
+     * Make a request for action returning its [Response].
+     *
+     * @param to Recipient
+     * @param via Instance of the bot through which the request will be made.
+     */
+    suspend fun sendAsync(
+        to: String,
+        via: TelegramBot,
+    ): Deferred<Response<out ReturnType>> {
+        parameters["chat_id"] = to
+        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
+    }
 }

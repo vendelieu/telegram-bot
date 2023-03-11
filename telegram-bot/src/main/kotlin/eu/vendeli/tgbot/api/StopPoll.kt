@@ -3,14 +3,15 @@
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.features.MarkupAble
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.types.Poll
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.utils.getReturnType
 
-class StopPollAction(messageId: Long) : Action<Poll>, MarkupAble, MarkupFeature<SendPollAction> {
+class StopPollAction(messageId: Long) : Action<Poll>, MarkupFeature<SendPollAction>, ActionState() {
     override val method: TgMethod = TgMethod("stopPoll")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
 
     init {
         parameters["message_id"] = messageId

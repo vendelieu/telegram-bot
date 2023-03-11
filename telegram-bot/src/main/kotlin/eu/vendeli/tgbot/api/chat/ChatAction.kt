@@ -3,12 +3,14 @@
 package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.types.ChatAction
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.utils.getReturnType
 
-class SendChatAction(messageThreadId: Int? = null, action: ChatAction) : Action<Boolean> {
+class SendChatAction(messageThreadId: Int? = null, action: ChatAction) : Action<Boolean>, ActionState() {
     override val method: TgMethod = TgMethod("sendChatAction")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
 
     init {
         parameters["action"] = action

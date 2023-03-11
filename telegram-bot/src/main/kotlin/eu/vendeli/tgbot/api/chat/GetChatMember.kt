@@ -3,12 +3,14 @@
 package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.types.ChatMember
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.utils.getReturnType
 
-class GetChatMemberAction(userId: Long) : Action<ChatMember> {
+class GetChatMemberAction(userId: Long) : Action<ChatMember>, ActionState() {
     override val method: TgMethod = TgMethod("getChatMember")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
 
     init {
         parameters["user_id"] = userId

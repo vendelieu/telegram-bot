@@ -3,15 +3,17 @@
 package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.utils.getReturnType
 
 class BanChatMemberAction(
     userId: Long,
     untilDate: Int? = null,
     revokeMessages: Boolean? = null,
-) : Action<Boolean> {
+) : Action<Boolean>, ActionState() {
     override val method: TgMethod = TgMethod("banChatMember")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
 
     init {
         parameters["user_id"] = userId

@@ -3,30 +3,27 @@
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.InlineMode
-import eu.vendeli.tgbot.interfaces.features.AllFeaturesAble
 import eu.vendeli.tgbot.interfaces.features.AllFeaturesPack
-import eu.vendeli.tgbot.interfaces.features.CaptionAble
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
-import eu.vendeli.tgbot.interfaces.features.MarkupAble
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
-import eu.vendeli.tgbot.interfaces.features.OptionAble
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.InputMedia
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.EditCaptionOptions
 import eu.vendeli.tgbot.types.internal.options.EditMessageOptions
+import eu.vendeli.tgbot.utils.getReturnType
 
 class EditMessageTextAction :
     Action<Message>,
+    ActionState,
     InlineMode<Message>,
-    AllFeaturesAble,
     AllFeaturesPack<EditMessageTextAction, EditMessageOptions> {
     override val method: TgMethod = TgMethod("editMessageText")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
     override var options = EditMessageOptions()
-
     constructor(messageId: Long, text: String) {
         parameters["message_id"] = messageId
         parameters["text"] = text
@@ -39,25 +36,22 @@ class EditMessageTextAction :
 
 class EditMessageCaptionAction() :
     Action<Message>,
+    ActionState(),
     InlineMode<Message>,
-    OptionAble,
-    MarkupAble,
-    CaptionAble,
     OptionsFeature<EditMessageCaptionAction, EditCaptionOptions>,
     MarkupFeature<EditMessageCaptionAction>,
     CaptionFeature<EditMessageCaptionAction> {
     override val method: TgMethod = TgMethod("editMessageCaption")
+    override val returnType = getReturnType()
     override var options = EditCaptionOptions()
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
-
     constructor(messageId: Long) : this() {
         parameters["message_id"] = messageId
     }
 }
 
-class EditMessageMediaAction : Action<Message>, InlineMode<Message>, MarkupAble, MarkupFeature<EditMessageMediaAction> {
+class EditMessageMediaAction : Action<Message>, ActionState, InlineMode<Message>, MarkupFeature<EditMessageMediaAction> {
     override val method: TgMethod = TgMethod("editMessageMedia")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
 
     constructor(inputMedia: InputMedia) {
         parameters["media"] = inputMedia
@@ -71,11 +65,11 @@ class EditMessageMediaAction : Action<Message>, InlineMode<Message>, MarkupAble,
 
 class EditMessageMarkupAction() :
     Action<Message>,
+    ActionState(),
     InlineMode<Message>,
-    MarkupAble,
     MarkupFeature<EditMessageMarkupAction> {
     override val method: TgMethod = TgMethod("editMessageReplyMarkup")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
 
     constructor(messageId: Long) : this() {
         parameters["message_id"] = messageId

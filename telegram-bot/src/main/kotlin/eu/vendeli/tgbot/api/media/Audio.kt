@@ -2,31 +2,28 @@
 
 package eu.vendeli.tgbot.api.media
 
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
-import eu.vendeli.tgbot.interfaces.features.CaptionAble
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
-import eu.vendeli.tgbot.interfaces.features.MarkupAble
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
-import eu.vendeli.tgbot.interfaces.features.OptionAble
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AudioOptions
+import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
 class SendAudioAction(private val audio: ImplicitFile<*>) :
     MediaAction<Message>,
-    OptionAble,
-    MarkupAble,
-    CaptionAble,
+    ActionState(),
     OptionsFeature<SendAudioAction, AudioOptions>,
     MarkupFeature<SendAudioAction>,
     CaptionFeature<SendAudioAction> {
     override val method: TgMethod = TgMethod("sendAudio")
+    override val returnType = getReturnType()
     override var options = AudioOptions()
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     override val MediaAction<Message>.defaultType: MediaContentType
         get() = MediaContentType.Audio

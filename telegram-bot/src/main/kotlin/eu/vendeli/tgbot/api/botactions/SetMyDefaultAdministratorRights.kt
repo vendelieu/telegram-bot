@@ -2,16 +2,18 @@
 
 package eu.vendeli.tgbot.api.botactions
 
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.ChatAdministratorRights
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.utils.getReturnType
 
 class SetMyDefaultAdministratorRightsAction(
     rights: ChatAdministratorRights? = null,
     forChannel: Boolean? = null,
-) : SimpleAction<Boolean> {
+) : SimpleAction<Boolean>, ActionState() {
     override val method: TgMethod = TgMethod("setMyDefaultAdministratorRights")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
 
     init {
         if (rights != null) parameters["rights"] = rights

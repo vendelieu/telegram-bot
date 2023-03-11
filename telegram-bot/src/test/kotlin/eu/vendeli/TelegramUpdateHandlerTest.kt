@@ -3,6 +3,7 @@ package eu.vendeli
 import BotTestContext
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.utils.parseCommand
+import io.kotest.matchers.maps.shouldHaveSize
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -114,6 +115,16 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         underscoreCommand.params.size shouldBe 1
         underscoreCommand.params.entries.first().key shouldBe "param_1"
         underscoreCommand.params.entries.first().value shouldBe "123"
+
+        bot.config.commandParsing.apply {
+            commandDelimiter = ' '
+            parametersDelimiter = ' '
+            parameterValueDelimiter = ' '
+            restrictSpacesInCommands = false
+        }
+        val deeplinkCheck = bot.update.parseCommand("/start bafefdf0-64cb-47da-97f0-4a1f11d469a2")
+        deeplinkCheck.command shouldBe "/start"
+        deeplinkCheck.params shouldHaveSize 1
     }
 
     companion object {

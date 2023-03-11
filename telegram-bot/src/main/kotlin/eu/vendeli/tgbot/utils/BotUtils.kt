@@ -90,12 +90,12 @@ internal fun TelegramUpdateHandler.parseCommand(
     return StructuredRequest(command = command, params = params)
 }
 
-internal suspend fun Method.invokeSuspend(obj: Any, vararg args: Any?): Any? =
+internal suspend inline fun Method.invokeSuspend(obj: Any, vararg args: Any?): Any? =
     suspendCoroutineUninterceptedOrReturn { cont ->
         invoke(obj, *args, cont)
     }
 
-internal suspend fun TelegramUpdateHandler.checkIsLimited(
+internal suspend inline fun TelegramUpdateHandler.checkIsLimited(
     limits: RateLimits,
     telegramId: Long?,
     actionId: String? = null,
@@ -119,3 +119,12 @@ internal inline fun <reified Type : MultipleResponse> SimpleAction<List<Type>>.g
 @Suppress("UnusedReceiverParameter")
 internal inline fun <reified Type : MultipleResponse> Action<List<Type>>.getInnerType(): Class<Type> =
     Type::class.java
+
+@Suppress("UnusedReceiverParameter")
+internal inline fun <reified Type> TgAction<Type>.getReturnType(): Class<Type> = Type::class.java
+
+var mu.KLogger.level: Level
+    get() = (underlyingLogger as Logger).level
+    set(value) {
+        (underlyingLogger as Logger).level = value
+    }

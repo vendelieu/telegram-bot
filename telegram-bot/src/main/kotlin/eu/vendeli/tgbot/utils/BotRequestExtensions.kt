@@ -95,7 +95,7 @@ suspend fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
  * @param innerType Parameter used to identify the type in the data array.
  * @return [Deferred]<[Response]<[T]>>
  */
-suspend fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
+internal suspend inline fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
     method: TgMethod,
     data: Any? = null,
     returnType: Class<T>,
@@ -115,7 +115,9 @@ suspend fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
  * @param method The telegram api method to which the request will be made.
  * @param data The data itself.
  */
-suspend fun TelegramBot.makeSilentRequest(method: TgMethod, data: Any? = null) = httpClient.post(method.toUrl()) {
+internal suspend inline fun TelegramBot.makeSilentRequest(
+    method: TgMethod, data: Any? = null,
+) = httpClient.post(method.toUrl()) {
     val requestBody = TelegramBot.mapper.writeValueAsString(data)
     contentType(ContentType.Application.Json)
     setBody(requestBody)
@@ -133,7 +135,7 @@ suspend fun TelegramBot.makeSilentRequest(method: TgMethod, data: Any? = null) =
  * @param contentType The type of content that will be passed in the headers.
  */
 @Suppress("LongParameterList")
-suspend fun TelegramBot.makeSilentRequest(
+internal suspend inline fun TelegramBot.makeSilentRequest(
     method: TgMethod,
     dataField: String,
     filename: String,

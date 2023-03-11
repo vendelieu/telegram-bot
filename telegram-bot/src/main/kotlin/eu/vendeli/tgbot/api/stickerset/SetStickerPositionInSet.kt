@@ -2,12 +2,14 @@
 
 package eu.vendeli.tgbot.api.stickerset
 
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.utils.getReturnType
 
-class SetStickerPositionInSetAction(sticker: String, position: Int) : SimpleAction<Boolean> {
+class SetStickerPositionInSetAction(sticker: String, position: Int) : SimpleAction<Boolean>, ActionState() {
     override val method: TgMethod = TgMethod("setStickerPositionInSet")
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
+    override val returnType = getReturnType()
 
     init {
         parameters["sticker"] = sticker

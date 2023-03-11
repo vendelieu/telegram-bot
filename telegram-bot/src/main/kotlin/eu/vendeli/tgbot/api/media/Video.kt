@@ -2,31 +2,28 @@
 
 package eu.vendeli.tgbot.api.media
 
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
-import eu.vendeli.tgbot.interfaces.features.CaptionAble
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
-import eu.vendeli.tgbot.interfaces.features.MarkupAble
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
-import eu.vendeli.tgbot.interfaces.features.OptionAble
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoOptions
+import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
 class SendVideoAction(private val video: ImplicitFile<*>) :
     MediaAction<Message>,
-    OptionAble,
-    MarkupAble,
-    CaptionAble,
+    ActionState(),
     OptionsFeature<SendVideoAction, VideoOptions>,
     MarkupFeature<SendVideoAction>,
     CaptionFeature<SendVideoAction> {
     override val method: TgMethod = TgMethod("sendVideo")
+    override val returnType = getReturnType()
     override var options = VideoOptions()
-    override val parameters: MutableMap<String, Any?> = mutableMapOf()
 
     override val MediaAction<Message>.defaultType: MediaContentType
         get() = MediaContentType.VideoMp4
