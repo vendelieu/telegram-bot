@@ -2,7 +2,23 @@ package eu.vendeli.tgbot.utils.builders
 
 import eu.vendeli.tgbot.interfaces.IActionState
 import eu.vendeli.tgbot.types.EntityType
-import eu.vendeli.tgbot.types.EntityType.*
+import eu.vendeli.tgbot.types.EntityType.Bold
+import eu.vendeli.tgbot.types.EntityType.BotCommand
+import eu.vendeli.tgbot.types.EntityType.Cashtag
+import eu.vendeli.tgbot.types.EntityType.Code
+import eu.vendeli.tgbot.types.EntityType.CustomEmoji
+import eu.vendeli.tgbot.types.EntityType.Email
+import eu.vendeli.tgbot.types.EntityType.Hashtag
+import eu.vendeli.tgbot.types.EntityType.Italic
+import eu.vendeli.tgbot.types.EntityType.Mention
+import eu.vendeli.tgbot.types.EntityType.PhoneNumber
+import eu.vendeli.tgbot.types.EntityType.Pre
+import eu.vendeli.tgbot.types.EntityType.Spoiler
+import eu.vendeli.tgbot.types.EntityType.Strikethrough
+import eu.vendeli.tgbot.types.EntityType.TextLink
+import eu.vendeli.tgbot.types.EntityType.TextMention
+import eu.vendeli.tgbot.types.EntityType.Underline
+import eu.vendeli.tgbot.types.EntityType.Url
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.User
 

@@ -5,7 +5,8 @@ import io.ktor.http.ContentType
 enum class MediaContentType(private val literal: String) {
     Text("txt"), ImageJpeg("jpg"), ImagePng("png"), Audio("mp3"), Voice("ogg"),
     VideoMp4("mp4"), ImageGif("gif"), ImageTgs("tgs"), VideoWebm("webm"),
-    Any("");
+    Any(""),
+    ;
 
     override fun toString(): String = literal
 }
