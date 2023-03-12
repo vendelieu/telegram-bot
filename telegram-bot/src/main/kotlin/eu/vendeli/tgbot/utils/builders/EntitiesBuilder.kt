@@ -23,7 +23,7 @@ class EntitiesBuilder {
         type: EntityType,
         offset: Int,
         length: Int,
-        block: EntityData.() -> Unit,
+        block: EntityData.() -> Unit = {},
     ) {
         EntityData().apply(block).also {
             listOfEntities.add(MessageEntity(type, offset, length, it.url, it.user, it.language))
