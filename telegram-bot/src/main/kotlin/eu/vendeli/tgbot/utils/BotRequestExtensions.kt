@@ -116,7 +116,8 @@ internal suspend inline fun <T, I : MultipleResponse> TelegramBot.makeRequestAsy
  * @param data The data itself.
  */
 internal suspend inline fun TelegramBot.makeSilentRequest(
-    method: TgMethod, data: Any? = null,
+    method: TgMethod,
+    data: Any? = null,
 ) = httpClient.post(method.toUrl()) {
     val requestBody = TelegramBot.mapper.writeValueAsString(data)
     contentType(ContentType.Application.Json)

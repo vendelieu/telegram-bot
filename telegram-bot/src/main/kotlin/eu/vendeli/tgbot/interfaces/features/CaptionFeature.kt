@@ -3,13 +3,14 @@ package eu.vendeli.tgbot.interfaces.features
 import eu.vendeli.tgbot.interfaces.IActionState
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.utils.builders.EntitiesBuilder
+import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 
 /**
  * Caption feature, see [Features article](https://github.com/vendelieu/telegram-bot/wiki/Features)
  *
  * @param Return Action class itself.
  */
-interface CaptionFeature<Return> : IActionState, Feature {
+interface CaptionFeature<Return : EntitiesContextBuilder> : IActionState, Feature {
     @Suppress("UNCHECKED_CAST")
     private val thisAsReturn: Return
         get() = this as Return
@@ -20,15 +21,15 @@ interface CaptionFeature<Return> : IActionState, Feature {
      * @param block
      * @return [Return]
      */
-    fun caption(block: () -> String): Return {
-        parameters["caption"] = block()
+    fun caption(block: EntitiesContextBuilder.() -> String): Return {
+        parameters["caption"] = block(thisAsReturn)
         return thisAsReturn
     }
 
     /**
      * Caption entities
      */
-    fun captionEntities(entities: Array<MessageEntity>): Return {
+    fun captionEntities(entities: List<MessageEntity>): Return {
         parameters["caption_entities"] = entities
         return thisAsReturn
     }
