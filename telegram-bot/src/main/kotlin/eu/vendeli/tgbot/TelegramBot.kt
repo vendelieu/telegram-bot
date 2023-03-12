@@ -5,12 +5,12 @@ import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.core.TelegramActionsCollector.collect
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.interfaces.MagicObject
-import eu.vendeli.tgbot.types.File
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.BotConfigurator
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
 import eu.vendeli.tgbot.utils.TELEGRAM_API_URL_PATTERN
