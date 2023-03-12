@@ -4,12 +4,13 @@ import BotTestContext
 import eu.vendeli.tgbot.api.media.SendMediaGroupAction
 import eu.vendeli.tgbot.api.media.mediaGroup
 import eu.vendeli.tgbot.api.media.photo
-import eu.vendeli.tgbot.types.InputMedia
+import eu.vendeli.tgbot.api.message
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.makeBunchMediaRequestAsync
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.ktor.client.request.get
@@ -25,6 +26,8 @@ import kotlin.io.path.writeBytes
 class MediaRequestTesting : BotTestContext() {
     @Test
     suspend fun `media requests testing`() {
+        message { "test" - bold { "test2" } }.also { print(it.parameters) }
+
         val image = bot.httpClient.get(
             "https://storage.myseldon.com/news-pict-fe/FEB5B36049C75ADDFF40C00221D2D9D5",
         ).readBytes()

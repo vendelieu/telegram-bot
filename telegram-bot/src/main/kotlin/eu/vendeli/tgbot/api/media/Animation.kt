@@ -12,6 +12,7 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AnimationOptions
+import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
@@ -20,10 +21,13 @@ class SendAnimationAction(private val animation: ImplicitFile<*>) :
     ActionState(),
     OptionsFeature<SendAnimationAction, AnimationOptions>,
     MarkupFeature<SendAnimationAction>,
+    EntitiesContextBuilder,
     CaptionFeature<SendAnimationAction> {
     override val method: TgMethod = TgMethod("sendAnimation")
     override val returnType = getReturnType()
     override var options = AnimationOptions()
+    override val EntitiesContextBuilder.entitiesField: String
+        get() = "caption_entities"
 
     override val MediaAction<Message>.defaultType: MediaContentType
         get() = MediaContentType.ImageGif

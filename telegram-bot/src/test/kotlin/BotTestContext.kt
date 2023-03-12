@@ -1,12 +1,12 @@
 
 import ch.qos.logback.classic.Level.TRACE
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.types.Chat
-import eu.vendeli.tgbot.types.ChatType
-import eu.vendeli.tgbot.types.HttpLogLevel
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.chat.Chat
+import eu.vendeli.tgbot.types.chat.ChatType
+import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.Response
 import io.kotest.core.spec.style.AnnotationSpec
 import io.ktor.client.HttpClient

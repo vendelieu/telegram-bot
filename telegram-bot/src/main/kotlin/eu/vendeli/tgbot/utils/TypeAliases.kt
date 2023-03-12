@@ -3,22 +3,22 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.types.CallbackQuery
-import eu.vendeli.tgbot.types.ChatJoinRequest
-import eu.vendeli.tgbot.types.ChatMemberUpdated
 import eu.vendeli.tgbot.types.ChosenInlineResult
 import eu.vendeli.tgbot.types.InlineQuery
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Poll
 import eu.vendeli.tgbot.types.PollAnswer
-import eu.vendeli.tgbot.types.PreCheckoutQuery
-import eu.vendeli.tgbot.types.ShippingQuery
 import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.chat.ChatJoinRequest
+import eu.vendeli.tgbot.types.chat.ChatMemberUpdated
 import eu.vendeli.tgbot.types.internal.ActionContext
 import eu.vendeli.tgbot.types.internal.CommandContext
 import eu.vendeli.tgbot.types.internal.CommandSelector
 import eu.vendeli.tgbot.types.internal.InputContext
 import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
+import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
+import eu.vendeli.tgbot.types.payment.ShippingQuery
 
 typealias OnMessageAction = suspend ActionContext<Message>.() -> Unit
 typealias OnEditedMessageAction = suspend ActionContext<Message>.() -> Unit

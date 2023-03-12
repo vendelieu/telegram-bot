@@ -4,8 +4,8 @@ package eu.vendeli.tgbot.api.botactions
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.types.BotCommand
-import eu.vendeli.tgbot.types.BotCommandScope
+import eu.vendeli.tgbot.types.bot.BotCommand
+import eu.vendeli.tgbot.types.bot.BotCommandScope
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.builders.BotCommandsBuilder
 import eu.vendeli.tgbot.utils.getReturnType

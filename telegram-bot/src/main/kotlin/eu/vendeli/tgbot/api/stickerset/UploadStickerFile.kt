@@ -4,10 +4,10 @@ package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
-import eu.vendeli.tgbot.types.File
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.getReturnType
 
 class UploadStickerFileAction(private val pngSticker: ImplicitFile<*>) : MediaAction<File>, ActionState() {

@@ -1,11 +1,11 @@
 package eu.vendeli.tgbot.utils.builders
 
 import eu.vendeli.tgbot.interfaces.KeyboardBuilder
-import eu.vendeli.tgbot.types.CallbackGame
-import eu.vendeli.tgbot.types.InlineKeyboardButton
-import eu.vendeli.tgbot.types.InlineKeyboardMarkup
-import eu.vendeli.tgbot.types.LoginUrl
-import eu.vendeli.tgbot.types.WebAppInfo
+import eu.vendeli.tgbot.types.game.CallbackGame
+import eu.vendeli.tgbot.types.keyboard.InlineKeyboardButton
+import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
+import eu.vendeli.tgbot.types.keyboard.LoginUrl
+import eu.vendeli.tgbot.types.keyboard.WebAppInfo
 
 /**
  * Builder which is used to assemble the inline markup buttons.

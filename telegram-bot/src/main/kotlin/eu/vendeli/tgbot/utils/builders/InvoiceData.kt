@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.utils.builders
 
-import eu.vendeli.tgbot.types.Currency
-import eu.vendeli.tgbot.types.LabeledPrice
+import eu.vendeli.tgbot.types.internal.Currency
+import eu.vendeli.tgbot.types.payment.LabeledPrice
 
 class InvoiceData {
     lateinit var title: String

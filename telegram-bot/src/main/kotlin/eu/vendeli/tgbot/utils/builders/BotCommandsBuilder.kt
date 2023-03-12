@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.utils.builders
 
-import eu.vendeli.tgbot.types.BotCommand
+import eu.vendeli.tgbot.types.bot.BotCommand
 
 /**
  * Builder used to add commands to setMyCommands()

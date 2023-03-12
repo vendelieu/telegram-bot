@@ -12,6 +12,7 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoOptions
+import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
@@ -20,10 +21,13 @@ class SendVideoAction(private val video: ImplicitFile<*>) :
     ActionState(),
     OptionsFeature<SendVideoAction, VideoOptions>,
     MarkupFeature<SendVideoAction>,
+    EntitiesContextBuilder,
     CaptionFeature<SendVideoAction> {
     override val method: TgMethod = TgMethod("sendVideo")
     override val returnType = getReturnType()
     override var options = VideoOptions()
+    override val EntitiesContextBuilder.entitiesField: String
+        get() = "caption_entities"
 
     override val MediaAction<Message>.defaultType: MediaContentType
         get() = MediaContentType.VideoMp4

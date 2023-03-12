@@ -6,7 +6,6 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.InputMedia
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ImplicitFile
@@ -17,6 +16,7 @@ import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.MediaGroupOptions
 import eu.vendeli.tgbot.types.internal.toContentType
+import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.makeBunchMediaRequestAsync
 import eu.vendeli.tgbot.utils.makeRequestAsync

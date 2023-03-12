@@ -4,7 +4,7 @@ package eu.vendeli.tgbot.api.forum
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.types.ForumTopic
+import eu.vendeli.tgbot.types.forum.ForumTopic
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 

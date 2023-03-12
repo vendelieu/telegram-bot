@@ -1,6 +1,10 @@
 package eu.vendeli.tgbot.types
 
 import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.types.chat.ChatJoinRequest
+import eu.vendeli.tgbot.types.chat.ChatMemberUpdated
+import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
+import eu.vendeli.tgbot.types.payment.ShippingQuery
 
 data class Update(
     val updateId: Int,

@@ -1,6 +1,33 @@
 package eu.vendeli.tgbot.types
 
 import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.types.chat.Chat
+import eu.vendeli.tgbot.types.chat.ChatShared
+import eu.vendeli.tgbot.types.forum.ForumTopicClosed
+import eu.vendeli.tgbot.types.forum.ForumTopicCreated
+import eu.vendeli.tgbot.types.forum.ForumTopicEdited
+import eu.vendeli.tgbot.types.forum.ForumTopicReopened
+import eu.vendeli.tgbot.types.forum.GeneralForumTopicHidden
+import eu.vendeli.tgbot.types.forum.GeneralForumTopicUnhidden
+import eu.vendeli.tgbot.types.game.Dice
+import eu.vendeli.tgbot.types.game.Game
+import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
+import eu.vendeli.tgbot.types.keyboard.WebAppData
+import eu.vendeli.tgbot.types.media.Animation
+import eu.vendeli.tgbot.types.media.Audio
+import eu.vendeli.tgbot.types.media.Document
+import eu.vendeli.tgbot.types.media.PhotoSize
+import eu.vendeli.tgbot.types.media.Sticker
+import eu.vendeli.tgbot.types.media.Video
+import eu.vendeli.tgbot.types.media.VideoChatEnded
+import eu.vendeli.tgbot.types.media.VideoChatParticipantsInvited
+import eu.vendeli.tgbot.types.media.VideoChatScheduled
+import eu.vendeli.tgbot.types.media.VideoChatStarted
+import eu.vendeli.tgbot.types.media.VideoNote
+import eu.vendeli.tgbot.types.media.Voice
+import eu.vendeli.tgbot.types.passport.PassportData
+import eu.vendeli.tgbot.types.payment.Invoice
+import eu.vendeli.tgbot.types.payment.SuccessfulPayment
 
 data class Message(
     val messageId: Long,

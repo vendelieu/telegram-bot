@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
 import ch.qos.logback.classic.Level
-import eu.vendeli.tgbot.types.HttpLogLevel
+import eu.vendeli.tgbot.types.internal.HttpLogLevel
 
 /**
  * The class containing the logging configuration.

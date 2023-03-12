@@ -4,8 +4,8 @@ package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.types.PassportElementError
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.types.passport.PassportElementError
 import eu.vendeli.tgbot.utils.getReturnType
 
 class SetPassportDataErrorsAction(userId: Long, errors: List<PassportElementError>) : SimpleAction<Boolean>, ActionState() {

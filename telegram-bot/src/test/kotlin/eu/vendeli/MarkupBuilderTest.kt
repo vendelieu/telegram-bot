@@ -1,11 +1,11 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.types.KeyboardButtonPollType
-import eu.vendeli.tgbot.types.KeyboardButtonRequestChat
-import eu.vendeli.tgbot.types.KeyboardButtonRequestUser
-import eu.vendeli.tgbot.types.LoginUrl
-import eu.vendeli.tgbot.types.WebAppInfo
+import eu.vendeli.tgbot.types.keyboard.KeyboardButtonPollType
+import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestChat
+import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestUser
+import eu.vendeli.tgbot.types.keyboard.LoginUrl
+import eu.vendeli.tgbot.types.keyboard.WebAppInfo
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
 import eu.vendeli.tgbot.utils.builders.replyKeyboardMarkup
 import io.kotest.assertions.throwables.shouldThrow
