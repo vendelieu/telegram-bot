@@ -7,7 +7,7 @@ import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
-import eu.vendeli.tgbot.types.sticker.InputSticker
+import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.utils.getReturnType
 import kotlin.collections.set
 

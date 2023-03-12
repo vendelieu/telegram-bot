@@ -12,6 +12,7 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AudioOptions
+import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
@@ -20,10 +21,13 @@ class SendAudioAction(private val audio: ImplicitFile<*>) :
     ActionState(),
     OptionsFeature<SendAudioAction, AudioOptions>,
     MarkupFeature<SendAudioAction>,
+    EntitiesContextBuilder,
     CaptionFeature<SendAudioAction> {
     override val method: TgMethod = TgMethod("sendAudio")
     override val returnType = getReturnType()
     override var options = AudioOptions()
+    override val EntitiesContextBuilder.entitiesField: String
+        get() = "caption_entities"
 
     override val MediaAction<Message>.defaultType: MediaContentType
         get() = MediaContentType.Audio

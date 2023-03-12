@@ -1,13 +1,13 @@
 package eu.vendeli.tgbot.utils.builders
 
 import eu.vendeli.tgbot.interfaces.KeyboardBuilder
-import eu.vendeli.tgbot.types.KeyboardButton
-import eu.vendeli.tgbot.types.KeyboardButtonPollType
-import eu.vendeli.tgbot.types.KeyboardButtonRequestChat
-import eu.vendeli.tgbot.types.KeyboardButtonRequestUser
-import eu.vendeli.tgbot.types.ReplyKeyboardMarkup
-import eu.vendeli.tgbot.types.WebAppInfo
 import eu.vendeli.tgbot.types.internal.options.ReplyKeyboardMarkupOptions
+import eu.vendeli.tgbot.types.keyboard.KeyboardButton
+import eu.vendeli.tgbot.types.keyboard.KeyboardButtonPollType
+import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestChat
+import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestUser
+import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardMarkup
+import eu.vendeli.tgbot.types.keyboard.WebAppInfo
 
 /**
  * Builder which is used to assemble the reply keyboard markup buttons.

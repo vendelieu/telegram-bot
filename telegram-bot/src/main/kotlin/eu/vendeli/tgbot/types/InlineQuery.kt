@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.types
 
+import eu.vendeli.tgbot.types.chat.ChatType
+
 data class InlineQuery(
     val id: String,
     val from: User,

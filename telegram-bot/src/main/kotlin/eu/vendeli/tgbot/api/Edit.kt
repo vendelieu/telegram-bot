@@ -9,28 +9,35 @@ import eu.vendeli.tgbot.interfaces.features.AllFeaturesPack
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.InputMedia
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.EditCaptionOptions
 import eu.vendeli.tgbot.types.internal.options.EditMessageOptions
+import eu.vendeli.tgbot.types.media.InputMedia
+import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 
-class EditMessageTextAction :
+class EditMessageTextAction private constructor() :
     Action<Message>,
-    ActionState,
+    ActionState(),
     InlineMode<Message>,
+    EntitiesContextBuilder,
     AllFeaturesPack<EditMessageTextAction, EditMessageOptions> {
     override val method: TgMethod = TgMethod("editMessageText")
     override val returnType = getReturnType()
     override var options = EditMessageOptions()
-    constructor(messageId: Long, text: String) {
+
+    constructor(messageId: Long, text: String) : this() {
         parameters["message_id"] = messageId
         parameters["text"] = text
     }
 
-    constructor(text: String) {
+    constructor(text: String) : this() {
         parameters["text"] = text
+    }
+
+    internal constructor(block: EntitiesContextBuilder.() -> String) : this() {
+        parameters["text"] = block(this)
     }
 }
 
@@ -40,10 +47,14 @@ class EditMessageCaptionAction() :
     InlineMode<Message>,
     OptionsFeature<EditMessageCaptionAction, EditCaptionOptions>,
     MarkupFeature<EditMessageCaptionAction>,
+    EntitiesContextBuilder,
     CaptionFeature<EditMessageCaptionAction> {
     override val method: TgMethod = TgMethod("editMessageCaption")
     override val returnType = getReturnType()
     override var options = EditCaptionOptions()
+    override val EntitiesContextBuilder.entitiesField: String
+        get() = "caption_entities"
+
     constructor(messageId: Long) : this() {
         parameters["message_id"] = messageId
     }
@@ -77,7 +88,7 @@ class EditMessageMarkupAction() :
 }
 
 fun editText(messageId: Long, block: () -> String) = EditMessageTextAction(messageId, text = block())
-fun editText(block: () -> String) = EditMessageTextAction(text = block())
+fun editText(block: EntitiesContextBuilder.() -> String) = EditMessageTextAction(block)
 
 fun editCaption(messageId: Long) = EditMessageCaptionAction(messageId)
 fun editCaption() = EditMessageCaptionAction()

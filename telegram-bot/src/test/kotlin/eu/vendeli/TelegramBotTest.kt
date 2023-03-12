@@ -9,7 +9,6 @@ import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.interfaces.BotUserData
 import eu.vendeli.tgbot.interfaces.MagicObject
 import eu.vendeli.tgbot.interfaces.MultipleResponse
-import eu.vendeli.tgbot.types.File
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
@@ -19,6 +18,7 @@ import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
+import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import io.kotest.assertions.throwables.shouldNotThrow

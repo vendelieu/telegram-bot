@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.internal
 
-import eu.vendeli.tgbot.types.StickerFormat
+import eu.vendeli.tgbot.types.media.StickerFormat
 
 /**
  * Sticker set file options

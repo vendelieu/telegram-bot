@@ -1,5 +1,8 @@
 package eu.vendeli.tgbot.types
 
+import eu.vendeli.tgbot.types.internal.Currency
+import eu.vendeli.tgbot.types.payment.LabeledPrice
+
 sealed class InputMessageContent
 data class Text(
     val messageText: String,

@@ -4,8 +4,8 @@ package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.types.ShippingOption
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.types.payment.ShippingOption
 import eu.vendeli.tgbot.utils.getReturnType
 
 class AnswerShippingQueryAction(

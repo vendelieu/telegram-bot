@@ -5,7 +5,7 @@ package eu.vendeli.tgbot.api
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.InlineMode
-import eu.vendeli.tgbot.types.GameHighScore
+import eu.vendeli.tgbot.types.game.GameHighScore
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 

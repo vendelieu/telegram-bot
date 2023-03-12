@@ -1,8 +1,8 @@
 package eu.vendeli.tgbot.utils.builders
 
-import eu.vendeli.tgbot.types.MaskPosition
-import eu.vendeli.tgbot.types.StickerType
 import eu.vendeli.tgbot.types.internal.StickerFile
+import eu.vendeli.tgbot.types.media.MaskPosition
+import eu.vendeli.tgbot.types.media.StickerType
 
 class CreateNewStickerSetData {
     lateinit var name: String

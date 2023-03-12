@@ -12,18 +12,22 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.DocumentOptions
+import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
 class SendDocumentAction(private val document: ImplicitFile<*>) :
     MediaAction<Message>,
     ActionState(),
+    EntitiesContextBuilder,
     CaptionFeature<SendDocumentAction>,
     OptionsFeature<SendDocumentAction, DocumentOptions>,
     MarkupFeature<SendDocumentAction> {
     override val method: TgMethod = TgMethod("sendDocument")
     override val returnType = getReturnType()
     override var options = DocumentOptions()
+    override val EntitiesContextBuilder.entitiesField: String
+        get() = "caption_entities"
 
     override val MediaAction<Message>.defaultType: MediaContentType
         get() = MediaContentType.Text

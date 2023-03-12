@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.types.MessageId
 import eu.vendeli.tgbot.types.internal.Recipient
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CopyMessageOptions
+import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 
 /**
@@ -34,10 +35,14 @@ class CopyMessageAction(
     ActionState(),
     OptionsFeature<CopyMessageAction, CopyMessageOptions>,
     MarkupFeature<CopyMessageAction>,
+    EntitiesContextBuilder,
     CaptionFeature<CopyMessageAction> {
     override val method: TgMethod = TgMethod("copyMessage")
     override val returnType = getReturnType()
     override var options = CopyMessageOptions()
+    override val EntitiesContextBuilder.entitiesField: String
+        get() = "caption_entities"
+
     init {
         parameters["chat_id"] = chatId.get()
         parameters["from_chat_id"] = fromChatId.get()
