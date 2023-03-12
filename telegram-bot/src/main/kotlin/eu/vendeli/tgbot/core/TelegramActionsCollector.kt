@@ -1,8 +1,8 @@
 package eu.vendeli.tgbot.core
 
-import eu.vendeli.tgbot.annotations.CallbackParam
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.InputHandler
+import eu.vendeli.tgbot.annotations.ParamMapping
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.internal.Actions
@@ -23,8 +23,8 @@ internal object TelegramActionsCollector {
     private val logger = KotlinLogging.logger {}
 
     private fun Array<Parameter>.getParameters() =
-        filter { it.annotations.any { a -> a is CallbackParam } }
-            .associate { p -> p.name to (p.annotations.first { it is CallbackParam } as CallbackParam).name }
+        filter { it.annotations.any { a -> a is ParamMapping } }
+            .associate { p -> p.name to (p.annotations.first { it is ParamMapping } as ParamMapping).name }
 
     /**
      * Function that collects a list of actions that the bot will operate with.
