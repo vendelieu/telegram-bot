@@ -8,7 +8,7 @@ data class VideoOptions(
     var height: Int? = null,
     var width: Int? = null,
     var supportsStreaming: Boolean? = null,
-    var thumb: ImplicitFile<*>? = null,
+    var thumbnail: ImplicitFile<*>? = null,
     override var fileName: String? = null,
     override var parseMode: ParseMode? = null,
     override var disableNotification: Boolean? = null,

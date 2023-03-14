@@ -36,15 +36,15 @@ sealed class InlineQueryResult(val type: String) {
         val url: String? = null,
         val hideUrl: Boolean? = null,
         val description: String? = null,
-        val thumbUrl: String? = null,
-        val thumbWidth: Int? = null,
-        val thumbHeight: Int? = null,
+        val thumbnailUrl: String? = null,
+        val thumbnailWidth: Int? = null,
+        val thumbnailHeight: Int? = null,
     ) : InlineQueryResult("article")
 
     data class Photo(
         val id: String,
         val photoUrl: String,
-        val thumbUrl: String,
+        val thumbnailUrl: String,
         val photoWidth: Int? = null,
         val title: String? = null,
         val description: String? = null,
@@ -61,8 +61,8 @@ sealed class InlineQueryResult(val type: String) {
         val gifWidth: Int? = null,
         val gifHeight: Int? = null,
         val gifDuration: Int? = null,
-        val thumbUrl: String,
-        val thumbMimeType: String,
+        val thumbnailUrl: String,
+        val thumbnailMimeType: String,
         val title: String? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
@@ -77,8 +77,8 @@ sealed class InlineQueryResult(val type: String) {
         val mpeg4Width: Int? = null,
         val mpeg4Height: Int? = null,
         val mpeg4Duration: Int? = null,
-        val thumbUrl: String,
-        val thumbMimeType: String,
+        val thumbnailUrl: String,
+        val thumbnailMimeType: String,
         val title: String? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
@@ -91,7 +91,7 @@ sealed class InlineQueryResult(val type: String) {
         val id: String,
         val videoUrl: String,
         val mimeType: String,
-        val thumbUrl: String,
+        val thumbnailUrl: String,
         val title: String,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
@@ -140,9 +140,9 @@ sealed class InlineQueryResult(val type: String) {
         val description: String? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val inputMessageContent: InputMessageContent? = null,
-        val thumbUrl: String? = null,
-        val thumbWidth: Int? = null,
-        val thumbHeight: Int? = null,
+        val thumbnailUrl: String? = null,
+        val thumbnailWidth: Int? = null,
+        val thumbnailHeight: Int? = null,
     ) : InlineQueryResult("document")
 
     data class Location(
@@ -156,9 +156,9 @@ sealed class InlineQueryResult(val type: String) {
         val proximityAlertRadius: Int? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val inputMessageContent: InputMessageContent? = null,
-        val thumbUrl: String? = null,
-        val thumbWidth: Int? = null,
-        val thumbHeight: Int? = null,
+        val thumbnailUrl: String? = null,
+        val thumbnailWidth: Int? = null,
+        val thumbnailHeight: Int? = null,
     ) : InlineQueryResult("location")
 
     data class Venue(
@@ -188,9 +188,9 @@ sealed class InlineQueryResult(val type: String) {
         val vcard: String? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val inputMessageContent: InputMessageContent? = null,
-        val thumbUrl: String? = null,
-        val thumbWidth: Int? = null,
-        val thumbHeight: Int? = null,
+        val thumbnailUrl: String? = null,
+        val thumbnailWidth: Int? = null,
+        val thumbnailHeight: Int? = null,
     ) : InlineQueryResult("contact")
 
     data class Game(

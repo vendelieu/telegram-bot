@@ -23,7 +23,7 @@ sealed class InputMedia(val type: String) {
 
     data class Audio(
         override var media: ImplicitFile<*>,
-        val thumb: ImplicitFile<*>? = null,
+        val thumbnail: ImplicitFile<*>? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
@@ -34,7 +34,7 @@ sealed class InputMedia(val type: String) {
 
     data class Document(
         override var media: ImplicitFile<*>,
-        val thumb: ImplicitFile<*>? = null,
+        val thumbnail: ImplicitFile<*>? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
@@ -51,7 +51,7 @@ sealed class InputMedia(val type: String) {
 
     data class Video(
         override var media: ImplicitFile<*>,
-        val thumb: ImplicitFile<*>? = null,
+        val thumbnail: ImplicitFile<*>? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
@@ -64,7 +64,7 @@ sealed class InputMedia(val type: String) {
 
     data class Animation(
         override var media: ImplicitFile<*>,
-        val thumb: ImplicitFile<*>? = null,
+        val thumbnail: ImplicitFile<*>? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,

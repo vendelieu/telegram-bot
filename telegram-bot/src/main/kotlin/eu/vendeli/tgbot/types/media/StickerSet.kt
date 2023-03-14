@@ -18,5 +18,5 @@ data class StickerSet(
     val isAnimated: Boolean,
     val isVideo: Boolean,
     val stickers: List<Sticker>,
-    val thumb: PhotoSize? = null,
+    val thumbnail: PhotoSize? = null,
 )

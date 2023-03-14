@@ -15,7 +15,7 @@ data class Sticker(
     val height: Int,
     val isAnimated: Boolean,
     val isVideo: Boolean,
-    val thumb: PhotoSize? = null,
+    val thumbnail: PhotoSize? = null,
     val emoji: String? = null,
     val setName: String? = null,
     val premiumAnimation: File? = null,
