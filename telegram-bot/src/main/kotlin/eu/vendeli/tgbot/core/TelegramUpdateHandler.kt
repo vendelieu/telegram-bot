@@ -17,13 +17,13 @@ import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.invokeSuspend
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.processUpdate
+import kotlin.coroutines.coroutineContext
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import mu.KotlinLogging
-import kotlin.coroutines.coroutineContext
 
 /**
  * A class that handles updates.
@@ -66,7 +66,7 @@ class TelegramUpdateHandler internal constructor(
                 handlingBehaviour.runCatching {
                     invoke(this@TelegramUpdateHandler, update)
                 }.onFailure { exception ->
-                    logger.error("Error at manually processing update: $update", exception)
+                    logger.error(exception) { "Error at manually processing update: $update" }
                     caughtExceptions.send(exception to update)
                 }
             }
@@ -190,10 +190,10 @@ class TelegramUpdateHandler internal constructor(
                 }
             }
         }.toTypedArray()
+        logger.trace { "Parsed arguments - $processedParameters." }
 
         bot.config.context._chatData?.run {
             if (!update.user.isPresent()) return@run
-            logger.trace { "Handling BotContext for Update#${update.fullUpdate.updateId}" }
             val prevClassName = getAsync<String>(update.user.id, "PrevInvokedClass").await()
             if (prevClassName != invocation.clazz.name) delPrevChatSectionAsync(update.user.id).await()
 
@@ -205,9 +205,9 @@ class TelegramUpdateHandler internal constructor(
             if (isSuspend) method.invokeSuspend(classManager.getInstance(clazz), *processedParameters)
             else method.invoke(classManager.getInstance(clazz), *processedParameters)
         }.onFailure {
-            logger.error("Method {$invocation} invocation error at handling update: $update", it)
+            logger.error(it) { "Method {$invocation} invocation error at handling update: $update" }
             caughtExceptions.send((it.cause ?: it) to update.fullUpdate)
-        }.onSuccess { logger.debug { "Handled update#${update.fullUpdate.updateId} to method $invocation" } }
+        }.onSuccess { logger.info { "Handled update#${update.fullUpdate.updateId} to method ${invocation.method}" } }
     }
 
     /**

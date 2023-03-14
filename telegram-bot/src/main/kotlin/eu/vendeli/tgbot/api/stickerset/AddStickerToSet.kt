@@ -19,9 +19,9 @@ class AddStickerToSetAction(
     override val returnType = getReturnType()
 
     override val MediaAction<Boolean>.defaultType: MediaContentType
-        get() = MediaContentType.Any
+        get() = input.sticker.contentType
     override val MediaAction<Boolean>.media: ImplicitFile<*>
-        get() = input.sticker
+        get() = input.sticker.file
     override val MediaAction<Boolean>.dataField: String
         get() = "sticker"
 
