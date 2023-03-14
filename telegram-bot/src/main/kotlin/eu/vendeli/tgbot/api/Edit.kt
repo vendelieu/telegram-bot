@@ -62,7 +62,11 @@ class EditMessageCaptionAction() :
     }
 }
 
-class EditMessageMediaAction : Action<Message>, ActionState, InlineMode<Message>, MarkupFeature<EditMessageMediaAction> {
+class EditMessageMediaAction :
+    Action<Message>,
+    ActionState,
+    InlineMode<Message>,
+    MarkupFeature<EditMessageMediaAction> {
     override val method: TgMethod = TgMethod("editMessageMedia")
     override val returnType = getReturnType()
 

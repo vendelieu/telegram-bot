@@ -22,6 +22,7 @@ import eu.vendeli.tgbot.types.EntityType.Url
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.User
 
+@Suppress("TooManyFunctions")
 interface EntitiesContextBuilder : IActionState {
     val EntitiesContextBuilder.entitiesField: String get() = "entities"
 
@@ -47,10 +48,34 @@ interface EntitiesContextBuilder : IActionState {
 
     operator fun <T> String.minus(other: Triple<EntityType, String, T?>): String {
         val entity = when (other.first) {
-            Pre -> MessageEntity(Pre, length, other.second.length, language = other.third?.toString())
-            TextLink -> MessageEntity(TextLink, length, other.second.length, url = other.third?.toString())
-            CustomEmoji -> MessageEntity(CustomEmoji, length, other.second.length, customEmojiId = other.third?.toString())
-            TextMention -> MessageEntity(TextMention, length, other.second.length, user = other.third as? User)
+            Pre -> MessageEntity(
+                Pre,
+                length,
+                other.second.length,
+                language = other.third?.toString(),
+            )
+
+            TextLink -> MessageEntity(
+                TextLink,
+                length,
+                other.second.length,
+                url = other.third?.toString(),
+            )
+
+            CustomEmoji -> MessageEntity(
+                CustomEmoji,
+                length,
+                other.second.length,
+                customEmojiId = other.third?.toString(),
+            )
+
+            TextMention -> MessageEntity(
+                TextMention,
+                length,
+                other.second.length,
+                user = other.third as? User,
+            )
+
             else -> throw IllegalArgumentException("An unexpected EntityType - ${other.first}.")
         }
         addEntity(entity)

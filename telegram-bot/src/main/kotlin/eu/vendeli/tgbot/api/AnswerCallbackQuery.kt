@@ -15,8 +15,7 @@ class AnswerCallbackQueryAction(callbackQueryId: String) :
     OptionsFeature<AnswerCallbackQueryAction, AnswerCallbackQueryOptions> {
     override val method: TgMethod = TgMethod("answerCallbackQuery")
     override val returnType = getReturnType()
-    override val OptionsFeature<AnswerCallbackQueryAction, AnswerCallbackQueryOptions>.options: AnswerCallbackQueryOptions
-        get() = AnswerCallbackQueryOptions()
+    override val OptionsFeature<AnswerCallbackQueryAction, AnswerCallbackQueryOptions>.options: AnswerCallbackQueryOptions get() = AnswerCallbackQueryOptions()
 
     init {
         parameters["callback_query_id"] = callbackQueryId
