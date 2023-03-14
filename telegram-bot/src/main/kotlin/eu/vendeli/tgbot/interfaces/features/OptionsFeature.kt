@@ -19,14 +19,13 @@ interface OptionsFeature<Return, Opts : Options> : IActionState, Feature {
     /**
      * The parameter that stores the options.
      */
-    var options: Opts
+    val OptionsFeature<Return, Opts>.options: Opts
 
     /**
      * Lambda function to change options
      */
     fun options(block: Opts.() -> Unit): Return {
-        options = options.apply(block)
-        parameters.putAll(mapper.convertValue(options, jacksonTypeRef<Map<String, Any?>>()))
+        parameters.putAll(mapper.convertValue(options.apply(block), jacksonTypeRef<Map<String, Any?>>()))
         return thisAsReturn
     }
 }

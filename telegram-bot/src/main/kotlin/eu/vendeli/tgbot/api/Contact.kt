@@ -20,8 +20,10 @@ class SendContactAction(
     MarkupFeature<SendContactAction> {
     override val method: TgMethod = TgMethod("sendContact")
     override val returnType = getReturnType()
-    override var options = ContactOptions()
+    override val OptionsFeature<SendContactAction, ContactOptions>.options: ContactOptions
+        get() = ContactOptions()
 
+    //    override var OptionsFeature\<(.*)\, (.*)\>\.options \= (.*)\(\)
     init {
         parameters["first_name"] = firstName
         parameters["phone_number"] = phoneNumber

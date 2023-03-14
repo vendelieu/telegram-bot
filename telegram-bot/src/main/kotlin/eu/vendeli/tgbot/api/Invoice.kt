@@ -19,7 +19,9 @@ class SendInvoiceAction(data: InvoiceData) :
     MarkupFeature<SendInvoiceAction> {
     override val method: TgMethod = TgMethod("sendInvoice")
     override val returnType = getReturnType()
-    override var options = InvoiceOptions()
+    override val OptionsFeature<SendInvoiceAction, InvoiceOptions>.options: InvoiceOptions
+        get() = InvoiceOptions()
+
     init {
         data.checkIsAllFieldsPresent()
 

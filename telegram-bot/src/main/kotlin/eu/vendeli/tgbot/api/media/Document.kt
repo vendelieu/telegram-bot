@@ -25,7 +25,8 @@ class SendDocumentAction(private val document: ImplicitFile<*>) :
     MarkupFeature<SendDocumentAction> {
     override val method: TgMethod = TgMethod("sendDocument")
     override val returnType = getReturnType()
-    override var options = DocumentOptions()
+    override val OptionsFeature<SendDocumentAction, DocumentOptions>.options: DocumentOptions
+        get() = DocumentOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
 

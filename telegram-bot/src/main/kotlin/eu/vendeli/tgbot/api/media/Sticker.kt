@@ -21,7 +21,8 @@ class SendStickerAction(private val sticker: ImplicitFile<*>) :
     MarkupFeature<SendStickerAction> {
     override val method: TgMethod = TgMethod("sendSticker")
     override val returnType = getReturnType()
-    override var options = StickerOptions()
+    override val OptionsFeature<SendStickerAction, StickerOptions>.options: StickerOptions
+        get() = StickerOptions()
 
     override val MediaAction<Message>.defaultType: MediaContentType
         get() = MediaContentType.ImageJpeg

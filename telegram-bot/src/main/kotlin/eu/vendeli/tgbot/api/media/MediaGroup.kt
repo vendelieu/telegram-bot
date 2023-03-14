@@ -34,7 +34,8 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
     private val files by lazy { mutableMapOf<String, ByteArray>() }
     override val method: TgMethod = TgMethod("sendMediaGroup")
     override val returnType = getReturnType()
-    override var options = MediaGroupOptions()
+    override val OptionsFeature<SendMediaGroupAction, MediaGroupOptions>.options: MediaGroupOptions
+        get() = MediaGroupOptions()
 
     init {
         // check api restricts

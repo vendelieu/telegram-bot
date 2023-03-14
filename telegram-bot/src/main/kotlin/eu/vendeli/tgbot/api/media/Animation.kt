@@ -25,7 +25,8 @@ class SendAnimationAction(private val animation: ImplicitFile<*>) :
     CaptionFeature<SendAnimationAction> {
     override val method: TgMethod = TgMethod("sendAnimation")
     override val returnType = getReturnType()
-    override var options = AnimationOptions()
+    override val OptionsFeature<SendAnimationAction, AnimationOptions>.options: AnimationOptions
+        get() = AnimationOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
 

@@ -16,7 +16,8 @@ class AnswerInlineQueryAction(inlineQueryId: String, results: List<InlineQueryRe
     OptionsFeature<AnswerInlineQueryAction, AnswerInlineQueryOptions> {
     override val method: TgMethod = TgMethod("answerInlineQuery")
     override val returnType = getReturnType()
-    override var options = AnswerInlineQueryOptions()
+    override val OptionsFeature<AnswerInlineQueryAction, AnswerInlineQueryOptions>.options: AnswerInlineQueryOptions
+        get() = AnswerInlineQueryOptions()
 
     init {
         parameters["inline_query_id"] = inlineQueryId

@@ -19,7 +19,9 @@ class SendGameAction(
     MarkupFeature<SendGameAction> {
     override val method: TgMethod = TgMethod("sendGame")
     override val returnType = getReturnType()
-    override var options = GameOptions()
+    override val OptionsFeature<SendGameAction, GameOptions>.options: GameOptions
+        get() = GameOptions()
+
     init {
         parameters["game_short_name"] = gameShortName
     }

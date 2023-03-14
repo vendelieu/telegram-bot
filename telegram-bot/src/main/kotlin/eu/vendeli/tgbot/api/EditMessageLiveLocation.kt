@@ -20,7 +20,8 @@ class EditMessageLiveLocationAction :
     MarkupFeature<EditMessageLiveLocationAction> {
     override val method: TgMethod = TgMethod("editMessageLiveLocation")
     override val returnType = getReturnType()
-    override var options = EditMessageLiveLocationOptions()
+    override val OptionsFeature<EditMessageLiveLocationAction, EditMessageLiveLocationOptions>.options: EditMessageLiveLocationOptions
+        get() = EditMessageLiveLocationOptions()
 
     constructor(messageId: Long, latitude: Float, longitude: Float) {
         parameters["message_id"] = messageId

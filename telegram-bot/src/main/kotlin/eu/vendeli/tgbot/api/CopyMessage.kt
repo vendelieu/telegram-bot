@@ -39,7 +39,8 @@ class CopyMessageAction(
     CaptionFeature<CopyMessageAction> {
     override val method: TgMethod = TgMethod("copyMessage")
     override val returnType = getReturnType()
-    override var options = CopyMessageOptions()
+    override val OptionsFeature<CopyMessageAction, CopyMessageOptions>.options: CopyMessageOptions
+        get() = CopyMessageOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
 

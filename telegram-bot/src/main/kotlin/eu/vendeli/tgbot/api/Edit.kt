@@ -25,7 +25,8 @@ class EditMessageTextAction private constructor() :
     AllFeaturesPack<EditMessageTextAction, EditMessageOptions> {
     override val method: TgMethod = TgMethod("editMessageText")
     override val returnType = getReturnType()
-    override var options = EditMessageOptions()
+    override val OptionsFeature<EditMessageTextAction, EditMessageOptions>.options: EditMessageOptions
+        get() = EditMessageOptions()
 
     constructor(messageId: Long, text: String) : this() {
         parameters["message_id"] = messageId
@@ -51,7 +52,8 @@ class EditMessageCaptionAction() :
     CaptionFeature<EditMessageCaptionAction> {
     override val method: TgMethod = TgMethod("editMessageCaption")
     override val returnType = getReturnType()
-    override var options = EditCaptionOptions()
+    override val OptionsFeature<EditMessageCaptionAction, EditCaptionOptions>.options: EditCaptionOptions
+        get() = EditCaptionOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
 

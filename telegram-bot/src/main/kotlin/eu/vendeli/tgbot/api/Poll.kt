@@ -18,7 +18,9 @@ class SendPollAction(question: String, pollOptions: Array<String>) :
     MarkupFeature<SendPollAction> {
     override val method: TgMethod = TgMethod("sendPoll")
     override val returnType = getReturnType()
-    override var options = PollOptions()
+    override val OptionsFeature<SendPollAction, PollOptions>.options: PollOptions
+        get() = PollOptions()
+
     init {
         parameters["question"] = question
         parameters["options"] = pollOptions

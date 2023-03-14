@@ -21,7 +21,8 @@ class SendVideoNoteAction(private val videoNote: ImplicitFile<*>) :
     MarkupFeature<SendVideoNoteAction> {
     override val method: TgMethod = TgMethod("sendVideoNote")
     override val returnType = getReturnType()
-    override var options = VideoNoteOptions()
+    override val OptionsFeature<SendVideoNoteAction, VideoNoteOptions>.options: VideoNoteOptions
+        get() = VideoNoteOptions()
 
     override val MediaAction<Message>.defaultType: MediaContentType
         get() = MediaContentType.VideoMp4

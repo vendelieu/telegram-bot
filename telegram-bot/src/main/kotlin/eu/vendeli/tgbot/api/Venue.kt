@@ -23,7 +23,9 @@ class SendVenueAction(
     MarkupFeature<SendVenueAction> {
     override val method: TgMethod = TgMethod("sendVenue")
     override val returnType = getReturnType()
-    override var options = VenueOptions()
+    override val OptionsFeature<SendVenueAction, VenueOptions>.options: VenueOptions
+        get() = VenueOptions()
+
     init {
         parameters["latitude"] = latitude
         parameters["longitude"] = longitude
