@@ -54,7 +54,7 @@ private fun multipartBodyBuilder(media: MediaData) = MultiPartFormDataContent(
  * @param innerType Parameter used to identify the type in the data array.
  * @return [Deferred]<[Response]<[T]>>
  */
-suspend fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
+internal suspend fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
     returnType: Class<T>,
     innerType: Class<I>? = null,
     data: suspend MediaData.() -> Unit,

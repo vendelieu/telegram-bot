@@ -123,7 +123,7 @@ internal inline fun <reified Type : MultipleResponse> Action<List<Type>>.getInne
 @Suppress("UnusedReceiverParameter")
 internal inline fun <reified Type> TgAction<Type>.getReturnType(): Class<Type> = Type::class.java
 
-var mu.KLogger.level: Level
+internal var mu.KLogger.level: Level
     get() = (underlyingLogger as Logger).level
     set(value) {
         (underlyingLogger as Logger).level = value
