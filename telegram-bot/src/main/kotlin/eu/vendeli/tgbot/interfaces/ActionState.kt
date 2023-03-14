@@ -7,7 +7,7 @@ interface IActionState {
     /**
      * Parameter for storing API data.
      */
-    val parameters: MutableMap<String, Any?>
+    val IActionState.parameters: MutableMap<String, Any?>
 }
 
 /**
@@ -17,5 +17,5 @@ abstract class ActionState : IActionState {
     /**
      * Parameter for storing API data.
      */
-    override val parameters by lazy { mutableMapOf<String, Any?>() }
+    override val IActionState.parameters by lazy { mutableMapOf<String, Any?>() }
 }
