@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api.media
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -23,8 +24,10 @@ class SendVideoAction(private val video: ImplicitFile<*>) :
     MarkupFeature<SendVideoAction>,
     EntitiesContextBuilder,
     CaptionFeature<SendVideoAction> {
-    override val method: TgMethod = TgMethod("sendVideo")
-    override val returnType = getReturnType()
+    override val TgAction<Message>.method: TgMethod
+        get() = TgMethod("sendVideo")
+    override val TgAction<Message>.returnType: Class<Message>
+        get() = getReturnType()
     override val OptionsFeature<SendVideoAction, VideoOptions>.options: VideoOptions
         get() = VideoOptions()
     override val EntitiesContextBuilder.entitiesField: String

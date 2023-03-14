@@ -9,15 +9,15 @@ interface TgAction<ReturnType> {
     /**
      * A method that is implemented in Action.
      */
-    val method: TgMethod
+    val TgAction<ReturnType>.method: TgMethod
 
     /**
      * Type of action result.
      */
-    val returnType: Class<ReturnType>
+    val TgAction<ReturnType>.returnType: Class<ReturnType>
 
     /**
      * Parameter through which the type for multiple response is obtained.
      */
-    val wrappedDataType get(): Class<out MultipleResponse>? = null
+    val TgAction<ReturnType>.wrappedDataType get(): Class<out MultipleResponse>? = null
 }

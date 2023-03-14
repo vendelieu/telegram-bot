@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api.media
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -19,8 +20,10 @@ class SendStickerAction(private val sticker: ImplicitFile<*>) :
     ActionState(),
     OptionsFeature<SendStickerAction, StickerOptions>,
     MarkupFeature<SendStickerAction> {
-    override val method: TgMethod = TgMethod("sendSticker")
-    override val returnType = getReturnType()
+    override val TgAction<Message>.method: TgMethod
+        get() = TgMethod("sendSticker")
+    override val TgAction<Message>.returnType: Class<Message>
+        get() = getReturnType()
     override val OptionsFeature<SendStickerAction, StickerOptions>.options: StickerOptions
         get() = StickerOptions()
 

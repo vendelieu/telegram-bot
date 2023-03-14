@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.InlineQueryResult
 import eu.vendeli.tgbot.types.internal.TgMethod
@@ -14,8 +15,10 @@ class AnswerInlineQueryAction(inlineQueryId: String, results: List<InlineQueryRe
     SimpleAction<Boolean>,
     ActionState(),
     OptionsFeature<AnswerInlineQueryAction, AnswerInlineQueryOptions> {
-    override val method: TgMethod = TgMethod("answerInlineQuery")
-    override val returnType = getReturnType()
+    override val TgAction<Boolean>.method: TgMethod
+        get() = TgMethod("answerInlineQuery")
+    override val TgAction<Boolean>.returnType: Class<Boolean>
+        get() = getReturnType()
     override val OptionsFeature<AnswerInlineQueryAction, AnswerInlineQueryOptions>.options: AnswerInlineQueryOptions
         get() = AnswerInlineQueryOptions()
 

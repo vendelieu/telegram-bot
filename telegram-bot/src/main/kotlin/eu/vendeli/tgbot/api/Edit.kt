@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.InlineMode
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.AllFeaturesPack
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
@@ -23,8 +24,10 @@ class EditMessageTextAction private constructor() :
     InlineMode<Message>,
     EntitiesContextBuilder,
     AllFeaturesPack<EditMessageTextAction, EditMessageOptions> {
-    override val method: TgMethod = TgMethod("editMessageText")
-    override val returnType = getReturnType()
+    override val TgAction<Message>.method: TgMethod
+        get() = TgMethod("editMessageText")
+    override val TgAction<Message>.returnType: Class<Message>
+        get() = getReturnType()
     override val OptionsFeature<EditMessageTextAction, EditMessageOptions>.options: EditMessageOptions
         get() = EditMessageOptions()
 
@@ -50,8 +53,10 @@ class EditMessageCaptionAction() :
     MarkupFeature<EditMessageCaptionAction>,
     EntitiesContextBuilder,
     CaptionFeature<EditMessageCaptionAction> {
-    override val method: TgMethod = TgMethod("editMessageCaption")
-    override val returnType = getReturnType()
+    override val TgAction<Message>.method: TgMethod
+        get() = TgMethod("editMessageCaption")
+    override val TgAction<Message>.returnType: Class<Message>
+        get() = getReturnType()
     override val OptionsFeature<EditMessageCaptionAction, EditCaptionOptions>.options: EditCaptionOptions
         get() = EditCaptionOptions()
     override val EntitiesContextBuilder.entitiesField: String
@@ -67,8 +72,10 @@ class EditMessageMediaAction :
     ActionState,
     InlineMode<Message>,
     MarkupFeature<EditMessageMediaAction> {
-    override val method: TgMethod = TgMethod("editMessageMedia")
-    override val returnType = getReturnType()
+    override val TgAction<Message>.method: TgMethod
+        get() = TgMethod("editMessageMedia")
+    override val TgAction<Message>.returnType: Class<Message>
+        get() = getReturnType()
 
     constructor(inputMedia: InputMedia) {
         parameters["media"] = inputMedia
@@ -85,8 +92,10 @@ class EditMessageMarkupAction() :
     ActionState(),
     InlineMode<Message>,
     MarkupFeature<EditMessageMarkupAction> {
-    override val method: TgMethod = TgMethod("editMessageReplyMarkup")
-    override val returnType = getReturnType()
+    override val TgAction<Message>.method: TgMethod
+        get() = TgMethod("editMessageReplyMarkup")
+    override val TgAction<Message>.returnType: Class<Message>
+        get() = getReturnType()
 
     constructor(messageId: Long) : this() {
         parameters["message_id"] = messageId

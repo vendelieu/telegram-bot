@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api.forum
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
@@ -13,8 +14,10 @@ import eu.vendeli.tgbot.utils.getReturnType
  * unless it is the creator of the topic. Returns True on success.
  */
 class ReopenForumTopicAction(messageThreadId: Int) : SimpleAction<Boolean>, ActionState() {
-    override val method: TgMethod = TgMethod("reopenForumTopic")
-    override val returnType = getReturnType()
+    override val TgAction<Boolean>.method: TgMethod
+        get() = TgMethod("reopenForumTopic")
+    override val TgAction<Boolean>.returnType: Class<Boolean>
+        get() = getReturnType()
 
     init {
         parameters["message_thread_id"] = messageThreadId

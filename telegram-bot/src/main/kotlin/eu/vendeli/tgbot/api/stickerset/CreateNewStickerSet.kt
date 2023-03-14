@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api.stickerset
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
@@ -24,8 +25,10 @@ import kotlinx.coroutines.Deferred
 class CreateNewStickerSetAction(
     private val data: CreateNewStickerSetData,
 ) : MediaAction<Boolean>, ActionState() {
-    override val method: TgMethod = TgMethod("createNewStickerSet")
-    override val returnType = getReturnType()
+    override val TgAction<Boolean>.method: TgMethod
+        get() = TgMethod("createNewStickerSet")
+    override val TgAction<Boolean>.returnType: Class<Boolean>
+        get() = getReturnType()
     private val allMediaString = data.stickers.all { it.sticker.file is ImplicitFile.FromString }
     private val files by lazy { mutableMapOf<String, ByteArray>() }
 

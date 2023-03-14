@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.AllFeaturesPack
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -14,8 +15,10 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 class SendMessageAction private constructor() :
     Action<Message>, ActionState(), AllFeaturesPack<SendMessageAction, MessageOptions>, EntitiesContextBuilder {
-    override val method: TgMethod = TgMethod("sendMessage")
-    override val returnType = getReturnType()
+    override val TgAction<Message>.method: TgMethod
+        get() = TgMethod("sendMessage")
+    override val TgAction<Message>.returnType: Class<Message>
+        get() = getReturnType()
     override val OptionsFeature<SendMessageAction, MessageOptions>.options: MessageOptions
         get() = MessageOptions()
 

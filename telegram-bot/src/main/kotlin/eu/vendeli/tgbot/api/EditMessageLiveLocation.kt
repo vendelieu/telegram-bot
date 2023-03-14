@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.InlineMode
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -18,9 +19,11 @@ class EditMessageLiveLocationAction :
     InlineMode<Message>,
     OptionsFeature<EditMessageLiveLocationAction, EditMessageLiveLocationOptions>,
     MarkupFeature<EditMessageLiveLocationAction> {
-    override val method: TgMethod = TgMethod("editMessageLiveLocation")
-    override val returnType = getReturnType()
-    override val OptionsFeature<EditMessageLiveLocationAction, EditMessageLiveLocationOptions>.options: EditMessageLiveLocationOptions
+    override val TgAction<Message>.method: TgMethod
+        get() = TgMethod("editMessageLiveLocation")
+    override val TgAction<Message>.returnType: Class<Message>
+        get() = getReturnType()
+    override val OptionsFeature<EditMessageLiveLocationAction, EditMessageLiveLocationOptions>.options
         get() = EditMessageLiveLocationOptions()
 
     constructor(messageId: Long, latitude: Float, longitude: Float) {

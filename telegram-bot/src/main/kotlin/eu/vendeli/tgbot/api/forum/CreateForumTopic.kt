@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api.forum
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.forum.ForumTopic
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
@@ -19,8 +20,10 @@ class CreateForumTopicAction(
     iconColor: Int? = null,
     iconCustomEmojiId: String? = null,
 ) : SimpleAction<ForumTopic>, ActionState() {
-    override val method: TgMethod = TgMethod("createForumTopic")
-    override val returnType = getReturnType()
+    override val TgAction<ForumTopic>.method: TgMethod
+        get() = TgMethod("createForumTopic")
+    override val TgAction<ForumTopic>.returnType: Class<ForumTopic>
+        get() = getReturnType()
 
     init {
         parameters["name"] = name

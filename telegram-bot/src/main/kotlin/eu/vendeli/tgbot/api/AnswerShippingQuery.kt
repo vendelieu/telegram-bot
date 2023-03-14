@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.payment.ShippingOption
 import eu.vendeli.tgbot.utils.getReturnType
@@ -14,8 +15,10 @@ class AnswerShippingQueryAction(
     shippingOptions: List<ShippingOption>? = null,
     errorMessage: String? = null,
 ) : SimpleAction<Boolean>, ActionState() {
-    override val method: TgMethod = TgMethod("answerShippingQuery")
-    override val returnType = getReturnType()
+    override val TgAction<Boolean>.method: TgMethod
+        get() = TgMethod("answerShippingQuery")
+    override val TgAction<Boolean>.returnType: Class<Boolean>
+        get() = getReturnType()
 
     init {
         parameters["shipping_query_id"] = shippingQueryId

@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.Recipient
@@ -24,8 +25,10 @@ class ForwardMessageAction(chatId: Recipient, fromChatId: Recipient, messageId: 
     Action<Message>,
     ActionState(),
     OptionsFeature<ForwardMessageAction, ForwardMessageOptions> {
-    override val method: TgMethod = TgMethod("forwardMessage")
-    override val returnType = getReturnType()
+    override val TgAction<Message>.method: TgMethod
+        get() = TgMethod("forwardMessage")
+    override val TgAction<Message>.returnType: Class<Message>
+        get() = getReturnType()
     override val OptionsFeature<ForwardMessageAction, ForwardMessageOptions>.options: ForwardMessageOptions
         get() = ForwardMessageOptions()
 

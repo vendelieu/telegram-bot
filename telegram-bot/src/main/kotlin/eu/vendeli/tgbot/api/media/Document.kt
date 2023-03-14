@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api.media
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -23,8 +24,10 @@ class SendDocumentAction(private val document: ImplicitFile<*>) :
     CaptionFeature<SendDocumentAction>,
     OptionsFeature<SendDocumentAction, DocumentOptions>,
     MarkupFeature<SendDocumentAction> {
-    override val method: TgMethod = TgMethod("sendDocument")
-    override val returnType = getReturnType()
+    override val TgAction<Message>.method: TgMethod
+        get() = TgMethod("sendDocument")
+    override val TgAction<Message>.returnType: Class<Message>
+        get() = getReturnType()
     override val OptionsFeature<SendDocumentAction, DocumentOptions>.options: DocumentOptions
         get() = DocumentOptions()
     override val EntitiesContextBuilder.entitiesField: String
