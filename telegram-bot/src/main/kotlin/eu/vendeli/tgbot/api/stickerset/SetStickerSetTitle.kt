@@ -23,5 +23,4 @@ class SetStickerSetTitleAction(
     }
 }
 
-
 fun setStickerSetTitle(name: String, title: String) = SetStickerSetTitleAction(name, title)

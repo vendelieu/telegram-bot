@@ -3,6 +3,7 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.types.internal.MediaData
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
 import io.ktor.client.plugins.onUpload
@@ -11,6 +12,7 @@ import io.ktor.client.request.forms.MultiPartFormDataContent
 import io.ktor.client.request.forms.formData
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
+import io.ktor.client.statement.HttpResponse
 import io.ktor.http.ContentType
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
@@ -21,26 +23,20 @@ import io.ktor.utils.io.core.writeFully
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.coroutineScope
 
-private fun multipartBodyBuilder(
-    dataField: String,
-    filename: String,
-    contentType: ContentType,
-    data: ByteArray,
-    parameters: Map<String, Any?>? = null,
-) = MultiPartFormDataContent(
+private fun multipartBodyBuilder(media: MediaData) = MultiPartFormDataContent(
     formData {
         appendInput(
-            key = dataField,
+            key = media.dataField,
             headers = Headers.build {
-                append(HttpHeaders.ContentDisposition, "filename=$filename")
-                append(HttpHeaders.ContentType, contentType)
+                append(HttpHeaders.ContentDisposition, "filename=${media.name}")
+                append(HttpHeaders.ContentType, media.contentType)
             },
-        ) { buildPacket { writeFully(data) } }
+        ) { buildPacket { writeFully(media.data) } }
 
         val jsonContentHeaders = Headers.build {
             append(HttpHeaders.ContentType, ContentType.Application.Json)
         }
-        parameters?.entries?.forEach { entry ->
+        media.parameters?.entries?.forEach { entry ->
             entry.value?.also {
                 append(FormPart(entry.key, it, jsonContentHeaders))
             }
@@ -53,31 +49,21 @@ private fun multipartBodyBuilder(
  *
  * @param T Generic of response data.
  * @param I Parameter used to identify the type in the data array.
- * @param method The telegram api method to which the request will be made.
- * @param dataField The name of the field that will contain the media data.
- * @param filename The name of the final file.
  * @param data The data itself.
- * @param parameters Additional parameters.
- * @param contentType The type of content that will be passed in the headers.
  * @param returnType Response data type.
  * @param innerType Parameter used to identify the type in the data array.
  * @return [Deferred]<[Response]<[T]>>
  */
-@Suppress("LongParameterList")
 suspend fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
-    method: TgMethod,
-    dataField: String,
-    filename: String,
-    data: ByteArray,
-    parameters: Map<String, Any?>? = null,
-    contentType: ContentType,
     returnType: Class<T>,
     innerType: Class<I>? = null,
+    data: suspend MediaData.() -> Unit,
 ): Deferred<Response<out T>> = coroutineScope {
-    val response = httpClient.post(method.toUrl()) {
-        setBody(multipartBodyBuilder(dataField, filename, contentType, data, parameters))
+    val media = MediaData().apply { data() }
+    val response = httpClient.post(media.method.toUrl()) {
+        setBody(multipartBodyBuilder(media))
         onUpload { bytesSentTotal, contentLength ->
-            logger.trace { "Sent $bytesSentTotal bytes from $contentLength, for $method method with $parameters" }
+            logger.trace { "Sent $bytesSentTotal bytes from $contentLength, for $method method with ${media.parameters}" }
         }
     }
 
@@ -128,25 +114,16 @@ internal suspend inline fun TelegramBot.makeSilentRequest(
 /**
  * Make a media request without having to return the data.
  *
- * @param method The telegram api method to which the request will be made.
- * @param dataField The name of the field that will contain the media data.
- * @param filename The name of the final file.
- * @param data The data itself.
- * @param parameters Additional parameters.
- * @param contentType The type of content that will be passed in the headers.
  */
-@Suppress("LongParameterList")
 internal suspend inline fun TelegramBot.makeSilentRequest(
-    method: TgMethod,
-    dataField: String,
-    filename: String,
-    data: ByteArray,
-    parameters: Map<String, Any?>? = null,
-    contentType: ContentType,
-) = httpClient.post(method.toUrl()) {
-    setBody(multipartBodyBuilder(dataField, filename, contentType, data, parameters))
-    onUpload { bytesSentTotal, contentLength ->
-        logger.trace { "Sent $bytesSentTotal bytes from $contentLength, for $method method with $parameters" }
+    block: MediaData.() -> Unit,
+): HttpResponse {
+    val media = MediaData().apply(block)
+    return httpClient.post(media.method.toUrl()) {
+        setBody(multipartBodyBuilder(media))
+        onUpload { bytesSentTotal, contentLength ->
+            logger.trace { "Sent $bytesSentTotal bytes from $contentLength, for $method method with ${media.parameters}" }
+        }
+        logger.debug { "RequestBody: ${media.parameters}" }
     }
-    logger.debug { "RequestBody: $parameters" }
 }
