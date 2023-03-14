@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -37,8 +38,10 @@ class CopyMessageAction(
     MarkupFeature<CopyMessageAction>,
     EntitiesContextBuilder,
     CaptionFeature<CopyMessageAction> {
-    override val method: TgMethod = TgMethod("copyMessage")
-    override val returnType = getReturnType()
+    override val TgAction<MessageId>.method: TgMethod
+        get() = TgMethod("copyMessage")
+    override val TgAction<MessageId>.returnType: Class<MessageId>
+        get() = getReturnType()
     override val OptionsFeature<CopyMessageAction, CopyMessageOptions>.options: CopyMessageOptions
         get() = CopyMessageOptions()
     override val EntitiesContextBuilder.entitiesField: String

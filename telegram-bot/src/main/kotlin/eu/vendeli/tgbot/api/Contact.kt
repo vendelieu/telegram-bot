@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -18,8 +19,10 @@ class SendContactAction(
     ActionState(),
     OptionsFeature<SendContactAction, ContactOptions>,
     MarkupFeature<SendContactAction> {
-    override val method: TgMethod = TgMethod("sendContact")
-    override val returnType = getReturnType()
+    override val TgAction<Message>.method: TgMethod
+        get() = TgMethod("sendContact")
+    override val TgAction<Message>.returnType: Class<Message>
+        get() = getReturnType()
     override val OptionsFeature<SendContactAction, ContactOptions>.options: ContactOptions
         get() = ContactOptions()
 

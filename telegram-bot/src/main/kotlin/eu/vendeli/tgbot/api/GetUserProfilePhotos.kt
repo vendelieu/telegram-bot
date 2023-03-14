@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.UserProfilePhotos
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
@@ -13,8 +14,10 @@ class GetUserProfilePhotosAction(
     offset: Int? = null,
     limit: Int? = null,
 ) : SimpleAction<UserProfilePhotos>, ActionState() {
-    override val method: TgMethod = TgMethod("getUserProfilePhotos")
-    override val returnType = getReturnType()
+    override val TgAction<UserProfilePhotos>.method: TgMethod
+        get() = TgMethod("getUserProfilePhotos")
+    override val TgAction<UserProfilePhotos>.returnType: Class<UserProfilePhotos>
+        get() = getReturnType()
 
     init {
         parameters["user_id"] = userId

@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
@@ -11,8 +12,10 @@ import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
 class SetChatPhotoAction(private val photo: ImplicitFile<*>) : MediaAction<Boolean>, ActionState() {
-    override val method: TgMethod = TgMethod("setChatPhoto")
-    override val returnType = getReturnType()
+    override val TgAction<Boolean>.method: TgMethod
+        get() = TgMethod("setChatPhoto")
+    override val TgAction<Boolean>.returnType: Class<Boolean>
+        get() = getReturnType()
     override val MediaAction<Boolean>.defaultType: MediaContentType
         get() = MediaContentType.ImageJpeg
     override val MediaAction<Boolean>.media: ImplicitFile<*>

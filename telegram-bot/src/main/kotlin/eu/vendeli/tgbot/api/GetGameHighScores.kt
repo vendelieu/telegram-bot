@@ -5,13 +5,16 @@ package eu.vendeli.tgbot.api
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.InlineMode
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.game.GameHighScore
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
 class GetGameHighScoresAction : Action<GameHighScore>, ActionState, InlineMode<GameHighScore> {
-    override val method: TgMethod = TgMethod("getGameHighScores")
-    override val returnType = getReturnType()
+    override val TgAction<GameHighScore>.method: TgMethod
+        get() = TgMethod("getGameHighScores")
+    override val TgAction<GameHighScore>.returnType: Class<GameHighScore>
+        get() = getReturnType()
 
     constructor(userId: Long, messageId: Long) {
         parameters["user_id"] = userId

@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.chat.ChatPermissions
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
@@ -12,8 +13,10 @@ class SetChatPermissionsAction(
     permissions: ChatPermissions,
     useIndependentChatPermissions: Boolean? = null,
 ) : Action<Boolean>, ActionState() {
-    override val method: TgMethod = TgMethod("setChatPermissions")
-    override val returnType = getReturnType()
+    override val TgAction<Boolean>.method: TgMethod
+        get() = TgMethod("setChatPermissions")
+    override val TgAction<Boolean>.returnType: Class<Boolean>
+        get() = getReturnType()
 
     init {
         parameters["permissions"] = permissions

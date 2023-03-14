@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api.media
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.User
@@ -32,8 +33,10 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions> {
     private val isAllMediaFromString = inputMedia.all { it.media.instanceOf(FromString::class) }
     private val files by lazy { mutableMapOf<String, ByteArray>() }
-    override val method: TgMethod = TgMethod("sendMediaGroup")
-    override val returnType = getReturnType()
+    override val TgAction<List<Message>>.method: TgMethod
+        get() = TgMethod("sendMediaGroup")
+    override val TgAction<List<Message>>.returnType: Class<List<Message>>
+        get() = getReturnType()
     override val OptionsFeature<SendMediaGroupAction, MediaGroupOptions>.options: MediaGroupOptions
         get() = MediaGroupOptions()
 

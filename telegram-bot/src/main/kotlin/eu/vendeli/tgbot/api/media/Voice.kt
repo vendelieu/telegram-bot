@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api.media
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -23,8 +24,10 @@ class SendVoiceAction(private val voice: ImplicitFile<*>) :
     MarkupFeature<SendVoiceAction>,
     EntitiesContextBuilder,
     CaptionFeature<SendVoiceAction> {
-    override val method: TgMethod = TgMethod("sendVoice")
-    override val returnType = getReturnType()
+    override val TgAction<Message>.method: TgMethod
+        get() = TgMethod("sendVoice")
+    override val TgAction<Message>.returnType: Class<Message>
+        get() = getReturnType()
     override val OptionsFeature<SendVoiceAction, VoiceOptions>.options: VoiceOptions
         get() = VoiceOptions()
     override val EntitiesContextBuilder.entitiesField: String

@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api.forum
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
@@ -14,8 +15,10 @@ import eu.vendeli.tgbot.utils.getReturnType
  * Returns True on success.
  */
 class HideGeneralForumTopicAction : SimpleAction<Boolean>, ActionState() {
-    override val method: TgMethod = TgMethod("hideGeneralForumTopic")
-    override val returnType = getReturnType()
+    override val TgAction<Boolean>.method: TgMethod
+        get() = TgMethod("hideGeneralForumTopic")
+    override val TgAction<Boolean>.returnType: Class<Boolean>
+        get() = getReturnType()
 }
 
 /**

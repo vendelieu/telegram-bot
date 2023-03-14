@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api.botactions
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CreateInvoiceLinkOptions
@@ -27,8 +28,10 @@ class CreateInvoiceLinkAction(
 ) : SimpleAction<String>, OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions>, ActionState() {
     override val OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions>.options: CreateInvoiceLinkOptions
         get() = CreateInvoiceLinkOptions()
-    override val method: TgMethod = TgMethod("createInvoiceLink")
-    override val returnType = getReturnType()
+    override val TgAction<String>.method: TgMethod
+        get() = TgMethod("createInvoiceLink")
+    override val TgAction<String>.returnType: Class<String>
+        get() = getReturnType()
 
     init {
         invoiceData.checkIsAllFieldsPresent()

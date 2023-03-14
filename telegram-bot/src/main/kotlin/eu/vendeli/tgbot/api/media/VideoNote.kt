@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api.media
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -19,8 +20,10 @@ class SendVideoNoteAction(private val videoNote: ImplicitFile<*>) :
     ActionState(),
     OptionsFeature<SendVideoNoteAction, VideoNoteOptions>,
     MarkupFeature<SendVideoNoteAction> {
-    override val method: TgMethod = TgMethod("sendVideoNote")
-    override val returnType = getReturnType()
+    override val TgAction<Message>.method: TgMethod
+        get() = TgMethod("sendVideoNote")
+    override val TgAction<Message>.returnType: Class<Message>
+        get() = getReturnType()
     override val OptionsFeature<SendVideoNoteAction, VideoNoteOptions>.options: VideoNoteOptions
         get() = VideoNoteOptions()
 

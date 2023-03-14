@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api.forum
 
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
@@ -17,8 +18,10 @@ class EditForumTopicAction(
     name: String? = null,
     iconCustomEmojiId: String? = null,
 ) : SimpleAction<Boolean>, ActionState() {
-    override val method: TgMethod = TgMethod("editForumTopic")
-    override val returnType = getReturnType()
+    override val TgAction<Boolean>.method: TgMethod
+        get() = TgMethod("editForumTopic")
+    override val TgAction<Boolean>.returnType: Class<Boolean>
+        get() = getReturnType()
 
     init {
         parameters["message_thread_id"] = messageThreadId
