@@ -25,9 +25,8 @@ import org.junit.jupiter.api.assertThrows
 class MediaRequestTesting : BotTestContext() {
     @Test
     suspend fun `media requests testing`() {
-        val image = bot.httpClient.get(
-            "https://storage.myseldon.com/news-pict-fe/FEB5B36049C75ADDFF40C00221D2D9D5",
-        ).readBytes()
+        val imgUrl = "https://upload.wikimedia.org/wikipedia/commons/f/ff/Wikipedia_logo_593.jpg"
+        val image = bot.httpClient.get(imgUrl).readBytes()
 
         val imageFile = withContext(Dispatchers.IO) {
             Files.createTempFile("test", "file").also {
@@ -35,9 +34,7 @@ class MediaRequestTesting : BotTestContext() {
             }.toFile()
         }
 
-        val photoString = photo {
-            "https://storage.myseldon.com/news-pict-fe/FEB5B36049C75ADDFF40C00221D2D9D5"
-        }.options { parseMode = ParseMode.HTML }.caption { "test" }
+        val photoString = photo { imgUrl }.options { parseMode = ParseMode.HTML }.caption { "test" }
             .sendAsync(System.getenv("TELEGRAM_ID").toLong(), bot).await().getOrNull()
         photoString.shouldNotBeNull()
 
@@ -107,7 +104,7 @@ class MediaRequestTesting : BotTestContext() {
             InputMedia.Photo(ImplicitFile.FromByteArray(imageBytes)),
             InputMedia.Photo(
                 ImplicitFile.FromString(
-                    "https://storage.myseldon.com/news-pict-fe/FEB5B36049C75ADDFF40C00221D2D9D5",
+                    "https://upload.wikimedia.org/wikipedia/commons/f/ff/Wikipedia_logo_593.jpg",
                 ),
             ),
         ).sendAsync(System.getenv("TELEGRAM_ID").toLong(), bot).await().getOrNull()

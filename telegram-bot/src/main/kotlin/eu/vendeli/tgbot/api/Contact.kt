@@ -26,7 +26,6 @@ class SendContactAction(
     override val OptionsFeature<SendContactAction, ContactOptions>.options: ContactOptions
         get() = ContactOptions()
 
-    //    override var OptionsFeature\<(.*)\, (.*)\>\.options \= (.*)\(\)
     init {
         parameters["first_name"] = firstName
         parameters["phone_number"] = phoneNumber
