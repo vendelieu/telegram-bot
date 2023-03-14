@@ -24,8 +24,8 @@ import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentBunchMediaRequest
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import io.ktor.util.reflect.instanceOf
-import kotlin.collections.set
 import kotlinx.coroutines.Deferred
+import kotlin.collections.set
 
 class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
     MediaAction<List<Message>>,

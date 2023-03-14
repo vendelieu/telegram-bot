@@ -1,5 +1,21 @@
 # Telegram-bot changelog
 
+## 2.7.0
+
+#### Telegram Api related changes
+
+* Add `setMyDescription`, `getMyDescription`, `setMyShortDescription`, `getMyShortDescription` methods.
+* Add `emoji` parameter to `sendSticker`.
+* Add sticker set related methods and add support of `webp` format.
+* Renamed `thumb` to `thumbnail` in places where it was present.
+
+#### Bot improvements
+
+* Add new contextual entities building.
+* Renamed `CallbackParam` entity to `ParamMapping`.
+* Reorganized types structure (some imports may have broken because of it).
+* Unnecessary parameters (parameters, options etc.) from actions have been hidden from the user interface.
+
 ## 2.6.0
 
 #### Telegram Api related changes
