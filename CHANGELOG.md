@@ -12,7 +12,7 @@
 #### Bot improvements
 
 * Add new contextual entities building.
-* Renamed `CallbackParam` entity to `ParamMapping`.
+* Renamed `CallbackParam` annotation to `ParamMapping`.
 * Reorganized types structure (some imports may have broken because of it).
 * Unnecessary parameters (parameters, options etc.) from actions have been hidden from the user interface.
 
