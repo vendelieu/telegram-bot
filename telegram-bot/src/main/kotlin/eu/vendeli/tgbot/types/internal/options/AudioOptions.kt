@@ -8,7 +8,7 @@ data class AudioOptions(
     var duration: Int? = null,
     var performer: String? = null,
     var title: String? = null,
-    var thumb: ImplicitFile<*>? = null,
+    var thumbnail: ImplicitFile<*>? = null,
     override var disableNotification: Boolean? = null,
     override var protectContent: Boolean? = null,
     override var replyToMessageId: Long? = null,

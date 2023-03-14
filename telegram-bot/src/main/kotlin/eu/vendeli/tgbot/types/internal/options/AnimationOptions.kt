@@ -7,7 +7,7 @@ data class AnimationOptions(
     var duration: Int? = null,
     var width: Int? = null,
     var height: Int? = null,
-    var thumb: ImplicitFile<*>? = null,
+    var thumbnail: ImplicitFile<*>? = null,
     override var parseMode: ParseMode? = null,
     override var disableNotification: Boolean? = null,
     override var replyToMessageId: Long? = null,

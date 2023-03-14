@@ -4,7 +4,7 @@ import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 
 data class DocumentOptions(
-    var thumb: ImplicitFile<*>? = null,
+    var thumbnail: ImplicitFile<*>? = null,
     var disableContentTypeDetection: Boolean? = null,
     override var fileName: String? = null,
     override var parseMode: ParseMode? = null,

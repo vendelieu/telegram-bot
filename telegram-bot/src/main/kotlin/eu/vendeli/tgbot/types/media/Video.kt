@@ -6,7 +6,7 @@ data class Video(
     val width: Int,
     val height: Int,
     val duration: Int,
-    val thumb: PhotoSize? = null,
+    val thumbnail: PhotoSize? = null,
     val fileName: String? = null,
     val mimeType: String? = null,
     val fileSize: Long?,
