@@ -40,7 +40,7 @@
             </a>
     </div>
     <div>
-2.6.0    </div>
+2.7.0    </div>
     <div class="pull-right d-flex">
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
@@ -55,10 +55,10 @@
   <div class="breadcrumbs"><a href="../../../index.html">Telegram Bot</a><span class="delimiter">/</span><a href="../index.html">eu.vendeli.tgbot.api.stickerset</a><span class="delimiter">/</span><span class="current">GetCustomEmojiStickersAction</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Get</span><wbr></wbr><span>Custom</span><wbr></wbr><span>Emoji</span><wbr></wbr><span>Stickers</span><wbr></wbr><span><span>Action</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">GetCustomEmojiStickersAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">customEmojiIds<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../../eu.vendeli.tgbot.interfaces/-simple-action/index.html">SimpleAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types/-sticker/index.html">Sticker</a><span class="token operator">&gt;</span><span class="token operator">&gt; </span></div><p class="paragraph">Use this method to get information about custom emoji stickers by their identifiers</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">GetCustomEmojiStickersAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">customEmojiIds<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../../eu.vendeli.tgbot.interfaces/-action-state/index.html">ActionState</a>, <a href="../../eu.vendeli.tgbot.interfaces/-simple-action/index.html">SimpleAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.media/-sticker/index.html">Sticker</a><span class="token operator">&gt;</span><span class="token operator">&gt; </span></div><p class="paragraph">Use this method to get information about custom emoji stickers by their identifiers</p></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Extensions">Extensions</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
     <div class="tabs-section-body">
       <h4 class="">Parameters</h4>
       <div data-togglable="Parameters">
@@ -97,66 +97,79 @@
             </div>
           </div>
         </div>
+<a data-name="382044327%2FFunctions%2F-880831646" anchor-label="sendAsync" id="382044327%2FFunctions%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../../eu.vendeli.tgbot.interfaces/-simple-action/send-async.html"><span>send</span><wbr></wbr><span><span>Async</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="382044327%2FFunctions%2F-880831646"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="../../eu.vendeli.tgbot.interfaces/-simple-action/send-async.html"><span class="token function">sendAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="../../eu.vendeli.tgbot/-telegram-bot/index.html">TelegramBot</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.internal/-response/index.html">Response</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.media/-sticker/index.html">Sticker</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Send async request for action.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="-1067918683%2FProperties%2F-880831646" anchor-label="method" id="-1067918683%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+      <div class="table" data-togglable="Properties"><a data-name="-1009601910%2FProperties%2F-880831646" anchor-label="method" id="-1009601910%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
         <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
                 <div><a href="method.html"><span><span>method</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1067918683%2FProperties%2F-880831646"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1009601910%2FProperties%2F-880831646"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="-1067918683%2FProperties%2F-880831646" anchor-label="method" id="-1067918683%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="method.html">method</a><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal/-tg-method/index.html">TgMethod</a></div><div class="brief "><a data-name="-1067918683%2FProperties%2F-880831646" anchor-label="method" id="-1067918683%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">A method that is implemented in Action.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="-1009601910%2FProperties%2F-880831646" anchor-label="method" id="-1009601910%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../../eu.vendeli.tgbot.interfaces/-tg-action/index.html">TgAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.media/-sticker/index.html">Sticker</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="method.html">method</a><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal/-tg-method/index.html">TgMethod</a></div><div class="brief "><a data-name="-1009601910%2FProperties%2F-880831646" anchor-label="method" id="-1009601910%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">A method that is implemented in Action.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="350058812%2FProperties%2F-880831646" anchor-label="parameters" id="350058812%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+<a data-name="1510551551%2FProperties%2F-880831646" anchor-label="parameters" id="1510551551%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
         <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="parameters.html"><span><span>parameters</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="350058812%2FProperties%2F-880831646"></span>
+                <div><a href="../../eu.vendeli.tgbot.interfaces/-i-action-state/parameters.html"><span><span>parameters</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1510551551%2FProperties%2F-880831646"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="350058812%2FProperties%2F-880831646" anchor-label="parameters" id="350058812%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="parameters.html">parameters</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html">MutableMap</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span></div><div class="brief "><a data-name="350058812%2FProperties%2F-880831646" anchor-label="parameters" id="350058812%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">Parameter for storing API data.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="1510551551%2FProperties%2F-880831646" anchor-label="parameters" id="1510551551%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../../eu.vendeli.tgbot.interfaces/-i-action-state/index.html">IActionState</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.interfaces/-i-action-state/parameters.html">parameters</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html">MutableMap</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span></div><div class="brief "><a data-name="1510551551%2FProperties%2F-880831646" anchor-label="parameters" id="1510551551%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">Parameter for storing API data.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="1382922155%2FProperties%2F-880831646" anchor-label="wrappedDataType" id="1382922155%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+<a data-name="-1017281741%2FProperties%2F-880831646" anchor-label="returnType" id="-1017281741%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="return-type.html"><span>return</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1017281741%2FProperties%2F-880831646"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="-1017281741%2FProperties%2F-880831646" anchor-label="returnType" id="-1017281741%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../../eu.vendeli.tgbot.interfaces/-tg-action/index.html">TgAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.media/-sticker/index.html">Sticker</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="return-type.html">returnType</a><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.media/-sticker/index.html">Sticker</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><a data-name="-1017281741%2FProperties%2F-880831646" anchor-label="returnType" id="-1017281741%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">Type of action result.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-828557372%2FProperties%2F-880831646" anchor-label="wrappedDataType" id="-828557372%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
         <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
                 <div><a href="wrapped-data-type.html"><span>wrapped</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Type</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1382922155%2FProperties%2F-880831646"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-828557372%2FProperties%2F-880831646"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="1382922155%2FProperties%2F-880831646" anchor-label="wrappedDataType" id="1382922155%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="wrapped-data-type.html">wrappedDataType</a><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types/-sticker/index.html">Sticker</a><span class="token operator">&gt;</span></div><div class="brief "><a data-name="1382922155%2FProperties%2F-880831646" anchor-label="wrappedDataType" id="1382922155%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">Parameter through which the type for multiple response is obtained.</p></div></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <h2 class="tabbedcontent">Extensions</h2>
-      <div class="table" data-togglable="Extensions"><a data-name="873013940%2FExtensions%2F-880831646" anchor-label="sendAsync" id="873013940%2FExtensions%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.interfaces/send-async.html"><span>send</span><wbr></wbr><span><span>Async</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="873013940%2FExtensions%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.interfaces/send-async.html">ReturnType</a><span class="token operator">&gt; </span><a href="../../eu.vendeli.tgbot.interfaces/-simple-action/index.html">SimpleAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.interfaces/send-async.html">ReturnType</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.interfaces/send-async.html"><span class="token function">sendAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="../../eu.vendeli.tgbot/-telegram-bot/index.html">TelegramBot</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.internal/-response/index.html">Response</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="../../eu.vendeli.tgbot.interfaces/send-async.html">ReturnType</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Send async request for action.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="-828557372%2FProperties%2F-880831646" anchor-label="wrappedDataType" id="-828557372%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../../eu.vendeli.tgbot.interfaces/-tg-action/index.html">TgAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.media/-sticker/index.html">Sticker</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="wrapped-data-type.html">wrappedDataType</a><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.media/-sticker/index.html">Sticker</a><span class="token operator">&gt;</span></div><div class="brief "><a data-name="-828557372%2FProperties%2F-880831646" anchor-label="wrappedDataType" id="-828557372%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">Parameter through which the type for multiple response is obtained.</p></div></div></div>
               </div>
             </div>
           </div>

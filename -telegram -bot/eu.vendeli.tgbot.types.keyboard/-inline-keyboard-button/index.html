@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>InlineKeyboardButton</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>Telegram Bot</span>
+            </a>
+    </div>
+    <div>
+2.7.0    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageIds="Telegram Bot::eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton///PointingToDeclaration//-880831646">
+  <div class="breadcrumbs"><a href="../../../index.html">Telegram Bot</a><span class="delimiter">/</span><a href="../index.html">eu.vendeli.tgbot.types.keyboard</a><span class="delimiter">/</span><span class="current">InlineKeyboardButton</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Inline</span><wbr></wbr><span>Keyboard</span><wbr></wbr><span><span>Button</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">InlineKeyboardButton</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>url<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>callbackData<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>webApp<span class="token operator">: </span><a href="../-web-app-info/index.html">WebAppInfo</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>loginUrl<span class="token operator">: </span><a href="../-login-url/index.html">LoginUrl</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>switchInlineQuery<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>callbackGame<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.game/-callback-game/index.html">CallbackGame</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>pay<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="../../eu.vendeli.tgbot.interfaces/-button/index.html">Button</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+    <div class="tabs-section-body">
+      <h2 class="tabbedcontent">Constructors</h2>
+      <div class="table" data-togglable="Constructors"><a data-name="-1922995569%2FConstructors%2F-880831646" anchor-label="InlineKeyboardButton" id="-1922995569%2FConstructors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+          <div class="main-subrow keyValue TabbedContent">
+            <div class=""><span class="inline-flex">
+                <div><a href="-inline-keyboard-button.html"><span>Inline</span><wbr></wbr><span>Keyboard</span><wbr></wbr><span><span>Button</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1922995569%2FConstructors%2F-880831646"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-inline-keyboard-button.html"><span class="token function">InlineKeyboardButton</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">callbackData<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">webApp<span class="token operator">: </span><a href="../-web-app-info/index.html">WebAppInfo</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">loginUrl<span class="token operator">: </span><a href="../-login-url/index.html">LoginUrl</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">switchInlineQuery<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">callbackGame<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.game/-callback-game/index.html">CallbackGame</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">pay<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="-101972549%2FProperties%2F-880831646" anchor-label="callbackData" id="-101972549%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="callback-data.html"><span>callback</span><wbr></wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-101972549%2FProperties%2F-880831646"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="-101972549%2FProperties%2F-880831646" anchor-label="callbackData" id="-101972549%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="callback-data.html">callbackData</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-334919053%2FProperties%2F-880831646" anchor-label="callbackGame" id="-334919053%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="callback-game.html"><span>callback</span><wbr></wbr><span><span>Game</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-334919053%2FProperties%2F-880831646"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="-334919053%2FProperties%2F-880831646" anchor-label="callbackGame" id="-334919053%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="callback-game.html">callbackGame</a><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.game/-callback-game/index.html">CallbackGame</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-895823772%2FProperties%2F-880831646" anchor-label="loginUrl" id="-895823772%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="login-url.html"><span>login</span><wbr></wbr><span><span>Url</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-895823772%2FProperties%2F-880831646"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="-895823772%2FProperties%2F-880831646" anchor-label="loginUrl" id="-895823772%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="login-url.html">loginUrl</a><span class="token operator">: </span><a href="../-login-url/index.html">LoginUrl</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1538026696%2FProperties%2F-880831646" anchor-label="pay" id="1538026696%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="pay.html"><span><span>pay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1538026696%2FProperties%2F-880831646"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="1538026696%2FProperties%2F-880831646" anchor-label="pay" id="1538026696%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="pay.html">pay</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="741945781%2FProperties%2F-880831646" anchor-label="switchInlineQuery" id="741945781%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="switch-inline-query.html"><span>switch</span><wbr></wbr><span>Inline</span><wbr></wbr><span><span>Query</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="741945781%2FProperties%2F-880831646"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="741945781%2FProperties%2F-880831646" anchor-label="switchInlineQuery" id="741945781%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="switch-inline-query.html">switchInlineQuery</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1471658787%2FProperties%2F-880831646" anchor-label="text" id="-1471658787%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="text.html"><span><span>text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1471658787%2FProperties%2F-880831646"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="-1471658787%2FProperties%2F-880831646" anchor-label="text" id="-1471658787%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="text.html">text</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-971344415%2FProperties%2F-880831646" anchor-label="url" id="-971344415%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="url.html"><span><span>url</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-971344415%2FProperties%2F-880831646"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="-971344415%2FProperties%2F-880831646" anchor-label="url" id="-971344415%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="url.html">url</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1768451229%2FProperties%2F-880831646" anchor-label="webApp" id="1768451229%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="web-app.html"><span>web</span><wbr></wbr><span><span>App</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1768451229%2FProperties%2F-880831646"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="1768451229%2FProperties%2F-880831646" anchor-label="webApp" id="1768451229%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="web-app.html">webApp</a><span class="token operator">: </span><a href="../-web-app-info/index.html">WebAppInfo</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
