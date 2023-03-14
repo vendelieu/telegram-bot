@@ -9,7 +9,10 @@ import eu.vendeli.tgbot.types.SentWebAppMessage
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
-class AnswerWebAppQueryAction(webAppQueryId: String, result: InlineQueryResult) : SimpleAction<SentWebAppMessage>, ActionState() {
+class AnswerWebAppQueryAction(
+    webAppQueryId: String,
+    result: InlineQueryResult,
+) : SimpleAction<SentWebAppMessage>, ActionState() {
     override val method: TgMethod = TgMethod("answerWebAppQuery")
     override val returnType = getReturnType()
 

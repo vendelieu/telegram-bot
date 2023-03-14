@@ -10,7 +10,11 @@ import eu.vendeli.tgbot.types.internal.StickerFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
-class SetStickerSetThumbAction(name: String, userId: Long, private val thumb: StickerFile) : MediaAction<Boolean>, ActionState() {
+class SetStickerSetThumbAction(
+    name: String,
+    userId: Long,
+    private val thumb: StickerFile,
+) : MediaAction<Boolean>, ActionState() {
     override val method: TgMethod = TgMethod("setStickerSetThumb")
     override val returnType = getReturnType()
     override val MediaAction<Boolean>.defaultType: MediaContentType

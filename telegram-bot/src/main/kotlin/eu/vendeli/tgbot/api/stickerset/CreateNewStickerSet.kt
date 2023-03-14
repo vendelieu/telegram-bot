@@ -49,10 +49,10 @@ class CreateNewStickerSetAction(
         if (data.needsRepainting != null) parameters["needs_repainting"] = data.needsRepainting
 
         parameters["stickers"] = if (allMediaString) data.stickers
-        else data.stickers.mapIndexed { index, it ->
+        else data.stickers.mapIndexed { index, inputSticker ->
             val defaultName = "sticker-$index.$defaultType"
             InputSticker(
-                sticker = it.sticker.let { s ->
+                sticker = inputSticker.sticker.let { s ->
                     // if string keep it as is
                     if (s.file is ImplicitFile.FromString) return@let s
                     // in other cases put file to special map
@@ -65,9 +65,9 @@ class CreateNewStickerSetAction(
                         contentType = s.contentType,
                     )
                 },
-                emojiList = it.emojiList,
-                maskPosition = it.maskPosition,
-                keywords = it.keywords,
+                emojiList = inputSticker.emojiList,
+                maskPosition = inputSticker.maskPosition,
+                keywords = inputSticker.keywords,
             )
         }
     }

@@ -9,11 +9,11 @@ import eu.vendeli.tgbot.types.internal.Actions
 import eu.vendeli.tgbot.types.internal.Invocation
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import java.lang.reflect.Parameter
+import kotlin.reflect.jvm.kotlinFunction
 import mu.KotlinLogging
 import org.reflections.Reflections
 import org.reflections.scanners.Scanners
-import java.lang.reflect.Parameter
-import kotlin.reflect.jvm.kotlinFunction
 
 /**
  * Collects commands and inputs before the program starts in a particular package by key annotations.
@@ -32,6 +32,7 @@ internal object TelegramActionsCollector {
      * @param packageName the name of the package where the search will take place.
      * @return [Actions]
      */
+    @Suppress("LongMethod")
     fun collect(packageName: String): Actions = with(
         Reflections(
             packageName,

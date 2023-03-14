@@ -8,7 +8,10 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.passport.PassportElementError
 import eu.vendeli.tgbot.utils.getReturnType
 
-class SetPassportDataErrorsAction(userId: Long, errors: List<PassportElementError>) : SimpleAction<Boolean>, ActionState() {
+class SetPassportDataErrorsAction(
+    userId: Long,
+    errors: List<PassportElementError>,
+) : SimpleAction<Boolean>, ActionState() {
     override val method: TgMethod = TgMethod("setPassportDataErrors")
     override val returnType = getReturnType()
 
