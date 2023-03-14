@@ -10,12 +10,12 @@ import eu.vendeli.tgbot.types.internal.toContentType
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import io.ktor.http.ContentType
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.io.File
 import java.nio.file.Files
 import kotlin.collections.set
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * Media action, see [Actions article](https://github.com/vendelieu/telegram-bot/wiki/Actions)
@@ -76,6 +76,9 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
      */
     suspend fun MediaAction<ReturnType>.internalSend(to: Recipient, via: TelegramBot) {
         parameters["chat_id"] = to.get()
+        val filename = parameters["file_name"]?.toString()?.also {
+            parameters.remove("file_name")
+        } ?: media.name ?: "$dataField.$defaultType"
 
         when (media) {
             is ImplicitFile.FromString -> {
@@ -83,28 +86,28 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
                 via.makeSilentRequest(method, parameters)
             }
 
-            is ImplicitFile.FromByteArray -> via.makeSilentRequest(
-                method,
-                dataField,
-                (parameters["file_name"]?.toString() ?: "$dataField.$defaultType"),
-                media.file as ByteArray,
-                parameters,
-                defaultType.toContentType(),
-            )
+            is ImplicitFile.FromByteArray -> via.makeSilentRequest {
+                method = this@internalSend.method
+                dataField = this@internalSend.dataField
+                name = filename
+                data = media.bytes
+                parameters = this@internalSend.parameters
+                contentType = defaultType.toContentType()
+            }
 
-            is ImplicitFile.FromFile -> via.makeSilentRequest(
-                method,
-                dataField,
-                (parameters["file_name"]?.toString() ?: (media.file as File).name),
-                (media.file as File).readBytes(),
-                parameters,
-                withContext(Dispatchers.IO) {
+            is ImplicitFile.FromFile -> via.makeSilentRequest {
+                method = this@internalSend.method
+                dataField = this@internalSend.dataField
+                name = filename
+                data = media.bytes
+                parameters = this@internalSend.parameters
+                contentType = withContext(Dispatchers.IO) {
                     ContentType.parse(
                         Files.probeContentType((media.file as File).toPath())
                             ?: return@withContext defaultType.toContentType(),
                     )
-                },
-            )
+                }
+            }
         }
     }
 
@@ -148,7 +151,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
  * @param returnType response type
  * @param to Recipient
  * @param via Instance of the bot through which the request will be made.
- * @return [Deferred]<[Response]<[ReturnType]>>
+ * @return [Deferred]<[Response]<[R]>>
  */
 internal suspend inline fun <R> MediaAction<R>.internalSendAsync(
     returnType: Class<R>,
@@ -156,6 +159,9 @@ internal suspend inline fun <R> MediaAction<R>.internalSendAsync(
     via: TelegramBot,
 ): Deferred<Response<out R>> {
     parameters["chat_id"] = to.get()
+    val filename = parameters["file_name"]?.toString()?.also {
+        parameters.remove("file_name")
+    } ?: media.name ?: "$dataField.$defaultType"
 
     return when (media) {
         is ImplicitFile.FromString -> {
@@ -163,31 +169,27 @@ internal suspend inline fun <R> MediaAction<R>.internalSendAsync(
             via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
         }
 
-        is ImplicitFile.FromByteArray -> via.makeRequestAsync(
-            method,
-            dataField,
-            (parameters["file_name"]?.toString() ?: "$dataField.$defaultType"),
-            media.file as ByteArray,
-            parameters,
-            defaultType.toContentType(),
-            returnType,
-            wrappedDataType,
-        )
+        is ImplicitFile.FromByteArray -> via.makeRequestAsync(returnType, wrappedDataType) {
+            method = this@internalSendAsync.method
+            dataField = this@internalSendAsync.dataField
+            name = filename
+            data = media.bytes
+            parameters = this@internalSendAsync.parameters
+            contentType = defaultType.toContentType()
+        }
 
-        is ImplicitFile.FromFile -> via.makeRequestAsync(
-            method,
-            dataField,
-            (parameters["file_name"]?.toString() ?: (media.file as File).name),
-            (media.file as File).readBytes(),
-            parameters,
-            withContext(Dispatchers.IO) {
+        is ImplicitFile.FromFile -> via.makeRequestAsync(returnType, wrappedDataType) {
+            method = this@internalSendAsync.method
+            dataField = this@internalSendAsync.dataField
+            name = filename
+            data = media.bytes
+            parameters = this@internalSendAsync.parameters
+            contentType = withContext(Dispatchers.IO) {
                 ContentType.parse(
                     Files.probeContentType((media.file as File).toPath())
                         ?: return@withContext defaultType.toContentType(),
                 )
-            },
-            returnType,
-            wrappedDataType,
-        )
+            }
+        }
     }
 }

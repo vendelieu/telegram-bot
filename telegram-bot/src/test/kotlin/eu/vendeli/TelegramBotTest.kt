@@ -146,29 +146,30 @@ class TelegramBotTest : BotTestContext() {
         val image = classloader.getResource("image.png")?.readBytes()
         image.shouldNotBeNull()
 
-        val mediaReq = bot.makeSilentRequest(
-            TgMethod("sendPhoto"),
-            "photo",
-            "image.jpg",
-            image,
-            mapOf("chat_id" to System.getenv("TELEGRAM_ID").toLong()),
-            ContentType.Image.JPEG,
-        )
+        val mediaReq = bot.makeSilentRequest {
+            method = TgMethod("sendPhoto")
+            dataField = "photo"
+            name = "image.jpg"
+            data = image
+            parameters = mapOf("chat_id" to System.getenv("TELEGRAM_ID").toLong())
+            contentType = ContentType.Image.JPEG
+        }
 
         mediaReq.status shouldBe HttpStatusCode.OK
         mediaReq.bodyAsText().isNotBlank().shouldBeTrue()
         mediaReq.bodyAsText() shouldContain "\"ok\":true"
         mediaReq.bodyAsText() shouldContain "\"file_id\""
         bot.makeRequestAsync(
-            TgMethod("sendPhoto"),
-            "photo",
-            "image.jpg",
-            image,
-            mapOf("chat_id" to System.getenv("TELEGRAM_ID").toLong()),
-            ContentType.Image.JPEG,
             Message::class.java,
             (null as Class<MultipleResponse>?),
-        ).await().isSuccess().shouldBeTrue()
+        ) {
+            method = TgMethod("sendPhoto")
+            dataField = "photo"
+            name = "image.jpg"
+            data = image
+            parameters = mapOf("chat_id" to System.getenv("TELEGRAM_ID").toLong())
+            contentType = ContentType.Image.JPEG
+        }.await().isSuccess().shouldBeTrue()
     }
 
     @Test

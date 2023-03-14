@@ -23,6 +23,5 @@ class SetStickerEmojiListAction(
     }
 }
 
-
 fun setStickerEmojiList(sticker: String, emojiList: List<String>) =
     SetStickerEmojiListAction(sticker, emojiList)

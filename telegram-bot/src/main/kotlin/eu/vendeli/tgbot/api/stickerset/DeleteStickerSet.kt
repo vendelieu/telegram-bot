@@ -19,5 +19,4 @@ class DeleteStickerSetAction(name: String) : SimpleAction<Boolean>, ActionState(
     }
 }
 
-
 fun deleteStickerSet(name: String) = DeleteStickerSetAction(name)

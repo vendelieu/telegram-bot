@@ -23,6 +23,5 @@ class SetCustomEmojiStickerSetThumbnailAction(
     }
 }
 
-
 fun setCustomEmojiStickerSetThumbnail(name: String, customEmojiId: String? = null) =
     SetCustomEmojiStickerSetThumbnailAction(name, customEmojiId)
