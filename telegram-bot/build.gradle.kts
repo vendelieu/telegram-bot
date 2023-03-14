@@ -30,13 +30,14 @@ dependencies {
     implementation("io.ktor:ktor-client-logging:$ktorVer")
 
     implementation("io.github.microutils:kotlin-logging-jvm:$loggingVer")
-    implementation(group = "ch.qos.logback", name = "logback-classic", version = logbackVer)
+    api(group = "ch.qos.logback", name = "logback-classic", version = logbackVer)
 
     implementation(group = "org.reflections", name = "reflections", version = "0.10.2")
     implementation(kotlin("reflect"))
 
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
+    testImplementation("ch.qos.logback:logback-classic:$logbackVer")
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVer")
     testImplementation("io.kotest:kotest-assertions-core:$kotestVer")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVer")
@@ -44,7 +45,7 @@ dependencies {
 }
 
 group = "eu.vendeli"
-version = "2.6.0"
+version = "2.7.0"
 
 apply(from = "publishing.gradle.kts")
 

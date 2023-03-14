@@ -3,31 +3,28 @@
 # Telegram Bot
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot)
-[![Supported version](https://img.shields.io/badge/Bot%20API-6.5-blue)](https://core.telegram.org/bots/api-changelog#february-3-2023)
+[![Supported version](https://img.shields.io/badge/Bot%20API-6.6-blue)](https://core.telegram.org/bots/api-changelog#february-3-2023)
 
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
 [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin) [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/vennyTgBot)
 [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Channel&color=blue&logo=telegram)](https://t.me/v_telegramBot)
 
-Kotlin based wrapper over Telegram API.
+Telegram Bot Api wrapper with a user-friendly interface.
 
 # Installation
 
-Add the MavenCentral repository to your root build.gradle.kts file:
+Add the library itself to the dependencies' module that you need it.
 
-```gradle
-repositories {
-    mavenCentral()
-}
-```
-
-Now add the library itself to the dependencies' module that you need it.
+build.gradle.kts example:
 
 ```gradle
 dependencies {
-    implementation("eu.vendeli:telegram-bot:2.6.0")
+    implementation("eu.vendeli:telegram-bot:2.7.0")
 }
 ```
+
+Or if you use a different builder, look in
+the [installation](https://github.com/vendelieu/telegram-bot/wiki/Installation) article.
 
 # Samples
 
@@ -54,7 +51,7 @@ there you can find in the appropriate branches:
 ```kotlin
 suspend fun main() {
   val bot = TelegramBot("BOT_TOKEN", "com.example.controllers")
-    /**
+  /**
      * Second parameter is the package in which commands/inputs will be searched.
      */
 
@@ -101,6 +98,10 @@ fun main() = runBlocking {
 }
 ```
 
+There is also a [wiki](https://github.com/vendelieu/telegram-bot/wiki) section which is updated frequently.
+
+You are welcome to check it out :)
+
 ### Configuration
 
 You can also change additional parameters of the bot:
@@ -108,8 +109,8 @@ You can also change additional parameters of the bot:
 ```kotlin
 // ...
 val bot = TelegramBot("BOT_TOKEN") {
-    inputListener = RedisInputListenerImpl()
-    classManager = KoinClassManagerImpl()
+  inputListener = RedisInputListenerImpl()
+  classManager = KoinClassManagerImpl()
     logging {
         botLogLevel = Level.DEBUG
     }
@@ -182,7 +183,6 @@ methods [`getOrNull()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bo
 , [`isSuccess()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/is-success.html)
 , [`onFailure()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/on-failure.html)
 
-# More about
+### Questions
 
-You can also read more information in the [wiki](https://github.com/vendelieu/telegram-bot/wiki), and you're always
-welcome in [chat](https://t.me/vennyTgBot).
+You're always welcome in our [chat](https://t.me/vennyTgBot), feel free to ask.
