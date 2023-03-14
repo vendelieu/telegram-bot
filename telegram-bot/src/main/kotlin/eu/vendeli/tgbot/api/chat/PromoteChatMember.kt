@@ -15,7 +15,9 @@ class PromoteChatMemberAction(userId: Long) :
     OptionsFeature<PromoteChatMemberAction, PromoteChatMemberOptions> {
     override val method: TgMethod = TgMethod("promoteChatMember")
     override val returnType = getReturnType()
-    override var options = PromoteChatMemberOptions()
+    override val OptionsFeature<PromoteChatMemberAction, PromoteChatMemberOptions>.options: PromoteChatMemberOptions
+        get() = PromoteChatMemberOptions()
+
     init {
         parameters["user_id"] = userId
     }

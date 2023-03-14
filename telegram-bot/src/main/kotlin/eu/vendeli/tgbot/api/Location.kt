@@ -20,7 +20,9 @@ class SendLocationAction(
     MarkupFeature<SendLocationAction> {
     override val method: TgMethod = TgMethod("sendLocation")
     override val returnType = getReturnType()
-    override var options = LocationOptions()
+    override val OptionsFeature<SendLocationAction, LocationOptions>.options: LocationOptions
+        get() = LocationOptions()
+
     init {
         parameters["latitude"] = latitude
         parameters["longitude"] = longitude

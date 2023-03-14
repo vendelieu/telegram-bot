@@ -17,7 +17,8 @@ class GetUpdatesAction :
     OptionsFeature<GetUpdatesAction, GetUpdatesOptions> {
     override val method: TgMethod = TgMethod("getUpdates")
     override val returnType = getReturnType()
-    override var options = GetUpdatesOptions()
+    override val OptionsFeature<GetUpdatesAction, GetUpdatesOptions>.options: GetUpdatesOptions
+        get() = GetUpdatesOptions()
     override val wrappedDataType = getInnerType()
 }
 

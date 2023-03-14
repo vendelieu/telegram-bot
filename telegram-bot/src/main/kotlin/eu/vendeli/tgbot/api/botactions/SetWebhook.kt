@@ -15,7 +15,9 @@ class SetWebhookAction(url: String) :
     OptionsFeature<SetWebhookAction, SetWebhookOptions> {
     override val method: TgMethod = TgMethod("setWebhook")
     override val returnType = getReturnType()
-    override var options = SetWebhookOptions()
+    override val OptionsFeature<SetWebhookAction, SetWebhookOptions>.options: SetWebhookOptions
+        get() = SetWebhookOptions()
+
     init {
         parameters["url"] = url
     }

@@ -10,9 +10,10 @@ data class CreateNewStickerSetData(
     var stickerType: StickerType? = null,
     var needsRepainting: Boolean? = null,
 ) {
-    internal constructor() : this("", "", listOf()) {
+    internal fun validateFields(): CreateNewStickerSetData {
         require(name.isNotEmpty() && title.isNotEmpty() && stickers.isNotEmpty()) {
             "Field name/title/stickers must not be null or empty."
         }
+        return this
     }
 }

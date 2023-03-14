@@ -110,11 +110,16 @@ class CreateNewStickerSetAction(
     private suspend inline fun internalSendAsync(bot: TelegramBot) =
         if (allMediaString) bot.makeRequestAsync(method, parameters, returnType, wrappedDataType)
         else bot.makeBunchMediaRequestAsync(
-            method, files, parameters, defaultType.toContentType(), returnType, wrappedDataType,
+            method,
+            files,
+            parameters,
+            defaultType.toContentType(),
+            returnType,
+            wrappedDataType,
         )
 }
 
 fun createNewStickerSet(block: CreateNewStickerSetData.() -> Unit) =
-    CreateNewStickerSetAction(CreateNewStickerSetData().apply(block))
+    CreateNewStickerSetAction(CreateNewStickerSetData("", "", listOf()).apply(block).validateFields())
 
 fun createNewStickerSet(data: CreateNewStickerSetData) = CreateNewStickerSetAction(data)

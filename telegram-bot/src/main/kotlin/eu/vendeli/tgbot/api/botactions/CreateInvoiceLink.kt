@@ -25,7 +25,8 @@ import eu.vendeli.tgbot.utils.getReturnType
 class CreateInvoiceLinkAction(
     invoiceData: InvoiceData,
 ) : SimpleAction<String>, OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions>, ActionState() {
-    override var options = CreateInvoiceLinkOptions()
+    override val OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions>.options: CreateInvoiceLinkOptions
+        get() = CreateInvoiceLinkOptions()
     override val method: TgMethod = TgMethod("createInvoiceLink")
     override val returnType = getReturnType()
 

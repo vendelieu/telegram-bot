@@ -26,7 +26,9 @@ class ForwardMessageAction(chatId: Recipient, fromChatId: Recipient, messageId: 
     OptionsFeature<ForwardMessageAction, ForwardMessageOptions> {
     override val method: TgMethod = TgMethod("forwardMessage")
     override val returnType = getReturnType()
-    override var options = ForwardMessageOptions()
+    override val OptionsFeature<ForwardMessageAction, ForwardMessageOptions>.options: ForwardMessageOptions
+        get() = ForwardMessageOptions()
+
     init {
         parameters["chat_id"] = chatId.get()
         parameters["from_chat_id"] = fromChatId.get()

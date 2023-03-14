@@ -18,7 +18,9 @@ class SendDiceAction(emoji: String? = null) :
     MarkupFeature<SendDiceAction> {
     override val method: TgMethod = TgMethod("sendDice")
     override val returnType = getReturnType()
-    override var options = DiceOptions()
+    override val OptionsFeature<SendDiceAction, DiceOptions>.options: DiceOptions
+        get() = DiceOptions()
+
     init {
         if (emoji != null) parameters["emoji"] = emoji
     }

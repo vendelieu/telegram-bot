@@ -25,7 +25,8 @@ class SendVoiceAction(private val voice: ImplicitFile<*>) :
     CaptionFeature<SendVoiceAction> {
     override val method: TgMethod = TgMethod("sendVoice")
     override val returnType = getReturnType()
-    override var options = VoiceOptions()
+    override val OptionsFeature<SendVoiceAction, VoiceOptions>.options: VoiceOptions
+        get() = VoiceOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
 

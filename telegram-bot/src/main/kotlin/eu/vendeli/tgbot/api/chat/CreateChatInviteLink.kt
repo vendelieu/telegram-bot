@@ -16,7 +16,8 @@ class CreateChatInviteLinkAction :
     OptionsFeature<CreateChatInviteLinkAction, ChatInviteLinkOptions> {
     override val method: TgMethod = TgMethod("createChatInviteLink")
     override val returnType = getReturnType()
-    override var options = ChatInviteLinkOptions()
+    override val OptionsFeature<CreateChatInviteLinkAction, ChatInviteLinkOptions>.options: ChatInviteLinkOptions
+        get() = ChatInviteLinkOptions()
 }
 
 fun createChatInviteLink() = CreateChatInviteLinkAction()
