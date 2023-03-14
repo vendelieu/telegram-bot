@@ -23,15 +23,15 @@ import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentBunchMediaRequest
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import io.ktor.util.reflect.instanceOf
-import kotlinx.coroutines.Deferred
 import kotlin.collections.set
+import kotlinx.coroutines.Deferred
 
 class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
     MediaAction<List<Message>>,
     ActionState(),
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions> {
-    internal val isAllMediaFromString = inputMedia.all { it.media.instanceOf(FromString::class) }
-    internal val files by lazy { mutableMapOf<String, ByteArray>() }
+    private val isAllMediaFromString = inputMedia.all { it.media.instanceOf(FromString::class) }
+    private val files by lazy { mutableMapOf<String, ByteArray>() }
     override val method: TgMethod = TgMethod("sendMediaGroup")
     override val returnType = getReturnType()
     override var options = MediaGroupOptions()
@@ -101,26 +101,26 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
 
         return via.makeSilentBunchMediaRequest(method, files, parameters, defaultType.toContentType())
     }
-}
 
-internal suspend inline fun SendMediaGroupAction.internalSendAsync(
-    returnType: Class<List<Message>>,
-    to: Recipient,
-    via: TelegramBot,
-): Deferred<Response<out List<Message>>> {
-    parameters["chat_id"] = to.get()
+    private suspend inline fun internalSendAsync(
+        returnType: Class<List<Message>>,
+        to: Recipient,
+        via: TelegramBot,
+    ): Deferred<Response<out List<Message>>> {
+        parameters["chat_id"] = to.get()
 
-    if (isAllMediaFromString)
-        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
+        if (isAllMediaFromString)
+            return via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
 
-    return via.makeBunchMediaRequestAsync(
-        method,
-        files,
-        parameters = parameters,
-        defaultType.toContentType(),
-        returnType,
-        Message::class.java,
-    )
+        return via.makeBunchMediaRequestAsync(
+            method,
+            files,
+            parameters = parameters,
+            defaultType.toContentType(),
+            returnType,
+            Message::class.java,
+        )
+    }
 }
 
 fun mediaGroup(vararg media: InputMedia.Audio) = SendMediaGroupAction(*media)

@@ -13,19 +13,21 @@ import eu.vendeli.tgbot.types.media.StickerFormat
  *  see [video sticker technical requirements](https://core.telegram.org/stickers#video-sticker-requirements).
  */
 sealed class StickerFile(
-    val file: ByteArray,
+    val file: ImplicitFile<*>,
     val stickerFormat: StickerFormat,
     internal val contentType: MediaContentType,
 ) {
-    class PNG(file: ByteArray) : StickerFile(file, StickerFormat.Static, MediaContentType.ImagePng)
+    class PNG(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Static, MediaContentType.ImagePng)
 
-    class TGS(file: ByteArray) : StickerFile(file, StickerFormat.Animated, MediaContentType.ImageTgs)
+    class TGS(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Animated, MediaContentType.ImageTgs)
 
-    class WEBM(file: ByteArray) : StickerFile(file, StickerFormat.Video, MediaContentType.VideoWebm)
+    class WEBM(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Video, MediaContentType.VideoWebm)
 
-    /**
-     * Converts Sticker to [ImplicitFile.FromByteArray](ImplicitFile.FromByteArray)
-     *
-     */
-    fun toImplicitFile() = ImplicitFile.FromByteArray(file)
+    class WEBP(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Static, MediaContentType.ImageWebp)
+
+    internal class AttachedFile(
+        file: ImplicitFile.FromString,
+        format: StickerFormat,
+        contentType: MediaContentType,
+    ) : StickerFile(file, format, contentType)
 }

@@ -45,7 +45,7 @@ internal suspend inline fun TelegramBot.makeBunchMediaReq(
         ),
     )
     onUpload { bytesSentTotal, contentLength ->
-        logger.trace { "Sent $bytesSentTotal bytes from $contentLength, for $method with $parameters" }
+        logger.trace { "Sent $bytesSentTotal bytes from $contentLength, for $method with payload $parameters" }
     }
 }
 

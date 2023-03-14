@@ -92,21 +92,21 @@ suspend fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
  * @param method The telegram api method to which the request will be made.
  * @param data The data itself.
  * @param returnType Response data type.
- * @param innerType Parameter used to identify the type in the data array.
+ * @param wrappedType Parameter used to identify the type in the data array.
  * @return [Deferred]<[Response]<[T]>>
  */
 internal suspend inline fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
     method: TgMethod,
     data: Any? = null,
     returnType: Class<T>,
-    innerType: Class<I>? = null,
+    wrappedType: Class<I>? = null,
 ): Deferred<Response<out T>> = coroutineScope {
     val response = httpClient.post(method.toUrl()) {
         contentType(ContentType.Application.Json)
         setBody(TelegramBot.mapper.writeValueAsString(data))
     }
 
-    return@coroutineScope handleResponseAsync(response, returnType, innerType)
+    return@coroutineScope handleResponseAsync(response, returnType, wrappedType)
 }
 
 /**

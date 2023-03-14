@@ -16,7 +16,7 @@ class SetStickerSetThumbAction(name: String, userId: Long, private val thumb: St
     override val MediaAction<Boolean>.defaultType: MediaContentType
         get() = thumb.contentType
     override val MediaAction<Boolean>.media: ImplicitFile<*>
-        get() = thumb.toImplicitFile()
+        get() = thumb.file
     override val MediaAction<Boolean>.dataField: String
         get() = "thumb"
 
