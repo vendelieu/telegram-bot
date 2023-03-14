@@ -17,13 +17,13 @@ import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.invokeSuspend
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.processUpdate
-import kotlin.coroutines.coroutineContext
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import mu.KotlinLogging
+import kotlin.coroutines.coroutineContext
 
 /**
  * A class that handles updates.

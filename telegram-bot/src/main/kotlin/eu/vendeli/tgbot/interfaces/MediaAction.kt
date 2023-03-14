@@ -10,12 +10,12 @@ import eu.vendeli.tgbot.types.internal.toContentType
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import io.ktor.http.ContentType
-import java.io.File
-import java.nio.file.Files
-import kotlin.collections.set
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.io.File
+import java.nio.file.Files
+import kotlin.collections.set
 
 /**
  * Media action, see [Actions article](https://github.com/vendelieu/telegram-bot/wiki/Actions)
