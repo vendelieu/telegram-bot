@@ -1,9 +1,11 @@
 package eu.vendeli.tgbot
 
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import eu.vendeli.tgbot.core.EnvConfigLoader
 import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.core.TelegramActionsCollector.collect
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
+import eu.vendeli.tgbot.interfaces.ConfigLoader
 import eu.vendeli.tgbot.interfaces.MagicObject
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.Response
@@ -38,6 +40,15 @@ class TelegramBot(
     commandsPackage: String? = null,
     botConfiguration: BotConfigurator = {},
 ) {
+
+    /**
+     * Constructor to build through configuration loader.
+     */
+    constructor(configLoader: ConfigLoader = EnvConfigLoader) :
+        this(configLoader.token, configLoader.commandsPackage) {
+        config.apply(configLoader.load())
+    }
+
     internal val config = BotConfiguration().apply(botConfiguration)
 
     /**

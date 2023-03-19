@@ -10,7 +10,7 @@ import eu.vendeli.tgbot.interfaces.ClassManager
 class ClassManagerImpl : ClassManager {
 
     // keep class instances
-    private val instances = mutableMapOf<String, Any>()
+    private val instances by lazy { mutableMapOf<String, Any>() }
 
     /**
      * Get instance of class

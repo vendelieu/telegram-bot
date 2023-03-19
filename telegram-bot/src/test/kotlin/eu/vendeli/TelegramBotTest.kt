@@ -1,9 +1,11 @@
 package eu.vendeli
 
 import BotTestContext
+import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
+import eu.vendeli.tgbot.core.EnvConfigLoader
 import eu.vendeli.tgbot.interfaces.BotChatData
 import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.interfaces.BotUserData
@@ -12,6 +14,7 @@ import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.UpdateType
@@ -22,6 +25,7 @@ import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import io.kotest.assertions.throwables.shouldNotThrow
+import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -197,7 +201,63 @@ class TelegramBotTest : BotTestContext() {
         bot.getFileContent(file).shouldBeNull()
     }
 
-    companion object {
+    @Test
+    fun `env configure testing`() {
+        // when token not specified np will be thrown
+        shouldThrow<NullPointerException> { TelegramBot() }
+
+        EnvConfigLoader.envVars = mapOf(
+            "TGBOT_TOKEN" to "test",
+            "TGBOT_COMMANDS_PACKAGE" to "com.example",
+            "TGBOT_API_HOST" to "tg.com",
+            "TGBOT_INPUT_LISTENER" to "eu.vendeli.tgbot.core.BotInputListenerMapImpl",
+            "TGBOT_CLASS_MANAGER" to "eu.vendeli.tgbot.core.ClassManagerImpl",
+            "TGBOT_RATE_LIMITER" to "eu.vendeli.tgbot.core.TokenBucketLimiterImpl",
+            "TGBOT_HTTPC_RQ_TIMEOUT_MILLIS" to "10",
+            "TGBOT_HTTPC_C_TIMEOUT_MILLIS" to "11",
+            "TGBOT_HTTPC_SOC_TIMEOUT_MILLIS" to "12",
+            "TGBOT_HTTPC_MAX_RQ_RETRY" to "13",
+            "TGBOT_HTTPC_RETRY_DELAY" to "1000",
+            "TGBOT_LOG_BOT_LVL" to "WARN",
+            "TGBOT_LOG_HTTP_LVL" to "ALL",
+            "TGBOT_RATES_PERIOD" to "14",
+            "TGBOT_RATES_RATE" to "15",
+            "TGBOT_CTX_USER_DATA" to "other.pckg.BotUserDataImpl",
+            "TGBOT_CTX_CHAT_DATA" to "other.pckg.BotChatDataImpl",
+            "TGBOT_CMDPRS_CMD_DELIMITER" to " ",
+            "TGBOT_CMDPRS_PARAMS_DELIMITER" to "-",
+            "TGBOT_CMDPRS_PARAMVAL_DELIMITER" to "+",
+            "TGBOT_CMDPRS_RESTRICT_SPC_INCMD" to "false",
+        )
+        shouldNotThrowAny { TelegramBot() }.config.apply {
+            apiHost shouldBe "tg.com"
+            inputListener::class.java shouldBe Class.forName("eu.vendeli.tgbot.core.BotInputListenerMapImpl")
+            classManager::class.java shouldBe Class.forName("eu.vendeli.tgbot.core.ClassManagerImpl")
+            rateLimiter::class.java shouldBe Class.forName("eu.vendeli.tgbot.core.TokenBucketLimiterImpl")
+
+            httpClient.requestTimeoutMillis shouldBe 10
+            httpClient.connectTimeoutMillis shouldBe 11
+            httpClient.socketTimeoutMillis shouldBe 12
+            httpClient.maxRequestRetry shouldBe 13
+            httpClient.retryDelay shouldBe 1000
+
+            logging.botLogLevel shouldBe Level.WARN
+            logging.httpLogLevel shouldBe HttpLogLevel.ALL
+
+            rateLimits.period shouldBe 14
+            rateLimits.rate shouldBe 15
+
+            context.userData::class.java shouldBe Class.forName("other.pckg.BotUserDataImpl")
+            context.chatData::class.java shouldBe Class.forName("other.pckg.BotChatDataImpl")
+
+            commandParsing.commandDelimiter shouldBe ' '
+            commandParsing.parametersDelimiter shouldBe '-'
+            commandParsing.parameterValueDelimiter shouldBe '+'
+            commandParsing.restrictSpacesInCommands shouldBe false
+        }
+    }
+
+    internal companion object {
         val dummyProcessedUpdate = ProcessedUpdate(
             UpdateType.MESSAGE,
             null,

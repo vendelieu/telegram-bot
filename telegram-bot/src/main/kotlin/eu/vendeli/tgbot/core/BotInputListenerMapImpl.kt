@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap
  *
  */
 class BotInputListenerMapImpl : BotInputListener {
-    private val storage = ConcurrentHashMap<Long, String>()
+    private val storage by lazy { ConcurrentHashMap<Long, String>() }
 
     /**
      * Set new waiting input

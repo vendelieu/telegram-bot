@@ -19,13 +19,13 @@ data class BotConfiguration(
     var inputListener: BotInputListener = BotInputListenerMapImpl(),
     var classManager: ClassManager = ClassManagerImpl(),
     var rateLimiter: RateLimitMechanism = TokenBucketLimiterImpl(),
+    internal var httpClient: HttpConfiguration = HttpConfiguration(),
+    internal var logging: LoggingConfiguration = LoggingConfiguration(),
+    internal var rateLimits: RateLimits = RateLimits(),
+    internal var updatesListener: UpdatesListenerConfiguration = UpdatesListenerConfiguration(),
+    internal var context: ContextConfiguration = ContextConfiguration(),
+    internal var commandParsing: CommandParsingConfiguration = CommandParsingConfiguration(),
 ) {
-    internal val httpClient = HttpConfiguration()
-    internal val logging = LoggingConfiguration()
-    internal val rateLimits = RateLimits()
-    internal val updatesListener = UpdatesListenerConfiguration()
-    internal val context = ContextConfiguration()
-    internal val commandParsing = CommandParsingConfiguration()
 
     /**
      * Function for configuring the http client. See [HttpConfiguration].
@@ -67,5 +67,20 @@ data class BotConfiguration(
      */
     fun commandParsing(block: CommandParsingConfiguration.() -> Unit) {
         commandParsing.block()
+    }
+
+    internal fun apply(other: BotConfiguration): BotConfiguration {
+        apiHost = other.apiHost
+        inputListener = other.inputListener
+        classManager = other.classManager
+        rateLimiter = other.rateLimiter
+        httpClient = other.httpClient
+        logging = other.logging
+        rateLimits = other.rateLimits
+        updatesListener = other.updatesListener
+        context = other.context
+        commandParsing = other.commandParsing
+
+        return this
     }
 }

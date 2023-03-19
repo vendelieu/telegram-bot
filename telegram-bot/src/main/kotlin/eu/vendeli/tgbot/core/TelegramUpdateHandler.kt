@@ -245,7 +245,7 @@ class TelegramUpdateHandler internal constructor(
 
             actions?.unhandled != null -> invokeMethod(this, actions.unhandled, emptyMap())
 
-            else -> logger.info { "update: $update not handled." }
+            else -> logger.warn { "update: $update not handled." }
         }
     }
 
