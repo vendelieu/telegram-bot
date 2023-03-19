@@ -747,6 +747,10 @@ $dokka.location:eu.vendeli.tgbot.core/BucketState/remainingTokens/#/PointingToDe
 $dokka.location:eu.vendeli.tgbot.core/ClassManagerImpl///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-class-manager-impl/index.html
 $dokka.location:eu.vendeli.tgbot.core/ClassManagerImpl/ClassManagerImpl/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-class-manager-impl/-class-manager-impl.html
 $dokka.location:eu.vendeli.tgbot.core/ClassManagerImpl/getInstance/#java.lang.Class[*]#kotlin.Array[kotlin.Any?]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-class-manager-impl/get-instance.html
+$dokka.location:eu.vendeli.tgbot.core/EnvConfigLoader///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-env-config-loader/index.html
+$dokka.location:eu.vendeli.tgbot.core/EnvConfigLoader/commandsPackage/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-env-config-loader/commands-package.html
+$dokka.location:eu.vendeli.tgbot.core/EnvConfigLoader/load/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-env-config-loader/load.html
+$dokka.location:eu.vendeli.tgbot.core/EnvConfigLoader/token/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-env-config-loader/token.html
 $dokka.location:eu.vendeli.tgbot.core/ManualHandlingDsl///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-manual-handling-dsl/index.html
 $dokka.location:eu.vendeli.tgbot.core/ManualHandlingDsl/andThen/eu.vendeli.tgbot.types.internal.SingleInputChain#eu.vendeli.tgbot.types.internal.configuration.RateLimits#kotlin.coroutines.SuspendFunction1[eu.vendeli.tgbot.types.internal.InputContext,kotlin.Unit]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-manual-handling-dsl/and-then.html
 $dokka.location:eu.vendeli.tgbot.core/ManualHandlingDsl/breakIf/eu.vendeli.tgbot.types.internal.SingleInputChain#kotlin.Function1[eu.vendeli.tgbot.types.internal.InputContext,kotlin.Boolean]#kotlin.Boolean#kotlin.coroutines.SuspendFunction1[eu.vendeli.tgbot.types.internal.InputContext,kotlin.Unit]?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-manual-handling-dsl/break-if.html
@@ -834,6 +838,10 @@ $dokka.location:eu.vendeli.tgbot.interfaces/BotUserData/setAsync/#kotlin.Long#ko
 $dokka.location:eu.vendeli.tgbot.interfaces/Button///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-button/index.html
 $dokka.location:eu.vendeli.tgbot.interfaces/ClassManager///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-class-manager/index.html
 $dokka.location:eu.vendeli.tgbot.interfaces/ClassManager/getInstance/#java.lang.Class[*]#kotlin.Array[kotlin.Any?]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-class-manager/get-instance.html
+$dokka.location:eu.vendeli.tgbot.interfaces/ConfigLoader///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-config-loader/index.html
+$dokka.location:eu.vendeli.tgbot.interfaces/ConfigLoader/commandsPackage/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-config-loader/commands-package.html
+$dokka.location:eu.vendeli.tgbot.interfaces/ConfigLoader/load/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-config-loader/load.html
+$dokka.location:eu.vendeli.tgbot.interfaces/ConfigLoader/token/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-config-loader/token.html
 $dokka.location:eu.vendeli.tgbot.interfaces/IActionState///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-i-action-state/index.html
 $dokka.location:eu.vendeli.tgbot.interfaces/IActionState/parameters/eu.vendeli.tgbot.interfaces.IActionState#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-i-action-state/parameters.html
 $dokka.location:eu.vendeli.tgbot.interfaces/InlineMode///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-inline-mode/index.html
@@ -1113,7 +1121,7 @@ $dokka.location:eu.vendeli.tgbot.types.game/GameHighScore/score/#/PointingToDecl
 $dokka.location:eu.vendeli.tgbot.types.game/GameHighScore/user/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.game/-game-high-score/user.html
 $dokka.location:eu.vendeli.tgbot.types.internal.configuration////PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.configuration/index.html
 $dokka.location:eu.vendeli.tgbot.types.internal.configuration/BotConfiguration///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.configuration/-bot-configuration/index.html
-$dokka.location:eu.vendeli.tgbot.types.internal.configuration/BotConfiguration/BotConfiguration/#kotlin.String#eu.vendeli.tgbot.interfaces.BotInputListener#eu.vendeli.tgbot.interfaces.ClassManager#eu.vendeli.tgbot.interfaces.RateLimitMechanism/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.configuration/-bot-configuration/-bot-configuration.html
+$dokka.location:eu.vendeli.tgbot.types.internal.configuration/BotConfiguration/BotConfiguration/#kotlin.String#eu.vendeli.tgbot.interfaces.BotInputListener#eu.vendeli.tgbot.interfaces.ClassManager#eu.vendeli.tgbot.interfaces.RateLimitMechanism#eu.vendeli.tgbot.types.internal.configuration.HttpConfiguration#eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration#eu.vendeli.tgbot.types.internal.configuration.RateLimits#eu.vendeli.tgbot.types.internal.configuration.UpdatesListenerConfiguration#eu.vendeli.tgbot.types.internal.configuration.ContextConfiguration#eu.vendeli.tgbot.types.internal.configuration.CommandParsingConfiguration/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.configuration/-bot-configuration/-bot-configuration.html
 $dokka.location:eu.vendeli.tgbot.types.internal.configuration/BotConfiguration/apiHost/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.configuration/-bot-configuration/api-host.html
 $dokka.location:eu.vendeli.tgbot.types.internal.configuration/BotConfiguration/classManager/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.configuration/-bot-configuration/class-manager.html
 $dokka.location:eu.vendeli.tgbot.types.internal.configuration/BotConfiguration/commandParsing/#kotlin.Function1[eu.vendeli.tgbot.types.internal.configuration.CommandParsingConfiguration,kotlin.Unit]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal.configuration/-bot-configuration/command-parsing.html
@@ -2764,6 +2772,7 @@ $dokka.location:eu.vendeli.tgbot.utils.builders/ReplyKeyboardMarkupBuilder/webAp
 $dokka.location:eu.vendeli.tgbot.utils////PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils.html
 $dokka.location:eu.vendeli.tgbot////PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/index.html
 $dokka.location:eu.vendeli.tgbot/TelegramBot///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/-telegram-bot/index.html
+$dokka.location:eu.vendeli.tgbot/TelegramBot/TelegramBot/#eu.vendeli.tgbot.interfaces.ConfigLoader/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/-telegram-bot/-telegram-bot.html
 $dokka.location:eu.vendeli.tgbot/TelegramBot/TelegramBot/#kotlin.String#kotlin.String?#kotlin.Function1[eu.vendeli.tgbot.types.internal.configuration.BotConfiguration,kotlin.Unit]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/-telegram-bot/-telegram-bot.html
 $dokka.location:eu.vendeli.tgbot/TelegramBot/addMagicObject/#java.lang.Class[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function0[eu.vendeli.tgbot.interfaces.MagicObject[TypeParam(bounds=[kotlin.Any?])]]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/-telegram-bot/add-magic-object.html
 $dokka.location:eu.vendeli.tgbot/TelegramBot/chatData/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/-telegram-bot/chat-data.html
