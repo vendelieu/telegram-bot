@@ -32,7 +32,7 @@ dependencies {
     implementation("io.github.microutils:kotlin-logging-jvm:$loggingVer")
     api(group = "ch.qos.logback", name = "logback-classic", version = logbackVer)
 
-    implementation(group = "org.reflections", name = "reflections", version = "0.10.2")
+    implementation(group = "org.reflections", name = "reflections", version = "0.10")
     implementation(kotlin("reflect"))
 
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
