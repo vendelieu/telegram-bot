@@ -1,5 +1,11 @@
 # Telegram-bot changelog
 
+#### 2.7.1
+
+* Added new `ConfigLoader` interface and ability to initialize a `TelegramBot` instance through it.
+  The default implementation of configuring via environment variables is present.
+* A lowered version of the reflection library, due to problems with finding actions on some environments.
+
 ## 2.7.0
 
 #### Telegram Api related changes
