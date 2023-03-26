@@ -33,8 +33,8 @@ class ForwardMessageAction(chatId: Recipient, fromChatId: Recipient, messageId: 
         get() = ForwardMessageOptions()
 
     init {
-        parameters["chat_id"] = chatId.get()
-        parameters["from_chat_id"] = fromChatId.get()
+        parameters["chat_id"] = chatId.get
+        parameters["from_chat_id"] = fromChatId.get
         parameters["message_id"] = messageId
     }
 }

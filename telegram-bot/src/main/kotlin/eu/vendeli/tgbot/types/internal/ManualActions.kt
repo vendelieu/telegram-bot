@@ -19,7 +19,7 @@ import eu.vendeli.tgbot.utils.OnPreCheckoutQueryAction
 import eu.vendeli.tgbot.utils.OnShippingQueryAction
 import eu.vendeli.tgbot.utils.WhenNotHandledAction
 
-sealed class CommandSelector {
+internal sealed class CommandSelector {
     abstract val rateLimits: RateLimits
 
     data class String(val command: kotlin.String, override val rateLimits: RateLimits) : CommandSelector()
@@ -31,7 +31,7 @@ sealed class CommandSelector {
     }
 }
 
-data class ManualActions(
+internal data class ManualActions(
     var onMessage: OnMessageAction? = null,
     var onEditedMessage: OnEditedMessageAction? = null,
     var onPollAnswer: OnPollAnswerAction? = null,

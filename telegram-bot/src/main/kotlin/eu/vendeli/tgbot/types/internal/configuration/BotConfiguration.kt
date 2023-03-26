@@ -1,10 +1,10 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
-import eu.vendeli.tgbot.core.InputListenerMapImpl
 import eu.vendeli.tgbot.core.ClassManagerImpl
+import eu.vendeli.tgbot.core.InputListenerMapImpl
 import eu.vendeli.tgbot.core.TokenBucketLimiterImpl
-import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.ClassManager
+import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 
 /**

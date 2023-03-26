@@ -48,8 +48,8 @@ class CopyMessageAction(
         get() = "caption_entities"
 
     init {
-        parameters["chat_id"] = chatId.get()
-        parameters["from_chat_id"] = fromChatId.get()
+        parameters["chat_id"] = chatId.get
+        parameters["from_chat_id"] = fromChatId.get
         parameters["message_id"] = messageId
     }
 }

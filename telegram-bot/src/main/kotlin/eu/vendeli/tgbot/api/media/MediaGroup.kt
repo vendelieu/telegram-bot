@@ -96,7 +96,7 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
         to: Recipient,
         via: TelegramBot,
     ) {
-        parameters["chat_id"] = to.get()
+        parameters["chat_id"] = to.get
 
         if (isAllMediaFromString) {
             via.makeSilentRequest(method, parameters)
@@ -111,7 +111,7 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
         to: Recipient,
         via: TelegramBot,
     ): Deferred<Response<out List<Message>>> {
-        parameters["chat_id"] = to.get()
+        parameters["chat_id"] = to.get
 
         if (isAllMediaFromString)
             return via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
