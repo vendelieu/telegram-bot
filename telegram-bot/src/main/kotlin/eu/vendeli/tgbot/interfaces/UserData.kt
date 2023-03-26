@@ -2,10 +2,16 @@ package eu.vendeli.tgbot.interfaces
 
 import kotlinx.coroutines.Deferred
 
+@Deprecated(
+    "Use UserData instead",
+    ReplaceWith("eu.vendeli.tgbot.interfaces.UserData"),
+)
+interface BotUserData : UserData
+
 /**
  * Bot user data, see [Bot context article](https://github.com/vendelieu/telegram-bot/wiki/Bot-Context)
  */
-interface BotUserData {
+interface UserData {
     /**
      * Set new UserData value
      *

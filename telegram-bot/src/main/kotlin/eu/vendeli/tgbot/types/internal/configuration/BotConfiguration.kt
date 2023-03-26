@@ -1,9 +1,9 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
-import eu.vendeli.tgbot.core.BotInputListenerMapImpl
+import eu.vendeli.tgbot.core.InputListenerMapImpl
 import eu.vendeli.tgbot.core.ClassManagerImpl
 import eu.vendeli.tgbot.core.TokenBucketLimiterImpl
-import eu.vendeli.tgbot.interfaces.BotInputListener
+import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 
@@ -16,7 +16,7 @@ import eu.vendeli.tgbot.interfaces.RateLimitMechanism
  */
 data class BotConfiguration(
     var apiHost: String = "api.telegram.org",
-    var inputListener: BotInputListener = BotInputListenerMapImpl(),
+    var inputListener: InputListener = InputListenerMapImpl(),
     var classManager: ClassManager = ClassManagerImpl(),
     var rateLimiter: RateLimitMechanism = TokenBucketLimiterImpl(),
     internal var httpClient: HttpConfiguration = HttpConfiguration(),

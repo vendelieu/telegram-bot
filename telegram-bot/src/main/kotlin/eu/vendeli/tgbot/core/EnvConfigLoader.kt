@@ -1,9 +1,9 @@
 package eu.vendeli.tgbot.core
 
 import ch.qos.logback.classic.Level
-import eu.vendeli.tgbot.interfaces.BotChatData
-import eu.vendeli.tgbot.interfaces.BotInputListener
-import eu.vendeli.tgbot.interfaces.BotUserData
+import eu.vendeli.tgbot.interfaces.InputListener
+import eu.vendeli.tgbot.interfaces.UserData
+import eu.vendeli.tgbot.interfaces.ChatData
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.ConfigLoader
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
@@ -28,7 +28,7 @@ object EnvConfigLoader : ConfigLoader {
     override fun load(): BotConfiguration = apply2Config {
         // general
         getVal("API_HOST")?.also { apiHost = it }
-        getVal("INPUT_LISTENER")?.also { inputListener = it.init() as BotInputListener }
+        getVal("INPUT_LISTENER")?.also { inputListener = it.init() as InputListener }
         getVal("CLASS_MANAGER")?.also { classManager = it.init() as ClassManager }
         getVal("RATE_LIMITER")?.also { rateLimiter = it.init() as RateLimitMechanism }
         // httpClient
@@ -44,8 +44,8 @@ object EnvConfigLoader : ConfigLoader {
         getVal("RATES_PERIOD")?.toLongOrNull()?.also { rateLimits.period = it }
         getVal("RATES_RATE")?.toLongOrNull()?.also { rateLimits.rate = it }
         // context
-        getVal("CTX_USER_DATA")?.also { context.userData = it.init() as BotUserData }
-        getVal("CTX_CHAT_DATA")?.also { context.chatData = it.init() as BotChatData }
+        getVal("CTX_USER_DATA")?.also { context.userData = it.init() as UserData }
+        getVal("CTX_CHAT_DATA")?.also { context.chatData = it.init() as ChatData }
         // commandParsing
         getVal("CMDPRS_CMD_DELIMITER")?.firstOrNull()?.also { commandParsing.commandDelimiter = it }
         getVal("CMDPRS_PARAMS_DELIMITER")?.firstOrNull()?.also { commandParsing.parametersDelimiter = it }

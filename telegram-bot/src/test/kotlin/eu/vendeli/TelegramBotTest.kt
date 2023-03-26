@@ -6,18 +6,18 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.core.EnvConfigLoader
-import eu.vendeli.tgbot.interfaces.BotChatData
-import eu.vendeli.tgbot.interfaces.BotInputListener
-import eu.vendeli.tgbot.interfaces.BotUserData
+import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.MagicObject
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.chat.Chat
+import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
+import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.TgMethod
-import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
@@ -40,6 +40,8 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Deferred
+import other.pckg.UserDataImpl
+import other.pckg.ChatDataImpl
 
 class TelegramBotTest : BotTestContext() {
     @Test
@@ -103,12 +105,12 @@ class TelegramBotTest : BotTestContext() {
     fun `user data setting`() {
         val bot = TelegramBot("") {
             context {
-                userData = userDataImpl
+                userData = UserDataImpl()
             }
         }
 
         shouldNotThrow<NotImplementedError> { bot.userData }
-        bot.userData shouldBeEqualToComparingFields userDataImpl
+        bot.userData::class.java shouldBe UserDataImpl::class.java
     }
 
     @Test
@@ -122,12 +124,12 @@ class TelegramBotTest : BotTestContext() {
     fun `chat data setting`() {
         val bot = TelegramBot("") {
             context {
-                chatData = chatDataImpl
+                chatData = ChatDataImpl()
             }
         }
 
         shouldNotThrow<NotImplementedError> { bot.chatData }
-        bot.chatData shouldBeEqualToComparingFields chatDataImpl
+        bot.chatData::class.java shouldBe ChatDataImpl::class.java
     }
 
     @Test
@@ -258,14 +260,13 @@ class TelegramBotTest : BotTestContext() {
     }
 
     internal companion object {
-        val dummyProcessedUpdate = ProcessedUpdate(
-            UpdateType.MESSAGE,
-            null,
-            User.EMPTY,
+        val dummyProcessedUpdate = MessageUpdate(
+            -0,
             Update(-1),
+            Message(-0, chat = Chat(-0, type = ChatType.Private), date = -0),
         )
 
-        val inputListenerImpl = object : BotInputListener {
+        val inputListenerImpl = object : InputListener {
             override fun set(telegramId: Long, identifier: String) = TODO("Not yet implemented")
             override suspend fun setAsync(telegramId: Long, identifier: String): Deferred<Boolean> =
                 TODO("Not yet implemented")
@@ -274,40 +275,6 @@ class TelegramBotTest : BotTestContext() {
             override suspend fun getAsync(telegramId: Long): Deferred<String?> = TODO("Not yet implemented")
             override fun del(telegramId: Long) = TODO("Not yet implemented")
             override suspend fun delAsync(telegramId: Long): Deferred<Boolean> = TODO("Not yet implemented")
-        }
-
-        val userDataImpl = object : BotUserData {
-            override fun set(telegramId: Long, key: String, value: Any?) = TODO("Not yet implemented")
-            override suspend fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean> =
-                TODO("Not yet implemented")
-
-            override fun <T> get(telegramId: Long, key: String): T = TODO("Not yet implemented")
-            override suspend fun <T> getAsync(telegramId: Long, key: String): Deferred<T?> =
-                TODO("Not yet implemented")
-
-            override fun del(telegramId: Long, key: String) = TODO("Not yet implemented")
-            override suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean> =
-                TODO("Not yet implemented")
-        }
-
-        val chatDataImpl = object : BotChatData {
-            override fun set(telegramId: Long, key: String, value: Any?) = TODO("Not yet implemented")
-            override suspend fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean> =
-                TODO("Not yet implemented")
-
-            override fun <T> get(telegramId: Long, key: String): T =
-                TODO("Not yet implemented")
-
-            override suspend fun <T> getAsync(telegramId: Long, key: String): Deferred<T?> =
-                TODO("Not yet implemented")
-
-            override fun del(telegramId: Long, key: String) = TODO("Not yet implemented")
-            override suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean> =
-                TODO("Not yet implemented")
-
-            override fun delPrevChatSection(telegramId: Long) = TODO("Not yet implemented")
-            override suspend fun delPrevChatSectionAsync(telegramId: Long): Deferred<Boolean> =
-                TODO("Not yet implemented")
         }
     }
 }

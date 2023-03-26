@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
-import eu.vendeli.tgbot.interfaces.BotChatData
-import eu.vendeli.tgbot.interfaces.BotUserData
+import eu.vendeli.tgbot.interfaces.UserData
+import eu.vendeli.tgbot.interfaces.ChatData
 
 /**
  * A class containing configurations related to
@@ -12,16 +12,16 @@ import eu.vendeli.tgbot.interfaces.BotUserData
  */
 @Suppress("PropertyName", "VariableNaming")
 class ContextConfiguration {
-    internal var _chatData: BotChatData? = null
-    private var _userData: BotUserData? = null
+    internal var _chatData: ChatData? = null
+    private var _userData: UserData? = null
 
-    var userData: BotUserData
+    var userData: UserData
         get() = _userData ?: throw NotImplementedError("Class to manage the User context is not set.")
         set(value) {
             if (_userData == null) _userData = value
         }
 
-    var chatData: BotChatData
+    var chatData: ChatData
         get() = _chatData ?: throw NotImplementedError("Class to manage the Chat context is not set.")
         set(value) {
             if (_chatData == null) _chatData = value

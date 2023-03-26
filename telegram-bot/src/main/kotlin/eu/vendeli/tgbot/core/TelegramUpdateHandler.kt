@@ -2,8 +2,8 @@ package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
-import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.interfaces.ClassManager
+import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
@@ -20,15 +20,14 @@ import eu.vendeli.tgbot.utils.NewCoroutineContext
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.findAction
 import eu.vendeli.tgbot.utils.invokeSuspend
-import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.processUpdate
+import kotlin.coroutines.coroutineContext
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import mu.KotlinLogging
-import kotlin.coroutines.coroutineContext
 
 /**
  * A class that handles updates.
@@ -43,7 +42,7 @@ class TelegramUpdateHandler internal constructor(
     internal val actions: Actions? = null,
     internal val bot: TelegramBot,
     private val classManager: ClassManager,
-    private val inputListener: BotInputListener,
+    private val inputListener: InputListener,
     internal val rateLimiter: RateLimitMechanism,
 ) {
     internal val logger = KotlinLogging.logger {}

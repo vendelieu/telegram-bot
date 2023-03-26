@@ -2,7 +2,7 @@ package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.answerCallbackQuery
-import eu.vendeli.tgbot.interfaces.BotInputListener
+import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActionContext
@@ -40,7 +40,7 @@ import eu.vendeli.tgbot.utils.parseCommand
 @Suppress("unused", "MemberVisibilityCanBePrivate", "TooManyFunctions")
 class ManualHandlingDsl internal constructor(
     private val bot: TelegramBot,
-    private val inputListener: BotInputListener,
+    private val inputListener: InputListener,
 ) {
     private val manualActions = ManualActions()
 
