@@ -1,13 +1,14 @@
 package eu.vendeli.tgbot.types.internal
 
 sealed class Recipient {
-    abstract fun get(): Any
+    abstract val get: Any
+
     data class String(val to: kotlin.String) : Recipient() {
-        override fun get(): Any = to
+        override val get get(): Any = to
     }
 
     data class Long(val to: kotlin.Long) : Recipient() {
-        override fun get(): Any = to
+        override val get get(): Any = to
     }
 
     companion object {

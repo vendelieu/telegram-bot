@@ -75,7 +75,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
      * @param via Instance of the bot through which the request will be made.
      */
     suspend fun MediaAction<ReturnType>.internalSend(to: Recipient, via: TelegramBot) {
-        parameters["chat_id"] = to.get()
+        parameters["chat_id"] = to.get
         val filename = parameters["file_name"]?.toString()?.also {
             parameters.remove("file_name")
         } ?: media.name ?: "$dataField.$defaultType"
@@ -158,7 +158,7 @@ internal suspend inline fun <R> MediaAction<R>.internalSendAsync(
     to: Recipient,
     via: TelegramBot,
 ): Deferred<Response<out R>> {
-    parameters["chat_id"] = to.get()
+    parameters["chat_id"] = to.get
     val filename = parameters["file_name"]?.toString()?.also {
         parameters.remove("file_name")
     } ?: media.name ?: "$dataField.$defaultType"

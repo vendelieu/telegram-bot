@@ -40,8 +40,8 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Deferred
-import other.pckg.UserDataImpl
 import other.pckg.ChatDataImpl
+import other.pckg.UserDataImpl
 
 class TelegramBotTest : BotTestContext() {
     @Test

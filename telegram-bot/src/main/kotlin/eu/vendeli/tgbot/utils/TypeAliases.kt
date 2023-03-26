@@ -39,7 +39,7 @@ typealias OnCommandAction = suspend CommandContext.() -> Unit
 typealias OnInputAction = suspend InputContext.() -> Unit
 
 typealias InputActions = MutableMap<String, SingleInputChain>
-typealias CommandActions = MutableMap<CommandSelector, suspend CommandContext.() -> Unit>
+internal typealias CommandActions = MutableMap<CommandSelector, suspend CommandContext.() -> Unit>
 
 typealias HandlingBehaviourBlock = suspend TelegramUpdateHandler.(Update) -> Unit
 typealias ManualHandlingBlock = suspend ManualHandlingDsl.() -> Unit

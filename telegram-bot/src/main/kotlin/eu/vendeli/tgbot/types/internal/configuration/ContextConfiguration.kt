@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
-import eu.vendeli.tgbot.interfaces.UserData
 import eu.vendeli.tgbot.interfaces.ChatData
+import eu.vendeli.tgbot.interfaces.UserData
 
 /**
  * A class containing configurations related to

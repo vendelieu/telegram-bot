@@ -1,12 +1,12 @@
 package eu.vendeli.tgbot.core
 
 import ch.qos.logback.classic.Level
-import eu.vendeli.tgbot.interfaces.InputListener
-import eu.vendeli.tgbot.interfaces.UserData
 import eu.vendeli.tgbot.interfaces.ChatData
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.ConfigLoader
+import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
+import eu.vendeli.tgbot.interfaces.UserData
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 
