@@ -12,10 +12,4 @@ data class User(
     val canJoinGroups: Boolean? = null,
     val canReadAllGroupMessages: Boolean? = null,
     val supportsInlineQueries: Boolean? = null,
-) {
-    fun isPresent() = id > 0
-
-    internal companion object {
-        val EMPTY = User(-0, false, "")
-    }
-}
+)

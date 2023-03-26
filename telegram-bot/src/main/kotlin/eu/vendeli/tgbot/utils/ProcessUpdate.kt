@@ -1,109 +1,50 @@
 package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.types.Update
-import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.ProcessedUpdate
-import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
+import eu.vendeli.tgbot.types.internal.ChannelPostUpdate
+import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
+import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
+import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
+import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
+import eu.vendeli.tgbot.types.internal.EditedMessageUpdate
+import eu.vendeli.tgbot.types.internal.InlineQueryUpdate
+import eu.vendeli.tgbot.types.internal.MessageUpdate
+import eu.vendeli.tgbot.types.internal.MyChatMemberUpdate
+import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
+import eu.vendeli.tgbot.types.internal.PollUpdate
+import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
+import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 
-@Suppress("LongMethod", "CyclomaticComplexMethod")
-internal fun processUpdate(update: Update): ProcessedUpdate = when {
-    update.message != null -> ProcessedUpdate(
-        type = UpdateType.MESSAGE,
-        text = update.message.text,
-        user = update.message.from!!,
-        fullUpdate = update,
-    )
+@Suppress("CyclomaticComplexMethod")
+internal fun Update.processUpdate() = when {
+    message != null -> MessageUpdate(updateId, this, message)
 
-    update.editedMessage != null -> ProcessedUpdate(
-        type = UpdateType.EDIT_MESSAGE,
-        text = update.editedMessage.text,
-        user = update.editedMessage.from!!,
-        fullUpdate = update,
-    )
+    editedMessage != null -> EditedMessageUpdate(updateId, this, editedMessage)
 
-    update.channelPost != null -> ProcessedUpdate(
-        type = UpdateType.CHANNEL_POST,
-        text = update.channelPost.text,
-        user = update.channelPost.from ?: User.EMPTY,
-        fullUpdate = update,
-    )
+    channelPost != null -> ChannelPostUpdate(updateId, this, channelPost)
 
-    update.editedChannelPost != null -> ProcessedUpdate(
-        type = UpdateType.EDITED_CHANNEL_POST,
-        text = update.editedChannelPost.text,
-        user = update.editedChannelPost.from ?: User.EMPTY,
-        fullUpdate = update,
-    )
+    editedChannelPost != null -> EditedChannelPostUpdate(updateId, this, editedChannelPost)
 
-    update.inlineQuery != null -> ProcessedUpdate(
-        type = UpdateType.INLINE_QUERY,
-        text = update.inlineQuery.query,
-        user = update.inlineQuery.from,
-        fullUpdate = update,
-    )
+    inlineQuery != null -> InlineQueryUpdate(updateId, this, inlineQuery)
 
-    update.chosenInlineResult != null -> ProcessedUpdate(
-        type = UpdateType.CHOSEN_INLINE_RESULT,
-        text = update.chosenInlineResult.query,
-        user = update.chosenInlineResult.from,
-        fullUpdate = update,
-    )
+    chosenInlineResult != null -> ChosenInlineResultUpdate(updateId, this, chosenInlineResult)
 
-    update.callbackQuery != null -> ProcessedUpdate(
-        type = UpdateType.CALLBACK_QUERY,
-        text = update.callbackQuery.data,
-        user = update.callbackQuery.from,
-        fullUpdate = update,
-    )
+    callbackQuery != null -> CallbackQueryUpdate(updateId, this, callbackQuery)
 
-    update.shippingQuery != null -> ProcessedUpdate(
-        type = UpdateType.SHIPPING_QUERY,
-        text = update.shippingQuery.invoicePayload,
-        user = update.shippingQuery.from,
-        fullUpdate = update,
-    )
+    shippingQuery != null -> ShippingQueryUpdate(updateId, this, shippingQuery)
 
-    update.preCheckoutQuery != null -> ProcessedUpdate(
-        type = UpdateType.PRE_CHECKOUT_QUERY,
-        text = update.preCheckoutQuery.invoicePayload,
-        user = update.preCheckoutQuery.from,
-        fullUpdate = update,
-    )
+    preCheckoutQuery != null -> PreCheckoutQueryUpdate(updateId, this, preCheckoutQuery)
 
-    update.poll != null -> ProcessedUpdate(
-        type = UpdateType.POLL,
-        text = update.poll.question,
-        user = User.EMPTY,
-        fullUpdate = update,
-    )
+    poll != null -> PollUpdate(updateId, this, poll)
 
-    update.pollAnswer != null -> ProcessedUpdate(
-        type = UpdateType.POLL_ANSWER,
-        text = null,
-        user = update.pollAnswer.user,
-        fullUpdate = update,
-    )
+    pollAnswer != null -> PollAnswerUpdate(updateId, this, pollAnswer)
 
-    update.myChatMember != null -> ProcessedUpdate(
-        type = UpdateType.MY_CHAT_MEMBER,
-        text = null,
-        user = update.myChatMember.from,
-        fullUpdate = update,
-    )
+    myChatMember != null -> MyChatMemberUpdate(updateId, this, myChatMember)
 
-    update.chatMember != null -> ProcessedUpdate(
-        type = UpdateType.CHAT_MEMBER,
-        text = null,
-        user = update.chatMember.from,
-        fullUpdate = update,
-    )
+    chatMember != null -> ChatMemberUpdate(updateId, this, chatMember)
 
-    update.chatJoinRequest != null -> ProcessedUpdate(
-        type = UpdateType.CHAT_JOIN_REQUEST,
-        text = null,
-        user = update.chatJoinRequest.from,
-        fullUpdate = update,
-    )
+    chatJoinRequest != null -> ChatJoinRequestUpdate(updateId, this, chatJoinRequest)
 
-    else -> ProcessedUpdate(UpdateType.UNKNOWN, "", User.EMPTY, update)
+    else -> throw IllegalArgumentException("Unknown type of update.")
 }

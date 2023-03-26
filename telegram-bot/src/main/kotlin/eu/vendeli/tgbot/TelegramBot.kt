@@ -72,7 +72,7 @@ class TelegramBot(
 
     internal fun TgMethod.toUrl() = TELEGRAM_API_URL_PATTERN.format(config.apiHost, token) + name
 
-    internal val magicObjects = mutableMapOf<Class<*>, MagicObject<*>>()
+    internal val magicObjects by lazy { mutableMapOf<Class<*>, MagicObject<*>>() }
 
     /**
      * Current bot [TelegramUpdateHandler] instance

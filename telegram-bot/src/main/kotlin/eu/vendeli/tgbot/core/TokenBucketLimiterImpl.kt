@@ -17,7 +17,7 @@ import kotlin.time.Duration.Companion.milliseconds
  * @property remainingTokens Remaining number of requests.
  * @property lastUpdated Last update.
  */
-data class BucketState(
+internal data class BucketState(
     val remainingTokens: Long,
     val lastUpdated: Instant,
 )
@@ -27,7 +27,10 @@ data class BucketState(
  */
 open class TokenBucketLimiterImpl : RateLimitMechanism {
     private val state: ConcurrentHashMap<String, AtomicReference<BucketState>> = ConcurrentHashMap()
-    private val instant: Instant get() { return Instant.now() }
+    private val instant: Instant
+        get() {
+            return Instant.now()
+        }
 
     private suspend fun compareAndSet(key: String, compareAndSetFunction: (current: BucketState?) -> BucketState) {
         val currentState = state[key]

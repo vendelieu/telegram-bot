@@ -6,14 +6,19 @@ import eu.vendeli.tgbot.interfaces.BotInputListener
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.Actions
 import eu.vendeli.tgbot.types.internal.Activity
+import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
 import eu.vendeli.tgbot.types.internal.Invocation
+import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.UserReference
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
 import eu.vendeli.tgbot.utils.NewCoroutineContext
 import eu.vendeli.tgbot.utils.checkIsLimited
+import eu.vendeli.tgbot.utils.findAction
 import eu.vendeli.tgbot.utils.invokeSuspend
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.processUpdate
@@ -35,7 +40,7 @@ import kotlin.coroutines.coroutineContext
  */
 @Suppress("unused", "MemberVisibilityCanBePrivate")
 class TelegramUpdateHandler internal constructor(
-    private val actions: Actions? = null,
+    internal val actions: Actions? = null,
     internal val bot: TelegramBot,
     private val classManager: ClassManager,
     private val inputListener: BotInputListener,
@@ -100,26 +105,6 @@ class TelegramUpdateHandler internal constructor(
     }
 
     /**
-     * Function for mapping text with a specific command or input.
-     *
-     * @param text
-     * @param command true to search in commands or false to search among inputs. Default - true.
-     * @return [Activity] if actions was found or null.
-     */
-    private fun findAction(text: String, command: Boolean = true): Activity? {
-        val message = parseCommand(text)
-        val invocation = if (command) actions?.commands else {
-            actions?.inputs
-        }?.get(message.command)
-        return if (invocation != null) Activity(
-            id = message.command,
-            invocation = invocation,
-            parameters = message.params,
-            rateLimits = invocation.rateLimits,
-        ) else null
-    }
-
-    /**
      * Updates parsing method
      *
      * @param update
@@ -152,19 +137,19 @@ class TelegramUpdateHandler internal constructor(
     /**
      * Function used to call functions with certain parameters processed after receiving update.
      *
-     * @param update
+     * @param pUpdate
      * @param invocation
      * @param parameters
      * @return null on success or [Throwable].
      */
     @Suppress("CyclomaticComplexMethod", "SpreadOperator")
     private suspend fun invokeMethod(
-        update: ProcessedUpdate,
+        pUpdate: ProcessedUpdate,
         invocation: Invocation,
         parameters: Map<String, String>,
     ) {
         var isSuspend = false
-        logger.trace { "Parsing arguments for Update#${update.fullUpdate.updateId}" }
+        logger.trace { "Parsing arguments for Update#${pUpdate.updateId}" }
         val processedParameters = buildList {
             invocation.method.parameters.forEach { p ->
                 if (p.type.name == "kotlin.coroutines.Continuation") {
@@ -182,10 +167,10 @@ class TelegramUpdateHandler internal constructor(
                     "java.lang.Double", "double" -> add(parameters[parameterName]?.toDoubleOrNull())
                     else -> add(null)
                 } else when {
-                    typeName == "eu.vendeli.tgbot.types.User" -> add(update.user)
+                    typeName == "eu.vendeli.tgbot.types.User" -> add((pUpdate as? UserReference)?.user)
                     typeName == "eu.vendeli.tgbot.TelegramBot" -> add(bot)
-                    typeName == "eu.vendeli.tgbot.types.internal.ProcessedUpdate" -> add(update)
-                    bot.magicObjects.contains(p.type) -> add(bot.magicObjects[p.type]?.get(update, bot))
+                    typeName == "eu.vendeli.tgbot.types.internal.ProcessedUpdate" -> add(pUpdate)
+                    bot.magicObjects.contains(p.type) -> add(bot.magicObjects[p.type]?.get(pUpdate, bot))
                     else -> add(null)
                 }
             }
@@ -193,21 +178,37 @@ class TelegramUpdateHandler internal constructor(
         logger.trace { "Parsed arguments - $processedParameters." }
 
         bot.config.context._chatData?.run {
-            if (!update.user.isPresent()) return@run
-            val prevClassName = getAsync<String>(update.user.id, "PrevInvokedClass").await()
-            if (prevClassName != invocation.clazz.name) delPrevChatSectionAsync(update.user.id).await()
+            if ((pUpdate as? UserReference)?.user?.id == null) return@run
+            // check for user id nullability
+            val prevClassName = getAsync<String>(pUpdate.user!!.id, "PrevInvokedClass").await()
+            if (prevClassName != invocation.clazz.name) delPrevChatSectionAsync(pUpdate.user!!.id).await()
 
-            setAsync(update.user.id, "PrevInvokedClass", invocation.clazz.name).await()
+            setAsync(pUpdate.user!!.id, "PrevInvokedClass", invocation.clazz.name).await()
         }
 
-        logger.trace { "Invoking function for Update#${update.fullUpdate.updateId}" }
+        logger.trace { "Invoking function for Update#${pUpdate.updateId}" }
         invocation.runCatching {
             if (isSuspend) method.invokeSuspend(classManager.getInstance(clazz), *processedParameters)
             else method.invoke(classManager.getInstance(clazz), *processedParameters)
         }.onFailure {
-            logger.error(it) { "Method {$invocation} invocation error at handling update: $update" }
-            caughtExceptions.send((it.cause ?: it) to update.fullUpdate)
-        }.onSuccess { logger.info { "Handled update#${update.fullUpdate.updateId} to method ${invocation.method}" } }
+            logger.error(it) { "Method {$invocation} invocation error at handling update: $pUpdate" }
+            caughtExceptions.send((it.cause ?: it) to pUpdate.update)
+        }.onSuccess { logger.info { "Handled update#${pUpdate.updateId} to method ${invocation.method}" } }
+    }
+
+    private suspend inline fun String?.getActivityOrNull(user: User?): Activity? {
+        if (this == null) return null
+
+        val commandAction = findAction(substringBefore('@'))
+        var inputAction: Activity? = null
+
+        if (user != null && commandAction == null) {
+            inputAction = inputListener.getAsync(user.id).await()?.let { findAction(it, false) }
+            inputListener.delAsync(user.id).await()
+        }
+        logger.trace { "Result of finding action - command: $commandAction, input: $inputAction" }
+
+        return commandAction ?: inputAction
     }
 
     /**
@@ -216,32 +217,26 @@ class TelegramUpdateHandler internal constructor(
      * @param update
      * @return null on success or [Throwable].
      */
-    @Suppress("CyclomaticComplexMethod")
-    suspend fun handle(update: Update) = processUpdate(update).run {
+    suspend fun handle(update: Update) = update.processUpdate().run {
         logger.trace { "Handling update: $update" }
-        val telegramId = update.message?.from?.id
-        if (checkIsLimited(bot.config.rateLimits, telegramId)) return@run null
+        val user = if (this is UserReference) user else null
+        val text = when (this) {
+            is MessageUpdate -> message.text
+            is CallbackQueryUpdate -> callbackQuery.data
+            else -> null
+        }
+        if (checkIsLimited(bot.config.rateLimits, user?.id)) return@run null
 
-        val commandAction = if (text != null) findAction(text.substringBefore('@')) else null
-        val inputAction = if (commandAction == null) inputListener.getAsync(user.id).await()?.let {
-            findAction(it, false)
-        } else null
-        logger.trace { "Result of finding action - command: $commandAction, input: $inputAction" }
-        inputListener.delAsync(user.id).await()
+        val action = text.getActivityOrNull(user)
 
-        val action = commandAction ?: inputAction
-        if (action != null && checkIsLimited(action.rateLimits, telegramId, action.id)) {
+        if (action != null && checkIsLimited(action.rateLimits, user?.id, action.id)) {
             return@run null
         }
 
         actions?.updateHandlers?.get(type)?.also { invokeMethod(this, it, emptyMap()) }
 
         when {
-            commandAction != null -> invokeMethod(this, commandAction.invocation, commandAction.parameters)
-
-            inputAction != null && update.message?.from?.isBot == false -> {
-                invokeMethod(this, inputAction.invocation, inputAction.parameters)
-            }
+            action != null -> invokeMethod(this, action.invocation, action.parameters)
 
             actions?.unhandled != null -> invokeMethod(this, actions.unhandled, emptyMap())
 
