@@ -1,9 +1,9 @@
 package other.pckg
 
-import eu.vendeli.tgbot.interfaces.BotChatData
+import eu.vendeli.tgbot.interfaces.UserData
 import kotlinx.coroutines.Deferred
 
-class BotChatDataImpl : BotChatData {
+class UserDataImpl : UserData {
     override fun set(telegramId: Long, key: String, value: Any?) {
         TODO("Not yet implemented")
     }
@@ -25,14 +25,6 @@ class BotChatDataImpl : BotChatData {
     }
 
     override suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean> {
-        TODO("Not yet implemented")
-    }
-
-    override fun delPrevChatSection(telegramId: Long) {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun delPrevChatSectionAsync(telegramId: Long): Deferred<Boolean> {
         TODO("Not yet implemented")
     }
 }

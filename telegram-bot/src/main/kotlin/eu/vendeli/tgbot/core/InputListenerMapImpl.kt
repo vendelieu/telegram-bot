@@ -1,16 +1,16 @@
 package eu.vendeli.tgbot.core
 
-import eu.vendeli.tgbot.interfaces.BotInputListener
+import eu.vendeli.tgbot.interfaces.InputListener
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import java.util.concurrent.ConcurrentHashMap
 
 /**
- * [BotInputListener] implementation based on ConcurrentHashMap<Long, String>
+ * [InputListener] implementation based on ConcurrentHashMap<Long, String>
  *
  */
-class BotInputListenerMapImpl : BotInputListener {
+class InputListenerMapImpl : InputListener {
     private val storage by lazy { ConcurrentHashMap<Long, String>() }
 
     /**

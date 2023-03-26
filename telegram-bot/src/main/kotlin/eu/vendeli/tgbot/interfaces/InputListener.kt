@@ -2,12 +2,18 @@ package eu.vendeli.tgbot.interfaces
 
 import kotlinx.coroutines.Deferred
 
+@Deprecated(
+    "Use InputListener instead",
+    ReplaceWith("eu.vendeli.tgbot.interfaces.InputListener"),
+)
+interface BotInputListener : InputListener
+
 /**
  * Bot input listener, see
  * [Waiting Input example in article](https://github.com/vendelieu/telegram-bot/wiki/Updates-handling#input-waiting)
  *
  */
-interface BotInputListener {
+interface InputListener {
     /**
      * Set new waiting point
      *
