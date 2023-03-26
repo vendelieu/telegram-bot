@@ -13,6 +13,7 @@ import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
 import eu.vendeli.tgbot.types.internal.Invocation
 import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.UserReference
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
@@ -195,14 +196,16 @@ class TelegramUpdateHandler internal constructor(
         }.onSuccess { logger.info { "Handled update#${pUpdate.updateId} to method ${invocation.method}" } }
     }
 
-    private suspend inline fun String?.getActivityOrNull(user: User?): Activity? {
+    private suspend inline fun String?.getActivityOrNull(user: User?, updateType: UpdateType): Activity? {
         if (this == null) return null
 
-        val commandAction = findAction(substringBefore('@'))
+        val commandAction = findAction(substringBefore('@'), updateType = updateType)
         var inputAction: Activity? = null
 
         if (user != null && commandAction == null) {
-            inputAction = inputListener.getAsync(user.id).await()?.let { findAction(it, false) }
+            inputAction = inputListener.getAsync(user.id).await()?.let {
+                findAction(it, false, updateType)
+            }
             inputListener.delAsync(user.id).await()
         }
         logger.trace { "Result of finding action - command: $commandAction, input: $inputAction" }
@@ -226,7 +229,7 @@ class TelegramUpdateHandler internal constructor(
         }
         if (checkIsLimited(bot.config.rateLimits, user?.id)) return@run null
 
-        val action = text.getActivityOrNull(user)
+        val action = text.getActivityOrNull(user, type)
 
         if (action != null && checkIsLimited(action.rateLimits, user?.id, action.id)) {
             return@run null
