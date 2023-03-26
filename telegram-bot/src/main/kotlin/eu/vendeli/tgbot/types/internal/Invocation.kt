@@ -7,5 +7,6 @@ internal data class Invocation(
     val clazz: Class<*>,
     val method: Method,
     val namedParameters: Map<String, String> = emptyMap(),
+    val scope: Set<CommandScope> = emptySet(),
     val rateLimits: RateLimits,
 )

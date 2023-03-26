@@ -6,11 +6,12 @@ import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
+import eu.vendeli.tgbot.types.internal.CommandScope
 import eu.vendeli.tgbot.types.internal.UpdateType
 
 class TgAnnotationsModel {
 
-    @CommandHandler(["test"])
+    @CommandHandler(["test"], scope = [CommandScope.CALLBACK])
     fun test() {
     }
 

@@ -51,6 +51,7 @@ internal object TelegramActionsCollector {
                     method = m,
                     namedParameters = m.parameters.getParameters(),
                     rateLimits = RateLimits(annotation.rateLimits.period, annotation.rateLimits.rate),
+                    scope = annotation.scope.toSet(),
                 )
             }
         }
