@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.interfaces.TgAction
+import eu.vendeli.tgbot.types.internal.Activity
 import eu.vendeli.tgbot.types.internal.StructuredRequest
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import kotlinx.coroutines.CoroutineName
@@ -110,6 +111,26 @@ internal suspend inline fun TelegramUpdateHandler.checkIsLimited(
         return true
     }
     return false
+}
+
+/**
+ * Function for mapping text with a specific command or input.
+ *
+ * @param text
+ * @param command true to search in commands or false to search among inputs. Default - true.
+ * @return [Activity] if actions was found or null.
+ */
+internal fun TelegramUpdateHandler.findAction(text: String, command: Boolean = true): Activity? {
+    val message = parseCommand(text)
+    val invocation = if (command) actions?.commands else {
+        actions?.inputs
+    }?.get(message.command)
+    return if (invocation != null) Activity(
+        id = message.command,
+        invocation = invocation,
+        parameters = message.params,
+        rateLimits = invocation.rateLimits,
+    ) else null
 }
 
 @Suppress("UnusedReceiverParameter")
