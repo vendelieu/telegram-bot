@@ -17,6 +17,7 @@ import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
 import kotlin.random.Random
 
+@Suppress("VariableNaming")
 abstract class BotTestContext(
     private val withPreparedBot: Boolean = true,
     private val mockHttp: Boolean = false,
