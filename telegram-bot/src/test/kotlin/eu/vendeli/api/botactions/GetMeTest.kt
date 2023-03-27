@@ -10,12 +10,12 @@ import io.kotest.matchers.shouldBe
 
 class GetMeTest : BotTestContext() {
     @Test
-    suspend fun `close method testing`() {
+    suspend fun `getme method testing`() {
         val result = getMe().sendAsync(bot).await()
         result.ok.shouldBeTrue()
         result.isSuccess().shouldBeTrue()
         result.getOrNull().shouldNotBeNull()
         result.getOrNull()?.isBot ?: false.shouldBeTrue()
-        result.getOrNull()?.id shouldBe System.getenv("BOT_ID").toLong()
+        result.getOrNull()?.id shouldBe BOT_ID
     }
 }
