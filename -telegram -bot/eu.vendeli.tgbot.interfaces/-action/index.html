@@ -30,6 +30,8 @@
 <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+<link href="../../../images/tgbotkt-logo.png">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
 </head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
@@ -40,8 +42,11 @@
             </a>
     </div>
     <div>
-2.7.1    </div>
+2.7.2    </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":telegram-bot:dokkaHtml/main">jvm</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -51,684 +56,110 @@
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageIds="Telegram Bot::eu.vendeli.tgbot.interfaces/Action///PointingToDeclaration//-880831646">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="Telegram Bot::eu.vendeli.tgbot.interfaces/Action///PointingToDeclaration//-880831646">
   <div class="breadcrumbs"><a href="../../../index.html">Telegram Bot</a><span class="delimiter">/</span><a href="../index.html">eu.vendeli.tgbot.interfaces</a><span class="delimiter">/</span><span class="current">Action</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Action</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">Action</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span> : <a href="../-tg-action/index.html">TgAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">ReturnType</a><span class="token operator">&gt; </span>, <a href="../-i-action-state/index.html">IActionState</a></div><p class="paragraph">Action, see <a href="https://github.com/vendelieu/telegram-bot/wiki/Actions">Actions article</a></p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">Action</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span> : <a href="../-tg-action/index.html">TgAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">ReturnType</a><span class="token operator">&gt; </span>, <a href="../-i-action-state/index.html">IActionState</a></div><p class="paragraph">Action, see <a href="https://github.com/vendelieu/telegram-bot/wiki/Actions">Actions article</a></p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>Return</span><wbr></wbr><span><span>Type</span></span></u></div></span></div><div><div class="title"><p class="paragraph">response type.</p></div></div></div></div></div><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-answer-callback-query-action/index.html">AnswerCallbackQueryAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-send-contact-action/index.html">SendContactAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-copy-message-action/index.html">CopyMessageAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-delete-message-action/index.html">DeleteMessageAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-send-dice-action/index.html">SendDiceAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-edit-message-text-action/index.html">EditMessageTextAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-edit-message-caption-action/index.html">EditMessageCaptionAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-edit-message-media-action/index.html">EditMessageMediaAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-edit-message-markup-action/index.html">EditMessageMarkupAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-edit-message-live-location-action/index.html">EditMessageLiveLocationAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-forward-message-action/index.html">ForwardMessageAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-send-game-action/index.html">SendGameAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-get-game-high-scores-action/index.html">GetGameHighScoresAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-send-invoice-action/index.html">SendInvoiceAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-send-location-action/index.html">SendLocationAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-send-message-action/index.html">SendMessageAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-send-poll-action/index.html">SendPollAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-set-game-score-action/index.html">SetGameScoreAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-stop-message-live-location-action/index.html">StopMessageLiveLocationAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-stop-poll-action/index.html">StopPollAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api/-send-venue-action/index.html">SendVenueAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-approve-chat-join-request-action/index.html">ApproveChatJoinRequestAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-ban-chat-member-action/index.html">BanChatMemberAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-ban-chat-sender-chat-action/index.html">BanChatSenderChatAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-send-chat-action/index.html">SendChatAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-create-chat-invite-link-action/index.html">CreateChatInviteLinkAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-decline-chat-join-request-action/index.html">DeclineChatJoinRequestAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-delete-chat-photo-action/index.html">DeleteChatPhotoAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-delete-chat-sticker-set-action/index.html">DeleteChatStickerSetAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-edit-chat-invite-link-action/index.html">EditChatInviteLinkAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-export-chat-invite-link-action/index.html">ExportChatInviteLinkAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-get-chat-action/index.html">GetChatAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-get-chat-administrators-action/index.html">GetChatAdministratorsAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-get-chat-member-action/index.html">GetChatMemberAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-get-chat-member-count-action/index.html">GetChatMemberCountAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-get-chat-menu-button-action/index.html">GetChatMenuButtonAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-leave-chat-action/index.html">LeaveChatAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-pin-chat-message-action/index.html">PinChatMessageAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-promote-chat-member-action/index.html">PromoteChatMemberAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-restrict-chat-member-action/index.html">RestrictChatMemberAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-revoke-chat-invite-link-action/index.html">RevokeChatInviteLinkAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-set-chat-administrator-custom-title-action/index.html">SetChatAdministratorCustomTitleAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-set-chat-description-action/index.html">SetChatDescriptionAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-set-chat-menu-button-action/index.html">SetChatMenuButtonAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-set-chat-permissions-action/index.html">SetChatPermissionsAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-set-chat-sticker-set-action/index.html">SetChatStickerSetAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-set-chat-title-action/index.html">SetChatTitleAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-unban-chat-member-action/index.html">UnbanChatMemberAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-unban-chat-sender-chat-action/index.html">UnbanChatSenderChatAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-unpin-all-chat-message-action/index.html">UnpinAllChatMessageAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../eu.vendeli.tgbot.api.chat/-unpin-chat-message-action/index.html">UnpinChatMessageAction</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-media-action/index.html">MediaAction</a></div></span></div><div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button><button class="section-tab" data-togglable="Inheritors">Inheritors</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h4 class="">Parameters</h4>
-      <div data-togglable="Parameters">
-        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>Return</span><wbr></wbr><span><span>Type</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">response type.</p></div></div></div></div></div></div></div></div></div>
-      </div>
-      <h2 class="">Functions</h2>
-      <div class="table" data-togglable="Functions"><a data-name="-584613168%2FFunctions%2F-880831646" anchor-label="send" id="-584613168%2FFunctions%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="send.html"><span><span>send</span></span></a></div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-584613168%2FFunctions%2F-880831646" anchor-label="send" id="-584613168%2FFunctions%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="send.html"><span><span>send</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-584613168%2FFunctions%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send.html"><span class="token function">send</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types/-user/index.html">User</a><span class="token punctuation">, </span></span><span class="parameter ">via<span class="token operator">: </span><a href="../../eu.vendeli.tgbot/-telegram-bot/index.html">TelegramBot</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send.html"><span class="token function">send</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">via<span class="token operator">: </span><a href="../../eu.vendeli.tgbot/-telegram-bot/index.html">TelegramBot</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send.html"><span class="token function">send</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">via<span class="token operator">: </span><a href="../../eu.vendeli.tgbot/-telegram-bot/index.html">TelegramBot</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Make a request for action.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send.html"><span class="token function">send</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types/-user/index.html">User</a><span class="token punctuation">, </span></span><span class="parameter ">via<span class="token operator">: </span><a href="../../eu.vendeli.tgbot/-telegram-bot/index.html">TelegramBot</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send.html"><span class="token function">send</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">via<span class="token operator">: </span><a href="../../eu.vendeli.tgbot/-telegram-bot/index.html">TelegramBot</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send.html"><span class="token function">send</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">via<span class="token operator">: </span><a href="../../eu.vendeli.tgbot/-telegram-bot/index.html">TelegramBot</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Make a request for action.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-692574828%2FFunctions%2F-880831646" anchor-label="sendAsync" id="-692574828%2FFunctions%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="send-async.html"><span>send</span><wbr></wbr><span><span>Async</span></span></a></div>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="send-async.html"><span>send</span><wbr></wbr><span><span>Async</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-692574828%2FFunctions%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send-async.html"><span class="token function">sendAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types/-user/index.html">User</a><span class="token punctuation">, </span></span><span class="parameter ">via<span class="token operator">: </span><a href="../../eu.vendeli.tgbot/-telegram-bot/index.html">TelegramBot</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.internal/-response/index.html">Response</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send-async.html"><span class="token function">sendAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">via<span class="token operator">: </span><a href="../../eu.vendeli.tgbot/-telegram-bot/index.html">TelegramBot</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.internal/-response/index.html">Response</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send-async.html"><span class="token function">sendAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">via<span class="token operator">: </span><a href="../../eu.vendeli.tgbot/-telegram-bot/index.html">TelegramBot</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.internal/-response/index.html">Response</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Make a request for action returning its <a href="../../eu.vendeli.tgbot.types.internal/-response/index.html">Response</a>.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send-async.html"><span class="token function">sendAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types/-user/index.html">User</a><span class="token punctuation">, </span></span><span class="parameter ">via<span class="token operator">: </span><a href="../../eu.vendeli.tgbot/-telegram-bot/index.html">TelegramBot</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.internal/-response/index.html">Response</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send-async.html"><span class="token function">sendAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">via<span class="token operator">: </span><a href="../../eu.vendeli.tgbot/-telegram-bot/index.html">TelegramBot</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.internal/-response/index.html">Response</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send-async.html"><span class="token function">sendAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">to<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">via<span class="token operator">: </span><a href="../../eu.vendeli.tgbot/-telegram-bot/index.html">TelegramBot</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.internal/-response/index.html">Response</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Make a request for action returning its <a href="../../eu.vendeli.tgbot.types.internal/-response/index.html">Response</a>.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="-53531334%2FProperties%2F-880831646" anchor-label="method" id="-53531334%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../-tg-action/method.html"><span><span>method</span></span></a></div>
+      <div data-togglable="EXTENSION_PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-53531334%2FProperties%2F-880831646" anchor-label="method" id="-53531334%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-tg-action/method.html"><span><span>method</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-53531334%2FProperties%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="-53531334%2FProperties%2F-880831646" anchor-label="method" id="-53531334%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-tg-action/index.html">TgAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../-tg-action/method.html">method</a><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal/-tg-method/index.html">TgMethod</a></div><div class="brief "><a data-name="-53531334%2FProperties%2F-880831646" anchor-label="method" id="-53531334%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">A method that is implemented in Action.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-tg-action/index.html">TgAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../-tg-action/method.html">method</a><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal/-tg-method/index.html">TgMethod</a></div><div class="brief "><p class="paragraph">A method that is implemented in Action.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1510551551%2FProperties%2F-880831646" anchor-label="parameters" id="1510551551%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../-i-action-state/parameters.html"><span><span>parameters</span></span></a></div>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-i-action-state/parameters.html"><span><span>parameters</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1510551551%2FProperties%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="1510551551%2FProperties%2F-880831646" anchor-label="parameters" id="1510551551%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-i-action-state/index.html">IActionState</a><span class="token punctuation">.</span><a href="../-i-action-state/parameters.html">parameters</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html">MutableMap</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span></div><div class="brief "><a data-name="1510551551%2FProperties%2F-880831646" anchor-label="parameters" id="1510551551%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">Parameter for storing API data.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-i-action-state/index.html">IActionState</a><span class="token punctuation">.</span><a href="../-i-action-state/parameters.html">parameters</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html">MutableMap</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Parameter for storing API data.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1412567587%2FProperties%2F-880831646" anchor-label="returnType" id="1412567587%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../-tg-action/return-type.html"><span>return</span><wbr></wbr><span><span>Type</span></span></a></div>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-tg-action/return-type.html"><span>return</span><wbr></wbr><span><span>Type</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1412567587%2FProperties%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="1412567587%2FProperties%2F-880831646" anchor-label="returnType" id="1412567587%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-tg-action/index.html">TgAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../-tg-action/return-type.html">returnType</a><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span></div><div class="brief "><a data-name="1412567587%2FProperties%2F-880831646" anchor-label="returnType" id="1412567587%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">Type of action result.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-tg-action/index.html">TgAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../-tg-action/return-type.html">returnType</a><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Type of action result.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-221319922%2FProperties%2F-880831646" anchor-label="wrappedDataType" id="-221319922%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../-tg-action/wrapped-data-type.html"><span>wrapped</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Type</span></span></a></div>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-tg-action/wrapped-data-type.html"><span>wrapped</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Type</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-221319922%2FProperties%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="-221319922%2FProperties%2F-880831646" anchor-label="wrappedDataType" id="-221319922%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-tg-action/index.html">TgAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../-tg-action/wrapped-data-type.html">wrappedDataType</a><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="../-multiple-response/index.html">MultipleResponse</a><span class="token operator">&gt;</span><span class="token operator">?</span></div><div class="brief "><a data-name="-221319922%2FProperties%2F-880831646" anchor-label="wrappedDataType" id="-221319922%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">Parameter through which the type for multiple response is obtained.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-tg-action/index.html">TgAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">ReturnType</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="../-tg-action/wrapped-data-type.html">wrappedDataType</a><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="../-multiple-response/index.html">MultipleResponse</a><span class="token operator">&gt;</span><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Parameter through which the type for multiple response is obtained.</p></div></div></div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <h2 class="">Inheritors</h2>
-      <div class="table" data-togglable="Inheritors"><a data-name="-341058700%2FInheritors%2F-880831646" anchor-label="AnswerCallbackQueryAction" id="-341058700%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-answer-callback-query-action/index.html">AnswerCallbackQueryAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-341058700%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="1208185857%2FInheritors%2F-880831646" anchor-label="SendContactAction" id="1208185857%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-send-contact-action/index.html">SendContactAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1208185857%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="1591501159%2FInheritors%2F-880831646" anchor-label="CopyMessageAction" id="1591501159%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-copy-message-action/index.html">CopyMessageAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1591501159%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1190928483%2FInheritors%2F-880831646" anchor-label="DeleteMessageAction" id="-1190928483%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-delete-message-action/index.html">DeleteMessageAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1190928483%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1358663090%2FInheritors%2F-880831646" anchor-label="SendDiceAction" id="-1358663090%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-send-dice-action/index.html">SendDiceAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1358663090%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="2065706191%2FInheritors%2F-880831646" anchor-label="EditMessageTextAction" id="2065706191%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-edit-message-text-action/index.html">EditMessageTextAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2065706191%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1280501932%2FInheritors%2F-880831646" anchor-label="EditMessageCaptionAction" id="-1280501932%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-edit-message-caption-action/index.html">EditMessageCaptionAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1280501932%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="215338326%2FInheritors%2F-880831646" anchor-label="EditMessageMediaAction" id="215338326%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-edit-message-media-action/index.html">EditMessageMediaAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="215338326%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="656064564%2FInheritors%2F-880831646" anchor-label="EditMessageMarkupAction" id="656064564%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-edit-message-markup-action/index.html">EditMessageMarkupAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="656064564%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-894081605%2FInheritors%2F-880831646" anchor-label="EditMessageLiveLocationAction" id="-894081605%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-edit-message-live-location-action/index.html">EditMessageLiveLocationAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-894081605%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="1623373883%2FInheritors%2F-880831646" anchor-label="ForwardMessageAction" id="1623373883%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-forward-message-action/index.html">ForwardMessageAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1623373883%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-453121885%2FInheritors%2F-880831646" anchor-label="SendGameAction" id="-453121885%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-send-game-action/index.html">SendGameAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-453121885%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1512276050%2FInheritors%2F-880831646" anchor-label="GetGameHighScoresAction" id="-1512276050%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-get-game-high-scores-action/index.html">GetGameHighScoresAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1512276050%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="171160404%2FInheritors%2F-880831646" anchor-label="SendInvoiceAction" id="171160404%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-send-invoice-action/index.html">SendInvoiceAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="171160404%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="1460219776%2FInheritors%2F-880831646" anchor-label="SendLocationAction" id="1460219776%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-send-location-action/index.html">SendLocationAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1460219776%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="731765562%2FInheritors%2F-880831646" anchor-label="SendMessageAction" id="731765562%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-send-message-action/index.html">SendMessageAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="731765562%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="366175030%2FInheritors%2F-880831646" anchor-label="SendPollAction" id="366175030%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-send-poll-action/index.html">SendPollAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="366175030%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1797366977%2FInheritors%2F-880831646" anchor-label="SetGameScoreAction" id="-1797366977%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-set-game-score-action/index.html">SetGameScoreAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1797366977%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="281579955%2FInheritors%2F-880831646" anchor-label="StopMessageLiveLocationAction" id="281579955%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-stop-message-live-location-action/index.html">StopMessageLiveLocationAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="281579955%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="1346963580%2FInheritors%2F-880831646" anchor-label="StopPollAction" id="1346963580%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-stop-poll-action/index.html">StopPollAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1346963580%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-509719214%2FInheritors%2F-880831646" anchor-label="SendVenueAction" id="-509719214%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api/-send-venue-action/index.html">SendVenueAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-509719214%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1586267775%2FInheritors%2F-880831646" anchor-label="ApproveChatJoinRequestAction" id="-1586267775%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-approve-chat-join-request-action/index.html">ApproveChatJoinRequestAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1586267775%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="1922624212%2FInheritors%2F-880831646" anchor-label="BanChatMemberAction" id="1922624212%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-ban-chat-member-action/index.html">BanChatMemberAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1922624212%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="1311203937%2FInheritors%2F-880831646" anchor-label="BanChatSenderChatAction" id="1311203937%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-ban-chat-sender-chat-action/index.html">BanChatSenderChatAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1311203937%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="597600641%2FInheritors%2F-880831646" anchor-label="SendChatAction" id="597600641%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-send-chat-action/index.html">SendChatAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="597600641%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1845321622%2FInheritors%2F-880831646" anchor-label="CreateChatInviteLinkAction" id="-1845321622%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-create-chat-invite-link-action/index.html">CreateChatInviteLinkAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1845321622%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="1832638826%2FInheritors%2F-880831646" anchor-label="DeclineChatJoinRequestAction" id="1832638826%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-decline-chat-join-request-action/index.html">DeclineChatJoinRequestAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1832638826%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="940023750%2FInheritors%2F-880831646" anchor-label="DeleteChatPhotoAction" id="940023750%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-delete-chat-photo-action/index.html">DeleteChatPhotoAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="940023750%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="796849305%2FInheritors%2F-880831646" anchor-label="DeleteChatStickerSetAction" id="796849305%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-delete-chat-sticker-set-action/index.html">DeleteChatStickerSetAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="796849305%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1463733348%2FInheritors%2F-880831646" anchor-label="EditChatInviteLinkAction" id="-1463733348%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-edit-chat-invite-link-action/index.html">EditChatInviteLinkAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1463733348%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-635553614%2FInheritors%2F-880831646" anchor-label="ExportChatInviteLinkAction" id="-635553614%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-export-chat-invite-link-action/index.html">ExportChatInviteLinkAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-635553614%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="2094352999%2FInheritors%2F-880831646" anchor-label="GetChatAction" id="2094352999%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-get-chat-action/index.html">GetChatAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2094352999%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1468930751%2FInheritors%2F-880831646" anchor-label="GetChatAdministratorsAction" id="-1468930751%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-get-chat-administrators-action/index.html">GetChatAdministratorsAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1468930751%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="43774829%2FInheritors%2F-880831646" anchor-label="GetChatMemberAction" id="43774829%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-get-chat-member-action/index.html">GetChatMemberAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="43774829%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="1180135994%2FInheritors%2F-880831646" anchor-label="GetChatMemberCountAction" id="1180135994%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-get-chat-member-count-action/index.html">GetChatMemberCountAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1180135994%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1291958346%2FInheritors%2F-880831646" anchor-label="GetChatMenuButtonAction" id="-1291958346%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-get-chat-menu-button-action/index.html">GetChatMenuButtonAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1291958346%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-487778074%2FInheritors%2F-880831646" anchor-label="LeaveChatAction" id="-487778074%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-leave-chat-action/index.html">LeaveChatAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-487778074%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="1056610311%2FInheritors%2F-880831646" anchor-label="PinChatMessageAction" id="1056610311%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-pin-chat-message-action/index.html">PinChatMessageAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1056610311%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-102353597%2FInheritors%2F-880831646" anchor-label="PromoteChatMemberAction" id="-102353597%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-promote-chat-member-action/index.html">PromoteChatMemberAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-102353597%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1551748269%2FInheritors%2F-880831646" anchor-label="RestrictChatMemberAction" id="-1551748269%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-restrict-chat-member-action/index.html">RestrictChatMemberAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1551748269%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="1098427168%2FInheritors%2F-880831646" anchor-label="RevokeChatInviteLinkAction" id="1098427168%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-revoke-chat-invite-link-action/index.html">RevokeChatInviteLinkAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1098427168%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-954829279%2FInheritors%2F-880831646" anchor-label="SetChatAdministratorCustomTitleAction" id="-954829279%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-set-chat-administrator-custom-title-action/index.html">SetChatAdministratorCustomTitleAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-954829279%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-221405185%2FInheritors%2F-880831646" anchor-label="SetChatDescriptionAction" id="-221405185%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-set-chat-description-action/index.html">SetChatDescriptionAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-221405185%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="1753079338%2FInheritors%2F-880831646" anchor-label="SetChatMenuButtonAction" id="1753079338%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-set-chat-menu-button-action/index.html">SetChatMenuButtonAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1753079338%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1302061449%2FInheritors%2F-880831646" anchor-label="SetChatPermissionsAction" id="-1302061449%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-set-chat-permissions-action/index.html">SetChatPermissionsAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1302061449%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-2080121034%2FInheritors%2F-880831646" anchor-label="SetChatStickerSetAction" id="-2080121034%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-set-chat-sticker-set-action/index.html">SetChatStickerSetAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2080121034%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1918116317%2FInheritors%2F-880831646" anchor-label="SetChatTitleAction" id="-1918116317%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-set-chat-title-action/index.html">SetChatTitleAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1918116317%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-380589715%2FInheritors%2F-880831646" anchor-label="UnbanChatMemberAction" id="-380589715%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-unban-chat-member-action/index.html">UnbanChatMemberAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-380589715%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="255601786%2FInheritors%2F-880831646" anchor-label="UnbanChatSenderChatAction" id="255601786%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-unban-chat-sender-chat-action/index.html">UnbanChatSenderChatAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="255601786%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="1468524299%2FInheritors%2F-880831646" anchor-label="UnpinAllChatMessageAction" id="1468524299%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-unpin-all-chat-message-action/index.html">UnpinAllChatMessageAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1468524299%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1623544690%2FInheritors%2F-880831646" anchor-label="UnpinChatMessageAction" id="-1623544690%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../../eu.vendeli.tgbot.api.chat/-unpin-chat-message-action/index.html">UnpinChatMessageAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1623544690%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
-          </div>
-        </div>
-<a data-name="-1622483613%2FInheritors%2F-880831646" anchor-label="MediaAction" id="-1622483613%2FInheritors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="../-media-action/index.html">MediaAction</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1622483613%2FInheritors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div></div>
           </div>
         </div>
       </div>
@@ -736,7 +167,7 @@
   </div>
 </div>
       <div class="footer">
-        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Vendelieu</span><span
                 class="pull-right"><span>Generated by </span><a
                 href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
       </div>

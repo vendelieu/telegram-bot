@@ -30,6 +30,8 @@
 <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+<link href="../../../images/tgbotkt-logo.png">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
 </head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
@@ -40,8 +42,11 @@
             </a>
     </div>
     <div>
-2.7.1    </div>
+2.7.2    </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":telegram-bot:dokkaHtml/main">jvm</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -51,170 +56,157 @@
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageIds="Telegram Bot::eu.vendeli.tgbot/TelegramBot///PointingToDeclaration//-880831646">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="Telegram Bot::eu.vendeli.tgbot/TelegramBot///PointingToDeclaration//-880831646">
   <div class="breadcrumbs"><a href="../../../index.html">Telegram Bot</a><span class="delimiter">/</span><a href="../index.html">eu.vendeli.tgbot</a><span class="delimiter">/</span><span class="current">TelegramBot</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Telegram</span><wbr></wbr><span><span>Bot</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">TelegramBot</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">token<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">commandsPackage<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">botConfiguration<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils.html#-613582468%2FClasslikes%2F-880831646">BotConfigurator</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span></div><p class="paragraph">Telegram bot main instance</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">TelegramBot</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">token<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">commandsPackage<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">botConfiguration<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils.html#-613582468%2FClasslikes%2F-880831646">BotConfigurator</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span></div><p class="paragraph">Telegram bot main instance</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>commands</span><wbr></wbr><span><span>Package</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The place where the search for commands and inputs will be done.</p></div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>bot</span><wbr></wbr><span><span>Configuration</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Lambda function to customize the bots instance. Watch <a href="../../eu.vendeli.tgbot.types.internal.configuration/-bot-configuration/index.html">BotConfiguration</a></p></div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h4 class="">Parameters</h4>
-      <div data-togglable="Parameters">
-        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>commands</span><wbr></wbr><span><span>Package</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The place where the search for commands and inputs will be done.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><u><span>bot</span><wbr></wbr><span><span>Configuration</span></span></u></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Lambda function to customize the bots instance. Watch <a href="../../eu.vendeli.tgbot.types.internal.configuration/-bot-configuration/index.html">BotConfiguration</a></p></div></div></div></div></div></div></div></div></div>
-      </div>
-      <h2 class="tabbedcontent">Constructors</h2>
-      <div class="table" data-togglable="Constructors"><a data-name="-1645359638%2FConstructors%2F-880831646" anchor-label="TelegramBot" id="-1645359638%2FConstructors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue TabbedContent">
-            <div class=""><span class="inline-flex">
-                <div><a href="-telegram-bot.html"><span>Telegram</span><wbr></wbr><span><span>Bot</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1645359638%2FConstructors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-telegram-bot.html"><span class="token function">TelegramBot</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">configLoader<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.interfaces/-config-loader/index.html">ConfigLoader</a><span class="token operator"> = </span>EnvConfigLoader</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Constructor to build through configuration loader.</p></div></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-<a data-name="624683340%2FConstructors%2F-880831646" anchor-label="TelegramBot" id="624683340%2FConstructors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue TabbedContent">
-            <div class=""><span class="inline-flex">
-                <div><a href="-telegram-bot.html"><span>Telegram</span><wbr></wbr><span><span>Bot</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="624683340%2FConstructors%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-telegram-bot.html"><span class="token function">TelegramBot</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">token<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">commandsPackage<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">botConfiguration<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils.html#-613582468%2FClasslikes%2F-880831646">BotConfigurator</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span></div></div></div>
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="1380030634%2FConstructors%2F-880831646" anchor-label="TelegramBot" id="1380030634%2FConstructors%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-telegram-bot.html"><span>Telegram</span><wbr></wbr><span><span>Bot</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1380030634%2FConstructors%2F-880831646"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">configLoader<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.interfaces/-config-loader/index.html">ConfigLoader</a><span class="token operator"> = </span>EnvConfigLoader</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Constructor to build through configuration loader.</p></div><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">token<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">commandsPackage<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">botConfiguration<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils.html#-613582468%2FClasslikes%2F-880831646">BotConfigurator</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Functions</h2>
-      <div class="table" data-togglable="Functions"><a data-name="1952619286%2FFunctions%2F-880831646" anchor-label="addMagicObject" id="1952619286%2FFunctions%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="add-magic-object.html"><span>add</span><wbr></wbr><span>Magic</span><wbr></wbr><span><span>Object</span></span></a></div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1952619286%2FFunctions%2F-880831646" anchor-label="addMagicObject" id="1952619286%2FFunctions%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-magic-object.html"><span>add</span><wbr></wbr><span>Magic</span><wbr></wbr><span><span>Object</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1952619286%2FFunctions%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="add-magic-object.html">T</a><span class="token operator">&gt; </span><a href="add-magic-object.html"><span class="token function">addMagicObject</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">clazz<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="add-magic-object.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">magicObject<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.interfaces/-magic-object/index.html">MagicObject</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="add-magic-object.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.interfaces/-magic-object/index.html">MagicObject</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Gives the ability to expand magical objects</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="add-magic-object.html">T</a><span class="token operator">&gt; </span><a href="add-magic-object.html"><span class="token function">addMagicObject</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">clazz<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="add-magic-object.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">magicObject<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.interfaces/-magic-object/index.html">MagicObject</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="add-magic-object.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.interfaces/-magic-object/index.html">MagicObject</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Gives the ability to expand magical objects</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1565419227%2FFunctions%2F-880831646" anchor-label="getFileContent" id="1565419227%2FFunctions%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-file-content.html"><span>get</span><wbr></wbr><span>File</span><wbr></wbr><span><span>Content</span></span></a></div>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-file-content.html"><span>get</span><wbr></wbr><span>File</span><wbr></wbr><span><span>Content</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1565419227%2FFunctions%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-file-content.html"><span class="token function">getFileContent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">file<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.media/-file/index.html">File</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Get file from <a href="../../eu.vendeli.tgbot.types.media/-file/index.html">File</a> if <a href="../../eu.vendeli.tgbot.types.media/-file/file-path.html">File.filePath</a> is present.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-file-content.html"><span class="token function">getFileContent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">file<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.media/-file/index.html">File</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Get file from <a href="../../eu.vendeli.tgbot.types.media/-file/index.html">File</a> if <a href="../../eu.vendeli.tgbot.types.media/-file/file-path.html">File.filePath</a> is present.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-990977880%2FFunctions%2F-880831646" anchor-label="getFileDirectUrl" id="-990977880%2FFunctions%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-file-direct-url.html"><span>get</span><wbr></wbr><span>File</span><wbr></wbr><span>Direct</span><wbr></wbr><span><span>Url</span></span></a></div>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-file-direct-url.html"><span>get</span><wbr></wbr><span>File</span><wbr></wbr><span>Direct</span><wbr></wbr><span><span>Url</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-990977880%2FFunctions%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-file-direct-url.html"><span class="token function">getFileDirectUrl</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">file<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.media/-file/index.html">File</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Get direct url from <a href="../../eu.vendeli.tgbot.types.media/-file/index.html">File</a> if <a href="../../eu.vendeli.tgbot.types.media/-file/file-path.html">File.filePath</a> is present</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-file-direct-url.html"><span class="token function">getFileDirectUrl</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">file<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.media/-file/index.html">File</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Get direct url from <a href="../../eu.vendeli.tgbot.types.media/-file/index.html">File</a> if <a href="../../eu.vendeli.tgbot.types.media/-file/file-path.html">File.filePath</a> is present</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-408052718%2FFunctions%2F-880831646" anchor-label="handleUpdates" id="-408052718%2FFunctions%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="handle-updates.html"><span>handle</span><wbr></wbr><span><span>Updates</span></span></a></div>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="handle-updates.html"><span>handle</span><wbr></wbr><span><span>Updates</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-408052718%2FFunctions%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="handle-updates.html"><span class="token function">handleUpdates</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Function for processing updates by long-pulling using annotation commands.</p></div><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="handle-updates.html"><span class="token function">handleUpdates</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils.html#-1018993962%2FClasslikes%2F-880831646">ManualHandlingBlock</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Function for processing updates by long-pulling using manual handling.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="handle-updates.html"><span class="token function">handleUpdates</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Function for processing updates by long-pulling using annotation commands.</p></div><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="handle-updates.html"><span class="token function">handleUpdates</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils.html#-1018993962%2FClasslikes%2F-880831646">ManualHandlingBlock</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Function for processing updates by long-pulling using manual handling.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="1000764872%2FProperties%2F-880831646" anchor-label="chatData" id="1000764872%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="chat-data.html"><span>chat</span><wbr></wbr><span><span>Data</span></span></a></div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1000764872%2FProperties%2F-880831646" anchor-label="chatData" id="1000764872%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="chat-data.html"><span>chat</span><wbr></wbr><span><span>Data</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1000764872%2FProperties%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="1000764872%2FProperties%2F-880831646" anchor-label="chatData" id="1000764872%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="chat-data.html">chatData</a><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.interfaces/-bot-chat-data/index.html">BotChatData</a></div><div class="brief "><a data-name="1000764872%2FProperties%2F-880831646" anchor-label="chatData" id="1000764872%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">A tool for managing Chat context.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="chat-data.html">chatData</a><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.interfaces/-chat-data/index.html">ChatData</a></div><div class="brief "><p class="paragraph">A tool for managing Chat context.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="529626130%2FProperties%2F-880831646" anchor-label="inputListener" id="529626130%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="input-listener.html"><span>input</span><wbr></wbr><span><span>Listener</span></span></a></div>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="input-listener.html"><span>input</span><wbr></wbr><span><span>Listener</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="529626130%2FProperties%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="529626130%2FProperties%2F-880831646" anchor-label="inputListener" id="529626130%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="input-listener.html">inputListener</a><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.interfaces/-bot-input-listener/index.html">BotInputListener</a></div><div class="brief "><a data-name="529626130%2FProperties%2F-880831646" anchor-label="inputListener" id="529626130%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">A tool for managing input waiting.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="input-listener.html">inputListener</a><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.interfaces/-input-listener/index.html">InputListener</a></div><div class="brief "><p class="paragraph">A tool for managing input waiting.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-351831743%2FProperties%2F-880831646" anchor-label="update" id="-351831743%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="update.html"><span><span>update</span></span></a></div>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="update.html"><span><span>update</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-351831743%2FProperties%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="-351831743%2FProperties%2F-880831646" anchor-label="update" id="-351831743%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="update.html">update</a><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.core/-telegram-update-handler/index.html">TelegramUpdateHandler</a></div><div class="brief "><a data-name="-351831743%2FProperties%2F-880831646" anchor-label="update" id="-351831743%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">Current bot <a href="../../eu.vendeli.tgbot.core/-telegram-update-handler/index.html">TelegramUpdateHandler</a> instance</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="update.html">update</a><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.core/-telegram-update-handler/index.html">TelegramUpdateHandler</a></div><div class="brief "><p class="paragraph">Current bot <a href="../../eu.vendeli.tgbot.core/-telegram-update-handler/index.html">TelegramUpdateHandler</a> instance</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1093547573%2FProperties%2F-880831646" anchor-label="userData" id="1093547573%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="user-data.html"><span>user</span><wbr></wbr><span><span>Data</span></span></a></div>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/main" data-filterable-set=":telegram-bot:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="user-data.html"><span>user</span><wbr></wbr><span><span>Data</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1093547573%2FProperties%2F-880831646"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><a data-name="1093547573%2FProperties%2F-880831646" anchor-label="userData" id="1093547573%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="user-data.html">userData</a><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.interfaces/-bot-user-data/index.html">BotUserData</a></div><div class="brief "><a data-name="1093547573%2FProperties%2F-880831646" anchor-label="userData" id="1093547573%2FProperties%2F-880831646" data-filterable-set=":telegram-bot:dokkaHtml/main"></a><p class="paragraph">A tool for managing User context.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="user-data.html">userData</a><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.interfaces/-user-data/index.html">UserData</a></div><div class="brief "><p class="paragraph">A tool for managing User context.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -224,7 +216,7 @@
   </div>
 </div>
       <div class="footer">
-        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Vendelieu</span><span
                 class="pull-right"><span>Generated by </span><a
                 href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
       </div>
