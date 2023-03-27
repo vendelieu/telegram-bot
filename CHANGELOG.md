@@ -1,6 +1,11 @@
 # Telegram-bot changelog
 
-#### 2.7.1
+### 2.7.2
+
+* Reworked `ProcessedUpdate` to sealed structure for more consistency.
+* Deprecated Bot* prefix of contextual interfaces to use them without prefix.
+
+### 2.7.1
 
 * Added new `ConfigLoader` interface and ability to initialize a `TelegramBot` instance through it.
   The default implementation of configuring via environment variables is present.
@@ -20,7 +25,7 @@
 * Add new contextual entities building.
 * Renamed `CallbackParam` annotation to `ParamMapping`.
 * Reorganized types structure (some imports may have broken because of it).
-* Unnecessary parameters (parameters, options etc.) from actions have been hidden from the user interface.
+* Unnecessary elements (parameters, options etc.) from actions have been hidden from the user interface.
 
 ## 2.6.0
 
@@ -41,9 +46,9 @@
 * Improved command parsing mechanism and make it more flexible and configurable.
   See `commandParsing` section of bot configuration.
 * Upgrade dependencies versions:
-  * `Jackson`: `2.14.1` -> `2.14.2`
-  * `Ktor`: `2.2.1` -> `2.2.3`
-  * `Kotlin`: `1.8.0` -> `1.8.10`
+    * `Jackson`: `2.14.1` -> `2.14.2`
+    * `Ktor`: `2.2.1` -> `2.2.3`
+    * `Kotlin`: `1.8.0` -> `1.8.10`
 
 ### 2.5.4
 
@@ -94,10 +99,10 @@
 * Moved `BotContext`(`chatData`, `userData`) configuring to `TelegramBot.botConfiguration` - `context()`.
   And now they are not null, but you can get an exception if you try to access without setting.
 * Upgrade dependencies versions:
-  * `Gradle`: `7.5.0` -> `7.6.0`
-  * `Jackson`: `2.14.0` -> `2.14.1`
-  * `Ktor`: `2.1.3` -> `2.2.1`
-  * `Kotlin`: `1.7.21` -> `1.8.0`
+    * `Gradle`: `7.5.0` -> `7.6.0`
+    * `Jackson`: `2.14.0` -> `2.14.1`
+    * `Ktor`: `2.1.3` -> `2.2.1`
+    * `Kotlin`: `1.7.21` -> `1.8.0`
 
 ### 2.4.2
 
@@ -298,6 +303,6 @@
 
 # 1.0.0
 
-The initial public version.
+* The initial public version.
 
 Before that, the library was written for personal purposes and started with a couple of wrapper methods and as needed.
