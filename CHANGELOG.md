@@ -4,6 +4,7 @@
 
 * Reworked `ProcessedUpdate` to sealed structure for more consistency.
 * Deprecated Bot* prefix of contextual interfaces to use them without prefix.
+* Added new `scope` parameter to `@CommandHandler` annotation, to be able to isolate the processing.
 
 ### 2.7.1
 
