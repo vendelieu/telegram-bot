@@ -212,7 +212,7 @@ class TelegramBotTest : BotTestContext() {
             "TGBOT_TOKEN" to "test",
             "TGBOT_COMMANDS_PACKAGE" to "com.example",
             "TGBOT_API_HOST" to "tg.com",
-            "TGBOT_INPUT_LISTENER" to "eu.vendeli.tgbot.core.BotInputListenerMapImpl",
+            "TGBOT_INPUT_LISTENER" to "eu.vendeli.tgbot.core.InputListenerMapImpl",
             "TGBOT_CLASS_MANAGER" to "eu.vendeli.tgbot.core.ClassManagerImpl",
             "TGBOT_RATE_LIMITER" to "eu.vendeli.tgbot.core.TokenBucketLimiterImpl",
             "TGBOT_HTTPC_RQ_TIMEOUT_MILLIS" to "10",
@@ -224,8 +224,8 @@ class TelegramBotTest : BotTestContext() {
             "TGBOT_LOG_HTTP_LVL" to "ALL",
             "TGBOT_RATES_PERIOD" to "14",
             "TGBOT_RATES_RATE" to "15",
-            "TGBOT_CTX_USER_DATA" to "other.pckg.BotUserDataImpl",
-            "TGBOT_CTX_CHAT_DATA" to "other.pckg.BotChatDataImpl",
+            "TGBOT_CTX_USER_DATA" to "other.pckg.UserDataImpl",
+            "TGBOT_CTX_CHAT_DATA" to "other.pckg.ChatDataImpl",
             "TGBOT_CMDPRS_CMD_DELIMITER" to " ",
             "TGBOT_CMDPRS_PARAMS_DELIMITER" to "-",
             "TGBOT_CMDPRS_PARAMVAL_DELIMITER" to "+",
@@ -233,7 +233,7 @@ class TelegramBotTest : BotTestContext() {
         )
         shouldNotThrowAny { TelegramBot() }.config.apply {
             apiHost shouldBe "tg.com"
-            inputListener::class.java shouldBe Class.forName("eu.vendeli.tgbot.core.BotInputListenerMapImpl")
+            inputListener::class.java shouldBe Class.forName("eu.vendeli.tgbot.core.InputListenerMapImpl")
             classManager::class.java shouldBe Class.forName("eu.vendeli.tgbot.core.ClassManagerImpl")
             rateLimiter::class.java shouldBe Class.forName("eu.vendeli.tgbot.core.TokenBucketLimiterImpl")
 
@@ -249,8 +249,8 @@ class TelegramBotTest : BotTestContext() {
             rateLimits.period shouldBe 14
             rateLimits.rate shouldBe 15
 
-            context.userData::class.java shouldBe Class.forName("other.pckg.BotUserDataImpl")
-            context.chatData::class.java shouldBe Class.forName("other.pckg.BotChatDataImpl")
+            context.userData::class.java shouldBe Class.forName("other.pckg.UserDataImpl")
+            context.chatData::class.java shouldBe Class.forName("other.pckg.ChatDataImpl")
 
             commandParsing.commandDelimiter shouldBe ' '
             commandParsing.parametersDelimiter shouldBe '-'
