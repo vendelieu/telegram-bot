@@ -1,0 +1,21 @@
+name: Release
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - [ 0-9 ]+.*
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: taiki-e/create-gh-release-action@v1
+        with:
+          title: $version
+          changelog: CHANGELOG.md
+          branch: master
+          token: ${{ secrets.ACCESS_TOKEN }}
