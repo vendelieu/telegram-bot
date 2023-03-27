@@ -1,4 +1,3 @@
-
 import ch.qos.logback.classic.Level.TRACE
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.Message
@@ -26,9 +25,13 @@ abstract class BotTestContext(
     protected lateinit var bot: TelegramBot
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
+    protected val TOKEN by lazy { System.getenv("BOT_TOKEN") }
+    protected val TG_ID by lazy { System.getenv("TELEGRAM_ID").toLong() }
+    protected val BOT_ID by lazy { System.getenv("BOT_ID").toLong() }
+
     @BeforeAll
     fun prepareTestBot() {
-        if (withPreparedBot) bot = TelegramBot(System.getenv("BOT_TOKEN"), "eu.vendeli") {
+        if (withPreparedBot) bot = TelegramBot(TOKEN, "eu.vendeli") {
             logging {
                 botLogLevel = TRACE
                 httpLogLevel = HttpLogLevel.ALL

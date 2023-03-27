@@ -61,7 +61,7 @@ class TelegramBotTest : BotTestContext() {
     suspend fun `test silent requesting`() {
         val silentReq = bot.makeSilentRequest(
             TgMethod("sendMessage"),
-            mapOf("text" to "test", "chat_id" to System.getenv("TELEGRAM_ID").toLong()),
+            mapOf("text" to "test", "chat_id" to TG_ID),
         )
 
         silentReq.status shouldBe HttpStatusCode.OK
@@ -157,7 +157,7 @@ class TelegramBotTest : BotTestContext() {
             dataField = "photo"
             name = "image.jpg"
             data = image
-            parameters = mapOf("chat_id" to System.getenv("TELEGRAM_ID").toLong())
+            parameters = mapOf("chat_id" to TG_ID)
             contentType = ContentType.Image.JPEG
         }
 
@@ -173,7 +173,7 @@ class TelegramBotTest : BotTestContext() {
             dataField = "photo"
             name = "image.jpg"
             data = image
-            parameters = mapOf("chat_id" to System.getenv("TELEGRAM_ID").toLong())
+            parameters = mapOf("chat_id" to TG_ID)
             contentType = ContentType.Image.JPEG
         }.await().isSuccess().shouldBeTrue()
     }
@@ -183,7 +183,7 @@ class TelegramBotTest : BotTestContext() {
         val image = classloader.getResource("image.png")?.readBytes()
         image.shouldNotBeNull()
 
-        val fileId = photo(image).sendAsync(System.getenv("TELEGRAM_ID").toLong(), bot).await()
+        val fileId = photo(image).sendAsync(TG_ID, bot).await()
             .getOrNull()?.photo?.first()?.fileId ?: throw NullPointerException()
 
         val file = getFile(fileId).sendAsync(bot).await().getOrNull()

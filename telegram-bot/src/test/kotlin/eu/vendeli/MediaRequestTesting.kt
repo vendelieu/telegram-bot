@@ -15,12 +15,12 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.ktor.client.request.get
 import io.ktor.client.statement.readBytes
 import io.ktor.http.ContentType
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import org.junit.jupiter.api.assertThrows
 import java.io.File
 import java.nio.file.Files
 import kotlin.io.path.writeBytes
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import org.junit.jupiter.api.assertThrows
 
 class MediaRequestTesting : BotTestContext() {
     @Test
@@ -35,15 +35,15 @@ class MediaRequestTesting : BotTestContext() {
         }
 
         val photoString = photo { imgUrl }.options { parseMode = ParseMode.HTML }.caption { "test" }
-            .sendAsync(System.getenv("TELEGRAM_ID").toLong(), bot).await().getOrNull()
+            .sendAsync(TG_ID, bot).await().getOrNull()
         photoString.shouldNotBeNull()
 
         val photoBa = photo(image).options { parseMode = ParseMode.HTML }.caption { "<i>test</i>" }
-            .sendAsync(System.getenv("TELEGRAM_ID").toLong(), bot).await().getOrNull()
+            .sendAsync(TG_ID, bot).await().getOrNull()
         photoBa.shouldNotBeNull()
 
         val photoFile = photo(imageFile).caption { "<b>test</b>" }.options { parseMode = ParseMode.HTML }
-            .sendAsync(System.getenv("TELEGRAM_ID").toLong(), bot).await().getOrNull()
+            .sendAsync(TG_ID, bot).await().getOrNull()
         photoFile.shouldNotBeNull()
     }
 
@@ -62,7 +62,7 @@ class MediaRequestTesting : BotTestContext() {
                 "test4.png" to image,
             ),
             parameters = mapOf(
-                "chat_id" to System.getenv("TELEGRAM_ID").toLong(),
+                "chat_id" to TG_ID,
                 "media" to listOf(
                     mapOf("type" to "photo", "media" to "attach://test.png"),
                     mapOf("type" to "photo", "media" to "attach://test2.png"),
@@ -87,7 +87,7 @@ class MediaRequestTesting : BotTestContext() {
         val mediaRequest = mediaGroup(
             InputMedia.Photo(ImplicitFile.FromFile(File(image)), caption = "<b>test</b>", parseMode = ParseMode.HTML),
             InputMedia.Photo(ImplicitFile.FromFile(File(image))),
-        ).sendAsync(System.getenv("TELEGRAM_ID").toLong(), bot).await().getOrNull()
+        ).sendAsync(TG_ID, bot).await().getOrNull()
 
         mediaRequest.shouldNotBeNull()
         mediaRequest.first().mediaGroupId.shouldNotBeNull()
@@ -107,7 +107,7 @@ class MediaRequestTesting : BotTestContext() {
                     "https://upload.wikimedia.org/wikipedia/commons/f/ff/Wikipedia_logo_593.jpg",
                 ),
             ),
-        ).sendAsync(System.getenv("TELEGRAM_ID").toLong(), bot).await().getOrNull()
+        ).sendAsync(TG_ID, bot).await().getOrNull()
 
         mediaRequest.shouldNotBeNull()
         mediaRequest.first().mediaGroupId.shouldNotBeNull()
