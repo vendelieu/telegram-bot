@@ -15,12 +15,12 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.ktor.client.request.get
 import io.ktor.client.statement.readBytes
 import io.ktor.http.ContentType
-import java.io.File
-import java.nio.file.Files
-import kotlin.io.path.writeBytes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.assertThrows
+import java.io.File
+import java.nio.file.Files
+import kotlin.io.path.writeBytes
 
 class MediaRequestTesting : BotTestContext() {
     @Test
