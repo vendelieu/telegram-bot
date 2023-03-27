@@ -1,10 +1,12 @@
-import org.jetbrains.dokka.gradle.DokkaTask
+import java.time.LocalDate
+import org.jetbrains.dokka.base.DokkaBase
+import org.jetbrains.dokka.base.DokkaBaseConfiguration
 
 plugins {
     kotlin("jvm") version "1.8.10"
     `java-library`
-    id("org.jetbrains.dokka") version "1.7.20"
-    id("org.jmailen.kotlinter") version "3.13.0"
+    id("org.jetbrains.dokka") version "1.8.10"
+    id("org.jmailen.kotlinter") version "3.14.0"
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
 }
 
@@ -55,6 +57,12 @@ detekt {
     config = files("$rootDir/detekt.yml")
 }
 
+buildscript {
+    dependencies {
+        classpath("org.jetbrains.dokka:dokka-base:1.8.10")
+    }
+}
+
 tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
@@ -71,13 +79,15 @@ tasks {
 
     dokkaHtml.configure {
         outputDirectory.set(buildDir.resolve("dokka"))
-    }
-
-    withType<DokkaTask>().configureEach {
         dokkaSourceSets {
             named("main") {
                 moduleName.set("Telegram Bot")
             }
+        }
+        pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
+            customStyleSheets = listOf(rootDir.resolve("assets/logo-styles.css"))
+            customAssets = listOf(rootDir.resolve("assets/tgbotkt-logo.png"))
+            footerMessage = "© ${LocalDate.now().year} Vendelieu"
         }
     }
 }
