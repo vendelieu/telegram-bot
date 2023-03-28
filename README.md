@@ -104,23 +104,10 @@ You are welcome to check it out :)
 
 ### Configuration
 
-You can also change additional parameters of the bot:
+The library has very flexible customization options, \
+and the ability to confgure from the environment variables out of the box is also provided.
 
-```kotlin
-// ...
-val bot = TelegramBot("BOT_TOKEN") {
-  inputListener = RedisInputListenerImpl()
-  classManager = KoinClassManagerImpl()
-    logging {
-        botLogLevel = Level.DEBUG
-    }
-}
-// ...
-```
-
-A more complete list of settings can be found
-in [BotConfiguration](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal.configuration/-bot-configuration/index.html)
-class.
+You can read more in a [Bot configuration](https://github.com/vendelieu/telegram-bot/wiki/Bot-configuration) article.
 
 ### Requests limiting
 
@@ -145,22 +132,6 @@ onCommand("/start", RateLimits(period = 1000L, rate = 1L)) {
     // ...
 }
 // ...
-```
-
-### A little about processing
-
-It is also possible to do more advanced processing with a manual listener setting
-with [`bot.update.setListener {}`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.core/-telegram-update-handler/set-listener.html)
-function. (For example, you can use both processing methods, as in
-the [poll example](https://github.com/vendelieu/telegram-bot_template/blob/poll/src/main/kotlin/com/example/poll/PollApplication.kt)
-.)
-
-for webhook handling you can use any server
-and [`bot.update.setBehaviour()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.core/-telegram-update-handler/set-behaviour.html) & [`bot.update.parseAndHandle()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.core/-telegram-update-handler/parse-and-handle.html)
-function, and for set webhook you can use `setWebhook` method:
-
-```kotlin
-setWebhook("https://site.com").send(bot)
 ```
 
 ### Processing responses
