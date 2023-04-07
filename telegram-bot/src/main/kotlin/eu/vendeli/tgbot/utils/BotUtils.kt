@@ -35,49 +35,42 @@ internal class NewCoroutineContext(parentContext: CoroutineContext) : CoroutineS
 internal fun TelegramUpdateHandler.parseCommand(
     text: String,
 ): StructuredRequest = with(bot.config.commandParsing) {
+    var state = ParserState.READING_COMMAND
     var command = ""
-    var commandFound = false
     val params = mutableMapOf<String, String>()
 
-    var isParamNameFound = false
     var paramNameBuffer = ""
     var paramValBuffer = ""
 
     text.forEach { i ->
         when {
-            i == commandDelimiter -> {
-                commandFound = true
+            state == ParserState.READING_COMMAND -> {
+                if (i == commandDelimiter || (restrictSpacesInCommands && i == ' ')) {
+                    state = ParserState.READING_PARAM_NAME
+                } else command += i
             }
 
-            !commandFound && commandDelimiter != ' ' && restrictSpacesInCommands && i == ' ' -> {
-                commandFound = true
-            }
-
-            !commandFound -> {
-                command += i
-            }
-
+            // parametersDelimiter should have an impact
+            // regardless of state being READING_PARAM_NAME or READING_PARAM_VALUE:
             i == parametersDelimiter -> {
                 if (paramValBuffer.isEmpty()) {
-                    params["param_${params.keys.indices.last + 2}"] = paramNameBuffer
+                    params["param_${params.size + 1}"] = paramNameBuffer
                 } else {
                     params[paramNameBuffer] = paramValBuffer
                 }
                 paramNameBuffer = ""
                 paramValBuffer = ""
 
-                isParamNameFound = false
+                state = ParserState.READING_PARAM_NAME
             }
 
-            i == parameterValueDelimiter -> {
-                isParamNameFound = true
+            state == ParserState.READING_PARAM_NAME -> {
+                if (i == parameterValueDelimiter) {
+                    state = ParserState.READING_PARAM_VALUE
+                } else paramNameBuffer += i
             }
 
-            !isParamNameFound -> {
-                paramNameBuffer += i
-            }
-
-            else -> {
+            state == ParserState.READING_PARAM_VALUE -> {
                 paramValBuffer += i
             }
         }
@@ -157,3 +150,9 @@ internal var mu.KLogger.level: Level
     set(value) {
         (underlyingLogger as Logger).level = value
     }
+
+private enum class ParserState {
+    READING_COMMAND,
+    READING_PARAM_NAME,
+    READING_PARAM_VALUE,
+}
