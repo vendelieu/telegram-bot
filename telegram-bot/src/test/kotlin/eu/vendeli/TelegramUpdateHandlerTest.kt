@@ -125,6 +125,8 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         val deeplinkCheck = bot.update.parseCommand("/start bafefdf0-64cb-47da-97f0-4a1f11d469a2")
         deeplinkCheck.command shouldBe "/start"
         deeplinkCheck.params shouldHaveSize 1
+        deeplinkCheck.params.entries.first().key shouldBe "param_1"
+        deeplinkCheck.params.entries.first().value shouldBe "bafefdf0-64cb-47da-97f0-4a1f11d469a2"
     }
 
     companion object {
