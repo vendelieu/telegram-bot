@@ -43,43 +43,42 @@ internal fun TelegramUpdateHandler.parseCommand(
     var paramValBuffer = ""
 
     text.forEach { i ->
-        when {
-            state == ParserState.READING_COMMAND -> {
+        when (state) {
+            ParserState.READING_COMMAND -> {
                 if (i == commandDelimiter || (restrictSpacesInCommands && i == ' ')) {
                     state = ParserState.READING_PARAM_NAME
                 } else command += i
             }
 
-            // parametersDelimiter should have an impact
-            // regardless of state being READING_PARAM_NAME or READING_PARAM_VALUE:
-            i == parametersDelimiter -> {
-                if (paramValBuffer.isEmpty()) {
-                    params["param_${params.size + 1}"] = paramNameBuffer
-                } else {
-                    params[paramNameBuffer] = paramValBuffer
+            ParserState.READING_PARAM_NAME -> {
+                when (i) {
+                    parameterValueDelimiter -> {
+                        state = ParserState.READING_PARAM_VALUE
+                    }
+
+                    parametersDelimiter -> {
+                        params["param_${params.size + 1}"] = paramNameBuffer
+                        paramNameBuffer = ""
+                    }
+
+                    else -> paramNameBuffer += i
                 }
-                paramNameBuffer = ""
-                paramValBuffer = ""
-
-                state = ParserState.READING_PARAM_NAME
             }
 
-            state == ParserState.READING_PARAM_NAME -> {
-                if (i == parameterValueDelimiter) {
-                    state = ParserState.READING_PARAM_VALUE
-                } else paramNameBuffer += i
-            }
-
-            state == ParserState.READING_PARAM_VALUE -> {
-                paramValBuffer += i
+            ParserState.READING_PARAM_VALUE -> {
+                if (i == parametersDelimiter) {
+                    params[paramNameBuffer] = paramValBuffer
+                    paramNameBuffer = ""
+                    paramValBuffer = ""
+                    state = ParserState.READING_PARAM_NAME
+                } else paramValBuffer += i
             }
         }
     }
-    if (paramNameBuffer.isNotEmpty() && paramValBuffer.isNotEmpty()) {
+    if (state == ParserState.READING_PARAM_VALUE) {
         params[paramNameBuffer] = paramValBuffer
-    }
-    if (paramNameBuffer.isNotEmpty() && paramValBuffer.isEmpty()) {
-        params["param_${params.keys.indices.last + 2}"] = paramNameBuffer
+    } else if (state == ParserState.READING_PARAM_NAME) {
+        params["param_${params.size + 1}"] = paramNameBuffer
     }
 
     return StructuredRequest(command = command, params = params)
