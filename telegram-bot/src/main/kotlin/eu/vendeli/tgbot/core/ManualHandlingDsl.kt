@@ -1,7 +1,6 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.api.answerCallbackQuery
 import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
@@ -303,7 +302,7 @@ class ManualHandlingDsl internal constructor(
      * @param update
      */
     @Suppress("CyclomaticComplexMethod")
-    suspend fun process(update: Update) = with(update) {
+    internal suspend fun process(update: Update) = with(update) {
         if (bot.update.checkIsLimited(bot.config.rateLimits, update.message?.from?.id)) return@with
         when {
             message != null -> {
@@ -316,7 +315,6 @@ class ManualHandlingDsl internal constructor(
             pollAnswer != null -> manualActions.onPollAnswer?.invoke(ActionContext(update, pollAnswer))
             callbackQuery != null -> {
                 manualActions.onCallbackQuery?.invoke(ActionContext(update, callbackQuery))
-                    ?: answerCallbackQuery(callbackQuery.id).send(callbackQuery.from, bot)
 
                 if (callbackQuery.data != null) checkMessageForActions(update, callbackQuery.from, callbackQuery.data)
             }
