@@ -17,7 +17,7 @@ import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
 import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 
 @Suppress("CyclomaticComplexMethod")
-internal fun Update.processUpdate() = when {
+fun Update.processUpdate() = when {
     message != null -> MessageUpdate(updateId, this, message)
 
     editedMessage != null -> EditedMessageUpdate(updateId, this, editedMessage)
