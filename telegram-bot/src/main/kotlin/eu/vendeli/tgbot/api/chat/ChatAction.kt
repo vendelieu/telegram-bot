@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.types.chat.ChatAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
-class SendChatAction(messageThreadId: Int? = null, action: ChatAction) : Action<Boolean>, ActionState() {
+class SendChatAction(action: ChatAction, messageThreadId: Int? = null) : Action<Boolean>, ActionState() {
     override val TgAction<Boolean>.method: TgMethod
         get() = TgMethod("sendChatAction")
     override val TgAction<Boolean>.returnType: Class<Boolean>
@@ -21,5 +21,5 @@ class SendChatAction(messageThreadId: Int? = null, action: ChatAction) : Action<
     }
 }
 
-fun chatAction(messageThreadId: Int? = null, block: () -> ChatAction) = SendChatAction(messageThreadId, block())
-fun chatAction(messageThreadId: Int? = null, action: ChatAction) = SendChatAction(messageThreadId, action)
+fun chatAction(messageThreadId: Int? = null, block: () -> ChatAction) = SendChatAction(block(), messageThreadId)
+fun chatAction(action: ChatAction, messageThreadId: Int? = null) = SendChatAction(action, messageThreadId)
