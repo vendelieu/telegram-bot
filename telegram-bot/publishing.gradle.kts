@@ -1,5 +1,5 @@
-val sonatypeUsername: String by project
-val sonatypePassword: String by project
+val sonatypeUsername = (project.findProperty("sonatypeUsername") as String?) ?: ""
+val sonatypePassword = (project.findProperty("sonatypePassword") as String?) ?: ""
 
 apply(plugin = "maven-publish")
 apply(plugin = "signing")
