@@ -140,7 +140,7 @@ class TelegramBot(
     }
 
     internal suspend fun pullUpdates(offset: Int? = null): List<Update>? {
-        logger.trace { "Pulling updates." }
+        logger.debug { "Pulling updates." }
         val request = httpClient.post(
             TgMethod("getUpdates").toUrl() + (offset?.let { "?offset=$it" } ?: ""),
         )
