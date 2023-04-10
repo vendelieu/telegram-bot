@@ -60,7 +60,7 @@ class TelegramUpdateHandler internal constructor(
      * @param offset
      */
     private tailrec suspend fun runListener(offset: Int? = null): Int = with(bot.config.updatesListener) {
-        logger.trace { "Running listener with offset - $offset" }
+        logger.debug { "Running listener with offset - $offset" }
         if (!handlerActive) {
             coroutineContext.cancelChildren()
             return 0
@@ -89,7 +89,7 @@ class TelegramUpdateHandler internal constructor(
      */
     suspend fun setListener(block: HandlingBehaviourBlock) {
         if (handlerActive) stopListener()
-        logger.trace { "The listener is set." }
+        logger.debug { "The listener is set." }
         handlingBehaviour = block
         handlerActive = true
         runListener()
@@ -100,30 +100,15 @@ class TelegramUpdateHandler internal constructor(
      *
      */
     fun stopListener() {
-        logger.trace { "The listener is stopped." }
+        logger.debug { "The listener is stopped." }
         handlerActive = false
-    }
-
-    /**
-     * Updates parsing method
-     *
-     * @param update
-     * @return [Update] or null
-     */
-    private fun parseUpdate(update: String): Update? {
-        logger.trace { "Trying to parse update from string - $update" }
-        return mapper.runCatching {
-            readValue(update, Update::class.java)
-        }.onFailure {
-            logger.debug(it) { "error during the update parsing process." }
-        }.onSuccess { logger.trace { "Successfully parsed update to $it" } }.getOrNull()
     }
 
     /**
      * A function for defining the behavior to handle updates.
      */
     fun setBehaviour(block: HandlingBehaviourBlock) {
-        logger.trace { "Handling behaviour is set." }
+        logger.debug { "Handling behaviour is set." }
         handlingBehaviour = block
     }
 
@@ -131,8 +116,15 @@ class TelegramUpdateHandler internal constructor(
      * A method for handling updates from a string.
      * Define processing behaviour before calling, see [setBehaviour].
      */
-    suspend fun parseAndHandle(update: String) =
-        parseUpdate(update)?.let { handlingBehaviour(this, it) }
+    suspend fun parseAndHandle(update: String) {
+        logger.debug { "Trying to parse update from string - $update" }
+        mapper.runCatching {
+            readValue(update, Update::class.java)
+        }.onFailure {
+            logger.debug(it) { "error during the update parsing process." }
+        }.onSuccess { logger.info { "Successfully parsed update to $it" } }
+            .getOrNull()?.let { handlingBehaviour(this, it) }
+    }
 
     /**
      * Function used to call functions with certain parameters processed after receiving update.
@@ -149,7 +141,7 @@ class TelegramUpdateHandler internal constructor(
         parameters: Map<String, String>,
     ) {
         var isSuspend = false
-        logger.trace { "Parsing arguments for Update#${pUpdate.updateId}" }
+        logger.debug { "Parsing arguments for Update#${pUpdate.updateId}" }
         val processedParameters = buildList {
             invocation.method.parameters.forEach { p ->
                 if (p.type.name == "kotlin.coroutines.Continuation") {
@@ -175,7 +167,7 @@ class TelegramUpdateHandler internal constructor(
                 }
             }
         }.toTypedArray()
-        logger.trace { "Parsed arguments - $processedParameters." }
+        logger.debug { "Parsed arguments - $processedParameters." }
 
         bot.config.context._chatData?.run {
             if ((pUpdate as? UserReference)?.user?.id == null) return@run
@@ -186,7 +178,7 @@ class TelegramUpdateHandler internal constructor(
             setAsync(pUpdate.user!!.id, "PrevInvokedClass", invocation.clazz.name).await()
         }
 
-        logger.trace { "Invoking function for Update#${pUpdate.updateId}" }
+        logger.debug { "Invoking function for Update#${pUpdate.updateId}" }
         invocation.runCatching {
             if (isSuspend) method.invokeSuspend(classManager.getInstance(clazz), *processedParameters)
             else method.invoke(classManager.getInstance(clazz), *processedParameters)
@@ -208,7 +200,7 @@ class TelegramUpdateHandler internal constructor(
             }
             inputListener.delAsync(user.id).await()
         }
-        logger.trace { "Result of finding action - command: $commandAction, input: $inputAction" }
+        logger.debug { "Result of finding action - command: $commandAction, input: $inputAction" }
 
         return commandAction ?: inputAction
     }
@@ -220,7 +212,7 @@ class TelegramUpdateHandler internal constructor(
      * @return null on success or [Throwable].
      */
     suspend fun handle(update: Update) = update.processUpdate().run {
-        logger.trace { "Handling update: $update" }
+        logger.debug { "Handling update: $update" }
         val user = if (this is UserReference) user else null
         val text = when (this) {
             is MessageUpdate -> message.text
@@ -253,7 +245,7 @@ class TelegramUpdateHandler internal constructor(
      * @param block
      */
     suspend fun handle(update: Update, block: ManualHandlingBlock) {
-        logger.trace { "Manually handling update: $update" }
+        logger.debug { "Manually handling update: $update" }
         manualHandlingBehavior.apply {
             block()
             process(update)

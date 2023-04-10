@@ -84,9 +84,9 @@ internal object TelegramActionsCollector {
         }
 
         val totalActions = commands.size + inputs.size + updateHandlers.size + (if (unhandled != null) 1 else 0)
-        logger.info {
+        logger.info { "Found total $totalActions actions.\n" }
+        logger.debug {
             buildString {
-                append("Found total $totalActions actions.\n")
                 append(
                     commands.entries.joinToString("\n", "Commands:\n", "\n") {
                         "${it.key} -> ${it.value.method.kotlinFunction}"
