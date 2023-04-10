@@ -10,6 +10,7 @@ data class InlineKeyboardButton(
     val webApp: WebAppInfo? = null,
     val loginUrl: LoginUrl? = null,
     val switchInlineQuery: String? = null,
+    val switchInlineQueryCurrentChat: String? = null,
     val callbackGame: CallbackGame? = null,
     val pay: Boolean? = null,
 ) : Button

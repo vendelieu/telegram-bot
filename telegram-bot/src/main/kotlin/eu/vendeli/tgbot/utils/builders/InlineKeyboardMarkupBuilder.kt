@@ -74,6 +74,17 @@ class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
     }
 
     /**
+     * Switch inline query button for current chat
+     *
+     * @param name
+     * @param value
+     */
+    fun switchInlineQueryCurrentChat(name: String, value: () -> String): InlineKeyboardMarkupBuilder {
+        buttons.add(InlineKeyboardButton(name, switchInlineQueryCurrentChat = value()))
+        return this
+    }
+
+    /**
      * Callback game button
      *
      * @param name
@@ -127,6 +138,13 @@ class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
      * @param value
      */
     infix fun String.switchInlineQuery(value: String) = switchInlineQuery(this) { value }
+
+    /**
+     * Switch inline query for current chat button infix interface
+     *
+     * @param value
+     */
+    infix fun String.switchInlineQueryCurrentChat(value: String) = switchInlineQueryCurrentChat(this) { value }
 }
 
 /**
