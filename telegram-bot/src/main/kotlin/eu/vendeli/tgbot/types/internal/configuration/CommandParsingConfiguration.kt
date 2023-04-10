@@ -13,5 +13,5 @@ data class CommandParsingConfiguration(
     var commandDelimiter: Char = '?',
     var parametersDelimiter: Char = '&',
     var parameterValueDelimiter: Char = '=',
-    var restrictSpacesInCommands: Boolean = true,
+    var restrictSpacesInCommands: Boolean = false,
 )
