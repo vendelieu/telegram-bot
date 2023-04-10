@@ -13,11 +13,14 @@ import io.ktor.client.request.forms.formData
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.statement.HttpResponse
+import io.ktor.client.statement.bodyAsText
+import io.ktor.client.statement.request
 import io.ktor.http.ContentType
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import io.ktor.http.append
 import io.ktor.http.contentType
+import io.ktor.http.isSuccess
 import io.ktor.utils.io.core.buildPacket
 import io.ktor.utils.io.core.writeFully
 import kotlinx.coroutines.Deferred
@@ -111,7 +114,7 @@ internal suspend inline fun TelegramBot.makeSilentRequest(
     contentType(ContentType.Application.Json)
     setBody(requestBody)
     logger.debug { "RequestBody: $requestBody" }
-}
+}.logFailure()
 
 /**
  * Make a media request without having to return the data.
@@ -129,5 +132,13 @@ internal suspend inline fun TelegramBot.makeSilentRequest(
             }
         }
         logger.debug { "RequestBody: ${media.parameters}" }
+    }.logFailure()
+}
+
+internal suspend inline fun HttpResponse.logFailure(): HttpResponse {
+    if (!status.isSuccess()) {
+        val body = bodyAsText()
+        logger.error { "Request - ${request.content} received failure response: $body" }
     }
+    return this
 }
