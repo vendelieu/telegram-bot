@@ -86,6 +86,9 @@ class TelegramUpdateHandlerTest : BotTestContext() {
 
     @Test
     fun `valid command parsing`() {
+        bot.config.apply {
+            commandParsing.restrictSpacesInCommands = true
+        }
         val deeplinkParse = bot.update.parseCommand("/start deeplinkcode")
         deeplinkParse.command shouldBe "/start"
         deeplinkParse.params shouldContainExactly (mapOf("param_1" to "deeplinkcode"))

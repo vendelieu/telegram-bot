@@ -25,20 +25,17 @@ import kotlin.io.path.writeBytes
 class MediaRequestTesting : BotTestContext() {
     @Test
     suspend fun `media requests testing`() {
-        val imgUrl = "https://upload.wikimedia.org/wikipedia/commons/f/ff/Wikipedia_logo_593.jpg"
-        val image = bot.httpClient.get(imgUrl).readBytes()
-
         val imageFile = withContext(Dispatchers.IO) {
             Files.createTempFile("test", "file").also {
-                it.writeBytes(image)
+                it.writeBytes(RANDOM_PIC)
             }.toFile()
         }
 
-        val photoString = photo { imgUrl }.options { parseMode = ParseMode.HTML }.caption { "test" }
+        val photoString = photo { RANDOM_PIC_URL }.options { parseMode = ParseMode.HTML }.caption { "test" }
             .sendAsync(TG_ID, bot).await().getOrNull()
         photoString.shouldNotBeNull()
 
-        val photoBa = photo(image).options { parseMode = ParseMode.HTML }.caption { "<i>test</i>" }
+        val photoBa = photo(RANDOM_PIC).options { parseMode = ParseMode.HTML }.caption { "<i>test</i>" }
             .sendAsync(TG_ID, bot).await().getOrNull()
         photoBa.shouldNotBeNull()
 
@@ -102,11 +99,7 @@ class MediaRequestTesting : BotTestContext() {
         val mediaRequest = mediaGroup(
             InputMedia.Photo(ImplicitFile.FromFile(File(image)), caption = "<b>test</b>", parseMode = ParseMode.HTML),
             InputMedia.Photo(ImplicitFile.FromByteArray(imageBytes)),
-            InputMedia.Photo(
-                ImplicitFile.FromString(
-                    "https://upload.wikimedia.org/wikipedia/commons/f/ff/Wikipedia_logo_593.jpg",
-                ),
-            ),
+            InputMedia.Photo(ImplicitFile.FromString(RANDOM_PIC_URL)),
         ).sendAsync(TG_ID, bot).await().getOrNull()
 
         mediaRequest.shouldNotBeNull()

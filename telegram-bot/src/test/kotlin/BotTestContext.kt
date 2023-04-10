@@ -7,17 +7,20 @@ import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.Response
+import io.kotest.common.runBlocking
 import io.kotest.core.spec.style.AnnotationSpec
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
+import io.ktor.client.request.get
+import io.ktor.client.statement.readBytes
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
 import kotlin.random.Random
 
-@Suppress("VariableNaming")
+@Suppress("VariableNaming", "PropertyName", "PrivatePropertyName")
 abstract class BotTestContext(
     private val withPreparedBot: Boolean = true,
     private val mockHttp: Boolean = false,
@@ -26,9 +29,12 @@ abstract class BotTestContext(
     protected lateinit var bot: TelegramBot
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
-    protected val TOKEN by lazy { System.getenv("BOT_TOKEN") }
+    private val TOKEN by lazy { System.getenv("BOT_TOKEN") }
     protected val TG_ID by lazy { System.getenv("TELEGRAM_ID").toLong() }
-    protected val BOT_ID by lazy { System.getenv("BOT_ID").toLong() }
+    protected val BOT_ID by lazy { TOKEN.substringBefore(':').toLong() }
+
+    protected val RANDOM_PIC_URL = "https://picsum.photos/10"
+    protected val RANDOM_PIC by lazy { runBlocking { bot.httpClient.get(RANDOM_PIC_URL).readBytes() } }
 
     @BeforeAll
     fun prepareTestBot() {
