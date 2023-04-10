@@ -2,7 +2,7 @@
 
 # Telegram Bot
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.vendeli/telegram-bot)
+[![Maven Central](https://img.shields.io/maven-central/v/eu.vendeli/telegram-bot?style=flat)](https://search.maven.org/artifact/eu.vendeli/telegram-bot)
 [![Supported version](https://img.shields.io/badge/Bot%20API-6.6-blue)](https://core.telegram.org/bots/api-changelog#march-9-2023)
 
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
@@ -50,8 +50,8 @@ there you can find in the appropriate branches:
 
 ```kotlin
 suspend fun main() {
-  val bot = TelegramBot("BOT_TOKEN", "com.example.controllers")
-  /**
+    val bot = TelegramBot("BOT_TOKEN", "com.example.controllers")
+    /**
      * Second parameter is the package in which commands/inputs will be searched.
      */
 
@@ -78,23 +78,23 @@ It is also possible to process updates manually:
 
 ```kotlin
 fun main() = runBlocking {
-  val bot = TelegramBot("BOT_TOKEN")
+    val bot = TelegramBot("BOT_TOKEN")
 
-  bot.handleUpdates { update ->
-    onCommand("/start") {
-      message { "Hello, what's your name?" }.send(user, bot)
-      bot.inputListener.set(user.id, "conversation")
+    bot.handleUpdates { update ->
+        onCommand("/start") {
+            message { "Hello, what's your name?" }.send(user, bot)
+            bot.inputListener.set(user.id, "conversation")
+        }
+        inputChain("conversation") {
+            message { "Nice to meet you, ${message.text}" }.send(user, bot)
+            message { "What is your favorite food?" }.send(user, bot)
+        }.breakIf({ message.text == "peanut butter" }) { // chain break condition
+            message { "Oh, too bad, I'm allergic to it." }.send(user, bot)
+            // action that will be applied when match
+        }.andThen {
+            // next input point if break condition doesn't match
+        }
     }
-    inputChain("conversation") {
-      message { "Nice to meet you, ${message.text}" }.send(user, bot)
-      message { "What is your favorite food?" }.send(user, bot)
-    }.breakIf({ message.text == "peanut butter" }) { // chain break condition
-      message { "Oh, too bad, I'm allergic to it." }.send(user, bot)
-      // action that will be applied when match
-    }.andThen {
-      // next input point if break condition doesn't match
-    }
-  }
 }
 ```
 
