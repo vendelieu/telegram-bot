@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.utils
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
+import eu.vendeli.tgbot.core.TelegramUpdateHandler.Companion.logger
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.SimpleAction
