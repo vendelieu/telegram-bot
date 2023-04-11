@@ -337,7 +337,6 @@ class ManualHandlingDsl internal constructor(
         if (bot.update.checkIsLimited(bot.config.rateLimits, update.message?.from?.id)) return@with
         var affectedActions = 0
 
-        @Suppress("KotlinConstantConditions")
         when {
             message != null -> {
                 manualActions.onMessage?.invokeAction("onMessage", ActionContext(update, message)).ifAffected {
@@ -454,9 +453,9 @@ class ManualHandlingDsl internal constructor(
             ).ifAffected {
                 affectedActions += 1
             }
-
-            affectedActions == 0 -> manualActions.whenNotHandled?.invoke(update)
         }
+        if (affectedActions == 0) manualActions.whenNotHandled?.invoke(update)
+
         logger.info { "Number of affected manual actions - $affectedActions." }
     }
 }

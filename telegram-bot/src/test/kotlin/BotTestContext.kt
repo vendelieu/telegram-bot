@@ -51,16 +51,19 @@ abstract class BotTestContext(
         if (mockHttp) doMockHttp()
     }
 
-    fun doMockHttp(messageText: String = "/start", updates: List<Update>? = mockedUpdates) {
-        val testMsg = Message(
-            Random.nextLong(),
-            from = User(1, false, "Test"),
-            chat = Chat(1, ChatType.Private),
-            date = Random.nextInt(),
-            text = messageText,
-        )
+    fun doMockHttp(messageText: String = "/start", messages: List<String>? = null) {
+        val generateMsg = { text: String ->
+            Message(
+                Random.nextLong(),
+                from = User(1, false, "Test"),
+                chat = Chat(1, ChatType.Private),
+                date = Random.nextInt(),
+                text = text,
+            )
+        }
+        val testMsg = generateMsg(messageText)
         val apiResponse = Response.Success(
-            updates ?: listOf(
+            messages?.map { Update(Random.nextInt(), generateMsg(it)) } ?: listOf(
                 Update(Random.nextInt(), testMsg),
             ),
         )
