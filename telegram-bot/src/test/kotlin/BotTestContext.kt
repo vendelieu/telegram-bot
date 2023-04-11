@@ -1,5 +1,6 @@
 import ch.qos.logback.classic.Level.TRACE
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
@@ -17,14 +18,12 @@ import io.ktor.client.statement.readBytes
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
-import io.ktor.utils.io.ByteReadChannel
 import kotlin.random.Random
 
 @Suppress("VariableNaming", "PropertyName", "PrivatePropertyName")
 abstract class BotTestContext(
     private val withPreparedBot: Boolean = true,
     private val mockHttp: Boolean = false,
-    private val mockedUpdates: List<Update>? = null,
 ) : AnnotationSpec() {
     protected lateinit var bot: TelegramBot
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
@@ -51,26 +50,28 @@ abstract class BotTestContext(
         if (mockHttp) doMockHttp()
     }
 
+    private var loopMessages = 0
+    private fun <T : Any> cycle(vararg xs: T): Sequence<T> {
+        return generateSequence { xs[loopMessages++ % xs.size] }
+    }
+
     fun doMockHttp(messageText: String = "/start", messages: List<String>? = null) {
+        val textFromMsg = messages?.toTypedArray()?.let { cycle(*it) }
         val generateMsg = { text: String ->
             Message(
-                Random.nextLong(),
+                messageId = Random.nextLong(),
                 from = User(1, false, "Test"),
                 chat = Chat(1, ChatType.Private),
                 date = Random.nextInt(),
                 text = text,
             )
         }
-        val testMsg = generateMsg(messageText)
-        val apiResponse = Response.Success(
-            messages?.map { Update(Random.nextInt(), generateMsg(it)) } ?: listOf(
-                Update(Random.nextInt(), testMsg),
-            ),
-        )
+        val testMsg = generateMsg(textFromMsg?.first() ?: messageText)
+        val apiResponse = { Response.Success(listOf(Update(Random.nextInt(), testMsg))) }
         bot.httpClient = HttpClient(
             MockEngine {
                 respond(
-                    content = ByteReadChannel(TelegramBot.mapper.writeValueAsBytes(apiResponse)),
+                    content = mapper.writeValueAsString(apiResponse()),
                     status = HttpStatusCode.OK,
                     headers = headersOf(HttpHeaders.ContentType, "application/json"),
                 )
