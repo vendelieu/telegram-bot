@@ -1,5 +1,16 @@
 # Telegram-bot changelog
 
+### 2.7.3
+
+* Swap parameters in `chatAction` method for better interface.
+* Exposed `Update.processUpdate()` method.
+* Improved logging (better layer separation, error notification even in silent mode).
+* Make `restrictSpacesInCommands` - `false` by default.
+* Add missing `switchInlineQueryCurrentChat` parameter to `InlineKeyboardButton`.
+* Fixed `ManualDsl.whenNotHandled`.
+* Fixed `InputChaining` logic.
+* Refactor and improve commandParsing logic.
+
 ### 2.7.2
 
 * Reworked `ProcessedUpdate` to sealed structure for more consistency.
