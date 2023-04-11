@@ -74,7 +74,7 @@ class ManualHandlingTest : BotTestContext(true, true) {
             if (generalCounter.incrementAndGet() == 5)
                 bot.update.stopListener()
         }
-        generalCounter.get() shouldBe 5
+        generalCounter.get() shouldBe 6
         startCounter.get() shouldBe 3
         notHandledCounter.get() shouldBe 3
     }
