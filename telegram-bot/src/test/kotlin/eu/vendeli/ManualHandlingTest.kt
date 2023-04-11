@@ -56,4 +56,26 @@ class ManualHandlingTest : BotTestContext(true, true) {
 
         bot.update.caughtExceptions.tryReceive().getOrNull().shouldBeNull()
     }
+
+    @Test
+    suspend fun `whenNotHandled reaching test`() {
+        val generalCounter = AtomicInteger(0)
+        val startCounter = AtomicInteger(0)
+        val notHandledCounter = AtomicInteger(0)
+        doMockHttp(messages = listOf("test", "/start"))
+
+        bot.handleUpdates {
+            onCommand("/start") {
+                startCounter.incrementAndGet()
+            }
+            whenNotHandled {
+                notHandledCounter.incrementAndGet()
+            }
+            if (generalCounter.incrementAndGet() == 5)
+                bot.update.stopListener()
+        }
+        generalCounter.get() shouldBe 6
+        startCounter.get() shouldBe 3
+        notHandledCounter.get() shouldBe 3
+    }
 }
