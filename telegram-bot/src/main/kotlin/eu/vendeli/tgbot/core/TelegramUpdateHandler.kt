@@ -46,7 +46,6 @@ class TelegramUpdateHandler internal constructor(
     private val inputListener: InputListener,
     internal val rateLimiter: RateLimitMechanism,
 ) {
-    internal val logger = KotlinLogging.logger {}
     private lateinit var handlingBehaviour: HandlingBehaviourBlock
 
     @Volatile
@@ -68,12 +67,7 @@ class TelegramUpdateHandler internal constructor(
         var lastUpdateId: Int = offset ?: 0
         bot.pullUpdates(offset)?.forEach { update ->
             NewCoroutineContext(coroutineContext + dispatcher).launch {
-                handlingBehaviour.runCatching {
-                    invoke(this@TelegramUpdateHandler, update)
-                }.onFailure { exception ->
-                    logger.error(exception) { "Error at manually processing update: $update" }
-                    caughtExceptions.send(exception to update)
-                }
+                handlingBehaviour.invoke(this@TelegramUpdateHandler, update)
             }
             lastUpdateId = update.updateId + 1
         }
@@ -250,5 +244,9 @@ class TelegramUpdateHandler internal constructor(
             block()
             process(update)
         }
+    }
+
+    internal companion object {
+        internal val logger = KotlinLogging.logger {}
     }
 }

@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.core.TelegramUpdateHandler.Companion.logger
 import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
@@ -258,42 +259,71 @@ class ManualHandlingDsl internal constructor(
      * @param from
      * @param text
      */
-    private suspend fun checkMessageForActions(update: Update, from: User?, text: String?) {
+    private suspend fun checkMessageForActions(update: Update, from: User?, text: String?): Boolean {
         // parse text to chosen format
         val parsedText = text?.let { bot.update.parseCommand(it) }
+        logger.debug { "Parsed text - $text to $parsedText" }
 
         // if there's no action then break
-        if (parsedText == null || from == null) return
+        if (parsedText == null || from == null) return false
 
         // find action which match command and invoke it
         manualActions.commands.filter { it.key.match(parsedText.command) }.entries.firstOrNull()?.run {
+            logger.debug { "Matched command $this for text $text" }
             inputListener.del(from.id) // clean input listener
             // check for limit exceed
-            if (bot.update.checkIsLimited(key.rateLimits, update.message?.from?.id, parsedText.command)) return
+            if (bot.update.checkIsLimited(key.rateLimits, update.message?.from?.id, parsedText.command)) return false
+            logger.info { "Invoking command $key" }
             value.invoke(CommandContext(update, parsedText.params, from))
-            return
+            return true
         }
         // if there's no command -> then try process input
         inputListener.getAsync(from.id).await()?.also {
+            logger.info { "Found inputListener point $it for ${from.id}" }
             inputListener.del(from.id) // clean listener after input caught
             // search matching input handler for listening point
             val foundChain = manualActions.onInput[it]
             if (foundChain != null && update.message != null) {
                 // check for limit exceed
-                if (bot.update.checkIsLimited(foundChain.rateLimits, update.message.from?.id, foundChain.id)) return
+                if (bot.update.checkIsLimited(foundChain.rateLimits, update.message.from?.id, foundChain.id)) {
+                    return false
+                }
                 val inputContext = InputContext(from, update)
                 // invoke it if found
+                // todo check prev chain br cond
                 foundChain.inputAction.invoke(inputContext)
                 // if there's chaining point and breaking condition wasn't match then set new listener
                 val breakCondition = foundChain.breakPoint?.condition?.invoke(inputContext) == true
                 if (foundChain.tail != null && !breakCondition) {
                     foundChain.breakPoint?.action?.invoke(inputContext)
                     inputListener.set(from.id, foundChain.tail!!)
+                    return true
                 } else if (breakCondition && foundChain.breakPoint?.repeat == true) {
                     inputListener.set(from.id, foundChain.id)
                 }
             }
         }
+        return false
+    }
+
+    private suspend fun <CTX> ((suspend (ActionContext<CTX>) -> Unit)?).invokeAction(
+        actionType: String,
+        actionCtx: ActionContext<CTX>,
+    ): Boolean {
+        this?.runCatching { invoke(actionCtx) }?.onFailure {
+            bot.update.caughtExceptions.send(it to actionCtx.update)
+            logger.error(it) {
+                "An error occurred while manually processing update: ${actionCtx.update} to $actionType."
+            }
+        }?.onSuccess {
+            logger.info { "Update ${actionCtx.update.updateId} processed in manual mode with $actionType action." }
+            return true
+        }
+        return false
+    }
+
+    private inline fun Boolean?.ifAffected(block: () -> Unit) {
+        if (this == true) block()
     }
 
     /**
@@ -301,54 +331,132 @@ class ManualHandlingDsl internal constructor(
      *
      * @param update
      */
-    @Suppress("CyclomaticComplexMethod")
+    @Suppress("CyclomaticComplexMethod", "LongMethod")
     internal suspend fun process(update: Update) = with(update) {
+        logger.info { "Handling update #${update.updateId}" }
         if (bot.update.checkIsLimited(bot.config.rateLimits, update.message?.from?.id)) return@with
+        var affectedActions = 0
+
+        @Suppress("KotlinConstantConditions")
         when {
             message != null -> {
-                // invoke 'on-message' action
-                manualActions.onMessage?.invoke(ActionContext(update, message))
-                checkMessageForActions(update, update.message?.from, update.message?.text)
+                manualActions.onMessage?.invokeAction("onMessage", ActionContext(update, message)).ifAffected {
+                    affectedActions += 1
+                }
+                checkMessageForActions(update, update.message?.from, update.message?.text).ifAffected {
+                    affectedActions += 1
+                }
             }
 
-            editedMessage != null -> manualActions.onEditedMessage?.invoke(ActionContext(update, editedMessage))
-            pollAnswer != null -> manualActions.onPollAnswer?.invoke(ActionContext(update, pollAnswer))
+            editedMessage != null -> manualActions.onEditedMessage?.invokeAction(
+                "onEditedMessage",
+                ActionContext(update, editedMessage),
+            ).ifAffected {
+                affectedActions += 1
+            }
+
+            pollAnswer != null -> manualActions.onPollAnswer?.invokeAction(
+                "onPollAnswer",
+                ActionContext(update, pollAnswer),
+            ).ifAffected {
+                affectedActions += 1
+            }
+
             callbackQuery != null -> {
-                manualActions.onCallbackQuery?.invoke(ActionContext(update, callbackQuery))
+                manualActions.onCallbackQuery?.invokeAction(
+                    "onCallbackQuery",
+                    ActionContext(update, callbackQuery),
+                ).ifAffected {
+                    affectedActions += 1
+                }
+                if (callbackQuery.data == null) return@with
 
-                if (callbackQuery.data != null) checkMessageForActions(update, callbackQuery.from, callbackQuery.data)
+                checkMessageForActions(update, callbackQuery.from, callbackQuery.data).ifAffected {
+                    affectedActions += 1
+                }
             }
 
-            poll != null -> manualActions.onPoll?.invoke(ActionContext(update, poll))
-            chatJoinRequest != null -> manualActions.onChatJoinRequest?.invoke(ActionContext(update, chatJoinRequest))
-            chatMember != null -> manualActions.onChatMember?.invoke(ActionContext(update, chatMember))
-            myChatMember != null -> manualActions.onMyChatMember?.invoke(ActionContext(update, myChatMember))
-            channelPost != null -> manualActions.onChannelPost?.invoke(ActionContext(update, channelPost))
-            inlineQuery != null -> manualActions.onInlineQuery?.invoke(ActionContext(update, inlineQuery))
-            shippingQuery != null -> manualActions.onShippingQuery?.invoke(ActionContext(update, shippingQuery))
-            preCheckoutQuery != null -> manualActions.onPreCheckoutQuery?.invoke(
+            poll != null -> manualActions.onPoll?.invokeAction(
+                "onPoll",
+                ActionContext(update, poll),
+            ).ifAffected {
+                affectedActions += 1
+            }
+
+            chatJoinRequest != null -> manualActions.onChatJoinRequest?.invokeAction(
+                "onChatJoinRequest",
+                ActionContext(update, chatJoinRequest),
+            ).ifAffected {
+                affectedActions += 1
+            }
+
+            chatMember != null -> manualActions.onChatMember?.invokeAction(
+                "onChatMember",
+                ActionContext(update, chatMember),
+            ).ifAffected {
+                affectedActions += 1
+            }
+
+            myChatMember != null -> manualActions.onMyChatMember?.invokeAction(
+                "onMyChatMember",
+                ActionContext(update, myChatMember),
+            ).ifAffected {
+                affectedActions += 1
+            }
+
+            channelPost != null -> manualActions.onChannelPost?.invokeAction(
+                "onChannelPost",
+                ActionContext(update, channelPost),
+            ).ifAffected {
+                affectedActions += 1
+            }
+
+            inlineQuery != null -> manualActions.onInlineQuery?.invokeAction(
+                "onInlineQuery",
+                ActionContext(update, inlineQuery),
+            ).ifAffected {
+                affectedActions += 1
+            }
+
+            shippingQuery != null -> manualActions.onShippingQuery?.invokeAction(
+                "onShippingQuery",
+                ActionContext(update, shippingQuery),
+            ).ifAffected {
+                affectedActions += 1
+            }
+
+            preCheckoutQuery != null -> manualActions.onPreCheckoutQuery?.invokeAction(
+                "onPreCheckoutQuery",
                 ActionContext(
                     update,
                     preCheckoutQuery,
                 ),
-            )
+            ).ifAffected {
+                affectedActions += 1
+            }
 
-            editedChannelPost != null -> manualActions.onEditedChannelPost?.invoke(
+            editedChannelPost != null -> manualActions.onEditedChannelPost?.invokeAction(
+                "onEditedChannelPost",
                 ActionContext(
                     update,
                     editedChannelPost,
                 ),
-            )
+            ).ifAffected {
+                affectedActions += 1
+            }
 
-            chosenInlineResult != null -> manualActions.onChosenInlineResult?.invoke(
+            chosenInlineResult != null -> manualActions.onChosenInlineResult?.invokeAction(
+                "onChosenInlineResult",
                 ActionContext(
                     update,
                     chosenInlineResult,
                 ),
-            )
+            ).ifAffected {
+                affectedActions += 1
+            }
 
-            else -> manualActions.whenNotHandled?.invoke(update)
+            affectedActions == 0 -> manualActions.whenNotHandled?.invoke(update)
         }
-        Unit
+        logger.info { "Number of affected manual actions - $affectedActions." }
     }
 }
