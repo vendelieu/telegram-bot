@@ -18,6 +18,7 @@ import io.ktor.client.statement.readBytes
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
+import io.ktor.utils.io.ByteReadChannel
 import kotlin.random.Random
 
 @Suppress("VariableNaming", "PropertyName", "PrivatePropertyName")
@@ -50,28 +51,26 @@ abstract class BotTestContext(
         if (mockHttp) doMockHttp()
     }
 
-    private var loopMessages = 0
-    private fun <T : Any> cycle(vararg xs: T): Sequence<T> {
-        return generateSequence { xs[loopMessages++ % xs.size] }
-    }
-
     fun doMockHttp(messageText: String = "/start", messages: List<String>? = null) {
-        val textFromMsg = messages?.toTypedArray()?.let { cycle(*it) }
         val generateMsg = { text: String ->
             Message(
-                messageId = Random.nextLong(),
+                Random.nextLong(),
                 from = User(1, false, "Test"),
                 chat = Chat(1, ChatType.Private),
                 date = Random.nextInt(),
                 text = text,
             )
         }
-        val testMsg = generateMsg(textFromMsg?.first() ?: messageText)
-        val apiResponse = { Response.Success(listOf(Update(Random.nextInt(), testMsg))) }
+        val testMsg = generateMsg(messageText)
+        val apiResponse = Response.Success(
+            messages?.map { Update(Random.nextInt(), generateMsg(it)) } ?: listOf(
+                Update(Random.nextInt(), testMsg),
+            ),
+        )
         bot.httpClient = HttpClient(
             MockEngine {
                 respond(
-                    content = mapper.writeValueAsString(apiResponse()),
+                    content = ByteReadChannel(mapper.writeValueAsBytes(apiResponse)),
                     status = HttpStatusCode.OK,
                     headers = headersOf(HttpHeaders.ContentType, "application/json"),
                 )
