@@ -2,11 +2,13 @@
 
 # Telegram Bot
 
-[![Maven Central](https://img.shields.io/maven-central/v/eu.vendeli/telegram-bot?style=flat)](https://search.maven.org/artifact/eu.vendeli/telegram-bot)
-[![Supported version](https://img.shields.io/badge/Bot%20API-6.6-blue)](https://core.telegram.org/bots/api-changelog#march-9-2023)
+[![Maven Central](https://img.shields.io/maven-central/v/eu.vendeli/telegram-bot?style=flat&label=MavenCentral&logo=apache-maven)](https://search.maven.org/artifact/eu.vendeli/telegram-bot)
+[![Supported version](https://img.shields.io/badge/Bot%20Api-6.6-blue?logo=telegram)](https://core.telegram.org/bots/api-changelog#march-9-2023)
 
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
-[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin) [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/vennyTgBot)
+[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+
+[![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/vennyTgBot)
 [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Channel&color=blue&logo=telegram)](https://t.me/v_telegramBot)
 
 Telegram Bot Api wrapper with a user-friendly interface.
