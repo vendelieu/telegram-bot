@@ -2,6 +2,7 @@ package eu.vendeli
 
 import BotTestContext
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
+import eu.vendeli.tgbot.types.keyboard.ForceReply
 import eu.vendeli.tgbot.types.keyboard.KeyboardButton
 import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardMarkup
 import eu.vendeli.tgbot.types.media.Voice
@@ -29,7 +30,7 @@ class SerdeIssuesTest : BotTestContext() {
 
     @Test
     fun `reply markup parameter wrong serialization`() {
-        val markup = ReplyKeyboardMarkup(listOf(listOf(KeyboardButton("test"))), inputFieldPlaceholder = "test")
+        val markup = ForceReply(inputFieldPlaceholder = "test")
         val serializedMarkup = mapper.writeValueAsString(markup)
         serializedMarkup shouldContain "input_field_placeholder"
     }
