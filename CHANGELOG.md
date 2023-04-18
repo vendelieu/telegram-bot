@@ -1,5 +1,10 @@
 # Telegram-bot changelog
 
+### 2.7.4
+
+* Fix `Voice` wrong parameter type.
+* Fix `ForceReply` wrong parameter name.
+
 ### 2.7.3
 
 * Swap parameters in `chatAction` method for better interface.
