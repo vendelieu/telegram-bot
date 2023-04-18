@@ -1777,7 +1777,7 @@ $dokka.location:eu.vendeli.tgbot.types.keyboard////PointingToDeclaration/-teleg
 $dokka.location:eu.vendeli.tgbot.types.keyboard/ForceReply///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.keyboard/-force-reply/index.html
 $dokka.location:eu.vendeli.tgbot.types.keyboard/ForceReply/ForceReply/#kotlin.String?#kotlin.Boolean?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.keyboard/-force-reply/-force-reply.html
 $dokka.location:eu.vendeli.tgbot.types.keyboard/ForceReply/forceReply/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.keyboard/-force-reply/force-reply.html
-$dokka.location:eu.vendeli.tgbot.types.keyboard/ForceReply/inputFieldPlaceHolder/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.keyboard/-force-reply/input-field-place-holder.html
+$dokka.location:eu.vendeli.tgbot.types.keyboard/ForceReply/inputFieldPlaceholder/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.keyboard/-force-reply/input-field-placeholder.html
 $dokka.location:eu.vendeli.tgbot.types.keyboard/ForceReply/selective/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.keyboard/-force-reply/selective.html
 $dokka.location:eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.keyboard/-inline-keyboard-button/index.html
 $dokka.location:eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton/InlineKeyboardButton/#kotlin.String#kotlin.String?#kotlin.String?#eu.vendeli.tgbot.types.keyboard.WebAppInfo?#eu.vendeli.tgbot.types.keyboard.LoginUrl?#kotlin.String?#kotlin.String?#eu.vendeli.tgbot.types.game.CallbackGame?#kotlin.Boolean?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.keyboard/-inline-keyboard-button/-inline-keyboard-button.html
@@ -2033,7 +2033,7 @@ $dokka.location:eu.vendeli.tgbot.types.media/VideoNote/fileUniqueId/#/PointingTo
 $dokka.location:eu.vendeli.tgbot.types.media/VideoNote/length/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.media/-video-note/length.html
 $dokka.location:eu.vendeli.tgbot.types.media/VideoNote/thumbnail/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.media/-video-note/thumbnail.html
 $dokka.location:eu.vendeli.tgbot.types.media/Voice///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.media/-voice/index.html
-$dokka.location:eu.vendeli.tgbot.types.media/Voice/Voice/#kotlin.String#kotlin.String#kotlin.Int#eu.vendeli.tgbot.types.media.Sticker?#kotlin.Long?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.media/-voice/-voice.html
+$dokka.location:eu.vendeli.tgbot.types.media/Voice/Voice/#kotlin.String#kotlin.String#kotlin.Int#kotlin.String?#kotlin.Long?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.media/-voice/-voice.html
 $dokka.location:eu.vendeli.tgbot.types.media/Voice/duration/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.media/-voice/duration.html
 $dokka.location:eu.vendeli.tgbot.types.media/Voice/fileId/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.media/-voice/file-id.html
 $dokka.location:eu.vendeli.tgbot.types.media/Voice/fileSize/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.media/-voice/file-size.html
