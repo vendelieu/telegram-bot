@@ -3,8 +3,6 @@ package eu.vendeli
 import BotTestContext
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.types.keyboard.ForceReply
-import eu.vendeli.tgbot.types.keyboard.KeyboardButton
-import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardMarkup
 import eu.vendeli.tgbot.types.media.Voice
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
