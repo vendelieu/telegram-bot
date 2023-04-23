@@ -114,13 +114,6 @@ class TelegramBotTest : BotTestContext() {
     }
 
     @Test
-    fun `chat data not set`() {
-        shouldThrow<NotImplementedError> {
-            bot.chatData
-        }
-    }
-
-    @Test
     fun `chat data setting`() {
         val bot = TelegramBot("") {
             context {
@@ -128,7 +121,6 @@ class TelegramBotTest : BotTestContext() {
             }
         }
 
-        shouldNotThrow<NotImplementedError> { bot.chatData }
         bot.chatData::class.java shouldBe ChatDataImpl::class.java
     }
 
