@@ -91,7 +91,10 @@ class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
      * @param name
      * @param value
      */
-    fun switchInlineQueryChosenChat(name: String, value: () -> SwitchInlineQueryChosenChat): InlineKeyboardMarkupBuilder {
+    fun switchInlineQueryChosenChat(
+        name: String,
+        value: () -> SwitchInlineQueryChosenChat,
+    ): InlineKeyboardMarkupBuilder {
         buttons += InlineKeyboardButton(name, switchInlineQueryChosenChat = value())
         return this
     }
@@ -163,7 +166,8 @@ class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
      *
      * @param value
      */
-    infix fun String.switchInlineQueryChosenChat(value: SwitchInlineQueryChosenChat) = switchInlineQueryChosenChat(this) { value }
+    infix fun String.switchInlineQueryChosenChat(value: SwitchInlineQueryChosenChat) =
+        switchInlineQueryChosenChat(this) { value }
 }
 
 /**

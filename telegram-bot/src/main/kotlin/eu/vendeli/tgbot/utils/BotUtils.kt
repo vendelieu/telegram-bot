@@ -17,8 +17,11 @@ import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import java.lang.reflect.Method
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
@@ -159,3 +162,7 @@ private enum class ParserState {
 }
 
 internal val DEFAULT_COMMAND_SCOPE = setOf(CommandScope.MESSAGE, CommandScope.CALLBACK)
+
+suspend inline fun <T> asyncAction(crossinline block: suspend () -> T): Deferred<T> = coroutineScope {
+    async { block() }
+}

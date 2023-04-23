@@ -164,11 +164,11 @@ class TelegramUpdateHandler internal constructor(
         }.toTypedArray()
         logger.debug { "Parsed arguments - $processedParameters." }
 
-        bot.config.context._chatData?.run {
+        bot.config.context.chatData.run {
             if ((pUpdate as? UserReference)?.user?.id == null) return@run
             // check for user id nullability
             val prevClassName = getAsync<String>(pUpdate.user!!.id, "PrevInvokedClass").await()
-            if (prevClassName != invocation.clazz.name) delPrevChatSectionAsync(pUpdate.user!!.id).await()
+            if (prevClassName != invocation.clazz.name) clearAllAsync(pUpdate.user!!.id).await()
 
             setAsync(pUpdate.user!!.id, "PrevInvokedClass", invocation.clazz.name).await()
         }
