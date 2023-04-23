@@ -16,5 +16,5 @@ interface MagicObject<T> {
      * @param bot
      * @return [T]
      */
-    fun get(update: ProcessedUpdate, bot: TelegramBot): T?
+    suspend fun get(update: ProcessedUpdate, bot: TelegramBot): T?
 }
