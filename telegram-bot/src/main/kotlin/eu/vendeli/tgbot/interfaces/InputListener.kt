@@ -2,11 +2,6 @@ package eu.vendeli.tgbot.interfaces
 
 import kotlinx.coroutines.Deferred
 
-@Deprecated(
-    "Use InputListener instead",
-    ReplaceWith("eu.vendeli.tgbot.interfaces.InputListener"),
-)
-interface BotInputListener : InputListener
 
 /**
  * Bot input listener, see

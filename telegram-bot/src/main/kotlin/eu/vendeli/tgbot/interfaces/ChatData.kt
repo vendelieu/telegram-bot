@@ -2,11 +2,6 @@ package eu.vendeli.tgbot.interfaces
 
 import kotlinx.coroutines.Deferred
 
-@Deprecated(
-    "Use ChatData instead",
-    ReplaceWith("eu.vendeli.tgbot.interfaces.ChatData"),
-)
-interface BotChatData : ChatData
 
 /**
  * Bot chat data, see [Bot context article](https://github.com/vendelieu/telegram-bot/wiki/Bot-Context)
