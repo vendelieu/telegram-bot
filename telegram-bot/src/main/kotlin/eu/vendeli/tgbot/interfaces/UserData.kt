@@ -2,7 +2,6 @@ package eu.vendeli.tgbot.interfaces
 
 import kotlinx.coroutines.Deferred
 
-
 /**
  * Bot user data, see [Bot context article](https://github.com/vendelieu/telegram-bot/wiki/Bot-Context)
  */

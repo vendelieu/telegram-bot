@@ -2,7 +2,6 @@ package eu.vendeli.tgbot.interfaces
 
 import kotlinx.coroutines.Deferred
 
-
 /**
  * Bot chat data, see [Bot context article](https://github.com/vendelieu/telegram-bot/wiki/Bot-Context)
  */
@@ -58,16 +57,18 @@ interface ChatData {
     suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean>
 
     /**
-     * Delete previous chat section data, method used to bind data to a class.
+     * Clear all chat data entries.
+     * Used to remove previous context data.
      *
      * @param telegramId
      */
-    fun delPrevChatSection(telegramId: Long)
+    fun clearAll(telegramId: Long)
 
     /**
-     * Asynchronously delete previous chat section data, method used to bind data to a class.
+     * Asynchronously clear all chat data entries.
+     * Used to remove previous context data.
      *
      * @param telegramId
      */
-    suspend fun delPrevChatSectionAsync(telegramId: Long): Deferred<Boolean>
+    suspend fun clearAllAsync(telegramId: Long): Deferred<Boolean>
 }

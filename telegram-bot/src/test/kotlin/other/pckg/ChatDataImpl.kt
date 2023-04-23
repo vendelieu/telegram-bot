@@ -28,11 +28,11 @@ class ChatDataImpl : ChatData {
         TODO("Not yet implemented")
     }
 
-    override fun delPrevChatSection(telegramId: Long) {
+    override fun clearAll(telegramId: Long) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun delPrevChatSectionAsync(telegramId: Long): Deferred<Boolean> {
+    override suspend fun clearAllAsync(telegramId: Long): Deferred<Boolean> {
         TODO("Not yet implemented")
     }
 }
