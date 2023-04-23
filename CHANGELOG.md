@@ -1,5 +1,26 @@
 # Telegram-bot changelog
 
+## 2.8.0
+
+#### Telegram Api related changes
+
+* Change `switchPmText` `switchPmParameter` to `button` with `InlineQueryResultsButton` in `answerInlineQuery`.
+* Added the field `webAppName` to the class `WriteAccessAllowed`.
+* Added the ability to set different bot names for different user languages using the method `setMyName`.
+* Added the ability to get the current bot name in the given language as the class `BotName` using the
+  method `getMyName`.
+* Added the field `switchInlineQueryChosenChat` of the type `SwitchInlineQueryChosenChat` to the
+  class `InlineKeyboardButton`.
+* Added the field `viaChatFolderInviteLink` to the class `ChatMemberUpdated`.
+
+#### Bot improvements
+
+* Deleted deprecated `Bot*` prefix for Context interfaces. #22
+* Added default implementation for context interfaces based on `ConcurrentHashMap`. #25
+* Make `MagicObject.get` function suspendable. #19
+* Add scope parameter for manual commands. #20
+* Add additional parsing for deeplink case.
+
 ### 2.7.4
 
 * Fix `Voice` wrong parameter type.

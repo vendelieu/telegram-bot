@@ -15,6 +15,7 @@ import eu.vendeli.tgbot.interfaces.UserData
 @Suppress("VariableNaming", "PropertyName")
 class ContextConfiguration {
     internal var _chatData: ChatData? = null
+        private set
     private var _userData: UserData? = null
 
     var userData: UserData
