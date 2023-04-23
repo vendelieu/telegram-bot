@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActionContext
 import eu.vendeli.tgbot.types.internal.CommandContext
+import eu.vendeli.tgbot.types.internal.CommandScope
 import eu.vendeli.tgbot.types.internal.InputContext
 import eu.vendeli.tgbot.types.internal.SingleInputChain
 
@@ -27,7 +28,12 @@ private inline val SingleInputChain.prevChainId: String?
  * @param text
  */
 @Suppress("CyclomaticComplexMethod")
-private suspend fun ManualHandlingDsl.checkMessageForActions(update: Update, from: User?, text: String?): Boolean {
+private suspend fun ManualHandlingDsl.checkMessageForActions(
+    update: Update,
+    from: User?,
+    text: String?,
+    scope: CommandScope,
+): Boolean {
     // parse text to chosen format
     val parsedText = text?.let { bot.update.parseCommand(it) }
     logger.debug { "Parsed text - $text to $parsedText" }
@@ -36,7 +42,7 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(update: Update, fro
     if (parsedText == null || from == null) return false
 
     // find action which match command and invoke it
-    manualActions.commands.filter { it.key.match(parsedText.command) }.entries.firstOrNull()?.run {
+    manualActions.commands.filter { it.key.match(parsedText.command, scope) }.entries.firstOrNull()?.run {
         logger.debug { "Matched command $this for text $text" }
         inputListener.del(from.id) // clean input listener
         // check for limit exceed
@@ -121,7 +127,12 @@ internal suspend fun ManualHandlingDsl.process(update: Update) = with(update) {
             manualActions.onMessage?.invokeAction(bot, "onMessage", ActionContext(update, message)).ifAffected {
                 affectedActions += 1
             }
-            checkMessageForActions(update, update.message?.from, update.message?.text).ifAffected {
+            checkMessageForActions(
+                update,
+                update.message?.from,
+                update.message?.text,
+                CommandScope.MESSAGE,
+            ).ifAffected {
                 affectedActions += 1
             }
         }
@@ -152,7 +163,12 @@ internal suspend fun ManualHandlingDsl.process(update: Update) = with(update) {
             }
             if (callbackQuery.data == null) return@with
 
-            checkMessageForActions(update, callbackQuery.from, callbackQuery.data).ifAffected {
+            checkMessageForActions(
+                update,
+                callbackQuery.from,
+                callbackQuery.data,
+                CommandScope.CALLBACK,
+            ).ifAffected {
                 affectedActions += 1
             }
         }
