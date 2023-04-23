@@ -2,12 +2,14 @@ package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.InputListener
+import eu.vendeli.tgbot.types.internal.CommandScope
 import eu.vendeli.tgbot.types.internal.CommandSelector
 import eu.vendeli.tgbot.types.internal.InputBreakPoint
 import eu.vendeli.tgbot.types.internal.InputContext
 import eu.vendeli.tgbot.types.internal.ManualActions
 import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import eu.vendeli.tgbot.utils.DEFAULT_COMMAND_SCOPE
 import eu.vendeli.tgbot.utils.OnCallbackQueryAction
 import eu.vendeli.tgbot.utils.OnChannelPostAction
 import eu.vendeli.tgbot.utils.OnChatJoinRequestAction
@@ -144,10 +146,11 @@ class ManualHandlingDsl internal constructor(
      */
     fun onCommand(
         command: String,
+        scope: Set<CommandScope> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
         block: OnCommandAction,
     ) {
-        manualActions.commands[CommandSelector.String(command, rateLimits)] = block
+        manualActions.commands[CommandSelector.String(command, scope, rateLimits)] = block
     }
 
     /**
@@ -159,10 +162,11 @@ class ManualHandlingDsl internal constructor(
      */
     fun onCommand(
         command: Regex,
+        scope: Set<CommandScope> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
         block: OnCommandAction,
     ) {
-        manualActions.commands[CommandSelector.Regex(command, rateLimits)] = block
+        manualActions.commands[CommandSelector.Regex(command, scope, rateLimits)] = block
     }
 
     /**

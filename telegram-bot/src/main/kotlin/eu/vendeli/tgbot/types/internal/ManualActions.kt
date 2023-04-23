@@ -19,15 +19,22 @@ import eu.vendeli.tgbot.utils.OnPreCheckoutQueryAction
 import eu.vendeli.tgbot.utils.OnShippingQueryAction
 import eu.vendeli.tgbot.utils.WhenNotHandledAction
 
-internal sealed class CommandSelector {
-    abstract val rateLimits: RateLimits
+internal sealed class CommandSelector(open val scope: Set<CommandScope>, open val rateLimits: RateLimits) {
+    data class String(
+        val command: kotlin.String,
+        override val scope: Set<CommandScope>,
+        override val rateLimits: RateLimits,
+    ) : CommandSelector(scope, rateLimits)
 
-    data class String(val command: kotlin.String, override val rateLimits: RateLimits) : CommandSelector()
-    data class Regex(val regex: kotlin.text.Regex, override val rateLimits: RateLimits) : CommandSelector()
+    data class Regex(
+        val regex: kotlin.text.Regex,
+        override val scope: Set<CommandScope>,
+        override val rateLimits: RateLimits,
+    ) : CommandSelector(scope, rateLimits)
 
-    fun match(command: kotlin.String): Boolean = when (this) {
-        is String -> command == this.command
-        is Regex -> regex.matches(command)
+    fun match(command: kotlin.String, scope: CommandScope): Boolean = when (this) {
+        is String -> scope in this.scope && command == this.command
+        is Regex -> scope in this.scope && regex.matches(command)
     }
 }
 

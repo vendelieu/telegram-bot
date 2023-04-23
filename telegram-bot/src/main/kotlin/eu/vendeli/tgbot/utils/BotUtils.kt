@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.Activity
+import eu.vendeli.tgbot.types.internal.CommandScope
 import eu.vendeli.tgbot.types.internal.StructuredRequest
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
@@ -156,3 +157,5 @@ private enum class ParserState {
     READING_PARAM_NAME,
     READING_PARAM_VALUE,
 }
+
+internal val DEFAULT_COMMAND_SCOPE = setOf(CommandScope.MESSAGE, CommandScope.CALLBACK)
