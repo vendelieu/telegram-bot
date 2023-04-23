@@ -12,9 +12,9 @@ import eu.vendeli.tgbot.interfaces.UserData
  * @property userData Parameter to manage UserData, can be set once per instance.
  * @property chatData Parameter to manage ChatData, can be set once per instance.
  */
-@Suppress("VariableNaming")
+@Suppress("VariableNaming", "PropertyName")
 class ContextConfiguration {
-    private var _chatData: ChatData? = null
+    internal var _chatData: ChatData? = null
     private var _userData: UserData? = null
 
     var userData: UserData

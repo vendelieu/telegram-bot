@@ -164,7 +164,7 @@ class TelegramUpdateHandler internal constructor(
         }.toTypedArray()
         logger.debug { "Parsed arguments - $processedParameters." }
 
-        bot.config.context.chatData.run {
+        bot.config.context._chatData?.run {
             if ((pUpdate as? UserReference)?.user?.id == null) return@run
             // check for user id nullability
             val prevClassName = getAsync<String>(pUpdate.user!!.id, "PrevInvokedClass").await()
