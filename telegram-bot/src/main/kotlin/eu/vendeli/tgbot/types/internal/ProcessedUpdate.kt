@@ -1,8 +1,6 @@
 package eu.vendeli.tgbot.types.internal
 
 import eu.vendeli.tgbot.types.CallbackQuery
-import eu.vendeli.tgbot.types.ChosenInlineResult
-import eu.vendeli.tgbot.types.InlineQuery
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Poll
 import eu.vendeli.tgbot.types.PollAnswer
@@ -10,6 +8,8 @@ import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.ChatJoinRequest
 import eu.vendeli.tgbot.types.chat.ChatMemberUpdated
+import eu.vendeli.tgbot.types.inline.ChosenInlineResult
+import eu.vendeli.tgbot.types.inline.InlineQuery
 import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
 import eu.vendeli.tgbot.types.payment.ShippingQuery
 

@@ -3,14 +3,14 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.types.CallbackQuery
-import eu.vendeli.tgbot.types.ChosenInlineResult
-import eu.vendeli.tgbot.types.InlineQuery
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Poll
 import eu.vendeli.tgbot.types.PollAnswer
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.chat.ChatJoinRequest
 import eu.vendeli.tgbot.types.chat.ChatMemberUpdated
+import eu.vendeli.tgbot.types.inline.ChosenInlineResult
+import eu.vendeli.tgbot.types.inline.InlineQuery
 import eu.vendeli.tgbot.types.internal.ActionContext
 import eu.vendeli.tgbot.types.internal.CommandContext
 import eu.vendeli.tgbot.types.internal.CommandSelector
