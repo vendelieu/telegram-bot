@@ -27,7 +27,7 @@ class ContextConfiguration {
         }
 
     var chatData: ChatData
-        get() = if (_userData != null) _chatData!! else ChatDataMapImpl.also {
+        get() = if (_chatData != null) _chatData!! else ChatDataMapImpl.also {
             _chatData = it
         }
         set(value) {
