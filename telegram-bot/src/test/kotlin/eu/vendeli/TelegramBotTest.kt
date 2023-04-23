@@ -133,10 +133,10 @@ class TelegramBotTest : BotTestContext() {
     }
 
     @Test
-    fun `adding magic object`() {
+    suspend fun `adding magic object`() {
         bot.addMagicObject(TgMethod::class.java) {
             object : MagicObject<TgMethod> {
-                override fun get(update: ProcessedUpdate, bot: TelegramBot): TgMethod =
+                override suspend fun get(update: ProcessedUpdate, bot: TelegramBot): TgMethod =
                     TgMethod("test")
             }
         }

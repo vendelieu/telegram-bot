@@ -55,7 +55,7 @@ class RateLimitingTest : BotTestContext(false, true) {
                 onMessage {
                     messageHitsCounter.incrementAndGet()
                 }
-                onCommand("/start", RateLimits(10000, 2)) {
+                onCommand("/start", rateLimits = RateLimits(10000, 2)) {
                     commandHitsCounter.incrementAndGet()
                 }
             }

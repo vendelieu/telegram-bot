@@ -86,6 +86,11 @@ internal fun TelegramUpdateHandler.parseCommand(
         params["param_${params.size + 1}"] = paramNameBuffer
     }
 
+    if (params.isEmpty() && command.startsWith("/start ")) {
+        params += "deepLink" to command.substringAfter("/start ")
+        command = "/start"
+    }
+
     return StructuredRequest(command = command, params = params)
 }
 

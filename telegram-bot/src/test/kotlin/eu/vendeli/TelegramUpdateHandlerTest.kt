@@ -1,7 +1,15 @@
 package eu.vendeli
 
 import BotTestContext
+import eu.vendeli.tgbot.TelegramBot.Companion.mapper
+import eu.vendeli.tgbot.types.EntityType
+import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.chat.Chat
+import eu.vendeli.tgbot.types.chat.ChatType
+import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.utils.parseCommand
 import io.kotest.matchers.maps.shouldContainExactly
 import io.kotest.matchers.nulls.shouldBeNull
@@ -134,6 +142,37 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         val deeplinkCheck = bot.update.parseCommand("/start bafefdf0-64cb-47da-97f0-4a1f11d469a2")
         deeplinkCheck.command shouldBe "/start"
         deeplinkCheck.params shouldContainExactly (mapOf("param_1" to "bafefdf0-64cb-47da-97f0-4a1f11d469a2"))
+    }
+
+    @Test
+    suspend fun `deeplink test`() {
+        val deeplinkUpdate = Update(
+            updateId = 1,
+            message = Message(
+                messageId = 2,
+                from = User(id = 3, isBot = false, firstName = "test"),
+                date = 1682227456,
+                chat = Chat(id = 4, type = ChatType.Private),
+                text = "/start test",
+                entities = listOf(MessageEntity(type = EntityType.BotCommand, offset = 0, length = 6)),
+            ),
+        )
+        bot.httpClient = HttpClient(
+            MockEngine {
+                respond(
+                    content = ByteReadChannel(mapper.writeValueAsString(Response.Success(listOf(deeplinkUpdate)))),
+                    status = HttpStatusCode.OK,
+                    headers = headersOf(HttpHeaders.ContentType, "application/json"),
+                )
+            },
+        )
+
+        bot.handleUpdates {
+            onCommand("/start") {
+                parameters shouldContainExactly mapOf("deepLink" to "test")
+            }
+            bot.update.stopListener()
+        }
     }
 
     companion object {
