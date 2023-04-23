@@ -1,5 +1,7 @@
-package eu.vendeli.tgbot.types
+package eu.vendeli.tgbot.types.inline
 
+import eu.vendeli.tgbot.types.LocationContent
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.ChatType
 
 data class InlineQuery(

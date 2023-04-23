@@ -9,4 +9,5 @@ data class ChatMemberUpdated(
     val oldChatMember: ChatMember,
     val newChatMember: ChatMember,
     val inviteLink: ChatInviteLink? = null,
+    val viaChatFolderInviteLink: Boolean? = null,
 )

@@ -1,7 +1,10 @@
-package eu.vendeli.tgbot.types
+package eu.vendeli.tgbot.types.inline
 
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
+import eu.vendeli.tgbot.types.InputMessageContent
+import eu.vendeli.tgbot.types.MessageEntity
+import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
