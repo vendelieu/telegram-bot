@@ -42,7 +42,7 @@ there you can find in the appropriate branches:
   exception handling
 - [Ktor-webhook](https://github.com/vendelieu/telegram-bot_template/tree/ktor-webhook) - An example of using webhook
   with Ktor
-- [Poll](https://github.com/vendelieu/telegram-bot_template/tree/poll) - An example of how to build a bot questionnaire.
+- [Poll](https://github.com/vendelieu/telegram-bot_template/tree/poll) - An example of how to build a questionaire bot.
 - [Spring Boot usage](https://github.com/vendelieu/telegram-bot_template/tree/spring-bot) - An example of using the bot
   organically in the Spring ecosystem, using its built-in DI.
 - [Heroku ready example](https://github.com/vendelieu/telegram-bot_template/tree/heroku) - An example of a bot working
