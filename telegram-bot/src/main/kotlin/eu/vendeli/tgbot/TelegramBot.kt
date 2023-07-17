@@ -24,7 +24,7 @@ import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.statement.bodyAsText
 import io.ktor.client.statement.readBytes
-import mu.KotlinLogging.logger
+import mu.KLogging
 
 /**
  * Telegram bot main instance
@@ -147,8 +147,7 @@ class TelegramBot(
         return mapper.readValue(request.bodyAsText(), jacksonTypeRef<Response<List<Update>>>()).getOrNull()
     }
 
-    internal companion object {
-        internal val logger = logger {}
+    internal companion object : KLogging() {
         internal val mapper = getConfiguredMapper()
     }
 }

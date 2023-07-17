@@ -1,3 +1,3 @@
 package eu.vendeli.tgbot.types.game
 
-object CallbackGame
+data object CallbackGame

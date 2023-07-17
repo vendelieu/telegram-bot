@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
     JsonSubTypes.Type(value = MenuButton.Default::class, name = "default"),
 )
 sealed class MenuButton(open val type: String) {
-    object Commands : MenuButton(type = "commands")
+    data object Commands : MenuButton(type = "commands")
     data class WebApps(val text: String, val webApp: WebAppInfo) : MenuButton(type = "web_apps")
-    object Default : MenuButton(type = "default")
+    data object Default : MenuButton(type = "default")
 }

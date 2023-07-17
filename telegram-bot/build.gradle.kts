@@ -3,19 +3,12 @@ import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 
 plugins {
-    kotlin("jvm") version "1.8.10"
+    alias(libs.plugins.kotlin.jvm)
     `java-library`
-    id("org.jetbrains.dokka") version "1.8.10"
-    id("org.jmailen.kotlinter") version "3.13.0"
-    id("io.gitlab.arturbosch.detekt") version "1.22.0"
+    alias(libs.plugins.dokka)
+    alias(libs.plugins.kotlinter)
+    alias(libs.plugins.deteKT)
 }
-
-val loggingVer: String by project
-val logbackVer: String by project
-val jacksonVer: String by project
-val ktorVer: String by project
-val junitVer: String by project
-val kotestVer: String by project
 
 val javaTargetVersion = JavaVersion.VERSION_11
 
@@ -24,26 +17,26 @@ repositories {
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", jacksonVer)
-    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVer")
+    implementation(libs.jackson.kotlin)
+    implementation(libs.jackson.databind)
 
-    implementation("io.ktor:ktor-client-core:$ktorVer")
-    implementation("io.ktor:ktor-client-cio:$ktorVer")
-    implementation("io.ktor:ktor-client-logging:$ktorVer")
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.logging)
 
-    implementation("io.github.microutils:kotlin-logging-jvm:$loggingVer")
-    api(group = "ch.qos.logback", name = "logback-classic", version = logbackVer)
+    implementation(libs.mu.logging)
+    api(libs.logback.classic)
 
-    implementation(group = "org.reflections", name = "reflections", version = "0.10")
+    implementation(libs.reflections)
     implementation(kotlin("reflect"))
 
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    api(libs.coroutines.core)
 
-    testImplementation("ch.qos.logback:logback-classic:$logbackVer")
-    testImplementation("io.kotest:kotest-runner-junit5:$kotestVer")
-    testImplementation("io.kotest:kotest-assertions-core:$kotestVer")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVer")
-    testImplementation("io.ktor:ktor-client-mock:$ktorVer")
+    testImplementation(libs.logback.classic)
+    testImplementation(libs.test.kotest.junit5)
+    testImplementation(libs.test.kotest.assertions)
+    testImplementation(libs.test.junit.params)
+    testImplementation(libs.test.ktor.mock)
 }
 
 group = "eu.vendeli"
@@ -54,7 +47,7 @@ apply(from = "publishing.gradle.kts")
 detekt {
     buildUponDefaultConfig = true
     allRules = false
-    config = files("$rootDir/detekt.yml")
+    config.from(files("$rootDir/detekt.yml"))
 }
 
 buildscript {
