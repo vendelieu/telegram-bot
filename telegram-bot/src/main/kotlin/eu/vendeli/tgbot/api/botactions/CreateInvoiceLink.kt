@@ -34,8 +34,6 @@ class CreateInvoiceLinkAction(
         get() = getReturnType()
 
     init {
-        invoiceData.checkIsAllFieldsPresent()
-
         parameters["title"] = invoiceData.title
         parameters["description"] = invoiceData.description
         parameters["payload"] = invoiceData.payload
@@ -45,5 +43,5 @@ class CreateInvoiceLinkAction(
     }
 }
 
-fun createInvoiceLink(block: InvoiceData.() -> Unit) = CreateInvoiceLinkAction(InvoiceData().apply(block))
+fun createInvoiceLink(block: InvoiceData.() -> Unit) = CreateInvoiceLinkAction(InvoiceData.apply(block))
 fun createInvoiceLink(data: InvoiceData) = CreateInvoiceLinkAction(data)

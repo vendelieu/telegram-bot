@@ -26,8 +26,6 @@ class SendInvoiceAction(data: InvoiceData) :
         get() = InvoiceOptions()
 
     init {
-        data.checkIsAllFieldsPresent()
-
         parameters["title"] = data.title
         parameters["description"] = data.description
         parameters["payload"] = data.payload
@@ -38,6 +36,6 @@ class SendInvoiceAction(data: InvoiceData) :
 }
 
 fun invoice(block: InvoiceData.() -> Unit) =
-    SendInvoiceAction(InvoiceData().apply(block))
+    SendInvoiceAction(InvoiceData.apply(block))
 
 fun invoice(data: InvoiceData) = SendInvoiceAction(data)
