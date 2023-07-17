@@ -29,6 +29,7 @@ mu-logging = { module = "io.github.microutils:kotlin-logging-jvm", version.ref =
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 
 reflections = { module = "org.reflections:reflections", version.ref = "reflections" }
+kotlin-reflections = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
 # test
 test-kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }

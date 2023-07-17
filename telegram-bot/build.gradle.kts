@@ -28,7 +28,7 @@ dependencies {
     api(libs.logback.classic)
 
     implementation(libs.reflections)
-    implementation(kotlin("reflect"))
+    implementation(libs.kotlin.reflections)
 
     api(libs.coroutines.core)
 
