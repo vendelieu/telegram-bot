@@ -1,5 +1,10 @@
 # Telegram-bot changelog
 
+### 2.8.1
+
+* Bumped dependencies versions
+* Little internal logic improvements
+
 ## 2.8.0
 
 #### Telegram Api related changes
