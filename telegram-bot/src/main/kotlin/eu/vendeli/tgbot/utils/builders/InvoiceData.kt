@@ -8,14 +8,14 @@ data class InvoiceData(
     var description: String,
     var payload: String,
     var providerToken: String,
-    var currency: Currency,
+    var currency: Currency?,
     var prices: List<LabeledPrice>,
 ) {
     internal companion object {
         private fun InvoiceData.blankCheck(): InvoiceData {
             require(
-                title.isNotEmpty() || description.isNotEmpty() ||
-                    payload.isNotEmpty() || providerToken.isNotEmpty() || prices.isNotEmpty(),
+                title.isNotEmpty() && description.isNotEmpty() && currency != null &&
+                    payload.isNotEmpty() && providerToken.isNotEmpty() && prices.isNotEmpty(),
             ) {
                 "All fields must be present."
             }
@@ -23,6 +23,6 @@ data class InvoiceData(
         }
 
         fun apply(block: InvoiceData.() -> Unit): InvoiceData =
-            InvoiceData("", "", "", "", Currency.USD, emptyList()).apply(block).blankCheck()
+            InvoiceData("", "", "", "", null, emptyList()).apply(block).blankCheck()
     }
 }
