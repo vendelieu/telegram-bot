@@ -5,8 +5,8 @@ import eu.vendeli.tgbot.core.EnvConfigLoader
 import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.core.TelegramActionsCollector.collect
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
+import eu.vendeli.tgbot.interfaces.Autowiring
 import eu.vendeli.tgbot.interfaces.ConfigLoader
-import eu.vendeli.tgbot.interfaces.MagicObject
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
@@ -72,7 +72,7 @@ class TelegramBot(
 
     internal fun TgMethod.toUrl() = TELEGRAM_API_URL_PATTERN.format(config.apiHost, token) + name
 
-    internal val magicObjects by lazy { mutableMapOf<Class<*>, MagicObject<*>>() }
+    internal val autowiringObjects by lazy { mutableMapOf<Class<*>, Autowiring<*>>() }
 
     /**
      * Current bot [TelegramUpdateHandler] instance
@@ -91,9 +91,9 @@ class TelegramBot(
      * Gives the ability to expand magical objects
      *
      * @param clazz The class in the final method that will return
-     * @param magicObject Implementation of the [MagicObject] interface to be able to generate more contextual object.
+     * @param autowiring Implementation of the [Autowiring] interface to be able to generate more contextual object.
      */
-    fun <T> addMagicObject(clazz: Class<T>, magicObject: () -> MagicObject<T>) = magicObjects.put(clazz, magicObject())
+    fun <T> addAutowiringObject(clazz: Class<T>, autowiring: () -> Autowiring<T>) = autowiringObjects.put(clazz, autowiring())
 
     /**
      * Get direct url from [File] if [File.filePath] is present

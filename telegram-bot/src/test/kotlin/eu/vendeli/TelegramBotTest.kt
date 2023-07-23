@@ -6,8 +6,8 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.core.EnvConfigLoader
+import eu.vendeli.tgbot.interfaces.Autowiring
 import eu.vendeli.tgbot.interfaces.InputListener
-import eu.vendeli.tgbot.interfaces.MagicObject
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
@@ -126,16 +126,16 @@ class TelegramBotTest : BotTestContext() {
 
     @Test
     suspend fun `adding magic object`() {
-        bot.addMagicObject(TgMethod::class.java) {
-            object : MagicObject<TgMethod> {
+        bot.addAutowiringObject(TgMethod::class.java) {
+            object : Autowiring<TgMethod> {
                 override suspend fun get(update: ProcessedUpdate, bot: TelegramBot): TgMethod =
                     TgMethod("test")
             }
         }
 
-        bot.magicObjects[TgMethod::class.java].shouldNotBeNull()
+        bot.autowiringObjects[TgMethod::class.java].shouldNotBeNull()
 
-        bot.magicObjects[TgMethod::class.java]?.get(dummyProcessedUpdate, bot)
+        bot.autowiringObjects[TgMethod::class.java]?.get(dummyProcessedUpdate, bot)
             ?.shouldBeEqualToComparingFields(TgMethod("test"))
     }
 
