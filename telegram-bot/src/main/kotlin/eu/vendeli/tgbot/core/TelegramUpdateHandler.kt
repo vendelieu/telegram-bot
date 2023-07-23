@@ -28,7 +28,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import mu.KotlinLogging
+import mu.KLogging
 import kotlin.coroutines.coroutineContext
 
 /**
@@ -145,7 +145,7 @@ class TelegramUpdateHandler internal constructor(
                 }
                 val parameterName = invocation.namedParameters.getOrDefault(p.name, p.name)
                 val typeName = p.parameterizedType.typeName
-                if (parameters.keys.contains(parameterName)) when (p.parameterizedType.typeName) {
+                if (parameterName in parameters.keys) when (p.parameterizedType.typeName) {
                     "java.lang.String" -> add(parameters[parameterName].toString())
                     "java.lang.Integer", "int" -> add(parameters[parameterName]?.toIntOrNull())
                     "java.lang.Long", "long" -> add(parameters[parameterName]?.toLongOrNull())
@@ -154,10 +154,12 @@ class TelegramUpdateHandler internal constructor(
                     "java.lang.Double", "double" -> add(parameters[parameterName]?.toDoubleOrNull())
                     else -> add(null)
                 } else when {
-                    typeName == "eu.vendeli.tgbot.types.User" -> add((pUpdate as? UserReference)?.user)
-                    typeName == "eu.vendeli.tgbot.TelegramBot" -> add(bot)
-                    typeName == "eu.vendeli.tgbot.types.internal.ProcessedUpdate" -> add(pUpdate)
-                    bot.magicObjects.contains(p.type) -> add(bot.magicObjects[p.type]?.get(pUpdate, bot))
+                    typeName == User::class.java.canonicalName -> add((pUpdate as? UserReference)?.user)
+                    typeName == TelegramBot::class.java.canonicalName -> add(bot)
+                    typeName == ProcessedUpdate::class.java.canonicalName -> add(pUpdate)
+                    typeName == MessageUpdate::class.java.canonicalName -> add(pUpdate)
+                    typeName == CallbackQueryUpdate::class.java.canonicalName -> add(pUpdate)
+                    p.type in bot.autowiringObjects -> add(bot.autowiringObjects[p.type]?.get(pUpdate, bot))
                     else -> add(null)
                 }
             }
@@ -247,7 +249,5 @@ class TelegramUpdateHandler internal constructor(
         }
     }
 
-    internal companion object {
-        internal val logger = KotlinLogging.logger {}
-    }
+    internal companion object : KLogging()
 }
