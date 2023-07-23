@@ -1,5 +1,12 @@
 # Telegram-bot changelog
 
+## 2.9.0
+
+* Added new annotation `RegexCommandHandler` for handling regex commands.
+* Changed `MagicObject` into `Autowiring` for better understanding.
+* Added ability for passing `MessageUpdate` and `CallbackQueryUpdate` into function (instead more
+  generic `ProcessedUpdate`).
+
 ### 2.8.1
 
 * Bumped dependencies versions

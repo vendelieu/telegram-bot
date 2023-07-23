@@ -15,7 +15,7 @@ import eu.vendeli.tgbot.interfaces.UserData
 @Suppress("VariableNaming", "ConstructorParameterNaming")
 data class ContextConfiguration(
     internal var _chatData: ChatData? = null,
-    private var _userData: UserData? = null
+    private var _userData: UserData? = null,
 ) {
     var userData: UserData
         get() = if (_userData != null) _userData!! else UserDataMapImpl.also {

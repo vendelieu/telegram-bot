@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.types.internal.ProcessedUpdate
  *
  * @param T
  */
-interface MagicObject<T> {
+interface Autowiring<T> {
     /**
      * method which will be used to retrieve the object.
      *
