@@ -12,6 +12,7 @@ import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.Activity
 import eu.vendeli.tgbot.types.internal.CommandScope
+import eu.vendeli.tgbot.types.internal.Invocation
 import eu.vendeli.tgbot.types.internal.StructuredRequest
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
@@ -132,16 +133,25 @@ internal fun TelegramUpdateHandler.findAction(
     val invocation = if (command) actions?.commands else {
         actions?.inputs
     }?.get(message.command)
+
     if (invocation != null && command && updateType.scope !in invocation.scope)
         return null
 
-    return if (invocation != null) Activity(
-        id = message.command,
-        invocation = invocation,
-        parameters = message.params,
-        rateLimits = invocation.rateLimits,
-    ) else null
+    if (command && invocation == null) actions?.regexCommands?.entries?.first {
+        it.key.matchEntire(text) != null
+    }?.also {
+        return it.value.toActivity(message)
+    }
+
+    return invocation?.toActivity(message)
 }
+
+internal fun Invocation.toActivity(req: StructuredRequest) = Activity(
+    id = req.command,
+    invocation = this,
+    parameters = req.params,
+    rateLimits = rateLimits,
+)
 
 @Suppress("UnusedReceiverParameter")
 internal inline fun <reified Type : MultipleResponse> SimpleAction<List<Type>>.getInnerType(): Class<Type> =

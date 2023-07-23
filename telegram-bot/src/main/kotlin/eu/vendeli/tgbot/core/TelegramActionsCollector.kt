@@ -3,6 +3,7 @@ package eu.vendeli.tgbot.core
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.ParamMapping
+import eu.vendeli.tgbot.annotations.RegexCommandHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.internal.Actions
@@ -40,6 +41,7 @@ internal object TelegramActionsCollector {
         ),
     ) {
         val commands = mutableMapOf<String, Invocation>()
+        val regexCommands = mutableMapOf<Regex, Invocation>()
         val inputs = mutableMapOf<String, Invocation>()
         val updateHandlers = mutableMapOf<UpdateType, Invocation>()
 
@@ -54,6 +56,16 @@ internal object TelegramActionsCollector {
                     scope = annotation.scope.toSet(),
                 )
             }
+        }
+
+        getMethodsAnnotatedWith(RegexCommandHandler::class.java).forEach { m ->
+            val annotation = (m.annotations.find { it is RegexCommandHandler } as RegexCommandHandler)
+            regexCommands[annotation.value.toRegex()] = Invocation(
+                clazz = m.declaringClass,
+                method = m,
+                namedParameters = m.parameters.getParameters(),
+                rateLimits = RateLimits(annotation.rateLimits.period, annotation.rateLimits.rate),
+            )
         }
 
         getMethodsAnnotatedWith(InputHandler::class.java).forEach { m ->
@@ -83,12 +95,30 @@ internal object TelegramActionsCollector {
             Invocation(clazz = m.declaringClass, method = m, rateLimits = RateLimits.NOT_LIMITED)
         }
 
-        val totalActions = commands.size + inputs.size + updateHandlers.size + (if (unhandled != null) 1 else 0)
+        return@with Actions(
+            commands = commands,
+            regexCommands = regexCommands,
+            inputs = inputs,
+            updateHandlers = updateHandlers,
+            unhandled = unhandled,
+        ).log()
+    }
+
+    @Suppress("NOTHING_TO_INLINE")
+    private inline fun Actions.log(): Actions {
+        val totalActions = commands.size + regexCommands.size +
+            inputs.size + updateHandlers.size + (if (unhandled != null) 1 else 0)
+
         logger.info { "Found total $totalActions actions.\n" }
         logger.debug {
             buildString {
                 append(
                     commands.entries.joinToString("\n", "Commands:\n", "\n") {
+                        "${it.key} -> ${it.value.method.kotlinFunction}"
+                    },
+                )
+                append(
+                    regexCommands.entries.joinToString("\n", "Regex Commands:\n", "\n") {
                         "${it.key} -> ${it.value.method.kotlinFunction}"
                     },
                 )
@@ -106,11 +136,6 @@ internal object TelegramActionsCollector {
             }
         }
 
-        return@with Actions(
-            commands = commands,
-            inputs = inputs,
-            updateHandlers = updateHandlers,
-            unhandled = unhandled,
-        )
+        return this
     }
 }
