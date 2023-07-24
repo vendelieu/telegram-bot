@@ -3,6 +3,15 @@ package eu.vendeli.tgbot.utils.builders
 import eu.vendeli.tgbot.types.internal.Currency
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 
+/**
+ * @param title Product name, 1-32 characters
+ * @param description Product description, 1-255 characters
+ * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user,
+ * use for your internal processes.
+ * @param providerToken Payment provider token, obtained via BotFather
+ * @param currency Three-letter ISO 4217 currency code
+ * @param prices Price breakdown (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.)
+ */
 data class InvoiceData(
     var title: String,
     var description: String,
