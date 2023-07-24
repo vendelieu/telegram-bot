@@ -30,7 +30,7 @@ class SendInvoiceAction(data: InvoiceData) :
         parameters["description"] = data.description
         parameters["payload"] = data.payload
         parameters["provider_token"] = data.providerToken
-        parameters["currency"] = data.currency.name
+        parameters["currency"] = data.currency!!.name
         parameters["prices"] = data.prices
     }
 }
