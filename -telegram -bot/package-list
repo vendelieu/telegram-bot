@@ -13,6 +13,9 @@ $dokka.location:eu.vendeli.tgbot.annotations/ParamMapping/name/#/PointingToDecla
 $dokka.location:eu.vendeli.tgbot.annotations/RateLimits///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-rate-limits/index.html
 $dokka.location:eu.vendeli.tgbot.annotations/RateLimits/period/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-rate-limits/period.html
 $dokka.location:eu.vendeli.tgbot.annotations/RateLimits/rate/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-rate-limits/rate.html
+$dokka.location:eu.vendeli.tgbot.annotations/RegexCommandHandler///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-regex-command-handler/index.html
+$dokka.location:eu.vendeli.tgbot.annotations/RegexCommandHandler/rateLimits/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-regex-command-handler/rate-limits.html
+$dokka.location:eu.vendeli.tgbot.annotations/RegexCommandHandler/value/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-regex-command-handler/value.html
 $dokka.location:eu.vendeli.tgbot.annotations/UnprocessedHandler///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-unprocessed-handler/index.html
 $dokka.location:eu.vendeli.tgbot.annotations/UpdateHandler///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-update-handler/index.html
 $dokka.location:eu.vendeli.tgbot.annotations/UpdateHandler/type/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-update-handler/type.html
@@ -834,6 +837,8 @@ $dokka.location:eu.vendeli.tgbot.interfaces/Action/sendAsync/#kotlin.String#eu.v
 $dokka.location:eu.vendeli.tgbot.interfaces/ActionState///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-action-state/index.html
 $dokka.location:eu.vendeli.tgbot.interfaces/ActionState/ActionState/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-action-state/-action-state.html
 $dokka.location:eu.vendeli.tgbot.interfaces/ActionState/parameters/eu.vendeli.tgbot.interfaces.IActionState#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-action-state/parameters.html
+$dokka.location:eu.vendeli.tgbot.interfaces/Autowiring///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-autowiring/index.html
+$dokka.location:eu.vendeli.tgbot.interfaces/Autowiring/get/#eu.vendeli.tgbot.types.internal.ProcessedUpdate#eu.vendeli.tgbot.TelegramBot/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-autowiring/get.html
 $dokka.location:eu.vendeli.tgbot.interfaces/Button///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-button/index.html
 $dokka.location:eu.vendeli.tgbot.interfaces/ChatData///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-chat-data/index.html
 $dokka.location:eu.vendeli.tgbot.interfaces/ChatData/clearAll/#kotlin.Long/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-chat-data/clear-all.html
@@ -867,8 +872,6 @@ $dokka.location:eu.vendeli.tgbot.interfaces/KeyboardBuilder///PointingToDeclarat
 $dokka.location:eu.vendeli.tgbot.interfaces/KeyboardBuilder/KeyboardBuilder/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-keyboard-builder/-keyboard-builder.html
 $dokka.location:eu.vendeli.tgbot.interfaces/KeyboardBuilder/br/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-keyboard-builder/br.html
 $dokka.location:eu.vendeli.tgbot.interfaces/KeyboardBuilder/newLine/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-keyboard-builder/new-line.html
-$dokka.location:eu.vendeli.tgbot.interfaces/MagicObject///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-magic-object/index.html
-$dokka.location:eu.vendeli.tgbot.interfaces/MagicObject/get/#eu.vendeli.tgbot.types.internal.ProcessedUpdate#eu.vendeli.tgbot.TelegramBot/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-magic-object/get.html
 $dokka.location:eu.vendeli.tgbot.interfaces/MediaAction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-media-action/index.html
 $dokka.location:eu.vendeli.tgbot.interfaces/MediaAction/dataField/eu.vendeli.tgbot.interfaces.MediaAction[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-media-action/data-field.html
 $dokka.location:eu.vendeli.tgbot.interfaces/MediaAction/defaultType/eu.vendeli.tgbot.interfaces.MediaAction[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-media-action/default-type.html
@@ -2843,7 +2846,7 @@ $dokka.location:eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder/url/
 $dokka.location:eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder/webAppInfo/#kotlin.String#kotlin.Function0[kotlin.String]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils.builders/-inline-keyboard-markup-builder/web-app-info.html
 $dokka.location:eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder/webAppInfo/kotlin.String#kotlin.String/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils.builders/-inline-keyboard-markup-builder/web-app-info.html
 $dokka.location:eu.vendeli.tgbot.utils.builders/InvoiceData///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils.builders/-invoice-data/index.html
-$dokka.location:eu.vendeli.tgbot.utils.builders/InvoiceData/InvoiceData/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#eu.vendeli.tgbot.types.internal.Currency#kotlin.collections.List[eu.vendeli.tgbot.types.payment.LabeledPrice]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils.builders/-invoice-data/-invoice-data.html
+$dokka.location:eu.vendeli.tgbot.utils.builders/InvoiceData/InvoiceData/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#eu.vendeli.tgbot.types.internal.Currency?#kotlin.collections.List[eu.vendeli.tgbot.types.payment.LabeledPrice]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils.builders/-invoice-data/-invoice-data.html
 $dokka.location:eu.vendeli.tgbot.utils.builders/InvoiceData/currency/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils.builders/-invoice-data/currency.html
 $dokka.location:eu.vendeli.tgbot.utils.builders/InvoiceData/description/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils.builders/-invoice-data/description.html
 $dokka.location:eu.vendeli.tgbot.utils.builders/InvoiceData/payload/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils.builders/-invoice-data/payload.html
@@ -2867,7 +2870,7 @@ $dokka.location:eu.vendeli.tgbot////PointingToDeclaration/-telegram -bot/eu.ven
 $dokka.location:eu.vendeli.tgbot/TelegramBot///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/-telegram-bot/index.html
 $dokka.location:eu.vendeli.tgbot/TelegramBot/TelegramBot/#eu.vendeli.tgbot.interfaces.ConfigLoader/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/-telegram-bot/-telegram-bot.html
 $dokka.location:eu.vendeli.tgbot/TelegramBot/TelegramBot/#kotlin.String#kotlin.String?#kotlin.Function1[eu.vendeli.tgbot.types.internal.configuration.BotConfiguration,kotlin.Unit]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/-telegram-bot/-telegram-bot.html
-$dokka.location:eu.vendeli.tgbot/TelegramBot/addMagicObject/#java.lang.Class[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function0[eu.vendeli.tgbot.interfaces.MagicObject[TypeParam(bounds=[kotlin.Any?])]]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/-telegram-bot/add-magic-object.html
+$dokka.location:eu.vendeli.tgbot/TelegramBot/addAutowiringObject/#java.lang.Class[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function0[eu.vendeli.tgbot.interfaces.Autowiring[TypeParam(bounds=[kotlin.Any?])]]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/-telegram-bot/add-autowiring-object.html
 $dokka.location:eu.vendeli.tgbot/TelegramBot/chatData/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/-telegram-bot/chat-data.html
 $dokka.location:eu.vendeli.tgbot/TelegramBot/getFileContent/#eu.vendeli.tgbot.types.media.File/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/-telegram-bot/get-file-content.html
 $dokka.location:eu.vendeli.tgbot/TelegramBot/getFileDirectUrl/#eu.vendeli.tgbot.types.media.File/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/-telegram-bot/get-file-direct-url.html
