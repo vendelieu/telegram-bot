@@ -93,7 +93,8 @@ class TelegramBot(
      * @param clazz The class in the final method that will return
      * @param autowiring Implementation of the [Autowiring] interface to be able to generate more contextual object.
      */
-    fun <T> addAutowiringObject(clazz: Class<T>, autowiring: () -> Autowiring<T>) = autowiringObjects.put(clazz, autowiring())
+    fun <T> addAutowiringObject(clazz: Class<T>, autowiring: () -> Autowiring<T>) =
+        autowiringObjects.put(clazz, autowiring())
 
     /**
      * Get direct url from [File] if [File.filePath] is present
