@@ -38,6 +38,7 @@ test-junit-params = { module = "org.junit.jupiter:junit-jupiter-params", version
 test-ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

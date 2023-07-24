@@ -1,6 +1,6 @@
-import java.time.LocalDate
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
+import java.time.LocalDate
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -52,7 +52,7 @@ detekt {
 
 buildscript {
     dependencies {
-        classpath("org.jetbrains.dokka:dokka-base:1.8.10")
+        classpath(libs.dokka.base)
     }
 }
 
