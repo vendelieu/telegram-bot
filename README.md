@@ -21,7 +21,7 @@ build.gradle.kts example:
 
 ```gradle
 dependencies {
-    implementation("eu.vendeli:telegram-bot:2.8.1")
+    implementation("eu.vendeli:telegram-bot:2.9.0")
 }
 ```
 
@@ -65,6 +65,11 @@ suspend fun main() {
 suspend fun start(user: User, bot: TelegramBot) {
     message { "Hello, what's your name?" }.send(user, bot)
     bot.inputListener.set(user.id, "conversation")
+}
+
+@RegexCommandHandler("blue colo?r")
+suspend fun start(user: User, bot: TelegramBot) {
+  message { "Oh you also like blue colour?" }.send(user, bot)
 }
 
 @InputHandler(["conversation"])
