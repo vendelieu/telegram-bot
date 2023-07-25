@@ -5,7 +5,7 @@
 * Added new annotation `RegexCommandHandler` for handling regex commands.
 * Changed `MagicObject` into `Autowiring` for better understanding.
 * Added ability for passing `MessageUpdate` and `CallbackQueryUpdate` into function (instead more
-  generic `ProcessedUpdate`).
+  generic `ProcessedUpdate`, passing which is also possible).
 
 ### 2.8.1
 

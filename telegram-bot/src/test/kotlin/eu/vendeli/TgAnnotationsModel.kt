@@ -2,8 +2,10 @@
 
 package eu.vendeli
 
+import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.InputHandler
+import eu.vendeli.tgbot.annotations.RegexCommandHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.internal.UpdateType
@@ -17,6 +19,11 @@ class TgAnnotationsModel {
 
     @InputHandler(["testInp"])
     fun test2() {
+    }
+
+    @RegexCommandHandler("test colou?r")
+    fun testR(bot: TelegramBot) {
+        bot.userData.set(0, "k", "test")
     }
 
     @UnprocessedHandler

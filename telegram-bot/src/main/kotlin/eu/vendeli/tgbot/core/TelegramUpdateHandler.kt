@@ -163,8 +163,7 @@ class TelegramUpdateHandler internal constructor(
                     else -> add(null)
                 }
             }
-        }.toTypedArray()
-        logger.debug { "Parsed arguments - $processedParameters." }
+        }.also { logger.debug { "Parsed arguments - $it." } }.toTypedArray()
 
         bot.config.context._chatData?.run {
             if ((pUpdate as? UserReference)?.user?.id == null) return@run
@@ -180,7 +179,7 @@ class TelegramUpdateHandler internal constructor(
             if (isSuspend) method.invokeSuspend(classManager.getInstance(clazz), *processedParameters)
             else method.invoke(classManager.getInstance(clazz), *processedParameters)
         }.onFailure {
-            logger.error(it) { "Method {$invocation} invocation error at handling update: $pUpdate" }
+            logger.error(it) { "Method $invocation invocation error at handling update: $pUpdate" }
             caughtExceptions.send((it.cause ?: it) to pUpdate.update)
         }.onSuccess { logger.info { "Handled update#${pUpdate.updateId} to method ${invocation.method}" } }
     }
