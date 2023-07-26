@@ -68,7 +68,7 @@ suspend fun start(user: User, bot: TelegramBot) {
 }
 
 @RegexCommandHandler("blue colo?r")
-suspend fun start(user: User, bot: TelegramBot) {
+suspend fun color(user: User, bot: TelegramBot) {
   message { "Oh you also like blue colour?" }.send(user, bot)
 }
 
