@@ -31,5 +31,5 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-            files: ./build/reports/kover/report.xml
+            files: telegram-bot/build/reports/kover/report.xml
             verbose: true
