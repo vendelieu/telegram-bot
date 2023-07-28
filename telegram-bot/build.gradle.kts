@@ -6,8 +6,9 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     `java-library`
     alias(libs.plugins.dokka)
-    alias(libs.plugins.kotlinter)
+    alias(libs.plugins.ktlinter)
     alias(libs.plugins.deteKT)
+    alias(libs.plugins.kover)
 }
 
 val javaTargetVersion = JavaVersion.VERSION_11

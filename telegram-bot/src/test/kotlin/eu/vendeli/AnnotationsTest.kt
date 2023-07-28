@@ -38,4 +38,18 @@ class AnnotationsTest : BotTestContext() {
         actionsFromAnnotations.updateHandlers.size shouldBe 2
         actionsFromAnnotations.updateHandlers[UpdateType.MESSAGE].shouldNotBeNull()
     }
+
+//    @Test
+//    suspend fun `regex command test`() {
+//        doMockHttp("test color")
+//
+//        NewCoroutineContext(coroutineContext).launch {
+//            bot.handleUpdates()
+//        }
+//        delay(500)
+//        bot.update.stopListener()
+//
+//        val data = bot.userData.get<String>(0, "k")
+//        data shouldBe "test"
+//    }
 }

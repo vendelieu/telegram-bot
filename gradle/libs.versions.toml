@@ -6,13 +6,14 @@ jackson = "2.15.2"
 reflections = "0.10"
 
 kotlin = "1.9.0"
-coroutines = "1.7.2"
+coroutines = "1.7.3"
 dokka = "1.8.20"
 kotlinter = "3.13.0"
 deteKT = "1.23.0"
 
 kotest = "5.6.2"
 junit = "5.9.3"
+kover = "0.7.3"
 
 [libraries]
 # jackson
@@ -43,5 +44,6 @@ dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+ktlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
 deteKT = { id = "io.gitlab.arturbosch.detekt", version.ref = "deteKT" }
