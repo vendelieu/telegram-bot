@@ -31,5 +31,5 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-            files: ./build/reports/kover/merged/xml/report.xml
+            files: ./build/reports/kover/xml/report.xml
             verbose: true
