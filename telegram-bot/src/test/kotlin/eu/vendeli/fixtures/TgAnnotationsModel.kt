@@ -1,11 +1,9 @@
 @file:Suppress("EmptyFunctionBlock")
 
-package eu.vendeli
+package eu.vendeli.fixtures
 
-import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.InputHandler
-import eu.vendeli.tgbot.annotations.RegexCommandHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.internal.UpdateType
@@ -21,9 +19,8 @@ class TgAnnotationsModel {
     fun test2() {
     }
 
-    @RegexCommandHandler("test colou?r")
-    fun testR(bot: TelegramBot) {
-        bot.userData.set(0, "k", "test")
+    @UpdateHandler([UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY])
+    fun updateHandler() {
     }
 
     @UnprocessedHandler
@@ -37,10 +34,6 @@ suspend fun testMethod() {
 
 @InputHandler(["testInp2"])
 suspend fun testMethod2() {
-}
-
-@UpdateHandler([UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY])
-fun updateHandler() {
 }
 
 object TestObj {

@@ -7,49 +7,47 @@ import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.maps.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
 
 class AnnotationsTest : BotTestContext() {
-    @ParameterizedTest
-    @ValueSource(strings = ["eu", "eu.vendeli", "other.pckg"])
-    fun `annotated methods scanning test`(pckg: String) {
-        val actionsFromAnnotations = TelegramActionsCollector.collect(pckg)
+    @Test
+    fun `annotated methods scanning test`() {
+        listOf("eu", "eu.vendeli", "other.pckg").forEach { pkg ->
+            val actionsFromAnnotations = TelegramActionsCollector.collect(pkg)
 
-        actionsFromAnnotations.commands.shouldNotBeEmpty()
-        actionsFromAnnotations.regexCommands.shouldNotBeEmpty()
-        actionsFromAnnotations.inputs.shouldNotBeEmpty()
-        actionsFromAnnotations.unhandled.shouldNotBeNull()
+            actionsFromAnnotations.commands.shouldNotBeEmpty()
+            actionsFromAnnotations.regexCommands.shouldNotBeEmpty()
+            actionsFromAnnotations.inputs.shouldNotBeEmpty()
+            actionsFromAnnotations.unhandled.shouldNotBeNull()
 
-        actionsFromAnnotations.commands.size shouldBe 3
-        actionsFromAnnotations.regexCommands.size shouldBe 1
-        actionsFromAnnotations.inputs.size shouldBe 3
+            actionsFromAnnotations.commands.size shouldBe 3
+            actionsFromAnnotations.regexCommands.size shouldBe 1
+            actionsFromAnnotations.inputs.size shouldBe 3
 
-        actionsFromAnnotations.commands.keys shouldContain "test"
-        actionsFromAnnotations.commands.keys shouldContain "test2"
-        actionsFromAnnotations.commands.keys shouldContain "test3"
+            actionsFromAnnotations.commands.keys shouldContain "test"
+            actionsFromAnnotations.commands.keys shouldContain "test2"
+            actionsFromAnnotations.commands.keys shouldContain "test3"
 
-        actionsFromAnnotations.regexCommands.keys shouldBe "test colou?r".toRegex()
+            actionsFromAnnotations.regexCommands.keys.first() shouldBe "test colou?r".toRegex()
 
-        actionsFromAnnotations.inputs.keys shouldContain "testInp"
-        actionsFromAnnotations.inputs.keys shouldContain "testInp2"
-        actionsFromAnnotations.inputs.keys shouldContain "testInp3"
+            actionsFromAnnotations.inputs.keys shouldContain "testInp"
+            actionsFromAnnotations.inputs.keys shouldContain "testInp2"
+            actionsFromAnnotations.inputs.keys shouldContain "testInp3"
 
-        actionsFromAnnotations.updateHandlers.size shouldBe 2
-        actionsFromAnnotations.updateHandlers[UpdateType.MESSAGE].shouldNotBeNull()
+            actionsFromAnnotations.updateHandlers.size shouldBe 2
+            actionsFromAnnotations.updateHandlers[UpdateType.MESSAGE].shouldNotBeNull()
+        }
     }
 
-//    @Test
-//    suspend fun `regex command test`() {
-//        doMockHttp("test color")
-//
-//        NewCoroutineContext(coroutineContext).launch {
-//            bot.handleUpdates()
-//        }
-//        delay(500)
-//        bot.update.stopListener()
-//
-//        val data = bot.userData.get<String>(0, "k")
-//        data shouldBe "test"
-//    }
+    @Test
+    suspend fun `regex command test`() {
+        doMockHttp("test color")
+
+        bot.update.setListener {
+            handle(it)
+            stopListener()
+        }
+
+        val data = bot.userData.get<String>(0, "k")
+        data shouldBe "test"
+    }
 }
