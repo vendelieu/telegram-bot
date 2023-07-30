@@ -12,7 +12,7 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.ImplicitFile.FromString
 import eu.vendeli.tgbot.types.internal.MediaContentType
-import eu.vendeli.tgbot.types.internal.Recipient
+import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.MediaGroupOptions
@@ -80,20 +80,20 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
     override suspend fun sendAsync(
         to: String,
         via: TelegramBot,
-    ): Deferred<Response<out List<Message>>> = internalSendAsync(returnType, Recipient.String(to), via)
+    ): Deferred<Response<out List<Message>>> = internalSendAsync(returnType, Identifier.String(to), via)
 
     override suspend fun sendAsync(
         to: User,
         via: TelegramBot,
-    ): Deferred<Response<out List<Message>>> = internalSendAsync(returnType, Recipient.Long(to.id), via)
+    ): Deferred<Response<out List<Message>>> = internalSendAsync(returnType, Identifier.Long(to.id), via)
 
     override suspend fun sendAsync(
         to: Long,
         via: TelegramBot,
-    ): Deferred<Response<out List<Message>>> = internalSendAsync(returnType, Recipient.Long(to), via)
+    ): Deferred<Response<out List<Message>>> = internalSendAsync(returnType, Identifier.Long(to), via)
 
     override suspend fun MediaAction<List<Message>>.internalSend(
-        to: Recipient,
+        to: Identifier,
         via: TelegramBot,
     ) {
         parameters["chat_id"] = to.get
@@ -108,7 +108,7 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
 
     private suspend inline fun internalSendAsync(
         returnType: Class<List<Message>>,
-        to: Recipient,
+        to: Identifier,
         via: TelegramBot,
     ): Deferred<Response<out List<Message>>> {
         parameters["chat_id"] = to.get

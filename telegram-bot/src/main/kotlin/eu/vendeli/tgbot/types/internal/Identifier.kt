@@ -1,13 +1,13 @@
 package eu.vendeli.tgbot.types.internal
 
-sealed class Recipient {
+sealed class Identifier {
     abstract val get: Any
 
-    data class String(val to: kotlin.String) : Recipient() {
+    data class String(val to: kotlin.String) : Identifier() {
         override val get get(): Any = to
     }
 
-    data class Long(val to: kotlin.Long) : Recipient() {
+    data class Long(val to: kotlin.Long) : Identifier() {
         override val get get(): Any = to
     }
 

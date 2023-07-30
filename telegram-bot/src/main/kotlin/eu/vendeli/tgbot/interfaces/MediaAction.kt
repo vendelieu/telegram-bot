@@ -2,9 +2,9 @@ package eu.vendeli.tgbot.interfaces
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.MediaContentType
-import eu.vendeli.tgbot.types.internal.Recipient
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.toContentType
 import eu.vendeli.tgbot.utils.makeRequestAsync
@@ -45,7 +45,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
      * @param via Instance of the bot through which the request will be made.
      */
     override suspend fun send(to: String, via: TelegramBot) {
-        internalSend(Recipient.String(to), via)
+        internalSend(Identifier.String(to), via)
     }
 
     /**
@@ -55,7 +55,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
      * @param via Instance of the bot through which the request will be made.
      */
     override suspend fun send(to: Long, via: TelegramBot) {
-        internalSend(Recipient.Long(to), via)
+        internalSend(Identifier.Long(to), via)
     }
 
     /**
@@ -65,7 +65,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
      * @param via Instance of the bot through which the request will be made.
      */
     override suspend fun send(to: User, via: TelegramBot) {
-        internalSend(Recipient.Long(to.id), via)
+        internalSend(Identifier.Long(to.id), via)
     }
 
     /**
@@ -74,7 +74,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
      * @param to Recipient
      * @param via Instance of the bot through which the request will be made.
      */
-    suspend fun MediaAction<ReturnType>.internalSend(to: Recipient, via: TelegramBot) {
+    suspend fun MediaAction<ReturnType>.internalSend(to: Identifier, via: TelegramBot) {
         parameters["chat_id"] = to.get
         val filename = parameters["file_name"]?.toString()?.also {
             parameters.remove("file_name")
@@ -120,7 +120,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
     override suspend fun sendAsync(
         to: String,
         via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = internalSendAsync(returnType, Recipient.String(to), via)
+    ): Deferred<Response<out ReturnType>> = internalSendAsync(returnType, Identifier.String(to), via)
 
     /**
      * Make request with ability operating over response.
@@ -131,7 +131,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
     override suspend fun sendAsync(
         to: Long,
         via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = internalSendAsync(returnType, Recipient.Long(to), via)
+    ): Deferred<Response<out ReturnType>> = internalSendAsync(returnType, Identifier.Long(to), via)
 
     /**
      * Make request with ability operating over response.
@@ -142,7 +142,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
     override suspend fun sendAsync(
         to: User,
         via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = internalSendAsync(returnType, Recipient.Long(to.id), via)
+    ): Deferred<Response<out ReturnType>> = internalSendAsync(returnType, Identifier.Long(to.id), via)
 }
 
 /**
@@ -155,7 +155,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
  */
 internal suspend inline fun <R> MediaAction<R>.internalSendAsync(
     returnType: Class<R>,
-    to: Recipient,
+    to: Identifier,
     via: TelegramBot,
 ): Deferred<Response<out R>> {
     parameters["chat_id"] = to.get
