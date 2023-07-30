@@ -1,3 +1,4 @@
+
 import ch.qos.logback.classic.Level.TRACE
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
@@ -19,6 +20,7 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
+import java.time.Instant
 import kotlin.random.Random
 
 @Suppress("VariableNaming", "PropertyName", "PrivatePropertyName")
@@ -35,6 +37,8 @@ abstract class BotTestContext(
 
     protected val RANDOM_PIC_URL = "https://picsum.photos/10"
     protected val RANDOM_PIC by lazy { runBlocking { bot.httpClient.get(RANDOM_PIC_URL).readBytes() } }
+    protected val CUR_TIMESTAMP: Instant get() = Instant.now()
+    protected val ITERATION = (1..Int.MAX_VALUE).iterator()
 
     @BeforeAll
     fun prepareTestBot() {
