@@ -23,6 +23,16 @@ class BotContextTest : BotTestContext() {
         val setSuspendGet = bot.userData.getAsync<String>(TG_ID, "test2").await()
         setSuspendGet.shouldNotBeNull()
         setSuspendGet shouldBe "value2"
+
+        bot.userData.set(TG_ID, "test0", "value0")
+        bot.userData.get<String>(TG_ID, "test0").shouldNotBeNull()
+        bot.userData.del(TG_ID, "test0")
+        bot.userData.get<String>(TG_ID, "test0").shouldBeNull()
+
+        bot.userData.set(TG_ID, "test01", "value01")
+        bot.userData.get<String>(TG_ID, "test01").shouldNotBeNull()
+        bot.userData.delAsync(TG_ID, "test01").await()
+        bot.userData.get<String>(TG_ID, "test01").shouldBeNull()
     }
 
     @Test
@@ -42,6 +52,16 @@ class BotContextTest : BotTestContext() {
         val setSuspendGet = bot.chatData.getAsync<String>(TG_ID, "test2").await()
         setSuspendGet.shouldNotBeNull()
         setSuspendGet shouldBe "value2"
+
+        bot.chatData.set(TG_ID, "test0", "value0")
+        bot.chatData.get<String>(TG_ID, "test0").shouldNotBeNull()
+        bot.chatData.del(TG_ID, "test0")
+        bot.chatData.get<String>(TG_ID, "test0").shouldBeNull()
+
+        bot.chatData.set(TG_ID, "test01", "value01")
+        bot.chatData.get<String>(TG_ID, "test01").shouldNotBeNull()
+        bot.chatData.delAsync(TG_ID, "test01").await()
+        bot.chatData.get<String>(TG_ID, "test01").shouldBeNull()
 
         bot.chatData.clearAll(TG_ID)
         bot.chatData.get<String>(TG_ID, "test").shouldBeNull()
