@@ -16,7 +16,7 @@ class MessageActionsTest : BotTestContext() {
     @Test
     suspend fun `copy message method test`() {
         val msg = message("test").sendAsync(TG_ID, bot).await().getOrNull()
-        val request = copyMessage(TG_ID, TG_ID, msg!!.messageId,).sendAsync(TG_ID, bot).await()
+        val request = copyMessage(TG_ID, TG_ID, msg!!.messageId).sendAsync(TG_ID, bot).await()
 
         val result = with(request) {
             ok.shouldBeTrue()
@@ -32,7 +32,7 @@ class MessageActionsTest : BotTestContext() {
     @Test
     suspend fun `forward message method test`() {
         val msg = message("test").sendAsync(TG_ID, bot).await().getOrNull()
-        val request = forwardMessage(TG_ID, TG_ID, msg!!.messageId,).sendAsync(TG_ID, bot).await()
+        val request = forwardMessage(TG_ID, TG_ID, msg!!.messageId).sendAsync(TG_ID, bot).await()
 
         val result = with(request) {
             ok.shouldBeTrue()
