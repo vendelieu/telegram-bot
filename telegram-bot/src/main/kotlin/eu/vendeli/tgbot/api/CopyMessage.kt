@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.MessageId
-import eu.vendeli.tgbot.types.internal.Recipient
+import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CopyMessageOptions
 import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
@@ -28,8 +28,8 @@ import eu.vendeli.tgbot.utils.getReturnType
  * @param messageId Message identifier in the chat specified in fromChatId
  */
 class CopyMessageAction(
-    chatId: Recipient,
-    fromChatId: Recipient,
+    chatId: Identifier,
+    fromChatId: Identifier,
     messageId: Long,
 ) :
     Action<MessageId>,
@@ -67,13 +67,13 @@ class CopyMessageAction(
  * @param messageId Message identifier in the chat specified in fromChatId
  */
 fun copyMessage(chatId: Long, fromChatId: Long, messageId: Long) =
-    CopyMessageAction(Recipient.from(chatId), Recipient.from(fromChatId), messageId)
+    CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
 
 fun copyMessage(chatId: String, fromChatId: Long, messageId: Long) =
-    CopyMessageAction(Recipient.from(chatId), Recipient.from(fromChatId), messageId)
+    CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
 
 fun copyMessage(chatId: Long, fromChatId: String, messageId: Long) =
-    CopyMessageAction(Recipient.from(chatId), Recipient.from(fromChatId), messageId)
+    CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
 
 fun copyMessage(chatId: String, fromChatId: String, messageId: Long) =
-    CopyMessageAction(Recipient.from(chatId), Recipient.from(fromChatId), messageId)
+    CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
