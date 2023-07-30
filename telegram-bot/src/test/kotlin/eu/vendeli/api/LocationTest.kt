@@ -4,6 +4,7 @@ import BotTestContext
 import eu.vendeli.tgbot.api.editMessageLiveLocation
 import eu.vendeli.tgbot.api.location
 import eu.vendeli.tgbot.api.stopMessageLiveLocation
+import eu.vendeli.tgbot.api.venue
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -87,6 +88,25 @@ class LocationTest : BotTestContext() {
             latitude shouldBe 1.000002F
             longitude shouldBe 1.999996F
             horizontalAccuracy shouldBe 3.000000F
+        }
+    }
+
+    @Test
+    suspend fun `venue location method test`() {
+        val request = venue(1F, 2F, "test", "address").sendAsync(TG_ID, bot).await()
+
+        val result = with(request) {
+            ok.shouldBeTrue()
+            isSuccess().shouldBeTrue()
+            getOrNull().shouldNotBeNull()
+        }
+        with(result) {
+            venue.shouldNotBeNull()
+            venue?.title shouldBe "test"
+            venue?.address shouldBe "address"
+
+            location?.latitude shouldBe 1f
+            location?.longitude shouldBe 1.999999F
         }
     }
 }
