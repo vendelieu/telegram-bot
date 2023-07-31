@@ -68,7 +68,8 @@ class EditActionsTest : BotTestContext() {
         val msg = photo(RANDOM_PIC).sendReturning(TG_ID, bot).getOrNull()
         msg.shouldNotBeNull()
         val request = editMedia(
-            msg.messageId, InputMedia.Photo(ImplicitFile.FromString(RANDOM_PIC_URL))
+            msg.messageId,
+            InputMedia.Photo(ImplicitFile.FromString(RANDOM_PIC_URL)),
         ).sendAsync(TG_ID, bot).await()
 
         val result = with(request) {
