@@ -23,7 +23,7 @@ class MessageTest : BotTestContext() {
             parameters["parse_mode"] shouldBe "HTML"
             parameters["protect_content"] shouldBe true
             parameters["allow_sending_without_reply"] shouldBe true
-        }.sendAsync(TG_ID, bot).await()
+        }.sendReturning(TG_ID, bot)
 
         val result = with(request) {
             ok.shouldBeTrue()

@@ -19,7 +19,7 @@ class LocationTest : BotTestContext() {
             livePeriod = 1000
             heading = 4
             proximityAlertRadius = 10
-        }.sendAsync(TG_ID, bot).await()
+        }.sendReturning(TG_ID, bot)
 
         val result = with(request) {
             ok.shouldBeTrue()
@@ -44,13 +44,13 @@ class LocationTest : BotTestContext() {
             livePeriod = 1000
             heading = 4
             proximityAlertRadius = 10
-        }.sendAsync(TG_ID, bot).await()
+        }.sendReturning(TG_ID, bot)
 
         val editReq = editMessageLiveLocation(location.getOrNull()!!.messageId, 2F, 3F).options {
             heading = 3
             horizontalAccuracy = 2F
             proximityAlertRadius = 9
-        }.sendAsync(TG_ID, bot).await()
+        }.sendReturning(TG_ID, bot)
 
         val result = with(editReq) {
             ok.shouldBeTrue()
@@ -75,9 +75,9 @@ class LocationTest : BotTestContext() {
             livePeriod = 1000
             heading = 4
             proximityAlertRadius = 10
-        }.sendAsync(TG_ID, bot).await()
+        }.sendReturning(TG_ID, bot)
 
-        val request = stopMessageLiveLocation(location.getOrNull()!!.messageId).sendAsync(TG_ID, bot).await()
+        val request = stopMessageLiveLocation(location.getOrNull()!!.messageId).sendReturning(TG_ID, bot)
         val result = with(request) {
             ok.shouldBeTrue()
             isSuccess().shouldBeTrue()
@@ -93,7 +93,7 @@ class LocationTest : BotTestContext() {
 
     @Test
     suspend fun `venue location method test`() {
-        val request = venue(1F, 2F, "test", "address").sendAsync(TG_ID, bot).await()
+        val request = venue(1F, 2F, "test", "address").sendReturning(TG_ID, bot)
 
         val result = with(request) {
             ok.shouldBeTrue()

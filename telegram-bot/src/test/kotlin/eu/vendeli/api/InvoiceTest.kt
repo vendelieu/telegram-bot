@@ -23,7 +23,7 @@ class InvoiceTest : BotTestContext() {
                 Currency.AED,
                 listOf(LabeledPrice("test3", 1000)),
             ),
-        ).sendAsync(TG_ID, bot).await()
+        ).sendReturning(TG_ID, bot)
 
         val result = with(request) {
             ok.shouldBeTrue()

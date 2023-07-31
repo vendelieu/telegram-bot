@@ -12,8 +12,6 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.makeBunchMediaRequestAsync
 import io.kotest.matchers.nulls.shouldNotBeNull
-import io.ktor.client.request.get
-import io.ktor.client.statement.readBytes
 import io.ktor.http.ContentType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -32,15 +30,15 @@ class MediaRequestTesting : BotTestContext() {
         }
 
         val photoString = photo { RANDOM_PIC_URL }.options { parseMode = ParseMode.HTML }.caption { "test" }
-            .sendAsync(TG_ID, bot).await().getOrNull()
+            .sendReturning(TG_ID, bot).getOrNull()
         photoString.shouldNotBeNull()
 
         val photoBa = photo(RANDOM_PIC).options { parseMode = ParseMode.HTML }.caption { "<i>test</i>" }
-            .sendAsync(TG_ID, bot).await().getOrNull()
+            .sendReturning(TG_ID, bot).getOrNull()
         photoBa.shouldNotBeNull()
 
         val photoFile = photo(imageFile).caption { "<b>test</b>" }.options { parseMode = ParseMode.HTML }
-            .sendAsync(TG_ID, bot).await().getOrNull()
+            .sendReturning(TG_ID, bot).getOrNull()
         photoFile.shouldNotBeNull()
     }
 
@@ -84,7 +82,7 @@ class MediaRequestTesting : BotTestContext() {
         val mediaRequest = mediaGroup(
             InputMedia.Photo(ImplicitFile.FromFile(File(image)), caption = "<b>test</b>", parseMode = ParseMode.HTML),
             InputMedia.Photo(ImplicitFile.FromFile(File(image))),
-        ).sendAsync(TG_ID, bot).await().getOrNull()
+        ).sendReturning(TG_ID, bot).getOrNull()
 
         mediaRequest.shouldNotBeNull()
         mediaRequest.first().mediaGroupId.shouldNotBeNull()
@@ -100,7 +98,7 @@ class MediaRequestTesting : BotTestContext() {
             InputMedia.Photo(ImplicitFile.FromFile(File(image)), caption = "<b>test</b>", parseMode = ParseMode.HTML),
             InputMedia.Photo(ImplicitFile.FromByteArray(imageBytes)),
             InputMedia.Photo(ImplicitFile.FromString(RANDOM_PIC_URL)),
-        ).sendAsync(TG_ID, bot).await().getOrNull()
+        ).sendReturning(TG_ID, bot).getOrNull()
 
         mediaRequest.shouldNotBeNull()
         mediaRequest.first().mediaGroupId.shouldNotBeNull()
