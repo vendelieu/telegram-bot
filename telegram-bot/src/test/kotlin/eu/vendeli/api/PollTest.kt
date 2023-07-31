@@ -24,7 +24,7 @@ class PollTest : BotTestContext() {
                 openPeriod = 565
                 correctOptionId = 1
                 isAnonymous = false
-            }.sendAsync(TG_ID, bot).await()
+            }.sendReturning(TG_ID, bot)
 
             val result = with(request) {
                 ok.shouldBeTrue()
@@ -51,7 +51,7 @@ class PollTest : BotTestContext() {
             openPeriod = 565
             correctOptionId = 1
             isAnonymous = false
-        }.sendAsync(TG_ID, bot).await()
+        }.sendReturning(TG_ID, bot)
 
         poll.getOrNull().shouldNotBeNull().poll.shouldNotBeNull().run {
             isClosed shouldBe false
@@ -59,7 +59,7 @@ class PollTest : BotTestContext() {
 
         stopPoll(
             poll.getOrNull()!!.messageId,
-        ).sendAsync(TG_ID, bot).await().getOrNull().shouldNotBeNull().run {
+        ).sendReturning(TG_ID, bot).getOrNull().shouldNotBeNull().run {
             isClosed shouldBe true
         }
     }

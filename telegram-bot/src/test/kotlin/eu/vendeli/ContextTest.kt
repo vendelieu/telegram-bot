@@ -5,7 +5,7 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 
-class BotContextTest : BotTestContext() {
+class ContextTest : BotTestContext() {
     @Test
     suspend fun `user data test`() {
         val empty = bot.userData.get<String>(TG_ID, "test")

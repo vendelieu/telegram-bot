@@ -13,7 +13,7 @@ class DiceTest : BotTestContext() {
     suspend fun `location method test`() {
         val request = dice(emoji = "\uD83C\uDFC0").options {
             protectContent = true
-        }.sendAsync(TG_ID, bot).await()
+        }.sendReturning(TG_ID, bot)
 
         val result = with(request) {
             ok.shouldBeTrue()

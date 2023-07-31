@@ -15,8 +15,8 @@ import io.kotest.matchers.shouldBe
 class MessageActionsTest : BotTestContext() {
     @Test
     suspend fun `copy message method test`() {
-        val msg = message("test").sendAsync(TG_ID, bot).await().getOrNull()
-        val request = copyMessage(TG_ID, TG_ID, msg!!.messageId).sendAsync(TG_ID, bot).await()
+        val msg = message("test").sendReturning(TG_ID, bot).getOrNull()
+        val request = copyMessage(TG_ID, TG_ID, msg!!.messageId).sendReturning(TG_ID, bot)
 
         val result = with(request) {
             ok.shouldBeTrue()
@@ -31,8 +31,8 @@ class MessageActionsTest : BotTestContext() {
 
     @Test
     suspend fun `forward message method test`() {
-        val msg = message("test").sendAsync(TG_ID, bot).await().getOrNull()
-        val request = forwardMessage(TG_ID, TG_ID, msg!!.messageId).sendAsync(TG_ID, bot).await()
+        val msg = message("test").sendReturning(TG_ID, bot).getOrNull()
+        val request = forwardMessage(TG_ID, TG_ID, msg!!.messageId).sendReturning(TG_ID, bot)
 
         val result = with(request) {
             ok.shouldBeTrue()
@@ -48,8 +48,8 @@ class MessageActionsTest : BotTestContext() {
 
     @Test
     suspend fun `delete message method test`() {
-        val msg = message("test").sendAsync(TG_ID, bot).await().getOrNull()
-        val request = deleteMessage(msg!!.messageId).sendAsync(TG_ID, bot).await()
+        val msg = message("test").sendReturning(TG_ID, bot).getOrNull()
+        val request = deleteMessage(msg!!.messageId).sendReturning(TG_ID, bot)
 
         val result = with(request) {
             ok.shouldBeTrue()

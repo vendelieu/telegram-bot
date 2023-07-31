@@ -1,7 +1,8 @@
-
 import ch.qos.logback.classic.Level.TRACE
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
+import eu.vendeli.tgbot.api.deleteMessage
+import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
@@ -28,6 +29,7 @@ abstract class BotTestContext(
     private val withPreparedBot: Boolean = true,
     private val mockHttp: Boolean = false,
 ) : AnnotationSpec() {
+    private val messageTail: MutableList<Long> = mutableListOf()
     protected lateinit var bot: TelegramBot
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
@@ -38,7 +40,7 @@ abstract class BotTestContext(
     protected val RANDOM_PIC_URL = "https://picsum.photos/10"
     protected val RANDOM_PIC by lazy { runBlocking { bot.httpClient.get(RANDOM_PIC_URL).readBytes() } }
     protected val CUR_TIMESTAMP: Instant get() = Instant.now()
-    protected val ITERATION = (1..Int.MAX_VALUE).iterator()
+    protected val ITER_INT: Int get() = (1..Int.MAX_VALUE).iterator().nextInt()
 
     @BeforeAll
     fun prepareTestBot() {
@@ -80,5 +82,24 @@ abstract class BotTestContext(
                 )
             },
         )
+    }
+
+    @AfterAll
+    suspend fun cleanUp() {
+        messageTail.forEach {
+            deleteMessage(it).send(TG_ID, bot)
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    protected suspend fun <T> Action<T>.sendReturning(id: Long, bot: TelegramBot): Response<out T> {
+        val response = sendAsync(id, bot).await()
+
+        response.runCatching {
+            (this as? Response.Success<Message>)?.result?.messageId?.also {
+                messageTail.add(it)
+            }
+        }
+        return response
     }
 }

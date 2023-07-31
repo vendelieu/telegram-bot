@@ -14,7 +14,7 @@ class ContactTest : BotTestContext() {
         val request = contact("test", "+0 0000 000 00 00").options {
             lastName = "test1"
             vcard = "test2"
-        }.sendAsync(TG_ID, bot).await()
+        }.sendReturning(TG_ID, bot)
 
         val result = with(request) {
             ok.shouldBeTrue()
