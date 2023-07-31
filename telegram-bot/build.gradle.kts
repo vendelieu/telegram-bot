@@ -90,7 +90,7 @@ tasks {
 
 koverReport {
     defaults {
-        log {
+        xml {
             coverageUnits = MetricType.LINE
             aggregationForGroup = AggregationType.COVERED_PERCENTAGE
         }
