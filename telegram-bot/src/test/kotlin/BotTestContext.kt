@@ -21,8 +21,10 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
+import kotlinx.coroutines.delay
 import java.time.Instant
 import kotlin.random.Random
+import kotlin.time.Duration.Companion.milliseconds
 
 @Suppress("VariableNaming", "PropertyName", "PrivatePropertyName")
 abstract class BotTestContext(
@@ -100,6 +102,7 @@ abstract class BotTestContext(
                 messageTail.add(it)
             }
         }
+        delay(300.milliseconds)
         return response
     }
 }

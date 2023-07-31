@@ -10,7 +10,7 @@ import io.kotest.matchers.shouldBe
 
 class DiceTest : BotTestContext() {
     @Test
-    suspend fun `location method test`() {
+    suspend fun `dice method test`() {
         val request = dice(emoji = "\uD83C\uDFC0").options {
             protectContent = true
         }.sendReturning(TG_ID, bot)
