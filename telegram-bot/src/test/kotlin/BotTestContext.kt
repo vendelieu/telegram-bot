@@ -1,7 +1,6 @@
 import ch.qos.logback.classic.Level.TRACE
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
-import eu.vendeli.tgbot.api.deleteMessage
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
@@ -84,13 +83,6 @@ abstract class BotTestContext(
                 )
             },
         )
-    }
-
-    @AfterAll
-    suspend fun cleanUp() {
-        messageTail.forEach {
-            deleteMessage(it).send(TG_ID, bot)
-        }
     }
 
     @Suppress("UNCHECKED_CAST")
