@@ -1,3 +1,4 @@
+import kotlinx.kover.gradle.plugin.dsl.AggregationType
 import kotlinx.kover.gradle.plugin.dsl.MetricType
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
@@ -91,6 +92,7 @@ koverReport {
     defaults {
         log {
             coverageUnits = MetricType.LINE
+            aggregationForGroup = AggregationType.COVERED_PERCENTAGE
         }
     }
 }
