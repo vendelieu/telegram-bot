@@ -26,11 +26,11 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         with:
           gradle-version: current
-          arguments: build koverXmlReport -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
+          arguments: build koverXmlReport -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -Pkotlin.experimental.tryK2=true
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-            files: telegram-bot/build/reports/kover/report.xml
-            verbose: true
+          files: telegram-bot/build/reports/kover/report.xml
+          verbose: true

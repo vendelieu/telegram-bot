@@ -10,7 +10,7 @@ import io.kotest.matchers.shouldBe
 
 class ContactTest : BotTestContext() {
     @Test
-    suspend fun `location method test`() {
+    suspend fun `contact method test`() {
         val request = contact("test", "+0 0000 000 00 00").options {
             lastName = "test1"
             vcard = "test2"
