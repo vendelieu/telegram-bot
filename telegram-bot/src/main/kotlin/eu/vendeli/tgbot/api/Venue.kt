@@ -28,7 +28,6 @@ class SendVenueAction(
         get() = getReturnType()
     override val OptionsFeature<SendVenueAction, VenueOptions>.options: VenueOptions
         get() = VenueOptions()
-
     init {
         parameters["latitude"] = latitude
         parameters["longitude"] = longitude

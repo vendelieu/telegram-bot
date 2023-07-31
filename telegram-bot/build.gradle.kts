@@ -1,3 +1,4 @@
+import kotlinx.kover.gradle.plugin.dsl.MetricType
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import java.time.LocalDate
@@ -82,6 +83,14 @@ tasks {
             customStyleSheets = listOf(rootDir.resolve("assets/logo-styles.css"))
             customAssets = listOf(rootDir.resolve("assets/tgbotkt-logo.png"))
             footerMessage = "© ${LocalDate.now().year} Vendelieu"
+        }
+    }
+}
+
+koverReport {
+    defaults {
+        log {
+            coverageUnits = MetricType.LINE
         }
     }
 }
