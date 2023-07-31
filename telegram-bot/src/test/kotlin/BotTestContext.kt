@@ -102,7 +102,7 @@ abstract class BotTestContext(
                 messageTail.add(it)
             }
         }
-        delay(300.milliseconds)
+        delay(200.milliseconds)
         return response
     }
 }
