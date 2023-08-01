@@ -14,7 +14,7 @@ import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.string.shouldBeEmpty
 
-class GetMyActionsTest: BotTestContext() {
+class GetMyActionsTest : BotTestContext() {
     @Test
     suspend fun `get my default administrator rights method testing`() {
         val request = getMyDefaultAdministratorRights().sendAsync(bot).await()
