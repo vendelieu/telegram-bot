@@ -63,7 +63,7 @@ abstract class BotTestContext(
     }
 
     protected suspend fun <T> Action<T>.sendReturning(id: Long, bot: TelegramBot): Response<out T> {
-        delay(100)
+        delay(200)
         return sendAsync(id, bot).await()
     }
 
