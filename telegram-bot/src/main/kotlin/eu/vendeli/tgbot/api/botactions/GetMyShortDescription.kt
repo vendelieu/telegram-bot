@@ -11,7 +11,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 class GetMyShortDescriptionAction(languageCode: String? = null) : SimpleAction<BotShortDescription>, ActionState() {
     override val TgAction<BotShortDescription>.method: TgMethod
-        get() = TgMethod("getMyDescription")
+        get() = TgMethod("getMyShortDescription")
     override val TgAction<BotShortDescription>.returnType: Class<BotShortDescription>
         get() = getReturnType()
 
