@@ -15,6 +15,7 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
+import kotlinx.coroutines.delay
 import java.time.Instant
 
 @Suppress("VariableNaming", "PropertyName", "PrivatePropertyName")
@@ -61,8 +62,10 @@ abstract class BotTestContext(
         )
     }
 
-    protected suspend fun <T> Action<T>.sendReturning(id: Long, bot: TelegramBot): Response<out T> =
-        sendAsync(id, bot).await()
+    protected suspend fun <T> Action<T>.sendReturning(id: Long, bot: TelegramBot): Response<out T> {
+        delay(100)
+        return sendAsync(id, bot).await()
+    }
 
     protected suspend fun getExtFile(url: String): ByteArray = bot.httpClient.get(url).readBytes()
 }

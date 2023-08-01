@@ -27,7 +27,7 @@ import io.kotest.matchers.shouldBe
 
 class SetMyActionsTest : BotTestContext() {
     @Test
-    suspend fun `get my default administrator rights method testing`() {
+    suspend fun `set my default administrator rights method testing`() {
         setMyDefaultAdministratorRights(
             ChatAdministratorRights(
                 isAnonymous = true,
@@ -73,7 +73,7 @@ class SetMyActionsTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `get description method testing`() {
+    suspend fun `set description method testing`() {
         setMyDescription("test").send(bot)
         val request = getMyDescription().sendAsync(bot).await()
 
@@ -88,7 +88,7 @@ class SetMyActionsTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `get short description method testing`() {
+    suspend fun `set short description method testing`() {
         setMyShortDescription("test").send(bot)
         val request = getMyShortDescription().sendAsync(bot).await()
 
@@ -103,7 +103,7 @@ class SetMyActionsTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `get my commands method testing`() {
+    suspend fun `set my commands method testing`() {
         setMyCommands {
             botCommand("test", "testD")
         }.send(bot)
@@ -138,7 +138,7 @@ class SetMyActionsTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `get webhook info method testing`() {
+    suspend fun `set webhook info method testing`() {
         setWebhook("https://vendeli.eu").send(bot)
         val request = getWebhookInfo().sendAsync(bot).await()
 
@@ -154,7 +154,7 @@ class SetMyActionsTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `get my name method testing`() {
+    suspend fun `set my name method testing`() {
         val request = setMyName("testbot2").sendAsync(bot).await()
 
         val result = with(request) {

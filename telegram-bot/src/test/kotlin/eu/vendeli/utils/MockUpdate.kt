@@ -12,7 +12,7 @@ import kotlin.random.Random
 sealed class MockUpdate {
     abstract val response: ByteArray
 
-    data class SINGLE(val text: String = "start") : MockUpdate() {
+    data class SINGLE(val text: String = "/start") : MockUpdate() {
         override val response: ByteArray
             get() = mapper.writeValueAsBytes(
                 Success(
