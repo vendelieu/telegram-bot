@@ -97,4 +97,6 @@ abstract class BotTestContext(
         delay(200.milliseconds)
         return response
     }
+
+    protected suspend fun getExtFile(url: String): ByteArray = bot.httpClient.get(url).readBytes()
 }
