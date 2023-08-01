@@ -115,10 +115,14 @@ class SetMyActionsTest : BotTestContext() {
         result.shouldNotBeNull()
         result.shouldNotBeEmpty()
         result shouldContain BotCommand("test", "testD")
+        deleteMyCommands().send(bot)
     }
 
     @Test
     suspend fun `delete my commands method testing`() {
+        setMyCommands {
+            botCommand("test", "testD")
+        }.send(bot)
         getMyCommands().sendAsync(bot).await().getOrNull().shouldNotBeNull().shouldNotBeEmpty()
         val request = deleteMyCommands().sendAsync(bot).await()
 
