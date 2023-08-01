@@ -93,10 +93,17 @@ koverReport {
             filters {
                 excludes {
                     packages(
+                        "eu.vendeli.tgbot.interfaces",
                         "eu.vendeli.tgbot.api.stickerset",
                         "eu.vendeli.tgbot.api.forum",
                         "eu.vendeli.tgbot.api.chat",
                         "eu.vendeli.tgbot.types",
+                        "eu.vendeli.tgbot.utils",
+                    )
+                    classes(
+                        "eu.vendeli.tgbot.api.Answer*",
+                        "eu.vendeli.tgbot.api.botactions.Close*",
+                        "eu.vendeli.tgbot.api.botactions.Logout*",
                     )
                 }
             }

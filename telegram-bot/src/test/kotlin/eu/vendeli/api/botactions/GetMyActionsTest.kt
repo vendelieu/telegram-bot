@@ -4,6 +4,7 @@ import BotTestContext
 import eu.vendeli.tgbot.api.botactions.getMyCommands
 import eu.vendeli.tgbot.api.botactions.getMyDefaultAdministratorRights
 import eu.vendeli.tgbot.api.botactions.getMyDescription
+import eu.vendeli.tgbot.api.botactions.getMyName
 import eu.vendeli.tgbot.api.botactions.getMyShortDescription
 import eu.vendeli.tgbot.api.botactions.getUpdates
 import eu.vendeli.tgbot.api.botactions.getWebhookInfo
@@ -12,6 +13,7 @@ import eu.vendeli.tgbot.types.internal.isSuccess
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldBeEmpty
 
 class GetMyActionsTest : BotTestContext() {
@@ -89,5 +91,18 @@ class GetMyActionsTest : BotTestContext() {
             getOrNull().shouldNotBeNull()
         }
         result.shouldNotBeNull()
+    }
+
+    @Test
+    suspend fun `get my name method testing`() {
+        val request = getMyName().sendAsync(bot).await()
+
+        val result = with(request) {
+            ok.shouldBeTrue()
+            isSuccess().shouldBeTrue()
+            getOrNull().shouldNotBeNull()
+        }
+        result.shouldNotBeNull()
+        result.name shouldBe "testbot"
     }
 }
