@@ -3,8 +3,8 @@ coverage:
     project:
       default:
         # basic
-        target: 60%
-        threshold: 5%
+        target: 70%
+        threshold: 2%
         if_ci_failed: error
 
 comment:
