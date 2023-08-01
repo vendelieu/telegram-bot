@@ -96,6 +96,7 @@ koverReport {
                         "eu.vendeli.tgbot.api.stickerset",
                         "eu.vendeli.tgbot.api.forum",
                         "eu.vendeli.tgbot.api.chat",
+                        "eu.vendeli.tgbot.types",
                     )
                 }
             }
