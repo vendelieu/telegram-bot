@@ -49,5 +49,4 @@ sealed class MockUpdate {
             text = text,
         )
     }
-
 }

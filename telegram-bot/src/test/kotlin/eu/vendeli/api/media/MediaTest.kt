@@ -1,7 +1,6 @@
 package eu.vendeli.api.media
 
 import BotTestContext
-import eu.vendeli.utils.LOREM
 import eu.vendeli.tgbot.api.media.animation
 import eu.vendeli.tgbot.api.media.audio
 import eu.vendeli.tgbot.api.media.document
@@ -11,6 +10,7 @@ import eu.vendeli.tgbot.api.media.videoNote
 import eu.vendeli.tgbot.api.media.voice
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
+import eu.vendeli.utils.LOREM
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
