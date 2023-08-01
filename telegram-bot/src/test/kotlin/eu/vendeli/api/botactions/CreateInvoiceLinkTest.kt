@@ -34,5 +34,4 @@ class CreateInvoiceLinkTest : BotTestContext() {
         result.shouldNotBeNull()
         result shouldContain "https://t.me"
     }
-
 }

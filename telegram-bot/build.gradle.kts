@@ -94,11 +94,12 @@ koverReport {
                 excludes {
                     packages(
                         "eu.vendeli.tgbot.interfaces",
-                        "eu.vendeli.tgbot.api.stickerset",
-                        "eu.vendeli.tgbot.api.forum",
-                        "eu.vendeli.tgbot.api.chat",
                         "eu.vendeli.tgbot.types",
                         "eu.vendeli.tgbot.utils",
+
+                        "eu.vendeli.tgbot.api.stickerset", // todo cover
+                        "eu.vendeli.tgbot.api.forum", // todo cover
+                        "eu.vendeli.tgbot.api.chat", // todo cover
                     )
                     classes(
                         "eu.vendeli.tgbot.api.Answer*",
