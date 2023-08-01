@@ -1,7 +1,6 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.types.EntityType
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.MessageEntity
@@ -9,33 +8,18 @@ import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
-import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.utils.parseCommand
+import eu.vendeli.utils.MockUpdate
 import io.kotest.matchers.maps.shouldContainExactly
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.mock.MockEngine
-import io.ktor.client.engine.mock.respond
-import io.ktor.http.HttpHeaders
-import io.ktor.http.HttpStatusCode
-import io.ktor.http.headersOf
-import io.ktor.utils.io.ByteReadChannel
 
 class TelegramUpdateHandlerTest : BotTestContext() {
     @Test
     suspend fun `listener workflow`() {
-        bot.httpClient = HttpClient(
-            MockEngine {
-                respond(
-                    content = ByteReadChannel(updates),
-                    status = HttpStatusCode.OK,
-                    headers = headersOf(HttpHeaders.ContentType, "application/json"),
-                )
-            },
-        )
+        doMockHttp(MockUpdate.RAW_RESPONSE(updates))
 
         var update: Update? = null
 
@@ -74,7 +58,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
 
     @Test
     suspend fun `exception catching via annotation handling`() {
-        doMockHttp("test")
+        doMockHttp(MockUpdate.SINGLE("test"))
 
         bot.update.caughtExceptions.tryReceive().getOrNull().shouldBeNull()
         bot.update.setListener {
@@ -157,15 +141,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
                 entities = listOf(MessageEntity(type = EntityType.BotCommand, offset = 0, length = 6)),
             ),
         )
-        bot.httpClient = HttpClient(
-            MockEngine {
-                respond(
-                    content = ByteReadChannel(mapper.writeValueAsString(Response.Success(listOf(deeplinkUpdate)))),
-                    status = HttpStatusCode.OK,
-                    headers = headersOf(HttpHeaders.ContentType, "application/json"),
-                )
-            },
-        )
+        doMockHttp(MockUpdate.UPDATES_LIST(listOf(deeplinkUpdate)))
 
         bot.handleUpdates {
             onCommand("/start") {

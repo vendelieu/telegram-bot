@@ -3,6 +3,7 @@ package eu.vendeli
 import BotTestContext
 import eu.vendeli.tgbot.core.TelegramActionsCollector
 import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.utils.MockUpdate
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.maps.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -40,7 +41,7 @@ class AnnotationsTest : BotTestContext() {
 
     @Test
     suspend fun `regex command test`() {
-        doMockHttp("test color")
+        doMockHttp(MockUpdate.SINGLE("test color"))
 
         bot.update.setListener {
             handle(it)

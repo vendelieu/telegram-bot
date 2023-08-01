@@ -1,4 +1,4 @@
-package eu.vendeli.fixtures
+package eu.vendeli.utils
 
 sealed class LOREM(val data: String) {
     data object AUDIO : LOREM("https://github.com/malcomio/dummy-content/raw/master/audio/audio.mp3")

@@ -1,14 +1,11 @@
+
 import ch.qos.logback.classic.Level.TRACE
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.Message
-import eu.vendeli.tgbot.types.Update
-import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.chat.Chat
-import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.Response
+import eu.vendeli.utils.MockUpdate
 import io.kotest.common.runBlocking
 import io.kotest.core.spec.style.AnnotationSpec
 import io.ktor.client.HttpClient
@@ -22,7 +19,6 @@ import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
 import kotlinx.coroutines.delay
 import java.time.Instant
-import kotlin.random.Random
 import kotlin.time.Duration.Companion.milliseconds
 
 @Suppress("VariableNaming", "PropertyName", "PrivatePropertyName")
@@ -31,6 +27,7 @@ abstract class BotTestContext(
     private val mockHttp: Boolean = false,
 ) : AnnotationSpec() {
     private val messageTail: MutableList<Long> = mutableListOf()
+
     protected lateinit var bot: TelegramBot
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
@@ -58,26 +55,11 @@ abstract class BotTestContext(
         if (mockHttp) doMockHttp()
     }
 
-    fun doMockHttp(messageText: String = "/start", messages: List<String>? = null) {
-        val generateMsg = { text: String ->
-            Message(
-                Random.nextLong(),
-                from = User(1, false, "Test"),
-                chat = Chat(1, ChatType.Private),
-                date = Random.nextInt(),
-                text = text,
-            )
-        }
-        val testMsg = generateMsg(messageText)
-        val apiResponse = Response.Success(
-            messages?.map { Update(Random.nextInt(), generateMsg(it)) } ?: listOf(
-                Update(Random.nextInt(), testMsg),
-            ),
-        )
+    fun doMockHttp(mockUpdates: MockUpdate = MockUpdate.SINGLE()) {
         bot.httpClient = HttpClient(
             MockEngine {
                 respond(
-                    content = ByteReadChannel(mapper.writeValueAsBytes(apiResponse)),
+                    content = ByteReadChannel(mockUpdates.response),
                     status = HttpStatusCode.OK,
                     headers = headersOf(HttpHeaders.ContentType, "application/json"),
                 )

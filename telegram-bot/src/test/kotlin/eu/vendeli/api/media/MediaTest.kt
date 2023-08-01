@@ -1,7 +1,7 @@
 package eu.vendeli.api.media
 
 import BotTestContext
-import eu.vendeli.fixtures.LOREM
+import eu.vendeli.utils.LOREM
 import eu.vendeli.tgbot.api.media.animation
 import eu.vendeli.tgbot.api.media.audio
 import eu.vendeli.tgbot.api.media.document

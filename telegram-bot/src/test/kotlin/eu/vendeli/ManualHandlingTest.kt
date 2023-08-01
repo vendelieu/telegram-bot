@@ -1,6 +1,7 @@
 package eu.vendeli
 
 import BotTestContext
+import eu.vendeli.utils.MockUpdate
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.ints.shouldBeLessThan
 import io.kotest.matchers.ints.shouldBeLessThanOrEqual
@@ -62,7 +63,8 @@ class ManualHandlingTest : BotTestContext(true, true) {
         val generalCounter = AtomicInteger(0)
         val startCounter = AtomicInteger(0)
         val notHandledCounter = AtomicInteger(0)
-        doMockHttp(messages = listOf("test", "/start"))
+
+        doMockHttp(MockUpdate.TEXT_LIST(listOf("test", "/start")))
 
         bot.handleUpdates {
             onCommand("/start") {
