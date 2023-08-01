@@ -1,5 +1,4 @@
-import kotlinx.kover.gradle.plugin.dsl.AggregationType
-import kotlinx.kover.gradle.plugin.dsl.MetricType
+
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import java.time.LocalDate
@@ -90,9 +89,16 @@ tasks {
 
 koverReport {
     defaults {
-        log {
-            coverageUnits = MetricType.BRANCH
-            aggregationForGroup = AggregationType.COVERED_PERCENTAGE
+        xml {
+            filters {
+                excludes {
+                    packages(
+                        "eu.vendeli.tgbot.api.stickerset",
+                        "eu.vendeli.tgbot.api.forum",
+                        "eu.vendeli.tgbot.api.chat",
+                    )
+                }
+            }
         }
     }
 }
