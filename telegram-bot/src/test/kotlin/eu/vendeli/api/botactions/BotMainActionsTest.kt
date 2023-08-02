@@ -12,7 +12,7 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldBeEmpty
 
-class BotMainActionsTest : BotTestContext()  {
+class BotMainActionsTest : BotTestContext() {
     @Test
     suspend fun `get updates method testing`() {
         val request = getUpdates().sendAsync(bot).await()

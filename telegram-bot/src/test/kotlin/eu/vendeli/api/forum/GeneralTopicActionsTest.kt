@@ -14,7 +14,7 @@ import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 
-class GeneralTopicActionsTest: BotTestContext() {
+class GeneralTopicActionsTest : BotTestContext() {
     @Test
     suspend fun `hide general topic method test`() {
         val request = hideGeneralForumTopic().sendAsync(CHAT_ID, bot).await()
@@ -52,6 +52,7 @@ class GeneralTopicActionsTest: BotTestContext() {
         }
         result.shouldBeTrue()
     }
+
     @Test
     suspend fun `open general topic method test`() {
         val request = reopenGeneralForumTopic().sendAsync(CHAT_ID, bot).await()
