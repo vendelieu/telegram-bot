@@ -51,10 +51,12 @@ class GeneralTopicActionsTest : BotTestContext() {
             getOrNull().shouldNotBeNull()
         }
         result.shouldBeTrue()
+        reopenGeneralForumTopic().send(CHAT_ID, bot)
     }
 
     @Test
     suspend fun `open general topic method test`() {
+        closeGeneralForumTopic().send(CHAT_ID, bot)
         val request = reopenGeneralForumTopic().sendAsync(CHAT_ID, bot).await()
 
         val result = with(request) {
