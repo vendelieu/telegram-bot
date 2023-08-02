@@ -2,8 +2,8 @@
 
 package eu.vendeli.tgbot.api.forum
 
+import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
-import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
@@ -14,7 +14,7 @@ import eu.vendeli.tgbot.utils.getReturnType
  * and must have the can_manage_topics administrator rights.
  * Returns True on success.
  */
-class UnhideGeneralForumTopicAction : SimpleAction<Boolean>, ActionState() {
+class UnhideGeneralForumTopicAction : Action<Boolean>, ActionState() {
     override val TgAction<Boolean>.method: TgMethod
         get() = TgMethod("unhideGeneralForumTopic")
     override val TgAction<Boolean>.returnType: Class<Boolean>
