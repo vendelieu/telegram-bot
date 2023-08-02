@@ -22,6 +22,7 @@ jobs:
         uses: eskatos/gradle-command-action@v1
         env:
           TELEGRAM_ID: ${{ secrets.TELEGRAM_ID }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
           BOT_ID: ${{ secrets.BOT_ID }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         with:
