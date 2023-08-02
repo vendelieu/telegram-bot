@@ -8,6 +8,6 @@ package eu.vendeli.tgbot.types.forum
  * an empty string if the icon was removed
  */
 data class ForumTopicEdited(
-    val name: String,
-    val iconCustomEmojiId: String,
+    val name: String? = null,
+    val iconCustomEmojiId: String? = null,
 )
