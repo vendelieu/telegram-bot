@@ -29,6 +29,7 @@ abstract class BotTestContext(
     private val TOKEN by lazy { System.getenv("BOT_TOKEN") }
     protected val TG_ID by lazy { System.getenv("TELEGRAM_ID").toLong() }
     protected val BOT_ID by lazy { TOKEN.substringBefore(':').toLong() }
+    protected val CHAT_ID by lazy { System.getenv("CHAT_ID").toLong() }
 
     protected val RANDOM_PIC_URL = "https://picsum.photos/10"
     protected val RANDOM_PIC by lazy { runBlocking { bot.httpClient.get(RANDOM_PIC_URL).readBytes() } }

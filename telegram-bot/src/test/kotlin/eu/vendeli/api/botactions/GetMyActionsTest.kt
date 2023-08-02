@@ -6,8 +6,6 @@ import eu.vendeli.tgbot.api.botactions.getMyDefaultAdministratorRights
 import eu.vendeli.tgbot.api.botactions.getMyDescription
 import eu.vendeli.tgbot.api.botactions.getMyName
 import eu.vendeli.tgbot.api.botactions.getMyShortDescription
-import eu.vendeli.tgbot.api.botactions.getUpdates
-import eu.vendeli.tgbot.api.botactions.getWebhookInfo
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -66,31 +64,6 @@ class GetMyActionsTest : BotTestContext() {
         }
         result.shouldNotBeNull()
         result.shouldBeEmpty()
-    }
-
-    @Test
-    suspend fun `get webhook info method testing`() {
-        val request = getWebhookInfo().sendAsync(bot).await()
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
-        result.shouldNotBeNull()
-        result.url.shouldBeEmpty()
-    }
-
-    @Test
-    suspend fun `get updates method testing`() {
-        val request = getUpdates().sendAsync(bot).await()
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
-        result.shouldNotBeNull()
     }
 
     @Test

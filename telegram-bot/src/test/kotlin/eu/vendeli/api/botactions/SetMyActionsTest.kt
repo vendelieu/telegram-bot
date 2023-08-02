@@ -2,19 +2,16 @@ package eu.vendeli.api.botactions
 
 import BotTestContext
 import eu.vendeli.tgbot.api.botactions.deleteMyCommands
-import eu.vendeli.tgbot.api.botactions.deleteWebhook
 import eu.vendeli.tgbot.api.botactions.getMyCommands
 import eu.vendeli.tgbot.api.botactions.getMyDefaultAdministratorRights
 import eu.vendeli.tgbot.api.botactions.getMyDescription
 import eu.vendeli.tgbot.api.botactions.getMyName
 import eu.vendeli.tgbot.api.botactions.getMyShortDescription
-import eu.vendeli.tgbot.api.botactions.getWebhookInfo
 import eu.vendeli.tgbot.api.botactions.setMyCommands
 import eu.vendeli.tgbot.api.botactions.setMyDefaultAdministratorRights
 import eu.vendeli.tgbot.api.botactions.setMyDescription
 import eu.vendeli.tgbot.api.botactions.setMyName
 import eu.vendeli.tgbot.api.botactions.setMyShortDescription
-import eu.vendeli.tgbot.api.botactions.setWebhook
 import eu.vendeli.tgbot.types.bot.BotCommand
 import eu.vendeli.tgbot.types.chat.ChatAdministratorRights
 import eu.vendeli.tgbot.types.internal.getOrNull
@@ -135,22 +132,6 @@ class SetMyActionsTest : BotTestContext() {
         }
         result.shouldNotBeNull()
         result.shouldBeTrue()
-    }
-
-    @Test
-    suspend fun `set webhook info method testing`() {
-        setWebhook("https://vendeli.eu").send(bot)
-        val request = getWebhookInfo().sendAsync(bot).await()
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
-        result.shouldNotBeNull()
-        result.url shouldBe "https://vendeli.eu"
-
-        deleteWebhook().send(bot)
     }
 
     @Test

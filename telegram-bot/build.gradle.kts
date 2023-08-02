@@ -98,7 +98,6 @@ koverReport {
                         "eu.vendeli.tgbot.utils",
 
                         "eu.vendeli.tgbot.api.stickerset", // todo cover
-                        "eu.vendeli.tgbot.api.forum", // todo cover
                         "eu.vendeli.tgbot.api.chat", // todo cover
                     )
                     classes(
