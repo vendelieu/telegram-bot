@@ -11,6 +11,7 @@ enum class StickerFormat {
 data class Sticker(
     val fileId: String,
     val fileUniqueId: String,
+    val type: StickerType,
     val width: Int,
     val height: Int,
     val isAnimated: Boolean,
@@ -20,6 +21,7 @@ data class Sticker(
     val setName: String? = null,
     val premiumAnimation: File? = null,
     val maskPosition: MaskPosition? = null,
+    val customEmojiId: String? = null,
     val needsRepainting: Boolean? = null,
     val fileSize: Int? = null,
 ) : MultipleResponse
