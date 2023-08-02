@@ -9,6 +9,6 @@ package eu.vendeli.tgbot.types.forum
  */
 data class ForumTopicCreated(
     val name: String,
-    val iconColor: Int,
+    val iconColor: IconColor,
     val iconCustomEmojiId: String? = null,
 )

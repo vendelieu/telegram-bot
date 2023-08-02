@@ -2,10 +2,11 @@
 
 package eu.vendeli.tgbot.api.forum
 
+import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
-import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.forum.ForumTopic
+import eu.vendeli.tgbot.types.forum.IconColor
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
@@ -17,9 +18,9 @@ import eu.vendeli.tgbot.utils.getReturnType
  */
 class CreateForumTopicAction(
     name: String,
-    iconColor: Int? = null,
+    iconColor: IconColor? = null,
     iconCustomEmojiId: String? = null,
-) : SimpleAction<ForumTopic>, ActionState() {
+) : Action<ForumTopic>, ActionState() {
     override val TgAction<ForumTopic>.method: TgMethod
         get() = TgMethod("createForumTopic")
     override val TgAction<ForumTopic>.returnType: Class<ForumTopic>
@@ -38,5 +39,5 @@ class CreateForumTopicAction(
  * Returns information about the created topic as a [ForumTopic] object.
  *
  */
-fun createForumTopic(name: String, iconColor: Int? = null, iconCustomEmojiId: String? = null) =
+fun createForumTopic(name: String, iconColor: IconColor? = null, iconCustomEmojiId: String? = null) =
     CreateForumTopicAction(name, iconColor, iconCustomEmojiId)
