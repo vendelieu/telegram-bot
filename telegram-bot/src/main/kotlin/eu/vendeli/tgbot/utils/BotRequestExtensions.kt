@@ -63,7 +63,7 @@ internal suspend fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
     data: suspend MediaData.() -> Unit,
 ): Deferred<Response<out T>> = coroutineScope {
     val media = MediaData().apply { data() }
-    val response = httpClient.post(media.method.toUrl()) {
+    val response = httpClient.post(media.method.getUrl(config.apiHost, token)) {
         setBody(multipartBodyBuilder(media))
         onUpload { bytesSentTotal, contentLength ->
             logger.trace {
@@ -92,7 +92,7 @@ internal suspend inline fun <T, I : MultipleResponse> TelegramBot.makeRequestAsy
     returnType: Class<T>,
     wrappedType: Class<I>? = null,
 ): Deferred<Response<out T>> = coroutineScope {
-    val response = httpClient.post(method.toUrl()) {
+    val response = httpClient.post(method.getUrl(config.apiHost, token)) {
         contentType(ContentType.Application.Json)
         setBody(TelegramBot.mapper.writeValueAsString(data))
     }
@@ -109,7 +109,7 @@ internal suspend inline fun <T, I : MultipleResponse> TelegramBot.makeRequestAsy
 internal suspend inline fun TelegramBot.makeSilentRequest(
     method: TgMethod,
     data: Any? = null,
-) = httpClient.post(method.toUrl()) {
+) = httpClient.post(method.getUrl(config.apiHost, token)) {
     val requestBody = TelegramBot.mapper.writeValueAsString(data)
     contentType(ContentType.Application.Json)
     setBody(requestBody)
@@ -124,7 +124,7 @@ internal suspend inline fun TelegramBot.makeSilentRequest(
     block: MediaData.() -> Unit,
 ): HttpResponse {
     val media = MediaData().apply(block)
-    return httpClient.post(media.method.toUrl()) {
+    return httpClient.post(media.method.getUrl(config.apiHost, token)) {
         setBody(multipartBodyBuilder(media))
         onUpload { bytesSentTotal, contentLength ->
             logger.trace {

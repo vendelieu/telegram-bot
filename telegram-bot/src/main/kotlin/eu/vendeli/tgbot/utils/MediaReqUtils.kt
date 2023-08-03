@@ -24,7 +24,7 @@ internal suspend inline fun TelegramBot.makeBunchMediaReq(
     files: Map<String, ByteArray>,
     parameters: Map<String, Any?>? = null,
     contentType: ContentType,
-): HttpResponse = httpClient.post(method.toUrl()) {
+): HttpResponse = httpClient.post(method.getUrl(config.apiHost, token)) {
     setBody(
         MultiPartFormDataContent(
             formData {

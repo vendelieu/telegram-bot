@@ -15,8 +15,6 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.BotConfigurator
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
-import eu.vendeli.tgbot.utils.TELEGRAM_API_URL_PATTERN
-import eu.vendeli.tgbot.utils.TELEGRAM_FILE_URL_PATTERN
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
 import eu.vendeli.tgbot.utils.getConfiguredMapper
 import eu.vendeli.tgbot.utils.level
@@ -36,7 +34,7 @@ import mu.KLogging
  */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class TelegramBot(
-    private val token: String,
+    internal val token: String,
     commandsPackage: String? = null,
     botConfiguration: BotConfigurator = {},
 ) {
@@ -70,8 +68,6 @@ class TelegramBot(
         logger("eu.vendeli.tgbot").level = config.logging.botLogLevel
     }
 
-    internal fun TgMethod.toUrl() = TELEGRAM_API_URL_PATTERN.format(config.apiHost, token) + name
-
     internal val autowiringObjects by lazy { mutableMapOf<Class<*>, Autowiring<*>>() }
 
     /**
@@ -102,9 +98,7 @@ class TelegramBot(
      * @param file
      * @return direct url to file
      */
-    fun getFileDirectUrl(file: File): String? =
-        if (file.filePath != null) TELEGRAM_FILE_URL_PATTERN.format(config.apiHost, token, file.filePath)
-        else null
+    fun getFileDirectUrl(file: File): String? = file.getDirectUrl(config.apiHost, token)
 
     /**
      * Get file from [File] if [File.filePath] is present.
@@ -112,9 +106,8 @@ class TelegramBot(
      * @param file
      * @return [ByteArray]
      */
-    suspend fun getFileContent(file: File): ByteArray? = if (file.filePath != null) {
-        httpClient.get(TELEGRAM_FILE_URL_PATTERN.format(config.apiHost, token, file.filePath)).readBytes()
-    } else null
+    suspend fun getFileContent(file: File): ByteArray? =
+        file.getDirectUrl(config.apiHost, token)?.let { httpClient.get(it).readBytes() }
 
     /**
      * Function for processing updates by long-pulling using annotation commands.
@@ -143,7 +136,7 @@ class TelegramBot(
     internal suspend fun pullUpdates(offset: Int? = null): List<Update>? {
         logger.debug { "Pulling updates." }
         val request = httpClient.post(
-            TgMethod("getUpdates").toUrl() + (offset?.let { "?offset=$it" } ?: ""),
+            TgMethod("getUpdates").getUrl(config.apiHost, token) + (offset?.let { "?offset=$it" } ?: ""),
         )
         return mapper.readValue(request.bodyAsText(), jacksonTypeRef<Response<List<Update>>>()).getOrNull()
     }
