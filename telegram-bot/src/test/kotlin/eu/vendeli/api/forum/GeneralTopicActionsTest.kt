@@ -43,6 +43,7 @@ class GeneralTopicActionsTest : BotTestContext() {
 
     @Test
     suspend fun `close general topic method test`() {
+        reopenGeneralForumTopic().send(CHAT_ID, bot)
         val request = closeGeneralForumTopic().sendAsync(CHAT_ID, bot).await()
 
         val result = with(request) {
