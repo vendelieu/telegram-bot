@@ -28,6 +28,7 @@ class GeneralTopicActionsTest : BotTestContext() {
         result.shouldBeTrue()
         editGeneralForumTopic("General").send(CHAT_ID, bot)
     }
+
     @Test
     suspend fun `hide general topic method test`() {
         val request = hideGeneralForumTopic().sendAsync(CHAT_ID, bot).await()
