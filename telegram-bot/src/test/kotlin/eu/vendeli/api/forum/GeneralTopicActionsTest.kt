@@ -14,6 +14,7 @@ import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import kotlinx.coroutines.delay
 
 class GeneralTopicActionsTest : BotTestContext() {
     @Test
@@ -45,6 +46,7 @@ class GeneralTopicActionsTest : BotTestContext() {
     @Test
     suspend fun `unhide general topic method test`() {
         hideGeneralForumTopic().send(CHAT_ID, bot)
+        delay(100)
         val request = unhideGeneralForumTopic().sendAsync(CHAT_ID, bot).await()
 
         val result = with(request) {
