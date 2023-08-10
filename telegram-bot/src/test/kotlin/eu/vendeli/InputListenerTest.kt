@@ -7,6 +7,7 @@ import io.kotest.matchers.shouldBe
 
 class InputListenerTest : BotTestContext() {
     private val mapImpl = InputListenerMapImpl()
+
     @Test
     fun `sync crud test`() {
         mapImpl.set(1, "test")
