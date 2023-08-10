@@ -16,6 +16,7 @@ import eu.vendeli.tgbot.types.bot.BotCommand
 import eu.vendeli.tgbot.types.chat.ChatAdministratorRights
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
+import eu.vendeli.tgbot.types.internal.onFailure
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldNotBeEmpty
@@ -137,6 +138,10 @@ class SetMyActionsTest : BotTestContext() {
     @Test
     suspend fun `set my name method testing`() {
         val request = setMyName("testbot2").sendAsync(bot).await()
+
+        request.onFailure {
+            if(it.errorCode == 429) return // delay due to limit
+        }
 
         val result = with(request) {
             ok.shouldBeTrue()

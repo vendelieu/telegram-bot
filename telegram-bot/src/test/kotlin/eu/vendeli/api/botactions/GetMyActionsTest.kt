@@ -11,8 +11,8 @@ import eu.vendeli.tgbot.types.internal.isSuccess
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
-import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldBeEmpty
+import io.kotest.matchers.string.shouldStartWith
 
 class GetMyActionsTest : BotTestContext() {
     @Test
@@ -76,6 +76,6 @@ class GetMyActionsTest : BotTestContext() {
             getOrNull().shouldNotBeNull()
         }
         result.shouldNotBeNull()
-        result.name shouldBe "testbot"
+        result.name shouldStartWith "testbot"
     }
 }

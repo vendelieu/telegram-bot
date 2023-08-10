@@ -9,12 +9,12 @@ import eu.vendeli.tgbot.api.forum.reopenGeneralForumTopic
 import eu.vendeli.tgbot.api.forum.unhideGeneralForumTopic
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
+import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.types.media.StickerType
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import kotlinx.coroutines.delay
 
 class GeneralTopicActionsTest : BotTestContext() {
     @Test
@@ -46,8 +46,10 @@ class GeneralTopicActionsTest : BotTestContext() {
     @Test
     suspend fun `unhide general topic method test`() {
         hideGeneralForumTopic().send(CHAT_ID, bot)
-        delay(100)
         val request = unhideGeneralForumTopic().sendAsync(CHAT_ID, bot).await()
+        request.onFailure {
+            if (it.errorCode == 429) return // skip if limit exceeded
+        }
 
         val result = with(request) {
             ok.shouldBeTrue()
