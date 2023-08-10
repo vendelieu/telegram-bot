@@ -60,7 +60,7 @@ suspend fun main() {
     bot.handleUpdates()
     // start long-polling listener
 }
-
+// in your controller:
 @CommandHandler(["/start"])
 suspend fun start(user: User, bot: TelegramBot) {
     message { "Hello, what's your name?" }.send(user, bot)
