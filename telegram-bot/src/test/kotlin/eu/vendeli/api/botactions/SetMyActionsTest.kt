@@ -140,7 +140,7 @@ class SetMyActionsTest : BotTestContext() {
         val request = setMyName("testbot2").sendAsync(bot).await()
 
         request.onFailure {
-            if(it.errorCode == 429) return // delay due to limit
+            if (it.errorCode == 429) return // delay due to limit
         }
 
         val result = with(request) {
