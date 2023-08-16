@@ -40,7 +40,8 @@ suspend fun testMethod2() {
 
 object TestObj {
     @CommandHandler(["test3"])
-    fun test() {
+    fun test(): Boolean {
+        return false
     }
 
     @InputHandler(["testInp3"])

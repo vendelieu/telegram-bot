@@ -7,10 +7,12 @@ import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.utils.handleInvocation
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.maps.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import java.lang.reflect.InvocationTargetException
 
 class AnnotationsTest : BotTestContext() {
     @Test
@@ -58,15 +60,34 @@ class AnnotationsTest : BotTestContext() {
     @Test
     suspend fun `check method invocations`() {
         val actions = TelegramActionsCollector.collect("eu.vendeli")
-        val command = actions.commands["test2"].shouldNotBeNull()
+        val classManager = ClassManagerImpl()
+        val topLvlCommand = actions.commands["test2"].shouldNotBeNull()
+        val objCommand = actions.commands["test3"].shouldNotBeNull()
+        val classCommand = actions.commands["test"].shouldNotBeNull()
 
         shouldNotThrowAny {
-            command.method.handleInvocation(
-                command.clazz,
-                ClassManagerImpl(),
+            topLvlCommand.method.handleInvocation(
+                topLvlCommand.clazz,
+                classManager,
                 emptyArray(),
                 true,
             ) shouldBe true // method returns true
+
+            objCommand.method.handleInvocation(
+                objCommand.clazz,
+                classManager,
+                emptyArray(),
+                false
+            ) shouldBe false
+        }
+
+        shouldThrow<InvocationTargetException> {
+            classCommand.method.handleInvocation(
+                classCommand.clazz,
+                classManager,
+                emptyArray(),
+                false
+            )
         }
     }
 }
