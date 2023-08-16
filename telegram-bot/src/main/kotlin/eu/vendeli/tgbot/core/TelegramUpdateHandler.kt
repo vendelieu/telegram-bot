@@ -129,7 +129,7 @@ class TelegramUpdateHandler internal constructor(
      * @param parameters
      * @return null on success or [Throwable].
      */
-    @Suppress("CyclomaticComplexMethod", "SpreadOperator")
+    @Suppress("CyclomaticComplexMethod")
     private suspend fun invokeMethod(
         pUpdate: ProcessedUpdate,
         invocation: Invocation,

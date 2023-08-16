@@ -102,6 +102,7 @@ private suspend inline fun Method.invokeSuspend(obj: Any?, vararg args: Any?): A
         invoke(obj, *args, cont)
     }
 
+@Suppress("SpreadOperator")
 internal suspend inline fun Method.handleInvocation(
     clazz: Class<*>,
     classManager: ClassManager,

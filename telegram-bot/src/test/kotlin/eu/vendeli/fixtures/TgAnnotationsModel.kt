@@ -28,6 +28,7 @@ class TgAnnotationsModel {
     }
 }
 
+@Suppress("FunctionOnlyReturningConstant")
 @CommandHandler(["test2"])
 suspend fun testMethod(): Boolean {
     return true
