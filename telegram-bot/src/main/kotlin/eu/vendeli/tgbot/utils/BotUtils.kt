@@ -7,6 +7,7 @@ import ch.qos.logback.classic.Logger
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.core.TelegramUpdateHandler.Companion.logger
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.interfaces.TgAction
@@ -24,6 +25,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import java.lang.reflect.Method
+import java.lang.reflect.Modifier.isStatic
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
 
@@ -95,10 +97,22 @@ internal fun TelegramUpdateHandler.parseCommand(
     return StructuredRequest(command = command, params = params)
 }
 
-internal suspend inline fun Method.invokeSuspend(obj: Any, vararg args: Any?): Any? =
+private suspend inline fun Method.invokeSuspend(obj: Any?, vararg args: Any?): Any? =
     suspendCoroutineUninterceptedOrReturn { cont ->
         invoke(obj, *args, cont)
     }
+
+internal suspend inline fun Method.handleInvocation(
+    clazz: Class<*>,
+    classManager: ClassManager,
+    parameters: Array<Any?>,
+    isSuspend: Boolean = false,
+): Any? {
+    val obj = if(isStatic(modifiers)) null else classManager.getInstance(clazz)
+
+    return if(isSuspend) invokeSuspend(obj, *parameters)
+    else invoke(obj, *parameters)
+}
 
 internal suspend inline fun TelegramUpdateHandler.checkIsLimited(
     limits: RateLimits,

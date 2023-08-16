@@ -1,9 +1,12 @@
 package eu.vendeli
 
 import BotTestContext
+import eu.vendeli.tgbot.core.ClassManagerImpl
 import eu.vendeli.tgbot.core.TelegramActionsCollector
 import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.utils.handleInvocation
 import eu.vendeli.utils.MockUpdate
+import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.maps.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -50,5 +53,20 @@ class AnnotationsTest : BotTestContext() {
 
         val data = bot.userData.get<String>(0, "k")
         data shouldBe "test"
+    }
+
+    @Test
+    suspend fun `check method invocations`() {
+        val actions = TelegramActionsCollector.collect("eu.vendeli")
+        val command = actions.commands["test2"].shouldNotBeNull()
+
+        shouldNotThrowAny {
+            command.method.handleInvocation(
+                command.clazz,
+                ClassManagerImpl(),
+                emptyArray(),
+                true
+            ) shouldBe true // method returns true
+        }
     }
 }

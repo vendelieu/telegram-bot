@@ -29,7 +29,8 @@ class TgAnnotationsModel {
 }
 
 @CommandHandler(["test2"])
-suspend fun testMethod() {
+suspend fun testMethod(): Boolean {
+    return true
 }
 
 @InputHandler(["testInp2"])

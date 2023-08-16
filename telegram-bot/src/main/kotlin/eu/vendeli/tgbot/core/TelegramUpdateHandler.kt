@@ -20,7 +20,7 @@ import eu.vendeli.tgbot.utils.ManualHandlingBlock
 import eu.vendeli.tgbot.utils.NewCoroutineContext
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.findAction
-import eu.vendeli.tgbot.utils.invokeSuspend
+import eu.vendeli.tgbot.utils.handleInvocation
 import eu.vendeli.tgbot.utils.process
 import eu.vendeli.tgbot.utils.processUpdate
 import kotlinx.coroutines.cancelChildren
@@ -176,8 +176,7 @@ class TelegramUpdateHandler internal constructor(
 
         logger.debug { "Invoking function for Update#${pUpdate.updateId}" }
         invocation.runCatching {
-            if (isSuspend) method.invokeSuspend(classManager.getInstance(clazz), *processedParameters)
-            else method.invoke(classManager.getInstance(clazz), *processedParameters)
+            method.handleInvocation(clazz, classManager, processedParameters, isSuspend)
         }.onFailure {
             logger.error(it) { "Method $invocation invocation error at handling update: $pUpdate" }
             caughtExceptions.send((it.cause ?: it) to pUpdate.update)
