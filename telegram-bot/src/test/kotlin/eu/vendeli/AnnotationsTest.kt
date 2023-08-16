@@ -77,7 +77,7 @@ class AnnotationsTest : BotTestContext() {
                 objCommand.clazz,
                 classManager,
                 emptyArray(),
-                false
+                false,
             ) shouldBe false
         }
 
@@ -86,7 +86,7 @@ class AnnotationsTest : BotTestContext() {
                 classCommand.clazz,
                 classManager,
                 emptyArray(),
-                false
+                false,
             )
         }
     }

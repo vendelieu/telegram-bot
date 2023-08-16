@@ -1,5 +1,4 @@
-@file:Suppress("EmptyFunctionBlock")
-
+@file:Suppress("EmptyFunctionBlock", "FunctionOnlyReturningConstant")
 package eu.vendeli.fixtures
 
 import eu.vendeli.tgbot.annotations.CommandHandler
@@ -28,7 +27,6 @@ class TgAnnotationsModel {
     }
 }
 
-@Suppress("FunctionOnlyReturningConstant")
 @CommandHandler(["test2"])
 suspend fun testMethod(): Boolean {
     return true
