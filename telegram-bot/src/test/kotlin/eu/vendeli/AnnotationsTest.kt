@@ -65,7 +65,7 @@ class AnnotationsTest : BotTestContext() {
                 command.clazz,
                 ClassManagerImpl(),
                 emptyArray(),
-                true
+                true,
             ) shouldBe true // method returns true
         }
     }

@@ -108,9 +108,9 @@ internal suspend inline fun Method.handleInvocation(
     parameters: Array<Any?>,
     isSuspend: Boolean = false,
 ): Any? {
-    val obj = if(isStatic(modifiers)) null else classManager.getInstance(clazz)
+    val obj = if (isStatic(modifiers)) null else classManager.getInstance(clazz)
 
-    return if(isSuspend) invokeSuspend(obj, *parameters)
+    return if (isSuspend) invokeSuspend(obj, *parameters)
     else invoke(obj, *parameters)
 }
 
