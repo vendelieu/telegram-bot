@@ -97,11 +97,6 @@ internal fun TelegramUpdateHandler.parseCommand(
     return StructuredRequest(command = command, params = params)
 }
 
-private suspend inline fun Method.invokeSuspend(obj: Any?, vararg args: Any?): Any? =
-    suspendCoroutineUninterceptedOrReturn { cont ->
-        invoke(obj, *args, cont)
-    }
-
 @Suppress("SpreadOperator")
 internal suspend inline fun Method.handleInvocation(
     clazz: Class<*>,
@@ -115,8 +110,9 @@ internal suspend inline fun Method.handleInvocation(
         else -> classManager.getInstance(clazz)
     }
 
-    return if (isSuspend) invokeSuspend(obj, *parameters)
-    else invoke(obj, *parameters)
+    return if (isSuspend) suspendCoroutineUninterceptedOrReturn { cont ->
+        invoke(obj, *parameters, cont)
+    } else invoke(obj, *parameters)
 }
 
 internal suspend inline fun TelegramUpdateHandler.checkIsLimited(
