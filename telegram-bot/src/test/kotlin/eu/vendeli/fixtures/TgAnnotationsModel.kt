@@ -1,4 +1,5 @@
 @file:Suppress("EmptyFunctionBlock", "FunctionOnlyReturningConstant")
+
 package eu.vendeli.fixtures
 
 import eu.vendeli.tgbot.annotations.CommandHandler
