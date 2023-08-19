@@ -23,6 +23,7 @@ abstract class BotTestContext(
     private val withPreparedBot: Boolean = true,
     private val mockHttp: Boolean = false,
 ) : AnnotationSpec() {
+    private val INT_ITERATOR = (1..Int.MAX_VALUE).iterator()
     protected lateinit var bot: TelegramBot
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
@@ -34,7 +35,7 @@ abstract class BotTestContext(
     protected val RANDOM_PIC_URL = "https://picsum.photos/10"
     protected val RANDOM_PIC by lazy { runBlocking { bot.httpClient.get(RANDOM_PIC_URL).readBytes() } }
     protected val CUR_TIMESTAMP: Instant get() = Instant.now()
-    protected val ITER_INT: Int get() = (1..Int.MAX_VALUE).iterator().nextInt()
+    protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()
 
     @BeforeAll
     fun prepareTestBot() {
