@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.api.forum.getForumTopicIconStickers
 import eu.vendeli.tgbot.api.forum.hideGeneralForumTopic
 import eu.vendeli.tgbot.api.forum.reopenGeneralForumTopic
 import eu.vendeli.tgbot.api.forum.unhideGeneralForumTopic
+import eu.vendeli.tgbot.api.forum.unpinAllGeneralForumTopicMessages
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
@@ -101,5 +102,17 @@ class GeneralTopicActionsTest : BotTestContext() {
             type shouldBe StickerType.CustomEmoji
             customEmojiId shouldBe "5434144690511290129"
         }
+    }
+
+    @Test
+    suspend fun `unpin all forum general topic method test`() {
+        val request = unpinAllGeneralForumTopicMessages().sendAsync(CHAT_ID, bot).await()
+
+        val result = with(request) {
+            ok.shouldBeTrue()
+            isSuccess().shouldBeTrue()
+            getOrNull().shouldNotBeNull()
+        }
+        result.shouldBeTrue()
     }
 }

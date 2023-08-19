@@ -18,6 +18,7 @@ import eu.vendeli.tgbot.types.media.Audio
 import eu.vendeli.tgbot.types.media.Document
 import eu.vendeli.tgbot.types.media.PhotoSize
 import eu.vendeli.tgbot.types.media.Sticker
+import eu.vendeli.tgbot.types.media.Story
 import eu.vendeli.tgbot.types.media.Video
 import eu.vendeli.tgbot.types.media.VideoChatEnded
 import eu.vendeli.tgbot.types.media.VideoChatParticipantsInvited
@@ -57,6 +58,7 @@ data class Message(
     val document: Document? = null,
     val photo: List<PhotoSize>? = null,
     val sticker: Sticker? = null,
+    val story: Story? = null,
     val video: Video? = null,
     val videoNote: VideoNote? = null,
     val voice: Voice? = null,

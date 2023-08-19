@@ -56,6 +56,7 @@ data class Chat(
     val photo: ChatPhoto? = null,
     val activeUsernames: List<String>? = null,
     val emojiStatusCustomEmojiId: String? = null,
+    val emojiStatusExpirationDate: Long? = null,
     val bio: String? = null,
     val hasPrivateForwards: Boolean? = null,
     val hasRestrictedVoiceAndVideoMessages: Boolean? = null,
