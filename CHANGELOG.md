@@ -1,5 +1,17 @@
 # Telegram-bot changelog
 
+# 3.0.0
+
+* Added ability for lib to catch actions in top level functions and object functions.
+* Fixed wrong action bugs in forum related actions.
+* Fixed `GetGameHighScores`, `GetMyShortDescription` methods.
+* Changed `Recipient` class that used in some action to `Identifier`
+* Covered `6.8` version of Tg Api.
+    * Added new method `unpinAllGeneralForumTopicMessages.`.
+    * Added new field `story` to `Message`.
+    * Added new field `emojiStatusExpirationDate` to `Chat`.
+    * Added new field `voterChat` to `PollAnswer`.
+
 ## 2.9.0
 
 * Added new annotation `RegexCommandHandler` for handling regex commands.
