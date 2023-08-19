@@ -1,15 +1,12 @@
 name: publish
 
 on:
-  workflow_run:
-    workflows: ["Release"]
-    branches: [master]
-    types:
-      - completed
+  push:
+    tags:
+      - "*.*.*"
 
 jobs:
   publish:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
