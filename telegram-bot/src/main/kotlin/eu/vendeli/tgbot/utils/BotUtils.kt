@@ -152,7 +152,7 @@ internal fun TelegramUpdateHandler.findAction(
     if (invocation != null && command && updateType.scope !in invocation.scope)
         return null
 
-    if (command && invocation == null) actions?.regexCommands?.entries?.first {
+    if (command && invocation == null) actions?.regexCommands?.entries?.firstOrNull {
         it.key.matchEntire(text) != null
     }?.also {
         return it.value.toActivity(message)
