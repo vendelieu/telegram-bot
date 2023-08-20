@@ -41,7 +41,7 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
 
     // find action which match command and invoke it
     manualActions.commands[parsedText.command]?.run {
-        if (scope !in this.scope) return false
+        if (scope !in this.scope) return@run
         logger.debug { "Matched command $this for text $text" }
         inputListener.del(from.id) // clean input listener
         // check for limit exceed
