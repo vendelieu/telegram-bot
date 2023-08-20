@@ -1,5 +1,9 @@
 # Telegram-bot changelog
 
+### 3.0.1
+
+* Fixed behavior when no action was found and regex processing threw an exception if the received message did not match.
+
 # 3.0.0
 
 * Added ability for lib to catch actions in top level functions and object functions.
