@@ -17,6 +17,7 @@ class TgAnnotationsModel {
 
     @InputHandler(["testInp"])
     fun test2() {
+        throw IllegalArgumentException("test3")
     }
 
     @UpdateHandler([UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY])

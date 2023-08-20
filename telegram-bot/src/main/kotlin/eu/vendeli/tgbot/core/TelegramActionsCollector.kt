@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.annotations.ParamMapping
 import eu.vendeli.tgbot.annotations.RegexCommandHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
+import eu.vendeli.tgbot.types.internal.ActionType
 import eu.vendeli.tgbot.types.internal.Actions
 import eu.vendeli.tgbot.types.internal.Invocation
 import eu.vendeli.tgbot.types.internal.UpdateType
@@ -54,6 +55,7 @@ internal object TelegramActionsCollector {
                     namedParameters = m.parameters.getParameters(),
                     rateLimits = RateLimits(annotation.rateLimits.period, annotation.rateLimits.rate),
                     scope = annotation.scope.toSet(),
+                    type = ActionType.COMMAND,
                 )
             }
         }
@@ -65,6 +67,7 @@ internal object TelegramActionsCollector {
                 method = m,
                 namedParameters = m.parameters.getParameters(),
                 rateLimits = RateLimits(annotation.rateLimits.period, annotation.rateLimits.rate),
+                type = ActionType.REGEX_COMMAND,
             )
         }
 
@@ -76,6 +79,7 @@ internal object TelegramActionsCollector {
                     method = m,
                     namedParameters = m.parameters.getParameters(),
                     rateLimits = RateLimits(annotation.rateLimits.period, annotation.rateLimits.rate),
+                    type = ActionType.INPUT,
                 )
             }
         }
@@ -87,12 +91,18 @@ internal object TelegramActionsCollector {
                     clazz = m.declaringClass,
                     method = m,
                     rateLimits = RateLimits.NOT_LIMITED,
+                    type = ActionType.TYPE_HANDLER,
                 )
             }
         }
 
         val unhandled = getMethodsAnnotatedWith(UnprocessedHandler::class.java).firstOrNull()?.let { m ->
-            Invocation(clazz = m.declaringClass, method = m, rateLimits = RateLimits.NOT_LIMITED)
+            Invocation(
+                clazz = m.declaringClass,
+                method = m,
+                rateLimits = RateLimits.NOT_LIMITED,
+                type = ActionType.UNPROCESSED_HANDLER,
+            )
         }
 
         return@with Actions(

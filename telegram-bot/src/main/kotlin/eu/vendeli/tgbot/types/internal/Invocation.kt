@@ -9,4 +9,5 @@ internal data class Invocation(
     val namedParameters: Map<String, String> = emptyMap(),
     val scope: Set<CommandScope> = emptySet(),
     val rateLimits: RateLimits,
+    val type: ActionType,
 )

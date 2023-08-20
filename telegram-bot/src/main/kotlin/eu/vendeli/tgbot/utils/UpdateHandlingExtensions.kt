@@ -25,7 +25,7 @@ private inline val SingleInputChain.prevChainId: String?
  * @param from
  * @param text
  */
-@Suppress("CyclomaticComplexMethod")
+@Suppress("CyclomaticComplexMethod", "DuplicatedCode")
 private suspend fun ManualHandlingDsl.checkMessageForActions(
     update: Update,
     from: User?,
@@ -40,17 +40,18 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
     if (parsedText == null || from == null) return false
 
     // find action which match command and invoke it
-    manualActions.commands.filter { it.key.match(parsedText.command, scope) }.entries.firstOrNull()?.run {
+    manualActions.commands[parsedText.command]?.run {
+        if (scope !in this.scope) return false
         logger.debug { "Matched command $this for text $text" }
         inputListener.del(from.id) // clean input listener
         // check for limit exceed
-        if (bot.update.checkIsLimited(key.rateLimits, update.message?.from?.id, parsedText.command)) return false
-        logger.info { "Invoking command $key" }
-        value.invoke(CommandContext(update, parsedText.params, from))
+        if (bot.update.checkIsLimited(rateLimits, update.message?.from?.id, parsedText.command)) return false
+        logger.info { "Invoking command $id" }
+        invocation.invoke(CommandContext(update, parsedText.params, from))
         return true
     }
     // if there's no command -> then try process input
-    inputListener.getAsync(from.id).await()?.also {
+    inputListener.get(from.id)?.also {
         logger.info { "Found inputListener point $it for ${from.id}" }
         inputListener.del(from.id) // clean listener after input caught
         // search matching input handler for listening point
@@ -84,6 +85,19 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
 
             return true
         }
+    }
+
+    manualActions.regexCommands.entries.firstOrNull {
+        it.key.matchEntire(parsedText.command) != null
+    }?.value?.run {
+        if (scope !in this.scope) return false
+        logger.debug { "Matched regex command $this for text $text" }
+        inputListener.del(from.id) // clean input listener
+        // check for limit exceed
+        if (bot.update.checkIsLimited(rateLimits, update.message?.from?.id, parsedText.command)) return false
+        logger.info { "Invoking command $id" }
+        invocation.invoke(CommandContext(update, parsedText.params, from))
+        return true
     }
     return false
 }

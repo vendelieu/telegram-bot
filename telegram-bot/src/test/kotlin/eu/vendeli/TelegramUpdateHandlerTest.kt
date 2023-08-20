@@ -15,6 +15,7 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
+import kotlinx.coroutines.delay
 
 class TelegramUpdateHandlerTest : BotTestContext() {
     @Test
@@ -148,6 +149,21 @@ class TelegramUpdateHandlerTest : BotTestContext() {
                 parameters shouldContainExactly mapOf("deepLink" to "test")
             }
             bot.update.stopListener()
+        }
+    }
+
+    @Test
+    suspend fun `command over input priority test`() {
+        doMockHttp(MockUpdate.TEXT_LIST(listOf("test2", "aaaa")))
+        bot.update.setListener {
+            bot.inputListener.set(1, "testInp")
+            handle(it)
+            if (it.message?.text == "aaaa") stopListener()
+        }
+
+        bot.update.caughtExceptions.tryReceive().getOrNull().shouldNotBeNull().run {
+            second.message?.text shouldBe "aaaa"
+            first.message shouldBe "test3"
         }
     }
 

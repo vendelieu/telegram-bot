@@ -7,3 +7,12 @@ internal data class Actions(
     val updateHandlers: Map<UpdateType, Invocation>,
     val unhandled: Invocation? = null,
 )
+
+internal enum class ActionType(private val literal: String) {
+    COMMAND("Command"), REGEX_COMMAND("Regex command"),
+    INPUT("Input"), TYPE_HANDLER("Type handler"),
+    UNPROCESSED_HANDLER("Unprocessed handler"),
+    ;
+
+    override fun toString(): String = literal
+}

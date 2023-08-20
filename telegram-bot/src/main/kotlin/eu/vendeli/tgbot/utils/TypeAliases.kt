@@ -13,8 +13,8 @@ import eu.vendeli.tgbot.types.inline.ChosenInlineResult
 import eu.vendeli.tgbot.types.inline.InlineQuery
 import eu.vendeli.tgbot.types.internal.ActionContext
 import eu.vendeli.tgbot.types.internal.CommandContext
-import eu.vendeli.tgbot.types.internal.CommandSelector
 import eu.vendeli.tgbot.types.internal.InputContext
+import eu.vendeli.tgbot.types.internal.ManualInvocation
 import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
@@ -39,7 +39,8 @@ typealias OnCommandAction = suspend CommandContext.() -> Unit
 typealias OnInputAction = suspend InputContext.() -> Unit
 
 typealias InputActions = MutableMap<String, SingleInputChain>
-internal typealias CommandActions = MutableMap<CommandSelector, suspend CommandContext.() -> Unit>
+internal typealias CommandActions = MutableMap<String, ManualInvocation>
+internal typealias RegexCommandActions = MutableMap<Regex, ManualInvocation>
 
 typealias HandlingBehaviourBlock = suspend TelegramUpdateHandler.(Update) -> Unit
 typealias ManualHandlingBlock = suspend ManualHandlingDsl.() -> Unit

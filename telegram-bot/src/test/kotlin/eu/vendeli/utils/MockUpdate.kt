@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.Response.Success
 import kotlin.random.Random
 
+@Suppress("ClassName")
 sealed class MockUpdate {
     abstract val response: ByteArray
 

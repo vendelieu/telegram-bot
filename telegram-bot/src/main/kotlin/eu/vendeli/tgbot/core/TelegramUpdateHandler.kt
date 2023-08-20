@@ -180,24 +180,25 @@ class TelegramUpdateHandler internal constructor(
         }.onFailure {
             logger.error(it) { "Method $invocation invocation error at handling update: $pUpdate" }
             caughtExceptions.send((it.cause ?: it) to pUpdate.update)
-        }.onSuccess { logger.info { "Handled update#${pUpdate.updateId} to method ${invocation.method}" } }
+        }.onSuccess {
+            logger.info { "Handled update#${pUpdate.updateId} to ${invocation.type} method ${invocation.method}" }
+        }
     }
 
-    private suspend inline fun String?.getActivityOrNull(user: User?, updateType: UpdateType): Activity? {
+    @Suppress("NOTHING_TO_INLINE")
+    private inline fun String?.getActivityOrNull(user: User?, updateType: UpdateType): Activity? {
         if (this == null) return null
+        var activity = findAction(substringBefore('@'), updateType = updateType)
 
-        val commandAction = findAction(substringBefore('@'), updateType = updateType)
-        var inputAction: Activity? = null
-
-        if (user != null && commandAction == null) {
-            inputAction = inputListener.getAsync(user.id).await()?.let {
+        if (user != null && activity == null) {
+            activity = inputListener.get(user.id)?.let {
                 findAction(it, false, updateType)
             }
-            inputListener.delAsync(user.id).await()
         }
-        logger.debug { "Result of finding action - command: $commandAction, input: $inputAction" }
+        if (user != null) inputListener.del(user.id)
+        logger.debug { "Result of finding action - ${activity?.invocation?.type ?: ""} $activity" }
 
-        return commandAction ?: inputAction
+        return activity
     }
 
     /**

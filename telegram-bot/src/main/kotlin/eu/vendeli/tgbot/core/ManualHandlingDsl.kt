@@ -3,10 +3,10 @@ package eu.vendeli.tgbot.core
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.types.internal.CommandScope
-import eu.vendeli.tgbot.types.internal.CommandSelector
 import eu.vendeli.tgbot.types.internal.InputBreakPoint
 import eu.vendeli.tgbot.types.internal.InputContext
 import eu.vendeli.tgbot.types.internal.ManualActions
+import eu.vendeli.tgbot.types.internal.ManualInvocation
 import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.DEFAULT_COMMAND_SCOPE
@@ -150,7 +150,7 @@ class ManualHandlingDsl internal constructor(
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
         block: OnCommandAction,
     ) {
-        manualActions.commands[CommandSelector.String(command, scope, rateLimits)] = block
+        manualActions.commands[command] = ManualInvocation(command, block, scope, rateLimits)
     }
 
     /**
@@ -166,7 +166,7 @@ class ManualHandlingDsl internal constructor(
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
         block: OnCommandAction,
     ) {
-        manualActions.commands[CommandSelector.Regex(command, scope, rateLimits)] = block
+        manualActions.regexCommands[command] = ManualInvocation(command.pattern, block, scope, rateLimits)
     }
 
     /**
