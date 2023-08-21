@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.makeBunchMediaRequestAsync
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -80,8 +81,12 @@ class MediaRequestTesting : BotTestContext() {
         image.shouldNotBeNull()
 
         val mediaRequest = mediaGroup(
-            InputMedia.Photo(ImplicitFile.FromFile(File(image)), caption = "<b>test</b>", parseMode = ParseMode.HTML),
-            InputMedia.Photo(ImplicitFile.FromFile(File(image))),
+            InputMedia.Photo(
+                ImplicitFile.InpFile(File(image).toInputFile()),
+                caption = "<b>test</b>",
+                parseMode = ParseMode.HTML,
+            ),
+            InputMedia.Photo(ImplicitFile.InpFile(File(image).toInputFile())),
         ).sendReturning(TG_ID, bot).getOrNull()
 
         mediaRequest.shouldNotBeNull()
@@ -95,9 +100,13 @@ class MediaRequestTesting : BotTestContext() {
 
         val imageBytes = classloader.getResource("image.png")?.readBytes() ?: ByteArray(0)
         val mediaRequest = mediaGroup(
-            InputMedia.Photo(ImplicitFile.FromFile(File(image)), caption = "<b>test</b>", parseMode = ParseMode.HTML),
-            InputMedia.Photo(ImplicitFile.FromByteArray(imageBytes)),
-            InputMedia.Photo(ImplicitFile.FromString(RANDOM_PIC_URL)),
+            InputMedia.Photo(
+                ImplicitFile.InpFile(File(image).toInputFile()),
+                caption = "<b>test</b>",
+                parseMode = ParseMode.HTML,
+            ),
+            InputMedia.Photo(ImplicitFile.InpFile(imageBytes.toInputFile())),
+            InputMedia.Photo(ImplicitFile.Str(RANDOM_PIC_URL)),
         ).sendReturning(TG_ID, bot).getOrNull()
 
         mediaRequest.shouldNotBeNull()
@@ -108,8 +117,8 @@ class MediaRequestTesting : BotTestContext() {
     fun `check mediaGroup action for different types passing`() {
         assertThrows<IllegalArgumentException>("All elements must be of the same specific type") {
             SendMediaGroupAction(
-                InputMedia.Photo(ImplicitFile.FromString("")),
-                InputMedia.Audio(ImplicitFile.FromString("")),
+                InputMedia.Photo(ImplicitFile.Str("")),
+                InputMedia.Audio(ImplicitFile.Str("")),
             )
         }
     }
@@ -118,8 +127,8 @@ class MediaRequestTesting : BotTestContext() {
     fun `check mediaGroup action for unsupported types passing`() {
         assertThrows<IllegalArgumentException>("Only Audio/Document/Photo/Video is possible.") {
             SendMediaGroupAction(
-                InputMedia.Animation(ImplicitFile.FromString("")),
-                InputMedia.Photo(ImplicitFile.FromString("")),
+                InputMedia.Animation(ImplicitFile.Str("")),
+                InputMedia.Photo(ImplicitFile.Str("")),
             )
         }
     }

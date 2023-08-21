@@ -6,7 +6,6 @@ import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.ImplicitFile
-import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.utils.getReturnType
@@ -20,15 +19,11 @@ class AddStickerToSetAction(
         get() = TgMethod("addStickerToSet")
     override val TgAction<Boolean>.returnType: Class<Boolean>
         get() = getReturnType()
-
-    override val MediaAction<Boolean>.defaultType: MediaContentType
-        get() = input.sticker.contentType
-    override val MediaAction<Boolean>.media: ImplicitFile<*>
-        get() = input.sticker.file
-    override val MediaAction<Boolean>.dataField: String
-        get() = "sticker"
+    override val MediaAction<Boolean>.isImplicit: Boolean
+        get() = input.sticker.data is ImplicitFile.InpFile
 
     init {
+        // todo fix inputFile handling
         parameters["name"] = name
         parameters["sticker"] = input
     }

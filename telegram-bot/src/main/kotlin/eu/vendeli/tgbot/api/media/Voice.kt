@@ -10,9 +10,10 @@ import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
-import eu.vendeli.tgbot.types.internal.MediaContentType
+import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VoiceOptions
+import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
@@ -32,17 +33,15 @@ class SendVoiceAction(private val voice: ImplicitFile<*>) :
         get() = VoiceOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
+    override val MediaAction<Message>.isImplicit: Boolean
+        get() = voice is ImplicitFile.InpFile
 
-    override val MediaAction<Message>.defaultType: MediaContentType
-        get() = MediaContentType.Voice
-    override val MediaAction<Message>.media: ImplicitFile<*>
-        get() = voice
-    override val MediaAction<Message>.dataField: String
-        get() = "voice"
+    init {
+        parameters["voice"] = voice.file
+    }
 }
 
-fun voice(block: () -> String) = SendVoiceAction(ImplicitFile.FromString(block()))
-
-fun voice(ba: ByteArray) = SendVoiceAction(ImplicitFile.FromByteArray(ba))
-
-fun voice(file: File) = SendVoiceAction(ImplicitFile.FromFile(file))
+fun voice(block: () -> String) = SendVoiceAction(ImplicitFile.Str(block()))
+fun voice(file: InputFile) = SendVoiceAction(ImplicitFile.InpFile(file))
+fun voice(ba: ByteArray) = SendVoiceAction(ImplicitFile.InpFile(ba.toInputFile()))
+fun voice(file: File) = SendVoiceAction(ImplicitFile.InpFile(file.toInputFile()))

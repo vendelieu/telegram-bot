@@ -1,9 +1,9 @@
 package eu.vendeli.tgbot.types.internal.options
 
-import java.io.File
+import eu.vendeli.tgbot.types.internal.InputFile
 
 data class SetWebhookOptions(
-    var certificate: File? = null,
+    var certificate: InputFile? = null,
     var ipAddress: String? = null,
     var maxConnections: Int? = null,
     var allowedUpdates: List<String>? = null,

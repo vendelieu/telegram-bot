@@ -9,9 +9,10 @@ import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
-import eu.vendeli.tgbot.types.internal.MediaContentType
+import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.StickerOptions
+import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
@@ -26,17 +27,15 @@ class SendStickerAction(private val sticker: ImplicitFile<*>) :
         get() = getReturnType()
     override val OptionsFeature<SendStickerAction, StickerOptions>.options: StickerOptions
         get() = StickerOptions()
+    override val MediaAction<Message>.isImplicit: Boolean
+        get() = sticker is ImplicitFile.InpFile
 
-    override val MediaAction<Message>.defaultType: MediaContentType
-        get() = MediaContentType.ImageJpeg
-    override val MediaAction<Message>.media: ImplicitFile<*>
-        get() = sticker
-    override val MediaAction<Message>.dataField: String
-        get() = "sticker"
+    init {
+        parameters["sticker"] = sticker.file
+    }
 }
 
-fun sticker(block: () -> String) = SendStickerAction(ImplicitFile.FromString(block()))
-
-fun sticker(ba: ByteArray) = SendStickerAction(ImplicitFile.FromByteArray(ba))
-
-fun sticker(file: File) = SendStickerAction(ImplicitFile.FromFile(file))
+fun sticker(block: () -> String) = SendStickerAction(ImplicitFile.Str(block()))
+fun sticker(ba: ByteArray) = SendStickerAction(ImplicitFile.InpFile(ba.toInputFile()))
+fun sticker(file: File) = SendStickerAction(ImplicitFile.InpFile(file.toInputFile()))
+fun sticker(file: InputFile) = SendStickerAction(ImplicitFile.InpFile(file))
