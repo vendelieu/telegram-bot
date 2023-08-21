@@ -2,11 +2,12 @@ package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
+import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.interfaces.MultipleResponse
-import eu.vendeli.tgbot.types.internal.MediaData
+import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
-import io.ktor.client.plugins.onUpload
+import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.FormPart
 import io.ktor.client.request.forms.MultiPartFormDataContent
 import io.ktor.client.request.forms.formData
@@ -26,114 +27,56 @@ import io.ktor.utils.io.core.writeFully
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.coroutineScope
 
-private fun multipartBodyBuilder(media: MediaData) = MultiPartFormDataContent(
-    formData {
-        appendInput(
-            key = media.dataField,
-            headers = Headers.build {
-                append(HttpHeaders.ContentDisposition, "filename=${media.name}")
-                append(HttpHeaders.ContentType, media.contentType)
-            },
-        ) { buildPacket { writeFully(media.data) } }
+private val JSON_CONTENT_HEADERS = Headers.build {
+    append(HttpHeaders.ContentType, ContentType.Application.Json)
+}
 
-        val jsonContentHeaders = Headers.build {
-            append(HttpHeaders.ContentType, ContentType.Application.Json)
-        }
-        media.parameters?.entries?.forEach { entry ->
-            entry.value?.also {
-                append(FormPart(entry.key, it, jsonContentHeaders))
-            }
+private fun formImplicitReqBody(payload: Map<String, Any?>): Any = MultiPartFormDataContent(
+    formData {
+        payload.entries.forEach {
+            if (it.value is InputFile) {
+                appendInput(
+                    key = it.key,
+                    headers = Headers.build {
+                        append(HttpHeaders.ContentDisposition, "filename=${(it.value as InputFile).fileName}")
+                        append(HttpHeaders.ContentType, (it.value as InputFile).contentType)
+                    },
+                ) { buildPacket { writeFully((it.value as InputFile).data) } }
+            } else if (it.value != null)
+                append(FormPart(it.key, it.value!!, JSON_CONTENT_HEADERS))
         }
     },
 )
 
-/**
- * Make a media request with the ability to asynchronously process the response.
- *
- * @param T Generic of response data.
- * @param I Parameter used to identify the type in the data array.
- * @param data The data itself.
- * @param returnType Response data type.
- * @param innerType Parameter used to identify the type in the data array.
- * @return [Deferred]<[Response]<[T]>>
- */
-internal suspend fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
-    returnType: Class<T>,
-    innerType: Class<I>? = null,
-    data: suspend MediaData.() -> Unit,
-): Deferred<Response<out T>> = coroutineScope {
-    val media = MediaData().apply { data() }
-    val response = httpClient.post(media.method.getUrl(config.apiHost, token)) {
-        setBody(multipartBodyBuilder(media))
-        onUpload { bytesSentTotal, contentLength ->
-            logger.trace {
-                "Sent $bytesSentTotal bytes from $contentLength, for $method method with ${media.parameters}"
-            }
-        }
+private fun HttpRequestBuilder.formReqBody(payload: Map<String, Any?>, isImplicit: Boolean = false) {
+    if (isImplicit) setBody(formImplicitReqBody(payload).also { logger.debug { "RequestBody: $it" } })
+    else {
+        setBody(mapper.writeValueAsString(payload).also { logger.debug { "RequestBody: $it" } })
+        contentType(ContentType.Application.Json)
     }
-
-    return@coroutineScope handleResponseAsync(response, returnType, innerType)
 }
 
-/**
- * Make a request with the ability to asynchronously process the response.
- *
- * @param T Generic of response data.
- * @param I Parameter used to identify the type in the data array.
- * @param method The telegram api method to which the request will be made.
- * @param data The data itself.
- * @param returnType Response data type.
- * @param wrappedType Parameter used to identify the type in the data array.
- * @return [Deferred]<[Response]<[T]>>
- */
 internal suspend inline fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
     method: TgMethod,
-    data: Any? = null,
+    data: Map<String, Any?>? = null,
     returnType: Class<T>,
     wrappedType: Class<I>? = null,
+    isImplicit: Boolean = false,
 ): Deferred<Response<out T>> = coroutineScope {
     val response = httpClient.post(method.getUrl(config.apiHost, token)) {
-        contentType(ContentType.Application.Json)
-        setBody(TelegramBot.mapper.writeValueAsString(data))
+        if (data != null) formReqBody(data, isImplicit)
     }
 
     return@coroutineScope handleResponseAsync(response, returnType, wrappedType)
 }
 
-/**
- * Make a request without having to return the data.
- *
- * @param method The telegram api method to which the request will be made.
- * @param data The data itself.
- */
 internal suspend inline fun TelegramBot.makeSilentRequest(
     method: TgMethod,
-    data: Any? = null,
+    data: Map<String, Any?>? = null,
+    isImplicit: Boolean = false,
 ) = httpClient.post(method.getUrl(config.apiHost, token)) {
-    val requestBody = TelegramBot.mapper.writeValueAsString(data)
-    contentType(ContentType.Application.Json)
-    setBody(requestBody)
-    logger.debug { "RequestBody: $requestBody" }
+    if (data != null) formReqBody(data, isImplicit)
 }.logFailure()
-
-/**
- * Make a media request without having to return the data.
- *
- */
-internal suspend inline fun TelegramBot.makeSilentRequest(
-    block: MediaData.() -> Unit,
-): HttpResponse {
-    val media = MediaData().apply(block)
-    return httpClient.post(media.method.getUrl(config.apiHost, token)) {
-        setBody(multipartBodyBuilder(media))
-        onUpload { bytesSentTotal, contentLength ->
-            logger.trace {
-                "Sent $bytesSentTotal bytes from $contentLength, for $method method with ${media.parameters}"
-            }
-        }
-        logger.debug { "RequestBody: ${media.parameters}" }
-    }.logFailure()
-}
 
 internal suspend inline fun HttpResponse.logFailure(): HttpResponse {
     if (!status.isSuccess()) {

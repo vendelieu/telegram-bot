@@ -15,6 +15,7 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
+import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.TgMethod
@@ -144,30 +145,25 @@ class TelegramBotTest : BotTestContext() {
         val image = classloader.getResource("image.png")?.readBytes()
         image.shouldNotBeNull()
 
-        val mediaReq = bot.makeSilentRequest {
-            method = TgMethod("sendPhoto")
-            dataField = "photo"
-            name = "image.jpg"
-            data = image
-            parameters = mapOf("chat_id" to TG_ID)
-            contentType = ContentType.Image.JPEG
-        }
+        val mediaReq = bot.makeSilentRequest(
+            method = TgMethod("sendPhoto"),
+            data = mapOf(),
+            isImplicit = true,
+        )
 
         mediaReq.status shouldBe HttpStatusCode.OK
         mediaReq.bodyAsText().isNotBlank().shouldBeTrue()
         mediaReq.bodyAsText() shouldContain "\"ok\":true"
         mediaReq.bodyAsText() shouldContain "\"file_id\""
         bot.makeRequestAsync(
+            method = TgMethod("sendPhoto"),
+            mapOf(
+                "photo" to InputFile(image, "image.jpg", ContentType.Image.JPEG),
+                "chat_id" to TG_ID,
+            ),
             Message::class.java,
             (null as Class<MultipleResponse>?),
-        ) {
-            method = TgMethod("sendPhoto")
-            dataField = "photo"
-            name = "image.jpg"
-            data = image
-            parameters = mapOf("chat_id" to TG_ID)
-            contentType = ContentType.Image.JPEG
-        }.await().isSuccess().shouldBeTrue()
+        ).await().isSuccess().shouldBeTrue()
     }
 
     @Test

@@ -6,7 +6,6 @@ import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.ImplicitFile
-import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.StickerFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.File
@@ -17,15 +16,11 @@ class UploadStickerFileAction(private val sticker: StickerFile) : MediaAction<Fi
         get() = TgMethod("uploadStickerFile")
     override val TgAction<File>.returnType: Class<File>
         get() = getReturnType()
-
-    override val MediaAction<File>.defaultType: MediaContentType
-        get() = MediaContentType.ImagePng
-    override val MediaAction<File>.media: ImplicitFile<*>
-        get() = sticker.file
-    override val MediaAction<File>.dataField: String
-        get() = "sticker"
+    override val MediaAction<File>.isImplicit: Boolean
+        get() = sticker.data is ImplicitFile.InpFile
 
     init {
+        parameters["sticker"] = sticker.data.file
         parameters["sticker_format"] = sticker.stickerFormat
     }
 }

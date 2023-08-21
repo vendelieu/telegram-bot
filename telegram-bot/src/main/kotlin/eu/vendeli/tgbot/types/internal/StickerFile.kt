@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.types.media.StickerFormat
  *  see [video sticker technical requirements](https://core.telegram.org/stickers#video-sticker-requirements).
  */
 sealed class StickerFile(
-    val file: ImplicitFile<*>,
+    val data: ImplicitFile<*>,
     val stickerFormat: StickerFormat,
     internal val contentType: MediaContentType,
 ) {
@@ -26,7 +26,7 @@ sealed class StickerFile(
     class WEBP(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Static, MediaContentType.ImageWebp)
 
     internal class AttachedFile(
-        file: ImplicitFile.FromString,
+        file: ImplicitFile.Str,
         format: StickerFormat,
         contentType: MediaContentType,
     ) : StickerFile(file, format, contentType)

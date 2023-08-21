@@ -6,7 +6,6 @@ import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.ImplicitFile
-import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.StickerFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
@@ -20,14 +19,11 @@ class SetStickerSetThumbAction(
         get() = TgMethod("setStickerSetThumbnail")
     override val TgAction<Boolean>.returnType: Class<Boolean>
         get() = getReturnType()
-    override val MediaAction<Boolean>.defaultType: MediaContentType
-        get() = thumbnail.contentType
-    override val MediaAction<Boolean>.media: ImplicitFile<*>
-        get() = thumbnail.file
-    override val MediaAction<Boolean>.dataField: String
-        get() = "thumbnail"
+    override val MediaAction<Boolean>.isImplicit: Boolean
+        get() = thumbnail.data is ImplicitFile.InpFile
 
     init {
+        parameters["thumbnail"] = thumbnail.data.file
         parameters["name"] = name
         parameters["user_id"] = userId
     }

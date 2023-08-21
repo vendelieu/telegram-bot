@@ -2,19 +2,10 @@ package eu.vendeli.tgbot.interfaces
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.Identifier
-import eu.vendeli.tgbot.types.internal.ImplicitFile
-import eu.vendeli.tgbot.types.internal.MediaContentType
 import eu.vendeli.tgbot.types.internal.Response
-import eu.vendeli.tgbot.types.internal.toContentType
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
-import io.ktor.http.ContentType
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import java.io.File
-import java.nio.file.Files
 import kotlin.collections.set
 
 /**
@@ -24,19 +15,9 @@ import kotlin.collections.set
  */
 interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
     /**
-     * The name of the field that will store the data.
+     * Is this action should be checked for InputFile presence.
      */
-    val MediaAction<ReturnType>.dataField: String
-
-    /**
-     * Content type of media.
-     */
-    val MediaAction<ReturnType>.defaultType: MediaContentType
-
-    /**
-     * Media itself.
-     */
-    val MediaAction<ReturnType>.media: ImplicitFile<*>
+    val MediaAction<ReturnType>.isImplicit: Boolean
 
     /**
      * Make a request for action.
@@ -45,7 +26,8 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
      * @param via Instance of the bot through which the request will be made.
      */
     override suspend fun send(to: String, via: TelegramBot) {
-        internalSend(Identifier.String(to), via)
+        parameters["chat_id"] = to
+        via.makeSilentRequest(method, parameters, isImplicit)
     }
 
     /**
@@ -55,7 +37,8 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
      * @param via Instance of the bot through which the request will be made.
      */
     override suspend fun send(to: Long, via: TelegramBot) {
-        internalSend(Identifier.Long(to), via)
+        parameters["chat_id"] = to
+        via.makeSilentRequest(method, parameters, isImplicit)
     }
 
     /**
@@ -65,50 +48,8 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
      * @param via Instance of the bot through which the request will be made.
      */
     override suspend fun send(to: User, via: TelegramBot) {
-        internalSend(Identifier.Long(to.id), via)
-    }
-
-    /**
-     * The internal method used to send the data.
-     *
-     * @param to Recipient
-     * @param via Instance of the bot through which the request will be made.
-     */
-    suspend fun MediaAction<ReturnType>.internalSend(to: Identifier, via: TelegramBot) {
-        parameters["chat_id"] = to.get
-        val filename = parameters["file_name"]?.toString()?.also {
-            parameters.remove("file_name")
-        } ?: media.name ?: "$dataField.$defaultType"
-
-        when (media) {
-            is ImplicitFile.FromString -> {
-                parameters[dataField] = media.file
-                via.makeSilentRequest(method, parameters)
-            }
-
-            is ImplicitFile.FromByteArray -> via.makeSilentRequest {
-                method = this@internalSend.method
-                dataField = this@internalSend.dataField
-                name = filename
-                data = media.bytes
-                parameters = this@internalSend.parameters
-                contentType = defaultType.toContentType()
-            }
-
-            is ImplicitFile.FromFile -> via.makeSilentRequest {
-                method = this@internalSend.method
-                dataField = this@internalSend.dataField
-                name = filename
-                data = media.bytes
-                parameters = this@internalSend.parameters
-                contentType = withContext(Dispatchers.IO) {
-                    ContentType.parse(
-                        Files.probeContentType((media.file as File).toPath())
-                            ?: return@withContext defaultType.toContentType(),
-                    )
-                }
-            }
-        }
+        parameters["chat_id"] = to.id
+        via.makeSilentRequest(method, parameters, isImplicit)
     }
 
     /**
@@ -120,7 +61,10 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
     override suspend fun sendAsync(
         to: String,
         via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = internalSendAsync(returnType, Identifier.String(to), via)
+    ): Deferred<Response<out ReturnType>> {
+        parameters["chat_id"] = to
+        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, isImplicit)
+    }
 
     /**
      * Make request with ability operating over response.
@@ -131,7 +75,10 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
     override suspend fun sendAsync(
         to: Long,
         via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = internalSendAsync(returnType, Identifier.Long(to), via)
+    ): Deferred<Response<out ReturnType>> {
+        parameters["chat_id"] = to
+        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, isImplicit)
+    }
 
     /**
      * Make request with ability operating over response.
@@ -142,54 +89,8 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
     override suspend fun sendAsync(
         to: User,
         via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = internalSendAsync(returnType, Identifier.Long(to.id), via)
-}
-
-/**
- * The internal method used to send the data with ability operating over response.
- *
- * @param returnType response type
- * @param to Recipient
- * @param via Instance of the bot through which the request will be made.
- * @return [Deferred]<[Response]<[R]>>
- */
-internal suspend inline fun <R> MediaAction<R>.internalSendAsync(
-    returnType: Class<R>,
-    to: Identifier,
-    via: TelegramBot,
-): Deferred<Response<out R>> {
-    parameters["chat_id"] = to.get
-    val filename = parameters["file_name"]?.toString()?.also {
-        parameters.remove("file_name")
-    } ?: media.name ?: "$dataField.$defaultType"
-
-    return when (media) {
-        is ImplicitFile.FromString -> {
-            parameters[dataField] = media.file
-            via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
-        }
-
-        is ImplicitFile.FromByteArray -> via.makeRequestAsync(returnType, wrappedDataType) {
-            method = this@internalSendAsync.method
-            dataField = this@internalSendAsync.dataField
-            name = filename
-            data = media.bytes
-            parameters = this@internalSendAsync.parameters
-            contentType = defaultType.toContentType()
-        }
-
-        is ImplicitFile.FromFile -> via.makeRequestAsync(returnType, wrappedDataType) {
-            method = this@internalSendAsync.method
-            dataField = this@internalSendAsync.dataField
-            name = filename
-            data = media.bytes
-            parameters = this@internalSendAsync.parameters
-            contentType = withContext(Dispatchers.IO) {
-                ContentType.parse(
-                    Files.probeContentType((media.file as File).toPath())
-                        ?: return@withContext defaultType.toContentType(),
-                )
-            }
-        }
+    ): Deferred<Response<out ReturnType>> {
+        parameters["chat_id"] = to.id
+        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, isImplicit)
     }
 }

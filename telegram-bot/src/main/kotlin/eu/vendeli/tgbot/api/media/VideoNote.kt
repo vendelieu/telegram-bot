@@ -9,9 +9,10 @@ import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
-import eu.vendeli.tgbot.types.internal.MediaContentType
+import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoNoteOptions
+import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
@@ -26,17 +27,15 @@ class SendVideoNoteAction(private val videoNote: ImplicitFile<*>) :
         get() = getReturnType()
     override val OptionsFeature<SendVideoNoteAction, VideoNoteOptions>.options: VideoNoteOptions
         get() = VideoNoteOptions()
+    override val MediaAction<Message>.isImplicit: Boolean
+        get() = videoNote is ImplicitFile.InpFile
 
-    override val MediaAction<Message>.defaultType: MediaContentType
-        get() = MediaContentType.VideoMp4
-    override val MediaAction<Message>.media: ImplicitFile<*>
-        get() = videoNote
-    override val MediaAction<Message>.dataField: String
-        get() = "video_note"
+    init {
+        parameters["video_note"] = videoNote.file
+    }
 }
 
-fun videoNote(block: () -> String) = SendVideoNoteAction(ImplicitFile.FromString(block()))
-
-fun videoNote(ba: ByteArray) = SendVideoNoteAction(ImplicitFile.FromByteArray(ba))
-
-fun videoNote(file: File) = SendVideoNoteAction(ImplicitFile.FromFile(file))
+fun videoNote(block: () -> String) = SendVideoNoteAction(ImplicitFile.Str(block()))
+fun videoNote(ba: ByteArray) = SendVideoNoteAction(ImplicitFile.InpFile(ba.toInputFile()))
+fun videoNote(input: InputFile) = SendVideoNoteAction(ImplicitFile.InpFile(input))
+fun videoNote(file: File) = SendVideoNoteAction(ImplicitFile.InpFile(file.toInputFile()))

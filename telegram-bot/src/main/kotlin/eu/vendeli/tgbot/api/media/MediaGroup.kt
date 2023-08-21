@@ -2,43 +2,32 @@
 
 package eu.vendeli.tgbot.api.media
 
-import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
-import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.Identifier
-import eu.vendeli.tgbot.types.internal.ImplicitFile
-import eu.vendeli.tgbot.types.internal.ImplicitFile.FromString
-import eu.vendeli.tgbot.types.internal.MediaContentType
-import eu.vendeli.tgbot.types.internal.Response
+import eu.vendeli.tgbot.types.internal.ImplicitFile.InpFile
+import eu.vendeli.tgbot.types.internal.ImplicitFile.Str
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.MediaGroupOptions
-import eu.vendeli.tgbot.types.internal.toContentType
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.makeBunchMediaRequestAsync
-import eu.vendeli.tgbot.utils.makeRequestAsync
-import eu.vendeli.tgbot.utils.makeSilentBunchMediaRequest
-import eu.vendeli.tgbot.utils.makeSilentRequest
 import io.ktor.util.reflect.instanceOf
-import kotlinx.coroutines.Deferred
 import kotlin.collections.set
 
 class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
     MediaAction<List<Message>>,
     ActionState(),
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions> {
-    private val isAllMediaFromString = inputMedia.all { it.media.instanceOf(FromString::class) }
-    private val files by lazy { mutableMapOf<String, ByteArray>() }
     override val TgAction<List<Message>>.method: TgMethod
         get() = TgMethod("sendMediaGroup")
     override val TgAction<List<Message>>.returnType: Class<List<Message>>
         get() = getReturnType()
     override val OptionsFeature<SendMediaGroupAction, MediaGroupOptions>.options: MediaGroupOptions
         get() = MediaGroupOptions()
+    override val MediaAction<List<Message>>.isImplicit: Boolean
+        get() = inputMedia.any { it.media.instanceOf(InpFile::class) }
 
     init {
         // check api restricts
@@ -48,82 +37,20 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
         }
 
         // reorganize the media following appropriate approaches
-        if (isAllMediaFromString) parameters[dataField] = inputMedia
-        else parameters[dataField] = buildList {
+        parameters["media"] = if (!isImplicit) inputMedia
+        else buildList {
             inputMedia.forEach {
-                if (it.media.instanceOf(FromString::class)) {
+                if (it.media.instanceOf(Str::class)) {
                     add(it)
                     return@forEach
                 }
-                val fileName = it.media.name ?: "$dataField.$defaultType"
-                files[fileName] = it.media.bytes
-                it.media = FromString("attach://$fileName")
+                val fileName = (it.media as InpFile).file.fileName
+                parameters[fileName] = (it.media as InpFile).file.data
+                it.media = Str("attach://$fileName")
 
                 add(it)
             }
         }
-    }
-
-    override val MediaAction<List<Message>>.defaultType: MediaContentType
-        get() = when (inputMedia.first()) {
-            is InputMedia.Audio -> MediaContentType.Audio
-            is InputMedia.Document -> MediaContentType.Text
-            is InputMedia.Photo -> MediaContentType.ImageJpeg
-            is InputMedia.Video -> MediaContentType.VideoMp4
-            else -> throw IllegalArgumentException("Only Audio/Document/Photo/Video is possible.")
-        }
-    override val MediaAction<List<Message>>.media: ImplicitFile<*>
-        get() = media
-    override val MediaAction<List<Message>>.dataField: String
-        get() = "media"
-
-    override suspend fun sendAsync(
-        to: String,
-        via: TelegramBot,
-    ): Deferred<Response<out List<Message>>> = internalSendAsync(returnType, Identifier.String(to), via)
-
-    override suspend fun sendAsync(
-        to: User,
-        via: TelegramBot,
-    ): Deferred<Response<out List<Message>>> = internalSendAsync(returnType, Identifier.Long(to.id), via)
-
-    override suspend fun sendAsync(
-        to: Long,
-        via: TelegramBot,
-    ): Deferred<Response<out List<Message>>> = internalSendAsync(returnType, Identifier.Long(to), via)
-
-    override suspend fun MediaAction<List<Message>>.internalSend(
-        to: Identifier,
-        via: TelegramBot,
-    ) {
-        parameters["chat_id"] = to.get
-
-        if (isAllMediaFromString) {
-            via.makeSilentRequest(method, parameters)
-            return
-        }
-
-        return via.makeSilentBunchMediaRequest(method, files, parameters, defaultType.toContentType())
-    }
-
-    private suspend inline fun internalSendAsync(
-        returnType: Class<List<Message>>,
-        to: Identifier,
-        via: TelegramBot,
-    ): Deferred<Response<out List<Message>>> {
-        parameters["chat_id"] = to.get
-
-        if (isAllMediaFromString)
-            return via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
-
-        return via.makeBunchMediaRequestAsync(
-            method,
-            files,
-            parameters = parameters,
-            defaultType.toContentType(),
-            returnType,
-            Message::class.java,
-        )
     }
 }
 
