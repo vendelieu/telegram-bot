@@ -36,7 +36,12 @@ private val JSON_CONTENT_HEADERS = Headers.build {
 private fun Any?.toInputFileOrNull(): InputFile? = when (this) {
     is InpFile -> this.file
     is InputFile -> this
-    is Map<*, *> -> get("is_input_file\$telegram_bot")?.run { mapper.convertValue(this@toInputFileOrNull, jacksonTypeRef<InputFile>()) }
+    is Map<*, *> -> get("is_input_file\$telegram_bot")?.runCatching {
+        mapper.convertValue(
+            this@toInputFileOrNull,
+            jacksonTypeRef<InputFile>(),
+        )
+    }?.getOrNull()
     else -> null
 }
 

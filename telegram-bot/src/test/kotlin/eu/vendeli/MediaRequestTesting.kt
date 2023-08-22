@@ -70,7 +70,7 @@ class MediaRequestTesting : BotTestContext() {
                 parseMode = ParseMode.HTML,
             ),
             InputMedia.Photo(ImplicitFile.InpFile(imageBytes.toInputFile())),
-            InputMedia.Photo(ImplicitFile.Str(RANDOM_PIC_URL))
+            InputMedia.Photo(ImplicitFile.Str(RANDOM_PIC_URL)),
         ).sendReturning(TG_ID, bot).getOrNull()
 
         mediaRequest.shouldNotBeNull()

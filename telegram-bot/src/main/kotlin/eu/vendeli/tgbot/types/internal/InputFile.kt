@@ -36,4 +36,3 @@ fun ByteArray.toInputFile() = InputFile(this)
 fun File.toInputFile() = InputFile(this.readBytes(), name.ifEmpty { DEFAULT_FILENAME })
 private val ByteArray.contentType: String
     get() = guessContentTypeFromStream(this.inputStream()) ?: "text/plain"
-
