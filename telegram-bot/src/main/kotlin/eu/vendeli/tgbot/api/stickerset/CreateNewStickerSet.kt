@@ -5,7 +5,8 @@ package eu.vendeli.tgbot.api.stickerset
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.TgAction
-import eu.vendeli.tgbot.types.internal.ImplicitFile
+import eu.vendeli.tgbot.types.internal.ImplicitFile.InpFile
+import eu.vendeli.tgbot.types.internal.ImplicitFile.Str
 import eu.vendeli.tgbot.types.internal.StickerFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.InputSticker
@@ -20,7 +21,8 @@ class CreateNewStickerSetAction(
     override val TgAction<Boolean>.returnType: Class<Boolean>
         get() = getReturnType()
     override val MediaAction<Boolean>.isImplicit: Boolean
-        get() = data.stickers.any { it.sticker.data is ImplicitFile.InpFile }
+        get() = isInputFile
+    private val isInputFile = data.stickers.any { it.sticker.data is InpFile }
     private val defaultType = data.stickers.first().sticker.contentType
 
     init {
@@ -40,14 +42,14 @@ class CreateNewStickerSetAction(
             InputSticker(
                 sticker = inputSticker.sticker.let { s ->
                     // if string keep it as is
-                    if (s.data is ImplicitFile.Str) return@let s
-                    val name = (s.data as ImplicitFile.InpFile).file.fileName.takeIf { it != "file" } ?: defaultName
+                    if (s.data is Str) return@let s
+                    val name = (s.data as InpFile).file.fileName.takeIf { it != "file" } ?: defaultName
                     // in other cases put file to parameters
-                    parameters[name] = s.data.file.data
+                    parameters[name] = s.data
 
                     StickerFile.AttachedFile(
                         // and replace it with 'attach://$file' link
-                        file = ImplicitFile.Str("attach://$name"),
+                        file = Str("attach://$name"),
                         format = s.stickerFormat,
                         contentType = s.contentType,
                     )

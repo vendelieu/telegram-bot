@@ -158,7 +158,7 @@ class TelegramBotTest : BotTestContext() {
         bot.makeRequestAsync(
             method = TgMethod("sendPhoto"),
             mapOf(
-                "photo" to InputFile(image, "image.jpg", ContentType.Image.JPEG),
+                "photo" to InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType),
                 "chat_id" to TG_ID,
             ),
             Message::class.java,

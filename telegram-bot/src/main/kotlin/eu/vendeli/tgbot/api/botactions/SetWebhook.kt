@@ -31,18 +31,16 @@ class SetWebhookAction(url: String) :
     }
 
     override suspend fun send(to: TelegramBot) {
-        to.makeSilentRequest(method, parameters, options.certificate != null)
+        to.makeSilentRequest(method, parameters, parameters["certificate"] != null)
     }
 
-    override suspend fun sendAsync(to: TelegramBot): Deferred<Response<out Boolean>> {
-        return to.makeRequestAsync(
-            method,
-            parameters,
-            returnType,
-            wrappedDataType,
-            options.certificate != null,
-        )
-    }
+    override suspend fun sendAsync(to: TelegramBot): Deferred<Response<out Boolean>> = to.makeRequestAsync(
+        method,
+        parameters,
+        returnType,
+        wrappedDataType,
+        parameters["certificate"] != null,
+    )
 }
 
 fun setWebhook(url: String) = SetWebhookAction(url)
