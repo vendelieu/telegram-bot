@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.api.botactions.getWebhookInfo
 import eu.vendeli.tgbot.api.botactions.setWebhook
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
+import eu.vendeli.tgbot.types.internal.toInputFile
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -40,7 +41,7 @@ class BotMainActionsTest : BotTestContext() {
 
     @Test
     suspend fun `set webhook info method testing`() {
-        setWebhook("https://vendeli.eu").send(bot)
+        setWebhook("https://vendeli.eu").options { certificate = ByteArray(0).toInputFile() }.send(bot)
         val request = getWebhookInfo().sendAsync(bot).await()
 
         val result = with(request) {

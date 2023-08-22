@@ -1,9 +1,11 @@
 package eu.vendeli.tgbot.utils
 
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.types.internal.ImplicitFile.InpFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
@@ -31,25 +33,33 @@ private val JSON_CONTENT_HEADERS = Headers.build {
     append(HttpHeaders.ContentType, ContentType.Application.Json)
 }
 
+private fun Any?.toInputFileOrNull(): InputFile? = when (this) {
+    is InpFile -> this.file
+    is InputFile -> this
+    is Map<*, *> -> get("is_input_file\$telegram_bot")?.run { mapper.convertValue(this@toInputFileOrNull, jacksonTypeRef<InputFile>()) }
+    else -> null
+}
+
 private fun formImplicitReqBody(payload: Map<String, Any?>): Any = MultiPartFormDataContent(
     formData {
         payload.entries.forEach {
-            if (it.value is InputFile) {
+            val inputFile = it.value.toInputFileOrNull()
+            if (inputFile != null) {
                 appendInput(
                     key = it.key,
                     headers = Headers.build {
-                        append(HttpHeaders.ContentDisposition, "filename=${(it.value as InputFile).fileName}")
-                        append(HttpHeaders.ContentType, (it.value as InputFile).contentType)
+                        append(HttpHeaders.ContentDisposition, "filename=${inputFile.fileName}")
+                        append(HttpHeaders.ContentType, inputFile.contentType)
                     },
-                ) { buildPacket { writeFully((it.value as InputFile).data) } }
+                ) { buildPacket { writeFully(inputFile.data) } }
             } else if (it.value != null)
-                append(FormPart(it.key, it.value!!, JSON_CONTENT_HEADERS))
+                append(FormPart(it.key, mapper.writeValueAsString(it.value!!), JSON_CONTENT_HEADERS))
         }
     },
 )
 
 private fun HttpRequestBuilder.formReqBody(payload: Map<String, Any?>, isImplicit: Boolean = false) {
-    if (isImplicit) setBody(formImplicitReqBody(payload).also { logger.debug { "RequestBody: $it" } })
+    if (isImplicit) setBody(formImplicitReqBody(payload.also { logger.debug { "RequestBody: $it" } }))
     else {
         setBody(mapper.writeValueAsString(payload).also { logger.debug { "RequestBody: $it" } })
         contentType(ContentType.Application.Json)
