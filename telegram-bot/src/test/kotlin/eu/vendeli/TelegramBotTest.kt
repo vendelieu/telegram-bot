@@ -147,7 +147,10 @@ class TelegramBotTest : BotTestContext() {
 
         val mediaReq = bot.makeSilentRequest(
             method = TgMethod("sendPhoto"),
-            data = mapOf(),
+            data = mapOf(
+                "photo" to InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType),
+                "chat_id" to TG_ID,
+            ),
             isImplicit = true,
         )
 

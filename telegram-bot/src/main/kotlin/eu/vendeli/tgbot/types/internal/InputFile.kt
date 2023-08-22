@@ -1,14 +1,13 @@
 package eu.vendeli.tgbot.types.internal
 
 import java.io.File
-import java.net.URLConnection.guessContentTypeFromStream
 
 const val DEFAULT_FILENAME = "file"
 
 data class InputFile(
     val data: ByteArray,
     val fileName: String = DEFAULT_FILENAME,
-    val contentType: String = data.contentType,
+    val contentType: String = "text/plain",
 ) {
     internal val isInputFile = true
     override fun equals(other: Any?): Boolean {
@@ -34,5 +33,3 @@ data class InputFile(
 
 fun ByteArray.toInputFile() = InputFile(this)
 fun File.toInputFile() = InputFile(this.readBytes(), name.ifEmpty { DEFAULT_FILENAME })
-private val ByteArray.contentType: String
-    get() = guessContentTypeFromStream(this.inputStream()) ?: "text/plain"
