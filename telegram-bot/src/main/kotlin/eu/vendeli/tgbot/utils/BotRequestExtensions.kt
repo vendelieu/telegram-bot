@@ -42,6 +42,7 @@ private fun Any?.toInputFileOrNull(): InputFile? = when (this) {
             jacksonTypeRef<InputFile>(),
         )
     }?.getOrNull()
+
     else -> null
 }
 
@@ -58,7 +59,14 @@ private fun formImplicitReqBody(payload: Map<String, Any?>): Any = MultiPartForm
                     },
                 ) { buildPacket { writeFully(inputFile.data) } }
             } else if (it.value != null)
-                append(FormPart(it.key, mapper.writeValueAsString(it.value!!), JSON_CONTENT_HEADERS))
+                append(
+                    FormPart(
+                        it.key,
+                        if (it.value is String) it.value!!
+                        else mapper.writeValueAsString(it.value),
+                        JSON_CONTENT_HEADERS,
+                    ),
+                )
         }
     },
 )
