@@ -166,7 +166,7 @@ class TelegramBotTest : BotTestContext() {
             ),
             Message::class.java,
             (null as Class<MultipleResponse>?),
-            isImplicit = true
+            isImplicit = true,
         ).await().isSuccess().shouldBeTrue()
     }
 
