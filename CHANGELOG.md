@@ -1,5 +1,9 @@
 # Telegram-bot changelog
 
+### 3.0.3
+
+* Reworked multipart actions logic and fixed related bugs.
+
 ### 3.0.2
 
 * Make manual handling flow similar to annotation regarding regex processing.
