@@ -23,4 +23,4 @@ class UnbanChatMemberAction(
     }
 }
 
-fun unbanChatMember(userId: Long, onlyIfBanned: Boolean?) = UnbanChatMemberAction(userId, onlyIfBanned)
+fun unbanChatMember(userId: Long, onlyIfBanned: Boolean? = null) = UnbanChatMemberAction(userId, onlyIfBanned)
