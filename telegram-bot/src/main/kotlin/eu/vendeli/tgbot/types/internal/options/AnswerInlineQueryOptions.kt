@@ -7,4 +7,4 @@ data class AnswerInlineQueryOptions(
     var isPersonal: Boolean? = null,
     var nextOffset: String? = null,
     var button: InlineQueryResultsButton? = null,
-) : OptionsInterface<AnswerInlineQueryOptions>
+) : Options

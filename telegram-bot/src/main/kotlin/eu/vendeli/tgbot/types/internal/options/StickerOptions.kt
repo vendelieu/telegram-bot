@@ -7,4 +7,4 @@ data class StickerOptions(
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
     override var messageThreadId: Long? = null,
-) : OptionsInterface<StickerOptions>, OptionsCommon
+) : OptionsCommon

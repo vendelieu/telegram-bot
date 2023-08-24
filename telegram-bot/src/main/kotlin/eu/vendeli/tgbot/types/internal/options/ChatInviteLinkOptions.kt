@@ -5,4 +5,4 @@ data class ChatInviteLinkOptions(
     var expireDate: Int? = null,
     var memberLimit: Int? = null,
     var createsJoinRequest: Boolean? = null,
-) : OptionsInterface<ChatInviteLinkOptions>
+) : Options

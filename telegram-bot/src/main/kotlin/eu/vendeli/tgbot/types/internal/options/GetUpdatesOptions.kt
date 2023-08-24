@@ -5,4 +5,4 @@ data class GetUpdatesOptions(
     var limit: Int? = null,
     var timeout: Int? = null,
     var allowedUpdates: List<String>? = null,
-) : OptionsInterface<GetUpdatesOptions>
+) : Options

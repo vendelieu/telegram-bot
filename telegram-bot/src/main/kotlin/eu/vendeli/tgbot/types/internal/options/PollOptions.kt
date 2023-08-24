@@ -20,4 +20,4 @@ data class PollOptions(
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
     override var messageThreadId: Long? = null,
-) : OptionsInterface<PollOptions>, OptionsCommon
+) : OptionsCommon

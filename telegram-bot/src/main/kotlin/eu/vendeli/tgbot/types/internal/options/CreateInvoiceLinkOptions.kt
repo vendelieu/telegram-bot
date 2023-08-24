@@ -40,4 +40,4 @@ data class CreateInvoiceLinkOptions(
     var sendPhoneNumberToProvider: Boolean? = null,
     var sendEmailToProvider: Boolean? = null,
     var isFlexible: Boolean? = null,
-) : OptionsInterface<InvoiceOptions>
+) : Options

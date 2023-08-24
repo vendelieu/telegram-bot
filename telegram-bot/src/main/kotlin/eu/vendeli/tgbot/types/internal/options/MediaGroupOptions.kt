@@ -6,4 +6,4 @@ data class MediaGroupOptions(
     override var replyToMessageId: Long? = null,
     override var allowSendingWithoutReply: Boolean? = null,
     override var messageThreadId: Long? = null,
-) : OptionsInterface<MediaGroupOptions>, OptionsCommon
+) : OptionsCommon

@@ -5,4 +5,4 @@ data class AnswerCallbackQueryOptions(
     var showAlert: Boolean? = null,
     var url: String? = null,
     var cacheTime: Int? = null,
-) : OptionsInterface<AnswerCallbackQueryOptions>
+) : Options
