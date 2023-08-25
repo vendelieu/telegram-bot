@@ -1,9 +1,9 @@
 package eu.vendeli.tgbot.interfaces.features
 
-import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.interfaces.IActionState
 import eu.vendeli.tgbot.types.internal.options.Options
+import eu.vendeli.tgbot.utils.PARAMETERS_MAP_TYPEREF
 
 /**
  * Options feature, see [Features article](https://github.com/vendelieu/telegram-bot/wiki/Features)
@@ -25,7 +25,7 @@ interface OptionsFeature<Return, Opts : Options> : IActionState, Feature {
      * Lambda function to change options
      */
     fun options(block: Opts.() -> Unit): Return {
-        parameters.putAll(mapper.convertValue(options.apply(block), jacksonTypeRef<Map<String, Any?>>()))
+        parameters.putAll(mapper.convertValue(options.apply(block), PARAMETERS_MAP_TYPEREF))
         return thisAsReturn
     }
 }
