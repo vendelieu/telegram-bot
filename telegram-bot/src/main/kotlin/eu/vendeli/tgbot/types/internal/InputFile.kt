@@ -42,5 +42,8 @@ fun File.toInputFile(
     contentType: String? = null,
 ) = this.readBytes().let { InputFile(it, fileName, contentType ?: it.contentType) }
 
+@Suppress("NOTHING_TO_INLINE")
+inline fun InputFile.toImplicitFile() = ImplicitFile.InpFile(this)
+
 private val ByteArray.contentType: String
     get() = URLConnection.guessContentTypeFromStream(this.inputStream()) ?: "text/plain"

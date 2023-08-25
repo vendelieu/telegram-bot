@@ -17,7 +17,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
     /**
      * Is this action contain InputFile in payload.
      */
-    val MediaAction<ReturnType>.inputFilePresence: Boolean
+    val MediaAction<ReturnType>.inputFilePresence: Boolean get() = false
 
     /**
      * Field name used as target id.
