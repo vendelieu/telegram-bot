@@ -19,7 +19,7 @@ class SetStickerSetThumbAction(
         get() = TgMethod("setStickerSetThumbnail")
     override val TgAction<Boolean>.returnType: Class<Boolean>
         get() = getReturnType()
-    override val MediaAction<Boolean>.isImplicit: Boolean
+    override val MediaAction<Boolean>.inputFilePresence: Boolean
         get() = thumbnail.data is ImplicitFile.InpFile
 
     init {

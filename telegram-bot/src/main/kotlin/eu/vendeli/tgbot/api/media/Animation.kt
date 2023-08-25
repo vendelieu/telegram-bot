@@ -33,7 +33,7 @@ class SendAnimationAction(private val animation: ImplicitFile<*>) :
         get() = AnimationOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
-    override val MediaAction<Message>.isImplicit: Boolean
+    override val MediaAction<Message>.inputFilePresence: Boolean
         get() = animation is ImplicitFile.InpFile
 
     init {

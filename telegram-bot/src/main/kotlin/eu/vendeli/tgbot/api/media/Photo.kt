@@ -33,7 +33,7 @@ class SendPhotoAction(private val photo: ImplicitFile<*>) :
         get() = PhotoOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
-    override val MediaAction<Message>.isImplicit: Boolean
+    override val MediaAction<Message>.inputFilePresence: Boolean
         get() = photo is ImplicitFile.InpFile
 
     init {

@@ -29,7 +29,7 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
         get() = getInnerType()
     override val OptionsFeature<SendMediaGroupAction, MediaGroupOptions>.options: MediaGroupOptions
         get() = MediaGroupOptions()
-    override val MediaAction<List<Message>>.isImplicit: Boolean
+    override val MediaAction<List<Message>>.inputFilePresence: Boolean
         get() = isInputFile
     private val isInputFile = inputMedia.any { it.media is InpFile }
 
@@ -41,7 +41,7 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
         }
 
         // reorganize the media following appropriate approaches
-        parameters["media"] = if (!isImplicit) inputMedia
+        parameters["media"] = if (!inputFilePresence) inputMedia
         else buildList {
             inputMedia.forEach {
                 if (it.media is Str) {

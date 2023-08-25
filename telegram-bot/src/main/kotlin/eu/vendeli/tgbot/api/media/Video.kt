@@ -33,7 +33,7 @@ class SendVideoAction(private val video: ImplicitFile<*>) :
         get() = VideoOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
-    override val MediaAction<Message>.isImplicit: Boolean
+    override val MediaAction<Message>.inputFilePresence: Boolean
         get() = video is ImplicitFile.InpFile
 
     init {

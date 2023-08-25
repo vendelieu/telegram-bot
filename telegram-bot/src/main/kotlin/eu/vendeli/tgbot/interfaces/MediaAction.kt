@@ -15,9 +15,9 @@ import kotlin.collections.set
  */
 interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
     /**
-     * Is this action should be checked for InputFile presence.
+     * Is this action contain InputFile in payload.
      */
-    val MediaAction<ReturnType>.isImplicit: Boolean
+    val MediaAction<ReturnType>.inputFilePresence: Boolean
 
     /**
      * Make a request for action.
@@ -27,7 +27,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
      */
     override suspend fun send(to: String, via: TelegramBot) {
         parameters["chat_id"] = to
-        via.makeSilentRequest(method, parameters, isImplicit)
+        via.makeSilentRequest(method, parameters, inputFilePresence)
     }
 
     /**
@@ -38,7 +38,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
      */
     override suspend fun send(to: Long, via: TelegramBot) {
         parameters["chat_id"] = to
-        via.makeSilentRequest(method, parameters, isImplicit)
+        via.makeSilentRequest(method, parameters, inputFilePresence)
     }
 
     /**
@@ -49,7 +49,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
      */
     override suspend fun send(to: User, via: TelegramBot) {
         parameters["chat_id"] = to.id
-        via.makeSilentRequest(method, parameters, isImplicit)
+        via.makeSilentRequest(method, parameters, inputFilePresence)
     }
 
     /**
@@ -63,7 +63,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to
-        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, isImplicit)
+        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, inputFilePresence)
     }
 
     /**
@@ -77,7 +77,7 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to
-        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, isImplicit)
+        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, inputFilePresence)
     }
 
     /**
@@ -91,6 +91,6 @@ interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.id
-        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, isImplicit)
+        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, inputFilePresence)
     }
 }

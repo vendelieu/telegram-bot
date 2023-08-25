@@ -6,15 +6,17 @@ import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ImplicitFile.InpFile
 import eu.vendeli.tgbot.types.internal.ImplicitFile.Str
-import eu.vendeli.tgbot.types.internal.StickerFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CreateNewStickerSetOptions
+import eu.vendeli.tgbot.types.internal.toAttached
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.utils.getReturnType
 
 class CreateNewStickerSetAction(
+    userId: Long,
     name: String,
     title: String,
     stickers: List<InputSticker>,
@@ -23,11 +25,11 @@ class CreateNewStickerSetAction(
         get() = TgMethod("createNewStickerSet")
     override val TgAction<Boolean>.returnType: Class<Boolean>
         get() = getReturnType()
-    override val MediaAction<Boolean>.isImplicit: Boolean
+    override val MediaAction<Boolean>.inputFilePresence: Boolean
         get() = isInputFile
     override val OptionsFeature<CreateNewStickerSetAction, CreateNewStickerSetOptions>.options:
         CreateNewStickerSetOptions
-            get() = CreateNewStickerSetOptions()
+        get() = CreateNewStickerSetOptions()
 
     private val isInputFile = stickers.any { it.sticker.data is InpFile }
     private val defaultType = stickers.first().sticker.contentType
@@ -37,11 +39,12 @@ class CreateNewStickerSetAction(
         require(stickers.all { it.sticker.stickerFormat == firstStickerFormat }) {
             "All stickers must be of the same type."
         }
+        parameters["user_id"] = userId
         parameters["name"] = name
         parameters["title"] = title
-        parameters["sticker_format"] = firstStickerFormat
+        parameters["sticker_format"] = firstStickerFormat.toString()
 
-        parameters["stickers"] = if (!isImplicit) stickers
+        parameters["stickers"] = if (!inputFilePresence) stickers
         else stickers.mapIndexed { index, inputSticker ->
             val defaultName = "sticker-$index.$defaultType"
             InputSticker(
@@ -52,12 +55,7 @@ class CreateNewStickerSetAction(
                     // in other cases put file to parameters
                     parameters[filename] = s.data
 
-                    StickerFile.AttachedFile(
-                        // and replace it with 'attach://$file' link
-                        file = Str("attach://$filename"),
-                        format = s.stickerFormat,
-                        contentType = s.contentType,
-                    )
+                    s.toAttached(filename)
                 },
                 emojiList = inputSticker.emojiList,
                 maskPosition = inputSticker.maskPosition,
@@ -67,5 +65,8 @@ class CreateNewStickerSetAction(
     }
 }
 
-fun createNewStickerSet(name: String, title: String, stickers: List<InputSticker>) =
-    CreateNewStickerSetAction(name, title, stickers)
+fun createNewStickerSet(userId: Long, name: String, title: String, stickers: List<InputSticker>) =
+    CreateNewStickerSetAction(userId, name, title, stickers)
+
+fun createNewStickerSet(user: User, name: String, title: String, stickers: List<InputSticker>) =
+    CreateNewStickerSetAction(user.id, name, title, stickers)

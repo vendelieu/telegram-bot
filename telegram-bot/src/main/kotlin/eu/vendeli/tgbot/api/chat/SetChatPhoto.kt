@@ -17,7 +17,7 @@ class SetChatPhotoAction(private val photo: ImplicitFile<*>) : MediaAction<Boole
         get() = TgMethod("setChatPhoto")
     override val TgAction<Boolean>.returnType: Class<Boolean>
         get() = getReturnType()
-    override val MediaAction<Boolean>.isImplicit: Boolean
+    override val MediaAction<Boolean>.inputFilePresence: Boolean
         get() = photo is ImplicitFile.InpFile
 
     init {
