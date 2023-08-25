@@ -6,8 +6,6 @@ import eu.vendeli.tgbot.api.stopPoll
 import eu.vendeli.tgbot.types.PollOption
 import eu.vendeli.tgbot.types.PollType
 import eu.vendeli.tgbot.types.internal.getOrNull
-import eu.vendeli.tgbot.types.internal.isSuccess
-import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -19,18 +17,12 @@ class PollTest : BotTestContext() {
             poll("Test", "test1", "test2"),
             poll("Test") { arrayOf("test1", "test2") },
         ).forEach { action ->
-            val request = action.options {
+            val result = action.options {
                 type = PollType.Quiz
                 openPeriod = 565
                 correctOptionId = 1
                 isAnonymous = false
-            }.sendReturning(TG_ID, bot)
-
-            val result = with(request) {
-                ok.shouldBeTrue()
-                isSuccess().shouldBeTrue()
-                getOrNull().shouldNotBeNull()
-            }
+            }.sendReturning(TG_ID, bot).shouldSuccess()
 
             with(result.poll) {
                 shouldNotBeNull()

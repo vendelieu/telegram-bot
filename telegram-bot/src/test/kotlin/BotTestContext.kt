@@ -3,9 +3,13 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.Response
+import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.utils.MockUpdate
 import io.kotest.common.runBlocking
 import io.kotest.core.spec.style.AnnotationSpec
+import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.nulls.shouldNotBeNull
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
@@ -70,4 +74,11 @@ abstract class BotTestContext(
     }
 
     protected suspend fun getExtFile(url: String): ByteArray = bot.httpClient.get(url).readBytes()
+
+    @Suppress("NOTHING_TO_INLINE")
+    protected inline fun <T> Response<T>.shouldSuccess() = with(this) {
+        ok.shouldBeTrue()
+        isSuccess().shouldBeTrue()
+        getOrNull().shouldNotBeNull()
+    }
 }

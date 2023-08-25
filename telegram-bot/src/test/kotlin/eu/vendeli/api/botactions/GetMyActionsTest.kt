@@ -6,9 +6,6 @@ import eu.vendeli.tgbot.api.botactions.getMyDefaultAdministratorRights
 import eu.vendeli.tgbot.api.botactions.getMyDescription
 import eu.vendeli.tgbot.api.botactions.getMyName
 import eu.vendeli.tgbot.api.botactions.getMyShortDescription
-import eu.vendeli.tgbot.types.internal.getOrNull
-import eu.vendeli.tgbot.types.internal.isSuccess
-import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.string.shouldBeEmpty
@@ -17,64 +14,39 @@ import io.kotest.matchers.string.shouldStartWith
 class GetMyActionsTest : BotTestContext() {
     @Test
     suspend fun `get my default administrator rights method testing`() {
-        val request = getMyDefaultAdministratorRights().sendAsync(bot).await()
+        val result = getMyDefaultAdministratorRights().sendAsync(bot).await().shouldSuccess()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
         result.shouldNotBeNull()
     }
 
     @Test
     suspend fun `get description method testing`() {
-        val request = getMyDescription().sendAsync(bot).await()
+        val result = getMyDescription().sendAsync(bot).await().shouldSuccess()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
         result.shouldNotBeNull()
         result.description.shouldBeEmpty()
     }
 
     @Test
     suspend fun `get short description method testing`() {
-        val request = getMyShortDescription().sendAsync(bot).await()
+        val result = getMyShortDescription().sendAsync(bot).await().shouldSuccess()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
         result.shouldNotBeNull()
         result.shortDescription.shouldBeEmpty()
     }
 
     @Test
     suspend fun `get my commands method testing`() {
-        val request = getMyCommands().sendAsync(bot).await()
+        val result = getMyCommands().sendAsync(bot).await().shouldSuccess()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
         result.shouldNotBeNull()
         result.shouldBeEmpty()
     }
 
     @Test
     suspend fun `get my name method testing`() {
-        val request = getMyName().sendAsync(bot).await()
+        val result = getMyName().sendAsync(bot).await().shouldSuccess()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
         result.shouldNotBeNull()
         result.name shouldStartWith "testbot"
     }

@@ -9,7 +9,6 @@ import eu.vendeli.tgbot.api.forum.reopenForumTopic
 import eu.vendeli.tgbot.api.forum.unpinAllForumTopicMessages
 import eu.vendeli.tgbot.types.forum.IconColor
 import eu.vendeli.tgbot.types.internal.getOrNull
-import eu.vendeli.tgbot.types.internal.isSuccess
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -17,13 +16,9 @@ import io.kotest.matchers.shouldBe
 class ForumCrudTest : BotTestContext() {
     @Test
     suspend fun `create forum topic method test`() {
-        val request = createForumTopic("testTopic", IconColor.GREEN).sendAsync(CHAT_ID, bot).await()
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = createForumTopic(
+            "testTopic", IconColor.GREEN,
+        ).sendAsync(CHAT_ID, bot).await().shouldSuccess()
 
         with(result) {
             shouldNotBeNull()
@@ -37,13 +32,11 @@ class ForumCrudTest : BotTestContext() {
     suspend fun `edit forum topic method test`() {
         val topic = createForumTopic("testTopic").sendAsync(CHAT_ID, bot).await().getOrNull().shouldNotBeNull()
         topic.name shouldBe "testTopic"
-        val request = editForumTopic(topic.messageThreadId, "testTopic2").sendAsync(CHAT_ID, bot).await()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = editForumTopic(
+            topic.messageThreadId, "testTopic2",
+        ).sendAsync(CHAT_ID, bot).await().shouldSuccess()
+
         result.shouldBeTrue()
         deleteForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
     }
@@ -51,26 +44,16 @@ class ForumCrudTest : BotTestContext() {
     @Test
     suspend fun `delete forum topic method test`() {
         val topic = createForumTopic("testTopic").sendAsync(CHAT_ID, bot).await().getOrNull().shouldNotBeNull()
-        val request = deleteForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).await()
+        val result = deleteForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).await().shouldSuccess()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
         result.shouldBeTrue()
     }
 
     @Test
     suspend fun `close forum topic method test`() {
         val topic = createForumTopic("testTopic").sendAsync(CHAT_ID, bot).await().getOrNull().shouldNotBeNull()
-        val request = closeForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).await()
+        val result = closeForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).await().shouldSuccess()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
         result.shouldBeTrue()
         deleteForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
     }
@@ -79,13 +62,8 @@ class ForumCrudTest : BotTestContext() {
     suspend fun `open forum topic method test`() {
         val topic = createForumTopic("testTopic").sendAsync(CHAT_ID, bot).await().getOrNull().shouldNotBeNull()
         closeForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
-        val request = reopenForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).await()
+        val result = reopenForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).await().shouldSuccess()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
         result.shouldBeTrue()
         deleteForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
     }
@@ -93,13 +71,8 @@ class ForumCrudTest : BotTestContext() {
     @Test
     suspend fun `unpin all forum topic method test`() {
         val topic = createForumTopic("testTopic").sendAsync(CHAT_ID, bot).await().getOrNull().shouldNotBeNull()
-        val request = unpinAllForumTopicMessages(topic.messageThreadId).sendAsync(CHAT_ID, bot).await()
+        val result = unpinAllForumTopicMessages(topic.messageThreadId).sendAsync(CHAT_ID, bot).await().shouldSuccess()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
         result.shouldBeTrue()
         deleteForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
     }
