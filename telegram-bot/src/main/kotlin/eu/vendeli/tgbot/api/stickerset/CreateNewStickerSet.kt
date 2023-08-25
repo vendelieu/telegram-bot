@@ -6,7 +6,6 @@ import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ImplicitFile.InpFile
 import eu.vendeli.tgbot.types.internal.ImplicitFile.Str
 import eu.vendeli.tgbot.types.internal.TgMethod
@@ -16,7 +15,6 @@ import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.utils.getReturnType
 
 class CreateNewStickerSetAction(
-    userId: Long,
     name: String,
     title: String,
     stickers: List<InputSticker>,
@@ -30,6 +28,8 @@ class CreateNewStickerSetAction(
     override val OptionsFeature<CreateNewStickerSetAction, CreateNewStickerSetOptions>.options:
         CreateNewStickerSetOptions
         get() = CreateNewStickerSetOptions()
+    override val MediaAction<Boolean>.idRefField: String
+        get() = "user_id"
 
     private val isInputFile = stickers.any { it.sticker.data is InpFile }
     private val defaultType = stickers.first().sticker.contentType
@@ -39,7 +39,6 @@ class CreateNewStickerSetAction(
         require(stickers.all { it.sticker.stickerFormat == firstStickerFormat }) {
             "All stickers must be of the same type."
         }
-        parameters["user_id"] = userId
         parameters["name"] = name
         parameters["title"] = title
         parameters["sticker_format"] = firstStickerFormat.toString()
@@ -65,8 +64,5 @@ class CreateNewStickerSetAction(
     }
 }
 
-fun createNewStickerSet(userId: Long, name: String, title: String, stickers: List<InputSticker>) =
-    CreateNewStickerSetAction(userId, name, title, stickers)
-
-fun createNewStickerSet(user: User, name: String, title: String, stickers: List<InputSticker>) =
-    CreateNewStickerSetAction(user.id, name, title, stickers)
+fun createNewStickerSet(name: String, title: String, stickers: List<InputSticker>) =
+    CreateNewStickerSetAction(name, title, stickers)
