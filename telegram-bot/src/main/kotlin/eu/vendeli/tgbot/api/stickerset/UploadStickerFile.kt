@@ -16,6 +16,8 @@ class UploadStickerFileAction(private val sticker: StickerFile) : MediaAction<Fi
         get() = TgMethod("uploadStickerFile")
     override val TgAction<File>.returnType: Class<File>
         get() = getReturnType()
+    override val MediaAction<File>.idRefField: String
+        get() = "user_id"
     override val MediaAction<File>.inputFilePresence: Boolean
         get() = sticker.data is ImplicitFile.InpFile
 
