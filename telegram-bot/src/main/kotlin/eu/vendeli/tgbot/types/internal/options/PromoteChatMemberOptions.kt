@@ -13,4 +13,4 @@ data class PromoteChatMemberOptions(
     var canInviteUsers: Boolean? = null,
     var canPinMessages: Boolean? = null,
     var canManageTopics: Boolean? = null,
-) : OptionsInterface<PromoteChatMemberOptions>
+) : Options
