@@ -66,7 +66,7 @@ class LocationTest : BotTestContext() {
         }.sendReturning(TG_ID, bot)
 
         val result = stopMessageLiveLocation(
-            location.getOrNull()!!.messageId
+            location.getOrNull()!!.messageId,
         ).sendReturning(TG_ID, bot).shouldSuccess()
 
         with(result.location) {
@@ -80,7 +80,10 @@ class LocationTest : BotTestContext() {
     @Test
     suspend fun `venue location method test`() {
         val result = venue(
-            1F, 2F, "test", "address"
+            1F,
+            2F,
+            "test",
+            "address",
         ).sendReturning(TG_ID, bot).shouldSuccess()
 
         with(result) {

@@ -33,7 +33,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 
 class StickerBaseTest : BotTestContext() {
-    @Suppress("PrivatePropertyName")
+    @Suppress("VariableNaming", "PrivatePropertyName")
     private val TEMP_STICKER_FILE_ID = "CAACAgIAAxkBAAEKHjlk6Gex1hZNv_s6-by8ho52CXC9oAACbwEAAhZ8aAOK9nH8d3JcRjAE"
 
     @Test
@@ -64,7 +64,7 @@ class StickerBaseTest : BotTestContext() {
                 InputSticker(
                     StickerFile.FileId(TEMP_STICKER_FILE_ID),
                     listOf("\uD83D\uDCAF"),
-                )
+                ),
             ),
         ).sendReturning(TG_ID, bot).shouldSuccess()
 
@@ -96,33 +96,39 @@ class StickerBaseTest : BotTestContext() {
         val setName = "Test_2_by_$botName"
 
         val addResult = addStickerToSet(
-            setName, InputSticker(StickerFile.FileId(TEMP_STICKER_FILE_ID), listOf("\uD83D\uDC4D\uD83C\uDFFB")),
+            setName,
+            InputSticker(StickerFile.FileId(TEMP_STICKER_FILE_ID), listOf("\uD83D\uDC4D\uD83C\uDFFB")),
         ).sendAsync(TG_ID, bot).await().shouldSuccess()
         addResult.shouldBeTrue()
         val fileId = getStickerSet(setName).sendAsync(bot).await().shouldSuccess().stickers.last().fileId
 
         val setEmojiListResult = setStickerEmojiList(
-            fileId, listOf("\uD83D\uDC40"),
+            fileId,
+            listOf("\uD83D\uDC40"),
         ).sendAsync(bot).await().shouldSuccess()
         setEmojiListResult.shouldBeTrue()
 
         val setStickerKeywordsResult = setStickerKeywords(
-            fileId, listOf("test"),
+            fileId,
+            listOf("test"),
         ).sendAsync(bot).await().shouldSuccess()
         setStickerKeywordsResult.shouldBeTrue()
 
         val setStickerPositionInSetResult = setStickerPositionInSet(
-            fileId, 2,
+            fileId,
+            2,
         ).sendAsync(bot).await().shouldSuccess()
         setStickerPositionInSetResult.shouldBeTrue()
 
         val setStickerSetThumbnailResult = setStickerSetThumbnail(
-            setName, StickerFile.FileId(TEMP_STICKER_FILE_ID),
+            setName,
+            StickerFile.FileId(TEMP_STICKER_FILE_ID),
         ).sendAsync(TG_ID, bot).await().shouldSuccess()
         setStickerSetThumbnailResult.shouldBeTrue()
 
         val setStickerMaskPositionResult = setStickerMaskPosition(
-            fileId, MaskPosition(MaskPoint.Mouth, -0.1F, -0.1F, 2.0F),
+            fileId,
+            MaskPosition(MaskPoint.Mouth, -0.1F, -0.1F, 2.0F),
         ).sendAsync(bot).await()
         setStickerMaskPositionResult.onFailure {
             it.description shouldContain "STICKER_MASK_COORDS_NOT_SUPPORTED"
@@ -156,16 +162,17 @@ class StickerBaseTest : BotTestContext() {
             listOf(
                 InputSticker(
                     StickerFile.FileId(TEMP_STICKER_FILE_ID),
-                    listOf("\uD83D\uDCAF")
-                )
-            )
+                    listOf("\uD83D\uDCAF"),
+                ),
+            ),
         ).options {
             stickerType = StickerType.CustomEmoji
         }.sendReturning(TG_ID, bot).shouldSuccess()
         result.shouldBeTrue()
 
         val setCustomEmojiStickerSetThumbnailResult = setStickerSetThumbnail(
-            setName, StickerFile.FileId(TEMP_STICKER_FILE_ID)
+            setName,
+            StickerFile.FileId(TEMP_STICKER_FILE_ID),
         ).sendAsync(TG_ID, bot).await().shouldSuccess()
         setCustomEmojiStickerSetThumbnailResult.shouldBeTrue()
 

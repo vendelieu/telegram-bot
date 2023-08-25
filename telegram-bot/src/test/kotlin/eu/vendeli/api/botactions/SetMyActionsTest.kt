@@ -43,7 +43,6 @@ class SetMyActionsTest : BotTestContext() {
 
         val result = getMyDefaultAdministratorRights().sendAsync(bot).await().shouldSuccess()
 
-
         with(result) {
             isAnonymous.shouldBeTrue()
         }

@@ -17,7 +17,8 @@ class ForumCrudTest : BotTestContext() {
     @Test
     suspend fun `create forum topic method test`() {
         val result = createForumTopic(
-            "testTopic", IconColor.GREEN,
+            "testTopic",
+            IconColor.GREEN,
         ).sendAsync(CHAT_ID, bot).await().shouldSuccess()
 
         with(result) {
@@ -34,7 +35,8 @@ class ForumCrudTest : BotTestContext() {
         topic.name shouldBe "testTopic"
 
         val result = editForumTopic(
-            topic.messageThreadId, "testTopic2",
+            topic.messageThreadId,
+            "testTopic2",
         ).sendAsync(CHAT_ID, bot).await().shouldSuccess()
 
         result.shouldBeTrue()
