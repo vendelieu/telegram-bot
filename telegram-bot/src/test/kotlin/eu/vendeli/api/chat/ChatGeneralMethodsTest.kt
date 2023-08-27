@@ -5,6 +5,7 @@ import eu.vendeli.tgbot.api.chat.approveChatJoinRequest
 import eu.vendeli.tgbot.api.chat.chatAction
 import eu.vendeli.tgbot.api.chat.declineChatJoinRequest
 import eu.vendeli.tgbot.api.chat.pinChatMessage
+import eu.vendeli.tgbot.api.chat.restrictChatMember
 import eu.vendeli.tgbot.api.chat.unpinAllChatMessage
 import eu.vendeli.tgbot.api.chat.unpinChatMessage
 import eu.vendeli.tgbot.api.message
@@ -59,5 +60,13 @@ class ChatGeneralMethodsTest : BotTestContext() {
         result.onFailure {
             it.description shouldContain "HIDE_REQUESTER_MISSING"
         }.shouldBeNull()
+    }
+
+    @Test
+    suspend fun `restrict chat member method test`() {
+        val result = restrictChatMember(TG_ID) {
+            canChangeInfo = false
+        }.sendReturning(CHAT_ID, bot).shouldSuccess()
+        result.shouldBeTrue()
     }
 }
