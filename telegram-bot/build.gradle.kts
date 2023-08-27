@@ -1,4 +1,3 @@
-
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import java.time.LocalDate
@@ -73,7 +72,7 @@ tasks {
     }
 
     dokkaHtml.configure {
-        outputDirectory.set(buildDir.resolve("dokka"))
+        outputDirectory.set(layout.buildDirectory.asFile.orNull?.resolve("dokka"))
         dokkaSourceSets {
             named("main") {
                 moduleName.set("Telegram Bot")

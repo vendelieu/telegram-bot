@@ -81,7 +81,7 @@ class ChatSetMethodsTest : BotTestContext() {
     @Test
     suspend fun `set chat sticker set method test`() {
         val botName = getMe().sendAsync(bot).await().getOrNull().shouldNotBeNull().username.shouldNotBeNull()
-        val setName = "Test_1_by_$botName"
+        val setName = "Test_2_by_$botName"
 
         val result = setChatStickerSet(setName).sendReturning(CHAT_ID, bot).onFailure {
             if (it.description?.contains("can't set supergroup sticker set") == true) return
