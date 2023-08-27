@@ -68,5 +68,8 @@ class ChatGeneralMethodsTest : BotTestContext() {
             canChangeInfo = false
         }.sendReturning(CHAT_ID, bot).shouldSuccess()
         result.shouldBeTrue()
+        restrictChatMember(TG_ID) {
+            canChangeInfo = true
+        }.sendAsync(TG_ID, bot).await()
     }
 }
