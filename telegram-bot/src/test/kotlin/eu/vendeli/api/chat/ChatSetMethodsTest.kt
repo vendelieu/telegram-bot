@@ -78,7 +78,7 @@ class ChatSetMethodsTest : BotTestContext() {
         val setName = "Test_1_by_$botName"
 
         val result = setChatStickerSet(setName).sendReturning(CHAT_ID, bot).onFailure {
-            if(it.description?.contains("can't set supergroup sticker set") == true) return
+            if (it.description?.contains("can't set supergroup sticker set") == true) return
         }.shouldNotBeNull()
         result.shouldBeTrue()
     }
@@ -86,7 +86,7 @@ class ChatSetMethodsTest : BotTestContext() {
     @Test
     suspend fun `delete chat sticker set method test`() {
         val result = deleteChatStickerSet().sendReturning(CHAT_ID, bot).onFailure {
-            if(it.description?.contains("can't set supergroup sticker set") == true) return
+            if (it.description?.contains("can't set supergroup sticker set") == true) return
         }.shouldNotBeNull()
         result.shouldBeTrue()
     }
