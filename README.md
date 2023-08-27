@@ -42,7 +42,7 @@ there you can find in the appropriate branches:
   exception handling
 - [Ktor-webhook](https://github.com/vendelieu/telegram-bot_template/tree/ktor-webhook) - An example of using webhook
   with Ktor
-- [Poll](https://github.com/vendelieu/telegram-bot_template/tree/poll) - An example of how to build a questionaire bot.
+- [Poll](https://github.com/vendelieu/telegram-bot_template/tree/poll) - An example of how to build a questionnaire bot.
 - [Spring Boot usage](https://github.com/vendelieu/telegram-bot_template/tree/spring-bot) - An example of using the bot
   organically in the Spring ecosystem, using its built-in DI.
 - [Heroku ready example](https://github.com/vendelieu/telegram-bot_template/tree/heroku) - An example of a bot working
@@ -60,7 +60,7 @@ suspend fun main() {
     bot.handleUpdates()
     // start long-polling listener
 }
-// in your controller:
+
 @CommandHandler(["/start"])
 suspend fun start(user: User, bot: TelegramBot) {
     message { "Hello, what's your name?" }.send(user, bot)
@@ -69,7 +69,7 @@ suspend fun start(user: User, bot: TelegramBot) {
 
 @RegexCommandHandler("blue colo?r")
 suspend fun color(user: User, bot: TelegramBot) {
-  message { "Oh you also like blue colour?" }.send(user, bot)
+    message { "Oh you also like blue colour?" }.send(user, bot)
 }
 
 @InputHandler(["conversation"])
@@ -145,7 +145,9 @@ onCommand("/start", RateLimits(period = 1000L, rate = 1L)) {
 
 if you want to operate with response you can
 use [`sendAsync()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send-async.html)
-instead of `send()` method, which
+instead
+of [`send()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send.html)
+method, which
 returns [`Response`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-response/index.html):
 
 ```kotlin

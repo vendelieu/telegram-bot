@@ -38,7 +38,7 @@ abstract class BotTestContext(
 
     protected val RANDOM_PIC_URL = "https://picsum.photos/10"
     protected val RANDOM_PIC by lazy { runBlocking { bot.httpClient.get(RANDOM_PIC_URL).readBytes() } }
-    protected val CUR_TIMESTAMP: Instant get() = Instant.now()
+    protected val CUR_INSTANT: Instant get() = Instant.now()
     protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()
 
     @BeforeAll

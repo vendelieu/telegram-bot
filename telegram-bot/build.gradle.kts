@@ -96,11 +96,10 @@ koverReport {
                         "eu.vendeli.tgbot.interfaces",
                         "eu.vendeli.tgbot.types",
                         "eu.vendeli.tgbot.utils",
-
-                        "eu.vendeli.tgbot.api.chat", // todo cover
                     )
                     classes(
                         "eu.vendeli.tgbot.api.Answer*",
+                        "eu.vendeli.tgbot.api.chat.Leave*",
                         "eu.vendeli.tgbot.api.botactions.Close*",
                         "eu.vendeli.tgbot.api.botactions.Logout*",
                         "eu.vendeli.tgbot.api.stickerset.*CustomEmoji*",
