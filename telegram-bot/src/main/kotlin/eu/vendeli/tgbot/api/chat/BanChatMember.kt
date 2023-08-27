@@ -10,7 +10,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 class BanChatMemberAction(
     userId: Long,
-    untilDate: Int? = null,
+    untilDate: Long? = null,
     revokeMessages: Boolean? = null,
 ) : Action<Boolean>, ActionState() {
     override val TgAction<Boolean>.method: TgMethod
@@ -25,5 +25,5 @@ class BanChatMemberAction(
     }
 }
 
-fun banChatMember(userId: Long, untilDate: Int?, revokeMessages: Boolean?) =
+fun banChatMember(userId: Long, untilDate: Long? = null, revokeMessages: Boolean? = null) =
     BanChatMemberAction(userId, untilDate, revokeMessages)

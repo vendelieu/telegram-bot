@@ -30,6 +30,7 @@ class ChatSetMethodsTest : BotTestContext() {
         val result = setChatAdministratorCustomTitle(TG_ID, "test").sendReturning(CHAT_ID, bot).shouldSuccess()
         result.shouldBeTrue()
         setChatAdministratorCustomTitle(TG_ID, "").sendReturning(CHAT_ID, bot).shouldSuccess()
+        promoteChatMember(TG_ID).sendReturning(CHAT_ID, bot).shouldSuccess().shouldBeTrue()
     }
 
     @Test

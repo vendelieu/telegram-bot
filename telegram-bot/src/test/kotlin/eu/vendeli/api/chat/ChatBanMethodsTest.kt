@@ -1,19 +1,38 @@
 package eu.vendeli.api.chat
 
 import BotTestContext
-import eu.vendeli.tgbot.api.chat.getChat
-import eu.vendeli.tgbot.types.chat.ChatType
-import io.kotest.matchers.shouldBe
+import eu.vendeli.tgbot.api.chat.banChatMember
+import eu.vendeli.tgbot.api.chat.banChatSenderChat
+import eu.vendeli.tgbot.api.chat.unbanChatMember
+import eu.vendeli.tgbot.api.chat.unbanChatSenderChat
+import io.kotest.matchers.booleans.shouldBeTrue
 
 class ChatBanMethodsTest : BotTestContext() {
-    // TODO BAN UNBAN
     @Test
-    suspend fun `get chat method test`() {
-        val result = getChat().sendReturning(TG_ID, bot).shouldSuccess()
+    suspend fun `ban chat member method test`() {
+        val result = banChatMember(
+            TG_ID,
+            CUR_INSTANT.plusMillis(100).epochSecond
+        ).sendReturning(CHAT_ID, bot).shouldSuccess()
+        result.shouldBeTrue()
+        unbanChatMember(TG_ID).sendReturning(CHAT_ID, bot).shouldSuccess()
+    }
 
-        with(result) {
-            id shouldBe TG_ID
-            type shouldBe ChatType.Private
-        }
+    @Test
+    suspend fun `unban chat member method test`() {
+        val result = unbanChatMember(
+            TG_ID,
+            onlyIfBanned = true
+        ).sendReturning(CHAT_ID, bot).shouldSuccess()
+        result.shouldBeTrue()
+    }
+
+    @Test
+    suspend fun `ban unban sender chat chat member method test`() {
+        val result = banChatSenderChat(
+            TG_ID
+        ).sendReturning(CHAT_ID, bot).shouldSuccess()
+        result.shouldBeTrue()
+        unbanChatSenderChat(TG_ID).sendReturning(CHAT_ID, bot).shouldSuccess()
     }
 }

@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.interfaces.TgAction
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.UserProfilePhotos
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
@@ -28,3 +29,5 @@ class GetUserProfilePhotosAction(
 
 fun getUserProfilePhotos(userId: Long, offset: Int? = null, limit: Int? = null) =
     GetUserProfilePhotosAction(userId, offset, limit)
+fun getUserProfilePhotos(user: User, offset: Int? = null, limit: Int? = null) =
+    GetUserProfilePhotosAction(user.id, offset, limit)
