@@ -13,7 +13,7 @@ import io.kotest.matchers.string.shouldContain
 class ChatBanMethodsTest : BotTestContext() {
     @Test
     suspend fun `ban chat member method test`() {
-        val result = banChatMember(
+        banChatMember(
             1000,
             CUR_INSTANT.plusMillis(100).epochSecond,
         ).sendReturning(CHAT_ID, bot).onFailure {
@@ -32,7 +32,7 @@ class ChatBanMethodsTest : BotTestContext() {
 
     @Test
     suspend fun `ban unban sender chat chat member method test`() {
-        val result = banChatSenderChat(
+        banChatSenderChat(
             1000,
         ).sendReturning(CHAT_ID, bot).onFailure {
             it.description shouldContain "PARTICIPANT_ID_INVALID"
