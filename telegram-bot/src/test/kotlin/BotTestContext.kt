@@ -1,3 +1,4 @@
+
 import ch.qos.logback.classic.Level.TRACE
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.Action
@@ -69,7 +70,7 @@ abstract class BotTestContext(
     }
 
     protected suspend fun <T> Action<T>.sendReturning(id: Long, bot: TelegramBot): Response<out T> {
-        delay(300)
+        delay(200)
         return sendAsync(id, bot).await()
     }
 
