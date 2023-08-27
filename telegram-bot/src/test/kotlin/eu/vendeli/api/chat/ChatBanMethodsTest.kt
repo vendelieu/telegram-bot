@@ -12,7 +12,7 @@ class ChatBanMethodsTest : BotTestContext() {
     suspend fun `ban chat member method test`() {
         val result = banChatMember(
             TG_ID,
-            CUR_INSTANT.plusMillis(100).epochSecond
+            CUR_INSTANT.plusMillis(100).epochSecond,
         ).sendReturning(CHAT_ID, bot).shouldSuccess()
         result.shouldBeTrue()
         unbanChatMember(TG_ID).sendReturning(CHAT_ID, bot).shouldSuccess()
@@ -22,7 +22,7 @@ class ChatBanMethodsTest : BotTestContext() {
     suspend fun `unban chat member method test`() {
         val result = unbanChatMember(
             TG_ID,
-            onlyIfBanned = true
+            onlyIfBanned = true,
         ).sendReturning(CHAT_ID, bot).shouldSuccess()
         result.shouldBeTrue()
     }
@@ -30,7 +30,7 @@ class ChatBanMethodsTest : BotTestContext() {
     @Test
     suspend fun `ban unban sender chat chat member method test`() {
         val result = banChatSenderChat(
-            TG_ID
+            TG_ID,
         ).sendReturning(CHAT_ID, bot).shouldSuccess()
         result.shouldBeTrue()
         unbanChatSenderChat(TG_ID).sendReturning(CHAT_ID, bot).shouldSuccess()
