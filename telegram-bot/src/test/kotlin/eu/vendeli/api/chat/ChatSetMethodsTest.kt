@@ -4,6 +4,7 @@ import BotTestContext
 import eu.vendeli.tgbot.api.botactions.getMe
 import eu.vendeli.tgbot.api.chat.deleteChatPhoto
 import eu.vendeli.tgbot.api.chat.deleteChatStickerSet
+import eu.vendeli.tgbot.api.chat.promoteChatMember
 import eu.vendeli.tgbot.api.chat.setChatAdministratorCustomTitle
 import eu.vendeli.tgbot.api.chat.setChatDescription
 import eu.vendeli.tgbot.api.chat.setChatMenuButton
@@ -22,9 +23,13 @@ import io.ktor.client.statement.readBytes
 class ChatSetMethodsTest : BotTestContext() {
     @Test
     suspend fun `set chat custom title method test`() {
-        val result = setChatAdministratorCustomTitle(BOT_ID, "test").sendReturning(CHAT_ID, bot).shouldSuccess()
+        promoteChatMember(TG_ID).options {
+            canDeleteMessages = true
+        }.sendReturning(CHAT_ID, bot).shouldSuccess().shouldBeTrue()
+
+        val result = setChatAdministratorCustomTitle(TG_ID, "test").sendReturning(CHAT_ID, bot).shouldSuccess()
         result.shouldBeTrue()
-        setChatAdministratorCustomTitle(BOT_ID, "").sendReturning(CHAT_ID, bot).shouldSuccess()
+        setChatAdministratorCustomTitle(TG_ID, "").sendReturning(CHAT_ID, bot).shouldSuccess()
     }
 
     @Test

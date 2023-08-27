@@ -31,17 +31,16 @@ class ChatGetMethodsTest : BotTestContext() {
         result.size shouldBe 2
 
         with(result.first()) {
-            shouldBeTypeOf<ChatMember.Administrator>()
-
-            user.id shouldBe BOT_ID
-            user.isBot shouldBe true
-        }
-        with(result.last()) {
             shouldBeTypeOf<ChatMember.Owner>()
 
-            customTitle.shouldBeNull()
-            user.id shouldBe TG_ID
             user.isBot shouldBe false
+            customTitle.shouldBeNull()
+        }
+        with(result.last()) {
+            shouldBeTypeOf<ChatMember.Administrator>()
+
+            customTitle shouldBe "bot"
+            user.isBot shouldBe true
         }
     }
 
@@ -50,9 +49,8 @@ class ChatGetMethodsTest : BotTestContext() {
         val result = getChatMember(TG_ID).sendReturning(CHAT_ID, bot).shouldSuccess()
 
         with(result) {
-            shouldBeTypeOf<ChatMember.Owner>()
+            shouldBeTypeOf<ChatMember.Member>()
 
-            customTitle.shouldBeNull()
             user.id shouldBe TG_ID
             user.isBot shouldBe false
         }
@@ -61,7 +59,7 @@ class ChatGetMethodsTest : BotTestContext() {
     @Test
     suspend fun `get chat member count test`() {
         val result = getChatMemberCount().sendReturning(CHAT_ID, bot).shouldSuccess()
-        result shouldBe 2
+        result shouldBe 3
     }
 
     @Test
