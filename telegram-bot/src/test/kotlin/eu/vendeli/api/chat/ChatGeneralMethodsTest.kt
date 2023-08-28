@@ -14,6 +14,7 @@ import eu.vendeli.tgbot.types.internal.onFailure
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.string.shouldContain
+import kotlinx.coroutines.test.runTest
 
 class ChatGeneralMethodsTest : BotTestContext() {
     @Test
@@ -63,7 +64,7 @@ class ChatGeneralMethodsTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `restrict chat member method test`() {
+    suspend fun `restrict chat member method test`() = runTest {
         val result = restrictChatMember(TG_ID) {
             canChangeInfo = false
         }.sendReturning(CHAT_ID, bot).shouldSuccess()

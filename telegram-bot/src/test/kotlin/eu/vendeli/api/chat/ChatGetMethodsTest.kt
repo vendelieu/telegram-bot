@@ -8,12 +8,11 @@ import eu.vendeli.tgbot.api.chat.getChatMemberCount
 import eu.vendeli.tgbot.api.chat.getChatMenuButton
 import eu.vendeli.tgbot.types.chat.ChatMember
 import eu.vendeli.tgbot.types.chat.ChatType
-import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.types.keyboard.MenuButton
 import io.kotest.matchers.nulls.shouldBeNull
-import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
+import kotlinx.coroutines.test.runTest
 
 class ChatGetMethodsTest : BotTestContext() {
     @Test
@@ -47,10 +46,8 @@ class ChatGetMethodsTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `get chat member test`() {
-        val result = getChatMember(TG_ID).sendReturning(CHAT_ID, bot).onFailure {
-            if (it.errorCode == 429) return // skip if limit exceeded
-        }.shouldNotBeNull()
+    suspend fun `get chat member test`() = runTest {
+        val result = getChatMember(TG_ID).sendReturning(CHAT_ID, bot).shouldSuccess()
 
         with(result) {
             shouldBeTypeOf<ChatMember.Member>()
