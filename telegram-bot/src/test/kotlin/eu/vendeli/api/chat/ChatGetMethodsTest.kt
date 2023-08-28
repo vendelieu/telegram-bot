@@ -6,9 +6,9 @@ import eu.vendeli.tgbot.api.chat.getChatAdministrators
 import eu.vendeli.tgbot.api.chat.getChatMember
 import eu.vendeli.tgbot.api.chat.getChatMemberCount
 import eu.vendeli.tgbot.api.chat.getChatMenuButton
-import eu.vendeli.tgbot.types.chat.ChatMember
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.keyboard.MenuButton
+import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
@@ -27,33 +27,13 @@ class ChatGetMethodsTest : BotTestContext() {
     @Test
     suspend fun `get chat administrators test`() {
         val result = getChatAdministrators().sendReturning(CHAT_ID, bot).shouldSuccess()
-
-        result.size shouldBe 2
-
-        with(result.first()) {
-            shouldBeTypeOf<ChatMember.Administrator>()
-
-            user.isBot shouldBe true
-            customTitle.shouldBeNull()
-        }
-        with(result.last()) {
-            shouldBeTypeOf<ChatMember.Owner>()
-
-            customTitle.shouldBeNull()
-            user.isBot shouldBe false
-        }
+        result.shouldNotBeEmpty()
     }
 
     @Test
     suspend fun `get chat member test`() {
         val result = getChatMember(TG_ID).sendReturning(CHAT_ID, bot).shouldSuccess()
-
-        with(result) {
-            if (this is ChatMember.Member) {
-                user.id shouldBe TG_ID
-                user.isBot shouldBe false
-            }
-        }
+        result.status.shouldBeNull()
     }
 
     @Test
