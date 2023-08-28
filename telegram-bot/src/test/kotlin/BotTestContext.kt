@@ -59,6 +59,11 @@ abstract class BotTestContext(
         if (mockHttp) doMockHttp()
     }
 
+    @AfterEach
+    fun delayRun() {
+        Thread.sleep(1500)
+    }
+
     fun doMockHttp(mockUpdates: MockUpdate = MockUpdate.SINGLE()) {
         bot.httpClient = HttpClient(
             MockEngine {
@@ -72,7 +77,7 @@ abstract class BotTestContext(
     }
 
     protected suspend fun <T> Action<T>.sendReturning(id: Long, bot: TelegramBot): Response<out T> {
-        delay(50)
+        delay(200)
         return sendAsync(id, bot).await()
     }
 
