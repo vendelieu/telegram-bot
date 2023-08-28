@@ -49,7 +49,7 @@ class ChatGetMethodsTest : BotTestContext() {
     @Test
     suspend fun `get chat member test`() {
         val result = getChatMember(TG_ID).sendReturning(CHAT_ID, bot).onFailure {
-            if(it.errorCode == 429) return // skip if limit exceeded
+            if (it.errorCode == 429) return // skip if limit exceeded
         }.shouldNotBeNull()
 
         with(result) {
