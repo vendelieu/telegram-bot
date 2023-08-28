@@ -82,7 +82,7 @@ abstract class BotTestContext(
     protected suspend inline fun <T> Response<T>.shouldSuccess() = eventually(
         {
             initialDelay = 200
-            interval = 20L.exponential()
+            interval = 200L.exponential()
         },
     ) {
         with(this) {
