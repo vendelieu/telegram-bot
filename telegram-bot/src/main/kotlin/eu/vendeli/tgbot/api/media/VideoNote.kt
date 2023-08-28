@@ -27,7 +27,7 @@ class SendVideoNoteAction(private val videoNote: ImplicitFile<*>) :
         get() = getReturnType()
     override val OptionsFeature<SendVideoNoteAction, VideoNoteOptions>.options: VideoNoteOptions
         get() = VideoNoteOptions()
-    override val MediaAction<Message>.isImplicit: Boolean
+    override val MediaAction<Message>.inputFilePresence: Boolean
         get() = videoNote is ImplicitFile.InpFile
 
     init {

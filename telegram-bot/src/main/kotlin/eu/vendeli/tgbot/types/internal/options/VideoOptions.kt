@@ -17,4 +17,4 @@ data class VideoOptions(
     override var protectContent: Boolean? = null,
     override var messageThreadId: Long? = null,
     override var hasSpoiler: Boolean? = null,
-) : OptionsInterface<VideoOptions>, OptionsCommon, OptionsParseMode, FileOptions, MediaSpoiler
+) : OptionsCommon, OptionsParseMode, FileOptions, MediaSpoiler

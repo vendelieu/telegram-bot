@@ -27,7 +27,7 @@ class SendStickerAction(private val sticker: ImplicitFile<*>) :
         get() = getReturnType()
     override val OptionsFeature<SendStickerAction, StickerOptions>.options: StickerOptions
         get() = StickerOptions()
-    override val MediaAction<Message>.isImplicit: Boolean
+    override val MediaAction<Message>.inputFilePresence: Boolean
         get() = sticker is ImplicitFile.InpFile
 
     init {

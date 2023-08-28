@@ -5,8 +5,6 @@ import eu.vendeli.tgbot.api.game
 import eu.vendeli.tgbot.api.getGameHighScores
 import eu.vendeli.tgbot.api.setGameScore
 import eu.vendeli.tgbot.types.internal.getOrNull
-import eu.vendeli.tgbot.types.internal.isSuccess
-import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
@@ -16,13 +14,7 @@ import kotlin.random.nextLong
 class GameTest : BotTestContext() {
     @Test
     suspend fun `send game method test`() {
-        val request = game("testestes").sendReturning(TG_ID, bot)
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = game("testestes").sendReturning(TG_ID, bot).shouldSuccess()
 
         with(result.game) {
             shouldNotBeNull()
@@ -36,14 +28,9 @@ class GameTest : BotTestContext() {
         val game = game("testestes").sendReturning(TG_ID, bot).getOrNull()
         val newScore = ITER_INT.toLong()
 
-        val request = setGameScore(TG_ID, game!!.messageId, newScore).options {
+        val result = setGameScore(TG_ID, game!!.messageId, newScore).options {
             force = true
-        }.sendReturning(TG_ID, bot)
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        }.sendReturning(TG_ID, bot).shouldSuccess()
 
         with(result.game) {
             shouldNotBeNull()
@@ -61,13 +48,7 @@ class GameTest : BotTestContext() {
             force = true
         }.sendReturning(TG_ID, bot)
 
-        val request = getGameHighScores(TG_ID, game.messageId).sendAsync(TG_ID, bot).await()
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = getGameHighScores(TG_ID, game.messageId).sendAsync(TG_ID, bot).await().shouldSuccess()
 
         with(result.first()) {
             score shouldBe newScore

@@ -33,7 +33,7 @@ class SendDocumentAction(private val document: ImplicitFile<*>) :
         get() = DocumentOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
-    override val MediaAction<Message>.isImplicit: Boolean
+    override val MediaAction<Message>.inputFilePresence: Boolean
         get() = document is ImplicitFile.InpFile
 
     init {

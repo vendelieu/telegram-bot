@@ -15,7 +15,6 @@ import eu.vendeli.tgbot.api.botactions.setMyShortDescription
 import eu.vendeli.tgbot.types.bot.BotCommand
 import eu.vendeli.tgbot.types.chat.ChatAdministratorRights
 import eu.vendeli.tgbot.types.internal.getOrNull
-import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContain
@@ -42,13 +41,8 @@ class SetMyActionsTest : BotTestContext() {
             ),
         ).send(bot)
 
-        val request = getMyDefaultAdministratorRights().sendAsync(bot).await()
+        val result = getMyDefaultAdministratorRights().sendAsync(bot).await().shouldSuccess()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
         with(result) {
             isAnonymous.shouldBeTrue()
         }
@@ -73,28 +67,19 @@ class SetMyActionsTest : BotTestContext() {
     @Test
     suspend fun `set description method testing`() {
         setMyDescription("test").send(bot)
-        val request = getMyDescription().sendAsync(bot).await()
+        val result = getMyDescription().sendAsync(bot).await().shouldSuccess()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
         result.shouldNotBeNull()
         result.description shouldBe "test"
+
         setMyDescription().send(bot)
     }
 
     @Test
     suspend fun `set short description method testing`() {
         setMyShortDescription("test").send(bot)
-        val request = getMyShortDescription().sendAsync(bot).await()
+        val result = getMyShortDescription().sendAsync(bot).await().shouldSuccess()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
         result.shouldNotBeNull()
         result.shortDescription shouldBe "test"
         setMyShortDescription().send(bot)
@@ -105,13 +90,8 @@ class SetMyActionsTest : BotTestContext() {
         setMyCommands {
             botCommand("test", "testD")
         }.send(bot)
-        val request = getMyCommands().sendAsync(bot).await()
+        val result = getMyCommands().sendAsync(bot).await().shouldSuccess()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
         result.shouldNotBeNull()
         result.shouldNotBeEmpty()
         result shouldContain BotCommand("test", "testD")
@@ -124,13 +104,9 @@ class SetMyActionsTest : BotTestContext() {
             botCommand("test", "testD")
         }.send(bot)
         getMyCommands().sendAsync(bot).await().getOrNull().shouldNotBeNull().shouldNotBeEmpty()
-        val request = deleteMyCommands().sendAsync(bot).await()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = deleteMyCommands().sendAsync(bot).await().shouldSuccess()
+
         result.shouldNotBeNull()
         result.shouldBeTrue()
     }
@@ -143,11 +119,8 @@ class SetMyActionsTest : BotTestContext() {
             if (it.errorCode == 429) return // delay due to limit
         }
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = request.shouldSuccess()
+
         result.shouldNotBeNull()
         result.shouldBeTrue()
 

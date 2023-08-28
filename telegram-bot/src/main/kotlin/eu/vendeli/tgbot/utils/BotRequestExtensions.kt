@@ -1,6 +1,5 @@
 package eu.vendeli.tgbot.utils
 
-import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
@@ -39,7 +38,7 @@ private fun Any?.toInputFileOrNull(): InputFile? = when (this) {
     is Map<*, *> -> get("is_input_file\$telegram_bot")?.runCatching {
         mapper.convertValue(
             this@toInputFileOrNull,
-            jacksonTypeRef<InputFile>(),
+            InputFile::class.java,
         )
     }?.getOrNull()
 

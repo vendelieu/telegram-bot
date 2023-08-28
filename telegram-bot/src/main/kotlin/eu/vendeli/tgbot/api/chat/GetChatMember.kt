@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api.chat
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.TgAction
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.ChatMember
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
@@ -21,3 +22,4 @@ class GetChatMemberAction(userId: Long) : Action<ChatMember>, ActionState() {
 }
 
 fun getChatMember(userId: Long) = GetChatMemberAction(userId)
+fun getChatMember(user: User) = GetChatMemberAction(user.id)

@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.utils
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.core.TelegramUpdateHandler.Companion.logger
 import eu.vendeli.tgbot.interfaces.Action
@@ -11,9 +12,11 @@ import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.interfaces.TgAction
+import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.Activity
 import eu.vendeli.tgbot.types.internal.CommandScope
 import eu.vendeli.tgbot.types.internal.Invocation
+import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.StructuredRequest
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
@@ -192,6 +195,8 @@ private enum class ParserState {
 }
 
 internal val DEFAULT_COMMAND_SCOPE = setOf(CommandScope.MESSAGE, CommandScope.CALLBACK)
+internal val PARAMETERS_MAP_TYPEREF = jacksonTypeRef<Map<String, Any?>>()
+internal val RESPONSE_UPDATES_LIST_TYPEREF = jacksonTypeRef<Response<List<Update>>>()
 
 internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T): Deferred<T> = coroutineScope {
     async { block() }

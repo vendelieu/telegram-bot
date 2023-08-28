@@ -37,10 +37,5 @@ class GetCustomEmojiStickersAction(customEmojiIds: List<String>) :
  */
 fun getCustomEmojiStickers(customEmojiIds: List<String>) = GetCustomEmojiStickersAction(customEmojiIds)
 
-/**
- * Use this method to get information about custom emoji stickers by their identifiers
- *
- * @param customEmojiId Custom emoji identifier. At most 200 custom emoji identifiers can be specified.
- */
 @JvmName("getCustomEmojiStickersWithVararg")
 fun getCustomEmojiStickers(vararg customEmojiId: String) = GetCustomEmojiStickersAction(customEmojiId.asList())

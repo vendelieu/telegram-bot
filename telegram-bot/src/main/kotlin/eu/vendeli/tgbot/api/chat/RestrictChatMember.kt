@@ -12,7 +12,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 class RestrictChatMemberAction(
     userId: Long,
     permissions: ChatPermissions,
-    untilDate: Int? = null,
+    untilDate: Long? = null,
     useIndependentChatPermissions: Boolean? = null,
 ) : Action<Boolean>, ActionState() {
     override val TgAction<Boolean>.method: TgMethod
@@ -31,7 +31,7 @@ class RestrictChatMemberAction(
 
 fun restrictChatMember(
     userId: Long,
-    untilDate: Int? = null,
+    untilDate: Long? = null,
     useIndependentChatPermissions: Boolean? = null,
     chatPermissions: ChatPermissions.() -> Unit,
 ) = RestrictChatMemberAction(userId, ChatPermissions().apply(chatPermissions), untilDate, useIndependentChatPermissions)
@@ -39,6 +39,6 @@ fun restrictChatMember(
 fun restrictChatMember(
     userId: Long,
     chatPermissions: ChatPermissions,
-    untilDate: Int? = null,
+    untilDate: Long? = null,
     useIndependentChatPermissions: Boolean? = null,
 ) = RestrictChatMemberAction(userId, chatPermissions, untilDate, useIndependentChatPermissions)

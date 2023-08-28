@@ -12,22 +12,22 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 class SetStickerSetThumbAction(
     name: String,
-    userId: Long,
     private val thumbnail: StickerFile,
 ) : MediaAction<Boolean>, ActionState() {
     override val TgAction<Boolean>.method: TgMethod
         get() = TgMethod("setStickerSetThumbnail")
     override val TgAction<Boolean>.returnType: Class<Boolean>
         get() = getReturnType()
-    override val MediaAction<Boolean>.isImplicit: Boolean
+    override val MediaAction<Boolean>.idRefField: String
+        get() = "user_id"
+    override val MediaAction<Boolean>.inputFilePresence: Boolean
         get() = thumbnail.data is ImplicitFile.InpFile
 
     init {
         parameters["thumbnail"] = thumbnail.data.file
         parameters["name"] = name
-        parameters["user_id"] = userId
     }
 }
 
-fun setStickerSetThumbnail(name: String, userId: Long, thumbnail: StickerFile) =
-    SetStickerSetThumbAction(name, userId, thumbnail)
+fun setStickerSetThumbnail(name: String, thumbnail: StickerFile) =
+    SetStickerSetThumbAction(name, thumbnail)

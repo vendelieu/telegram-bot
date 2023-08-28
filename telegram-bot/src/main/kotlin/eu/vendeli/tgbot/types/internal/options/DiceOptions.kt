@@ -6,4 +6,4 @@ data class DiceOptions(
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
     override var messageThreadId: Long? = null,
-) : OptionsInterface<DiceOptions>, OptionsCommon
+) : OptionsCommon

@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api.chat
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.TgAction
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
@@ -23,4 +24,5 @@ class UnbanChatMemberAction(
     }
 }
 
-fun unbanChatMember(userId: Long, onlyIfBanned: Boolean?) = UnbanChatMemberAction(userId, onlyIfBanned)
+fun unbanChatMember(userId: Long, onlyIfBanned: Boolean? = null) = UnbanChatMemberAction(userId, onlyIfBanned)
+fun unbanChatMember(user: User, onlyIfBanned: Boolean? = null) = UnbanChatMemberAction(user.id, onlyIfBanned)

@@ -9,4 +9,4 @@ data class SetWebhookOptions(
     var allowedUpdates: List<String>? = null,
     var dropPendingUpdates: Boolean? = null,
     var secretToken: String? = null,
-) : OptionsInterface<SetWebhookOptions>
+) : Options

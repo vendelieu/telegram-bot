@@ -9,11 +9,9 @@ import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.api.message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.getOrNull
-import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardButton
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
-import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -24,13 +22,7 @@ class EditActionsTest : BotTestContext() {
     suspend fun `edit message test method test`() {
         val msg = message("test1").sendReturning(TG_ID, bot).getOrNull()
         msg.shouldNotBeNull()
-        val request = editText(msg.messageId) { "test2" }.sendAsync(TG_ID, bot).await()
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = editText(msg.messageId) { "test2" }.sendAsync(TG_ID, bot).await().shouldSuccess()
 
         result.text shouldBe "test2"
     }
@@ -41,16 +33,11 @@ class EditActionsTest : BotTestContext() {
             inlineKeyboardMarkup { "test" switchInlineQueryCurrentChat "test" },
         ).sendReturning(TG_ID, bot).getOrNull()
         msg.shouldNotBeNull()
-        val request =
-            editMarkup(msg.messageId).markup(inlineKeyboardMarkup { "test2" switchInlineQueryCurrentChat "test" })
-                .sendAsync(TG_ID, bot)
-                .await()
 
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = editMarkup(msg.messageId)
+            .markup(inlineKeyboardMarkup { "test2" switchInlineQueryCurrentChat "test" })
+            .sendAsync(TG_ID, bot)
+            .await().shouldSuccess()
 
         with(result) {
             text shouldBe "test1"
@@ -67,16 +54,11 @@ class EditActionsTest : BotTestContext() {
     suspend fun `edit media test method test`() {
         val msg = photo(RANDOM_PIC).sendReturning(TG_ID, bot).getOrNull()
         msg.shouldNotBeNull()
-        val request = editMedia(
+
+        val result = editMedia(
             msg.messageId,
             InputMedia.Photo(ImplicitFile.Str(RANDOM_PIC_URL)),
-        ).sendAsync(TG_ID, bot).await()
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        ).sendAsync(TG_ID, bot).await().shouldSuccess()
 
         with(result) {
             text.shouldBeNull()
@@ -91,12 +73,7 @@ class EditActionsTest : BotTestContext() {
         msg.shouldNotBeNull()
         msg.caption.shouldBeNull()
 
-        val request = editCaption(msg.messageId).caption { "test" }.sendAsync(TG_ID, bot).await()
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = editCaption(msg.messageId).caption { "test" }.sendAsync(TG_ID, bot).await().shouldSuccess()
 
         with(result) {
             text.shouldBeNull()

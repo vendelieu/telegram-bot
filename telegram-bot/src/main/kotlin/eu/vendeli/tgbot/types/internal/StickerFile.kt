@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.types.internal
 
+import com.fasterxml.jackson.annotation.JsonValue
+import eu.vendeli.tgbot.types.internal.ImplicitFile.Str
 import eu.vendeli.tgbot.types.media.StickerFormat
 
 /**
@@ -25,9 +27,16 @@ sealed class StickerFile(
 
     class WEBP(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Static, MediaContentType.ImageWebp)
 
+    data class FileId(@JsonValue val fileId: String) :
+        StickerFile(Str(""), StickerFormat.Static, MediaContentType.ImageWebp)
+
     internal class AttachedFile(
-        file: ImplicitFile.Str,
+        file: Str,
         format: StickerFormat,
         contentType: MediaContentType,
     ) : StickerFile(file, format, contentType)
 }
+
+@Suppress("NOTHING_TO_INLINE")
+internal inline fun StickerFile.toAttached(name: String) =
+    StickerFile.AttachedFile(Str("attach://$name"), stickerFormat, contentType)

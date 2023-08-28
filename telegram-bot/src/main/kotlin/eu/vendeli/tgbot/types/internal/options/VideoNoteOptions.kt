@@ -11,4 +11,4 @@ data class VideoNoteOptions(
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
     override var messageThreadId: Long? = null,
-) : OptionsInterface<VideoNoteOptions>, OptionsCommon
+) : OptionsCommon

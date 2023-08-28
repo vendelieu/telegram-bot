@@ -1,4 +1,3 @@
-
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import java.time.LocalDate
@@ -42,7 +41,7 @@ dependencies {
 }
 
 group = "eu.vendeli"
-version = "3.0.3"
+version = "3.0.4"
 
 apply(from = "publishing.gradle.kts")
 
@@ -73,7 +72,7 @@ tasks {
     }
 
     dokkaHtml.configure {
-        outputDirectory.set(buildDir.resolve("dokka"))
+        outputDirectory.set(layout.buildDirectory.asFile.orNull?.resolve("dokka"))
         dokkaSourceSets {
             named("main") {
                 moduleName.set("Telegram Bot")
@@ -96,14 +95,13 @@ koverReport {
                         "eu.vendeli.tgbot.interfaces",
                         "eu.vendeli.tgbot.types",
                         "eu.vendeli.tgbot.utils",
-
-                        "eu.vendeli.tgbot.api.stickerset", // todo cover
-                        "eu.vendeli.tgbot.api.chat", // todo cover
                     )
                     classes(
                         "eu.vendeli.tgbot.api.Answer*",
+                        "eu.vendeli.tgbot.api.chat.Leave*",
                         "eu.vendeli.tgbot.api.botactions.Close*",
                         "eu.vendeli.tgbot.api.botactions.Logout*",
+                        "eu.vendeli.tgbot.api.stickerset.*CustomEmoji*",
                     )
                 }
             }

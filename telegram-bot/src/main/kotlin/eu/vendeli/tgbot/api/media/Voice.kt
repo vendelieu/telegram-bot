@@ -33,7 +33,7 @@ class SendVoiceAction(private val voice: ImplicitFile<*>) :
         get() = VoiceOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
-    override val MediaAction<Message>.isImplicit: Boolean
+    override val MediaAction<Message>.inputFilePresence: Boolean
         get() = voice is ImplicitFile.InpFile
 
     init {

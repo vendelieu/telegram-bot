@@ -8,10 +8,7 @@ import eu.vendeli.tgbot.api.media.sticker
 import eu.vendeli.tgbot.api.media.video
 import eu.vendeli.tgbot.api.media.videoNote
 import eu.vendeli.tgbot.api.media.voice
-import eu.vendeli.tgbot.types.internal.getOrNull
-import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.utils.LOREM
-import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -19,13 +16,7 @@ import io.kotest.matchers.shouldBe
 class MediaTest : BotTestContext() {
     @Test
     suspend fun `audio method test`() {
-        val request = audio { LOREM.AUDIO.data }.sendReturning(TG_ID, bot)
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = audio { LOREM.AUDIO.data }.sendReturning(TG_ID, bot).shouldSuccess()
 
         with(result) {
             shouldNotBeNull()
@@ -38,13 +29,7 @@ class MediaTest : BotTestContext() {
 
     @Test
     suspend fun `animation method test`() {
-        val request = animation { LOREM.ANIMATION.data }.sendReturning(TG_ID, bot)
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = animation { LOREM.ANIMATION.data }.sendReturning(TG_ID, bot).shouldSuccess()
 
         with(result) {
             shouldNotBeNull()
@@ -56,13 +41,7 @@ class MediaTest : BotTestContext() {
 
     @Test
     suspend fun `document method test`() {
-        val request = document { LOREM.DOCUMENT.data }.sendReturning(TG_ID, bot)
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = document { LOREM.DOCUMENT.data }.sendReturning(TG_ID, bot).shouldSuccess()
 
         with(result) {
             shouldNotBeNull()
@@ -74,13 +53,7 @@ class MediaTest : BotTestContext() {
 
     @Test
     suspend fun `video method test`() {
-        val request = video { LOREM.VIDEO.data }.sendReturning(TG_ID, bot)
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = video { LOREM.VIDEO.data }.sendReturning(TG_ID, bot).shouldSuccess()
 
         with(result) {
             shouldNotBeNull()
@@ -92,13 +65,7 @@ class MediaTest : BotTestContext() {
 
     @Test
     suspend fun `video note method test`() {
-        val request = videoNote(getExtFile(LOREM.VIDEO_NOTE.data)).sendReturning(TG_ID, bot)
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = videoNote(getExtFile(LOREM.VIDEO_NOTE.data)).sendReturning(TG_ID, bot).shouldSuccess()
 
         with(result) {
             shouldNotBeNull()
@@ -109,13 +76,7 @@ class MediaTest : BotTestContext() {
 
     @Test
     suspend fun `voice method test`() {
-        val request = voice(getExtFile(LOREM.VOICE.data)).sendReturning(TG_ID, bot)
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = voice(getExtFile(LOREM.VOICE.data)).sendReturning(TG_ID, bot).shouldSuccess()
 
         with(result) {
             shouldNotBeNull()
@@ -126,13 +87,7 @@ class MediaTest : BotTestContext() {
 
     @Test
     suspend fun `sticker method test`() {
-        val request = sticker { LOREM.STICKER.data }.sendReturning(TG_ID, bot)
-
-        val result = with(request) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+        val result = sticker { LOREM.STICKER.data }.sendReturning(TG_ID, bot).shouldSuccess()
 
         with(result) {
             shouldNotBeNull()

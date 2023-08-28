@@ -15,4 +15,4 @@ data class AnimationOptions(
     override var protectContent: Boolean? = null,
     override var messageThreadId: Long? = null,
     override var hasSpoiler: Boolean? = null,
-) : OptionsInterface<AnimationOptions>, OptionsCommon, OptionsParseMode, MediaSpoiler
+) : OptionsCommon, OptionsParseMode, MediaSpoiler

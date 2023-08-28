@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PromoteChatMemberOptions
 import eu.vendeli.tgbot.utils.getReturnType
@@ -27,3 +28,4 @@ class PromoteChatMemberAction(userId: Long) :
 }
 
 fun promoteChatMember(userId: Long) = PromoteChatMemberAction(userId)
+fun promoteChatMember(user: User) = PromoteChatMemberAction(user.id)

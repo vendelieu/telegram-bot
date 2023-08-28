@@ -8,4 +8,4 @@ data class ContactOptions(
     override var allowSendingWithoutReply: Boolean? = null,
     override var protectContent: Boolean? = null,
     override var messageThreadId: Long? = null,
-) : OptionsInterface<ContactOptions>, OptionsCommon
+) : OptionsCommon

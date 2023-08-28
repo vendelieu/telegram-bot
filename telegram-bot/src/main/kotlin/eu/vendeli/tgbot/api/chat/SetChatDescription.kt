@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
-class SetChatDescriptionAction(description: String) : Action<Boolean>, ActionState() {
+class SetChatDescriptionAction(description: String? = null) : Action<Boolean>, ActionState() {
     override val TgAction<Boolean>.method: TgMethod
         get() = TgMethod("setChatDescription")
     override val TgAction<Boolean>.returnType: Class<Boolean>
@@ -19,4 +19,4 @@ class SetChatDescriptionAction(description: String) : Action<Boolean>, ActionSta
     }
 }
 
-fun setChatDescription(title: String) = SetChatDescriptionAction(title)
+fun setChatDescription(title: String? = null) = SetChatDescriptionAction(title)

@@ -25,9 +25,10 @@ jobs:
           CHAT_ID: ${{ secrets.CHAT_ID }}
           BOT_ID: ${{ secrets.BOT_ID }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          BOT_TOKEN_2: ${{ secrets.BOT_TOKEN_2 }}
         with:
           gradle-version: current
-          arguments: build koverXmlReport -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -Pkotlin.experimental.tryK2=true
+          arguments: build koverXmlReport -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         env:
