@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.api.chat.getChatMenuButton
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.keyboard.MenuButton
 import io.kotest.matchers.collections.shouldNotBeEmpty
-import io.kotest.matchers.nulls.shouldBeNull
+import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
 
@@ -33,7 +33,7 @@ class ChatGetMethodsTest : BotTestContext() {
     @Test
     suspend fun `get chat member test`() {
         val result = getChatMember(TG_ID).sendReturning(CHAT_ID, bot).shouldSuccess()
-        result.status.shouldBeNull()
+        result.status.shouldNotBeNull()
     }
 
     @Test
