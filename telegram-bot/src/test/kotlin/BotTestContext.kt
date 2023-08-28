@@ -7,11 +7,8 @@ import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.utils.MockUpdate
-import io.kotest.common.ExperimentalKotest
 import io.kotest.common.runBlocking
 import io.kotest.core.spec.style.AnnotationSpec
-import io.kotest.framework.concurrency.eventually
-import io.kotest.framework.concurrency.exponential
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.ktor.client.HttpClient
@@ -94,16 +91,10 @@ abstract class BotTestContext(
 
     protected suspend fun getExtFile(url: String): ByteArray = bot.httpClient.get(url).readBytes()
 
-    @OptIn(ExperimentalKotest::class)
-    protected suspend inline fun <T> Response<T>.shouldSuccess() = eventually(
-        {
-            interval = 100L.exponential()
-        },
-    ) {
-        with(this) {
-            ok.shouldBeTrue()
-            isSuccess().shouldBeTrue()
-            getOrNull().shouldNotBeNull()
-        }
+    @Suppress("NOTHING_TO_INLINE")
+    protected inline fun <T> Response<T>.shouldSuccess() = with(this) {
+        ok.shouldBeTrue()
+        isSuccess().shouldBeTrue()
+        getOrNull().shouldNotBeNull()
     }
 }
