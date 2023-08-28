@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api.chat
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.TgAction
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
@@ -20,3 +21,4 @@ class DeclineChatJoinRequestAction(userId: Long) : Action<Boolean>, ActionState(
 }
 
 fun declineChatJoinRequest(userId: Long) = DeclineChatJoinRequestAction(userId)
+fun declineChatJoinRequest(user: User) = DeclineChatJoinRequestAction(user.id)

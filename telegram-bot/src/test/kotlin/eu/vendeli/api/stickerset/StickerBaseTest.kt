@@ -55,6 +55,7 @@ class StickerBaseTest : BotTestContext() {
     suspend fun `create new sticker set method test`() {
         val botName = getMe().sendAsync(bot).await().getOrNull().shouldNotBeNull().username.shouldNotBeNull()
         val setName = "Test_1_by_$botName"
+        deleteStickerSet(setName).sendAsync(bot).await()
 
         val result = createNewStickerSet(
             setName,
