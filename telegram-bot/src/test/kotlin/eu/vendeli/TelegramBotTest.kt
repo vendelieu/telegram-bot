@@ -17,7 +17,6 @@ import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.MessageUpdate
-import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
@@ -128,10 +127,7 @@ class TelegramBotTest : BotTestContext() {
     @Test
     suspend fun `adding magic object`() {
         bot.addAutowiringObject(TgMethod::class.java) {
-            object : Autowiring<TgMethod> {
-                override suspend fun get(update: ProcessedUpdate, bot: TelegramBot): TgMethod =
-                    TgMethod("test")
-            }
+            Autowiring { _, _ -> TgMethod("test") }
         }
 
         bot.autowiringObjects[TgMethod::class.java].shouldNotBeNull()

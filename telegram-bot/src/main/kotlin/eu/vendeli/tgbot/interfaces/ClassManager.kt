@@ -5,7 +5,7 @@ package eu.vendeli.tgbot.interfaces
  *
  * @constructor Create empty I class manager
  */
-interface ClassManager {
+fun interface ClassManager {
     /**
      * Get instance of Class where Command/Input holds.
      *
