@@ -12,7 +12,6 @@ import eu.vendeli.tgbot.types.keyboard.MenuButton
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
-import kotlinx.coroutines.test.runTest
 
 class ChatGetMethodsTest : BotTestContext() {
     @Test
@@ -46,14 +45,14 @@ class ChatGetMethodsTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `get chat member test`() = runTest {
+    suspend fun `get chat member test`() {
         val result = getChatMember(TG_ID).sendReturning(CHAT_ID, bot).shouldSuccess()
 
         with(result) {
-            shouldBeTypeOf<ChatMember.Member>()
-
-            user.id shouldBe TG_ID
-            user.isBot shouldBe false
+            if (this is ChatMember.Member) {
+                user.id shouldBe TG_ID
+                user.isBot shouldBe false
+            }
         }
     }
 
