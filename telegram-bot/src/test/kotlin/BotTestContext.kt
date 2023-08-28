@@ -97,8 +97,7 @@ abstract class BotTestContext(
     @OptIn(ExperimentalKotest::class)
     protected suspend inline fun <T> Response<T>.shouldSuccess() = eventually(
         {
-            initialDelay = 200
-            interval = 200L.exponential()
+            interval = 100L.exponential()
         },
     ) {
         with(this) {
