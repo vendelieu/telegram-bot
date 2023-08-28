@@ -23,7 +23,20 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.sync.Mutex
 import java.time.Instant
+import kotlin.properties.Delegates
+
+private val mutex = Mutex()
+private suspend fun Mutex.toggle() = if (isLocked) unlock() else lock()
+private val BOT_DATA: Iterator<Pair<Long, String>> = generateSequence {
+    runBlocking {
+        mutex.toggle()
+        System.getenv("BOT_TOKEN" + if (mutex.isLocked) "_2" else "").let {
+            it.substringBefore(':').toLong() to it
+        }
+    }
+}.iterator()
 
 @Suppress("VariableNaming", "PropertyName", "PrivatePropertyName")
 abstract class BotTestContext(
@@ -34,9 +47,9 @@ abstract class BotTestContext(
     protected lateinit var bot: TelegramBot
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
-    private val TOKEN by lazy { System.getenv("BOT_TOKEN") }
+    private val BOT_CTX get() = BOT_DATA.next()
     protected val TG_ID by lazy { System.getenv("TELEGRAM_ID").toLong() }
-    protected val BOT_ID by lazy { TOKEN.substringBefore(':').toLong() }
+    protected var BOT_ID by Delegates.notNull<Long>()
     protected val CHAT_ID by lazy { System.getenv("CHAT_ID").toLong() }
 
     protected val RANDOM_PIC_URL = "https://picsum.photos/10"
@@ -46,7 +59,9 @@ abstract class BotTestContext(
 
     @BeforeAll
     fun prepareTestBot() {
-        if (withPreparedBot) bot = TelegramBot(TOKEN, "eu.vendeli") {
+        val ctx = BOT_CTX
+        BOT_ID = ctx.first
+        if (withPreparedBot) bot = TelegramBot(ctx.second, "eu.vendeli") {
             logging {
                 botLogLevel = TRACE
                 httpLogLevel = HttpLogLevel.ALL
@@ -57,11 +72,6 @@ abstract class BotTestContext(
         }
 
         if (mockHttp) doMockHttp()
-    }
-
-    @AfterEach
-    fun delayRun() {
-        Thread.sleep(1500)
     }
 
     fun doMockHttp(mockUpdates: MockUpdate = MockUpdate.SINGLE()) {

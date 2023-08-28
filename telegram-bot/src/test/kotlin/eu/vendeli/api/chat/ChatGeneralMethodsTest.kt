@@ -64,7 +64,7 @@ class ChatGeneralMethodsTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `restrict chat member method test`() = runTest {
+    fun `restrict chat member method test`() = runTest {
         val result = restrictChatMember(TG_ID) {
             canChangeInfo = false
         }.sendReturning(CHAT_ID, bot).shouldSuccess()
