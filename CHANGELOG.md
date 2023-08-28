@@ -1,5 +1,9 @@
 # Telegram-bot changelog
 
+### 3.0.4
+
+* Improved signatures of some sticker-set and chat related methods.
+
 ### 3.0.3
 
 * Reworked multipart actions logic and fixed related bugs.
