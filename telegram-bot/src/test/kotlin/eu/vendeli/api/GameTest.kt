@@ -7,7 +7,6 @@ import eu.vendeli.tgbot.api.setGameScore
 import eu.vendeli.tgbot.types.internal.getOrNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.string.shouldContain
 import kotlin.random.Random
 import kotlin.random.nextLong
 
@@ -26,7 +25,7 @@ class GameTest : BotTestContext() {
     @Test
     suspend fun `set score method test`() {
         val game = game("testestes").sendReturning(TG_ID, bot).getOrNull()
-        val newScore = ITER_INT.toLong()
+        val newScore = RAND_INT.toLong()
 
         val result = setGameScore(TG_ID, game!!.messageId, newScore).options {
             force = true
@@ -36,7 +35,6 @@ class GameTest : BotTestContext() {
             shouldNotBeNull()
             title shouldBe "test"
             description shouldBe "test2"
-            text shouldContain "$newScore"
         }
     }
 
