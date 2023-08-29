@@ -128,6 +128,10 @@ class ManualHandlingTest : BotTestContext(true, true) {
             onChatMember {}
             should { manualActions.onChatMember }.shouldNotBeNull()
 
+            manualActions.onMyChatMember.shouldBeNull()
+            onMyChatMember {}
+            should { manualActions.onMyChatMember }.shouldNotBeNull()
+
             manualActions.onChannelPost.shouldBeNull()
             onChannelPost {}
             should { manualActions.onChannelPost }.shouldNotBeNull()
