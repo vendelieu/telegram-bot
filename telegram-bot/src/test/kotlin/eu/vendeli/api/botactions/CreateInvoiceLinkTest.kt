@@ -17,7 +17,7 @@ class CreateInvoiceLinkTest : BotTestContext() {
                 "test",
                 "test1",
                 "test2",
-                "5322214758:TEST:5c6bcca1-7ad9-44ee-a841-c288ae93aaec",
+                PAYMENT_PROVIDER_TOKEN,
                 Currency.AED,
                 listOf(LabeledPrice("test3", 1000)),
             ),
