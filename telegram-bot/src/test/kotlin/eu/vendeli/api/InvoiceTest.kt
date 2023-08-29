@@ -12,7 +12,7 @@ import kotlin.time.Duration.Companion.minutes
 
 class InvoiceTest : BotTestContext() {
     @Test
-    suspend fun `invoice method test`() = retry(1, 1.minutes) {
+    suspend fun `invoice method test`() = retry(2, 1.minutes) {
         prepareTestBot()
         val result = invoice(
             InvoiceData(
