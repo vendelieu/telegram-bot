@@ -10,6 +10,8 @@ import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.utils.MockUpdate
+import io.kotest.assertions.throwables.shouldNotThrowAny
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.maps.shouldContainExactly
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -164,6 +166,22 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             second.message?.text shouldBe "aaaa"
             first.message shouldBe "test3"
         }
+    }
+
+    @Test
+    suspend fun `webhook handling test`() {
+        val rawUpdate = MockUpdate.SINGLE().response.toString(Charsets.UTF_8)
+        shouldThrow<UninitializedPropertyAccessException> {
+            bot.update.parseAndHandle(rawUpdate)
+        }
+        var update: Update? = null
+        bot.update.setBehaviour {
+            update = it
+        }
+        shouldNotThrowAny {
+            bot.update.parseAndHandle(rawUpdate)
+        }
+        update.shouldNotBeNull()
     }
 
     companion object {
