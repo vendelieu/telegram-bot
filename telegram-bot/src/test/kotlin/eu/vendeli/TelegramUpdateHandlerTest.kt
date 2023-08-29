@@ -170,6 +170,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
 
     @Test
     suspend fun `webhook handling test`() {
+        prepareTestBot()
         val rawUpdate = MockUpdate.SINGLE().response.toString(Charsets.UTF_8)
         shouldThrow<UninitializedPropertyAccessException> {
             bot.update.parseAndHandle(rawUpdate)
