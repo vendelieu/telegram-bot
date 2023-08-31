@@ -149,3 +149,9 @@ data class ChatJoinRequestUpdate(
 ) : ProcessedUpdate(updateId, update, UpdateType.CHAT_JOIN_REQUEST), UserReference {
     override val user: User = chatJoinRequest.from
 }
+
+inline val ProcessedUpdate.userOrNull: User? get() = (this as? UserReference)?.user
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun ProcessedUpdate.getUser(): User = (this as UserReference).user
+    ?: throw NullPointerException("User not found.")
