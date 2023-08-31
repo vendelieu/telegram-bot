@@ -28,8 +28,8 @@ import eu.vendeli.tgbot.utils.getReturnType
  * @param messageId Message identifier in the chat specified in fromChatId
  */
 class CopyMessageAction(
-    chatId: Identifier,
-    fromChatId: Identifier,
+    chatId: Identifier<*>,
+    fromChatId: Identifier<*>,
     messageId: Long,
 ) :
     Action<MessageId>,

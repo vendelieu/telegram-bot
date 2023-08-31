@@ -1,14 +1,14 @@
 package eu.vendeli.tgbot.types.internal
 
-sealed class Identifier {
-    abstract val get: Any
+sealed class Identifier<T> {
+    abstract val get: T
 
-    data class String(val to: kotlin.String) : Identifier() {
-        override val get get(): Any = to
+    data class String(val to: kotlin.String) : Identifier<kotlin.String>() {
+        override val get: kotlin.String get(): kotlin.String = to
     }
 
-    data class Long(val to: kotlin.Long) : Identifier() {
-        override val get get(): Any = to
+    data class Long(val to: kotlin.Long) : Identifier<kotlin.Long>() {
+        override val get: kotlin.Long get(): kotlin.Long = to
     }
 
     companion object {
