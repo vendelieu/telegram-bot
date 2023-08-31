@@ -6,8 +6,8 @@ import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.InlineMode
 import eu.vendeli.tgbot.interfaces.TgAction
-import eu.vendeli.tgbot.interfaces.features.AllFeaturesPack
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
+import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -23,7 +23,9 @@ class EditMessageTextAction private constructor() :
     ActionState(),
     InlineMode<Message>,
     EntitiesContextBuilder,
-    AllFeaturesPack<EditMessageTextAction, EditMessageOptions> {
+    OptionsFeature<EditMessageTextAction, EditMessageOptions>,
+    MarkupFeature<EditMessageTextAction>,
+    EntitiesFeature<EditMessageTextAction> {
     override val TgAction<Message>.method: TgMethod
         get() = TgMethod("editMessageText")
     override val TgAction<Message>.returnType: Class<Message>

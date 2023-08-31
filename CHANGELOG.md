@@ -1,5 +1,14 @@
 # Telegram-bot changelog
 
+## 3.1.0
+
+* Changed `Autowiring` and `ClassManager` interfaces to fun interfaces.
+* Added extensions to `ProcessedUpdate` class.
+    * parameter `userOrNull` which returns `User` or `null` :)
+    * function `getUser` which returns `User` or throws NPE. (it's actually nullable only in rare cases but anyway use
+      with caution)
+* Added shortcut functions to `Markup` interfaces for `InlineKeyboardMarkup`, `ReplyKeyboardMarkup`, `ForceReply`.
+
 ### 3.0.4
 
 * Improved signatures of some sticker-set and chat related methods.

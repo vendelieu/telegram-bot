@@ -2,6 +2,11 @@ package eu.vendeli.tgbot.interfaces.features
 
 import eu.vendeli.tgbot.interfaces.IActionState
 import eu.vendeli.tgbot.interfaces.Keyboard
+import eu.vendeli.tgbot.types.keyboard.ForceReply
+import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
+import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardMarkup
+import eu.vendeli.tgbot.utils.builders.InlineKeyboardMarkupBuilder
+import eu.vendeli.tgbot.utils.builders.ReplyKeyboardMarkupBuilder
 
 /**
  * Markup feature, see [Features article](https://github.com/vendelieu/telegram-bot/wiki/Features)
@@ -31,4 +36,45 @@ interface MarkupFeature<Return> : IActionState, Feature {
      * @return action itself.
      */
     fun markup(block: () -> Keyboard): Return = markup(block())
+
+    /**
+     * Add InlineKeyboard markup to the Action<[Return]>.
+     *
+     * @param block Builder [InlineKeyboardMarkupBuilder] context.
+     * @return Action[Return] itself.
+     */
+    fun inlineKeyboardMarkup(block: InlineKeyboardMarkupBuilder.() -> Unit): Return {
+        parameters["reply_markup"] = InlineKeyboardMarkup(InlineKeyboardMarkupBuilder().apply(block).build())
+        return thisAsReturn
+    }
+
+    /**
+     * Add ReplyKeyboard markup to the Action<[Return]>.
+     *
+     * @param block Builder [ReplyKeyboardMarkupBuilder] context.
+     * @return Action[Return] itself.
+     */
+    fun replyKeyboardMarkup(block: ReplyKeyboardMarkupBuilder.() -> Unit): Return {
+        parameters["reply_markup"] = ReplyKeyboardMarkup(ReplyKeyboardMarkupBuilder().apply(block).build())
+        return thisAsReturn
+    }
+
+    /**
+     * Add ForceReply markup to the Action<[Return]>.
+     *
+     * @param inputFieldPlaceholder The placeholder to be shown in the input field when the reply is active;
+     * 1-64 characters
+     * @param selective Use this parameter if you want to force reply from specific users only.
+     * Targets: 1) users that are @mentioned in the text of the Message object;
+     * 2) if the bot's message is a reply (has reply_to_message_id), sender of the original message.
+     *
+     * @return Action[Return] itself.
+     */
+    fun forceReply(
+        inputFieldPlaceholder: String? = null,
+        selective: Boolean? = null,
+    ): Return {
+        parameters["reply_markup"] = ForceReply(inputFieldPlaceholder, selective)
+        return thisAsReturn
+    }
 }

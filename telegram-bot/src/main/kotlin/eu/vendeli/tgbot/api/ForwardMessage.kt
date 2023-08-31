@@ -21,7 +21,7 @@ import eu.vendeli.tgbot.utils.getReturnType
  * (or channel username in the format @channelusername)
  * @param messageId Message identifier in the chat specified in fromChatId
  */
-class ForwardMessageAction(chatId: Identifier, fromChatId: Identifier, messageId: Long) :
+class ForwardMessageAction(chatId: Identifier<*>, fromChatId: Identifier<*>, messageId: Long) :
     Action<Message>,
     ActionState(),
     OptionsFeature<ForwardMessageAction, ForwardMessageOptions> {
