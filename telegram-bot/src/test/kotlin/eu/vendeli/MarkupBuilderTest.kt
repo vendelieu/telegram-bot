@@ -1,18 +1,24 @@
 package eu.vendeli
 
 import BotTestContext
+import eu.vendeli.tgbot.api.message
+import eu.vendeli.tgbot.types.keyboard.ForceReply
+import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.types.keyboard.KeyboardButtonPollType
 import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestChat
 import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestUser
 import eu.vendeli.tgbot.types.keyboard.LoginUrl
+import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardMarkup
 import eu.vendeli.tgbot.types.keyboard.WebAppInfo
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
 import eu.vendeli.tgbot.utils.builders.replyKeyboardMarkup
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.shouldBeTypeOf
 
 class MarkupBuilderTest : BotTestContext() {
     @Test
@@ -230,5 +236,40 @@ class MarkupBuilderTest : BotTestContext() {
         }
 
         operatorButtons.selective shouldBe false
+    }
+
+    @Test
+    fun `check markup shortcut builder test`() {
+        val action = message("")
+        with(action) {
+            parameters["reply_markup"].shouldBeNull()
+        }
+        // inline markup
+        action.inlineKeyboardMarkup {
+            "test" callback "testC"
+        }
+        with(action) {
+            val markup = parameters["reply_markup"].shouldNotBeNull()
+            markup.shouldBeTypeOf<InlineKeyboardMarkup>()
+            markup.inlineKeyboard.size shouldBe 1
+        }
+
+        // reply markup
+        action.replyKeyboardMarkup {
+            +"test"
+        }
+        with(action) {
+            val markup = parameters["reply_markup"].shouldNotBeNull()
+            markup.shouldBeTypeOf<ReplyKeyboardMarkup>()
+            markup.keyboard.size shouldBe 1
+        }
+
+        // forceReply markup
+        action.forceReply()
+        with(action) {
+            val markup = parameters["reply_markup"].shouldNotBeNull()
+            markup.shouldBeTypeOf<ForceReply>()
+            markup.forceReply.shouldBeTrue()
+        }
     }
 }
