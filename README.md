@@ -8,7 +8,7 @@
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
 [![codecov](https://codecov.io/gh/vendelieu/telegram-bot/branch/master/graph/badge.svg?token=xn5xo6fu6r)](https://codecov.io/gh/vendelieu/telegram-bot)
 
-[![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/vennyTgBot)
+[![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/venny_tgbot)
 [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Channel&color=blue&logo=telegram)](https://t.me/v_telegramBot)
 
 Telegram Bot Api wrapper with a user-friendly interface.
@@ -165,4 +165,4 @@ methods [`getOrNull()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bo
 
 ### Questions
 
-You're always welcome in our [chat](https://t.me/vennyTgBot), feel free to ask.
+You're always welcome in our [chat](https://t.me/venny_tgbot), feel free to ask.
