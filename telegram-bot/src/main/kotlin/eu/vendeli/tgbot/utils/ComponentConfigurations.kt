@@ -49,6 +49,7 @@ internal fun TelegramBot.getConfiguredHttpClient() = HttpClient(CIO) {
 internal fun TelegramBot.Companion.getConfiguredMapper() = ObjectMapper().apply {
     propertyNamingStrategy = PropertyNamingStrategies.SNAKE_CASE
 
+    @Suppress("MagicNumber")
     registerModules(
         KotlinModule.Builder().apply {
             withReflectionCacheSize(512)

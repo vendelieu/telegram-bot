@@ -25,7 +25,7 @@ private inline val SingleInputChain.prevChainId: String?
  * @param from
  * @param text
  */
-@Suppress("CyclomaticComplexMethod", "DuplicatedCode")
+@Suppress("CyclomaticComplexMethod", "DuplicatedCode", "ReturnCount")
 private suspend fun ManualHandlingDsl.checkMessageForActions(
     update: Update,
     from: User?,

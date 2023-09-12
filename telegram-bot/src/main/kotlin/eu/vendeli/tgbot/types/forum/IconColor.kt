@@ -2,6 +2,7 @@ package eu.vendeli.tgbot.types.forum
 
 import com.fasterxml.jackson.annotation.JsonValue
 
+@Suppress("MagicNumber")
 enum class IconColor(private val color: Int) {
     BLUE(7322096),
     YELLOW(16766590),
