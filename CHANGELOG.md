@@ -1,5 +1,12 @@
 # Telegram-bot changelog
 
+## 3.2.0
+
+* Added the fields `fromRequest` and `fromAttachmentMenu` to the class `WriteAccessAllowed`.
+* Added the new administrator privileges `canPostStories`, `canEditStories` and `canDeleteStories` to the
+  classes `ChatMember.Administrator` and `ChatAdministratorRights`.
+* Added the parameters `canPostStories`, `canEditStories` and `canDeleteStories` to the method `promoteChatMember()`.
+
 ## 3.1.0
 
 * Changed `Autowiring` and `ClassManager` interfaces to fun interfaces.

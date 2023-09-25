@@ -13,4 +13,7 @@ data class PromoteChatMemberOptions(
     var canInviteUsers: Boolean? = null,
     var canPinMessages: Boolean? = null,
     var canManageTopics: Boolean? = null,
+    val canPostStories: Boolean? = null,
+    val canEditStories: Boolean? = null,
+    val canDeleteStories: Boolean? = null,
 ) : Options

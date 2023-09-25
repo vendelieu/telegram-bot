@@ -5,5 +5,7 @@ package eu.vendeli.tgbot.types
  * Currently, holds no information.
  */
 data class WriteAccessAllowed(
+    val fromRequest: Boolean? = null,
+    val fromAttachmentMenu: Boolean? = null,
     val webAppName: String? = null,
 )

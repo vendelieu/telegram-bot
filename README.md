@@ -3,7 +3,7 @@
 # Telegram Bot
 
 [![Maven Central](https://img.shields.io/maven-central/v/eu.vendeli/telegram-bot?style=flat&label=Maven&logo=apache-maven)](https://search.maven.org/artifact/eu.vendeli/telegram-bot)
-[![Supported version](https://img.shields.io/badge/Bot%20Api-6.8-blue?logo=telegram)](https://core.telegram.org/bots/api#august-18-2023)
+[![Supported version](https://img.shields.io/badge/Bot%20Api-6.9-blue?logo=telegram)](https://core.telegram.org/bots/api#september-22-2023)
 
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
 [![codecov](https://codecov.io/gh/vendelieu/telegram-bot/branch/master/graph/badge.svg?token=xn5xo6fu6r)](https://codecov.io/gh/vendelieu/telegram-bot)
@@ -21,7 +21,7 @@ build.gradle.kts example:
 
 ```gradle
 dependencies {
-    implementation("eu.vendeli:telegram-bot:3.1.0")
+    implementation("eu.vendeli:telegram-bot:3.2.0")
 }
 ```
 
@@ -112,7 +112,7 @@ You are welcome to check it out :)
 ### Configuration
 
 The library has very flexible customization options, \
-and the ability to confgure from the environment variables out of the box is also provided.
+and the ability to configure from the environment variables out of the box is also provided.
 
 You can read more in a [Bot configuration](https://github.com/vendelieu/telegram-bot/wiki/Bot-configuration) article.
 

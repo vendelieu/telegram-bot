@@ -39,6 +39,9 @@ sealed class ChatMember(val status: String) : MultipleResponse {
         val canEditMessages: Boolean? = null,
         val canPinMessages: Boolean? = null,
         val canManageTopics: Boolean? = null,
+        val canPostStories: Boolean? = null,
+        val canEditStories: Boolean? = null,
+        val canDeleteStories: Boolean? = null,
         val customTitle: String? = null,
     ) : ChatMember("administrator")
 
