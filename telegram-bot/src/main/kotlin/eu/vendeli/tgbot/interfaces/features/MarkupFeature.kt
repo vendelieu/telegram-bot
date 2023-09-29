@@ -43,10 +43,8 @@ interface MarkupFeature<Return> : IActionState, Feature {
      * @param block Builder [InlineKeyboardMarkupBuilder] context.
      * @return Action[Return] itself.
      */
-    fun inlineKeyboardMarkup(block: InlineKeyboardMarkupBuilder.() -> Unit): Return {
-        parameters["reply_markup"] = InlineKeyboardMarkup(InlineKeyboardMarkupBuilder().apply(block).build())
-        return thisAsReturn
-    }
+    fun inlineKeyboardMarkup(block: InlineKeyboardMarkupBuilder.() -> Unit): Return =
+        markup(InlineKeyboardMarkup(InlineKeyboardMarkupBuilder().apply(block).build()))
 
     /**
      * Add ReplyKeyboard markup to the Action<[Return]>.
@@ -54,10 +52,8 @@ interface MarkupFeature<Return> : IActionState, Feature {
      * @param block Builder [ReplyKeyboardMarkupBuilder] context.
      * @return Action[Return] itself.
      */
-    fun replyKeyboardMarkup(block: ReplyKeyboardMarkupBuilder.() -> Unit): Return {
-        parameters["reply_markup"] = ReplyKeyboardMarkup(ReplyKeyboardMarkupBuilder().apply(block).build())
-        return thisAsReturn
-    }
+    fun replyKeyboardMarkup(block: ReplyKeyboardMarkupBuilder.() -> Unit): Return =
+        markup(ReplyKeyboardMarkup(ReplyKeyboardMarkupBuilder().apply(block).build()))
 
     /**
      * Add ForceReply markup to the Action<[Return]>.
@@ -73,8 +69,5 @@ interface MarkupFeature<Return> : IActionState, Feature {
     fun forceReply(
         inputFieldPlaceholder: String? = null,
         selective: Boolean? = null,
-    ): Return {
-        parameters["reply_markup"] = ForceReply(inputFieldPlaceholder, selective)
-        return thisAsReturn
-    }
+    ): Return = markup(ForceReply(inputFieldPlaceholder, selective))
 }
