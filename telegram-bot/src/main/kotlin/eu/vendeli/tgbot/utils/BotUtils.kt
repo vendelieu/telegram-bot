@@ -122,14 +122,14 @@ internal suspend inline fun TelegramUpdateHandler.checkIsLimited(
     limits: RateLimits,
     telegramId: Long?,
     actionId: String? = null,
-): Boolean {
+): Boolean = bot.config.rateLimiter.run {
     if (limits.period == 0L && limits.rate == 0L || telegramId == null) return false
 
     logger.debug { "Checking the request for exceeding the limits${if (actionId != null) " for $actionId}" else ""}." }
-    if (rateLimiter.isLimited(limits, telegramId, actionId)) {
+    if (mechanism.isLimited(limits, telegramId, actionId)) {
         val loggingTail = if (actionId != null) " for $actionId}" else ""
         logger.info { "User #$telegramId has exceeded the request limit$loggingTail." }
-        rateLimiter.exceededLimitResponse(telegramId, bot)
+        exceededAction.invoke(telegramId, bot)
         return true
     }
     return false

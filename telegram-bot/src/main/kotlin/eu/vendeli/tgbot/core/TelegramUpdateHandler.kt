@@ -4,7 +4,6 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.InputListener
-import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.Actions
@@ -45,7 +44,6 @@ class TelegramUpdateHandler internal constructor(
     internal val bot: TelegramBot,
     private val classManager: ClassManager,
     private val inputListener: InputListener,
-    internal val rateLimiter: RateLimitMechanism,
 ) {
     private lateinit var handlingBehaviour: HandlingBehaviourBlock
 
@@ -215,7 +213,7 @@ class TelegramUpdateHandler internal constructor(
             is CallbackQueryUpdate -> callbackQuery.data
             else -> null
         }
-        if (checkIsLimited(bot.config.rateLimits, user?.id)) return@run null
+        if (checkIsLimited(bot.config.rateLimiter.limits, user?.id)) return@run null
 
         val action = text.getActivityOrNull(user, type)
 

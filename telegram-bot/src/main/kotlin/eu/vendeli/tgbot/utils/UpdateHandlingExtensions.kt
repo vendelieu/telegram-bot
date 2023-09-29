@@ -131,7 +131,7 @@ private inline fun Boolean?.ifAffected(block: () -> Unit) {
 @Suppress("CyclomaticComplexMethod", "LongMethod")
 internal suspend fun ManualHandlingDsl.process(update: Update) = with(update) {
     logger.info { "Handling update #${update.updateId}" }
-    if (bot.update.checkIsLimited(bot.config.rateLimits, update.message?.from?.id)) return@with
+    if (bot.update.checkIsLimited(bot.config.rateLimiter.limits, update.message?.from?.id)) return@with
     var affectedActions = 0
 
     when {

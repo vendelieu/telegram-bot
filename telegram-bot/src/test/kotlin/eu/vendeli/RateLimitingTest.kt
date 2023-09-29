@@ -15,13 +15,12 @@ class RateLimitingTest : BotTestContext(false, true) {
     @BeforeAll
     fun prepareBot() {
         bot = TelegramBot("not necessary") {
-            rateLimiter = TokenBucketLimiterImpl()
             logging {
                 botLogLevel = Level.INFO
             }
-            rateLimits {
-                period = 10000
-                rate = 5
+            rateLimiter {
+                mechanism = TokenBucketLimiterImpl
+                limits = RateLimits(10000, 5)
             }
         }
     }

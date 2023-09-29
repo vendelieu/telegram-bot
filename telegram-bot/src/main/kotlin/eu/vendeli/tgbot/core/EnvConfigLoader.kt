@@ -30,7 +30,7 @@ object EnvConfigLoader : ConfigLoader {
         getVal("API_HOST")?.also { apiHost = it }
         getVal("INPUT_LISTENER")?.also { inputListener = it.init() as InputListener }
         getVal("CLASS_MANAGER")?.also { classManager = it.init() as ClassManager }
-        getVal("RATE_LIMITER")?.also { rateLimiter = it.init() as RateLimitMechanism }
+        getVal("RATE_LIMITER")?.also { rateLimiter.mechanism = it.init() as RateLimitMechanism }
         // httpClient
         getVal("HTTPC_RQ_TIMEOUT_MILLIS")?.toLongOrNull()?.also { httpClient.requestTimeoutMillis = it }
         getVal("HTTPC_C_TIMEOUT_MILLIS")?.toLongOrNull()?.also { httpClient.connectTimeoutMillis = it }
@@ -41,8 +41,8 @@ object EnvConfigLoader : ConfigLoader {
         getVal("LOG_BOT_LVL")?.also { logging.botLogLevel = Level.toLevel(it) }
         getVal("LOG_HTTP_LVL")?.also { logging.httpLogLevel = HttpLogLevel.valueOf(it) }
         // rateLimits
-        getVal("RATES_PERIOD")?.toLongOrNull()?.also { rateLimits.period = it }
-        getVal("RATES_RATE")?.toLongOrNull()?.also { rateLimits.rate = it }
+        getVal("RATES_PERIOD")?.toLongOrNull()?.also { rateLimiter.limits.period = it }
+        getVal("RATES_RATE")?.toLongOrNull()?.also { rateLimiter.limits.rate = it }
         // context
         getVal("CTX_USER_DATA")?.also { context.userData = it.init() as UserData }
         getVal("CTX_CHAT_DATA")?.also { context.chatData = it.init() as ChatData }

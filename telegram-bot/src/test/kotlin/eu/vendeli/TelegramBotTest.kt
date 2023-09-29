@@ -234,8 +234,8 @@ class TelegramBotTest : BotTestContext() {
             logging.botLogLevel shouldBe Level.WARN
             logging.httpLogLevel shouldBe HttpLogLevel.ALL
 
-            rateLimits.period shouldBe 14
-            rateLimits.rate shouldBe 15
+            rateLimiter.limits.period shouldBe 14
+            rateLimiter.limits.rate shouldBe 15
 
             context.userData::class.java shouldBe Class.forName("other.pckg.UserDataImpl")
             context.chatData::class.java shouldBe Class.forName("other.pckg.ChatDataImpl")
