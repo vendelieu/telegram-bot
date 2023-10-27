@@ -8,10 +8,12 @@ import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
+import eu.vendeli.tgbot.types.media.Document
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.maps.shouldContainExactly
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -97,15 +99,14 @@ class TelegramUpdateHandlerTest : BotTestContext() {
 
         val commandParseWithMixedParams = bot.update.parseCommand("command?p1=v1&v2&p3=&p4=v4&p5=")
         commandParseWithMixedParams.command shouldBe "command"
-        commandParseWithMixedParams.params shouldContainExactly (
-            mapOf(
-                "p1" to "v1",
-                "param_2" to "v2",
-                "p3" to "",
-                "p4" to "v4",
-                "p5" to "",
-            )
-            )
+        commandParseWithMixedParams.params shouldContainExactly mapOf(
+            "p1" to "v1",
+            "param_2" to "v2",
+            "p3" to "",
+            "p4" to "v4",
+            "p5" to "",
+        )
+
 
         val commandParseForLastFullPair = bot.update.parseCommand("last_pair_command?v1&p2=v2")
         commandParseForLastFullPair.command shouldBe "last_pair_command"
@@ -166,6 +167,45 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             second.message?.text shouldBe "aaaa"
             first.message shouldBe "test3"
         }
+    }
+
+    @Test
+    suspend fun `input media handling test`() {
+        doMockHttp(
+            MockUpdate.UPDATES_LIST(
+                listOf(
+                    Update(
+                        1,
+                        Message(
+                            2,
+                            from = User(1, false, "test"),
+                            date = 1,
+                            chat = Chat(1, ChatType.Private),
+                            document = Document("3", "33"),
+                        ),
+                    ),
+                ),
+            ),
+        )
+
+        bot.update.setListener {
+            bot.inputListener.set(1, "testInp")
+            handle(it)
+            stopListener()
+        }
+        bot.update.caughtExceptions.tryReceive().getOrNull().shouldNotBeNull().run {
+            first.message shouldBe "test3"
+        }
+
+        var inputReached = false
+        bot.handleUpdates {
+            bot.inputListener.set(1, "testInp")
+            onInput("testInp") {
+                inputReached = true
+            }
+            bot.update.stopListener()
+        }
+        inputReached.shouldBeTrue()
     }
 
     @Test
