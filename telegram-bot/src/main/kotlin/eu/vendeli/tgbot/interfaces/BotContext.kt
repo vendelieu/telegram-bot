@@ -3,6 +3,10 @@ package eu.vendeli.tgbot.interfaces
 import eu.vendeli.tgbot.types.User
 import kotlinx.coroutines.Deferred
 
+/**
+ * Bot context parent interface, see [Bot context article](https://github.com/vendelieu/telegram-bot/wiki/Bot-Context)
+ */
+@Suppress("TooManyFunctions")
 interface BotContext {
     /**
      * Set new value.
@@ -61,7 +65,7 @@ interface BotContext {
      */
     suspend fun setAsync(
         user: User,
-        valToKey: () -> Pair<Any?, String>
+        valToKey: () -> Pair<Any?, String>,
     ): Deferred<Boolean> = valToKey().run { setAsync(user.id, second, first) }
 
     /**
