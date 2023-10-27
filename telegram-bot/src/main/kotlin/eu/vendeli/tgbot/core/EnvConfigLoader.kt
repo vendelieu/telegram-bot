@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.core
 
 import ch.qos.logback.classic.Level
+import com.fasterxml.jackson.module.kotlin.isKotlinClass
 import eu.vendeli.tgbot.interfaces.ChatData
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.ConfigLoader
@@ -9,6 +10,7 @@ import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.interfaces.UserData
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
+import kotlin.reflect.full.primaryConstructor
 
 object EnvConfigLoader : ConfigLoader {
     private const val PREFIX = "TGBOT_"
@@ -21,7 +23,12 @@ object EnvConfigLoader : ConfigLoader {
     override val commandsPackage: String? = getVal("COMMANDS_PACKAGE")
 
     private fun getVal(value: String) = envVars[PREFIX + value]
-    private fun String.init() = Class.forName(this).constructors.first().newInstance()
+    private fun String.init(): Any? = Class.forName(this).run {
+        takeIf { isKotlinClass() }?.kotlin.let {
+            it?.objectInstance ?: it?.primaryConstructor?.call()
+        } ?: constructors.firstOrNull()?.newInstance()
+    }
+
     private fun apply2Config(block: BotConfiguration.() -> Unit) = BotConfiguration().also(block)
 
     @Suppress("CyclomaticComplexMethod")

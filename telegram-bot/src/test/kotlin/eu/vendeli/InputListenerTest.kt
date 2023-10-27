@@ -30,10 +30,10 @@ class InputListenerTest : BotTestContext() {
         mapImpl.setAsync(1, "test").await().shouldBeTrue()
         mapImpl.getAsync(1).await() shouldBe "test"
         mapImpl.delAsync(1).await().shouldBeTrue()
-        mapImpl.getAsync(1).shouldBeNull()
+        mapImpl.getAsync(1).await().shouldBeNull()
 
         val user = User(1, false, "Test")
         mapImpl.setAsync(user) { "test2" }.await().shouldBeTrue()
-        mapImpl.getAsync(user.id) shouldBe "test2"
+        mapImpl.getAsync(user.id).await() shouldBe "test2"
     }
 }

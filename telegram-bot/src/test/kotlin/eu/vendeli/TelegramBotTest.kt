@@ -223,7 +223,7 @@ class TelegramBotTest : BotTestContext() {
             apiHost shouldBe "tg.com"
             inputListener::class.java shouldBe Class.forName("eu.vendeli.tgbot.core.InputListenerMapImpl")
             classManager::class.java shouldBe Class.forName("eu.vendeli.tgbot.core.ClassManagerImpl")
-            rateLimiter::class.java shouldBe Class.forName("eu.vendeli.tgbot.core.TokenBucketLimiterImpl")
+            rateLimiter.mechanism::class.java shouldBe Class.forName("eu.vendeli.tgbot.core.TokenBucketLimiterImpl")
 
             httpClient.requestTimeoutMillis shouldBe 10
             httpClient.connectTimeoutMillis shouldBe 11
