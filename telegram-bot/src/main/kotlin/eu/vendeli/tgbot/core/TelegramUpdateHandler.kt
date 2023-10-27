@@ -4,7 +4,6 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.InputListener
-import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.Actions
@@ -45,7 +44,6 @@ class TelegramUpdateHandler internal constructor(
     internal val bot: TelegramBot,
     private val classManager: ClassManager,
     private val inputListener: InputListener,
-    internal val rateLimiter: RateLimitMechanism,
 ) {
     private lateinit var handlingBehaviour: HandlingBehaviourBlock
 
@@ -186,8 +184,7 @@ class TelegramUpdateHandler internal constructor(
     }
 
     @Suppress("NOTHING_TO_INLINE")
-    private inline fun String?.getActivityOrNull(user: User?, updateType: UpdateType): Activity? {
-        if (this == null) return null
+    private inline fun String.getActivityOrNull(user: User?, updateType: UpdateType): Activity? {
         var activity = findAction(substringBefore('@'), updateType = updateType)
 
         if (user != null && activity == null) {
@@ -210,12 +207,7 @@ class TelegramUpdateHandler internal constructor(
     suspend fun handle(update: Update) = update.processUpdate().run {
         logger.debug { "Handling update: $update" }
         val user = if (this is UserReference) user else null
-        val text = when (this) {
-            is MessageUpdate -> message.text
-            is CallbackQueryUpdate -> callbackQuery.data
-            else -> null
-        }
-        if (checkIsLimited(bot.config.rateLimits, user?.id)) return@run null
+        if (checkIsLimited(bot.config.rateLimiter.limits, user?.id)) return@run null
 
         val action = text.getActivityOrNull(user, type)
 

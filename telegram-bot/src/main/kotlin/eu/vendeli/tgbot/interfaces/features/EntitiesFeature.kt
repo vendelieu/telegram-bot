@@ -17,10 +17,7 @@ interface EntitiesFeature<Return> : IActionState, Feature {
     /**
      * Entities adding DSL
      */
-    fun entities(block: EntitiesBuilder.() -> Unit): Return {
-        parameters["entities"] = EntitiesBuilder().apply(block).listOfEntities
-        return thisAsReturn
-    }
+    fun entities(block: EntitiesBuilder.() -> Unit): Return = entities(EntitiesBuilder().apply(block).listOfEntities)
 
     /**
      * Add Entities directly

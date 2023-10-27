@@ -1,5 +1,13 @@
 # Telegram-bot changelog
 
+## 3.3.0
+
+* Fixed bug with missing media within input handling process.
+* Moved rate limit mechanism setting and its general limits to one configuration section `rateLimiter{}`, also now you
+  can set rate exceeded action in configuration.
+* Added new convenient shortcuts for `InputListener` and `BotContext` interfaces.
+* Little internal code optimizations + lib versions bumps.
+
 ## 3.2.0
 
 * Added the fields `fromRequest` and `fromAttachmentMenu` to the class `WriteAccessAllowed`.

@@ -1,8 +1,8 @@
 [versions]
-ktor = "2.3.3"
+ktor = "2.3.5"
 mu-logging = "3.0.5"
 logback = "1.4.11"
-jackson = "2.15.2"
+jackson = "2.15.3"
 reflections = "0.10"
 
 kotlin = "1.9.10"

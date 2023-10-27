@@ -1,11 +1,14 @@
 package eu.vendeli
 
 import BotTestContext
+import eu.vendeli.tgbot.types.User
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 
 class ContextTest : BotTestContext() {
+    private val user = User(TG_ID, false, "")
+
     @Test
     suspend fun `user data test`() {
         val empty = bot.userData.get<String>(TG_ID, "test")
@@ -33,6 +36,12 @@ class ContextTest : BotTestContext() {
         bot.userData.get<String>(TG_ID, "test01").shouldNotBeNull()
         bot.userData.delAsync(TG_ID, "test01").await()
         bot.userData.get<String>(TG_ID, "test01").shouldBeNull()
+
+        bot.userData[user, "test02"] = "value02"
+        bot.userData[user, "test02"] shouldBe "value02"
+
+        bot.userData[user] = "value03" to "test03"
+        bot.userData[user, "test03"] shouldBe "value03"
     }
 
     @Test
@@ -71,5 +80,11 @@ class ContextTest : BotTestContext() {
         bot.chatData.get<String>(TG_ID, "test3").shouldNotBeNull()
         bot.chatData.clearAllAsync(TG_ID).await()
         bot.chatData.get<String>(TG_ID, "test3").shouldBeNull()
+
+        bot.userData[user, "test02"] = "value02"
+        bot.userData[user, "test02"] shouldBe "value02"
+
+        bot.userData[user] = "value03" to "test03"
+        bot.userData[user, "test03"] shouldBe "value03"
     }
 }

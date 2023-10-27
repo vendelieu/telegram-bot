@@ -2,10 +2,8 @@ package eu.vendeli.tgbot.types.internal.configuration
 
 import eu.vendeli.tgbot.core.ClassManagerImpl
 import eu.vendeli.tgbot.core.InputListenerMapImpl
-import eu.vendeli.tgbot.core.TokenBucketLimiterImpl
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.InputListener
-import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 
 /**
  * The class containing the bot configuration.
@@ -18,10 +16,9 @@ data class BotConfiguration(
     var apiHost: String = "api.telegram.org",
     var inputListener: InputListener = InputListenerMapImpl(),
     var classManager: ClassManager = ClassManagerImpl(),
-    var rateLimiter: RateLimitMechanism = TokenBucketLimiterImpl(),
+    internal var rateLimiter: RateLimiterConfiguration = RateLimiterConfiguration(),
     internal var httpClient: HttpConfiguration = HttpConfiguration(),
     internal var logging: LoggingConfiguration = LoggingConfiguration(),
-    internal var rateLimits: RateLimits = RateLimits(),
     internal var updatesListener: UpdatesListenerConfiguration = UpdatesListenerConfiguration(),
     internal var context: ContextConfiguration = ContextConfiguration(),
     internal var commandParsing: CommandParsingConfiguration = CommandParsingConfiguration(),
@@ -42,10 +39,10 @@ data class BotConfiguration(
     }
 
     /**
-     * Function for configuring requests limiting. See [RateLimits].
+     * Function for configuring requests limiting. See [RateLimiterConfiguration].
      */
-    fun rateLimits(block: RateLimits.() -> Unit) {
-        rateLimits.block()
+    fun rateLimiter(block: RateLimiterConfiguration.() -> Unit) {
+        rateLimiter.block()
     }
 
     /**
@@ -76,7 +73,7 @@ data class BotConfiguration(
         rateLimiter = other.rateLimiter
         httpClient = other.httpClient
         logging = other.logging
-        rateLimits = other.rateLimits
+        rateLimiter = other.rateLimiter
         updatesListener = other.updatesListener
         context = other.context
         commandParsing = other.commandParsing

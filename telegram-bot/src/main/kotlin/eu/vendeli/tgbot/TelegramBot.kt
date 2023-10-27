@@ -77,7 +77,6 @@ class TelegramBot(
         bot = this,
         classManager = config.classManager,
         inputListener = config.inputListener,
-        rateLimiter = config.rateLimiter,
     )
 
     internal var httpClient = getConfiguredHttpClient()

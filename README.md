@@ -21,7 +21,7 @@ build.gradle.kts example:
 
 ```gradle
 dependencies {
-    implementation("eu.vendeli:telegram-bot:3.2.0")
+    implementation("eu.vendeli:telegram-bot:3.3.0")
 }
 ```
 
@@ -64,7 +64,7 @@ suspend fun main() {
 @CommandHandler(["/start"])
 suspend fun start(user: User, bot: TelegramBot) {
     message { "Hello, what's your name?" }.send(user, bot)
-    bot.inputListener.set(user.id, "conversation")
+    bot.inputListener.set(user) { "conversation" }
 }
 
 @RegexCommandHandler("blue colo?r")
@@ -76,7 +76,7 @@ suspend fun color(user: User, bot: TelegramBot) {
 suspend fun startConversation(user: User, bot: TelegramBot) {
     message { "Nice to meet you, ${message.text}" }.send(user, bot)
     message { "What is your favorite food?" }.send(user, bot)
-    bot.inputListener.set(user.id, "conversation-2step")
+    bot.inputListener[user] = "conversation-2step" // another way to set input
 }
 //..
 ```
@@ -123,9 +123,8 @@ Library as well supports limiting requests from users:
 ```kotlin
 // ...
 val bot = TelegramBot("BOT_TOKEN") {
-    rateLimits { // general limits
-        period = ...
-        rate = ...
+    rateLimiter { // general limits
+        limits = RateLimits(period = 10000, rate = 5)
     }
 }
 

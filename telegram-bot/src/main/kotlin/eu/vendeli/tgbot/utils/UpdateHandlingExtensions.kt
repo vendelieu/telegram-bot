@@ -36,16 +36,16 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
     val parsedText = text?.let { bot.update.parseCommand(it) }
     logger.debug { "Parsed text - $text to $parsedText" }
 
-    // if there's no action then break
-    if (parsedText == null || from == null) return false
+    // if there's no user then break
+    if (from == null) return false
 
     // find action which match command and invoke it
-    manualActions.commands[parsedText.command]?.run {
+    manualActions.commands[parsedText?.command]?.run {
         if (scope !in this.scope) return@run
         logger.debug { "Matched command $this for text $text" }
         inputListener.del(from.id) // clean input listener
         // check for limit exceed
-        if (bot.update.checkIsLimited(rateLimits, update.message?.from?.id, parsedText.command)) return false
+        if (bot.update.checkIsLimited(rateLimits, update.message?.from?.id, parsedText!!.command)) return false
         logger.info { "Invoking command $id" }
         invocation.invoke(CommandContext(update, parsedText.params, from))
         return true
@@ -88,13 +88,13 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
     }
 
     manualActions.regexCommands.entries.firstOrNull {
-        it.key.matchEntire(parsedText.command) != null
+        it.key.matchEntire(parsedText?.command ?: return false) != null
     }?.value?.run {
         if (scope !in this.scope) return false
         logger.debug { "Matched regex command $this for text $text" }
         inputListener.del(from.id) // clean input listener
         // check for limit exceed
-        if (bot.update.checkIsLimited(rateLimits, update.message?.from?.id, parsedText.command)) return false
+        if (bot.update.checkIsLimited(rateLimits, update.message?.from?.id, parsedText!!.command)) return false
         logger.info { "Invoking command $id" }
         invocation.invoke(CommandContext(update, parsedText.params, from))
         return true
@@ -131,7 +131,7 @@ private inline fun Boolean?.ifAffected(block: () -> Unit) {
 @Suppress("CyclomaticComplexMethod", "LongMethod")
 internal suspend fun ManualHandlingDsl.process(update: Update) = with(update) {
     logger.info { "Handling update #${update.updateId}" }
-    if (bot.update.checkIsLimited(bot.config.rateLimits, update.message?.from?.id)) return@with
+    if (bot.update.checkIsLimited(bot.config.rateLimiter.limits, update.message?.from?.id)) return@with
     var affectedActions = 0
 
     when {
