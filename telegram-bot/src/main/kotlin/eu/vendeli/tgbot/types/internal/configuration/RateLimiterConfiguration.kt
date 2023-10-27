@@ -13,4 +13,3 @@ data class RateLimiterConfiguration(
             .send(telegramId, bot)
     }
 }
-

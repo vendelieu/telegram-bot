@@ -26,6 +26,14 @@ interface InputListener {
     fun set(user: User, identifier: () -> String): Unit = set(user.id, identifier())
 
     /**
+     * Set operator shortcut function for setting value.
+     *
+     * @param user
+     * @param identifier
+     */
+    operator fun set(user: User, identifier: String): Unit = set(user.id, identifier)
+
+    /**
      * Asynchronously set new waiting point
      *
      * @param telegramId

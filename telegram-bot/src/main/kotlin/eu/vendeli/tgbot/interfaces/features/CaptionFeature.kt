@@ -37,6 +37,6 @@ interface CaptionFeature<Return : EntitiesContextBuilder> : IActionState, Featur
     /**
      * Caption entities DSL with [EntitiesBuilder]
      */
-    fun captionEntities(block: EntitiesBuilder.() -> Unit): Return=
+    fun captionEntities(block: EntitiesBuilder.() -> Unit): Return =
         captionEntities(EntitiesBuilder().apply(block).listOfEntities)
 }

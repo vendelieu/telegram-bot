@@ -107,7 +107,6 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             "p5" to "",
         )
 
-
         val commandParseForLastFullPair = bot.update.parseCommand("last_pair_command?v1&p2=v2")
         commandParseForLastFullPair.command shouldBe "last_pair_command"
         commandParseForLastFullPair.params shouldContainExactly (mapOf("param_1" to "v1", "p2" to "v2"))
