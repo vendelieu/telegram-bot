@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.interfaces
 
+import eu.vendeli.tgbot.types.User
 import kotlinx.coroutines.Deferred
 
 /**
@@ -17,6 +18,14 @@ interface InputListener {
     fun set(telegramId: Long, identifier: String)
 
     /**
+     * Shortcut function for [set] method.
+     *
+     * @param user
+     * @param identifier
+     */
+    fun set(user: User, identifier: () -> String): Unit = set(user.id, identifier())
+
+    /**
      * Asynchronously set new waiting point
      *
      * @param telegramId
@@ -25,11 +34,29 @@ interface InputListener {
     suspend fun setAsync(telegramId: Long, identifier: String): Deferred<Boolean>
 
     /**
+     * Shortcut function for [setAsync] method.
+     *
+     * @param user
+     * @param identifier
+     * @return [Deferred]<[Boolean]>
+     */
+    suspend fun setAsync(user: User, identifier: () -> String): Deferred<Boolean> =
+        setAsync(user.id, identifier())
+
+    /**
      * Get current waiting input of user.
      *
      * @param telegramId
      */
     fun get(telegramId: Long): String?
+
+    /**
+     * Get operator shortcut function for getting value.
+     *
+     * @see get
+     * @param user
+     */
+    operator fun get(user: User): String? = get(user.id)
 
     /**
      * Asynchronously get current waiting input of user.
