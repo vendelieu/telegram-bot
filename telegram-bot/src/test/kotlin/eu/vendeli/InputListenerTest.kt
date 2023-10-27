@@ -20,6 +20,9 @@ class InputListenerTest : BotTestContext() {
         val user = User(1, false, "Test")
         mapImpl.set(user) { "test2" }
         mapImpl[user] shouldBe "test2"
+
+        mapImpl[user] = "test3"
+        mapImpl[user] shouldBe "test3"
     }
 
     @Test
