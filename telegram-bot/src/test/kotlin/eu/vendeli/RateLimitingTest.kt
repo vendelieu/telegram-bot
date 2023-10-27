@@ -3,10 +3,13 @@ package eu.vendeli
 import BotTestContext
 import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.shouldBe
 import java.util.concurrent.atomic.AtomicInteger
 
 class RateLimitingTest : BotTestContext(mockHttp = true) {
+    override fun isolationMode(): IsolationMode = IsolationMode.InstancePerTest
+
     @BeforeEach
     fun prepareBot() = bot.config.run {
         rateLimiter {
