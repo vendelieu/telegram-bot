@@ -90,7 +90,7 @@ fun main() = runBlocking {
     bot.handleUpdates { update ->
         onCommand("/start") {
             message { "Hello, what's your name?" }.send(user, bot)
-            bot.inputListener.set(user.id, "conversation")
+            bot.inputListener[user] = "conversation"
         }
         inputChain("conversation") {
             message { "Nice to meet you, ${message.text}" }.send(user, bot)
