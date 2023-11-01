@@ -10,14 +10,13 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.HttpSendPipeline
 import io.ktor.http.isSuccess
 
-internal fun TelegramBot.getConfiguredHttpClient() = HttpClient(CIO) {
+internal fun TelegramBot.getConfiguredHttpClient() = HttpClient {
     install("RequestLogging") {
         sendPipeline.intercept(HttpSendPipeline.Monitoring) {
             logger.trace { "TgApiRequest: ${context.method} ${context.url.buildString()}" }
@@ -43,6 +42,10 @@ internal fun TelegramBot.getConfiguredHttpClient() = HttpClient(CIO) {
         delayMillis { retry ->
             retry * config.httpClient.retryDelay
         }
+    }
+
+    engine {
+        proxy = config.httpClient.proxy
     }
 }
 

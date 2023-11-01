@@ -1,5 +1,8 @@
 # Telegram-bot changelog
 
+### 3.3.1
+* Added ability to use proxy. See `httpClient{}` section in bot configuration.
+
 ## 3.3.0
 
 * Fixed bug with missing media within input handling process.

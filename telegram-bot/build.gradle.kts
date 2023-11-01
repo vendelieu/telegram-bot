@@ -41,7 +41,7 @@ dependencies {
 }
 
 group = "eu.vendeli"
-version = "3.3.0"
+version = "3.3.1"
 
 apply(from = "publishing.gradle.kts")
 
