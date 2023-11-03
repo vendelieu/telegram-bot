@@ -17,26 +17,20 @@ import eu.vendeli.tgbot.types.media.StickerFormat
 sealed class StickerFile(
     val data: ImplicitFile<*>,
     val stickerFormat: StickerFormat,
-    internal val contentType: MediaContentType,
 ) {
-    class PNG(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Static, MediaContentType.ImagePng)
+    class PNG(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Static)
 
-    class TGS(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Animated, MediaContentType.ImageTgs)
+    class TGS(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Animated)
 
-    class WEBM(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Video, MediaContentType.VideoWebm)
+    class WEBM(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Video)
 
-    class WEBP(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Static, MediaContentType.ImageWebp)
+    class WEBP(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Static)
 
     data class FileId(@JsonValue val fileId: String) :
-        StickerFile(Str(""), StickerFormat.Static, MediaContentType.ImageWebp)
+        StickerFile(Str(""), StickerFormat.Static)
 
     internal class AttachedFile(
         file: Str,
         format: StickerFormat,
-        contentType: MediaContentType,
-    ) : StickerFile(file, format, contentType)
+    ) : StickerFile(file, format)
 }
-
-@Suppress("NOTHING_TO_INLINE")
-internal inline fun StickerFile.toAttached(name: String) =
-    StickerFile.AttachedFile(Str("attach://$name"), stickerFormat, contentType)
