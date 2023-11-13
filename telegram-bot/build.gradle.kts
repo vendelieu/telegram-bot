@@ -41,7 +41,7 @@ dependencies {
 }
 
 group = "eu.vendeli"
-version = "3.3.1"
+version = providers.gradleProperty("pluginVersion").getOrElse("dev")
 
 apply(from = "publishing.gradle.kts")
 
