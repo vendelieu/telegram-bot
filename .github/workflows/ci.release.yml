@@ -44,6 +44,7 @@ jobs:
 
   publish:
     needs: readme
+    name: Publish artifact to Maven
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -67,6 +68,7 @@ jobs:
   
   docs:
     needs: publish
+    name: Generate KDocs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -86,6 +88,7 @@ jobs:
           FOLDER: telegram-bot/build/dokka
   
   create-release:
+    name: Create Github Release
     needs: docs
     runs-on: ubuntu-latest
     steps:
