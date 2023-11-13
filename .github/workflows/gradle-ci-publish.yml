@@ -6,6 +6,39 @@ on:
       - "*.*.*"
 
 jobs:
+  version:
+    name: Get version number from tag
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.vars.outputs.version }}
+    steps:
+      - name: Read version
+        id: vars
+        # extract tag name without v prefix
+        run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        shell: bash
+
+  readme:
+    needs: version
+    name: Replace version in README.md
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "telegram-bot:[0-9]+.[0-9]+.[0-9]+"
+          replace: "telegram-bot:${{ needs.version.outputs.version }}"
+          include: "**README.md"
+      - name: Push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Bump library version.
+          branch: master
+
   publish:
     runs-on: ubuntu-latest
     steps:
@@ -26,4 +59,4 @@ jobs:
         uses: eskatos/gradle-command-action@v2
         with:
           gradle-version: current
-          arguments: publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
+          arguments: publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PpluginVersion=${{ needs.version.outputs.version }}
