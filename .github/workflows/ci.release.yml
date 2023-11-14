@@ -78,7 +78,7 @@ jobs:
           distribution: 'zulu'
           java-version: 11
       - name: Build documentation
-        run: ./gradlew clean dokkaHtml -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
+        run: ./gradlew clean dokkaHtml -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PpluginVersion=${{ needs.version.outputs.version }}
       - name: Publish documentation
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
