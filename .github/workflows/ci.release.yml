@@ -41,7 +41,7 @@ jobs:
           branch: master
 
   publish:
-    needs: readme
+    needs: [ readme, version ]
     name: Publish artifact to Maven
     runs-on: ubuntu-latest
     steps:
@@ -65,7 +65,7 @@ jobs:
           arguments: publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PpluginVersion=${{ needs.version.outputs.version }}
   
   docs:
-    needs: publish
+    needs: [ publish, version ]
     name: Generate KDocs
     runs-on: ubuntu-latest
     steps:
