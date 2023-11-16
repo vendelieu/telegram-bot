@@ -43,7 +43,7 @@ jobs:
           branch: master
 
   publish:
-    needs: readme
+    needs: [ readme, version ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -66,7 +66,7 @@ jobs:
           arguments: publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PpluginVersion=${{ needs.version.outputs.version }}
   
   docs:
-    needs: publish
+    needs: [ publish, version ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -78,7 +78,7 @@ jobs:
           distribution: 'zulu'
           java-version: 11
       - name: Build documentation
-        run: ./gradlew clean dokkaHtml -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
+        run: ./gradlew clean dokkaHtml -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PpluginVersion=${{ needs.version.outputs.version }}
       - name: Publish documentation
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
