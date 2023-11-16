@@ -23,7 +23,7 @@ jobs:
           --output /home/runner/work/telegram-bot/telegram-bot/telegram-bot/secret.gpg publish_key.gpg
 
       - name: Publish with Gradle
-        uses: eskatos/gradle-command-action@v1
+        uses: eskatos/gradle-command-action@v2
         with:
           gradle-version: current
           arguments: publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
