@@ -11,7 +11,7 @@ dokka = "1.9.10"
 kotlinter = "3.13.0"
 deteKT = "1.23.0"
 
-kotest = "5.6.2"
+kotest = "5.8.0"
 junit = "5.9.3"
 kover = "0.7.3"
 
