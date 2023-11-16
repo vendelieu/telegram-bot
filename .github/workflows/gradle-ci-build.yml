@@ -19,7 +19,7 @@ jobs:
           java-version: 11
 
       - name: Build with Gradle
-        uses: eskatos/gradle-command-action@v1
+        uses: eskatos/gradle-command-action@v2
         env:
           TELEGRAM_ID: ${{ secrets.TELEGRAM_ID }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
