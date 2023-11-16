@@ -3,7 +3,7 @@ ktor = "2.3.5"
 mu-logging = "3.0.5"
 logback = "1.4.11"
 jackson = "2.15.3"
-reflections = "0.10"
+reflections = "0.10.2"
 
 kotlin = "1.9.20"
 coroutines = "1.7.3"
