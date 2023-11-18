@@ -23,7 +23,7 @@ jobs:
 
       - name: Update Dev Branch
         run: |
-          git checkout main
+          git checkout master
           git fetch origin
           git checkout dev
           git pull
