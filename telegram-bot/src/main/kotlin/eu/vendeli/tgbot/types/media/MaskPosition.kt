@@ -10,7 +10,11 @@ data class MaskPosition(
 )
 
 enum class MaskPoint(private val literal: String) {
-    Forehead("forehead"), Eyes("eyes"), Mouth("mouth"), Chin("chin");
+    Forehead("forehead"),
+    Eyes("eyes"),
+    Mouth("mouth"),
+    Chin("chin"),
+    ;
 
     override fun toString(): String = literal
 }

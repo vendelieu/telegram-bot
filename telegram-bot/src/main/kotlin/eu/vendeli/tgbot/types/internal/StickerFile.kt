@@ -26,7 +26,9 @@ sealed class StickerFile(
 
     class WEBP(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Static)
 
-    data class FileId(@JsonValue val fileId: String) :
+    data class FileId(
+        @JsonValue val fileId: String,
+    ) :
         StickerFile(Str(""), StickerFormat.Static)
 
     internal class AttachedFile(

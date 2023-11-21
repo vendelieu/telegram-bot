@@ -33,11 +33,11 @@ class CopyMessageAction(
     messageId: Long,
 ) :
     Action<MessageId>,
-    ActionState(),
-    OptionsFeature<CopyMessageAction, CopyMessageOptions>,
-    MarkupFeature<CopyMessageAction>,
-    EntitiesContextBuilder,
-    CaptionFeature<CopyMessageAction> {
+        ActionState(),
+        OptionsFeature<CopyMessageAction, CopyMessageOptions>,
+        MarkupFeature<CopyMessageAction>,
+        EntitiesContextBuilder,
+        CaptionFeature<CopyMessageAction> {
     override val TgAction<MessageId>.method: TgMethod
         get() = TgMethod("copyMessage")
     override val TgAction<MessageId>.returnType: Class<MessageId>

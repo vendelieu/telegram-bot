@@ -30,7 +30,7 @@ interface EntitiesContextBuilder : IActionState {
     private inline fun addEntity(entity: MessageEntity) {
         parameters[entitiesField] = (
             (parameters[entitiesField] ?: mutableListOf<MessageEntity>()) as MutableList<MessageEntity>
-            ).also { it.add(entity) }
+        ).also { it.add(entity) }
     }
 
     operator fun String.minus(other: String): String = this + other

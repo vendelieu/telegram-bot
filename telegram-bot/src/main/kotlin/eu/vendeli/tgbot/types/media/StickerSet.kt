@@ -6,7 +6,10 @@ package eu.vendeli.tgbot.types.media
  * @property literal
  */
 enum class StickerType(private val literal: String) {
-    Regular("regular"), Mask("mask"), CustomEmoji("custom_emoji");
+    Regular("regular"),
+    Mask("mask"),
+    CustomEmoji("custom_emoji"),
+    ;
 
     override fun toString(): String = literal
 }

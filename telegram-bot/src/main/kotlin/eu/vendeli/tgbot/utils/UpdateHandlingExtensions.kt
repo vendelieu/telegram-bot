@@ -16,7 +16,9 @@ private inline val SingleInputChain.prevChainId: String?
         id.replace("_chain_lvl_$currentLevel", "")
     } else if (currentLevel > 1) {
         id.replace("_chain_lvl_$currentLevel", "_chain_lvl_${currentLevel - 1}")
-    } else null
+    } else {
+        null
+    }
 
 /**
  * Method that tries to find action in given text and invoke action matches it

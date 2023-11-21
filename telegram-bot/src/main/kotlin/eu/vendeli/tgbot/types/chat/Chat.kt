@@ -3,7 +3,10 @@ package eu.vendeli.tgbot.types.chat
 import eu.vendeli.tgbot.types.Message
 
 enum class ChatType(private val literal: String) {
-    Private("private"), Group("group"), Supergroup("supergroup"), Channel("channel"),
+    Private("private"),
+    Group("group"),
+    Supergroup("supergroup"),
+    Channel("channel"),
     Sender("sender"),
     ;
 

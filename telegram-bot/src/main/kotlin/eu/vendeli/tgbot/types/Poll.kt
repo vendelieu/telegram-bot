@@ -1,7 +1,9 @@
 package eu.vendeli.tgbot.types
 
 enum class PollType(private val literal: String) {
-    Regular("regular"), Quiz("quiz");
+    Regular("regular"),
+    Quiz("quiz"),
+    ;
 
     override fun toString(): String = literal
 }

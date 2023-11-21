@@ -26,26 +26,26 @@ class EditMessageTextAction private constructor() :
     OptionsFeature<EditMessageTextAction, EditMessageOptions>,
     MarkupFeature<EditMessageTextAction>,
     EntitiesFeature<EditMessageTextAction> {
-    override val TgAction<Message>.method: TgMethod
-        get() = TgMethod("editMessageText")
-    override val TgAction<Message>.returnType: Class<Message>
-        get() = getReturnType()
-    override val OptionsFeature<EditMessageTextAction, EditMessageOptions>.options: EditMessageOptions
-        get() = EditMessageOptions()
+        override val TgAction<Message>.method: TgMethod
+            get() = TgMethod("editMessageText")
+        override val TgAction<Message>.returnType: Class<Message>
+            get() = getReturnType()
+        override val OptionsFeature<EditMessageTextAction, EditMessageOptions>.options: EditMessageOptions
+            get() = EditMessageOptions()
 
-    constructor(messageId: Long, text: String) : this() {
-        parameters["message_id"] = messageId
-        parameters["text"] = text
-    }
+        constructor(messageId: Long, text: String) : this() {
+            parameters["message_id"] = messageId
+            parameters["text"] = text
+        }
 
-    constructor(text: String) : this() {
-        parameters["text"] = text
-    }
+        constructor(text: String) : this() {
+            parameters["text"] = text
+        }
 
-    internal constructor(block: EntitiesContextBuilder.() -> String) : this() {
-        parameters["text"] = block(this)
+        internal constructor(block: EntitiesContextBuilder.() -> String) : this() {
+            parameters["text"] = block(this)
+        }
     }
-}
 
 class EditMessageCaptionAction() :
     Action<Message>,

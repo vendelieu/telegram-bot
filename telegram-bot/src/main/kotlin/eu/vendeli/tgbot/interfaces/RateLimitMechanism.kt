@@ -6,7 +6,6 @@ import eu.vendeli.tgbot.types.internal.configuration.RateLimits
  * Interface to implement features for request limits.
  */
 fun interface RateLimitMechanism {
-
     /**
      * The function which will be called to check if the request limit is exceeded.
      *

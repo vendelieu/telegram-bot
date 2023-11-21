@@ -11,7 +11,6 @@ import io.kotest.matchers.string.shouldContain
 import kotlin.time.Duration.Companion.minutes
 
 class CreateInvoiceLinkTest : BotTestContext() {
-
     @Test
     suspend fun `create invoice link method testing`() = retry(2, 1.minutes) {
         prepareTestBot()

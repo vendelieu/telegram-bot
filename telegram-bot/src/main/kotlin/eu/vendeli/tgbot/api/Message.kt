@@ -21,21 +21,21 @@ class SendMessageAction private constructor() :
     MarkupFeature<SendMessageAction>,
     EntitiesFeature<SendMessageAction>,
     EntitiesContextBuilder {
-    override val TgAction<Message>.method: TgMethod
-        get() = TgMethod("sendMessage")
-    override val TgAction<Message>.returnType: Class<Message>
-        get() = getReturnType()
-    override val OptionsFeature<SendMessageAction, MessageOptions>.options: MessageOptions
-        get() = MessageOptions()
+        override val TgAction<Message>.method: TgMethod
+            get() = TgMethod("sendMessage")
+        override val TgAction<Message>.returnType: Class<Message>
+            get() = getReturnType()
+        override val OptionsFeature<SendMessageAction, MessageOptions>.options: MessageOptions
+            get() = MessageOptions()
 
-    constructor(data: String) : this() {
-        parameters["text"] = data
-    }
+        constructor(data: String) : this() {
+            parameters["text"] = data
+        }
 
-    internal constructor(block: EntitiesContextBuilder.() -> String) : this() {
-        parameters["text"] = block.invoke(this)
+        internal constructor(block: EntitiesContextBuilder.() -> String) : this() {
+            parameters["text"] = block.invoke(this)
+        }
     }
-}
 
 fun message(text: String) = SendMessageAction(text)
 fun message(block: EntitiesContextBuilder.() -> String) = SendMessageAction(block)

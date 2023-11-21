@@ -24,7 +24,7 @@ class CreateNewStickerSetAction(
         get() = getReturnType()
     override val OptionsFeature<CreateNewStickerSetAction, CreateNewStickerSetOptions>.options:
         CreateNewStickerSetOptions
-            get() = CreateNewStickerSetOptions()
+        get() = CreateNewStickerSetOptions()
     override val MediaAction<Boolean>.idRefField: String
         get() = "user_id"
 

@@ -58,7 +58,9 @@ internal fun TelegramUpdateHandler.parseCommand(
             ParserState.READING_COMMAND -> {
                 if (i == commandDelimiter || (restrictSpacesInCommands && i == ' ')) {
                     state = ParserState.READING_PARAM_NAME
-                } else command += i
+                } else {
+                    command += i
+                }
             }
 
             ParserState.READING_PARAM_NAME -> {
@@ -82,7 +84,9 @@ internal fun TelegramUpdateHandler.parseCommand(
                     paramNameBuffer = ""
                     paramValBuffer = ""
                     state = ParserState.READING_PARAM_NAME
-                } else paramValBuffer += i
+                } else {
+                    paramValBuffer += i
+                }
             }
         }
     }
@@ -148,7 +152,9 @@ internal fun TelegramUpdateHandler.findAction(
     updateType: UpdateType,
 ): Activity? {
     val message = parseCommand(text)
-    val invocation = if (command) actions?.commands else {
+    val invocation = if (command) {
+        actions?.commands
+    } else {
         actions?.inputs
     }?.get(message.command)
 

@@ -9,7 +9,6 @@ import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.internal.UpdateType
 
 class TgAnnotationsModel {
-
     @CommandHandler(["test"])
     fun test() {
         throw IllegalArgumentException("test2")

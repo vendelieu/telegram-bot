@@ -23,7 +23,6 @@ data class BotConfiguration(
     internal var context: ContextConfiguration = ContextConfiguration(),
     internal var commandParsing: CommandParsingConfiguration = CommandParsingConfiguration(),
 ) {
-
     /**
      * Function for configuring the http client. See [HttpConfiguration].
      */

@@ -11,7 +11,6 @@ import eu.vendeli.tgbot.types.internal.CommandScope
 import eu.vendeli.tgbot.types.internal.UpdateType
 
 class TgAnnotationsModel {
-
     @CommandHandler(["test"], scope = [CommandScope.CALLBACK])
     fun test() {
     }

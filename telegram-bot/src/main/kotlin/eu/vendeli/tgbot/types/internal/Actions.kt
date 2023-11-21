@@ -9,8 +9,10 @@ internal data class Actions(
 )
 
 internal enum class ActionType(private val literal: String) {
-    COMMAND("Command"), REGEX_COMMAND("Regex command"),
-    INPUT("Input"), TYPE_HANDLER("Type handler"),
+    COMMAND("Command"),
+    REGEX_COMMAND("Regex command"),
+    INPUT("Input"),
+    TYPE_HANDLER("Type handler"),
     UNPROCESSED_HANDLER("Unprocessed handler"),
     ;
 
