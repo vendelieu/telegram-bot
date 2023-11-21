@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:class-naming")
+
 package eu.vendeli.utils
 
 sealed class LOREM(val data: String) {

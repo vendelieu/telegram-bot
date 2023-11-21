@@ -2,7 +2,8 @@ package eu.vendeli.tgbot.annotations.internal
 
 @RequiresOptIn(
     level = RequiresOptIn.Level.ERROR,
-    message = "Experimental feature, signature or behavior that may be changed or even removed in the future, use at your own risk.",
+    message = "Experimental feature, signature or behavior that may be changed or even removed in the future, " +
+        "use at your own risk.",
 )
 @MustBeDocumented
 @Retention(AnnotationRetention.BINARY)

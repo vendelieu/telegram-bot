@@ -33,7 +33,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 
 class StickerBaseTest : BotTestContext() {
-    @Suppress("VariableNaming", "PrivatePropertyName")
+    @Suppress("VariableNaming", "PrivatePropertyName", "ktlint:standard:property-naming")
     private val TEMP_STICKER_FILE_ID = "CAACAgIAAxkBAAEKHjlk6Gex1hZNv_s6-by8ho52CXC9oAACbwEAAhZ8aAOK9nH8d3JcRjAE"
 
     @Test
