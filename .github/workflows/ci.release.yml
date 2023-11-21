@@ -6,7 +6,7 @@ permissions:
 on:
   push:
     tags:
-      - "*.*.*"
+      - "[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
   version:
@@ -63,7 +63,7 @@ jobs:
         uses: eskatos/gradle-command-action@v2
         with:
           gradle-version: current
-          arguments: publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PpluginVersion=${{ needs.version.outputs.version }}
+          arguments: publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }}
   
   docs:
     needs: [ publish, version ]
@@ -78,7 +78,7 @@ jobs:
           distribution: 'zulu'
           java-version: 11
       - name: Build documentation
-        run: ./gradlew clean dokkaHtml -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PpluginVersion=${{ needs.version.outputs.version }}
+        run: ./gradlew clean dokkaHtml -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }}
       - name: Publish documentation
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
