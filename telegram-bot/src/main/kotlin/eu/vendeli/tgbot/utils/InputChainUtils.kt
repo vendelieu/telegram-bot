@@ -14,7 +14,7 @@ import kotlin.reflect.full.isSubclassOf
 import kotlin.reflect.jvm.javaMethod
 
 @ExperimentalFeature
-fun <T : InputChain> TelegramBot.registerChain(chain: KClass<T>) {
+fun <T : InputChain> TelegramBot.registerInputChain(chain: KClass<T>) {
     val input = (update.actions?.inputs as MutableMap?) ?: return
     logger.trace { "Registering $chain as input chain." }
     chain.takeIf {
