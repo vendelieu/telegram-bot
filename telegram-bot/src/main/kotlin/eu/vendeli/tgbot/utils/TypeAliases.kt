@@ -46,4 +46,3 @@ typealias HandlingBehaviourBlock = suspend TelegramUpdateHandler.(Update) -> Uni
 typealias ManualHandlingBlock = suspend ManualHandlingDsl.() -> Unit
 typealias BotConfigurator = BotConfiguration.() -> Unit
 
-typealias BreakCondition = Pair<Boolean, suspend () -> Unit>

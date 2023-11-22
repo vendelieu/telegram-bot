@@ -4,29 +4,36 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import eu.vendeli.tgbot.utils.BreakCondition
 import eu.vendeli.tgbot.utils.DEFAULT_COMMAND_SCOPE
 
 fun interface Action {
     suspend fun invoke(user: User, update: ProcessedUpdate, bot: TelegramBot)
 }
 
-abstract class ChainLink(private val action: Action, internal val nextLink: ChainLink? = null) {
+fun interface BreakCondition {
+    suspend fun invoke(user: User, update: ProcessedUpdate, bot: TelegramBot): Boolean
+}
+
+abstract class ChainLink(
+    private val action: Action,
+    internal val nextLink: ChainLink? = null,
+    protected open val breakCondition: BreakCondition? = null,
+    protected open val breakingAction: Action? = null,
+) {
     open val scope: Set<CommandScope> = DEFAULT_COMMAND_SCOPE
     open val rateLimits: RateLimits = RateLimits.NOT_LIMITED
-    open val retryAfterBreak: Boolean = false
+    open val retryAfterBreak: Boolean = true
 
     @Suppress("unused")
     protected val inputPoint: String by lazy { this::class.objectInstance!!::class.java.canonicalName }
 
-    open fun breakCondition(user: User, update: ProcessedUpdate, bot: TelegramBot): BreakCondition? = null
     internal suspend fun invoke(user: User, update: ProcessedUpdate, bot: TelegramBot) {
-        val breakPoint = breakCondition(user, update, bot)
-        if (breakPoint?.first == true && retryAfterBreak) {
+        val breakPoint = breakCondition?.invoke(user, update, bot) ?: false
+        if (breakPoint && retryAfterBreak) {
             bot.inputListener[user] = this::class.objectInstance!!::class.java.canonicalName
         }
-        if (breakPoint?.first == true) {
-            breakPoint.second.invoke()
+        if (breakPoint) {
+            breakingAction?.invoke(user, update, bot)
             return
         }
 
