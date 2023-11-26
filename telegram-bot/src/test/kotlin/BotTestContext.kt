@@ -1,6 +1,7 @@
 import ch.qos.logback.classic.Level.TRACE
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.getOrNull
@@ -57,6 +58,7 @@ abstract class BotTestContext(
     protected val CUR_INSTANT: Instant get() = Instant.now()
     protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()
     protected val RAND_INT: Int get() = RANDOM_INST.nextInt()
+    protected val DUMB_USER = User(1, false, "Test")
 
     @BeforeAll
     fun prepareTestBot() {

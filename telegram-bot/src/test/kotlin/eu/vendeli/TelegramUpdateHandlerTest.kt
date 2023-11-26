@@ -177,7 +177,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
                         1,
                         Message(
                             2,
-                            from = User(1, false, "test"),
+                            from = DUMB_USER,
                             date = 1,
                             chat = Chat(1, ChatType.Private),
                             document = Document("3", "33"),
