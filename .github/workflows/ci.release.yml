@@ -37,7 +37,7 @@ jobs:
           replace: "telegram-bot:${{ needs.version.outputs.version }}"
           include: "**README.md"
       - name: Push changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Bump library version.
           branch: master
