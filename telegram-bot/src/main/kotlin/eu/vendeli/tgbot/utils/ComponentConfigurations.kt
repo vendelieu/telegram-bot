@@ -12,8 +12,10 @@ import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.HttpSendPipeline
+import io.ktor.client.request.header
 import io.ktor.http.isSuccess
 
 internal fun TelegramBot.getConfiguredHttpClient() = HttpClient {
@@ -46,6 +48,12 @@ internal fun TelegramBot.getConfiguredHttpClient() = HttpClient {
 
     engine {
         proxy = config.httpClient.proxy
+    }
+
+    defaultRequest {
+        config.httpClient.additionalHeaders?.forEach { (header, value) ->
+            header(header, value)
+        }
     }
 }
 

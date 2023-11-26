@@ -49,7 +49,9 @@ configure<PublishingExtension> {
             }
         }
         configure<SigningExtension> {
-            sign((extensions["publishing"] as PublishingExtension).publications["maven"])
+            if(sonatypeUsername.isNotEmpty() && sonatypePassword.isNotEmpty()) {
+                sign((extensions["publishing"] as PublishingExtension).publications["maven"])
+            }
         }
     }
 }

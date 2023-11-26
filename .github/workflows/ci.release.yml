@@ -1,0 +1,98 @@
+name: Release
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
+
+jobs:
+  version:
+    name: Get version number from tag
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.vars.outputs.version }}
+    steps:
+      - name: Read version
+        id: vars
+        # extract tag name without v prefix
+        run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        shell: bash
+
+  readme:
+    needs: version
+    name: Replace version in README.md
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "telegram-bot:[0-9]+.[0-9]+.[0-9]+"
+          replace: "telegram-bot:${{ needs.version.outputs.version }}"
+          include: "**README.md"
+      - name: Push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Bump library version.
+          branch: master
+
+  publish:
+    needs: [ readme, version ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 11
+
+      - name: Prepare to publish
+        run: |
+          echo '${{secrets.GPG_KEY_CONTENTS}}' | base64 -d > publish_key.gpg
+          gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.SECRET_PASSPHRASE}}" \
+          --output /home/runner/work/telegram-bot/telegram-bot/telegram-bot/secret.gpg publish_key.gpg
+
+      - name: Publish with Gradle
+        uses: eskatos/gradle-command-action@v2
+        with:
+          gradle-version: current
+          arguments: publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }}
+  
+  docs:
+    needs: [ publish, version ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 11
+      - name: Build documentation
+        run: ./gradlew clean dokkaHtml -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }}
+      - name: Publish documentation
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          BRANCH: gh-pages
+          FOLDER: telegram-bot/build/dokka
+  
+  create-release:
+    needs: docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: taiki-e/create-gh-release-action@v1
+        with:
+          title: $version
+          changelog: CHANGELOG.md
+          branch: master
+          token: ${{ secrets.ACCESS_TOKEN }}

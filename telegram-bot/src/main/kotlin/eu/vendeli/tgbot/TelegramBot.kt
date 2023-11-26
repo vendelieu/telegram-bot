@@ -37,7 +37,6 @@ class TelegramBot(
     commandsPackage: String? = null,
     botConfiguration: BotConfigurator = {},
 ) {
-
     /**
      * Constructor to build through configuration loader.
      */

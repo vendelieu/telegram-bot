@@ -35,7 +35,7 @@ class ChatSetMethodsTest : BotTestContext() {
 
     @Test
     suspend fun `set chat description method test`() {
-        val result = setChatDescription("Test").sendReturning(CHAT_ID, bot).shouldSuccess()
+        val result = setChatDescription("Test $RAND_INT").sendReturning(CHAT_ID, bot).shouldSuccess()
         result.shouldBeTrue()
         setChatDescription().sendReturning(CHAT_ID, bot).shouldSuccess()
     }

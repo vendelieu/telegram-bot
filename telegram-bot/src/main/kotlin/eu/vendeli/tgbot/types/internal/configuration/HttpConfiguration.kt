@@ -16,6 +16,7 @@ import java.net.Proxy
  * @property retryDelay Multiplier for timeout at each retry, in milliseconds
  * i.e. for the base value [maxRequestRetry] the attempts will be in 3, 6, 9 seconds
  * @property proxy Specifies proxy that will be used for http calls.
+ * @property additionalHeaders Headers that will be applied to every request.
  */
 data class HttpConfiguration(
     var requestTimeoutMillis: Long? = null,
@@ -24,4 +25,5 @@ data class HttpConfiguration(
     var maxRequestRetry: Int = 3,
     var retryDelay: Long = 3000L,
     var proxy: Proxy? = null,
+    var additionalHeaders: Map<String, Any?>? = null,
 )

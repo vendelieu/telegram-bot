@@ -122,27 +122,39 @@ internal object TelegramActionsCollector {
         logger.info { "Found total $totalActions actions.\n" }
         logger.debug {
             buildString {
+                appendLine("Commands:")
                 append(
-                    commands.entries.joinToString("\n", "Commands:\n", "\n") {
-                        "${it.key} -> ${it.value.method.kotlinFunction}"
-                    },
+                    commands.entries.takeIf { it.isNotEmpty() }?.let { entry ->
+                        entry.joinToString("\n", postfix = "\n") {
+                            "${it.key} -> ${it.value.method.kotlinFunction}"
+                        }
+                    } ?: "None\n",
                 )
+                appendLine("Regex Commands:")
                 append(
-                    regexCommands.entries.joinToString("\n", "Regex Commands:\n", "\n") {
-                        "${it.key} -> ${it.value.method.kotlinFunction}"
-                    },
+                    regexCommands.entries.takeIf { it.isNotEmpty() }?.let { entry ->
+                        entry.joinToString("\n", postfix = "\n") {
+                            "${it.key} -> ${it.value.method.kotlinFunction}"
+                        }
+                    } ?: "None\n",
                 )
+                appendLine("Inputs:")
                 append(
-                    inputs.entries.joinToString("\n", "Inputs:\n", "\n") {
-                        "${it.key} -> ${it.value.method.kotlinFunction}"
-                    },
+                    regexCommands.entries.takeIf { it.isNotEmpty() }?.let { entry ->
+                        entry.joinToString("\n", postfix = "\n") {
+                            "${it.key} -> ${it.value.method.kotlinFunction}"
+                        }
+                    } ?: "None\n",
                 )
+                appendLine("Update handlers:")
                 append(
-                    updateHandlers.entries.joinToString("\n", "Update handlers:\n", "\n") {
-                        "${it.key} -> ${it.value.method.kotlinFunction}"
-                    },
+                    updateHandlers.entries.takeIf { it.isNotEmpty() }?.let { entry ->
+                        entry.joinToString("\n", postfix = "\n") {
+                            "${it.key} -> ${it.value.method.kotlinFunction}"
+                        }
+                    } ?: "None\n",
                 )
-                append("Unhandled: ${unhandled?.method?.kotlinFunction}")
+                append("Unhandled: ${unhandled?.method?.kotlinFunction ?: "None"}")
             }
         }
 

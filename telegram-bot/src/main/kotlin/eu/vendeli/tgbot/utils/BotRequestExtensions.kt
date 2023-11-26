@@ -71,8 +71,9 @@ private fun formImplicitReqBody(payload: Map<String, Any?>): Any = MultiPartForm
 )
 
 private fun HttpRequestBuilder.formReqBody(payload: Map<String, Any?>, isImplicit: Boolean = false) {
-    if (isImplicit) setBody(formImplicitReqBody(payload.also { logger.trace { "RequestBody: $it" } }))
-    else {
+    if (isImplicit) {
+        setBody(formImplicitReqBody(payload.also { logger.trace { "RequestBody: $it" } }))
+    } else {
         setBody(mapper.writeValueAsString(payload).also { logger.debug { "RequestBody: $it" } })
         contentType(ContentType.Application.Json)
     }

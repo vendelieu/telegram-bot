@@ -12,7 +12,9 @@ class InlineKeyboardMarkup : Keyboard {
     }
 
     @JsonCreator
-    constructor(@JsonProperty("inline_keyboard") keyboard: List<List<InlineKeyboardButton>>) {
+    constructor(
+        @JsonProperty("inline_keyboard") keyboard: List<List<InlineKeyboardButton>>,
+    ) {
         inlineKeyboard = keyboard.toMutableList()
     }
 

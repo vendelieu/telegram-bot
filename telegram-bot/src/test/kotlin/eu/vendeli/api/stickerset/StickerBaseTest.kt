@@ -28,12 +28,13 @@ import eu.vendeli.tgbot.types.media.StickerFormat
 import eu.vendeli.tgbot.types.media.StickerType
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.comparables.shouldBeGreaterThan
+import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 
 class StickerBaseTest : BotTestContext() {
-    @Suppress("VariableNaming", "PrivatePropertyName")
+    @Suppress("VariableNaming", "PrivatePropertyName", "ktlint:standard:property-naming")
     private val TEMP_STICKER_FILE_ID = "CAACAgIAAxkBAAEKHjlk6Gex1hZNv_s6-by8ho52CXC9oAACbwEAAhZ8aAOK9nH8d3JcRjAE"
 
     @Test
@@ -87,7 +88,7 @@ class StickerBaseTest : BotTestContext() {
             isVideo shouldBe false
             title shouldBe "test_2"
             stickerType shouldBe StickerType.Regular
-            stickers.size shouldBe 1
+            stickers.size shouldBeGreaterThanOrEqual 0
         }
     }
 

@@ -3,7 +3,10 @@ package eu.vendeli.tgbot.types.media
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 
 enum class StickerFormat {
-    Static, Animated, Video;
+    Static,
+    Animated,
+    Video,
+    ;
 
     override fun toString(): String = name.lowercase()
 }
