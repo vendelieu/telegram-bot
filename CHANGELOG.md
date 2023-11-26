@@ -1,6 +1,13 @@
 # Telegram-bot changelog
 
+## 3.4.0
+
+* Added `InputChaining` in annotation mode as experimental feature.
+* Added `additionalHeaders` that will be applied to requests to `HttpConfiguration`
+    * (maybe useful for authorization via socks proxy)
+
 ### 3.3.1
+
 * Added ability to use proxy. See `httpClient{}` section in bot configuration.
 
 ## 3.3.0

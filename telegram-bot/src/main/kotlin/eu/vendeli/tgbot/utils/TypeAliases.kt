@@ -45,4 +45,3 @@ internal typealias RegexCommandActions = MutableMap<Regex, ManualInvocation>
 typealias HandlingBehaviourBlock = suspend TelegramUpdateHandler.(Update) -> Unit
 typealias ManualHandlingBlock = suspend ManualHandlingDsl.() -> Unit
 typealias BotConfigurator = BotConfiguration.() -> Unit
-
