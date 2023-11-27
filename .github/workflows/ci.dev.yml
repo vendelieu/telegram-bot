@@ -1,4 +1,4 @@
-name: Update Test Branch
+name: Update Dev Branch
 
 on:
   push:
