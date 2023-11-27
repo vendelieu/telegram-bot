@@ -5,6 +5,7 @@
 * Added `InputChaining` in annotation mode as experimental feature.
 * Added `additionalHeaders` that will be applied to requests to `HttpConfiguration`
     * (maybe useful for authorization via socks proxy)
+* Added `Deffered<Response<T>>.foldResponse()` function to handle async responses.
 
 ### 3.3.1
 

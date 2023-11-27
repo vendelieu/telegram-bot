@@ -3,6 +3,7 @@ package eu.vendeli
 import BotTestContext
 import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.api.botactions.getMe
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.core.EnvConfigLoader
@@ -18,6 +19,7 @@ import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.types.internal.foldResponse
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
@@ -87,6 +89,24 @@ class TelegramBotTest : BotTestContext() {
             it.errorCode shouldBe 400
             it.description shouldBe "Bad Request: chat_id is empty"
         }
+    }
+
+    @Test
+    suspend fun `fold response handling`() {
+        val req = getMe().sendAsync(bot)
+
+        var isFailure: Boolean? = null
+        req.foldResponse(
+            {
+                isFailure = false
+                result.isBot
+            },
+            {
+                isFailure = true
+            },
+        ) shouldBe true
+
+        isFailure shouldBe false
     }
 
     @Test

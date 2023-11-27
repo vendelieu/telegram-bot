@@ -3,6 +3,7 @@ package eu.vendeli.tgbot.types.internal
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import eu.vendeli.tgbot.types.ResponseParameters
+import kotlinx.coroutines.Deferred
 
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
@@ -38,4 +39,13 @@ fun <T> Response<T>.isSuccess(): Boolean = this is Response.Success
 fun <T> Response<T>.getOrNull(): T? = when (this) {
     is Response.Success<T> -> result
     else -> null
+}
+
+@Suppress("UNCHECKED_CAST")
+suspend inline fun <T, R> Deferred<Response<out T>>.foldResponse(
+    success: Response.Success<T>.() -> R,
+    failure: Response.Failure.() -> R,
+): R = when (val response = await()) {
+    is Response.Success<*> -> success.invoke(response as Response.Success<T>)
+    is Response.Failure -> failure.invoke(response)
 }

@@ -14,7 +14,6 @@ import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import mu.KotlinLogging
 import org.reflections.Reflections
 import org.reflections.scanners.Scanners
-import org.reflections.util.ConfigurationBuilder
 import java.lang.reflect.Parameter
 import kotlin.reflect.jvm.kotlinFunction
 
@@ -38,7 +37,8 @@ internal object TelegramActionsCollector {
     @Suppress("LongMethod")
     fun collect(packageName: String): Actions = with(
         Reflections(
-            ConfigurationBuilder().forPackages(packageName).addScanners(Scanners.MethodsAnnotated),
+            packageName,
+            Scanners.MethodsAnnotated,
         ),
     ) {
         val commands = mutableMapOf<String, Invocation>()
