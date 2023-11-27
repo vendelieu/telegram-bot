@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>ManualHandlingDsl</title>
     <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
     if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -18,12 +19,13 @@
         }
     }
     </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
-<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
 <link href="../../../styles/main.css" rel="Stylesheet">
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
@@ -34,28 +36,33 @@
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
 </head>
 <body>
-<div class="navigation-wrapper" id="navigation-wrapper">
-    <div id="leftToggler"><span class="icon-toggler"></span></div>
-    <div class="library-name">
-            <a href="../../../index.html">
-                    <span>Telegram Bot</span>
-            </a>
-    </div>
-    <div>
-3.3.1    </div>
-    <div class="pull-right d-flex">
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            Telegram Bot
+                    </a>
+            </div>
+            <div class="library-version">
+3.4.0            </div>
+        </div>
         <div class="filter-section" id="filter-section">
                 <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":telegram-bot:dokkaHtml/main">jvm</button>
         </div>
-        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
-        <div id="searchBar"></div>
     </div>
-</div>
-<div id="container">
-    <div id="leftColumn">
-        <div id="sideMenu"></div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
     </div>
-    <div id="main">
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
 <div class="main-content" data-page-type="classlike" id="content" pageIds="Telegram Bot::eu.vendeli.tgbot.core/ManualHandlingDsl///PointingToDeclaration//-880831646">
   <div class="breadcrumbs"><a href="../../../index.html">Telegram Bot</a><span class="delimiter">/</span><a href="../index.html">eu.vendeli.tgbot.core</a><span class="delimiter">/</span><span class="current">ManualHandlingDsl</span></div>
   <div class="cover ">
@@ -77,7 +84,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../eu.vendeli.tgbot.types.internal/-single-input-chain/index.html">SingleInputChain</a><span class="token punctuation">.</span><a href="and-then.html"><span class="token function">andThen</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#-673584585%2FClasslikes%2F-880831646">OnInputAction</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal/-single-input-chain/index.html">SingleInputChain</a></div><div class="brief "><p class="paragraph">Adding a chain to the input data processing</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../eu.vendeli.tgbot.types.internal/-single-input-chain/index.html">SingleInputChain</a><span class="token punctuation">.</span><a href="and-then.html"><span class="token function">andThen</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-input-action/index.html">OnInputAction</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal/-single-input-chain/index.html">SingleInputChain</a></div><div class="brief "><p class="paragraph">Adding a chain to the input data processing</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -92,7 +99,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../eu.vendeli.tgbot.types.internal/-single-input-chain/index.html">SingleInputChain</a><span class="token punctuation">.</span><a href="break-if.html"><span class="token function">breakIf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">condition<span class="token operator">: </span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.internal/-input-context/index.html">InputContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">repeat<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#-673584585%2FClasslikes%2F-880831646">OnInputAction</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal/-single-input-chain/index.html">SingleInputChain</a></div><div class="brief "><p class="paragraph">Condition, which will cause the chain to be interrupted if it matches.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../eu.vendeli.tgbot.types.internal/-single-input-chain/index.html">SingleInputChain</a><span class="token punctuation">.</span><a href="break-if.html"><span class="token function">breakIf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">condition<span class="token operator">: </span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.internal/-input-context/index.html">InputContext</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">repeat<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-input-action/index.html">OnInputAction</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal/-single-input-chain/index.html">SingleInputChain</a></div><div class="brief "><p class="paragraph">Condition, which will cause the chain to be interrupted if it matches.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -107,7 +114,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="input-chain.html"><span class="token function">inputChain</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">identifier<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#-673584585%2FClasslikes%2F-880831646">OnInputAction</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal/-single-input-chain/index.html">SingleInputChain</a></div><div class="brief "><p class="paragraph">Dsl for creating chain of input processing</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="input-chain.html"><span class="token function">inputChain</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">identifier<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-input-action/index.html">OnInputAction</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal/-single-input-chain/index.html">SingleInputChain</a></div><div class="brief "><p class="paragraph">Dsl for creating chain of input processing</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -122,7 +129,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-callback-query.html"><span class="token function">onCallbackQuery</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#132946270%2FClasslikes%2F-880831646">OnCallbackQueryAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of CallbackQuery in the Update.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-callback-query.html"><span class="token function">onCallbackQuery</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-callback-query-action/index.html">OnCallbackQueryAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of CallbackQuery in the Update.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -137,7 +144,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-channel-post.html"><span class="token function">onChannelPost</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#374869534%2FClasslikes%2F-880831646">OnChannelPostAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of ChannelPost in the Update.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-channel-post.html"><span class="token function">onChannelPost</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-channel-post-action/index.html">OnChannelPostAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of ChannelPost in the Update.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -152,7 +159,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-chat-join-request.html"><span class="token function">onChatJoinRequest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#846527124%2FClasslikes%2F-880831646">OnChatJoinRequestAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of ChatJoinRequest in the Update.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-chat-join-request.html"><span class="token function">onChatJoinRequest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-chat-join-request-action/index.html">OnChatJoinRequestAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of ChatJoinRequest in the Update.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -167,7 +174,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-chat-member.html"><span class="token function">onChatMember</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#1863418723%2FClasslikes%2F-880831646">OnChatMemberAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of ChatMember in the Update.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-chat-member.html"><span class="token function">onChatMember</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-chat-member-action/index.html">OnChatMemberAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of ChatMember in the Update.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -182,7 +189,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-chosen-inline-result.html"><span class="token function">onChosenInlineResult</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#-1184013811%2FClasslikes%2F-880831646">OnChosenInlineResultAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of ChosenInlineResult in the Update.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-chosen-inline-result.html"><span class="token function">onChosenInlineResult</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-chosen-inline-result-action/index.html">OnChosenInlineResultAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of ChosenInlineResult in the Update.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -197,7 +204,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-command.html"><span class="token function">onCommand</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">command<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">scope<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html">Set</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.internal/-command-scope/index.html">CommandScope</a><span class="token operator">&gt;</span><span class="token operator"> = </span>DEFAULT_COMMAND_SCOPE<span class="token punctuation">, </span></span><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#30449942%2FClasslikes%2F-880831646">OnCommandAction</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-command.html"><span class="token function">onCommand</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">command<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-regex/index.html">Regex</a><span class="token punctuation">, </span></span><span class="parameter ">scope<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html">Set</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.internal/-command-scope/index.html">CommandScope</a><span class="token operator">&gt;</span><span class="token operator"> = </span>DEFAULT_COMMAND_SCOPE<span class="token punctuation">, </span></span><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#30449942%2FClasslikes%2F-880831646">OnCommandAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The action that is performed when the command is matched.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-command.html"><span class="token function">onCommand</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">command<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">scope<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html">Set</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.internal/-command-scope/index.html">CommandScope</a><span class="token operator">&gt;</span><span class="token operator"> = </span>DEFAULT_COMMAND_SCOPE<span class="token punctuation">, </span></span><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-command-action/index.html">OnCommandAction</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-command.html"><span class="token function">onCommand</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">command<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-regex/index.html">Regex</a><span class="token punctuation">, </span></span><span class="parameter ">scope<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html">Set</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../eu.vendeli.tgbot.types.internal/-command-scope/index.html">CommandScope</a><span class="token operator">&gt;</span><span class="token operator"> = </span>DEFAULT_COMMAND_SCOPE<span class="token punctuation">, </span></span><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-command-action/index.html">OnCommandAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The action that is performed when the command is matched.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -212,7 +219,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-edited-channel-post.html"><span class="token function">onEditedChannelPost</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#-556100953%2FClasslikes%2F-880831646">OnEditedChannelPostAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of EditedChannelPost in the Update.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-edited-channel-post.html"><span class="token function">onEditedChannelPost</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-edited-channel-post-action/index.html">OnEditedChannelPostAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of EditedChannelPost in the Update.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -227,7 +234,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-edited-message.html"><span class="token function">onEditedMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#-1143301661%2FClasslikes%2F-880831646">OnEditedMessageAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of EditedMessage in the Update.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-edited-message.html"><span class="token function">onEditedMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-edited-message-action/index.html">OnEditedMessageAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of EditedMessage in the Update.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -242,7 +249,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-inline-query.html"><span class="token function">onInlineQuery</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#-1035898062%2FClasslikes%2F-880831646">OnInlineQueryAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of InlineQuery in the Update.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-inline-query.html"><span class="token function">onInlineQuery</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-inline-query-action/index.html">OnInlineQueryAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of InlineQuery in the Update.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -257,7 +264,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-input.html"><span class="token function">onInput</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">identifier<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#-673584585%2FClasslikes%2F-880831646">OnInputAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The action that is performed when the input is matched.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-input.html"><span class="token function">onInput</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">identifier<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-input-action/index.html">OnInputAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The action that is performed when the input is matched.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -272,7 +279,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-message.html"><span class="token function">onMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#1146513626%2FClasslikes%2F-880831646">OnMessageAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of Message in the Update.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-message.html"><span class="token function">onMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-message-action/index.html">OnMessageAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of Message in the Update.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -287,7 +294,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-my-chat-member.html"><span class="token function">onMyChatMember</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#1863418723%2FClasslikes%2F-880831646">OnChatMemberAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of MyChatMember in the Update.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-my-chat-member.html"><span class="token function">onMyChatMember</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-chat-member-action/index.html">OnChatMemberAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of MyChatMember in the Update.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -302,7 +309,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-poll.html"><span class="token function">onPoll</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#-1602307690%2FClasslikes%2F-880831646">OnPollAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of Poll in the Update.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-poll.html"><span class="token function">onPoll</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-poll-action/index.html">OnPollAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of Poll in the Update.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -317,7 +324,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-poll-answer.html"><span class="token function">onPollAnswer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#612739512%2FClasslikes%2F-880831646">OnPollAnswerAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of PollAnswer in the Update.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-poll-answer.html"><span class="token function">onPollAnswer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-poll-answer-action/index.html">OnPollAnswerAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of PollAnswer in the Update.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -332,7 +339,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-pre-checkout-query.html"><span class="token function">onPreCheckoutQuery</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#-883739370%2FClasslikes%2F-880831646">OnPreCheckoutQueryAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of PreCheckoutQuery in the Update.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-pre-checkout-query.html"><span class="token function">onPreCheckoutQuery</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-pre-checkout-query-action/index.html">OnPreCheckoutQueryAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of PreCheckoutQuery in the Update.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -347,7 +354,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-shipping-query.html"><span class="token function">onShippingQuery</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#-2090428857%2FClasslikes%2F-880831646">OnShippingQueryAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of ShippingQuery in the Update.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-shipping-query.html"><span class="token function">onShippingQuery</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-shipping-query-action/index.html">OnShippingQueryAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of ShippingQuery in the Update.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -362,7 +369,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="when-not-handled.html"><span class="token function">whenNotHandled</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/index.html#-1753871759%2FClasslikes%2F-880831646">WhenNotHandledAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that will be applied when none of the other handlers process the data</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="when-not-handled.html"><span class="token function">whenNotHandled</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-when-not-handled-action/index.html">WhenNotHandledAction</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that will be applied when none of the other handlers process the data</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -377,7 +384,8 @@
                 class="pull-right"><span>Generated by </span><a
                 href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
       </div>
+            </div>
+        </div>
     </div>
-</div>
 </body>
 </html>
