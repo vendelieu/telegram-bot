@@ -1,7 +1,7 @@
 [versions]
 ktor = "2.3.6"
 mu-logging = "3.0.5"
-logback = "1.4.11"
+logback = "1.4.12"
 jackson = "2.16.0"
 reflections = "0.10"
 
