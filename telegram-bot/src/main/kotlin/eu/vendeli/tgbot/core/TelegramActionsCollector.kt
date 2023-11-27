@@ -38,8 +38,7 @@ internal object TelegramActionsCollector {
     @Suppress("LongMethod")
     fun collect(packageName: String): Actions = with(
         Reflections(
-            ConfigurationBuilder().forPackages(packageName),
-            Scanners.MethodsAnnotated,
+            ConfigurationBuilder().forPackages(packageName).addScanners(Scanners.MethodsAnnotated),
         ),
     ) {
         val commands = mutableMapOf<String, Invocation>()
