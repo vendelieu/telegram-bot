@@ -11,6 +11,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.maps.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
 import java.lang.reflect.InvocationTargetException
 
@@ -42,6 +43,17 @@ class AnnotationsTest : BotTestContext() {
             actionsFromAnnotations.updateHandlers.size shouldBe 2
             actionsFromAnnotations.updateHandlers[UpdateType.MESSAGE].shouldNotBeNull()
         }
+    }
+
+    /**
+     * Actions were lost if a controller has unannotated method, that has a return value specified
+     */
+    @Test
+    fun `annotated methods scanning in a class with unannotated methods test`() {
+        val actionsFromAnnotations = TelegramActionsCollector.collect("other.pckg2")
+
+        actionsFromAnnotations.commands.keys shouldContain "testCommandActionThatShouldBeFound"
+        actionsFromAnnotations.inputs.keys shouldContain "testInputActionThatShouldBeFound"
     }
 
     @Test
