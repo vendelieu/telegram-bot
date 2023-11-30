@@ -1,6 +1,7 @@
 package eu.vendeli.api.forum
 
 import BotTestContext
+import ChatTestingOnlyCondition
 import eu.vendeli.tgbot.api.forum.closeForumTopic
 import eu.vendeli.tgbot.api.forum.createForumTopic
 import eu.vendeli.tgbot.api.forum.deleteForumTopic
@@ -9,10 +10,12 @@ import eu.vendeli.tgbot.api.forum.reopenForumTopic
 import eu.vendeli.tgbot.api.forum.unpinAllForumTopicMessages
 import eu.vendeli.tgbot.types.forum.IconColor
 import eu.vendeli.tgbot.types.internal.getOrNull
+import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 
+@EnabledIf(ChatTestingOnlyCondition::class)
 class ForumCrudTest : BotTestContext() {
     @Test
     suspend fun `create forum topic method test`() {

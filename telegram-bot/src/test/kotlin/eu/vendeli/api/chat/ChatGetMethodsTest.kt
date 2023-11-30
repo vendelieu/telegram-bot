@@ -1,6 +1,7 @@
 package eu.vendeli.api.chat
 
 import BotTestContext
+import ChatTestingOnlyCondition
 import eu.vendeli.tgbot.api.chat.getChat
 import eu.vendeli.tgbot.api.chat.getChatAdministrators
 import eu.vendeli.tgbot.api.chat.getChatMember
@@ -8,11 +9,13 @@ import eu.vendeli.tgbot.api.chat.getChatMemberCount
 import eu.vendeli.tgbot.api.chat.getChatMenuButton
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.keyboard.MenuButton
+import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
 
+@EnabledIf(ChatTestingOnlyCondition::class)
 class ChatGetMethodsTest : BotTestContext() {
     @Test
     suspend fun `get chat method test`() {

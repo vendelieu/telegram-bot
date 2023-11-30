@@ -1,6 +1,7 @@
 package eu.vendeli.api.forum
 
 import BotTestContext
+import ChatTestingOnlyCondition
 import eu.vendeli.tgbot.api.forum.closeGeneralForumTopic
 import eu.vendeli.tgbot.api.forum.editGeneralForumTopic
 import eu.vendeli.tgbot.api.forum.getForumTopicIconStickers
@@ -10,10 +11,12 @@ import eu.vendeli.tgbot.api.forum.unhideGeneralForumTopic
 import eu.vendeli.tgbot.api.forum.unpinAllGeneralForumTopicMessages
 import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.types.media.StickerType
+import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.shouldBe
 
+@EnabledIf(ChatTestingOnlyCondition::class)
 class GeneralTopicActionsTest : BotTestContext() {
     @Test
     suspend fun `edit general topic method test`() {

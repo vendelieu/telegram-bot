@@ -20,6 +20,24 @@ use [Github Flow](https://guides.github.com/introduction/flow/index.html)). We a
 5. Specify `dev` as target branch.
 6. Issue that pull request!
 
+### Environment
+
+Environment parameters that are required for testing:
+
+* Token - a token for the bot that is obtained from [BotFather](https://t.me/BotFather). (don't forget to write some
+  message to the bot for correct
+  interaction)
+* Telegram Id - can be found out through the bots if you still don't know it. (for
+  example [this one](https://t.me/my_id_bot))
+
+#### The final parameters look like this:
+
+`TELEGRAM_ID` - your telegram id. :)
+
+`BOT_TOKEN` - token for testing bot.
+
+`BOT_TOKEN_2` - second bot for testing (for limits purpose).
+
 ## Any contributions you make will be under the Apache 2.0 Software License
 
 In short, when you submit code changes, your submissions are understood to be under the

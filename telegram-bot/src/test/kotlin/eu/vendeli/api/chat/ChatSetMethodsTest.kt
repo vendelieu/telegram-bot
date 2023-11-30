@@ -1,6 +1,7 @@
 package eu.vendeli.api.chat
 
 import BotTestContext
+import ChatTestingOnlyCondition
 import eu.vendeli.tgbot.api.botactions.getMe
 import eu.vendeli.tgbot.api.chat.deleteChatPhoto
 import eu.vendeli.tgbot.api.chat.deleteChatStickerSet
@@ -15,11 +16,13 @@ import eu.vendeli.tgbot.api.chat.setChatTitle
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.types.keyboard.MenuButton
+import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.ktor.client.request.get
 import io.ktor.client.statement.readBytes
 
+@EnabledIf(ChatTestingOnlyCondition::class)
 class ChatSetMethodsTest : BotTestContext() {
     @Test
     suspend fun `set chat custom title method test`() {

@@ -1,6 +1,7 @@
 package eu.vendeli.api.chat
 
 import BotTestContext
+import ChatTestingOnlyCondition
 import eu.vendeli.tgbot.api.chat.approveChatJoinRequest
 import eu.vendeli.tgbot.api.chat.chatAction
 import eu.vendeli.tgbot.api.chat.declineChatJoinRequest
@@ -11,11 +12,13 @@ import eu.vendeli.tgbot.api.chat.unpinChatMessage
 import eu.vendeli.tgbot.api.message
 import eu.vendeli.tgbot.types.chat.ChatAction
 import eu.vendeli.tgbot.types.internal.onFailure
+import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.string.shouldContain
 import kotlinx.coroutines.test.runTest
 
+@EnabledIf(ChatTestingOnlyCondition::class)
 class ChatGeneralMethodsTest : BotTestContext() {
     @Test
     suspend fun `chat action method test`() {

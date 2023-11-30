@@ -1,15 +1,18 @@
 package eu.vendeli.api.chat
 
 import BotTestContext
+import ChatTestingOnlyCondition
 import eu.vendeli.tgbot.api.chat.createChatInviteLink
 import eu.vendeli.tgbot.api.chat.editChatInviteLink
 import eu.vendeli.tgbot.api.chat.exportChatInviteLink
 import eu.vendeli.tgbot.api.chat.revokeChatInviteLink
+import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldNotBeBlank
 
+@EnabledIf(ChatTestingOnlyCondition::class)
 class ChatInviteLinkMethodsTest : BotTestContext() {
     @Test
     suspend fun `create chat invite link method test`() {
