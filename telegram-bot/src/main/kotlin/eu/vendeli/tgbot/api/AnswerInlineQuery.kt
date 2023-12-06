@@ -32,7 +32,7 @@ fun answerInlineQuery(inlineQueryId: String, results: MutableList<InlineQueryRes
     AnswerInlineQueryAction(inlineQueryId, mutableListOf<InlineQueryResult>().apply(results))
 
 fun answerInlineQuery(inlineQueryId: String, vararg result: InlineQueryResult) =
-    AnswerInlineQueryAction(inlineQueryId, listOf(*result))
+    AnswerInlineQueryAction(inlineQueryId, result.toList())
 
 fun answerInlineQuery(inlineQueryId: String, results: List<InlineQueryResult>) =
     AnswerInlineQueryAction(inlineQueryId, results)

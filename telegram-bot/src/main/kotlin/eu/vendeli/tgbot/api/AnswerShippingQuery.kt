@@ -40,7 +40,7 @@ fun answerShippingQuery(
     ok: Boolean = true,
     errorMessage: String? = null,
     vararg shippingOption: ShippingOption,
-) = AnswerShippingQueryAction(shippingQueryId, ok, listOf(*shippingOption), errorMessage)
+) = AnswerShippingQueryAction(shippingQueryId, ok, shippingOption.toList(), errorMessage)
 
 fun answerShippingQuery(
     shippingQueryId: String,

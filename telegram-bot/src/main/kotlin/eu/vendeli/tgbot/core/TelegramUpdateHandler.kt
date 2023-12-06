@@ -14,6 +14,7 @@ import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.UserReference
+import eu.vendeli.tgbot.types.internal.userOrNull
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
 import eu.vendeli.tgbot.utils.NewCoroutineContext
@@ -152,7 +153,7 @@ class TelegramUpdateHandler internal constructor(
                     "java.lang.Double", "double" -> add(parameters[parameterName]?.toDoubleOrNull())
                     else -> add(null)
                 } else when {
-                    typeName == User::class.java.canonicalName -> add((pUpdate as? UserReference)?.user)
+                    typeName == User::class.java.canonicalName -> add(pUpdate.userOrNull)
                     typeName == TelegramBot::class.java.canonicalName -> add(bot)
                     typeName == ProcessedUpdate::class.java.canonicalName -> add(pUpdate)
                     typeName == MessageUpdate::class.java.canonicalName -> add(pUpdate)

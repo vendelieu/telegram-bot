@@ -111,9 +111,10 @@ internal suspend inline fun Method.handleInvocation(
     parameters: Array<Any?>,
     isSuspend: Boolean = false,
 ): Any? {
+    val objInstance = clazz.kotlin.objectInstance
     val obj = when {
         isStatic(modifiers) -> null
-        clazz.kotlin.objectInstance != null -> clazz.kotlin.objectInstance
+        objInstance != null -> objInstance
         else -> classManager.getInstance(clazz)
     }
 

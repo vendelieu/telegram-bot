@@ -1,4 +1,4 @@
-@file:Suppress("MatchingDeclarationName")
+@file:Suppress("MatchingDeclarationName", "TooManyFunctions")
 
 package eu.vendeli.tgbot.api
 
@@ -89,11 +89,11 @@ class EditMessageMediaAction :
     }
 }
 
-class EditMessageMarkupAction() :
+class EditMessageReplyMarkupAction() :
     Action<Message>,
     ActionState(),
     InlineMode<Message>,
-    MarkupFeature<EditMessageMarkupAction> {
+    MarkupFeature<EditMessageReplyMarkupAction> {
     override val TgAction<Message>.method: TgMethod
         get() = TgMethod("editMessageReplyMarkup")
     override val TgAction<Message>.returnType: Class<Message>
@@ -104,14 +104,22 @@ class EditMessageMarkupAction() :
     }
 }
 
+fun editMessageText(messageId: Long, block: () -> String) = editText(messageId, block)
+fun editMessageText(block: EntitiesContextBuilder.() -> String) = EditMessageTextAction(block)
 fun editText(messageId: Long, block: () -> String) = EditMessageTextAction(messageId, text = block())
 fun editText(block: EntitiesContextBuilder.() -> String) = EditMessageTextAction(block)
 
+fun editMessageCaption(messageId: Long) = editCaption(messageId)
+fun editMessageCaption() = editCaption()
 fun editCaption(messageId: Long) = EditMessageCaptionAction(messageId)
 fun editCaption() = EditMessageCaptionAction()
 
+fun editMessageMedia(messageId: Long, inputMedia: InputMedia) = editMedia(messageId, inputMedia)
+fun editMessageMedia(inputMedia: InputMedia) = editMedia(inputMedia)
 fun editMedia(messageId: Long, inputMedia: InputMedia) = EditMessageMediaAction(messageId, inputMedia)
 fun editMedia(inputMedia: InputMedia) = EditMessageMediaAction(inputMedia)
 
-fun editMarkup(messageId: Long) = EditMessageMarkupAction(messageId)
-fun editMarkup() = EditMessageMarkupAction()
+fun editMessageReplyMarkup(messageId: Long) = editMarkup(messageId)
+fun editMessageReplyMarkup() = editMarkup()
+fun editMarkup(messageId: Long) = EditMessageReplyMarkupAction(messageId)
+fun editMarkup() = EditMessageReplyMarkupAction()

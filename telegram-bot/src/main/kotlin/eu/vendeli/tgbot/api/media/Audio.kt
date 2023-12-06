@@ -41,6 +41,8 @@ class SendAudioAction(private val audio: ImplicitFile<*>) :
     }
 }
 
+fun sendAudio(block: () -> String) = audio(block)
+fun sendAudio(file: ImplicitFile<*>) = SendAudioAction(file)
 fun audio(block: () -> String) = SendAudioAction(ImplicitFile.Str(block()))
 fun audio(ba: ByteArray) = SendAudioAction(ImplicitFile.InpFile(ba.toInputFile()))
 fun audio(file: File) = SendAudioAction(ImplicitFile.InpFile(file.toInputFile()))

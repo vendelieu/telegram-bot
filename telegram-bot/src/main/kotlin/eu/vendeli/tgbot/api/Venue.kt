@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.types.internal.VenueParams
 import eu.vendeli.tgbot.types.internal.options.VenueOptions
 import eu.vendeli.tgbot.utils.getReturnType
 
@@ -35,5 +36,11 @@ class SendVenueAction(
     }
 }
 
+fun sendVenue(latitude: Float, longitude: Float, title: String, address: String) =
+    venue(latitude, longitude, title, address)
+fun venue(latitude: Float, longitude: Float, params: VenueParams.() -> Unit): SendVenueAction {
+    val venueParams = VenueParams("", "").apply(params)
+    return SendVenueAction(latitude, longitude, venueParams.title, venueParams.address)
+}
 fun venue(latitude: Float, longitude: Float, title: String, address: String) =
     SendVenueAction(latitude, longitude, title, address)

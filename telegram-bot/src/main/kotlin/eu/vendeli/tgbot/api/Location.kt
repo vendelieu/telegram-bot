@@ -32,4 +32,5 @@ class SendLocationAction(
     }
 }
 
+fun sendLocation(latitude: Float, longitude: Float) = location(latitude, longitude)
 fun location(latitude: Float, longitude: Float) = SendLocationAction(latitude, longitude)

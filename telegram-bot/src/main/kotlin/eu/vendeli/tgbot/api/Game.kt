@@ -30,4 +30,5 @@ class SendGameAction(
     }
 }
 
+fun sendGame(gameShortName: String) = game(gameShortName)
 fun game(gameShortName: String) = SendGameAction(gameShortName)

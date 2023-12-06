@@ -38,4 +38,5 @@ class SendInvoiceAction(data: InvoiceData) :
 fun invoice(block: InvoiceData.() -> Unit) =
     SendInvoiceAction(InvoiceData.apply(block))
 
+fun sendInvoice(data: InvoiceData) = SendInvoiceAction(data)
 fun invoice(data: InvoiceData) = SendInvoiceAction(data)
