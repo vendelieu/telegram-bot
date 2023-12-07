@@ -14,7 +14,7 @@ import eu.vendeli.tgbot.utils.getInnerType
 import eu.vendeli.tgbot.utils.getReturnType
 import kotlin.collections.set
 
-class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
+class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
     MediaAction<List<Message>>(),
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions> {
     override val method = TgMethod("sendMediaGroup")
@@ -51,8 +51,8 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
     }
 }
 
-fun sendMediaGroup(media: InputMedia) = SendMediaGroupAction(media)
-fun mediaGroup(vararg media: InputMedia.Audio) = SendMediaGroupAction(*media)
-fun mediaGroup(vararg media: InputMedia.Document) = SendMediaGroupAction(*media)
-fun mediaGroup(vararg media: InputMedia.Photo) = SendMediaGroupAction(*media)
-fun mediaGroup(vararg media: InputMedia.Video) = SendMediaGroupAction(*media)
+fun sendMediaGroup(vararg media: InputMedia) = SendMediaGroupAction(media.toList())
+fun mediaGroup(vararg media: InputMedia.Audio) = SendMediaGroupAction(media.toList())
+fun mediaGroup(vararg media: InputMedia.Document) = SendMediaGroupAction(media.toList())
+fun mediaGroup(vararg media: InputMedia.Photo) = SendMediaGroupAction(media.toList())
+fun mediaGroup(vararg media: InputMedia.Video) = SendMediaGroupAction(media.toList())
