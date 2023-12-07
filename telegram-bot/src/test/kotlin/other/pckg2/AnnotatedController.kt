@@ -5,14 +5,12 @@ import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.types.User
 
+@Suppress("unused", "EmptyFunctionBlock", "FunctionOnlyReturningConstant")
 @FunctionalInterface
 class AnnotatedController(
-    private val test: List<String>
+    private val test: List<String>,
 ) {
-
-    fun testString(): String {
-        return "someString"
-    }
+    fun testString(): String = "someString"
 
     @CommandHandler(["testCommandActionThatShouldBeFound"])
     suspend fun testCommandActionThatShouldBeFound(user: User, bot: TelegramBot) {
