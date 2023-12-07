@@ -1,4 +1,4 @@
-@file:Suppress("MatchingDeclarationName")
+@file:Suppress("MatchingDeclarationName", "LongParameterList")
 
 package eu.vendeli.tgbot.api.botactions
 
