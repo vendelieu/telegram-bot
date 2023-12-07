@@ -2,9 +2,7 @@
 
 package eu.vendeli.tgbot.api.botactions
 
-import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CreateInvoiceLinkOptions
@@ -18,13 +16,11 @@ import eu.vendeli.tgbot.utils.getReturnType
  */
 class CreateInvoiceLinkAction(
     invoiceData: InvoiceData,
-) : SimpleAction<String>, OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions>, ActionState() {
+) : SimpleAction<String>(), OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions> {
     override val OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions>.options: CreateInvoiceLinkOptions
         get() = CreateInvoiceLinkOptions()
-    override val TgAction<String>.method: TgMethod
-        get() = TgMethod("createInvoiceLink")
-    override val TgAction<String>.returnType: Class<String>
-        get() = getReturnType()
+    override val method = TgMethod("createInvoiceLink")
+    override val returnType = getReturnType()
 
     init {
         parameters["title"] = invoiceData.title

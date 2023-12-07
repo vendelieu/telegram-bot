@@ -1,23 +1,24 @@
 package eu.vendeli.tgbot.interfaces
 
 import eu.vendeli.tgbot.types.internal.TgMethod
+import kotlin.properties.Delegates
 
 /**
  * Tg action, see [Actions article](https://github.com/vendelieu/telegram-bot/wiki/Actions)
  */
-interface TgAction<ReturnType> {
+abstract class TgAction<ReturnType> : ActionState() {
     /**
      * A method that is implemented in Action.
      */
-    val TgAction<ReturnType>.method: TgMethod
+    internal open val method by Delegates.notNull<TgMethod>()
 
     /**
      * Type of action result.
      */
-    val TgAction<ReturnType>.returnType: Class<ReturnType>
+    internal open val returnType by Delegates.notNull<Class<ReturnType>>()
 
     /**
      * Parameter through which the type for multiple response is obtained.
      */
-    val TgAction<ReturnType>.wrappedDataType get(): Class<out MultipleResponse>? = null
+    internal open val wrappedDataType: Class<out MultipleResponse>? = null
 }

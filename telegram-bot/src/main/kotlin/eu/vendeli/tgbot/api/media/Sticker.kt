@@ -2,9 +2,7 @@
 
 package eu.vendeli.tgbot.api.media
 
-import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -16,19 +14,15 @@ import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
-class SendStickerAction(private val sticker: ImplicitFile<*>) :
-    MediaAction<Message>,
-    ActionState(),
+class SendStickerAction(sticker: ImplicitFile<*>) :
+    MediaAction<Message>(),
     OptionsFeature<SendStickerAction, StickerOptions>,
     MarkupFeature<SendStickerAction> {
-    override val TgAction<Message>.method: TgMethod
-        get() = TgMethod("sendSticker")
-    override val TgAction<Message>.returnType: Class<Message>
-        get() = getReturnType()
+    override val method = TgMethod("sendSticker")
+    override val returnType = getReturnType()
     override val OptionsFeature<SendStickerAction, StickerOptions>.options: StickerOptions
         get() = StickerOptions()
-    override val MediaAction<Message>.inputFilePresence: Boolean
-        get() = sticker is ImplicitFile.InpFile
+    override val inputFilePresence = sticker is ImplicitFile.InpFile
 
     init {
         parameters["sticker"] = sticker.file

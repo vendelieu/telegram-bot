@@ -2,9 +2,7 @@
 
 package eu.vendeli.tgbot.api.media
 
-import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -18,23 +16,19 @@ import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
-class SendVideoAction(private val video: ImplicitFile<*>) :
-    MediaAction<Message>,
-    ActionState(),
+class SendVideoAction(video: ImplicitFile<*>) :
+    MediaAction<Message>(),
     OptionsFeature<SendVideoAction, VideoOptions>,
     MarkupFeature<SendVideoAction>,
     EntitiesContextBuilder,
     CaptionFeature<SendVideoAction> {
-    override val TgAction<Message>.method: TgMethod
-        get() = TgMethod("sendVideo")
-    override val TgAction<Message>.returnType: Class<Message>
-        get() = getReturnType()
+    override val method = TgMethod("sendVideo")
+    override val returnType = getReturnType()
     override val OptionsFeature<SendVideoAction, VideoOptions>.options: VideoOptions
         get() = VideoOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
-    override val MediaAction<Message>.inputFilePresence: Boolean
-        get() = video is ImplicitFile.InpFile
+    override val inputFilePresence = video is ImplicitFile.InpFile
 
     init {
         parameters["video"] = video.file

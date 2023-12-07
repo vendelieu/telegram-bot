@@ -2,10 +2,7 @@
 
 package eu.vendeli.tgbot.api.media
 
-import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
-import eu.vendeli.tgbot.interfaces.MultipleResponse
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile.InpFile
@@ -18,18 +15,14 @@ import eu.vendeli.tgbot.utils.getReturnType
 import kotlin.collections.set
 
 class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
-    MediaAction<List<Message>>,
-    ActionState(),
+    MediaAction<List<Message>>(),
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions> {
-    override val TgAction<List<Message>>.method: TgMethod
-        get() = TgMethod("sendMediaGroup")
-    override val TgAction<List<Message>>.returnType: Class<List<Message>>
-        get() = getReturnType()
-    override val TgAction<List<Message>>.wrappedDataType: Class<out MultipleResponse>?
-        get() = getInnerType()
+    override val method = TgMethod("sendMediaGroup")
+    override val returnType = getReturnType()
+    override val wrappedDataType = getInnerType()
     override val OptionsFeature<SendMediaGroupAction, MediaGroupOptions>.options: MediaGroupOptions
         get() = MediaGroupOptions()
-    override val MediaAction<List<Message>>.inputFilePresence: Boolean
+    override val inputFilePresence: Boolean
         get() = isInputFile
     private val isInputFile = inputMedia.any { it.media is InpFile }
 
@@ -58,6 +51,7 @@ class SendMediaGroupAction(private vararg val inputMedia: InputMedia) :
     }
 }
 
+fun sendMediaGroup(media: InputMedia) = SendMediaGroupAction(media)
 fun mediaGroup(vararg media: InputMedia.Audio) = SendMediaGroupAction(*media)
 fun mediaGroup(vararg media: InputMedia.Document) = SendMediaGroupAction(*media)
 fun mediaGroup(vararg media: InputMedia.Photo) = SendMediaGroupAction(*media)

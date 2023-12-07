@@ -2,9 +2,7 @@
 
 package eu.vendeli.tgbot.api.botactions
 
-import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.bot.BotCommand
 import eu.vendeli.tgbot.types.bot.BotCommandScope
 import eu.vendeli.tgbot.types.internal.TgMethod
@@ -14,13 +12,10 @@ import eu.vendeli.tgbot.utils.getReturnType
 class GetMyCommandsAction(
     scope: BotCommandScope? = null,
     languageCode: String? = null,
-) : SimpleAction<List<BotCommand>>, ActionState() {
-    override val TgAction<List<BotCommand>>.method: TgMethod
-        get() = TgMethod("getMyCommands")
-    override val TgAction<List<BotCommand>>.returnType: Class<List<BotCommand>>
-        get() = getReturnType()
-    override val TgAction<List<BotCommand>>.wrappedDataType: Class<BotCommand>
-        get() = getInnerType()
+) : SimpleAction<List<BotCommand>>() {
+    override val method = TgMethod("getMyCommands")
+    override val returnType = getReturnType()
+    override val wrappedDataType = getInnerType()
 
     init {
         if (scope != null) parameters["scope"] = scope

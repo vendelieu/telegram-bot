@@ -3,8 +3,6 @@
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.ActionState
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -15,14 +13,11 @@ import eu.vendeli.tgbot.utils.getReturnType
 class SendLocationAction(
     latitude: Float,
     longitude: Float,
-) : Action<Message>,
-    ActionState(),
+) : Action<Message>(),
     OptionsFeature<SendLocationAction, LocationOptions>,
     MarkupFeature<SendLocationAction> {
-    override val TgAction<Message>.method: TgMethod
-        get() = TgMethod("sendLocation")
-    override val TgAction<Message>.returnType: Class<Message>
-        get() = getReturnType()
+    override val method = TgMethod("sendLocation")
+    override val returnType = getReturnType()
     override val OptionsFeature<SendLocationAction, LocationOptions>.options: LocationOptions
         get() = LocationOptions()
 

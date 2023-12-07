@@ -2,9 +2,7 @@
 
 package eu.vendeli.tgbot.api.media
 
-import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -18,23 +16,19 @@ import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
-class SendAudioAction(private val audio: ImplicitFile<*>) :
-    MediaAction<Message>,
-    ActionState(),
+class SendAudioAction(audio: ImplicitFile<*>) :
+    MediaAction<Message>(),
     OptionsFeature<SendAudioAction, AudioOptions>,
     MarkupFeature<SendAudioAction>,
     EntitiesContextBuilder,
     CaptionFeature<SendAudioAction> {
-    override val TgAction<Message>.method: TgMethod
-        get() = TgMethod("sendAudio")
-    override val TgAction<Message>.returnType: Class<Message>
-        get() = getReturnType()
+    override val method = TgMethod("sendAudio")
+    override val returnType = getReturnType()
     override val OptionsFeature<SendAudioAction, AudioOptions>.options: AudioOptions
         get() = AudioOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
-    override val MediaAction<Message>.inputFilePresence: Boolean
-        get() = audio is ImplicitFile.InpFile
+    override val inputFilePresence = audio is ImplicitFile.InpFile
 
     init {
         parameters["audio"] = audio.file

@@ -3,8 +3,6 @@
 package eu.vendeli.tgbot.api.forum
 
 import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.ActionState
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
@@ -13,11 +11,9 @@ import eu.vendeli.tgbot.utils.getReturnType
  * The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights.
  * Returns True on success.
  */
-class EditGeneralForumTopicAction(name: String) : Action<Boolean>, ActionState() {
-    override val TgAction<Boolean>.method: TgMethod
-        get() = TgMethod("editGeneralForumTopic")
-    override val TgAction<Boolean>.returnType: Class<Boolean>
-        get() = getReturnType()
+class EditGeneralForumTopicAction(name: String) : Action<Boolean>() {
+    override val method = TgMethod("editGeneralForumTopic")
+    override val returnType = getReturnType()
 
     init {
         parameters["name"] = name
