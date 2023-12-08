@@ -241,9 +241,12 @@ class TelegramBotTest : BotTestContext() {
         )
         shouldNotThrowAny { TelegramBot() }.config.apply {
             apiHost shouldBe "tg.com"
-            inputListener::class.java shouldBe Class.forName("eu.vendeli.tgbot.implementations.InputListenerMapImpl")
-            classManager::class.java shouldBe Class.forName("eu.vendeli.tgbot.implementations.ClassManagerImpl")
-            rateLimiter.mechanism::class.java shouldBe Class.forName("eu.vendeli.tgbot.implementations.TokenBucketLimiterImpl")
+            inputListener::class.java shouldBe
+                Class.forName("eu.vendeli.tgbot.implementations.InputListenerMapImpl")
+            classManager::class.java shouldBe
+                Class.forName("eu.vendeli.tgbot.implementations.ClassManagerImpl")
+            rateLimiter.mechanism::class.java shouldBe
+                Class.forName("eu.vendeli.tgbot.implementations.TokenBucketLimiterImpl")
 
             httpClient.requestTimeoutMillis shouldBe 10
             httpClient.connectTimeoutMillis shouldBe 11
