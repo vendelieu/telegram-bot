@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.implementations
 
+import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import kotlinx.coroutines.delay
@@ -15,7 +16,7 @@ import kotlin.time.Duration.Companion.milliseconds
  * Default implementation of query limitation via [Token bucket](https://en.wikipedia.org/wiki/Token_bucket) algorithm.
  */
 object TokenBucketLimiterImpl : RateLimitMechanism {
-    private val state: ConcurrentHashMap<String, AtomicReference<BucketState>> = ConcurrentHashMap()
+    private var state: ConcurrentHashMap<String, AtomicReference<BucketState>> = ConcurrentHashMap()
     private val instant: Instant
         get() {
             return Instant.now()
@@ -31,6 +32,11 @@ object TokenBucketLimiterImpl : RateLimitMechanism {
         val remainingTokens: Long,
         val lastUpdated: Instant,
     )
+
+    @ExperimentalFeature
+    fun resetState() {
+        state = ConcurrentHashMap()
+    }
 
     private suspend fun compareAndSet(key: String, compareAndSetFunction: (current: BucketState?) -> BucketState) {
         val currentState = state[key]
