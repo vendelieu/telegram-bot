@@ -1,8 +1,8 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.core.ClassManagerImpl
 import eu.vendeli.tgbot.core.TelegramActionsCollector
+import eu.vendeli.tgbot.implementations.ClassManagerImpl
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.utils.handleInvocation
 import eu.vendeli.utils.MockUpdate
@@ -71,7 +71,6 @@ class AnnotationsTest : BotTestContext() {
     @Test
     suspend fun `check method invocations`() {
         val actions = TelegramActionsCollector.collect("eu.vendeli")
-        val classManager = ClassManagerImpl()
         val topLvlCommand = actions.commands["test2"].shouldNotBeNull()
         val objCommand = actions.commands["test3"].shouldNotBeNull()
         val classCommand = actions.commands["test"].shouldNotBeNull()
@@ -79,14 +78,14 @@ class AnnotationsTest : BotTestContext() {
         shouldNotThrowAny {
             topLvlCommand.method.handleInvocation(
                 topLvlCommand.clazz,
-                classManager,
+                ClassManagerImpl,
                 emptyArray(),
                 true,
             ) shouldBe true // method returns true
 
             objCommand.method.handleInvocation(
                 objCommand.clazz,
-                classManager,
+                ClassManagerImpl,
                 emptyArray(),
                 false,
             ) shouldBe false
@@ -95,7 +94,7 @@ class AnnotationsTest : BotTestContext() {
         shouldThrow<InvocationTargetException> {
             classCommand.method.handleInvocation(
                 classCommand.clazz,
-                classManager,
+                ClassManagerImpl,
                 emptyArray(),
                 false,
             )

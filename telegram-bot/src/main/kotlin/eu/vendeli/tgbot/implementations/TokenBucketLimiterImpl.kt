@@ -1,4 +1,4 @@
-package eu.vendeli.tgbot.core
+package eu.vendeli.tgbot.implementations
 
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
@@ -12,25 +12,25 @@ import kotlin.math.min
 import kotlin.time.Duration.Companion.milliseconds
 
 /**
- * A class that stores data about limits.
- *
- * @property remainingTokens Remaining number of requests.
- * @property lastUpdated Last update.
- */
-internal data class BucketState(
-    val remainingTokens: Long,
-    val lastUpdated: Instant,
-)
-
-/**
  * Default implementation of query limitation via [Token bucket](https://en.wikipedia.org/wiki/Token_bucket) algorithm.
  */
-class TokenBucketLimiterImpl : RateLimitMechanism {
+object TokenBucketLimiterImpl : RateLimitMechanism {
     private val state: ConcurrentHashMap<String, AtomicReference<BucketState>> = ConcurrentHashMap()
     private val instant: Instant
         get() {
             return Instant.now()
         }
+
+    /**
+     * A class that stores data about limits.
+     *
+     * @property remainingTokens Remaining number of requests.
+     * @property lastUpdated Last update.
+     */
+    private data class BucketState(
+        val remainingTokens: Long,
+        val lastUpdated: Instant,
+    )
 
     private suspend fun compareAndSet(key: String, compareAndSetFunction: (current: BucketState?) -> BucketState) {
         val currentState = state[key]

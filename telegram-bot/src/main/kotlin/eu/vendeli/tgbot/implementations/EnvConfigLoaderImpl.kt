@@ -1,4 +1,4 @@
-package eu.vendeli.tgbot.core
+package eu.vendeli.tgbot.implementations
 
 import ch.qos.logback.classic.Level
 import com.fasterxml.jackson.module.kotlin.isKotlinClass
@@ -12,7 +12,7 @@ import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import kotlin.reflect.full.primaryConstructor
 
-object EnvConfigLoader : ConfigLoader {
+object EnvConfigLoaderImpl : ConfigLoader {
     private const val PREFIX = "TGBOT_"
     internal var envVars = System.getenv().filter { it.key.startsWith(PREFIX) }
 
