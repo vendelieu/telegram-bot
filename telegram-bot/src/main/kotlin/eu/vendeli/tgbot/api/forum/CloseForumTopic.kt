@@ -25,4 +25,5 @@ class CloseForumTopicAction(messageThreadId: Int) : Action<Boolean>() {
  * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights,
  * unless it is the creator of the topic. Returns True on success.
  */
-fun closeForumTopic(messageThreadId: Int) = CloseForumTopicAction(messageThreadId)
+@Suppress("NOTHING_TO_INLINE")
+inline fun closeForumTopic(messageThreadId: Int) = CloseForumTopicAction(messageThreadId)

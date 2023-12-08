@@ -12,4 +12,5 @@ class GetChatMenuButtonAction : Action<MenuButton>() {
     override val returnType = getReturnType()
 }
 
-fun getChatMenuButton() = GetChatMenuButtonAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun getChatMenuButton() = GetChatMenuButtonAction()

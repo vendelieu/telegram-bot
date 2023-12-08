@@ -11,4 +11,5 @@ class ExportChatInviteLinkAction : Action<String>() {
     override val returnType = getReturnType()
 }
 
-fun exportChatInviteLink() = ExportChatInviteLinkAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun exportChatInviteLink() = ExportChatInviteLinkAction()

@@ -24,8 +24,7 @@ class SendInvoiceAction(
     MarkupFeature<SendInvoiceAction> {
     override val method = TgMethod("sendInvoice")
     override val returnType = getReturnType()
-    override val OptionsFeature<SendInvoiceAction, InvoiceOptions>.options: InvoiceOptions
-        get() = InvoiceOptions()
+    override val options = InvoiceOptions()
 
     init {
         parameters["title"] = title
@@ -37,16 +36,8 @@ class SendInvoiceAction(
     }
 }
 
-fun sendInvoice(
-    title: String,
-    description: String,
-    payload: String,
-    providerToken: String,
-    currency: Currency,
-    prices: List<LabeledPrice>,
-) = invoice(title, description, payload, providerToken, currency, prices)
-
-fun invoice(
+@Suppress("NOTHING_TO_INLINE")
+inline fun invoice(
     title: String,
     description: String,
     payload: String,
@@ -54,12 +45,21 @@ fun invoice(
     currency: Currency,
     prices: List<LabeledPrice>,
 ) = SendInvoiceAction(title, description, payload, providerToken, currency, prices)
-
-fun invoice(
+inline fun invoice(
     title: String,
     description: String,
     providerToken: String,
     currency: Currency,
     vararg prices: LabeledPrice,
     payload: () -> String,
-) = invoice(title, description, payload(), providerToken, currency, prices.toList())
+) = invoice(title, description, payload(), providerToken, currency, prices.asList())
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendInvoice(
+    title: String,
+    description: String,
+    payload: String,
+    providerToken: String,
+    currency: Currency,
+    prices: List<LabeledPrice>,
+) = invoice(title, description, payload, providerToken, currency, prices)

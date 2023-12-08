@@ -14,13 +14,15 @@ class PromoteChatMemberAction(userId: Long) :
     OptionsFeature<PromoteChatMemberAction, PromoteChatMemberOptions> {
     override val method = TgMethod("promoteChatMember")
     override val returnType = getReturnType()
-    override val OptionsFeature<PromoteChatMemberAction, PromoteChatMemberOptions>.options: PromoteChatMemberOptions
-        get() = PromoteChatMemberOptions()
+    override val options = PromoteChatMemberOptions()
 
     init {
         parameters["user_id"] = userId
     }
 }
 
-fun promoteChatMember(userId: Long) = PromoteChatMemberAction(userId)
-fun promoteChatMember(user: User) = PromoteChatMemberAction(user.id)
+@Suppress("NOTHING_TO_INLINE")
+inline fun promoteChatMember(userId: Long) = PromoteChatMemberAction(userId)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun promoteChatMember(user: User) = promoteChatMember(user.id)

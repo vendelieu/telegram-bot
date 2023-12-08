@@ -24,8 +24,7 @@ class SendVoiceAction(voice: ImplicitFile<*>) :
     CaptionFeature<SendVoiceAction> {
     override val method = TgMethod("sendVoice")
     override val returnType = getReturnType()
-    override val OptionsFeature<SendVoiceAction, VoiceOptions>.options: VoiceOptions
-        get() = VoiceOptions()
+    override val options = VoiceOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
     override val inputFilePresence = voice is ImplicitFile.InpFile
@@ -35,7 +34,20 @@ class SendVoiceAction(voice: ImplicitFile<*>) :
     }
 }
 
-fun voice(block: () -> String) = SendVoiceAction(ImplicitFile.Str(block()))
-fun voice(file: InputFile) = SendVoiceAction(ImplicitFile.InpFile(file))
-fun voice(ba: ByteArray) = SendVoiceAction(ImplicitFile.InpFile(ba.toInputFile()))
-fun voice(file: File) = SendVoiceAction(ImplicitFile.InpFile(file.toInputFile()))
+@Suppress("NOTHING_TO_INLINE")
+inline fun voice(file: ImplicitFile<*>) = SendVoiceAction(file)
+inline fun voice(block: () -> String) = voice(ImplicitFile.Str(block()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun voice(file: InputFile) = voice(ImplicitFile.InpFile(file))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun voice(ba: ByteArray) = voice(ImplicitFile.InpFile(ba.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun voice(file: File) = voice(ImplicitFile.InpFile(file.toInputFile()))
+
+inline fun sendVoice(block: () -> String) = voice(block)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendVoice(file: ImplicitFile<*>) = voice(file)

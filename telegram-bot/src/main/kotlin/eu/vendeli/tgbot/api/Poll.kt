@@ -8,6 +8,7 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PollOptions
+import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 
 class SendPollAction(question: String, pollOptions: List<String>) :
@@ -16,8 +17,7 @@ class SendPollAction(question: String, pollOptions: List<String>) :
     MarkupFeature<SendPollAction> {
     override val method = TgMethod("sendPoll")
     override val returnType = getReturnType()
-    override val OptionsFeature<SendPollAction, PollOptions>.options: PollOptions
-        get() = PollOptions()
+    override val options = PollOptions()
 
     init {
         parameters["question"] = question
@@ -25,6 +25,10 @@ class SendPollAction(question: String, pollOptions: List<String>) :
     }
 }
 
-fun sendPoll(question: String, options: () -> List<String>) = poll(question, options)
-fun poll(question: String, options: () -> List<String>) = SendPollAction(question, options())
-fun poll(question: String, vararg options: String) = SendPollAction(question, options.toList())
+@Suppress("NOTHING_TO_INLINE")
+inline fun poll(question: String, options: List<String>) = SendPollAction(question, options)
+fun poll(question: String, options: ListingBuilder<String>.() -> Unit) = poll(question, ListingBuilder.build(options))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun poll(question: String, vararg options: String) = poll(question, options.toList())
+fun sendPoll(question: String, options: ListingBuilder<String>.() -> Unit) = poll(question, options)

@@ -23,8 +23,7 @@ class EditMessageTextAction private constructor() :
     EntitiesFeature<EditMessageTextAction> {
         override val method = TgMethod("editMessageText")
         override val returnType = getReturnType()
-        override val OptionsFeature<EditMessageTextAction, EditMessageOptions>.options: EditMessageOptions
-            get() = EditMessageOptions()
+        override val options = EditMessageOptions()
 
         constructor(messageId: Long, text: String) : this() {
             parameters["message_id"] = messageId
@@ -48,8 +47,7 @@ class EditMessageCaptionAction() :
     CaptionFeature<EditMessageCaptionAction> {
     override val method = TgMethod("editMessageCaption")
     override val returnType = getReturnType()
-    override val OptionsFeature<EditMessageCaptionAction, EditCaptionOptions>.options: EditCaptionOptions
-        get() = EditCaptionOptions()
+    override val options = EditCaptionOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
 
@@ -85,22 +83,43 @@ class EditMessageReplyMarkupAction() :
     }
 }
 
-fun editMessageText(messageId: Long, block: () -> String) = editText(messageId, block)
+inline fun editMessageText(messageId: Long, block: () -> String) = editText(messageId, block)
 fun editMessageText(block: EntitiesContextBuilder.() -> String) = EditMessageTextAction(block)
-fun editText(messageId: Long, block: () -> String) = EditMessageTextAction(messageId, text = block())
+inline fun editText(messageId: Long, block: () -> String) = EditMessageTextAction(messageId, text = block())
 fun editText(block: EntitiesContextBuilder.() -> String) = EditMessageTextAction(block)
 
-fun editMessageCaption(messageId: Long) = editCaption(messageId)
-fun editMessageCaption() = editCaption()
-fun editCaption(messageId: Long) = EditMessageCaptionAction(messageId)
-fun editCaption() = EditMessageCaptionAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageCaption(messageId: Long) = editCaption(messageId)
 
-fun editMessageMedia(messageId: Long, inputMedia: InputMedia) = editMedia(messageId, inputMedia)
-fun editMessageMedia(inputMedia: InputMedia) = editMedia(inputMedia)
-fun editMedia(messageId: Long, inputMedia: InputMedia) = EditMessageMediaAction(messageId, inputMedia)
-fun editMedia(inputMedia: InputMedia) = EditMessageMediaAction(inputMedia)
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageCaption() = editCaption()
 
-fun editMessageReplyMarkup(messageId: Long) = editMarkup(messageId)
-fun editMessageReplyMarkup() = editMarkup()
-fun editMarkup(messageId: Long) = EditMessageReplyMarkupAction(messageId)
-fun editMarkup() = EditMessageReplyMarkupAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun editCaption(messageId: Long) = EditMessageCaptionAction(messageId)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editCaption() = EditMessageCaptionAction()
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageMedia(messageId: Long, inputMedia: InputMedia) = editMedia(messageId, inputMedia)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageMedia(inputMedia: InputMedia) = editMedia(inputMedia)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMedia(messageId: Long, inputMedia: InputMedia) = EditMessageMediaAction(messageId, inputMedia)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMedia(inputMedia: InputMedia) = EditMessageMediaAction(inputMedia)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageReplyMarkup(messageId: Long) = editMarkup(messageId)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageReplyMarkup() = editMarkup()
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMarkup(messageId: Long) = EditMessageReplyMarkupAction(messageId)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMarkup() = EditMessageReplyMarkupAction()

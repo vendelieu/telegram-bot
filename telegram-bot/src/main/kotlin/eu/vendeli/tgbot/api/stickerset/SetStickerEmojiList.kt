@@ -19,5 +19,6 @@ class SetStickerEmojiListAction(
     }
 }
 
-fun setStickerEmojiList(sticker: String, emojiList: List<String>) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun setStickerEmojiList(sticker: String, emojiList: List<String>) =
     SetStickerEmojiListAction(sticker, emojiList)

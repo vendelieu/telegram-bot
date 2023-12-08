@@ -19,5 +19,6 @@ class SetStickerKeywordsAction(
     }
 }
 
-fun setStickerKeywords(sticker: String, keywords: List<String>? = null) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun setStickerKeywords(sticker: String, keywords: List<String>? = null) =
     SetStickerKeywordsAction(sticker, keywords)

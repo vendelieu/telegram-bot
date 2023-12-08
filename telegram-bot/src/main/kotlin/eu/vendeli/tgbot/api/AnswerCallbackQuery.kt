@@ -13,12 +13,12 @@ class AnswerCallbackQueryAction(callbackQueryId: String) :
     OptionsFeature<AnswerCallbackQueryAction, AnswerCallbackQueryOptions> {
     override val method = TgMethod("answerCallbackQuery")
     override val returnType = getReturnType()
-    override val OptionsFeature<AnswerCallbackQueryAction, AnswerCallbackQueryOptions>.options
-        get() = AnswerCallbackQueryOptions()
+    override val options = AnswerCallbackQueryOptions()
 
     init {
         parameters["callback_query_id"] = callbackQueryId
     }
 }
 
-fun answerCallbackQuery(callbackQueryId: String) = AnswerCallbackQueryAction(callbackQueryId)
+@Suppress("NOTHING_TO_INLINE")
+inline fun answerCallbackQuery(callbackQueryId: String) = AnswerCallbackQueryAction(callbackQueryId)

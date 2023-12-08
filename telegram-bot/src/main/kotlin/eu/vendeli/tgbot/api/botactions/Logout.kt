@@ -11,4 +11,5 @@ class LogoutAction : SimpleAction<Boolean>() {
     override val returnType = getReturnType()
 }
 
-fun logout() = LogoutAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun logout() = LogoutAction()

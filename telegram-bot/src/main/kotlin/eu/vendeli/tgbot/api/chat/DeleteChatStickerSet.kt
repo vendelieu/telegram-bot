@@ -11,4 +11,5 @@ class DeleteChatStickerSetAction : Action<Boolean>() {
     override val returnType = getReturnType()
 }
 
-fun deleteChatStickerSet() = DeleteChatStickerSetAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun deleteChatStickerSet() = DeleteChatStickerSetAction()

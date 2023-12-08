@@ -36,8 +36,7 @@ class CopyMessageAction(
     CaptionFeature<CopyMessageAction> {
     override val method = TgMethod("copyMessage")
     override val returnType = getReturnType()
-    override val OptionsFeature<CopyMessageAction, CopyMessageOptions>.options: CopyMessageOptions
-        get() = CopyMessageOptions()
+    override val options = CopyMessageOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
 
@@ -60,14 +59,18 @@ class CopyMessageAction(
  * (or channel username in the format @channelusername)
  * @param messageId Message identifier in the chat specified in fromChatId
  */
-fun copyMessage(chatId: Long, fromChatId: Long, messageId: Long) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun copyMessage(chatId: Long, fromChatId: Long, messageId: Long) =
     CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
 
-fun copyMessage(chatId: String, fromChatId: Long, messageId: Long) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun copyMessage(chatId: String, fromChatId: Long, messageId: Long) =
     CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
 
-fun copyMessage(chatId: Long, fromChatId: String, messageId: Long) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun copyMessage(chatId: Long, fromChatId: String, messageId: Long) =
     CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
 
-fun copyMessage(chatId: String, fromChatId: String, messageId: Long) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun copyMessage(chatId: String, fromChatId: String, messageId: Long) =
     CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)

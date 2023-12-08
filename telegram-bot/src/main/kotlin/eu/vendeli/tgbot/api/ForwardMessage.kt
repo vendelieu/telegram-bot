@@ -24,8 +24,7 @@ class ForwardMessageAction(chatId: Identifier<*>, fromChatId: Identifier<*>, mes
     OptionsFeature<ForwardMessageAction, ForwardMessageOptions> {
     override val method = TgMethod("forwardMessage")
     override val returnType = getReturnType()
-    override val OptionsFeature<ForwardMessageAction, ForwardMessageOptions>.options: ForwardMessageOptions
-        get() = ForwardMessageOptions()
+    override val options = ForwardMessageOptions()
 
     init {
         parameters["chat_id"] = chatId.get
@@ -43,14 +42,18 @@ class ForwardMessageAction(chatId: Identifier<*>, fromChatId: Identifier<*>, mes
  * (or channel username in the format @channelusername)
  * @param messageId Message identifier in the chat specified in fromChatId
  */
-fun forwardMessage(chatId: Long, fromChatId: Long, messageId: Long) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun forwardMessage(chatId: Long, fromChatId: Long, messageId: Long) =
     ForwardMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
 
-fun forwardMessage(chatId: String, fromChatId: Long, messageId: Long) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun forwardMessage(chatId: String, fromChatId: Long, messageId: Long) =
     ForwardMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
 
-fun forwardMessage(chatId: Long, fromChatId: String, messageId: Long) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun forwardMessage(chatId: Long, fromChatId: String, messageId: Long) =
     ForwardMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
 
-fun forwardMessage(chatId: String, fromChatId: String, messageId: Long) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun forwardMessage(chatId: String, fromChatId: String, messageId: Long) =
     ForwardMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)

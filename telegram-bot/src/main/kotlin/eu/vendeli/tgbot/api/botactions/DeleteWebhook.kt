@@ -11,8 +11,9 @@ class DeleteWebhookAction(dropPendingUpdates: Boolean = false) : SimpleAction<Bo
     override val returnType = getReturnType()
 
     init {
-        parameters["dropPendingUpdates"] = dropPendingUpdates
+        parameters["drop_pending_updates"] = dropPendingUpdates
     }
 }
 
-fun deleteWebhook(dropPendingUpdates: Boolean = false) = DeleteWebhookAction(dropPendingUpdates)
+@Suppress("NOTHING_TO_INLINE")
+inline fun deleteWebhook(dropPendingUpdates: Boolean = false) = DeleteWebhookAction(dropPendingUpdates)

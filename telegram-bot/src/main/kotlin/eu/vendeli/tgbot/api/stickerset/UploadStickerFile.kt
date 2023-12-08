@@ -21,4 +21,5 @@ class UploadStickerFileAction(sticker: StickerFile) : MediaAction<File>() {
     }
 }
 
-fun uploadStickerFile(sticker: StickerFile) = UploadStickerFileAction(sticker)
+@Suppress("NOTHING_TO_INLINE")
+inline fun uploadStickerFile(sticker: StickerFile) = UploadStickerFileAction(sticker)

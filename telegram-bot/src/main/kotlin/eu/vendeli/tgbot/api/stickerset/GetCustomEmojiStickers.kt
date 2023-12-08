@@ -28,7 +28,9 @@ class GetCustomEmojiStickersAction(customEmojiIds: List<String>) : SimpleAction<
  *
  * @param customEmojiIds List of custom emoji identifiers. At most 200 custom emoji identifiers can be specified.
  */
-fun getCustomEmojiStickers(customEmojiIds: List<String>) = GetCustomEmojiStickersAction(customEmojiIds)
+@Suppress("NOTHING_TO_INLINE")
+inline fun getCustomEmojiStickers(customEmojiIds: List<String>) = GetCustomEmojiStickersAction(customEmojiIds)
 
 @JvmName("getCustomEmojiStickersWithVararg")
-fun getCustomEmojiStickers(vararg customEmojiId: String) = GetCustomEmojiStickersAction(customEmojiId.asList())
+@Suppress("NOTHING_TO_INLINE")
+inline fun getCustomEmojiStickers(vararg customEmojiId: String) = getCustomEmojiStickers(customEmojiId.asList())

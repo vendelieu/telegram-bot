@@ -23,5 +23,8 @@ class GetGameHighScoresAction : InlinableAction<List<GameHighScore>> {
     }
 }
 
-fun getGameHighScores(userId: Long, messageId: Long) = GetGameHighScoresAction(userId, messageId)
-fun getGameHighScores(userId: Long) = GetGameHighScoresAction(userId)
+@Suppress("NOTHING_TO_INLINE")
+inline fun getGameHighScores(userId: Long, messageId: Long) = GetGameHighScoresAction(userId, messageId)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun getGameHighScores(userId: Long) = GetGameHighScoresAction(userId)

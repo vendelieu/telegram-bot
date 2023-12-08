@@ -11,4 +11,5 @@ class DeleteChatPhotoAction : Action<Boolean>() {
     override val returnType = getReturnType()
 }
 
-fun deleteChatPhoto() = DeleteChatPhotoAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun deleteChatPhoto() = DeleteChatPhotoAction()

@@ -15,4 +15,5 @@ class UnbanChatSenderChatAction(senderChatId: Long) : Action<Boolean>() {
     }
 }
 
-fun unbanChatSenderChat(senderChatId: Long) = UnbanChatSenderChatAction(senderChatId)
+@Suppress("NOTHING_TO_INLINE")
+inline fun unbanChatSenderChat(senderChatId: Long) = UnbanChatSenderChatAction(senderChatId)

@@ -18,8 +18,7 @@ class SetWebhookAction(url: String) :
     OptionsFeature<SetWebhookAction, SetWebhookOptions> {
     override val method = TgMethod("setWebhook")
     override val returnType = getReturnType()
-    override val OptionsFeature<SetWebhookAction, SetWebhookOptions>.options: SetWebhookOptions
-        get() = SetWebhookOptions()
+    override val options = SetWebhookOptions()
 
     init {
         parameters["url"] = url
@@ -38,4 +37,5 @@ class SetWebhookAction(url: String) :
     )
 }
 
-fun setWebhook(url: String) = SetWebhookAction(url)
+@Suppress("NOTHING_TO_INLINE")
+inline fun setWebhook(url: String) = SetWebhookAction(url)

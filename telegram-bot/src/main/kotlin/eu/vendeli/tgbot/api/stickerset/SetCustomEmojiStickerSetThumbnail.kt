@@ -19,5 +19,6 @@ class SetCustomEmojiStickerSetThumbnailAction(
     }
 }
 
-fun setCustomEmojiStickerSetThumbnail(name: String, customEmojiId: String? = null) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun setCustomEmojiStickerSetThumbnail(name: String, customEmojiId: String? = null) =
     SetCustomEmojiStickerSetThumbnailAction(name, customEmojiId)

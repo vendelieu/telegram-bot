@@ -21,12 +21,12 @@ class SetChatPermissionsAction(
     }
 }
 
-fun setChatPermissions(
+@Suppress("NOTHING_TO_INLINE")
+inline fun setChatPermissions(
     permissions: ChatPermissions,
     useIndependentChatPermissions: Boolean? = null,
 ) = SetChatPermissionsAction(permissions, useIndependentChatPermissions)
-
-fun setChatPermissions(
+inline fun setChatPermissions(
     useIndependentChatPermissions: Boolean? = null,
     permissions: ChatPermissions.() -> Unit,
-) = SetChatPermissionsAction(ChatPermissions().apply(permissions), useIndependentChatPermissions)
+) = setChatPermissions(ChatPermissions().apply(permissions), useIndependentChatPermissions)

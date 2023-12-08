@@ -25,14 +25,15 @@ class RestrictChatMemberAction(
     }
 }
 
-fun restrictChatMember(
+inline fun restrictChatMember(
     userId: Long,
     untilDate: Long? = null,
     useIndependentChatPermissions: Boolean? = null,
     chatPermissions: ChatPermissions.() -> Unit,
 ) = RestrictChatMemberAction(userId, ChatPermissions().apply(chatPermissions), untilDate, useIndependentChatPermissions)
 
-fun restrictChatMember(
+@Suppress("NOTHING_TO_INLINE")
+inline fun restrictChatMember(
     userId: Long,
     chatPermissions: ChatPermissions,
     untilDate: Long? = null,

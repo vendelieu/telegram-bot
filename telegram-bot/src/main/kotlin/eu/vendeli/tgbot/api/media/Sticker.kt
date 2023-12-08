@@ -20,8 +20,7 @@ class SendStickerAction(sticker: ImplicitFile<*>) :
     MarkupFeature<SendStickerAction> {
     override val method = TgMethod("sendSticker")
     override val returnType = getReturnType()
-    override val OptionsFeature<SendStickerAction, StickerOptions>.options: StickerOptions
-        get() = StickerOptions()
+    override val options = StickerOptions()
     override val inputFilePresence = sticker is ImplicitFile.InpFile
 
     init {
@@ -29,7 +28,20 @@ class SendStickerAction(sticker: ImplicitFile<*>) :
     }
 }
 
-fun sticker(block: () -> String) = SendStickerAction(ImplicitFile.Str(block()))
-fun sticker(ba: ByteArray) = SendStickerAction(ImplicitFile.InpFile(ba.toInputFile()))
-fun sticker(file: File) = SendStickerAction(ImplicitFile.InpFile(file.toInputFile()))
-fun sticker(file: InputFile) = SendStickerAction(ImplicitFile.InpFile(file))
+@Suppress("NOTHING_TO_INLINE")
+inline fun sticker(file: ImplicitFile<*>) = SendStickerAction(file)
+inline fun sticker(block: () -> String) = sticker(ImplicitFile.Str(block()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sticker(ba: ByteArray) = sticker(ImplicitFile.InpFile(ba.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sticker(file: File) = sticker(ImplicitFile.InpFile(file.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sticker(file: InputFile) = sticker(ImplicitFile.InpFile(file))
+
+inline fun sendSticker(block: () -> String) = sticker(block)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendSticker(file: ImplicitFile<*>) = sticker(file)

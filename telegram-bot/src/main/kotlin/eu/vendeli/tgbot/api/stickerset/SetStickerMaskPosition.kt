@@ -20,5 +20,6 @@ class SetStickerMaskPositionAction(
     }
 }
 
-fun setStickerMaskPosition(sticker: String, maskPosition: MaskPosition? = null) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun setStickerMaskPosition(sticker: String, maskPosition: MaskPosition? = null) =
     SetStickerMaskPositionAction(sticker, maskPosition)

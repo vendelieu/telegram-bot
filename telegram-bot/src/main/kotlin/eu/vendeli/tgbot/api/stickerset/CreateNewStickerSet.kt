@@ -18,9 +18,7 @@ class CreateNewStickerSetAction(
 ) : MediaAction<Boolean>(), OptionsFeature<CreateNewStickerSetAction, CreateNewStickerSetOptions> {
     override val method = TgMethod("createNewStickerSet")
     override val returnType = getReturnType()
-    override val OptionsFeature<CreateNewStickerSetAction, CreateNewStickerSetOptions>.options:
-        CreateNewStickerSetOptions
-        get() = CreateNewStickerSetOptions()
+    override val options = CreateNewStickerSetOptions()
     override val idRefField = "user_id"
 
     init {
@@ -31,5 +29,11 @@ class CreateNewStickerSetAction(
     }
 }
 
-fun createNewStickerSet(name: String, title: String, stickerFormat: StickerFormat, stickers: List<InputSticker>) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun createNewStickerSet(
+    name: String,
+    title: String,
+    stickerFormat: StickerFormat,
+    stickers: List<InputSticker>,
+) =
     CreateNewStickerSetAction(name, title, stickerFormat, stickers)

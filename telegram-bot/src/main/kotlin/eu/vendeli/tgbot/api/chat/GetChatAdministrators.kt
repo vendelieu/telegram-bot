@@ -14,4 +14,5 @@ class GetChatAdministratorsAction : Action<List<ChatMember>>() {
     override val wrappedDataType = getInnerType()
 }
 
-fun getChatAdministrators() = GetChatAdministratorsAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun getChatAdministrators() = GetChatAdministratorsAction()

@@ -27,4 +27,5 @@ class UnpinAllForumTopicMessagesAction(messageThreadId: Int) : Action<Boolean>()
  * the can_pin_messages administrator right in the supergroup.
  * Returns True on success.
  */
-fun unpinAllForumTopicMessages(messageThreadId: Int) = UnpinAllForumTopicMessagesAction(messageThreadId)
+@Suppress("NOTHING_TO_INLINE")
+inline fun unpinAllForumTopicMessages(messageThreadId: Int) = UnpinAllForumTopicMessagesAction(messageThreadId)

@@ -23,8 +23,7 @@ class CreateInvoiceLinkAction(
     currency: Currency,
     prices: List<LabeledPrice>,
 ) : SimpleAction<String>(), OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions> {
-    override val OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions>.options: CreateInvoiceLinkOptions
-        get() = CreateInvoiceLinkOptions()
+    override val options = CreateInvoiceLinkOptions()
     override val method = TgMethod("createInvoiceLink")
     override val returnType = getReturnType()
 
@@ -38,7 +37,8 @@ class CreateInvoiceLinkAction(
     }
 }
 
-fun createInvoiceLink(
+@Suppress("NOTHING_TO_INLINE")
+inline fun createInvoiceLink(
     title: String,
     description: String,
     payload: String,
@@ -47,11 +47,11 @@ fun createInvoiceLink(
     prices: List<LabeledPrice>,
 ) = CreateInvoiceLinkAction(title, description, payload, providerToken, currency, prices)
 
-fun createInvoiceLink(
+inline fun createInvoiceLink(
     title: String,
     description: String,
     providerToken: String,
     currency: Currency,
     vararg prices: LabeledPrice,
     payload: () -> String,
-) = createInvoiceLink(title, description, payload(), providerToken, currency, prices.toList())
+) = createInvoiceLink(title, description, payload(), providerToken, currency, prices.asList())

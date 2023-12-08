@@ -23,7 +23,10 @@ class GetUserProfilePhotosAction(
     }
 }
 
-fun getUserProfilePhotos(userId: Long, offset: Int? = null, limit: Int? = null) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun getUserProfilePhotos(userId: Long, offset: Int? = null, limit: Int? = null) =
     GetUserProfilePhotosAction(userId, offset, limit)
-fun getUserProfilePhotos(user: User, offset: Int? = null, limit: Int? = null) =
-    GetUserProfilePhotosAction(user.id, offset, limit)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun getUserProfilePhotos(user: User, offset: Int? = null, limit: Int? = null) =
+    getUserProfilePhotos(user.id, offset, limit)

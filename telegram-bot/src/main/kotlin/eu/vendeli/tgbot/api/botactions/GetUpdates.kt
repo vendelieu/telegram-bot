@@ -16,8 +16,8 @@ class GetUpdatesAction :
     override val method = TgMethod("getUpdates")
     override val returnType = getReturnType()
     override val wrappedDataType = getInnerType()
-    override val OptionsFeature<GetUpdatesAction, GetUpdatesOptions>.options: GetUpdatesOptions
-        get() = GetUpdatesOptions()
+    override val options = GetUpdatesOptions()
 }
 
-fun getUpdates() = GetUpdatesAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun getUpdates() = GetUpdatesAction()

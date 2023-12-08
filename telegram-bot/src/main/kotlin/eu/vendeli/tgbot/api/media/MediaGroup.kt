@@ -20,8 +20,7 @@ class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
     override val method = TgMethod("sendMediaGroup")
     override val returnType = getReturnType()
     override val wrappedDataType = getInnerType()
-    override val OptionsFeature<SendMediaGroupAction, MediaGroupOptions>.options: MediaGroupOptions
-        get() = MediaGroupOptions()
+    override val options = MediaGroupOptions()
     override val inputFilePresence: Boolean
         get() = isInputFile
     private val isInputFile = inputMedia.any { it.media is InpFile }
@@ -51,8 +50,20 @@ class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
     }
 }
 
-fun sendMediaGroup(vararg media: InputMedia) = SendMediaGroupAction(media.toList())
-fun mediaGroup(vararg media: InputMedia.Audio) = SendMediaGroupAction(media.toList())
-fun mediaGroup(vararg media: InputMedia.Document) = SendMediaGroupAction(media.toList())
-fun mediaGroup(vararg media: InputMedia.Photo) = SendMediaGroupAction(media.toList())
-fun mediaGroup(vararg media: InputMedia.Video) = SendMediaGroupAction(media.toList())
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendMediaGroup(media: List<InputMedia>) = SendMediaGroupAction(media)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendMediaGroup(vararg media: InputMedia) = sendMediaGroup(media.asList())
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun mediaGroup(vararg media: InputMedia.Audio) = sendMediaGroup(media.asList())
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun mediaGroup(vararg media: InputMedia.Document) = sendMediaGroup(media.asList())
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun mediaGroup(vararg media: InputMedia.Photo) = sendMediaGroup(media.asList())
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun mediaGroup(vararg media: InputMedia.Video) = sendMediaGroup(media.asList())

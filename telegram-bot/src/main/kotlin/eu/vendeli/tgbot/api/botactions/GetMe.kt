@@ -22,4 +22,5 @@ class GetMeAction : SimpleAction<User>() {
  * Returns basic information about the bot in form of a [User](User) object.
  *
  */
-fun getMe() = GetMeAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun getMe() = GetMeAction()

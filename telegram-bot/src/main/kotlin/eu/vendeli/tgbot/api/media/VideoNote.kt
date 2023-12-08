@@ -20,8 +20,7 @@ class SendVideoNoteAction(videoNote: ImplicitFile<*>) :
     MarkupFeature<SendVideoNoteAction> {
     override val method = TgMethod("sendVideoNote")
     override val returnType = getReturnType()
-    override val OptionsFeature<SendVideoNoteAction, VideoNoteOptions>.options: VideoNoteOptions
-        get() = VideoNoteOptions()
+    override val options = VideoNoteOptions()
     override val inputFilePresence = videoNote is ImplicitFile.InpFile
 
     init {
@@ -29,7 +28,19 @@ class SendVideoNoteAction(videoNote: ImplicitFile<*>) :
     }
 }
 
-fun videoNote(block: () -> String) = SendVideoNoteAction(ImplicitFile.Str(block()))
-fun videoNote(ba: ByteArray) = SendVideoNoteAction(ImplicitFile.InpFile(ba.toInputFile()))
-fun videoNote(input: InputFile) = SendVideoNoteAction(ImplicitFile.InpFile(input))
-fun videoNote(file: File) = SendVideoNoteAction(ImplicitFile.InpFile(file.toInputFile()))
+@Suppress("NOTHING_TO_INLINE")
+inline fun videoNote(file: ImplicitFile<*>) = SendVideoNoteAction(file)
+inline fun videoNote(block: () -> String) = SendVideoNoteAction(ImplicitFile.Str(block()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun videoNote(ba: ByteArray) = SendVideoNoteAction(ImplicitFile.InpFile(ba.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun videoNote(input: InputFile) = SendVideoNoteAction(ImplicitFile.InpFile(input))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun videoNote(file: File) = SendVideoNoteAction(ImplicitFile.InpFile(file.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendVideoNote(file: ImplicitFile<*>) = videoNote(file)
+inline fun sendVideoNote(block: () -> String) = videoNote(block)

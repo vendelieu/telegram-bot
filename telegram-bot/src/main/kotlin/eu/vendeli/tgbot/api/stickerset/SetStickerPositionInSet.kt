@@ -16,4 +16,5 @@ class SetStickerPositionInSetAction(sticker: String, position: Int) : SimpleActi
     }
 }
 
-fun setStickerPositionInSet(sticker: String, position: Int) = SetStickerPositionInSetAction(sticker, position)
+@Suppress("NOTHING_TO_INLINE")
+inline fun setStickerPositionInSet(sticker: String, position: Int) = SetStickerPositionInSetAction(sticker, position)

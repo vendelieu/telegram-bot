@@ -10,9 +10,9 @@ import eu.vendeli.tgbot.utils.builders.BotCommandsBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 
 class SetMyCommandsAction(
-    commands: List<BotCommand>,
-    scope: BotCommandScope? = null,
     languageCode: String? = null,
+    scope: BotCommandScope? = null,
+    commands: List<BotCommand>,
 ) : SimpleAction<Boolean>() {
     override val method = TgMethod("setMyCommands")
     override val returnType = getReturnType()
@@ -24,8 +24,12 @@ class SetMyCommandsAction(
     }
 }
 
-fun setMyCommands(languageCode: String? = null, scope: BotCommandScope? = null, vararg command: BotCommand) =
-    SetMyCommandsAction(listOf(*command), scope, languageCode)
+@Suppress("NOTHING_TO_INLINE")
+inline fun setMyCommands(languageCode: String? = null, scope: BotCommandScope? = null, command: List<BotCommand>) =
+    SetMyCommandsAction(languageCode, scope, command)
 
+@Suppress("NOTHING_TO_INLINE")
+inline fun setMyCommands(languageCode: String? = null, scope: BotCommandScope? = null, vararg command: BotCommand) =
+    setMyCommands(languageCode, scope, command.asList())
 fun setMyCommands(languageCode: String? = null, scope: BotCommandScope? = null, block: BotCommandsBuilder.() -> Unit) =
-    SetMyCommandsAction(BotCommandsBuilder().apply(block).commandsList, scope, languageCode)
+    setMyCommands(languageCode, scope, BotCommandsBuilder.build(block))

@@ -17,4 +17,5 @@ class StopPollAction(messageId: Long) : Action<Poll>(), MarkupFeature<SendPollAc
     }
 }
 
-fun stopPoll(messageId: Long) = StopPollAction(messageId)
+@Suppress("NOTHING_TO_INLINE")
+inline fun stopPoll(messageId: Long) = StopPollAction(messageId)

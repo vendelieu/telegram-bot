@@ -23,5 +23,6 @@ class GetMyCommandsAction(
     }
 }
 
-fun getMyCommands(languageCode: String? = null, scope: BotCommandScope? = null) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun getMyCommands(languageCode: String? = null, scope: BotCommandScope? = null) =
     GetMyCommandsAction(scope, languageCode)

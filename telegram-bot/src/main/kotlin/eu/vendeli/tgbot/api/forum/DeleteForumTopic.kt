@@ -27,4 +27,5 @@ class DeleteForumTopicAction(messageThreadId: Int) : Action<Boolean>() {
  * and must have the canDeleteMessages administrator rights.
  * Returns True on success.
  */
-fun deleteForumTopic(messageThreadId: Int) = DeleteForumTopicAction(messageThreadId)
+@Suppress("NOTHING_TO_INLINE")
+inline fun deleteForumTopic(messageThreadId: Int) = DeleteForumTopicAction(messageThreadId)

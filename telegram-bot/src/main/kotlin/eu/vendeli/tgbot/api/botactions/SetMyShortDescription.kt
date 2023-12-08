@@ -19,7 +19,8 @@ class SetMyShortDescriptionAction(
     }
 }
 
-fun setMyShortDescription(
+@Suppress("NOTHING_TO_INLINE")
+inline fun setMyShortDescription(
     description: String? = null,
     languageCode: String? = null,
 ) = SetMyShortDescriptionAction(description, languageCode)

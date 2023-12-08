@@ -11,4 +11,5 @@ class GetChatMemberCountAction : Action<Int>() {
     override val returnType = getReturnType()
 }
 
-fun getChatMemberCount() = GetChatMemberCountAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun getChatMemberCount() = GetChatMemberCountAction()

@@ -24,8 +24,7 @@ class SendAnimationAction(animation: ImplicitFile<*>) :
     CaptionFeature<SendAnimationAction> {
     override val method = TgMethod("sendAnimation")
     override val returnType = getReturnType()
-    override val OptionsFeature<SendAnimationAction, AnimationOptions>.options: AnimationOptions
-        get() = AnimationOptions()
+    override val options = AnimationOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
     override val inputFilePresence = animation is ImplicitFile.InpFile
@@ -35,9 +34,19 @@ class SendAnimationAction(animation: ImplicitFile<*>) :
     }
 }
 
-fun sendAnimation(block: () -> String) = animation(block)
-fun sendAnimation(file: ImplicitFile<*>) = SendAnimationAction(file)
-fun animation(block: () -> String) = SendAnimationAction(ImplicitFile.Str(block()))
-fun animation(ba: ByteArray) = SendAnimationAction(ImplicitFile.InpFile(ba.toInputFile()))
-fun animation(file: File) = SendAnimationAction(ImplicitFile.InpFile(file.toInputFile()))
-fun animation(file: InputFile) = SendAnimationAction(ImplicitFile.InpFile(file))
+@Suppress("NOTHING_TO_INLINE")
+inline fun animation(file: ImplicitFile<*>) = SendAnimationAction(file)
+inline fun animation(block: () -> String) = animation(ImplicitFile.Str(block()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun animation(ba: ByteArray) = animation(ImplicitFile.InpFile(ba.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun animation(file: File) = animation(ImplicitFile.InpFile(file.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun animation(file: InputFile) = animation(ImplicitFile.InpFile(file))
+inline fun sendAnimation(block: () -> String) = animation(block)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendAnimation(file: ImplicitFile<*>) = animation(file)

@@ -15,4 +15,5 @@ class UnpinChatMessageAction(messageId: Long) : Action<Boolean>() {
     }
 }
 
-fun unpinChatMessage(messageId: Long) = UnpinChatMessageAction(messageId)
+@Suppress("NOTHING_TO_INLINE")
+inline fun unpinChatMessage(messageId: Long) = UnpinChatMessageAction(messageId)

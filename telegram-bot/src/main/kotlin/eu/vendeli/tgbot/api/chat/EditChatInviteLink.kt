@@ -14,12 +14,12 @@ class EditChatInviteLinkAction(inviteLink: String) :
     OptionsFeature<EditChatInviteLinkAction, ChatInviteLinkOptions> {
     override val method = TgMethod("editChatInviteLink")
     override val returnType = getReturnType()
-    override val OptionsFeature<EditChatInviteLinkAction, ChatInviteLinkOptions>.options: ChatInviteLinkOptions
-        get() = ChatInviteLinkOptions()
+    override val options = ChatInviteLinkOptions()
 
     init {
         parameters["invite_link"] = inviteLink
     }
 }
 
-fun editChatInviteLink(inviteLink: String) = EditChatInviteLinkAction(inviteLink)
+@Suppress("NOTHING_TO_INLINE")
+inline fun editChatInviteLink(inviteLink: String) = EditChatInviteLinkAction(inviteLink)

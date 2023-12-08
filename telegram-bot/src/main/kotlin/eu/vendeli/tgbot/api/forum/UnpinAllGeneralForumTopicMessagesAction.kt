@@ -21,4 +21,5 @@ class UnpinAllGeneralForumTopicMessagesAction : Action<Boolean>() {
  * The bot must be an administrator in the chat for this to work and must have the can_pin_messages
  * administrator right in the supergroup. Returns True on success.
  */
-fun unpinAllGeneralForumTopicMessages() = UnpinAllGeneralForumTopicMessagesAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun unpinAllGeneralForumTopicMessages() = UnpinAllGeneralForumTopicMessagesAction()

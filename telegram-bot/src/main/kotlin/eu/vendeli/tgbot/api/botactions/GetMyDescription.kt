@@ -16,4 +16,5 @@ class GetMyDescriptionAction(languageCode: String? = null) : SimpleAction<BotDes
     }
 }
 
-fun getMyDescription(languageCode: String? = null) = GetMyDescriptionAction(languageCode)
+@Suppress("NOTHING_TO_INLINE")
+inline fun getMyDescription(languageCode: String? = null) = GetMyDescriptionAction(languageCode)

@@ -14,8 +14,7 @@ class SetGameScoreAction :
     OptionsFeature<SetGameScoreAction, SetGameScoreOptions> {
     override val method = TgMethod("setGameScore")
     override val returnType = getReturnType()
-    override val OptionsFeature<SetGameScoreAction, SetGameScoreOptions>.options: SetGameScoreOptions
-        get() = SetGameScoreOptions()
+    override val options = SetGameScoreOptions()
 
     constructor(userId: Long, messageId: Long, score: Long) {
         parameters["user_id"] = userId
@@ -29,5 +28,8 @@ class SetGameScoreAction :
     }
 }
 
-fun setGameScore(userId: Long, messageId: Long, score: Long) = SetGameScoreAction(userId, messageId, score)
-fun setGameScore(userId: Long, score: Long) = SetGameScoreAction(userId, score)
+@Suppress("NOTHING_TO_INLINE")
+inline fun setGameScore(userId: Long, messageId: Long, score: Long) = SetGameScoreAction(userId, messageId, score)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun setGameScore(userId: Long, score: Long) = SetGameScoreAction(userId, score)

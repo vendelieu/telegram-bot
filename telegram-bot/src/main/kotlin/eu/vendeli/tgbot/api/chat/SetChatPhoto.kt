@@ -20,10 +20,15 @@ class SetChatPhotoAction(photo: ImplicitFile<*>) : MediaAction<Boolean>() {
     }
 }
 
-fun setChatPhoto(block: () -> String) = SetChatPhotoAction(ImplicitFile.Str(block()))
+@Suppress("NOTHING_TO_INLINE")
+inline fun setChatPhoto(file: ImplicitFile<*>) = SetChatPhotoAction(file)
+inline fun setChatPhoto(block: () -> String) = setChatPhoto(ImplicitFile.Str(block()))
 
-fun setChatPhoto(file: InputFile) = SetChatPhotoAction(ImplicitFile.InpFile(file))
+@Suppress("NOTHING_TO_INLINE")
+inline fun setChatPhoto(file: InputFile) = setChatPhoto(ImplicitFile.InpFile(file))
 
-fun setChatPhoto(ba: ByteArray) = SetChatPhotoAction(ImplicitFile.InpFile(ba.toInputFile()))
+@Suppress("NOTHING_TO_INLINE")
+inline fun setChatPhoto(ba: ByteArray) = setChatPhoto(ImplicitFile.InpFile(ba.toInputFile()))
 
-fun setChatPhoto(file: File) = SetChatPhotoAction(ImplicitFile.InpFile(file.toInputFile()))
+@Suppress("NOTHING_TO_INLINE")
+inline fun setChatPhoto(file: File) = setChatPhoto(ImplicitFile.InpFile(file.toInputFile()))

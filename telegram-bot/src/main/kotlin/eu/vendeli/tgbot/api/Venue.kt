@@ -1,3 +1,4 @@
+
 @file:Suppress("MatchingDeclarationName")
 
 package eu.vendeli.tgbot.api
@@ -20,8 +21,7 @@ class SendVenueAction(
     MarkupFeature<SendVenueAction> {
     override val method = TgMethod("sendVenue")
     override val returnType = getReturnType()
-    override val OptionsFeature<SendVenueAction, VenueOptions>.options: VenueOptions
-        get() = VenueOptions()
+    override val options = VenueOptions()
     init {
         parameters["latitude"] = latitude
         parameters["longitude"] = longitude
@@ -30,7 +30,10 @@ class SendVenueAction(
     }
 }
 
-fun sendVenue(latitude: Float, longitude: Float, title: String, address: String) =
-    venue(latitude, longitude, title, address)
-fun venue(latitude: Float, longitude: Float, title: String, address: String) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun venue(latitude: Float, longitude: Float, title: String, address: String) =
     SendVenueAction(latitude, longitude, title, address)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendVenue(latitude: Float, longitude: Float, title: String, address: String) =
+    venue(latitude, longitude, title, address)

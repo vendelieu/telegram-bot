@@ -24,8 +24,7 @@ class SendPhotoAction(photo: ImplicitFile<*>) :
     CaptionFeature<SendPhotoAction> {
     override val method = TgMethod("sendPhoto")
     override val returnType = getReturnType()
-    override val OptionsFeature<SendPhotoAction, PhotoOptions>.options: PhotoOptions
-        get() = PhotoOptions()
+    override val options = PhotoOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
     override val inputFilePresence = photo is ImplicitFile.InpFile
@@ -35,7 +34,20 @@ class SendPhotoAction(photo: ImplicitFile<*>) :
     }
 }
 
-fun photo(block: () -> String) = SendPhotoAction(ImplicitFile.Str(block()))
-fun photo(ba: ByteArray) = SendPhotoAction(ImplicitFile.InpFile(ba.toInputFile()))
-fun photo(file: File) = SendPhotoAction(ImplicitFile.InpFile(file.toInputFile()))
-fun photo(file: InputFile) = SendPhotoAction(ImplicitFile.InpFile(file))
+@Suppress("NOTHING_TO_INLINE")
+inline fun photo(file: ImplicitFile<*>) = SendPhotoAction(file)
+inline fun photo(block: () -> String) = photo(ImplicitFile.Str(block()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun photo(ba: ByteArray) = photo(ImplicitFile.InpFile(ba.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun photo(file: File) = photo(ImplicitFile.InpFile(file.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun photo(file: InputFile) = photo(ImplicitFile.InpFile(file))
+
+inline fun sendPhoto(block: () -> String) = photo(block)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendPhoto(file: ImplicitFile<*>) = photo(file)

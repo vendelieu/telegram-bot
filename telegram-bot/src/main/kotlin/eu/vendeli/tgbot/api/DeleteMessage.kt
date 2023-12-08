@@ -15,4 +15,5 @@ class DeleteMessageAction(messageId: Long) : Action<Boolean>() {
     }
 }
 
-fun deleteMessage(messageId: Long) = DeleteMessageAction(messageId)
+@Suppress("NOTHING_TO_INLINE")
+inline fun deleteMessage(messageId: Long) = DeleteMessageAction(messageId)

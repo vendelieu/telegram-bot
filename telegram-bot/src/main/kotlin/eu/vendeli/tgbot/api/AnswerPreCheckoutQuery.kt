@@ -21,5 +21,6 @@ class AnswerPreCheckoutQueryAction(
     }
 }
 
-fun answerPreCheckoutQuery(preCheckoutQueryId: String, ok: Boolean = true, errorMessage: String? = null) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun answerPreCheckoutQuery(preCheckoutQueryId: String, ok: Boolean = true, errorMessage: String? = null) =
     AnswerPreCheckoutQueryAction(preCheckoutQueryId, ok, errorMessage)

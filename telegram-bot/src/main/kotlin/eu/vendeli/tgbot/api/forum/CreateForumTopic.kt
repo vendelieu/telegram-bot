@@ -35,5 +35,6 @@ class CreateForumTopicAction(
  * Returns information about the created topic as a [ForumTopic] object.
  *
  */
-fun createForumTopic(name: String, iconColor: IconColor? = null, iconCustomEmojiId: String? = null) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun createForumTopic(name: String, iconColor: IconColor? = null, iconCustomEmojiId: String? = null) =
     CreateForumTopicAction(name, iconColor, iconCustomEmojiId)

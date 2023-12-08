@@ -20,5 +20,6 @@ class SetMyDefaultAdministratorRightsAction(
     }
 }
 
-fun setMyDefaultAdministratorRights(rights: ChatAdministratorRights? = null, forChannel: Boolean? = null) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun setMyDefaultAdministratorRights(rights: ChatAdministratorRights? = null, forChannel: Boolean? = null) =
     SetMyDefaultAdministratorRightsAction(rights, forChannel)

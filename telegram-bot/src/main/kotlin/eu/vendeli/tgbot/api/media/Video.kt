@@ -24,8 +24,7 @@ class SendVideoAction(video: ImplicitFile<*>) :
     CaptionFeature<SendVideoAction> {
     override val method = TgMethod("sendVideo")
     override val returnType = getReturnType()
-    override val OptionsFeature<SendVideoAction, VideoOptions>.options: VideoOptions
-        get() = VideoOptions()
+    override val options = VideoOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
     override val inputFilePresence = video is ImplicitFile.InpFile
@@ -35,7 +34,19 @@ class SendVideoAction(video: ImplicitFile<*>) :
     }
 }
 
-fun video(block: () -> String) = SendVideoAction(ImplicitFile.Str(block()))
-fun video(ba: ByteArray) = SendVideoAction(ImplicitFile.InpFile(ba.toInputFile()))
-fun video(file: File) = SendVideoAction(ImplicitFile.InpFile(file.toInputFile()))
-fun video(file: InputFile) = SendVideoAction(ImplicitFile.InpFile(file))
+@Suppress("NOTHING_TO_INLINE")
+inline fun video(file: ImplicitFile<*>) = SendVideoAction(file)
+inline fun video(block: () -> String) = video(ImplicitFile.Str(block()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun video(ba: ByteArray) = video(ImplicitFile.InpFile(ba.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun video(file: File) = video(ImplicitFile.InpFile(file.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun video(file: InputFile) = video(ImplicitFile.InpFile(file))
+inline fun sendVideo(block: () -> String) = video(block)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendVideo(file: ImplicitFile<*>) = video(file)

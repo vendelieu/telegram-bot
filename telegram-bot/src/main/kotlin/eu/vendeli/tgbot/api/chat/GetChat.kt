@@ -12,4 +12,5 @@ class GetChatAction : Action<Chat>() {
     override val returnType = getReturnType()
 }
 
-fun getChat() = GetChatAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun getChat() = GetChatAction()

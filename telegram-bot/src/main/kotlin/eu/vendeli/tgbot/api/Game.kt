@@ -17,13 +17,15 @@ class SendGameAction(
     MarkupFeature<SendGameAction> {
     override val method = TgMethod("sendGame")
     override val returnType = getReturnType()
-    override val OptionsFeature<SendGameAction, GameOptions>.options: GameOptions
-        get() = GameOptions()
+    override val options = GameOptions()
 
     init {
         parameters["game_short_name"] = gameShortName
     }
 }
 
-fun sendGame(gameShortName: String) = game(gameShortName)
-fun game(gameShortName: String) = SendGameAction(gameShortName)
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendGame(gameShortName: String) = game(gameShortName)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun game(gameShortName: String) = SendGameAction(gameShortName)

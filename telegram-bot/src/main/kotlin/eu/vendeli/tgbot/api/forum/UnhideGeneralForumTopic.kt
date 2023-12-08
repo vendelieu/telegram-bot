@@ -23,4 +23,5 @@ class UnhideGeneralForumTopicAction : Action<Boolean>() {
  * and must have the can_manage_topics administrator rights.
  * Returns True on success.
  */
-fun unhideGeneralForumTopic() = UnhideGeneralForumTopicAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun unhideGeneralForumTopic() = UnhideGeneralForumTopicAction()

@@ -23,5 +23,6 @@ class SetStickerSetThumbAction(
     }
 }
 
-fun setStickerSetThumbnail(name: String, thumbnail: StickerFile) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun setStickerSetThumbnail(name: String, thumbnail: StickerFile) =
     SetStickerSetThumbAction(name, thumbnail)

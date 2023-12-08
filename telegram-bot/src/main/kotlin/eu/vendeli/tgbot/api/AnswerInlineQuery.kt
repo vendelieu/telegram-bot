@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.inline.InlineQueryResult
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AnswerInlineQueryOptions
+import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 
 class AnswerInlineQueryAction(inlineQueryId: String, results: List<InlineQueryResult>) :
@@ -14,8 +15,7 @@ class AnswerInlineQueryAction(inlineQueryId: String, results: List<InlineQueryRe
     OptionsFeature<AnswerInlineQueryAction, AnswerInlineQueryOptions> {
     override val method = TgMethod("answerInlineQuery")
     override val returnType = getReturnType()
-    override val OptionsFeature<AnswerInlineQueryAction, AnswerInlineQueryOptions>.options: AnswerInlineQueryOptions
-        get() = AnswerInlineQueryOptions()
+    override val options = AnswerInlineQueryOptions()
 
     init {
         parameters["inline_query_id"] = inlineQueryId
@@ -23,11 +23,12 @@ class AnswerInlineQueryAction(inlineQueryId: String, results: List<InlineQueryRe
     }
 }
 
-fun answerInlineQuery(inlineQueryId: String, results: MutableList<InlineQueryResult>.() -> Unit) =
-    AnswerInlineQueryAction(inlineQueryId, mutableListOf<InlineQueryResult>().apply(results))
-
-fun answerInlineQuery(inlineQueryId: String, vararg result: InlineQueryResult) =
-    AnswerInlineQueryAction(inlineQueryId, result.toList())
-
-fun answerInlineQuery(inlineQueryId: String, results: List<InlineQueryResult>) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun answerInlineQuery(inlineQueryId: String, results: List<InlineQueryResult>) =
     AnswerInlineQueryAction(inlineQueryId, results)
+fun answerInlineQuery(inlineQueryId: String, results: ListingBuilder<InlineQueryResult>.() -> Unit) =
+    answerInlineQuery(inlineQueryId, ListingBuilder.build(results))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun answerInlineQuery(inlineQueryId: String, vararg result: InlineQueryResult) =
+    answerInlineQuery(inlineQueryId, result.asList())

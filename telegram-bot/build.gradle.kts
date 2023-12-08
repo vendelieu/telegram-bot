@@ -60,6 +60,7 @@ buildscript {
 tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
+        kotlinOptions.allWarningsAsErrors = true
         incremental = true
     }
 

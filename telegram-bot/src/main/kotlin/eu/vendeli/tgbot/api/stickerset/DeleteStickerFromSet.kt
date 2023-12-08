@@ -15,4 +15,5 @@ class DeleteStickerFromSetAction(sticker: String) : SimpleAction<Boolean>() {
     }
 }
 
-fun deleteStickerFromSet(sticker: String) = DeleteStickerFromSetAction(sticker)
+@Suppress("NOTHING_TO_INLINE")
+inline fun deleteStickerFromSet(sticker: String) = DeleteStickerFromSetAction(sticker)

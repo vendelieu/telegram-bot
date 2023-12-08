@@ -16,8 +16,7 @@ class EditMessageLiveLocationAction :
     MarkupFeature<EditMessageLiveLocationAction> {
     override val method = TgMethod("editMessageLiveLocation")
     override val returnType = getReturnType()
-    override val OptionsFeature<EditMessageLiveLocationAction, EditMessageLiveLocationOptions>.options
-        get() = EditMessageLiveLocationOptions()
+    override val options = EditMessageLiveLocationOptions()
 
     constructor(messageId: Long, latitude: Float, longitude: Float) {
         parameters["message_id"] = messageId
@@ -31,7 +30,12 @@ class EditMessageLiveLocationAction :
     }
 }
 
-fun editMessageLiveLocation(messageId: Long, latitude: Float, longitude: Float) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageLiveLocation(messageId: Long, latitude: Float, longitude: Float) =
     EditMessageLiveLocationAction(messageId, latitude, longitude)
 
-fun editMessageLiveLocation(latitude: Float, longitude: Float) = EditMessageLiveLocationAction(latitude, longitude)
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageLiveLocation(
+    latitude: Float,
+    longitude: Float,
+) = EditMessageLiveLocationAction(latitude, longitude)

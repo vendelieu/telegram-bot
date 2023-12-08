@@ -16,13 +16,15 @@ class SendDiceAction(emoji: String? = null) :
     MarkupFeature<SendDiceAction> {
     override val method = TgMethod("sendDice")
     override val returnType = getReturnType()
-    override val OptionsFeature<SendDiceAction, DiceOptions>.options: DiceOptions
-        get() = DiceOptions()
+    override val options = DiceOptions()
 
     init {
         if (emoji != null) parameters["emoji"] = emoji
     }
 }
 
-fun sendDice(emoji: String? = null) = dice(emoji)
-fun dice(emoji: String? = null) = SendDiceAction(emoji)
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendDice(emoji: String? = null) = dice(emoji)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun dice(emoji: String? = null) = SendDiceAction(emoji)

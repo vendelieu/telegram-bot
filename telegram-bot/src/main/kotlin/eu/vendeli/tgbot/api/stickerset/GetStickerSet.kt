@@ -16,4 +16,5 @@ class GetStickerSetAction(name: String) : SimpleAction<StickerSet>() {
     }
 }
 
-fun getStickerSet(name: String) = GetStickerSetAction(name)
+@Suppress("NOTHING_TO_INLINE")
+inline fun getStickerSet(name: String) = GetStickerSetAction(name)

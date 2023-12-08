@@ -11,4 +11,5 @@ class UnpinAllChatMessageAction : Action<Boolean>() {
     override val returnType = getReturnType()
 }
 
-fun unpinAllChatMessage() = UnpinAllChatMessageAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun unpinAllChatMessage() = UnpinAllChatMessageAction()

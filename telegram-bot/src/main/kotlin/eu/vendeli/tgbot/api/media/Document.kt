@@ -24,8 +24,7 @@ class SendDocumentAction(document: ImplicitFile<*>) :
     MarkupFeature<SendDocumentAction> {
     override val method = TgMethod("sendDocument")
     override val returnType = getReturnType()
-    override val OptionsFeature<SendDocumentAction, DocumentOptions>.options: DocumentOptions
-        get() = DocumentOptions()
+    override val options = DocumentOptions()
     override val EntitiesContextBuilder.entitiesField: String
         get() = "caption_entities"
     override val inputFilePresence = document is ImplicitFile.InpFile
@@ -35,7 +34,20 @@ class SendDocumentAction(document: ImplicitFile<*>) :
     }
 }
 
-fun document(block: () -> String) = SendDocumentAction(ImplicitFile.Str(block()))
-fun document(ba: ByteArray) = SendDocumentAction(ImplicitFile.InpFile(ba.toInputFile()))
-fun document(file: File) = SendDocumentAction(ImplicitFile.InpFile(file.toInputFile()))
-fun document(file: InputFile) = SendDocumentAction(ImplicitFile.InpFile(file))
+@Suppress("NOTHING_TO_INLINE")
+inline fun document(file: ImplicitFile<*>) = SendDocumentAction(file)
+inline fun document(block: () -> String) = document(ImplicitFile.Str(block()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun document(ba: ByteArray) = document(ImplicitFile.InpFile(ba.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun document(file: File) = document(ImplicitFile.InpFile(file.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun document(file: InputFile) = document(ImplicitFile.InpFile(file))
+
+inline fun sendDocument(block: () -> String) = document(block)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendDocument(file: ImplicitFile<*>) = document(file)

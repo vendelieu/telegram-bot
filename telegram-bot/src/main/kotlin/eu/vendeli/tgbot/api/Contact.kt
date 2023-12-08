@@ -18,8 +18,7 @@ class SendContactAction(
     MarkupFeature<SendContactAction> {
     override val method = TgMethod("sendContact")
     override val returnType = getReturnType()
-    override val OptionsFeature<SendContactAction, ContactOptions>.options: ContactOptions
-        get() = ContactOptions()
+    override val options = ContactOptions()
 
     init {
         parameters["first_name"] = firstName
@@ -27,5 +26,8 @@ class SendContactAction(
     }
 }
 
-fun sendContact(firstName: String, phoneNumber: String) = contact(firstName, phoneNumber)
-fun contact(firstName: String, phoneNumber: String) = SendContactAction(phoneNumber, firstName)
+@Suppress("NOTHING_TO_INLINE")
+inline fun contact(firstName: String, phoneNumber: String) = SendContactAction(phoneNumber, firstName)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendContact(firstName: String, phoneNumber: String) = contact(firstName, phoneNumber)

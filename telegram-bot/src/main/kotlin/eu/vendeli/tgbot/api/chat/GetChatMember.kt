@@ -17,5 +17,8 @@ class GetChatMemberAction(userId: Long) : Action<ChatMember>() {
     }
 }
 
-fun getChatMember(userId: Long) = GetChatMemberAction(userId)
-fun getChatMember(user: User) = GetChatMemberAction(user.id)
+@Suppress("NOTHING_TO_INLINE")
+inline fun getChatMember(userId: Long) = GetChatMemberAction(userId)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun getChatMember(user: User) = getChatMember(user.id)

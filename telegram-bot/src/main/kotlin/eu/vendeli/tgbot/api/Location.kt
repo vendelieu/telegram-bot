@@ -18,8 +18,7 @@ class SendLocationAction(
     MarkupFeature<SendLocationAction> {
     override val method = TgMethod("sendLocation")
     override val returnType = getReturnType()
-    override val OptionsFeature<SendLocationAction, LocationOptions>.options: LocationOptions
-        get() = LocationOptions()
+    override val options = LocationOptions()
 
     init {
         parameters["latitude"] = latitude
@@ -27,5 +26,8 @@ class SendLocationAction(
     }
 }
 
-fun sendLocation(latitude: Float, longitude: Float) = location(latitude, longitude)
-fun location(latitude: Float, longitude: Float) = SendLocationAction(latitude, longitude)
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendLocation(latitude: Float, longitude: Float) = location(latitude, longitude)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun location(latitude: Float, longitude: Float) = SendLocationAction(latitude, longitude)

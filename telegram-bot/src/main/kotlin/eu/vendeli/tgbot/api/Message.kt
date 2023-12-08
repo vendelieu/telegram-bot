@@ -20,8 +20,7 @@ class SendMessageAction private constructor() :
     EntitiesContextBuilder {
         override val method = TgMethod("sendMessage")
         override val returnType = getReturnType()
-        override val OptionsFeature<SendMessageAction, MessageOptions>.options: MessageOptions
-            get() = MessageOptions()
+        override val options = MessageOptions()
 
         constructor(data: String) : this() {
             parameters["text"] = data
@@ -32,7 +31,10 @@ class SendMessageAction private constructor() :
         }
     }
 
-fun sendMessage(text: String) = message(text)
-fun sendMessage(block: EntitiesContextBuilder.() -> String) = message(block)
-fun message(text: String) = SendMessageAction(text)
+@Suppress("NOTHING_TO_INLINE")
+inline fun message(text: String) = SendMessageAction(text)
 fun message(block: EntitiesContextBuilder.() -> String) = SendMessageAction(block)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendMessage(text: String) = message(text)
+fun sendMessage(block: EntitiesContextBuilder.() -> String) = message(block)
