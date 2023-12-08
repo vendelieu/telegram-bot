@@ -35,7 +35,7 @@ class EditActionsTest : BotTestContext() {
         msg.shouldNotBeNull()
 
         val result = editMarkup(msg.messageId)
-            .inlineKeyboardMarkup { "test2" switchInlineQuery  "test" }
+            .inlineKeyboardMarkup { "test2" switchInlineQuery "test" }
             .sendAsync(TG_ID, bot)
             .await().shouldSuccess()
 
