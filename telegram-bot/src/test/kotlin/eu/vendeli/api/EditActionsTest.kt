@@ -35,7 +35,7 @@ class EditActionsTest : BotTestContext() {
         msg.shouldNotBeNull()
 
         val result = editMarkup(msg.messageId)
-            .markup(inlineKeyboardMarkup { "test2" switchInlineQueryCurrentChat "test" })
+            .inlineKeyboardMarkup { "test2" switchInlineQuery  "test" }
             .sendAsync(TG_ID, bot)
             .await().shouldSuccess()
 
@@ -44,7 +44,7 @@ class EditActionsTest : BotTestContext() {
             replyMarkup.shouldNotBeNull().inlineKeyboard.first() shouldBe listOf(
                 InlineKeyboardButton(
                     "test2",
-                    switchInlineQueryCurrentChat = "test",
+                    switchInlineQuery = "test",
                 ),
             )
         }
