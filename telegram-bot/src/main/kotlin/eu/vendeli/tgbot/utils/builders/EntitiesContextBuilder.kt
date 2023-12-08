@@ -1,6 +1,9 @@
 package eu.vendeli.tgbot.utils.builders
 
+import eu.vendeli.tgbot.api.CopyMessageAction
+import eu.vendeli.tgbot.api.EditMessageCaptionAction
 import eu.vendeli.tgbot.interfaces.ActionState
+import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.types.EntityType
 import eu.vendeli.tgbot.types.EntityType.Bold
 import eu.vendeli.tgbot.types.EntityType.BotCommand
@@ -24,12 +27,14 @@ import eu.vendeli.tgbot.types.User
 
 @Suppress("TooManyFunctions")
 interface EntitiesContextBuilder : ActionState {
-    val EntitiesContextBuilder.entitiesField: String get() = "entities"
-
     @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST", "unused")
     private inline fun addEntity(entity: MessageEntity) {
-        parameters[entitiesField] = (
-            (parameters[entitiesField] ?: mutableListOf<MessageEntity>()) as MutableList<MessageEntity>
+        val fieldName = if (this is MediaAction<*> || this is CopyMessageAction || this is EditMessageCaptionAction)
+            "caption_entities"
+        else "entities"
+
+        parameters[fieldName] = (
+            (parameters[fieldName] ?: mutableListOf<MessageEntity>()) as MutableList<MessageEntity>
         ).also { it.add(entity) }
     }
 

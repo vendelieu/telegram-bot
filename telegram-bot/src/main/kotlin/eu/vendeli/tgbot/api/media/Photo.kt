@@ -25,8 +25,6 @@ class SendPhotoAction(photo: ImplicitFile<*>) :
     override val method = TgMethod("sendPhoto")
     override val returnType = getReturnType()
     override val options = PhotoOptions()
-    override val EntitiesContextBuilder.entitiesField: String
-        get() = "caption_entities"
     override val inputFilePresence = photo is ImplicitFile.InpFile
 
     init {

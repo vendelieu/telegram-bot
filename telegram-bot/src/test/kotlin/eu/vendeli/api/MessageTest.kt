@@ -8,13 +8,13 @@ import io.kotest.matchers.shouldBe
 class MessageTest : BotTestContext() {
     @Test
     suspend fun `message method test`() {
-        val result = message { "test message" }.options {
+        val result = message { "test message" - bold { " test" } }.options {
             disableWebPagePreview = true
             allowSendingWithoutReply = true
             parseMode = ParseMode.HTML
             protectContent = true
         }.apply {
-            parameters["text"] shouldBe "test message"
+            parameters["text"] shouldBe "test message test"
             parameters["disable_web_page_preview"] shouldBe true
             parameters["parse_mode"] shouldBe "HTML"
             parameters["protect_content"] shouldBe true

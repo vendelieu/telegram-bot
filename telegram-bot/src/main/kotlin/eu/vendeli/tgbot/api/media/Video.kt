@@ -25,8 +25,6 @@ class SendVideoAction(video: ImplicitFile<*>) :
     override val method = TgMethod("sendVideo")
     override val returnType = getReturnType()
     override val options = VideoOptions()
-    override val EntitiesContextBuilder.entitiesField: String
-        get() = "caption_entities"
     override val inputFilePresence = video is ImplicitFile.InpFile
 
     init {

@@ -48,8 +48,6 @@ class EditMessageCaptionAction() :
     override val method = TgMethod("editMessageCaption")
     override val returnType = getReturnType()
     override val options = EditCaptionOptions()
-    override val EntitiesContextBuilder.entitiesField: String
-        get() = "caption_entities"
 
     constructor(messageId: Long) : this() {
         parameters["message_id"] = messageId

@@ -37,8 +37,6 @@ class CopyMessageAction(
     override val method = TgMethod("copyMessage")
     override val returnType = getReturnType()
     override val options = CopyMessageOptions()
-    override val EntitiesContextBuilder.entitiesField: String
-        get() = "caption_entities"
 
     init {
         parameters["chat_id"] = chatId.get

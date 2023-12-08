@@ -25,8 +25,6 @@ class SendDocumentAction(document: ImplicitFile<*>) :
     override val method = TgMethod("sendDocument")
     override val returnType = getReturnType()
     override val options = DocumentOptions()
-    override val EntitiesContextBuilder.entitiesField: String
-        get() = "caption_entities"
     override val inputFilePresence = document is ImplicitFile.InpFile
 
     init {

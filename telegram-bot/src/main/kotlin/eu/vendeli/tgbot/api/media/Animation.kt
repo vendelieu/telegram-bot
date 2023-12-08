@@ -25,8 +25,6 @@ class SendAnimationAction(animation: ImplicitFile<*>) :
     override val method = TgMethod("sendAnimation")
     override val returnType = getReturnType()
     override val options = AnimationOptions()
-    override val EntitiesContextBuilder.entitiesField: String
-        get() = "caption_entities"
     override val inputFilePresence = animation is ImplicitFile.InpFile
 
     init {
