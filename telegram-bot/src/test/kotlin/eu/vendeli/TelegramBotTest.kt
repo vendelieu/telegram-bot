@@ -271,7 +271,7 @@ class TelegramBotTest : BotTestContext() {
         val dummyProcessedUpdate = MessageUpdate(
             -0,
             Update(-1),
-            Message(-0, chat = Chat(-0, type = ChatType.Private), date = -0),
+            Message(-0, chat = Chat(-0, type = ChatType.Private), date = -0, from = User(1, false, "Test")),
         )
 
         val inputListenerImpl = object : InputListener {

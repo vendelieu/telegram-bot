@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER")
+
 package other.pckg2
 
 import eu.vendeli.tgbot.TelegramBot
