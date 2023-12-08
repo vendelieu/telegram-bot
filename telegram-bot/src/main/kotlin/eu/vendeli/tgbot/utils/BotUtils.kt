@@ -7,10 +7,8 @@ import ch.qos.logback.classic.Logger
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.core.TelegramUpdateHandler.Companion.logger
-import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.MultipleResponse
-import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.Activity
@@ -179,11 +177,7 @@ internal fun Invocation.toActivity(req: StructuredRequest) = Activity(
 )
 
 @Suppress("UnusedReceiverParameter")
-internal inline fun <reified Type : MultipleResponse> SimpleAction<List<Type>>.getInnerType(): Class<Type> =
-    Type::class.java
-
-@Suppress("UnusedReceiverParameter")
-internal inline fun <reified Type : MultipleResponse> Action<List<Type>>.getInnerType(): Class<Type> =
+internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getInnerType(): Class<Type> =
     Type::class.java
 
 @Suppress("UnusedReceiverParameter")
