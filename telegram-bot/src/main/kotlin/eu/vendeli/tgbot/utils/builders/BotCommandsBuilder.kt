@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.types.bot.BotCommand
  * Builder used to add commands to setMyCommands()
  */
 class BotCommandsBuilder {
-    internal val commandsList = mutableListOf<BotCommand>()
+    private val commands: MutableList<BotCommand> = arrayListOf()
 
     /**
      * Add new bot command
@@ -15,6 +15,19 @@ class BotCommandsBuilder {
      * @param description
      */
     fun botCommand(command: String, description: String) {
-        commandsList.add(BotCommand(command, description))
+        commands += BotCommand(command, description)
+    }
+
+    /**
+     * Infix function to add new command
+     *
+     * @param description
+     */
+    infix fun String.description(description: String) {
+        commands += BotCommand(this, description)
+    }
+
+    internal companion object {
+        fun build(block: BotCommandsBuilder.() -> Unit): List<BotCommand> = BotCommandsBuilder().apply(block).commands
     }
 }

@@ -81,8 +81,10 @@ class MediaRequestTesting : BotTestContext() {
     fun `check mediaGroup action for different types passing`() {
         assertThrows<IllegalArgumentException>("All elements must be of the same specific type") {
             SendMediaGroupAction(
-                InputMedia.Photo(ImplicitFile.Str("")),
-                InputMedia.Audio(ImplicitFile.Str("")),
+                listOf(
+                    InputMedia.Photo(ImplicitFile.Str("")),
+                    InputMedia.Audio(ImplicitFile.Str("")),
+                ),
             )
         }
     }
@@ -91,8 +93,10 @@ class MediaRequestTesting : BotTestContext() {
     fun `check mediaGroup action for unsupported types passing`() {
         assertThrows<IllegalArgumentException>("Only Audio/Document/Photo/Video is possible.") {
             SendMediaGroupAction(
-                InputMedia.Animation(ImplicitFile.Str("")),
-                InputMedia.Photo(ImplicitFile.Str("")),
+                listOf(
+                    InputMedia.Animation(ImplicitFile.Str("")),
+                    InputMedia.Photo(ImplicitFile.Str("")),
+                ),
             )
         }
     }
