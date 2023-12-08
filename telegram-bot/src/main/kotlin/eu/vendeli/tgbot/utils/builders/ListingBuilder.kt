@@ -18,6 +18,7 @@ class ListingBuilder<T : Any> {
      * @param elements
      */
     fun arrayOf(vararg elements: T) = list.addAll(elements)
+
     /**
      * Shorcut method for backward compatability.
      *

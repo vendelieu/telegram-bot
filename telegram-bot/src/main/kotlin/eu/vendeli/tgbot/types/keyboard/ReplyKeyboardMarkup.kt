@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.interfaces.Keyboard
 
 @Suppress("unused")
 class ReplyKeyboardMarkup : Keyboard {
-    var keyboard: MutableList<List<KeyboardButton>> = mutableListOf()
+    internal var keyboard: MutableList<List<KeyboardButton>> = mutableListOf()
     var resizeKeyboard: Boolean? = null
     var oneTimeKeyboard: Boolean? = null
     var inputFieldPlaceholder: String? = null
@@ -18,7 +18,7 @@ class ReplyKeyboardMarkup : Keyboard {
     }
 
     constructor(vararg buttons: KeyboardButton) {
-        keyboard.add(buttons.toList())
+        keyboard.add(buttons.asList())
     }
 
     @JsonCreator

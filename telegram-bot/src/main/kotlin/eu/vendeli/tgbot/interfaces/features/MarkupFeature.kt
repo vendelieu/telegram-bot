@@ -1,10 +1,11 @@
 package eu.vendeli.tgbot.interfaces.features
 
-import eu.vendeli.tgbot.interfaces.IActionState
 import eu.vendeli.tgbot.interfaces.Keyboard
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.keyboard.ForceReply
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardMarkup
+import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardRemove
 import eu.vendeli.tgbot.utils.builders.InlineKeyboardMarkupBuilder
 import eu.vendeli.tgbot.utils.builders.ReplyKeyboardMarkupBuilder
 
@@ -13,24 +14,20 @@ import eu.vendeli.tgbot.utils.builders.ReplyKeyboardMarkupBuilder
  *
  * @param Return Action itself.
  */
-interface MarkupFeature<Return> : IActionState, Feature {
-    @Suppress("UNCHECKED_CAST")
-    private val thisAsReturn: Return
-        get() = this as Return
-
+interface MarkupFeature<Return : TgAction<*>> : Feature {
     /**
-     * Add Markup directly
+     * Add Markup directly.
      *
      * @param keyboard
      * @return Action itself.
      */
-    fun markup(keyboard: Keyboard): Return {
+    @Suppress("UNCHECKED_CAST")
+    fun markup(keyboard: Keyboard): Return = (this as Return).apply {
         parameters["reply_markup"] = keyboard
-        return thisAsReturn
     }
 
     /**
-     * Add Markup via lambda
+     * Add Markup via lambda.
      *
      * @param block
      * @return action itself.
@@ -38,7 +35,7 @@ interface MarkupFeature<Return> : IActionState, Feature {
     fun markup(block: () -> Keyboard): Return = markup(block())
 
     /**
-     * Add InlineKeyboard markup to the Action<[Return]>.
+     * Add InlineKeyboard markup to the [TgAction]<[Return]>.
      *
      * @param block Builder [InlineKeyboardMarkupBuilder] context.
      * @return Action[Return] itself.
@@ -47,7 +44,7 @@ interface MarkupFeature<Return> : IActionState, Feature {
         markup(InlineKeyboardMarkup(InlineKeyboardMarkupBuilder().apply(block).build()))
 
     /**
-     * Add ReplyKeyboard markup to the Action<[Return]>.
+     * Add ReplyKeyboard markup to the [TgAction]<[Return]>.
      *
      * @param block Builder [ReplyKeyboardMarkupBuilder] context.
      * @return Action[Return] itself.
@@ -56,7 +53,7 @@ interface MarkupFeature<Return> : IActionState, Feature {
         markup(ReplyKeyboardMarkup(ReplyKeyboardMarkupBuilder().apply(block).build()))
 
     /**
-     * Add ForceReply markup to the Action<[Return]>.
+     * Add ForceReply markup to the [TgAction]<[Return]>.
      *
      * @param inputFieldPlaceholder The placeholder to be shown in the input field when the reply is active;
      * 1-64 characters
@@ -70,4 +67,10 @@ interface MarkupFeature<Return> : IActionState, Feature {
         inputFieldPlaceholder: String? = null,
         selective: Boolean? = null,
     ): Return = markup(ForceReply(inputFieldPlaceholder, selective))
+
+    /**
+     * Add ForceReply markup to the Action<Return>
+     *
+     */
+    fun replyKeyboardRemove() = markup(ReplyKeyboardRemove())
 }

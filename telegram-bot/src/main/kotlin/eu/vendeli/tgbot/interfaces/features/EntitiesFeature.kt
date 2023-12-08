@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.interfaces.features
 
-import eu.vendeli.tgbot.interfaces.IActionState
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.utils.builders.EntitiesBuilder
 
@@ -9,21 +9,17 @@ import eu.vendeli.tgbot.utils.builders.EntitiesBuilder
  *
  * @param Return Action class itself.
  */
-interface EntitiesFeature<Return> : IActionState, Feature {
-    @Suppress("UNCHECKED_CAST")
-    private val thisAsReturn: Return
-        get() = this as Return
-
+interface EntitiesFeature<Return> : ActionState, Feature {
     /**
      * Entities adding DSL
      */
-    fun entities(block: EntitiesBuilder.() -> Unit): Return = entities(EntitiesBuilder().apply(block).listOfEntities)
+    fun entities(block: EntitiesBuilder.() -> Unit): Return = entities(EntitiesBuilder.build(block))
 
     /**
      * Add Entities directly
      */
-    fun entities(entities: List<MessageEntity>): Return {
+    @Suppress("UNCHECKED_CAST")
+    fun entities(entities: List<MessageEntity>): Return = (this as Return).apply {
         parameters["entities"] = entities
-        return thisAsReturn
     }
 }

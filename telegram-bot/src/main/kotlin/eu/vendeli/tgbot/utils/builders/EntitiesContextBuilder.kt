@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.utils.builders
 
-import eu.vendeli.tgbot.interfaces.IActionState
+import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.types.EntityType
 import eu.vendeli.tgbot.types.EntityType.Bold
 import eu.vendeli.tgbot.types.EntityType.BotCommand
@@ -23,7 +23,7 @@ import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.User
 
 @Suppress("TooManyFunctions")
-interface EntitiesContextBuilder : IActionState {
+interface EntitiesContextBuilder : ActionState {
     val EntitiesContextBuilder.entitiesField: String get() = "entities"
 
     @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST", "unused")
