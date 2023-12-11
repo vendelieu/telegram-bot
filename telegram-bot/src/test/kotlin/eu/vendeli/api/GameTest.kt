@@ -26,10 +26,10 @@ class GameTest : BotTestContext() {
     suspend fun `set score method test`() {
         val game = game("testestes").sendReturning(TG_ID, bot).getOrNull()
 
-        val userResult = setGameScore(TG_ID.wrapToUser(), game!!.messageId, RAND_INT.toLong()).options {
+        val userResult = setGameScore(TG_ID.wrapToUser(), game!!.messageId, ITER_INT.toLong()).options {
             force = true
         }.sendReturning(TG_ID, bot).shouldSuccess()
-        val idResult = setGameScore(TG_ID, game.messageId, RAND_INT.toLong()).options {
+        val idResult = setGameScore(TG_ID, game.messageId, ITER_INT.toLong()).options {
             force = true
         }.sendReturning(TG_ID, bot).shouldSuccess()
 
