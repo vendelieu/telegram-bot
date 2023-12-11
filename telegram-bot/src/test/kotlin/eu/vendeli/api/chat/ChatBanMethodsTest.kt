@@ -19,7 +19,7 @@ class ChatBanMethodsTest : BotTestContext() {
         banChatMember(
             1000L.wrapToUser(),
             CUR_INSTANT.plusMillis(100).epochSecond,
-            true
+            true,
         ).sendReturning(CHAT_ID, bot).onFailure {
             it.description shouldContain "PARTICIPANT_ID_INVALID"
         }.shouldBeNull()

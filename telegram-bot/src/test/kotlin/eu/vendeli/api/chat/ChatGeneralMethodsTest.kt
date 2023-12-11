@@ -71,7 +71,7 @@ class ChatGeneralMethodsTest : BotTestContext() {
         val result = restrictChatMember(
             user = TG_ID.wrapToUser(),
             untilDate = CUR_INSTANT.plusMillis(10000).epochSecond,
-            true
+            true,
         ) {
             canChangeInfo = false
         }.sendReturning(CHAT_ID, bot).shouldSuccess()
