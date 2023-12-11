@@ -25,16 +25,20 @@ class GameTest : BotTestContext() {
     @Test
     suspend fun `set score method test`() {
         val game = game("testestes").sendReturning(TG_ID, bot).getOrNull()
-        val newScore = RAND_INT.toLong()
 
-        val result = setGameScore(TG_ID, game!!.messageId, newScore).options {
+        val userResult = setGameScore(TG_ID.wrapToUser(), game!!.messageId, RAND_INT.toLong()).options {
+            force = true
+        }.sendReturning(TG_ID, bot).shouldSuccess()
+        val idResult = setGameScore(TG_ID, game.messageId, RAND_INT.toLong()).options {
             force = true
         }.sendReturning(TG_ID, bot).shouldSuccess()
 
-        with(result.game) {
-            shouldNotBeNull()
-            title shouldBe "test"
-            description shouldBe "test2"
+        listOf(userResult, idResult).forEach { result ->
+            with(result.game) {
+                shouldNotBeNull()
+                title shouldBe "test"
+                description shouldBe "test2"
+            }
         }
     }
 
