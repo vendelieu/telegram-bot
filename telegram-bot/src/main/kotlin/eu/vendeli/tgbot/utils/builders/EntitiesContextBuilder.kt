@@ -2,8 +2,8 @@ package eu.vendeli.tgbot.utils.builders
 
 import eu.vendeli.tgbot.api.CopyMessageAction
 import eu.vendeli.tgbot.api.EditMessageCaptionAction
-import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.EntityType
 import eu.vendeli.tgbot.types.EntityType.Bold
 import eu.vendeli.tgbot.types.EntityType.BotCommand
@@ -26,12 +26,13 @@ import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.User
 
 @Suppress("TooManyFunctions")
-interface EntitiesContextBuilder : ActionState {
+interface EntitiesContextBuilder<Action : TgAction<*>> {
     @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST", "unused")
     private inline fun addEntity(entity: MessageEntity) {
         val fieldName = if (this is MediaAction<*> || this is CopyMessageAction || this is EditMessageCaptionAction)
             "caption_entities"
         else "entities"
+        this as TgAction<*>
 
         parameters[fieldName] = (
             (parameters[fieldName] ?: mutableListOf<MessageEntity>()) as MutableList<MessageEntity>
@@ -101,42 +102,42 @@ interface EntitiesContextBuilder : ActionState {
 
     // functions
 
-    fun EntitiesContextBuilder.mention(block: () -> String) = Mention to block()
-    fun EntitiesContextBuilder.hashtag(block: () -> String) = Hashtag to block()
-    fun EntitiesContextBuilder.cashtag(block: () -> String) = Cashtag to block()
-    fun EntitiesContextBuilder.botCommand(block: () -> String) = BotCommand to block()
-    fun EntitiesContextBuilder.url(block: () -> String) = Url to block()
-    fun EntitiesContextBuilder.email(block: () -> String) = Email to block()
-    fun EntitiesContextBuilder.phoneNumber(block: () -> String) = PhoneNumber to block()
-    fun EntitiesContextBuilder.bold(block: () -> String) = Bold to block()
-    fun EntitiesContextBuilder.italic(block: () -> String) = Italic to block()
-    fun EntitiesContextBuilder.underline(block: () -> String) = Underline to block()
-    fun EntitiesContextBuilder.strikethrough(block: () -> String) = Strikethrough to block()
-    fun EntitiesContextBuilder.spoiler(block: () -> String) = Spoiler to block()
-    fun EntitiesContextBuilder.code(block: () -> String) = Code to block()
+    fun EntitiesContextBuilder<Action>.mention(block: () -> String) = Mention to block()
+    fun EntitiesContextBuilder<Action>.hashtag(block: () -> String) = Hashtag to block()
+    fun EntitiesContextBuilder<Action>.cashtag(block: () -> String) = Cashtag to block()
+    fun EntitiesContextBuilder<Action>.botCommand(block: () -> String) = BotCommand to block()
+    fun EntitiesContextBuilder<Action>.url(block: () -> String) = Url to block()
+    fun EntitiesContextBuilder<Action>.email(block: () -> String) = Email to block()
+    fun EntitiesContextBuilder<Action>.phoneNumber(block: () -> String) = PhoneNumber to block()
+    fun EntitiesContextBuilder<Action>.bold(block: () -> String) = Bold to block()
+    fun EntitiesContextBuilder<Action>.italic(block: () -> String) = Italic to block()
+    fun EntitiesContextBuilder<Action>.underline(block: () -> String) = Underline to block()
+    fun EntitiesContextBuilder<Action>.strikethrough(block: () -> String) = Strikethrough to block()
+    fun EntitiesContextBuilder<Action>.spoiler(block: () -> String) = Spoiler to block()
+    fun EntitiesContextBuilder<Action>.code(block: () -> String) = Code to block()
 
-    fun EntitiesContextBuilder.customEmoji(
+    fun EntitiesContextBuilder<Action>.customEmoji(
         customEmojiId: String? = null,
         block: () -> String,
     ) = Triple(CustomEmoji, block(), customEmojiId)
 
     @Suppress("INAPPLICABLE_JVM_NAME")
     @JvmName("pre")
-    fun EntitiesContextBuilder.pre(
+    fun EntitiesContextBuilder<Action>.pre(
         language: String? = null,
         block: () -> String,
     ) = Triple(Pre, block(), language)
 
     @Suppress("INAPPLICABLE_JVM_NAME")
     @JvmName("textLink")
-    fun EntitiesContextBuilder.textLink(
+    fun EntitiesContextBuilder<Action>.textLink(
         url: String? = null,
         block: () -> String,
     ) = Triple(TextLink, block(), url)
 
     @Suppress("INAPPLICABLE_JVM_NAME")
     @JvmName("textMention")
-    fun EntitiesContextBuilder.textMention(
+    fun EntitiesContextBuilder<Action>.textMention(
         user: User? = null,
         block: () -> String,
     ) = Triple(TextMention, block(), user)

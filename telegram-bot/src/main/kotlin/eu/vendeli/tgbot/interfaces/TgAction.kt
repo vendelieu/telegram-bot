@@ -7,7 +7,7 @@ import kotlin.properties.Delegates
 /**
  * Tg action, see [Actions article](https://github.com/vendelieu/telegram-bot/wiki/Actions)
  */
-abstract class TgAction<ReturnType> : ActionState {
+abstract class TgAction<ReturnType> {
     /**
      * A method that is implemented in Action.
      */
@@ -28,5 +28,8 @@ abstract class TgAction<ReturnType> : ActionState {
      */
     internal open val wrappedDataType: Class<out MultipleResponse>? = null
 
-    override val ActionState.parameters by lazy { mutableMapOf<String, Any?>() }
+    /**
+     * Action data storage parameter.
+     */
+    internal val parameters: MutableMap<String, Any?> = mutableMapOf()
 }

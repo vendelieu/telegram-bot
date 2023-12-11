@@ -12,13 +12,11 @@ import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.DocumentOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
-import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
 class SendDocumentAction(document: ImplicitFile<*>) :
     MediaAction<Message>(),
-    EntitiesContextBuilder,
     CaptionFeature<SendDocumentAction>,
     OptionsFeature<SendDocumentAction, DocumentOptions>,
     MarkupFeature<SendDocumentAction> {

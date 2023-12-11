@@ -17,7 +17,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 class EditMessageTextAction private constructor() :
     InlinableAction<Message>(),
-    EntitiesContextBuilder,
+    EntitiesContextBuilder<EditMessageTextAction>,
     OptionsFeature<EditMessageTextAction, EditMessageOptions>,
     MarkupFeature<EditMessageTextAction>,
     EntitiesFeature<EditMessageTextAction> {
@@ -34,7 +34,7 @@ class EditMessageTextAction private constructor() :
             parameters["text"] = text
         }
 
-        internal constructor(block: EntitiesContextBuilder.() -> String) : this() {
+        internal constructor(block: EntitiesContextBuilder<EditMessageTextAction>.() -> String) : this() {
             parameters["text"] = block(this)
         }
     }
@@ -43,7 +43,6 @@ class EditMessageCaptionAction() :
     InlinableAction<Message>(),
     OptionsFeature<EditMessageCaptionAction, EditCaptionOptions>,
     MarkupFeature<EditMessageCaptionAction>,
-    EntitiesContextBuilder,
     CaptionFeature<EditMessageCaptionAction> {
     override val method = TgMethod("editMessageCaption")
     override val returnType = getReturnType()
@@ -82,9 +81,9 @@ class EditMessageReplyMarkupAction() :
 }
 
 inline fun editMessageText(messageId: Long, block: () -> String) = editText(messageId, block)
-fun editMessageText(block: EntitiesContextBuilder.() -> String) = EditMessageTextAction(block)
+fun editMessageText(block: EntitiesContextBuilder<EditMessageTextAction>.() -> String) = EditMessageTextAction(block)
 inline fun editText(messageId: Long, block: () -> String) = EditMessageTextAction(messageId, text = block())
-fun editText(block: EntitiesContextBuilder.() -> String) = EditMessageTextAction(block)
+fun editText(block: EntitiesContextBuilder<EditMessageTextAction>.() -> String) = EditMessageTextAction(block)
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun editMessageCaption(messageId: Long) = editCaption(messageId)

@@ -8,32 +8,33 @@ import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 /**
  * Caption feature, see [Features article](https://github.com/vendelieu/telegram-bot/wiki/Features)
  *
- * @param Return Action class itself.
+ * @param Action Action class itself.
  */
-interface CaptionFeature<Return> : Feature where Return : EntitiesContextBuilder, Return : TgAction<*> {
+interface CaptionFeature<Action> : Feature, EntitiesContextBuilder<Action>
+    where Action : TgAction<*>, Action : CaptionFeature<Action> {
     @Suppress("UNCHECKED_CAST")
-    private val thisAsReturn: Return
-        get() = this as Return
+    private val thisAsReturn: Action
+        get() = this as Action
 
     /**
      * DSL for adding captions
      *
      * @param block
-     * @return [Return]
+     * @return [Action]
      */
-    fun caption(block: EntitiesContextBuilder.() -> String): Return = thisAsReturn.apply {
+    fun caption(block: EntitiesContextBuilder<Action>.() -> String): Action = thisAsReturn.apply {
         parameters["caption"] = block(thisAsReturn)
     }
 
     /**
      * Caption entities
      */
-    fun captionEntities(entities: List<MessageEntity>): Return = thisAsReturn.apply {
+    fun captionEntities(entities: List<MessageEntity>): Action = thisAsReturn.apply {
         parameters["caption_entities"] = entities
     }
 
     /**
      * Caption entities DSL with [EntitiesBuilder]
      */
-    fun captionEntities(block: EntitiesBuilder.() -> Unit): Return = captionEntities(EntitiesBuilder.build(block))
+    fun captionEntities(block: EntitiesBuilder.() -> Unit): Action = captionEntities(EntitiesBuilder.build(block))
 }

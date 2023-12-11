@@ -17,7 +17,7 @@ class SendMessageAction private constructor() :
     OptionsFeature<SendMessageAction, MessageOptions>,
     MarkupFeature<SendMessageAction>,
     EntitiesFeature<SendMessageAction>,
-    EntitiesContextBuilder {
+    EntitiesContextBuilder<SendMessageAction> {
         override val method = TgMethod("sendMessage")
         override val returnType = getReturnType()
         override val options = MessageOptions()
@@ -26,15 +26,15 @@ class SendMessageAction private constructor() :
             parameters["text"] = data
         }
 
-        internal constructor(block: EntitiesContextBuilder.() -> String) : this() {
+        internal constructor(block: EntitiesContextBuilder<SendMessageAction>.() -> String) : this() {
             parameters["text"] = block.invoke(this)
         }
     }
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun message(text: String) = SendMessageAction(text)
-fun message(block: EntitiesContextBuilder.() -> String) = SendMessageAction(block)
+fun message(block: EntitiesContextBuilder<SendMessageAction>.() -> String) = SendMessageAction(block)
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun sendMessage(text: String) = message(text)
-fun sendMessage(block: EntitiesContextBuilder.() -> String) = message(block)
+fun sendMessage(block: EntitiesContextBuilder<SendMessageAction>.() -> String) = message(block)

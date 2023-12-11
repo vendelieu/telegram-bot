@@ -12,7 +12,6 @@ import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PhotoOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
-import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
@@ -20,7 +19,6 @@ class SendPhotoAction(photo: ImplicitFile<*>) :
     MediaAction<Message>(),
     OptionsFeature<SendPhotoAction, PhotoOptions>,
     MarkupFeature<SendPhotoAction>,
-    EntitiesContextBuilder,
     CaptionFeature<SendPhotoAction> {
     override val method = TgMethod("sendPhoto")
     override val returnType = getReturnType()

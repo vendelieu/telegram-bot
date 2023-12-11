@@ -12,7 +12,6 @@ import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VoiceOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
-import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
@@ -20,7 +19,6 @@ class SendVoiceAction(voice: ImplicitFile<*>) :
     MediaAction<Message>(),
     OptionsFeature<SendVoiceAction, VoiceOptions>,
     MarkupFeature<SendVoiceAction>,
-    EntitiesContextBuilder,
     CaptionFeature<SendVoiceAction> {
     override val method = TgMethod("sendVoice")
     override val returnType = getReturnType()

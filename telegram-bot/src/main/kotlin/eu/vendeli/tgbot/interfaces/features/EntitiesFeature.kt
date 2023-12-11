@@ -1,25 +1,25 @@
 package eu.vendeli.tgbot.interfaces.features
 
-import eu.vendeli.tgbot.interfaces.ActionState
+import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.utils.builders.EntitiesBuilder
 
 /**
  * Entities feature, see [Features article](https://github.com/vendelieu/telegram-bot/wiki/Features)
  *
- * @param Return Action class itself.
+ * @param Action Action class itself.
  */
-interface EntitiesFeature<Return> : ActionState, Feature {
+interface EntitiesFeature<Action : TgAction<*>> : Feature {
     /**
      * Entities adding DSL
      */
-    fun entities(block: EntitiesBuilder.() -> Unit): Return = entities(EntitiesBuilder.build(block))
+    fun entities(block: EntitiesBuilder.() -> Unit): Action = entities(EntitiesBuilder.build(block))
 
     /**
      * Add Entities directly
      */
     @Suppress("UNCHECKED_CAST")
-    fun entities(entities: List<MessageEntity>): Return = (this as Return).apply {
+    fun entities(entities: List<MessageEntity>): Action = (this as Action).apply {
         parameters["entities"] = entities
     }
 }
