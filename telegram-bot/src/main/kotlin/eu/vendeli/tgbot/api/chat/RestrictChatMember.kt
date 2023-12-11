@@ -41,7 +41,6 @@ inline fun restrictChatMember(
     useIndependentChatPermissions: Boolean? = null,
 ) = RestrictChatMemberAction(userId, chatPermissions, untilDate, useIndependentChatPermissions)
 
-
 inline fun restrictChatMember(
     user: User,
     untilDate: Long? = null,

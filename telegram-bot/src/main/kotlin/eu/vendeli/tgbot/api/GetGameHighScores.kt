@@ -37,4 +37,3 @@ inline fun getGameHighScores(user: User, messageId: Long) = getGameHighScores(us
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun getGameHighScores(user: User) = getGameHighScores(user.id)
-
