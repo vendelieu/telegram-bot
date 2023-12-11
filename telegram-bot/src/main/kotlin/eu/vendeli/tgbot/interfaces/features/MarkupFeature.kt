@@ -69,8 +69,8 @@ interface MarkupFeature<Return : TgAction<*>> : Feature {
     ): Return = markup(ForceReply(inputFieldPlaceholder, selective))
 
     /**
-     * Add ForceReply markup to the Action<Return>
+     * Add [ReplyKeyboardRemove] markup to the [Action]<[Return]>
      *
      */
-    fun replyKeyboardRemove() = markup(ReplyKeyboardRemove())
+    fun replyKeyboardRemove(selective: Boolean? = null) = markup(ReplyKeyboardRemove(selective))
 }
