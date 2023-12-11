@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api
 import eu.vendeli.tgbot.interfaces.InlinableAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.SetGameScoreOptions
 import eu.vendeli.tgbot.utils.getReturnType
@@ -33,3 +34,9 @@ inline fun setGameScore(userId: Long, messageId: Long, score: Long) = SetGameSco
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun setGameScore(userId: Long, score: Long) = SetGameScoreAction(userId, score)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun setGameScore(user: User, score: Long) = setGameScore(user.id, score)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun setGameScore(user: User, messageId: Long, score: Long) = setGameScore(user.id, messageId, score)

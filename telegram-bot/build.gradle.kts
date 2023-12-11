@@ -103,7 +103,7 @@ koverReport {
                         "eu.vendeli.tgbot.api.botactions.Close*",
                         "eu.vendeli.tgbot.api.botactions.Logout*",
                         "eu.vendeli.tgbot.api.stickerset.*CustomEmoji*",
-                        "eu.vendeli.tgbot.core.EnvConfigLoader*",
+                        "eu.vendeli.tgbot.implementations.EnvConfigLoader*",
                     )
                 }
             }

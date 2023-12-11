@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.internal
 
-sealed class Identifier<T> {
+sealed class Identifier<T : Any> {
     abstract val get: T
 
     data class String(val to: kotlin.String) : Identifier<kotlin.String>() {

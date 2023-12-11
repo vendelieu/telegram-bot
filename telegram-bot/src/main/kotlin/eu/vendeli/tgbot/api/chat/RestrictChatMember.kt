@@ -3,6 +3,7 @@
 package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.ChatPermissions
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
@@ -39,3 +40,19 @@ inline fun restrictChatMember(
     untilDate: Long? = null,
     useIndependentChatPermissions: Boolean? = null,
 ) = RestrictChatMemberAction(userId, chatPermissions, untilDate, useIndependentChatPermissions)
+
+
+inline fun restrictChatMember(
+    user: User,
+    untilDate: Long? = null,
+    useIndependentChatPermissions: Boolean? = null,
+    chatPermissions: ChatPermissions.() -> Unit,
+) = restrictChatMember(user.id, untilDate, useIndependentChatPermissions, chatPermissions)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun restrictChatMember(
+    user: User,
+    chatPermissions: ChatPermissions,
+    untilDate: Long? = null,
+    useIndependentChatPermissions: Boolean? = null,
+) = restrictChatMember(user.id, chatPermissions, untilDate, useIndependentChatPermissions)
