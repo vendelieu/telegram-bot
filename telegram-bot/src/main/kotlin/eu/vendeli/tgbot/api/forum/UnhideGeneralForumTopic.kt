@@ -3,8 +3,6 @@
 package eu.vendeli.tgbot.api.forum
 
 import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.ActionState
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
@@ -14,11 +12,9 @@ import eu.vendeli.tgbot.utils.getReturnType
  * and must have the can_manage_topics administrator rights.
  * Returns True on success.
  */
-class UnhideGeneralForumTopicAction : Action<Boolean>, ActionState() {
-    override val TgAction<Boolean>.method: TgMethod
-        get() = TgMethod("unhideGeneralForumTopic")
-    override val TgAction<Boolean>.returnType: Class<Boolean>
-        get() = getReturnType()
+class UnhideGeneralForumTopicAction : Action<Boolean>() {
+    override val method = TgMethod("unhideGeneralForumTopic")
+    override val returnType = getReturnType()
 }
 
 /**
@@ -27,4 +23,5 @@ class UnhideGeneralForumTopicAction : Action<Boolean>, ActionState() {
  * and must have the can_manage_topics administrator rights.
  * Returns True on success.
  */
-fun unhideGeneralForumTopic() = UnhideGeneralForumTopicAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun unhideGeneralForumTopic() = UnhideGeneralForumTopicAction()

@@ -13,16 +13,16 @@ import kotlin.collections.set
  *
  * @param ReturnType response type.
  */
-interface MediaAction<ReturnType> : Action<ReturnType>, TgAction<ReturnType> {
+abstract class MediaAction<ReturnType> : Action<ReturnType>() {
     /**
      * Is this action contain InputFile in payload.
      */
-    val MediaAction<ReturnType>.inputFilePresence: Boolean get() = false
+    internal open val inputFilePresence = false
 
     /**
      * Field name used as target id.
      */
-    val MediaAction<ReturnType>.idRefField: String get() = "chat_id"
+    internal open val idRefField: String = "chat_id"
 
     /**
      * Make a request for action.

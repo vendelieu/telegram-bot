@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
-import eu.vendeli.tgbot.core.ChatDataMapImpl
-import eu.vendeli.tgbot.core.UserDataMapImpl
+import eu.vendeli.tgbot.implementations.ChatDataMapImpl
+import eu.vendeli.tgbot.implementations.UserDataMapImpl
 import eu.vendeli.tgbot.interfaces.ChatData
 import eu.vendeli.tgbot.interfaces.UserData
 

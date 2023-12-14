@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
-import eu.vendeli.tgbot.core.ClassManagerImpl
-import eu.vendeli.tgbot.core.InputListenerMapImpl
+import eu.vendeli.tgbot.implementations.ClassManagerImpl
+import eu.vendeli.tgbot.implementations.InputListenerMapImpl
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.InputListener
 
@@ -14,8 +14,8 @@ import eu.vendeli.tgbot.interfaces.InputListener
  */
 data class BotConfiguration(
     var apiHost: String = "api.telegram.org",
-    var inputListener: InputListener = InputListenerMapImpl(),
-    var classManager: ClassManager = ClassManagerImpl(),
+    var inputListener: InputListener = InputListenerMapImpl,
+    var classManager: ClassManager = ClassManagerImpl,
     internal var rateLimiter: RateLimiterConfiguration = RateLimiterConfiguration(),
     internal var httpClient: HttpConfiguration = HttpConfiguration(),
     internal var logging: LoggingConfiguration = LoggingConfiguration(),
@@ -65,17 +65,17 @@ data class BotConfiguration(
         commandParsing.block()
     }
 
-    internal fun apply(other: BotConfiguration): BotConfiguration {
-        apiHost = other.apiHost
-        inputListener = other.inputListener
-        classManager = other.classManager
-        rateLimiter = other.rateLimiter
-        httpClient = other.httpClient
-        logging = other.logging
-        rateLimiter = other.rateLimiter
-        updatesListener = other.updatesListener
-        context = other.context
-        commandParsing = other.commandParsing
+    internal fun apply(new: BotConfiguration): BotConfiguration {
+        apiHost = new.apiHost
+        inputListener = new.inputListener
+        classManager = new.classManager
+        rateLimiter = new.rateLimiter
+        httpClient = new.httpClient
+        logging = new.logging
+        rateLimiter = new.rateLimiter
+        updatesListener = new.updatesListener
+        context = new.context
+        commandParsing = new.commandParsing
 
         return this
     }

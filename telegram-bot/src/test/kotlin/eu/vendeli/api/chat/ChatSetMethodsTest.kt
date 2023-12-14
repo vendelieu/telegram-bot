@@ -26,7 +26,7 @@ import io.ktor.client.statement.readBytes
 class ChatSetMethodsTest : BotTestContext() {
     @Test
     suspend fun `set chat custom title method test`() {
-        promoteChatMember(TG_ID).options {
+        promoteChatMember(TG_ID.asUser()).options {
             canDeleteMessages = true
         }.sendReturning(CHAT_ID, bot).shouldSuccess().shouldBeTrue()
 

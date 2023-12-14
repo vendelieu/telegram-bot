@@ -2,11 +2,10 @@
 
 package eu.vendeli.tgbot.api
 
-import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.payment.ShippingOption
+import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 
 class AnswerShippingQueryAction(
@@ -14,11 +13,9 @@ class AnswerShippingQueryAction(
     ok: Boolean = true,
     shippingOptions: List<ShippingOption>? = null,
     errorMessage: String? = null,
-) : SimpleAction<Boolean>, ActionState() {
-    override val TgAction<Boolean>.method: TgMethod
-        get() = TgMethod("answerShippingQuery")
-    override val TgAction<Boolean>.returnType: Class<Boolean>
-        get() = getReturnType()
+) : SimpleAction<Boolean>() {
+    override val method = TgMethod("answerShippingQuery")
+    override val returnType = getReturnType()
 
     init {
         parameters["shipping_query_id"] = shippingQueryId
@@ -28,23 +25,24 @@ class AnswerShippingQueryAction(
     }
 }
 
-fun answerShippingQuery(
-    shippingQueryId: String,
-    ok: Boolean = true,
-    errorMessage: String? = null,
-    shippingOptions: MutableList<ShippingOption>.() -> Unit,
-) = AnswerShippingQueryAction(shippingQueryId, ok, mutableListOf<ShippingOption>().apply(shippingOptions), errorMessage)
-
-fun answerShippingQuery(
-    shippingQueryId: String,
-    ok: Boolean = true,
-    errorMessage: String? = null,
-    vararg shippingOption: ShippingOption,
-) = AnswerShippingQueryAction(shippingQueryId, ok, listOf(*shippingOption), errorMessage)
-
-fun answerShippingQuery(
+@Suppress("NOTHING_TO_INLINE")
+inline fun answerShippingQuery(
     shippingQueryId: String,
     ok: Boolean = true,
     shippingOptions: List<ShippingOption>? = null,
     errorMessage: String? = null,
 ) = AnswerShippingQueryAction(shippingQueryId, ok, shippingOptions, errorMessage)
+fun answerShippingQuery(
+    shippingQueryId: String,
+    ok: Boolean = true,
+    errorMessage: String? = null,
+    shippingOptions: ListingBuilder<ShippingOption>.() -> Unit,
+) = answerShippingQuery(shippingQueryId, ok, ListingBuilder.build(shippingOptions), errorMessage)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun answerShippingQuery(
+    shippingQueryId: String,
+    ok: Boolean = true,
+    errorMessage: String? = null,
+    vararg shippingOption: ShippingOption,
+) = answerShippingQuery(shippingQueryId, ok, shippingOption.asList(), errorMessage)

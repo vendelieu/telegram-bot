@@ -3,7 +3,7 @@ package eu.vendeli
 import BotTestContext
 import eu.vendeli.fixtures.Conversation
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
-import eu.vendeli.tgbot.core.InputListenerMapImpl
+import eu.vendeli.tgbot.implementations.InputListenerMapImpl
 import eu.vendeli.tgbot.utils.registerInputChain
 import eu.vendeli.tgbot.utils.setChain
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -12,7 +12,7 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 
 class InputListenerTest : BotTestContext() {
-    private val mapImpl = InputListenerMapImpl()
+    private val mapImpl = InputListenerMapImpl
 
     @Test
     fun `sync crud test`() {

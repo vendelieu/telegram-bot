@@ -1,12 +1,13 @@
-package eu.vendeli.tgbot.core
+package eu.vendeli.tgbot.implementations
 
-import eu.vendeli.tgbot.interfaces.UserData
+import eu.vendeli.tgbot.interfaces.ChatData
 import eu.vendeli.tgbot.utils.asyncAction
 import kotlinx.coroutines.Deferred
 import java.util.concurrent.ConcurrentHashMap
 
-object UserDataMapImpl : UserData {
+object ChatDataMapImpl : ChatData {
     private val storage by lazy { ConcurrentHashMap<String, Any?>() }
+
     override fun set(telegramId: Long, key: String, value: Any?) {
         storage["$telegramId-$key"] = value
     }
@@ -30,6 +31,15 @@ object UserDataMapImpl : UserData {
 
     override suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean> = asyncAction {
         storage -= "$telegramId-$key"
+        true
+    }
+
+    override fun clearAll(telegramId: Long) {
+        storage.keys.forEach(storage::remove)
+    }
+
+    override suspend fun clearAllAsync(telegramId: Long): Deferred<Boolean> = asyncAction {
+        storage.keys.forEach(storage::remove)
         true
     }
 }

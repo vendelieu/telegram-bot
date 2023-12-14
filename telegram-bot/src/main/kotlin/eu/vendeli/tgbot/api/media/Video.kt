@@ -2,9 +2,7 @@
 
 package eu.vendeli.tgbot.api.media
 
-import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -14,34 +12,37 @@ import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
-import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
-class SendVideoAction(private val video: ImplicitFile<*>) :
-    MediaAction<Message>,
-    ActionState(),
+class SendVideoAction(video: ImplicitFile<*>) :
+    MediaAction<Message>(),
     OptionsFeature<SendVideoAction, VideoOptions>,
     MarkupFeature<SendVideoAction>,
-    EntitiesContextBuilder,
     CaptionFeature<SendVideoAction> {
-    override val TgAction<Message>.method: TgMethod
-        get() = TgMethod("sendVideo")
-    override val TgAction<Message>.returnType: Class<Message>
-        get() = getReturnType()
-    override val OptionsFeature<SendVideoAction, VideoOptions>.options: VideoOptions
-        get() = VideoOptions()
-    override val EntitiesContextBuilder.entitiesField: String
-        get() = "caption_entities"
-    override val MediaAction<Message>.inputFilePresence: Boolean
-        get() = video is ImplicitFile.InpFile
+    override val method = TgMethod("sendVideo")
+    override val returnType = getReturnType()
+    override val options = VideoOptions()
+    override val inputFilePresence = video is ImplicitFile.InpFile
 
     init {
         parameters["video"] = video.file
     }
 }
 
-fun video(block: () -> String) = SendVideoAction(ImplicitFile.Str(block()))
-fun video(ba: ByteArray) = SendVideoAction(ImplicitFile.InpFile(ba.toInputFile()))
-fun video(file: File) = SendVideoAction(ImplicitFile.InpFile(file.toInputFile()))
-fun video(file: InputFile) = SendVideoAction(ImplicitFile.InpFile(file))
+@Suppress("NOTHING_TO_INLINE")
+inline fun video(file: ImplicitFile<*>) = SendVideoAction(file)
+inline fun video(block: () -> String) = video(ImplicitFile.Str(block()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun video(ba: ByteArray) = video(ImplicitFile.InpFile(ba.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun video(file: File) = video(ImplicitFile.InpFile(file.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun video(file: InputFile) = video(ImplicitFile.InpFile(file))
+inline fun sendVideo(block: () -> String) = video(block)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendVideo(file: ImplicitFile<*>) = video(file)

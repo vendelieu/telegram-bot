@@ -25,16 +25,20 @@ class GameTest : BotTestContext() {
     @Test
     suspend fun `set score method test`() {
         val game = game("testestes").sendReturning(TG_ID, bot).getOrNull()
-        val newScore = RAND_INT.toLong()
 
-        val result = setGameScore(TG_ID, game!!.messageId, newScore).options {
+        val userResult = setGameScore(TG_ID.asUser(), game!!.messageId, ITER_INT.toLong()).options {
+            force = true
+        }.sendReturning(TG_ID, bot).shouldSuccess()
+        val idResult = setGameScore(TG_ID, game.messageId, ITER_INT.toLong()).options {
             force = true
         }.sendReturning(TG_ID, bot).shouldSuccess()
 
-        with(result.game) {
-            shouldNotBeNull()
-            title shouldBe "test"
-            description shouldBe "test2"
+        listOf(userResult, idResult).forEach { result ->
+            with(result.game) {
+                shouldNotBeNull()
+                title shouldBe "test"
+                description shouldBe "test2"
+            }
         }
     }
 
@@ -46,12 +50,17 @@ class GameTest : BotTestContext() {
             force = true
         }.sendReturning(TG_ID, bot)
 
-        val result = getGameHighScores(TG_ID, game.messageId).sendAsync(TG_ID, bot).await().shouldSuccess()
+        val idResult = getGameHighScores(TG_ID, game.messageId).sendAsync(TG_ID, bot)
+            .await().shouldSuccess()
+        val userResult = getGameHighScores(TG_ID.asUser(), game.messageId).sendAsync(TG_ID, bot)
+            .await().shouldSuccess()
 
-        with(result.first()) {
-            score shouldBe newScore
-            position shouldBe 1
-            user.id shouldBe TG_ID
+        listOf(idResult, userResult).forEach { result ->
+            with(result.first()) {
+                score shouldBe newScore
+                position shouldBe 1
+                user.id shouldBe TG_ID
+            }
         }
     }
 }

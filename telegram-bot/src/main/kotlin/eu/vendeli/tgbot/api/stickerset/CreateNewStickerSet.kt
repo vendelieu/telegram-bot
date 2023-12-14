@@ -2,9 +2,7 @@
 
 package eu.vendeli.tgbot.api.stickerset
 
-import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CreateNewStickerSetOptions
@@ -17,16 +15,11 @@ class CreateNewStickerSetAction(
     title: String,
     stickerFormat: StickerFormat,
     stickers: List<InputSticker>,
-) : ActionState(), MediaAction<Boolean>, OptionsFeature<CreateNewStickerSetAction, CreateNewStickerSetOptions> {
-    override val TgAction<Boolean>.method: TgMethod
-        get() = TgMethod("createNewStickerSet")
-    override val TgAction<Boolean>.returnType: Class<Boolean>
-        get() = getReturnType()
-    override val OptionsFeature<CreateNewStickerSetAction, CreateNewStickerSetOptions>.options:
-        CreateNewStickerSetOptions
-        get() = CreateNewStickerSetOptions()
-    override val MediaAction<Boolean>.idRefField: String
-        get() = "user_id"
+) : MediaAction<Boolean>(), OptionsFeature<CreateNewStickerSetAction, CreateNewStickerSetOptions> {
+    override val method = TgMethod("createNewStickerSet")
+    override val returnType = getReturnType()
+    override val options = CreateNewStickerSetOptions()
+    override val idRefField = "user_id"
 
     init {
         parameters["name"] = name
@@ -36,5 +29,11 @@ class CreateNewStickerSetAction(
     }
 }
 
-fun createNewStickerSet(name: String, title: String, stickerFormat: StickerFormat, stickers: List<InputSticker>) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun createNewStickerSet(
+    name: String,
+    title: String,
+    stickerFormat: StickerFormat,
+    stickers: List<InputSticker>,
+) =
     CreateNewStickerSetAction(name, title, stickerFormat, stickers)

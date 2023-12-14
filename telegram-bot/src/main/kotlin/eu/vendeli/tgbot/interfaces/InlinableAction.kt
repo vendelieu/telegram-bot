@@ -11,7 +11,7 @@ import kotlinx.coroutines.Deferred
  *
  * @param ReturnType
  */
-interface InlineMode<ReturnType> : TgAction<ReturnType>, IActionState {
+abstract class InlinableAction<ReturnType> : Action<ReturnType>() {
     /**
      * Make inline request for action.
      *

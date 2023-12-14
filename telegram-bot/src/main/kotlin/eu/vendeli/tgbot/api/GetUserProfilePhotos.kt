@@ -2,9 +2,7 @@
 
 package eu.vendeli.tgbot.api
 
-import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.UserProfilePhotos
 import eu.vendeli.tgbot.types.internal.TgMethod
@@ -14,11 +12,9 @@ class GetUserProfilePhotosAction(
     userId: Long,
     offset: Int? = null,
     limit: Int? = null,
-) : SimpleAction<UserProfilePhotos>, ActionState() {
-    override val TgAction<UserProfilePhotos>.method: TgMethod
-        get() = TgMethod("getUserProfilePhotos")
-    override val TgAction<UserProfilePhotos>.returnType: Class<UserProfilePhotos>
-        get() = getReturnType()
+) : SimpleAction<UserProfilePhotos>() {
+    override val method = TgMethod("getUserProfilePhotos")
+    override val returnType = getReturnType()
 
     init {
         parameters["user_id"] = userId
@@ -27,7 +23,10 @@ class GetUserProfilePhotosAction(
     }
 }
 
-fun getUserProfilePhotos(userId: Long, offset: Int? = null, limit: Int? = null) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun getUserProfilePhotos(userId: Long, offset: Int? = null, limit: Int? = null) =
     GetUserProfilePhotosAction(userId, offset, limit)
-fun getUserProfilePhotos(user: User, offset: Int? = null, limit: Int? = null) =
-    GetUserProfilePhotosAction(user.id, offset, limit)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun getUserProfilePhotos(user: User, offset: Int? = null, limit: Int? = null) =
+    getUserProfilePhotos(user.id, offset, limit)

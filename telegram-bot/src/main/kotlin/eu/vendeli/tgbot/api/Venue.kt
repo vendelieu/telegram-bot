@@ -1,10 +1,9 @@
+
 @file:Suppress("MatchingDeclarationName")
 
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.ActionState
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -17,16 +16,12 @@ class SendVenueAction(
     longitude: Float,
     title: String,
     address: String,
-) : Action<Message>,
-    ActionState(),
+) : Action<Message>(),
     OptionsFeature<SendVenueAction, VenueOptions>,
     MarkupFeature<SendVenueAction> {
-    override val TgAction<Message>.method: TgMethod
-        get() = TgMethod("sendVenue")
-    override val TgAction<Message>.returnType: Class<Message>
-        get() = getReturnType()
-    override val OptionsFeature<SendVenueAction, VenueOptions>.options: VenueOptions
-        get() = VenueOptions()
+    override val method = TgMethod("sendVenue")
+    override val returnType = getReturnType()
+    override val options = VenueOptions()
     init {
         parameters["latitude"] = latitude
         parameters["longitude"] = longitude
@@ -35,5 +30,10 @@ class SendVenueAction(
     }
 }
 
-fun venue(latitude: Float, longitude: Float, title: String, address: String) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun venue(latitude: Float, longitude: Float, title: String, address: String) =
     SendVenueAction(latitude, longitude, title, address)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendVenue(latitude: Float, longitude: Float, title: String, address: String) =
+    venue(latitude, longitude, title, address)

@@ -2,17 +2,13 @@
 
 package eu.vendeli.tgbot.api.botactions
 
-import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
-class SetMyNameAction(name: String? = null, languageCode: String? = null) : SimpleAction<Boolean>, ActionState() {
-    override val TgAction<Boolean>.method: TgMethod
-        get() = TgMethod("setMyName")
-    override val TgAction<Boolean>.returnType: Class<Boolean>
-        get() = getReturnType()
+class SetMyNameAction(name: String? = null, languageCode: String? = null) : SimpleAction<Boolean>() {
+    override val method = TgMethod("setMyName")
+    override val returnType = getReturnType()
 
     init {
         if (name != null) parameters["name"] = name
@@ -20,4 +16,5 @@ class SetMyNameAction(name: String? = null, languageCode: String? = null) : Simp
     }
 }
 
-fun setMyName(name: String? = null, languageCode: String? = null) = SetMyNameAction(name, languageCode)
+@Suppress("NOTHING_TO_INLINE")
+inline fun setMyName(name: String? = null, languageCode: String? = null) = SetMyNameAction(name, languageCode)

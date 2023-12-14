@@ -2,10 +2,7 @@
 
 package eu.vendeli.tgbot.api
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.ActionState
-import eu.vendeli.tgbot.interfaces.InlineMode
-import eu.vendeli.tgbot.interfaces.TgAction
+import eu.vendeli.tgbot.interfaces.InlinableAction
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -14,17 +11,12 @@ import eu.vendeli.tgbot.types.internal.options.EditMessageLiveLocationOptions
 import eu.vendeli.tgbot.utils.getReturnType
 
 class EditMessageLiveLocationAction :
-    Action<Message>,
-    ActionState,
-    InlineMode<Message>,
+    InlinableAction<Message>,
     OptionsFeature<EditMessageLiveLocationAction, EditMessageLiveLocationOptions>,
     MarkupFeature<EditMessageLiveLocationAction> {
-    override val TgAction<Message>.method: TgMethod
-        get() = TgMethod("editMessageLiveLocation")
-    override val TgAction<Message>.returnType: Class<Message>
-        get() = getReturnType()
-    override val OptionsFeature<EditMessageLiveLocationAction, EditMessageLiveLocationOptions>.options
-        get() = EditMessageLiveLocationOptions()
+    override val method = TgMethod("editMessageLiveLocation")
+    override val returnType = getReturnType()
+    override val options = EditMessageLiveLocationOptions()
 
     constructor(messageId: Long, latitude: Float, longitude: Float) {
         parameters["message_id"] = messageId
@@ -38,7 +30,12 @@ class EditMessageLiveLocationAction :
     }
 }
 
-fun editMessageLiveLocation(messageId: Long, latitude: Float, longitude: Float) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageLiveLocation(messageId: Long, latitude: Float, longitude: Float) =
     EditMessageLiveLocationAction(messageId, latitude, longitude)
 
-fun editMessageLiveLocation(latitude: Float, longitude: Float) = EditMessageLiveLocationAction(latitude, longitude)
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageLiveLocation(
+    latitude: Float,
+    longitude: Float,
+) = EditMessageLiveLocationAction(latitude, longitude)

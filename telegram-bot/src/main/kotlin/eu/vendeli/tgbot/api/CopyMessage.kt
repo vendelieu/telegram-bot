@@ -3,8 +3,6 @@
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.ActionState
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -12,7 +10,6 @@ import eu.vendeli.tgbot.types.MessageId
 import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CopyMessageOptions
-import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 
 /**
@@ -31,21 +28,13 @@ class CopyMessageAction(
     chatId: Identifier<*>,
     fromChatId: Identifier<*>,
     messageId: Long,
-) :
-    Action<MessageId>,
-        ActionState(),
-        OptionsFeature<CopyMessageAction, CopyMessageOptions>,
-        MarkupFeature<CopyMessageAction>,
-        EntitiesContextBuilder,
-        CaptionFeature<CopyMessageAction> {
-    override val TgAction<MessageId>.method: TgMethod
-        get() = TgMethod("copyMessage")
-    override val TgAction<MessageId>.returnType: Class<MessageId>
-        get() = getReturnType()
-    override val OptionsFeature<CopyMessageAction, CopyMessageOptions>.options: CopyMessageOptions
-        get() = CopyMessageOptions()
-    override val EntitiesContextBuilder.entitiesField: String
-        get() = "caption_entities"
+) : Action<MessageId>(),
+    OptionsFeature<CopyMessageAction, CopyMessageOptions>,
+    MarkupFeature<CopyMessageAction>,
+    CaptionFeature<CopyMessageAction> {
+    override val method = TgMethod("copyMessage")
+    override val returnType = getReturnType()
+    override val options = CopyMessageOptions()
 
     init {
         parameters["chat_id"] = chatId.get
@@ -66,14 +55,18 @@ class CopyMessageAction(
  * (or channel username in the format @channelusername)
  * @param messageId Message identifier in the chat specified in fromChatId
  */
-fun copyMessage(chatId: Long, fromChatId: Long, messageId: Long) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun copyMessage(chatId: Long, fromChatId: Long, messageId: Long) =
     CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
 
-fun copyMessage(chatId: String, fromChatId: Long, messageId: Long) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun copyMessage(chatId: String, fromChatId: Long, messageId: Long) =
     CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
 
-fun copyMessage(chatId: Long, fromChatId: String, messageId: Long) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun copyMessage(chatId: Long, fromChatId: String, messageId: Long) =
     CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
 
-fun copyMessage(chatId: String, fromChatId: String, messageId: Long) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun copyMessage(chatId: String, fromChatId: String, messageId: Long) =
     CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)

@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.types.internal.Invocation
 import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
-import eu.vendeli.tgbot.types.internal.UserReference
+import eu.vendeli.tgbot.types.internal.userOrNull
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
 import eu.vendeli.tgbot.utils.NewCoroutineContext
@@ -152,7 +152,7 @@ class TelegramUpdateHandler internal constructor(
                     "java.lang.Double", "double" -> add(parameters[parameterName]?.toDoubleOrNull())
                     else -> add(null)
                 } else when {
-                    typeName == User::class.java.canonicalName -> add((pUpdate as? UserReference)?.user)
+                    typeName == User::class.java.canonicalName -> add(pUpdate.userOrNull)
                     typeName == TelegramBot::class.java.canonicalName -> add(bot)
                     typeName == ProcessedUpdate::class.java.canonicalName -> add(pUpdate)
                     typeName == MessageUpdate::class.java.canonicalName -> add(pUpdate)
@@ -164,12 +164,12 @@ class TelegramUpdateHandler internal constructor(
         }.also { logger.debug { "Parsed arguments - $it." } }.toTypedArray()
 
         bot.config.context._chatData?.run {
-            if ((pUpdate as? UserReference)?.user?.id == null) return@run
+            if (pUpdate.userOrNull == null) return@run
             // check for user id nullability
-            val prevClassName = getAsync<String>(pUpdate.user!!.id, "PrevInvokedClass").await()
-            if (prevClassName != invocation.clazz.name) clearAllAsync(pUpdate.user!!.id).await()
+            val prevClassName = getAsync<String>(pUpdate.userOrNull!!.id, "PrevInvokedClass").await()
+            if (prevClassName != invocation.clazz.name) clearAllAsync(pUpdate.userOrNull!!.id).await()
 
-            setAsync(pUpdate.user!!.id, "PrevInvokedClass", invocation.clazz.name).await()
+            setAsync(pUpdate.userOrNull!!.id, "PrevInvokedClass", invocation.clazz.name).await()
         }
 
         logger.debug { "Invoking function for Update#${pUpdate.updateId}" }
@@ -206,12 +206,11 @@ class TelegramUpdateHandler internal constructor(
      */
     suspend fun handle(update: Update) = update.processUpdate().run {
         logger.debug { "Handling update: $update" }
-        val user = if (this is UserReference) user else null
-        if (checkIsLimited(bot.config.rateLimiter.limits, user?.id)) return@run null
+        if (checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id)) return@run null
 
-        val action = text.getActivityOrNull(user, type)
+        val action = text.getActivityOrNull(userOrNull, type)
 
-        if (action != null && checkIsLimited(action.rateLimits, user?.id, action.id)) {
+        if (action != null && checkIsLimited(action.rateLimits, userOrNull?.id, action.id)) {
             return@run null
         }
 

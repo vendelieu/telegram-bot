@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.botactions.getMe
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
-import eu.vendeli.tgbot.core.EnvConfigLoader
+import eu.vendeli.tgbot.implementations.EnvConfigLoaderImpl
 import eu.vendeli.tgbot.interfaces.Autowiring
 import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.MultipleResponse
@@ -216,13 +216,13 @@ class TelegramBotTest : BotTestContext() {
         // when token not specified np will be thrown
         shouldThrow<NullPointerException> { TelegramBot() }
 
-        EnvConfigLoader.envVars = mapOf(
+        EnvConfigLoaderImpl.envVars = mapOf(
             "TGBOT_TOKEN" to "test",
             "TGBOT_COMMANDS_PACKAGE" to "com.example",
             "TGBOT_API_HOST" to "tg.com",
-            "TGBOT_INPUT_LISTENER" to "eu.vendeli.tgbot.core.InputListenerMapImpl",
-            "TGBOT_CLASS_MANAGER" to "eu.vendeli.tgbot.core.ClassManagerImpl",
-            "TGBOT_RATE_LIMITER" to "eu.vendeli.tgbot.core.TokenBucketLimiterImpl",
+            "TGBOT_INPUT_LISTENER" to "eu.vendeli.tgbot.implementations.InputListenerMapImpl",
+            "TGBOT_CLASS_MANAGER" to "eu.vendeli.tgbot.implementations.ClassManagerImpl",
+            "TGBOT_RATE_LIMITER" to "eu.vendeli.tgbot.implementations.TokenBucketLimiterImpl",
             "TGBOT_HTTPC_RQ_TIMEOUT_MILLIS" to "10",
             "TGBOT_HTTPC_C_TIMEOUT_MILLIS" to "11",
             "TGBOT_HTTPC_SOC_TIMEOUT_MILLIS" to "12",
@@ -241,9 +241,12 @@ class TelegramBotTest : BotTestContext() {
         )
         shouldNotThrowAny { TelegramBot() }.config.apply {
             apiHost shouldBe "tg.com"
-            inputListener::class.java shouldBe Class.forName("eu.vendeli.tgbot.core.InputListenerMapImpl")
-            classManager::class.java shouldBe Class.forName("eu.vendeli.tgbot.core.ClassManagerImpl")
-            rateLimiter.mechanism::class.java shouldBe Class.forName("eu.vendeli.tgbot.core.TokenBucketLimiterImpl")
+            inputListener::class.java shouldBe
+                Class.forName("eu.vendeli.tgbot.implementations.InputListenerMapImpl")
+            classManager::class.java shouldBe
+                Class.forName("eu.vendeli.tgbot.implementations.ClassManagerImpl")
+            rateLimiter.mechanism::class.java shouldBe
+                Class.forName("eu.vendeli.tgbot.implementations.TokenBucketLimiterImpl")
 
             httpClient.requestTimeoutMillis shouldBe 10
             httpClient.connectTimeoutMillis shouldBe 11
@@ -271,7 +274,7 @@ class TelegramBotTest : BotTestContext() {
         val dummyProcessedUpdate = MessageUpdate(
             -0,
             Update(-1),
-            Message(-0, chat = Chat(-0, type = ChatType.Private), date = -0),
+            Message(-0, chat = Chat(-0, type = ChatType.Private), date = -0, from = User(1, false, "Test")),
         )
 
         val inputListenerImpl = object : InputListener {

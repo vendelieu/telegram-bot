@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.internal.Response
+import eu.vendeli.tgbot.types.internal.Response.Success
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
 import kotlinx.coroutines.CoroutineScope
@@ -16,14 +17,9 @@ internal inline fun <T, I : MultipleResponse> ObjectMapper.convertSuccessRespons
     jsonNode: JsonNode,
     type: Class<T>?,
     innerType: Class<I>? = null,
-): Response.Success<T> =
-    if (innerType == null) convertValue(
-        jsonNode,
-        typeFactory.constructParametricType(Response.Success::class.java, type),
-    )
-    else Response.Success(
-        result = convertValue(jsonNode["result"], typeFactory.constructCollectionType(List::class.java, innerType)),
-    )
+): Success<T> =
+    if (innerType == null) convertValue(jsonNode, typeFactory.constructParametricType(Success::class.java, type))
+    else Success(convertValue(jsonNode["result"], typeFactory.constructCollectionType(List::class.java, innerType)))
 
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun <T, I : MultipleResponse> CoroutineScope.handleResponseAsync(

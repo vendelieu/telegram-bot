@@ -1,9 +1,9 @@
 package eu.vendeli.tgbot
 
-import eu.vendeli.tgbot.core.EnvConfigLoader
 import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.core.TelegramActionsCollector.collect
 import eu.vendeli.tgbot.core.TelegramUpdateHandler
+import eu.vendeli.tgbot.implementations.EnvConfigLoaderImpl
 import eu.vendeli.tgbot.interfaces.Autowiring
 import eu.vendeli.tgbot.interfaces.ConfigLoader
 import eu.vendeli.tgbot.types.Update
@@ -40,7 +40,7 @@ class TelegramBot(
     /**
      * Constructor to build through configuration loader.
      */
-    constructor(configLoader: ConfigLoader = EnvConfigLoader) :
+    constructor(configLoader: ConfigLoader = EnvConfigLoaderImpl) :
         this(configLoader.token, configLoader.commandsPackage) {
         config.apply(configLoader.load())
     }

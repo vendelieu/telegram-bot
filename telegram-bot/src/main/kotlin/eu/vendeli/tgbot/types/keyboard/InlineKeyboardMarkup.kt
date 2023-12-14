@@ -1,14 +1,17 @@
 package eu.vendeli.tgbot.types.keyboard
 
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import eu.vendeli.tgbot.interfaces.Keyboard
 
 class InlineKeyboardMarkup : Keyboard {
-    var inlineKeyboard: MutableList<List<InlineKeyboardButton>> = mutableListOf()
+    @JsonProperty("inline_keyboard")
+    @get:JsonIgnore
+    internal var inlineKeyboard: MutableList<List<InlineKeyboardButton>> = mutableListOf()
 
     constructor(vararg buttons: InlineKeyboardButton) {
-        inlineKeyboard = mutableListOf(buttons.toList())
+        inlineKeyboard = mutableListOf(buttons.asList())
     }
 
     @JsonCreator

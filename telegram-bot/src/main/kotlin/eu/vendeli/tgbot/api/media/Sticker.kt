@@ -2,9 +2,7 @@
 
 package eu.vendeli.tgbot.api.media
 
-import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.MediaAction
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -16,26 +14,34 @@ import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
 import java.io.File
 
-class SendStickerAction(private val sticker: ImplicitFile<*>) :
-    MediaAction<Message>,
-    ActionState(),
+class SendStickerAction(sticker: ImplicitFile<*>) :
+    MediaAction<Message>(),
     OptionsFeature<SendStickerAction, StickerOptions>,
     MarkupFeature<SendStickerAction> {
-    override val TgAction<Message>.method: TgMethod
-        get() = TgMethod("sendSticker")
-    override val TgAction<Message>.returnType: Class<Message>
-        get() = getReturnType()
-    override val OptionsFeature<SendStickerAction, StickerOptions>.options: StickerOptions
-        get() = StickerOptions()
-    override val MediaAction<Message>.inputFilePresence: Boolean
-        get() = sticker is ImplicitFile.InpFile
+    override val method = TgMethod("sendSticker")
+    override val returnType = getReturnType()
+    override val options = StickerOptions()
+    override val inputFilePresence = sticker is ImplicitFile.InpFile
 
     init {
         parameters["sticker"] = sticker.file
     }
 }
 
-fun sticker(block: () -> String) = SendStickerAction(ImplicitFile.Str(block()))
-fun sticker(ba: ByteArray) = SendStickerAction(ImplicitFile.InpFile(ba.toInputFile()))
-fun sticker(file: File) = SendStickerAction(ImplicitFile.InpFile(file.toInputFile()))
-fun sticker(file: InputFile) = SendStickerAction(ImplicitFile.InpFile(file))
+@Suppress("NOTHING_TO_INLINE")
+inline fun sticker(file: ImplicitFile<*>) = SendStickerAction(file)
+inline fun sticker(block: () -> String) = sticker(ImplicitFile.Str(block()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sticker(ba: ByteArray) = sticker(ImplicitFile.InpFile(ba.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sticker(file: File) = sticker(ImplicitFile.InpFile(file.toInputFile()))
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sticker(file: InputFile) = sticker(ImplicitFile.InpFile(file))
+
+inline fun sendSticker(block: () -> String) = sticker(block)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun sendSticker(file: ImplicitFile<*>) = sticker(file)

@@ -3,16 +3,13 @@
 package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.ActionState
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
-class ExportChatInviteLinkAction : Action<String>, ActionState() {
-    override val TgAction<String>.method: TgMethod
-        get() = TgMethod("exportChatInviteLink")
-    override val TgAction<String>.returnType: Class<String>
-        get() = getReturnType()
+class ExportChatInviteLinkAction : Action<String>() {
+    override val method = TgMethod("exportChatInviteLink")
+    override val returnType = getReturnType()
 }
 
-fun exportChatInviteLink() = ExportChatInviteLinkAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun exportChatInviteLink() = ExportChatInviteLinkAction()

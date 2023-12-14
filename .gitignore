@@ -1,6 +1,7 @@
 HELP.md
 .gradle
 ./build/
+telegram-bot/build/*
 ./out/
 ./lib/build/*
 *.class

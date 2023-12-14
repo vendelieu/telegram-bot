@@ -2,9 +2,7 @@
 
 package eu.vendeli.tgbot.api.botactions
 
-import eu.vendeli.tgbot.interfaces.ActionState
 import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.TgMethod
@@ -13,17 +11,13 @@ import eu.vendeli.tgbot.utils.getInnerType
 import eu.vendeli.tgbot.utils.getReturnType
 
 class GetUpdatesAction :
-    SimpleAction<List<Update>>,
-    ActionState(),
+    SimpleAction<List<Update>>(),
     OptionsFeature<GetUpdatesAction, GetUpdatesOptions> {
-    override val TgAction<List<Update>>.method: TgMethod
-        get() = TgMethod("getUpdates")
-    override val TgAction<List<Update>>.returnType: Class<List<Update>>
-        get() = getReturnType()
-    override val OptionsFeature<GetUpdatesAction, GetUpdatesOptions>.options: GetUpdatesOptions
-        get() = GetUpdatesOptions()
-    override val TgAction<List<Update>>.wrappedDataType: Class<Update>
-        get() = getInnerType()
+    override val method = TgMethod("getUpdates")
+    override val returnType = getReturnType()
+    override val wrappedDataType = getInnerType()
+    override val options = GetUpdatesOptions()
 }
 
-fun getUpdates() = GetUpdatesAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun getUpdates() = GetUpdatesAction()

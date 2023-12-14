@@ -3,8 +3,6 @@
 package eu.vendeli.tgbot.api.forum
 
 import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.ActionState
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
@@ -14,11 +12,9 @@ import eu.vendeli.tgbot.utils.getReturnType
  * and must have the canDeleteMessages administrator rights.
  * Returns True on success.
  */
-class DeleteForumTopicAction(messageThreadId: Int) : Action<Boolean>, ActionState() {
-    override val TgAction<Boolean>.method: TgMethod
-        get() = TgMethod("deleteForumTopic")
-    override val TgAction<Boolean>.returnType: Class<Boolean>
-        get() = getReturnType()
+class DeleteForumTopicAction(messageThreadId: Int) : Action<Boolean>() {
+    override val method = TgMethod("deleteForumTopic")
+    override val returnType = getReturnType()
 
     init {
         parameters["message_thread_id"] = messageThreadId
@@ -31,4 +27,5 @@ class DeleteForumTopicAction(messageThreadId: Int) : Action<Boolean>, ActionStat
  * and must have the canDeleteMessages administrator rights.
  * Returns True on success.
  */
-fun deleteForumTopic(messageThreadId: Int) = DeleteForumTopicAction(messageThreadId)
+@Suppress("NOTHING_TO_INLINE")
+inline fun deleteForumTopic(messageThreadId: Int) = DeleteForumTopicAction(messageThreadId)

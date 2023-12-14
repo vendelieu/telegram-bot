@@ -1,11 +1,8 @@
-@file:Suppress("MatchingDeclarationName")
+@file:Suppress("MatchingDeclarationName", "TooManyFunctions")
 
 package eu.vendeli.tgbot.api
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.ActionState
-import eu.vendeli.tgbot.interfaces.InlineMode
-import eu.vendeli.tgbot.interfaces.TgAction
+import eu.vendeli.tgbot.interfaces.InlinableAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
@@ -19,19 +16,14 @@ import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 
 class EditMessageTextAction private constructor() :
-    Action<Message>,
-    ActionState(),
-    InlineMode<Message>,
-    EntitiesContextBuilder,
+    InlinableAction<Message>(),
+    EntitiesContextBuilder<EditMessageTextAction>,
     OptionsFeature<EditMessageTextAction, EditMessageOptions>,
     MarkupFeature<EditMessageTextAction>,
     EntitiesFeature<EditMessageTextAction> {
-        override val TgAction<Message>.method: TgMethod
-            get() = TgMethod("editMessageText")
-        override val TgAction<Message>.returnType: Class<Message>
-            get() = getReturnType()
-        override val OptionsFeature<EditMessageTextAction, EditMessageOptions>.options: EditMessageOptions
-            get() = EditMessageOptions()
+        override val method = TgMethod("editMessageText")
+        override val returnType = getReturnType()
+        override val options = EditMessageOptions()
 
         constructor(messageId: Long, text: String) : this() {
             parameters["message_id"] = messageId
@@ -42,27 +34,19 @@ class EditMessageTextAction private constructor() :
             parameters["text"] = text
         }
 
-        internal constructor(block: EntitiesContextBuilder.() -> String) : this() {
+        internal constructor(block: EntitiesContextBuilder<EditMessageTextAction>.() -> String) : this() {
             parameters["text"] = block(this)
         }
     }
 
 class EditMessageCaptionAction() :
-    Action<Message>,
-    ActionState(),
-    InlineMode<Message>,
+    InlinableAction<Message>(),
     OptionsFeature<EditMessageCaptionAction, EditCaptionOptions>,
     MarkupFeature<EditMessageCaptionAction>,
-    EntitiesContextBuilder,
     CaptionFeature<EditMessageCaptionAction> {
-    override val TgAction<Message>.method: TgMethod
-        get() = TgMethod("editMessageCaption")
-    override val TgAction<Message>.returnType: Class<Message>
-        get() = getReturnType()
-    override val OptionsFeature<EditMessageCaptionAction, EditCaptionOptions>.options: EditCaptionOptions
-        get() = EditCaptionOptions()
-    override val EntitiesContextBuilder.entitiesField: String
-        get() = "caption_entities"
+    override val method = TgMethod("editMessageCaption")
+    override val returnType = getReturnType()
+    override val options = EditCaptionOptions()
 
     constructor(messageId: Long) : this() {
         parameters["message_id"] = messageId
@@ -70,14 +54,10 @@ class EditMessageCaptionAction() :
 }
 
 class EditMessageMediaAction :
-    Action<Message>,
-    ActionState,
-    InlineMode<Message>,
+    InlinableAction<Message>,
     MarkupFeature<EditMessageMediaAction> {
-    override val TgAction<Message>.method: TgMethod
-        get() = TgMethod("editMessageMedia")
-    override val TgAction<Message>.returnType: Class<Message>
-        get() = getReturnType()
+    override val method = TgMethod("editMessageMedia")
+    override val returnType = getReturnType()
 
     constructor(inputMedia: InputMedia) {
         parameters["media"] = inputMedia
@@ -89,29 +69,55 @@ class EditMessageMediaAction :
     }
 }
 
-class EditMessageMarkupAction() :
-    Action<Message>,
-    ActionState(),
-    InlineMode<Message>,
-    MarkupFeature<EditMessageMarkupAction> {
-    override val TgAction<Message>.method: TgMethod
-        get() = TgMethod("editMessageReplyMarkup")
-    override val TgAction<Message>.returnType: Class<Message>
-        get() = getReturnType()
+class EditMessageReplyMarkupAction() :
+    InlinableAction<Message>(),
+    MarkupFeature<EditMessageReplyMarkupAction> {
+    override val method = TgMethod("editMessageReplyMarkup")
+    override val returnType = getReturnType()
 
     constructor(messageId: Long) : this() {
         parameters["message_id"] = messageId
     }
 }
 
-fun editText(messageId: Long, block: () -> String) = EditMessageTextAction(messageId, text = block())
-fun editText(block: EntitiesContextBuilder.() -> String) = EditMessageTextAction(block)
+fun editMessageText(block: EntitiesContextBuilder<EditMessageTextAction>.() -> String) = EditMessageTextAction(block)
+inline fun editText(messageId: Long, block: () -> String) = EditMessageTextAction(messageId, text = block())
+fun editText(block: EntitiesContextBuilder<EditMessageTextAction>.() -> String) = EditMessageTextAction(block)
 
-fun editCaption(messageId: Long) = EditMessageCaptionAction(messageId)
-fun editCaption() = EditMessageCaptionAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun editCaption(messageId: Long) = EditMessageCaptionAction(messageId)
 
-fun editMedia(messageId: Long, inputMedia: InputMedia) = EditMessageMediaAction(messageId, inputMedia)
-fun editMedia(inputMedia: InputMedia) = EditMessageMediaAction(inputMedia)
+@Suppress("NOTHING_TO_INLINE")
+inline fun editCaption() = EditMessageCaptionAction()
 
-fun editMarkup(messageId: Long) = EditMessageMarkupAction(messageId)
-fun editMarkup() = EditMessageMarkupAction()
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMedia(messageId: Long, inputMedia: InputMedia) = EditMessageMediaAction(messageId, inputMedia)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMedia(inputMedia: InputMedia) = EditMessageMediaAction(inputMedia)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMarkup(messageId: Long) = EditMessageReplyMarkupAction(messageId)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMarkup() = EditMessageReplyMarkupAction()
+
+inline fun editMessageText(messageId: Long, block: () -> String) = editText(messageId, block)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageCaption(messageId: Long) = editCaption(messageId)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageCaption() = editCaption()
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageMedia(messageId: Long, inputMedia: InputMedia) = editMedia(messageId, inputMedia)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageMedia(inputMedia: InputMedia) = editMedia(inputMedia)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageReplyMarkup(messageId: Long) = editMarkup(messageId)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun editMessageReplyMarkup() = editMarkup()

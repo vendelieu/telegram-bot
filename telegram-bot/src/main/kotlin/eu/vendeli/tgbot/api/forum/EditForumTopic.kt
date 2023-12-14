@@ -3,8 +3,6 @@
 package eu.vendeli.tgbot.api.forum
 
 import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.ActionState
-import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
@@ -17,11 +15,9 @@ class EditForumTopicAction(
     messageThreadId: Int,
     name: String? = null,
     iconCustomEmojiId: String? = null,
-) : Action<Boolean>, ActionState() {
-    override val TgAction<Boolean>.method: TgMethod
-        get() = TgMethod("editForumTopic")
-    override val TgAction<Boolean>.returnType: Class<Boolean>
-        get() = getReturnType()
+) : Action<Boolean>() {
+    override val method = TgMethod("editForumTopic")
+    override val returnType = getReturnType()
 
     init {
         parameters["message_thread_id"] = messageThreadId
@@ -35,5 +31,6 @@ class EditForumTopicAction(
  * The bot must be an administrator in the chat for this to work and must have canManageTopics administrator rights,
  * unless it is the creator of the topic. Returns True on success.
  */
-fun editForumTopic(messageThreadId: Int, name: String? = null, iconCustomEmojiId: String? = null) =
+@Suppress("NOTHING_TO_INLINE")
+inline fun editForumTopic(messageThreadId: Int, name: String? = null, iconCustomEmojiId: String? = null) =
     EditForumTopicAction(messageThreadId, name, iconCustomEmojiId)

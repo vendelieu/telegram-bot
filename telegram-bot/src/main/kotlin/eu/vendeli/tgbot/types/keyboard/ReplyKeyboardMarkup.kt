@@ -1,12 +1,15 @@
 package eu.vendeli.tgbot.types.keyboard
 
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import eu.vendeli.tgbot.interfaces.Keyboard
 
 @Suppress("unused")
 class ReplyKeyboardMarkup : Keyboard {
-    var keyboard: MutableList<List<KeyboardButton>> = mutableListOf()
+    @JsonProperty("keyboard")
+    @get:JsonIgnore
+    internal var keyboard: MutableList<List<KeyboardButton>> = mutableListOf()
     var resizeKeyboard: Boolean? = null
     var oneTimeKeyboard: Boolean? = null
     var inputFieldPlaceholder: String? = null
@@ -18,7 +21,7 @@ class ReplyKeyboardMarkup : Keyboard {
     }
 
     constructor(vararg buttons: KeyboardButton) {
-        keyboard.add(buttons.toList())
+        keyboard.add(buttons.asList())
     }
 
     @JsonCreator

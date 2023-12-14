@@ -19,23 +19,22 @@ interface UserReference {
 
 interface TextReference {
     val text: String
+        get() = ""
 }
 
 sealed class ProcessedUpdate(
     open val updateId: Int,
     open val update: Update,
     internal val type: UpdateType,
-) : TextReference {
-    override val text: String = ""
-}
+) : TextReference
 
 data class MessageUpdate(
     override val updateId: Int,
     override val update: Update,
     val message: Message,
 ) : ProcessedUpdate(updateId, update, UpdateType.MESSAGE), UserReference {
-    override val user = message.from
-    override val text = message.text ?: ""
+    override val user = message.from!!
+    override val text = message.text.orEmpty()
 }
 
 data class EditedMessageUpdate(
@@ -43,8 +42,8 @@ data class EditedMessageUpdate(
     override val update: Update,
     val editedMessage: Message,
 ) : ProcessedUpdate(updateId, update, UpdateType.EDIT_MESSAGE), UserReference {
-    override val user = editedMessage.from
-    override val text = editedMessage.text ?: ""
+    override val user = editedMessage.from!!
+    override val text = editedMessage.text.orEmpty()
 }
 
 data class ChannelPostUpdate(
@@ -53,7 +52,7 @@ data class ChannelPostUpdate(
     val channelPost: Message,
 ) : ProcessedUpdate(updateId, update, UpdateType.CHANNEL_POST), UserReference {
     override val user = channelPost.from
-    override val text = channelPost.text ?: ""
+    override val text = channelPost.text.orEmpty()
 }
 
 data class EditedChannelPostUpdate(
@@ -62,7 +61,7 @@ data class EditedChannelPostUpdate(
     val editedChannelPost: Message,
 ) : ProcessedUpdate(updateId, update, UpdateType.EDITED_CHANNEL_POST), UserReference {
     override val user = editedChannelPost.from
-    override val text = editedChannelPost.text ?: ""
+    override val text = editedChannelPost.text.orEmpty()
 }
 
 data class InlineQueryUpdate(
@@ -89,7 +88,7 @@ data class CallbackQueryUpdate(
     val callbackQuery: CallbackQuery,
 ) : ProcessedUpdate(updateId, update, UpdateType.CALLBACK_QUERY), UserReference {
     override val user: User = callbackQuery.from
-    override val text = callbackQuery.data ?: ""
+    override val text = callbackQuery.data.orEmpty()
 }
 
 data class ShippingQueryUpdate(
@@ -153,5 +152,5 @@ data class ChatJoinRequestUpdate(
 inline val ProcessedUpdate.userOrNull: User? get() = (this as? UserReference)?.user
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun ProcessedUpdate.getUser(): User = (this as UserReference).user
+inline fun ProcessedUpdate.getUser(): User = (this as? UserReference)?.user
     ?: throw NullPointerException("User not found.")
