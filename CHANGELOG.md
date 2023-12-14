@@ -1,5 +1,15 @@
 # Telegram-bot changelog
 
+## 3.5.0
+
+* Added infix functions to `EntitiesBuilder` (which is used in features by `caption {}` and `entities {}`).
+* Added infix function to the builder used in `setMyCommands` for ease of adding a command.
+* Changed the function for methods `answerInlineQuery`, `answerShippingQuery`, `poll`, `setPassportDataErrors` that
+  used `array`/`list` to collect elements, added a new `ListingBuilder`, for convenience of adding enumerable elements.
+* Wherever `userId` is used in function-methods, shortcuts using `User` have been added.
+* For those methods where the `send*` keyword in the function name was omitted, the method shortcuts are added.
+* Refactored the internal structure of actions and features.
+
 ## 3.4.0
 
 * Added `InputChaining` in annotation mode as experimental feature.

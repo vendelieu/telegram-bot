@@ -1,5 +1,10 @@
 package eu.vendeli.tgbot.utils.builders
 
+/**
+ * Builder for declaring enumeration elements.
+ *
+ * @param T
+ */
 class ListingBuilder<T : Any> {
     private val list = mutableListOf<T>()
 
