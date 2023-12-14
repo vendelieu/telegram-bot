@@ -26,7 +26,7 @@ class GameTest : BotTestContext() {
     suspend fun `set score method test`() {
         val game = game("testestes").sendReturning(TG_ID, bot).getOrNull()
 
-        val userResult = setGameScore(TG_ID.wrapToUser(), game!!.messageId, ITER_INT.toLong()).options {
+        val userResult = setGameScore(TG_ID.asUser(), game!!.messageId, ITER_INT.toLong()).options {
             force = true
         }.sendReturning(TG_ID, bot).shouldSuccess()
         val idResult = setGameScore(TG_ID, game.messageId, ITER_INT.toLong()).options {
@@ -52,7 +52,7 @@ class GameTest : BotTestContext() {
 
         val idResult = getGameHighScores(TG_ID, game.messageId).sendAsync(TG_ID, bot)
             .await().shouldSuccess()
-        val userResult = getGameHighScores(TG_ID.wrapToUser(), game.messageId).sendAsync(TG_ID, bot)
+        val userResult = getGameHighScores(TG_ID.asUser(), game.messageId).sendAsync(TG_ID, bot)
             .await().shouldSuccess()
 
         listOf(idResult, userResult).forEach { result ->

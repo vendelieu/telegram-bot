@@ -94,7 +94,7 @@ abstract class BotTestContext(
         return sendAsync(id, bot).await()
     }
 
-    protected fun Long.wrapToUser() = User(this, false, "test")
+    protected fun Long.asUser() = User(this, false, "test")
 
     protected suspend fun getExtFile(url: String): ByteArray = bot.httpClient.get(url).readBytes()
 

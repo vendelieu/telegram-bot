@@ -17,7 +17,7 @@ class ChatBanMethodsTest : BotTestContext() {
     @Test
     suspend fun `ban chat member method test`() {
         banChatMember(
-            1000L.wrapToUser(),
+            1000L.asUser(),
             CUR_INSTANT.plusMillis(100).epochSecond,
             true,
         ).sendReturning(CHAT_ID, bot).onFailure {
@@ -28,7 +28,7 @@ class ChatBanMethodsTest : BotTestContext() {
     @Test
     suspend fun `unban chat member method test`() {
         val result = unbanChatMember(
-            TG_ID,
+            TG_ID.asUser(),
             onlyIfBanned = true,
         ).sendReturning(CHAT_ID, bot).shouldSuccess()
         result.shouldBeTrue()
