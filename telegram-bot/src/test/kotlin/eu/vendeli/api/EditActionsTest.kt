@@ -1,10 +1,10 @@
 package eu.vendeli.api
 
 import BotTestContext
-import eu.vendeli.tgbot.api.editCaption
-import eu.vendeli.tgbot.api.editMarkup
-import eu.vendeli.tgbot.api.editMedia
-import eu.vendeli.tgbot.api.editText
+import eu.vendeli.tgbot.api.editMessageCaption
+import eu.vendeli.tgbot.api.editMessageMedia
+import eu.vendeli.tgbot.api.editMessageReplyMarkup
+import eu.vendeli.tgbot.api.editMessageText
 import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.api.message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
@@ -22,7 +22,7 @@ class EditActionsTest : BotTestContext() {
     suspend fun `edit message test method test`() {
         val msg = message("test1").sendReturning(TG_ID, bot).getOrNull()
         msg.shouldNotBeNull()
-        val result = editText(msg.messageId) { "test2" }.sendAsync(TG_ID, bot).await().shouldSuccess()
+        val result = editMessageText(msg.messageId) { "test2" }.sendAsync(TG_ID, bot).await().shouldSuccess()
 
         result.text shouldBe "test2"
     }
@@ -34,7 +34,7 @@ class EditActionsTest : BotTestContext() {
         ).sendReturning(TG_ID, bot).getOrNull()
         msg.shouldNotBeNull()
 
-        val result = editMarkup(msg.messageId)
+        val result = editMessageReplyMarkup(msg.messageId)
             .inlineKeyboardMarkup { "test2" switchInlineQuery "test" }
             .sendAsync(TG_ID, bot)
             .await().shouldSuccess()
@@ -55,7 +55,7 @@ class EditActionsTest : BotTestContext() {
         val msg = photo(RANDOM_PIC).sendReturning(TG_ID, bot).getOrNull()
         msg.shouldNotBeNull()
 
-        val result = editMedia(
+        val result = editMessageMedia(
             msg.messageId,
             InputMedia.Photo(ImplicitFile.Str(RANDOM_PIC_URL)),
         ).sendAsync(TG_ID, bot).await().shouldSuccess()
@@ -73,7 +73,7 @@ class EditActionsTest : BotTestContext() {
         msg.shouldNotBeNull()
         msg.caption.shouldBeNull()
 
-        val result = editCaption(msg.messageId).caption { "test" }.sendAsync(TG_ID, bot).await().shouldSuccess()
+        val result = editMessageCaption(msg.messageId).caption { "test" }.sendAsync(TG_ID, bot).await().shouldSuccess()
 
         with(result) {
             text.shouldBeNull()
