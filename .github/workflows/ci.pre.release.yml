@@ -1,8 +1,5 @@
 name: Pre-release
 
-permissions:
-  contents: write
-
 on:
   workflow_dispatch:
     inputs:
