@@ -4,25 +4,15 @@ permissions:
   contents: write
 
 on:
-  push:
-    tags:
-      - "[0-9]+.[0-9]+.[0-9]+.*"
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        description: Version of artifact
+        required: true
 
 jobs:
-  version:
-    name: Get version number from tag
-    runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.vars.outputs.version }}
-    steps:
-      - name: Read version
-        id: vars
-        # extract tag name without v prefix
-        run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-        shell: bash
-
   publish:
-    needs: [ readme, version ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -42,4 +32,4 @@ jobs:
         uses: eskatos/gradle-command-action@v2
         with:
           gradle-version: current
-          arguments: publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }}
+          arguments: publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ github.event.inputs.version }}
