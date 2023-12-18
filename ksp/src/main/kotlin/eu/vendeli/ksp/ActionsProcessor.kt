@@ -76,10 +76,12 @@ class ActionsProcessor(
         }.build()
 
         @Suppress("SpreadOperator")
-        fileSpec.writeTo(
-            codeGenerator = codeGenerator,
-            dependencies = Dependencies(false, *resolver.getAllFiles().toList().toTypedArray()),
-        )
+        fileSpec.runCatching {
+            writeTo(
+                codeGenerator = codeGenerator,
+                dependencies = Dependencies(false, *resolver.getAllFiles().toList().toTypedArray()),
+            )
+        }
 
         return emptyList()
     }

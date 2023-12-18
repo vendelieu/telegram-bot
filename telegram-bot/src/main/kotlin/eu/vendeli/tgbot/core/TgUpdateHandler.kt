@@ -1,8 +1,8 @@
-package eu.vendeli.tgbot.interfaces
+package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
-import eu.vendeli.tgbot.core.ManualHandlingDsl
+import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
