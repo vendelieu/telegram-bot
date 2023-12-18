@@ -15,12 +15,4 @@ enum class UpdateType {
     MY_CHAT_MEMBER,
     CHAT_MEMBER,
     CHAT_JOIN_REQUEST,
-    ;
-
-    internal val scope: CommandScope?
-        get() = when (this) {
-            MESSAGE -> CommandScope.MESSAGE
-            CALLBACK_QUERY -> CommandScope.CALLBACK
-            else -> null
-        }
 }

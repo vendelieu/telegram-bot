@@ -1,8 +1,9 @@
 package eu.vendeli.tgbot
 
+import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.core.ManualHandlingDsl
+import eu.vendeli.tgbot.core.ReflectionUpdateHandler
 import eu.vendeli.tgbot.core.TelegramActionsCollector.collect
-import eu.vendeli.tgbot.core.TelegramUpdateHandler
 import eu.vendeli.tgbot.implementations.EnvConfigLoaderImpl
 import eu.vendeli.tgbot.interfaces.Autowiring
 import eu.vendeli.tgbot.interfaces.ConfigLoader
@@ -69,14 +70,23 @@ class TelegramBot(
     internal val autowiringObjects by lazy { mutableMapOf<Class<*>, Autowiring<*>>() }
 
     /**
-     * Current bot [TelegramUpdateHandler] instance
+     * Current bot UpdateHandler instance
      */
-    val update = TelegramUpdateHandler(
-        actions = commandsPackage?.let { collect(it) },
-        bot = this,
-        classManager = config.classManager,
-        inputListener = config.inputListener,
-    )
+    val update by lazy {
+        val codegenActions = runCatching { Class.forName("eu.vendeli.tgbot.ActionsDataKt") }.getOrNull()
+            ?.let { it.getMethod("get\$ACTIONS").invoke(null) as? List<*> }
+        return@lazy if (codegenActions != null) CodegenUpdateHandler(
+            codegenActions,
+            this,
+            config.classManager,
+            config.inputListener,
+        ) else ReflectionUpdateHandler(
+            actions = commandsPackage?.let { collect(it) },
+            bot = this,
+            classManager = config.classManager,
+            inputListener = config.inputListener,
+        )
+    }
 
     internal var httpClient = getConfiguredHttpClient()
 

@@ -1,7 +1,7 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.types.internal.CommandScope
+import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.utils.MockUpdate
 import io.kotest.core.spec.IsolationMode
@@ -157,7 +157,7 @@ class ManualHandlingTest : BotTestContext(true, true) {
             should { manualActions.onShippingQuery }.shouldNotBeNull()
 
             manualActions.regexCommands.shouldBeEmpty()
-            onCommand("^*.".toRegex(), setOf(CommandScope.CALLBACK), RateLimits.NOT_LIMITED) {}
+            onCommand("^*.".toRegex(), setOf(UpdateType.CALLBACK_QUERY), RateLimits.NOT_LIMITED) {}
             manualActions.regexCommands.size shouldBe 1
 
             manualActions.onInput.shouldBeEmpty()

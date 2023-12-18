@@ -1,9 +1,9 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.InputListener
+import eu.vendeli.tgbot.interfaces.TgUpdateHandler
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.Actions
@@ -14,21 +14,10 @@ import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.userOrNull
-import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
-import eu.vendeli.tgbot.utils.ManualHandlingBlock
-import eu.vendeli.tgbot.utils.NewCoroutineContext
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.findAction
 import eu.vendeli.tgbot.utils.handleInvocation
-import eu.vendeli.tgbot.utils.process
 import eu.vendeli.tgbot.utils.processUpdate
-import kotlinx.coroutines.cancelChildren
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import mu.KLogging
-import kotlin.coroutines.coroutineContext
 
 /**
  * A class that handles updates.
@@ -38,94 +27,19 @@ import kotlin.coroutines.coroutineContext
  * @property classManager An instance of the class that will be used to call functions.
  * @property inputListener An instance of the class that stores the input waiting points.
  */
-@Suppress("unused", "MemberVisibilityCanBePrivate")
-class TelegramUpdateHandler internal constructor(
+@Suppress("unused")
+class ReflectionUpdateHandler internal constructor(
     internal val actions: Actions? = null,
-    internal val bot: TelegramBot,
+    bot: TelegramBot,
     private val classManager: ClassManager,
     private val inputListener: InputListener,
-) {
-    private lateinit var handlingBehaviour: HandlingBehaviourBlock
-
-    @Volatile
-    private var handlerActive: Boolean = false
-    private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot, inputListener) }
-    val caughtExceptions by lazy { Channel<Pair<Throwable, Update>>(CONFLATED) }
-
-    /**
-     * Function that starts the listening event.
-     *
-     * @param offset
-     */
-    private tailrec suspend fun runListener(offset: Int? = null): Int = with(bot.config.updatesListener) {
-        logger.debug { "Running listener with offset - $offset" }
-        if (!handlerActive) {
-            coroutineContext.cancelChildren()
-            return 0
-        }
-        var lastUpdateId: Int = offset ?: 0
-        bot.pullUpdates(offset)?.forEach { update ->
-            NewCoroutineContext(coroutineContext + dispatcher).launch {
-                handlingBehaviour.invoke(this@TelegramUpdateHandler, update)
-            }
-            lastUpdateId = update.updateId + 1
-        }
-        delay(pullingDelay)
-        return runListener(lastUpdateId)
-    }
-
-    /**
-     * Function to define the actions that will be applied to updates when they are being processed.
-     * When set, it starts an update processing cycle.
-     *
-     * @param block action that will be applied.
-     */
-    suspend fun setListener(block: HandlingBehaviourBlock) {
-        if (handlerActive) stopListener()
-        logger.debug { "The listener is set." }
-        handlingBehaviour = block
-        handlerActive = true
-        runListener()
-    }
-
-    /**
-     * Stops listening of new updates.
-     *
-     */
-    fun stopListener() {
-        logger.debug { "The listener is stopped." }
-        handlerActive = false
-    }
-
-    /**
-     * A function for defining the behavior to handle updates.
-     */
-    fun setBehaviour(block: HandlingBehaviourBlock) {
-        logger.debug { "Handling behaviour is set." }
-        handlingBehaviour = block
-    }
-
-    /**
-     * A method for handling updates from a string.
-     * Define processing behaviour before calling, see [setBehaviour].
-     */
-    suspend fun parseAndHandle(update: String) {
-        logger.debug { "Trying to parse update from string - $update" }
-        mapper.runCatching {
-            readValue(update, Update::class.java)
-        }.onFailure {
-            logger.debug(it) { "error during the update parsing process." }
-        }.onSuccess { logger.info { "Successfully parsed update to $it" } }
-            .getOrNull()?.let { handlingBehaviour(this, it) }
-    }
-
+) : TgUpdateHandler(bot, inputListener) {
     /**
      * Function used to call functions with certain parameters processed after receiving update.
      *
      * @param pUpdate
      * @param invocation
      * @param parameters
-     * @return null on success or [Throwable].
      */
     @Suppress("CyclomaticComplexMethod")
     private suspend fun invokeMethod(
@@ -163,7 +77,7 @@ class TelegramUpdateHandler internal constructor(
             }
         }.also { logger.debug { "Parsed arguments - $it." } }.toTypedArray()
 
-        bot.config.context._chatData?.run {
+        bot.chatData.run {
             if (pUpdate.userOrNull == null) return@run
             // check for user id nullability
             val prevClassName = getAsync<String>(pUpdate.userOrNull!!.id, "PrevInvokedClass").await()
@@ -198,21 +112,14 @@ class TelegramUpdateHandler internal constructor(
         return activity
     }
 
-    /**
-     * Handle the update.
-     *
-     * @param update
-     * @return null on success or [Throwable].
-     */
-    suspend fun handle(update: Update) = update.processUpdate().run {
+    override suspend fun handle(update: Update) = update.processUpdate().run {
         logger.debug { "Handling update: $update" }
-        if (checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id)) return@run null
+        if (checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id)) return@run
 
         val action = text.getActivityOrNull(userOrNull, type)
 
-        if (action != null && checkIsLimited(action.rateLimits, userOrNull?.id, action.id)) {
-            return@run null
-        }
+        if (action != null && checkIsLimited(action.rateLimits, userOrNull?.id, action.id))
+            return@run
 
         actions?.updateHandlers?.get(type)?.also { invokeMethod(this, it, emptyMap()) }
 
@@ -224,20 +131,4 @@ class TelegramUpdateHandler internal constructor(
             else -> logger.warn { "update: $update not handled." }
         }
     }
-
-    /**
-     * Manual handling dsl
-     *
-     * @param update
-     * @param block
-     */
-    suspend fun handle(update: Update, block: ManualHandlingBlock) {
-        logger.debug { "Manually handling update: $update" }
-        manualHandlingBehavior.apply {
-            block()
-            process(update)
-        }
-    }
-
-    internal companion object : KLogging()
 }

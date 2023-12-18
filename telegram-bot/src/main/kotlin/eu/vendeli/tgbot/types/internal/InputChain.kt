@@ -4,7 +4,6 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import eu.vendeli.tgbot.utils.DEFAULT_COMMAND_SCOPE
 
 fun interface Action {
     suspend fun invoke(user: User, update: ProcessedUpdate, bot: TelegramBot)
@@ -20,7 +19,6 @@ abstract class ChainLink(
     protected open val breakCondition: BreakCondition? = null,
     protected open val breakingAction: Action? = null,
 ) {
-    open val scope: Set<CommandScope> = DEFAULT_COMMAND_SCOPE
     open val rateLimits: RateLimits = RateLimits.NOT_LIMITED
     open val retryAfterBreak: Boolean = true
 

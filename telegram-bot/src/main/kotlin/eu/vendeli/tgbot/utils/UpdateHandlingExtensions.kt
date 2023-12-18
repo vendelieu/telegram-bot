@@ -2,14 +2,14 @@ package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.ManualHandlingDsl
-import eu.vendeli.tgbot.core.TelegramUpdateHandler.Companion.logger
+import eu.vendeli.tgbot.interfaces.TgUpdateHandler.Companion.logger
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActionContext
 import eu.vendeli.tgbot.types.internal.CommandContext
-import eu.vendeli.tgbot.types.internal.CommandScope
 import eu.vendeli.tgbot.types.internal.InputContext
 import eu.vendeli.tgbot.types.internal.SingleInputChain
+import eu.vendeli.tgbot.types.internal.UpdateType
 
 private inline val SingleInputChain.prevChainId: String?
     get() = if (currentLevel == 1) {
@@ -32,7 +32,7 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
     update: Update,
     from: User?,
     text: String?,
-    scope: CommandScope,
+    scope: UpdateType,
 ): Boolean {
     // parse text to chosen format
     val parsedText = text?.let { bot.update.parseCommand(it) }
@@ -145,7 +145,7 @@ internal suspend fun ManualHandlingDsl.process(update: Update) = with(update) {
                 update,
                 update.message?.from,
                 update.message?.text,
-                CommandScope.MESSAGE,
+                UpdateType.MESSAGE,
             ).ifAffected {
                 affectedActions += 1
             }
@@ -181,7 +181,7 @@ internal suspend fun ManualHandlingDsl.process(update: Update) = with(update) {
                 update,
                 callbackQuery.from,
                 callbackQuery.data,
-                CommandScope.CALLBACK,
+                UpdateType.CALLBACK_QUERY,
             ).ifAffected {
                 affectedActions += 1
             }
