@@ -3,6 +3,7 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
+import eu.vendeli.tgbot.core.ReflectionUpdateHandler
 import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActionType
@@ -15,7 +16,7 @@ import kotlin.reflect.jvm.javaMethod
 
 @ExperimentalFeature
 fun <T : InputChain> TelegramBot.registerInputChain(chain: KClass<T>) {
-    val input = (update.actions?.inputs as MutableMap?) ?: return
+    val input = (update.let { it as? ReflectionUpdateHandler }?.actions?.inputs as MutableMap?) ?: return
     logger.trace { "Registering $chain as input chain." }
     chain.takeIf {
         it.isSubclassOf(InputChain::class) && it.objectInstance != null
@@ -24,7 +25,6 @@ fun <T : InputChain> TelegramBot.registerInputChain(chain: KClass<T>) {
         input[currChain::class.java.canonicalName] = Invocation(
             it::class.java,
             currChain::invoke.javaMethod ?: return,
-            scope = currChain.scope,
             rateLimits = currChain.rateLimits,
             type = ActionType.INPUT,
         )

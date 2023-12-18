@@ -43,7 +43,7 @@ dependencies {
 group = "eu.vendeli"
 version = providers.gradleProperty("libVersion").getOrElse("dev")
 
-apply(from = "publishing.gradle.kts")
+apply(from = "../publishing.gradle.kts")
 
 detekt {
     buildUponDefaultConfig = true

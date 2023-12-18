@@ -19,6 +19,7 @@ object ClassManagerImpl : ClassManager {
      * @return class
      */
     override fun getInstance(clazz: Class<*>, vararg initParams: Any?): Any = instances.getOrElse(clazz.name) {
+        clazz.kotlin.objectInstance?.also { return it }
         if (initParams.isEmpty()) {
             clazz.declaredConstructors.first().newInstance()
         } else {

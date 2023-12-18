@@ -2,12 +2,12 @@ package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.InputListener
-import eu.vendeli.tgbot.types.internal.CommandScope
 import eu.vendeli.tgbot.types.internal.InputBreakPoint
 import eu.vendeli.tgbot.types.internal.InputContext
 import eu.vendeli.tgbot.types.internal.ManualActions
 import eu.vendeli.tgbot.types.internal.ManualInvocation
 import eu.vendeli.tgbot.types.internal.SingleInputChain
+import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.DEFAULT_COMMAND_SCOPE
 import eu.vendeli.tgbot.utils.OnCallbackQueryAction
@@ -146,7 +146,7 @@ class ManualHandlingDsl internal constructor(
      */
     fun onCommand(
         command: String,
-        scope: Set<CommandScope> = DEFAULT_COMMAND_SCOPE,
+        scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
         block: OnCommandAction,
     ) {
@@ -162,7 +162,7 @@ class ManualHandlingDsl internal constructor(
      */
     fun onCommand(
         command: Regex,
-        scope: Set<CommandScope> = DEFAULT_COMMAND_SCOPE,
+        scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
         block: OnCommandAction,
     ) {

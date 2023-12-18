@@ -3,6 +3,7 @@ package eu.vendeli
 import BotTestContext
 import eu.vendeli.fixtures.Conversation
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
+import eu.vendeli.tgbot.core.ReflectionUpdateHandler
 import eu.vendeli.tgbot.implementations.InputListenerMapImpl
 import eu.vendeli.tgbot.utils.registerInputChain
 import eu.vendeli.tgbot.utils.setChain
@@ -43,10 +44,7 @@ class InputListenerTest : BotTestContext() {
     @OptIn(ExperimentalFeature::class)
     fun `chain registering test`() {
         bot.registerInputChain(Conversation::class)
-        bot.update.actions?.inputs?.also {
-            println(it)
-        }
-        bot.update.actions!!.inputs.keys shouldContainInOrder listOf(
+        (bot.update as ReflectionUpdateHandler).actions!!.inputs.keys shouldContainInOrder listOf(
             "eu.vendeli.fixtures.Conversation.Name",
             "eu.vendeli.fixtures.Conversation.Age",
         )
