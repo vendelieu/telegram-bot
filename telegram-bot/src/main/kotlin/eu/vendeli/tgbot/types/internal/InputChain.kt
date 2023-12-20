@@ -43,6 +43,13 @@ abstract class ChainLink(
     }
 }
 
+abstract class ChLink(val action: Action) {
+    open val retryAfterBreak = false
+    open val breakCondition: BreakCondition? = null
+
+    open fun breakAction(user: User, update: ProcessedUpdate, bot: TelegramBot) {}
+}
+
 @ExperimentalFeature
 abstract class InputChain(internal val firstLink: ChainLink) {
     internal val wholeChain: MutableList<ChainLink> = mutableListOf()

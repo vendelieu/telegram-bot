@@ -9,6 +9,7 @@ plugins {
 
 group = "eu.vendeli"
 version = providers.gradleProperty("libVersion").getOrElse("dev")
+description = "KSP plugin for Telegram-bot lib to collect actions."
 
 repositories {
     mavenCentral()

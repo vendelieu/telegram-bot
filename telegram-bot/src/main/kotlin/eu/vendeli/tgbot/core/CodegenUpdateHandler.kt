@@ -27,31 +27,38 @@ class CodegenUpdateHandler(
     private val unprocessedHandler = actions[4] as InvocationLambda?
 
     override suspend fun handle(update: Update): Unit = update.processUpdate().run {
+        // check general user limits
         if (checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id))
             return@run
 
         val request = parseCommand(text.substringBefore('@'))
         var actionId = request.command
 
+        // check parsed command existence
         var invocation: Invocable? = commandHandlers[request.command to type]
         if (invocation == null && userOrNull != null) {
+            // if there's no command > check input point
             invocation = inputListener.getAsync(userOrNull!!.id).await()?.let {
                 actionId = it
                 inputHandlers[it]?.also {
+                    // delete after finding
                     inputListener.del(userOrNull!!.id)
                 }
             }
         }
 
+        // if there's no command and input > check regex handlers
         if (invocation == null) invocation = regexHandlers.entries.firstOrNull {
             it.key.matchEntire(text) != null
         }?.also {
             actionId = it.key.pattern
         }?.value
 
+        // if we found any action > check for its limits
         if (invocation != null && checkIsLimited(invocation.second.rateLimits, userOrNull?.id, actionId))
             return@run
 
+        // invoke update type handler if there's
         updateTypeHandlers[type]?.invokeCatching(this, emptyMap(), true)
 
         when {

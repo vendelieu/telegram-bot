@@ -14,6 +14,6 @@ import eu.vendeli.tgbot.interfaces.UserData
  */
 @Suppress("VariableNaming", "ConstructorParameterNaming")
 data class ContextConfiguration(
-    internal var userData: UserData = UserDataMapImpl,
-    internal var chatData: ChatData = ChatDataMapImpl,
+    internal var userData: UserData = UserDataMapImpl(),
+    internal var chatData: ChatData = ChatDataMapImpl(),
 )

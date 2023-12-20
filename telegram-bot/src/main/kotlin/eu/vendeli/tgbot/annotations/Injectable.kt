@@ -4,4 +4,4 @@ import kotlin.reflect.KClass
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
-annotation class AutoWiring<T : Any>(val type: KClass<T>)
+annotation class Injectable(val type: KClass<out Any>)

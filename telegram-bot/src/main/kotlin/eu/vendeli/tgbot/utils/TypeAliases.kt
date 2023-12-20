@@ -2,8 +2,8 @@ package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.ManualHandlingDsl
-import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.core.TgUpdateHandler
+import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.types.CallbackQuery
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Poll

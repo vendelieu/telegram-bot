@@ -10,13 +10,15 @@ import io.kotest.matchers.shouldBe
 import java.util.concurrent.atomic.AtomicInteger
 
 class RateLimitingTest : BotTestContext(mockHttp = true) {
+    private val limiter = TokenBucketLimiterImpl()
     override fun isolationMode(): IsolationMode = IsolationMode.InstancePerTest
 
     @OptIn(ExperimentalFeature::class)
     @BeforeEach
     fun prepareBot() = bot.config.run {
-        TokenBucketLimiterImpl.resetState()
+        limiter.resetState()
         rateLimiter {
+            mechanism = limiter
             limits = RateLimits(10000, 5)
         }
         logging {

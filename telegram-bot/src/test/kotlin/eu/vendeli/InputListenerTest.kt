@@ -13,7 +13,7 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 
 class InputListenerTest : BotTestContext() {
-    private val mapImpl = InputListenerMapImpl
+    private val mapImpl = InputListenerMapImpl()
 
     @Test
     fun `sync crud test`() {

@@ -15,7 +15,7 @@ import kotlin.time.Duration.Companion.milliseconds
 /**
  * Default implementation of query limitation via [Token bucket](https://en.wikipedia.org/wiki/Token_bucket) algorithm.
  */
-object TokenBucketLimiterImpl : RateLimitMechanism {
+class TokenBucketLimiterImpl : RateLimitMechanism {
     private var state: ConcurrentHashMap<String, AtomicReference<BucketState>> = ConcurrentHashMap()
     private val instant: Instant
         get() {

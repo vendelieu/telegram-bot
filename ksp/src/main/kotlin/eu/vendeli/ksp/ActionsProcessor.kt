@@ -9,21 +9,23 @@ import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.symbol.KSAnnotated
-import com.google.devtools.ksp.symbol.KSClassDeclaration
-import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSType
+import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
-import eu.vendeli.tgbot.annotations.AutoWiring
 import eu.vendeli.tgbot.annotations.CommandHandler
+import eu.vendeli.tgbot.annotations.Injectable
+import eu.vendeli.tgbot.annotations.InputChain
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.RegexCommandHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
@@ -35,24 +37,19 @@ class ActionsProcessor(
     private val codeGenerator: CodeGenerator,
 ) : SymbolProcessor {
     override fun process(resolver: Resolver): List<KSAnnotated> {
-        val commandHandlerSymbols = resolver.getSymbolsWithAnnotation(CommandHandler::class.qualifiedName!!)
-            .filterIsInstance<KSFunctionDeclaration>()
-        val inputHandlerSymbols = resolver.getSymbolsWithAnnotation(InputHandler::class.qualifiedName!!)
-            .filterIsInstance<KSFunctionDeclaration>()
-        val regexHandlerSymbols = resolver.getSymbolsWithAnnotation(RegexCommandHandler::class.qualifiedName!!)
-            .filterIsInstance<KSFunctionDeclaration>()
-        val unprocessedHandlerSymbol = resolver.getSymbolsWithAnnotation(UnprocessedHandler::class.qualifiedName!!)
-            .filterIsInstance<KSFunctionDeclaration>().firstOrNull()
-        val updateHandlerSymbols = resolver.getSymbolsWithAnnotation(UpdateHandler::class.qualifiedName!!)
-            .filterIsInstance<KSFunctionDeclaration>()
+        val commandHandlerSymbols = resolver.getAnnotatedFnSymbols(CommandHandler::class)
+        val inputHandlerSymbols = resolver.getAnnotatedFnSymbols(InputHandler::class)
+        val regexHandlerSymbols = resolver.getAnnotatedFnSymbols(RegexCommandHandler::class)
+        val updateHandlerSymbols = resolver.getAnnotatedFnSymbols(UpdateHandler::class)
+        val unprocessedHandlerSymbol = resolver.getAnnotatedFnSymbols(UnprocessedHandler::class).firstOrNull()
 
-        val autowiringTypes = resolver.getSymbolsWithAnnotation(
-            AutoWiring::class.qualifiedName!!,
-        ).filterIsInstance<KSClassDeclaration>().filter { obj ->
+        val inputChainSymbols = resolver.getAnnotatedClassSymbols(InputChain::class)
+
+        val injectableTypes = resolver.getAnnotatedClassSymbols(Injectable::class).filter { obj ->
             Autowiring::class.asTypeName() in obj.getAllSuperTypes().map { it.toClassName() }
         }.associate { c ->
             c.annotations.first {
-                it.shortName.asString() == "AutoWiring"
+                it.shortName.asString() == Injectable::class.simpleName
             }.arguments.first().value.cast<KSType>().toTypeName() to c.toClassName()
         }
 
@@ -64,14 +61,23 @@ class ActionsProcessor(
 
             addSuspendCallFun()
 
-            collectActions(
-                logger = logger,
-                autowiringTypes = autowiringTypes,
-                commandHandlerSymbols = commandHandlerSymbols,
-                inputHandlerSymbols = inputHandlerSymbols,
-                regexCommandHandlerSymbols = regexHandlerSymbols,
-                updateHandlerSymbols = updateHandlerSymbols,
-                unprocessedHandlerSymbols = unprocessedHandlerSymbol,
+            collectCommandActions(commandHandlerSymbols, injectableTypes, logger)
+            collectInputActions(inputHandlerSymbols, inputChainSymbols, injectableTypes, logger)
+            collectRegexActions(regexHandlerSymbols, injectableTypes, logger)
+            collectUpdateTypeActions(updateHandlerSymbols, injectableTypes, logger)
+            collectUnprocessed(unprocessedHandlerSymbol, injectableTypes, logger)
+
+            addProperty(
+                PropertySpec.builder(
+                    "\$ACTIONS",
+                    List::class.asTypeName().parameterizedBy(ANY.copy(true)),
+                    KModifier.INTERNAL,
+                ).apply {
+                    initializer(
+                        "%L",
+                        "listOf(`TG_\$COMMANDS`, `TG_\$INPUTS`, `TG_\$REGEX`, `TG_\$UPDATE_TYPES`, `TG_\$UNPROCESSED`)",
+                    )
+                }.build(),
             )
         }.build()
 
@@ -87,7 +93,7 @@ class ActionsProcessor(
     }
 
     @Suppress("SpellCheckingInspection")
-    private fun FileSpec.Builder.addSuppressions() {
+    private fun FileBuilder.addSuppressions() {
         addAnnotation(
             AnnotationSpec.builder(Suppress::class).apply {
                 addMember(
@@ -99,7 +105,7 @@ class ActionsProcessor(
         )
     }
 
-    private fun FileSpec.Builder.addSuspendCallFun() = addFunction(
+    private fun FileBuilder.addSuspendCallFun() = addFunction(
         FunSpec.builder("suspendCall").apply {
             addModifiers(KModifier.PRIVATE, KModifier.INLINE)
             addParameter(

@@ -14,8 +14,8 @@ import eu.vendeli.tgbot.interfaces.InputListener
  */
 data class BotConfiguration(
     var apiHost: String = "api.telegram.org",
-    var inputListener: InputListener = InputListenerMapImpl,
-    var classManager: ClassManager = ClassManagerImpl,
+    var inputListener: InputListener = InputListenerMapImpl(),
+    var classManager: ClassManager = ClassManagerImpl(),
     internal var rateLimiter: RateLimiterConfiguration = RateLimiterConfiguration(),
     internal var httpClient: HttpConfiguration = HttpConfiguration(),
     internal var logging: LoggingConfiguration = LoggingConfiguration(),

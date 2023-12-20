@@ -6,11 +6,11 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import eu.vendeli.tgbot.core.ReflectionUpdateHandler
+import eu.vendeli.tgbot.core.TgUpdateHandler
+import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.TgAction
-import eu.vendeli.tgbot.core.TgUpdateHandler
-import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.Activity
 import eu.vendeli.tgbot.types.internal.Invocation

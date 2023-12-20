@@ -7,7 +7,7 @@ import eu.vendeli.tgbot.interfaces.ClassManager
  *
  * @constructor Create empty ClassManagerImpl
  */
-object ClassManagerImpl : ClassManager {
+class ClassManagerImpl : ClassManager {
     // keep class instances
     private val instances by lazy { mutableMapOf<String, Any>() }
 
