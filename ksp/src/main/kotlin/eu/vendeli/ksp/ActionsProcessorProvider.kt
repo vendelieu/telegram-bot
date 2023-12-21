@@ -7,6 +7,7 @@ import com.google.devtools.ksp.processing.SymbolProcessorProvider
 class ActionsProcessorProvider : SymbolProcessorProvider {
     override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
         return ActionsProcessor(
+            options = environment.options,
             logger = environment.logger,
             codeGenerator = environment.codeGenerator,
         )

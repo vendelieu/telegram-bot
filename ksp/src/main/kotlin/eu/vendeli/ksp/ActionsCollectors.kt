@@ -13,6 +13,10 @@ import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.buildCodeBlock
+import eu.vendeli.tgbot.annotations.CommandHandler
+import eu.vendeli.tgbot.annotations.InputHandler
+import eu.vendeli.tgbot.annotations.RegexCommandHandler
+import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.internal.InvocationMeta
 import eu.vendeli.tgbot.types.internal.UpdateType
 
@@ -31,7 +35,7 @@ internal fun FileBuilder.collectCommandActions(
         symbols,
     ) { function ->
         val annotationData = function.annotations.first {
-            it.shortName.asString() == "CommandHandler"
+            it.shortName.asString() == CommandHandler::class.simpleName!!
         }.arguments.parseAsCommandHandler()
 
         annotationData.first.forEach {
@@ -70,7 +74,7 @@ internal fun FileBuilder.collectInputActions(
         tailBlock,
     ) { function ->
         val annotationData = function.annotations.first {
-            it.shortName.asString() == "InputHandler"
+            it.shortName.asString() == InputHandler::class.simpleName!!
         }.arguments.parseAsInputHandler()
         annotationData.first.forEach {
             logger.info("Input: $it --> ${function.qualifiedName?.asString()}")
@@ -99,7 +103,7 @@ internal fun FileBuilder.collectRegexActions(
         symbols,
     ) { function ->
         val annotationData = function.annotations.first {
-            it.shortName.asString() == "RegexCommandHandler"
+            it.shortName.asString() == RegexCommandHandler::class.simpleName!!
         }.arguments.parseAsRegexHandler()
         addStatement(
             "Regex(\"%L\") to (%L to %L),",
@@ -127,7 +131,7 @@ internal fun FileBuilder.collectUpdateTypeActions(
         symbols,
     ) { function ->
         val annotationData = function.annotations.first {
-            it.shortName.asString() == "UpdateHandler"
+            it.shortName.asString() == UpdateHandler::class.simpleName!!
         }.arguments.parseAsUpdateHandler()
 
         annotationData.forEach {

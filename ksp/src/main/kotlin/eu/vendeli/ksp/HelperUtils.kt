@@ -16,7 +16,7 @@ import com.squareup.kotlinpoet.asTypeName
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
-import eu.vendeli.tgbot.types.internal.ChLink
+import eu.vendeli.tgbot.types.internal.ChainLink
 import eu.vendeli.tgbot.types.internal.ChannelPostUpdate
 import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
 import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
@@ -65,7 +65,7 @@ internal val myChatMemberUpdateClass = MyChatMemberUpdate::class.asTypeName()
 internal val chatMemberUpdateClass = ChatMemberUpdate::class.asTypeName()
 internal val chatJoinRequestUpdateClass = ChatJoinRequestUpdate::class.asTypeName()
 
-internal val chainLinkClass = ChLink::class.asTypeName()
+internal val chainLinkClass = ChainLink::class.asTypeName()
 
 internal fun List<KSValueArgument>.parseAsCommandHandler() = Triple(
     get(0).value.cast<List<String>>(),
@@ -97,11 +97,24 @@ internal inline fun <R> Any?.cast(): R = this as R
 
 internal fun Pair<Long, Long>.toRateLimits() = RateLimits(first, second)
 
-internal fun <T : Annotation> Resolver.getAnnotatedFnSymbols(clazz: KClass<T>) =
-    getSymbolsWithAnnotation(clazz.qualifiedName!!).filterIsInstance<KSFunctionDeclaration>()
+internal fun String.withPostfix(postfix: String?): String = postfix?.let { "${this}_$postfix" } ?: this
+internal fun String.escape() = replace(".", "_")
 
-internal fun <T : Annotation> Resolver.getAnnotatedClassSymbols(clazz: KClass<T>) =
-    getSymbolsWithAnnotation(clazz.qualifiedName!!).filterIsInstance<KSClassDeclaration>()
+internal fun <T : Annotation> Resolver.getAnnotatedFnSymbols(
+    clazz: KClass<T>,
+    targetPackage: String? = null,
+): Sequence<KSFunctionDeclaration> =
+    if (targetPackage == null)
+        getSymbolsWithAnnotation(clazz.qualifiedName!!).filterIsInstance<KSFunctionDeclaration>()
+    else getSymbolsWithAnnotation(clazz.qualifiedName!!).filter {
+        it is KSFunctionDeclaration && it.packageName.asString().startsWith(targetPackage)
+    }.cast()
+
+internal fun <T : Annotation> Resolver.getAnnotatedClassSymbols(clazz: KClass<T>, targetPackage: String? = null) =
+    if (targetPackage == null) getSymbolsWithAnnotation(clazz.qualifiedName!!).filterIsInstance<KSClassDeclaration>()
+    else getSymbolsWithAnnotation(clazz.qualifiedName!!).filter {
+        it is KSClassDeclaration && it.packageName.asString().startsWith(targetPackage)
+    }.cast()
 
 internal fun FileBuilder.addMap(
     name: String,

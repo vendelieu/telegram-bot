@@ -73,8 +73,11 @@ class TelegramBot(
      * Current bot UpdateHandler instance
      */
     val update by lazy {
-        val codegenActions = runCatching { Class.forName("eu.vendeli.tgbot.ActionsDataKt") }.getOrNull()
-            ?.let { it.getMethod("get\$ACTIONS").invoke(null) as? List<*> }
+        val postFix = commandsPackage?.let { "_$it".replace(".", "_") } ?: ""
+        val codegenActions = runCatching {
+            Class.forName("eu.vendeli.tgbot.ActionsData${postFix}Kt")
+        }.getOrNull()?.let { it.getMethod("get\$ACTIONS$postFix").invoke(null) as? List<*> }
+
         return@lazy if (codegenActions != null) CodegenUpdateHandler(
             codegenActions,
             this,

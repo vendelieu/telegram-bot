@@ -33,19 +33,30 @@ import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.interfaces.Autowiring
 
 class ActionsProcessor(
+    options: Map<String, String>,
     private val logger: KSPLogger,
     private val codeGenerator: CodeGenerator,
 ) : SymbolProcessor {
+    private val targetPackage = options["package"]
     override fun process(resolver: Resolver): List<KSAnnotated> {
-        val commandHandlerSymbols = resolver.getAnnotatedFnSymbols(CommandHandler::class)
-        val inputHandlerSymbols = resolver.getAnnotatedFnSymbols(InputHandler::class)
-        val regexHandlerSymbols = resolver.getAnnotatedFnSymbols(RegexCommandHandler::class)
-        val updateHandlerSymbols = resolver.getAnnotatedFnSymbols(UpdateHandler::class)
-        val unprocessedHandlerSymbol = resolver.getAnnotatedFnSymbols(UnprocessedHandler::class).firstOrNull()
+        targetPackage?.split(';')?.forEach {
+            processPackage(resolver, it)
+        } ?: processPackage(resolver)
 
-        val inputChainSymbols = resolver.getAnnotatedClassSymbols(InputChain::class)
+        return emptyList()
+    }
 
-        val injectableTypes = resolver.getAnnotatedClassSymbols(Injectable::class).filter { obj ->
+    private fun processPackage(resolver: Resolver, pkg: String? = null) {
+        val commandHandlerSymbols = resolver.getAnnotatedFnSymbols(CommandHandler::class, pkg)
+        val inputHandlerSymbols = resolver.getAnnotatedFnSymbols(InputHandler::class, pkg)
+        val regexHandlerSymbols = resolver.getAnnotatedFnSymbols(RegexCommandHandler::class, pkg)
+        val updateHandlerSymbols = resolver.getAnnotatedFnSymbols(UpdateHandler::class, pkg)
+        val unprocessedHandlerSymbol = resolver.getAnnotatedFnSymbols(UnprocessedHandler::class, pkg)
+            .firstOrNull()
+
+        val inputChainSymbols = resolver.getAnnotatedClassSymbols(InputChain::class, pkg)
+
+        val injectableTypes = resolver.getAnnotatedClassSymbols(Injectable::class, pkg).filter { obj ->
             Autowiring::class.asTypeName() in obj.getAllSuperTypes().map { it.toClassName() }
         }.associate { c ->
             c.annotations.first {
@@ -53,7 +64,7 @@ class ActionsProcessor(
             }.arguments.first().value.cast<KSType>().toTypeName() to c.toClassName()
         }
 
-        val fileSpec = FileSpec.builder("eu.vendeli.tgbot", "ActionsData").apply {
+        val fileSpec = FileSpec.builder("eu.vendeli.tgbot", "ActionsData".withPostfix(pkg).escape()).apply {
             addSuppressions()
             addImport("eu.vendeli.tgbot.utils", "InvocationLambda", "Invocable")
             addImport("eu.vendeli.tgbot.types.internal", "InvocationMeta")
@@ -69,7 +80,7 @@ class ActionsProcessor(
 
             addProperty(
                 PropertySpec.builder(
-                    "\$ACTIONS",
+                    "\$ACTIONS".withPostfix(pkg).escape(),
                     List::class.asTypeName().parameterizedBy(ANY.copy(true)),
                     KModifier.INTERNAL,
                 ).apply {
@@ -88,8 +99,6 @@ class ActionsProcessor(
                 dependencies = Dependencies(false, *resolver.getAllFiles().toList().toTypedArray()),
             )
         }
-
-        return emptyList()
     }
 
     @Suppress("SpellCheckingInspection")

@@ -24,7 +24,7 @@ internal fun collectInputChains(
             val curLinkId = c.qualifiedName!!.asString()
             val qualifier = c.qualifiedName!!.getQualifier()
             val name = c.simpleName.asString()
-            val action = "$qualifier.$name"
+            val reference = "$qualifier.$name"
 
             val nextLink = if (idx < links.lastIndex) {
                 links.getOrNull(idx + 1)
@@ -36,7 +36,7 @@ internal fun collectInputChains(
                 indent()
                 beginControlFlow("suspendCall { classManager, update, user, bot, parameters ->").apply {
                     add("if(user == null) return@suspendCall Unit\n")
-                    add("val inst = classManager.getInstance($action::class.java) as $action\n")
+                    add("val inst = classManager.getInstance($reference::class.java) as $reference\n")
                     add("val nextLink: String? = %P\n", nextLink)
                     add("val breakPoint = inst.breakCondition?.invoke(user, update, bot) ?: false\n")
                     add(
@@ -45,7 +45,7 @@ internal fun collectInputChains(
                     )
                     add("if (breakPoint) {\ninst.breakAction(user, update, bot)\nreturn@suspendCall Unit\n}\n")
 
-                    add("inst.action.invoke(user, update, bot)")
+                    add("inst.action(user, update, bot)")
                     add(".also {\nif (nextLink != null) bot.inputListener[user] = nextLink }\n")
                 }.endControlFlow()
             }
