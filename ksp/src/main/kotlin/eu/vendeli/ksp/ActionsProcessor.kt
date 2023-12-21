@@ -56,8 +56,15 @@ class ActionsProcessor(
 
         val inputChainSymbols = resolver.getAnnotatedClassSymbols(InputChain::class, pkg)
 
-        val injectableTypes = resolver.getAnnotatedClassSymbols(Injectable::class, pkg).filter { obj ->
-            Autowiring::class.asTypeName() in obj.getAllSuperTypes().map { it.toClassName() }
+        val injectableTypes = resolver.getAnnotatedClassSymbols(Injectable::class, pkg).filter { i ->
+            val injectableType = i.annotations.first {
+                it.shortName.asString() == Injectable::class.simpleName
+            }.arguments.first().value.cast<KSType>()
+            val autowiringType = i.getAllSuperTypes().firstOrNull {
+                it.toClassName().simpleName == Autowiring::class.simpleName
+            }?.arguments?.first()?.type?.resolve()
+
+            injectableType == autowiringType
         }.associate { c ->
             c.annotations.first {
                 it.shortName.asString() == Injectable::class.simpleName
@@ -69,6 +76,7 @@ class ActionsProcessor(
             addImport("eu.vendeli.tgbot.utils", "InvocationLambda", "Invocable")
             addImport("eu.vendeli.tgbot.types.internal", "InvocationMeta")
             addImport("eu.vendeli.tgbot.types.internal.configuration", "RateLimits")
+            addUpdateVarietyImports()
 
             addSuspendCallFun()
 

@@ -1,5 +1,8 @@
 package eu.vendeli.ksp
 
+import com.google.devtools.ksp.symbol.ClassKind
+import com.google.devtools.ksp.symbol.FunctionKind
+import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.DOUBLE
@@ -16,29 +19,40 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
     function: KSFunctionDeclaration,
     injectableTypes: Map<TypeName, ClassName>,
 ) = buildCodeBlock {
+    val isTopLvl = function.functionKind == FunctionKind.TOP_LEVEL
     val funQualifier = function.qualifiedName!!.getQualifier()
-    val funName = funQualifier.let { it + "::" + function.simpleName.getShortName() }
+    val funName = if (!isTopLvl) funQualifier.let { it + "::" + function.simpleName.getShortName() }
+    else {
+        addImport(funQualifier, function.simpleName.getShortName())
+        "::${function.simpleName.getShortName()}"
+    }
+    val isObject = (function.parent as? KSClassDeclaration)?.classKind == ClassKind.OBJECT
 
     beginControlFlow("suspendCall { classManager, update, user, bot, parameters ->").apply {
-        add(
-            "val inst = classManager.getInstance(%L::class.java) as %L\n",
-            funQualifier,
-            funQualifier,
-        )
-        var parametersEnumeration = if (function.parameters.isNotEmpty()) ", " else ""
+        var parametersEnumeration = ""
+        if (!isTopLvl && !isObject && function.functionKind != FunctionKind.STATIC) {
+            parametersEnumeration = "inst, "
+            add(
+                "val inst = classManager.getInstance(%L::class.java) as %L\n",
+                funQualifier,
+                funQualifier,
+            )
+        }
         function.parameters.forEachIndexed { index, parameter ->
+            if (parameter.name == null) return@forEachIndexed
             val paramCall = (
                 parameter.annotations.firstOrNull { i ->
                     i.shortName.asString() == "ParamMapping"
                 }?.let { i ->
                     i.arguments.first { a -> a.name?.asString() == "name" }.value as? String
                 } ?: parameter.name!!.getShortName()
-            ).let {
-                "parameters[\"$it\"]"
-            }
-            val typeName = parameter.type.resolve().toTypeName()
+                ).let {
+                    "parameters[\"$it\"]"
+                }
+            val typeName = parameter.type.toTypeName()
             val nullabilityMark = if (typeName.isNullable) "" else "!!"
-            val value = when (typeName) {
+
+            val value = when (typeName.copy(false)) {
                 userClass -> "user$nullabilityMark"
                 botClass -> "bot"
                 STRING -> "$paramCall.toString()"
@@ -76,6 +90,6 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
             parametersEnumeration += "param$index"
             if (index < function.parameters.lastIndex) parametersEnumeration += ", "
         }
-        add("%L.invoke(\n\tinst%L\n)\n", funName, parametersEnumeration)
+        add("%L.invoke(\n\t%L\n)\n", funName, parametersEnumeration)
     }.endControlFlow().build()
 }

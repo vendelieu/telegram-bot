@@ -38,6 +38,7 @@ import kotlin.reflect.KClass
 internal typealias FileBuilder = FileSpec.Builder
 
 internal val invocableType = TypeVariableName("Invocable")
+internal val chainLinkClass = ChainLink::class.asTypeName()
 
 internal val intPrimitiveType = TypeVariableName("int")
 internal val longPrimitiveType = TypeVariableName("long")
@@ -65,7 +66,15 @@ internal val myChatMemberUpdateClass = MyChatMemberUpdate::class.asTypeName()
 internal val chatMemberUpdateClass = ChatMemberUpdate::class.asTypeName()
 internal val chatJoinRequestUpdateClass = ChatJoinRequestUpdate::class.asTypeName()
 
-internal val chainLinkClass = ChainLink::class.asTypeName()
+internal fun FileBuilder.addUpdateVarietyImports() {
+    addImport(
+        "eu.vendeli.tgbot.types.internal",
+        "MessageUpdate", "CallbackQueryUpdate", "EditedMessageUpdate", "ChannelPostUpdate",
+        "EditedChannelPostUpdate", "InlineQueryUpdate", "ChosenInlineResultUpdate", "ChosenInlineResultUpdate",
+        "ShippingQueryUpdate", "ShippingQueryUpdate", "PreCheckoutQueryUpdate", "PollUpdate", "PollAnswerUpdate",
+        "MyChatMemberUpdate", "ChatMemberUpdate", "ChatJoinRequestUpdate"
+    )
+}
 
 internal fun List<KSValueArgument>.parseAsCommandHandler() = Triple(
     get(0).value.cast<List<String>>(),
