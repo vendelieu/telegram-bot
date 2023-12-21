@@ -91,7 +91,7 @@ class MarkupBuilderTest : BotTestContext() {
             "test" requestContact true
         }
 
-        replyMarkup.keyboard shouldHaveSize 1
+        replyMarkup.kbd shouldHaveSize 1
 
         val fullyBuiltKeyboard = replyKeyboardMarkup {
             options {
@@ -111,9 +111,9 @@ class MarkupBuilderTest : BotTestContext() {
             "test6" requestChat KeyboardButtonRequestChat(2, chatIsChannel = false, chatIsForum = true)
         }
 
-        fullyBuiltKeyboard.keyboard shouldHaveSize 3 // three rows
+        fullyBuiltKeyboard.kbd shouldHaveSize 3 // three rows
 
-        fullyBuiltKeyboard.keyboard.run {
+        fullyBuiltKeyboard.kbd.run {
             // 1 row 1 element
             val row1el1 = first().first()
             row1el1.text shouldBe "test1"
@@ -216,7 +216,7 @@ class MarkupBuilderTest : BotTestContext() {
             }
         }
 
-        operatorButtons.keyboard.run {
+        operatorButtons.kbd.run {
             this shouldHaveSize 2
             first().first().text shouldBe "test"
             first().first().requestContact.shouldBeNull()

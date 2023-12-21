@@ -9,7 +9,11 @@ import eu.vendeli.tgbot.interfaces.Keyboard
 class ReplyKeyboardMarkup : Keyboard {
     @JsonProperty("keyboard")
     @get:JsonIgnore
-    internal var keyboard: MutableList<List<KeyboardButton>> = mutableListOf()
+    internal var kbd: MutableList<List<KeyboardButton>> = mutableListOf()
+
+    @get:JsonIgnore
+    val keyboard: List<List<KeyboardButton>> = kbd
+
     var resizeKeyboard: Boolean? = null
     var oneTimeKeyboard: Boolean? = null
     var inputFieldPlaceholder: String? = null
@@ -17,11 +21,11 @@ class ReplyKeyboardMarkup : Keyboard {
     var isPersistent: Boolean? = null
 
     constructor(vararg buttons: List<KeyboardButton>) {
-        keyboard.addAll(buttons)
+        kbd.addAll(buttons)
     }
 
     constructor(vararg buttons: KeyboardButton) {
-        keyboard.add(buttons.asList())
+        kbd.add(buttons.asList())
     }
 
     @JsonCreator
@@ -33,7 +37,7 @@ class ReplyKeyboardMarkup : Keyboard {
         @JsonProperty("selective") selective: Boolean? = null,
         @JsonProperty("is_persistent") isPersistent: Boolean? = null,
     ) {
-        this.keyboard = keyboard.toMutableList()
+        this.kbd = keyboard.toMutableList()
         this.resizeKeyboard = resizeKeyboard
         this.oneTimeKeyboard = oneTimeKeyboard
         this.inputFieldPlaceholder = inputFieldPlaceholder
