@@ -13,6 +13,7 @@ configure<PublishingExtension> {
 
             pom {
                 name.set(artifactId)
+                description.set(project.description)
                 url.set("https://github.com/vendelieu/telegram-bot")
                 licenses {
                     license {
