@@ -12,7 +12,7 @@ class ReplyKeyboardMarkup : Keyboard {
     internal var kbd: MutableList<List<KeyboardButton>> = mutableListOf()
 
     @get:JsonIgnore
-    val keyboard: List<List<KeyboardButton>> = kbd
+    val keyboard: List<List<KeyboardButton>> get() = kbd
 
     var resizeKeyboard: Boolean? = null
     var oneTimeKeyboard: Boolean? = null

@@ -11,7 +11,7 @@ class InlineKeyboardMarkup : Keyboard {
     internal var inlineKeyboard: MutableList<List<InlineKeyboardButton>> = mutableListOf()
 
     @get:JsonIgnore
-    val keyboard: List<List<InlineKeyboardButton>> = inlineKeyboard
+    val keyboard: List<List<InlineKeyboardButton>> get() = inlineKeyboard
 
     constructor(vararg buttons: InlineKeyboardButton) {
         inlineKeyboard = mutableListOf(buttons.asList())
