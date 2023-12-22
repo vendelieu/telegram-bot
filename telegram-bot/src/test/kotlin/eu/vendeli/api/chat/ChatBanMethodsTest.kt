@@ -36,16 +36,27 @@ class ChatBanMethodsTest : BotTestContext() {
 
     @Test
     suspend fun `ban unban sender chat chat member method test`() {
-        banChatSenderChat(
-            1000,
-        ).sendReturning(CHAT_ID, bot).onFailure {
+        banChatSenderChat(1000,).sendReturning(CHAT_ID, bot).onFailure {
+            it.description shouldContain "PARTICIPANT_ID_INVALID"
+        }.shouldBeNull()
+
+        banChatSenderChat(1000L.asUser()).sendReturning(CHAT_ID, bot).onFailure {
+            it.description shouldContain "PARTICIPANT_ID_INVALID"
+        }.shouldBeNull()
+
+        banChatSenderChat(1000L.asChat()).sendReturning(CHAT_ID, bot).onFailure {
             it.description shouldContain "PARTICIPANT_ID_INVALID"
         }.shouldBeNull()
     }
 
     @Test
     suspend fun `unban chat sender chat method test`() {
-        val result = unbanChatSenderChat(1000).sendReturning(CHAT_ID, bot).shouldSuccess()
-        result.shouldBeTrue()
+        val idResult = unbanChatSenderChat(1000).sendReturning(CHAT_ID, bot).shouldSuccess()
+        val userResult = unbanChatSenderChat(1000L.asUser()).sendReturning(CHAT_ID, bot).shouldSuccess()
+        val chatResult = unbanChatSenderChat(1000L.asChat()).sendReturning(CHAT_ID, bot).shouldSuccess()
+
+        listOf(idResult, userResult, chatResult).forEach { result->
+            result.shouldBeTrue()
+        }
     }
 }

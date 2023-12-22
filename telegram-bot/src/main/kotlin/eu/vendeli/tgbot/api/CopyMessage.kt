@@ -7,6 +7,8 @@ import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.MessageId
+import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CopyMessageOptions
@@ -25,7 +27,6 @@ import eu.vendeli.tgbot.utils.getReturnType
  * @param messageId Message identifier in the chat specified in fromChatId
  */
 class CopyMessageAction(
-    chatId: Identifier<*>,
     fromChatId: Identifier<*>,
     messageId: Long,
 ) : Action<MessageId>(),
@@ -37,7 +38,6 @@ class CopyMessageAction(
     override val options = CopyMessageOptions()
 
     init {
-        parameters["chat_id"] = chatId.get
         parameters["from_chat_id"] = fromChatId.get
         parameters["message_id"] = messageId
     }
@@ -56,17 +56,16 @@ class CopyMessageAction(
  * @param messageId Message identifier in the chat specified in fromChatId
  */
 @Suppress("NOTHING_TO_INLINE")
-inline fun copyMessage(chatId: Long, fromChatId: Long, messageId: Long) =
-    CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
+inline fun copyMessage(fromChatId: Identifier<*>, messageId: Long) = CopyMessageAction(fromChatId, messageId)
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun copyMessage(chatId: String, fromChatId: Long, messageId: Long) =
-    CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
+inline fun copyMessage(fromChatId: Long, messageId: Long) = copyMessage(Identifier.from(fromChatId), messageId)
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun copyMessage(chatId: Long, fromChatId: String, messageId: Long) =
-    CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
+inline fun copyMessage(fromChatId: String, messageId: Long) = copyMessage(Identifier.from(fromChatId), messageId)
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun copyMessage(chatId: String, fromChatId: String, messageId: Long) =
-    CopyMessageAction(Identifier.from(chatId), Identifier.from(fromChatId), messageId)
+inline fun copyMessage(fromChatId: User, messageId: Long) = copyMessage(Identifier.from(fromChatId), messageId)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun copyMessage(fromChatId: Chat, messageId: Long) = copyMessage(Identifier.from(fromChatId.id), messageId)

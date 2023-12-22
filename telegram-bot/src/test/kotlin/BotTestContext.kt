@@ -2,6 +2,8 @@ import ch.qos.logback.classic.Level.TRACE
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.chat.Chat
+import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.getOrNull
@@ -95,6 +97,7 @@ abstract class BotTestContext(
     }
 
     protected fun Long.asUser() = User(this, false, "test")
+    protected fun Long.asChat() = Chat(this, ChatType.Private)
 
     protected suspend fun getExtFile(url: String): ByteArray = bot.httpClient.get(url).readBytes()
 

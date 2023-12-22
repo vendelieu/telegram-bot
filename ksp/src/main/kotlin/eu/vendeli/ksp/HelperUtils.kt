@@ -12,8 +12,10 @@ import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterizedTypeName
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeVariableName
+import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.asTypeName
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.interfaces.Autowiring
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
 import eu.vendeli.tgbot.types.internal.ChainLink
@@ -39,6 +41,7 @@ internal typealias FileBuilder = FileSpec.Builder
 
 internal val invocableType = TypeVariableName("Invocable")
 internal val chainLinkClass = ChainLink::class.asTypeName()
+internal val autoWiringClassName = Autowiring::class.asClassName()
 
 internal val intPrimitiveType = TypeVariableName("int")
 internal val longPrimitiveType = TypeVariableName("long")

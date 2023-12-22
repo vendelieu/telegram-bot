@@ -9,7 +9,6 @@ import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.symbol.KSAnnotated
-import com.google.devtools.ksp.symbol.KSType
 import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.FileSpec
@@ -30,7 +29,6 @@ import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.RegexCommandHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
-import eu.vendeli.tgbot.interfaces.Autowiring
 
 class ActionsProcessor(
     options: Map<String, String>,
@@ -56,19 +54,9 @@ class ActionsProcessor(
 
         val inputChainSymbols = resolver.getAnnotatedClassSymbols(InputChain::class, pkg)
 
-        val injectableTypes = resolver.getAnnotatedClassSymbols(Injectable::class, pkg).filter { i ->
-            val injectableType = i.annotations.first {
-                it.shortName.asString() == Injectable::class.simpleName
-            }.arguments.first().value.cast<KSType>()
-            val autowiringType = i.getAllSuperTypes().firstOrNull {
-                it.toClassName().simpleName == Autowiring::class.simpleName
-            }?.arguments?.first()?.type?.resolve()
-
-            injectableType == autowiringType
-        }.associate { c ->
-            c.annotations.first {
-                it.shortName.asString() == Injectable::class.simpleName
-            }.arguments.first().value.cast<KSType>().toTypeName() to c.toClassName()
+        val injectableTypes = resolver.getAnnotatedClassSymbols(Injectable::class, pkg).associate { c ->
+            c.getAllSuperTypes().first { it.toClassName() == autoWiringClassName }.arguments.first().toTypeName() to
+                c.toClassName()
         }
 
         val fileSpec = FileSpec.builder("eu.vendeli.tgbot", "ActionsData".withPostfix(pkg).escape()).apply {
