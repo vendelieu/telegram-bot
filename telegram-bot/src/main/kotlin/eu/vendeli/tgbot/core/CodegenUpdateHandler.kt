@@ -36,16 +36,15 @@ class CodegenUpdateHandler(
 
         // check parsed command existence
         var invocation: Invocable? = commandHandlers[request.command to type]
-        if (invocation == null && userOrNull != null) {
-            // if there's no command > check input point
-            invocation = inputListener.getAsync(userOrNull!!.id).await()?.let {
-                actionId = it
-                inputHandlers[it]?.also {
-                    // delete after finding
-                    inputListener.del(userOrNull!!.id)
-                }
-            }
+
+        // if there's no command > check input point
+        if (invocation == null) invocation = inputListener.getAsync(userOrNull!!.id).await()?.let {
+            actionId = it
+            inputHandlers[it]
         }
+
+        // remove input listener point
+        if (userOrNull != null) inputListener.del(userOrNull!!.id)
 
         // if there's no command and input > check regex handlers
         if (invocation == null) invocation = regexHandlers.entries.firstOrNull {
