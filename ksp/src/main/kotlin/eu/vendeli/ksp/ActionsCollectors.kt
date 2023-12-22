@@ -17,7 +17,6 @@ import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.RegexCommandHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
-import eu.vendeli.tgbot.types.internal.InvocationMeta
 import eu.vendeli.tgbot.types.internal.UpdateType
 
 internal fun FileBuilder.collectCommandActions(
@@ -44,14 +43,12 @@ internal fun FileBuilder.collectCommandActions(
 
                 addImport(UpdateType::class, updT.name)
                 addStatement(
-                    "(\"$it\" to %L) to (%L to %L),",
+                    "(\"$it\" to %L) to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
                     updT,
                     buildInvocationLambdaCodeBlock(function, injectableTypes),
-                    InvocationMeta(
-                        "\"" + function.qualifiedName!!.getQualifier() + "\"",
-                        "\"" + function.simpleName.asString() + "\"",
-                        annotationData.second.toRateLimits(),
-                    ),
+                    function.qualifiedName!!.getQualifier(),
+                    function.simpleName.asString(),
+                    annotationData.second.toRateLimits(),
                 )
             }
         }
@@ -79,13 +76,11 @@ internal fun FileBuilder.collectInputActions(
         annotationData.first.forEach {
             logger.info("Input: $it --> ${function.qualifiedName?.asString()}")
             addStatement(
-                "\"$it\" to (%L to %L),",
+                "\"$it\" to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
                 buildInvocationLambdaCodeBlock(function, injectableTypes),
-                InvocationMeta(
-                    "\"" + function.qualifiedName!!.getQualifier() + "\"",
-                    "\"" + function.simpleName.asString() + "\"",
-                    annotationData.second.toRateLimits(),
-                ),
+                function.qualifiedName!!.getQualifier(),
+                function.simpleName.asString(),
+                annotationData.second.toRateLimits(),
             )
         }
     }
@@ -106,14 +101,12 @@ internal fun FileBuilder.collectRegexActions(
             it.shortName.asString() == RegexCommandHandler::class.simpleName!!
         }.arguments.parseAsRegexHandler()
         addStatement(
-            "Regex(\"%L\") to (%L to %L),",
+            "Regex(\"%L\") to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
             annotationData.first,
             buildInvocationLambdaCodeBlock(function, injectableTypes),
-            InvocationMeta(
-                "\"" + function.qualifiedName!!.getQualifier() + "\"",
-                "\"" + function.simpleName.asString() + "\"",
-                annotationData.second.toRateLimits(),
-            ),
+            function.qualifiedName!!.getQualifier(),
+            function.simpleName.asString(),
+            annotationData.second.toRateLimits(),
         )
         logger.info("Regex: ${annotationData.first} --> ${function.qualifiedName?.asString()}")
     }

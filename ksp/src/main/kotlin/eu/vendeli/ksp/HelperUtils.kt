@@ -1,4 +1,5 @@
 @file:Suppress("TooManyFunctions")
+
 package eu.vendeli.ksp
 
 import com.google.devtools.ksp.processing.Resolver
@@ -43,6 +44,7 @@ internal typealias FileBuilder = FileSpec.Builder
 internal val invocableType = TypeVariableName("Invocable")
 internal val chainLinkClass = ChainLink::class.asTypeName()
 internal val autoWiringClassName = Autowiring::class.asClassName()
+internal val rateLimitsClass = RateLimits::class.asTypeName()
 
 internal val intPrimitiveType = TypeVariableName("int")
 internal val longPrimitiveType = TypeVariableName("long")
@@ -100,15 +102,23 @@ internal fun List<KSValueArgument>.parseAsUpdateHandler() = first().value.cast<L
     UpdateType.valueOf(it.declaration.toString())
 }
 
-internal fun List<KSValueArgument>.parseAsLinkOptions() = Pair(
-    get(0).value.cast<Boolean>(),
-    get(1).value.cast<KSAnnotation>().arguments.let { it.first().value.cast<Long>() to it.last().value.cast<Long>() },
-)
+internal fun FileBuilder.addZeroLimitsProp() {
+    addProperty(
+        PropertySpec.builder(
+            "zeroRateLimits",
+            rateLimitsClass,
+            KModifier.PRIVATE,
+        ).apply {
+            initializer("RateLimits(0, 0)")
+        }.build(),
+    )
+}
 
 @Suppress("UNCHECKED_CAST", "NOTHING_TO_INLINE")
 internal inline fun <R> Any?.cast(): R = this as R
 
-internal fun Pair<Long, Long>.toRateLimits() = RateLimits(first, second)
+internal fun Pair<Long, Long>.toRateLimits(): Any =
+    if (first == 0L && second == 0L) "zeroRateLimits" else RateLimits(first, second)
 
 internal fun String.withPostfix(postfix: String?): String = postfix?.let { "${this}_$postfix" } ?: this
 internal fun String.escape() = replace(".", "_")

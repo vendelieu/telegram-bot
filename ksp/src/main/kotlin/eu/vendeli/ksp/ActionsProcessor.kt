@@ -67,6 +67,7 @@ class ActionsProcessor(
             addUpdateVarietyImports()
 
             addSuspendCallFun()
+            addZeroLimitsProp()
 
             collectCommandActions(commandHandlerSymbols, injectableTypes, logger)
             collectInputActions(inputHandlerSymbols, inputChainSymbols, injectableTypes, logger)
