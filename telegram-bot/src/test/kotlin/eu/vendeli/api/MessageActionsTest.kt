@@ -32,7 +32,7 @@ class MessageActionsTest : BotTestContext() {
         val userResult = forwardMessage(TG_ID.asUser(), msg.messageId).sendReturning(TG_ID, bot).shouldSuccess()
         val chatResult = forwardMessage(TG_ID.asChat(), msg.messageId).sendReturning(TG_ID, bot).shouldSuccess()
 
-        listOf(idResult, userResult, chatResult).forEach { result->
+        listOf(idResult, userResult, chatResult).forEach { result ->
             with(result) {
                 messageId shouldBeGreaterThan msg.messageId
                 text shouldBe "test"

@@ -15,14 +15,16 @@ import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toTypeName
 
+@Suppress("LongMethod", "CyclomaticComplexMethod")
 internal fun FileBuilder.buildInvocationLambdaCodeBlock(
     function: KSFunctionDeclaration,
     injectableTypes: Map<TypeName, ClassName>,
 ) = buildCodeBlock {
     val isTopLvl = function.functionKind == FunctionKind.TOP_LEVEL
     val funQualifier = function.qualifiedName!!.getQualifier()
-    val funName = if (!isTopLvl) funQualifier.let { it + "::" + function.simpleName.getShortName() }
-    else {
+    val funName = if (!isTopLvl) {
+        funQualifier.let { it + "::" + function.simpleName.getShortName() }
+    } else {
         addImport(funQualifier, function.simpleName.getShortName())
         "::${function.simpleName.getShortName()}"
     }
@@ -46,9 +48,9 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 }?.let { i ->
                     i.arguments.first { a -> a.name?.asString() == "name" }.value as? String
                 } ?: parameter.name!!.getShortName()
-                ).let {
-                    "parameters[\"$it\"]"
-                }
+            ).let {
+                "parameters[\"$it\"]"
+            }
             val typeName = parameter.type.toTypeName()
             val nullabilityMark = if (typeName.isNullable) "" else "!!"
 

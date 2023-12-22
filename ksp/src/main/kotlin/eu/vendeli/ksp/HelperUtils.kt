@@ -1,3 +1,4 @@
+@file:Suppress("TooManyFunctions")
 package eu.vendeli.ksp
 
 import com.google.devtools.ksp.processing.Resolver
@@ -75,7 +76,7 @@ internal fun FileBuilder.addUpdateVarietyImports() {
         "MessageUpdate", "CallbackQueryUpdate", "EditedMessageUpdate", "ChannelPostUpdate",
         "EditedChannelPostUpdate", "InlineQueryUpdate", "ChosenInlineResultUpdate", "ChosenInlineResultUpdate",
         "ShippingQueryUpdate", "ShippingQueryUpdate", "PreCheckoutQueryUpdate", "PollUpdate", "PollAnswerUpdate",
-        "MyChatMemberUpdate", "ChatMemberUpdate", "ChatJoinRequestUpdate"
+        "MyChatMemberUpdate", "ChatMemberUpdate", "ChatJoinRequestUpdate",
     )
 }
 
