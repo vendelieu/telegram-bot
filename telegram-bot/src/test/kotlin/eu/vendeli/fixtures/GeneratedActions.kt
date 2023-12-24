@@ -3,7 +3,7 @@
     "ObjectPropertyName",
     "UNUSED_ANONYMOUS_PARAMETER",
     "UnnecessaryVariable",
-    "TopLevelPropertyNaming"
+    "TopLevelPropertyNaming",
 )
 
 package eu.vendeli.fixtures

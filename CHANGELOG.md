@@ -1,5 +1,12 @@
 # Telegram-bot changelog
 
+# 4.0.0
+
+* Added the ability to collect actions in compile time.
+* Improved support of input chains in annotation mode.
+* Added support for all scopes for commands.
+* Improved signature of `copyMessage`, `forwardMessage`, `banChatSenderChat`, `unbanChatSenderChat` methods.
+
 ## 3.5.0
 
 * Added infix functions to `EntitiesBuilder` (which is used in features by `caption {}` and `entities {}`).
