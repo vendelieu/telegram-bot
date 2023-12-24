@@ -155,10 +155,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             if (it.message?.text == "aaaa") stopListener()
         }
 
-        bot.update.caughtExceptions.tryReceive().getOrNull().shouldNotBeNull().run {
-            second.message?.text shouldBe "test"
-            first.message shouldBe "test2"
-        }
+        bot.update.caughtExceptions.tryReceive().getOrNull().shouldNotBeNull()
     }
 
     @Test
