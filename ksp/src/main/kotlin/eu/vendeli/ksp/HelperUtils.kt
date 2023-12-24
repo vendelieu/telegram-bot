@@ -71,16 +71,8 @@ internal val pollAnswerUpdateClass = PollAnswerUpdate::class.asTypeName()
 internal val myChatMemberUpdateClass = MyChatMemberUpdate::class.asTypeName()
 internal val chatMemberUpdateClass = ChatMemberUpdate::class.asTypeName()
 internal val chatJoinRequestUpdateClass = ChatJoinRequestUpdate::class.asTypeName()
-
-internal fun FileBuilder.addUpdateVarietyImports() {
-    addImport(
-        "eu.vendeli.tgbot.types.internal",
-        "MessageUpdate", "CallbackQueryUpdate", "EditedMessageUpdate", "ChannelPostUpdate",
-        "EditedChannelPostUpdate", "InlineQueryUpdate", "ChosenInlineResultUpdate", "ChosenInlineResultUpdate",
-        "ShippingQueryUpdate", "ShippingQueryUpdate", "PreCheckoutQueryUpdate", "PollUpdate", "PollAnswerUpdate",
-        "MyChatMemberUpdate", "ChatMemberUpdate", "ChatJoinRequestUpdate",
-    )
-}
+internal fun <T : ProcessedUpdate> FileBuilder.addUpdateImport(type: KClass<T>) =
+    addImport("eu.vendeli.tgbot.types.internal", type.simpleName!!)
 
 internal fun List<KSValueArgument>.parseAsCommandHandler() = Triple(
     get(0).value.cast<List<String>>(),

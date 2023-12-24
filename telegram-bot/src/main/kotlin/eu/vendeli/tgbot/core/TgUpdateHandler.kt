@@ -2,7 +2,6 @@ package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
-import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
@@ -17,13 +16,12 @@ import kotlin.coroutines.coroutineContext
 
 abstract class TgUpdateHandler(
     internal val bot: TelegramBot,
-    private val inputListener: InputListener,
 ) {
     private lateinit var handlingBehaviour: HandlingBehaviourBlock
 
     @Volatile
     private var handlerActive: Boolean = false
-    private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot, inputListener) }
+    private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot) }
     val caughtExceptions by lazy { Channel<Pair<Throwable, Update>>(Channel.CONFLATED) }
 
     /**
@@ -97,7 +95,6 @@ abstract class TgUpdateHandler(
      * Handle the update.
      *
      * @param update
-     * @return null on success or [Throwable].
      */
     abstract suspend fun handle(update: Update)
 

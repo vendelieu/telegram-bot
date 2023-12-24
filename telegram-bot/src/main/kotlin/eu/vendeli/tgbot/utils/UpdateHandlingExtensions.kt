@@ -45,7 +45,7 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
     manualActions.commands[parsedText?.command]?.run {
         if (scope !in this.scope) return@run
         logger.debug { "Matched command $this for text $text" }
-        inputListener.del(from.id) // clean input listener
+        bot.inputListener.del(from.id) // clean input listener
         // check for limit exceed
         if (bot.update.checkIsLimited(rateLimits, update.message?.from?.id, parsedText!!.command)) return false
         logger.info { "Invoking command $id" }
@@ -53,9 +53,9 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
         return true
     }
     // if there's no command -> then try process input
-    inputListener.get(from.id)?.also {
+    bot.inputListener.get(from.id)?.also {
         logger.info { "Found inputListener point $it for ${from.id}" }
-        inputListener.del(from.id) // clean listener after input caught
+        bot.inputListener.del(from.id) // clean listener after input caught
         // search matching input handler for listening point
         val foundChain = manualActions.onInput[it]
         if (foundChain != null && update.message != null) {
@@ -78,12 +78,12 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
 
             if (isBreakCase && prevChain?.breakPoint?.repeat == true) {
                 // and if we need to repeat do set listener again
-                inputListener.set(from.id, foundChain.id)
+                bot.inputListener.set(from.id, foundChain.id)
                 return true
             }
 
             if (!isBreakCase && foundChain.tail != null)
-                inputListener.set(from.id, foundChain.tail!!)
+                bot.inputListener.set(from.id, foundChain.tail!!)
 
             return true
         }
@@ -94,7 +94,7 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
     }?.value?.run {
         if (scope !in this.scope) return false
         logger.debug { "Matched regex command $this for text $text" }
-        inputListener.del(from.id) // clean input listener
+        bot.inputListener.del(from.id) // clean input listener
         // check for limit exceed
         if (bot.update.checkIsLimited(rateLimits, update.message?.from?.id, parsedText!!.command)) return false
         logger.info { "Invoking command $id" }

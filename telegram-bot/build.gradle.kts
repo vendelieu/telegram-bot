@@ -38,6 +38,7 @@ dependencies {
     testImplementation(libs.test.kotest.assertions)
     testImplementation(libs.test.junit.params)
     testImplementation(libs.test.ktor.mock)
+    testImplementation(libs.mockk)
 }
 
 group = "eu.vendeli"

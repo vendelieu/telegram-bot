@@ -14,6 +14,20 @@ import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toTypeName
+import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
+import eu.vendeli.tgbot.types.internal.ChannelPostUpdate
+import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
+import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
+import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
+import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
+import eu.vendeli.tgbot.types.internal.EditedMessageUpdate
+import eu.vendeli.tgbot.types.internal.InlineQueryUpdate
+import eu.vendeli.tgbot.types.internal.MessageUpdate
+import eu.vendeli.tgbot.types.internal.MyChatMemberUpdate
+import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
+import eu.vendeli.tgbot.types.internal.PollUpdate
+import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
+import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 
 @Suppress("LongMethod", "CyclomaticComplexMethod")
 internal fun FileBuilder.buildInvocationLambdaCodeBlock(
@@ -65,20 +79,62 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 DOUBLE, doublePrimitiveType -> "$paramCall?.toDoubleOrNull()$nullabilityMark"
 
                 updateClass -> "update"
-                messageUpdClass -> "(update as? MessageUpdate)$nullabilityMark"
-                callbackQueryUpdateClass -> "(update as? CallbackQueryUpdate)$nullabilityMark"
-                editedMessageUpdateClass -> "(update as? EditedMessageUpdate)$nullabilityMark"
-                channelPostUpdateClass -> "(update as? ChannelPostUpdate)$nullabilityMark"
-                editedChannelPostUpdate -> "(update as? EditedChannelPostUpdate)$nullabilityMark"
-                inlineQueryUpdateClass -> "(update as? InlineQueryUpdate)$nullabilityMark"
-                chosenInlineResultUpdateClass -> "(update as? ChosenInlineResultUpdate)$nullabilityMark"
-                shippingQueryUpdateClass -> "(update as? ShippingQueryUpdate)$nullabilityMark"
-                preCheckoutQueryUpdateClass -> "(update as? PreCheckoutQueryUpdate)$nullabilityMark"
-                pollUpdateClass -> "(update as? PollUpdate)$nullabilityMark"
-                pollAnswerUpdateClass -> "(update as? PollAnswerUpdate)$nullabilityMark"
-                myChatMemberUpdateClass -> "(update as? MyChatMemberUpdate)$nullabilityMark"
-                chatMemberUpdateClass -> "(update as? ChatMemberUpdate)$nullabilityMark"
-                chatJoinRequestUpdateClass -> "(update as? ChatJoinRequestUpdate)$nullabilityMark"
+                messageUpdClass -> {
+                    addUpdateImport(MessageUpdate::class)
+                    "(update as? MessageUpdate)$nullabilityMark"
+                }
+                callbackQueryUpdateClass -> {
+                    addUpdateImport(CallbackQueryUpdate::class)
+                    "(update as? CallbackQueryUpdate)$nullabilityMark"
+                }
+                editedMessageUpdateClass -> {
+                    addUpdateImport(EditedMessageUpdate::class)
+                    "(update as? EditedMessageUpdate)$nullabilityMark"
+                }
+                channelPostUpdateClass -> {
+                    addUpdateImport(ChannelPostUpdate::class)
+                    "(update as? ChannelPostUpdate)$nullabilityMark"
+                }
+                editedChannelPostUpdate -> {
+                    addUpdateImport(EditedChannelPostUpdate::class)
+                    "(update as? EditedChannelPostUpdate)$nullabilityMark"
+                }
+                inlineQueryUpdateClass -> {
+                    addUpdateImport(InlineQueryUpdate::class)
+                    "(update as? InlineQueryUpdate)$nullabilityMark"
+                }
+                chosenInlineResultUpdateClass -> {
+                    addUpdateImport(ChosenInlineResultUpdate::class)
+                    "(update as? ChosenInlineResultUpdate)$nullabilityMark"
+                }
+                shippingQueryUpdateClass -> {
+                    addUpdateImport(ShippingQueryUpdate::class)
+                    "(update as? ShippingQueryUpdate)$nullabilityMark"
+                }
+                preCheckoutQueryUpdateClass -> {
+                    addUpdateImport(PreCheckoutQueryUpdate::class)
+                    "(update as? PreCheckoutQueryUpdate)$nullabilityMark"
+                }
+                pollUpdateClass -> {
+                    addUpdateImport(PollUpdate::class)
+                    "(update as? PollUpdate)$nullabilityMark"
+                }
+                pollAnswerUpdateClass -> {
+                    addUpdateImport(PollAnswerUpdate::class)
+                    "(update as? PollAnswerUpdate)$nullabilityMark"
+                }
+                myChatMemberUpdateClass -> {
+                    addUpdateImport(MyChatMemberUpdate::class)
+                    "(update as? MyChatMemberUpdate)$nullabilityMark"
+                }
+                chatMemberUpdateClass -> {
+                    addUpdateImport(ChatMemberUpdate::class)
+                    "(update as? ChatMemberUpdate)$nullabilityMark"
+                }
+                chatJoinRequestUpdateClass -> {
+                    addUpdateImport(ChatJoinRequestUpdate::class)
+                    "(update as? ChatJoinRequestUpdate)$nullabilityMark"
+                }
 
                 in injectableTypes.keys -> {
                     val type = injectableTypes[typeName]!!

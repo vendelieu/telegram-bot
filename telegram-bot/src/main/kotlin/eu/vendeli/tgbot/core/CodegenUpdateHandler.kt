@@ -1,8 +1,6 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.interfaces.ClassManager
-import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
@@ -17,9 +15,7 @@ import eu.vendeli.tgbot.utils.processUpdate
 class CodegenUpdateHandler(
     actions: List<*>,
     bot: TelegramBot,
-    private val classManager: ClassManager,
-    private val inputListener: InputListener,
-) : TgUpdateHandler(bot, inputListener) {
+) : TgUpdateHandler(bot) {
     private val commandHandlers = actions[0] as Map<Pair<String, UpdateType>, Invocable>
     private val inputHandlers = actions[1] as Map<String, Invocable>
     private val regexHandlers = actions[2] as Map<Regex, Invocable>
@@ -38,13 +34,13 @@ class CodegenUpdateHandler(
         var invocation: Invocable? = commandHandlers[request.command to type]
 
         // if there's no command > check input point
-        if (invocation == null) invocation = inputListener.getAsync(userOrNull!!.id).await()?.let {
+        if (invocation == null) invocation = bot.inputListener.getAsync(userOrNull!!.id).await()?.let {
             actionId = it
             inputHandlers[it]
         }
 
         // remove input listener point
-        if (userOrNull != null) inputListener.del(userOrNull!!.id)
+        if (userOrNull != null) bot.inputListener.del(userOrNull!!.id)
 
         // if there's no command and input > check regex handlers
         if (invocation == null) invocation = regexHandlers.entries.firstOrNull {
@@ -79,7 +75,7 @@ class CodegenUpdateHandler(
             setAsync(pUpdate.userOrNull!!.id, "PrevInvokedClass", second.function).await()
         }
         first.runCatching {
-            invoke(classManager, pUpdate, pUpdate.userOrNull, bot, params)
+            invoke(bot.config.classManager, pUpdate, pUpdate.userOrNull, bot, params)
         }.onFailure {
             logger.error(
                 it,
@@ -95,7 +91,7 @@ class CodegenUpdateHandler(
         params: Map<String, String>,
         isTypeUpdate: Boolean = true,
     ) = runCatching {
-        invoke(classManager, pUpdate, pUpdate.userOrNull, bot, params)
+        invoke(bot.config.classManager, pUpdate, pUpdate.userOrNull, bot, params)
     }.onFailure {
         logger.error(it) {
             (if (isTypeUpdate) "UpdateTypeHandler(${pUpdate.type})" else "UnprocessedHandler") +

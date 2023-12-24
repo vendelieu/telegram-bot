@@ -11,19 +11,4 @@ sealed class LOREM(val data: String) {
     data object ANIMATION :
         LOREM("https://github.com/malcomio/dummy-content/blob/master/images/animated-parabola.gif?raw=true")
     data object DOCUMENT : LOREM("https://github.com/malcomio/dummy-content/blob/master/Lorem_ipsum.pdf?raw=true")
-
-    companion object {
-        fun values(): Array<LOREM> {
-            return arrayOf(AUDIO, VIDEO, ANIMATION)
-        }
-
-        fun valueOf(value: String): LOREM {
-            return when (value) {
-                "AUDIO" -> AUDIO
-                "VIDEO" -> VIDEO
-                "ANIMATION" -> ANIMATION
-                else -> throw IllegalArgumentException("No object eu.vendeli.fixtures.LoremData.$value")
-            }
-        }
-    }
 }

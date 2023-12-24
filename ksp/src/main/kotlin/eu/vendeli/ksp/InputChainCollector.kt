@@ -5,7 +5,6 @@ import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toTypeName
-import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 
 internal fun collectInputChains(
     symbols: Sequence<KSClassDeclaration>,
@@ -55,7 +54,7 @@ internal fun collectInputChains(
                 block,
                 qualifier,
                 name,
-                RateLimits(0, 0),
+                "zeroRateLimits",
             )
         }
     }

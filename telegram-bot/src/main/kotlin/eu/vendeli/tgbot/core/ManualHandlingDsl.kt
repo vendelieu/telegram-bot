@@ -1,7 +1,6 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.types.internal.InputBreakPoint
 import eu.vendeli.tgbot.types.internal.InputContext
 import eu.vendeli.tgbot.types.internal.ManualActions
@@ -35,7 +34,6 @@ import eu.vendeli.tgbot.utils.WhenNotHandledAction
 @Suppress("unused", "MemberVisibilityCanBePrivate", "TooManyFunctions")
 class ManualHandlingDsl internal constructor(
     internal val bot: TelegramBot,
-    internal val inputListener: InputListener,
 ) {
     internal val manualActions = ManualActions()
 

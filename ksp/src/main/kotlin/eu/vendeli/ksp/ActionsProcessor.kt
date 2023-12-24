@@ -64,7 +64,6 @@ class ActionsProcessor(
             addImport("eu.vendeli.tgbot.utils", "InvocationLambda", "Invocable")
             addImport("eu.vendeli.tgbot.types.internal", "InvocationMeta")
             addImport("eu.vendeli.tgbot.types.internal.configuration", "RateLimits")
-            addUpdateVarietyImports()
 
             addSuspendCallFun()
             addZeroLimitsProp()
@@ -104,7 +103,7 @@ class ActionsProcessor(
             AnnotationSpec.builder(Suppress::class).apply {
                 addMember(
                     "\n\t\"NOTHING_TO_INLINE\", \"ObjectPropertyName\", " +
-                        "\"UNUSED_ANONYMOUS_PARAMETER\", \"UnnecessaryVariable\"\n",
+                        "\"UNUSED_ANONYMOUS_PARAMETER\", \"UnnecessaryVariable\", \"TopLevelPropertyNaming\"\n",
                 )
                 useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
             }.build(),

@@ -1,8 +1,6 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.interfaces.ClassManager
-import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.Actions
@@ -30,9 +28,7 @@ import eu.vendeli.tgbot.utils.processUpdate
 class ReflectionUpdateHandler internal constructor(
     internal val actions: Actions? = null,
     bot: TelegramBot,
-    private val classManager: ClassManager,
-    private val inputListener: InputListener,
-) : TgUpdateHandler(bot, inputListener) {
+) : TgUpdateHandler(bot) {
     /**
      * Function used to call functions with certain parameters processed after receiving update.
      *
@@ -87,7 +83,7 @@ class ReflectionUpdateHandler internal constructor(
 
         logger.debug { "Invoking function for Update#${pUpdate.updateId}" }
         invocation.runCatching {
-            method.handleInvocation(clazz, classManager, processedParameters, isSuspend)
+            method.handleInvocation(clazz, bot.config.classManager, processedParameters, isSuspend)
         }.onFailure {
             logger.error(it) { "Method $invocation invocation error at handling update: $pUpdate" }
             caughtExceptions.send((it.cause ?: it) to pUpdate.update)
@@ -101,11 +97,11 @@ class ReflectionUpdateHandler internal constructor(
         var activity = findAction(substringBefore('@'), updateType = updateType)
 
         if (user != null && activity == null) {
-            activity = inputListener.get(user.id)?.let {
+            activity = bot.inputListener.get(user.id)?.let {
                 findAction(it, false, updateType)
             }
         }
-        if (user != null) inputListener.del(user.id)
+        if (user != null) bot.inputListener.del(user.id)
         logger.debug { "Result of finding action - ${activity?.invocation?.type ?: ""} $activity" }
 
         return activity

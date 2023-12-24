@@ -78,16 +78,12 @@ class TelegramBot(
             Class.forName("eu.vendeli.tgbot.ActionsData${postFix}Kt")
         }.getOrNull()?.let { it.getMethod("get\$ACTIONS$postFix").invoke(null) as? List<*> }
 
-        return@lazy if (codegenActions != null) CodegenUpdateHandler(
+        if (codegenActions != null) CodegenUpdateHandler(
             codegenActions,
             this,
-            config.classManager,
-            config.inputListener,
         ) else ReflectionUpdateHandler(
             actions = commandsPackage?.let { collect(it) },
             bot = this,
-            classManager = config.classManager,
-            inputListener = config.inputListener,
         )
     }
 
