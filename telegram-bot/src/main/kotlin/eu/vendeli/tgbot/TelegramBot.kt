@@ -15,6 +15,8 @@ import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.BotConfigurator
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
 import eu.vendeli.tgbot.utils.RESPONSE_UPDATES_LIST_TYPEREF
+import eu.vendeli.tgbot.utils.asClass
+import eu.vendeli.tgbot.utils.getActions
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
 import eu.vendeli.tgbot.utils.getConfiguredMapper
 import eu.vendeli.tgbot.utils.level
@@ -41,8 +43,10 @@ class TelegramBot(
     /**
      * Constructor to build through configuration loader.
      */
-    constructor(configLoader: ConfigLoader = EnvConfigLoaderImpl) :
-        this(configLoader.token, configLoader.commandsPackage) {
+    constructor(configLoader: ConfigLoader = EnvConfigLoaderImpl) : this(
+        configLoader.token,
+        configLoader.commandsPackage,
+    ) {
         config.apply(configLoader.load())
     }
 
@@ -74,9 +78,8 @@ class TelegramBot(
      */
     val update by lazy {
         val postFix = commandsPackage?.let { "_$it".replace(".", "_") } ?: ""
-        val codegenActions = runCatching {
-            Class.forName("eu.vendeli.tgbot.ActionsData${postFix}Kt")
-        }.getOrNull()?.let { it.getMethod("get\$ACTIONS$postFix").invoke(null) as? List<*> }
+        val codegenActions = "eu.vendeli.tgbot.ActionsDataKt".asClass().getActions()
+            ?: "eu.vendeli.tgbot.ActionsData${postFix}Kt".asClass().getActions(postFix)
 
         if (codegenActions != null) CodegenUpdateHandler(
             codegenActions,

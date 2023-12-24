@@ -23,6 +23,7 @@ class CodegenUpdateHandler(
     private val unprocessedHandler = actions[4] as InvocationLambda?
 
     override suspend fun handle(update: Update): Unit = update.processUpdate().run {
+        logger.debug { "Handling update: $update" }
         // check general user limits
         if (checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id))
             return@run
@@ -48,6 +49,8 @@ class CodegenUpdateHandler(
         }?.also {
             actionId = it.key.pattern
         }?.value
+
+        logger.debug { "Result of finding action - ${invocation?.second}" }
 
         // if we found any action > check for its limits
         if (invocation != null && checkIsLimited(invocation.second.rateLimits, userOrNull?.id, actionId))
@@ -82,7 +85,7 @@ class CodegenUpdateHandler(
             ) { "Method ${second.qualifier} > ${second.function} invocation error at handling update: $pUpdate" }
             caughtExceptions.send((it.cause ?: it) to pUpdate.update)
         }.onSuccess {
-            logger.info { "Handled update#${pUpdate.updateId} to method ${second.function}" }
+            logger.info { "Handled update#${pUpdate.updateId} to method ${second.qualifier + "::" + second.function}" }
         }
     }
 

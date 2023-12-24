@@ -136,4 +136,11 @@ internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T):
     async { block() }
 }
 
+@Suppress("NOTHING_TO_INLINE")
+internal inline fun String.asClass(): Class<*>? = kotlin.runCatching { Class.forName(this) }.getOrNull()
+
+@Suppress("NOTHING_TO_INLINE")
+internal inline fun Class<*>?.getActions(postFix: String? = null) =
+    this?.getMethod("get\$ACTIONS".also { if (postFix != null) it + postFix })?.invoke(null) as? List<*>
+
 fun <T : ChainLink> InputListener.setChain(user: User, firstLink: T) = set(user, firstLink::class.qualifiedName!!)
