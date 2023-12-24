@@ -5,7 +5,7 @@ logback = "1.4.14"
 jackson = "2.16.1"
 reflections = "0.10.2"
 
-kotlin = "1.9.21"
+kotlin = "1.9.22"
 coroutines = "1.7.3"
 dokka = "1.9.10"
 kotlinter = "4.1.0"
