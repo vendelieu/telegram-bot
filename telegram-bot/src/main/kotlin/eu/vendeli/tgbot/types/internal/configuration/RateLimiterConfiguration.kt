@@ -7,7 +7,7 @@ import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 
 data class RateLimiterConfiguration(
     var limits: RateLimits = RateLimits(),
-    var mechanism: RateLimitMechanism = TokenBucketLimiterImpl,
+    var mechanism: RateLimitMechanism = TokenBucketLimiterImpl(),
 ) {
     var exceededAction: suspend (Long, TelegramBot) -> Unit = { telegramId: Long, bot: TelegramBot ->
         message("Request limit exceeded, try again later.")

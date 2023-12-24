@@ -2,14 +2,14 @@ package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.ManualHandlingDsl
-import eu.vendeli.tgbot.core.TelegramUpdateHandler.Companion.logger
+import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActionContext
 import eu.vendeli.tgbot.types.internal.CommandContext
-import eu.vendeli.tgbot.types.internal.CommandScope
 import eu.vendeli.tgbot.types.internal.InputContext
 import eu.vendeli.tgbot.types.internal.SingleInputChain
+import eu.vendeli.tgbot.types.internal.UpdateType
 
 private inline val SingleInputChain.prevChainId: String?
     get() = if (currentLevel == 1) {
@@ -32,7 +32,7 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
     update: Update,
     from: User?,
     text: String?,
-    scope: CommandScope,
+    scope: UpdateType,
 ): Boolean {
     // parse text to chosen format
     val parsedText = text?.let { bot.update.parseCommand(it) }
@@ -45,7 +45,7 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
     manualActions.commands[parsedText?.command]?.run {
         if (scope !in this.scope) return@run
         logger.debug { "Matched command $this for text $text" }
-        inputListener.del(from.id) // clean input listener
+        bot.inputListener.del(from.id) // clean input listener
         // check for limit exceed
         if (bot.update.checkIsLimited(rateLimits, update.message?.from?.id, parsedText!!.command)) return false
         logger.info { "Invoking command $id" }
@@ -53,9 +53,9 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
         return true
     }
     // if there's no command -> then try process input
-    inputListener.get(from.id)?.also {
+    bot.inputListener.get(from.id)?.also {
         logger.info { "Found inputListener point $it for ${from.id}" }
-        inputListener.del(from.id) // clean listener after input caught
+        bot.inputListener.del(from.id) // clean listener after input caught
         // search matching input handler for listening point
         val foundChain = manualActions.onInput[it]
         if (foundChain != null && update.message != null) {
@@ -78,12 +78,12 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
 
             if (isBreakCase && prevChain?.breakPoint?.repeat == true) {
                 // and if we need to repeat do set listener again
-                inputListener.set(from.id, foundChain.id)
+                bot.inputListener.set(from.id, foundChain.id)
                 return true
             }
 
             if (!isBreakCase && foundChain.tail != null)
-                inputListener.set(from.id, foundChain.tail!!)
+                bot.inputListener.set(from.id, foundChain.tail!!)
 
             return true
         }
@@ -94,7 +94,7 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
     }?.value?.run {
         if (scope !in this.scope) return false
         logger.debug { "Matched regex command $this for text $text" }
-        inputListener.del(from.id) // clean input listener
+        bot.inputListener.del(from.id) // clean input listener
         // check for limit exceed
         if (bot.update.checkIsLimited(rateLimits, update.message?.from?.id, parsedText!!.command)) return false
         logger.info { "Invoking command $id" }
@@ -145,7 +145,7 @@ internal suspend fun ManualHandlingDsl.process(update: Update) = with(update) {
                 update,
                 update.message?.from,
                 update.message?.text,
-                CommandScope.MESSAGE,
+                UpdateType.MESSAGE,
             ).ifAffected {
                 affectedActions += 1
             }
@@ -181,7 +181,7 @@ internal suspend fun ManualHandlingDsl.process(update: Update) = with(update) {
                 update,
                 callbackQuery.from,
                 callbackQuery.data,
-                CommandScope.CALLBACK,
+                UpdateType.CALLBACK_QUERY,
             ).ifAffected {
                 affectedActions += 1
             }

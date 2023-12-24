@@ -5,7 +5,7 @@ import eu.vendeli.tgbot.utils.asyncAction
 import kotlinx.coroutines.Deferred
 import java.util.concurrent.ConcurrentHashMap
 
-object ChatDataMapImpl : ChatData {
+class ChatDataMapImpl : ChatData {
     private val storage by lazy { ConcurrentHashMap<String, Any?>() }
 
     override fun set(telegramId: Long, key: String, value: Any?) {

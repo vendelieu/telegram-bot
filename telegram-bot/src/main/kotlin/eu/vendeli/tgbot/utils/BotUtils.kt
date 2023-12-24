@@ -5,14 +5,17 @@ package eu.vendeli.tgbot.utils
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
-import eu.vendeli.tgbot.core.TelegramUpdateHandler
-import eu.vendeli.tgbot.core.TelegramUpdateHandler.Companion.logger
+import eu.vendeli.tgbot.core.ReflectionUpdateHandler
+import eu.vendeli.tgbot.core.TgUpdateHandler
+import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
 import eu.vendeli.tgbot.interfaces.ClassManager
+import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.Activity
-import eu.vendeli.tgbot.types.internal.CommandScope
+import eu.vendeli.tgbot.types.internal.ChainLink
 import eu.vendeli.tgbot.types.internal.Invocation
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.StructuredRequest
@@ -40,68 +43,6 @@ internal class NewCoroutineContext(parentContext: CoroutineContext) : CoroutineS
         parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
 }
 
-@Suppress("CyclomaticComplexMethod", "NestedBlockDepth")
-internal fun TelegramUpdateHandler.parseCommand(
-    text: String,
-): StructuredRequest = with(bot.config.commandParsing) {
-    var state = ParserState.READING_COMMAND
-    var command = ""
-    val params = mutableMapOf<String, String>()
-
-    var paramNameBuffer = ""
-    var paramValBuffer = ""
-
-    text.forEach { i ->
-        when (state) {
-            ParserState.READING_COMMAND -> {
-                if (i == commandDelimiter || (restrictSpacesInCommands && i == ' ')) {
-                    state = ParserState.READING_PARAM_NAME
-                } else {
-                    command += i
-                }
-            }
-
-            ParserState.READING_PARAM_NAME -> {
-                when (i) {
-                    parameterValueDelimiter -> {
-                        state = ParserState.READING_PARAM_VALUE
-                    }
-
-                    parametersDelimiter -> {
-                        params["param_${params.size + 1}"] = paramNameBuffer
-                        paramNameBuffer = ""
-                    }
-
-                    else -> paramNameBuffer += i
-                }
-            }
-
-            ParserState.READING_PARAM_VALUE -> {
-                if (i == parametersDelimiter) {
-                    params[paramNameBuffer] = paramValBuffer
-                    paramNameBuffer = ""
-                    paramValBuffer = ""
-                    state = ParserState.READING_PARAM_NAME
-                } else {
-                    paramValBuffer += i
-                }
-            }
-        }
-    }
-    if (state == ParserState.READING_PARAM_VALUE) {
-        params[paramNameBuffer] = paramValBuffer
-    } else if (state == ParserState.READING_PARAM_NAME) {
-        params["param_${params.size + 1}"] = paramNameBuffer
-    }
-
-    if (params.isEmpty() && command.startsWith("/start ")) {
-        params += "deepLink" to command.substringAfter("/start ")
-        command = "/start"
-    }
-
-    return StructuredRequest(command = command, params = params)
-}
-
 @Suppress("SpreadOperator")
 internal suspend inline fun Method.handleInvocation(
     clazz: Class<*>,
@@ -109,10 +50,8 @@ internal suspend inline fun Method.handleInvocation(
     parameters: Array<Any?>,
     isSuspend: Boolean = false,
 ): Any? {
-    val objInstance = clazz.kotlin.objectInstance
     val obj = when {
         isStatic(modifiers) -> null
-        objInstance != null -> objInstance
         else -> classManager.getInstance(clazz)
     }
 
@@ -121,7 +60,7 @@ internal suspend inline fun Method.handleInvocation(
     } else invoke(obj, *parameters)
 }
 
-internal suspend inline fun TelegramUpdateHandler.checkIsLimited(
+internal suspend inline fun TgUpdateHandler.checkIsLimited(
     limits: RateLimits,
     telegramId: Long?,
     actionId: String? = null,
@@ -145,7 +84,7 @@ internal suspend inline fun TelegramUpdateHandler.checkIsLimited(
  * @param command true to search in commands or false to search among inputs. Default - true.
  * @return [Activity] if actions was found or null.
  */
-internal fun TelegramUpdateHandler.findAction(
+internal fun ReflectionUpdateHandler.findAction(
     text: String,
     command: Boolean = true,
     updateType: UpdateType,
@@ -157,7 +96,7 @@ internal fun TelegramUpdateHandler.findAction(
         actions?.inputs
     }?.get(message.command)
 
-    if (invocation != null && command && updateType.scope !in invocation.scope)
+    if (invocation != null && command && updateType !in invocation.scope)
         return null
 
     if (command && invocation == null) actions?.regexCommands?.entries?.firstOrNull {
@@ -189,16 +128,12 @@ internal var mu.KLogger.level: Level
         (underlyingLogger as Logger).level = value
     }
 
-private enum class ParserState {
-    READING_COMMAND,
-    READING_PARAM_NAME,
-    READING_PARAM_VALUE,
-}
-
-internal val DEFAULT_COMMAND_SCOPE = setOf(CommandScope.MESSAGE, CommandScope.CALLBACK)
+internal val DEFAULT_COMMAND_SCOPE = setOf(UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY)
 internal val PARAMETERS_MAP_TYPEREF = jacksonTypeRef<Map<String, Any?>>()
 internal val RESPONSE_UPDATES_LIST_TYPEREF = jacksonTypeRef<Response<List<Update>>>()
 
 internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T): Deferred<T> = coroutineScope {
     async { block() }
 }
+
+fun <T : ChainLink> InputListener.setChain(user: User, firstLink: T) = set(user, firstLink::class.qualifiedName!!)

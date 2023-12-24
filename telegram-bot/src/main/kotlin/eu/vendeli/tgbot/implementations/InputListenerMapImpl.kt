@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap
  * [InputListener] implementation based on ConcurrentHashMap<Long, String>
  *
  */
-object InputListenerMapImpl : InputListener {
+class InputListenerMapImpl : InputListener {
     private val storage by lazy { ConcurrentHashMap<Long, String>() }
 
     /**

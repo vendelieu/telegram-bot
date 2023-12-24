@@ -38,12 +38,14 @@ dependencies {
     testImplementation(libs.test.kotest.assertions)
     testImplementation(libs.test.junit.params)
     testImplementation(libs.test.ktor.mock)
+    testImplementation(libs.mockk)
 }
 
 group = "eu.vendeli"
 version = providers.gradleProperty("libVersion").getOrElse("dev")
+description = "Telegram Bot API wrapper, with handy Kotlin DSL."
 
-apply(from = "publishing.gradle.kts")
+apply(from = "../publishing.gradle.kts")
 
 detekt {
     buildUponDefaultConfig = true

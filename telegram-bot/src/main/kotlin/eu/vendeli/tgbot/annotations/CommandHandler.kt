@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.annotations
 
-import eu.vendeli.tgbot.types.internal.CommandScope
+import eu.vendeli.tgbot.types.internal.UpdateType
 
 /**
  * The annotation used to mark the function that is used to process the specified commands.
@@ -14,5 +14,5 @@ import eu.vendeli.tgbot.types.internal.CommandScope
 annotation class CommandHandler(
     val value: Array<String>,
     val rateLimits: RateLimits = RateLimits(0, 0),
-    val scope: Array<CommandScope> = [CommandScope.MESSAGE, CommandScope.CALLBACK],
+    val scope: Array<UpdateType> = [UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY],
 )

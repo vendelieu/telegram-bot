@@ -78,14 +78,14 @@ class AnnotationsTest : BotTestContext() {
         shouldNotThrowAny {
             topLvlCommand.method.handleInvocation(
                 topLvlCommand.clazz,
-                ClassManagerImpl,
+                ClassManagerImpl(),
                 emptyArray(),
                 true,
             ) shouldBe true // method returns true
 
             objCommand.method.handleInvocation(
                 objCommand.clazz,
-                ClassManagerImpl,
+                ClassManagerImpl(),
                 emptyArray(),
                 false,
             ) shouldBe false
@@ -94,7 +94,7 @@ class AnnotationsTest : BotTestContext() {
         shouldThrow<InvocationTargetException> {
             classCommand.method.handleInvocation(
                 classCommand.clazz,
-                ClassManagerImpl,
+                ClassManagerImpl(),
                 emptyArray(),
                 false,
             )

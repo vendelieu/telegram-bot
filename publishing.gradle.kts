@@ -13,7 +13,7 @@ configure<PublishingExtension> {
 
             pom {
                 name.set(artifactId)
-                description.set("Telegram Bot API wrapper, with handy Kotlin DSL.")
+                description.set(project.description)
                 url.set("https://github.com/vendelieu/telegram-bot")
                 licenses {
                     license {

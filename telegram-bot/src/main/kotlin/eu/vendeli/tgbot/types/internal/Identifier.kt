@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.types.internal
 
+import eu.vendeli.tgbot.types.User
+
 sealed class Identifier<T : Any> {
     abstract val get: T
 
@@ -14,5 +16,7 @@ sealed class Identifier<T : Any> {
     companion object {
         fun from(recipient: kotlin.Long) = Long(recipient)
         fun from(recipient: kotlin.String) = String(recipient)
+
+        fun from(recipient: User) = Long(recipient.id)
     }
 }

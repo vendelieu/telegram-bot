@@ -14,21 +14,29 @@ class MessageActionsTest : BotTestContext() {
     @Test
     suspend fun `copy message method test`() {
         val msg = message("test").sendReturning(TG_ID, bot).getOrNull()
-        val result = copyMessage(TG_ID, TG_ID, msg!!.messageId).sendReturning(TG_ID, bot).shouldSuccess()
+        val idResult = copyMessage(TG_ID, msg!!.messageId).sendReturning(TG_ID, bot).shouldSuccess()
+        val userResult = copyMessage(TG_ID.asUser(), msg.messageId).sendReturning(TG_ID, bot).shouldSuccess()
+        val chatResult = copyMessage(TG_ID.asChat(), msg.messageId).sendReturning(TG_ID, bot).shouldSuccess()
 
-        with(result) {
-            messageId shouldBeGreaterThan msg.messageId
+        listOf(idResult, userResult, chatResult).forEach { result ->
+            with(result) {
+                messageId shouldBeGreaterThan msg.messageId
+            }
         }
     }
 
     @Test
     suspend fun `forward message method test`() {
         val msg = message("test").sendReturning(TG_ID, bot).getOrNull()
-        val result = forwardMessage(TG_ID, TG_ID, msg!!.messageId).sendReturning(TG_ID, bot).shouldSuccess()
+        val idResult = forwardMessage(TG_ID, msg!!.messageId).sendReturning(TG_ID, bot).shouldSuccess()
+        val userResult = forwardMessage(TG_ID.asUser(), msg.messageId).sendReturning(TG_ID, bot).shouldSuccess()
+        val chatResult = forwardMessage(TG_ID.asChat(), msg.messageId).sendReturning(TG_ID, bot).shouldSuccess()
 
-        with(result) {
-            messageId shouldBeGreaterThan msg.messageId
-            text shouldBe "test"
+        listOf(idResult, userResult, chatResult).forEach { result ->
+            with(result) {
+                messageId shouldBeGreaterThan msg.messageId
+                text shouldBe "test"
+            }
         }
     }
 

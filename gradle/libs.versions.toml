@@ -5,15 +5,19 @@ logback = "1.4.14"
 jackson = "2.16.1"
 reflections = "0.10.2"
 
-kotlin = "1.9.21"
+kotlin = "1.9.22"
 coroutines = "1.7.3"
 dokka = "1.9.10"
 kotlinter = "4.1.0"
 deteKT = "1.23.4"
 
 kotest = "5.8.0"
+mockk = "1.13.8"
 junit = "5.10.1"
 kover = "0.7.5"
+
+ksp = "1.9.21-1.0.16"
+poet = "1.15.3"
 
 [libraries]
 # jackson
@@ -40,6 +44,11 @@ test-ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
+
+ksp = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
+poet = { module = "com.squareup:kotlinpoet", version.ref = "poet" }
+poet-ksp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "poet" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

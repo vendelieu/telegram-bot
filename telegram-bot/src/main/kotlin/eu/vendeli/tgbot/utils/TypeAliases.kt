@@ -1,12 +1,15 @@
 package eu.vendeli.tgbot.utils
 
+import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.ManualHandlingDsl
-import eu.vendeli.tgbot.core.TelegramUpdateHandler
+import eu.vendeli.tgbot.core.TgUpdateHandler
+import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.types.CallbackQuery
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Poll
 import eu.vendeli.tgbot.types.PollAnswer
 import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.ChatJoinRequest
 import eu.vendeli.tgbot.types.chat.ChatMemberUpdated
 import eu.vendeli.tgbot.types.inline.ChosenInlineResult
@@ -14,7 +17,9 @@ import eu.vendeli.tgbot.types.inline.InlineQuery
 import eu.vendeli.tgbot.types.internal.ActionContext
 import eu.vendeli.tgbot.types.internal.CommandContext
 import eu.vendeli.tgbot.types.internal.InputContext
+import eu.vendeli.tgbot.types.internal.InvocationMeta
 import eu.vendeli.tgbot.types.internal.ManualInvocation
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
@@ -42,6 +47,9 @@ typealias InputActions = MutableMap<String, SingleInputChain>
 internal typealias CommandActions = MutableMap<String, ManualInvocation>
 internal typealias RegexCommandActions = MutableMap<Regex, ManualInvocation>
 
-typealias HandlingBehaviourBlock = suspend TelegramUpdateHandler.(Update) -> Unit
+typealias HandlingBehaviourBlock = suspend TgUpdateHandler.(Update) -> Unit
 typealias ManualHandlingBlock = suspend ManualHandlingDsl.() -> Unit
 typealias BotConfigurator = BotConfiguration.() -> Unit
+
+typealias InvocationLambda = suspend (ClassManager, ProcessedUpdate, User?, TelegramBot, Map<String, String>) -> Any?
+typealias Invocable = Pair<InvocationLambda, InvocationMeta>

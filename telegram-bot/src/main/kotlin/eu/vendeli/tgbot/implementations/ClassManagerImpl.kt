@@ -7,7 +7,7 @@ import eu.vendeli.tgbot.interfaces.ClassManager
  *
  * @constructor Create empty ClassManagerImpl
  */
-object ClassManagerImpl : ClassManager {
+class ClassManagerImpl : ClassManager {
     // keep class instances
     private val instances by lazy { mutableMapOf<String, Any>() }
 
@@ -19,6 +19,7 @@ object ClassManagerImpl : ClassManager {
      * @return class
      */
     override fun getInstance(clazz: Class<*>, vararg initParams: Any?): Any = instances.getOrElse(clazz.name) {
+        clazz.kotlin.objectInstance?.also { return it }
         if (initParams.isEmpty()) {
             clazz.declaredConstructors.first().newInstance()
         } else {

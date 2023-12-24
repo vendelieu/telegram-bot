@@ -1,7 +1,10 @@
+
 import ch.qos.logback.classic.Level.TRACE
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.chat.Chat
+import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.getOrNull
@@ -20,6 +23,7 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
+import io.mockk.spyk
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import java.time.Instant
@@ -37,14 +41,15 @@ private val BOT_DATA: Iterator<Pair<Long, String>> = generateSequence {
     }
 }.iterator()
 
-@Suppress("VariableNaming", "PropertyName", "PrivatePropertyName")
+@Suppress("VariableNaming", "PropertyName", "PrivatePropertyName", "SpellCheckingInspection")
 abstract class BotTestContext(
     private val withPreparedBot: Boolean = true,
     private val mockHttp: Boolean = false,
+    private val spykIt: Boolean = false,
 ) : AnnotationSpec() {
     private val INT_ITERATOR = (1..Int.MAX_VALUE).iterator()
     private val RANDOM_INST: Random get() = Random(CUR_INSTANT.epochSecond)
-    protected lateinit var bot: TelegramBot
+    internal lateinit var bot: TelegramBot
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
     private val BOT_CTX get() = BOT_DATA.next()
@@ -73,6 +78,7 @@ abstract class BotTestContext(
                 maxRequestRetry = 0
             }
         }
+        if (spykIt) spykIt()
 
         if (mockHttp) doMockHttp()
     }
@@ -89,12 +95,17 @@ abstract class BotTestContext(
         )
     }
 
+    fun spykIt() {
+        bot = spyk(bot, recordPrivateCalls = true)
+    }
+
     protected suspend fun <T> Action<T>.sendReturning(id: Long, bot: TelegramBot): Response<out T> {
         delay(200)
         return sendAsync(id, bot).await()
     }
 
     protected fun Long.asUser() = User(this, false, "test")
+    protected fun Long.asChat() = Chat(this, ChatType.Private)
 
     protected suspend fun getExtFile(url: String): ByteArray = bot.httpClient.get(url).readBytes()
 

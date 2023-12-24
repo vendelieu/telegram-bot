@@ -57,13 +57,13 @@ jobs:
         run: |
           echo '${{secrets.GPG_KEY_CONTENTS}}' | base64 -d > publish_key.gpg
           gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.SECRET_PASSPHRASE}}" \
-          --output /home/runner/work/telegram-bot/telegram-bot/telegram-bot/secret.gpg publish_key.gpg
+          --output /home/runner/work/secret.gpg publish_key.gpg
 
       - name: Publish with Gradle
         uses: eskatos/gradle-command-action@v2
         with:
           gradle-version: current
-          arguments: publish -Psigning.secretKeyRingFile=secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }}
+          arguments: publish -Psigning.secretKeyRingFile=/home/runner/work/secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }}
   
   docs:
     needs: [ publish, version ]

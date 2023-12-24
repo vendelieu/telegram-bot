@@ -16,7 +16,6 @@ import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.string.shouldContain
-import kotlinx.coroutines.test.runTest
 
 @EnabledIf(ChatTestingOnlyCondition::class)
 class ChatGeneralMethodsTest : BotTestContext() {
@@ -67,7 +66,7 @@ class ChatGeneralMethodsTest : BotTestContext() {
     }
 
     @Test
-    fun `restrict chat member method test`() = runTest {
+    suspend fun `restrict chat member method test`() {
         val result = restrictChatMember(
             user = TG_ID.asUser(),
             untilDate = CUR_INSTANT.plusMillis(10000).epochSecond,
@@ -75,7 +74,9 @@ class ChatGeneralMethodsTest : BotTestContext() {
         ) {
             canChangeInfo = false
         }.sendReturning(CHAT_ID, bot).shouldSuccess()
+
         result.shouldBeTrue()
+
         restrictChatMember(TG_ID) {
             canChangeInfo = true
         }.sendAsync(TG_ID, bot).await()

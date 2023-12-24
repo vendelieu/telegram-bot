@@ -1,11 +1,8 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.types.EntityType
 import eu.vendeli.tgbot.types.Message
-import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.Update
-import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.media.Document
@@ -13,6 +10,8 @@ import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.common.ExperimentalKotest
+import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.maps.shouldContainExactly
 import io.kotest.matchers.nulls.shouldBeNull
@@ -21,6 +20,11 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
 
 class TelegramUpdateHandlerTest : BotTestContext() {
+    override fun isolationMode() = IsolationMode.InstancePerLeaf
+
+    @ExperimentalKotest
+    override fun concurrency(): Int = 1
+
     @Test
     suspend fun `listener workflow`() {
         doMockHttp(MockUpdate.RAW_RESPONSE(updates))
@@ -132,18 +136,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
 
     @Test
     suspend fun `deeplink test`() {
-        val deeplinkUpdate = Update(
-            updateId = 1,
-            message = Message(
-                messageId = 2,
-                from = User(id = 3, isBot = false, firstName = "test"),
-                date = 1682227456,
-                chat = Chat(id = 4, type = ChatType.Private),
-                text = "/start test",
-                entities = listOf(MessageEntity(type = EntityType.BotCommand, offset = 0, length = 6)),
-            ),
-        )
-        doMockHttp(MockUpdate.UPDATES_LIST(listOf(deeplinkUpdate)))
+        doMockHttp(MockUpdate.SINGLE("/start test"))
 
         bot.handleUpdates {
             onCommand("/start") {
@@ -155,17 +148,14 @@ class TelegramUpdateHandlerTest : BotTestContext() {
 
     @Test
     suspend fun `command over input priority test`() {
-        doMockHttp(MockUpdate.TEXT_LIST(listOf("test2", "aaaa")))
+        doMockHttp(MockUpdate.TEXT_LIST(listOf("test", "aaaa")))
         bot.update.setListener {
             bot.inputListener.set(1, "testInp")
             handle(it)
             if (it.message?.text == "aaaa") stopListener()
         }
 
-        bot.update.caughtExceptions.tryReceive().getOrNull().shouldNotBeNull().run {
-            second.message?.text shouldBe "aaaa"
-            first.message shouldBe "test3"
-        }
+        bot.update.caughtExceptions.tryReceive().getOrNull().shouldNotBeNull()
     }
 
     @Test

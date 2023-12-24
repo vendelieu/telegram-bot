@@ -2,17 +2,14 @@ package eu.vendeli
 
 import BotTestContext
 import eu.vendeli.fixtures.Conversation
-import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.implementations.InputListenerMapImpl
-import eu.vendeli.tgbot.utils.registerInputChain
 import eu.vendeli.tgbot.utils.setChain
 import io.kotest.matchers.booleans.shouldBeTrue
-import io.kotest.matchers.collections.shouldContainInOrder
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 
 class InputListenerTest : BotTestContext() {
-    private val mapImpl = InputListenerMapImpl
+    private val mapImpl = InputListenerMapImpl()
 
     @Test
     fun `sync crud test`() {
@@ -40,24 +37,8 @@ class InputListenerTest : BotTestContext() {
     }
 
     @Test
-    @OptIn(ExperimentalFeature::class)
-    fun `chain registering test`() {
-        bot.registerInputChain(Conversation::class)
-        bot.update.actions?.inputs?.also {
-            println(it)
-        }
-        bot.update.actions!!.inputs.keys shouldContainInOrder listOf(
-            "eu.vendeli.fixtures.Conversation.Name",
-            "eu.vendeli.fixtures.Conversation.Age",
-        )
-    }
-
-    @Test
-    @OptIn(ExperimentalFeature::class)
     fun `set chain test`() {
-        bot.registerInputChain(Conversation::class)
-
-        bot.inputListener.setChain(DUMB_USER, Conversation)
+        bot.inputListener.setChain(DUMB_USER, Conversation.Name)
         bot.inputListener[DUMB_USER] shouldBe "eu.vendeli.fixtures.Conversation.Name"
     }
 }
