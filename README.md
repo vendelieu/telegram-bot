@@ -59,10 +59,7 @@ there you can find in the appropriate branches:
 
 ```kotlin
 suspend fun main() {
-    val bot = TelegramBot("BOT_TOKEN", "com.example")
-    /**
-     * Second parameter is the package in which commands/inputs will be searched.
-     */
+    val bot = TelegramBot("BOT_TOKEN")
 
     bot.handleUpdates()
     // start long-polling listener
