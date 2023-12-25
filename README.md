@@ -15,13 +15,20 @@ Telegram Bot Api wrapper with a user-friendly interface.
 
 # Installation
 
-Add the library itself to the dependencies' module that you need it.
+Add the ksp plugin and library to the dependencies.
 
 build.gradle.kts example:
 
 ```gradle
+plugins {
+    // ...
+    id("com.google.devtools.ksp") version "1.9.22-1.0.16"
+}
+
 dependencies {
+    // ...
     implementation("eu.vendeli:telegram-bot:4.0.1")
+    ksp("eu.vendeli:ksp:4.0.1")
 }
 ```
 
@@ -52,7 +59,7 @@ there you can find in the appropriate branches:
 
 ```kotlin
 suspend fun main() {
-    val bot = TelegramBot("BOT_TOKEN", "com.example.controllers")
+    val bot = TelegramBot("BOT_TOKEN", "com.example")
     /**
      * Second parameter is the package in which commands/inputs will be searched.
      */
