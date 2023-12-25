@@ -1,5 +1,9 @@
 # Telegram-bot changelog
 
+### 4.0.1
+
+* Fix parsing annotations bug when parameters not well-ordered.
+
 # 4.0.0
 
 * Added the ability to collect actions in compile time.
