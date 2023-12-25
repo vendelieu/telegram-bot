@@ -21,7 +21,7 @@ build.gradle.kts example:
 
 ```gradle
 dependencies {
-    implementation("eu.vendeli:telegram-bot:4.0.0")
+    implementation("eu.vendeli:telegram-bot:4.0.1")
 }
 ```
 
