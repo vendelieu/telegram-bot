@@ -17,12 +17,10 @@ import eu.vendeli.tgbot.utils.handleInvocation
 import eu.vendeli.tgbot.utils.processUpdate
 
 /**
- * A class that handles updates.
+ * A class that handles updates via reflection.
  *
  * @property actions The list of actions the handler will work with.
  * @property bot An instance of [TelegramBot]
- * @property classManager An instance of the class that will be used to call functions.
- * @property inputListener An instance of the class that stores the input waiting points.
  */
 @Suppress("unused")
 class ReflectionUpdateHandler internal constructor(

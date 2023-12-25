@@ -14,7 +14,12 @@ import kotlinx.coroutines.launch
 import mu.KLogging
 import kotlin.coroutines.coroutineContext
 
-abstract class TgUpdateHandler(
+/**
+ * A basic update processing class that is extends by a [CodegenUpdateHandler] or [ReflectionUpdateHandler].
+ *
+ * @property bot bot instance.
+ */
+abstract class TgUpdateHandler internal constructor(
     internal val bot: TelegramBot,
 ) {
     private lateinit var handlingBehaviour: HandlingBehaviourBlock
@@ -22,6 +27,10 @@ abstract class TgUpdateHandler(
     @Volatile
     private var handlerActive: Boolean = false
     private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot) }
+
+    /**
+     * The channel where errors caught during update processing are stored with update that caused them.
+     */
     val caughtExceptions by lazy { Channel<Pair<Throwable, Update>>(Channel.CONFLATED) }
 
     /**

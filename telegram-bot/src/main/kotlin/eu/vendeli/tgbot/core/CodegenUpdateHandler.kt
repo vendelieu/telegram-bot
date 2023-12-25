@@ -11,8 +11,14 @@ import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.processUpdate
 
+/**
+ * Processor for processing actions built via ksp code generation.
+ *
+ * @param actions generated actions.
+ * @param bot bot instance.
+ */
 @Suppress("MagicNumber", "UNCHECKED_CAST")
-class CodegenUpdateHandler(
+class CodegenUpdateHandler internal constructor(
     actions: List<*>,
     bot: TelegramBot,
 ) : TgUpdateHandler(bot) {
