@@ -75,19 +75,26 @@ internal fun <T : ProcessedUpdate> FileBuilder.addUpdateImport(type: KClass<T>) 
     addImport("eu.vendeli.tgbot.types.internal", type.simpleName!!)
 
 internal fun List<KSValueArgument>.parseAsCommandHandler() = Triple(
-    get(0).value.cast<List<String>>(),
-    get(1).value.cast<KSAnnotation>().arguments.let { it.first().value.cast<Long>() to it.last().value.cast<Long>() },
-    last().value.cast<List<KSType>>().map { UpdateType.valueOf(it.declaration.toString()) },
+    first { it.name?.asString() == "value" }.value.cast<List<String>>(),
+    first { it.name?.asString() == "rateLimits" }.value.cast<KSAnnotation>().arguments.let {
+        it.first().value.cast<Long>() to it.last().value.cast<Long>()
+    },
+    first { it.name?.asString() == "scope" }.value.cast<List<KSType>>()
+        .map { UpdateType.valueOf(it.declaration.toString()) },
 )
 
 internal fun List<KSValueArgument>.parseAsInputHandler() = Pair(
-    get(0).value.cast<List<String>>(),
-    get(1).value.cast<KSAnnotation>().arguments.let { it.first().value.cast<Long>() to it.last().value.cast<Long>() },
+    first { it.name?.asString() == "value" }.value.cast<List<String>>(),
+    first { it.name?.asString() == "rateLimits" }.value.cast<KSAnnotation>().arguments.let {
+        it.first().value.cast<Long>() to it.last().value.cast<Long>()
+    },
 )
 
 internal fun List<KSValueArgument>.parseAsRegexHandler() = Pair(
-    get(0).value.cast<String>(),
-    get(1).value.cast<KSAnnotation>().arguments.let { it.first().value.cast<Long>() to it.last().value.cast<Long>() },
+    first { it.name?.asString() == "value" }.value.cast<String>(),
+    first { it.name?.asString() == "rateLimits" }.value.cast<KSAnnotation>().arguments.let {
+        it.first().value.cast<Long>() to it.last().value.cast<Long>()
+    },
 )
 
 internal fun List<KSValueArgument>.parseAsUpdateHandler() = first().value.cast<List<KSType>>().map {
