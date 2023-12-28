@@ -8,7 +8,7 @@ reflections = "0.10.2"
 kotlin = "1.9.22"
 coroutines = "1.7.3"
 dokka = "1.9.10"
-kotlinter = "4.1.0"
+kotlinter = "4.1.1"
 deteKT = "1.23.4"
 
 kotest = "5.8.0"
