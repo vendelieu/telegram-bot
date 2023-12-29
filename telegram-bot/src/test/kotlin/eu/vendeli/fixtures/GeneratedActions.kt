@@ -3,7 +3,9 @@
     "ObjectPropertyName",
     "UNUSED_ANONYMOUS_PARAMETER",
     "UnnecessaryVariable",
-    "TopLevelPropertyNaming", "UNNECESSARY_SAFE_CALL", "RedundantNullableReturnType",
+    "TopLevelPropertyNaming",
+    "UNNECESSARY_SAFE_CALL",
+    "RedundantNullableReturnType",
 )
 
 package eu.vendeli.fixtures
