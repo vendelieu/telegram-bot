@@ -51,6 +51,7 @@ import other.pckg.UserDataImpl
 class TelegramBotTest : BotTestContext() {
     @Test
     suspend fun `updates handler shortcut test`() {
+        doMockHttp()
         shouldNotThrowAny {
             newCoroutineCtx(currentCoroutineContext()).launch {
                 bot.update.stopListener()
