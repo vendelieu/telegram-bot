@@ -5,14 +5,14 @@ import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
-import eu.vendeli.tgbot.utils.NewCoroutineContext
+import eu.vendeli.tgbot.utils.newCoroutineCtx
 import eu.vendeli.tgbot.utils.process
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import mu.KLogging
-import kotlin.coroutines.coroutineContext
 
 /**
  * A basic update processing class that is extends by a [CodegenUpdateHandler] or [ReflectionUpdateHandler].
@@ -40,13 +40,14 @@ abstract class TgUpdateHandler internal constructor(
      */
     private tailrec suspend fun runListener(offset: Int? = null): Int = with(bot.config.updatesListener) {
         logger.debug { "Running listener with offset - $offset" }
+        val coroutineCtx = currentCoroutineContext()
         if (!handlerActive) {
-            coroutineContext.cancelChildren()
+            coroutineCtx.cancelChildren()
             return 0
         }
         var lastUpdateId: Int = offset ?: 0
         bot.pullUpdates(offset)?.forEach { update ->
-            NewCoroutineContext(coroutineContext + dispatcher).launch {
+            newCoroutineCtx(coroutineCtx + dispatcher).launch {
                 handlingBehaviour(this@TgUpdateHandler, update)
             }
             lastUpdateId = update.updateId + 1
@@ -66,6 +67,7 @@ abstract class TgUpdateHandler internal constructor(
         logger.debug { "The listener is set." }
         handlingBehaviour = block
         handlerActive = true
+        logger.info { "Starting long-polling listener with ${this::class.simpleName}" }
         runListener()
     }
 

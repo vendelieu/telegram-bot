@@ -1,4 +1,4 @@
-@file:Suppress("MatchingDeclarationName")
+@file:Suppress("MatchingDeclarationName", "TooManyFunctions")
 
 package eu.vendeli.tgbot.utils
 
@@ -38,9 +38,9 @@ import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
  *
  * @param parentContext Context that will be merged with the created one.
  */
-internal class NewCoroutineContext(parentContext: CoroutineContext) : CoroutineScope {
-    override val coroutineContext: CoroutineContext =
-        parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
+@Suppress("NOTHING_TO_INLINE")
+internal inline fun newCoroutineCtx(parentContext: CoroutineContext) = object : CoroutineScope {
+    override val coroutineContext = parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
 }
 
 @Suppress("SpreadOperator")
@@ -141,6 +141,6 @@ internal inline fun String.asClass(): Class<*>? = kotlin.runCatching { Class.for
 
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun Class<*>?.getActions(postFix: String? = null) =
-    this?.getMethod("get\$ACTIONS".also { if (postFix != null) it + postFix })?.invoke(null) as? List<*>
+    this?.getMethod("get\$ACTIONS".let { if (postFix != null) it + postFix else it })?.invoke(null) as? List<*>
 
 fun <T : ChainLink> InputListener.setChain(user: User, firstLink: T) = set(user, firstLink::class.qualifiedName!!)

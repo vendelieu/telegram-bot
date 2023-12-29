@@ -63,18 +63,18 @@ class CodegenUpdateHandler internal constructor(
             return@run
 
         // invoke update type handler if there's
-        updateTypeHandlers[type]?.invokeCatching(this, emptyMap(), true)
+        updateTypeHandlers[type]?.invokeCatching(this, request.params, true)
 
         when {
             invocation != null -> invocation.invokeCatching(this, request.params)
 
-            unprocessedHandler != null -> unprocessedHandler.invokeCatching(this, emptyMap())
+            unprocessedHandler != null -> unprocessedHandler.invokeCatching(this, request.params)
 
             else -> logger.warn { "update: $update not handled." }
         }
     }
 
-    private suspend inline fun Invocable.invokeCatching(pUpdate: ProcessedUpdate, params: Map<String, String>) {
+    private suspend fun Invocable.invokeCatching(pUpdate: ProcessedUpdate, params: Map<String, String>) {
         bot.chatData.run {
             if (pUpdate.userOrNull == null) return@run
             // check for user id nullability
@@ -95,10 +95,10 @@ class CodegenUpdateHandler internal constructor(
         }
     }
 
-    private suspend inline fun InvocationLambda.invokeCatching(
+    private suspend fun InvocationLambda.invokeCatching(
         pUpdate: ProcessedUpdate,
         params: Map<String, String>,
-        isTypeUpdate: Boolean = true,
+        isTypeUpdate: Boolean = false,
     ) = runCatching {
         invoke(bot.config.classManager, pUpdate, pUpdate.userOrNull, bot, params)
     }.onFailure {

@@ -11,5 +11,5 @@ import kotlinx.coroutines.Dispatchers
  */
 data class UpdatesListenerConfiguration(
     var dispatcher: CoroutineDispatcher = Dispatchers.Default,
-    var pullingDelay: Long = 100,
+    var pullingDelay: Long = 0,
 )
