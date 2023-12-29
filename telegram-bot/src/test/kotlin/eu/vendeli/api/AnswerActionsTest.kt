@@ -52,30 +52,43 @@ class AnswerActionsTest : BotTestContext() {
 
     @Test
     suspend fun `answer pre checkout query test`() {
-        val result = answerPreCheckoutQuery("test", false, "test1")
+        val failureResult = answerPreCheckoutQuery("test", false, "test1")
+            .sendAsync(bot).await()
+        val successResult = answerPreCheckoutQuery("test")
             .sendAsync(bot).await()
 
-        result.ok.shouldBeFalse()
-        result.shouldBeInstanceOf<Response.Failure>()
+        listOf(failureResult, successResult).forEach { result ->
+            result.ok.shouldBeFalse()
+            result.shouldBeInstanceOf<Response.Failure>()
 
-        with(result) {
-            errorCode shouldBe 400
-            description shouldContain "ID is invalid"
+            with(result) {
+                errorCode shouldBe 400
+                description shouldContain "ID is invalid"
+            }
         }
     }
 
     @Test
     suspend fun `answer shipping query test`() {
-        val result = answerShippingQuery("test") {
+        val listingResult = answerShippingQuery("test") {
             +ShippingOption("testOp", "testTitle", listOf(LabeledPrice("testLbl", 1)))
         }.sendAsync(bot).await()
+        val varargResult = answerShippingQuery(
+            "test",
+            true,
+            null,
+            ShippingOption("testOp", "testTitle", listOf(LabeledPrice("testLbl", 1))),
+        ).sendAsync(bot).await()
+        val errorResult = answerShippingQuery("test", false, "test").sendAsync(bot).await()
 
-        result.ok.shouldBeFalse()
-        result.shouldBeInstanceOf<Response.Failure>()
+        listOf(listingResult, varargResult, errorResult).forEach { result ->
+            result.ok.shouldBeFalse()
+            result.shouldBeInstanceOf<Response.Failure>()
 
-        with(result) {
-            errorCode shouldBe 400
-            description shouldContain "ID is invalid"
+            with(result) {
+                errorCode shouldBe 400
+                description shouldContain "ID is invalid"
+            }
         }
     }
 
