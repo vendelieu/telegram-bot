@@ -6,6 +6,7 @@
     "TopLevelPropertyNaming",
     "UNNECESSARY_SAFE_CALL",
     "RedundantNullableReturnType",
+    "KotlinConstantConditions",
 )
 
 package eu.vendeli.fixtures
