@@ -74,13 +74,15 @@ internal val chatJoinRequestUpdateClass = ChatJoinRequestUpdate::class.asTypeNam
 internal fun <T : ProcessedUpdate> FileBuilder.addUpdateImport(type: KClass<T>) =
     addImport("eu.vendeli.tgbot.types.internal", type.simpleName!!)
 
+internal val callbackQueryList = listOf(UpdateType.CALLBACK_QUERY)
+
 internal fun List<KSValueArgument>.parseAsCommandHandler() = Triple(
     first { it.name?.asString() == "value" }.value.cast<List<String>>(),
     first { it.name?.asString() == "rateLimits" }.value.cast<KSAnnotation>().arguments.let {
         it.first().value.cast<Long>() to it.last().value.cast<Long>()
     },
-    first { it.name?.asString() == "scope" }.value.cast<List<KSType>>()
-        .map { UpdateType.valueOf(it.declaration.toString()) },
+    firstOrNull { it.name?.asString() == "scope" }?.value?.safeCast<List<KSType>>()
+        ?.map { UpdateType.valueOf(it.declaration.toString()) } ?: callbackQueryList,
 )
 
 internal fun List<KSValueArgument>.parseAsInputHandler() = Pair(
@@ -116,6 +118,9 @@ internal fun FileBuilder.addZeroLimitsProp() {
 @Suppress("UNCHECKED_CAST", "NOTHING_TO_INLINE")
 internal inline fun <R> Any?.cast(): R = this as R
 
+@Suppress("UNCHECKED_CAST", "NOTHING_TO_INLINE")
+internal inline fun <R> Any?.safeCast(): R? = this as? R
+
 internal fun Pair<Long, Long>.toRateLimits(): Any =
     if (first == 0L && second == 0L) "zeroRateLimits" else RateLimits(first, second)
 
@@ -123,14 +128,19 @@ internal fun String.withPostfix(postfix: String?): String = postfix?.let { "${th
 internal fun String.escape() = replace(".", "_")
 
 internal fun <T : Annotation> Resolver.getAnnotatedFnSymbols(
-    clazz: KClass<T>,
     targetPackage: String? = null,
-): Sequence<KSFunctionDeclaration> =
-    if (targetPackage == null)
-        getSymbolsWithAnnotation(clazz.qualifiedName!!).filterIsInstance<KSFunctionDeclaration>()
-    else getSymbolsWithAnnotation(clazz.qualifiedName!!).filter {
-        it is KSFunctionDeclaration && it.packageName.asString().startsWith(targetPackage)
-    }.cast()
+    vararg `class`: KClass<out T>,
+): Sequence<KSFunctionDeclaration> = `class`.map {
+    getSymbolsWithAnnotation(it.qualifiedName!!)
+}.asSequence().flatten().let {
+    if (targetPackage != null) {
+        it.filter { f ->
+            f is KSFunctionDeclaration && f.packageName.asString().startsWith(targetPackage)
+        }.cast()
+    } else {
+        it.filterIsInstance<KSFunctionDeclaration>()
+    }
+}
 
 internal fun <T : Annotation> Resolver.getAnnotatedClassSymbols(clazz: KClass<T>, targetPackage: String? = null) =
     if (targetPackage == null) getSymbolsWithAnnotation(clazz.qualifiedName!!).filterIsInstance<KSClassDeclaration>()

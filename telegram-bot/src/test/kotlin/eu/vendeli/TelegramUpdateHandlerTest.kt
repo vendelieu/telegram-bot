@@ -57,11 +57,11 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         val throwableUpdatePair = bot.update.caughtExceptions.tryReceive().getOrNull()
         throwableUpdatePair.shouldNotBeNull()
 
-        throwableUpdatePair.first shouldNotBeSameInstanceAs NoSuchElementException::class
-        throwableUpdatePair.first.message shouldBe "test"
+        throwableUpdatePair.exception shouldNotBeSameInstanceAs NoSuchElementException::class
+        throwableUpdatePair.exception.message shouldBe "test"
 
-        throwableUpdatePair.second.message.shouldNotBeNull()
-        throwableUpdatePair.second.message?.text shouldBe "/start"
+        throwableUpdatePair.update.message.shouldNotBeNull()
+        throwableUpdatePair.update.message?.text shouldBe "/start"
     }
 
     @Test
@@ -77,11 +77,11 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         val throwableUpdatePair = bot.update.caughtExceptions.tryReceive().getOrNull()
         throwableUpdatePair.shouldNotBeNull()
 
-        throwableUpdatePair.first shouldNotBeSameInstanceAs IllegalArgumentException::class
-        throwableUpdatePair.first.message shouldBe "test2"
+        throwableUpdatePair.exception shouldNotBeSameInstanceAs IllegalArgumentException::class
+        throwableUpdatePair.exception.message shouldBe "test2"
 
-        throwableUpdatePair.second.message.shouldNotBeNull()
-        throwableUpdatePair.second.message?.text shouldBe "test"
+        throwableUpdatePair.update.message.shouldNotBeNull()
+        throwableUpdatePair.update.message?.text shouldBe "test"
     }
 
     @Test
@@ -183,7 +183,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             stopListener()
         }
         bot.update.caughtExceptions.tryReceive().getOrNull().shouldNotBeNull().run {
-            first.message shouldBe "test3"
+            exception.message shouldBe "test3"
         }
 
         var inputReached = false

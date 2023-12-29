@@ -14,6 +14,7 @@ import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.buildCodeBlock
 import eu.vendeli.tgbot.annotations.CommandHandler
+import eu.vendeli.tgbot.annotations.CommandHandler.CallbackQuery
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.RegexCommandHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
@@ -34,7 +35,10 @@ internal fun FileBuilder.collectCommandActions(
         symbols,
     ) { function ->
         val annotationData = function.annotations.first {
-            it.shortName.asString() == CommandHandler::class.simpleName!!
+            it.shortName.asString() in listOf(
+                CommandHandler::class.simpleName,
+                CallbackQuery::class.simpleName,
+            )
         }.arguments.parseAsCommandHandler()
 
         annotationData.first.forEach {

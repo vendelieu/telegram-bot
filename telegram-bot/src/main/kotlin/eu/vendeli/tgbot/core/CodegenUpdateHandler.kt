@@ -2,11 +2,15 @@ package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
-import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.userOrNull
+import eu.vendeli.tgbot.utils.CommandHandlers
+import eu.vendeli.tgbot.utils.InputHandlers
 import eu.vendeli.tgbot.utils.Invocable
 import eu.vendeli.tgbot.utils.InvocationLambda
+import eu.vendeli.tgbot.utils.RegexHandlers
+import eu.vendeli.tgbot.utils.UpdateTypeHandlers
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.processUpdate
@@ -22,10 +26,10 @@ class CodegenUpdateHandler internal constructor(
     actions: List<*>,
     bot: TelegramBot,
 ) : TgUpdateHandler(bot) {
-    private val commandHandlers = actions[0] as Map<Pair<String, UpdateType>, Invocable>
-    private val inputHandlers = actions[1] as Map<String, Invocable>
-    private val regexHandlers = actions[2] as Map<Regex, Invocable>
-    private val updateTypeHandlers = actions[3] as Map<UpdateType, InvocationLambda>
+    private val commandHandlers = actions[0] as CommandHandlers
+    private val inputHandlers = actions[1] as InputHandlers
+    private val regexHandlers = actions[2] as RegexHandlers
+    private val updateTypeHandlers = actions[3] as UpdateTypeHandlers
     private val unprocessedHandler = actions[4] as InvocationLambda?
 
     override suspend fun handle(update: Update): Unit = update.processUpdate().run {
@@ -89,7 +93,7 @@ class CodegenUpdateHandler internal constructor(
             logger.error(
                 it,
             ) { "Method ${second.qualifier} > ${second.function} invocation error at handling update: $pUpdate" }
-            caughtExceptions.send((it.cause ?: it) to pUpdate.update)
+            caughtExceptions.send(FailedUpdate(it.cause ?: it, pUpdate.update))
         }.onSuccess {
             logger.info { "Handled update#${pUpdate.updateId} to method ${second.qualifier + "::" + second.function}" }
         }
@@ -106,7 +110,7 @@ class CodegenUpdateHandler internal constructor(
             (if (isTypeUpdate) "UpdateTypeHandler(${pUpdate.type})" else "UnprocessedHandler") +
                 " invocation error at handling update: $pUpdate"
         }
-        caughtExceptions.send((it.cause ?: it) to pUpdate.update)
+        caughtExceptions.send(FailedUpdate(it.cause ?: it, pUpdate.update))
     }.onSuccess {
         logger.info {
             "Handled update#${pUpdate.updateId} to " +

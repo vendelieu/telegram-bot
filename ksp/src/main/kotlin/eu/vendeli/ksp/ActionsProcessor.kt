@@ -23,6 +23,7 @@ import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
 import eu.vendeli.tgbot.annotations.CommandHandler
+import eu.vendeli.tgbot.annotations.CommandHandler.CallbackQuery
 import eu.vendeli.tgbot.annotations.Injectable
 import eu.vendeli.tgbot.annotations.InputChain
 import eu.vendeli.tgbot.annotations.InputHandler
@@ -45,11 +46,11 @@ class ActionsProcessor(
     }
 
     private fun processPackage(resolver: Resolver, pkg: String? = null) {
-        val commandHandlerSymbols = resolver.getAnnotatedFnSymbols(CommandHandler::class, pkg)
-        val inputHandlerSymbols = resolver.getAnnotatedFnSymbols(InputHandler::class, pkg)
-        val regexHandlerSymbols = resolver.getAnnotatedFnSymbols(RegexCommandHandler::class, pkg)
-        val updateHandlerSymbols = resolver.getAnnotatedFnSymbols(UpdateHandler::class, pkg)
-        val unprocessedHandlerSymbol = resolver.getAnnotatedFnSymbols(UnprocessedHandler::class, pkg)
+        val commandHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, CommandHandler::class, CallbackQuery::class)
+        val inputHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, InputHandler::class)
+        val regexHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, RegexCommandHandler::class)
+        val updateHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, UpdateHandler::class)
+        val unprocessedHandlerSymbol = resolver.getAnnotatedFnSymbols(pkg, UnprocessedHandler::class)
             .firstOrNull()
 
         val inputChainSymbols = resolver.getAnnotatedClassSymbols(InputChain::class, pkg)

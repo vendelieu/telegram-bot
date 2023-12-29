@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.Actions
 import eu.vendeli.tgbot.types.internal.Activity
 import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
+import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.Invocation
 import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
@@ -84,7 +85,7 @@ class ReflectionUpdateHandler internal constructor(
             method.handleInvocation(clazz, bot.config.classManager, processedParameters, isSuspend)
         }.onFailure {
             logger.error(it) { "Method $invocation invocation error at handling update: $pUpdate" }
-            caughtExceptions.send((it.cause ?: it) to pUpdate.update)
+            caughtExceptions.send(FailedUpdate(it.cause ?: it, pUpdate.update))
         }.onSuccess {
             logger.info { "Handled update#${pUpdate.updateId} to ${invocation.type} method ${invocation.method}" }
         }

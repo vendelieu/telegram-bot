@@ -3,6 +3,7 @@ package eu.vendeli.tgbot.core
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
 import eu.vendeli.tgbot.utils.newCoroutineCtx
@@ -31,7 +32,7 @@ abstract class TgUpdateHandler internal constructor(
     /**
      * The channel where errors caught during update processing are stored with update that caused them.
      */
-    val caughtExceptions by lazy { Channel<Pair<Throwable, Update>>(Channel.CONFLATED) }
+    val caughtExceptions by lazy { Channel<FailedUpdate>(Channel.CONFLATED) }
 
     /**
      * Function that starts the listening event.
