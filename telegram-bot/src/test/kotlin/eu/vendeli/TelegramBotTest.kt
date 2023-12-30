@@ -47,6 +47,7 @@ import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.launch
 import other.pckg.ChatDataImpl
 import other.pckg.UserDataImpl
+import java.time.Instant
 
 class TelegramBotTest : BotTestContext() {
     @Test
@@ -288,7 +289,9 @@ class TelegramBotTest : BotTestContext() {
         val dummyProcessedUpdate = MessageUpdate(
             -0,
             Update(-1),
-            Message(-0, chat = Chat(-0, type = ChatType.Private), date = -0, from = User(1, false, "Test")),
+            Message(-0, chat = Chat(
+                -0, type = ChatType.Private), date = Instant.EPOCH, from = User(1, false, "Test")
+            ),
         )
 
         val inputListenerImpl = object : InputListener {

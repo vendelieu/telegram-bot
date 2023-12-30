@@ -16,7 +16,7 @@ import io.kotest.matchers.string.shouldNotBeBlank
 class ChatInviteLinkMethodsTest : BotTestContext() {
     @Test
     suspend fun `create chat invite link method test`() {
-        val expireUnix = CUR_INSTANT.plusMillis(10000).epochSecond
+        val expireUnix = CUR_INSTANT.plusMillis(10000)
         val result = createChatInviteLink().options {
             name = "test"
             createsJoinRequest = true
@@ -40,7 +40,7 @@ class ChatInviteLinkMethodsTest : BotTestContext() {
             createsJoinRequest = true
         }.sendReturning(CHAT_ID, bot).shouldSuccess()
 
-        val expireUnix = CUR_INSTANT.plusMillis(1000).epochSecond
+        val expireUnix = CUR_INSTANT.plusMillis(1000)
         val result = editChatInviteLink(inviteLink.inviteLink).options {
             name = "test2"
             expireDate = expireUnix

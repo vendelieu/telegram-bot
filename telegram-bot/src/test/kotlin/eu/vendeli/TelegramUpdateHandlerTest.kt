@@ -18,6 +18,7 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
+import java.time.Instant
 
 class TelegramUpdateHandlerTest : BotTestContext() {
     override fun isolationMode() = IsolationMode.InstancePerLeaf
@@ -168,7 +169,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
                         Message(
                             2,
                             from = DUMB_USER,
-                            date = 1,
+                            date = Instant.EPOCH,
                             chat = Chat(1, ChatType.Private),
                             document = Document("3", "33"),
                         ),
