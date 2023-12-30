@@ -1,3 +1,5 @@
 package eu.vendeli.tgbot.types
 
-data class MessageId(val messageId: Long)
+import eu.vendeli.tgbot.interfaces.MultipleResponse
+
+data class MessageId(val messageId: Long): MultipleResponse

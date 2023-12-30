@@ -17,6 +17,7 @@ class SetMessageReactionAction(
     override val returnType = getReturnType()
 
     init {
+        parameters["message_id"] = messageId
         if (reaction != null) parameters["reaction"] = reaction
         if (isBig != null) parameters["is_big"] = messageId
     }
@@ -27,7 +28,7 @@ inline fun setMessageReaction(messageId: Long, reaction: List<ReactionType>? = n
     SetMessageReactionAction(messageId, reaction, isBig)
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun setMessageReaction(messageId: Long, isBig: Boolean? = null, vararg reaction: ReactionType) =
+inline fun setMessageReaction(messageId: Long, vararg reaction: ReactionType, isBig: Boolean? = null) =
     setMessageReaction(messageId, reaction.asList(), isBig)
 
 fun setMessageReaction(

@@ -3,8 +3,6 @@
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.features.CaptionFeature
-import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.MessageId
 import eu.vendeli.tgbot.types.User
@@ -12,17 +10,17 @@ import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CopyMessageOptions
+import eu.vendeli.tgbot.utils.getInnerType
 import eu.vendeli.tgbot.utils.getReturnType
 
 class CopyMessagesAction(
     fromChatId: Identifier<*>,
     messageIds: List<Long>,
-) : Action<MessageId>(),
-    OptionsFeature<CopyMessagesAction, CopyMessageOptions>,
-    MarkupFeature<CopyMessagesAction>,
-    CaptionFeature<CopyMessagesAction> {
+) : Action<List<MessageId>>(),
+    OptionsFeature<CopyMessagesAction, CopyMessageOptions> {
     override val method = TgMethod("copyMessage")
     override val returnType = getReturnType()
+    override val wrappedDataType = getInnerType()
     override val options = CopyMessageOptions()
 
     init {

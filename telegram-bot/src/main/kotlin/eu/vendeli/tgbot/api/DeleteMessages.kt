@@ -7,7 +7,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
 class DeleteMessagesAction(messageIds: List<Long>) : Action<Boolean>() {
-    override val method = TgMethod("deleteMessage")
+    override val method = TgMethod("deleteMessages")
     override val returnType = getReturnType()
 
     init {
@@ -16,4 +16,7 @@ class DeleteMessagesAction(messageIds: List<Long>) : Action<Boolean>() {
 }
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun deleteMessages(vararg messageId: Long) = DeleteMessagesAction(messageId.asList())
+inline fun deleteMessages(messageIds: List<Long>) = DeleteMessagesAction(messageIds)
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun deleteMessages(vararg messageId: Long) = deleteMessages(messageId.asList())

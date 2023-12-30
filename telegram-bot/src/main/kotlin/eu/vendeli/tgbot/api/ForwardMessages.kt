@@ -4,19 +4,21 @@ package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.MessageId
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.ForwardMessageOptions
+import eu.vendeli.tgbot.utils.getInnerType
 import eu.vendeli.tgbot.utils.getReturnType
 
 class ForwardMessagesAction(fromChatId: Identifier<*>, messageIds: List<Long>) :
-    Action<Message>(),
+    Action<List<MessageId>>(),
     OptionsFeature<ForwardMessagesAction, ForwardMessageOptions> {
-    override val method = TgMethod("forwardMessage")
+    override val method = TgMethod("forwardMessages")
     override val returnType = getReturnType()
+    override val wrappedDataType = getInnerType()
     override val options = ForwardMessageOptions()
 
     init {
