@@ -22,12 +22,16 @@ import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
 import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
 import eu.vendeli.tgbot.types.internal.EditedMessageUpdate
 import eu.vendeli.tgbot.types.internal.InlineQueryUpdate
+import eu.vendeli.tgbot.types.internal.MessageReactionCountUpdate
+import eu.vendeli.tgbot.types.internal.MessageReactionUpdate
 import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.MyChatMemberUpdate
 import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
 import eu.vendeli.tgbot.types.internal.PollUpdate
 import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
+import kotlin.reflect.KClass
 
 @Suppress("LongMethod", "CyclomaticComplexMethod")
 internal fun FileBuilder.buildInvocationLambdaCodeBlock(
@@ -79,62 +83,22 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 DOUBLE, doublePrimitiveType -> "$paramCall?.toDoubleOrNull()$nullabilityMark"
 
                 updateClass -> "update"
-                messageUpdClass -> {
-                    addUpdateImport(MessageUpdate::class)
-                    "(update as? MessageUpdate)$nullabilityMark"
-                }
-                callbackQueryUpdateClass -> {
-                    addUpdateImport(CallbackQueryUpdate::class)
-                    "(update as? CallbackQueryUpdate)$nullabilityMark"
-                }
-                editedMessageUpdateClass -> {
-                    addUpdateImport(EditedMessageUpdate::class)
-                    "(update as? EditedMessageUpdate)$nullabilityMark"
-                }
-                channelPostUpdateClass -> {
-                    addUpdateImport(ChannelPostUpdate::class)
-                    "(update as? ChannelPostUpdate)$nullabilityMark"
-                }
-                editedChannelPostUpdate -> {
-                    addUpdateImport(EditedChannelPostUpdate::class)
-                    "(update as? EditedChannelPostUpdate)$nullabilityMark"
-                }
-                inlineQueryUpdateClass -> {
-                    addUpdateImport(InlineQueryUpdate::class)
-                    "(update as? InlineQueryUpdate)$nullabilityMark"
-                }
-                chosenInlineResultUpdateClass -> {
-                    addUpdateImport(ChosenInlineResultUpdate::class)
-                    "(update as? ChosenInlineResultUpdate)$nullabilityMark"
-                }
-                shippingQueryUpdateClass -> {
-                    addUpdateImport(ShippingQueryUpdate::class)
-                    "(update as? ShippingQueryUpdate)$nullabilityMark"
-                }
-                preCheckoutQueryUpdateClass -> {
-                    addUpdateImport(PreCheckoutQueryUpdate::class)
-                    "(update as? PreCheckoutQueryUpdate)$nullabilityMark"
-                }
-                pollUpdateClass -> {
-                    addUpdateImport(PollUpdate::class)
-                    "(update as? PollUpdate)$nullabilityMark"
-                }
-                pollAnswerUpdateClass -> {
-                    addUpdateImport(PollAnswerUpdate::class)
-                    "(update as? PollAnswerUpdate)$nullabilityMark"
-                }
-                myChatMemberUpdateClass -> {
-                    addUpdateImport(MyChatMemberUpdate::class)
-                    "(update as? MyChatMemberUpdate)$nullabilityMark"
-                }
-                chatMemberUpdateClass -> {
-                    addUpdateImport(ChatMemberUpdate::class)
-                    "(update as? ChatMemberUpdate)$nullabilityMark"
-                }
-                chatJoinRequestUpdateClass -> {
-                    addUpdateImport(ChatJoinRequestUpdate::class)
-                    "(update as? ChatJoinRequestUpdate)$nullabilityMark"
-                }
+                messageUpdClass -> addUpdate(MessageUpdate::class, nullabilityMark)
+                callbackQueryUpdateClass -> addUpdate(CallbackQueryUpdate::class, nullabilityMark)
+                editedMessageUpdateClass -> addUpdate(EditedMessageUpdate::class, nullabilityMark)
+                channelPostUpdateClass -> addUpdate(ChannelPostUpdate::class, nullabilityMark)
+                editedChannelPostUpdate -> addUpdate(EditedChannelPostUpdate::class, nullabilityMark)
+                messageReactionUpdate -> addUpdate(MessageReactionUpdate::class, nullabilityMark)
+                messageReactionCountUpdate -> addUpdate(MessageReactionCountUpdate::class, nullabilityMark)
+                inlineQueryUpdateClass -> addUpdate(InlineQueryUpdate::class, nullabilityMark)
+                chosenInlineResultUpdateClass -> addUpdate(ChosenInlineResultUpdate::class, nullabilityMark)
+                shippingQueryUpdateClass -> addUpdate(ShippingQueryUpdate::class, nullabilityMark)
+                preCheckoutQueryUpdateClass -> addUpdate(PreCheckoutQueryUpdate::class, nullabilityMark)
+                pollUpdateClass -> addUpdate(PollUpdate::class, nullabilityMark)
+                pollAnswerUpdateClass -> addUpdate(PollAnswerUpdate::class, nullabilityMark)
+                myChatMemberUpdateClass -> addUpdate(MyChatMemberUpdate::class, nullabilityMark)
+                chatMemberUpdateClass -> addUpdate(ChatMemberUpdate::class, nullabilityMark)
+                chatJoinRequestUpdateClass -> addUpdate(ChatJoinRequestUpdate::class, nullabilityMark)
 
                 in injectableTypes.keys -> {
                     val type = injectableTypes[typeName]!!
@@ -150,4 +114,12 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
         }
         add("%L.invoke(\n\t%L\n)\n", funName, parametersEnumeration)
     }.endControlFlow().build()
+}
+
+private fun <T : ProcessedUpdate> FileBuilder.addUpdate(
+    `class`: KClass<T>,
+    nullabilityMark: String,
+): String {
+    addImport("eu.vendeli.tgbot.types.internal", `class`.simpleName!!)
+    return "(update as? ${`class`.simpleName})$nullabilityMark"
 }

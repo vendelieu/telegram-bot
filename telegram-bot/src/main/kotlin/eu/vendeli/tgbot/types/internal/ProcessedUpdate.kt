@@ -2,6 +2,8 @@ package eu.vendeli.tgbot.types.internal
 
 import eu.vendeli.tgbot.types.CallbackQuery
 import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.MessageReactionCountUpdated
+import eu.vendeli.tgbot.types.MessageReactionUpdated
 import eu.vendeli.tgbot.types.Poll
 import eu.vendeli.tgbot.types.PollAnswer
 import eu.vendeli.tgbot.types.Update
@@ -63,6 +65,20 @@ data class EditedChannelPostUpdate(
     override val user = editedChannelPost.from
     override val text = editedChannelPost.text.orEmpty()
 }
+
+data class MessageReactionUpdate(
+    override val updateId: Int,
+    override val update: Update,
+    val messageReaction: MessageReactionUpdated,
+) : ProcessedUpdate(updateId, update, UpdateType.MESSAGE_REACTION), UserReference {
+    override val user = messageReaction.user
+}
+
+data class MessageReactionCountUpdate(
+    override val updateId: Int,
+    override val update: Update,
+    val messageReactionCount: MessageReactionCountUpdated,
+) : ProcessedUpdate(updateId, update, UpdateType.MESSAGE_REACTION_COUNT)
 
 data class InlineQueryUpdate(
     override val updateId: Int,

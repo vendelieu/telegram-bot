@@ -14,6 +14,8 @@ data class Update(
     val editedMessage: Message? = null,
     val channelPost: Message? = null,
     val editedChannelPost: Message? = null,
+    val messageReaction: MessageReactionUpdated? = null,
+    val messageReactionCount: MessageReactionCountUpdated? = null,
     val inlineQuery: InlineQuery? = null,
     val chosenInlineResult: ChosenInlineResult? = null,
     val callbackQuery: CallbackQuery? = null,

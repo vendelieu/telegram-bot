@@ -28,6 +28,8 @@ import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
 import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
 import eu.vendeli.tgbot.types.internal.EditedMessageUpdate
 import eu.vendeli.tgbot.types.internal.InlineQueryUpdate
+import eu.vendeli.tgbot.types.internal.MessageReactionCountUpdate
+import eu.vendeli.tgbot.types.internal.MessageReactionUpdate
 import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.MyChatMemberUpdate
 import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
@@ -62,6 +64,8 @@ internal val callbackQueryUpdateClass = CallbackQueryUpdate::class.asTypeName()
 internal val editedMessageUpdateClass = EditedMessageUpdate::class.asTypeName()
 internal val channelPostUpdateClass = ChannelPostUpdate::class.asTypeName()
 internal val editedChannelPostUpdate = EditedChannelPostUpdate::class.asTypeName()
+internal val messageReactionUpdate = MessageReactionUpdate::class.asTypeName()
+internal val messageReactionCountUpdate = MessageReactionCountUpdate::class.asTypeName()
 internal val inlineQueryUpdateClass = InlineQueryUpdate::class.asTypeName()
 internal val chosenInlineResultUpdateClass = ChosenInlineResultUpdate::class.asTypeName()
 internal val shippingQueryUpdateClass = ShippingQueryUpdate::class.asTypeName()
@@ -71,8 +75,6 @@ internal val pollAnswerUpdateClass = PollAnswerUpdate::class.asTypeName()
 internal val myChatMemberUpdateClass = MyChatMemberUpdate::class.asTypeName()
 internal val chatMemberUpdateClass = ChatMemberUpdate::class.asTypeName()
 internal val chatJoinRequestUpdateClass = ChatJoinRequestUpdate::class.asTypeName()
-internal fun <T : ProcessedUpdate> FileBuilder.addUpdateImport(type: KClass<T>) =
-    addImport("eu.vendeli.tgbot.types.internal", type.simpleName!!)
 
 internal val callbackQueryList = listOf(UpdateType.CALLBACK_QUERY)
 
