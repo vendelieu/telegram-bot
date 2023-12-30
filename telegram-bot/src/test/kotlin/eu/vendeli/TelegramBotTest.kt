@@ -26,6 +26,7 @@ import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
+import eu.vendeli.tgbot.utils.newCoroutineCtx
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
@@ -42,10 +43,24 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.launch
 import other.pckg.ChatDataImpl
 import other.pckg.UserDataImpl
+import java.time.Instant
 
 class TelegramBotTest : BotTestContext() {
+    @Test
+    suspend fun `updates handler shortcut test`() {
+        doMockHttp()
+        shouldNotThrowAny {
+            newCoroutineCtx(currentCoroutineContext()).launch {
+                bot.update.stopListener()
+            }
+            bot.handleUpdates()
+        }
+    }
+
     @Test
     suspend fun `requests testing`() {
         val getMeReq = bot.makeRequestAsync(
@@ -274,7 +289,15 @@ class TelegramBotTest : BotTestContext() {
         val dummyProcessedUpdate = MessageUpdate(
             -0,
             Update(-1),
-            Message(-0, chat = Chat(-0, type = ChatType.Private), date = -0, from = User(1, false, "Test")),
+            Message(
+                -0,
+                chat = Chat(
+                    -0,
+                    type = ChatType.Private,
+                ),
+                date = Instant.EPOCH,
+                from = User(1, false, "Test"),
+            ),
         )
 
         val inputListenerImpl = object : InputListener {

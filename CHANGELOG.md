@@ -1,5 +1,14 @@
 # Telegram-bot changelog
 
+## 4.1.0
+
+* Added shortcut annotation for `CallbackQuery` handling > `@CommandHandler.CallbackQuery` (or you can import it and use
+  without prefix).
+* Changed all date fields that represent timestamp to `Instant` and `Duration` when it's period.
+* Changed structure of `caughtExceptions` event from `Pair` to `FailedUpdate`.
+* Changed `logback`, `coroutines` from api-dependency to implementation-dependency (ie not transitive now).
+* Covered Telegram API `7.0` version.
+
 ### 4.0.1
 
 * Fix parsing annotations bug when parameters not well-ordered.
@@ -9,6 +18,7 @@
 * Added the ability to collect actions in compile time.
 * Improved support of input chains in annotation mode.
 * Added support for all scopes for commands.
+* Added ability to pass all subclasses of `ProcessedUpdate` in new codegen update handler.
 * Improved signature of `copyMessage`, `forwardMessage`, `banChatSenderChat`, `unbanChatSenderChat` methods.
 
 ## 3.5.0

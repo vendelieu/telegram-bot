@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types.chat
 
 import eu.vendeli.tgbot.types.User
+import java.time.Instant
 
 data class ChatInviteLink(
     val inviteLink: String,
@@ -9,7 +10,7 @@ data class ChatInviteLink(
     val isPrimary: Boolean,
     val isRevoked: Boolean,
     val name: String? = null,
-    val expireDate: Int? = null,
+    val expireDate: Instant? = null,
     val memberLimit: Int? = null,
-    val pendingJoinRequestCount: Int?,
+    val pendingJoinRequestCount: Int? = null,
 )

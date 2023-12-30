@@ -15,4 +15,15 @@ annotation class CommandHandler(
     val value: Array<String>,
     val rateLimits: RateLimits = RateLimits(0, 0),
     val scope: Array<UpdateType> = [UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY],
-)
+) {
+    /**
+     * Shortcut [CommandHandler] annotation with specified scope for [UpdateType.CALLBACK_QUERY].
+     *
+     * @property value Keywords of the command.
+     * @property rateLimits Query limits for this particular command.
+     */
+    annotation class CallbackQuery(
+        val value: Array<String>,
+        val rateLimits: RateLimits = RateLimits(0, 0),
+    )
+}

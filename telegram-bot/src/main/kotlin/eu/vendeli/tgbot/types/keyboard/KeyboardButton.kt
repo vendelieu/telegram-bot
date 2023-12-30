@@ -4,7 +4,7 @@ import eu.vendeli.tgbot.interfaces.Button
 
 data class KeyboardButton(
     val text: String,
-    val requestUser: KeyboardButtonRequestUser? = null,
+    val requestUsers: KeyboardButtonRequestUsers? = null,
     val requestChat: KeyboardButtonRequestChat? = null,
     val requestContact: Boolean? = null,
     val requestLocation: Boolean? = null,

@@ -1,7 +1,11 @@
 package eu.vendeli.tgbot.types.internal
 
 import eu.vendeli.tgbot.types.CallbackQuery
+import eu.vendeli.tgbot.types.ChatBoostRemoved
+import eu.vendeli.tgbot.types.ChatBoostUpdated
 import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.MessageReactionCountUpdated
+import eu.vendeli.tgbot.types.MessageReactionUpdated
 import eu.vendeli.tgbot.types.Poll
 import eu.vendeli.tgbot.types.PollAnswer
 import eu.vendeli.tgbot.types.Update
@@ -63,6 +67,20 @@ data class EditedChannelPostUpdate(
     override val user = editedChannelPost.from
     override val text = editedChannelPost.text.orEmpty()
 }
+
+data class MessageReactionUpdate(
+    override val updateId: Int,
+    override val update: Update,
+    val messageReaction: MessageReactionUpdated,
+) : ProcessedUpdate(updateId, update, UpdateType.MESSAGE_REACTION), UserReference {
+    override val user = messageReaction.user
+}
+
+data class MessageReactionCountUpdate(
+    override val updateId: Int,
+    override val update: Update,
+    val messageReactionCount: MessageReactionCountUpdated,
+) : ProcessedUpdate(updateId, update, UpdateType.MESSAGE_REACTION_COUNT)
 
 data class InlineQueryUpdate(
     override val updateId: Int,
@@ -148,6 +166,18 @@ data class ChatJoinRequestUpdate(
 ) : ProcessedUpdate(updateId, update, UpdateType.CHAT_JOIN_REQUEST), UserReference {
     override val user: User = chatJoinRequest.from
 }
+
+data class ChatBoostUpdate(
+    override val updateId: Int,
+    override val update: Update,
+    val chatBoost: ChatBoostUpdated,
+) : ProcessedUpdate(updateId, update, UpdateType.CHAT_BOOST)
+
+data class RemovedChatBoostUpdate(
+    override val updateId: Int,
+    override val update: Update,
+    val removedChatBoost: ChatBoostRemoved,
+) : ProcessedUpdate(updateId, update, UpdateType.REMOVED_CHAT_BOOST)
 
 inline val ProcessedUpdate.userOrNull: User? get() = (this as? UserReference)?.user
 

@@ -15,7 +15,7 @@ import kotlinx.coroutines.async
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun <T, I : MultipleResponse> ObjectMapper.convertSuccessResponse(
     jsonNode: JsonNode,
-    type: Class<T>?,
+    type: Class<T>? = null,
     innerType: Class<I>? = null,
 ): Success<T> =
     if (innerType == null) convertValue(jsonNode, typeFactory.constructParametricType(Success::class.java, type))

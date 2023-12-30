@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActionContext
 import eu.vendeli.tgbot.types.internal.CommandContext
+import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.InputContext
 import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
@@ -30,8 +31,8 @@ private inline val SingleInputChain.prevChainId: String?
 @Suppress("CyclomaticComplexMethod", "DuplicatedCode", "ReturnCount")
 private suspend fun ManualHandlingDsl.checkMessageForActions(
     update: Update,
-    from: User?,
-    text: String?,
+    from: User? = null,
+    text: String? = null,
     scope: UpdateType,
 ): Boolean {
     // parse text to chosen format
@@ -110,7 +111,7 @@ private suspend fun <CTX> ((suspend (ActionContext<CTX>) -> Unit)?).invokeAction
     actionCtx: ActionContext<CTX>,
 ): Boolean {
     this?.runCatching { invoke(actionCtx) }?.onFailure {
-        bot.update.caughtExceptions.send(it to actionCtx.update)
+        bot.update.caughtExceptions.send(FailedUpdate(it.cause ?: it, actionCtx.update))
         logger.error(it) {
             "An error occurred while manually processing update: ${actionCtx.update} to $actionType."
         }

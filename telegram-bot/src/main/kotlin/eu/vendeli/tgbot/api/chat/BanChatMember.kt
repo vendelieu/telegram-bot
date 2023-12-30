@@ -6,10 +6,11 @@ import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import java.time.Instant
 
 class BanChatMemberAction(
     userId: Long,
-    untilDate: Long? = null,
+    untilDate: Instant? = null,
     revokeMessages: Boolean? = null,
 ) : Action<Boolean>() {
     override val method = TgMethod("banChatMember")
@@ -23,9 +24,9 @@ class BanChatMemberAction(
 }
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun banChatMember(userId: Long, untilDate: Long? = null, revokeMessages: Boolean? = null) =
+inline fun banChatMember(userId: Long, untilDate: Instant? = null, revokeMessages: Boolean? = null) =
     BanChatMemberAction(userId, untilDate, revokeMessages)
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun banChatMember(user: User, untilDate: Long? = null, revokeMessages: Boolean? = null) =
+inline fun banChatMember(user: User, untilDate: Instant? = null, revokeMessages: Boolean? = null) =
     banChatMember(user.id, untilDate, revokeMessages)

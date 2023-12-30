@@ -77,6 +77,9 @@ abstract class BotTestContext(
             httpClient {
                 maxRequestRetry = 0
             }
+            updatesListener {
+                pullingDelay = 100
+            }
         }
         if (spykIt) spykIt()
 

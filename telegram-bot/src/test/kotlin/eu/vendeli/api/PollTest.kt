@@ -9,6 +9,8 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 class PollTest : BotTestContext() {
     @Test
@@ -19,7 +21,7 @@ class PollTest : BotTestContext() {
         ).forEach { action ->
             val result = action.options {
                 type = PollType.Quiz
-                openPeriod = 565
+                openPeriod = 2.minutes
                 correctOptionId = 1
                 isAnonymous = false
             }.sendReturning(TG_ID, bot).shouldSuccess()
@@ -29,7 +31,7 @@ class PollTest : BotTestContext() {
                 question shouldBe "Test"
                 isAnonymous shouldBe false
                 options shouldContainExactly listOf(PollOption("test1", 0), PollOption("test2", 0))
-                openPeriod?.toLong() shouldBe 565
+                openPeriod?.toLong() shouldBe 120.seconds.inWholeSeconds
                 type shouldBe PollType.Quiz
                 correctOptionId shouldBe 1
             }
@@ -40,7 +42,7 @@ class PollTest : BotTestContext() {
     suspend fun `close poll method test`() {
         val poll = poll("Test", "test1", "test2").options {
             type = PollType.Quiz
-            openPeriod = 565
+            openPeriod = 565.seconds
             correctOptionId = 1
             isAnonymous = false
         }.sendReturning(TG_ID, bot)

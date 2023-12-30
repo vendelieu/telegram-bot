@@ -5,5 +5,5 @@ data class Contact(
     val firstName: String,
     val lastName: String? = null,
     val userId: Long? = null,
-    val vcard: String?,
+    val vcard: String? = null,
 )

@@ -33,7 +33,7 @@ jobs:
           ref: ${{ github.head_ref }}
       - uses: jacobtomlinson/gha-find-replace@v3
         with:
-          find: "[0-9]+.[0-9]+.[0-9]+\"\)"
+          find: '[0-9]+.[0-9]+.[0-9]+\"\)'
           replace: "${{ needs.version.outputs.version }}"
           include: "**README.md"
       - name: Push changes

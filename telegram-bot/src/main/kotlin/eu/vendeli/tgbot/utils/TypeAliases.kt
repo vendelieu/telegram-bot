@@ -21,6 +21,7 @@ import eu.vendeli.tgbot.types.internal.InvocationMeta
 import eu.vendeli.tgbot.types.internal.ManualInvocation
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.SingleInputChain
+import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
 import eu.vendeli.tgbot.types.payment.ShippingQuery
@@ -53,3 +54,8 @@ typealias BotConfigurator = BotConfiguration.() -> Unit
 
 typealias InvocationLambda = suspend (ClassManager, ProcessedUpdate, User?, TelegramBot, Map<String, String>) -> Any?
 typealias Invocable = Pair<InvocationLambda, InvocationMeta>
+
+internal typealias CommandHandlers = Map<Pair<String, UpdateType>, Invocable>
+internal typealias InputHandlers = Map<String, Invocable>
+internal typealias RegexHandlers = Map<Regex, Invocable>
+internal typealias UpdateTypeHandlers = Map<UpdateType, InvocationLambda>

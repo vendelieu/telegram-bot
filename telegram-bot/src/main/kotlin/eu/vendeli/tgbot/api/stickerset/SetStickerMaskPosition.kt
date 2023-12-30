@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 class SetStickerMaskPositionAction(
     sticker: String,
-    maskPosition: MaskPosition?,
+    maskPosition: MaskPosition? = null,
 ) : SimpleAction<Boolean>() {
     override val method = TgMethod("setStickerMaskPosition")
     override val returnType = getReturnType()

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.User
+import java.time.Instant
 
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
@@ -66,7 +67,7 @@ sealed class ChatMember(val status: String) : MultipleResponse {
         val canSendOtherMessages: Boolean,
         val canAddWebPagePreviews: Boolean,
         val canManageTopics: Boolean? = null,
-        val untilDate: Int,
+        val untilDate: Instant,
     ) : ChatMember("restricted")
 
     data class Left(
@@ -75,6 +76,6 @@ sealed class ChatMember(val status: String) : MultipleResponse {
 
     data class Banned(
         val user: User,
-        val untilDate: Int,
+        val untilDate: Instant,
     ) : ChatMember("kicked")
 }

@@ -14,6 +14,8 @@ data class Update(
     val editedMessage: Message? = null,
     val channelPost: Message? = null,
     val editedChannelPost: Message? = null,
+    val messageReaction: MessageReactionUpdated? = null,
+    val messageReactionCount: MessageReactionCountUpdated? = null,
     val inlineQuery: InlineQuery? = null,
     val chosenInlineResult: ChosenInlineResult? = null,
     val callbackQuery: CallbackQuery? = null,
@@ -24,4 +26,6 @@ data class Update(
     val myChatMember: ChatMemberUpdated? = null,
     val chatMember: ChatMemberUpdated? = null,
     val chatJoinRequest: ChatJoinRequest? = null,
+    val chatBoost: ChatBoostUpdated? = null,
+    val removedChatBoost: ChatBoostRemoved? = null,
 ) : MultipleResponse

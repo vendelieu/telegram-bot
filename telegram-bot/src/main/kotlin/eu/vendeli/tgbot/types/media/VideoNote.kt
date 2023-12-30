@@ -6,5 +6,5 @@ data class VideoNote(
     val length: Int,
     val duration: Int,
     val thumbnail: PhotoSize? = null,
-    val fileSize: Int?,
+    val fileSize: Int? = null,
 )

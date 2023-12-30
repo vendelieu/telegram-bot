@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types
 
-data class UserShared(
+data class UsersShared(
     val requestId: Int,
-    val userId: Long,
+    val userId: List<Long>,
 )

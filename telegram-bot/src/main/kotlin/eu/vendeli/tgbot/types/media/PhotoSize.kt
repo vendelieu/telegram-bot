@@ -5,5 +5,5 @@ data class PhotoSize(
     val fileUniqueId: String,
     val width: Int,
     val height: Int,
-    val fileSize: Int?,
+    val fileSize: Int? = null,
 )

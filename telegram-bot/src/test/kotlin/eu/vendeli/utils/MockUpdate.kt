@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.Response.Success
+import java.time.Instant
 import kotlin.random.Random
 
 @Suppress("ClassName")
@@ -46,7 +47,7 @@ sealed class MockUpdate {
             Random.nextLong(),
             from = User(1, false, "Test"),
             chat = Chat(1, ChatType.Private),
-            date = Random.nextInt(),
+            date = Instant.EPOCH,
             text = text,
         )
     }

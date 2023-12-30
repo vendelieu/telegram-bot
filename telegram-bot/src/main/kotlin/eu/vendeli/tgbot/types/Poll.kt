@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.types
 
+import java.time.Instant
+
 enum class PollType(private val literal: String) {
     Regular("regular"),
     Quiz("quiz"),
@@ -21,5 +23,5 @@ data class Poll(
     val explanation: String? = null,
     val explanationEntities: List<MessageEntity>? = null,
     val openPeriod: Int? = null,
-    val closeDate: Int?,
+    val closeDate: Instant? = null,
 )

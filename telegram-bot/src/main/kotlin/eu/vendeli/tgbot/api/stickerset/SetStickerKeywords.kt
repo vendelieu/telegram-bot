@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 class SetStickerKeywordsAction(
     sticker: String,
-    keywords: List<String>?,
+    keywords: List<String>? = null,
 ) : SimpleAction<Boolean>() {
     override val method = TgMethod("setStickerKeywords")
     override val returnType = getReturnType()

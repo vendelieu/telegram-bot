@@ -6,5 +6,5 @@ data class Location(
     val horizontalAccuracy: Float? = null,
     val livePeriod: Int? = null,
     val heading: Int? = null,
-    val proximityAlertRadius: Int?,
+    val proximityAlertRadius: Int? = null,
 )

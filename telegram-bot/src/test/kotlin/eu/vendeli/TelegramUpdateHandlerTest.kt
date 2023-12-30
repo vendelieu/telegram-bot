@@ -18,6 +18,7 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
+import java.time.Instant
 
 class TelegramUpdateHandlerTest : BotTestContext() {
     override fun isolationMode() = IsolationMode.InstancePerLeaf
@@ -57,11 +58,11 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         val throwableUpdatePair = bot.update.caughtExceptions.tryReceive().getOrNull()
         throwableUpdatePair.shouldNotBeNull()
 
-        throwableUpdatePair.first shouldNotBeSameInstanceAs NoSuchElementException::class
-        throwableUpdatePair.first.message shouldBe "test"
+        throwableUpdatePair.exception shouldNotBeSameInstanceAs NoSuchElementException::class
+        throwableUpdatePair.exception.message shouldBe "test"
 
-        throwableUpdatePair.second.message.shouldNotBeNull()
-        throwableUpdatePair.second.message?.text shouldBe "/start"
+        throwableUpdatePair.update.message.shouldNotBeNull()
+        throwableUpdatePair.update.message?.text shouldBe "/start"
     }
 
     @Test
@@ -77,11 +78,11 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         val throwableUpdatePair = bot.update.caughtExceptions.tryReceive().getOrNull()
         throwableUpdatePair.shouldNotBeNull()
 
-        throwableUpdatePair.first shouldNotBeSameInstanceAs IllegalArgumentException::class
-        throwableUpdatePair.first.message shouldBe "test2"
+        throwableUpdatePair.exception shouldNotBeSameInstanceAs IllegalArgumentException::class
+        throwableUpdatePair.exception.message shouldBe "test2"
 
-        throwableUpdatePair.second.message.shouldNotBeNull()
-        throwableUpdatePair.second.message?.text shouldBe "test"
+        throwableUpdatePair.update.message.shouldNotBeNull()
+        throwableUpdatePair.update.message?.text shouldBe "test"
     }
 
     @Test
@@ -168,7 +169,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
                         Message(
                             2,
                             from = DUMB_USER,
-                            date = 1,
+                            date = Instant.EPOCH,
                             chat = Chat(1, ChatType.Private),
                             document = Document("3", "33"),
                         ),
@@ -183,7 +184,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             stopListener()
         }
         bot.update.caughtExceptions.tryReceive().getOrNull().shouldNotBeNull().run {
-            first.message shouldBe "test3"
+            exception.message shouldBe "test3"
         }
 
         var inputReached = false

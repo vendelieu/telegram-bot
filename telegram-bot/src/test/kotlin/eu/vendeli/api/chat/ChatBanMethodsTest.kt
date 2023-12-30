@@ -18,7 +18,7 @@ class ChatBanMethodsTest : BotTestContext() {
     suspend fun `ban chat member method test`() {
         banChatMember(
             1000L.asUser(),
-            CUR_INSTANT.plusMillis(100).epochSecond,
+            CUR_INSTANT.plusMillis(100),
             true,
         ).sendReturning(CHAT_ID, bot).onFailure {
             it.description shouldContain "PARTICIPANT_ID_INVALID"

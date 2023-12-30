@@ -20,18 +20,18 @@ repositories {
 dependencies {
     implementation(libs.jackson.kotlin)
     implementation(libs.jackson.databind)
+    implementation(libs.jackson.datatype.jsr310)
 
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.logging)
 
     implementation(libs.mu.logging)
-    api(libs.logback.classic)
+    implementation(libs.logback.classic)
 
     implementation(libs.reflections)
-    implementation(libs.kotlin.reflections)
 
-    api(libs.coroutines.core)
+    implementation(libs.coroutines.core)
 
     testImplementation(libs.logback.classic)
     testImplementation(libs.test.kotest.junit5)
@@ -100,9 +100,7 @@ koverReport {
                         "eu.vendeli.tgbot.utils",
                     )
                     classes(
-                        "eu.vendeli.tgbot.api.Answer*",
-                        "eu.vendeli.tgbot.api.chat.Leave*",
-                        "eu.vendeli.tgbot.api.botactions.Close*",
+                        "eu.vendeli.tgbot.api.botactions.Close*", // test is ignored
                         "eu.vendeli.tgbot.api.botactions.Logout*",
                         "eu.vendeli.tgbot.api.stickerset.*CustomEmoji*",
                         "eu.vendeli.tgbot.implementations.EnvConfigLoader*",

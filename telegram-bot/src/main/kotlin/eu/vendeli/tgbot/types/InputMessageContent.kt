@@ -8,7 +8,7 @@ data class Text(
     val messageText: String,
     val parseMode: ParseMode? = null,
     val entities: List<MessageEntity>? = null,
-    val disableWebPagePreview: Boolean? = null,
+    val linkPreviewOptions: LinkPreviewOptions? = null,
 ) : InputMessageContent()
 
 data class LocationContent(

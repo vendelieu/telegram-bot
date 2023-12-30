@@ -5,5 +5,5 @@ data class Voice(
     val fileUniqueId: String,
     val duration: Int,
     val mimeType: String? = null,
-    val fileSize: Long?,
+    val fileSize: Long? = null,
 )

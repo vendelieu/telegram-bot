@@ -4,6 +4,9 @@
     "UNUSED_ANONYMOUS_PARAMETER",
     "UnnecessaryVariable",
     "TopLevelPropertyNaming",
+    "UNNECESSARY_SAFE_CALL",
+    "RedundantNullableReturnType",
+    "KotlinConstantConditions",
 )
 
 package eu.vendeli.fixtures
