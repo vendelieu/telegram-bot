@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types.internal.options
 
 import eu.vendeli.tgbot.types.ParseMode
+import eu.vendeli.tgbot.types.ReplyParameters
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 
 data class AudioOptions(
@@ -11,7 +12,6 @@ data class AudioOptions(
     var thumbnail: ImplicitFile<*>? = null,
     override var disableNotification: Boolean? = null,
     override var protectContent: Boolean? = null,
-    override var replyToMessageId: Long? = null,
-    override var allowSendingWithoutReply: Boolean? = null,
+    override var replyParameters: ReplyParameters? = null,
     override var messageThreadId: Long? = null,
 ) : OptionsCommon, OptionsParseMode

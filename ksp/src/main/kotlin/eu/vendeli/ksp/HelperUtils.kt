@@ -22,6 +22,7 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
 import eu.vendeli.tgbot.types.internal.ChainLink
 import eu.vendeli.tgbot.types.internal.ChannelPostUpdate
+import eu.vendeli.tgbot.types.internal.ChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
 import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
 import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
@@ -36,6 +37,7 @@ import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
 import eu.vendeli.tgbot.types.internal.PollUpdate
 import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
@@ -63,9 +65,9 @@ internal val messageUpdClass = MessageUpdate::class.asTypeName()
 internal val callbackQueryUpdateClass = CallbackQueryUpdate::class.asTypeName()
 internal val editedMessageUpdateClass = EditedMessageUpdate::class.asTypeName()
 internal val channelPostUpdateClass = ChannelPostUpdate::class.asTypeName()
-internal val editedChannelPostUpdate = EditedChannelPostUpdate::class.asTypeName()
-internal val messageReactionUpdate = MessageReactionUpdate::class.asTypeName()
-internal val messageReactionCountUpdate = MessageReactionCountUpdate::class.asTypeName()
+internal val editedChannelPostUpdateClass = EditedChannelPostUpdate::class.asTypeName()
+internal val messageReactionUpdateClass = MessageReactionUpdate::class.asTypeName()
+internal val messageReactionCountUpdateClass = MessageReactionCountUpdate::class.asTypeName()
 internal val inlineQueryUpdateClass = InlineQueryUpdate::class.asTypeName()
 internal val chosenInlineResultUpdateClass = ChosenInlineResultUpdate::class.asTypeName()
 internal val shippingQueryUpdateClass = ShippingQueryUpdate::class.asTypeName()
@@ -75,6 +77,8 @@ internal val pollAnswerUpdateClass = PollAnswerUpdate::class.asTypeName()
 internal val myChatMemberUpdateClass = MyChatMemberUpdate::class.asTypeName()
 internal val chatMemberUpdateClass = ChatMemberUpdate::class.asTypeName()
 internal val chatJoinRequestUpdateClass = ChatJoinRequestUpdate::class.asTypeName()
+internal val chatBoostUpdateClass = ChatBoostUpdate::class.asTypeName()
+internal val removedChatBoostUpdateClass = RemovedChatBoostUpdate::class.asTypeName()
 
 internal val callbackQueryList = listOf(UpdateType.CALLBACK_QUERY)
 

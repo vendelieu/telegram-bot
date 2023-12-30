@@ -1,5 +1,8 @@
 package eu.vendeli.tgbot.types
 
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+
 enum class EmojiType(val literal: String) {
     ThumbUp("👍"),
     ThumbDown("👎"),
@@ -79,6 +82,15 @@ enum class EmojiType(val literal: String) {
     override fun toString(): String = literal
 }
 
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "type",
+)
+@JsonSubTypes(
+    JsonSubTypes.Type(value = ReactionType.Emoji::class, name = "emoji"),
+    JsonSubTypes.Type(value = ReactionType.CustomEmoji::class, name = "custom_emoji"),
+)
 sealed class ReactionType(
     val type: String,
 ) {

@@ -289,8 +289,14 @@ class TelegramBotTest : BotTestContext() {
         val dummyProcessedUpdate = MessageUpdate(
             -0,
             Update(-1),
-            Message(-0, chat = Chat(
-                -0, type = ChatType.Private), date = Instant.EPOCH, from = User(1, false, "Test")
+            Message(
+                -0,
+                chat = Chat(
+                    -0,
+                    type = ChatType.Private,
+                ),
+                date = Instant.EPOCH,
+                from = User(1, false, "Test"),
             ),
         )
 

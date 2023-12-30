@@ -5,7 +5,7 @@ import eu.vendeli.tgbot.types.internal.options.ReplyKeyboardMarkupOptions
 import eu.vendeli.tgbot.types.keyboard.KeyboardButton
 import eu.vendeli.tgbot.types.keyboard.KeyboardButtonPollType
 import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestChat
-import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestUser
+import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestUsers
 import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardMarkup
 import eu.vendeli.tgbot.types.keyboard.WebAppInfo
 
@@ -35,8 +35,8 @@ class ReplyKeyboardMarkupBuilder : KeyboardBuilder<KeyboardButton>() {
      * Tapping on any user will send their identifier to the bot in a “user_shared” service message.
      * Available in private chats only.
      */
-    infix fun String.requestUser(value: KeyboardButtonRequestUser) {
-        buttons += KeyboardButton(this, requestUser = value)
+    infix fun String.requestUser(value: KeyboardButtonRequestUsers) {
+        buttons += KeyboardButton(this, requestUsers = value)
     }
 
     /**

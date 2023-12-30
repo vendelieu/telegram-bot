@@ -26,4 +26,6 @@ data class Update(
     val myChatMember: ChatMemberUpdated? = null,
     val chatMember: ChatMemberUpdated? = null,
     val chatJoinRequest: ChatJoinRequest? = null,
+    val chatBoost: ChatBoostUpdated? = null,
+    val removedChatBoost: ChatBoostRemoved? = null
 ) : MultipleResponse

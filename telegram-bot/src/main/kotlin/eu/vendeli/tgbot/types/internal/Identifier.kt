@@ -1,8 +1,10 @@
 package eu.vendeli.tgbot.types.internal
 
+import com.fasterxml.jackson.annotation.JsonValue
 import eu.vendeli.tgbot.types.User
 
 sealed class Identifier<T : Any> {
+    @get:JsonValue
     abstract val get: T
 
     data class String(val to: kotlin.String) : Identifier<kotlin.String>() {

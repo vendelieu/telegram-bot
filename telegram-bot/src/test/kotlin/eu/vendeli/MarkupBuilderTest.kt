@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.types.keyboard.ForceReply
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.types.keyboard.KeyboardButtonPollType
 import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestChat
-import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestUser
+import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestUsers
 import eu.vendeli.tgbot.types.keyboard.LoginUrl
 import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardMarkup
 import eu.vendeli.tgbot.types.keyboard.WebAppInfo
@@ -107,7 +107,7 @@ class MarkupBuilderTest : BotTestContext() {
             "test3" webApp WebAppInfo("test")
             "test4" requestContact false
             br()
-            "test5" requestUser KeyboardButtonRequestUser(1, userIsBot = true, userIsPremium = false)
+            "test5" requestUser KeyboardButtonRequestUsers(1, userIsBot = true, userIsPremium = false)
             "test6" requestChat KeyboardButtonRequestChat(2, chatIsChannel = false, chatIsForum = true)
         }
 
@@ -121,7 +121,7 @@ class MarkupBuilderTest : BotTestContext() {
             row1el1.requestLocation shouldBe true
 
             row1el1.requestChat.shouldBeNull()
-            row1el1.requestUser.shouldBeNull()
+            row1el1.requestUsers.shouldBeNull()
             row1el1.requestPoll.shouldBeNull()
             row1el1.requestContact.shouldBeNull()
             row1el1.webApp.shouldBeNull()
@@ -134,7 +134,7 @@ class MarkupBuilderTest : BotTestContext() {
             row1el2.requestPoll?.type.shouldBeNull()
 
             row1el2.requestChat.shouldBeNull()
-            row1el2.requestUser.shouldBeNull()
+            row1el2.requestUsers.shouldBeNull()
             row1el2.requestLocation.shouldBeNull()
             row1el2.requestContact.shouldBeNull()
             row1el2.webApp.shouldBeNull()
@@ -147,7 +147,7 @@ class MarkupBuilderTest : BotTestContext() {
             row2el1.webApp?.url shouldBe "test"
 
             row2el1.requestChat.shouldBeNull()
-            row2el1.requestUser.shouldBeNull()
+            row2el1.requestUsers.shouldBeNull()
             row2el1.requestLocation.shouldBeNull()
             row2el1.requestContact.shouldBeNull()
             row2el1.requestPoll.shouldBeNull()
@@ -159,7 +159,7 @@ class MarkupBuilderTest : BotTestContext() {
             row2el2.requestLocation.shouldBeNull()
             row2el2.requestPoll.shouldBeNull()
             row2el2.requestChat.shouldBeNull()
-            row2el2.requestUser.shouldBeNull()
+            row2el2.requestUsers.shouldBeNull()
 
             row2el2.requestContact.shouldNotBeNull()
             row2el2.requestContact shouldBe false
@@ -174,10 +174,10 @@ class MarkupBuilderTest : BotTestContext() {
             row3el1.requestPoll.shouldBeNull()
             row3el1.requestChat.shouldBeNull()
 
-            row3el1.requestUser.shouldNotBeNull()
-            row3el1.requestUser?.requestId shouldBe 1
-            row3el1.requestUser?.userIsBot shouldBe true
-            row3el1.requestUser?.userIsPremium shouldBe false
+            row3el1.requestUsers.shouldNotBeNull()
+            row3el1.requestUsers?.requestId shouldBe 1
+            row3el1.requestUsers?.userIsBot shouldBe true
+            row3el1.requestUsers?.userIsPremium shouldBe false
 
             // 3 row 2 element
             val row3el2 = get(2)[1]
@@ -187,7 +187,7 @@ class MarkupBuilderTest : BotTestContext() {
             row3el2.requestContact.shouldBeNull()
             row3el2.requestContact.shouldBeNull()
             row3el2.requestPoll.shouldBeNull()
-            row3el2.requestUser.shouldBeNull()
+            row3el2.requestUsers.shouldBeNull()
 
             row3el2.requestChat.run {
                 shouldNotBeNull()

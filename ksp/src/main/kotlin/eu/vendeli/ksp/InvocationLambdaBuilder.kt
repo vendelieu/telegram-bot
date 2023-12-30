@@ -16,6 +16,7 @@ import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
 import eu.vendeli.tgbot.types.internal.ChannelPostUpdate
+import eu.vendeli.tgbot.types.internal.ChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
 import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
 import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
@@ -30,6 +31,7 @@ import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
 import eu.vendeli.tgbot.types.internal.PollUpdate
 import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 import kotlin.reflect.KClass
 
@@ -87,9 +89,9 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 callbackQueryUpdateClass -> addUpdate(CallbackQueryUpdate::class, nullabilityMark)
                 editedMessageUpdateClass -> addUpdate(EditedMessageUpdate::class, nullabilityMark)
                 channelPostUpdateClass -> addUpdate(ChannelPostUpdate::class, nullabilityMark)
-                editedChannelPostUpdate -> addUpdate(EditedChannelPostUpdate::class, nullabilityMark)
-                messageReactionUpdate -> addUpdate(MessageReactionUpdate::class, nullabilityMark)
-                messageReactionCountUpdate -> addUpdate(MessageReactionCountUpdate::class, nullabilityMark)
+                editedChannelPostUpdateClass -> addUpdate(EditedChannelPostUpdate::class, nullabilityMark)
+                messageReactionUpdateClass -> addUpdate(MessageReactionUpdate::class, nullabilityMark)
+                messageReactionCountUpdateClass -> addUpdate(MessageReactionCountUpdate::class, nullabilityMark)
                 inlineQueryUpdateClass -> addUpdate(InlineQueryUpdate::class, nullabilityMark)
                 chosenInlineResultUpdateClass -> addUpdate(ChosenInlineResultUpdate::class, nullabilityMark)
                 shippingQueryUpdateClass -> addUpdate(ShippingQueryUpdate::class, nullabilityMark)
@@ -99,6 +101,8 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 myChatMemberUpdateClass -> addUpdate(MyChatMemberUpdate::class, nullabilityMark)
                 chatMemberUpdateClass -> addUpdate(ChatMemberUpdate::class, nullabilityMark)
                 chatJoinRequestUpdateClass -> addUpdate(ChatJoinRequestUpdate::class, nullabilityMark)
+                chatBoostUpdateClass -> addUpdate(ChatBoostUpdate::class, nullabilityMark)
+                removedChatBoostUpdateClass -> addUpdate(RemovedChatBoostUpdate::class, nullabilityMark)
 
                 in injectableTypes.keys -> {
                     val type = injectableTypes[typeName]!!

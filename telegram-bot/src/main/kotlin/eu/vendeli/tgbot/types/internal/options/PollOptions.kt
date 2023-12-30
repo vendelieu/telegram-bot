@@ -3,6 +3,7 @@ package eu.vendeli.tgbot.types.internal.options
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.PollType
+import eu.vendeli.tgbot.types.ReplyParameters
 import java.time.Instant
 import kotlin.time.Duration
 
@@ -18,8 +19,7 @@ data class PollOptions(
     var closeDate: Instant? = null,
     var isClosed: Boolean? = null,
     override var disableNotification: Boolean? = null,
-    override var replyToMessageId: Long? = null,
-    override var allowSendingWithoutReply: Boolean? = null,
+    override var replyParameters: ReplyParameters? = null,
     override var protectContent: Boolean? = null,
     override var messageThreadId: Long? = null,
 ) : OptionsCommon

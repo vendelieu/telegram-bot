@@ -3,6 +3,7 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
 import eu.vendeli.tgbot.types.internal.ChannelPostUpdate
+import eu.vendeli.tgbot.types.internal.ChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
 import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
 import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
@@ -16,6 +17,7 @@ import eu.vendeli.tgbot.types.internal.MyChatMemberUpdate
 import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
 import eu.vendeli.tgbot.types.internal.PollUpdate
 import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
+import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 
 @Suppress("CyclomaticComplexMethod")
@@ -36,5 +38,7 @@ fun Update.processUpdate() = when {
     myChatMember != null -> MyChatMemberUpdate(updateId, this, myChatMember)
     chatMember != null -> ChatMemberUpdate(updateId, this, chatMember)
     chatJoinRequest != null -> ChatJoinRequestUpdate(updateId, this, chatJoinRequest)
+    chatBoost != null -> ChatBoostUpdate(updateId, this, chatBoost)
+    removedChatBoost != null -> RemovedChatBoostUpdate(updateId, this, removedChatBoost)
     else -> throw IllegalArgumentException("Unknown type of update.")
 }

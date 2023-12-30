@@ -17,6 +17,8 @@ enum class UpdateType {
     MY_CHAT_MEMBER,
     CHAT_MEMBER,
     CHAT_JOIN_REQUEST,
+    CHAT_BOOST,
+    REMOVED_CHAT_BOOST,
     ;
 
     override fun toString() = name.lowercase()

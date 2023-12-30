@@ -20,6 +20,7 @@ repositories {
 dependencies {
     implementation(libs.jackson.kotlin)
     implementation(libs.jackson.databind)
+    implementation(libs.jackson.datatype.jsr310)
 
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
