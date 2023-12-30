@@ -2,6 +2,8 @@
 
 ## 4.1.0
 
+* Added shortcut annotation for `CallbackQuery` handling > `@CommandHandler.CallbackQuery` (or you can import it and use
+  without prefix).
 * Changed all date fields that represent timestamp to `Instant` and `Duration` when it's period.
 * Changed structure of `caughtExceptions` event from `Pair` to `FailedUpdate`.
 * Changed `logback`, `coroutines` from api-dependency to implementation-dependency (ie not transitive now).
