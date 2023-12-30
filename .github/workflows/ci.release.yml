@@ -34,7 +34,7 @@ jobs:
       - uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: '[0-9]+.[0-9]+.[0-9]+\"\)'
-          replace: "${{ needs.version.outputs.version }}"
+          replace: "${{ needs.version.outputs.version }}\")"
           include: "**README.md"
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
