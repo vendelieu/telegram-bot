@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.internal.options
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.PollType
@@ -15,6 +16,7 @@ data class PollOptions(
     var explanation: String? = null,
     var explanationParseMode: ParseMode? = null,
     var explanationEntities: List<MessageEntity>? = null,
+    @field:JsonFormat(pattern = "SECONDS")
     var openPeriod: Duration? = null,
     var closeDate: Instant? = null,
     var isClosed: Boolean? = null,

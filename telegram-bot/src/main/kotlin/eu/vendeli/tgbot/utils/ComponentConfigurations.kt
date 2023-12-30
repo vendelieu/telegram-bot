@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.databind.module.SimpleModule
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
@@ -78,8 +79,9 @@ internal fun TelegramBot.Companion.getConfiguredMapper() = ObjectMapper().apply 
             configure(KotlinFeature.NullIsSameAsDefault, false)
             configure(KotlinFeature.SingletonSupport, false)
             configure(KotlinFeature.StrictNullChecks, false)
+            configure(KotlinFeature.UseJavaDurationConversion, true)
         }.build(),
-        JavaTimeModule(),
+        JavaTimeModule().enable(JavaTimeFeature.ALWAYS_ALLOW_STRINGIFIED_DATE_TIMESTAMPS),
         SimpleModule().addDeserializer(
             MaybeInaccessibleMessage::class.java,
             MaybeInaccessibleMessageDeser,
