@@ -13,6 +13,7 @@ enum class EntityType(private val literal: String) {
     Underline("underline"),
     Strikethrough("strikethrough"),
     Spoiler("spoiler"),
+    Blockquote("blockquote"),
     Code("code"),
     Pre("pre"),
     TextLink("text_link"),

@@ -5,6 +5,7 @@ import eu.vendeli.tgbot.api.EditMessageCaptionAction
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.EntityType
+import eu.vendeli.tgbot.types.EntityType.Blockquote
 import eu.vendeli.tgbot.types.EntityType.Bold
 import eu.vendeli.tgbot.types.EntityType.BotCommand
 import eu.vendeli.tgbot.types.EntityType.Cashtag
@@ -114,6 +115,7 @@ interface EntitiesContextBuilder<Action : TgAction<*>> {
     fun EntitiesContextBuilder<Action>.underline(block: () -> String) = Underline to block()
     fun EntitiesContextBuilder<Action>.strikethrough(block: () -> String) = Strikethrough to block()
     fun EntitiesContextBuilder<Action>.spoiler(block: () -> String) = Spoiler to block()
+    fun EntitiesContextBuilder<Action>.blockquote(block: () -> String) = Blockquote to block()
     fun EntitiesContextBuilder<Action>.code(block: () -> String) = Code to block()
 
     fun EntitiesContextBuilder<Action>.customEmoji(
