@@ -43,12 +43,12 @@ internal fun FileBuilder.collectCommandActions(
 
         annotationData.first.forEach {
             annotationData.third.forEach { updT ->
-                logger.info("Command: $it UpdateType: $updT --> ${function.qualifiedName?.asString()}")
+                logger.info("Command: $it UpdateType: ${updT.name} --> ${function.qualifiedName?.asString()}")
 
                 addImport(UpdateType::class, updT.name)
                 addStatement(
                     "(\"$it\" to %L) to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
-                    updT,
+                    updT.name,
                     buildInvocationLambdaCodeBlock(function, injectableTypes),
                     function.qualifiedName!!.getQualifier(),
                     function.simpleName.asString(),
@@ -132,11 +132,11 @@ internal fun FileBuilder.collectUpdateTypeActions(
         }.arguments.parseAsUpdateHandler()
 
         annotationData.forEach {
-            logger.info("UpdateType: $it --> ${function.qualifiedName?.asString()}")
+            logger.info("UpdateType: ${it.name} --> ${function.qualifiedName?.asString()}")
             addImport(UpdateType::class, it.name)
             addStatement(
                 "%L to %L,",
-                it,
+                it.name,
                 buildInvocationLambdaCodeBlock(function, injectableTypes),
             )
         }
