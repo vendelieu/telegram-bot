@@ -27,7 +27,7 @@ dependencies {
     implementation(libs.ktor.client.logging)
 
     implementation(libs.mu.logging)
-    api(libs.logback.classic)
+    implementation(libs.logback.classic)
 
     implementation(libs.reflections)
 
