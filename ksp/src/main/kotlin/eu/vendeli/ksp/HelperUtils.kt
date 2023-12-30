@@ -135,8 +135,8 @@ internal fun String.escape() = replace(".", "_")
 
 internal fun <T : Annotation> Resolver.getAnnotatedFnSymbols(
     targetPackage: String? = null,
-    vararg `class`: KClass<out T>,
-): Sequence<KSFunctionDeclaration> = `class`.map {
+    vararg kClasses: KClass<out T>,
+): Sequence<KSFunctionDeclaration> = kClasses.map {
     getSymbolsWithAnnotation(it.qualifiedName!!)
 }.asSequence().flatten().let {
     if (targetPackage != null) {

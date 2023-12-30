@@ -121,9 +121,9 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
 }
 
 private fun <T : ProcessedUpdate> FileBuilder.addUpdate(
-    `class`: KClass<T>,
+    kClass: KClass<T>,
     nullabilityMark: String,
 ): String {
-    addImport("eu.vendeli.tgbot.types.internal", `class`.simpleName!!)
-    return "(update as? ${`class`.simpleName})$nullabilityMark"
+    addImport("eu.vendeli.tgbot.types.internal", kClass.simpleName!!)
+    return "(update as? ${kClass.simpleName})$nullabilityMark"
 }

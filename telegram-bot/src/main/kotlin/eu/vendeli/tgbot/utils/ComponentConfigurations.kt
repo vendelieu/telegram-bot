@@ -81,7 +81,8 @@ internal fun TelegramBot.Companion.getConfiguredMapper() = ObjectMapper().apply 
         }.build(),
         JavaTimeModule(),
         SimpleModule().addDeserializer(
-            MaybeInaccessibleMessage::class.java, MaybeInaccessibleMessageDeser,
+            MaybeInaccessibleMessage::class.java,
+            MaybeInaccessibleMessageDeser,
         ),
     )
 
@@ -103,4 +104,3 @@ private object MaybeInaccessibleMessageDeser : JsonDeserializer<MaybeInaccessibl
         else treeToValue(node, Message::class.java)
     }
 }
-

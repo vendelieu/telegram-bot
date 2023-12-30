@@ -47,7 +47,6 @@ class SerdeIssuesTest : BotTestContext() {
         shouldNotThrowAny { mapper.readValue(serializedMessage, MaybeInaccessibleMessage::class.java) }
             .shouldBeTypeOf<MaybeInaccessibleMessage.InaccessibleMessage>()
 
-
         val msgWithDate = Message(1, chat = Chat(2, ChatType.Group), date = Instant.now())
         val serializedDateMessage = mapper.writeValueAsString(msgWithDate)
         shouldNotThrowAny { mapper.readValue(serializedDateMessage, MaybeInaccessibleMessage::class.java) }

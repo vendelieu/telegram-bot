@@ -7,5 +7,5 @@ data class ChatBoostRemoved(
     val chat: Chat,
     val boostId: String,
     val removeDate: Instant,
-    val source: ChatBoostSource
+    val source: ChatBoostSource,
 )
