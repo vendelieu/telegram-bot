@@ -7,5 +7,5 @@ data class Venue(
     val foursquareId: String? = null,
     val fourSquareType: String? = null,
     val googlePlaceId: String? = null,
-    val googlePlaceType: String?,
+    val googlePlaceType: String? = null,
 )

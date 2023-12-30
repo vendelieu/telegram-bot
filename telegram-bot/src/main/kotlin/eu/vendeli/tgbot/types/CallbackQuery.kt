@@ -7,5 +7,5 @@ data class CallbackQuery(
     val inlineMessageId: String? = null,
     val chatInstance: String,
     val data: String? = null,
-    val gameShortName: String?,
+    val gameShortName: String? = null,
 )

@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 class SetCustomEmojiStickerSetThumbnailAction(
     name: String,
-    customEmojiId: String?,
+    customEmojiId: String? = null,
 ) : SimpleAction<Boolean>() {
     override val method = TgMethod("setCustomEmojiStickerSetThumbnail")
     override val returnType = getReturnType()

@@ -62,7 +62,7 @@ internal suspend inline fun Method.handleInvocation(
 
 internal suspend inline fun TgUpdateHandler.checkIsLimited(
     limits: RateLimits,
-    telegramId: Long?,
+    telegramId: Long? = null,
     actionId: String? = null,
 ): Boolean = bot.config.rateLimiter.run {
     if (limits.period == 0L && limits.rate == 0L || telegramId == null) return false

@@ -29,25 +29,26 @@ import eu.vendeli.tgbot.types.media.Voice
 import eu.vendeli.tgbot.types.passport.PassportData
 import eu.vendeli.tgbot.types.payment.Invoice
 import eu.vendeli.tgbot.types.payment.SuccessfulPayment
+import java.time.Instant
 
 data class Message(
     val messageId: Long,
     val messageThreadId: Long? = null,
     val from: User? = null,
     val senderChat: Chat? = null,
-    val date: Int,
+    val date: Instant,
     val chat: Chat,
     val forwardFrom: User? = null,
     val forwardFromChat: Chat? = null,
     val forwardFromMessageId: Long? = null,
     val forwardSignature: String? = null,
     val forwardSenderName: String? = null,
-    val forwardDate: Int? = null,
+    val forwardDate: Instant? = null,
     val isTopicMessage: Boolean? = null,
     val isAutomaticForward: Boolean? = null,
     val replyToMessage: Message? = null,
     val viaBot: User? = null,
-    val editDate: Int? = null,
+    val editDate: Instant? = null,
     val hasProtectedContent: Boolean? = null,
     val mediaGroupId: String? = null,
     val authorSignature: String? = null,

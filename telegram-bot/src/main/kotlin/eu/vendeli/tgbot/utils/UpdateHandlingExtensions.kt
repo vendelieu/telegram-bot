@@ -31,8 +31,8 @@ private inline val SingleInputChain.prevChainId: String?
 @Suppress("CyclomaticComplexMethod", "DuplicatedCode", "ReturnCount")
 private suspend fun ManualHandlingDsl.checkMessageForActions(
     update: Update,
-    from: User?,
-    text: String?,
+    from: User? = null,
+    text: String? = null,
     scope: UpdateType,
 ): Boolean {
     // parse text to chosen format

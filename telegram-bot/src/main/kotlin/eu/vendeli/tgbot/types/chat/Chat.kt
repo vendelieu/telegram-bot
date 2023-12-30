@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types.chat
 
 import eu.vendeli.tgbot.types.Message
+import java.time.Instant
 
 enum class ChatType(private val literal: String) {
     Private("private"),
@@ -59,7 +60,7 @@ data class Chat(
     val photo: ChatPhoto? = null,
     val activeUsernames: List<String>? = null,
     val emojiStatusCustomEmojiId: String? = null,
-    val emojiStatusExpirationDate: Long? = null,
+    val emojiStatusExpirationDate: Instant? = null,
     val bio: String? = null,
     val hasPrivateForwards: Boolean? = null,
     val hasRestrictedVoiceAndVideoMessages: Boolean? = null,

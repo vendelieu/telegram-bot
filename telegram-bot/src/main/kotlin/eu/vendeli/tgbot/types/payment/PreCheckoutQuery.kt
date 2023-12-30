@@ -10,5 +10,5 @@ data class PreCheckoutQuery(
     val totalAmount: Int,
     val invoicePayload: String,
     val shippingOptionId: String? = null,
-    val orderInfo: OrderInfo?,
+    val orderInfo: OrderInfo? = null,
 )

@@ -92,7 +92,7 @@ class ReflectionUpdateHandler internal constructor(
     }
 
     @Suppress("NOTHING_TO_INLINE")
-    private inline fun String.getActivityOrNull(user: User?, updateType: UpdateType): Activity? {
+    private inline fun String.getActivityOrNull(user: User? = null, updateType: UpdateType): Activity? {
         var activity = findAction(substringBefore('@'), updateType = updateType)
 
         if (user != null && activity == null) {
