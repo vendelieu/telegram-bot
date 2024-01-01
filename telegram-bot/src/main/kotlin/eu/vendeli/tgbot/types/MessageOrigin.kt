@@ -2,6 +2,7 @@ package eu.vendeli.tgbot.types
 
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
+import eu.vendeli.tgbot.types.chat.Chat
 import java.time.Instant
 
 @JsonTypeInfo(
@@ -10,15 +11,15 @@ import java.time.Instant
     property = "type",
 )
 @JsonSubTypes(
-    JsonSubTypes.Type(value = MessageOrigin.User::class, name = "user"),
+    JsonSubTypes.Type(value = MessageOrigin.UserOrigin::class, name = "user"),
     JsonSubTypes.Type(value = MessageOrigin.HiddenUser::class, name = "hidden_user"),
-    JsonSubTypes.Type(value = MessageOrigin.Chat::class, name = "chat"),
+    JsonSubTypes.Type(value = MessageOrigin.ChatOrigin::class, name = "chat"),
     JsonSubTypes.Type(value = MessageOrigin.Channel::class, name = "channel"),
 )
 sealed class MessageOrigin(val type: String) {
-    data class User(
+    data class UserOrigin(
         val date: Instant,
-        val senderUser: eu.vendeli.tgbot.types.User,
+        val senderUser: User,
     ) : MessageOrigin("user")
 
     data class HiddenUser(
@@ -26,9 +27,9 @@ sealed class MessageOrigin(val type: String) {
         val senderUserName: String,
     ) : MessageOrigin("hidden_user")
 
-    data class Chat(
+    data class ChatOrigin(
         val date: Long,
-        val senderChat: eu.vendeli.tgbot.types.chat.Chat,
+        val senderChat: Chat,
         val authorSignature: String? = null,
     ) : MessageOrigin("chat")
 
