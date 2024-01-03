@@ -32,12 +32,12 @@ import eu.vendeli.tgbot.types.payment.SuccessfulPayment
 import java.time.Instant
 
 data class Message(
-    val messageId: Long,
+    override val messageId: Long,
     val messageThreadId: Long? = null,
     val from: User? = null,
     val senderChat: Chat? = null,
-    val date: Instant,
-    val chat: Chat,
+    override val date: Instant,
+    override val chat: Chat,
     val forwardOrigin: MessageOrigin? = null,
     val isTopicMessage: Boolean? = null,
     val isAutomaticForward: Boolean? = null,

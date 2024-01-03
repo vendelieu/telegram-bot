@@ -17,26 +17,40 @@ import java.time.Instant
     JsonSubTypes.Type(value = MessageOrigin.Channel::class, name = "channel"),
 )
 sealed class MessageOrigin(val type: String) {
+    abstract val date: Instant
+
     data class UserOrigin(
-        val date: Instant,
+        override val date: Instant,
         val senderUser: User,
     ) : MessageOrigin("user")
 
     data class HiddenUser(
-        val date: Instant,
+        override val date: Instant,
         val senderUserName: String,
     ) : MessageOrigin("hidden_user")
 
     data class ChatOrigin(
-        val date: Long,
+        override val date: Instant,
         val senderChat: Chat,
         val authorSignature: String? = null,
     ) : MessageOrigin("chat")
 
     data class Channel(
-        val date: Instant,
+        override val date: Instant,
         val chat: Chat,
         val messageId: Long,
         val authorSignature: String? = null,
     ) : MessageOrigin("channel")
+
+    @Suppress("NOTHING_TO_INLINE")
+    inline fun asUserOrigin() = this as UserOrigin
+
+    @Suppress("NOTHING_TO_INLINE")
+    inline fun asHiddenUser() = this as HiddenUser
+
+    @Suppress("NOTHING_TO_INLINE")
+    inline fun asChatOrigin() = this as ChatOrigin
+
+    @Suppress("NOTHING_TO_INLINE")
+    inline fun asChannel() = this as Channel
 }

@@ -1,9 +1,9 @@
 package eu.vendeli.tgbot.types
 
 data class LinkPreviewOptions(
-    val isDisabled: Boolean? = null,
-    val url: String? = null,
-    val preferSmallMedia: Boolean? = null,
-    val preferLargeMedia: Boolean? = null,
-    val showAboveText: Boolean? = null,
+    var isDisabled: Boolean? = null,
+    var url: String? = null,
+    var preferSmallMedia: Boolean? = null,
+    var preferLargeMedia: Boolean? = null,
+    var showAboveText: Boolean? = null,
 )
