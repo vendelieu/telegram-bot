@@ -29,8 +29,6 @@ dependencies {
     implementation(libs.mu.logging)
     implementation(libs.logback.classic)
 
-    implementation(libs.reflections)
-
     implementation(libs.coroutines.core)
 
     testImplementation(libs.logback.classic)

@@ -1,6 +1,5 @@
 package eu.vendeli.tgbot.implementations
 
-import ch.qos.logback.classic.Level
 import com.fasterxml.jackson.module.kotlin.isKotlinClass
 import eu.vendeli.tgbot.interfaces.ChatData
 import eu.vendeli.tgbot.interfaces.ClassManager
@@ -10,6 +9,7 @@ import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.interfaces.UserData
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
+import java.lang.System.Logger.Level
 import kotlin.reflect.full.primaryConstructor
 
 object EnvConfigLoaderImpl : ConfigLoader {
@@ -45,7 +45,7 @@ object EnvConfigLoaderImpl : ConfigLoader {
         getVal("HTTPC_MAX_RQ_RETRY")?.toIntOrNull()?.also { httpClient.maxRequestRetry = it }
         getVal("HTTPC_RETRY_DELAY")?.toLongOrNull()?.also { httpClient.retryDelay = it }
         // logging
-        getVal("LOG_BOT_LVL")?.also { logging.botLogLevel = Level.toLevel(it) }
+        getVal("LOG_BOT_LVL")?.also { logging.botLogLevel = Level.valueOf(it) }
         getVal("LOG_HTTP_LVL")?.also { logging.httpLogLevel = HttpLogLevel.valueOf(it) }
         // rateLimits
         getVal("RATES_PERIOD")?.toLongOrNull()?.also { rateLimiter.limits.period = it }

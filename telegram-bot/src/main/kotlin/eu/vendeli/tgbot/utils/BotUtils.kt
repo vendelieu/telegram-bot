@@ -5,20 +5,15 @@ package eu.vendeli.tgbot.utils
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
-import eu.vendeli.tgbot.core.ReflectionUpdateHandler
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
-import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.Activity
 import eu.vendeli.tgbot.types.internal.ChainLink
-import eu.vendeli.tgbot.types.internal.Invocation
 import eu.vendeli.tgbot.types.internal.Response
-import eu.vendeli.tgbot.types.internal.StructuredRequest
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import kotlinx.coroutines.CoroutineName
@@ -28,10 +23,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import java.lang.reflect.Method
-import java.lang.reflect.Modifier.isStatic
 import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
 
 /**
  * Creates new coroutine context from parent one and adds supervisor job.
@@ -41,23 +33,6 @@ import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun newCoroutineCtx(parentContext: CoroutineContext) = object : CoroutineScope {
     override val coroutineContext = parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
-}
-
-@Suppress("SpreadOperator")
-internal suspend inline fun Method.handleInvocation(
-    clazz: Class<*>,
-    classManager: ClassManager,
-    parameters: Array<Any?>,
-    isSuspend: Boolean = false,
-): Any? {
-    val obj = when {
-        isStatic(modifiers) -> null
-        else -> classManager.getInstance(clazz)
-    }
-
-    return if (isSuspend) suspendCoroutineUninterceptedOrReturn { cont ->
-        invoke(obj, *parameters, cont)
-    } else invoke(obj, *parameters)
 }
 
 internal suspend inline fun TgUpdateHandler.checkIsLimited(
@@ -76,44 +51,6 @@ internal suspend inline fun TgUpdateHandler.checkIsLimited(
     }
     return false
 }
-
-/**
- * Function for mapping text with a specific command or input.
- *
- * @param text
- * @param command true to search in commands or false to search among inputs. Default - true.
- * @return [Activity] if actions was found or null.
- */
-internal fun ReflectionUpdateHandler.findAction(
-    text: String,
-    command: Boolean = true,
-    updateType: UpdateType,
-): Activity? {
-    val message = parseCommand(text)
-    val invocation = if (command) {
-        actions?.commands
-    } else {
-        actions?.inputs
-    }?.get(message.command)
-
-    if (invocation != null && command && updateType !in invocation.scope)
-        return null
-
-    if (command && invocation == null) actions?.regexCommands?.entries?.firstOrNull {
-        it.key.matchEntire(text) != null
-    }?.also {
-        return it.value.toActivity(message)
-    }
-
-    return invocation?.toActivity(message)
-}
-
-internal fun Invocation.toActivity(req: StructuredRequest) = Activity(
-    id = req.command,
-    invocation = this,
-    parameters = req.params,
-    rateLimits = rateLimits,
-)
 
 @Suppress("UnusedReceiverParameter")
 internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getInnerType(): Class<Type> =
