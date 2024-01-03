@@ -29,7 +29,7 @@ dependencies {
     implementation(libs.mu.logging)
     implementation(libs.logback.classic)
 
-    implementation(libs.coroutines.core)
+    api(libs.coroutines.core)
 
     testImplementation(libs.logback.classic)
     testImplementation(libs.test.kotest.junit5)
