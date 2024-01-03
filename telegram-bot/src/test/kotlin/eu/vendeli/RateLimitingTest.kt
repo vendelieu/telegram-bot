@@ -1,12 +1,12 @@
 package eu.vendeli
 
 import BotTestContext
-import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.implementations.TokenBucketLimiterImpl
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.shouldBe
+import java.lang.System.Logger.Level
 import java.util.concurrent.atomic.AtomicInteger
 
 class RateLimitingTest : BotTestContext(mockHttp = true) {

@@ -7,6 +7,7 @@
     "UNNECESSARY_SAFE_CALL",
     "RedundantNullableReturnType",
     "KotlinConstantConditions",
+    "USELESS_ELVIS",
 )
 
 package eu.vendeli.fixtures

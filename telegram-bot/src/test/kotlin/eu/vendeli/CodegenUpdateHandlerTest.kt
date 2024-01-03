@@ -3,7 +3,6 @@ package eu.vendeli
 import BotTestContext
 import eu.vendeli.fixtures.`$ACTIONS_eu_vendeli_fixtures`
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
-import eu.vendeli.tgbot.core.ReflectionUpdateHandler
 import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.IsolationMode
 import io.mockk.every
@@ -17,9 +16,7 @@ class CodegenUpdateHandlerTest : BotTestContext() {
     private val updateHandlerTest = TelegramUpdateHandlerTest().also {
         it.prepareTestBot()
         it.spykIt()
-        if (it.bot.update is ReflectionUpdateHandler) {
-            every { it.bot.update } returns CodegenUpdateHandler(`$ACTIONS_eu_vendeli_fixtures`, it.bot)
-        }
+        every { it.bot.update } returns CodegenUpdateHandler(`$ACTIONS_eu_vendeli_fixtures`, it.bot)
     }
 
     @Test

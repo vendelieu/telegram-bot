@@ -71,7 +71,7 @@ abstract class BotTestContext(
         BOT_ID = ctx.first
         if (withPreparedBot) bot = TelegramBot(ctx.second, "eu.vendeli") {
             logging {
-                botLogLevel = TRACE
+                botLogLevel = System.Logger.Level.TRACE
                 httpLogLevel = HttpLogLevel.ALL
             }
             httpClient {
