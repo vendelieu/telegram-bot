@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
+import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
-import org.slf4j.event.Level
 
 /**
  * The class containing the logging configuration.
@@ -10,6 +10,6 @@ import org.slf4j.event.Level
  * @property httpLogLevel The level of http request logs.
  */
 data class LoggingConfiguration(
-    var botLogLevel: Level = Level.INFO,
+    var botLogLevel: LogLvl = LogLvl.INFO,
     var httpLogLevel: HttpLogLevel = HttpLogLevel.NONE,
 )

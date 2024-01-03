@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
+import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
@@ -28,7 +29,6 @@ import io.mockk.every
 import io.mockk.spyk
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
-import org.slf4j.event.Level
 import java.time.Instant
 import kotlin.properties.Delegates
 import kotlin.random.Random
@@ -74,7 +74,7 @@ abstract class BotTestContext(
         BOT_ID = ctx.first
         if (withPreparedBot) bot = TelegramBot(ctx.second, "eu.vendeli") {
             logging {
-                botLogLevel = Level.TRACE
+                botLogLevel = LogLvl.TRACE
                 httpLogLevel = HttpLogLevel.ALL
             }
             httpClient {

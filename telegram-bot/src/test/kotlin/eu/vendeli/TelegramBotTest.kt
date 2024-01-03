@@ -14,8 +14,8 @@ import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
-import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.InputFile
+import eu.vendeli.tgbot.types.internal.LogLevel
 import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.foldResponse
@@ -270,7 +270,7 @@ class TelegramBotTest : BotTestContext() {
             httpClient.retryDelay shouldBe 1000
 
             logging.botLogLevel shouldBe Level.WARN
-            logging.httpLogLevel shouldBe HttpLogLevel.ALL
+            logging.httpLogLevel shouldBe LogLevel.ALL
 
             rateLimiter.limits.period shouldBe 14
             rateLimiter.limits.rate shouldBe 15

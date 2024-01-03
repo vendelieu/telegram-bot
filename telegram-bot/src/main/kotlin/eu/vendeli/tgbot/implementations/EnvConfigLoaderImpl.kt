@@ -8,8 +8,8 @@ import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.interfaces.UserData
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
+import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
-import org.slf4j.event.Level
 import kotlin.reflect.full.primaryConstructor
 
 object EnvConfigLoaderImpl : ConfigLoader {
@@ -45,7 +45,7 @@ object EnvConfigLoaderImpl : ConfigLoader {
         getVal("HTTPC_MAX_RQ_RETRY")?.toIntOrNull()?.also { httpClient.maxRequestRetry = it }
         getVal("HTTPC_RETRY_DELAY")?.toLongOrNull()?.also { httpClient.retryDelay = it }
         // logging
-        getVal("LOG_BOT_LVL")?.also { logging.botLogLevel = Level.valueOf(it) }
+        getVal("LOG_BOT_LVL")?.also { logging.botLogLevel = LogLvl.valueOf(it) }
         getVal("LOG_HTTP_LVL")?.also { logging.httpLogLevel = HttpLogLevel.valueOf(it) }
         // rateLimits
         getVal("RATES_PERIOD")?.toLongOrNull()?.also { rateLimiter.limits.period = it }

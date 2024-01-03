@@ -1,6 +1,5 @@
 package eu.vendeli.tgbot
 
-import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.implementations.EnvConfigLoaderImpl
@@ -67,7 +66,7 @@ class TelegramBot(
     val chatData get() = config.context.chatData
 
     init {
-        logger("eu.vendeli.tgbot").level = Level.valueOf(config.logging.botLogLevel.name)
+        logger("eu.vendeli.tgbot").level = config.logging.botLogLevel.logbackLvl
     }
 
     internal val autowiringObjects by lazy { mutableMapOf<Class<*>, Autowiring<*>>() }
