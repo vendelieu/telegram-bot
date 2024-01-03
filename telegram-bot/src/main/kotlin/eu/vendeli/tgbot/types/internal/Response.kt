@@ -41,6 +41,8 @@ fun <T> Response<T>.getOrNull(): T? = when (this) {
     else -> null
 }
 
+suspend inline fun <T> Deferred<Response<out T>>.getOrNull(): T? = await().getOrNull()
+
 @Suppress("UNCHECKED_CAST")
 suspend inline fun <T, R> Deferred<Response<out T>>.foldResponse(
     success: Response.Success<T>.() -> R,
