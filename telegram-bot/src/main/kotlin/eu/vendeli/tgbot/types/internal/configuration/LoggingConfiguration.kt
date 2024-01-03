@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
-import java.lang.System.Logger.Level
+import org.slf4j.event.Level
 
 /**
  * The class containing the logging configuration.

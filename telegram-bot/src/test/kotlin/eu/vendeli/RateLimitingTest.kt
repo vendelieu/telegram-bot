@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.implementations.TokenBucketLimiterImpl
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.shouldBe
-import java.lang.System.Logger.Level
+import org.slf4j.event.Level
 import java.util.concurrent.atomic.AtomicInteger
 
 class RateLimitingTest : BotTestContext(mockHttp = true) {
@@ -17,6 +17,7 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
     @BeforeEach
     fun prepareBot() = bot.config.run {
         limiter.resetState()
+        spykIt()
         rateLimiter {
             mechanism = limiter
             limits = RateLimits(10000, 5)

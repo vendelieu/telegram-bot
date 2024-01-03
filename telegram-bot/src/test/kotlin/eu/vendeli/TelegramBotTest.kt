@@ -1,7 +1,6 @@
 package eu.vendeli
 
 import BotTestContext
-import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.botactions.getMe
 import eu.vendeli.tgbot.api.getFile
@@ -45,6 +44,7 @@ import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.launch
+import org.slf4j.event.Level
 import other.pckg.ChatDataImpl
 import other.pckg.UserDataImpl
 import java.time.Instant

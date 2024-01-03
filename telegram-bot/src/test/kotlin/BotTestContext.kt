@@ -1,6 +1,7 @@
 
-import ch.qos.logback.classic.Level.TRACE
+import eu.vendeli.fixtures.`$ACTIONS_eu_vendeli_fixtures`
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
@@ -23,9 +24,11 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
+import io.mockk.every
 import io.mockk.spyk
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
+import org.slf4j.event.Level
 import java.time.Instant
 import kotlin.properties.Delegates
 import kotlin.random.Random
@@ -45,7 +48,7 @@ private val BOT_DATA: Iterator<Pair<Long, String>> = generateSequence {
 abstract class BotTestContext(
     private val withPreparedBot: Boolean = true,
     private val mockHttp: Boolean = false,
-    private val spykIt: Boolean = false,
+    private val spykIt: Boolean = true,
 ) : AnnotationSpec() {
     private val INT_ITERATOR = (1..Int.MAX_VALUE).iterator()
     private val RANDOM_INST: Random get() = Random(CUR_INSTANT.epochSecond)
@@ -71,7 +74,7 @@ abstract class BotTestContext(
         BOT_ID = ctx.first
         if (withPreparedBot) bot = TelegramBot(ctx.second, "eu.vendeli") {
             logging {
-                botLogLevel = System.Logger.Level.TRACE
+                botLogLevel = Level.TRACE
                 httpLogLevel = HttpLogLevel.ALL
             }
             httpClient {
@@ -100,6 +103,7 @@ abstract class BotTestContext(
 
     fun spykIt() {
         bot = spyk(bot, recordPrivateCalls = true)
+        every { bot.update } returns CodegenUpdateHandler(`$ACTIONS_eu_vendeli_fixtures`, bot)
     }
 
     protected suspend fun <T> Action<T>.sendReturning(id: Long, bot: TelegramBot): Response<out T> {

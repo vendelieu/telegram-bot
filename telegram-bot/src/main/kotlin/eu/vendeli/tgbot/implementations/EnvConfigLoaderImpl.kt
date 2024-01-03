@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.interfaces.UserData
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
-import java.lang.System.Logger.Level
+import org.slf4j.event.Level
 import kotlin.reflect.full.primaryConstructor
 
 object EnvConfigLoaderImpl : ConfigLoader {
