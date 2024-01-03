@@ -14,8 +14,9 @@ import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
+import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.InputFile
-import eu.vendeli.tgbot.types.internal.LogLevel
+import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.foldResponse
@@ -44,7 +45,6 @@ import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.launch
-import org.slf4j.event.Level
 import other.pckg.ChatDataImpl
 import other.pckg.UserDataImpl
 import java.time.Instant
@@ -269,8 +269,8 @@ class TelegramBotTest : BotTestContext() {
             httpClient.maxRequestRetry shouldBe 13
             httpClient.retryDelay shouldBe 1000
 
-            logging.botLogLevel shouldBe Level.WARN
-            logging.httpLogLevel shouldBe LogLevel.ALL
+            logging.botLogLevel shouldBe LogLvl.WARN
+            logging.httpLogLevel shouldBe HttpLogLevel.ALL
 
             rateLimiter.limits.period shouldBe 14
             rateLimiter.limits.rate shouldBe 15
