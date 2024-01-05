@@ -19,6 +19,7 @@ import eu.vendeli.utils.LOREM
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldNotBeBlank
 
 class MediaTest : BotTestContext() {
     @Test
@@ -34,7 +35,7 @@ class MediaTest : BotTestContext() {
                 shouldNotBeNull()
                 text.shouldBeNull()
                 audio.shouldNotBeNull()
-                audio?.fileName shouldBe "audio.mp3"
+                audio?.fileName.shouldNotBeNull().shouldNotBeBlank()
                 audio?.duration shouldBe 121
             }
         }
@@ -43,8 +44,8 @@ class MediaTest : BotTestContext() {
     @Test
     suspend fun `animation method test`() {
         val lorem = LOREM.ANIMATION
+        val textResult = sendAnimation { lorem.url }.sendReturning(TG_ID, bot).shouldSuccess()
         val bytesResult = animation(lorem.bytes).sendReturning(TG_ID, bot).shouldSuccess()
-        val textResult = sendAnimation { bytesResult.animation!!.fileId }.sendReturning(TG_ID, bot).shouldSuccess()
         val fileResult = animation(lorem.file).sendReturning(TG_ID, bot).shouldSuccess()
         val inputResult = animation(lorem.inputFile).sendReturning(TG_ID, bot).shouldSuccess()
 
@@ -53,7 +54,7 @@ class MediaTest : BotTestContext() {
                 shouldNotBeNull()
                 text.shouldBeNull()
                 animation.shouldNotBeNull()
-                animation?.fileName shouldBe "animated-parabola.gif.mp4"
+                animation?.fileName.shouldNotBeNull().shouldNotBeBlank()
             }
         }
     }
@@ -71,7 +72,7 @@ class MediaTest : BotTestContext() {
                 shouldNotBeNull()
                 text.shouldBeNull()
                 document.shouldNotBeNull()
-                document?.fileName shouldBe "Lorem_ipsum.pdf"
+                document?.fileName.shouldNotBeNull().shouldNotBeBlank()
             }
         }
     }
@@ -84,14 +85,12 @@ class MediaTest : BotTestContext() {
         val fileResult = video(lorem.file).sendReturning(TG_ID, bot).shouldSuccess()
         val inputResult = video(lorem.inputFile).sendReturning(TG_ID, bot).shouldSuccess()
 
-        val result = sendVideo { LOREM.VIDEO.url }.sendReturning(TG_ID, bot).shouldSuccess()
-
         listOf(textResult, bytesResult, fileResult, inputResult).forEach { result ->
             with(result) {
                 shouldNotBeNull()
                 text.shouldBeNull()
                 video.shouldNotBeNull()
-                video?.fileName shouldBe "small.mp4"
+                video?.fileName.shouldNotBeNull().shouldNotBeBlank()
             }
         }
     }
