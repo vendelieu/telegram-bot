@@ -2,6 +2,7 @@ package eu.vendeli.tgbot.interfaces
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
@@ -35,24 +36,17 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via.makeSilentRequest(method, parameters, inputFilePresence)
     }
 
-    /**
-     * Make a request for action.
-     *
-     * @param to Recipient
-     * @param via Instance of the bot through which the request will be made.
-     */
     override suspend fun send(to: Long, via: TelegramBot) {
         parameters[idRefField] = to
         via.makeSilentRequest(method, parameters, inputFilePresence)
     }
 
-    /**
-     * Make a request for action.
-     *
-     * @param to Recipient
-     * @param via Instance of the bot through which the request will be made.
-     */
     override suspend fun send(to: User, via: TelegramBot) {
+        parameters[idRefField] = to.id
+        via.makeSilentRequest(method, parameters, inputFilePresence)
+    }
+
+    override suspend fun send(to: Chat, via: TelegramBot) {
         parameters[idRefField] = to.id
         via.makeSilentRequest(method, parameters, inputFilePresence)
     }
@@ -71,12 +65,6 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, inputFilePresence)
     }
 
-    /**
-     * Make request with ability operating over response.
-     *
-     * @param to Recipient
-     * @param via Instance of the bot through which the request will be made.
-     */
     override suspend fun sendAsync(
         to: Long,
         via: TelegramBot,
@@ -85,14 +73,16 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, inputFilePresence)
     }
 
-    /**
-     * Make request with ability operating over response.
-     *
-     * @param to Recipient
-     * @param via Instance of the bot through which the request will be made.
-     */
     override suspend fun sendAsync(
         to: User,
+        via: TelegramBot,
+    ): Deferred<Response<out ReturnType>> {
+        parameters[idRefField] = to.id
+        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, inputFilePresence)
+    }
+
+    override suspend fun sendAsync(
+        to: Chat,
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.id

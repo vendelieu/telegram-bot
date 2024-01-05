@@ -22,7 +22,7 @@ class ForumCrudTest : BotTestContext() {
         val result = createForumTopic(
             "testTopic",
             IconColor.GREEN,
-        ).sendAsync(CHAT_ID, bot).await().shouldSuccess()
+        ).sendAsync(CHAT_ID, bot).shouldSuccess()
 
         with(result) {
             shouldNotBeNull()
@@ -40,7 +40,7 @@ class ForumCrudTest : BotTestContext() {
         val result = editForumTopic(
             topic.messageThreadId,
             "testTopic2",
-        ).sendAsync(CHAT_ID, bot).await().shouldSuccess()
+        ).sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
         deleteForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
@@ -49,7 +49,7 @@ class ForumCrudTest : BotTestContext() {
     @Test
     suspend fun `delete forum topic method test`() {
         val topic = createForumTopic("testTopic").sendAsync(CHAT_ID, bot).await().getOrNull().shouldNotBeNull()
-        val result = deleteForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).await().shouldSuccess()
+        val result = deleteForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
     }
@@ -57,7 +57,7 @@ class ForumCrudTest : BotTestContext() {
     @Test
     suspend fun `close forum topic method test`() {
         val topic = createForumTopic("testTopic").sendAsync(CHAT_ID, bot).await().getOrNull().shouldNotBeNull()
-        val result = closeForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).await().shouldSuccess()
+        val result = closeForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
         deleteForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
@@ -67,7 +67,7 @@ class ForumCrudTest : BotTestContext() {
     suspend fun `open forum topic method test`() {
         val topic = createForumTopic("testTopic").sendAsync(CHAT_ID, bot).await().getOrNull().shouldNotBeNull()
         closeForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
-        val result = reopenForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).await().shouldSuccess()
+        val result = reopenForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
         deleteForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
@@ -76,7 +76,7 @@ class ForumCrudTest : BotTestContext() {
     @Test
     suspend fun `unpin all forum topic method test`() {
         val topic = createForumTopic("testTopic").sendAsync(CHAT_ID, bot).await().getOrNull().shouldNotBeNull()
-        val result = unpinAllForumTopicMessages(topic.messageThreadId).sendAsync(CHAT_ID, bot).await().shouldSuccess()
+        val result = unpinAllForumTopicMessages(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
         deleteForumTopic(topic.messageThreadId).send(CHAT_ID, bot)

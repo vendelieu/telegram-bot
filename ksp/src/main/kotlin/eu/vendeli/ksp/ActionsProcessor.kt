@@ -103,8 +103,15 @@ class ActionsProcessor(
         addAnnotation(
             AnnotationSpec.builder(Suppress::class).apply {
                 addMember(
-                    "\n\t\"NOTHING_TO_INLINE\", \"ObjectPropertyName\", " +
-                        "\"UNUSED_ANONYMOUS_PARAMETER\", \"UnnecessaryVariable\", \"TopLevelPropertyNaming\"\n",
+                    "\t\n            \"NOTHING_TO_INLINE\",\n" +
+                        "            \"ObjectPropertyName\",\n" +
+                        "            \"UNUSED_ANONYMOUS_PARAMETER\",\n" +
+                        "            \"UnnecessaryVariable\",\n" +
+                        "            \"TopLevelPropertyNaming\",\n" +
+                        "            \"UNNECESSARY_SAFE_CALL\",\n" +
+                        "            \"RedundantNullableReturnType\",\n" +
+                        "            \"KotlinConstantConditions\",\n" +
+                        "            \"USELESS_ELVIS\",\n",
                 )
                 useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
             }.build(),

@@ -2,8 +2,6 @@ package eu.vendeli.tgbot
 
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.core.ManualHandlingDsl
-import eu.vendeli.tgbot.core.ReflectionUpdateHandler
-import eu.vendeli.tgbot.core.TelegramActionsCollector.collect
 import eu.vendeli.tgbot.implementations.EnvConfigLoaderImpl
 import eu.vendeli.tgbot.interfaces.Autowiring
 import eu.vendeli.tgbot.interfaces.ConfigLoader
@@ -68,7 +66,7 @@ class TelegramBot(
     val chatData get() = config.context.chatData
 
     init {
-        logger("eu.vendeli.tgbot").level = config.logging.botLogLevel
+        logger("eu.vendeli.tgbot").level = config.logging.botLogLevel.logbackLvl
     }
 
     internal val autowiringObjects by lazy { mutableMapOf<Class<*>, Autowiring<*>>() }
@@ -80,13 +78,11 @@ class TelegramBot(
         val postFix = commandsPackage?.let { "_$it".replace(".", "_") } ?: ""
         val codegenActions = "eu.vendeli.tgbot.ActionsDataKt".asClass().getActions()
             ?: "eu.vendeli.tgbot.ActionsData${postFix}Kt".asClass().getActions(postFix)
+            ?: error("Not found generated actions, check if ksp plugin is connected correctly.")
 
-        if (codegenActions != null) CodegenUpdateHandler(
+        CodegenUpdateHandler(
             codegenActions,
             this,
-        ) else ReflectionUpdateHandler(
-            actions = commandsPackage?.let { collect(it) },
-            bot = this,
         )
     }
 

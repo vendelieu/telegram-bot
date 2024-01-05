@@ -1,5 +1,21 @@
 # Telegram-bot changelog
 
+## 4.2.0
+
+* Added `send` method for `Chat` to `Action<>`.
+* Changed ambiguous for `User`/`Chat`
+  names: `MessageOrigin` (`User` > `UserOrigin`, `Chat` > `ChatOrigin`), `BotCommandScope.Chat` > `BotCommandScope.ChatScope`.
+* Enhanced `linkPreviewOptions`: Introduced `disableWebPagePreview()` for easier disabling, and `linkPreviewOptions{}`
+  for setting through lambda.
+* Improved sealed class structure for better accessibility to general
+  parameters (`MaybeInaccessibleMessage`, `MessageOrigin`, `ChatBoostSource`, `ChatMember`).
+* Removed ReflectionHandler as CodegenHandler has proven effective.
+* Changed long-polling handling, separated updates collecting and handling.
+* Returned `coroutines` dependency as transitive, since it make inconvenience in `sendAsync` methods process.
+* Add `getOrNull()` method for `Deferred<Response<T>>` to lower verbosity for handling.
+* Set default names for media methods using ByteArray and File to prevent incorrect API behavior when unset.
+* Changed `botLogLevel` type to new proxy enum `LogLvl` since `logback` it's not transitive more.
+
 ## 4.1.0
 
 * Added shortcut annotation for `CallbackQuery` handling > `@CommandHandler.CallbackQuery` (or you can import it and use

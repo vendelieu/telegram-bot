@@ -20,6 +20,16 @@ interface FileOptions : Options {
 
 interface LinkPreviewProp {
     var linkPreviewOptions: LinkPreviewOptions?
+
+    @Suppress("unused")
+    fun disableWebPagePreview() {
+        linkPreviewOptions = LinkPreviewOptions(isDisabled = true)
+    }
+
+    @Suppress("unused")
+    fun linkPreviewOptions(block: LinkPreviewOptions.() -> Unit) {
+        linkPreviewOptions = LinkPreviewOptions().apply(block)
+    }
 }
 
 interface OptionsCommon : Options {

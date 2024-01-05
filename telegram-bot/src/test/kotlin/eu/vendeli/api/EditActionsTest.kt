@@ -22,7 +22,7 @@ class EditActionsTest : BotTestContext() {
     suspend fun `edit message test method test`() {
         val msg = message("test1").sendReturning(TG_ID, bot).getOrNull()
         msg.shouldNotBeNull()
-        val result = editMessageText(msg.messageId) { "test2" }.sendAsync(TG_ID, bot).await().shouldSuccess()
+        val result = editMessageText(msg.messageId) { "test2" }.sendAsync(TG_ID, bot).shouldSuccess()
 
         result.text shouldBe "test2"
     }
@@ -37,7 +37,7 @@ class EditActionsTest : BotTestContext() {
         val result = editMessageReplyMarkup(msg.messageId)
             .inlineKeyboardMarkup { "test2" switchInlineQuery "test" }
             .sendAsync(TG_ID, bot)
-            .await().shouldSuccess()
+            .shouldSuccess()
 
         with(result) {
             text shouldBe "test1"
@@ -58,7 +58,7 @@ class EditActionsTest : BotTestContext() {
         val result = editMessageMedia(
             msg.messageId,
             InputMedia.Photo(ImplicitFile.Str(RANDOM_PIC_URL)),
-        ).sendAsync(TG_ID, bot).await().shouldSuccess()
+        ).sendAsync(TG_ID, bot).shouldSuccess()
 
         with(result) {
             text.shouldBeNull()
@@ -73,7 +73,7 @@ class EditActionsTest : BotTestContext() {
         msg.shouldNotBeNull()
         msg.caption.shouldBeNull()
 
-        val result = editMessageCaption(msg.messageId).caption { "test" }.sendAsync(TG_ID, bot).await().shouldSuccess()
+        val result = editMessageCaption(msg.messageId).caption { "test" }.sendAsync(TG_ID, bot).shouldSuccess()
 
         with(result) {
             text.shouldBeNull()

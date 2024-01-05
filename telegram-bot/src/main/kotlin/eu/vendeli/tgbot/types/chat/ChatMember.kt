@@ -20,14 +20,15 @@ import java.time.Instant
     JsonSubTypes.Type(value = ChatMember.Banned::class, name = "kicked"),
 )
 sealed class ChatMember(val status: String) : MultipleResponse {
+    abstract val user: User
     data class Owner(
-        val user: User,
+        override val user: User,
         val isAnonymous: Boolean,
         val customTitle: String? = null,
     ) : ChatMember("creator")
 
     data class Administrator(
-        val user: User,
+        override val user: User,
         val canBeEdited: Boolean,
         val isAnonymous: Boolean,
         val canManageChat: Boolean,
@@ -47,11 +48,11 @@ sealed class ChatMember(val status: String) : MultipleResponse {
     ) : ChatMember("administrator")
 
     data class Member(
-        val user: User,
+        override val user: User,
     ) : ChatMember("member")
 
     data class Restricted(
-        val user: User,
+        override val user: User,
         val isMember: Boolean,
         val canChangeInfo: Boolean,
         val canInviteUsers: Boolean,
@@ -71,11 +72,11 @@ sealed class ChatMember(val status: String) : MultipleResponse {
     ) : ChatMember("restricted")
 
     data class Left(
-        val user: User,
+        override val user: User,
     ) : ChatMember("left")
 
     data class Banned(
-        val user: User,
+        override val user: User,
         val untilDate: Instant,
     ) : ChatMember("kicked")
 }

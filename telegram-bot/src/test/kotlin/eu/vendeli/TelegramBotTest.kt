@@ -1,7 +1,6 @@
 package eu.vendeli
 
 import BotTestContext
-import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.botactions.getMe
 import eu.vendeli.tgbot.api.getFile
@@ -17,6 +16,7 @@ import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.InputFile
+import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.foldResponse
@@ -269,7 +269,7 @@ class TelegramBotTest : BotTestContext() {
             httpClient.maxRequestRetry shouldBe 13
             httpClient.retryDelay shouldBe 1000
 
-            logging.botLogLevel shouldBe Level.WARN
+            logging.botLogLevel shouldBe LogLvl.WARN
             logging.httpLogLevel shouldBe HttpLogLevel.ALL
 
             rateLimiter.limits.period shouldBe 14

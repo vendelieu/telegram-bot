@@ -8,15 +8,18 @@ import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
 import eu.vendeli.tgbot.utils.newCoroutineCtx
 import eu.vendeli.tgbot.utils.process
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import mu.KLogging
+import kotlin.coroutines.CoroutineContext
 
 /**
- * A basic update processing class that is extends by a [CodegenUpdateHandler] or [ReflectionUpdateHandler].
+ * A basic update processing class that is extends by a [CodegenUpdateHandler].
  *
  * @property bot bot instance.
  */
@@ -24,9 +27,8 @@ abstract class TgUpdateHandler internal constructor(
     internal val bot: TelegramBot,
 ) {
     private lateinit var handlingBehaviour: HandlingBehaviourBlock
-
-    @Volatile
-    private var handlerActive: Boolean = false
+    private val updatesChannel = Channel<Update>()
+    private var handlerCtx: CoroutineContext? = null
     private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot) }
 
     /**
@@ -34,27 +36,28 @@ abstract class TgUpdateHandler internal constructor(
      */
     val caughtExceptions by lazy { Channel<FailedUpdate>(Channel.CONFLATED) }
 
-    /**
-     * Function that starts the listening event.
-     *
-     * @param offset
-     */
-    private tailrec suspend fun runListener(offset: Int? = null): Int = with(bot.config.updatesListener) {
-        logger.debug { "Running listener with offset - $offset" }
-        val coroutineCtx = currentCoroutineContext()
-        if (!handlerActive) {
-            coroutineCtx.cancelChildren()
-            return 0
+    private suspend fun collectUpdates() = bot.config.updatesListener.run {
+        logger.debug { "Starting updates collector." }
+        newCoroutineCtx((handlerCtx ?: return@run) + dispatcher).launch {
+            var lastUpdateId = 0
+            while (isActive) {
+                logger.debug { "Running listener with offset - $lastUpdateId" }
+                bot.pullUpdates(lastUpdateId)?.forEach {
+                    updatesChannel.send(it)
+                    lastUpdateId = it.updateId + 1
+                }
+                if (pullingDelay > 0) delay(pullingDelay)
+            }
         }
-        var lastUpdateId: Int = offset ?: 0
-        bot.pullUpdates(offset)?.forEach { update ->
-            newCoroutineCtx(coroutineCtx + dispatcher).launch {
+    }
+
+    private suspend fun processUpdates() {
+        logger.info { "Starting long-polling listener." }
+        newCoroutineCtx((handlerCtx ?: return) + Dispatchers.IO).launch {
+            for (update in updatesChannel) {
                 handlingBehaviour(this@TgUpdateHandler, update)
             }
-            lastUpdateId = update.updateId + 1
-        }
-        delay(pullingDelay)
-        return runListener(lastUpdateId)
+        }.join()
     }
 
     /**
@@ -64,12 +67,12 @@ abstract class TgUpdateHandler internal constructor(
      * @param block action that will be applied.
      */
     suspend fun setListener(block: HandlingBehaviourBlock) {
-        if (handlerActive) stopListener()
+        if (handlerCtx?.isActive == true) stopListener()
+        handlerCtx = currentCoroutineContext()
         logger.debug { "The listener is set." }
         handlingBehaviour = block
-        handlerActive = true
-        logger.info { "Starting long-polling listener with ${this::class.simpleName}" }
-        runListener()
+        collectUpdates()
+        processUpdates()
     }
 
     /**
@@ -77,8 +80,9 @@ abstract class TgUpdateHandler internal constructor(
      *
      */
     fun stopListener() {
+        handlerCtx?.cancelChildren()
+        handlerCtx = null
         logger.debug { "The listener is stopped." }
-        handlerActive = false
     }
 
     /**

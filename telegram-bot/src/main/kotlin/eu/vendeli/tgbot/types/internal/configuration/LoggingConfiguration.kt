@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
-import ch.qos.logback.classic.Level
+import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 
 /**
@@ -10,6 +10,6 @@ import eu.vendeli.tgbot.types.internal.HttpLogLevel
  * @property httpLogLevel The level of http request logs.
  */
 data class LoggingConfiguration(
-    var botLogLevel: Level = Level.INFO,
+    var botLogLevel: LogLvl = LogLvl.INFO,
     var httpLogLevel: HttpLogLevel = HttpLogLevel.NONE,
 )

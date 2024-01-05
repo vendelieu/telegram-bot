@@ -14,17 +14,18 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
     JsonSubTypes.Type(value = ChatBoostSource.Giveaway::class, name = "giveaway"),
 )
 sealed class ChatBoostSource(val source: String) {
+    abstract val user: User?
     data class Premium(
-        val user: User,
+        override val user: User,
     ) : ChatBoostSource("premium")
 
     data class GiftCode(
-        val user: User,
+        override val user: User,
     ) : ChatBoostSource("gift_code")
 
     data class Giveaway(
         val giveawayMessageId: Int,
-        val user: User? = null,
+        override val user: User? = null,
         val isUnclaimed: Boolean? = null,
     ) : ChatBoostSource("giveaway")
 }

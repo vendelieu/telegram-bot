@@ -36,10 +36,10 @@ inline fun audio(file: ImplicitFile<*>) = SendAudioAction(file)
 inline fun audio(block: () -> String) = audio(ImplicitFile.Str(block()))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun audio(ba: ByteArray) = audio(ImplicitFile.InpFile(ba.toInputFile()))
+inline fun audio(ba: ByteArray) = audio(ImplicitFile.InpFile(ba.toInputFile("audio.mp3")))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun audio(file: File) = audio(ImplicitFile.InpFile(file.toInputFile()))
+inline fun audio(file: File) = audio(ImplicitFile.InpFile(file.toInputFile("audio.mp3")))
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun audio(file: InputFile) = audio(ImplicitFile.InpFile(file))

@@ -35,10 +35,10 @@ inline fun video(file: ImplicitFile<*>) = SendVideoAction(file)
 inline fun video(block: () -> String) = video(ImplicitFile.Str(block()))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun video(ba: ByteArray) = video(ImplicitFile.InpFile(ba.toInputFile()))
+inline fun video(ba: ByteArray) = video(ImplicitFile.InpFile(ba.toInputFile("video.mp4")))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun video(file: File) = video(ImplicitFile.InpFile(file.toInputFile()))
+inline fun video(file: File) = video(ImplicitFile.InpFile(file.toInputFile("video.mp4")))
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun video(file: InputFile) = video(ImplicitFile.InpFile(file))

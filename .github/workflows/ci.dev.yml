@@ -27,5 +27,5 @@ jobs:
           git fetch origin
           git checkout dev
           git pull
-          git rebase -Xtheirs master
-          git push origin dev -f
+          git merge --no-ff master -Xtheirs
+          git push origin dev

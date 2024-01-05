@@ -1,9 +1,9 @@
 package eu.vendeli
 
 import BotTestContext
-import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.implementations.TokenBucketLimiterImpl
+import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.shouldBe
@@ -17,12 +17,13 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
     @BeforeEach
     fun prepareBot() = bot.config.run {
         limiter.resetState()
+        spykIt()
         rateLimiter {
             mechanism = limiter
             limits = RateLimits(10000, 5)
         }
         logging {
-            botLogLevel = Level.DEBUG
+            botLogLevel = LogLvl.DEBUG
         }
     }
 

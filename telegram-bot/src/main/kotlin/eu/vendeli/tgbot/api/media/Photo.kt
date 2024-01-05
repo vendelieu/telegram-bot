@@ -35,10 +35,10 @@ inline fun photo(file: ImplicitFile<*>) = SendPhotoAction(file)
 inline fun photo(block: () -> String) = photo(ImplicitFile.Str(block()))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun photo(ba: ByteArray) = photo(ImplicitFile.InpFile(ba.toInputFile()))
+inline fun photo(ba: ByteArray) = photo(ImplicitFile.InpFile(ba.toInputFile("photo.jpg")))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun photo(file: File) = photo(ImplicitFile.InpFile(file.toInputFile()))
+inline fun photo(file: File) = photo(ImplicitFile.InpFile(file.toInputFile("photo.jpg")))
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun photo(file: InputFile) = photo(ImplicitFile.InpFile(file))

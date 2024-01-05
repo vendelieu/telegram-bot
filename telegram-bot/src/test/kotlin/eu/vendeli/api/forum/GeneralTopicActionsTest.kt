@@ -20,7 +20,7 @@ import io.kotest.matchers.shouldBe
 class GeneralTopicActionsTest : BotTestContext() {
     @Test
     suspend fun `edit general topic method test`() {
-        val result = editGeneralForumTopic("General1").sendAsync(CHAT_ID, bot).await().shouldSuccess()
+        val result = editGeneralForumTopic("General1").sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
         editGeneralForumTopic("General").send(CHAT_ID, bot)
@@ -28,7 +28,7 @@ class GeneralTopicActionsTest : BotTestContext() {
 
     @Test
     suspend fun `hide general topic method test`() {
-        val result = hideGeneralForumTopic().sendAsync(CHAT_ID, bot).await().shouldSuccess()
+        val result = hideGeneralForumTopic().sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
         unhideGeneralForumTopic().send(CHAT_ID, bot)
@@ -48,7 +48,7 @@ class GeneralTopicActionsTest : BotTestContext() {
     @Test
     suspend fun `close general topic method test`() {
         reopenGeneralForumTopic().send(CHAT_ID, bot)
-        val result = closeGeneralForumTopic().sendAsync(CHAT_ID, bot).await().shouldSuccess()
+        val result = closeGeneralForumTopic().sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
         reopenGeneralForumTopic().send(CHAT_ID, bot)
@@ -57,14 +57,14 @@ class GeneralTopicActionsTest : BotTestContext() {
     @Test
     suspend fun `open general topic method test`() {
         closeGeneralForumTopic().send(CHAT_ID, bot)
-        val result = reopenGeneralForumTopic().sendAsync(CHAT_ID, bot).await().shouldSuccess()
+        val result = reopenGeneralForumTopic().sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
     }
 
     @Test
     suspend fun `get forum topic icons method test`() {
-        val result = getForumTopicIconStickers().sendAsync(CHAT_ID, bot).await().shouldSuccess()
+        val result = getForumTopicIconStickers().sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldNotBeEmpty()
 
@@ -76,7 +76,7 @@ class GeneralTopicActionsTest : BotTestContext() {
 
     @Test
     suspend fun `unpin all forum general topic method test`() {
-        val result = unpinAllGeneralForumTopicMessages().sendAsync(CHAT_ID, bot).await().shouldSuccess()
+        val result = unpinAllGeneralForumTopicMessages().sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
     }

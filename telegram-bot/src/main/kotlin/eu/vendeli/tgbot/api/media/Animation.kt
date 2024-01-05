@@ -35,10 +35,10 @@ inline fun animation(file: ImplicitFile<*>) = SendAnimationAction(file)
 inline fun animation(block: () -> String) = animation(ImplicitFile.Str(block()))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun animation(ba: ByteArray) = animation(ImplicitFile.InpFile(ba.toInputFile()))
+inline fun animation(ba: ByteArray) = animation(ImplicitFile.InpFile(ba.toInputFile("image.gif")))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun animation(file: File) = animation(ImplicitFile.InpFile(file.toInputFile()))
+inline fun animation(file: File) = animation(ImplicitFile.InpFile(file.toInputFile("image.gif")))
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun animation(file: InputFile) = animation(ImplicitFile.InpFile(file))

@@ -1,11 +1,13 @@
 
-import ch.qos.logback.classic.Level.TRACE
+import eu.vendeli.fixtures.`$ACTIONS_eu_vendeli_fixtures`
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
+import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
@@ -23,7 +25,9 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
+import io.mockk.every
 import io.mockk.spyk
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import java.time.Instant
@@ -45,7 +49,7 @@ private val BOT_DATA: Iterator<Pair<Long, String>> = generateSequence {
 abstract class BotTestContext(
     private val withPreparedBot: Boolean = true,
     private val mockHttp: Boolean = false,
-    private val spykIt: Boolean = false,
+    private val spykIt: Boolean = true,
 ) : AnnotationSpec() {
     private val INT_ITERATOR = (1..Int.MAX_VALUE).iterator()
     private val RANDOM_INST: Random get() = Random(CUR_INSTANT.epochSecond)
@@ -71,7 +75,7 @@ abstract class BotTestContext(
         BOT_ID = ctx.first
         if (withPreparedBot) bot = TelegramBot(ctx.second, "eu.vendeli") {
             logging {
-                botLogLevel = TRACE
+                botLogLevel = LogLvl.DEBUG
                 httpLogLevel = HttpLogLevel.ALL
             }
             httpClient {
@@ -100,6 +104,7 @@ abstract class BotTestContext(
 
     fun spykIt() {
         bot = spyk(bot, recordPrivateCalls = true)
+        every { bot.update } returns CodegenUpdateHandler(`$ACTIONS_eu_vendeli_fixtures`, bot)
     }
 
     protected suspend fun <T> Action<T>.sendReturning(id: Long, bot: TelegramBot): Response<out T> {
@@ -110,7 +115,7 @@ abstract class BotTestContext(
     protected fun Long.asUser() = User(this, false, "test")
     protected fun Long.asChat() = Chat(this, ChatType.Private)
 
-    protected suspend fun getExtFile(url: String): ByteArray = bot.httpClient.get(url).readBytes()
+    protected suspend inline fun <T> Deferred<Response<out T>>.shouldSuccess() = await().shouldSuccess()
 
     @Suppress("NOTHING_TO_INLINE")
     protected inline fun <T> Response<T>.shouldSuccess() = with(this) {
