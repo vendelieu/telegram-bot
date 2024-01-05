@@ -13,14 +13,14 @@ import io.kotest.matchers.string.shouldBeEmpty
 class BotMainActionsTest : BotTestContext() {
     @Test
     suspend fun `get updates method testing`() {
-        val result = getUpdates().sendAsync(bot).await().shouldSuccess()
+        val result = getUpdates().sendAsync(bot).shouldSuccess()
 
         result.shouldNotBeNull()
     }
 
     @Test
     suspend fun `get webhook info method testing`() {
-        val result = getWebhookInfo().sendAsync(bot).await().shouldSuccess()
+        val result = getWebhookInfo().sendAsync(bot).shouldSuccess()
 
         result.shouldNotBeNull()
         result.url.shouldBeEmpty()
@@ -31,7 +31,7 @@ class BotMainActionsTest : BotTestContext() {
         setWebhook("https://vendeli.eu").send(bot)
         setWebhook("https://vendeli.eu/1").sendAsync(bot)
             .foldResponse({ println(result) }, { println(errorCode) })
-        val result = getWebhookInfo().sendAsync(bot).await().shouldSuccess()
+        val result = getWebhookInfo().sendAsync(bot).shouldSuccess()
 
         result.shouldNotBeNull()
         result.url shouldBe "https://vendeli.eu"

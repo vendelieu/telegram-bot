@@ -13,9 +13,9 @@ import io.kotest.matchers.types.shouldBeInstanceOf
 class UserTest : BotTestContext() {
     @Test
     suspend fun `get user profile photos method test`() {
-        val idResult = getUserProfilePhotos(TG_ID, 0, 1).sendAsync(bot).await().shouldSuccess()
+        val idResult = getUserProfilePhotos(TG_ID, 0, 1).sendAsync(bot).shouldSuccess()
         val userResult = getUserProfilePhotos(TG_ID.asUser(), 1, 1)
-            .sendAsync(bot).await().shouldSuccess()
+            .sendAsync(bot).shouldSuccess()
 
         listOf(idResult, userResult).forEach { result ->
             with(result) {

@@ -14,14 +14,14 @@ import io.kotest.matchers.string.shouldStartWith
 class GetMyActionsTest : BotTestContext() {
     @Test
     suspend fun `get my default administrator rights method testing`() {
-        val result = getMyDefaultAdministratorRights().sendAsync(bot).await().shouldSuccess()
+        val result = getMyDefaultAdministratorRights().sendAsync(bot).shouldSuccess()
 
         result.shouldNotBeNull()
     }
 
     @Test
     suspend fun `get description method testing`() {
-        val result = getMyDescription().sendAsync(bot).await().shouldSuccess()
+        val result = getMyDescription().sendAsync(bot).shouldSuccess()
 
         result.shouldNotBeNull()
         result.description.shouldBeEmpty()
@@ -29,7 +29,7 @@ class GetMyActionsTest : BotTestContext() {
 
     @Test
     suspend fun `get short description method testing`() {
-        val result = getMyShortDescription().sendAsync(bot).await().shouldSuccess()
+        val result = getMyShortDescription().sendAsync(bot).shouldSuccess()
 
         result.shouldNotBeNull()
         result.shortDescription.shouldBeEmpty()
@@ -37,7 +37,7 @@ class GetMyActionsTest : BotTestContext() {
 
     @Test
     suspend fun `get my commands method testing`() {
-        val result = getMyCommands().sendAsync(bot).await().shouldSuccess()
+        val result = getMyCommands().sendAsync(bot).shouldSuccess()
 
         result.shouldNotBeNull()
         result.shouldBeEmpty()
@@ -45,7 +45,7 @@ class GetMyActionsTest : BotTestContext() {
 
     @Test
     suspend fun `get my name method testing`() {
-        val result = getMyName().sendAsync(bot).await().shouldSuccess()
+        val result = getMyName().sendAsync(bot).shouldSuccess()
 
         result.shouldNotBeNull()
         result.name shouldStartWith "testbot"

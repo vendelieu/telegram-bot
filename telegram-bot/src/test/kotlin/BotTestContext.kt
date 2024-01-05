@@ -27,6 +27,7 @@ import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
 import io.mockk.every
 import io.mockk.spyk
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import java.time.Instant
@@ -116,6 +117,7 @@ abstract class BotTestContext(
 
     protected suspend fun getExtFile(url: String): ByteArray = bot.httpClient.get(url).readBytes()
 
+    protected suspend inline fun <T> Deferred<Response<out T>>.shouldSuccess() = await().shouldSuccess()
     @Suppress("NOTHING_TO_INLINE")
     protected inline fun <T> Response<T>.shouldSuccess() = with(this) {
         ok.shouldBeTrue()

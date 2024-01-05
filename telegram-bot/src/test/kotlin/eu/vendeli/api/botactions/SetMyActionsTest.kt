@@ -42,7 +42,7 @@ class SetMyActionsTest : BotTestContext() {
             ),
         ).send(bot)
 
-        val result = getMyDefaultAdministratorRights().sendAsync(bot).await().shouldSuccess()
+        val result = getMyDefaultAdministratorRights().sendAsync(bot).shouldSuccess()
 
         with(result) {
             isAnonymous.shouldBeTrue()
@@ -68,7 +68,7 @@ class SetMyActionsTest : BotTestContext() {
     @Test
     suspend fun `set description method testing`() {
         setMyDescription("test").send(bot)
-        val result = getMyDescription().sendAsync(bot).await().shouldSuccess()
+        val result = getMyDescription().sendAsync(bot).shouldSuccess()
 
         result.shouldNotBeNull()
         result.description shouldBe "test"
@@ -79,7 +79,7 @@ class SetMyActionsTest : BotTestContext() {
     @Test
     suspend fun `set short description method testing`() {
         setMyShortDescription("test").send(bot)
-        val result = getMyShortDescription().sendAsync(bot).await().shouldSuccess()
+        val result = getMyShortDescription().sendAsync(bot).shouldSuccess()
 
         result.shouldNotBeNull()
         result.shortDescription shouldBe "test"
@@ -91,7 +91,7 @@ class SetMyActionsTest : BotTestContext() {
         setMyCommands {
             botCommand("test", "testD")
         }.send(bot)
-        val result = getMyCommands().sendAsync(bot).await().shouldSuccess()
+        val result = getMyCommands().sendAsync(bot).shouldSuccess()
 
         result.shouldNotBeNull()
         result.shouldNotBeEmpty()
@@ -107,7 +107,7 @@ class SetMyActionsTest : BotTestContext() {
         getMyCommands("en", BotCommandScope.AllPrivateChats).sendAsync(bot)
             .await().getOrNull().shouldNotBeNull().shouldNotBeEmpty()
 
-        val result = deleteMyCommands().sendAsync(bot).await().shouldSuccess()
+        val result = deleteMyCommands().sendAsync(bot).shouldSuccess()
 
         result.shouldNotBeNull()
         result.shouldBeTrue()

@@ -51,9 +51,9 @@ class GameTest : BotTestContext() {
         }.sendReturning(TG_ID, bot)
 
         val idResult = getGameHighScores(TG_ID, game.messageId).sendAsync(TG_ID, bot)
-            .await().shouldSuccess()
+            .shouldSuccess()
         val userResult = getGameHighScores(TG_ID.asUser(), game.messageId).sendAsync(TG_ID, bot)
-            .await().shouldSuccess()
+            .shouldSuccess()
 
         listOf(idResult, userResult).forEach { result ->
             with(result.first()) {

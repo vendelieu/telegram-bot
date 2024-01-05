@@ -80,7 +80,7 @@ class StickerBaseTest : BotTestContext() {
         val botName = getMe().sendAsync(bot).await().getOrNull().shouldNotBeNull().username.shouldNotBeNull()
         val setName = "Test_2_by_$botName"
 
-        val result = getStickerSet(setName).sendAsync(bot).await().shouldSuccess()
+        val result = getStickerSet(setName).sendAsync(bot).shouldSuccess()
 
         with(result) {
             name shouldBe setName
@@ -100,32 +100,32 @@ class StickerBaseTest : BotTestContext() {
         val addResult = addStickerToSet(
             setName,
             InputSticker(StickerFile.FileId(TEMP_STICKER_FILE_ID), listOf("\uD83D\uDC4D\uD83C\uDFFB")),
-        ).sendAsync(TG_ID, bot).await().shouldSuccess()
+        ).sendAsync(TG_ID, bot).shouldSuccess()
         addResult.shouldBeTrue()
-        val fileId = getStickerSet(setName).sendAsync(bot).await().shouldSuccess().stickers.last().fileId
+        val fileId = getStickerSet(setName).sendAsync(bot).shouldSuccess().stickers.last().fileId
 
         val setEmojiListResult = setStickerEmojiList(
             fileId,
             listOf("\uD83D\uDC40"),
-        ).sendAsync(bot).await().shouldSuccess()
+        ).sendAsync(bot).shouldSuccess()
         setEmojiListResult.shouldBeTrue()
 
         val setStickerKeywordsResult = setStickerKeywords(
             fileId,
             listOf("test"),
-        ).sendAsync(bot).await().shouldSuccess()
+        ).sendAsync(bot).shouldSuccess()
         setStickerKeywordsResult.shouldBeTrue()
 
         val setStickerPositionInSetResult = setStickerPositionInSet(
             fileId,
             2,
-        ).sendAsync(bot).await().shouldSuccess()
+        ).sendAsync(bot).shouldSuccess()
         setStickerPositionInSetResult.shouldBeTrue()
 
         val setStickerSetThumbnailResult = setStickerSetThumbnail(
             setName,
             StickerFile.FileId(TEMP_STICKER_FILE_ID),
-        ).sendAsync(TG_ID, bot).await().shouldSuccess()
+        ).sendAsync(TG_ID, bot).shouldSuccess()
         setStickerSetThumbnailResult.shouldBeTrue()
 
         val setStickerMaskPositionResult = setStickerMaskPosition(
@@ -136,7 +136,7 @@ class StickerBaseTest : BotTestContext() {
             it.description shouldContain "STICKER_MASK_COORDS_NOT_SUPPORTED"
         }?.shouldBeTrue()
 
-        val delResult = deleteStickerFromSet(fileId).sendAsync(bot).await().shouldSuccess()
+        val delResult = deleteStickerFromSet(fileId).sendAsync(bot).shouldSuccess()
         delResult.shouldBeTrue()
     }
 
@@ -145,7 +145,7 @@ class StickerBaseTest : BotTestContext() {
         val botName = getMe().sendAsync(bot).await().getOrNull().shouldNotBeNull().username.shouldNotBeNull()
         val setName = "Test_2_by_$botName"
 
-        val result = setStickerSetTitle(setName, "title1").sendAsync(bot).await().shouldSuccess()
+        val result = setStickerSetTitle(setName, "title1").sendAsync(bot).shouldSuccess()
         result.shouldBeTrue()
 
         setStickerSetTitle(setName, "test_2").send(bot)
@@ -175,12 +175,12 @@ class StickerBaseTest : BotTestContext() {
         val setCustomEmojiStickerSetThumbnailResult = setStickerSetThumbnail(
             setName,
             StickerFile.FileId(TEMP_STICKER_FILE_ID),
-        ).sendAsync(TG_ID, bot).await().shouldSuccess()
+        ).sendAsync(TG_ID, bot).shouldSuccess()
         setCustomEmojiStickerSetThumbnailResult.shouldBeTrue()
 
-        val fileId = getStickerSet(setName).sendAsync(bot).await().shouldSuccess().stickers.last().fileId
+        val fileId = getStickerSet(setName).sendAsync(bot).shouldSuccess().stickers.last().fileId
 
-        val getCustomEmojiStickersResult = getCustomEmojiStickers(fileId).sendAsync(bot).await().shouldSuccess()
+        val getCustomEmojiStickersResult = getCustomEmojiStickers(fileId).sendAsync(bot).shouldSuccess()
         getCustomEmojiStickersResult.size shouldBe 1
         with(getCustomEmojiStickersResult.first()) {
             type shouldBe StickerType.CustomEmoji
