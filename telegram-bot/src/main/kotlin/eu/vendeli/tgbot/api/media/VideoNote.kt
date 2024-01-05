@@ -30,16 +30,16 @@ class SendVideoNoteAction(videoNote: ImplicitFile<*>) :
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun videoNote(file: ImplicitFile<*>) = SendVideoNoteAction(file)
-inline fun videoNote(block: () -> String) = SendVideoNoteAction(ImplicitFile.Str(block()))
+inline fun videoNote(block: () -> String) = videoNote(ImplicitFile.Str(block()))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun videoNote(ba: ByteArray) = SendVideoNoteAction(ImplicitFile.InpFile(ba.toInputFile()))
+inline fun videoNote(ba: ByteArray) = videoNote(ImplicitFile.InpFile(ba.toInputFile()))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun videoNote(input: InputFile) = SendVideoNoteAction(ImplicitFile.InpFile(input))
+inline fun videoNote(input: InputFile) = videoNote(ImplicitFile.InpFile(input))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun videoNote(file: File) = SendVideoNoteAction(ImplicitFile.InpFile(file.toInputFile()))
+inline fun videoNote(file: File) = videoNote(ImplicitFile.InpFile(file.toInputFile()))
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun sendVideoNote(file: ImplicitFile<*>) = videoNote(file)

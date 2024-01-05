@@ -115,8 +115,6 @@ abstract class BotTestContext(
     protected fun Long.asUser() = User(this, false, "test")
     protected fun Long.asChat() = Chat(this, ChatType.Private)
 
-    protected suspend fun getExtFile(url: String): ByteArray = bot.httpClient.get(url).readBytes()
-
     protected suspend inline fun <T> Deferred<Response<out T>>.shouldSuccess() = await().shouldSuccess()
 
     @Suppress("NOTHING_TO_INLINE")
