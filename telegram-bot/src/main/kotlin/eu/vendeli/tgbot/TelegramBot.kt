@@ -3,7 +3,6 @@ package eu.vendeli.tgbot
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.implementations.EnvConfigLoaderImpl
-import eu.vendeli.tgbot.interfaces.Autowiring
 import eu.vendeli.tgbot.interfaces.ConfigLoader
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.TgMethod
@@ -69,8 +68,6 @@ class TelegramBot(
         logger("eu.vendeli.tgbot").level = config.logging.botLogLevel.logbackLvl
     }
 
-    internal val autowiringObjects by lazy { mutableMapOf<Class<*>, Autowiring<*>>() }
-
     /**
      * Current bot UpdateHandler instance
      */
@@ -87,15 +84,6 @@ class TelegramBot(
     }
 
     internal var httpClient = getConfiguredHttpClient()
-
-    /**
-     * Gives the ability to expand magical objects
-     *
-     * @param clazz The class in the final method that will return
-     * @param autowiring Implementation of the [Autowiring] interface to be able to generate more contextual object.
-     */
-    fun <T> addAutowiringObject(clazz: Class<T>, autowiring: () -> Autowiring<T>) =
-        autowiringObjects.put(clazz, autowiring())
 
     /**
      * Get direct url from [File] if [File.filePath] is present
