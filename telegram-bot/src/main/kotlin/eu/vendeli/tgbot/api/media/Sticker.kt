@@ -33,10 +33,10 @@ inline fun sticker(file: ImplicitFile<*>) = SendStickerAction(file)
 inline fun sticker(block: () -> String) = sticker(ImplicitFile.Str(block()))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun sticker(ba: ByteArray) = sticker(ImplicitFile.InpFile(ba.toInputFile()))
+inline fun sticker(ba: ByteArray) = sticker(ImplicitFile.InpFile(ba.toInputFile("sticker.webp")))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun sticker(file: File) = sticker(ImplicitFile.InpFile(file.toInputFile()))
+inline fun sticker(file: File) = sticker(ImplicitFile.InpFile(file.toInputFile("sticker.webp")))
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun sticker(file: InputFile) = sticker(ImplicitFile.InpFile(file))

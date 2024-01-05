@@ -28,7 +28,7 @@ inline fun setChatPhoto(block: () -> String) = setChatPhoto(ImplicitFile.Str(blo
 inline fun setChatPhoto(file: InputFile) = setChatPhoto(ImplicitFile.InpFile(file))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun setChatPhoto(ba: ByteArray) = setChatPhoto(ImplicitFile.InpFile(ba.toInputFile()))
+inline fun setChatPhoto(ba: ByteArray) = setChatPhoto(ImplicitFile.InpFile(ba.toInputFile("image.jpg")))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun setChatPhoto(file: File) = setChatPhoto(ImplicitFile.InpFile(file.toInputFile()))
+inline fun setChatPhoto(file: File) = setChatPhoto(ImplicitFile.InpFile(file.toInputFile("image.jpg")))

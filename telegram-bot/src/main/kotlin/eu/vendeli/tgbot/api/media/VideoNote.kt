@@ -33,13 +33,13 @@ inline fun videoNote(file: ImplicitFile<*>) = SendVideoNoteAction(file)
 inline fun videoNote(block: () -> String) = videoNote(ImplicitFile.Str(block()))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun videoNote(ba: ByteArray) = videoNote(ImplicitFile.InpFile(ba.toInputFile()))
+inline fun videoNote(ba: ByteArray) = videoNote(ImplicitFile.InpFile(ba.toInputFile("note.mp4")))
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun videoNote(input: InputFile) = videoNote(ImplicitFile.InpFile(input))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun videoNote(file: File) = videoNote(ImplicitFile.InpFile(file.toInputFile()))
+inline fun videoNote(file: File) = videoNote(ImplicitFile.InpFile(file.toInputFile("note.mp4")))
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun sendVideoNote(file: ImplicitFile<*>) = videoNote(file)

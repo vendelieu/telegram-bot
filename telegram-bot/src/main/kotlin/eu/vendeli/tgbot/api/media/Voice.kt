@@ -38,10 +38,10 @@ inline fun voice(block: () -> String) = voice(ImplicitFile.Str(block()))
 inline fun voice(file: InputFile) = voice(ImplicitFile.InpFile(file))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun voice(ba: ByteArray) = voice(ImplicitFile.InpFile(ba.toInputFile()))
+inline fun voice(ba: ByteArray) = voice(ImplicitFile.InpFile(ba.toInputFile("voice.ogg")))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun voice(file: File) = voice(ImplicitFile.InpFile(file.toInputFile()))
+inline fun voice(file: File) = voice(ImplicitFile.InpFile(file.toInputFile("voice.ogg")))
 
 inline fun sendVoice(block: () -> String) = voice(block)
 
