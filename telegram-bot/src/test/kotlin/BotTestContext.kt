@@ -118,6 +118,7 @@ abstract class BotTestContext(
     protected suspend fun getExtFile(url: String): ByteArray = bot.httpClient.get(url).readBytes()
 
     protected suspend inline fun <T> Deferred<Response<out T>>.shouldSuccess() = await().shouldSuccess()
+
     @Suppress("NOTHING_TO_INLINE")
     protected inline fun <T> Response<T>.shouldSuccess() = with(this) {
         ok.shouldBeTrue()
