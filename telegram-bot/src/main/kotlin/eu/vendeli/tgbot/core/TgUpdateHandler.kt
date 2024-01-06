@@ -4,9 +4,12 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.FailedUpdate
+import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
-import eu.vendeli.tgbot.utils.newCoroutineCtx
+import eu.vendeli.tgbot.utils.launchInNewCtx
 import eu.vendeli.tgbot.utils.process
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancelChildren
@@ -36,13 +39,16 @@ abstract class TgUpdateHandler internal constructor(
      */
     val caughtExceptions by lazy { Channel<FailedUpdate>(Channel.CONFLATED) }
 
-    private suspend fun collectUpdates() = bot.config.updatesListener.run {
+    private suspend fun collectUpdates(types: List<UpdateType>?) = bot.config.updatesListener.run {
         logger.debug { "Starting updates collector." }
-        newCoroutineCtx((handlerCtx ?: return@run) + dispatcher).launch {
+        launchInNewCtx((handlerCtx ?: return@run) + dispatcher) {
             var lastUpdateId = 0
             while (isActive) {
                 logger.debug { "Running listener with offset - $lastUpdateId" }
-                bot.pullUpdates(lastUpdateId)?.forEach {
+                GET_UPDATES_ACTION.options {
+                    offset = lastUpdateId
+                    allowedUpdates = types
+                }.sendAsync(bot).getOrNull()?.forEach {
                     updatesChannel.send(it)
                     lastUpdateId = it.updateId + 1
                 }
@@ -53,9 +59,9 @@ abstract class TgUpdateHandler internal constructor(
 
     private suspend fun processUpdates() {
         logger.info { "Starting long-polling listener." }
-        newCoroutineCtx((handlerCtx ?: return) + Dispatchers.IO).launch {
+        launchInNewCtx((handlerCtx ?: return) + bot.config.updatesListener.dispatcher) {
             for (update in updatesChannel) {
-                handlingBehaviour(this@TgUpdateHandler, update)
+                launch(Dispatchers.IO) { handlingBehaviour(this@TgUpdateHandler, update) }
             }
         }.join()
     }
@@ -66,12 +72,12 @@ abstract class TgUpdateHandler internal constructor(
      *
      * @param block action that will be applied.
      */
-    suspend fun setListener(block: HandlingBehaviourBlock) {
+    suspend fun setListener(allowedUpdates: List<UpdateType>? = null, block: HandlingBehaviourBlock) {
         if (handlerCtx?.isActive == true) stopListener()
         handlerCtx = currentCoroutineContext()
         logger.debug { "The listener is set." }
         handlingBehaviour = block
-        collectUpdates()
+        collectUpdates(allowedUpdates)
         processUpdates()
     }
 
