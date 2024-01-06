@@ -24,7 +24,7 @@ sealed class ChatBoostSource(val source: String) {
     ) : ChatBoostSource("gift_code")
 
     data class Giveaway(
-        val giveawayMessageId: Int,
+        val giveawayMessageId: Long,
         override val user: User? = null,
         val isUnclaimed: Boolean? = null,
     ) : ChatBoostSource("giveaway")

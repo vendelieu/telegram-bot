@@ -3,11 +3,11 @@ package eu.vendeli.tgbot.types
 import eu.vendeli.tgbot.types.internal.Identifier
 
 data class ReplyParameters(
-    val messageId: Int,
-    val chatId: Identifier<*>? = null,
-    val allowSendingWithoutReply: Boolean? = null,
-    val quote: String? = null,
-    val quoteParseMode: String? = null,
-    val quoteEntities: List<MessageEntity>? = null,
-    val quotePosition: Int? = null,
+    var messageId: Long,
+    var chatId: Identifier<*>? = null,
+    var allowSendingWithoutReply: Boolean? = null,
+    var quote: String? = null,
+    var quoteParseMode: String? = null,
+    var quoteEntities: List<MessageEntity>? = null,
+    var quotePosition: Int? = null,
 )
