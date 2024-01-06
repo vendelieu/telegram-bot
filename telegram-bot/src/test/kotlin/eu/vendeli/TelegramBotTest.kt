@@ -6,7 +6,6 @@ import eu.vendeli.tgbot.api.botactions.getMe
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.implementations.EnvConfigLoaderImpl
-import eu.vendeli.tgbot.interfaces.Autowiring
 import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.Message
@@ -24,9 +23,9 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.types.media.File
+import eu.vendeli.tgbot.utils.launchInNewCtx
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
-import eu.vendeli.tgbot.utils.newCoroutineCtx
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
@@ -44,7 +43,6 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.currentCoroutineContext
-import kotlinx.coroutines.launch
 import other.pckg.ChatDataImpl
 import other.pckg.UserDataImpl
 import java.time.Instant
@@ -54,7 +52,7 @@ class TelegramBotTest : BotTestContext() {
     suspend fun `updates handler shortcut test`() {
         doMockHttp()
         shouldNotThrowAny {
-            newCoroutineCtx(currentCoroutineContext()).launch {
+            launchInNewCtx(currentCoroutineContext()) {
                 bot.update.stopListener()
             }
             bot.handleUpdates()
@@ -157,18 +155,6 @@ class TelegramBotTest : BotTestContext() {
         }
 
         bot.chatData::class.java shouldBe ChatDataImpl::class.java
-    }
-
-    @Test
-    suspend fun `adding magic object`() {
-        bot.addAutowiringObject(TgMethod::class.java) {
-            Autowiring { _, _ -> TgMethod("test") }
-        }
-
-        bot.autowiringObjects[TgMethod::class.java].shouldNotBeNull()
-
-        bot.autowiringObjects[TgMethod::class.java]?.get(dummyProcessedUpdate, bot)
-            ?.shouldBeEqualToComparingFields(TgMethod("test"))
     }
 
     @Test
