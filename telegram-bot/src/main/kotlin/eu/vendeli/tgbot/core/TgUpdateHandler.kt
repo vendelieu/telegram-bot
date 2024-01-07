@@ -39,9 +39,9 @@ abstract class TgUpdateHandler internal constructor(
      */
     val caughtExceptions by lazy { Channel<FailedUpdate>(Channel.CONFLATED) }
 
-    private suspend fun collectUpdates(types: List<UpdateType>?) = bot.config.updatesListener.run {
+    private suspend fun collectUpdates(types: List<UpdateType>?) {
         logger.debug { "Starting updates collector." }
-        launchInNewCtx((handlerCtx ?: return@run) + dispatcher) {
+        launchInNewCtx((handlerCtx ?: return)) {
             var lastUpdateId = 0
             while (isActive) {
                 logger.debug { "Running listener with offset - $lastUpdateId" }
@@ -52,14 +52,14 @@ abstract class TgUpdateHandler internal constructor(
                     updatesChannel.send(it)
                     lastUpdateId = it.updateId + 1
                 }
-                if (pullingDelay > 0) delay(pullingDelay)
+                bot.config.updatesListener.pullingDelay.takeIf { it > 0 }?.let { delay(it) }
             }
         }
     }
 
     private suspend fun processUpdates() {
         logger.info { "Starting long-polling listener." }
-        launchInNewCtx((handlerCtx ?: return) + bot.config.updatesListener.dispatcher) {
+        launchInNewCtx((handlerCtx ?: return)) {
             for (update in updatesChannel) {
                 launch(Dispatchers.IO) { handlingBehaviour(this@TgUpdateHandler, update) }
             }
@@ -74,7 +74,7 @@ abstract class TgUpdateHandler internal constructor(
      */
     suspend fun setListener(allowedUpdates: List<UpdateType>? = null, block: HandlingBehaviourBlock) {
         if (handlerCtx?.isActive == true) stopListener()
-        handlerCtx = currentCoroutineContext()
+        handlerCtx = currentCoroutineContext() + bot.config.updatesListener.dispatcher
         logger.debug { "The listener is set." }
         handlingBehaviour = block
         collectUpdates(allowedUpdates)
