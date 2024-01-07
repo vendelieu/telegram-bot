@@ -62,7 +62,7 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to
-        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, inputFilePresence)
+        return via.makeRequestAsync(method, parameters, returnType, collectionReturnType, inputFilePresence)
     }
 
     override suspend fun sendAsync(
@@ -70,7 +70,7 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to
-        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, inputFilePresence)
+        return via.makeRequestAsync(method, parameters, returnType, collectionReturnType, inputFilePresence)
     }
 
     override suspend fun sendAsync(
@@ -78,7 +78,7 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.id
-        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, inputFilePresence)
+        return via.makeRequestAsync(method, parameters, returnType, collectionReturnType, inputFilePresence)
     }
 
     override suspend fun sendAsync(
@@ -86,6 +86,6 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.id
-        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType, inputFilePresence)
+        return via.makeRequestAsync(method, parameters, returnType, collectionReturnType, inputFilePresence)
     }
 }

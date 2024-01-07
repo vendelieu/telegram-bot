@@ -4,7 +4,10 @@ package eu.vendeli.tgbot.utils
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
+import com.fasterxml.jackson.databind.JavaType
+import com.fasterxml.jackson.databind.type.CollectionType
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.api.botactions.getUpdates
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
@@ -30,9 +33,10 @@ import kotlin.coroutines.CoroutineContext
  *
  * @param parentContext Context that will be merged with the created one.
  */
-internal fun launchInNewCtx(parentContext: CoroutineContext, block: suspend CoroutineScope.() -> Unit) = object : CoroutineScope {
-    override val coroutineContext = parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
-}.launch { block() }
+internal fun launchInNewCtx(parentContext: CoroutineContext, block: suspend CoroutineScope.() -> Unit) =
+    object : CoroutineScope {
+        override val coroutineContext = parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
+    }.launch { block() }
 
 internal suspend inline fun TgUpdateHandler.checkIsLimited(
     limits: RateLimits,
@@ -52,11 +56,12 @@ internal suspend inline fun TgUpdateHandler.checkIsLimited(
 }
 
 @Suppress("UnusedReceiverParameter")
-internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getInnerType(): Class<Type> =
-    Type::class.java
+internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getCollectionReturnType(): CollectionType =
+    mapper.typeFactory.constructCollectionType(List::class.java, Type::class.java)
 
 @Suppress("UnusedReceiverParameter")
-internal inline fun <reified Type> TgAction<Type>.getReturnType(): Class<Type> = Type::class.java
+internal inline fun <reified Type> TgAction<Type>.getReturnType(): JavaType =
+    mapper.typeFactory.constructType(Type::class.java)
 
 internal var mu.KLogger.level: Level
     get() = (underlyingLogger as Logger).level
