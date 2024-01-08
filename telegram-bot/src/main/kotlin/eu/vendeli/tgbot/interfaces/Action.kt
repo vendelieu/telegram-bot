@@ -51,7 +51,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to
-        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
+        return via.makeRequestAsync(method, parameters, returnType, collectionReturnType)
     }
 
     open suspend fun sendAsync(
@@ -59,7 +59,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to
-        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
+        return via.makeRequestAsync(method, parameters, returnType, collectionReturnType)
     }
 
     open suspend fun sendAsync(
@@ -67,7 +67,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.id
-        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
+        return via.makeRequestAsync(method, parameters, returnType, collectionReturnType)
     }
 
     open suspend fun sendAsync(
@@ -75,6 +75,6 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.id
-        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
+        return via.makeRequestAsync(method, parameters, returnType, collectionReturnType)
     }
 }

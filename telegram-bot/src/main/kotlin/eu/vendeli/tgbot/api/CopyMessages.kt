@@ -10,8 +10,7 @@ import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CopyMessagesOptions
-import eu.vendeli.tgbot.utils.getInnerType
-import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.getCollectionReturnType
 
 class CopyMessagesAction(
     fromChatId: Identifier<*>,
@@ -19,8 +18,7 @@ class CopyMessagesAction(
 ) : Action<List<MessageId>>(),
     OptionsFeature<CopyMessagesAction, CopyMessagesOptions> {
     override val method = TgMethod("copyMessages")
-    override val returnType = getReturnType()
-    override val wrappedDataType = getInnerType()
+    override val collectionReturnType = getCollectionReturnType()
     override val options = CopyMessagesOptions()
 
     init {

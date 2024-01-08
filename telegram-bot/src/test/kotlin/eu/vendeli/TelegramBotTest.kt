@@ -2,13 +2,12 @@ package eu.vendeli
 
 import BotTestContext
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.api.botactions.getMe
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.implementations.EnvConfigLoaderImpl
-import eu.vendeli.tgbot.interfaces.Autowiring
 import eu.vendeli.tgbot.interfaces.InputListener
-import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
@@ -24,9 +23,9 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.types.media.File
+import eu.vendeli.tgbot.utils.launchInNewCtx
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
-import eu.vendeli.tgbot.utils.newCoroutineCtx
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
@@ -44,7 +43,6 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.currentCoroutineContext
-import kotlinx.coroutines.launch
 import other.pckg.ChatDataImpl
 import other.pckg.UserDataImpl
 import java.time.Instant
@@ -54,7 +52,7 @@ class TelegramBotTest : BotTestContext() {
     suspend fun `updates handler shortcut test`() {
         doMockHttp()
         shouldNotThrowAny {
-            newCoroutineCtx(currentCoroutineContext()).launch {
+            launchInNewCtx(currentCoroutineContext()) {
                 bot.update.stopListener()
             }
             bot.handleUpdates()
@@ -63,11 +61,11 @@ class TelegramBotTest : BotTestContext() {
 
     @Test
     suspend fun `requests testing`() {
-        val getMeReq = bot.makeRequestAsync(
+        val getMeReq = bot.makeRequestAsync<User>(
             TgMethod("getMe"),
             null,
-            User::class.java,
-            (null as Class<MultipleResponse>?),
+            mapper.typeFactory.constructType(User::class.java),
+            null,
         ).await().getOrNull()
 
         getMeReq.shouldNotBeNull()
@@ -89,11 +87,11 @@ class TelegramBotTest : BotTestContext() {
 
     @Test
     suspend fun `failure response handling`() {
-        val failureReq = bot.makeRequestAsync(
+        val failureReq = bot.makeRequestAsync<Message>(
             TgMethod("sendMessage"),
             mapOf("text" to "test"),
-            Message::class.java,
-            (null as Class<MultipleResponse>?),
+            mapper.typeFactory.constructType(Message::class.java),
+            null,
         ).await()
 
         failureReq.isSuccess().shouldBeFalse()
@@ -160,18 +158,6 @@ class TelegramBotTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `adding magic object`() {
-        bot.addAutowiringObject(TgMethod::class.java) {
-            Autowiring { _, _ -> TgMethod("test") }
-        }
-
-        bot.autowiringObjects[TgMethod::class.java].shouldNotBeNull()
-
-        bot.autowiringObjects[TgMethod::class.java]?.get(dummyProcessedUpdate, bot)
-            ?.shouldBeEqualToComparingFields(TgMethod("test"))
-    }
-
-    @Test
     suspend fun `media request handling`() {
         val image = classloader.getResource("image.png")?.readBytes()
         image.shouldNotBeNull()
@@ -189,14 +175,14 @@ class TelegramBotTest : BotTestContext() {
         mediaReq.bodyAsText().isNotBlank().shouldBeTrue()
         mediaReq.bodyAsText() shouldContain "\"ok\":true"
         mediaReq.bodyAsText() shouldContain "\"file_id\""
-        bot.makeRequestAsync(
+        bot.makeRequestAsync<Message>(
             method = TgMethod("sendPhoto"),
             mapOf(
                 "photo" to InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType),
                 "chat_id" to TG_ID,
             ),
-            Message::class.java,
-            (null as Class<MultipleResponse>?),
+            mapper.typeFactory.constructType(Message::class.java),
+            null,
             isImplicit = true,
         ).await().isSuccess().shouldBeTrue()
     }

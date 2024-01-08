@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.interfaces
 
+import com.fasterxml.jackson.databind.JavaType
+import com.fasterxml.jackson.databind.type.CollectionType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.Options
 import kotlin.properties.Delegates
@@ -21,12 +23,12 @@ abstract class TgAction<ReturnType> {
     /**
      * Type of action result.
      */
-    internal open val returnType by Delegates.notNull<Class<ReturnType>>()
+    internal open val returnType: JavaType? = null
 
     /**
      * Parameter through which the type for multiple response is obtained.
      */
-    internal open val wrappedDataType: Class<out MultipleResponse>? = null
+    internal open val collectionReturnType: CollectionType? = null
 
     /**
      * Action data storage parameter.

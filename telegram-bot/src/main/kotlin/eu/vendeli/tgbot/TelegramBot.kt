@@ -3,24 +3,18 @@ package eu.vendeli.tgbot
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.core.ManualHandlingDsl
 import eu.vendeli.tgbot.implementations.EnvConfigLoaderImpl
-import eu.vendeli.tgbot.interfaces.Autowiring
 import eu.vendeli.tgbot.interfaces.ConfigLoader
-import eu.vendeli.tgbot.types.Update
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
-import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.BotConfigurator
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
-import eu.vendeli.tgbot.utils.RESPONSE_UPDATES_LIST_TYPEREF
 import eu.vendeli.tgbot.utils.asClass
 import eu.vendeli.tgbot.utils.getActions
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
 import eu.vendeli.tgbot.utils.getConfiguredMapper
 import eu.vendeli.tgbot.utils.level
 import io.ktor.client.request.get
-import io.ktor.client.request.post
-import io.ktor.client.statement.bodyAsText
 import io.ktor.client.statement.readBytes
 import mu.KLogging
 
@@ -69,8 +63,6 @@ class TelegramBot(
         logger("eu.vendeli.tgbot").level = config.logging.botLogLevel.logbackLvl
     }
 
-    internal val autowiringObjects by lazy { mutableMapOf<Class<*>, Autowiring<*>>() }
-
     /**
      * Current bot UpdateHandler instance
      */
@@ -87,15 +79,6 @@ class TelegramBot(
     }
 
     internal var httpClient = getConfiguredHttpClient()
-
-    /**
-     * Gives the ability to expand magical objects
-     *
-     * @param clazz The class in the final method that will return
-     * @param autowiring Implementation of the [Autowiring] interface to be able to generate more contextual object.
-     */
-    fun <T> addAutowiringObject(clazz: Class<T>, autowiring: () -> Autowiring<T>) =
-        autowiringObjects.put(clazz, autowiring())
 
     /**
      * Get direct url from [File] if [File.filePath] is present
@@ -119,8 +102,8 @@ class TelegramBot(
      *
      * Note that when using this method, other processing will be interrupted and reassigned.
      */
-    suspend fun handleUpdates() {
-        update.setListener {
+    suspend fun handleUpdates(allowedUpdates: List<UpdateType>? = null) {
+        update.setListener(allowedUpdates) {
             handle(it)
         }
     }
@@ -132,18 +115,10 @@ class TelegramBot(
      *
      * @param block [ManualHandlingDsl]
      */
-    suspend fun handleUpdates(block: ManualHandlingBlock) {
-        update.setListener {
+    suspend fun handleUpdates(allowedUpdates: List<UpdateType>? = null, block: ManualHandlingBlock) {
+        update.setListener(allowedUpdates) {
             handle(it, block)
         }
-    }
-
-    internal suspend fun pullUpdates(offset: Int? = null): List<Update>? {
-        logger.debug { "Pulling updates." }
-        val request = httpClient.post(
-            TgMethod("getUpdates").getUrl(config.apiHost, token) + (offset?.let { "?offset=$it" } ?: ""),
-        )
-        return mapper.readValue(request.bodyAsText(), RESPONSE_UPDATES_LIST_TYPEREF).getOrNull()
     }
 
     internal companion object : KLogging() {

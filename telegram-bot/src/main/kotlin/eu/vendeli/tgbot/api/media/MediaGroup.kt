@@ -10,16 +10,14 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile.Str
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.MediaGroupOptions
 import eu.vendeli.tgbot.types.media.InputMedia
-import eu.vendeli.tgbot.utils.getInnerType
-import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.getCollectionReturnType
 import kotlin.collections.set
 
 class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
     MediaAction<List<Message>>(),
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions> {
     override val method = TgMethod("sendMediaGroup")
-    override val returnType = getReturnType()
-    override val wrappedDataType = getInnerType()
+    override val collectionReturnType = getCollectionReturnType()
     override val options = MediaGroupOptions()
     override val inputFilePresence: Boolean
         get() = isInputFile

@@ -1,5 +1,14 @@
 # Telegram-bot changelog
 
+### 4.2.1
+
+* Removed unnecessary `bot.addAutowiringObject` method.
+* Enhanced `userData`/`chatData` get method with generic wrapped with catching for safety.
+* Added `allowedUpdates` for long-polling since it necessary for getting special type updates.
+* Fixed `giveawayMessageId` type: `Int` > `Long`.
+* Added `replyParameters(messageId, block: ReplyParameters.() -> Unit)` fun-shortcut for changing replyParameters.
+* Optimized action internal type inference.
+
 ## 4.2.0
 
 * Added `send` method for `Chat` to `Action<>`.

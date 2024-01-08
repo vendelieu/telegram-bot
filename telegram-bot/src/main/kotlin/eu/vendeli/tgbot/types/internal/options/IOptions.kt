@@ -21,12 +21,10 @@ interface FileOptions : Options {
 interface LinkPreviewProp {
     var linkPreviewOptions: LinkPreviewOptions?
 
-    @Suppress("unused")
     fun disableWebPagePreview() {
         linkPreviewOptions = LinkPreviewOptions(isDisabled = true)
     }
 
-    @Suppress("unused")
     fun linkPreviewOptions(block: LinkPreviewOptions.() -> Unit) {
         linkPreviewOptions = LinkPreviewOptions().apply(block)
     }
@@ -37,4 +35,8 @@ interface OptionsCommon : Options {
     var replyParameters: ReplyParameters?
     var protectContent: Boolean?
     var messageThreadId: Long?
+
+    fun replyParameters(messageId: Long, block: ReplyParameters.() -> Unit = {}) {
+        replyParameters = ReplyParameters(messageId).apply(block)
+    }
 }

@@ -4,7 +4,7 @@ import eu.vendeli.tgbot.types.chat.Chat
 
 data class GiveawayWinners(
     val chat: Chat,
-    val giveawayMessageId: Int,
+    val giveawayMessageId: Long,
     val winnersSelectionDate: Long,
     val winnerCount: Int,
     val winners: List<User>,

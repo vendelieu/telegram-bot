@@ -1,9 +1,10 @@
 package eu.vendeli.tgbot.utils
 
+import com.fasterxml.jackson.databind.JavaType
+import com.fasterxml.jackson.databind.type.CollectionType
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.TelegramBot.Companion.mapper
-import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.internal.ImplicitFile.InpFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.Response
@@ -79,18 +80,18 @@ private fun HttpRequestBuilder.formReqBody(payload: Map<String, Any?>, isImplici
     }
 }
 
-internal suspend inline fun <T, I : MultipleResponse> TelegramBot.makeRequestAsync(
+internal suspend inline fun <T> TelegramBot.makeRequestAsync(
     method: TgMethod,
     data: Map<String, Any?>? = null,
-    returnType: Class<T>,
-    wrappedType: Class<I>? = null,
+    returnType: JavaType? = null,
+    collectionType: CollectionType? = null,
     isImplicit: Boolean = false,
 ): Deferred<Response<out T>> = coroutineScope {
     val response = httpClient.post(method.getUrl(config.apiHost, token)) {
         if (data != null) formReqBody(data, isImplicit)
     }
 
-    return@coroutineScope handleResponseAsync(response, returnType, wrappedType)
+    return@coroutineScope handleResponseAsync(response, returnType, collectionType)
 }
 
 internal suspend inline fun TelegramBot.makeSilentRequest(

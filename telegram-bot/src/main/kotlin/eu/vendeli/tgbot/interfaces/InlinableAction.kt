@@ -34,6 +34,6 @@ abstract class InlinableAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["inline_message_id"] = inlineMessageId
-        return via.makeRequestAsync(method, parameters, returnType, wrappedDataType)
+        return via.makeRequestAsync(method, parameters, returnType, collectionReturnType)
     }
 }

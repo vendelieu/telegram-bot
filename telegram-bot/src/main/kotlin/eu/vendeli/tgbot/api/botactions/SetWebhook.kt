@@ -32,7 +32,7 @@ class SetWebhookAction(url: String) :
         method,
         parameters,
         returnType,
-        wrappedDataType,
+        collectionReturnType,
         parameters["certificate"] != null,
     )
 }
