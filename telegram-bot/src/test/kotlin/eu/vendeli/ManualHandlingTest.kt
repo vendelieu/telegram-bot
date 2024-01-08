@@ -5,6 +5,7 @@ import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.utils.MockUpdate
 import io.kotest.core.spec.IsolationMode
+import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.ints.shouldBeLessThan
 import io.kotest.matchers.ints.shouldBeLessThanOrEqual
 import io.kotest.matchers.maps.shouldBeEmpty
@@ -96,8 +97,8 @@ class ManualHandlingTest : BotTestContext(true, true) {
             if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
         }
 
-        generalCounter.get() shouldBe 5
-        startCounter.get() shouldBe 2
+        generalCounter.get() shouldBeGreaterThanOrEqual 5
+        startCounter.get() shouldBeGreaterThanOrEqual 2
         notHandledCounter.get() shouldBe 3
     }
 

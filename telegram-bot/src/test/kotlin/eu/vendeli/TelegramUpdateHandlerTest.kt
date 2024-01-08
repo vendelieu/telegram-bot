@@ -18,6 +18,7 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
+import kotlinx.coroutines.delay
 import java.time.Instant
 
 class TelegramUpdateHandlerTest : BotTestContext() {
@@ -153,6 +154,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         bot.update.setListener {
             bot.inputListener.set(1, "testInp")
             handle(it)
+            delay(200)
             if (it.message?.text == "aaaa") stopListener()
         }
 
