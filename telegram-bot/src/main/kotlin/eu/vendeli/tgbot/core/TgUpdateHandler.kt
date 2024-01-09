@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.ManualHandlingBlock
+import eu.vendeli.tgbot.utils.launchInCtx
 import eu.vendeli.tgbot.utils.launchInNewCtx
 import eu.vendeli.tgbot.utils.process
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +30,7 @@ import kotlin.coroutines.CoroutineContext
 abstract class TgUpdateHandler internal constructor(
     internal val bot: TelegramBot,
 ) {
-    private lateinit var handlingBehaviour: HandlingBehaviourBlock
+    private var handlingBehaviour: HandlingBehaviourBlock? = null
     private val updatesChannel = Channel<Update>()
     private var handlerCtx: CoroutineContext? = null
     private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot) }
@@ -61,7 +62,7 @@ abstract class TgUpdateHandler internal constructor(
         logger.info { "Starting long-polling listener." }
         launchInNewCtx((handlerCtx ?: return)) {
             for (update in updatesChannel) {
-                launch(Dispatchers.IO) { handlingBehaviour(this@TgUpdateHandler, update) }
+                launch(Dispatchers.IO) { handlingBehaviour?.invoke(this@TgUpdateHandler, update) ?: logBehavError() }
             }
         }.join()
     }
@@ -94,9 +95,11 @@ abstract class TgUpdateHandler internal constructor(
     /**
      * A function for defining the behavior to handle updates.
      */
-    fun setBehaviour(block: HandlingBehaviourBlock) {
+    suspend fun setBehaviour(block: HandlingBehaviourBlock) {
         logger.debug { "Handling behaviour is set." }
+        if (handlerCtx?.isActive == true) stopListener()
         handlingBehaviour = block
+        handlerCtx = currentCoroutineContext() + bot.config.updatesListener.dispatcher
     }
 
     /**
@@ -105,12 +108,14 @@ abstract class TgUpdateHandler internal constructor(
      */
     suspend fun parseAndHandle(update: String) {
         logger.debug { "Trying to parse update from string - $update" }
-        mapper.runCatching {
-            readValue(update, Update::class.java)
-        }.onFailure {
+        mapper.runCatching { readValue(update, Update::class.java) }.onFailure {
             logger.debug(it) { "error during the update parsing process." }
-        }.onSuccess { logger.info { "Successfully parsed update to $it" } }
-            .getOrNull()?.let { handlingBehaviour(this, it) }
+        }.onSuccess { logger.info { "Successfully parsed update to $it" } }.getOrNull()?.let {
+            logger.debug { "Processing update with preset behaviour." }
+            launchInCtx((handlerCtx ?: return@let) + Dispatchers.IO) {
+                handlingBehaviour?.invoke(this@TgUpdateHandler, it) ?: logBehavError()
+            }
+        }
     }
 
     /**
@@ -134,5 +139,7 @@ abstract class TgUpdateHandler internal constructor(
         }
     }
 
-    internal companion object : KLogging()
+    internal companion object : KLogging() {
+        internal fun logBehavError() = logger.error { "Handling behaviour must be set." }
+    }
 }

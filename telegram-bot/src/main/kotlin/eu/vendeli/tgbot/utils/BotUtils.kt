@@ -38,6 +38,9 @@ internal fun launchInNewCtx(parentContext: CoroutineContext, block: suspend Coro
         override val coroutineContext = parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
     }.launch { block() }
 
+internal suspend inline fun launchInCtx(ctx: CoroutineContext, crossinline block: suspend CoroutineScope.() -> Unit) =
+    coroutineScope { launch(ctx) { block() } }
+
 internal suspend inline fun TgUpdateHandler.checkIsLimited(
     limits: RateLimits,
     telegramId: Long? = null,
