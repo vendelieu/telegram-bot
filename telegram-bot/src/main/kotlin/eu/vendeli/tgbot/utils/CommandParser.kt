@@ -4,7 +4,7 @@ import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.types.internal.StructuredRequest
 
 @Suppress("CyclomaticComplexMethod", "NestedBlockDepth")
-internal fun TgUpdateHandler.parseCommand(
+internal fun TgUpdateHandler.parseActivity(
     text: String,
 ): StructuredRequest = with(bot.config.commandParsing) {
     var state = ParserState.READING_COMMAND

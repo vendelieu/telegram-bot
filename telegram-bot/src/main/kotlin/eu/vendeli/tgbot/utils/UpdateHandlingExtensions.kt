@@ -36,7 +36,7 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
     scope: UpdateType,
 ): Boolean {
     // parse text to chosen format
-    val parsedText = text?.let { bot.update.parseCommand(it) }
+    val parsedText = text?.let { bot.update.parseActivity(it) }
     logger.debug { "Parsed text - $text to $parsedText" }
 
     // if there's no user then break

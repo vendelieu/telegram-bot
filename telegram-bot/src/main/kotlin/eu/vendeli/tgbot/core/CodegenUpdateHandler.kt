@@ -12,7 +12,7 @@ import eu.vendeli.tgbot.utils.InvocationLambda
 import eu.vendeli.tgbot.utils.RegexHandlers
 import eu.vendeli.tgbot.utils.UpdateTypeHandlers
 import eu.vendeli.tgbot.utils.checkIsLimited
-import eu.vendeli.tgbot.utils.parseCommand
+import eu.vendeli.tgbot.utils.parseActivity
 import eu.vendeli.tgbot.utils.processUpdate
 
 /**
@@ -38,15 +38,15 @@ class CodegenUpdateHandler internal constructor(
         if (checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id))
             return@run
 
-        val request = parseCommand(text.substringBefore('@'))
-        var actionId = request.command
+        val request = parseActivity(text.substringBefore('@'))
+        var activityId = request.command
 
         // check parsed command existence
         var invocation: Invocable? = commandHandlers[request.command to type]
 
         // if there's no command > check input point
         if (invocation == null) invocation = bot.inputListener.getAsync(userOrNull!!.id).await()?.let {
-            actionId = it
+            activityId = it
             inputHandlers[it]
         }
 
@@ -57,13 +57,13 @@ class CodegenUpdateHandler internal constructor(
         if (invocation == null) invocation = regexHandlers.entries.firstOrNull {
             it.key.matchEntire(text) != null
         }?.also {
-            actionId = it.key.pattern
+            activityId = it.key.pattern
         }?.value
 
         logger.debug { "Result of finding action - ${invocation?.second}" }
 
         // if we found any action > check for its limits
-        if (invocation != null && checkIsLimited(invocation.second.rateLimits, userOrNull?.id, actionId))
+        if (invocation != null && checkIsLimited(invocation.second.rateLimits, userOrNull?.id, activityId))
             return@run
 
         // invoke update type handler if there's
