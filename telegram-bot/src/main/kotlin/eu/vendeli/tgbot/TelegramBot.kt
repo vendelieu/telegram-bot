@@ -68,12 +68,12 @@ class TelegramBot(
      */
     val update by lazy {
         val postFix = commandsPackage?.let { "_$it".replace(".", "_") } ?: ""
-        val codegenActions = "eu.vendeli.tgbot.ActivitiesDataKt".asClass().getActions()
+        val codegenActivities = "eu.vendeli.tgbot.ActivitiesDataKt".asClass().getActions()
             ?: "eu.vendeli.tgbot.ActivitiesData${postFix}Kt".asClass().getActions(postFix)
             ?: error("Not found generated actions, check if ksp plugin is connected correctly.")
 
         CodegenUpdateHandler(
-            codegenActions,
+            codegenActivities,
             this,
         )
     }

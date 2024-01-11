@@ -18,19 +18,19 @@ import eu.vendeli.tgbot.utils.processUpdate
 /**
  * Processor for processing actions built via ksp code generation.
  *
- * @param actions generated actions.
+ * @param activities generated actions.
  * @param bot bot instance.
  */
 @Suppress("MagicNumber", "UNCHECKED_CAST")
 class CodegenUpdateHandler internal constructor(
-    actions: List<*>,
+    activities: List<*>,
     bot: TelegramBot,
 ) : TgUpdateHandler(bot) {
-    private val commandHandlers = actions[0] as CommandHandlers
-    private val inputHandlers = actions[1] as InputHandlers
-    private val regexHandlers = actions[2] as RegexHandlers
-    private val updateTypeHandlers = actions[3] as UpdateTypeHandlers
-    private val unprocessedHandler = actions[4] as InvocationLambda?
+    private val commandHandlers = activities[0] as CommandHandlers
+    private val inputHandlers = activities[1] as InputHandlers
+    private val regexHandlers = activities[2] as RegexHandlers
+    private val updateTypeHandlers = activities[3] as UpdateTypeHandlers
+    private val unprocessedHandler = activities[4] as InvocationLambda?
 
     override suspend fun handle(update: Update): Unit = update.processUpdate().run {
         logger.debug { "Handling update: $update" }
