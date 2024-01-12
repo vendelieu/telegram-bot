@@ -32,6 +32,16 @@ class CodegenUpdateHandler internal constructor(
     private val updateTypeHandlers = activities[3] as UpdateTypeHandlers
     private val unprocessedHandler = activities[4] as InvocationLambda?
 
+    init {
+        logger.info {
+            "CommandHandlers: ${commandHandlers.ifEmpty { "None" }}\n" +
+                "InputHandlers ${inputHandlers.ifEmpty { "None" }}\n" +
+                "RegexCommandHandlers: ${regexHandlers.ifEmpty { "None" }}\n" +
+                "UpdateTypeHandlers: ${updateTypeHandlers.ifEmpty { "None" }}\n" +
+                "UnprocessedHandler: ${unprocessedHandler ?: "None"}"
+        }
+    }
+
     override suspend fun handle(update: Update): Unit = update.processUpdate().run {
         logger.debug { "Handling update: $update" }
         // check general user limits
