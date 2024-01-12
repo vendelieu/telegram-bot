@@ -30,7 +30,7 @@ import kotlin.coroutines.CoroutineContext
 abstract class TgUpdateHandler internal constructor(
     internal val bot: TelegramBot,
 ) {
-    private var handlingBehaviour: HandlingBehaviourBlock? = null
+    private var handlingBehaviour: HandlingBehaviourBlock = { handle(it) }
     private val updatesChannel = Channel<Update>()
     private var handlerCtx: CoroutineContext? = null
     private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot) }
@@ -62,7 +62,7 @@ abstract class TgUpdateHandler internal constructor(
         logger.info { "Starting long-polling listener." }
         launchInNewCtx((handlerCtx ?: return)) {
             for (update in updatesChannel) {
-                launch(Dispatchers.IO) { handlingBehaviour?.invoke(this@TgUpdateHandler, update) ?: logBehavError() }
+                launch(Dispatchers.IO) { handlingBehaviour(this@TgUpdateHandler, update) }
             }
         }.join()
     }
@@ -113,7 +113,7 @@ abstract class TgUpdateHandler internal constructor(
         }.onSuccess { logger.info { "Successfully parsed update to $it" } }.getOrNull()?.let {
             logger.debug { "Processing update with preset behaviour." }
             launchInCtx((handlerCtx ?: return@let) + Dispatchers.IO) {
-                handlingBehaviour?.invoke(this@TgUpdateHandler, it) ?: logBehavError()
+                handlingBehaviour(this@TgUpdateHandler, it)
             }
         }
     }
@@ -139,7 +139,5 @@ abstract class TgUpdateHandler internal constructor(
         }
     }
 
-    internal companion object : KLogging() {
-        internal fun logBehavError() = logger.error { "Handling behaviour must be set." }
-    }
+    internal companion object : KLogging()
 }
