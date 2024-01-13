@@ -12,6 +12,7 @@ import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 class Conversation {
     object Name : ChainLink() {
         override val breakCondition = BreakCondition { _, update, _ -> update.text.isEmpty() }
+        override val retryAfterBreak = true
 
         override suspend fun action(user: User, update: ProcessedUpdate, bot: TelegramBot) {
             bot.userData[user, "name"] = update.text
