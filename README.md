@@ -45,8 +45,6 @@ there you can find in the appropriate branches:
 - [Conversation](https://github.com/vendelieu/telegram-bot_template/tree/conversation) - An example of using Inputs and
   storing data in UserData.
 - [Echo](https://github.com/vendelieu/telegram-bot_template/tree/echo) - Echo bot :)
-- [Exception-handling](https://github.com/vendelieu/telegram-bot_template/tree/exception-handling) - Simple example of
-  exception handling
 - [Ktor-webhook](https://github.com/vendelieu/telegram-bot_template/tree/ktor-webhook) - An example of using webhook
   with Ktor
 - [Poll](https://github.com/vendelieu/telegram-bot_template/tree/poll) - An example of how to build a questionnaire bot.
@@ -120,30 +118,6 @@ and the ability to configure from the environment variables out of the box is al
 
 You can read more in a [Bot configuration](https://github.com/vendelieu/telegram-bot/wiki/Bot-configuration) article.
 
-### Requests limiting
-
-Library as well supports limiting requests from users:
-
-```kotlin
-// ...
-val bot = TelegramBot("BOT_TOKEN") {
-    rateLimiter { // general limits
-        limits = RateLimits(period = 10000, rate = 5)
-    }
-}
-
-// Limits on certain actions
-@CommandHandler(["/start"], RateLimits(period = 1000L, rate = 1L)) // or InputHandler
-suspend fun start(user: User, bot: TelegramBot) {
-    // ...
-}
-// In manual mode
-onCommand("/start", RateLimits(period = 1000L, rate = 1L)) {
-    // ...
-}
-// ...
-```
-
 ### Processing responses
 
 if you want to operate with response you can
@@ -154,7 +128,7 @@ method, which
 returns [`Response`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-response/index.html):
 
 ```kotlin
-message { "test" }.sendAsync(user, bot).await().onFailure {
+message { "test" }.sendAsync(user, bot).onFailure {
     println("code: ${it.errorCode} description: ${it.description}")
 }
 ```

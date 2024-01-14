@@ -33,7 +33,7 @@ abstract class TgUpdateHandler internal constructor(
     private var handlingBehaviour: HandlingBehaviourBlock = { handle(it) }
     private val updatesChannel = Channel<Update>()
     private var handlerCtx: CoroutineContext? = null
-    private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot) }
+    private val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
 
     /**
      * The channel where errors caught during update processing are stored with update that caused them.
@@ -132,8 +132,8 @@ abstract class TgUpdateHandler internal constructor(
      * @param block
      */
     suspend fun handle(update: Update, block: ManualHandlingBlock) {
-        logger.debug { "Manually handling update: $update" }
-        manualHandlingBehavior.apply {
+        logger.debug { "Functionally handling update: $update" }
+        functionalHandlingBehavior.apply {
             block()
             process(update)
         }

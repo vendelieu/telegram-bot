@@ -1,16 +1,16 @@
 package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.core.ManualHandlingDsl
+import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
 import eu.vendeli.tgbot.types.Update
-import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.ActionContext
+import eu.vendeli.tgbot.types.internal.ActivityCtx
 import eu.vendeli.tgbot.types.internal.CommandContext
 import eu.vendeli.tgbot.types.internal.FailedUpdate
-import eu.vendeli.tgbot.types.internal.InputContext
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.internal.userOrNull
 
 private inline val SingleInputChain.prevChainId: String?
     get() = if (currentLevel == 1) {
@@ -29,43 +29,35 @@ private inline val SingleInputChain.prevChainId: String?
  * @param text
  */
 @Suppress("CyclomaticComplexMethod", "DuplicatedCode", "ReturnCount")
-private suspend fun ManualHandlingDsl.checkMessageForActions(
-    update: Update,
-    from: User? = null,
-    text: String? = null,
-    scope: UpdateType,
-): Boolean {
+private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: ProcessedUpdate): Boolean = update.run {
     // parse text to chosen format
-    val parsedText = text?.let { bot.update.parseActivity(it) }
+    val parsedText = text.let { bot.update.parseCommand(it) }
     logger.debug { "Parsed text - $text to $parsedText" }
-
-    // if there's no user then break
-    if (from == null) return false
+    val user = userOrNull
+    val cmdCtx = CommandContext(update, parsedText.params)
 
     // find action which match command and invoke it
-    manualActions.commands[parsedText?.command]?.run {
-        if (scope !in this.scope) return@run
-        logger.debug { "Matched command $this for text $text" }
-        bot.inputListener.del(from.id) // clean input listener
+    functionalActivities.commands[parsedText.command to type]?.run {
+        logger.debug { "Matched command ${parsedText.command} for text $text" }
+        if (user != null) bot.inputListener.del(user.id) // clean input listener
         // check for limit exceed
-        if (bot.update.checkIsLimited(rateLimits, update.message?.from?.id, parsedText!!.command)) return false
+        if (bot.update.checkIsLimited(rateLimits, user?.id, parsedText.command)) return false
         logger.info { "Invoking command $id" }
-        invocation.invoke(CommandContext(update, parsedText.params, from))
+        invocation.invoke(cmdCtx)
         return true
     }
     // if there's no command -> then try process input
-    bot.inputListener.get(from.id)?.also {
-        logger.info { "Found inputListener point $it for ${from.id}" }
-        bot.inputListener.del(from.id) // clean listener after input caught
+    if (user != null) bot.inputListener.get(user.id)?.also {
+        logger.info { "Found inputListener point $it for ${user.id}" }
+
         // search matching input handler for listening point
-        val foundChain = manualActions.onInput[it]
-        if (foundChain != null && update.message != null) {
+        val foundChain = functionalActivities.inputs[it]
+        if (foundChain != null) {
             // check for limit exceed
-            if (bot.update.checkIsLimited(foundChain.rateLimits, update.message.from?.id, foundChain.id)) {
-                return false
-            }
-            val inputContext = InputContext(from, update) // form context for future usage
-            val prevChain = foundChain.prevChainId?.let { id -> manualActions.onInput[id] }
+            if (bot.update.checkIsLimited(foundChain.rateLimits, user.id, foundChain.id)) return false
+
+            val inputContext = ActivityCtx(this) // form context for future usage
+            val prevChain = foundChain.prevChainId?.let { id -> functionalActivities.inputs[id] }
             // check is there prev chain to check break condition for current lvl
             val isBreakCase = prevChain?.breakPoint?.condition?.invoke(inputContext) == true
 
@@ -79,44 +71,43 @@ private suspend fun ManualHandlingDsl.checkMessageForActions(
 
             if (isBreakCase && prevChain?.breakPoint?.repeat == true) {
                 // and if we need to repeat do set listener again
-                bot.inputListener.set(from.id, foundChain.id)
+                bot.inputListener.set(user.id, foundChain.id)
                 return true
             }
 
             if (!isBreakCase && foundChain.tail != null)
-                bot.inputListener.set(from.id, foundChain.tail!!)
+                bot.inputListener.set(user.id, foundChain.tail!!)
 
             return true
         }
     }
+    if (user != null) bot.inputListener.del(user.id) // clean listener
 
-    manualActions.regexCommands.entries.firstOrNull {
-        it.key.matchEntire(parsedText?.command ?: return false) != null
+    if (parsedText.command.isNotBlank()) functionalActivities.regexCommands.entries.firstOrNull { i ->
+        i.key.matchEntire(parsedText.command) != null
     }?.value?.run {
-        if (scope !in this.scope) return false
         logger.debug { "Matched regex command $this for text $text" }
-        bot.inputListener.del(from.id) // clean input listener
         // check for limit exceed
-        if (bot.update.checkIsLimited(rateLimits, update.message?.from?.id, parsedText!!.command)) return false
+        if (bot.update.checkIsLimited(rateLimits, user?.id, parsedText.command)) return false
         logger.info { "Invoking command $id" }
-        invocation.invoke(CommandContext(update, parsedText.params, from))
+        invocation.invoke(cmdCtx)
         return true
     }
     return false
 }
 
-private suspend fun <CTX> ((suspend (ActionContext<CTX>) -> Unit)?).invokeAction(
+private suspend fun ((suspend ActivityCtx<ProcessedUpdate>.() -> Unit)?).invokeAction(
     bot: TelegramBot,
-    actionType: String,
-    actionCtx: ActionContext<CTX>,
+    updateType: UpdateType,
+    actionCtx: ActivityCtx<ProcessedUpdate>,
 ): Boolean {
     this?.runCatching { invoke(actionCtx) }?.onFailure {
-        bot.update.caughtExceptions.send(FailedUpdate(it.cause ?: it, actionCtx.update))
+        bot.update.caughtExceptions.send(FailedUpdate(it.cause ?: it, actionCtx.update.update))
         logger.error(it) {
-            "An error occurred while manually processing update: ${actionCtx.update} to $actionType."
+            "An error occurred while functionally processing update: ${actionCtx.update} to UpdateType($updateType)."
         }
     }?.onSuccess {
-        logger.info { "Update #${actionCtx.update.updateId} processed in manual mode with $actionType action." }
+        logger.info { "Update #${actionCtx.update.updateId} processed in functional mode with UpdateType($updateType) action." }
         return true
     }
     return false
@@ -132,152 +123,16 @@ private inline fun Boolean?.ifAffected(block: () -> Unit) {
  * @param update
  */
 @Suppress("CyclomaticComplexMethod", "LongMethod")
-internal suspend fun ManualHandlingDsl.process(update: Update) = with(update) {
+internal suspend fun FunctionalHandlingDsl.process(update: Update) = with(update.processUpdate()) {
     logger.info { "Handling update #${update.updateId}" }
-    if (bot.update.checkIsLimited(bot.config.rateLimiter.limits, update.message?.from?.id)) return@with
+    if (bot.update.checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id)) return@with
     var affectedActions = 0
 
-    when {
-        message != null -> {
-            manualActions.onMessage?.invokeAction(bot, "onMessage", ActionContext(update, message)).ifAffected {
-                affectedActions += 1
-            }
-            checkMessageForActions(
-                update,
-                update.message?.from,
-                update.message?.text,
-                UpdateType.MESSAGE,
-            ).ifAffected {
-                affectedActions += 1
-            }
-        }
+    checkMessageForActivities(this).ifAffected { affectedActions += 1 }
+    functionalActivities.onUpdateActivities[type]?.invokeAction(bot, type, ActivityCtx(this))
+        .ifAffected { affectedActions += 1 }
 
-        editedMessage != null -> manualActions.onEditedMessage?.invokeAction(
-            bot,
-            "onEditedMessage",
-            ActionContext(update, editedMessage),
-        ).ifAffected {
-            affectedActions += 1
-        }
-
-        pollAnswer != null -> manualActions.onPollAnswer?.invokeAction(
-            bot,
-            "onPollAnswer",
-            ActionContext(update, pollAnswer),
-        ).ifAffected {
-            affectedActions += 1
-        }
-
-        callbackQuery != null -> {
-            manualActions.onCallbackQuery?.invokeAction(
-                bot,
-                "onCallbackQuery",
-                ActionContext(update, callbackQuery),
-            ).ifAffected {
-                affectedActions += 1
-            }
-            if (callbackQuery.data == null) return@with
-
-            checkMessageForActions(
-                update,
-                callbackQuery.from,
-                callbackQuery.data,
-                UpdateType.CALLBACK_QUERY,
-            ).ifAffected {
-                affectedActions += 1
-            }
-        }
-
-        poll != null -> manualActions.onPoll?.invokeAction(
-            bot,
-            "onPoll",
-            ActionContext(update, poll),
-        ).ifAffected {
-            affectedActions += 1
-        }
-
-        chatJoinRequest != null -> manualActions.onChatJoinRequest?.invokeAction(
-            bot,
-            "onChatJoinRequest",
-            ActionContext(update, chatJoinRequest),
-        ).ifAffected {
-            affectedActions += 1
-        }
-
-        chatMember != null -> manualActions.onChatMember?.invokeAction(
-            bot,
-            "onChatMember",
-            ActionContext(update, chatMember),
-        ).ifAffected {
-            affectedActions += 1
-        }
-
-        myChatMember != null -> manualActions.onMyChatMember?.invokeAction(
-            bot,
-            "onMyChatMember",
-            ActionContext(update, myChatMember),
-        ).ifAffected {
-            affectedActions += 1
-        }
-
-        channelPost != null -> manualActions.onChannelPost?.invokeAction(
-            bot,
-            "onChannelPost",
-            ActionContext(update, channelPost),
-        ).ifAffected {
-            affectedActions += 1
-        }
-
-        inlineQuery != null -> manualActions.onInlineQuery?.invokeAction(
-            bot,
-            "onInlineQuery",
-            ActionContext(update, inlineQuery),
-        ).ifAffected {
-            affectedActions += 1
-        }
-
-        shippingQuery != null -> manualActions.onShippingQuery?.invokeAction(
-            bot,
-            "onShippingQuery",
-            ActionContext(update, shippingQuery),
-        ).ifAffected {
-            affectedActions += 1
-        }
-
-        preCheckoutQuery != null -> manualActions.onPreCheckoutQuery?.invokeAction(
-            bot,
-            "onPreCheckoutQuery",
-            ActionContext(
-                update,
-                preCheckoutQuery,
-            ),
-        ).ifAffected {
-            affectedActions += 1
-        }
-
-        editedChannelPost != null -> manualActions.onEditedChannelPost?.invokeAction(
-            bot,
-            "onEditedChannelPost",
-            ActionContext(
-                update,
-                editedChannelPost,
-            ),
-        ).ifAffected {
-            affectedActions += 1
-        }
-
-        chosenInlineResult != null -> manualActions.onChosenInlineResult?.invokeAction(
-            bot,
-            "onChosenInlineResult",
-            ActionContext(
-                update,
-                chosenInlineResult,
-            ),
-        ).ifAffected {
-            affectedActions += 1
-        }
-    }
-    if (affectedActions == 0) manualActions.whenNotHandled?.invoke(update)?.also {
+    if (affectedActions == 0) functionalActivities.whenNotHandled?.invoke(update)?.also {
         logger.info { "Update #${update.updateId} processed in manual mode with whenNotHandled action." }
         affectedActions += 1
     }

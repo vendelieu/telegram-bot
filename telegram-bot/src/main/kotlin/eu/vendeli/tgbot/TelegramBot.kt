@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot
 
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
-import eu.vendeli.tgbot.core.ManualHandlingDsl
+import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.implementations.EnvConfigLoaderImpl
 import eu.vendeli.tgbot.interfaces.ConfigLoader
 import eu.vendeli.tgbot.types.internal.UpdateType
@@ -113,7 +113,7 @@ class TelegramBot(
      *
      * Note that when using this method, other processing will be interrupted and reassigned.
      *
-     * @param block [ManualHandlingDsl]
+     * @param block [FunctionalHandlingDsl]
      */
     suspend fun handleUpdates(allowedUpdates: List<UpdateType>? = null, block: ManualHandlingBlock) {
         update.setListener(allowedUpdates) {

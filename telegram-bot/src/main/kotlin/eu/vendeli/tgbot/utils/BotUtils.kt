@@ -87,4 +87,7 @@ internal inline fun String.asClass(): Class<*>? = kotlin.runCatching { Class.for
 internal inline fun Class<*>?.getActions(postFix: String? = null) =
     this?.getMethod("get\$ACTIVITIES".let { if (postFix != null) it + postFix else it })?.invoke(null) as? List<*>
 
+@Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
+internal inline fun <T> Any?.cast() = this as T
+
 fun <T : ChainLink> InputListener.setChain(user: User, firstLink: T) = set(user, firstLink::class.qualifiedName!!)

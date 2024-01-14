@@ -1,12 +1,12 @@
 package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.core.TgUpdateHandler
-import eu.vendeli.tgbot.types.internal.StructuredRequest
+import eu.vendeli.tgbot.types.internal.ParsedText
 
 @Suppress("CyclomaticComplexMethod", "NestedBlockDepth")
-internal fun TgUpdateHandler.parseActivity(
+internal fun TgUpdateHandler.parseCommand(
     text: String,
-): StructuredRequest = with(bot.config.commandParsing) {
+): ParsedText = with(bot.config.commandParsing) {
     var state = ParserState.READING_COMMAND
     var command = ""
     val params = mutableMapOf<String, String>()
@@ -62,7 +62,7 @@ internal fun TgUpdateHandler.parseActivity(
         command = "/start"
     }
 
-    return StructuredRequest(command = command, params = params)
+    return ParsedText(command = command, params = params)
 }
 
 private enum class ParserState {

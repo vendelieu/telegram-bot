@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.media.Document
-import eu.vendeli.tgbot.utils.parseActivity
+import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.common.ExperimentalKotest
@@ -90,19 +90,19 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         bot.config.apply {
             commandParsing.restrictSpacesInCommands = true
         }
-        val deeplinkParse = bot.update.parseActivity("/start deeplinkcode")
+        val deeplinkParse = bot.update.parseCommand("/start deeplinkcode")
         deeplinkParse.command shouldBe "/start"
         deeplinkParse.params shouldContainExactly (mapOf("param_1" to "deeplinkcode"))
 
-        val commandParseWithNoParams = bot.update.parseActivity("/command")
+        val commandParseWithNoParams = bot.update.parseCommand("/command")
         commandParseWithNoParams.command shouldBe "/command"
         commandParseWithNoParams.params.size shouldBe 0
 
-        val commandParseWithOneEmptyParam = bot.update.parseActivity("/command?")
+        val commandParseWithOneEmptyParam = bot.update.parseCommand("/command?")
         commandParseWithOneEmptyParam.command shouldBe "/command"
         commandParseWithOneEmptyParam.params shouldContainExactly (mapOf("param_1" to ""))
 
-        val commandParseWithMixedParams = bot.update.parseActivity("command?p1=v1&v2&p3=&p4=v4&p5=")
+        val commandParseWithMixedParams = bot.update.parseCommand("command?p1=v1&v2&p3=&p4=v4&p5=")
         commandParseWithMixedParams.command shouldBe "command"
         commandParseWithMixedParams.params shouldContainExactly mapOf(
             "p1" to "v1",
@@ -112,7 +112,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             "p5" to "",
         )
 
-        val commandParseForLastFullPair = bot.update.parseActivity("last_pair_command?v1&p2=v2")
+        val commandParseForLastFullPair = bot.update.parseCommand("last_pair_command?v1&p2=v2")
         commandParseForLastFullPair.command shouldBe "last_pair_command"
         commandParseForLastFullPair.params shouldContainExactly (mapOf("param_1" to "v1", "p2" to "v2"))
 
@@ -120,7 +120,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             commandDelimiter = '_'
         }
 
-        val underscoreCommand = bot.update.parseActivity("/test_123")
+        val underscoreCommand = bot.update.parseCommand("/test_123")
         underscoreCommand.command shouldBe "/test"
         underscoreCommand.params shouldContainExactly (mapOf("param_1" to "123"))
 
@@ -130,7 +130,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             parameterValueDelimiter = ' '
             restrictSpacesInCommands = false
         }
-        val deeplinkCheck = bot.update.parseActivity("/start bafefdf0-64cb-47da-97f0-4a1f11d469a2")
+        val deeplinkCheck = bot.update.parseCommand("/start bafefdf0-64cb-47da-97f0-4a1f11d469a2")
         deeplinkCheck.command shouldBe "/start"
         deeplinkCheck.params shouldContainExactly (mapOf("param_1" to "bafefdf0-64cb-47da-97f0-4a1f11d469a2"))
     }

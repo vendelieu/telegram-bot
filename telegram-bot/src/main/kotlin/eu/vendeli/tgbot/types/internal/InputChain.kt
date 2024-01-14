@@ -12,7 +12,7 @@ fun interface BreakCondition {
 }
 
 abstract class ChainLink {
-    open val retryAfterBreak = false
+    open val retryAfterBreak = true
     open val breakCondition: BreakCondition? = null
 
     abstract suspend fun action(user: User, update: ProcessedUpdate, bot: TelegramBot)
