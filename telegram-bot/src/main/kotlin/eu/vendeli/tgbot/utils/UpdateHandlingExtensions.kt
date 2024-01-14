@@ -25,10 +25,8 @@ private inline val SingleInputChain.prevChainId: String?
  * Method that tries to find action in given text and invoke action matches it
  *
  * @param update
- * @param from
- * @param text
  */
-@Suppress("CyclomaticComplexMethod", "DuplicatedCode", "ReturnCount")
+@Suppress("CyclomaticComplexMethod", "NestedBlockDepth", "ReturnCount")
 private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: ProcessedUpdate): Boolean = update.run {
     // parse text to chosen format
     val parsedText = text.let { bot.update.parseCommand(it) }
@@ -107,7 +105,9 @@ private suspend fun ((suspend ActivityCtx<ProcessedUpdate>.() -> Unit)?).invokeA
             "An error occurred while functionally processing update: ${actionCtx.update} to UpdateType($updateType)."
         }
     }?.onSuccess {
-        logger.info { "Update #${actionCtx.update.updateId} processed in functional mode with UpdateType($updateType) action." }
+        logger.info {
+            "Update #${actionCtx.update.updateId} processed in functional mode with UpdateType($updateType) action."
+        }
         return true
     }
     return false
