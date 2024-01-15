@@ -177,6 +177,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 }
             }
 
+            delay(1)
             invocationsCount shouldBe UpdateType.entries.size
 
             functionalActivities.regexCommands.shouldBeEmpty()
