@@ -134,6 +134,9 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         var invocationsCount = 0
 
         bot.handleUpdates {
+            functionalActivities.onUpdateActivities.clear()
+            functionalActivities.regexCommands.clear()
+
             functionalActivities.onUpdateActivities[UpdateType.EDIT_MESSAGE].shouldBeNull()
             onEditedMessage {
                 println("--------- action ${update.type} invoked")
