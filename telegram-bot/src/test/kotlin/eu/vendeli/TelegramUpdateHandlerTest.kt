@@ -44,7 +44,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `exception catching via manual handling`() {
+    suspend fun `exception catching via functional handling`() {
         doMockHttp()
 
         bot.update.caughtExceptions.tryReceive().getOrNull().shouldBeNull()

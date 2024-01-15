@@ -62,7 +62,7 @@ internal typealias CommandActivities = MutableMap<Pair<String, UpdateType>, Func
 internal typealias RegexCommandActivities = MutableMap<Regex, FunctionalInvocation>
 
 typealias HandlingBehaviourBlock = suspend TgUpdateHandler.(Update) -> Unit
-typealias ManualHandlingBlock = suspend FunctionalHandlingDsl.() -> Unit
+typealias FunctionalHandlingBlock = suspend FunctionalHandlingDsl.() -> Unit
 typealias BotConfigurator = BotConfiguration.() -> Unit
 
 typealias InvocationLambda = suspend (ClassManager, ProcessedUpdate, User?, TelegramBot, Map<String, String>) -> Any?

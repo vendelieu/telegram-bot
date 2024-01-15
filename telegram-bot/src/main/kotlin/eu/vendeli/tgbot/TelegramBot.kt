@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.BotConfigurator
-import eu.vendeli.tgbot.utils.ManualHandlingBlock
+import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.asClass
 import eu.vendeli.tgbot.utils.getActions
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
@@ -109,13 +109,13 @@ class TelegramBot(
     }
 
     /**
-     * Function for processing updates by long-pulling using manual handling.
+     * Function for processing updates by long-pulling using functional handling.
      *
      * Note that when using this method, other processing will be interrupted and reassigned.
      *
      * @param block [FunctionalHandlingDsl]
      */
-    suspend fun handleUpdates(allowedUpdates: List<UpdateType>? = null, block: ManualHandlingBlock) {
+    suspend fun handleUpdates(allowedUpdates: List<UpdateType>? = null, block: FunctionalHandlingBlock) {
         update.setListener(allowedUpdates) {
             handle(it, block)
         }

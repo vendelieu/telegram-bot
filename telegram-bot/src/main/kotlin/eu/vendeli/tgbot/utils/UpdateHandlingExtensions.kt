@@ -118,7 +118,7 @@ private inline fun Boolean?.ifAffected(block: () -> Unit) {
 }
 
 /**
- * Process update by manual defined actions.
+ * Process update by functional defined actions.
  *
  * @param update
  */
@@ -133,9 +133,9 @@ internal suspend fun FunctionalHandlingDsl.process(update: Update) = with(update
         .ifAffected { affectedActions += 1 }
 
     if (affectedActions == 0) functionalActivities.whenNotHandled?.invoke(update)?.also {
-        logger.info { "Update #${update.updateId} processed in manual mode with whenNotHandled action." }
+        logger.info { "Update #${update.updateId} processed in functional mode with whenNotHandled action." }
         affectedActions += 1
     }
 
-    logger.info { "Number of affected manual actions - $affectedActions." }
+    logger.info { "Number of affected functional actions - $affectedActions." }
 }

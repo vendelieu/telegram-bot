@@ -83,7 +83,7 @@ suspend fun startConversation(user: User, bot: TelegramBot) {
 //..
 ```
 
-It is also possible to process updates manually:
+It is also possible to process updates functionally:
 
 ```kotlin
 fun main() = runBlocking {

@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
-import eu.vendeli.tgbot.utils.ManualHandlingBlock
+import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.launchInCtx
 import eu.vendeli.tgbot.utils.launchInNewCtx
 import eu.vendeli.tgbot.utils.process
@@ -126,12 +126,12 @@ abstract class TgUpdateHandler internal constructor(
     abstract suspend fun handle(update: Update)
 
     /**
-     * Manual handling dsl
+     * Functional handling dsl
      *
      * @param update
      * @param block
      */
-    suspend fun handle(update: Update, block: ManualHandlingBlock) {
+    suspend fun handle(update: Update, block: FunctionalHandlingBlock) {
         logger.debug { "Functionally handling update: $update" }
         functionalHandlingBehavior.apply {
             block()
