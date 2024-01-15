@@ -13,5 +13,5 @@ import kotlinx.coroutines.Dispatchers
 data class UpdatesListenerConfiguration(
     var dispatcher: CoroutineDispatcher = Dispatchers.Default,
     var pullingDelay: Long = 0,
-    var isHandlerSupervised: Boolean = false
+    var isHandlerSupervised: Boolean = false,
 )
