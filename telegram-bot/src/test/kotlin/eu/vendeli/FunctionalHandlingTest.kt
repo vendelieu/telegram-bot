@@ -147,113 +147,37 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         bot.handleUpdates {
             functionalActivities.onUpdateActivities.clear()
             functionalActivities.regexCommands.clear()
+            functionalActivities.commands.clear()
+            functionalActivities.inputs.clear()
 
-            clearActivity(UpdateType.EDIT_MESSAGE)
-            onEditedMessage {
-                println("--------- action ${update.type} invoked")
-                invocationsCount++
-            }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.EDIT_MESSAGE].shouldNotBeNull().invoke(ctx)
-            }
+            UpdateType.entries.forEach { clearActivity(it) }
 
-            clearActivity(UpdateType.POLL_ANSWER)
+            onMessage { invocationsCount++ }
+            onEditedMessage { invocationsCount++ }
             onPollAnswer { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.POLL_ANSWER].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.CALLBACK_QUERY)
             onCallbackQuery { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.CALLBACK_QUERY].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.POLL)
             onPoll { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.POLL].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.CHAT_JOIN_REQUEST)
             onChatJoinRequest { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.CHAT_JOIN_REQUEST].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.CHAT_MEMBER)
             onChatMember { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.CHAT_MEMBER].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.MY_CHAT_MEMBER)
             onMyChatMember { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.MY_CHAT_MEMBER].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.CHANNEL_POST)
             onChannelPost { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.CHANNEL_POST].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.EDITED_CHANNEL_POST)
             onEditedChannelPost { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.EDITED_CHANNEL_POST].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.CHOSEN_INLINE_RESULT)
             onChosenInlineResult { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.CHOSEN_INLINE_RESULT].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.INLINE_QUERY)
             onInlineQuery { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.INLINE_QUERY].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.PRE_CHECKOUT_QUERY)
             onPreCheckoutQuery { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.PRE_CHECKOUT_QUERY].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.SHIPPING_QUERY)
             onShippingQuery { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.SHIPPING_QUERY].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.MESSAGE_REACTION)
             onMessageReaction { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.MESSAGE_REACTION].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.MESSAGE_REACTION_COUNT)
             onMessageReactionCount { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.MESSAGE_REACTION_COUNT].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.CHAT_BOOST)
             onChatBoost { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.CHAT_BOOST].shouldNotBeNull().invoke(ctx)
-            }
-
-            clearActivity(UpdateType.REMOVED_CHAT_BOOST)
             onRemovedChatBoost { invocationsCount++ }
-            shouldNotThrowAny {
-                functionalActivities.onUpdateActivities[UpdateType.REMOVED_CHAT_BOOST].shouldNotBeNull().invoke(ctx)
+
+            UpdateType.entries.forEach {
+                shouldNotThrowAny {
+                    functionalActivities.onUpdateActivities[it].shouldNotBeNull().invoke(ctx)
+                }
             }
 
-            invocationsCount shouldBe 17
+            invocationsCount shouldBe UpdateType.entries.size
 
             functionalActivities.regexCommands.shouldBeEmpty()
             onCommand(
@@ -267,6 +191,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             onInput("test") { invocationsCount++ }
             functionalActivities.inputs.size shouldBe 1
 
+            delay(1)
             bot.update.stopListener()
         }
     }
