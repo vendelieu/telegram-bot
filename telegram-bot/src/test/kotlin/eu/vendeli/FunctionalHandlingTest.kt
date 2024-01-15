@@ -28,6 +28,7 @@ import kotlin.random.Random
 
 class FunctionalHandlingTest : BotTestContext(true, true) {
     override fun isolationMode(): IsolationMode = IsolationMode.InstancePerTest
+
     @ExperimentalKotest
     override fun concurrency(): Int = 1
 
