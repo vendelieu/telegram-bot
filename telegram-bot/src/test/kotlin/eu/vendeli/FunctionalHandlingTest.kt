@@ -120,12 +120,12 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         notHandledCounter.get() shouldBe 3
     }
 
-    
     @Suppress("NOTHING_TO_INLINE")
     private inline fun FunctionalHandlingDsl.clearActivity(updateType: UpdateType) {
         functionalActivities.onUpdateActivities.remove(updateType)
         functionalActivities.onUpdateActivities[updateType].shouldBeNull()
     }
+
     @Suppress("LongMethod")
     @Test
     suspend fun `functional activities setting test`() {
