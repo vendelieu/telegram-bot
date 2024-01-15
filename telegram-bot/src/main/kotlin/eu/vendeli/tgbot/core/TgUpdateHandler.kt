@@ -6,16 +6,15 @@ import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
-import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
+import eu.vendeli.tgbot.utils.getHandlerCtx
 import eu.vendeli.tgbot.utils.launchInCtx
-import eu.vendeli.tgbot.utils.launchInNewCtx
 import eu.vendeli.tgbot.utils.process
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -42,7 +41,7 @@ abstract class TgUpdateHandler internal constructor(
 
     private suspend fun collectUpdates(types: List<UpdateType>?) {
         logger.debug { "Starting updates collector." }
-        launchInNewCtx((handlerCtx ?: return)) {
+        launchInCtx((handlerCtx ?: return)) {
             var lastUpdateId = 0
             while (isActive) {
                 logger.debug { "Running listener with offset - $lastUpdateId" }
@@ -60,7 +59,7 @@ abstract class TgUpdateHandler internal constructor(
 
     private suspend fun processUpdates() {
         logger.info { "Starting long-polling listener." }
-        launchInNewCtx((handlerCtx ?: return)) {
+        launchInCtx((handlerCtx ?: return)) {
             for (update in updatesChannel) {
                 launch(Dispatchers.IO) { handlingBehaviour(this@TgUpdateHandler, update) }
             }
@@ -75,7 +74,7 @@ abstract class TgUpdateHandler internal constructor(
      */
     suspend fun setListener(allowedUpdates: List<UpdateType>? = null, block: HandlingBehaviourBlock) {
         if (handlerCtx?.isActive == true) stopListener()
-        handlerCtx = currentCoroutineContext() + bot.config.updatesListener.dispatcher
+        handlerCtx = getHandlerCtx()
         logger.debug { "The listener is set." }
         handlingBehaviour = block
         collectUpdates(allowedUpdates)
@@ -99,7 +98,7 @@ abstract class TgUpdateHandler internal constructor(
         logger.debug { "Handling behaviour is set." }
         if (handlerCtx?.isActive == true) stopListener()
         handlingBehaviour = block
-        handlerCtx = currentCoroutineContext() + bot.config.updatesListener.dispatcher
+        handlerCtx = getHandlerCtx()
     }
 
     /**
@@ -107,6 +106,8 @@ abstract class TgUpdateHandler internal constructor(
      * Define processing behaviour before calling, see [setBehaviour].
      */
     suspend fun parseAndHandle(update: String) {
+        if (handlerCtx == null) handlerCtx = getHandlerCtx()
+
         logger.debug { "Trying to parse update from string - $update" }
         mapper.runCatching { readValue(update, Update::class.java) }.onFailure {
             logger.debug(it) { "error during the update parsing process." }

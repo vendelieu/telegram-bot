@@ -25,18 +25,15 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-/**
- * Creates new coroutine context from parent one and adds supervisor job.
- *
- * @param parentContext Context that will be merged with the created one.
- */
-internal fun launchInNewCtx(parentContext: CoroutineContext, block: suspend CoroutineScope.() -> Unit) =
-    object : CoroutineScope {
-        override val coroutineContext = parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
-    }.launch { block() }
+internal suspend inline fun TgUpdateHandler.getHandlerCtx(): CoroutineContext = bot.config.updatesListener.run {
+    val baseCtx = currentCoroutineContext() + CoroutineName("TgBot") + dispatcher
+    if (!isHandlerSupervised) baseCtx
+    else baseCtx + SupervisorJob(baseCtx[Job])
+}
 
 internal suspend inline fun launchInCtx(ctx: CoroutineContext, crossinline block: suspend CoroutineScope.() -> Unit) =
     coroutineScope { launch(ctx) { block() } }
