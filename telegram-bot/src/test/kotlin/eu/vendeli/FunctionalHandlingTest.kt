@@ -14,6 +14,7 @@ import eu.vendeli.tgbot.types.internal.userOrNull
 import eu.vendeli.tgbot.utils.processUpdate
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
+import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.maps.shouldBeEmpty
@@ -27,6 +28,8 @@ import kotlin.random.Random
 
 class FunctionalHandlingTest : BotTestContext(true, true) {
     override fun isolationMode(): IsolationMode = IsolationMode.InstancePerTest
+    @ExperimentalKotest
+    override fun concurrency(): Int = 1
 
     @Test
     suspend fun `input chaining`() {
