@@ -8,5 +8,5 @@ data class CopyMessageOptions(
     override var protectContent: Boolean? = null,
     override var parseMode: ParseMode? = null,
     override var replyParameters: ReplyParameters? = null,
-    override var messageThreadId: Long? = null,
+    override var messageThreadId: Int? = null,
 ) : OptionsParseMode, OptionsCommon

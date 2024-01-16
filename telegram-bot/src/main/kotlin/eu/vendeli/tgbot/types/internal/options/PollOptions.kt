@@ -23,5 +23,5 @@ data class PollOptions(
     override var disableNotification: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,
     override var protectContent: Boolean? = null,
-    override var messageThreadId: Long? = null,
+    override var messageThreadId: Int? = null,
 ) : OptionsCommon
