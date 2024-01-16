@@ -107,10 +107,6 @@ fun main() = runBlocking {
 }
 ```
 
-There is also a [wiki](https://github.com/vendelieu/telegram-bot/wiki) section which is updated frequently.
-
-You are welcome to check it out :)
-
 ### Configuration
 
 The library has very flexible customization options, \
@@ -139,6 +135,10 @@ on which you can also use
 methods [`getOrNull()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/get-or-null.html)
 , [`isSuccess()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/is-success.html)
 , [`onFailure()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/on-failure.html)
+
+### Additional resources
+
+There is also a [wiki](https://github.com/vendelieu/telegram-bot/wiki) section which is updated frequently.
 
 ### Questions
 
