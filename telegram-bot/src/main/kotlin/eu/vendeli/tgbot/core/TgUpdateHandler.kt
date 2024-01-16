@@ -32,7 +32,7 @@ abstract class TgUpdateHandler internal constructor(
     private var handlingBehaviour: HandlingBehaviourBlock = { handle(it) }
     private val updatesChannel = Channel<Update>()
     private var handlerCtx: CoroutineContext? = null
-    private val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
+    internal val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
 
     /**
      * The channel where errors caught during update processing are stored with update that caused them.

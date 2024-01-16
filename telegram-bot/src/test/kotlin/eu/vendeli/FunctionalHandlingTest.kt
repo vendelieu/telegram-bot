@@ -1,7 +1,6 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
@@ -119,13 +118,6 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         notHandledCounter.get() shouldBe 3
     }
 
-    @Suppress("NOTHING_TO_INLINE")
-    private inline fun FunctionalHandlingDsl.clearActivity(updateType: UpdateType) {
-        functionalActivities.onUpdateActivities.remove(updateType)
-        functionalActivities.onUpdateActivities[updateType].shouldBeNull()
-    }
-
-    @Suppress("LongMethod")
     @Test
     suspend fun `functional activities setting test`() {
         val ctx = ActivityCtx(
@@ -141,57 +133,51 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             ).processUpdate(),
         )
 
-        var invocationsCount = 0
+        var onUpdateInvocationsCount = 0
 
-        bot.handleUpdates {
-            functionalActivities.onUpdateActivities.clear()
+        bot.update.functionalHandlingBehavior.functionalActivities.onUpdateActivities.clear()
+        bot.update.functionalHandlingBehavior.apply {
+            onMessage { onUpdateInvocationsCount++ }
+            onEditedMessage { onUpdateInvocationsCount++ }
+            onChannelPost { onUpdateInvocationsCount++ }
+            onEditedChannelPost { onUpdateInvocationsCount++ }
+            onMessageReaction { onUpdateInvocationsCount++ }
+            onMessageReactionCount { onUpdateInvocationsCount++ }
+            onInlineQuery { onUpdateInvocationsCount++ }
+            onChosenInlineResult { onUpdateInvocationsCount++ }
+            onCallbackQuery { onUpdateInvocationsCount++ }
+            onShippingQuery { onUpdateInvocationsCount++ }
+            onPreCheckoutQuery { onUpdateInvocationsCount++ }
+            onPoll { onUpdateInvocationsCount++ }
+            onPollAnswer { onUpdateInvocationsCount++ }
+            onMyChatMember { onUpdateInvocationsCount++ }
+            onChatMember { onUpdateInvocationsCount++ }
+            onChatJoinRequest { onUpdateInvocationsCount++ }
+            onChatBoost { onUpdateInvocationsCount++ }
+            onRemovedChatBoost { onUpdateInvocationsCount++ }
+        }
 
-            UpdateType.entries.forEach { clearActivity(it) }
-            delay(1)
-
-            onMessage { invocationsCount++ }
-            onEditedMessage { invocationsCount++ }
-            onPollAnswer { invocationsCount++ }
-            onCallbackQuery { invocationsCount++ }
-            onPoll { invocationsCount++ }
-            onChatJoinRequest { invocationsCount++ }
-            onChatMember { invocationsCount++ }
-            onMyChatMember { invocationsCount++ }
-            onChannelPost { invocationsCount++ }
-            onEditedChannelPost { invocationsCount++ }
-            onChosenInlineResult { invocationsCount++ }
-            onInlineQuery { invocationsCount++ }
-            onPreCheckoutQuery { invocationsCount++ }
-            onShippingQuery { invocationsCount++ }
-            onMessageReaction { invocationsCount++ }
-            onMessageReactionCount { invocationsCount++ }
-            onChatBoost { invocationsCount++ }
-            onRemovedChatBoost { invocationsCount++ }
-
-            delay(1)
-
-            UpdateType.entries.forEach {
-                shouldNotThrowAny {
-                    functionalActivities.onUpdateActivities[it].shouldNotBeNull().invoke(ctx)
-                }
+        UpdateType.entries.forEach {
+            shouldNotThrowAny {
+                bot.update.functionalHandlingBehavior.functionalActivities
+                    .onUpdateActivities[it].shouldNotBeNull().invoke(ctx)
             }
+        }
 
+        delay(1)
+        onUpdateInvocationsCount shouldBe UpdateType.entries.size
+
+        bot.update.functionalHandlingBehavior.apply {
             val regex = "^*.".toRegex()
             onCommand(
                 regex,
                 setOf(UpdateType.CALLBACK_QUERY),
                 RateLimits.NOT_LIMITED,
-            ) { invocationsCount++ }
+            ) { }
             functionalActivities.regexCommands[regex].shouldNotBeNull()
 
-            onInput("test") { invocationsCount++ }
+            onInput("test") { }
             functionalActivities.inputs["test"].shouldNotBeNull()
-
-            delay(1)
-            bot.update.stopListener()
         }
-
-        delay(1)
-        invocationsCount shouldBe UpdateType.entries.size
     }
 }
