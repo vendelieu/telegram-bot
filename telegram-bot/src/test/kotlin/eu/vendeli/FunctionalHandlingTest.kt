@@ -151,6 +151,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             functionalActivities.inputs.clear()
 
             UpdateType.entries.forEach { clearActivity(it) }
+            delay(1)
 
             onMessage { invocationsCount++ }
             onEditedMessage { invocationsCount++ }
@@ -170,6 +171,8 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             onMessageReactionCount { invocationsCount++ }
             onChatBoost { invocationsCount++ }
             onRemovedChatBoost { invocationsCount++ }
+
+            delay(1)
 
             UpdateType.entries.forEach {
                 shouldNotThrowAny {
