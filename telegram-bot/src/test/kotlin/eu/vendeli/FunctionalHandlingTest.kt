@@ -176,17 +176,16 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 }
             }
 
-            functionalActivities.regexCommands.clear()
+            val regex = "^*.".toRegex()
             onCommand(
-                "^*.".toRegex(),
+                regex,
                 setOf(UpdateType.CALLBACK_QUERY),
                 RateLimits.NOT_LIMITED,
             ) { invocationsCount++ }
-            functionalActivities.regexCommands.size shouldBe 1
+            functionalActivities.regexCommands[regex].shouldNotBeNull()
 
-            functionalActivities.inputs.clear()
             onInput("test") { invocationsCount++ }
-            functionalActivities.inputs.size shouldBe 1
+            functionalActivities.inputs["test"].shouldNotBeNull()
 
             delay(1)
             bot.update.stopListener()
