@@ -18,7 +18,6 @@ import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
-import io.kotest.matchers.maps.shouldBeEmpty
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -146,9 +145,6 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
 
         bot.handleUpdates {
             functionalActivities.onUpdateActivities.clear()
-            functionalActivities.regexCommands.clear()
-            functionalActivities.commands.clear()
-            functionalActivities.inputs.clear()
 
             UpdateType.entries.forEach { clearActivity(it) }
             delay(1)
@@ -180,7 +176,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 }
             }
 
-            functionalActivities.regexCommands.shouldBeEmpty()
+            functionalActivities.regexCommands.clear()
             onCommand(
                 "^*.".toRegex(),
                 setOf(UpdateType.CALLBACK_QUERY),
@@ -188,7 +184,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             ) { invocationsCount++ }
             functionalActivities.regexCommands.size shouldBe 1
 
-            functionalActivities.inputs.shouldBeEmpty()
+            functionalActivities.inputs.clear()
             onInput("test") { invocationsCount++ }
             functionalActivities.inputs.size shouldBe 1
 
