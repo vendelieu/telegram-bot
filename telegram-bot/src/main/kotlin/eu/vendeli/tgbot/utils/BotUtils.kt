@@ -18,25 +18,28 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ChainLink
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.plus
 
-internal suspend inline fun TgUpdateHandler.getHandlerCtx(): CoroutineContext = bot.config.updatesListener.run {
-    val baseCtx = currentCoroutineContext() + CoroutineName("TgBot") + dispatcher
-    if (!isHandlerSupervised) baseCtx
-    else baseCtx + SupervisorJob(baseCtx[Job])
+@Suppress("NOTHING_TO_INLINE")
+internal inline fun TgUpdateHandler.prepareHandlerScope() = bot.config.updatesListener.run {
+    CoroutineScope(
+        (if (isHandlerSupervised) SupervisorJob() else Job()) + dispatcher + CoroutineName("TgBot"),
+    )
 }
-
-internal suspend inline fun launchInCtx(ctx: CoroutineContext, crossinline block: suspend CoroutineScope.() -> Unit) =
-    coroutineScope { launch(ctx) { block() } }
+internal suspend inline fun TgUpdateHandler.coHandle(
+    dispatcher: CoroutineDispatcher = Dispatchers.Default,
+    crossinline block: suspend CoroutineScope.() -> Unit,
+) = (handlerScope + Job(handlerScope.coroutineContext[Job])).launch(dispatcher) { block() }
 
 internal suspend inline fun TgUpdateHandler.checkIsLimited(
     limits: RateLimits,
@@ -54,6 +57,15 @@ internal suspend inline fun TgUpdateHandler.checkIsLimited(
     }
     return false
 }
+
+internal inline val <K, V : Any> Map<K, V>.logString: String
+    get() = takeIf { isNotEmpty() }?.entries?.joinToString(",\n") {
+        "${it.key} - " + if (it.value is Pair<*, *>) {
+            (it.value as Pair<*, *>).second
+        } else {
+            it.value
+        }.toString()
+    } ?: "None"
 
 @Suppress("UnusedReceiverParameter")
 internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getCollectionReturnType(): CollectionType =
