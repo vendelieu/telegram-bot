@@ -26,7 +26,6 @@ import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.HttpSendPipeline
 import io.ktor.client.request.header
-import io.ktor.http.isSuccess
 
 internal fun TelegramBot.getConfiguredHttpClient() = HttpClient {
     install("RequestLogging") {
@@ -47,10 +46,7 @@ internal fun TelegramBot.getConfiguredHttpClient() = HttpClient {
     }
 
     install(HttpRequestRetry) {
-        maxRetries = config.httpClient.maxRequestRetry
-        retryIf { _, response ->
-            !response.status.isSuccess()
-        }
+        retryOnExceptionOrServerErrors(config.httpClient.maxRequestRetry)
         delayMillis { retry ->
             retry * config.httpClient.retryDelay
         }
