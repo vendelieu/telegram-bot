@@ -42,16 +42,16 @@ In the basic branch itself there is an empty draft that can be used to create an
 
 there you can find in the appropriate branches:
 
-- [Conversation](https://github.com/vendelieu/telegram-bot_template/tree/conversation) - An example of using Inputs and
-  storing data in UserData.
+- [FeedbackBot](https://github.com/ktgram/feedback-bot) - Use ready example of a feedback bot.
+- [Conversation](https://github.com/vendelieu/telegram-bot_template/tree/conversation) - An example of using `FSM` and usage of `BotContext`.
 - [Echo](https://github.com/vendelieu/telegram-bot_template/tree/echo) - Echo bot :)
 - [Ktor-webhook](https://github.com/vendelieu/telegram-bot_template/tree/ktor-webhook) - An example of using webhook
-  with Ktor
+  with Ktor.
 - [Poll](https://github.com/vendelieu/telegram-bot_template/tree/poll) - An example of how to build a questionnaire bot.
 - [Spring Boot usage](https://github.com/vendelieu/telegram-bot_template/tree/spring-bot) - An example of using the bot
   organically in the Spring ecosystem, using its built-in DI.
 - [Heroku ready example](https://github.com/vendelieu/telegram-bot_template/tree/heroku) - An example of a bot working
-  via Heroku
+  via Heroku.
 
 # Usage
 
