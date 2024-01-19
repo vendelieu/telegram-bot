@@ -23,7 +23,6 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.types.media.File
-import eu.vendeli.tgbot.utils.launchInCtx
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import io.kotest.assertions.throwables.shouldNotThrow
@@ -52,7 +51,7 @@ class TelegramBotTest : BotTestContext() {
     suspend fun `updates handler shortcut test`() {
         doMockHttp()
         shouldNotThrowAny {
-            launchInCtx(currentCoroutineContext()) {
+            launchInNewCtx(currentCoroutineContext()) {
                 bot.update.stopListener()
             }
             bot.handleUpdates()

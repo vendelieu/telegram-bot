@@ -191,7 +191,7 @@ private val `TG_$UNPROCESSED`: InvocationLambda? = suspendCall {
     )
 }
 
-internal val `$ACTIONS_eu_vendeli_fixtures`: List<Any?> = listOf(
+internal val `$ACTIVITIES_eu_vendeli_fixtures`: List<Any?> = listOf(
     `TG_$COMMANDS`,
     `TG_$INPUTS`,
     `TG_$REGEX`,
