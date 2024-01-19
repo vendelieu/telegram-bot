@@ -2,6 +2,7 @@
 
 package eu.vendeli.fixtures
 
+import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
@@ -17,6 +18,11 @@ class TgAnnotationsModel {
     @InputHandler(["testInp"])
     fun test2() {
         throw IllegalArgumentException("test3")
+    }
+
+    @CommandHandler(["STOP"])
+    fun stopHandling(bot: TelegramBot) {
+        bot.update.stopListener()
     }
 
     @UpdateHandler([UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY])

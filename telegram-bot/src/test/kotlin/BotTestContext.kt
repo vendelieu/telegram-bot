@@ -27,15 +27,10 @@ import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
 import io.mockk.every
 import io.mockk.spyk
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import java.time.Instant
-import kotlin.coroutines.CoroutineContext
 import kotlin.properties.Delegates
 import kotlin.random.Random
 
@@ -128,11 +123,4 @@ abstract class BotTestContext(
         isSuccess().shouldBeTrue()
         getOrNull().shouldNotBeNull()
     }
-
-    protected suspend fun launchInNewCtx(
-        parentContext: CoroutineContext,
-        block: suspend CoroutineScope.() -> Unit,
-    ) = object : CoroutineScope {
-        override val coroutineContext = parentContext + SupervisorJob(parentContext[Job])
-    }.launch { block() }
 }

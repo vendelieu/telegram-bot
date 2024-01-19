@@ -24,7 +24,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
@@ -32,10 +31,9 @@ import kotlinx.coroutines.plus
 
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun TgUpdateHandler.prepareHandlerScope() = bot.config.updatesListener.run {
-    CoroutineScope(
-        (if (isHandlerSupervised) SupervisorJob() else Job()) + dispatcher + CoroutineName("TgBot"),
-    )
+    CoroutineScope(Job() + dispatcher + CoroutineName("TgBot"))
 }
+
 internal suspend inline fun TgUpdateHandler.coHandle(
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
     crossinline block: suspend CoroutineScope.() -> Unit,

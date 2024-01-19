@@ -27,23 +27,24 @@ private val zeroRateLimits: RateLimits = RateLimits(0, 0)
 private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
     ("test" to MESSAGE) to (
         suspendCall { classManager, update, user, bot, parameters ->
-            val inst = classManager.getInstance(eu.vendeli.fixtures.TgAnnotationsModel::class.java) as
-                eu.vendeli.fixtures.TgAnnotationsModel
-            eu.vendeli.fixtures.TgAnnotationsModel::test.invoke(
+            val inst = classManager.getInstance(TgAnnotationsModel::class.java) as
+                TgAnnotationsModel
+            TgAnnotationsModel::test.invoke(
                 inst,
             )
         }
             to InvocationMeta("eu.vendeli.fixtures.TgAnnotationsModel", "test", zeroRateLimits)
     ),
-    ("test" to CALLBACK_QUERY) to (
+    ("STOP" to MESSAGE) to (
         suspendCall { classManager, update, user, bot, parameters ->
-            val inst = classManager.getInstance(eu.vendeli.fixtures.TgAnnotationsModel::class.java) as
-                eu.vendeli.fixtures.TgAnnotationsModel
-            eu.vendeli.fixtures.TgAnnotationsModel::test.invoke(
-                inst,
+            val inst = classManager.getInstance(TgAnnotationsModel::class.java) as
+                TgAnnotationsModel
+            val param0 = bot
+            TgAnnotationsModel::stopHandling.invoke(
+                inst, param0,
             )
         }
-            to InvocationMeta("eu.vendeli.fixtures.TgAnnotationsModel", "test", zeroRateLimits)
+            to InvocationMeta("eu.vendeli.fixtures.TgAnnotationsModel", "stopHandling", zeroRateLimits)
     ),
     ("test2" to MESSAGE) to (
         suspendCall { classManager, update, user, bot, parameters ->
@@ -51,21 +52,9 @@ private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
         }
             to InvocationMeta("eu.vendeli.fixtures", "testMethod", zeroRateLimits)
     ),
-    ("test2" to CALLBACK_QUERY) to (
-        suspendCall { classManager, update, user, bot, parameters ->
-            ::testMethod.invoke()
-        }
-            to InvocationMeta("eu.vendeli.fixtures", "testMethod", zeroRateLimits)
-    ),
     ("test3" to MESSAGE) to (
         suspendCall { classManager, update, user, bot, parameters ->
-            eu.vendeli.fixtures.TestObj::test.invoke()
-        }
-            to InvocationMeta("eu.vendeli.fixtures.TestObj", "test", zeroRateLimits)
-    ),
-    ("test3" to CALLBACK_QUERY) to (
-        suspendCall { classManager, update, user, bot, parameters ->
-            eu.vendeli.fixtures.TestObj::test.invoke()
+            TestObj::test.invoke()
         }
             to InvocationMeta("eu.vendeli.fixtures.TestObj", "test", zeroRateLimits)
     ),
@@ -74,9 +63,9 @@ private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
 private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
     "testInp" to (
         suspendCall { classManager, update, user, bot, parameters ->
-            val inst = classManager.getInstance(eu.vendeli.fixtures.TgAnnotationsModel::class.java) as
-                eu.vendeli.fixtures.TgAnnotationsModel
-            eu.vendeli.fixtures.TgAnnotationsModel::test2.invoke(
+            val inst = classManager.getInstance(TgAnnotationsModel::class.java) as
+                TgAnnotationsModel
+            TgAnnotationsModel::test2.invoke(
                 inst,
             )
         }
@@ -90,7 +79,7 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
     ),
     "testInp3" to (
         suspendCall { classManager, update, user, bot, parameters ->
-            eu.vendeli.fixtures.TestObj::test2.invoke()
+            TestObj::test2.invoke()
         }
             to InvocationMeta("eu.vendeli.fixtures.TestObj", "test2", zeroRateLimits)
     ),
@@ -103,17 +92,17 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 parameters,
             ->
             if (user == null) return@suspendCall Unit
-            val inst = classManager.getInstance(eu.vendeli.fixtures.Conversation.Name::class.java) as
-                eu.vendeli.fixtures.Conversation.Name
+            val inst = classManager.getInstance(Conversation.Name::class.java) as
+                Conversation.Name
             val nextLink: String? = """eu.vendeli.fixtures.Conversation.Age"""
-            val breakPoint = inst.breakCondition?.invoke(user, update, bot) ?: false
+            val breakPoint = Conversation.Name.breakCondition?.invoke(user, update, bot) ?: false
             if (breakPoint && inst.retryAfterBreak) bot.inputListener[user] =
                 "eu.vendeli.fixtures.Conversation.Name"
             if (breakPoint) {
-                inst.breakAction(user, update, bot)
+                Conversation.Name.breakAction(user, update, bot)
                 return@suspendCall Unit
             }
-            inst.action(user, update, bot).also {
+            Conversation.Name.action(user, update, bot).also {
                 if (nextLink != null) bot.inputListener[user] = nextLink
             }
         }
@@ -128,17 +117,17 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 parameters,
             ->
             if (user == null) return@suspendCall Unit
-            val inst = classManager.getInstance(eu.vendeli.fixtures.Conversation.Age::class.java) as
-                eu.vendeli.fixtures.Conversation.Age
+            val inst = classManager.getInstance(Conversation.Age::class.java) as
+                Conversation.Age
             val nextLink: String? = null
-            val breakPoint = inst.breakCondition?.invoke(user, update, bot) ?: false
-            if (breakPoint && inst.retryAfterBreak) bot.inputListener[user] =
+            val breakPoint = Conversation.Age.breakCondition?.invoke(user, update, bot) ?: false
+            if (breakPoint && Conversation.Age.retryAfterBreak) bot.inputListener[user] =
                 "eu.vendeli.fixtures.Conversation.Age"
             if (breakPoint) {
-                inst.breakAction(user, update, bot)
+                Conversation.Age.breakAction(user, update, bot)
                 return@suspendCall Unit
             }
-            inst.action(user, update, bot).also {
+            Conversation.Age.action(user, update, bot).also {
                 if (nextLink != null) bot.inputListener[user] = nextLink
             }
         }
@@ -149,10 +138,10 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
 private val `TG_$REGEX`: Map<Regex, Invocable> = mapOf(
     Regex("test colou?r") to (
         suspendCall { classManager, update, user, bot, parameters ->
-            val inst = classManager.getInstance(eu.vendeli.fixtures.RegexCommands::class.java) as
-                eu.vendeli.fixtures.RegexCommands
+            val inst = classManager.getInstance(RegexCommands::class.java) as
+                RegexCommands
             val param0 = bot
-            eu.vendeli.fixtures.RegexCommands::testR.invoke(
+            RegexCommands::testR.invoke(
                 inst, param0,
             )
         }
@@ -162,16 +151,16 @@ private val `TG_$REGEX`: Map<Regex, Invocable> = mapOf(
 
 private val `TG_$UPDATE_TYPES`: Map<UpdateType, InvocationLambda> = mapOf(
     MESSAGE to suspendCall { classManager, update, user, bot, parameters ->
-        val inst = classManager.getInstance(eu.vendeli.fixtures.TgAnnotationsModel::class.java) as
-            eu.vendeli.fixtures.TgAnnotationsModel
-        eu.vendeli.fixtures.TgAnnotationsModel::updateHandler.invoke(
+        val inst = classManager.getInstance(TgAnnotationsModel::class.java) as
+            TgAnnotationsModel
+        TgAnnotationsModel::updateHandler.invoke(
             inst,
         )
     },
     CALLBACK_QUERY to suspendCall { classManager, update, user, bot, parameters ->
-        val inst = classManager.getInstance(eu.vendeli.fixtures.TgAnnotationsModel::class.java) as
-            eu.vendeli.fixtures.TgAnnotationsModel
-        eu.vendeli.fixtures.TgAnnotationsModel::updateHandler.invoke(
+        val inst = classManager.getInstance(TgAnnotationsModel::class.java) as
+            TgAnnotationsModel
+        TgAnnotationsModel::updateHandler.invoke(
             inst,
         )
     },
@@ -184,9 +173,9 @@ private val `TG_$UNPROCESSED`: InvocationLambda? = suspendCall {
         bot,
         parameters,
     ->
-    val inst = classManager.getInstance(eu.vendeli.fixtures.TgAnnotationsModel::class.java) as
-        eu.vendeli.fixtures.TgAnnotationsModel
-    eu.vendeli.fixtures.TgAnnotationsModel::test3.invoke(
+    val inst = classManager.getInstance(TgAnnotationsModel::class.java) as
+        TgAnnotationsModel
+    TgAnnotationsModel::test3.invoke(
         inst,
     )
 }
