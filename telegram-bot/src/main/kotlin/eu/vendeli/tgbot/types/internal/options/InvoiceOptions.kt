@@ -18,5 +18,5 @@ data class InvoiceOptions(
     override var protectContent: Boolean? = null,
     override var disableNotification: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,
-    override var messageThreadId: Long? = null,
+    override var messageThreadId: Int? = null,
 ) : OptionsCommon

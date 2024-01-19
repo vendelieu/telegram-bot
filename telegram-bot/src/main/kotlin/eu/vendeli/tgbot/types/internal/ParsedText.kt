@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.internal
 
-internal data class StructuredRequest(
+internal data class ParsedText(
     val command: String,
     val params: Map<String, String>,
 )

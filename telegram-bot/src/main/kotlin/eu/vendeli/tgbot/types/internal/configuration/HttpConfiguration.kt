@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
+import io.ktor.client.plugins.HttpTimeout
 import java.net.Proxy
 
 /**
@@ -19,9 +20,9 @@ import java.net.Proxy
  * @property additionalHeaders Headers that will be applied to every request.
  */
 data class HttpConfiguration(
-    var requestTimeoutMillis: Long? = null,
-    var connectTimeoutMillis: Long? = null,
-    var socketTimeoutMillis: Long? = null,
+    var requestTimeoutMillis: Long = HttpTimeout.INFINITE_TIMEOUT_MS,
+    var connectTimeoutMillis: Long = HttpTimeout.INFINITE_TIMEOUT_MS,
+    var socketTimeoutMillis: Long = HttpTimeout.INFINITE_TIMEOUT_MS,
     var maxRequestRetry: Int = 3,
     var retryDelay: Long = 3000L,
     var proxy: Proxy? = null,

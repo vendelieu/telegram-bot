@@ -20,7 +20,7 @@ import eu.vendeli.tgbot.annotations.RegexCommandHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.internal.UpdateType
 
-internal fun FileBuilder.collectCommandActions(
+internal fun FileBuilder.collectCommandActivities(
     symbols: Sequence<KSFunctionDeclaration>,
     injectableTypes: Map<TypeName, ClassName>,
     logger: KSPLogger,
@@ -59,7 +59,7 @@ internal fun FileBuilder.collectCommandActions(
     }
 }
 
-internal fun FileBuilder.collectInputActions(
+internal fun FileBuilder.collectInputActivities(
     symbols: Sequence<KSFunctionDeclaration>,
     chainSymbols: Sequence<KSClassDeclaration>,
     injectableTypes: Map<TypeName, ClassName>,
@@ -90,7 +90,7 @@ internal fun FileBuilder.collectInputActions(
     }
 }
 
-internal fun FileBuilder.collectRegexActions(
+internal fun FileBuilder.collectRegexActivities(
     symbols: Sequence<KSFunctionDeclaration>,
     injectableTypes: Map<TypeName, ClassName>,
     logger: KSPLogger,
@@ -116,7 +116,7 @@ internal fun FileBuilder.collectRegexActions(
     }
 }
 
-internal fun FileBuilder.collectUpdateTypeActions(
+internal fun FileBuilder.collectUpdateTypeActivities(
     symbols: Sequence<KSFunctionDeclaration>,
     injectableTypes: Map<TypeName, ClassName>,
     logger: KSPLogger,

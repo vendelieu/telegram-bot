@@ -34,7 +34,7 @@ interface OptionsCommon : Options {
     var disableNotification: Boolean?
     var replyParameters: ReplyParameters?
     var protectContent: Boolean?
-    var messageThreadId: Long?
+    var messageThreadId: Int?
 
     fun replyParameters(messageId: Long, block: ReplyParameters.() -> Unit = {}) {
         replyParameters = ReplyParameters(messageId).apply(block)

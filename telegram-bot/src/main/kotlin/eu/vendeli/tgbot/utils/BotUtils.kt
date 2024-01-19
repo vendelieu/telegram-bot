@@ -18,25 +18,20 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ChainLink
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import kotlinx.coroutines.CoroutineName
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.plus
 
-/**
- * Creates new coroutine context from parent one and adds supervisor job.
- *
- * @param parentContext Context that will be merged with the created one.
- */
-internal fun launchInNewCtx(parentContext: CoroutineContext, block: suspend CoroutineScope.() -> Unit) =
-    object : CoroutineScope {
-        override val coroutineContext = parentContext + SupervisorJob(parentContext[Job]) + CoroutineName("TgBot")
-    }.launch { block() }
+internal suspend inline fun TgUpdateHandler.coHandle(
+    dispatcher: CoroutineDispatcher = Dispatchers.Default,
+    crossinline block: suspend CoroutineScope.() -> Unit,
+) = (handlerScope + Job(handlerScope.coroutineContext[Job])).launch(dispatcher) { block() }
 
 internal suspend inline fun TgUpdateHandler.checkIsLimited(
     limits: RateLimits,
@@ -55,6 +50,15 @@ internal suspend inline fun TgUpdateHandler.checkIsLimited(
     return false
 }
 
+internal inline val <K, V : Any> Map<K, V>.logString: String
+    get() = takeIf { isNotEmpty() }?.entries?.joinToString(",\n") {
+        "${it.key} - " + if (it.value is Pair<*, *>) {
+            (it.value as Pair<*, *>).second
+        } else {
+            it.value
+        }.toString()
+    } ?: "None"
+
 @Suppress("UnusedReceiverParameter")
 internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getCollectionReturnType(): CollectionType =
     mapper.typeFactory.constructCollectionType(List::class.java, Type::class.java)
@@ -70,7 +74,7 @@ internal var mu.KLogger.level: Level
     }
 
 internal val GET_UPDATES_ACTION = getUpdates()
-internal val DEFAULT_COMMAND_SCOPE = setOf(UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY)
+internal val DEFAULT_COMMAND_SCOPE = setOf(UpdateType.MESSAGE)
 internal val PARAMETERS_MAP_TYPEREF = jacksonTypeRef<Map<String, Any?>>()
 
 internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T): Deferred<T> = coroutineScope {
@@ -82,6 +86,9 @@ internal inline fun String.asClass(): Class<*>? = kotlin.runCatching { Class.for
 
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun Class<*>?.getActions(postFix: String? = null) =
-    this?.getMethod("get\$ACTIONS".let { if (postFix != null) it + postFix else it })?.invoke(null) as? List<*>
+    this?.getMethod("get\$ACTIVITIES".let { if (postFix != null) it + postFix else it })?.invoke(null) as? List<*>
+
+@Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
+internal inline fun <T> Any?.cast() = this as T
 
 fun <T : ChainLink> InputListener.setChain(user: User, firstLink: T) = set(user, firstLink::class.qualifiedName!!)

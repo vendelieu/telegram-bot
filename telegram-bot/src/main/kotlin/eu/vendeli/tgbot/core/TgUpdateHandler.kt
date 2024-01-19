@@ -6,20 +6,20 @@ import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
-import eu.vendeli.tgbot.utils.ManualHandlingBlock
-import eu.vendeli.tgbot.utils.launchInNewCtx
+import eu.vendeli.tgbot.utils.coHandle
 import eu.vendeli.tgbot.utils.process
+import kotlinx.coroutines.CoroutineName
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import mu.KLogging
-import kotlin.coroutines.CoroutineContext
 
 /**
  * A basic update processing class that is extends by a [CodegenUpdateHandler].
@@ -29,39 +29,42 @@ import kotlin.coroutines.CoroutineContext
 abstract class TgUpdateHandler internal constructor(
     internal val bot: TelegramBot,
 ) {
-    private lateinit var handlingBehaviour: HandlingBehaviourBlock
+    private var handlingBehaviour: HandlingBehaviourBlock = { handle(it) }
     private val updatesChannel = Channel<Update>()
-    private var handlerCtx: CoroutineContext? = null
-    private val manualHandlingBehavior by lazy { ManualHandlingDsl(bot) }
+    internal val handlerScope = bot.config.updatesListener.run {
+        CoroutineScope(dispatcher + CoroutineName("TgBot"))
+    }
+    internal val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
 
     /**
      * The channel where errors caught during update processing are stored with update that caused them.
      */
     val caughtExceptions by lazy { Channel<FailedUpdate>(Channel.CONFLATED) }
 
-    private suspend fun collectUpdates(types: List<UpdateType>?) {
+    private suspend fun collectUpdates(types: List<UpdateType>?) = bot.config.updatesListener.run {
         logger.debug { "Starting updates collector." }
-        launchInNewCtx((handlerCtx ?: return)) {
+        coHandle {
             var lastUpdateId = 0
             while (isActive) {
                 logger.debug { "Running listener with offset - $lastUpdateId" }
                 GET_UPDATES_ACTION.options {
                     offset = lastUpdateId
                     allowedUpdates = types
+                    timeout = updatesPollingTimeout
                 }.sendAsync(bot).getOrNull()?.forEach {
                     updatesChannel.send(it)
                     lastUpdateId = it.updateId + 1
                 }
-                bot.config.updatesListener.pullingDelay.takeIf { it > 0 }?.let { delay(it) }
+                pullingDelay.takeIf { it > 0 }?.let { delay(it) }
             }
         }
     }
 
     private suspend fun processUpdates() {
         logger.info { "Starting long-polling listener." }
-        launchInNewCtx((handlerCtx ?: return)) {
-            for (update in updatesChannel) {
-                launch(Dispatchers.IO) { handlingBehaviour(this@TgUpdateHandler, update) }
+        coHandle {
+            while (isActive) {
+                launch(Dispatchers.IO) { handlingBehaviour(this@TgUpdateHandler, updatesChannel.receive()) }
             }
         }.join()
     }
@@ -73,8 +76,7 @@ abstract class TgUpdateHandler internal constructor(
      * @param block action that will be applied.
      */
     suspend fun setListener(allowedUpdates: List<UpdateType>? = null, block: HandlingBehaviourBlock) {
-        if (handlerCtx?.isActive == true) stopListener()
-        handlerCtx = currentCoroutineContext() + bot.config.updatesListener.dispatcher
+        stopListener()
         logger.debug { "The listener is set." }
         handlingBehaviour = block
         collectUpdates(allowedUpdates)
@@ -86,8 +88,7 @@ abstract class TgUpdateHandler internal constructor(
      *
      */
     fun stopListener() {
-        handlerCtx?.cancelChildren()
-        handlerCtx = null
+        handlerScope.coroutineContext.cancelChildren()
         logger.debug { "The listener is stopped." }
     }
 
@@ -96,6 +97,7 @@ abstract class TgUpdateHandler internal constructor(
      */
     fun setBehaviour(block: HandlingBehaviourBlock) {
         logger.debug { "Handling behaviour is set." }
+        stopListener()
         handlingBehaviour = block
     }
 
@@ -105,12 +107,12 @@ abstract class TgUpdateHandler internal constructor(
      */
     suspend fun parseAndHandle(update: String) {
         logger.debug { "Trying to parse update from string - $update" }
-        mapper.runCatching {
-            readValue(update, Update::class.java)
-        }.onFailure {
+        mapper.runCatching { readValue(update, Update::class.java) }.onFailure {
             logger.debug(it) { "error during the update parsing process." }
-        }.onSuccess { logger.info { "Successfully parsed update to $it" } }
-            .getOrNull()?.let { handlingBehaviour(this, it) }
+        }.onSuccess { logger.info { "Successfully parsed update to $it" } }.getOrNull()?.let {
+            logger.debug { "Processing update with preset behaviour." }
+            coHandle(Dispatchers.IO) { handlingBehaviour(this@TgUpdateHandler, it) }
+        }
     }
 
     /**
@@ -121,14 +123,14 @@ abstract class TgUpdateHandler internal constructor(
     abstract suspend fun handle(update: Update)
 
     /**
-     * Manual handling dsl
+     * Functional handling dsl
      *
      * @param update
      * @param block
      */
-    suspend fun handle(update: Update, block: ManualHandlingBlock) {
-        logger.debug { "Manually handling update: $update" }
-        manualHandlingBehavior.apply {
+    suspend fun handle(update: Update, block: FunctionalHandlingBlock) {
+        logger.debug { "Functionally handling update: $update" }
+        functionalHandlingBehavior.apply {
             block()
             process(update)
         }

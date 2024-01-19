@@ -1,14 +1,14 @@
 package eu.vendeli.tgbot
 
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
-import eu.vendeli.tgbot.core.ManualHandlingDsl
+import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.implementations.EnvConfigLoaderImpl
 import eu.vendeli.tgbot.interfaces.ConfigLoader
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.BotConfigurator
-import eu.vendeli.tgbot.utils.ManualHandlingBlock
+import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.asClass
 import eu.vendeli.tgbot.utils.getActions
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
@@ -68,12 +68,12 @@ class TelegramBot(
      */
     val update by lazy {
         val postFix = commandsPackage?.let { "_$it".replace(".", "_") } ?: ""
-        val codegenActions = "eu.vendeli.tgbot.ActionsDataKt".asClass().getActions()
-            ?: "eu.vendeli.tgbot.ActionsData${postFix}Kt".asClass().getActions(postFix)
+        val codegenActivities = "eu.vendeli.tgbot.ActivitiesDataKt".asClass().getActions()
+            ?: "eu.vendeli.tgbot.ActivitiesData${postFix}Kt".asClass().getActions(postFix)
             ?: error("Not found generated actions, check if ksp plugin is connected correctly.")
 
         CodegenUpdateHandler(
-            codegenActions,
+            codegenActivities,
             this,
         )
     }
@@ -109,13 +109,13 @@ class TelegramBot(
     }
 
     /**
-     * Function for processing updates by long-pulling using manual handling.
+     * Function for processing updates by long-pulling using functional handling.
      *
      * Note that when using this method, other processing will be interrupted and reassigned.
      *
-     * @param block [ManualHandlingDsl]
+     * @param block [FunctionalHandlingDsl]
      */
-    suspend fun handleUpdates(allowedUpdates: List<UpdateType>? = null, block: ManualHandlingBlock) {
+    suspend fun handleUpdates(allowedUpdates: List<UpdateType>? = null, block: FunctionalHandlingBlock) {
         update.setListener(allowedUpdates) {
             handle(it, block)
         }

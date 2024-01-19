@@ -31,7 +31,7 @@ import eu.vendeli.tgbot.annotations.RegexCommandHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
 
-class ActionsProcessor(
+class ActivityProcessor(
     options: Map<String, String>,
     private val logger: KSPLogger,
     private val codeGenerator: CodeGenerator,
@@ -60,7 +60,7 @@ class ActionsProcessor(
                 c.toClassName()
         }
 
-        val fileSpec = FileSpec.builder("eu.vendeli.tgbot", "ActionsData".withPostfix(pkg).escape()).apply {
+        val fileSpec = FileSpec.builder("eu.vendeli.tgbot", "ActivitiesData".withPostfix(pkg).escape()).apply {
             addSuppressions()
             addImport("eu.vendeli.tgbot.utils", "InvocationLambda", "Invocable")
             addImport("eu.vendeli.tgbot.types.internal", "InvocationMeta")
@@ -69,15 +69,15 @@ class ActionsProcessor(
             addSuspendCallFun()
             addZeroLimitsProp()
 
-            collectCommandActions(commandHandlerSymbols, injectableTypes, logger)
-            collectInputActions(inputHandlerSymbols, inputChainSymbols, injectableTypes, logger)
-            collectRegexActions(regexHandlerSymbols, injectableTypes, logger)
-            collectUpdateTypeActions(updateHandlerSymbols, injectableTypes, logger)
+            collectCommandActivities(commandHandlerSymbols, injectableTypes, logger)
+            collectInputActivities(inputHandlerSymbols, inputChainSymbols, injectableTypes, logger)
+            collectRegexActivities(regexHandlerSymbols, injectableTypes, logger)
+            collectUpdateTypeActivities(updateHandlerSymbols, injectableTypes, logger)
             collectUnprocessed(unprocessedHandlerSymbol, injectableTypes, logger)
 
             addProperty(
                 PropertySpec.builder(
-                    "\$ACTIONS".withPostfix(pkg).escape(),
+                    "\$ACTIVITIES".withPostfix(pkg).escape(),
                     List::class.asTypeName().parameterizedBy(ANY.copy(true)),
                     KModifier.INTERNAL,
                 ).apply {

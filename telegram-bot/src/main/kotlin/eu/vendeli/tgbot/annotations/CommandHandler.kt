@@ -14,7 +14,7 @@ import eu.vendeli.tgbot.types.internal.UpdateType
 annotation class CommandHandler(
     val value: Array<String>,
     val rateLimits: RateLimits = RateLimits(0, 0),
-    val scope: Array<UpdateType> = [UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY],
+    val scope: Array<UpdateType> = [UpdateType.MESSAGE],
 ) {
     /**
      * Shortcut [CommandHandler] annotation with specified scope for [UpdateType.CALLBACK_QUERY].

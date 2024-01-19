@@ -2,6 +2,7 @@ package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.userOrNull
@@ -12,65 +13,78 @@ import eu.vendeli.tgbot.utils.InvocationLambda
 import eu.vendeli.tgbot.utils.RegexHandlers
 import eu.vendeli.tgbot.utils.UpdateTypeHandlers
 import eu.vendeli.tgbot.utils.checkIsLimited
+import eu.vendeli.tgbot.utils.logString
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.processUpdate
 
 /**
  * Processor for processing actions built via ksp code generation.
  *
- * @param actions generated actions.
+ * @param activities generated actions.
  * @param bot bot instance.
  */
 @Suppress("MagicNumber", "UNCHECKED_CAST")
 class CodegenUpdateHandler internal constructor(
-    actions: List<*>,
+    activities: List<*>,
     bot: TelegramBot,
 ) : TgUpdateHandler(bot) {
-    private val commandHandlers = actions[0] as CommandHandlers
-    private val inputHandlers = actions[1] as InputHandlers
-    private val regexHandlers = actions[2] as RegexHandlers
-    private val updateTypeHandlers = actions[3] as UpdateTypeHandlers
-    private val unprocessedHandler = actions[4] as InvocationLambda?
+    private val commandHandlers = activities[0] as CommandHandlers
+    private val inputHandlers = activities[1] as InputHandlers
+    private val regexHandlers = activities[2] as RegexHandlers
+    private val updateTypeHandlers = activities[3] as UpdateTypeHandlers
+    private val unprocessedHandler = activities[4] as InvocationLambda?
+
+    init {
+        logger.info {
+            "\nCommandHandlers:\n${commandHandlers.logString}\n" +
+                "InputHandlers:\n${inputHandlers.logString}\n" +
+                "RegexCommandHandlers:\n${regexHandlers.logString}\n" +
+                "UpdateTypeHandlers:\n${updateTypeHandlers.logString}\n" +
+                "UnprocessedHandler:\n${unprocessedHandler ?: "None"}"
+        }
+    }
 
     override suspend fun handle(update: Update): Unit = update.processUpdate().run {
         logger.debug { "Handling update: $update" }
+        val user = userOrNull
         // check general user limits
-        if (checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id))
+        if (checkIsLimited(bot.config.rateLimiter.limits, user?.id))
             return@run
 
         val request = parseCommand(text.substringBefore('@'))
-        var actionId = request.command
+        var activityId = request.command
 
         // check parsed command existence
         var invocation: Invocable? = commandHandlers[request.command to type]
 
         // if there's no command > check input point
-        if (invocation == null) invocation = bot.inputListener.getAsync(userOrNull!!.id).await()?.let {
-            actionId = it
-            inputHandlers[it]
-        }
+        if (invocation == null && user != null)
+            invocation = bot.inputListener.getAsync(user.id).await()?.let {
+                activityId = it
+                inputHandlers[it]
+            }
 
         // remove input listener point
-        if (userOrNull != null) bot.inputListener.del(userOrNull!!.id)
+        if (user != null) bot.inputListener.del(user.id)
 
         // if there's no command and input > check regex handlers
         if (invocation == null) invocation = regexHandlers.entries.firstOrNull {
             it.key.matchEntire(text) != null
         }?.also {
-            actionId = it.key.pattern
+            activityId = it.key.pattern
         }?.value
 
         logger.debug { "Result of finding action - ${invocation?.second}" }
 
         // if we found any action > check for its limits
-        if (invocation != null && checkIsLimited(invocation.second.rateLimits, userOrNull?.id, actionId))
+        if (invocation != null && checkIsLimited(invocation.second.rateLimits, user?.id, activityId))
             return@run
 
         // invoke update type handler if there's
         updateTypeHandlers[type]?.invokeCatching(this, request.params, true)
 
         when {
-            invocation != null -> invocation.invokeCatching(this, request.params)
+            invocation != null -> invocation.invokeCatching(this, user, request.params)
 
             unprocessedHandler != null -> unprocessedHandler.invokeCatching(this, request.params)
 
@@ -78,17 +92,17 @@ class CodegenUpdateHandler internal constructor(
         }
     }
 
-    private suspend fun Invocable.invokeCatching(pUpdate: ProcessedUpdate, params: Map<String, String>) {
+    private suspend fun Invocable.invokeCatching(pUpdate: ProcessedUpdate, user: User?, params: Map<String, String>) {
         bot.chatData.run {
-            if (pUpdate.userOrNull == null) return@run
+            if (user == null) return@run
             // check for user id nullability
-            val prevClassName = getAsync<String>(pUpdate.userOrNull!!.id, "PrevInvokedClass").await()
-            if (prevClassName != second.qualifier) clearAllAsync(pUpdate.userOrNull!!.id).await()
+            val prevClassName = getAsync<String>(user.id, "PrevInvokedClass").await()
+            if (prevClassName != second.qualifier) clearAllAsync(user.id).await()
 
-            setAsync(pUpdate.userOrNull!!.id, "PrevInvokedClass", second.function).await()
+            setAsync(user.id, "PrevInvokedClass", second.function).await()
         }
         first.runCatching {
-            invoke(bot.config.classManager, pUpdate, pUpdate.userOrNull, bot, params)
+            invoke(bot.config.classManager, pUpdate, user, bot, params)
         }.onFailure {
             logger.error(
                 it,

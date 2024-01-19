@@ -23,9 +23,9 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.types.media.File
-import eu.vendeli.tgbot.utils.launchInNewCtx
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
+import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
@@ -42,7 +42,6 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.currentCoroutineContext
 import other.pckg.ChatDataImpl
 import other.pckg.UserDataImpl
 import java.time.Instant
@@ -50,11 +49,8 @@ import java.time.Instant
 class TelegramBotTest : BotTestContext() {
     @Test
     suspend fun `updates handler shortcut test`() {
-        doMockHttp()
+        doMockHttp(MockUpdate.SINGLE("STOP"))
         shouldNotThrowAny {
-            launchInNewCtx(currentCoroutineContext()) {
-                bot.update.stopListener()
-            }
             bot.handleUpdates()
         }
     }

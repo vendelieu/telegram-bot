@@ -1,5 +1,5 @@
 
-import eu.vendeli.fixtures.`$ACTIONS_eu_vendeli_fixtures`
+import eu.vendeli.fixtures.`$ACTIVITIES_eu_vendeli_fixtures`
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.interfaces.Action
@@ -104,7 +104,7 @@ abstract class BotTestContext(
 
     fun spykIt() {
         bot = spyk(bot, recordPrivateCalls = true)
-        every { bot.update } returns CodegenUpdateHandler(`$ACTIONS_eu_vendeli_fixtures`, bot)
+        every { bot.update } returns CodegenUpdateHandler(`$ACTIVITIES_eu_vendeli_fixtures`, bot)
     }
 
     protected suspend fun <T> Action<T>.sendReturning(id: Long, bot: TelegramBot): Response<out T> {

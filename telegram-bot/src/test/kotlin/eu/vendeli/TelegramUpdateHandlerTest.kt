@@ -9,7 +9,6 @@ import eu.vendeli.tgbot.types.media.Document
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -45,7 +44,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `exception catching via manual handling`() {
+    suspend fun `exception catching via functional handling`() {
         doMockHttp()
 
         bot.update.caughtExceptions.tryReceive().getOrNull().shouldBeNull()
@@ -204,15 +203,13 @@ class TelegramUpdateHandlerTest : BotTestContext() {
     suspend fun `webhook handling test`() {
         prepareTestBot()
         val rawUpdate = MockUpdate.SINGLE().response.toString(Charsets.UTF_8)
-        shouldThrow<UninitializedPropertyAccessException> {
-            bot.update.parseAndHandle(rawUpdate)
-        }
         var update: Update? = null
         bot.update.setBehaviour {
             update = it
         }
         shouldNotThrowAny {
             bot.update.parseAndHandle(rawUpdate)
+            delay(1)
         }
         update.shouldNotBeNull()
     }

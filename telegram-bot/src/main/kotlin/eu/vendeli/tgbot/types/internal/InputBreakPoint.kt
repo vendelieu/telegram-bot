@@ -1,9 +1,9 @@
 package eu.vendeli.tgbot.types.internal
 
-import eu.vendeli.tgbot.utils.OnInputAction
+import eu.vendeli.tgbot.utils.OnInputActivity
 
 data class InputBreakPoint(
-    val condition: InputContext.() -> Boolean,
-    val action: OnInputAction? = null,
+    val condition: ActivityCtx<ProcessedUpdate>.() -> Boolean,
+    val action: OnInputActivity? = null,
     val repeat: Boolean = true,
 )

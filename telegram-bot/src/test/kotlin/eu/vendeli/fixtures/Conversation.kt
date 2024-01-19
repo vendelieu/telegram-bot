@@ -29,6 +29,7 @@ class Conversation {
 
     object Age : ChainLink() {
         override val breakCondition = BreakCondition { _, update, _ -> update.text.toIntOrNull() == null }
+        override val retryAfterBreak = false
 
         override suspend fun action(user: User, update: ProcessedUpdate, bot: TelegramBot) {
             val name = bot.userData[user, "name"]

@@ -33,7 +33,7 @@ import java.time.Instant
 
 data class Message(
     override val messageId: Long,
-    val messageThreadId: Long? = null,
+    val messageThreadId: Int? = null,
     val from: User? = null,
     val senderChat: Chat? = null,
     override val date: Instant,

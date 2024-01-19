@@ -35,6 +35,9 @@ inline fun <T> Response<T>.onFailure(block: (Response.Failure) -> Unit): T? = wh
     }
 }
 
+suspend inline fun <T> Deferred<Response<out T>>.onFailure(block: (Response.Failure) -> Unit): T? =
+    await().onFailure(block)
+
 fun <T> Response<T>.isSuccess(): Boolean = this is Response.Success
 fun <T> Response<T>.getOrNull(): T? = when (this) {
     is Response.Success<T> -> result
