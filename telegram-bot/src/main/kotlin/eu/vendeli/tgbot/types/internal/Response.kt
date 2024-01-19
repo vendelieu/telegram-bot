@@ -26,6 +26,7 @@ sealed class Response<T>(val ok: Boolean) {
         val parameters: ResponseParameters? = null,
     ) : Response<Nothing>(false)
 }
+
 inline fun <T> Response<T>.onFailure(block: (Response.Failure) -> Unit): T? = when (this) {
     is Response.Success<T> -> result
     is Response.Failure -> {
@@ -33,12 +34,16 @@ inline fun <T> Response<T>.onFailure(block: (Response.Failure) -> Unit): T? = wh
         null
     }
 }
-suspend inline fun <T> Deferred<Response<T>>.onFailure(block: (Response.Failure) -> Unit): T? = await().onFailure(block)
+
+suspend inline fun <T> Deferred<Response<out T>>.onFailure(block: (Response.Failure) -> Unit): T? =
+    await().onFailure(block)
+
 fun <T> Response<T>.isSuccess(): Boolean = this is Response.Success
 fun <T> Response<T>.getOrNull(): T? = when (this) {
     is Response.Success<T> -> result
     else -> null
 }
+
 suspend inline fun <T> Deferred<Response<out T>>.getOrNull(): T? = await().getOrNull()
 
 @Suppress("UNCHECKED_CAST")

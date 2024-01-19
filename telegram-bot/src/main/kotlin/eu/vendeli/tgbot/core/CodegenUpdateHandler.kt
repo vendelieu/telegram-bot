@@ -13,6 +13,7 @@ import eu.vendeli.tgbot.utils.InvocationLambda
 import eu.vendeli.tgbot.utils.RegexHandlers
 import eu.vendeli.tgbot.utils.UpdateTypeHandlers
 import eu.vendeli.tgbot.utils.checkIsLimited
+import eu.vendeli.tgbot.utils.logString
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.processUpdate
 
@@ -35,11 +36,11 @@ class CodegenUpdateHandler internal constructor(
 
     init {
         logger.info {
-            "CommandHandlers: ${commandHandlers.ifEmpty { "None" }}\n" +
-                "InputHandlers ${inputHandlers.ifEmpty { "None" }}\n" +
-                "RegexCommandHandlers: ${regexHandlers.ifEmpty { "None" }}\n" +
-                "UpdateTypeHandlers: ${updateTypeHandlers.ifEmpty { "None" }}\n" +
-                "UnprocessedHandler: ${unprocessedHandler ?: "None"}"
+            "\nCommandHandlers:\n${commandHandlers.logString}\n" +
+                "InputHandlers:\n${inputHandlers.logString}\n" +
+                "RegexCommandHandlers:\n${regexHandlers.logString}\n" +
+                "UpdateTypeHandlers:\n${updateTypeHandlers.logString}\n" +
+                "UnprocessedHandler:\n${unprocessedHandler ?: "None"}"
         }
     }
 
