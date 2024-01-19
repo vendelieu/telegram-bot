@@ -10,8 +10,9 @@ import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.coHandle
-import eu.vendeli.tgbot.utils.prepareHandlerScope
 import eu.vendeli.tgbot.utils.process
+import kotlinx.coroutines.CoroutineName
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
@@ -30,7 +31,9 @@ abstract class TgUpdateHandler internal constructor(
 ) {
     private var handlingBehaviour: HandlingBehaviourBlock = { handle(it) }
     private val updatesChannel = Channel<Update>()
-    internal val handlerScope = prepareHandlerScope()
+    internal val handlerScope = bot.config.updatesListener.run {
+        CoroutineScope(dispatcher + CoroutineName("TgBot"))
+    }
     internal val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
 
     /**
