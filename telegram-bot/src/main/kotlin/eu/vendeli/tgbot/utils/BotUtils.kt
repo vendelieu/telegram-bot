@@ -82,7 +82,7 @@ internal var mu.KLogger.level: Level
     }
 
 internal val GET_UPDATES_ACTION = getUpdates()
-internal val DEFAULT_COMMAND_SCOPE = setOf(UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY)
+internal val DEFAULT_COMMAND_SCOPE = setOf(UpdateType.MESSAGE)
 internal val PARAMETERS_MAP_TYPEREF = jacksonTypeRef<Map<String, Any?>>()
 
 internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T): Deferred<T> = coroutineScope {
