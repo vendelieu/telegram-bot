@@ -1,9 +1,13 @@
 # Telegram-bot changelog
 
+### 4.3.1
+
+* Fix coroutines space overconsumption bug.
+
 ## 4.3.0
 
 * Changed naming of internal components.
-    * `Action` (annotated entities) is now `Activity`, not to be confused with actions that form requests. 
+    * `Action` (annotated entities) is now `Activity`, not to be confused with actions that form requests.
     * `ManualHandling` > `FunctionalHandling` - for better understanding.
 * Added shortcut to `onFailure` method on `Deferred`, for consistency of approach.
 * Added logging of the `Activity` list during the initialization phase.
@@ -14,7 +18,8 @@
   only the necessary ones.
 * The type of the parameter `messageThreadId` has been changed to `Int`, as it better represents the data.
 * The base scope of commands for friendliness towards beginners and better understanding has been
-  changed to just `UpdateType.Message`. In other words, by default, it will have similar behavior to other types of libraries.
+  changed to just `UpdateType.Message`. In other words, by default, it will have similar behavior to other types of
+  libraries.
 
 ### 4.2.1
 

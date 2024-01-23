@@ -33,6 +33,7 @@ import kotlinx.coroutines.sync.Mutex
 import java.time.Instant
 import kotlin.properties.Delegates
 import kotlin.random.Random
+import kotlin.time.Duration.Companion.seconds
 
 private val mutex = Mutex()
 private suspend fun Mutex.toggle() = if (isLocked) unlock() else lock()
@@ -74,11 +75,15 @@ abstract class BotTestContext(
         val ctx = BOT_CTX
         BOT_ID = ctx.first
         if (withPreparedBot) bot = TelegramBot(ctx.second, "eu.vendeli") {
+            val timeout = 3.seconds.inWholeMilliseconds
             logging {
                 botLogLevel = LogLvl.DEBUG
                 httpLogLevel = HttpLogLevel.ALL
             }
             httpClient {
+                connectTimeoutMillis = timeout
+                requestTimeoutMillis = timeout
+                socketTimeoutMillis = timeout
                 maxRequestRetry = 0
             }
             updatesListener {

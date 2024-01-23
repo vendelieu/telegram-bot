@@ -63,8 +63,8 @@ abstract class TgUpdateHandler internal constructor(
     private suspend fun processUpdates() {
         logger.info { "Starting long-polling listener." }
         coHandle {
-            while (isActive) {
-                launch(Dispatchers.IO) { handlingBehaviour(this@TgUpdateHandler, updatesChannel.receive()) }
+            for (update in updatesChannel) {
+                launch(Dispatchers.IO) { handlingBehaviour(this@TgUpdateHandler, update) }
             }
         }.join()
     }
