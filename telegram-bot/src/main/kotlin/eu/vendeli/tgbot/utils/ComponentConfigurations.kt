@@ -50,7 +50,7 @@ internal fun TelegramBot.getConfiguredHttpClient() = HttpClient {
 }
 
 @OptIn(ExperimentalSerializationApi::class)
-val serde = Json {
+internal val serde = Json {
     namingStrategy = JsonNamingStrategy.SnakeCase
     encodeDefaults = true
     ignoreUnknownKeys = true

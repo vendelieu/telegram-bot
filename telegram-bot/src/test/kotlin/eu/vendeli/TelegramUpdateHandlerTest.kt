@@ -5,8 +5,10 @@ import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
+import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.media.Document
 import eu.vendeli.tgbot.utils.parseCommand
+import eu.vendeli.tgbot.utils.serde
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.common.ExperimentalKotest
@@ -19,6 +21,8 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
 import kotlinx.coroutines.delay
 import kotlinx.datetime.Instant
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.encodeToString
 
 class TelegramUpdateHandlerTest : BotTestContext() {
     override fun isolationMode() = IsolationMode.InstancePerLeaf
@@ -202,7 +206,14 @@ class TelegramUpdateHandlerTest : BotTestContext() {
     @Test
     suspend fun `webhook handling test`() {
         prepareTestBot()
-        val rawUpdate = MockUpdate.SINGLE().response.toString(Charsets.UTF_8)
+        val rawUpdate = serde.run {
+            encodeToString(
+                decodeFromString(
+                    Response.Success.serializer(ListSerializer(Update.serializer())),
+                    MockUpdate.SINGLE().response.toString(Charsets.UTF_8),
+                ).result.first(),
+            )
+        }
         var update: Update? = null
         bot.update.setBehaviour {
             update = it
