@@ -1,29 +1,66 @@
 package eu.vendeli.tgbot.types
 
-enum class EntityType(private val literal: String) {
-    Mention("mention"),
-    Hashtag("hashtag"),
-    Cashtag("cashtag"),
-    BotCommand("bot_command"),
-    Url("url"),
-    Email("email"),
-    PhoneNumber("phone_number"),
-    Bold("bold"),
-    Italic("italic"),
-    Underline("underline"),
-    Strikethrough("strikethrough"),
-    Spoiler("spoiler"),
-    Blockquote("blockquote"),
-    Code("code"),
-    Pre("pre"),
-    TextLink("text_link"),
-    TextMention("text_mention"),
-    CustomEmoji("custom_emoji"),
-    ;
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-    override fun toString(): String = literal
+@Serializable
+enum class EntityType {
+    @SerialName("mention")
+    Mention,
+
+    @SerialName("hashtag")
+    Hashtag,
+
+    @SerialName("cashtag")
+    Cashtag,
+
+    @SerialName("bot_command")
+    BotCommand,
+
+    @SerialName("url")
+    Url,
+
+    @SerialName("email")
+    Email,
+
+    @SerialName("phone_number")
+    PhoneNumber,
+
+    @SerialName("bold")
+    Bold,
+
+    @SerialName("italic")
+    Italic,
+
+    @SerialName("underline")
+    Underline,
+
+    @SerialName("strikethrough")
+    Strikethrough,
+
+    @SerialName("spoiler")
+    Spoiler,
+
+    @SerialName("blockquote")
+    Blockquote,
+
+    @SerialName("code")
+    Code,
+
+    @SerialName("pre")
+    Pre,
+
+    @SerialName("text_link")
+    TextLink,
+
+    @SerialName("text_mention")
+    TextMention,
+
+    @SerialName("custom_emoji")
+    CustomEmoji,
 }
 
+@Serializable
 data class MessageEntity(
     val type: EntityType,
     val offset: Int,

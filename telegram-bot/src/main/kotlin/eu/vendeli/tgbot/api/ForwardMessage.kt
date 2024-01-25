@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.ForwardMessageOptions
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 /**
  * Use this action to forward messages of any kind. Service messages can't be forwarded.
@@ -21,7 +22,7 @@ import eu.vendeli.tgbot.utils.getReturnType
  * (or channel username in the format @channelusername)
  * @param messageId Message identifier in the chat specified in fromChatId
  */
-class ForwardMessageAction(fromChatId: Identifier<*>, messageId: Long) :
+class ForwardMessageAction(fromChatId: Identifier, messageId: Long) :
     Action<Message>(),
     OptionsFeature<ForwardMessageAction, ForwardMessageOptions> {
     override val method = TgMethod("forwardMessage")
@@ -29,8 +30,8 @@ class ForwardMessageAction(fromChatId: Identifier<*>, messageId: Long) :
     override val options = ForwardMessageOptions()
 
     init {
-        parameters["from_chat_id"] = fromChatId.get
-        parameters["message_id"] = messageId
+        parameters["from_chat_id"] = fromChatId.get.toJsonElement()
+        parameters["message_id"] = messageId.toJsonElement()
     }
 }
 
@@ -42,7 +43,7 @@ class ForwardMessageAction(fromChatId: Identifier<*>, messageId: Long) :
  * @param messageId Message identifier in the chat specified in fromChatId
  */
 @Suppress("NOTHING_TO_INLINE")
-inline fun forwardMessage(fromChatId: Identifier<*>, messageId: Long) = ForwardMessageAction(fromChatId, messageId)
+inline fun forwardMessage(fromChatId: Identifier, messageId: Long) = ForwardMessageAction(fromChatId, messageId)
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun forwardMessage(fromChatId: Long, messageId: Long) = forwardMessage(Identifier.from(fromChatId), messageId)

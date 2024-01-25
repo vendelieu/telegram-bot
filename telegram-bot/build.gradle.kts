@@ -4,6 +4,7 @@ import java.time.LocalDate
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.serialization)
     `java-library`
     alias(libs.plugins.dokka)
     alias(libs.plugins.ktlinter)
@@ -18,9 +19,8 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.jackson.kotlin)
-    implementation(libs.jackson.databind)
-    implementation(libs.jackson.datatype.jsr310)
+    implementation(libs.kotlin.serialization)
+    implementation(libs.kotlin.datetime)
 
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
@@ -37,6 +37,7 @@ dependencies {
     testImplementation(libs.test.junit.params)
     testImplementation(libs.test.ktor.mock)
     testImplementation(libs.mockk)
+    implementation(kotlin("reflect"))
 }
 
 group = "eu.vendeli"

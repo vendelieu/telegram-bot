@@ -7,7 +7,8 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.ChatPermissions
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
-import java.time.Instant
+import eu.vendeli.tgbot.utils.toJsonElement
+import kotlinx.datetime.Instant
 
 class RestrictChatMemberAction(
     userId: Long,
@@ -19,11 +20,11 @@ class RestrictChatMemberAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["user_id"] = userId
-        parameters["permissions"] = permissions
-        if (untilDate != null) parameters["until_date"] = untilDate
+        parameters["user_id"] = userId.toJsonElement()
+        parameters["permissions"] = permissions.toJsonElement()
+        if (untilDate != null) parameters["until_date"] = untilDate.epochSeconds.toJsonElement()
         if (useIndependentChatPermissions != null)
-            parameters["use_independent_chat_permissions"] = useIndependentChatPermissions
+            parameters["use_independent_chat_permissions"] = useIndependentChatPermissions.toJsonElement()
     }
 }
 

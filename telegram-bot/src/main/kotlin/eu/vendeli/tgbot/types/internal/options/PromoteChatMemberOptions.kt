@@ -1,5 +1,8 @@
 package eu.vendeli.tgbot.types.internal.options
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class PromoteChatMemberOptions(
     var isAnonymous: Boolean? = null,
     var canManageChat: Boolean? = null,

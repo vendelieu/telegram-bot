@@ -1,25 +1,61 @@
 package eu.vendeli.tgbot.types.internal
 
-enum class UpdateType {
-    MESSAGE,
-    EDIT_MESSAGE,
-    CHANNEL_POST,
-    EDITED_CHANNEL_POST,
-    MESSAGE_REACTION,
-    MESSAGE_REACTION_COUNT,
-    INLINE_QUERY,
-    CHOSEN_INLINE_RESULT,
-    CALLBACK_QUERY,
-    SHIPPING_QUERY,
-    PRE_CHECKOUT_QUERY,
-    POLL,
-    POLL_ANSWER,
-    MY_CHAT_MEMBER,
-    CHAT_MEMBER,
-    CHAT_JOIN_REQUEST,
-    CHAT_BOOST,
-    REMOVED_CHAT_BOOST,
-    ;
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-    override fun toString() = name.lowercase()
+@Serializable
+enum class UpdateType {
+    @SerialName("message")
+    MESSAGE,
+
+    @SerialName("edit_message")
+    EDIT_MESSAGE,
+
+    @SerialName("channel_post")
+    CHANNEL_POST,
+
+    @SerialName("edited_channel_post")
+    EDITED_CHANNEL_POST,
+
+    @SerialName("message_reaction")
+    MESSAGE_REACTION,
+
+    @SerialName("message_reaction_count")
+    MESSAGE_REACTION_COUNT,
+
+    @SerialName("inline_query")
+    INLINE_QUERY,
+
+    @SerialName("chosen_inline_result")
+    CHOSEN_INLINE_RESULT,
+
+    @SerialName("callback_query")
+    CALLBACK_QUERY,
+
+    @SerialName("shipping_query")
+    SHIPPING_QUERY,
+
+    @SerialName("pre_checkout_query")
+    PRE_CHECKOUT_QUERY,
+
+    @SerialName("poll")
+    POLL,
+
+    @SerialName("poll_answer")
+    POLL_ANSWER,
+
+    @SerialName("my_chat_member")
+    MY_CHAT_MEMBER,
+
+    @SerialName("chat_member")
+    CHAT_MEMBER,
+
+    @SerialName("chat_join_request")
+    CHAT_JOIN_REQUEST,
+
+    @SerialName("chat_boost")
+    CHAT_BOOST,
+
+    @SerialName("removed_chat_boost")
+    REMOVED_CHAT_BOOST,
 }

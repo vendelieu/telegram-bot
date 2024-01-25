@@ -6,14 +6,15 @@ import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SetChatAdministratorCustomTitleAction(userId: Long, customTitle: String) : Action<Boolean>() {
     override val method = TgMethod("setChatAdministratorCustomTitle")
     override val returnType = getReturnType()
 
     init {
-        parameters["user_id"] = userId
-        parameters["custom_title"] = customTitle
+        parameters["user_id"] = userId.toJsonElement()
+        parameters["custom_title"] = customTitle.toJsonElement()
     }
 }
 

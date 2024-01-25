@@ -1,5 +1,8 @@
 package eu.vendeli.tgbot.types.internal
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 enum class Currency {
     AED,
     AFN,
@@ -85,7 +88,4 @@ enum class Currency {
     VND,
     YER,
     ZAR,
-    ;
-
-    override fun toString(): String = name
 }

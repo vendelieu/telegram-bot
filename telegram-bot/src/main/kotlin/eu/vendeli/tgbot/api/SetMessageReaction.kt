@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.ReactionType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SetMessageReactionAction(
     messageId: Long,
@@ -17,9 +18,9 @@ class SetMessageReactionAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["message_id"] = messageId
-        if (reaction != null) parameters["reaction"] = reaction
-        if (isBig != null) parameters["is_big"] = messageId
+        parameters["message_id"] = messageId.toJsonElement()
+        if (reaction != null) parameters["reaction"] = reaction.toJsonElement()
+        if (isBig != null) parameters["is_big"] = messageId.toJsonElement()
     }
 }
 

@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.internal.options.CreateNewStickerSetOptions
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.types.media.StickerFormat
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class CreateNewStickerSetAction(
     name: String,
@@ -22,10 +23,10 @@ class CreateNewStickerSetAction(
     override val idRefField = "user_id"
 
     init {
-        parameters["name"] = name
-        parameters["title"] = title
-        parameters["sticker_format"] = stickerFormat
-        parameters["stickers"] = stickers
+        parameters["name"] = name.toJsonElement()
+        parameters["title"] = title.toJsonElement()
+        parameters["sticker_format"] = stickerFormat.toJsonElement()
+        parameters["stickers"] = stickers.toJsonElement()
     }
 }
 

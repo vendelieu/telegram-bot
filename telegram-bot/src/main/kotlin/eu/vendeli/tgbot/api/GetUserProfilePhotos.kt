@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.UserProfilePhotos
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class GetUserProfilePhotosAction(
     userId: Long,
@@ -17,9 +18,9 @@ class GetUserProfilePhotosAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["user_id"] = userId
-        if (offset != null) parameters["offset"] = offset
-        if (limit != null) parameters["limit"] = limit
+        parameters["user_id"] = userId.toJsonElement()
+        if (offset != null) parameters["offset"] = offset.toJsonElement()
+        if (limit != null) parameters["limit"] = limit.toJsonElement()
     }
 }
 

@@ -2,7 +2,9 @@ package eu.vendeli.tgbot.types.internal.options
 
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.UpdateType
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class SetWebhookOptions(
     var certificate: InputFile? = null,
     var ipAddress: String? = null,

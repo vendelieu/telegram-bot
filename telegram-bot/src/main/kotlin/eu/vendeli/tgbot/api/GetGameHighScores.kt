@@ -7,19 +7,20 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.game.GameHighScore
 import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.TgMethod
-import eu.vendeli.tgbot.utils.getCollectionReturnType
+import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class GetGameHighScoresAction : InlinableAction<List<GameHighScore>> {
     override val method = TgMethod("getGameHighScores")
-    override val collectionReturnType = getCollectionReturnType()
+    override val returnType = getReturnType()
 
-    constructor(user: Identifier<*>, messageId: Long) {
-        parameters["user_id"] = user.get
-        parameters["message_id"] = messageId
+    constructor(user: Identifier, messageId: Long) {
+        parameters["user_id"] = user.get.toJsonElement()
+        parameters["message_id"] = messageId.toJsonElement()
     }
 
-    constructor(user: Identifier<*>) {
-        parameters["user_id"] = user.get
+    constructor(user: Identifier) {
+        parameters["user_id"] = user.get.toJsonElement()
     }
 }
 

@@ -1,5 +1,8 @@
 package eu.vendeli.tgbot.types.payment
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ShippingAddress(
     val countryCode: String,
     val state: String,

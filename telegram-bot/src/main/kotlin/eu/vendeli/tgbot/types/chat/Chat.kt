@@ -2,19 +2,30 @@ package eu.vendeli.tgbot.types.chat
 
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.ReactionType
-import java.time.Instant
+import eu.vendeli.tgbot.utils.serde.InstantSerializer
+import kotlinx.datetime.Instant
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-enum class ChatType(private val literal: String) {
-    Private("private"),
-    Group("group"),
-    Supergroup("supergroup"),
-    Channel("channel"),
-    Sender("sender"),
-    ;
+@Serializable
+enum class ChatType {
+    @SerialName("private")
+    Private,
 
-    override fun toString(): String = literal
+    @SerialName("group")
+    Group,
+
+    @SerialName("supergroup")
+    Supergroup,
+
+    @SerialName("channel")
+    Channel,
+
+    @SerialName("sender")
+    Sender,
 }
 
+@Serializable
 data class Chat(
     val id: Long,
     val type: ChatType,
@@ -31,6 +42,7 @@ data class Chat(
     val profileAccentColorId: Int? = null,
     val profileBackgroundCustomEmojiId: String? = null,
     val emojiStatusCustomEmojiId: String? = null,
+    @Serializable(InstantSerializer::class)
     val emojiStatusExpirationDate: Instant? = null,
     val bio: String? = null,
     val hasPrivateForwards: Boolean? = null,

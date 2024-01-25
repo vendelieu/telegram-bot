@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.InvoiceOptions
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SendInvoiceAction(
     title: String,
@@ -27,12 +28,12 @@ class SendInvoiceAction(
     override val options = InvoiceOptions()
 
     init {
-        parameters["title"] = title
-        parameters["description"] = description
-        parameters["payload"] = payload
-        parameters["provider_token"] = providerToken
-        parameters["currency"] = currency.name
-        parameters["prices"] = prices
+        parameters["title"] = title.toJsonElement()
+        parameters["description"] = description.toJsonElement()
+        parameters["payload"] = payload.toJsonElement()
+        parameters["provider_token"] = providerToken.toJsonElement()
+        parameters["currency"] = currency.name.toJsonElement()
+        parameters["prices"] = prices.toJsonElement()
     }
 }
 

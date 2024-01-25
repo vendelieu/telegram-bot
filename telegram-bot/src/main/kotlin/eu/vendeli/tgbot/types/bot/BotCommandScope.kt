@@ -1,29 +1,35 @@
 package eu.vendeli.tgbot.types.bot
 
-import com.fasterxml.jackson.annotation.JsonSubTypes
-import com.fasterxml.jackson.annotation.JsonTypeInfo
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "type",
-    defaultImpl = BotCommandScope.Default::class,
-)
-@JsonSubTypes(
-    JsonSubTypes.Type(value = BotCommandScope.Default::class, name = "default"),
-    JsonSubTypes.Type(value = BotCommandScope.AllPrivateChats::class, name = "all_private_chats"),
-    JsonSubTypes.Type(value = BotCommandScope.AllGroupChats::class, name = "all_group_chats"),
-    JsonSubTypes.Type(value = BotCommandScope.AllChatAdministrators::class, name = "all_chat_administrators"),
-    JsonSubTypes.Type(value = BotCommandScope.ChatScope::class, name = "chat"),
-    JsonSubTypes.Type(value = BotCommandScope.ChatAdministrators::class, name = "chat_administrators"),
-    JsonSubTypes.Type(value = BotCommandScope.ChatMember::class, name = "chat_member"),
-)
+@Serializable
 sealed class BotCommandScope(val type: String) {
-    data object Default : BotCommandScope(type = "default")
-    data object AllPrivateChats : BotCommandScope(type = "all_private_chats")
-    data object AllGroupChats : BotCommandScope(type = "all_group_chats")
-    data object AllChatAdministrators : BotCommandScope(type = "all_chat_administrators")
+    @Serializable
+    @SerialName("default")
+    class Default : BotCommandScope(type = "default")
+
+    @Serializable
+    @SerialName("all_private_chats")
+    class AllPrivateChats : BotCommandScope(type = "all_private_chats")
+
+    @Serializable
+    @SerialName("all_group_chats")
+    class AllGroupChats : BotCommandScope(type = "all_group_chats")
+
+    @Serializable
+    @SerialName("all_chat_administrators")
+    class AllChatAdministrators : BotCommandScope(type = "all_chat_administrators")
+
+    @Serializable
+    @SerialName("chat")
     data class ChatScope(val chatId: Long) : BotCommandScope(type = "chat")
+
+    @Serializable
+    @SerialName("chat_administrators")
     data class ChatAdministrators(val chatId: Long) : BotCommandScope(type = "chat_administrators")
+
+    @Serializable
+    @SerialName("chat_member")
     data class ChatMember(val chatId: Long, val userId: Long) : BotCommandScope(type = "chat_member")
 }

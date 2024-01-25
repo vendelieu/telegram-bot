@@ -4,8 +4,10 @@ import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import kotlinx.coroutines.delay
-import java.time.Instant
-import java.time.temporal.ChronoUnit
+import kotlinx.datetime.Clock
+import kotlinx.datetime.DateTimeUnit
+import kotlinx.datetime.Instant
+import kotlinx.datetime.until
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicReference
 import kotlin.math.max
@@ -19,7 +21,7 @@ class TokenBucketLimiterImpl : RateLimitMechanism {
     private var state: ConcurrentHashMap<String, AtomicReference<BucketState>> = ConcurrentHashMap()
     private val instant: Instant
         get() {
-            return Instant.now()
+            return Clock.System.now()
         }
 
     /**
@@ -64,7 +66,7 @@ class TokenBucketLimiterImpl : RateLimitMechanism {
                 BucketState(limits.rate - 1, instant)
             } else {
                 val now = instant
-                val tokensToAdd = current.lastUpdated.until(now, ChronoUnit.MILLIS) / limits.period
+                val tokensToAdd = current.lastUpdated.until(now, DateTimeUnit.MILLISECOND) / limits.period
                 val totalTokens = min(limits.rate, current.remainingTokens + tokensToAdd)
                 val lastUpdated = if (tokensToAdd > 0) now else current.lastUpdated
                 hasTokens = totalTokens > 0

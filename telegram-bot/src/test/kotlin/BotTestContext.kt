@@ -30,9 +30,11 @@ import io.mockk.spyk
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
-import java.time.Instant
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
 import kotlin.properties.Delegates
 import kotlin.random.Random
+import kotlin.time.Duration.Companion.seconds
 
 private val mutex = Mutex()
 private suspend fun Mutex.toggle() = if (isLocked) unlock() else lock()
@@ -52,7 +54,7 @@ abstract class BotTestContext(
     private val spykIt: Boolean = true,
 ) : AnnotationSpec() {
     private val INT_ITERATOR = (1..Int.MAX_VALUE).iterator()
-    private val RANDOM_INST: Random get() = Random(CUR_INSTANT.epochSecond)
+    private val RANDOM_INST: Random get() = Random(CUR_INSTANT.epochSeconds)
     internal lateinit var bot: TelegramBot
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
@@ -64,7 +66,7 @@ abstract class BotTestContext(
 
     protected val RANDOM_PIC_URL = "https://picsum.photos/10"
     protected val RANDOM_PIC by lazy { runBlocking { bot.httpClient.get(RANDOM_PIC_URL).readBytes() } }
-    protected val CUR_INSTANT: Instant get() = Instant.now()
+    protected val CUR_INSTANT: Instant get() = Clock.System.now()
     protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()
     protected val RAND_INT: Int get() = RANDOM_INST.nextInt()
     protected val DUMB_USER = User(1, false, "Test")
@@ -80,6 +82,7 @@ abstract class BotTestContext(
             }
             httpClient {
                 maxRequestRetry = 0
+                connectTimeoutMillis = 10.seconds.inWholeMilliseconds
             }
             updatesListener {
                 pullingDelay = 100

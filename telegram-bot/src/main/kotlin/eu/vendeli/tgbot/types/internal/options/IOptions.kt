@@ -3,8 +3,10 @@ package eu.vendeli.tgbot.types.internal.options
 import eu.vendeli.tgbot.types.LinkPreviewOptions
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.ReplyParameters
+import kotlinx.serialization.Serializable
 
-interface Options
+@Serializable
+sealed interface Options
 
 interface OptionsParseMode : Options {
     var parseMode: ParseMode?
@@ -30,7 +32,8 @@ interface LinkPreviewProp {
     }
 }
 
-interface OptionsCommon : Options {
+@Serializable
+sealed interface OptionsCommon : Options {
     var disableNotification: Boolean?
     var replyParameters: ReplyParameters?
     var protectContent: Boolean?

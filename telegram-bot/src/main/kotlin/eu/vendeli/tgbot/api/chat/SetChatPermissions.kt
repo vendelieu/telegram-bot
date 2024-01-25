@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.chat.ChatPermissions
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SetChatPermissionsAction(
     permissions: ChatPermissions,
@@ -15,9 +16,9 @@ class SetChatPermissionsAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["permissions"] = permissions
+        parameters["permissions"] = permissions.toJsonElement()
         if (useIndependentChatPermissions != null)
-            parameters["use_independent_chat_permissions"] = useIndependentChatPermissions
+            parameters["use_independent_chat_permissions"] = useIndependentChatPermissions.toJsonElement()
     }
 }
 

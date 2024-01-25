@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api.forum
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 /**
  * Use this method to reopen closed topic in a forum supergroup chat.
@@ -16,7 +17,7 @@ class ReopenForumTopicAction(messageThreadId: Int) : Action<Boolean>() {
     override val returnType = getReturnType()
 
     init {
-        parameters["message_thread_id"] = messageThreadId
+        parameters["message_thread_id"] = messageThreadId.toJsonElement()
     }
 }
 

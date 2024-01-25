@@ -1,29 +1,20 @@
 package eu.vendeli.tgbot.types.media
 
-import com.fasterxml.jackson.annotation.JsonSubTypes
-import com.fasterxml.jackson.annotation.JsonTypeInfo
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.internal.ImplicitFile
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "type",
-)
-@JsonSubTypes(
-    JsonSubTypes.Type(value = InputMedia.Audio::class, name = "audio"),
-    JsonSubTypes.Type(value = InputMedia.Document::class, name = "document"),
-    JsonSubTypes.Type(value = InputMedia.Photo::class, name = "photo"),
-    JsonSubTypes.Type(value = InputMedia.Video::class, name = "video"),
-    JsonSubTypes.Type(value = InputMedia.Animation::class, name = "animation"),
-)
+@Serializable
 sealed class InputMedia(val type: String) {
-    abstract var media: ImplicitFile<*>
+    abstract var media: ImplicitFile
 
+    @Serializable
+    @SerialName("audio")
     data class Audio(
-        override var media: ImplicitFile<*>,
-        val thumbnail: ImplicitFile<*>? = null,
+        override var media: ImplicitFile,
+        val thumbnail: ImplicitFile? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
@@ -32,26 +23,32 @@ sealed class InputMedia(val type: String) {
         val title: String? = null,
     ) : InputMedia(type = "audio")
 
+    @Serializable
+    @SerialName("document")
     data class Document(
-        override var media: ImplicitFile<*>,
-        val thumbnail: ImplicitFile<*>? = null,
+        override var media: ImplicitFile,
+        val thumbnail: ImplicitFile? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val disableTypeDetection: Boolean? = null,
     ) : InputMedia(type = "document")
 
+    @Serializable
+    @SerialName("photo")
     data class Photo(
-        override var media: ImplicitFile<*>,
+        override var media: ImplicitFile,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val hasSpoiler: Boolean? = null,
     ) : InputMedia(type = "photo")
 
+    @Serializable
+    @SerialName("video")
     data class Video(
-        override var media: ImplicitFile<*>,
-        val thumbnail: ImplicitFile<*>? = null,
+        override var media: ImplicitFile,
+        val thumbnail: ImplicitFile? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
@@ -62,9 +59,11 @@ sealed class InputMedia(val type: String) {
         val hasSpoiler: Boolean? = null,
     ) : InputMedia(type = "video")
 
+    @Serializable
+    @SerialName("animation")
     data class Animation(
-        override var media: ImplicitFile<*>,
-        val thumbnail: ImplicitFile<*>? = null,
+        override var media: ImplicitFile,
+        val thumbnail: ImplicitFile? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,

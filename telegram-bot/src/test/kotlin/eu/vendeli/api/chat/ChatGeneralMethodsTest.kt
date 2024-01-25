@@ -16,6 +16,7 @@ import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.string.shouldContain
+import kotlin.time.Duration.Companion.milliseconds
 
 @EnabledIf(ChatTestingOnlyCondition::class)
 class ChatGeneralMethodsTest : BotTestContext() {
@@ -69,7 +70,7 @@ class ChatGeneralMethodsTest : BotTestContext() {
     suspend fun `restrict chat member method test`() {
         val result = restrictChatMember(
             user = TG_ID.asUser(),
-            untilDate = CUR_INSTANT.plusMillis(10000),
+            untilDate = CUR_INSTANT.plus(10000.milliseconds),
             true,
         ) {
             canChangeInfo = false

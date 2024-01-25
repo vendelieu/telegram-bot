@@ -2,8 +2,12 @@ package eu.vendeli.tgbot.types
 
 import eu.vendeli.tgbot.types.internal.Currency
 import eu.vendeli.tgbot.types.payment.LabeledPrice
+import kotlinx.serialization.Serializable
 
+@Serializable
 sealed class InputMessageContent
+
+@Serializable
 data class Text(
     val messageText: String,
     val parseMode: ParseMode? = null,
@@ -11,6 +15,7 @@ data class Text(
     val linkPreviewOptions: LinkPreviewOptions? = null,
 ) : InputMessageContent()
 
+@Serializable
 data class LocationContent(
     val latitude: Float,
     val longitude: Float,
@@ -20,6 +25,7 @@ data class LocationContent(
     val proximityAlertRadius: Int? = null,
 ) : InputMessageContent()
 
+@Serializable
 data class VenueContent(
     val latitude: Float,
     val longitude: Float,
@@ -31,6 +37,7 @@ data class VenueContent(
     val googlePlaceType: String? = null,
 ) : InputMessageContent()
 
+@Serializable
 data class ContactContent(
     val phoneNumber: String,
     val firstName: String,
@@ -39,6 +46,7 @@ data class ContactContent(
     val vcard: String? = null,
 ) : InputMessageContent()
 
+@Serializable
 data class InvoiceContent(
     val title: String,
     val description: String,

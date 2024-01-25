@@ -65,4 +65,8 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
         commandHitsCounter.get() shouldBe 2
         loopsCounter.get() shouldBe 20
     }
+
+    @Test
+    fun a() {
+    }
 }

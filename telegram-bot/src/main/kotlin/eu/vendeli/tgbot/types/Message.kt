@@ -29,13 +29,17 @@ import eu.vendeli.tgbot.types.media.Voice
 import eu.vendeli.tgbot.types.passport.PassportData
 import eu.vendeli.tgbot.types.payment.Invoice
 import eu.vendeli.tgbot.types.payment.SuccessfulPayment
-import java.time.Instant
+import eu.vendeli.tgbot.utils.serde.InstantSerializer
+import kotlinx.datetime.Instant
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Message(
     override val messageId: Long,
     val messageThreadId: Int? = null,
     val from: User? = null,
     val senderChat: Chat? = null,
+    @Serializable(InstantSerializer::class)
     override val date: Instant,
     override val chat: Chat,
     val forwardOrigin: MessageOrigin? = null,
@@ -45,6 +49,7 @@ data class Message(
     val externalReply: ExternalReplyInfo? = null,
     val quote: TextQuote? = null,
     val viaBot: User? = null,
+    @Serializable(InstantSerializer::class)
     val editDate: Instant? = null,
     val hasProtectedContent: Boolean? = null,
     val mediaGroupId: String? = null,

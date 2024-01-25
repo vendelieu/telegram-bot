@@ -3,7 +3,9 @@ package eu.vendeli.tgbot.types.keyboard
 import eu.vendeli.tgbot.interfaces.Button
 import eu.vendeli.tgbot.types.game.CallbackGame
 import eu.vendeli.tgbot.types.inline.SwitchInlineQueryChosenChat
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class InlineKeyboardButton(
     val text: String,
     val url: String? = null,

@@ -1,5 +1,8 @@
 package eu.vendeli.tgbot.types
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Venue(
     val location: LocationContent,
     val title: String,

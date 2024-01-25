@@ -13,9 +13,10 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AudioOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 import java.io.File
 
-class SendAudioAction(audio: ImplicitFile<*>) :
+class SendAudioAction(audio: ImplicitFile) :
     MediaAction<Message>(),
     OptionsFeature<SendAudioAction, AudioOptions>,
     MarkupFeature<SendAudioAction>,
@@ -26,12 +27,12 @@ class SendAudioAction(audio: ImplicitFile<*>) :
     override val inputFilePresence = audio is ImplicitFile.InpFile
 
     init {
-        parameters["audio"] = audio.file
+        parameters["audio"] = audio.file.toJsonElement()
     }
 }
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun audio(file: ImplicitFile<*>) = SendAudioAction(file)
+inline fun audio(file: ImplicitFile) = SendAudioAction(file)
 
 inline fun audio(block: () -> String) = audio(ImplicitFile.Str(block()))
 
@@ -47,4 +48,4 @@ inline fun audio(file: InputFile) = audio(ImplicitFile.InpFile(file))
 inline fun sendAudio(block: () -> String) = audio(block)
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun sendAudio(file: ImplicitFile<*>) = audio(file)
+inline fun sendAudio(file: ImplicitFile) = audio(file)

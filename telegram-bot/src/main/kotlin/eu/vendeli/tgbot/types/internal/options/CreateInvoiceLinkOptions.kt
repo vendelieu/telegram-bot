@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.types.internal.options
 
+import kotlinx.serialization.Serializable
+
 /**
  * Create invoice link options
  *
@@ -25,6 +27,7 @@ package eu.vendeli.tgbot.types.internal.options
  * @property sendEmailToProvider Pass True, if the user's email address should be sent to the provider
  * @property isFlexible Pass True, if the final price depends on the shipping method
  */
+@Serializable
 data class CreateInvoiceLinkOptions(
     var maxTipAmount: Int? = null,
     var suggestedTipAmounts: List<Int>? = null,

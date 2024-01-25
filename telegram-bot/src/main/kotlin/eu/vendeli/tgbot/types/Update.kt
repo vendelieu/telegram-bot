@@ -7,7 +7,9 @@ import eu.vendeli.tgbot.types.inline.ChosenInlineResult
 import eu.vendeli.tgbot.types.inline.InlineQuery
 import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
 import eu.vendeli.tgbot.types.payment.ShippingQuery
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Update(
     val updateId: Int,
     val message: Message? = null,

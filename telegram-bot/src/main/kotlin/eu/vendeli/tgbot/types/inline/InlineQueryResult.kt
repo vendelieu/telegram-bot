@@ -1,36 +1,16 @@
 package eu.vendeli.tgbot.types.inline
 
-import com.fasterxml.jackson.annotation.JsonSubTypes
-import com.fasterxml.jackson.annotation.JsonTypeInfo
 import eu.vendeli.tgbot.types.InputMessageContent
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
-@JsonSubTypes(
-    JsonSubTypes.Type(value = InlineQueryResult.Article::class),
-    JsonSubTypes.Type(value = InlineQueryResult.Photo::class),
-    JsonSubTypes.Type(value = InlineQueryResult.Gif::class),
-    JsonSubTypes.Type(value = InlineQueryResult.Mpeg4Gif::class),
-    JsonSubTypes.Type(value = InlineQueryResult.Video::class),
-    JsonSubTypes.Type(value = InlineQueryResult.Audio::class),
-    JsonSubTypes.Type(value = InlineQueryResult.Voice::class),
-    JsonSubTypes.Type(value = InlineQueryResult.Document::class),
-    JsonSubTypes.Type(value = InlineQueryResult.Location::class),
-    JsonSubTypes.Type(value = InlineQueryResult.Venue::class),
-    JsonSubTypes.Type(value = InlineQueryResult.Contact::class),
-    JsonSubTypes.Type(value = InlineQueryResult.Game::class),
-    JsonSubTypes.Type(value = InlineQueryResult.CachedPhoto::class),
-    JsonSubTypes.Type(value = InlineQueryResult.CachedGif::class),
-    JsonSubTypes.Type(value = InlineQueryResult.CachedMpeg4Gif::class),
-    JsonSubTypes.Type(value = InlineQueryResult.CachedSticker::class),
-    JsonSubTypes.Type(value = InlineQueryResult.CachedDocument::class),
-    JsonSubTypes.Type(value = InlineQueryResult.CachedVideo::class),
-    JsonSubTypes.Type(value = InlineQueryResult.CachedVoice::class),
-    JsonSubTypes.Type(value = InlineQueryResult.CachedAudio::class),
-)
+@Serializable
 sealed class InlineQueryResult(val type: String) {
+    @Serializable
+    @SerialName("article")
     data class Article(
         val id: String,
         val title: String,
@@ -44,6 +24,8 @@ sealed class InlineQueryResult(val type: String) {
         val thumbnailHeight: Int? = null,
     ) : InlineQueryResult("article")
 
+    @Serializable
+    @SerialName("photo")
     data class Photo(
         val id: String,
         val photoUrl: String,
@@ -58,6 +40,8 @@ sealed class InlineQueryResult(val type: String) {
         val inputMessageContent: InputMessageContent? = null,
     ) : InlineQueryResult("photo")
 
+    @Serializable
+    @SerialName("gif")
     data class Gif(
         val id: String,
         val gifUrl: String,
@@ -74,6 +58,8 @@ sealed class InlineQueryResult(val type: String) {
         val inputMessageContent: InputMessageContent? = null,
     ) : InlineQueryResult("gif")
 
+    @Serializable
+    @SerialName("mpeg4_gif")
     data class Mpeg4Gif(
         val id: String,
         val mpeg4Url: String,
@@ -90,6 +76,8 @@ sealed class InlineQueryResult(val type: String) {
         val inputMessageContent: InputMessageContent? = null,
     ) : InlineQueryResult("mpeg4_gif")
 
+    @Serializable
+    @SerialName("video")
     data class Video(
         val id: String,
         val videoUrl: String,
@@ -107,6 +95,8 @@ sealed class InlineQueryResult(val type: String) {
         val inputMessageContent: InputMessageContent? = null,
     ) : InlineQueryResult("video")
 
+    @Serializable
+    @SerialName("audio")
     data class Audio(
         val id: String,
         val audioUrl: String,
@@ -120,6 +110,8 @@ sealed class InlineQueryResult(val type: String) {
         val inputMessageContent: InputMessageContent? = null,
     ) : InlineQueryResult("audio")
 
+    @Serializable
+    @SerialName("voice")
     data class Voice(
         val id: String,
         val voiceUrl: String,
@@ -132,6 +124,8 @@ sealed class InlineQueryResult(val type: String) {
         val inputMessageContent: InputMessageContent? = null,
     ) : InlineQueryResult("voice")
 
+    @Serializable
+    @SerialName("document")
     data class Document(
         val id: String,
         val title: String,
@@ -148,6 +142,8 @@ sealed class InlineQueryResult(val type: String) {
         val thumbnailHeight: Int? = null,
     ) : InlineQueryResult("document")
 
+    @Serializable
+    @SerialName("location")
     data class Location(
         val id: String,
         val longitude: Float,
@@ -164,6 +160,8 @@ sealed class InlineQueryResult(val type: String) {
         val thumbnailHeight: Int? = null,
     ) : InlineQueryResult("location")
 
+    @Serializable
+    @SerialName("venue")
     data class Venue(
         val id: String,
         val longitude: Float,
@@ -181,6 +179,8 @@ sealed class InlineQueryResult(val type: String) {
         val thumbHeight: Int? = null,
     ) : InlineQueryResult("venue")
 
+    @Serializable
+    @SerialName("contact")
     data class Contact(
         val id: String,
         val title: String,
@@ -196,12 +196,16 @@ sealed class InlineQueryResult(val type: String) {
         val thumbnailHeight: Int? = null,
     ) : InlineQueryResult("contact")
 
+    @Serializable
+    @SerialName("game")
     data class Game(
         val id: String,
         val gameShortName: String,
         val replyMarkup: InlineKeyboardMarkup? = null,
     ) : InlineQueryResult("game")
 
+    @Serializable
+    @SerialName("photo")
     data class CachedPhoto(
         val id: String,
         val photoFileId: String,
@@ -214,6 +218,8 @@ sealed class InlineQueryResult(val type: String) {
         val inputMessageContent: InputMessageContent? = null,
     ) : InlineQueryResult("photo")
 
+    @Serializable
+    @SerialName("gif")
     data class CachedGif(
         val id: String,
         val gifFileId: String,
@@ -225,6 +231,8 @@ sealed class InlineQueryResult(val type: String) {
         val inputMessageContent: InputMessageContent? = null,
     ) : InlineQueryResult("gif")
 
+    @Serializable
+    @SerialName("mpeg4_gif")
     data class CachedMpeg4Gif(
         val id: String,
         val mpeg4FileId: String,
@@ -236,6 +244,8 @@ sealed class InlineQueryResult(val type: String) {
         val inputMessageContent: InputMessageContent? = null,
     ) : InlineQueryResult("mpeg4_gif")
 
+    @Serializable
+    @SerialName("sticker")
     data class CachedSticker(
         val id: String,
         val stickerFileId: String,
@@ -243,6 +253,8 @@ sealed class InlineQueryResult(val type: String) {
         val inputMessageContent: InputMessageContent? = null,
     ) : InlineQueryResult("sticker")
 
+    @Serializable
+    @SerialName("document")
     data class CachedDocument(
         val id: String,
         val title: String,
@@ -255,6 +267,8 @@ sealed class InlineQueryResult(val type: String) {
         val inputMessageContent: InputMessageContent? = null,
     ) : InlineQueryResult("document")
 
+    @Serializable
+    @SerialName("video")
     data class CachedVideo(
         val id: String,
         val videoFileId: String,
@@ -267,6 +281,8 @@ sealed class InlineQueryResult(val type: String) {
         val inputMessageContent: InputMessageContent? = null,
     ) : InlineQueryResult("video")
 
+    @Serializable
+    @SerialName("voice")
     data class CachedVoice(
         val id: String,
         val voiceFileId: String,
@@ -278,6 +294,8 @@ sealed class InlineQueryResult(val type: String) {
         val inputMessageContent: InputMessageContent? = null,
     ) : InlineQueryResult("voice")
 
+    @Serializable
+    @SerialName("audio")
     data class CachedAudio(
         val id: String,
         val audioFileId: String,

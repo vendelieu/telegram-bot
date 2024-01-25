@@ -1,25 +1,21 @@
 package eu.vendeli.tgbot.types.internal
 
-import com.fasterxml.jackson.annotation.JsonSubTypes
-import com.fasterxml.jackson.annotation.JsonTypeInfo
 import eu.vendeli.tgbot.types.ResponseParameters
 import kotlinx.coroutines.Deferred
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "ok",
-    defaultImpl = Response.Success::class,
-)
-@JsonSubTypes(
-    JsonSubTypes.Type(value = Response.Success::class, name = "true"),
-    JsonSubTypes.Type(value = Response.Failure::class, name = "false"),
-)
+@Serializable
+@SerialName("response")
 sealed class Response<T>(val ok: Boolean) {
+    @Serializable
+    @SerialName("success")
     data class Success<T>(
         val result: T,
     ) : Response<T>(true)
 
+    @Serializable
+    @SerialName("failure")
     data class Failure(
         val errorCode: Int,
         val description: String? = null,

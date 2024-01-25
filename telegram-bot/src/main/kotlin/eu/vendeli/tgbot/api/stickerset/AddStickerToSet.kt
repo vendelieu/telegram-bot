@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 import kotlin.collections.set
 
 class AddStickerToSetAction(
@@ -17,8 +18,8 @@ class AddStickerToSetAction(
     override val idRefField = "user_id"
 
     init {
-        parameters["name"] = name
-        parameters["sticker"] = input
+        parameters["name"] = name.toJsonElement()
+        parameters["sticker"] = input.toJsonElement()
     }
 }
 

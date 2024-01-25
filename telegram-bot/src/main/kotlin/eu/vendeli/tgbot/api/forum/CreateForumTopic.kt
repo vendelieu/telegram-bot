@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.forum.ForumTopic
 import eu.vendeli.tgbot.types.forum.IconColor
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 /**
  * Use this method to create a topic in a forum supergroup chat.
@@ -23,9 +24,9 @@ class CreateForumTopicAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["name"] = name
-        if (iconColor != null) parameters["icon_color"] = iconColor
-        if (iconCustomEmojiId != null) parameters["icon_custom_emoji_id"] = iconCustomEmojiId
+        parameters["name"] = name.toJsonElement()
+        if (iconColor != null) parameters["icon_color"] = iconColor.toJsonElement()
+        if (iconCustomEmojiId != null) parameters["icon_custom_emoji_id"] = iconCustomEmojiId.toJsonElement()
     }
 }
 

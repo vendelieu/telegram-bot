@@ -1,7 +1,9 @@
 package eu.vendeli.tgbot.types.internal.options
 
 import eu.vendeli.tgbot.types.ReplyParameters
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class VenueOptions(
     var foursquareId: String? = null,
     var foursquareType: String? = null,

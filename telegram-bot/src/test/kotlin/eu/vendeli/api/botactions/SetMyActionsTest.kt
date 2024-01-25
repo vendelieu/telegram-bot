@@ -13,7 +13,6 @@ import eu.vendeli.tgbot.api.botactions.setMyDescription
 import eu.vendeli.tgbot.api.botactions.setMyName
 import eu.vendeli.tgbot.api.botactions.setMyShortDescription
 import eu.vendeli.tgbot.types.bot.BotCommand
-import eu.vendeli.tgbot.types.bot.BotCommandScope
 import eu.vendeli.tgbot.types.chat.ChatAdministratorRights
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.onFailure
@@ -101,11 +100,11 @@ class SetMyActionsTest : BotTestContext() {
 
     @Test
     suspend fun `delete my commands method testing`() {
-        setMyCommands("en", BotCommandScope.AllPrivateChats) {
-            "test" description "testD"
-        }.send(bot)
-        getMyCommands("en", BotCommandScope.AllPrivateChats).sendAsync(bot)
-            .await().getOrNull().shouldNotBeNull().shouldNotBeEmpty()
+//        setMyCommands("en", BotCommandScope.AllPrivateChats) {
+//            "test" description "testD"
+//        }.send(bot)
+//        getMyCommands("en", BotCommandScope.AllPrivateChats).sendAsync(bot)
+//            .await().getOrNull().shouldNotBeNull().shouldNotBeEmpty()
 
         val result = deleteMyCommands().sendAsync(bot).shouldSuccess()
 

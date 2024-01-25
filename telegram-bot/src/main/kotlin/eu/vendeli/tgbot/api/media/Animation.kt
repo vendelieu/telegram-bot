@@ -13,9 +13,10 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AnimationOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 import java.io.File
 
-class SendAnimationAction(animation: ImplicitFile<*>) :
+class SendAnimationAction(animation: ImplicitFile) :
     MediaAction<Message>(),
     OptionsFeature<SendAnimationAction, AnimationOptions>,
     MarkupFeature<SendAnimationAction>,
@@ -26,12 +27,12 @@ class SendAnimationAction(animation: ImplicitFile<*>) :
     override val inputFilePresence = animation is ImplicitFile.InpFile
 
     init {
-        parameters["animation"] = animation.file
+        parameters["animation"] = animation.file.toJsonElement()
     }
 }
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun animation(file: ImplicitFile<*>) = SendAnimationAction(file)
+inline fun animation(file: ImplicitFile) = SendAnimationAction(file)
 inline fun animation(block: () -> String) = animation(ImplicitFile.Str(block()))
 
 @Suppress("NOTHING_TO_INLINE")
@@ -45,4 +46,4 @@ inline fun animation(file: InputFile) = animation(ImplicitFile.InpFile(file))
 inline fun sendAnimation(block: () -> String) = animation(block)
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun sendAnimation(file: ImplicitFile<*>) = animation(file)
+inline fun sendAnimation(file: ImplicitFile) = animation(file)

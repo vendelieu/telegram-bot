@@ -8,6 +8,7 @@ import eu.vendeli.tgbot.types.chat.ChatInviteLink
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.ChatInviteLinkOptions
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class EditChatInviteLinkAction(inviteLink: String) :
     Action<ChatInviteLink>(),
@@ -17,7 +18,7 @@ class EditChatInviteLinkAction(inviteLink: String) :
     override val options = ChatInviteLinkOptions()
 
     init {
-        parameters["invite_link"] = inviteLink
+        parameters["invite_link"] = inviteLink.toJsonElement()
     }
 }
 

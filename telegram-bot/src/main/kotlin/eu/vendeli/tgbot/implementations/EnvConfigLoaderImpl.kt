@@ -1,6 +1,5 @@
 package eu.vendeli.tgbot.implementations
 
-import com.fasterxml.jackson.module.kotlin.isKotlinClass
 import eu.vendeli.tgbot.interfaces.ChatData
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.ConfigLoader
@@ -10,7 +9,7 @@ import eu.vendeli.tgbot.interfaces.UserData
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
-import kotlin.reflect.full.primaryConstructor
+import eu.vendeli.tgbot.utils.isKotlinClass
 
 object EnvConfigLoaderImpl : ConfigLoader {
     private const val PREFIX = "TGBOT_"
@@ -25,7 +24,7 @@ object EnvConfigLoaderImpl : ConfigLoader {
     private fun getVal(value: String) = envVars[PREFIX + value]
     private fun String.init(): Any? = Class.forName(this).run {
         takeIf { isKotlinClass() }?.kotlin.let {
-            it?.objectInstance ?: it?.primaryConstructor?.call()
+            it?.objectInstance ?: it?.constructors?.firstOrNull()?.call()
         } ?: constructors.firstOrNull()?.newInstance()
     }
 

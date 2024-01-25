@@ -1,7 +1,9 @@
 package eu.vendeli.tgbot.types.keyboard
 
 import eu.vendeli.tgbot.interfaces.Button
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class KeyboardButton(
     val text: String,
     val requestUsers: KeyboardButtonRequestUsers? = null,

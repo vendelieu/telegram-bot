@@ -1,5 +1,8 @@
 package eu.vendeli.tgbot.types.chat
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ChatPermissions(
     var canSendMessages: Boolean? = null,
     var canSendAudios: Boolean? = null,

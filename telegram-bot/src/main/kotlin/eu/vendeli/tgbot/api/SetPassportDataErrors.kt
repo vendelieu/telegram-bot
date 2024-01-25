@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.passport.PassportElementError
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SetPassportDataErrorsAction(
     userId: Long,
@@ -16,8 +17,8 @@ class SetPassportDataErrorsAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["user_id"] = userId
-        parameters["errors"] = errors
+        parameters["user_id"] = userId.toJsonElement()
+        parameters["errors"] = errors.toJsonElement()
     }
 }
 

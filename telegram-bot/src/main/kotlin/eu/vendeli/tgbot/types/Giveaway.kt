@@ -1,7 +1,9 @@
 package eu.vendeli.tgbot.types
 
 import eu.vendeli.tgbot.types.chat.Chat
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Giveaway(
     val chats: List<Chat>,
     val winnersSelectionDate: Long,

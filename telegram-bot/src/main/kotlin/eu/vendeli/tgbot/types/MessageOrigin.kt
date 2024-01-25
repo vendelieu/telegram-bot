@@ -1,22 +1,14 @@
 package eu.vendeli.tgbot.types
 
-import com.fasterxml.jackson.annotation.JsonSubTypes
-import com.fasterxml.jackson.annotation.JsonTypeInfo
 import eu.vendeli.tgbot.types.chat.Chat
-import java.time.Instant
+import eu.vendeli.tgbot.utils.serde.InstantSerializer
+import kotlinx.datetime.Instant
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "type",
-)
-@JsonSubTypes(
-    JsonSubTypes.Type(value = MessageOrigin.UserOrigin::class, name = "user"),
-    JsonSubTypes.Type(value = MessageOrigin.HiddenUser::class, name = "hidden_user"),
-    JsonSubTypes.Type(value = MessageOrigin.ChatOrigin::class, name = "chat"),
-    JsonSubTypes.Type(value = MessageOrigin.Channel::class, name = "channel"),
-)
+@Serializable
 sealed class MessageOrigin(val type: String) {
+    @Serializable(InstantSerializer::class)
     abstract val date: Instant
     open val from: User?
         get() = null
@@ -29,7 +21,10 @@ sealed class MessageOrigin(val type: String) {
     open val senderName: String?
         get() = null
 
+    @Serializable
+    @SerialName("user")
     data class UserOrigin(
+        @Serializable(InstantSerializer::class)
         override val date: Instant,
         val senderUser: User,
     ) : MessageOrigin("user") {
@@ -37,7 +32,10 @@ sealed class MessageOrigin(val type: String) {
             get() = senderUser
     }
 
+    @Serializable
+    @SerialName("hidden_user")
     data class HiddenUser(
+        @Serializable(InstantSerializer::class)
         override val date: Instant,
         val senderUserName: String,
     ) : MessageOrigin("hidden_user") {
@@ -45,7 +43,10 @@ sealed class MessageOrigin(val type: String) {
             get() = senderUserName
     }
 
+    @Serializable
+    @SerialName("chat")
     data class ChatOrigin(
+        @Serializable(InstantSerializer::class)
         override val date: Instant,
         val senderChat: Chat,
         val authorSignature: String? = null,
@@ -56,7 +57,10 @@ sealed class MessageOrigin(val type: String) {
             get() = authorSignature
     }
 
+    @Serializable
+    @SerialName("channel")
     data class Channel(
+        @Serializable(InstantSerializer::class)
         override val date: Instant,
         val chat: Chat,
         val messageId: Long,

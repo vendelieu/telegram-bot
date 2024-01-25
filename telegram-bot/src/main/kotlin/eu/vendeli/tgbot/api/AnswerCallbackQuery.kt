@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AnswerCallbackQueryOptions
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class AnswerCallbackQueryAction(callbackQueryId: String) :
     Action<Boolean>(),
@@ -16,7 +17,7 @@ class AnswerCallbackQueryAction(callbackQueryId: String) :
     override val options = AnswerCallbackQueryOptions()
 
     init {
-        parameters["callback_query_id"] = callbackQueryId
+        parameters["callback_query_id"] = callbackQueryId.toJsonElement()
     }
 }
 

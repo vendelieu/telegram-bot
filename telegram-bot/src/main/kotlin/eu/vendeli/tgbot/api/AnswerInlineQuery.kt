@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AnswerInlineQueryOptions
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class AnswerInlineQueryAction(inlineQueryId: String, results: List<InlineQueryResult>) :
     SimpleAction<Boolean>(),
@@ -18,8 +19,8 @@ class AnswerInlineQueryAction(inlineQueryId: String, results: List<InlineQueryRe
     override val options = AnswerInlineQueryOptions()
 
     init {
-        parameters["inline_query_id"] = inlineQueryId
-        parameters["results"] = results
+        parameters["inline_query_id"] = inlineQueryId.toJsonElement()
+        parameters["results"] = results.toJsonElement()
     }
 }
 

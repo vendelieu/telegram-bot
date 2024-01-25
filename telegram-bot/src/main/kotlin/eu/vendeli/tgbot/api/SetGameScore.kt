@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.SetGameScoreOptions
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SetGameScoreAction :
     InlinableAction<Message>,
@@ -18,14 +19,14 @@ class SetGameScoreAction :
     override val options = SetGameScoreOptions()
 
     constructor(userId: Long, messageId: Long, score: Long) {
-        parameters["user_id"] = userId
-        parameters["score"] = score
-        parameters["message_id"] = messageId
+        parameters["user_id"] = userId.toJsonElement()
+        parameters["score"] = score.toJsonElement()
+        parameters["message_id"] = messageId.toJsonElement()
     }
 
     constructor(userId: Long, score: Long) {
-        parameters["user_id"] = userId
-        parameters["score"] = score
+        parameters["user_id"] = userId.toJsonElement()
+        parameters["score"] = score.toJsonElement()
     }
 }
 

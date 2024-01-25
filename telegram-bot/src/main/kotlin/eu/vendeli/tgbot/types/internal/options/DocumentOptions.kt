@@ -3,9 +3,11 @@ package eu.vendeli.tgbot.types.internal.options
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.ReplyParameters
 import eu.vendeli.tgbot.types.internal.ImplicitFile
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class DocumentOptions(
-    var thumbnail: ImplicitFile<*>? = null,
+    var thumbnail: ImplicitFile? = null,
     var disableContentTypeDetection: Boolean? = null,
     override var fileName: String? = null,
     override var parseMode: ParseMode? = null,

@@ -1,21 +1,19 @@
 package eu.vendeli.tgbot.types.keyboard
 
-import com.fasterxml.jackson.annotation.JsonSubTypes
-import com.fasterxml.jackson.annotation.JsonTypeInfo
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "type",
-    defaultImpl = MenuButton.Default::class,
-)
-@JsonSubTypes(
-    JsonSubTypes.Type(value = MenuButton.Commands::class, name = "commands"),
-    JsonSubTypes.Type(value = MenuButton.WebApps::class, name = "web_apps"),
-    JsonSubTypes.Type(value = MenuButton.Default::class, name = "default"),
-)
+@Serializable
 sealed class MenuButton(open val type: String) {
-    data object Commands : MenuButton(type = "commands")
+    @Serializable
+    @SerialName("commands")
+    class Commands : MenuButton(type = "commands")
+
+    @Serializable
+    @SerialName("web_apps")
     data class WebApps(val text: String, val webApp: WebAppInfo) : MenuButton(type = "web_apps")
-    data object Default : MenuButton(type = "default")
+
+    @Serializable
+    @SerialName("default")
+    class Default : MenuButton(type = "default")
 }

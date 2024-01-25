@@ -13,9 +13,10 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 import java.io.File
 
-class SendVideoAction(video: ImplicitFile<*>) :
+class SendVideoAction(video: ImplicitFile) :
     MediaAction<Message>(),
     OptionsFeature<SendVideoAction, VideoOptions>,
     MarkupFeature<SendVideoAction>,
@@ -26,12 +27,12 @@ class SendVideoAction(video: ImplicitFile<*>) :
     override val inputFilePresence = video is ImplicitFile.InpFile
 
     init {
-        parameters["video"] = video.file
+        parameters["video"] = video.file.toJsonElement()
     }
 }
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun video(file: ImplicitFile<*>) = SendVideoAction(file)
+inline fun video(file: ImplicitFile) = SendVideoAction(file)
 inline fun video(block: () -> String) = video(ImplicitFile.Str(block()))
 
 @Suppress("NOTHING_TO_INLINE")
@@ -45,4 +46,4 @@ inline fun video(file: InputFile) = video(ImplicitFile.InpFile(file))
 inline fun sendVideo(block: () -> String) = video(block)
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun sendVideo(file: ImplicitFile<*>) = video(file)
+inline fun sendVideo(file: ImplicitFile) = video(file)

@@ -7,13 +7,14 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class BanChatSenderChatAction(senderChatId: Long) : Action<Boolean>() {
     override val method = TgMethod("banChatSenderChat")
     override val returnType = getReturnType()
 
     init {
-        parameters["sender_chat_id"] = senderChatId
+        parameters["sender_chat_id"] = senderChatId.toJsonElement()
     }
 }
 

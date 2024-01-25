@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.payment.ShippingOption
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class AnswerShippingQueryAction(
     shippingQueryId: String,
@@ -18,10 +19,10 @@ class AnswerShippingQueryAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["shipping_query_id"] = shippingQueryId
-        parameters["ok"] = ok
-        if (shippingOptions != null) parameters["shipping_options"] = shippingOptions
-        if (errorMessage != null) parameters["error_message"] = errorMessage
+        parameters["shipping_query_id"] = shippingQueryId.toJsonElement()
+        parameters["ok"] = ok.toJsonElement()
+        if (shippingOptions != null) parameters["shipping_options"] = shippingOptions.toJsonElement()
+        if (errorMessage != null) parameters["error_message"] = errorMessage.toJsonElement()
     }
 }
 

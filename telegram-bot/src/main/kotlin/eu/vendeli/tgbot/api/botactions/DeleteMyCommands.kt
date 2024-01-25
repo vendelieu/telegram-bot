@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.bot.BotCommandScope
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class DeleteMyCommandsAction(
     scope: BotCommandScope? = null,
@@ -15,8 +16,8 @@ class DeleteMyCommandsAction(
     override val returnType = getReturnType()
 
     init {
-        if (scope != null) parameters["scope"] = scope
-        if (languageCode != null) parameters["language_code"] = languageCode
+        if (scope != null) parameters["scope"] = scope.toJsonElement()
+        if (languageCode != null) parameters["language_code"] = languageCode.toJsonElement()
     }
 }
 

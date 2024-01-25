@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api.botactions
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SetMyShortDescriptionAction(
     shortDescription: String? = null,
@@ -14,8 +15,8 @@ class SetMyShortDescriptionAction(
     override val returnType = getReturnType()
 
     init {
-        if (shortDescription != null) parameters["short_description"] = shortDescription
-        if (languageCode != null) parameters["language_code"] = languageCode
+        if (shortDescription != null) parameters["short_description"] = shortDescription.toJsonElement()
+        if (languageCode != null) parameters["language_code"] = languageCode.toJsonElement()
     }
 }
 

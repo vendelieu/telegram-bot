@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.EditMessageLiveLocationOptions
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class EditMessageLiveLocationAction :
     InlinableAction<Message>,
@@ -19,14 +20,14 @@ class EditMessageLiveLocationAction :
     override val options = EditMessageLiveLocationOptions()
 
     constructor(messageId: Long, latitude: Float, longitude: Float) {
-        parameters["message_id"] = messageId
-        parameters["latitude"] = latitude
-        parameters["longitude"] = longitude
+        parameters["message_id"] = messageId.toJsonElement()
+        parameters["latitude"] = latitude.toJsonElement()
+        parameters["longitude"] = longitude.toJsonElement()
     }
 
     constructor(latitude: Float, longitude: Float) {
-        parameters["latitude"] = latitude
-        parameters["longitude"] = longitude
+        parameters["latitude"] = latitude.toJsonElement()
+        parameters["longitude"] = longitude.toJsonElement()
     }
 }
 

@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.ContactOptions
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SendContactAction(
     phoneNumber: String,
@@ -21,8 +22,8 @@ class SendContactAction(
     override val options = ContactOptions()
 
     init {
-        parameters["first_name"] = firstName
-        parameters["phone_number"] = phoneNumber
+        parameters["first_name"] = firstName.toJsonElement()
+        parameters["phone_number"] = phoneNumber.toJsonElement()
     }
 }
 

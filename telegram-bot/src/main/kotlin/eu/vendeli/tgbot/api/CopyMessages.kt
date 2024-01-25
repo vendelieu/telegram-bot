@@ -10,25 +10,26 @@ import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CopyMessagesOptions
-import eu.vendeli.tgbot.utils.getCollectionReturnType
+import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class CopyMessagesAction(
-    fromChatId: Identifier<*>,
+    fromChatId: Identifier,
     messageIds: List<Long>,
 ) : Action<List<MessageId>>(),
     OptionsFeature<CopyMessagesAction, CopyMessagesOptions> {
     override val method = TgMethod("copyMessages")
-    override val collectionReturnType = getCollectionReturnType()
+    override val returnType = getReturnType()
     override val options = CopyMessagesOptions()
 
     init {
-        parameters["from_chat_id"] = fromChatId.get
-        parameters["message_ids"] = messageIds
+        parameters["from_chat_id"] = fromChatId.get.toJsonElement()
+        parameters["message_ids"] = messageIds.toJsonElement()
     }
 }
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun copyMessages(fromChatId: Identifier<*>, messageIds: List<Long>) =
+inline fun copyMessages(fromChatId: Identifier, messageIds: List<Long>) =
     CopyMessagesAction(fromChatId, messageIds)
 
 @Suppress("NOTHING_TO_INLINE")

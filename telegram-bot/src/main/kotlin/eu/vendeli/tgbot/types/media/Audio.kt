@@ -1,5 +1,8 @@
 package eu.vendeli.tgbot.types.media
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Audio(
     val fileId: String,
     val fileUniqueId: String,

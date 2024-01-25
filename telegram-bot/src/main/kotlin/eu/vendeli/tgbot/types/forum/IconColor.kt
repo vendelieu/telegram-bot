@@ -1,19 +1,26 @@
 package eu.vendeli.tgbot.types.forum
 
-import com.fasterxml.jackson.annotation.JsonValue
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 @Suppress("MagicNumber")
-enum class IconColor(private val color: Int) {
-    BLUE(7322096),
-    YELLOW(16766590),
-    VIOLET(13338331),
-    GREEN(9367192),
-    ROSE(16749490),
-    RED(16478047),
-    ;
+@Serializable
+enum class IconColor {
+    @SerialName("7322096")
+    BLUE,
 
-    override fun toString(): String = color.toString()
+    @SerialName("16766590")
+    YELLOW,
 
-    @get:JsonValue
-    val int: Int get() = color
+    @SerialName("13338331")
+    VIOLET,
+
+    @SerialName("9367192")
+    GREEN,
+
+    @SerialName("16749490")
+    ROSE,
+
+    @SerialName("16478047")
+    RED,
 }

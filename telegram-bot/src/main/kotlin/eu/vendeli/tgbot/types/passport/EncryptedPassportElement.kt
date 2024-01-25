@@ -1,24 +1,51 @@
 package eu.vendeli.tgbot.types.passport
 
-enum class EncryptedPassportElementType(private val literal: String) {
-    PersonalDetails("personal_details"),
-    Passport("passport"),
-    DriverLicence("driver_license"),
-    IdentityCard("identity_card"),
-    InternalPassport("internal_passport"),
-    Address("address"),
-    UtilityBill("utility_bill"),
-    BankStatement("bank_statement"),
-    RentalAgreement("rental_agreement"),
-    PassportRegistration("passport_registration"),
-    TemporaryRegistration("temporary_registration"),
-    PhoneNumber("phone_number"),
-    Email("email"),
-    ;
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-    override fun toString(): String = literal
+@Serializable
+enum class EncryptedPassportElementType {
+    @SerialName("personal_details")
+    PersonalDetails,
+
+    @SerialName("passport")
+    Passport,
+
+    @SerialName("driver_license")
+    DriverLicence,
+
+    @SerialName("identity_card")
+    IdentityCard,
+
+    @SerialName("internal_passport")
+    InternalPassport,
+
+    @SerialName("address")
+    Address,
+
+    @SerialName("utility_bill")
+    UtilityBill,
+
+    @SerialName("bank_statement")
+    BankStatement,
+
+    @SerialName("rental_agreement")
+    RentalAgreement,
+
+    @SerialName("passport_registration")
+    PassportRegistration,
+
+    @SerialName("temporary_registration")
+    TemporaryRegistration,
+
+    @SerialName("phone_number")
+    PhoneNumber,
+
+    @SerialName("email")
+    Email,
 }
 
+@Serializable
 data class EncryptedPassportElement(
     val type: EncryptedPassportElementType,
     val data: String? = null,

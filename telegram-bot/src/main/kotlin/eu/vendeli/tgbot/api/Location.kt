@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.LocationOptions
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SendLocationAction(
     latitude: Float,
@@ -21,8 +22,8 @@ class SendLocationAction(
     override val options = LocationOptions()
 
     init {
-        parameters["latitude"] = latitude
-        parameters["longitude"] = longitude
+        parameters["latitude"] = latitude.toJsonElement()
+        parameters["longitude"] = longitude.toJsonElement()
     }
 }
 

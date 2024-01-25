@@ -1,8 +1,10 @@
 package eu.vendeli.tgbot.types.internal
 
-import com.fasterxml.jackson.annotation.JsonValue
 import eu.vendeli.tgbot.types.internal.ImplicitFile.Str
 import eu.vendeli.tgbot.types.media.StickerFormat
+import eu.vendeli.tgbot.utils.serde.GenericValueSerializer
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonPrimitive
 
 /**
  * Sticker set file options
@@ -14,25 +16,33 @@ import eu.vendeli.tgbot.types.media.StickerFormat
  *  or a WEBM video with the thumbnail up to 32 kilobytes in size;
  *  see [video sticker technical requirements](https://core.telegram.org/stickers#video-sticker-requirements).
  */
+@Serializable
 sealed class StickerFile(
-    val data: ImplicitFile<*>,
+    val data: ImplicitFile,
     val stickerFormat: StickerFormat,
 ) {
-    class PNG(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Static)
+    @Serializable
+    class PNG(val file: ImplicitFile) : StickerFile(file, StickerFormat.Static)
 
-    class TGS(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Animated)
+    @Serializable
+    class TGS(val file: ImplicitFile) : StickerFile(file, StickerFormat.Animated)
 
-    class WEBM(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Video)
+    @Serializable
+    class WEBM(val file: ImplicitFile) : StickerFile(file, StickerFormat.Video)
 
-    class WEBP(file: ImplicitFile<*>) : StickerFile(file, StickerFormat.Static)
+    @Serializable
+    class WEBP(val file: ImplicitFile) : StickerFile(file, StickerFormat.Static)
 
+    @Serializable(FileId.Companion::class)
     data class FileId(
-        @JsonValue val fileId: String,
-    ) :
-        StickerFile(Str(""), StickerFormat.Static)
+        val fileId: String,
+    ) : StickerFile(Str(""), StickerFormat.Static) {
+        internal companion object : GenericValueSerializer<FileId>({ JsonPrimitive(fileId) })
+    }
 
+    @Serializable
     internal class AttachedFile(
-        file: Str,
-        format: StickerFormat,
+        val file: Str,
+        val format: StickerFormat,
     ) : StickerFile(file, format)
 }

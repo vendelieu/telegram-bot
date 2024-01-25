@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.MessageOptions
 import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SendMessageAction private constructor() :
     Action<Message>(),
@@ -23,11 +24,11 @@ class SendMessageAction private constructor() :
         override val options = MessageOptions()
 
         constructor(data: String) : this() {
-            parameters["text"] = data
+            parameters["text"] = data.toJsonElement()
         }
 
         internal constructor(block: EntitiesContextBuilder<SendMessageAction>.() -> String) : this() {
-            parameters["text"] = block.invoke(this)
+            parameters["text"] = block.invoke(this).toJsonElement()
         }
     }
 

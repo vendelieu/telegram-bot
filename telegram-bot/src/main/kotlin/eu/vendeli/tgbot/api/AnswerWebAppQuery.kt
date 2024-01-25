@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.SentWebAppMessage
 import eu.vendeli.tgbot.types.inline.InlineQueryResult
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class AnswerWebAppQueryAction(
     webAppQueryId: String,
@@ -16,8 +17,8 @@ class AnswerWebAppQueryAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["web_app_query_id"] = webAppQueryId
-        parameters["result"] = result
+        parameters["web_app_query_id"] = webAppQueryId.toJsonElement()
+        parameters["result"] = result.toJsonElement()
     }
 }
 

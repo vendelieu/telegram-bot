@@ -1,13 +1,15 @@
 package eu.vendeli.tgbot.types.internal.options
 
-import com.fasterxml.jackson.annotation.JsonFormat
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.PollType
 import eu.vendeli.tgbot.types.ReplyParameters
-import java.time.Instant
+import eu.vendeli.tgbot.utils.serde.DurationSerializer
+import eu.vendeli.tgbot.utils.serde.InstantSerializer
+import kotlinx.datetime.Instant
+import kotlinx.serialization.Serializable
 import kotlin.time.Duration
-
+@Serializable
 data class PollOptions(
     var isAnonymous: Boolean? = null,
     var type: PollType? = null,
@@ -16,8 +18,9 @@ data class PollOptions(
     var explanation: String? = null,
     var explanationParseMode: ParseMode? = null,
     var explanationEntities: List<MessageEntity>? = null,
-    @field:JsonFormat(pattern = "SECONDS")
+    @Serializable(DurationSerializer::class)
     var openPeriod: Duration? = null,
+    @Serializable(InstantSerializer::class)
     var closeDate: Instant? = null,
     var isClosed: Boolean? = null,
     override var disableNotification: Boolean? = null,

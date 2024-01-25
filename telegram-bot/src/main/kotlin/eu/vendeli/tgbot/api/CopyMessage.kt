@@ -13,6 +13,7 @@ import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CopyMessageOptions
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 /**
  * Use this method to copy messages of any kind. Service messages and invoice messages can't be copied.
@@ -27,7 +28,7 @@ import eu.vendeli.tgbot.utils.getReturnType
  * @param messageId Message identifier in the chat specified in fromChatId
  */
 class CopyMessageAction(
-    fromChatId: Identifier<*>,
+    fromChatId: Identifier,
     messageId: Long,
 ) : Action<MessageId>(),
     OptionsFeature<CopyMessageAction, CopyMessageOptions>,
@@ -38,8 +39,8 @@ class CopyMessageAction(
     override val options = CopyMessageOptions()
 
     init {
-        parameters["from_chat_id"] = fromChatId.get
-        parameters["message_id"] = messageId
+        parameters["from_chat_id"] = fromChatId.get.toJsonElement()
+        parameters["message_id"] = messageId.toJsonElement()
     }
 }
 
@@ -56,7 +57,7 @@ class CopyMessageAction(
  * @param messageId Message identifier in the chat specified in fromChatId
  */
 @Suppress("NOTHING_TO_INLINE")
-inline fun copyMessage(fromChatId: Identifier<*>, messageId: Long) = CopyMessageAction(fromChatId, messageId)
+inline fun copyMessage(fromChatId: Identifier, messageId: Long) = CopyMessageAction(fromChatId, messageId)
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun copyMessage(fromChatId: Long, messageId: Long) = copyMessage(Identifier.from(fromChatId), messageId)

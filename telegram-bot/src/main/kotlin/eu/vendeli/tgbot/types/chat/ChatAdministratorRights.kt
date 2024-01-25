@@ -1,5 +1,8 @@
 package eu.vendeli.tgbot.types.chat
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ChatAdministratorRights(
     val isAnonymous: Boolean,
     val canManageChat: Boolean,

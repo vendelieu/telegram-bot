@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api.forum
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 /**
  * Use this method to clear the list of pinned messages in a forum topic.
@@ -17,7 +18,7 @@ class UnpinAllForumTopicMessagesAction(messageThreadId: Int) : Action<Boolean>()
     override val returnType = getReturnType()
 
     init {
-        parameters["message_thread_id"] = messageThreadId
+        parameters["message_thread_id"] = messageThreadId.toJsonElement()
     }
 }
 

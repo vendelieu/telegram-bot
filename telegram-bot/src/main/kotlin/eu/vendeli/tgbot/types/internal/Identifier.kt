@@ -1,17 +1,20 @@
 package eu.vendeli.tgbot.types.internal
 
-import com.fasterxml.jackson.annotation.JsonValue
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.utils.serde.IdentifierSerializer
+import kotlinx.serialization.Serializable
 
-sealed class Identifier<T : Any> {
-    @get:JsonValue
-    abstract val get: T
+@Serializable(IdentifierSerializer::class)
+sealed class Identifier {
+    abstract val get: Any
 
-    data class String(val to: kotlin.String) : Identifier<kotlin.String>() {
+    @Serializable
+    data class String(val to: kotlin.String) : Identifier() {
         override val get: kotlin.String get(): kotlin.String = to
     }
 
-    data class Long(val to: kotlin.Long) : Identifier<kotlin.Long>() {
+    @Serializable
+    data class Long(val to: kotlin.Long) : Identifier() {
         override val get: kotlin.Long get(): kotlin.Long = to
     }
 

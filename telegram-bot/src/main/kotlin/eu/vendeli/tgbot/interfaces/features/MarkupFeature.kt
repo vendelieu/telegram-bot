@@ -8,6 +8,7 @@ import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardMarkup
 import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardRemove
 import eu.vendeli.tgbot.utils.builders.InlineKeyboardMarkupBuilder
 import eu.vendeli.tgbot.utils.builders.ReplyKeyboardMarkupBuilder
+import eu.vendeli.tgbot.utils.toJsonElement
 
 /**
  * Markup feature, see [Features article](https://github.com/vendelieu/telegram-bot/wiki/Features)
@@ -23,7 +24,7 @@ interface MarkupFeature<Return : TgAction<*>> : Feature {
      */
     @Suppress("UNCHECKED_CAST")
     fun markup(keyboard: Keyboard): Return = (this as Return).apply {
-        parameters["reply_markup"] = keyboard
+        parameters["reply_markup"] = keyboard.toJsonElement()
     }
 
     /**

@@ -1,9 +1,10 @@
 package eu.vendeli.tgbot.interfaces.features
 
-import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.internal.options.Options
-import eu.vendeli.tgbot.utils.PARAMETERS_MAP_TYPEREF
+import eu.vendeli.tgbot.utils.serde
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.serializer
 
 /**
  * Options feature, see [Features article](https://github.com/vendelieu/telegram-bot/wiki/Features)
@@ -17,9 +18,9 @@ interface OptionsFeature<Action : TgAction<*>, out Opts> : Feature where Opts : 
      */
     @Suppress("UNCHECKED_CAST")
     fun options(block: Opts.() -> Unit): Action = (this as Action).apply {
-        options?.also {
-            block.invoke(it as Opts)
-            parameters.putAll(mapper.convertValue(it, PARAMETERS_MAP_TYPEREF))
+        (options as? Opts)?.also {
+            block.invoke(it)
+            parameters.putAll(serde.encodeToJsonElement(serializer(it::class.java), it).jsonObject)
         }
     }
 }

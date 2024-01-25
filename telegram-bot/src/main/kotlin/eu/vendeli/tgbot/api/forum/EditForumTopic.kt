@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api.forum
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 /**
  * Use this method to edit name and icon of a topic in a forum supergroup chat.
@@ -20,9 +21,9 @@ class EditForumTopicAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["message_thread_id"] = messageThreadId
-        if (name != null) parameters["name"] = name
-        if (iconCustomEmojiId != null) parameters["icon_custom_emoji_id"] = iconCustomEmojiId
+        parameters["message_thread_id"] = messageThreadId.toJsonElement()
+        if (name != null) parameters["name"] = name.toJsonElement()
+        if (iconCustomEmojiId != null) parameters["icon_custom_emoji_id"] = iconCustomEmojiId.toJsonElement()
     }
 }
 

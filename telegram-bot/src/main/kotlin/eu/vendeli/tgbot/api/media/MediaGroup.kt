@@ -10,14 +10,15 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile.Str
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.MediaGroupOptions
 import eu.vendeli.tgbot.types.media.InputMedia
-import eu.vendeli.tgbot.utils.getCollectionReturnType
+import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 import kotlin.collections.set
 
 class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
     MediaAction<List<Message>>(),
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions> {
     override val method = TgMethod("sendMediaGroup")
-    override val collectionReturnType = getCollectionReturnType()
+    override val returnType = getReturnType()
     override val options = MediaGroupOptions()
     override val inputFilePresence: Boolean
         get() = isInputFile
@@ -31,20 +32,20 @@ class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
         }
 
         // reorganize the media following appropriate approaches
-        parameters["media"] = if (!inputFilePresence) inputMedia
+        parameters["media"] = if (!inputFilePresence) inputMedia.toJsonElement()
         else buildList {
             inputMedia.forEach {
                 if (it.media is Str) {
-                    add(it)
+                    add(it.toJsonElement())
                     return@forEach
                 }
                 val fileName = (it.media as InpFile).file.fileName
-                parameters[fileName] = it.media
+                parameters[fileName] = it.media.toJsonElement()
                 it.media = Str("attach://$fileName")
 
-                add(it)
+                add(it.toJsonElement())
             }
-        }
+        }.toJsonElement()
     }
 }
 

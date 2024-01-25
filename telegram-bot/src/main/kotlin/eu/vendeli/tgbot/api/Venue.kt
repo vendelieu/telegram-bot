@@ -10,6 +10,7 @@ import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VenueOptions
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SendVenueAction(
     latitude: Float,
@@ -23,10 +24,10 @@ class SendVenueAction(
     override val returnType = getReturnType()
     override val options = VenueOptions()
     init {
-        parameters["latitude"] = latitude
-        parameters["longitude"] = longitude
-        parameters["title"] = title
-        parameters["address"] = address
+        parameters["latitude"] = latitude.toJsonElement()
+        parameters["longitude"] = longitude.toJsonElement()
+        parameters["title"] = title.toJsonElement()
+        parameters["address"] = address.toJsonElement()
     }
 }
 

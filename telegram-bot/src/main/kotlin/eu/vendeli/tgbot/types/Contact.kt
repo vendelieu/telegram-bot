@@ -1,5 +1,8 @@
 package eu.vendeli.tgbot.types
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Contact(
     val phoneNumber: String,
     val firstName: String,

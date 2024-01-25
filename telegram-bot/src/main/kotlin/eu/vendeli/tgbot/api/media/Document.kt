@@ -13,9 +13,10 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.DocumentOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 import java.io.File
 
-class SendDocumentAction(document: ImplicitFile<*>) :
+class SendDocumentAction(document: ImplicitFile) :
     MediaAction<Message>(),
     CaptionFeature<SendDocumentAction>,
     OptionsFeature<SendDocumentAction, DocumentOptions>,
@@ -26,12 +27,12 @@ class SendDocumentAction(document: ImplicitFile<*>) :
     override val inputFilePresence = document is ImplicitFile.InpFile
 
     init {
-        parameters["document"] = document.file
+        parameters["document"] = document.file.toJsonElement()
     }
 }
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun document(file: ImplicitFile<*>) = SendDocumentAction(file)
+inline fun document(file: ImplicitFile) = SendDocumentAction(file)
 inline fun document(block: () -> String) = document(ImplicitFile.Str(block()))
 
 @Suppress("NOTHING_TO_INLINE")
@@ -46,4 +47,4 @@ inline fun document(file: InputFile) = document(ImplicitFile.InpFile(file))
 inline fun sendDocument(block: () -> String) = document(block)
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun sendDocument(file: ImplicitFile<*>) = document(file)
+inline fun sendDocument(file: ImplicitFile) = document(file)

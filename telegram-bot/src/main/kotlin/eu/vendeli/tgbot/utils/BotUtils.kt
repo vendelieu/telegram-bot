@@ -4,10 +4,6 @@ package eu.vendeli.tgbot.utils
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
-import com.fasterxml.jackson.databind.JavaType
-import com.fasterxml.jackson.databind.type.CollectionType
-import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
-import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.api.botactions.getUpdates
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
@@ -18,6 +14,8 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ChainLink
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
+import io.ktor.util.reflect.Type
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
@@ -27,6 +25,16 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.serializer
 
 internal suspend inline fun TgUpdateHandler.coHandle(
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
@@ -59,13 +67,39 @@ internal inline val <K, V : Any> Map<K, V>.logString: String
         }.toString()
     } ?: "None"
 
+@OptIn(InternalSerializationApi::class)
 @Suppress("UnusedReceiverParameter")
-internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getCollectionReturnType(): CollectionType =
-    mapper.typeFactory.constructCollectionType(List::class.java, Type::class.java)
+internal inline fun <reified Type : Any> TgAction<Type>.getReturnType(): KSerializer<Type> = Type::class.serializer()
 
 @Suppress("UnusedReceiverParameter")
-internal inline fun <reified Type> TgAction<Type>.getReturnType(): JavaType =
-    mapper.typeFactory.constructType(Type::class.java)
+@OptIn(InternalSerializationApi::class)
+@JvmName("listReturnType")
+internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getReturnType(): KSerializer<List<Type>> =
+    ListSerializer(Type::class.serializer())
+
+fun Map<*, *>.toJsonElement(): JsonElement = buildJsonObject {
+    val map = mutableMapOf<String, JsonElement>()
+    this@toJsonElement.forEach { (key, value) ->
+        key as String
+        map[key] = value.toJsonElement()
+    }
+}
+
+fun Collection<*>.toJsonElement(): JsonElement = JsonArray(this.map { it.toJsonElement() })
+fun Array<*>.toJsonElement(): JsonElement = JsonArray(this.map { it.toJsonElement() })
+
+@OptIn(ExperimentalSerializationApi::class)
+fun Any?.toJsonElement(): JsonElement = when (this) {
+    null -> JsonNull
+    is Map<*, *> -> toJsonElement()
+    is Collection<*> -> toJsonElement()
+    is ByteArray -> this.toList().toJsonElement()
+    is Array<*> -> toJsonElement()
+    is Boolean -> JsonPrimitive(this)
+    is Number -> JsonPrimitive(this)
+    is String -> JsonPrimitive(this)
+    else -> serde.encodeToJsonElement(DynamicLookupSerializer, this)
+}
 
 internal var mu.KLogger.level: Level
     get() = (underlyingLogger as Logger).level
@@ -75,7 +109,10 @@ internal var mu.KLogger.level: Level
 
 internal val GET_UPDATES_ACTION = getUpdates()
 internal val DEFAULT_COMMAND_SCOPE = setOf(UpdateType.MESSAGE)
-internal val PARAMETERS_MAP_TYPEREF = jacksonTypeRef<Map<String, Any?>>()
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun Class<*>.isKotlinClass(): Boolean =
+    !name.startsWith("java.") && !name.contains("$")
 
 internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T): Deferred<T> = coroutineScope {
     async { block() }

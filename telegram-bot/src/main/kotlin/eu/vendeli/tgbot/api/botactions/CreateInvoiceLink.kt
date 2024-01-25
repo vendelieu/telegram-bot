@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CreateInvoiceLinkOptions
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 /**
  * Create invoice link -
@@ -28,12 +29,12 @@ class CreateInvoiceLinkAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["title"] = title
-        parameters["description"] = description
-        parameters["payload"] = payload
-        parameters["provider_token"] = providerToken
-        parameters["currency"] = currency.name
-        parameters["prices"] = prices
+        parameters["title"] = title.toJsonElement()
+        parameters["description"] = description.toJsonElement()
+        parameters["payload"] = payload.toJsonElement()
+        parameters["provider_token"] = providerToken.toJsonElement()
+        parameters["currency"] = currency.name.toJsonElement()
+        parameters["prices"] = prices.toJsonElement()
     }
 }
 

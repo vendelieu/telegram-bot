@@ -12,7 +12,6 @@ import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.asClass
 import eu.vendeli.tgbot.utils.getActions
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
-import eu.vendeli.tgbot.utils.getConfiguredMapper
 import eu.vendeli.tgbot.utils.level
 import io.ktor.client.request.get
 import io.ktor.client.statement.readBytes
@@ -121,7 +120,5 @@ class TelegramBot(
         }
     }
 
-    internal companion object : KLogging() {
-        internal val mapper = getConfiguredMapper()
-    }
+    internal companion object : KLogging()
 }

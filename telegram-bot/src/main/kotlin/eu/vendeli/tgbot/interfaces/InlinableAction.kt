@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
+import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.coroutines.Deferred
 
 /**
@@ -19,7 +20,7 @@ abstract class InlinableAction<ReturnType> : Action<ReturnType>() {
      * @param via Instance of the bot through which the request will be made.
      */
     suspend fun sendInline(inlineMessageId: String, via: TelegramBot) {
-        parameters["inline_message_id"] = inlineMessageId
+        parameters["inline_message_id"] = inlineMessageId.toJsonElement()
         via.makeSilentRequest(method, parameters)
     }
 
@@ -33,7 +34,7 @@ abstract class InlinableAction<ReturnType> : Action<ReturnType>() {
         inlineMessageId: String,
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
-        parameters["inline_message_id"] = inlineMessageId
-        return via.makeRequestAsync(method, parameters, returnType, collectionReturnType)
+        parameters["inline_message_id"] = inlineMessageId.toJsonElement()
+        return via.makeRequestAsync(method, parameters, returnType)
     }
 }

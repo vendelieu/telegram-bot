@@ -6,7 +6,8 @@ import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
-import java.time.Instant
+import eu.vendeli.tgbot.utils.toJsonElement
+import kotlinx.datetime.Instant
 
 class BanChatMemberAction(
     userId: Long,
@@ -17,9 +18,9 @@ class BanChatMemberAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["user_id"] = userId
-        if (untilDate != null) parameters["until_date"] = untilDate
-        if (revokeMessages != null) parameters["revoke_messages"] = revokeMessages
+        parameters["user_id"] = userId.toJsonElement()
+        if (untilDate != null) parameters["until_date"] = untilDate.epochSeconds.toJsonElement()
+        if (revokeMessages != null) parameters["revoke_messages"] = revokeMessages.toJsonElement()
     }
 }
 

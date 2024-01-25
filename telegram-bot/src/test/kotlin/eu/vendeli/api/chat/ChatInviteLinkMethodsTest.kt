@@ -11,13 +11,14 @@ import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldNotBeBlank
-import java.time.temporal.ChronoUnit
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 @EnabledIf(ChatTestingOnlyCondition::class)
 class ChatInviteLinkMethodsTest : BotTestContext() {
     @Test
     suspend fun `create chat invite link method test`() {
-        val expireUnix = CUR_INSTANT.plusSeconds(120).truncatedTo(ChronoUnit.SECONDS)
+        val expireUnix = CUR_INSTANT.plus(120.seconds)
         val result = createChatInviteLink().options {
             name = "test"
             createsJoinRequest = true
@@ -41,7 +42,7 @@ class ChatInviteLinkMethodsTest : BotTestContext() {
             createsJoinRequest = true
         }.sendReturning(CHAT_ID, bot).shouldSuccess()
 
-        val expireUnix = CUR_INSTANT.plusMillis(1000).truncatedTo(ChronoUnit.SECONDS)
+        val expireUnix = CUR_INSTANT.plus(1000.milliseconds)
         val result = editChatInviteLink(inviteLink.inviteLink).options {
             name = "test2"
             expireDate = expireUnix

@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.StickerFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SetStickerSetThumbAction(
     name: String,
@@ -18,8 +19,8 @@ class SetStickerSetThumbAction(
     override val inputFilePresence = thumbnail.data is ImplicitFile.InpFile
 
     init {
-        parameters["thumbnail"] = thumbnail.data.file
-        parameters["name"] = name
+        parameters["thumbnail"] = thumbnail.data.file.toJsonElement()
+        parameters["name"] = name.toJsonElement()
     }
 }
 

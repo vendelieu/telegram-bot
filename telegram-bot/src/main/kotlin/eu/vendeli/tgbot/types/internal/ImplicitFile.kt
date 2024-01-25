@@ -1,10 +1,18 @@
 package eu.vendeli.tgbot.types.internal
 
-import com.fasterxml.jackson.annotation.JsonValue
+import eu.vendeli.tgbot.utils.serde.GenericValueSerializer
+import eu.vendeli.tgbot.utils.toJsonElement
+import kotlinx.serialization.Serializable
 
-sealed class ImplicitFile<T : Any>(
-    @JsonValue val file: T,
-) {
-    class Str(file: String) : ImplicitFile<String>(file)
-    class InpFile(file: InputFile) : ImplicitFile<InputFile>(file)
+@Serializable
+sealed class ImplicitFile {
+    abstract val file: Any
+
+    @Serializable
+    class Str(override val file: String) : ImplicitFile()
+
+    @Serializable
+    class InpFile(override val file: InputFile) : ImplicitFile()
+
+    internal companion object : GenericValueSerializer<ImplicitFile>({ file.toJsonElement() })
 }

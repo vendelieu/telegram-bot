@@ -28,5 +28,5 @@ abstract class SimpleAction<ReturnType> : TgAction<ReturnType>() {
      */
     open suspend fun sendAsync(
         to: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = to.makeRequestAsync(method, parameters, returnType, collectionReturnType)
+    ): Deferred<Response<out ReturnType>> = to.makeRequestAsync(method, parameters, returnType)
 }

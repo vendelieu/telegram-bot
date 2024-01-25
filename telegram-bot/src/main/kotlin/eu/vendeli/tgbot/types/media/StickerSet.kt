@@ -1,19 +1,25 @@
 package eu.vendeli.tgbot.types.media
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 /**
  * Type of sticker
  *
- * @property literal
  */
-enum class StickerType(private val literal: String) {
-    Regular("regular"),
-    Mask("mask"),
-    CustomEmoji("custom_emoji"),
-    ;
+@Serializable
+enum class StickerType {
+    @SerialName("regular")
+    Regular,
 
-    override fun toString(): String = literal
+    @SerialName("mask")
+    Mask,
+
+    @SerialName("custom_emoji")
+    CustomEmoji,
 }
 
+@Serializable
 data class StickerSet(
     val name: String,
     val title: String,

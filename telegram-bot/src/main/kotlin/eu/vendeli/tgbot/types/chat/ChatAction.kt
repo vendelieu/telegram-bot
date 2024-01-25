@@ -1,18 +1,40 @@
 package eu.vendeli.tgbot.types.chat
 
-enum class ChatAction(private val literal: String) {
-    Typing("typing"),
-    UploadPhoto("upload_photo"),
-    RecordVideo("record_video"),
-    UploadVideo("upload_video"),
-    RecordVoice("record_voice"),
-    UploadVoice("upload_voice"),
-    UploadDocument("upload_document"),
-    ChooseSticker("choose_sticker"),
-    FindLocation("find_location"),
-    RecordVideoNote("record_video_note"),
-    UploadVideoNote("upload_video_note"),
-    ;
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-    override fun toString(): String = literal
+@Serializable
+enum class ChatAction {
+    @SerialName("typing")
+    Typing,
+
+    @SerialName("upload_photo")
+    UploadPhoto,
+
+    @SerialName("record_video")
+    RecordVideo,
+
+    @SerialName("upload_video")
+    UploadVideo,
+
+    @SerialName("record_voice")
+    RecordVoice,
+
+    @SerialName("upload_voice")
+    UploadVoice,
+
+    @SerialName("upload_document")
+    UploadDocument,
+
+    @SerialName("choose_sticker")
+    ChooseSticker,
+
+    @SerialName("find_location")
+    FindLocation,
+
+    @SerialName("record_video_note")
+    RecordVideoNote,
+
+    @SerialName("upload_video_note")
+    UploadVideoNote,
 }

@@ -1,7 +1,6 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
@@ -11,6 +10,7 @@ import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.coHandle
 import eu.vendeli.tgbot.utils.process
+import eu.vendeli.tgbot.utils.serde
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -107,7 +107,7 @@ abstract class TgUpdateHandler internal constructor(
      */
     suspend fun parseAndHandle(update: String) {
         logger.debug { "Trying to parse update from string - $update" }
-        mapper.runCatching { readValue(update, Update::class.java) }.onFailure {
+        serde.runCatching { decodeFromString(Update.serializer(), update) }.onFailure {
             logger.debug(it) { "error during the update parsing process." }
         }.onSuccess { logger.info { "Successfully parsed update to $it" } }.getOrNull()?.let {
             logger.debug { "Processing update with preset behaviour." }

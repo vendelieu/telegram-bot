@@ -2,7 +2,6 @@ package eu.vendeli
 
 import BotTestContext
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.TelegramBot.Companion.mapper
 import eu.vendeli.tgbot.api.botactions.getMe
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
@@ -25,6 +24,7 @@ import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
+import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldNotThrowAny
@@ -42,9 +42,11 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Deferred
+import kotlinx.datetime.Instant
+import kotlinx.serialization.InternalSerializationApi
+import kotlinx.serialization.serializer
 import other.pckg.ChatDataImpl
 import other.pckg.UserDataImpl
-import java.time.Instant
 
 class TelegramBotTest : BotTestContext() {
     @Test
@@ -55,13 +57,13 @@ class TelegramBotTest : BotTestContext() {
         }
     }
 
+    @OptIn(InternalSerializationApi::class)
     @Test
     suspend fun `requests testing`() {
         val getMeReq = bot.makeRequestAsync<User>(
             TgMethod("getMe"),
             null,
-            mapper.typeFactory.constructType(User::class.java),
-            null,
+            User::class.serializer(),
         ).await().getOrNull()
 
         getMeReq.shouldNotBeNull()
@@ -72,7 +74,7 @@ class TelegramBotTest : BotTestContext() {
     suspend fun `test silent requesting`() {
         val silentReq = bot.makeSilentRequest(
             TgMethod("sendMessage"),
-            mapOf("text" to "test", "chat_id" to TG_ID),
+            mapOf("text" to "test".toJsonElement(), "chat_id" to TG_ID.toJsonElement()),
         )
 
         silentReq.status shouldBe HttpStatusCode.OK
@@ -83,11 +85,10 @@ class TelegramBotTest : BotTestContext() {
 
     @Test
     suspend fun `failure response handling`() {
-        val failureReq = bot.makeRequestAsync<Message>(
+        val failureReq = bot.makeRequestAsync(
             TgMethod("sendMessage"),
-            mapOf("text" to "test"),
-            mapper.typeFactory.constructType(Message::class.java),
-            null,
+            mapOf("text" to "test".toJsonElement()),
+            Message.serializer(),
         ).await()
 
         failureReq.isSuccess().shouldBeFalse()
@@ -153,6 +154,7 @@ class TelegramBotTest : BotTestContext() {
         bot.chatData::class.java shouldBe ChatDataImpl::class.java
     }
 
+    @OptIn(InternalSerializationApi::class)
     @Test
     suspend fun `media request handling`() {
         val image = classloader.getResource("image.png")?.readBytes()
@@ -161,8 +163,8 @@ class TelegramBotTest : BotTestContext() {
         val mediaReq = bot.makeSilentRequest(
             method = TgMethod("sendPhoto"),
             data = mapOf(
-                "photo" to InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType),
-                "chat_id" to TG_ID,
+                "photo" to InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toJsonElement(),
+                "chat_id" to TG_ID.toJsonElement(),
             ),
             isImplicit = true,
         )
@@ -174,11 +176,10 @@ class TelegramBotTest : BotTestContext() {
         bot.makeRequestAsync<Message>(
             method = TgMethod("sendPhoto"),
             mapOf(
-                "photo" to InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType),
-                "chat_id" to TG_ID,
+                "photo" to InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toJsonElement(),
+                "chat_id" to TG_ID.toJsonElement(),
             ),
-            mapper.typeFactory.constructType(Message::class.java),
-            null,
+            Message::class.serializer(),
             isImplicit = true,
         ).await().isSuccess().shouldBeTrue()
     }
@@ -277,7 +278,7 @@ class TelegramBotTest : BotTestContext() {
                     -0,
                     type = ChatType.Private,
                 ),
-                date = Instant.EPOCH,
+                date = Instant.DISTANT_PAST,
                 from = User(1, false, "Test"),
             ),
         )

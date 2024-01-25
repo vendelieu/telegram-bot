@@ -10,23 +10,24 @@ import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.ForwardMessageOptions
-import eu.vendeli.tgbot.utils.getCollectionReturnType
+import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
-class ForwardMessagesAction(fromChatId: Identifier<*>, messageIds: List<Long>) :
+class ForwardMessagesAction(fromChatId: Identifier, messageIds: List<Long>) :
     Action<List<MessageId>>(),
     OptionsFeature<ForwardMessagesAction, ForwardMessageOptions> {
     override val method = TgMethod("forwardMessages")
-    override val collectionReturnType = getCollectionReturnType()
+    override val returnType = getReturnType()
     override val options = ForwardMessageOptions()
 
     init {
-        parameters["from_chat_id"] = fromChatId.get
-        parameters["message_ids"] = messageIds
+        parameters["from_chat_id"] = fromChatId.get.toJsonElement()
+        parameters["message_ids"] = messageIds.toJsonElement()
     }
 }
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun forwardMessages(fromChatId: Identifier<*>, messageIds: List<Long>) =
+inline fun forwardMessages(fromChatId: Identifier, messageIds: List<Long>) =
     ForwardMessagesAction(fromChatId, messageIds)
 
 @Suppress("NOTHING_TO_INLINE")

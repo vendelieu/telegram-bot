@@ -1,5 +1,8 @@
 package eu.vendeli.tgbot.types
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class User(
     val id: Long,
     val isBot: Boolean,

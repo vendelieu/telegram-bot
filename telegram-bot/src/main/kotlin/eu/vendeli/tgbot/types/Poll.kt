@@ -1,15 +1,20 @@
 package eu.vendeli.tgbot.types
 
-import java.time.Instant
+import eu.vendeli.tgbot.utils.serde.InstantSerializer
+import kotlinx.datetime.Instant
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-enum class PollType(private val literal: String) {
-    Regular("regular"),
-    Quiz("quiz"),
-    ;
+@Serializable
+enum class PollType {
+    @SerialName("regular")
+    Regular,
 
-    override fun toString(): String = literal
+    @SerialName("quiz")
+    Quiz,
 }
 
+@Serializable
 data class Poll(
     val id: String,
     val question: String,
@@ -23,5 +28,6 @@ data class Poll(
     val explanation: String? = null,
     val explanationEntities: List<MessageEntity>? = null,
     val openPeriod: Int? = null,
+    @Serializable(InstantSerializer::class)
     val closeDate: Instant? = null,
 )

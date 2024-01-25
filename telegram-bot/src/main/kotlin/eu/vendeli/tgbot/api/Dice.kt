@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.DiceOptions
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SendDiceAction(emoji: String? = null) :
     Action<Message>(),
@@ -19,7 +20,7 @@ class SendDiceAction(emoji: String? = null) :
     override val options = DiceOptions()
 
     init {
-        if (emoji != null) parameters["emoji"] = emoji
+        if (emoji != null) parameters["emoji"] = emoji.toJsonElement()
     }
 }
 

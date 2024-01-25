@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.MaskPosition
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SetStickerMaskPositionAction(
     sticker: String,
@@ -15,8 +16,8 @@ class SetStickerMaskPositionAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["sticker"] = sticker
-        if (maskPosition != null) parameters["mask_position"] = maskPosition
+        parameters["sticker"] = sticker.toJsonElement()
+        if (maskPosition != null) parameters["mask_position"] = maskPosition.toJsonElement()
     }
 }
 

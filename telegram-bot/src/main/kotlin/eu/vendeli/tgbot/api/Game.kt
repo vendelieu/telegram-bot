@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.GameOptions
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SendGameAction(
     gameShortName: String,
@@ -20,7 +21,7 @@ class SendGameAction(
     override val options = GameOptions()
 
     init {
-        parameters["game_short_name"] = gameShortName
+        parameters["game_short_name"] = gameShortName.toJsonElement()
     }
 }
 

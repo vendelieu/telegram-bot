@@ -1,5 +1,8 @@
 package eu.vendeli.tgbot.types
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class CallbackQuery(
     val id: String,
     val from: User,

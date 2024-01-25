@@ -1,9 +1,9 @@
 package eu.vendeli.tgbot.interfaces
 
-import com.fasterxml.jackson.databind.JavaType
-import com.fasterxml.jackson.databind.type.CollectionType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.Options
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.json.JsonElement
 import kotlin.properties.Delegates
 
 /**
@@ -23,15 +23,10 @@ abstract class TgAction<ReturnType> {
     /**
      * Type of action result.
      */
-    internal open val returnType: JavaType? = null
-
-    /**
-     * Parameter through which the type for multiple response is obtained.
-     */
-    internal open val collectionReturnType: CollectionType? = null
+    internal open val returnType by Delegates.notNull<KSerializer<ReturnType>>()
 
     /**
      * Action data storage parameter.
      */
-    internal val parameters: MutableMap<String, Any?> = mutableMapOf()
+    internal val parameters: MutableMap<String, JsonElement> = mutableMapOf()
 }

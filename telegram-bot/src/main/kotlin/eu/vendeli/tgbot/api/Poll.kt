@@ -10,6 +10,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PollOptions
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SendPollAction(question: String, pollOptions: List<String>) :
     Action<Message>(),
@@ -20,8 +21,8 @@ class SendPollAction(question: String, pollOptions: List<String>) :
     override val options = PollOptions()
 
     init {
-        parameters["question"] = question
-        parameters["options"] = pollOptions
+        parameters["question"] = question.toJsonElement()
+        parameters["options"] = pollOptions.toJsonElement()
     }
 }
 

@@ -13,7 +13,9 @@ import eu.vendeli.tgbot.types.media.Video
 import eu.vendeli.tgbot.types.media.VideoNote
 import eu.vendeli.tgbot.types.media.Voice
 import eu.vendeli.tgbot.types.payment.Invoice
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class ExternalReplyInfo(
     val origin: MessageOrigin,
     val chat: Chat? = null,

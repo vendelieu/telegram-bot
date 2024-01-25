@@ -6,14 +6,15 @@ import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.chat.ChatAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class SendChatAction(action: ChatAction, messageThreadId: Int? = null) : Action<Boolean>() {
     override val method = TgMethod("sendChatAction")
     override val returnType = getReturnType()
 
     init {
-        parameters["action"] = action
-        if (messageThreadId != null) parameters["message_thread_id"] = messageThreadId
+        parameters["action"] = action.toJsonElement()
+        if (messageThreadId != null) parameters["message_thread_id"] = messageThreadId.toJsonElement()
     }
 }
 

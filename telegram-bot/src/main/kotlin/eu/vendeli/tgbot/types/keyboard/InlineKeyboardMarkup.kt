@@ -1,25 +1,22 @@
 package eu.vendeli.tgbot.types.keyboard
 
-import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonProperty
 import eu.vendeli.tgbot.interfaces.Keyboard
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
+@Serializable
 class InlineKeyboardMarkup : Keyboard {
-    @JsonProperty("inline_keyboard")
-    @get:JsonIgnore
+    @Transient
     internal var inlineKeyboard: MutableList<List<InlineKeyboardButton>> = mutableListOf()
 
-    @get:JsonIgnore
     val keyboard: List<List<InlineKeyboardButton>> get() = inlineKeyboard
 
     constructor(vararg buttons: InlineKeyboardButton) {
         inlineKeyboard = mutableListOf(buttons.asList())
     }
 
-    @JsonCreator
     constructor(
-        @JsonProperty("inline_keyboard") keyboard: List<List<InlineKeyboardButton>>,
+        keyboard: List<List<InlineKeyboardButton>>,
     ) {
         inlineKeyboard = keyboard.toMutableList()
     }

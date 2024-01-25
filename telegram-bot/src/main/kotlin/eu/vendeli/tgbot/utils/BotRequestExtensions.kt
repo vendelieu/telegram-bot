@@ -1,12 +1,7 @@
 package eu.vendeli.tgbot.utils
 
-import com.fasterxml.jackson.databind.JavaType
-import com.fasterxml.jackson.databind.type.CollectionType
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
-import eu.vendeli.tgbot.TelegramBot.Companion.mapper
-import eu.vendeli.tgbot.types.internal.ImplicitFile.InpFile
-import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
 import io.ktor.client.request.HttpRequestBuilder
@@ -27,76 +22,85 @@ import io.ktor.http.isSuccess
 import io.ktor.utils.io.core.buildPacket
 import io.ktor.utils.io.core.writeFully
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.booleanOrNull
+import kotlinx.serialization.json.int
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
 private val JSON_CONTENT_HEADERS = Headers.build {
     append(HttpHeaders.ContentType, ContentType.Application.Json)
 }
 
-private fun Any?.toInputFileOrNull(): InputFile? = when (this) {
-    is InpFile -> this.file
-    is InputFile -> this
-    is Map<*, *> -> get("is_input_file\$telegram_bot")?.runCatching {
-        mapper.convertValue(
-            this@toInputFileOrNull,
-            InputFile::class.java,
-        )
-    }?.getOrNull()
-
-    else -> null
-}
-
-private fun formImplicitReqBody(payload: Map<String, Any?>): Any = MultiPartFormDataContent(
+private fun formImplicitReqBody(payload: Map<String, JsonElement>): Any = MultiPartFormDataContent(
     formData {
-        payload.entries.forEach {
-            val inputFile = it.value.toInputFileOrNull()
-            if (inputFile != null) {
+        payload.entries.forEach { i ->
+            i.value.takeIf { e ->
+                e is JsonObject && e.jsonObject["is_input_file"]?.jsonPrimitive?.booleanOrNull == true
+            }?.let {
                 appendInput(
-                    key = it.key,
+                    key = i.key,
                     headers = Headers.build {
-                        append(HttpHeaders.ContentDisposition, "filename=${inputFile.fileName}")
-                        append(HttpHeaders.ContentType, inputFile.contentType)
+                        append(
+                            HttpHeaders.ContentDisposition,
+                            "filename=${i.value.jsonObject["file_name"]!!.jsonPrimitive.content}",
+                        )
+                        append(HttpHeaders.ContentType, i.value.jsonObject["content_type"]!!.jsonPrimitive.content)
                     },
-                ) { buildPacket { writeFully(inputFile.data) } }
-            } else if (it.value != null)
-                append(
-                    FormPart(
-                        it.key,
-                        if (it.value is String) it.value!!
-                        else mapper.writeValueAsString(it.value),
-                        JSON_CONTENT_HEADERS,
-                    ),
-                )
+                ) {
+                    buildPacket {
+                        writeFully(i.value.jsonObject["data"]!!.jsonArray.map { it.jsonPrimitive.int }.toIntArray())
+                    }
+                }
+            } ?: append(
+                FormPart(
+                    i.key,
+                    serde.encodeToString(i.value),
+                    JSON_CONTENT_HEADERS,
+                ),
+            )
         }
     },
 )
 
-private fun HttpRequestBuilder.formReqBody(payload: Map<String, Any?>, isImplicit: Boolean = false) {
+private fun HttpRequestBuilder.formReqBody(payload: Map<String, JsonElement>, isImplicit: Boolean = false) {
     if (isImplicit) {
         setBody(formImplicitReqBody(payload.also { logger.trace { "RequestBody: $it" } }))
     } else {
-        setBody(mapper.writeValueAsString(payload).also { logger.debug { "RequestBody: $it" } })
+        setBody(serde.encodeToString(payload).also { logger.debug { "RequestBody: $it" } })
         contentType(ContentType.Application.Json)
     }
 }
 
+private fun <T> String.toResponse(type: KSerializer<T>) = serde.decodeFromString(JsonObject.serializer(), this).let {
+    if (it.jsonObject["ok"]?.jsonPrimitive?.booleanOrNull == true) serde.decodeFromJsonElement(
+        Response.Success.serializer(type),
+        it,
+    ) else serde.decodeFromJsonElement(Response.Failure.serializer(), it)
+}
+
 internal suspend inline fun <T> TelegramBot.makeRequestAsync(
     method: TgMethod,
-    data: Map<String, Any?>? = null,
-    returnType: JavaType? = null,
-    collectionType: CollectionType? = null,
+    data: Map<String, JsonElement>? = null,
+    returnType: KSerializer<T>,
     isImplicit: Boolean = false,
 ): Deferred<Response<out T>> = coroutineScope {
     val response = httpClient.post(method.getUrl(config.apiHost, token)) {
         if (data != null) formReqBody(data, isImplicit)
     }
 
-    return@coroutineScope handleResponseAsync(response, returnType, collectionType)
+    return@coroutineScope async { response.bodyAsText().toResponse(returnType) }
 }
 
 internal suspend inline fun TelegramBot.makeSilentRequest(
     method: TgMethod,
-    data: Map<String, Any?>? = null,
+    data: Map<String, JsonElement>? = null,
     isImplicit: Boolean = false,
 ) = httpClient.post(method.getUrl(config.apiHost, token)) {
     if (data != null) formReqBody(data, isImplicit)

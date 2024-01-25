@@ -13,9 +13,10 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PhotoOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 import java.io.File
 
-class SendPhotoAction(photo: ImplicitFile<*>) :
+class SendPhotoAction(photo: ImplicitFile) :
     MediaAction<Message>(),
     OptionsFeature<SendPhotoAction, PhotoOptions>,
     MarkupFeature<SendPhotoAction>,
@@ -26,12 +27,12 @@ class SendPhotoAction(photo: ImplicitFile<*>) :
     override val inputFilePresence = photo is ImplicitFile.InpFile
 
     init {
-        parameters["photo"] = photo.file
+        parameters["photo"] = photo.file.toJsonElement()
     }
 }
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun photo(file: ImplicitFile<*>) = SendPhotoAction(file)
+inline fun photo(file: ImplicitFile) = SendPhotoAction(file)
 inline fun photo(block: () -> String) = photo(ImplicitFile.Str(block()))
 
 @Suppress("NOTHING_TO_INLINE")
@@ -46,4 +47,4 @@ inline fun photo(file: InputFile) = photo(ImplicitFile.InpFile(file))
 inline fun sendPhoto(block: () -> String) = photo(block)
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun sendPhoto(file: ImplicitFile<*>) = photo(file)
+inline fun sendPhoto(file: ImplicitFile) = photo(file)

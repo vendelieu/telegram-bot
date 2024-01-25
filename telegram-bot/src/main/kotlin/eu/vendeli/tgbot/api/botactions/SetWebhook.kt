@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.types.internal.options.SetWebhookOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
+import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.coroutines.Deferred
 
 class SetWebhookAction(url: String) :
@@ -21,7 +22,7 @@ class SetWebhookAction(url: String) :
     override val options = SetWebhookOptions()
 
     init {
-        parameters["url"] = url
+        parameters["url"] = url.toJsonElement()
     }
 
     override suspend fun send(to: TelegramBot) {
@@ -32,7 +33,6 @@ class SetWebhookAction(url: String) :
         method,
         parameters,
         returnType,
-        collectionReturnType,
         parameters["certificate"] != null,
     )
 }

@@ -14,6 +14,7 @@ import eu.vendeli.tgbot.types.internal.options.EditMessageOptions
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class EditMessageTextAction private constructor() :
     InlinableAction<Message>(),
@@ -26,16 +27,16 @@ class EditMessageTextAction private constructor() :
         override val options = EditMessageOptions()
 
         constructor(messageId: Long, text: String) : this() {
-            parameters["message_id"] = messageId
-            parameters["text"] = text
+            parameters["message_id"] = messageId.toJsonElement()
+            parameters["text"] = text.toJsonElement()
         }
 
         constructor(text: String) : this() {
-            parameters["text"] = text
+            parameters["text"] = text.toJsonElement()
         }
 
         internal constructor(block: EntitiesContextBuilder<EditMessageTextAction>.() -> String) : this() {
-            parameters["text"] = block(this)
+            parameters["text"] = block(this).toJsonElement()
         }
     }
 
@@ -49,7 +50,7 @@ class EditMessageCaptionAction() :
     override val options = EditCaptionOptions()
 
     constructor(messageId: Long) : this() {
-        parameters["message_id"] = messageId
+        parameters["message_id"] = messageId.toJsonElement()
     }
 }
 
@@ -60,12 +61,12 @@ class EditMessageMediaAction :
     override val returnType = getReturnType()
 
     constructor(inputMedia: InputMedia) {
-        parameters["media"] = inputMedia
+        parameters["media"] = inputMedia.toJsonElement()
     }
 
     constructor(messageId: Long, inputMedia: InputMedia) {
-        parameters["message_id"] = messageId
-        parameters["media"] = inputMedia
+        parameters["message_id"] = messageId.toJsonElement()
+        parameters["media"] = inputMedia.toJsonElement()
     }
 }
 
@@ -76,7 +77,7 @@ class EditMessageReplyMarkupAction() :
     override val returnType = getReturnType()
 
     constructor(messageId: Long) : this() {
-        parameters["message_id"] = messageId
+        parameters["message_id"] = messageId.toJsonElement()
     }
 }
 

@@ -1,10 +1,12 @@
 package eu.vendeli.tgbot.types.internal
 
+import kotlinx.serialization.Serializable
 import java.io.File
 import java.net.URLConnection
 
 const val DEFAULT_FILENAME = "file"
 
+@Serializable
 data class InputFile(
     val data: ByteArray,
     val fileName: String = DEFAULT_FILENAME,

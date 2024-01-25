@@ -1,7 +1,9 @@
 package eu.vendeli.tgbot.types.keyboard
 
 import eu.vendeli.tgbot.types.chat.ChatAdministratorRights
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class KeyboardButtonRequestChat(
     val requestId: Int,
     val chatIsChannel: Boolean,

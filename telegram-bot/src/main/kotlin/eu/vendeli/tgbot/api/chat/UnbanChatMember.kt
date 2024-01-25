@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toJsonElement
 
 class UnbanChatMemberAction(
     userId: Long,
@@ -15,8 +16,8 @@ class UnbanChatMemberAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["user_id"] = userId
-        if (onlyIfBanned != null) parameters["only_if_banned"] = onlyIfBanned
+        parameters["user_id"] = userId.toJsonElement()
+        if (onlyIfBanned != null) parameters["only_if_banned"] = onlyIfBanned.toJsonElement()
     }
 }
 
