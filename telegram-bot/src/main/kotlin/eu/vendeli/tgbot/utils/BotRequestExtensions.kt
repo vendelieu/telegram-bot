@@ -29,7 +29,6 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.booleanOrNull
-import kotlinx.serialization.json.int
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
@@ -55,7 +54,10 @@ private fun formImplicitReqBody(payload: Map<String, JsonElement>): Any = MultiP
                     },
                 ) {
                     buildPacket {
-                        writeFully(i.value.jsonObject["data"]!!.jsonArray.map { it.jsonPrimitive.int }.toIntArray())
+                        writeFully(
+                            i.value.jsonObject["data"]!!.jsonArray.map { it.jsonPrimitive.content.toByte() }
+                                .toByteArray(),
+                        )
                     }
                 }
             } ?: append(
