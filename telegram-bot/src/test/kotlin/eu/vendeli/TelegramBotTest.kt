@@ -65,7 +65,7 @@ class TelegramBotTest : BotTestContext() {
             TgMethod("getMe"),
             emptyMap(),
             User::class.serializer(),
-            emptyList()
+            emptyList(),
         ).await().getOrNull()
 
         getMeReq.shouldNotBeNull()
@@ -77,7 +77,7 @@ class TelegramBotTest : BotTestContext() {
         val silentReq = bot.makeSilentRequest(
             TgMethod("sendMessage"),
             mapOf("text" to "test".toJsonElement(), "chat_id" to TG_ID.toJsonElement()),
-            emptyList()
+            emptyList(),
         )
 
         silentReq.status shouldBe HttpStatusCode.OK
@@ -92,7 +92,7 @@ class TelegramBotTest : BotTestContext() {
             TgMethod("sendMessage"),
             mapOf("text" to "test".toJsonElement()),
             Message.serializer(),
-            emptyList()
+            emptyList(),
         ).await()
 
         failureReq.isSuccess().shouldBeFalse()
