@@ -18,7 +18,7 @@ abstract class SimpleAction<ReturnType> : TgAction<ReturnType>() {
      * @param to recipient.
      */
     open suspend fun send(to: TelegramBot) {
-        to.makeSilentRequest(method, parameters)
+        to.makeSilentRequest(method, parameters, multipartData)
     }
 
     /**
@@ -28,5 +28,5 @@ abstract class SimpleAction<ReturnType> : TgAction<ReturnType>() {
      */
     open suspend fun sendAsync(
         to: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = to.makeRequestAsync(method, parameters, returnType)
+    ): Deferred<Response<out ReturnType>> = to.makeRequestAsync(method, parameters, returnType, multipartData)
 }

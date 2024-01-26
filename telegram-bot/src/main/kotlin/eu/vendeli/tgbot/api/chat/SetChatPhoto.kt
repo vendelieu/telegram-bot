@@ -8,16 +8,15 @@ import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.handleImplicitFile
 import java.io.File
 
 class SetChatPhotoAction(photo: ImplicitFile) : MediaAction<Boolean>() {
     override val method = TgMethod("setChatPhoto")
     override val returnType = getReturnType()
-    override val inputFilePresence = photo is ImplicitFile.InpFile
 
     init {
-        parameters["photo"] = photo.file.toJsonElement()
+        handleImplicitFile(photo, "photo")
     }
 }
 

@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PhotoOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.handleImplicitFile
 import java.io.File
 
 class SendPhotoAction(photo: ImplicitFile) :
@@ -24,10 +24,9 @@ class SendPhotoAction(photo: ImplicitFile) :
     override val method = TgMethod("sendPhoto")
     override val returnType = getReturnType()
     override val options = PhotoOptions()
-    override val inputFilePresence = photo is ImplicitFile.InpFile
 
     init {
-        parameters["photo"] = photo.file.toJsonElement()
+        handleImplicitFile(photo, "photo")
     }
 }
 

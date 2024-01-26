@@ -8,7 +8,9 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.SetWebhookOptions
+import eu.vendeli.tgbot.types.internal.toImplicitFile
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import eu.vendeli.tgbot.utils.toJsonElement
@@ -26,15 +28,24 @@ class SetWebhookAction(url: String) :
     }
 
     override suspend fun send(to: TelegramBot) {
-        to.makeSilentRequest(method, parameters, parameters["certificate"] != null)
+        handleCert()
+        to.makeSilentRequest(method, parameters, multipartData)
     }
 
-    override suspend fun sendAsync(to: TelegramBot): Deferred<Response<out Boolean>> = to.makeRequestAsync(
-        method,
-        parameters,
-        returnType,
-        parameters["certificate"] != null,
-    )
+    override suspend fun sendAsync(to: TelegramBot): Deferred<Response<out Boolean>> {
+        handleCert()
+        return to.makeRequestAsync(
+            method,
+            parameters,
+            returnType,
+            multipartData,
+        )
+    }
+
+    @Suppress("NOTHING_TO_INLINE")
+    private inline fun handleCert() {
+        options.certificate?.also { handleImplicitFile(it.toImplicitFile(), "certificate") }
+    }
 }
 
 @Suppress("NOTHING_TO_INLINE")

@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.handleImplicitFile
 import java.io.File
 
 class SendVideoAction(video: ImplicitFile) :
@@ -24,10 +24,9 @@ class SendVideoAction(video: ImplicitFile) :
     override val method = TgMethod("sendVideo")
     override val returnType = getReturnType()
     override val options = VideoOptions()
-    override val inputFilePresence = video is ImplicitFile.InpFile
 
     init {
-        parameters["video"] = video.file.toJsonElement()
+        handleImplicitFile(video, "video")
     }
 }
 

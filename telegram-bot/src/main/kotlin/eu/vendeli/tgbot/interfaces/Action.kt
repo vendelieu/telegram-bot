@@ -23,22 +23,22 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
      */
     open suspend fun send(to: String, via: TelegramBot) {
         parameters["chat_id"] = to.toJsonElement()
-        via.makeSilentRequest(method, parameters)
+        via.makeSilentRequest(method, parameters, multipartData)
     }
 
     open suspend fun send(to: Long, via: TelegramBot) {
         parameters["chat_id"] = to.toJsonElement()
-        via.makeSilentRequest(method, parameters)
+        via.makeSilentRequest(method, parameters, multipartData)
     }
 
     open suspend fun send(to: User, via: TelegramBot) {
         parameters["chat_id"] = to.id.toJsonElement()
-        via.makeSilentRequest(method, parameters)
+        via.makeSilentRequest(method, parameters, multipartData)
     }
 
     open suspend fun send(to: Chat, via: TelegramBot) {
         parameters["chat_id"] = to.id.toJsonElement()
-        via.makeSilentRequest(method, parameters)
+        via.makeSilentRequest(method, parameters, multipartData)
     }
 
     /**
@@ -52,7 +52,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType)
+        return via.makeRequestAsync(method, parameters, returnType, multipartData)
     }
 
     open suspend fun sendAsync(
@@ -60,7 +60,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType)
+        return via.makeRequestAsync(method, parameters, returnType, multipartData)
     }
 
     open suspend fun sendAsync(
@@ -68,7 +68,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.id.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType)
+        return via.makeRequestAsync(method, parameters, returnType, multipartData)
     }
 
     open suspend fun sendAsync(
@@ -76,6 +76,6 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.id.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType)
+        return via.makeRequestAsync(method, parameters, returnType, multipartData)
     }
 }

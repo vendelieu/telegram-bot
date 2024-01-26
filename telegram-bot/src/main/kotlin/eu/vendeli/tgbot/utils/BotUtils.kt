@@ -12,10 +12,15 @@ import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ChainLink
+import eu.vendeli.tgbot.types.internal.ImplicitFile
+import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
-import io.ktor.util.reflect.Type
+import io.ktor.http.Headers
+import io.ktor.http.HttpHeaders
+import io.ktor.http.content.PartData
+import io.ktor.utils.io.core.ByteReadPacket
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
@@ -33,6 +38,7 @@ import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.JsonUnquotedLiteral
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.serializer
 
@@ -46,7 +52,7 @@ internal suspend inline fun TgUpdateHandler.checkIsLimited(
     telegramId: Long? = null,
     actionId: String? = null,
 ): Boolean = bot.config.rateLimiter.run {
-    if (limits.period == 0L && limits.rate == 0L || telegramId == null) return false
+    if (telegramId == null || limits.period == 0L && limits.rate == 0L) return false
 
     logger.debug { "Checking the request for exceeding the limits${if (actionId != null) " for $actionId}" else ""}." }
     if (mechanism.isLimited(limits, telegramId, actionId)) {
@@ -91,6 +97,7 @@ fun Array<*>.toJsonElement(): JsonElement = JsonArray(this.map { it.toJsonElemen
 @OptIn(ExperimentalSerializationApi::class)
 fun Any?.toJsonElement(): JsonElement = when (this) {
     null -> JsonNull
+    is JsonElement -> this
     is Map<*, *> -> toJsonElement()
     is Collection<*> -> toJsonElement()
     is ByteArray -> this.toList().toJsonElement()
@@ -101,6 +108,30 @@ fun Any?.toJsonElement(): JsonElement = when (this) {
     else -> serde.encodeToJsonElement(DynamicLookupSerializer, this)
 }
 
+@OptIn(ExperimentalSerializationApi::class)
+@Suppress("NOTHING_TO_INLINE")
+internal inline fun <R> TgAction<R>.handleImplicitFile(input: ImplicitFile, fieldName: String) {
+    if (input is ImplicitFile.Str) {
+        parameters[fieldName] = JsonUnquotedLiteral(input.file)
+    } else if (input is ImplicitFile.InpFile) {
+        multipartData += input.file.toPartData()
+        parameters[fieldName] = JsonUnquotedLiteral("attach://${input.file.fileName}")
+    }
+}
+
+internal fun InputFile.toPartData() = PartData.BinaryItem(
+    { ByteReadPacket(data) },
+    {},
+    Headers.build {
+        append(
+            HttpHeaders.ContentDisposition,
+            "filename=$fileName",
+        )
+        append(HttpHeaders.ContentType, contentType)
+        append(HttpHeaders.ContentLength, data.size.toString())
+    },
+)
+
 internal var mu.KLogger.level: Level
     get() = (underlyingLogger as Logger).level
     set(value) {
@@ -109,10 +140,6 @@ internal var mu.KLogger.level: Level
 
 internal val GET_UPDATES_ACTION = getUpdates()
 internal val DEFAULT_COMMAND_SCOPE = setOf(UpdateType.MESSAGE)
-
-@Suppress("NOTHING_TO_INLINE")
-inline fun Class<*>.isKotlinClass(): Boolean =
-    !name.startsWith("java.") && !name.contains("$")
 
 internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T): Deferred<T> = coroutineScope {
     async { block() }

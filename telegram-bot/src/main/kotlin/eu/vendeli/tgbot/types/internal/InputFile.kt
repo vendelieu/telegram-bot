@@ -12,7 +12,6 @@ data class InputFile(
     val fileName: String = DEFAULT_FILENAME,
     val contentType: String = "text/plain",
 ) {
-    internal val isInputFile = true
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

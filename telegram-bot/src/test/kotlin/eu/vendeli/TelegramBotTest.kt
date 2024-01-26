@@ -25,6 +25,7 @@ import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.toPartData
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldNotThrowAny
@@ -163,24 +164,25 @@ class TelegramBotTest : BotTestContext() {
         val mediaReq = bot.makeSilentRequest(
             method = TgMethod("sendPhoto"),
             data = mapOf(
-                "photo" to InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toJsonElement(),
+                "photo" to "attach://image.jpg".toJsonElement(),
                 "chat_id" to TG_ID.toJsonElement(),
             ),
-            isImplicit = true,
+            listOf(InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toPartData()),
         )
-
+        logger.info(mediaReq.bodyAsText())
         mediaReq.status shouldBe HttpStatusCode.OK
         mediaReq.bodyAsText().isNotBlank().shouldBeTrue()
         mediaReq.bodyAsText() shouldContain "\"ok\":true"
         mediaReq.bodyAsText() shouldContain "\"file_id\""
-        bot.makeRequestAsync<Message>(
+
+        bot.makeRequestAsync(
             method = TgMethod("sendPhoto"),
             mapOf(
-                "photo" to InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toJsonElement(),
+                "photo" to "attach://image.jpg".toJsonElement(),
                 "chat_id" to TG_ID.toJsonElement(),
             ),
             Message::class.serializer(),
-            isImplicit = true,
+            listOf(InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toPartData()),
         ).await().isSuccess().shouldBeTrue()
     }
 

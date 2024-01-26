@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AnimationOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.handleImplicitFile
 import java.io.File
 
 class SendAnimationAction(animation: ImplicitFile) :
@@ -24,10 +24,9 @@ class SendAnimationAction(animation: ImplicitFile) :
     override val method = TgMethod("sendAnimation")
     override val returnType = getReturnType()
     override val options = AnimationOptions()
-    override val inputFilePresence = animation is ImplicitFile.InpFile
 
     init {
-        parameters["animation"] = animation.file.toJsonElement()
+        handleImplicitFile(animation, "animation")
     }
 }
 

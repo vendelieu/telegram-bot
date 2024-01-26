@@ -1,4 +1,3 @@
-
 import eu.vendeli.fixtures.`$ACTIVITIES_eu_vendeli_fixtures`
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
@@ -32,6 +31,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
+import mu.KLogging
 import kotlin.properties.Delegates
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.seconds
@@ -126,4 +126,5 @@ abstract class BotTestContext(
         isSuccess().shouldBeTrue()
         getOrNull().shouldNotBeNull()
     }
+    protected companion object : KLogging()
 }

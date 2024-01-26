@@ -16,6 +16,7 @@ import eu.vendeli.tgbot.api.stickerset.setStickerPositionInSet
 import eu.vendeli.tgbot.api.stickerset.setStickerSetThumbnail
 import eu.vendeli.tgbot.api.stickerset.setStickerSetTitle
 import eu.vendeli.tgbot.api.stickerset.uploadStickerFile
+import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.StickerFile
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.onFailure
@@ -124,7 +125,7 @@ class StickerBaseTest : BotTestContext() {
 
         val setStickerSetThumbnailResult = setStickerSetThumbnail(
             setName,
-            StickerFile.FileId(TEMP_STICKER_FILE_ID),
+            ImplicitFile.Str(TEMP_STICKER_FILE_ID),
         ).sendAsync(TG_ID, bot).shouldSuccess()
         setStickerSetThumbnailResult.shouldBeTrue()
 
@@ -174,7 +175,7 @@ class StickerBaseTest : BotTestContext() {
 
         val setCustomEmojiStickerSetThumbnailResult = setStickerSetThumbnail(
             setName,
-            StickerFile.FileId(TEMP_STICKER_FILE_ID),
+            ImplicitFile.Str(TEMP_STICKER_FILE_ID),
         ).sendAsync(TG_ID, bot).shouldSuccess()
         setCustomEmojiStickerSetThumbnailResult.shouldBeTrue()
 

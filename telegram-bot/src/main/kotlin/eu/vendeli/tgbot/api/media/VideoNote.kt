@@ -12,7 +12,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoNoteOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.handleImplicitFile
 import java.io.File
 
 class SendVideoNoteAction(videoNote: ImplicitFile) :
@@ -22,10 +22,9 @@ class SendVideoNoteAction(videoNote: ImplicitFile) :
     override val method = TgMethod("sendVideoNote")
     override val returnType = getReturnType()
     override val options = VideoNoteOptions()
-    override val inputFilePresence = videoNote is ImplicitFile.InpFile
 
     init {
-        parameters["video_note"] = videoNote.file.toJsonElement()
+        handleImplicitFile(videoNote, "video_note")
     }
 }
 

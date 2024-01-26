@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VoiceOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.handleImplicitFile
 import java.io.File
 
 class SendVoiceAction(voice: ImplicitFile) :
@@ -24,10 +24,9 @@ class SendVoiceAction(voice: ImplicitFile) :
     override val method = TgMethod("sendVoice")
     override val returnType = getReturnType()
     override val options = VoiceOptions()
-    override val inputFilePresence = voice is ImplicitFile.InpFile
 
     init {
-        parameters["voice"] = voice.file.toJsonElement()
+        handleImplicitFile(voice, "voice")
     }
 }
 

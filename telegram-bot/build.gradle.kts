@@ -21,6 +21,7 @@ repositories {
 dependencies {
     implementation(libs.kotlin.serialization)
     implementation(libs.kotlin.datetime)
+    implementation(libs.kotlin.reflect)
 
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
@@ -37,7 +38,6 @@ dependencies {
     testImplementation(libs.test.junit.params)
     testImplementation(libs.test.ktor.mock)
     testImplementation(libs.mockk)
-    implementation(kotlin("reflect"))
 }
 
 group = "eu.vendeli"

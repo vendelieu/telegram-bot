@@ -17,11 +17,6 @@ import kotlin.collections.set
  */
 abstract class MediaAction<ReturnType> : Action<ReturnType>() {
     /**
-     * Is this action contain InputFile in payload.
-     */
-    internal open val inputFilePresence = false
-
-    /**
      * Field name used as target id.
      */
     internal open val idRefField: String = "chat_id"
@@ -34,22 +29,22 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
      */
     override suspend fun send(to: String, via: TelegramBot) {
         parameters[idRefField] = to.toJsonElement()
-        via.makeSilentRequest(method, parameters, inputFilePresence)
+        via.makeSilentRequest(method, parameters, multipartData)
     }
 
     override suspend fun send(to: Long, via: TelegramBot) {
         parameters[idRefField] = to.toJsonElement()
-        via.makeSilentRequest(method, parameters, inputFilePresence)
+        via.makeSilentRequest(method, parameters, multipartData)
     }
 
     override suspend fun send(to: User, via: TelegramBot) {
         parameters[idRefField] = to.id.toJsonElement()
-        via.makeSilentRequest(method, parameters, inputFilePresence)
+        via.makeSilentRequest(method, parameters, multipartData)
     }
 
     override suspend fun send(to: Chat, via: TelegramBot) {
         parameters[idRefField] = to.id.toJsonElement()
-        via.makeSilentRequest(method, parameters, inputFilePresence)
+        via.makeSilentRequest(method, parameters, multipartData)
     }
 
     /**
@@ -63,7 +58,7 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType, inputFilePresence)
+        return via.makeRequestAsync(method, parameters, returnType, multipartData)
     }
 
     override suspend fun sendAsync(
@@ -71,7 +66,7 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType, inputFilePresence)
+        return via.makeRequestAsync(method, parameters, returnType, multipartData)
     }
 
     override suspend fun sendAsync(
@@ -79,7 +74,7 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.id.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType, inputFilePresence)
+        return via.makeRequestAsync(method, parameters, returnType, multipartData)
     }
 
     override suspend fun sendAsync(
@@ -87,6 +82,6 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.id.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType, inputFilePresence)
+        return via.makeRequestAsync(method, parameters, returnType, multipartData)
     }
 }

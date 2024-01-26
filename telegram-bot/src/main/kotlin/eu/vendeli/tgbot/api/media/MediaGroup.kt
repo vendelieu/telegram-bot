@@ -12,6 +12,7 @@ import eu.vendeli.tgbot.types.internal.options.MediaGroupOptions
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.toPartData
 import kotlin.collections.set
 
 class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
@@ -20,9 +21,6 @@ class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
     override val method = TgMethod("sendMediaGroup")
     override val returnType = getReturnType()
     override val options = MediaGroupOptions()
-    override val inputFilePresence: Boolean
-        get() = isInputFile
-    private val isInputFile = inputMedia.any { it.media is InpFile }
 
     init {
         // check api restricts
@@ -32,17 +30,16 @@ class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
         }
 
         // reorganize the media following appropriate approaches
-        parameters["media"] = if (!inputFilePresence) inputMedia.toJsonElement()
-        else buildList {
+        parameters["media"] = buildList {
             inputMedia.forEach {
                 if (it.media is Str) {
                     add(it.toJsonElement())
                     return@forEach
                 }
-                val fileName = (it.media as InpFile).file.fileName
-                parameters[fileName] = it.media.toJsonElement()
-                it.media = Str("attach://$fileName")
+                val media = it.media as InpFile
 
+                multipartData += media.file.toPartData()
+                it.media = Str("attach://${media.file.fileName}")
                 add(it.toJsonElement())
             }
         }.toJsonElement()

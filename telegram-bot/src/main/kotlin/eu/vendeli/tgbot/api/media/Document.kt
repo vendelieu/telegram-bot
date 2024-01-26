@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.DocumentOptions
 import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.handleImplicitFile
 import java.io.File
 
 class SendDocumentAction(document: ImplicitFile) :
@@ -24,10 +24,9 @@ class SendDocumentAction(document: ImplicitFile) :
     override val method = TgMethod("sendDocument")
     override val returnType = getReturnType()
     override val options = DocumentOptions()
-    override val inputFilePresence = document is ImplicitFile.InpFile
 
     init {
-        parameters["document"] = document.file.toJsonElement()
+        handleImplicitFile(document, "document")
     }
 }
 

@@ -2,6 +2,7 @@ package eu.vendeli.tgbot.interfaces
 
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.Options
+import io.ktor.http.content.PartData
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.JsonElement
 import kotlin.properties.Delegates
@@ -18,7 +19,7 @@ abstract class TgAction<ReturnType> {
     /**
      * The parameter that stores the options.
      */
-    internal open val options: Options? = null
+    internal open val options by Delegates.notNull<Options>()
 
     /**
      * Type of action result.
@@ -28,5 +29,10 @@ abstract class TgAction<ReturnType> {
     /**
      * Action data storage parameter.
      */
-    internal val parameters: MutableMap<String, JsonElement> = mutableMapOf()
+    internal val parameters: MutableMap<String, JsonElement> by lazy { mutableMapOf() }
+
+    /**
+     * Multipart payload of request.
+     */
+    internal val multipartData: MutableList<PartData.BinaryItem> by lazy { mutableListOf() }
 }

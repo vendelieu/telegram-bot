@@ -9,7 +9,6 @@ import eu.vendeli.tgbot.interfaces.UserData
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
-import eu.vendeli.tgbot.utils.isKotlinClass
 
 object EnvConfigLoaderImpl : ConfigLoader {
     private const val PREFIX = "TGBOT_"
@@ -62,4 +61,8 @@ object EnvConfigLoaderImpl : ConfigLoader {
             commandParsing.restrictSpacesInCommands = it
         }
     }
+
+    @Suppress("NOTHING_TO_INLINE")
+    private inline fun Class<*>.isKotlinClass(): Boolean =
+        !name.startsWith("java.") && !name.contains("$")
 }
