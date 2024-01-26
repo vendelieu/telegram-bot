@@ -55,4 +55,5 @@ internal val serde = Json {
     encodeDefaults = true
     ignoreUnknownKeys = true
     explicitNulls = false
+    isLenient = true
 }

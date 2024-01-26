@@ -21,7 +21,7 @@ abstract class InlinableAction<ReturnType> : Action<ReturnType>() {
      */
     suspend fun sendInline(inlineMessageId: String, via: TelegramBot) {
         parameters["inline_message_id"] = inlineMessageId.toJsonElement()
-        via.makeSilentRequest(method, parameters)
+        via.makeSilentRequest(method, parameters, multipartData)
     }
 
     /**
@@ -35,6 +35,6 @@ abstract class InlinableAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["inline_message_id"] = inlineMessageId.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType)
+        return via.makeRequestAsync(method, parameters, returnType, multipartData)
     }
 }

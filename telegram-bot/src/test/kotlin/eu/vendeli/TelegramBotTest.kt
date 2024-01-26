@@ -61,10 +61,11 @@ class TelegramBotTest : BotTestContext() {
     @OptIn(InternalSerializationApi::class)
     @Test
     suspend fun `requests testing`() {
-        val getMeReq = bot.makeRequestAsync<User>(
+        val getMeReq = bot.makeRequestAsync(
             TgMethod("getMe"),
-            null,
+            emptyMap(),
             User::class.serializer(),
+            emptyList()
         ).await().getOrNull()
 
         getMeReq.shouldNotBeNull()
@@ -76,6 +77,7 @@ class TelegramBotTest : BotTestContext() {
         val silentReq = bot.makeSilentRequest(
             TgMethod("sendMessage"),
             mapOf("text" to "test".toJsonElement(), "chat_id" to TG_ID.toJsonElement()),
+            emptyList()
         )
 
         silentReq.status shouldBe HttpStatusCode.OK
@@ -90,6 +92,7 @@ class TelegramBotTest : BotTestContext() {
             TgMethod("sendMessage"),
             mapOf("text" to "test".toJsonElement()),
             Message.serializer(),
+            emptyList()
         ).await()
 
         failureReq.isSuccess().shouldBeFalse()

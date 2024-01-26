@@ -33,16 +33,16 @@ private inline fun buildHeadersForItem(name: String) = HeadersBuilder().apply {
 }.build()
 
 private fun HttpRequestBuilder.formReqBody(
-    data: Map<String, JsonElement>? = null,
-    multipartData: List<PartData.BinaryItem>? = null,
+    data: Map<String, JsonElement>,
+    multipartData: List<PartData.BinaryItem>,
 ) {
-    if (data == null && multipartData == null) return
-    if (multipartData != null) {
-        val dataParts = data?.also { logger.debug { "RequestBody: $it" } }?.map {
+    if (data.isEmpty() && multipartData.isEmpty()) return
+    if (multipartData.isNotEmpty()) {
+        val dataParts = data.also { logger.debug { "RequestBody: $it" } }.map {
             PartData.FormItem(it.value.toString(), {}, buildHeadersForItem(it.key))
         }
 
-        setBody(MultiPartFormDataContent(multipartData.let { if (dataParts != null) it + dataParts else it }))
+        setBody(MultiPartFormDataContent(multipartData + dataParts))
     } else {
         setBody(serde.encodeToString(data).also { logger.debug { "RequestBody: $it" } })
         contentType(ContentType.Application.Json)
@@ -56,9 +56,9 @@ private suspend inline fun <T> HttpResponse.toResult(type: KSerializer<T>) = bod
 
 internal suspend inline fun <T> TelegramBot.makeRequestAsync(
     method: TgMethod,
-    data: Map<String, JsonElement>? = null,
+    data: Map<String, JsonElement>,
     returnType: KSerializer<T>,
-    multipartData: List<PartData.BinaryItem>? = null,
+    multipartData: List<PartData.BinaryItem>,
 ): Deferred<Response<out T>> = coroutineScope {
     val response = httpClient.post(method.getUrl(config.apiHost, token)) {
         formReqBody(data, multipartData)
@@ -69,8 +69,8 @@ internal suspend inline fun <T> TelegramBot.makeRequestAsync(
 
 internal suspend inline fun TelegramBot.makeSilentRequest(
     method: TgMethod,
-    data: Map<String, JsonElement>? = null,
-    multipartData: List<PartData.BinaryItem>? = null,
+    data: Map<String, JsonElement>,
+    multipartData: List<PartData.BinaryItem>,
 ) = httpClient.post(method.getUrl(config.apiHost, token)) {
     formReqBody(data, multipartData)
 }.logFailure()
