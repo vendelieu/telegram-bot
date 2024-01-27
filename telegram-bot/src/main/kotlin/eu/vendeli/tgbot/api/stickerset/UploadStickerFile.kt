@@ -16,7 +16,7 @@ class UploadStickerFileAction(sticker: StickerFile) : MediaAction<File>() {
     override val idRefField: String = "user_id"
     init {
         handleImplicitFile(sticker.data, "sticker")
-        parameters["sticker_format"] = sticker.stickerFormat.toString().toJsonElement()
+        parameters["sticker_format"] = sticker.stickerFormat.toJsonElement()
     }
 }
 

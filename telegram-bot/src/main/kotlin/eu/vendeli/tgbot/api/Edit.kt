@@ -14,6 +14,7 @@ import eu.vendeli.tgbot.types.internal.options.EditMessageOptions
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toJsonElement
 
 class EditMessageTextAction private constructor() :
@@ -61,12 +62,12 @@ class EditMessageMediaAction :
     override val returnType = getReturnType()
 
     constructor(inputMedia: InputMedia) {
-        parameters["media"] = inputMedia.toJsonElement()
+        handleImplicitFile(inputMedia.media, "media")
     }
 
     constructor(messageId: Long, inputMedia: InputMedia) {
         parameters["message_id"] = messageId.toJsonElement()
-        parameters["media"] = inputMedia.toJsonElement()
+        handleImplicitFile(inputMedia.media, "media")
     }
 }
 

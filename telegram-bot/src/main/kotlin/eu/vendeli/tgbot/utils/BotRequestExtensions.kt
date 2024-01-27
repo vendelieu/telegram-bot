@@ -39,7 +39,7 @@ private fun HttpRequestBuilder.formReqBody(
     if (data.isEmpty() && multipartData.isEmpty()) return
     if (multipartData.isNotEmpty()) {
         val dataParts = data.also { logger.debug { "RequestBody: $it" } }.map {
-            PartData.FormItem(it.value.toString(), {}, buildHeadersForItem(it.key))
+            PartData.FormItem(serde.encodeToString(JsonElement.serializer(), it.value), {}, buildHeadersForItem(it.key))
         }
 
         setBody(MultiPartFormDataContent(multipartData + dataParts))

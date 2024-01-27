@@ -84,7 +84,7 @@ internal inline fun <reified Type : Any> TgAction<Type>.getReturnType(): KSerial
 internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getReturnType(): KSerializer<List<Type>> =
     ListSerializer(Type::class.serializer())
 
-fun Map<*, *>.toJsonElement(): JsonElement = buildJsonObject {
+internal fun Map<*, *>.toJsonElement(): JsonElement = buildJsonObject {
     val map = mutableMapOf<String, JsonElement>()
     this@toJsonElement.forEach { (key, value) ->
         key as String
@@ -92,11 +92,11 @@ fun Map<*, *>.toJsonElement(): JsonElement = buildJsonObject {
     }
 }
 
-fun Collection<*>.toJsonElement(): JsonElement = JsonArray(this.map { it.toJsonElement() })
-fun Array<*>.toJsonElement(): JsonElement = JsonArray(this.map { it.toJsonElement() })
+internal fun Collection<*>.toJsonElement(): JsonElement = JsonArray(this.map { it.toJsonElement() })
+internal fun Array<*>.toJsonElement(): JsonElement = JsonArray(this.map { it.toJsonElement() })
 
 @OptIn(ExperimentalSerializationApi::class)
-fun Any?.toJsonElement(): JsonElement = when (this) {
+internal fun Any?.toJsonElement(): JsonElement = when (this) {
     null -> JsonNull
     is JsonElement -> this
     is Map<*, *> -> toJsonElement()

@@ -4,7 +4,6 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile.Str
 import eu.vendeli.tgbot.types.media.StickerFormat
 import eu.vendeli.tgbot.utils.serde.GenericValueSerializer
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonPrimitive
 
 /**
  * Sticker set file options
@@ -37,7 +36,7 @@ sealed class StickerFile(
     data class FileId(
         val fileId: String,
     ) : StickerFile(Str(""), StickerFormat.Static) {
-        internal companion object : GenericValueSerializer<FileId>({ JsonPrimitive(fileId) })
+        internal companion object : GenericValueSerializer<FileId>({ fileId })
     }
 
     @Serializable

@@ -44,7 +44,9 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Deferred
 import kotlinx.datetime.Instant
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
+import kotlinx.serialization.json.JsonUnquotedLiteral
 import kotlinx.serialization.serializer
 import other.pckg.ChatDataImpl
 import other.pckg.UserDataImpl
@@ -158,7 +160,7 @@ class TelegramBotTest : BotTestContext() {
         bot.chatData::class.java shouldBe ChatDataImpl::class.java
     }
 
-    @OptIn(InternalSerializationApi::class)
+    @OptIn(InternalSerializationApi::class, ExperimentalSerializationApi::class)
     @Test
     suspend fun `media request handling`() {
         val image = classloader.getResource("image.png")?.readBytes()
@@ -167,7 +169,7 @@ class TelegramBotTest : BotTestContext() {
         val mediaReq = bot.makeSilentRequest(
             method = TgMethod("sendPhoto"),
             data = mapOf(
-                "photo" to "attach://image.jpg".toJsonElement(),
+                "photo" to JsonUnquotedLiteral("attach://image.jpg"),
                 "chat_id" to TG_ID.toJsonElement(),
             ),
             listOf(InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toPartData("image.jpg")),
@@ -180,7 +182,7 @@ class TelegramBotTest : BotTestContext() {
         bot.makeRequestAsync(
             method = TgMethod("sendPhoto"),
             mapOf(
-                "photo" to "attach://image.jpg".toJsonElement(),
+                "photo" to JsonUnquotedLiteral("attach://image.jpg"),
                 "chat_id" to TG_ID.toJsonElement(),
             ),
             Message::class.serializer(),

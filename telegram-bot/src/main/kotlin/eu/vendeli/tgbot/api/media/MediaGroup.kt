@@ -37,9 +37,9 @@ class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
                     return@forEach
                 }
                 val media = it.media as InpFile
+                it.media = Str("attach://${media.file.fileName}")
 
                 multipartData += media.file.toPartData(media.file.fileName)
-                it.media = Str("attach://${media.file.fileName}")
                 add(it.toJsonElement())
             }
         }.toJsonElement()
