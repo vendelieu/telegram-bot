@@ -5,7 +5,9 @@ import eu.vendeli.tgbot.api.message
 import eu.vendeli.tgbot.types.LinkPreviewOptions
 import eu.vendeli.tgbot.types.ParseMode
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.types.shouldBeInstanceOf
+import kotlinx.serialization.json.boolean
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
 class MessageTest : BotTestContext() {
     @Test
@@ -15,10 +17,10 @@ class MessageTest : BotTestContext() {
             parseMode = ParseMode.HTML
             protectContent = true
         }.apply {
-            parameters["text"] shouldBe "test message test"
-            parameters["link_preview_options"].shouldBeInstanceOf<Map<String, Boolean>>()["is_disabled"] shouldBe true
-            parameters["parse_mode"] shouldBe "HTML"
-            parameters["protect_content"] shouldBe true
+            parameters["text"]?.jsonPrimitive?.content shouldBe "test message test"
+            parameters["link_preview_options"]?.jsonObject?.get("is_disabled")?.jsonPrimitive?.boolean shouldBe true
+            parameters["parse_mode"]?.jsonPrimitive?.content shouldBe "HTML"
+            parameters["protect_content"]?.jsonPrimitive?.boolean shouldBe true
         }.sendReturning(TG_ID, bot).shouldSuccess()
 
         result.hasProtectedContent shouldBe true

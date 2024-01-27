@@ -230,6 +230,7 @@ sealed class ReactionType(
     val type: String,
 ) {
     @Serializable
+    @SerialName("emoji")
     data class Emoji(
         val emoji: EmojiType,
     ) : ReactionType("emoji") {
@@ -238,5 +239,6 @@ sealed class ReactionType(
     }
 
     @Serializable
+    @SerialName("custom_emoji")
     data class CustomEmoji(val customEmoji: String) : ReactionType("custom_emoji")
 }

@@ -1,9 +1,13 @@
 package eu.vendeli.tgbot.types
 
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonClassDiscriminator
 
 @Serializable
+@JsonClassDiscriminator("source")
+@OptIn(ExperimentalSerializationApi::class)
 sealed class ChatBoostSource(val source: String) {
     abstract val user: User?
 

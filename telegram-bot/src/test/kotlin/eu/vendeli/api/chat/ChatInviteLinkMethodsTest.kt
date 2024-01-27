@@ -31,7 +31,7 @@ class ChatInviteLinkMethodsTest : BotTestContext() {
             isRevoked.shouldBeFalse()
             name shouldBe "test"
             createsJoinRequest.shouldBeTrue()
-            expireDate shouldBe expireUnix
+            expireDate?.epochSeconds shouldBe expireUnix.epochSeconds
         }
     }
 
@@ -55,7 +55,7 @@ class ChatInviteLinkMethodsTest : BotTestContext() {
             isRevoked.shouldBeFalse()
             name shouldBe "test2"
             createsJoinRequest.shouldBeFalse()
-            expireDate shouldBe expireUnix
+            expireDate?.epochSeconds shouldBe expireUnix.epochSeconds
         }
     }
 
