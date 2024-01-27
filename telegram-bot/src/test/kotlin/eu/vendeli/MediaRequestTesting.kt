@@ -5,11 +5,9 @@ import eu.vendeli.tgbot.api.media.SendMediaGroupAction
 import eu.vendeli.tgbot.api.media.mediaGroup
 import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.types.ParseMode
-import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.toImplicitFile
-import eu.vendeli.tgbot.utils.toInputFile
 import io.kotest.matchers.nulls.shouldNotBeNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -64,12 +62,12 @@ class MediaRequestTesting : BotTestContext() {
         val imageBytes = classloader.getResource("image.png")?.readBytes() ?: ByteArray(0)
         val mediaRequest = mediaGroup(
             InputMedia.Photo(
-                ImplicitFile.InpFile(File(image).toInputFile()),
+                File(image).toImplicitFile(),
                 caption = "<b>test</b>",
                 parseMode = ParseMode.HTML,
             ),
-            InputMedia.Photo(ImplicitFile.InpFile(imageBytes.toInputFile())),
-            InputMedia.Photo(ImplicitFile.Str(RANDOM_PIC_URL)),
+            InputMedia.Photo(imageBytes.toImplicitFile()),
+            InputMedia.Photo(RANDOM_PIC_URL.toImplicitFile()),
         ).sendReturning(TG_ID, bot).getOrNull()
 
         mediaRequest.shouldNotBeNull()
@@ -81,8 +79,8 @@ class MediaRequestTesting : BotTestContext() {
         assertThrows<IllegalArgumentException>("All elements must be of the same specific type") {
             SendMediaGroupAction(
                 listOf(
-                    InputMedia.Photo(ImplicitFile.Str("")),
-                    InputMedia.Audio(ImplicitFile.Str("")),
+                    InputMedia.Photo("".toImplicitFile()),
+                    InputMedia.Audio("".toImplicitFile()),
                 ),
             )
         }
@@ -93,8 +91,8 @@ class MediaRequestTesting : BotTestContext() {
         assertThrows<IllegalArgumentException>("Only Audio/Document/Photo/Video is possible.") {
             SendMediaGroupAction(
                 listOf(
-                    InputMedia.Animation(ImplicitFile.Str("")),
-                    InputMedia.Photo(ImplicitFile.Str("")),
+                    InputMedia.Animation("".toImplicitFile()),
+                    InputMedia.Photo("".toImplicitFile()),
                 ),
             )
         }

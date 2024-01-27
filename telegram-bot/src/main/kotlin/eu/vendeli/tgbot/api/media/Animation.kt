@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AnimationOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
-import eu.vendeli.tgbot.utils.toInputFile
+import eu.vendeli.tgbot.utils.toImplicitFile
 import java.io.File
 
 class SendAnimationAction(animation: ImplicitFile) :
@@ -32,16 +32,16 @@ class SendAnimationAction(animation: ImplicitFile) :
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun animation(file: ImplicitFile) = SendAnimationAction(file)
-inline fun animation(block: () -> String) = animation(ImplicitFile.Str(block()))
+inline fun animation(block: () -> String) = animation(block().toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun animation(ba: ByteArray) = animation(ImplicitFile.InpFile(ba.toInputFile("image.gif")))
+inline fun animation(ba: ByteArray) = animation(ba.toImplicitFile("image.gif"))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun animation(file: File) = animation(ImplicitFile.InpFile(file.toInputFile("image.gif")))
+inline fun animation(file: File) = animation(file.toImplicitFile("image.gif"))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun animation(file: InputFile) = animation(ImplicitFile.InpFile(file))
+inline fun animation(file: InputFile) = animation(file.toImplicitFile())
 inline fun sendAnimation(block: () -> String) = animation(block)
 
 @Suppress("NOTHING_TO_INLINE")

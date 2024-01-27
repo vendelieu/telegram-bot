@@ -10,6 +10,7 @@ import eu.vendeli.tgbot.types.internal.options.CreateNewStickerSetOptions
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.types.media.StickerFormat
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toImplicitFile
 import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.toPartData
 
@@ -33,7 +34,7 @@ class CreateNewStickerSetAction(
                 val sticker = it.sticker as ImplicitFile.InpFile
                 multipartData += sticker.file.toPartData(sticker.file.fileName)
 
-                it.sticker = ImplicitFile.Str("attach://${sticker.file.fileName}")
+                it.sticker = "attach://${sticker.file.fileName}".toImplicitFile()
             }
         }.toJsonElement()
     }

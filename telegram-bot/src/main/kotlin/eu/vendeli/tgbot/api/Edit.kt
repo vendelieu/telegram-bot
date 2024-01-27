@@ -15,6 +15,7 @@ import eu.vendeli.tgbot.types.internal.options.EditMessageOptions
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toImplicitFile
 import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.toPartData
 
@@ -79,7 +80,7 @@ class EditMessageMediaAction :
             val media = inputMedia.media as ImplicitFile.InpFile
             multipartData += media.file.toPartData(media.file.fileName)
 
-            inputMedia.media = ImplicitFile.Str("attach://${media.file.fileName}")
+            inputMedia.media = "attach://${media.file.fileName}".toImplicitFile()
         }
     }
 }

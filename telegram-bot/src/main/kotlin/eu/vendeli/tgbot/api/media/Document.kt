@@ -32,7 +32,7 @@ class SendDocumentAction(document: ImplicitFile) :
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun document(file: ImplicitFile) = SendDocumentAction(file)
-inline fun document(block: () -> String) = document(ImplicitFile.Str(block()))
+inline fun document(block: () -> String) = document(block().toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun document(ba: ByteArray) = document(ba.toImplicitFile())
