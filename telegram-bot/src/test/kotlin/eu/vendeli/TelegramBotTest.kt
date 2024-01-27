@@ -170,9 +170,8 @@ class TelegramBotTest : BotTestContext() {
                 "photo" to "attach://image.jpg".toJsonElement(),
                 "chat_id" to TG_ID.toJsonElement(),
             ),
-            listOf(InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toPartData()),
+            listOf(InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toPartData("image.jpg")),
         )
-        logger.info(mediaReq.bodyAsText())
         mediaReq.status shouldBe HttpStatusCode.OK
         mediaReq.bodyAsText().isNotBlank().shouldBeTrue()
         mediaReq.bodyAsText() shouldContain "\"ok\":true"
@@ -185,7 +184,7 @@ class TelegramBotTest : BotTestContext() {
                 "chat_id" to TG_ID.toJsonElement(),
             ),
             Message::class.serializer(),
-            listOf(InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toPartData()),
+            listOf(InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toPartData("image.jpg")),
         ).await().isSuccess().shouldBeTrue()
     }
 

@@ -20,6 +20,7 @@ import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import io.ktor.http.content.PartData
+import io.ktor.http.escapeIfNeeded
 import io.ktor.utils.io.core.ByteReadPacket
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -112,21 +113,18 @@ fun Any?.toJsonElement(): JsonElement = when (this) {
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun <R> TgAction<R>.handleImplicitFile(input: ImplicitFile, fieldName: String) {
     if (input is ImplicitFile.Str) {
-        parameters[fieldName] = JsonUnquotedLiteral(input.file)
+        parameters[fieldName] = JsonPrimitive(input.file)
     } else if (input is ImplicitFile.InpFile) {
-        multipartData += input.file.toPartData()
+        multipartData += input.file.toPartData(input.file.fileName)
         parameters[fieldName] = JsonUnquotedLiteral("attach://${input.file.fileName}")
     }
 }
 
-internal fun InputFile.toPartData() = PartData.BinaryItem(
+internal fun InputFile.toPartData(name: String) = PartData.BinaryItem(
     { ByteReadPacket(data) },
     {},
     Headers.build {
-        append(
-            HttpHeaders.ContentDisposition,
-            "filename=$fileName",
-        )
+        append(HttpHeaders.ContentDisposition, "form-data; name=${name.escapeIfNeeded()}; filename=$fileName")
         append(HttpHeaders.ContentType, contentType)
         append(HttpHeaders.ContentLength, data.size.toString())
     },
