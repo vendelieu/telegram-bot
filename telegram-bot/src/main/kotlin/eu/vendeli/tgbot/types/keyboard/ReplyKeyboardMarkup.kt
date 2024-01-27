@@ -1,13 +1,12 @@
 package eu.vendeli.tgbot.types.keyboard
 
 import eu.vendeli.tgbot.interfaces.Keyboard
-import kotlinx.serialization.Transient
+import kotlinx.serialization.Serializable
 
 @Suppress("unused")
+@Serializable
 class ReplyKeyboardMarkup : Keyboard {
-    @Transient
-    internal var kbd: MutableList<List<KeyboardButton>> = mutableListOf()
-    val keyboard: List<List<KeyboardButton>> get() = kbd
+    internal var keyboard: List<List<KeyboardButton>> = emptyList()
 
     var resizeKeyboard: Boolean? = null
     var oneTimeKeyboard: Boolean? = null
@@ -16,11 +15,11 @@ class ReplyKeyboardMarkup : Keyboard {
     var isPersistent: Boolean? = null
 
     constructor(vararg buttons: List<KeyboardButton>) {
-        kbd.addAll(buttons)
+        keyboard = buttons.asList()
     }
 
     constructor(vararg buttons: KeyboardButton) {
-        kbd.add(buttons.asList())
+        keyboard = listOf(buttons.asList())
     }
 
     constructor(
@@ -31,7 +30,7 @@ class ReplyKeyboardMarkup : Keyboard {
         selective: Boolean? = null,
         isPersistent: Boolean? = null,
     ) {
-        this.kbd = keyboard.toMutableList()
+        this.keyboard = keyboard.toMutableList()
         this.resizeKeyboard = resizeKeyboard
         this.oneTimeKeyboard = oneTimeKeyboard
         this.inputFieldPlaceholder = inputFieldPlaceholder

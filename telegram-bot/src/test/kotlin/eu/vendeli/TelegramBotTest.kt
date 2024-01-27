@@ -195,7 +195,7 @@ class TelegramBotTest : BotTestContext() {
         image.shouldNotBeNull()
 
         val fileId = photo(image).sendReturning(TG_ID, bot)
-            .getOrNull()?.photo?.first()?.fileId ?: throw NullPointerException()
+            .getOrNull()?.photo?.first()?.fileId!!
 
         val file = getFile(fileId).sendAsync(bot).await().getOrNull()
 

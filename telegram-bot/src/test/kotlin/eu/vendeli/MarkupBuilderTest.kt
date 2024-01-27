@@ -18,7 +18,6 @@ import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.types.shouldBeTypeOf
 
 class MarkupBuilderTest : BotTestContext() {
     @Test
@@ -91,7 +90,7 @@ class MarkupBuilderTest : BotTestContext() {
             "test" requestContact true
         }
 
-        replyMarkup.kbd shouldHaveSize 1
+        replyMarkup.keyboard shouldHaveSize 1
 
         val fullyBuiltKeyboard = replyKeyboardMarkup {
             options {
@@ -111,9 +110,9 @@ class MarkupBuilderTest : BotTestContext() {
             "test6" requestChat KeyboardButtonRequestChat(2, chatIsChannel = false, chatIsForum = true)
         }
 
-        fullyBuiltKeyboard.kbd shouldHaveSize 3 // three rows
+        fullyBuiltKeyboard.keyboard shouldHaveSize 3 // three rows
 
-        fullyBuiltKeyboard.kbd.run {
+        fullyBuiltKeyboard.keyboard.run {
             // 1 row 1 element
             val row1el1 = first().first()
             row1el1.text shouldBe "test1"
@@ -216,7 +215,7 @@ class MarkupBuilderTest : BotTestContext() {
             }
         }
 
-        operatorButtons.kbd.run {
+        operatorButtons.keyboard.run {
             this shouldHaveSize 2
             first().first().text shouldBe "test"
             first().first().requestContact.shouldBeNull()
@@ -250,8 +249,7 @@ class MarkupBuilderTest : BotTestContext() {
         }
         with(action) {
             val markup = parameters["reply_markup"].shouldNotBeNull()
-            markup.shouldBeTypeOf<InlineKeyboardMarkup>()
-            markup.inlineKeyboard.size shouldBe 1
+            markup.isSerializableTo<InlineKeyboardMarkup>().keyboard.size shouldBe 1
         }
 
         // reply markup
@@ -260,16 +258,14 @@ class MarkupBuilderTest : BotTestContext() {
         }
         with(action) {
             val markup = parameters["reply_markup"].shouldNotBeNull()
-            markup.shouldBeTypeOf<ReplyKeyboardMarkup>()
-            markup.keyboard.size shouldBe 1
+            markup.isSerializableTo<ReplyKeyboardMarkup>().keyboard.size shouldBe 1
         }
 
         // forceReply markup
         action.forceReply()
         with(action) {
             val markup = parameters["reply_markup"].shouldNotBeNull()
-            markup.shouldBeTypeOf<ForceReply>()
-            markup.forceReply.shouldBeTrue()
+            markup.isSerializableTo<ForceReply>().forceReply.shouldBeTrue()
         }
     }
 }

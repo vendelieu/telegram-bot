@@ -10,7 +10,9 @@ import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
+import eu.vendeli.tgbot.utils.serde
 import eu.vendeli.utils.MockUpdate
+import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.common.runBlocking
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -31,6 +33,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.serializer
 import mu.KLogging
 import kotlin.properties.Delegates
 import kotlin.random.Random
@@ -64,7 +68,7 @@ abstract class BotTestContext(
     protected val CHAT_ID by lazy { System.getenv("CHAT_ID").toLong() }
     protected val PAYMENT_PROVIDER_TOKEN = "1877036958:TEST:5a97ee6bbb1010e9c1033d00979832763c7622a4"
 
-    protected val RANDOM_PIC_URL = "https://picsum.photos/10"
+    protected val RANDOM_PIC_URL = "https://random.imagecdn.app/10/10"
     protected val RANDOM_PIC by lazy { runBlocking { bot.httpClient.get(RANDOM_PIC_URL).readBytes() } }
     protected val CUR_INSTANT: Instant get() = Clock.System.now()
     protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()
@@ -126,5 +130,12 @@ abstract class BotTestContext(
         isSuccess().shouldBeTrue()
         getOrNull().shouldNotBeNull()
     }
+
+    internal inline fun <reified T> JsonElement.isSerializableTo(): T = shouldNotThrowAny {
+        serde.decodeFromJsonElement(
+            serializer(T::class.java), this,
+        ) as T
+    }
+
     protected companion object : KLogging()
 }
