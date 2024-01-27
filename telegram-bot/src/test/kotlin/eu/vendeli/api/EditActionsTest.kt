@@ -7,11 +7,11 @@ import eu.vendeli.tgbot.api.editMessageReplyMarkup
 import eu.vendeli.tgbot.api.editMessageText
 import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.api.message
-import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardButton
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
+import eu.vendeli.tgbot.utils.toImplicitFile
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -57,7 +57,7 @@ class EditActionsTest : BotTestContext() {
 
         val result = editMessageMedia(
             msg.messageId,
-            InputMedia.Photo(ImplicitFile.Str(RANDOM_PIC_URL)),
+            InputMedia.Photo(RANDOM_PIC_URL.toImplicitFile()),
         ).sendAsync(TG_ID, bot).shouldSuccess()
 
         with(result) {

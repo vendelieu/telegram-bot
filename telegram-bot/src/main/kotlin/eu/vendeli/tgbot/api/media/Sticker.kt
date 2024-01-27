@@ -10,9 +10,9 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.StickerOptions
-import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
+import eu.vendeli.tgbot.utils.toImplicitFile
 import java.io.File
 
 class SendStickerAction(sticker: ImplicitFile) :
@@ -30,16 +30,16 @@ class SendStickerAction(sticker: ImplicitFile) :
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun sticker(file: ImplicitFile) = SendStickerAction(file)
-inline fun sticker(block: () -> String) = sticker(ImplicitFile.Str(block()))
+inline fun sticker(block: () -> String) = sticker(block().toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun sticker(ba: ByteArray) = sticker(ImplicitFile.InpFile(ba.toInputFile("sticker.webp")))
+inline fun sticker(ba: ByteArray) = sticker(ba.toImplicitFile("sticker.webp"))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun sticker(file: File) = sticker(ImplicitFile.InpFile(file.toInputFile("sticker.webp")))
+inline fun sticker(file: File) = sticker(file.toImplicitFile("sticker.webp"))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun sticker(file: InputFile) = sticker(ImplicitFile.InpFile(file))
+inline fun sticker(file: InputFile) = sticker(file.toImplicitFile())
 
 inline fun sendSticker(block: () -> String) = sticker(block)
 

@@ -8,14 +8,15 @@ import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.EditCaptionOptions
 import eu.vendeli.tgbot.types.internal.options.EditMessageOptions
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.toPartData
 
 class EditMessageTextAction private constructor() :
     InlinableAction<Message>(),
@@ -62,12 +63,24 @@ class EditMessageMediaAction :
     override val returnType = getReturnType()
 
     constructor(inputMedia: InputMedia) {
-        handleImplicitFile(inputMedia.media, "media")
+        handleMedia(inputMedia)
+        parameters["media"] = inputMedia.toJsonElement()
     }
 
     constructor(messageId: Long, inputMedia: InputMedia) {
+        handleMedia(inputMedia)
         parameters["message_id"] = messageId.toJsonElement()
-        handleImplicitFile(inputMedia.media, "media")
+        parameters["media"] = inputMedia.toJsonElement()
+    }
+
+    @Suppress("NOTHING_TO_INLINE")
+    private inline fun handleMedia(inputMedia: InputMedia) {
+        if (inputMedia.media is ImplicitFile.InpFile) {
+            val media = inputMedia.media as ImplicitFile.InpFile
+            multipartData += media.file.toPartData(media.file.fileName)
+
+            inputMedia.media = ImplicitFile.Str("attach://${media.file.fileName}")
+        }
     }
 }
 

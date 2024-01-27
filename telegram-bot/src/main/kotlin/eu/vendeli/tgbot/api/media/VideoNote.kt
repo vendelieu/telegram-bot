@@ -10,9 +10,9 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoNoteOptions
-import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
+import eu.vendeli.tgbot.utils.toImplicitFile
 import java.io.File
 
 class SendVideoNoteAction(videoNote: ImplicitFile) :
@@ -30,16 +30,16 @@ class SendVideoNoteAction(videoNote: ImplicitFile) :
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun videoNote(file: ImplicitFile) = SendVideoNoteAction(file)
-inline fun videoNote(block: () -> String) = videoNote(ImplicitFile.Str(block()))
+inline fun videoNote(block: () -> String) = videoNote(block().toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun videoNote(ba: ByteArray) = videoNote(ImplicitFile.InpFile(ba.toInputFile("note.mp4")))
+inline fun videoNote(ba: ByteArray) = videoNote(ba.toImplicitFile("note.mp4"))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun videoNote(input: InputFile) = videoNote(ImplicitFile.InpFile(input))
+inline fun videoNote(input: InputFile) = videoNote(input.toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun videoNote(file: File) = videoNote(ImplicitFile.InpFile(file.toInputFile("note.mp4")))
+inline fun videoNote(file: File) = videoNote(file.toImplicitFile("note.mp4"))
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun sendVideoNote(file: ImplicitFile) = videoNote(file)

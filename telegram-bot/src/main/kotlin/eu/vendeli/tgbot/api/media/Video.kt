@@ -11,9 +11,9 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoOptions
-import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
+import eu.vendeli.tgbot.utils.toImplicitFile
 import java.io.File
 
 class SendVideoAction(video: ImplicitFile) :
@@ -32,16 +32,16 @@ class SendVideoAction(video: ImplicitFile) :
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun video(file: ImplicitFile) = SendVideoAction(file)
-inline fun video(block: () -> String) = video(ImplicitFile.Str(block()))
+inline fun video(block: () -> String) = video(block().toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun video(ba: ByteArray) = video(ImplicitFile.InpFile(ba.toInputFile("video.mp4")))
+inline fun video(ba: ByteArray) = video(ba.toImplicitFile("video.mp4"))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun video(file: File) = video(ImplicitFile.InpFile(file.toInputFile("video.mp4")))
+inline fun video(file: File) = video(file.toImplicitFile("video.mp4"))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun video(file: InputFile) = video(ImplicitFile.InpFile(file))
+inline fun video(file: InputFile) = video(file.toImplicitFile())
 inline fun sendVideo(block: () -> String) = video(block)
 
 @Suppress("NOTHING_TO_INLINE")

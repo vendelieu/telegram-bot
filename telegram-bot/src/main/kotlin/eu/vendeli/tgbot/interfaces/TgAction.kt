@@ -29,10 +29,10 @@ abstract class TgAction<ReturnType> {
     /**
      * Action data storage parameter.
      */
-    internal val parameters: MutableMap<String, JsonElement> by lazy { mutableMapOf() }
+    internal val parameters: MutableMap<String, JsonElement> = mutableMapOf()
 
     /**
      * Multipart payload of request.
      */
-    internal val multipartData: MutableList<PartData.BinaryItem> by lazy { mutableListOf() }
+    internal val multipartData: MutableList<PartData.BinaryItem> = mutableListOf()
 }

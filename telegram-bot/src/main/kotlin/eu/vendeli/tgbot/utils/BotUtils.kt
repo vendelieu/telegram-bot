@@ -92,8 +92,8 @@ internal fun Map<*, *>.toJsonElement(): JsonElement = buildJsonObject {
     }
 }
 
-internal fun Collection<*>.toJsonElement(): JsonElement = JsonArray(this.map { it.toJsonElement() })
-internal fun Array<*>.toJsonElement(): JsonElement = JsonArray(this.map { it.toJsonElement() })
+internal fun Collection<*>.toJsonElement(): JsonElement = JsonArray(map { it.toJsonElement() })
+internal fun Array<*>.toJsonElement(): JsonElement = JsonArray(map { it.toJsonElement() })
 
 @OptIn(ExperimentalSerializationApi::class)
 internal fun Any?.toJsonElement(): JsonElement = when (this) {

@@ -74,7 +74,7 @@ class ChatSetMethodsTest : BotTestContext() {
 
     @Test
     suspend fun `set chat photo method test`() {
-        val file = bot.httpClient.get("https://random.imagecdn.app/100/100").readBytes()
+        val file = bot.httpClient.get("https://random.imagecdn.app/200/200").readBytes()
         val result = setChatPhoto(file).sendReturning(CHAT_ID, bot).shouldSuccess()
         result.shouldBeTrue()
 

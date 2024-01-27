@@ -11,9 +11,9 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VoiceOptions
-import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
+import eu.vendeli.tgbot.utils.toImplicitFile
 import java.io.File
 
 class SendVoiceAction(voice: ImplicitFile) :
@@ -32,16 +32,16 @@ class SendVoiceAction(voice: ImplicitFile) :
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun voice(file: ImplicitFile) = SendVoiceAction(file)
-inline fun voice(block: () -> String) = voice(ImplicitFile.Str(block()))
+inline fun voice(block: () -> String) = voice(block().toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun voice(file: InputFile) = voice(ImplicitFile.InpFile(file))
+inline fun voice(file: InputFile) = voice(file.toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun voice(ba: ByteArray) = voice(ImplicitFile.InpFile(ba.toInputFile("voice.ogg")))
+inline fun voice(ba: ByteArray) = voice(ba.toImplicitFile("voice.ogg"))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun voice(file: File) = voice(ImplicitFile.InpFile(file.toInputFile("voice.ogg")))
+inline fun voice(file: File) = voice(file.toImplicitFile("voice.ogg"))
 
 inline fun sendVoice(block: () -> String) = voice(block)
 

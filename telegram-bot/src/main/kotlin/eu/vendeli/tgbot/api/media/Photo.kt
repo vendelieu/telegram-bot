@@ -11,9 +11,9 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PhotoOptions
-import eu.vendeli.tgbot.types.internal.toInputFile
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
+import eu.vendeli.tgbot.utils.toImplicitFile
 import java.io.File
 
 class SendPhotoAction(photo: ImplicitFile) :
@@ -32,16 +32,16 @@ class SendPhotoAction(photo: ImplicitFile) :
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun photo(file: ImplicitFile) = SendPhotoAction(file)
-inline fun photo(block: () -> String) = photo(ImplicitFile.Str(block()))
+inline fun photo(block: () -> String) = photo(block().toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun photo(ba: ByteArray) = photo(ImplicitFile.InpFile(ba.toInputFile("photo.jpg")))
+inline fun photo(ba: ByteArray) = photo(ba.toImplicitFile("photo.jpg"))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun photo(file: File) = photo(ImplicitFile.InpFile(file.toInputFile("photo.jpg")))
+inline fun photo(file: File) = photo(file.toImplicitFile("photo.jpg"))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun photo(file: InputFile) = photo(ImplicitFile.InpFile(file))
+inline fun photo(file: InputFile) = photo(file.toImplicitFile())
 
 inline fun sendPhoto(block: () -> String) = photo(block)
 

@@ -1,8 +1,6 @@
 package eu.vendeli.tgbot.types.internal
 
 import kotlinx.serialization.Serializable
-import java.io.File
-import java.net.URLConnection
 
 const val DEFAULT_FILENAME = "file"
 
@@ -32,19 +30,3 @@ data class InputFile(
         return result
     }
 }
-
-fun ByteArray.toInputFile(
-    fileName: String = DEFAULT_FILENAME,
-    contentType: String = this.contentType,
-) = InputFile(this, fileName, contentType)
-
-fun File.toInputFile(
-    fileName: String = name.ifEmpty { DEFAULT_FILENAME },
-    contentType: String? = null,
-) = this.readBytes().let { InputFile(it, fileName, contentType ?: it.contentType) }
-
-@Suppress("NOTHING_TO_INLINE")
-inline fun InputFile.toImplicitFile() = ImplicitFile.InpFile(this)
-
-private val ByteArray.contentType: String
-    get() = URLConnection.guessContentTypeFromStream(this.inputStream()) ?: "text/plain"

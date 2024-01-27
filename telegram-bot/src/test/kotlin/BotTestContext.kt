@@ -69,7 +69,10 @@ abstract class BotTestContext(
     protected val PAYMENT_PROVIDER_TOKEN = "1877036958:TEST:5a97ee6bbb1010e9c1033d00979832763c7622a4"
 
     protected val RANDOM_PIC_URL = "https://random.imagecdn.app/10/10"
-    protected val RANDOM_PIC by lazy { runBlocking { bot.httpClient.get(RANDOM_PIC_URL).readBytes() } }
+    protected val RANDOM_PIC: ByteArray
+        get() {
+            return runBlocking { bot.httpClient.get(RANDOM_PIC_URL).readBytes() }
+        }
     protected val CUR_INSTANT: Instant get() = Clock.System.now()
     protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()
     protected val RAND_INT: Int get() = RANDOM_INST.nextInt()
@@ -118,6 +121,11 @@ abstract class BotTestContext(
         delay(200)
         return sendAsync(id, bot).await()
     }
+
+    protected fun randomPicUrl(width: Int, height: Int) = "https://random.imagecdn.app/$width/$height"
+
+    protected suspend fun randomPic(width: Int, height: Int) =
+        bot.httpClient.get(randomPicUrl(width, height)).readBytes()
 
     protected fun Long.asUser() = User(this, false, "test")
     protected fun Long.asChat() = Chat(this, ChatType.Private)
