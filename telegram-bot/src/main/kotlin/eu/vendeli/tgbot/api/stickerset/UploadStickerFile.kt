@@ -10,8 +10,10 @@ import eu.vendeli.tgbot.types.media.StickerFormat
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
-import eu.vendeli.tgbot.utils.toJsonElement
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.json.JsonUnquotedLiteral
 
+@OptIn(ExperimentalSerializationApi::class)
 class UploadStickerFileAction(sticker: InputFile, stickerFormat: StickerFormat) : MediaAction<File>() {
     override val method = TgMethod("uploadStickerFile")
     override val returnType = getReturnType()
@@ -19,7 +21,7 @@ class UploadStickerFileAction(sticker: InputFile, stickerFormat: StickerFormat) 
 
     init {
         handleImplicitFile(sticker.toImplicitFile(), "sticker")
-        parameters["sticker_format"] = stickerFormat.toJsonElement()
+        parameters["sticker_format"] = JsonUnquotedLiteral(stickerFormat.name.lowercase())
     }
 }
 
