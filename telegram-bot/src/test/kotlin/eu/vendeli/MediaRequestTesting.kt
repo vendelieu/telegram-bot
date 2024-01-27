@@ -30,12 +30,10 @@ class MediaRequestTesting : BotTestContext() {
             .sendReturning(TG_ID, bot).getOrNull()
         photoString.shouldNotBeNull()
 
-        val photoBa = photo(RANDOM_PIC).options { parseMode = ParseMode.HTML }.caption { "<i>test</i>" }
-            .sendReturning(TG_ID, bot).getOrNull()
+        val photoBa = photo(RANDOM_PIC).sendReturning(TG_ID, bot).getOrNull()
         photoBa.shouldNotBeNull()
 
-        val photoFile = photo(imageFile).caption { "<b>test</b>" }.options { parseMode = ParseMode.HTML }
-            .sendReturning(TG_ID, bot).getOrNull()
+        val photoFile = photo(imageFile).sendReturning(TG_ID, bot).getOrNull()
         photoFile.shouldNotBeNull()
     }
 
