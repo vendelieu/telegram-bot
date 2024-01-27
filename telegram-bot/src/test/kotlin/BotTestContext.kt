@@ -133,7 +133,8 @@ abstract class BotTestContext(
 
     internal inline fun <reified T> JsonElement.isSerializableTo(): T = shouldNotThrowAny {
         serde.decodeFromJsonElement(
-            serializer(T::class.java), this,
+            serializer(T::class.java),
+            this,
         ) as T
     }
 
