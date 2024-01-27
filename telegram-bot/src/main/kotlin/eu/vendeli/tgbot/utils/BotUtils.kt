@@ -124,7 +124,8 @@ internal fun InputFile.toPartData(name: String) = PartData.BinaryItem(
     { ByteReadPacket(data) },
     {},
     Headers.build {
-        append(HttpHeaders.ContentDisposition, "form-data; name=${name.escapeIfNeeded()}; filename=$fileName")
+        append(HttpHeaders.ContentDisposition, "form-data; name=${name.escapeIfNeeded()}")
+        append(HttpHeaders.ContentDisposition, "filename=$fileName")
         append(HttpHeaders.ContentType, contentType)
         append(HttpHeaders.ContentLength, data.size.toString())
     },
