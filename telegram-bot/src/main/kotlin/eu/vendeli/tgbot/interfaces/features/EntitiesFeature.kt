@@ -3,7 +3,7 @@ package eu.vendeli.tgbot.interfaces.features
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.utils.builders.EntitiesBuilder
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.encodeWith
 
 /**
  * Entities feature, see [Features article](https://github.com/vendelieu/telegram-bot/wiki/Features)
@@ -21,6 +21,6 @@ interface EntitiesFeature<Action : TgAction<*>> : Feature {
      */
     @Suppress("UNCHECKED_CAST")
     fun entities(entities: List<MessageEntity>): Action = (this as Action).apply {
-        parameters["entities"] = entities.toJsonElement()
+        parameters["entities"] = entities.encodeWith(MessageEntity.serializer())
     }
 }

@@ -1,10 +1,8 @@
 package eu.vendeli.tgbot.utils
 
-import kotlinx.serialization.InternalSerializationApi
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.JsonPrimitive
-import kotlinx.serialization.json.encodeToJsonElement
-import kotlinx.serialization.serializer
 
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun Boolean.toJsonElement() = JsonPrimitive(this)
@@ -15,10 +13,8 @@ internal inline fun String.toJsonElement() = JsonPrimitive(this)
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun Number.toJsonElement() = JsonPrimitive(this)
 
-@OptIn(InternalSerializationApi::class)
-@Suppress("UnusedReceiverParameter")
-internal inline fun <reified T : Any> List<T>.toJsonElement() =
-    serde.encodeToJsonElement(ListSerializer(T::class.serializer()))
+internal inline fun <T : Any, reified S : KSerializer<T>> T.encodeWith(serializer: S) =
+    serde.encodeToJsonElement(serializer, this)
 
-@OptIn(InternalSerializationApi::class)
-internal inline fun <reified T : Any> T.toJsonElement() = serde.encodeToJsonElement(T::class.serializer())
+internal inline fun <T : Any, reified S : KSerializer<T>> List<T>.encodeWith(serializer: S) =
+    serde.encodeToJsonElement(ListSerializer(serializer), this)

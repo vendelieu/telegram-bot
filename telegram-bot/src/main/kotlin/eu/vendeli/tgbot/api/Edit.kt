@@ -14,7 +14,9 @@ import eu.vendeli.tgbot.types.internal.options.EditCaptionOptions
 import eu.vendeli.tgbot.types.internal.options.EditMessageOptions
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
+import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toImplicitFile
 import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.toPartData
@@ -65,13 +67,13 @@ class EditMessageMediaAction :
 
     constructor(inputMedia: InputMedia) {
         handleMedia(inputMedia)
-        parameters["media"] = inputMedia.toJsonElement()
+        parameters["media"] = inputMedia.encodeWith(DynamicLookupSerializer)
     }
 
     constructor(messageId: Long, inputMedia: InputMedia) {
         handleMedia(inputMedia)
         parameters["message_id"] = messageId.toJsonElement()
-        parameters["media"] = inputMedia.toJsonElement()
+        parameters["media"] = inputMedia.encodeWith(DynamicLookupSerializer)
     }
 
     @Suppress("NOTHING_TO_INLINE")

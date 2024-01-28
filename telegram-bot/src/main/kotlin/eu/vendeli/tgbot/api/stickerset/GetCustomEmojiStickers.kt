@@ -5,8 +5,9 @@ package eu.vendeli.tgbot.api.stickerset
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.Sticker
+import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import kotlinx.serialization.builtins.serializer
 
 /**
  * Use this method to get information about custom emoji stickers by their identifiers
@@ -18,7 +19,7 @@ class GetCustomEmojiStickersAction(customEmojiIds: List<String>) : SimpleAction<
     override val returnType = getReturnType()
 
     init {
-        parameters["custom_emoji_ids"] = customEmojiIds.toJsonElement()
+        parameters["custom_emoji_ids"] = customEmojiIds.encodeWith(String.serializer())
     }
 }
 

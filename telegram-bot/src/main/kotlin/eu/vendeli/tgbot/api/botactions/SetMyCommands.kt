@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.bot.BotCommand
 import eu.vendeli.tgbot.types.bot.BotCommandScope
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.builders.BotCommandsBuilder
+import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
@@ -19,8 +20,8 @@ class SetMyCommandsAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["commands"] = commands.toJsonElement()
-        if (scope != null) parameters["scope"] = scope.toJsonElement()
+        parameters["commands"] = commands.encodeWith(BotCommand.serializer())
+        if (scope != null) parameters["scope"] = scope.encodeWith(BotCommandScope.serializer())
         if (languageCode != null) parameters["language_code"] = languageCode.toJsonElement()
     }
 }

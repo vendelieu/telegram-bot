@@ -12,7 +12,9 @@ import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CopyMessageOptions
+import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 
 /**
@@ -39,7 +41,7 @@ class CopyMessageAction(
     override val options = CopyMessageOptions()
 
     init {
-        parameters["from_chat_id"] = fromChatId.get.toJsonElement()
+        parameters["from_chat_id"] = fromChatId.encodeWith(DynamicLookupSerializer)
         parameters["message_id"] = messageId.toJsonElement()
     }
 }

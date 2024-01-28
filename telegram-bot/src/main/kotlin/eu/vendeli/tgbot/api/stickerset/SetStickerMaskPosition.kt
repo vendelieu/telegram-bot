@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api.stickerset
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.MaskPosition
+import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
@@ -17,7 +18,7 @@ class SetStickerMaskPositionAction(
 
     init {
         parameters["sticker"] = sticker.toJsonElement()
-        if (maskPosition != null) parameters["mask_position"] = maskPosition.toJsonElement()
+        if (maskPosition != null) parameters["mask_position"] = maskPosition.encodeWith(MaskPosition.serializer())
     }
 }
 

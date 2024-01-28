@@ -10,8 +10,10 @@ import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CopyMessagesOptions
+import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
+import kotlinx.serialization.builtins.serializer
 
 class CopyMessagesAction(
     fromChatId: Identifier,
@@ -23,8 +25,8 @@ class CopyMessagesAction(
     override val options = CopyMessagesOptions()
 
     init {
-        parameters["from_chat_id"] = fromChatId.get.toJsonElement()
-        parameters["message_ids"] = messageIds.toJsonElement()
+        parameters["from_chat_id"] = fromChatId.encodeWith(DynamicLookupSerializer)
+        parameters["message_ids"] = messageIds.encodeWith(Long.serializer())
     }
 }
 

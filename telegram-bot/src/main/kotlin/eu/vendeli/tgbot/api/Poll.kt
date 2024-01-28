@@ -9,8 +9,10 @@ import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PollOptions
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
+import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
+import kotlinx.serialization.builtins.serializer
 
 class SendPollAction(question: String, pollOptions: List<String>) :
     Action<Message>(),
@@ -22,7 +24,7 @@ class SendPollAction(question: String, pollOptions: List<String>) :
 
     init {
         parameters["question"] = question.toJsonElement()
-        parameters["options"] = pollOptions.toJsonElement()
+        parameters["options"] = pollOptions.encodeWith(String.serializer())
     }
 }
 

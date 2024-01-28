@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api.stickerset
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.InputSticker
+import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlin.collections.set
@@ -19,7 +20,7 @@ class AddStickerToSetAction(
 
     init {
         parameters["name"] = name.toJsonElement()
-        parameters["sticker"] = input.toJsonElement()
+        parameters["sticker"] = input.encodeWith(InputSticker.serializer())
     }
 }
 

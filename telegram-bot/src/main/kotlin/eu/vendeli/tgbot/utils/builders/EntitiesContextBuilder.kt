@@ -25,7 +25,7 @@ import eu.vendeli.tgbot.types.EntityType.Underline
 import eu.vendeli.tgbot.types.EntityType.Url
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.encodeWith
 import kotlinx.serialization.json.JsonElement
 
 @Suppress("TooManyFunctions")
@@ -39,7 +39,7 @@ interface EntitiesContextBuilder<Action : TgAction<*>> {
 
         parameters[fieldName] = (
             (parameters[fieldName] ?: mutableListOf<JsonElement>()) as MutableList<JsonElement>
-        ).also { it.add(entity.toJsonElement()) }.toJsonElement()
+        ).also { it.add(entity.encodeWith(MessageEntity.serializer())) }.encodeWith(JsonElement.serializer())
     }
 
     operator fun String.minus(other: String): String = this + other

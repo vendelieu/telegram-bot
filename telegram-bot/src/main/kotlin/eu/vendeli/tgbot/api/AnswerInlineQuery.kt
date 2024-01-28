@@ -8,8 +8,11 @@ import eu.vendeli.tgbot.types.inline.InlineQueryResult
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AnswerInlineQueryOptions
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
+import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
+import kotlinx.serialization.builtins.ListSerializer
 
 class AnswerInlineQueryAction(inlineQueryId: String, results: List<InlineQueryResult>) :
     SimpleAction<Boolean>(),
@@ -20,7 +23,7 @@ class AnswerInlineQueryAction(inlineQueryId: String, results: List<InlineQueryRe
 
     init {
         parameters["inline_query_id"] = inlineQueryId.toJsonElement()
-        parameters["results"] = results.toJsonElement()
+        parameters["results"] = results.encodeWith(ListSerializer(DynamicLookupSerializer))
     }
 }
 

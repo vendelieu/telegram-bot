@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.ChatPermissions
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.datetime.Instant
@@ -21,7 +22,7 @@ class RestrictChatMemberAction(
 
     init {
         parameters["user_id"] = userId.toJsonElement()
-        parameters["permissions"] = permissions.toJsonElement()
+        parameters["permissions"] = permissions.encodeWith(ChatPermissions.serializer())
         if (untilDate != null) parameters["until_date"] = untilDate.epochSeconds.toJsonElement()
         if (useIndependentChatPermissions != null)
             parameters["use_independent_chat_permissions"] = useIndependentChatPermissions.toJsonElement()

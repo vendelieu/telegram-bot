@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.forum.ForumTopic
 import eu.vendeli.tgbot.types.forum.IconColor
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
@@ -25,7 +26,7 @@ class CreateForumTopicAction(
 
     init {
         parameters["name"] = name.toJsonElement()
-        if (iconColor != null) parameters["icon_color"] = iconColor.toJsonElement()
+        if (iconColor != null) parameters["icon_color"] = iconColor.encodeWith(IconColor.serializer())
         if (iconCustomEmojiId != null) parameters["icon_custom_emoji_id"] = iconCustomEmojiId.toJsonElement()
     }
 }

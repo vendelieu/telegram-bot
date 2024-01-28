@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CreateNewStickerSetOptions
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.types.media.StickerFormat
+import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toImplicitFile
 import eu.vendeli.tgbot.utils.toJsonElement
@@ -28,7 +29,7 @@ class CreateNewStickerSetAction(
     init {
         parameters["name"] = name.toJsonElement()
         parameters["title"] = title.toJsonElement()
-        parameters["sticker_format"] = stickerFormat.toJsonElement()
+        parameters["sticker_format"] = stickerFormat.encodeWith(StickerFormat.serializer())
         parameters["stickers"] = stickers.onEach {
             if (it.sticker is ImplicitFile.InpFile) {
                 val sticker = it.sticker as ImplicitFile.InpFile
@@ -36,7 +37,7 @@ class CreateNewStickerSetAction(
 
                 it.sticker = "attach://${sticker.file.fileName}".toImplicitFile()
             }
-        }.toJsonElement()
+        }.encodeWith(InputSticker.serializer())
     }
 }
 

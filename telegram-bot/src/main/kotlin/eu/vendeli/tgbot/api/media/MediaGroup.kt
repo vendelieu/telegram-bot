@@ -10,9 +10,11 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile.Str
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.MediaGroupOptions
 import eu.vendeli.tgbot.types.media.InputMedia
+import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toPartData
+import kotlinx.serialization.json.JsonElement
 import kotlin.collections.set
 
 class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
@@ -33,16 +35,16 @@ class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
         parameters["media"] = buildList {
             inputMedia.forEach {
                 if (it.media is Str) {
-                    add(it.toJsonElement())
+                    add(it.encodeWith(DynamicLookupSerializer))
                     return@forEach
                 }
                 val media = it.media as InpFile
                 it.media = Str("attach://${media.file.fileName}")
 
                 multipartData += media.file.toPartData(media.file.fileName)
-                add(it.toJsonElement())
+                add(it.encodeWith(DynamicLookupSerializer))
             }
-        }.toJsonElement()
+        }.encodeWith(JsonElement.serializer())
     }
 }
 

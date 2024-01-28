@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.utils.builders.EntitiesBuilder
 import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
+import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.toJsonElement
 
 /**
@@ -31,7 +32,7 @@ interface CaptionFeature<Action> : Feature, EntitiesContextBuilder<Action>
      * Caption entities
      */
     fun captionEntities(entities: List<MessageEntity>): Action = thisAsReturn.apply {
-        parameters["caption_entities"] = entities.toJsonElement()
+        parameters["caption_entities"] = entities.encodeWith(MessageEntity.serializer())
     }
 
     /**
