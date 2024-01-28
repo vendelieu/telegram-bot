@@ -117,10 +117,7 @@ class StickerBaseTest : BotTestContext() {
         ).sendAsync(bot).shouldSuccess()
         setStickerPositionInSetResult.shouldBeTrue()
 
-        val setStickerSetThumbnailResult = setStickerSetThumbnail(
-            setName,
-            TEMP_STICKER_FILE_ID.toImplicitFile(),
-        ).sendAsync(TG_ID, bot).shouldSuccess()
+        val setStickerSetThumbnailResult = setStickerSetThumbnail(setName).sendAsync(TG_ID, bot).shouldSuccess()
         setStickerSetThumbnailResult.shouldBeTrue()
 
         val setStickerMaskPositionResult = setStickerMaskPosition(
