@@ -16,7 +16,6 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import io.ktor.http.content.PartData
@@ -35,12 +34,8 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.JsonUnquotedLiteral
-import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.serializer
 
 internal suspend inline fun TgUpdateHandler.coHandle(
@@ -83,31 +78,6 @@ internal inline fun <reified Type : Any> TgAction<Type>.getReturnType(): KSerial
 @JvmName("listReturnType")
 internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getReturnType(): KSerializer<List<Type>> =
     ListSerializer(Type::class.serializer())
-
-internal fun Map<*, *>.toJsonElement(): JsonElement = buildJsonObject {
-    val map = mutableMapOf<String, JsonElement>()
-    this@toJsonElement.forEach { (key, value) ->
-        key as String
-        map[key] = value.toJsonElement()
-    }
-}
-
-internal fun Collection<*>.toJsonElement(): JsonElement = JsonArray(map { it.toJsonElement() })
-internal fun Array<*>.toJsonElement(): JsonElement = JsonArray(map { it.toJsonElement() })
-
-@OptIn(ExperimentalSerializationApi::class)
-internal fun Any?.toJsonElement(): JsonElement = when (this) {
-    null -> JsonNull
-    is JsonElement -> this
-    is Map<*, *> -> toJsonElement()
-    is Collection<*> -> toJsonElement()
-    is ByteArray -> this.toList().toJsonElement()
-    is Array<*> -> toJsonElement()
-    is Boolean -> JsonPrimitive(this)
-    is Number -> JsonPrimitive(this)
-    is String -> JsonPrimitive(this)
-    else -> serde.encodeToJsonElement(DynamicLookupSerializer, this)
-}
 
 @OptIn(ExperimentalSerializationApi::class)
 @Suppress("NOTHING_TO_INLINE")

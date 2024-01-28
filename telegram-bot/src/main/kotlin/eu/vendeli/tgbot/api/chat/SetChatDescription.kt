@@ -12,7 +12,7 @@ class SetChatDescriptionAction(description: String? = null) : Action<Boolean>() 
     override val returnType = getReturnType()
 
     init {
-        parameters["description"] = description.toJsonElement()
+        if (description != null) parameters["description"] = description.toJsonElement()
     }
 }
 
