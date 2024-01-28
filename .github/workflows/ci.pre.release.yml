@@ -25,8 +25,10 @@ jobs:
           gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.SECRET_PASSPHRASE}}" \
           --output /home/runner/work/secret.gpg publish_key.gpg
 
-      - name: Publish with Gradle
-        uses: eskatos/gradle-command-action@v3
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3-beta
         with:
           gradle-version: current
-          arguments: publish -Psigning.secretKeyRingFile=/home/runner/work/secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ github.event.inputs.version }}
+
+      - name: Publish with Gradle
+        run: ./gradlew publish -Psigning.secretKeyRingFile=/home/runner/work/secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ github.event.inputs.version }}

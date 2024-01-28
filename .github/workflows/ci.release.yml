@@ -53,6 +53,11 @@ jobs:
           distribution: 'zulu'
           java-version: 11
 
+      - name: Setup gradle
+        uses: gradle/actions/setup-gradle@v3-beta
+        with:
+          gradle-version: current
+
       - name: Prepare to publish
         run: |
           echo '${{secrets.GPG_KEY_CONTENTS}}' | base64 -d > publish_key.gpg
@@ -60,10 +65,7 @@ jobs:
           --output /home/runner/work/secret.gpg publish_key.gpg
 
       - name: Publish with Gradle
-        uses: eskatos/gradle-command-action@v3
-        with:
-          gradle-version: current
-          arguments: publish -Psigning.secretKeyRingFile=/home/runner/work/secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }}
+        run: ./gradlew publish -Psigning.secretKeyRingFile=/home/runner/work/secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }}
   
   docs:
     needs: [ publish, version ]
