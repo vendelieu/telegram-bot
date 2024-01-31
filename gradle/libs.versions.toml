@@ -1,5 +1,5 @@
 [versions]
-ktor = "2.3.7"
+ktor = "2.3.8"
 mu-logging = "3.0.5"
 logback = "1.4.14"
 jackson = "2.16.1"
