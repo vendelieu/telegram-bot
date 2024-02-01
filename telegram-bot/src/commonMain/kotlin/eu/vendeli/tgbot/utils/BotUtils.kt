@@ -102,6 +102,7 @@ internal fun InputFile.toPartData(name: String) = PartData.BinaryItem(
 
 internal val GET_UPDATES_ACTION = getUpdates()
 internal val DEFAULT_COMMAND_SCOPE = setOf(UpdateType.MESSAGE)
+internal expect val PROCESSING_DISPATCHER: CoroutineDispatcher
 
 internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T): Deferred<T> = coroutineScope {
     async { block() }

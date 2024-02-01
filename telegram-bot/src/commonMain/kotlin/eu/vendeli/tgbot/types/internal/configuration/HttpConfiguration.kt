@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
+import io.ktor.client.engine.ProxyConfig
 import io.ktor.client.plugins.HttpTimeout
-import java.net.Proxy
 
 /**
  * A class containing the configuration for the bot http client.
@@ -25,6 +25,6 @@ data class HttpConfiguration(
     var socketTimeoutMillis: Long = HttpTimeout.INFINITE_TIMEOUT_MS,
     var maxRequestRetry: Int = 3,
     var retryDelay: Long = 3000L,
-    var proxy: Proxy? = null,
+    var proxy: ProxyConfig? = null,
     var additionalHeaders: Map<String, Any?>? = null,
 )

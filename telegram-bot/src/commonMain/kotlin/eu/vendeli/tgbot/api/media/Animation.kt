@@ -11,7 +11,6 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AnimationOptions
-import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
@@ -30,14 +29,16 @@ class SendAnimationAction(animation: ImplicitFile) :
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun animation(file: ImplicitFile) = SendAnimationAction(file)
 inline fun animation(block: () -> String) = animation(block().toImplicitFile())
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun animation(ba: ByteArray) = animation(ba.toImplicitFile("image.gif"))
 
-inline fun animation(file: File) = animation(file.toImplicitFile("image.gif"))
-
+@Suppress("NOTHING_TO_INLINE")
 inline fun animation(file: InputFile) = animation(file.toImplicitFile())
 inline fun sendAnimation(block: () -> String) = animation(block)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun sendAnimation(file: ImplicitFile) = animation(file)

@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
+import eu.vendeli.tgbot.utils.PROCESSING_DISPATCHER
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
@@ -12,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
  */
 data class UpdatesListenerConfiguration(
     var dispatcher: CoroutineDispatcher = Dispatchers.Default,
+    var processingDispatcher: CoroutineDispatcher = PROCESSING_DISPATCHER,
     var pullingDelay: Long = 0,
     var updatesPollingTimeout: Int = 20,
 )

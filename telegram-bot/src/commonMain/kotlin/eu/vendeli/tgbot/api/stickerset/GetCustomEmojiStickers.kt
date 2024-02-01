@@ -8,6 +8,7 @@ import eu.vendeli.tgbot.types.media.Sticker
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import kotlinx.serialization.builtins.serializer
+import kotlin.jvm.JvmName
 
 /**
  * Use this method to get information about custom emoji stickers by their identifiers

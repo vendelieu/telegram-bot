@@ -14,7 +14,6 @@ import eu.vendeli.tgbot.types.internal.options.DocumentOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
-import java.io.File
 
 class SendDocumentAction(document: ImplicitFile) :
     MediaAction<Message>(),
@@ -30,15 +29,17 @@ class SendDocumentAction(document: ImplicitFile) :
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun document(file: ImplicitFile) = SendDocumentAction(file)
 inline fun document(block: () -> String) = document(block().toImplicitFile())
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun document(ba: ByteArray) = document(ba.toImplicitFile())
 
-inline fun document(file: File) = document(file.toImplicitFile())
-
+@Suppress("NOTHING_TO_INLINE")
 inline fun document(file: InputFile) = document(file.toImplicitFile())
 
 inline fun sendDocument(block: () -> String) = document(block)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun sendDocument(file: ImplicitFile) = document(file)

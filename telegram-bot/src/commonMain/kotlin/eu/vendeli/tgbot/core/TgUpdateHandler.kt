@@ -14,7 +14,6 @@ import eu.vendeli.tgbot.utils.process
 import eu.vendeli.tgbot.utils.serde
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
@@ -64,7 +63,9 @@ abstract class TgUpdateHandler internal constructor(
         logger.info { "Starting long-polling listener." }
         coHandle {
             for (update in updatesChannel) {
-                launch(Dispatchers.IO) { handlingBehaviour(this@TgUpdateHandler, update) }
+                launch(bot.config.updatesListener.processingDispatcher) {
+                    handlingBehaviour(this@TgUpdateHandler, update)
+                }
             }
         }.join()
     }
@@ -111,7 +112,7 @@ abstract class TgUpdateHandler internal constructor(
             logger.error(it) { "error during the update parsing process." }
         }.onSuccess { logger.info { "Successfully parsed update to $it" } }.getOrNull()?.let {
             logger.debug { "Processing update with preset behaviour." }
-            coHandle(Dispatchers.IO) { handlingBehaviour(this@TgUpdateHandler, it) }
+            coHandle(bot.config.updatesListener.processingDispatcher) { handlingBehaviour(this@TgUpdateHandler, it) }
         }
     }
 

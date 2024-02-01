@@ -14,7 +14,6 @@ import eu.vendeli.tgbot.types.internal.options.VideoOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
-import java.io.File
 
 class SendVideoAction(video: ImplicitFile) :
     MediaAction<Message>(),
@@ -30,14 +29,16 @@ class SendVideoAction(video: ImplicitFile) :
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun video(file: ImplicitFile) = SendVideoAction(file)
 inline fun video(block: () -> String) = video(block().toImplicitFile())
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun video(ba: ByteArray) = video(ba.toImplicitFile("video.mp4"))
 
-inline fun video(file: File) = video(file.toImplicitFile("video.mp4"))
-
+@Suppress("NOTHING_TO_INLINE")
 inline fun video(file: InputFile) = video(file.toImplicitFile())
 inline fun sendVideo(block: () -> String) = video(block)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun sendVideo(file: ImplicitFile) = video(file)

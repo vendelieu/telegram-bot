@@ -3,7 +3,7 @@ package eu.vendeli.tgbot.types.internal
 /**
  * Proxy enum for Bot logger leveling.
  */
-enum class LogLvl {
+enum class LogLevel {
     OFF,
     ERROR,
     WARN,
@@ -11,5 +11,4 @@ enum class LogLvl {
     DEBUG,
     TRACE,
     ALL,
-    ;
 }
