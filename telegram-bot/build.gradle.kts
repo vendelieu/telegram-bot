@@ -3,41 +3,65 @@ import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import java.time.LocalDate
 
 plugins {
-    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
-    `java-library`
     alias(libs.plugins.dokka)
     alias(libs.plugins.ktlinter)
     alias(libs.plugins.deteKT)
     alias(libs.plugins.kover)
 }
 
-val javaTargetVersion = JavaVersion.VERSION_11
+kotlin {
+    jvm()
+    js { nodejs() }
+//    mingwX64()
+//    linuxArm64()
+//    linuxX64()
+    jvmToolchain(11)
 
-repositories {
-    mavenCentral()
-}
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(libs.kotlin.serialization)
+                implementation(libs.kotlin.datetime)
+                implementation(libs.kotlin.reflect)
 
-dependencies {
-    implementation(libs.kotlin.serialization)
-    implementation(libs.kotlin.datetime)
-    implementation(libs.kotlin.reflect)
+                implementation(libs.ktor.client.core)
+                implementation(libs.logging)
 
-    implementation(libs.ktor.client.core)
-    implementation(libs.ktor.client.cio)
-    implementation(libs.ktor.client.logging)
+                api(libs.coroutines.core)
+            }
+        }
+        val jvmTest by getting {
+            dependencies {
+                implementation(libs.logback.classic)
+                implementation(libs.test.kotest.junit5)
+                implementation(libs.test.kotest.assertions)
+                implementation(libs.test.junit.params)
+                implementation(libs.test.ktor.mock)
+                implementation(libs.mockk)
+            }
+        }
 
-    implementation(libs.mu.logging)
-    implementation(libs.logback.classic)
+        val jvmMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.cio)
+            }
+        }
+        val jsMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.js)
+            }
+        }
+    }
 
-    api(libs.coroutines.core)
-
-    testImplementation(libs.logback.classic)
-    testImplementation(libs.test.kotest.junit5)
-    testImplementation(libs.test.kotest.assertions)
-    testImplementation(libs.test.junit.params)
-    testImplementation(libs.test.ktor.mock)
-    testImplementation(libs.mockk)
+    targets.all {
+        compilations.all {
+            compilerOptions.configure {
+                allWarningsAsErrors.set(true)
+            }
+        }
+    }
 }
 
 group = "eu.vendeli"
@@ -59,19 +83,19 @@ buildscript {
 }
 
 tasks {
-    compileKotlin {
-        kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
-        kotlinOptions.allWarningsAsErrors = true
-        incremental = true
-    }
-
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
-    }
-
-    test {
-        useJUnitPlatform()
-    }
+//    compileKotlin {
+//        kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
+//        kotlinOptions.allWarningsAsErrors = true
+//        incremental = true
+//    }
+//
+//    compileTestKotlin {
+//        kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
+//    }
+//
+//    test {
+//        useJUnitPlatform()
+//    }
 
     dokkaHtml.configure {
         outputDirectory.set(layout.buildDirectory.asFile.orNull?.resolve("dokka"))
@@ -110,9 +134,3 @@ koverReport {
     }
 }
 
-java {
-    withSourcesJar()
-    withJavadocJar()
-    sourceCompatibility = javaTargetVersion
-    targetCompatibility = javaTargetVersion
-}

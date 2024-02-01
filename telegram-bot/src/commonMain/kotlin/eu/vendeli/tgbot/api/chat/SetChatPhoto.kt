@@ -1,0 +1,25 @@
+@file:Suppress("MatchingDeclarationName")
+
+package eu.vendeli.tgbot.api.chat
+
+import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.types.internal.ImplicitFile
+import eu.vendeli.tgbot.types.internal.InputFile
+import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.handleImplicitFile
+import eu.vendeli.tgbot.utils.toImplicitFile
+
+class SetChatPhotoAction(photo: ImplicitFile) : MediaAction<Boolean>() {
+    override val method = TgMethod("setChatPhoto")
+    override val returnType = getReturnType()
+
+    init {
+        handleImplicitFile(photo, "photo")
+    }
+}
+
+inline fun setChatPhoto(file: ImplicitFile) = SetChatPhotoAction(file)
+inline fun setChatPhoto(block: () -> String) = setChatPhoto(block().toImplicitFile())
+
+inline fun setChatPhoto(file: InputFile) = setChatPhoto(file.toImplicitFile())

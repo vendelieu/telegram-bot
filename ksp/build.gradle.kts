@@ -1,7 +1,6 @@
 val javaTargetVersion = JavaVersion.VERSION_11
 
 plugins {
-    `java-library`
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.ktlinter)
     alias(libs.plugins.deteKT)

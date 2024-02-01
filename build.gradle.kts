@@ -4,6 +4,9 @@ allprojects {
     }
 }
 
-tasks.create<Delete>("clean") {
-    delete.add(rootProject.layout.buildDirectory.asFile.get())
+plugins {
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.ktlinter) apply false
+    alias(libs.plugins.deteKT) apply false
 }

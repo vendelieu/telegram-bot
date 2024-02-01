@@ -132,7 +132,7 @@ abstract class BotTestContext(
 
     protected suspend inline fun <T> Deferred<Response<out T>>.shouldSuccess() = await().shouldSuccess()
 
-    @Suppress("NOTHING_TO_INLINE")
+    
     protected inline fun <T> Response<T>.shouldSuccess() = with(this) {
         ok.shouldBeTrue()
         isSuccess().shouldBeTrue()
