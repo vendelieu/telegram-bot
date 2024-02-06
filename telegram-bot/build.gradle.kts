@@ -36,7 +36,6 @@ kotlin {
         }
         val jvmTest by getting {
             dependencies {
-                implementation(libs.logback.classic)
                 implementation(libs.test.kotest.junit5)
                 implementation(libs.test.kotest.assertions)
                 implementation(libs.test.junit.params)
