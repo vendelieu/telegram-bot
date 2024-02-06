@@ -17,4 +17,5 @@ class CreateChatInviteLinkAction :
     override val options = ChatInviteLinkOptions()
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun createChatInviteLink() = CreateChatInviteLinkAction()

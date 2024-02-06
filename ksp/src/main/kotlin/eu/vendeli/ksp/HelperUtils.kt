@@ -8,11 +8,14 @@ import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSType
 import com.google.devtools.ksp.symbol.KSValueArgument
+import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterizedTypeName
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.asTypeName
@@ -45,6 +48,9 @@ import kotlin.reflect.KClass
 
 internal typealias FileBuilder = FileSpec.Builder
 
+internal val activitiesType = Map::class.asTypeName().parameterizedBy(
+    STRING, List::class.asTypeName().parameterizedBy(ANY.copy(true)),
+)
 internal val invocableType = TypeVariableName("Invocable")
 internal val chainLinkClass = ChainLink::class.asTypeName()
 internal val autoWiringClassName = Autowiring::class.asClassName()
@@ -129,9 +135,6 @@ internal inline fun <R> Any?.safeCast(): R? = this as? R
 
 internal fun Pair<Long, Long>.toRateLimits(): Any =
     if (first == 0L && second == 0L) "zeroRateLimits" else RateLimits(first, second)
-
-internal fun String.withPostfix(postfix: String?): String = postfix?.let { "${this}_$postfix" } ?: this
-internal fun String.escape() = replace(".", "_")
 
 internal fun <T : Annotation> Resolver.getAnnotatedFnSymbols(
     targetPackage: String? = null,

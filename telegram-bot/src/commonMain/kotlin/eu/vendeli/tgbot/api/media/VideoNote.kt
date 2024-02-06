@@ -27,12 +27,16 @@ class SendVideoNoteAction(videoNote: ImplicitFile) :
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun videoNote(file: ImplicitFile) = SendVideoNoteAction(file)
 inline fun videoNote(block: () -> String) = videoNote(block().toImplicitFile())
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun videoNote(ba: ByteArray) = videoNote(ba.toImplicitFile("note.mp4"))
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun videoNote(input: InputFile) = videoNote(input.toImplicitFile())
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun sendVideoNote(file: ImplicitFile) = videoNote(file)
 inline fun sendVideoNote(block: () -> String) = videoNote(block)

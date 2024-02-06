@@ -17,4 +17,5 @@ class GetUpdatesAction :
     override val options = GetUpdatesOptions()
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun getUpdates() = GetUpdatesAction()

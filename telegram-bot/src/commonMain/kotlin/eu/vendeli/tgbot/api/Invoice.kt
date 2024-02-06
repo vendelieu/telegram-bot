@@ -38,6 +38,7 @@ class SendInvoiceAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun invoice(
     title: String,
     description: String,
@@ -55,6 +56,7 @@ inline fun invoice(
     payload: () -> String,
 ) = invoice(title, description, payload(), providerToken, currency, prices.asList())
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun sendInvoice(
     title: String,
     description: String,

@@ -5,11 +5,11 @@ import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
-import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
+import eu.vendeli.tgbot.utils.Logging
 import eu.vendeli.tgbot.utils.serde
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
@@ -35,7 +35,6 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.serializer
-import mu.KLogging
 import kotlin.properties.Delegates
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.seconds
@@ -83,10 +82,7 @@ abstract class BotTestContext(
         val ctx = BOT_CTX
         BOT_ID = ctx.first
         if (withPreparedBot) bot = TelegramBot(ctx.second, "eu.vendeli") {
-            logging {
-                botLogLevel = LogLvl.DEBUG
-                httpLogLevel = HttpLogLevel.ALL
-            }
+            botLogLevel = LogLvl.DEBUG
             httpClient {
                 maxRequestRetry = 0
                 connectTimeoutMillis = 10.seconds.inWholeMilliseconds
@@ -132,7 +128,7 @@ abstract class BotTestContext(
 
     protected suspend inline fun <T> Deferred<Response<out T>>.shouldSuccess() = await().shouldSuccess()
 
-    
+    @Suppress("NOTHING_TO_INLINE")
     protected inline fun <T> Response<T>.shouldSuccess() = with(this) {
         ok.shouldBeTrue()
         isSuccess().shouldBeTrue()
@@ -146,5 +142,5 @@ abstract class BotTestContext(
         ) as T
     }
 
-    protected companion object : KLogging()
+    internal companion object : Logging()
 }

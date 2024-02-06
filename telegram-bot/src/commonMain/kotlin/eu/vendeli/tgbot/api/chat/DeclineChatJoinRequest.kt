@@ -17,6 +17,8 @@ class DeclineChatJoinRequestAction(userId: Long) : Action<Boolean>() {
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun declineChatJoinRequest(userId: Long) = DeclineChatJoinRequestAction(userId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun declineChatJoinRequest(user: User) = declineChatJoinRequest(user.id)

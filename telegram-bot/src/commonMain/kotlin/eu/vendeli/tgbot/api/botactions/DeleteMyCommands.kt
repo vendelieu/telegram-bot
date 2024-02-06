@@ -22,5 +22,6 @@ class DeleteMyCommandsAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun deleteMyCommands(languageCode: String? = null, scope: BotCommandScope? = null) =
     DeleteMyCommandsAction(scope, languageCode)

@@ -24,6 +24,8 @@ class SendDiceAction(emoji: String? = null) :
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun sendDice(emoji: String? = null) = dice(emoji)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun dice(emoji: String? = null) = SendDiceAction(emoji)

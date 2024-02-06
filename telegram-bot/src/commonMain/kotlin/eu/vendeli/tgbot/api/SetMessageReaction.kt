@@ -27,9 +27,11 @@ class SetMessageReactionAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setMessageReaction(messageId: Long, reaction: List<ReactionType>? = null, isBig: Boolean? = null) =
     SetMessageReactionAction(messageId, reaction, isBig)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setMessageReaction(messageId: Long, vararg reaction: ReactionType, isBig: Boolean? = null) =
     setMessageReaction(messageId, reaction.asList(), isBig)
 

@@ -16,4 +16,5 @@ class SetChatStickerSetAction(stickerSetName: String) : Action<Boolean>() {
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setChatStickerSet(stickerSetName: String) = SetChatStickerSetAction(stickerSetName)

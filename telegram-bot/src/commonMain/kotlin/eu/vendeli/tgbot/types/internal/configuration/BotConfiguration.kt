@@ -4,7 +4,7 @@ import eu.vendeli.tgbot.implementations.ClassManagerImpl
 import eu.vendeli.tgbot.implementations.InputListenerMapImpl
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.InputListener
-import eu.vendeli.tgbot.types.internal.LogLevel
+import eu.vendeli.tgbot.types.internal.LogLvl
 
 /**
  * The class containing the bot configuration.
@@ -19,7 +19,7 @@ data class BotConfiguration(
     var classManager: ClassManager = ClassManagerImpl(),
     internal var rateLimiter: RateLimiterConfiguration = RateLimiterConfiguration(),
     internal var httpClient: HttpConfiguration = HttpConfiguration(),
-    internal var botLogLevel: LogLevel = LogLevel.INFO,
+    internal var botLogLevel: LogLvl = LogLvl.INFO,
     internal var updatesListener: UpdatesListenerConfiguration = UpdatesListenerConfiguration(),
     internal var context: ContextConfiguration = ContextConfiguration(),
     internal var commandParsing: CommandParsingConfiguration = CommandParsingConfiguration(),

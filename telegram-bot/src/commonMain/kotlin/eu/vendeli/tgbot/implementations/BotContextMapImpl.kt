@@ -2,11 +2,11 @@ package eu.vendeli.tgbot.implementations
 
 import eu.vendeli.tgbot.interfaces.BotContext
 import eu.vendeli.tgbot.utils.asyncAction
+import io.ktor.util.collections.ConcurrentMap
 import kotlinx.coroutines.Deferred
-import java.util.concurrent.ConcurrentHashMap
 
 abstract class BotContextMapImpl : BotContext {
-    protected val storage by lazy { ConcurrentHashMap<String, Any?>() }
+    protected val storage by lazy { ConcurrentMap<String, Any?>() }
     override fun set(telegramId: Long, key: String, value: Any?) {
         storage["$telegramId-$key"] = value
     }

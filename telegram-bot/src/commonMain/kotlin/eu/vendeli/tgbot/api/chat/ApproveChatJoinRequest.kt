@@ -17,6 +17,8 @@ class ApproveChatJoinRequestAction(userId: Long) : Action<Boolean>() {
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun approveChatJoinRequest(userId: Long) = ApproveChatJoinRequestAction(userId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun approveChatJoinRequest(user: User) = approveChatJoinRequest(user.id)

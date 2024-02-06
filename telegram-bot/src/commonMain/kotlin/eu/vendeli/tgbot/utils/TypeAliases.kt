@@ -32,6 +32,9 @@ import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
+import io.ktor.client.plugins.HttpRequestRetry
+import io.ktor.client.request.HttpRequest
+import io.ktor.client.statement.HttpResponse
 
 typealias OnMessageActivity = suspend ActivityCtx<MessageUpdate>.() -> Unit
 typealias OnEditedMessageActivity = suspend ActivityCtx<EditedMessageUpdate>.() -> Unit
@@ -64,6 +67,7 @@ internal typealias RegexCommandActivities = MutableMap<Regex, FunctionalInvocati
 typealias HandlingBehaviourBlock = suspend TgUpdateHandler.(Update) -> Unit
 typealias FunctionalHandlingBlock = suspend FunctionalHandlingDsl.() -> Unit
 typealias BotConfigurator = BotConfiguration.() -> Unit
+typealias RetryStrategy = HttpRequestRetry.ShouldRetryContext.(HttpRequest, HttpResponse) -> Boolean
 
 typealias InvocationLambda = suspend (ClassManager, ProcessedUpdate, User?, TelegramBot, Map<String, String>) -> Any?
 typealias Invocable = Pair<InvocationLambda, InvocationMeta>

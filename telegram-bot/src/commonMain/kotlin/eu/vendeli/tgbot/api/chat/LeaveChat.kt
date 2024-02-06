@@ -11,4 +11,5 @@ class LeaveChatAction : Action<Boolean>() {
     override val returnType = getReturnType()
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun leaveChat() = LeaveChatAction()

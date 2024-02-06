@@ -20,6 +20,8 @@ class StopMessageLiveLocationAction() :
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun stopMessageLiveLocation(messageId: Long) = StopMessageLiveLocationAction(messageId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun stopMessageLiveLocation() = StopMessageLiveLocationAction()

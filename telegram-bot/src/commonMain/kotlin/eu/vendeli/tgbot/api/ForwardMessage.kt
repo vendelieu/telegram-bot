@@ -44,13 +44,17 @@ class ForwardMessageAction(fromChatId: Identifier, messageId: Long) :
  * (or channel username in the format @channelusername)
  * @param messageId Message identifier in the chat specified in fromChatId
  */
-
+@Suppress("NOTHING_TO_INLINE")
 inline fun forwardMessage(fromChatId: Identifier, messageId: Long) = ForwardMessageAction(fromChatId, messageId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun forwardMessage(fromChatId: Long, messageId: Long) = forwardMessage(Identifier.from(fromChatId), messageId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun forwardMessage(fromChatId: String, messageId: Long) = forwardMessage(Identifier.from(fromChatId), messageId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun forwardMessage(fromChatId: User, messageId: Long) = forwardMessage(Identifier.from(fromChatId), messageId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun forwardMessage(fromChatId: Chat, messageId: Long) = forwardMessage(Identifier.from(fromChatId.id), messageId)

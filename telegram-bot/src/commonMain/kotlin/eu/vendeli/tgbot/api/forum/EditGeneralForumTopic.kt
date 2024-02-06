@@ -26,5 +26,5 @@ class EditGeneralForumTopicAction(name: String) : Action<Boolean>() {
  * The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights.
  * Returns True on success.
  */
-
+@Suppress("NOTHING_TO_INLINE")
 inline fun editGeneralForumTopic(name: String) = EditGeneralForumTopicAction(name)

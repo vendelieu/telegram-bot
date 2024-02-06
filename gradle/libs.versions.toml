@@ -1,9 +1,10 @@
 [versions]
 ktor = "2.3.7"
-logging = "2.7.1"
+logging = "5.3.1"
 logback = "1.4.14"
 datetime = "0.5.0"
 serialization = "1.6.2"
+stately = "2.0.0"
 
 kotlin = "1.9.22"
 coroutines = "1.7.3"
@@ -26,12 +27,13 @@ ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
 
 # logging
-logging = { module = "io.github.aakira:napier", version.ref = "logging" }
+logging = { module = "com.soywiz.korge:korlibs-logger", version.ref = "logging" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+stately = { module = "co.touchlab:stately-concurrent-collections", version.ref = "stately" }
 
 # test
 test-kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }

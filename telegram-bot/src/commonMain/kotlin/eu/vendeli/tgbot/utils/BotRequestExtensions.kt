@@ -25,7 +25,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.JsonElement
-
+@Suppress("NOTHING_TO_INLINE")
 private inline fun buildHeadersForItem(name: String) = HeadersBuilder().apply {
     append(HttpHeaders.ContentType, ContentType.Application.Json)
     append(HttpHeaders.ContentDisposition, "form-data; name=${name.escapeIfNeeded()}")

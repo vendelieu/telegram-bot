@@ -24,8 +24,10 @@ class BanChatMemberAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun banChatMember(userId: Long, untilDate: Instant? = null, revokeMessages: Boolean? = null) =
     BanChatMemberAction(userId, untilDate, revokeMessages)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun banChatMember(user: User, untilDate: Instant? = null, revokeMessages: Boolean? = null) =
     banChatMember(user.id, untilDate, revokeMessages)

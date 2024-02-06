@@ -28,17 +28,22 @@ class ForwardMessagesAction(fromChatId: Identifier, messageIds: List<Long>) :
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun forwardMessages(fromChatId: Identifier, messageIds: List<Long>) =
     ForwardMessagesAction(fromChatId, messageIds)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun forwardMessages(fromChatId: Long, vararg messageId: Long) =
     forwardMessages(Identifier.from(fromChatId), messageId.asList())
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun forwardMessages(fromChatId: String, vararg messageId: Long) =
     forwardMessages(Identifier.from(fromChatId), messageId.asList())
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun forwardMessages(fromChatId: User, vararg messageId: Long) =
     forwardMessages(Identifier.from(fromChatId), messageId.asList())
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun forwardMessages(fromChatId: Chat, vararg messageId: Long) =
     forwardMessages(Identifier.from(fromChatId.id), messageId.asList())

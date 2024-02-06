@@ -16,4 +16,5 @@ class SetChatDescriptionAction(description: String? = null) : Action<Boolean>() 
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setChatDescription(title: String? = null) = SetChatDescriptionAction(title)

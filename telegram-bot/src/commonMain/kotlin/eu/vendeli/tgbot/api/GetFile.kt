@@ -17,4 +17,5 @@ class GetFileAction(fileId: String) : SimpleAction<File>() {
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun getFile(fileId: String) = GetFileAction(fileId)

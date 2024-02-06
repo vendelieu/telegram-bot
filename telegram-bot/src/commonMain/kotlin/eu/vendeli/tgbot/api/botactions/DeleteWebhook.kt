@@ -16,4 +16,5 @@ class DeleteWebhookAction(dropPendingUpdates: Boolean = false) : SimpleAction<Bo
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun deleteWebhook(dropPendingUpdates: Boolean = false) = DeleteWebhookAction(dropPendingUpdates)

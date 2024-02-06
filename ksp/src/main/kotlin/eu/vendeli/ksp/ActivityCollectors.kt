@@ -24,10 +24,11 @@ internal fun FileBuilder.collectCommandActivities(
     symbols: Sequence<KSFunctionDeclaration>,
     injectableTypes: Map<TypeName, ClassName>,
     logger: KSPLogger,
+    idxPostfix: String,
 ) {
     logger.info("Collecting commands.")
     addMap(
-        "`TG_\$COMMANDS`",
+        "__TG_COMMANDS$idxPostfix",
         MAP.parameterizedBy(
             Pair::class.asTypeName().parameterizedBy(STRING, UpdateType::class.asTypeName()),
             invocableType,
@@ -64,12 +65,13 @@ internal fun FileBuilder.collectInputActivities(
     chainSymbols: Sequence<KSClassDeclaration>,
     injectableTypes: Map<TypeName, ClassName>,
     logger: KSPLogger,
+    idxPostfix: String,
 ) {
     logger.info("Collecting inputs.")
     val tailBlock = collectInputChains(chainSymbols, logger)
 
     addMap(
-        "`TG_\$INPUTS`",
+        "__TG_INPUTS$idxPostfix",
         MAP.parameterizedBy(STRING, invocableType),
         symbols,
         tailBlock,
@@ -94,10 +96,11 @@ internal fun FileBuilder.collectRegexActivities(
     symbols: Sequence<KSFunctionDeclaration>,
     injectableTypes: Map<TypeName, ClassName>,
     logger: KSPLogger,
+    idxPostfix: String,
 ) {
     logger.info("Collecting regex handlers.")
     addMap(
-        "`TG_\$REGEX`",
+        "__TG_REGEX$idxPostfix",
         MAP.parameterizedBy(Regex::class.asTypeName(), invocableType),
         symbols,
     ) { function ->
@@ -120,10 +123,11 @@ internal fun FileBuilder.collectUpdateTypeActivities(
     symbols: Sequence<KSFunctionDeclaration>,
     injectableTypes: Map<TypeName, ClassName>,
     logger: KSPLogger,
+    idxPostfix: String,
 ) {
     logger.info("Collecting `UpdateType` handlers.")
     addMap(
-        "`TG_\$UPDATE_TYPES`",
+        "__TG_UPDATE_TYPES$idxPostfix",
         MAP.parameterizedBy(UpdateType::class.asTypeName(), TypeVariableName("InvocationLambda")),
         symbols,
     ) { function ->
@@ -147,10 +151,11 @@ internal fun FileBuilder.collectUnprocessed(
     unprocessedHandlerSymbols: KSFunctionDeclaration?,
     injectableTypes: Map<TypeName, ClassName>,
     logger: KSPLogger,
+    idxPostfix: String,
 ) {
     addProperty(
         PropertySpec.builder(
-            "`TG_\$UNPROCESSED`",
+            "__TG_UNPROCESSED$idxPostfix",
             TypeVariableName("InvocationLambda").copy(true),
             KModifier.PRIVATE,
         ).apply {

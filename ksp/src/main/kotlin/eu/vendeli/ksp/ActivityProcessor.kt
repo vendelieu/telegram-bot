@@ -9,16 +9,13 @@ import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.symbol.KSAnnotated
-import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
-import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeVariableName
-import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
@@ -38,14 +35,54 @@ class ActivityProcessor(
 ) : SymbolProcessor {
     private val targetPackage = options["package"]
     override fun process(resolver: Resolver): List<KSAnnotated> {
-        targetPackage?.split(';')?.forEach {
-            processPackage(resolver, it)
-        } ?: processPackage(resolver)
+        val fileSpec = FileSpec.builder("eu.vendeli.tgbot", "ActivitiesData").apply {
+            addSuppressions()
+            addImport("eu.vendeli.tgbot.utils", "InvocationLambda", "Invocable")
+            addImport("eu.vendeli.tgbot.types.internal", "InvocationMeta")
+            addImport("eu.vendeli.tgbot.types.internal.configuration", "RateLimits")
+
+            addSuspendCallFun()
+            addZeroLimitsProp()
+        }
+        val targetPackage = targetPackage?.split(';')
+
+        targetPackage?.forEachIndexed { idx, pkg ->
+            processPackage(fileSpec, resolver, idx to pkg)
+        } ?: processPackage(fileSpec, resolver)
+
+        fileSpec.apply {
+            val paramInitBlock = StringBuilder()
+            (targetPackage ?: listOf("default")).forEachIndexed { idx, pkg ->
+                val block = "listOf(__TG_COMMANDS$idx, __TG_INPUTS$idx, __TG_REGEX$idx," +
+                    " __TG_UPDATE_TYPES$idx, __TG_UNPROCESSED$idx),"
+                paramInitBlock.append("\"$pkg\" to $block")
+            }
+            addProperty(
+                PropertySpec.builder(
+                    "__ACTIVITIES",
+                    activitiesType,
+                    KModifier.INTERNAL,
+                ).apply {
+                    initializer(paramInitBlock.toString())
+                }.build(),
+            )
+        }
+
+        @Suppress("SpreadOperator")
+        fileSpec.build().runCatching {
+            writeTo(
+                codeGenerator = codeGenerator,
+                dependencies = Dependencies(false, *resolver.getAllFiles().toList().toTypedArray()),
+            )
+        }
 
         return emptyList()
     }
 
-    private fun processPackage(resolver: Resolver, pkg: String? = null) {
+    private fun processPackage(fileSpec: FileSpec.Builder, resolver: Resolver, target: Pair<Int, String>? = null) {
+        val pkg = target?.second
+        val idxPostfix = target?.first?.let { "$it" } ?: ""
+
         val commandHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, CommandHandler::class, CallbackQuery::class)
         val inputHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, InputHandler::class)
         val regexHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, RegexCommandHandler::class)
@@ -59,42 +96,12 @@ class ActivityProcessor(
             c.getAllSuperTypes().first { it.toClassName() == autoWiringClassName }.arguments.first().toTypeName() to
                 c.toClassName()
         }
-
-        val fileSpec = FileSpec.builder("eu.vendeli.tgbot", "ActivitiesData".withPostfix(pkg).escape()).apply {
-            addSuppressions()
-            addImport("eu.vendeli.tgbot.utils", "InvocationLambda", "Invocable")
-            addImport("eu.vendeli.tgbot.types.internal", "InvocationMeta")
-            addImport("eu.vendeli.tgbot.types.internal.configuration", "RateLimits")
-
-            addSuspendCallFun()
-            addZeroLimitsProp()
-
-            collectCommandActivities(commandHandlerSymbols, injectableTypes, logger)
-            collectInputActivities(inputHandlerSymbols, inputChainSymbols, injectableTypes, logger)
-            collectRegexActivities(regexHandlerSymbols, injectableTypes, logger)
-            collectUpdateTypeActivities(updateHandlerSymbols, injectableTypes, logger)
-            collectUnprocessed(unprocessedHandlerSymbol, injectableTypes, logger)
-
-            addProperty(
-                PropertySpec.builder(
-                    "\$ACTIVITIES".withPostfix(pkg).escape(),
-                    List::class.asTypeName().parameterizedBy(ANY.copy(true)),
-                    KModifier.INTERNAL,
-                ).apply {
-                    initializer(
-                        "%L",
-                        "listOf(`TG_\$COMMANDS`, `TG_\$INPUTS`, `TG_\$REGEX`, `TG_\$UPDATE_TYPES`, `TG_\$UNPROCESSED`)",
-                    )
-                }.build(),
-            )
-        }.build()
-
-        @Suppress("SpreadOperator")
-        fileSpec.runCatching {
-            writeTo(
-                codeGenerator = codeGenerator,
-                dependencies = Dependencies(false, *resolver.getAllFiles().toList().toTypedArray()),
-            )
+        fileSpec.apply {
+            collectCommandActivities(commandHandlerSymbols, injectableTypes, logger, idxPostfix)
+            collectInputActivities(inputHandlerSymbols, inputChainSymbols, injectableTypes, logger, idxPostfix)
+            collectRegexActivities(regexHandlerSymbols, injectableTypes, logger, idxPostfix)
+            collectUpdateTypeActivities(updateHandlerSymbols, injectableTypes, logger, idxPostfix)
+            collectUnprocessed(unprocessedHandlerSymbol, injectableTypes, logger, idxPostfix)
         }
     }
 

@@ -16,4 +16,5 @@ class SetChatTitleAction(title: String) : Action<Boolean>() {
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setChatTitle(title: String) = SetChatTitleAction(title)

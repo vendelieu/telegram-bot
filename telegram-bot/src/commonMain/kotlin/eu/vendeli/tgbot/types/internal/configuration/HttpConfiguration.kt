@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
+import eu.vendeli.tgbot.utils.RetryStrategy
 import io.ktor.client.engine.ProxyConfig
 import io.ktor.client.plugins.HttpTimeout
 
@@ -14,6 +15,7 @@ import io.ktor.client.plugins.HttpTimeout
  * @property socketTimeoutMillis Specifies a socket timeout (read and write) in milliseconds.
  * The socket timeout is the maximum time of inactivity between two data packets when exchanging data with a server.
  * @property maxRequestRetry Specifies a http request maximum retry if had some exceptions
+ * @property retryStrategy By default client uses retryOnExceptionOrServerErrors strategy, but you can define custom.
  * @property retryDelay Multiplier for timeout at each retry, in milliseconds
  * i.e. for the base value [maxRequestRetry] the attempts will be in 3, 6, 9 seconds
  * @property proxy Specifies proxy that will be used for http calls.
@@ -24,6 +26,7 @@ data class HttpConfiguration(
     var connectTimeoutMillis: Long = HttpTimeout.INFINITE_TIMEOUT_MS,
     var socketTimeoutMillis: Long = HttpTimeout.INFINITE_TIMEOUT_MS,
     var maxRequestRetry: Int = 3,
+    var retryStrategy: RetryStrategy? = null,
     var retryDelay: Long = 3000L,
     var proxy: ProxyConfig? = null,
     var additionalHeaders: Map<String, Any?>? = null,

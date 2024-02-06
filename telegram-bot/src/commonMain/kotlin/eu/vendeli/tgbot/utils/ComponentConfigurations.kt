@@ -12,35 +12,36 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNamingStrategy
 
-internal fun TelegramBot.getConfiguredHttpClient() = HttpClient {
-    install("RequestLogging") {
-        sendPipeline.intercept(HttpSendPipeline.Monitoring) {
-            logger.trace { "TgApiRequest: ${context.method} ${context.url.buildString()}" }
+internal fun TelegramBot.getConfiguredHttpClient() = config.httpClient.run {
+    HttpClient {
+        install("RequestLogging") {
+            sendPipeline.intercept(HttpSendPipeline.Monitoring) {
+                logger.trace { "TgApiRequest: ${context.method} ${context.url.buildString()}" }
+            }
         }
-    }
 
-    install(HttpTimeout) {
-        config.httpClient.also {
-            requestTimeoutMillis = it.requestTimeoutMillis
-            connectTimeoutMillis = it.connectTimeoutMillis
-            socketTimeoutMillis = it.socketTimeoutMillis
+        install(HttpTimeout) {
+            requestTimeoutMillis = requestTimeoutMillis
+            connectTimeoutMillis = connectTimeoutMillis
+            socketTimeoutMillis = socketTimeoutMillis
         }
-    }
 
-    install(HttpRequestRetry) {
-        retryOnExceptionOrServerErrors(config.httpClient.maxRequestRetry)
-        delayMillis { retry ->
-            retry * config.httpClient.retryDelay
+        install(HttpRequestRetry) {
+            retryStrategy?.let { retryIf(maxRequestRetry, it) }
+            retryOnExceptionOrServerErrors(maxRequestRetry)
+            delayMillis { retry ->
+                retry * retryDelay
+            }
         }
-    }
 
-    engine {
-        proxy = config.httpClient.proxy
-    }
+        engine {
+            proxy = this@run.proxy
+        }
 
-    defaultRequest {
-        config.httpClient.additionalHeaders?.forEach { (header, value) ->
-            header(header, value)
+        defaultRequest {
+            additionalHeaders?.forEach { (header, value) ->
+                header(header, value)
+            }
         }
     }
 }

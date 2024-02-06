@@ -17,6 +17,8 @@ class DeleteMessagesAction(messageIds: List<Long>) : Action<Boolean>() {
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun deleteMessages(messageIds: List<Long>) = DeleteMessagesAction(messageIds)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun deleteMessages(vararg messageId: Long) = deleteMessages(messageId.asList())

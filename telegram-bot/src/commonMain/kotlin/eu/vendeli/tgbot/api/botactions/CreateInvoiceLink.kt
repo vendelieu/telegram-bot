@@ -39,6 +39,7 @@ class CreateInvoiceLinkAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun createInvoiceLink(
     title: String,
     description: String,

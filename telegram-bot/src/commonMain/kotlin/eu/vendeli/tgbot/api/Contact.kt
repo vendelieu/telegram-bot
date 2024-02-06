@@ -27,6 +27,8 @@ class SendContactAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun contact(firstName: String, phoneNumber: String) = SendContactAction(phoneNumber, firstName)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun sendContact(firstName: String, phoneNumber: String) = contact(firstName, phoneNumber)

@@ -35,7 +35,7 @@ internal fun collectInputChains(
                 indent()
                 beginControlFlow("suspendCall { classManager, update, user, bot, parameters ->").apply {
                     add("if(user == null) return@suspendCall Unit\n")
-                    add("val inst = classManager.getInstance($reference::class.java) as $reference\n")
+                    add("val inst = classManager.getInstance($reference::class) as $reference\n")
                     add("val nextLink: String? = %P\n", nextLink)
                     add("val breakPoint = inst.breakCondition?.invoke(user, update, bot) ?: false\n")
                     add(

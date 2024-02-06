@@ -22,4 +22,5 @@ class EditChatInviteLinkAction(inviteLink: String) :
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editChatInviteLink(inviteLink: String) = EditChatInviteLinkAction(inviteLink)

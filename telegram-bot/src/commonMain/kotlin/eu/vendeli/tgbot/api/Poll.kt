@@ -28,8 +28,10 @@ class SendPollAction(question: String, pollOptions: List<String>) :
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun poll(question: String, options: List<String>) = SendPollAction(question, options)
 fun poll(question: String, options: ListingBuilder<String>.() -> Unit) = poll(question, ListingBuilder.build(options))
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun poll(question: String, vararg options: String) = poll(question, options.toList())
 fun sendPoll(question: String, options: ListingBuilder<String>.() -> Unit) = poll(question, options)

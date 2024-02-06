@@ -17,4 +17,5 @@ class GetMyNameAction(languageCode: String? = null) : SimpleAction<BotName>() {
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun getMyName(languageCode: String? = null) = GetMyNameAction(languageCode)

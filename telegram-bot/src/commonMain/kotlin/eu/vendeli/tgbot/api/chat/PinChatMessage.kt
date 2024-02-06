@@ -17,5 +17,6 @@ class PinChatMessageAction(messageId: Long, disableNotification: Boolean? = null
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun pinChatMessage(messageId: Long, disableNotification: Boolean? = null) =
     PinChatMessageAction(messageId, disableNotification)

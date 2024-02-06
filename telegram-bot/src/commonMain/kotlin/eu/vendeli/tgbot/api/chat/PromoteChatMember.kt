@@ -22,6 +22,8 @@ class PromoteChatMemberAction(userId: Long) :
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun promoteChatMember(userId: Long) = PromoteChatMemberAction(userId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun promoteChatMember(user: User) = promoteChatMember(user.id)

@@ -23,6 +23,7 @@ class SetChatPermissionsAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setChatPermissions(
     permissions: ChatPermissions,
     useIndependentChatPermissions: Boolean? = null,

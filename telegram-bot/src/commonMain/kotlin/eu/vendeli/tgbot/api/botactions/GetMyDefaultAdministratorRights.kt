@@ -18,5 +18,6 @@ class GetMyDefaultAdministratorRightsAction(forChannel: Boolean? = null) :
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun getMyDefaultAdministratorRights(forChannel: Boolean? = null) =
     GetMyDefaultAdministratorRightsAction(forChannel)

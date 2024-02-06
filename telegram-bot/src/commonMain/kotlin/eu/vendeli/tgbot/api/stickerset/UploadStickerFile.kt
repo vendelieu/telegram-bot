@@ -25,5 +25,6 @@ class UploadStickerFileAction(sticker: InputFile, stickerFormat: StickerFormat) 
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun uploadStickerFile(sticker: InputFile, stickerFormat: StickerFormat) =
     UploadStickerFileAction(sticker, stickerFormat)

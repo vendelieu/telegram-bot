@@ -11,8 +11,8 @@ fun interface ClassManager {
     /**
      * Get instance of Class where Command/Input holds.
      *
-     * @param clazz
+     * @param kClass
      * @param initParams
      */
-    fun getInstance(clazz: KClass<*>, vararg initParams: Any?): Any
+    fun getInstance(kClass: KClass<*>, vararg initParams: Any?): Any
 }

@@ -6,16 +6,16 @@ import eu.vendeli.tgbot.interfaces.ConfigLoader
 import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.interfaces.UserData
-import eu.vendeli.tgbot.types.internal.HttpLogLevel
-import eu.vendeli.tgbot.types.internal.LogLevel
+import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 
+@Suppress("NOTHING_TO_INLINE")
 object EnvConfigLoaderImpl : ConfigLoader {
     private const val PREFIX = "TGBOT_"
     internal var envVars = System.getenv().filter { it.key.startsWith(PREFIX) }
 
     override val token: String by lazy {
-        getVal("TOKEN") ?: throw NullPointerException("Env parameter ${PREFIX}TOKEN not found")
+        getVal("TOKEN") ?: error("Env parameter ${PREFIX}TOKEN not found")
     }
 
     override val commandsPackage: String? = getVal("COMMANDS_PACKAGE")
@@ -43,8 +43,7 @@ object EnvConfigLoaderImpl : ConfigLoader {
         getVal("HTTPC_MAX_RQ_RETRY")?.toIntOrNull()?.also { httpClient.maxRequestRetry = it }
         getVal("HTTPC_RETRY_DELAY")?.toLongOrNull()?.also { httpClient.retryDelay = it }
         // logging
-        getVal("LOG_BOT_LVL")?.also { logging.botLogLevel = LogLevel.valueOf(it) }
-        getVal("LOG_HTTP_LVL")?.also { logging.httpLogLevel = HttpLogLevel.valueOf(it) }
+        getVal("LOG_BOT_LVL")?.also { botLogLevel = LogLvl.valueOf(it) }
         // rateLimits
         getVal("RATES_PERIOD")?.toLongOrNull()?.also { rateLimiter.limits.period = it }
         getVal("RATES_RATE")?.toLongOrNull()?.also { rateLimiter.limits.rate = it }

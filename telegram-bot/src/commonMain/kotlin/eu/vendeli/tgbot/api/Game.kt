@@ -25,6 +25,8 @@ class SendGameAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun sendGame(gameShortName: String) = game(gameShortName)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun game(gameShortName: String) = SendGameAction(gameShortName)

@@ -17,4 +17,5 @@ class RevokeChatInviteLinkAction(inviteLink: String) : Action<ChatInviteLink>() 
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun revokeChatInviteLink(inviteLink: String) = RevokeChatInviteLinkAction(inviteLink)

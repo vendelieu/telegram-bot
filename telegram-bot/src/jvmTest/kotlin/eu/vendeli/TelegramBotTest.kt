@@ -12,7 +12,6 @@ import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
-import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.MessageUpdate
@@ -218,7 +217,7 @@ class TelegramBotTest : BotTestContext() {
     @Test
     fun `env configure testing`() {
         // when token not specified np will be thrown
-        shouldThrow<NullPointerException> { TelegramBot() }
+        shouldThrow<NullPointerException> { TelegramBot(EnvConfigLoaderImpl) }
 
         EnvConfigLoaderImpl.envVars = mapOf(
             "TGBOT_TOKEN" to "test",
@@ -243,7 +242,7 @@ class TelegramBotTest : BotTestContext() {
             "TGBOT_CMDPRS_PARAMVAL_DELIMITER" to "+",
             "TGBOT_CMDPRS_RESTRICT_SPC_INCMD" to "false",
         )
-        shouldNotThrowAny { TelegramBot() }.config.apply {
+        shouldNotThrowAny { TelegramBot(EnvConfigLoaderImpl) }.config.apply {
             apiHost shouldBe "tg.com"
             inputListener::class.java shouldBe
                 Class.forName("eu.vendeli.tgbot.implementations.InputListenerMapImpl")
@@ -258,8 +257,7 @@ class TelegramBotTest : BotTestContext() {
             httpClient.maxRequestRetry shouldBe 13
             httpClient.retryDelay shouldBe 1000
 
-            logging.botLogLevel shouldBe LogLvl.WARN
-            logging.httpLogLevel shouldBe HttpLogLevel.ALL
+            botLogLevel shouldBe LogLvl.WARN
 
             rateLimiter.limits.period shouldBe 14
             rateLimiter.limits.rate shouldBe 15

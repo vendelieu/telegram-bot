@@ -27,10 +27,12 @@ class AnswerInlineQueryAction(inlineQueryId: String, results: List<InlineQueryRe
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun answerInlineQuery(inlineQueryId: String, results: List<InlineQueryResult>) =
     AnswerInlineQueryAction(inlineQueryId, results)
 fun answerInlineQuery(inlineQueryId: String, results: ListingBuilder<InlineQueryResult>.() -> Unit) =
     answerInlineQuery(inlineQueryId, ListingBuilder.build(results))
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun answerInlineQuery(inlineQueryId: String, vararg result: InlineQueryResult) =
     answerInlineQuery(inlineQueryId, result.asList())

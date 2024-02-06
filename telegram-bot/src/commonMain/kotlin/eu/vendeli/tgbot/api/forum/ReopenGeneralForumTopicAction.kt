@@ -23,5 +23,5 @@ class ReopenGeneralForumTopicAction : Action<Boolean>() {
  * and must have the can_manage_topics administrator rights.
  * Returns True on success.
  */
-
+@Suppress("NOTHING_TO_INLINE")
 inline fun reopenGeneralForumTopic() = ReopenGeneralForumTopicAction()

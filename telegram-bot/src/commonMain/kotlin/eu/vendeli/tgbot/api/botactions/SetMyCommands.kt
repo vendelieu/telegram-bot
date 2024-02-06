@@ -26,9 +26,11 @@ class SetMyCommandsAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setMyCommands(languageCode: String? = null, scope: BotCommandScope? = null, command: List<BotCommand>) =
     SetMyCommandsAction(languageCode, scope, command)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setMyCommands(languageCode: String? = null, scope: BotCommandScope? = null, vararg command: BotCommand) =
     setMyCommands(languageCode, scope, command.asList())
 fun setMyCommands(languageCode: String? = null, scope: BotCommandScope? = null, block: BotCommandsBuilder.() -> Unit) =

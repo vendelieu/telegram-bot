@@ -21,6 +21,8 @@ class UnbanChatMemberAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun unbanChatMember(userId: Long, onlyIfBanned: Boolean? = null) = UnbanChatMemberAction(userId, onlyIfBanned)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun unbanChatMember(user: User, onlyIfBanned: Boolean? = null) = unbanChatMember(user.id, onlyIfBanned)

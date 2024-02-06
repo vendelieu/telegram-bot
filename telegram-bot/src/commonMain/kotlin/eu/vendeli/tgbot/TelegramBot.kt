@@ -2,7 +2,6 @@ package eu.vendeli.tgbot
 
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
-import eu.vendeli.tgbot.implementations.EnvConfigLoaderImpl
 import eu.vendeli.tgbot.interfaces.ConfigLoader
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
@@ -10,8 +9,6 @@ import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.BotConfigurator
 import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.Logging
-import eu.vendeli.tgbot.utils.asClass
-import eu.vendeli.tgbot.utils.getActions
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.readBytes
@@ -33,7 +30,7 @@ class TelegramBot(
     /**
      * Constructor to build through configuration loader.
      */
-    constructor(configLoader: ConfigLoader = EnvConfigLoaderImpl) : this(
+    constructor(configLoader: ConfigLoader) : this(
         configLoader.token,
         configLoader.commandsPackage,
     ) {
@@ -65,13 +62,14 @@ class TelegramBot(
      * Current bot UpdateHandler instance
      */
     val update by lazy {
-        val postFix = commandsPackage?.let { "_$it".replace(".", "_") } ?: ""
-        val codegenActivities = "eu.vendeli.tgbot.ActivitiesDataKt".asClass().getActions()
-            ?: "eu.vendeli.tgbot.ActivitiesData${postFix}Kt".asClass().getActions(postFix)
-            ?: error("Not found generated actions, check if ksp plugin is connected correctly.")
+        val activities = (
+            if (commandsPackage != null) __ACTIVITIES[commandsPackage]
+            else __ACTIVITIES.entries.firstOrNull()?.value
+        )
+            ?: error("Not found generated actions, check if ksp plugin and ksp processor is connected correctly.")
 
         CodegenUpdateHandler(
-            codegenActivities,
+            activities,
             this,
         )
     }

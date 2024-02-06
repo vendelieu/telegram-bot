@@ -32,8 +32,10 @@ class SendMessageAction private constructor() :
         }
     }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun message(text: String) = SendMessageAction(text)
 fun message(block: EntitiesContextBuilder<SendMessageAction>.() -> String) = SendMessageAction(block)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun sendMessage(text: String) = message(text)
 fun sendMessage(block: EntitiesContextBuilder<SendMessageAction>.() -> String) = message(block)

@@ -25,5 +25,5 @@ class CloseAction : SimpleAction<Boolean>() {
  * The method will return error 429 in the first 10 minutes after the bot is launched. Returns True on success.
  *
  */
-
+@Suppress("NOTHING_TO_INLINE")
 inline fun close() = CloseAction()

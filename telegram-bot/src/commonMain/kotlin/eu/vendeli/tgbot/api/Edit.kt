@@ -76,6 +76,7 @@ class EditMessageMediaAction :
         parameters["media"] = inputMedia.encodeWith(DynamicLookupSerializer)
     }
 
+    @Suppress("NOTHING_TO_INLINE")
     private inline fun handleMedia(inputMedia: InputMedia) {
         if (inputMedia.media is ImplicitFile.InpFile) {
             val media = inputMedia.media as ImplicitFile.InpFile
@@ -101,28 +102,40 @@ fun editMessageText(block: EntitiesContextBuilder<EditMessageTextAction>.() -> S
 inline fun editText(messageId: Long, block: () -> String) = EditMessageTextAction(messageId, text = block())
 fun editText(block: EntitiesContextBuilder<EditMessageTextAction>.() -> String) = EditMessageTextAction(block)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editCaption(messageId: Long) = EditMessageCaptionAction(messageId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editCaption() = EditMessageCaptionAction()
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editMedia(messageId: Long, inputMedia: InputMedia) = EditMessageMediaAction(messageId, inputMedia)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editMedia(inputMedia: InputMedia) = EditMessageMediaAction(inputMedia)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editMarkup(messageId: Long) = EditMessageReplyMarkupAction(messageId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editMarkup() = EditMessageReplyMarkupAction()
 
 inline fun editMessageText(messageId: Long, block: () -> String) = editText(messageId, block)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editMessageCaption(messageId: Long) = editCaption(messageId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editMessageCaption() = editCaption()
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editMessageMedia(messageId: Long, inputMedia: InputMedia) = editMedia(messageId, inputMedia)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editMessageMedia(inputMedia: InputMedia) = editMedia(inputMedia)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editMessageReplyMarkup(messageId: Long) = editMarkup(messageId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editMessageReplyMarkup() = editMarkup()

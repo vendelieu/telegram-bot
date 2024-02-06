@@ -25,10 +25,12 @@ class SetPassportDataErrorsAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setPassportDataErrors(userId: Long, errors: List<PassportElementError>) =
     SetPassportDataErrorsAction(userId, errors)
 fun setPassportDataErrors(userId: Long, errors: ListingBuilder<PassportElementError>.() -> Unit) =
     setPassportDataErrors(userId, ListingBuilder.build(errors))
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setPassportDataError(userId: Long, vararg error: PassportElementError) =
     setPassportDataErrors(userId, error.asList())

@@ -1,17 +1,17 @@
 package eu.vendeli.tgbot.implementations
 
 import eu.vendeli.tgbot.interfaces.InputListener
+import io.ktor.util.collections.ConcurrentMap
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import java.util.concurrent.ConcurrentHashMap
 
 /**
  * [InputListener] implementation based on ConcurrentHashMap<Long, String>
  *
  */
 class InputListenerMapImpl : InputListener {
-    private val storage by lazy { ConcurrentHashMap<Long, String>() }
+    private val storage by lazy { ConcurrentMap<Long, String>() }
 
     /**
      * Set new waiting input

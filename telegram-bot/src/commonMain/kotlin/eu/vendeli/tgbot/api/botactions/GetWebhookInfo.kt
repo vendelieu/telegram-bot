@@ -12,4 +12,5 @@ class GetWebhookInfoAction : SimpleAction<WebhookInfo>() {
     override val returnType = getReturnType()
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun getWebhookInfo() = GetWebhookInfoAction()

@@ -42,9 +42,11 @@ class SetWebhookAction(url: String) :
         )
     }
 
+    @Suppress("NOTHING_TO_INLINE")
     private inline fun handleCert() {
         options.certificate?.also { handleImplicitFile(it.toImplicitFile(), "certificate") }
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setWebhook(url: String) = SetWebhookAction(url)

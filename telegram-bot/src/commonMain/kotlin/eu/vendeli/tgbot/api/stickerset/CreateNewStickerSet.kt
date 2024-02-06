@@ -41,6 +41,7 @@ class CreateNewStickerSetAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun createNewStickerSet(
     name: String,
     title: String,

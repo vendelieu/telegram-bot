@@ -26,5 +26,5 @@ class ReopenForumTopicAction(messageThreadId: Int) : Action<Boolean>() {
  * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights,
  * unless it is the creator of the topic. Returns True on success.
  */
-
+@Suppress("NOTHING_TO_INLINE")
 inline fun reopenForumTopic(messageThreadId: Int) = ReopenForumTopicAction(messageThreadId)

@@ -20,5 +20,5 @@ class GetForumTopicIconStickersAction : Action<List<Sticker>>() {
  * Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user.
  * Requires no parameters. Returns an Array of Sticker objects.
  */
-
+@Suppress("NOTHING_TO_INLINE")
 inline fun getForumTopicIconStickers() = GetForumTopicIconStickersAction()

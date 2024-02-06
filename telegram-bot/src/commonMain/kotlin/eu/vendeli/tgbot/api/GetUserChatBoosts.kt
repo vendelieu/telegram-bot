@@ -20,6 +20,8 @@ class GetUserChatBoostsAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun getUserChatBoosts(userId: Long) = GetUserChatBoostsAction(userId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun getUserChatBoosts(user: User) = getUserChatBoosts(user.id)

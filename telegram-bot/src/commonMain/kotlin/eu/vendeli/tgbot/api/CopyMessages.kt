@@ -30,17 +30,22 @@ class CopyMessagesAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun copyMessages(fromChatId: Identifier, messageIds: List<Long>) =
     CopyMessagesAction(fromChatId, messageIds)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun copyMessages(fromChatId: Long, vararg messageId: Long) =
     copyMessages(Identifier.from(fromChatId), messageId.asList())
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun copyMessages(fromChatId: String, vararg messageId: Long) =
     copyMessages(Identifier.from(fromChatId), messageId.asList())
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun copyMessages(fromChatId: User, vararg messageId: Long) =
     copyMessages(Identifier.from(fromChatId), messageId.asList())
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun copyMessages(fromChatId: Chat, vararg messageId: Long) =
     copyMessages(Identifier.from(fromChatId.id), messageId.asList())

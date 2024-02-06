@@ -24,6 +24,7 @@ class AddStickerToSetAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun addStickerToSet(name: String, input: InputSticker) = AddStickerToSetAction(name, input)
 
 inline fun addStickerToSet(name: String, input: () -> InputSticker) = AddStickerToSetAction(name, input())

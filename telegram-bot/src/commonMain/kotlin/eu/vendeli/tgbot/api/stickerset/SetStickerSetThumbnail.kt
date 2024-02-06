@@ -23,5 +23,6 @@ class SetStickerSetThumbnailAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setStickerSetThumbnail(name: String, thumbnail: ImplicitFile? = null) =
     SetStickerSetThumbnailAction(name, thumbnail)

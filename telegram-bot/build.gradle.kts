@@ -1,5 +1,6 @@
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.time.LocalDate
 
 plugins {
@@ -12,11 +13,13 @@ plugins {
 }
 
 kotlin {
-    jvm()
+    jvm {
+        withJava()
+    }
     js { nodejs() }
-//    mingwX64()
-//    linuxArm64()
-//    linuxX64()
+    mingwX64()
+    linuxArm64()
+    linuxX64()
     jvmToolchain(11)
 
     sourceSets {
@@ -26,6 +29,7 @@ kotlin {
                 implementation(libs.kotlin.datetime)
                 implementation(libs.kotlin.reflect)
 
+                implementation(libs.stately)
                 implementation(libs.ktor.client.core)
                 implementation(libs.logging)
 
@@ -83,19 +87,11 @@ buildscript {
 }
 
 tasks {
-//    compileKotlin {
-//        kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
-//        kotlinOptions.allWarningsAsErrors = true
-//        incremental = true
-//    }
-//
-//    compileTestKotlin {
-//        kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
-//    }
-//
-//    test {
-//        useJUnitPlatform()
-//    }
+    withType<KotlinCompile> {
+        doLast {
+            exclude("**/ActivitiesData.kt")
+        }
+    }
 
     dokkaHtml.configure {
         outputDirectory.set(layout.buildDirectory.asFile.orNull?.resolve("dokka"))

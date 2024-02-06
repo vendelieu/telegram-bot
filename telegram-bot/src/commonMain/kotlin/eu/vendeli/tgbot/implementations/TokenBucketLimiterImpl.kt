@@ -1,15 +1,15 @@
 package eu.vendeli.tgbot.implementations
 
+import co.touchlab.stately.concurrency.AtomicReference
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import io.ktor.util.collections.ConcurrentMap
 import kotlinx.coroutines.delay
 import kotlinx.datetime.Clock
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.Instant
 import kotlinx.datetime.until
-import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.atomic.AtomicReference
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.time.Duration.Companion.milliseconds
@@ -18,7 +18,7 @@ import kotlin.time.Duration.Companion.milliseconds
  * Default implementation of query limitation via [Token bucket](https://en.wikipedia.org/wiki/Token_bucket) algorithm.
  */
 class TokenBucketLimiterImpl : RateLimitMechanism {
-    private var state: ConcurrentHashMap<String, AtomicReference<BucketState>> = ConcurrentHashMap()
+    private var state: ConcurrentMap<String, AtomicReference<BucketState>> = ConcurrentMap()
     private val instant: Instant
         get() {
             return Clock.System.now()
@@ -37,7 +37,7 @@ class TokenBucketLimiterImpl : RateLimitMechanism {
 
     @ExperimentalFeature
     fun resetState() {
-        state = ConcurrentHashMap()
+        state = ConcurrentMap()
     }
 
     private suspend fun compareAndSet(key: String, compareAndSetFunction: (current: BucketState?) -> BucketState) {
@@ -45,11 +45,11 @@ class TokenBucketLimiterImpl : RateLimitMechanism {
         val currentStateValue = currentState?.get()
         val newStateValue = compareAndSetFunction(currentStateValue)
 
-        val putResult = state.putIfAbsent(key, AtomicReference(newStateValue))
+        val putResult = state[key]?.let { null } ?: state.put(key, AtomicReference(newStateValue))
 
         // Check if an item was added or updated after currentState read
         if ((currentState == null && putResult != null) || currentState?.compareAndSet(
-                currentStateValue,
+                currentStateValue!!,
                 newStateValue,
             ) == false
         ) {

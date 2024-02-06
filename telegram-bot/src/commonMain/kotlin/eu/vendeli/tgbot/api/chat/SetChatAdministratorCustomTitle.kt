@@ -18,8 +18,10 @@ class SetChatAdministratorCustomTitleAction(userId: Long, customTitle: String) :
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setChatAdministratorCustomTitle(userId: Long, customTitle: String) =
     SetChatAdministratorCustomTitleAction(userId, customTitle)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setChatAdministratorCustomTitle(user: User, customTitle: String) =
     setChatAdministratorCustomTitle(user.id, customTitle)

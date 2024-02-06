@@ -19,7 +19,9 @@ class SetChatPhotoAction(photo: ImplicitFile) : MediaAction<Boolean>() {
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setChatPhoto(file: ImplicitFile) = SetChatPhotoAction(file)
 inline fun setChatPhoto(block: () -> String) = setChatPhoto(block().toImplicitFile())
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setChatPhoto(file: InputFile) = setChatPhoto(file.toImplicitFile())

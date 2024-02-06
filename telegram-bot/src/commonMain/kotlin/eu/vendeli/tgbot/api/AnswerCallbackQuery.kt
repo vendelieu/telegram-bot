@@ -21,4 +21,5 @@ class AnswerCallbackQueryAction(callbackQueryId: String) :
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun answerCallbackQuery(callbackQueryId: String) = AnswerCallbackQueryAction(callbackQueryId)

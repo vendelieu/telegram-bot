@@ -18,6 +18,8 @@ class GetChatMemberAction(userId: Long) : Action<ChatMember>() {
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun getChatMember(userId: Long) = GetChatMemberAction(userId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun getChatMember(user: User) = getChatMember(user.id)

@@ -31,8 +31,10 @@ class SendVenueAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun venue(latitude: Float, longitude: Float, title: String, address: String) =
     SendVenueAction(latitude, longitude, title, address)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun sendVenue(latitude: Float, longitude: Float, title: String, address: String) =
     venue(latitude, longitude, title, address)

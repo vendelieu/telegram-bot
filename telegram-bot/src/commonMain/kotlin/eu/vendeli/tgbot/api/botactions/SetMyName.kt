@@ -17,4 +17,5 @@ class SetMyNameAction(name: String? = null, languageCode: String? = null) : Simp
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setMyName(name: String? = null, languageCode: String? = null) = SetMyNameAction(name, languageCode)

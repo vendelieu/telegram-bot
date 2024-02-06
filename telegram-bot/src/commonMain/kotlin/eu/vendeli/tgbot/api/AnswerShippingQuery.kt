@@ -28,6 +28,7 @@ class AnswerShippingQueryAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun answerShippingQuery(
     shippingQueryId: String,
     ok: Boolean = true,
@@ -42,6 +43,7 @@ fun answerShippingQuery(
     shippingOptions: ListingBuilder<ShippingOption>.() -> Unit,
 ) = answerShippingQuery(shippingQueryId, ok, ListingBuilder.build(shippingOptions), errorMessage)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun answerShippingQuery(
     shippingQueryId: String,
     ok: Boolean = true,

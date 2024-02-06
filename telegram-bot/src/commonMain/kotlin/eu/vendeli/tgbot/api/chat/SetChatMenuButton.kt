@@ -18,4 +18,5 @@ class SetChatMenuButtonAction(menuButton: MenuButton) : Action<Boolean>() {
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setChatMenuButton(menuButton: MenuButton) = SetChatMenuButtonAction(menuButton)

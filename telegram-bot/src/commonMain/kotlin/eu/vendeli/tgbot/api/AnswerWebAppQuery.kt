@@ -24,6 +24,7 @@ class AnswerWebAppQueryAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun answerWebAppQuery(
     webAppQueryId: String,
     result: InlineQueryResult,

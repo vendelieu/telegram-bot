@@ -20,4 +20,5 @@ class SetStickerSetTitleAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setStickerSetTitle(name: String, title: String) = SetStickerSetTitleAction(name, title)

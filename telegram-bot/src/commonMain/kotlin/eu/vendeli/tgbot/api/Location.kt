@@ -27,6 +27,8 @@ class SendLocationAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun sendLocation(latitude: Float, longitude: Float) = location(latitude, longitude)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun location(latitude: Float, longitude: Float) = SendLocationAction(latitude, longitude)

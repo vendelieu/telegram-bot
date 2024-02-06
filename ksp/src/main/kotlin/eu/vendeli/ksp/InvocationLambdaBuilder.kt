@@ -55,7 +55,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
         if (!isTopLvl && !isObject && function.functionKind != FunctionKind.STATIC) {
             parametersEnumeration = "inst, "
             add(
-                "val inst = classManager.getInstance(%L::class.java) as %L\n",
+                "val inst = classManager.getInstance(%L::class) as %L\n",
                 funQualifier,
                 funQualifier,
             )
@@ -107,7 +107,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 in injectableTypes.keys -> {
                     val type = injectableTypes[typeName]!!
                     addImport(type.packageName, type.simpleName)
-                    "(classManager.getInstance(${type.simpleName}::class.java) as ${type.simpleName}).get(update, bot)"
+                    "(classManager.getInstance(${type.simpleName}::class) as ${type.simpleName}).get(update, bot)"
                 }
 
                 else -> "null"

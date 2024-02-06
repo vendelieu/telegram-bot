@@ -22,9 +22,7 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
             mechanism = limiter
             limits = RateLimits(10000, 5)
         }
-        logging {
-            botLogLevel = LogLvl.DEBUG
-        }
+        botLogLevel = LogLvl.DEBUG
     }
 
     @Test

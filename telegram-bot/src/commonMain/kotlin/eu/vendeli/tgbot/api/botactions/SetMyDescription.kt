@@ -20,6 +20,7 @@ class SetMyDescriptionAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun setMyDescription(
     description: String? = null,
     languageCode: String? = null,

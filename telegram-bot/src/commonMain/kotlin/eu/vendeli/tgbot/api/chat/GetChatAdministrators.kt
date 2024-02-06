@@ -12,4 +12,5 @@ class GetChatAdministratorsAction : Action<List<ChatMember>>() {
     override val returnType = getReturnType()
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun getChatAdministrators() = GetChatAdministratorsAction()

@@ -31,9 +31,11 @@ class EditMessageLiveLocationAction :
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editMessageLiveLocation(messageId: Long, latitude: Float, longitude: Float) =
     EditMessageLiveLocationAction(messageId, latitude, longitude)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun editMessageLiveLocation(
     latitude: Float,
     longitude: Float,

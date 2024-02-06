@@ -19,10 +19,12 @@ class SendChatAction(action: ChatAction, messageThreadId: Int? = null) : Action<
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun chatAction(action: ChatAction, messageThreadId: Int? = null) = SendChatAction(action, messageThreadId)
 
 inline fun chatAction(messageThreadId: Int? = null, block: () -> ChatAction) = chatAction(block(), messageThreadId)
 
 inline fun sendChatAction(messageThreadId: Int? = null, block: () -> ChatAction) = chatAction(block(), messageThreadId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun sendChatAction(action: ChatAction, messageThreadId: Int? = null) = chatAction(action, messageThreadId)

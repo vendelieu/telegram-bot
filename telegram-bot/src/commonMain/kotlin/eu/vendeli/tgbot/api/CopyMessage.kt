@@ -58,13 +58,17 @@ class CopyMessageAction(
  * (or channel username in the format @channelusername)
  * @param messageId Message identifier in the chat specified in fromChatId
  */
-
+@Suppress("NOTHING_TO_INLINE")
 inline fun copyMessage(fromChatId: Identifier, messageId: Long) = CopyMessageAction(fromChatId, messageId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun copyMessage(fromChatId: Long, messageId: Long) = copyMessage(Identifier.from(fromChatId), messageId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun copyMessage(fromChatId: String, messageId: Long) = copyMessage(Identifier.from(fromChatId), messageId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun copyMessage(fromChatId: User, messageId: Long) = copyMessage(Identifier.from(fromChatId), messageId)
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun copyMessage(fromChatId: Chat, messageId: Long) = copyMessage(Identifier.from(fromChatId.id), messageId)

@@ -27,7 +27,7 @@ private val zeroRateLimits: RateLimits = RateLimits(0, 0)
 private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
     ("test" to MESSAGE) to (
         suspendCall { classManager, update, user, bot, parameters ->
-            val inst = classManager.getInstance(TgAnnotationsModel::class.java) as
+            val inst = classManager.getInstance(TgAnnotationsModel::class) as
                 TgAnnotationsModel
             TgAnnotationsModel::test.invoke(
                 inst,
@@ -37,7 +37,7 @@ private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
     ),
     ("STOP" to MESSAGE) to (
         suspendCall { classManager, update, user, bot, parameters ->
-            val inst = classManager.getInstance(TgAnnotationsModel::class.java) as
+            val inst = classManager.getInstance(TgAnnotationsModel::class) as
                 TgAnnotationsModel
             val param0 = bot
             TgAnnotationsModel::stopHandling.invoke(
@@ -63,7 +63,7 @@ private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
 private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
     "testInp" to (
         suspendCall { classManager, update, user, bot, parameters ->
-            val inst = classManager.getInstance(TgAnnotationsModel::class.java) as
+            val inst = classManager.getInstance(TgAnnotationsModel::class) as
                 TgAnnotationsModel
             TgAnnotationsModel::test2.invoke(
                 inst,
@@ -92,7 +92,7 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 parameters,
             ->
             if (user == null) return@suspendCall Unit
-            val inst = classManager.getInstance(Conversation.Name::class.java) as
+            val inst = classManager.getInstance(Conversation.Name::class) as
                 Conversation.Name
             val nextLink: String? = """eu.vendeli.fixtures.Conversation.Age"""
             val breakPoint = Conversation.Name.breakCondition?.invoke(user, update, bot) ?: false
@@ -117,8 +117,8 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 parameters,
             ->
             if (user == null) return@suspendCall Unit
-            val inst = classManager.getInstance(Conversation.Age::class.java) as
-                Conversation.Age
+            @Suppress("UNUSED_VARIABLE")
+            val inst = classManager.getInstance(Conversation.Age::class) as Conversation.Age
             val nextLink: String? = null
             val breakPoint = Conversation.Age.breakCondition?.invoke(user, update, bot) ?: false
             if (breakPoint && Conversation.Age.retryAfterBreak) bot.inputListener[user] =
@@ -138,7 +138,7 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
 private val `TG_$REGEX`: Map<Regex, Invocable> = mapOf(
     Regex("test colou?r") to (
         suspendCall { classManager, update, user, bot, parameters ->
-            val inst = classManager.getInstance(RegexCommands::class.java) as
+            val inst = classManager.getInstance(RegexCommands::class) as
                 RegexCommands
             val param0 = bot
             RegexCommands::testR.invoke(
@@ -151,14 +151,14 @@ private val `TG_$REGEX`: Map<Regex, Invocable> = mapOf(
 
 private val `TG_$UPDATE_TYPES`: Map<UpdateType, InvocationLambda> = mapOf(
     MESSAGE to suspendCall { classManager, update, user, bot, parameters ->
-        val inst = classManager.getInstance(TgAnnotationsModel::class.java) as
+        val inst = classManager.getInstance(TgAnnotationsModel::class) as
             TgAnnotationsModel
         TgAnnotationsModel::updateHandler.invoke(
             inst,
         )
     },
     CALLBACK_QUERY to suspendCall { classManager, update, user, bot, parameters ->
-        val inst = classManager.getInstance(TgAnnotationsModel::class.java) as
+        val inst = classManager.getInstance(TgAnnotationsModel::class) as
             TgAnnotationsModel
         TgAnnotationsModel::updateHandler.invoke(
             inst,
@@ -173,7 +173,7 @@ private val `TG_$UNPROCESSED`: InvocationLambda? = suspendCall {
         bot,
         parameters,
     ->
-    val inst = classManager.getInstance(TgAnnotationsModel::class.java) as
+    val inst = classManager.getInstance(TgAnnotationsModel::class) as
         TgAnnotationsModel
     TgAnnotationsModel::test3.invoke(
         inst,

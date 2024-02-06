@@ -74,11 +74,15 @@ sealed class MessageOrigin(val type: String) {
             get() = authorSignature
     }
 
+    @Suppress("NOTHING_TO_INLINE")
     inline fun asUserOrigin() = this as? UserOrigin
 
+    @Suppress("NOTHING_TO_INLINE")
     inline fun asHiddenUser() = this as? HiddenUser
 
+    @Suppress("NOTHING_TO_INLINE")
     inline fun asChatOrigin() = this as? ChatOrigin
 
+    @Suppress("NOTHING_TO_INLINE")
     inline fun asChannel() = this as? Channel
 }

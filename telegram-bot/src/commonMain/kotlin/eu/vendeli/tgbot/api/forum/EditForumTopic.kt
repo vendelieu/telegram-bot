@@ -32,6 +32,6 @@ class EditForumTopicAction(
  * The bot must be an administrator in the chat for this to work and must have canManageTopics administrator rights,
  * unless it is the creator of the topic. Returns True on success.
  */
-
+@Suppress("NOTHING_TO_INLINE")
 inline fun editForumTopic(messageThreadId: Int, name: String? = null, iconCustomEmojiId: String? = null) =
     EditForumTopicAction(messageThreadId, name, iconCustomEmojiId)
