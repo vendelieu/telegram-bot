@@ -46,7 +46,6 @@ kotlin {
                 implementation(libs.mockk)
             }
         }
-
         val jvmMain by getting {
             dependencies {
                 implementation(libs.ktor.client.cio)
@@ -55,6 +54,11 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 implementation(libs.ktor.client.js)
+            }
+        }
+        val nativeMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.cio)
             }
         }
     }
