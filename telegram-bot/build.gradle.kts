@@ -13,9 +13,7 @@ plugins {
 }
 
 kotlin {
-    jvm {
-        withJava()
-    }
+    jvm { withJava() }
     js { nodejs() }
     mingwX64()
     linuxArm64()
@@ -56,7 +54,17 @@ kotlin {
                 implementation(libs.ktor.client.js)
             }
         }
-        val nativeMain by getting {
+        val linuxArm64Main by getting {
+            dependencies {
+                implementation(libs.ktor.client.cio)
+            }
+        }
+        val linuxX64Main by getting {
+            dependencies {
+                implementation(libs.ktor.client.cio)
+            }
+        }
+        val mingwX64Main by getting {
             dependencies {
                 implementation(libs.ktor.client.cio)
             }
