@@ -52,11 +52,13 @@ class ActivityProcessor(
 
         fileSpec.apply {
             val paramInitBlock = StringBuilder()
+            paramInitBlock.append("mapOf(")
             (targetPackage ?: listOf("default")).forEachIndexed { idx, pkg ->
                 val block = "listOf(__TG_COMMANDS$idx, __TG_INPUTS$idx, __TG_REGEX$idx," +
-                    " __TG_UPDATE_TYPES$idx, __TG_UNPROCESSED$idx),"
-                paramInitBlock.append("\"$pkg\" to $block")
+                    " __TG_UPDATE_TYPES$idx, __TG_UNPROCESSED$idx)"
+                paramInitBlock.append("\"$pkg\" to $block,")
             }
+            paramInitBlock.append(")")
             addProperty(
                 PropertySpec.builder(
                     "__ACTIVITIES",
@@ -81,7 +83,7 @@ class ActivityProcessor(
 
     private fun processPackage(fileSpec: FileSpec.Builder, resolver: Resolver, target: Pair<Int, String>? = null) {
         val pkg = target?.second
-        val idxPostfix = target?.first?.let { "$it" } ?: ""
+        val idxPostfix = target?.first?.let { "$it" } ?: "0"
 
         val commandHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, CommandHandler::class, CallbackQuery::class)
         val inputHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, InputHandler::class)

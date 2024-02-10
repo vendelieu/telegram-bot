@@ -3,22 +3,30 @@ import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.time.LocalDate
 
+private val javaTargetVer = JavaVersion.VERSION_11
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.dokka)
     alias(libs.plugins.ktlinter)
     alias(libs.plugins.deteKT)
     alias(libs.plugins.kover)
+    alias(libs.plugins.dokka)
+    id("publish")
 }
 
 kotlin {
-    jvm { withJava() }
+    jvm {
+        withJava()
+        compilations.all {
+            kotlinOptions.jvmTarget = javaTargetVer.majorVersion
+        }
+    }
     js { nodejs() }
     mingwX64()
     linuxArm64()
     linuxX64()
-    jvmToolchain(11)
+    jvmToolchain(javaTargetVer.majorVersion.toInt())
 
     sourceSets {
         val commonMain by getting {
@@ -80,10 +88,11 @@ kotlin {
 }
 
 group = "eu.vendeli"
-version = providers.gradleProperty("libVersion").getOrElse("dev")
-description = "Telegram Bot API wrapper, with handy Kotlin DSL."
-
-apply(from = "../publishing.gradle.kts")
+libraryData {
+    name.set("Telegram Bot")
+    description.set("Telegram Bot API wrapper, with handy Kotlin DSL.")
+    version = providers.gradleProperty("libVersion").getOrElse("dev")
+}
 
 detekt {
     buildUponDefaultConfig = true
@@ -107,7 +116,7 @@ tasks {
     dokkaHtml.configure {
         outputDirectory.set(layout.buildDirectory.asFile.orNull?.resolve("dokka"))
         dokkaSourceSets {
-            named("main") {
+            collectionSchema.elements.forEach {
                 moduleName.set("Telegram Bot")
             }
         }

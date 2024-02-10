@@ -1,19 +1,27 @@
 val sonatypeUsername = (project.findProperty("sonatypeUsername") as String?) ?: ""
 val sonatypePassword = (project.findProperty("sonatypePassword") as String?) ?: ""
 
-apply(plugin = "maven-publish")
-apply(plugin = "signing")
+plugins {
+    `maven-publish`
+    signing
+}
 
-configure<PublishingExtension> {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = project.group.toString()
-            artifactId = project.name
-            version = project.version.toString()
+val libraryData = extensions.create("libraryData", PublishingExtension::class)
 
+val stubJavadoc by tasks.creating(Jar::class) {
+    archiveClassifier.set("javadoc")
+}
+
+publishing {
+    publications.configureEach {
+        if (this is MavenPublication) {
+            if (name != "kotlinMultiplatform") {
+                artifact(stubJavadoc)
+            }
             pom {
-                name.set(artifactId)
-                description.set(project.description)
+                name = libraryData.name
+                description = libraryData.description
+
                 url.set("https://github.com/vendelieu/telegram-bot")
                 licenses {
                     license {
@@ -36,20 +44,25 @@ configure<PublishingExtension> {
                 }
             }
         }
-
-        repositories {
-            maven {
-                credentials {
-                    username = sonatypeUsername
-                    password = sonatypePassword
-                }
-                url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+    }
+    repositories {
+        maven {
+            credentials {
+                username = sonatypeUsername
+                password = sonatypePassword
             }
-        }
-        configure<SigningExtension> {
-            if(sonatypeUsername.isNotEmpty() && sonatypePassword.isNotEmpty()) {
-                sign((extensions["publishing"] as PublishingExtension).publications["maven"])
-            }
+            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
         }
     }
+}
+
+signing {
+    if (sonatypeUsername.isNotEmpty() && sonatypePassword.isNotEmpty()) {
+        sign(publishing.publications)
+    }
+}
+
+tasks.withType<AbstractPublishToMaven>().configureEach {
+    val signingTasks = tasks.withType<Sign>()
+    mustRunAfter(signingTasks)
 }
