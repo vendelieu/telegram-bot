@@ -49,7 +49,8 @@ import kotlin.reflect.KClass
 internal typealias FileBuilder = FileSpec.Builder
 
 internal val activitiesType = Map::class.asTypeName().parameterizedBy(
-    STRING, List::class.asTypeName().parameterizedBy(ANY.copy(true)),
+    STRING,
+    List::class.asTypeName().parameterizedBy(ANY.copy(true)),
 )
 internal val invocableType = TypeVariableName("Invocable")
 internal val chainLinkClass = ChainLink::class.asTypeName()

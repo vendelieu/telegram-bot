@@ -12,7 +12,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNamingStrategy
 
-internal fun TelegramBot.getConfiguredHttpClient() = config.httpClient.run {
+internal fun TelegramBot.getConfiguredHttpClient() = config.httpClient.run cfg@{
     HttpClient {
         install("RequestLogging") {
             sendPipeline.intercept(HttpSendPipeline.Monitoring) {
@@ -21,21 +21,20 @@ internal fun TelegramBot.getConfiguredHttpClient() = config.httpClient.run {
         }
 
         install(HttpTimeout) {
-            requestTimeoutMillis = requestTimeoutMillis
-            connectTimeoutMillis = connectTimeoutMillis
-            socketTimeoutMillis = socketTimeoutMillis
+            requestTimeoutMillis = this@cfg.requestTimeoutMillis
+            connectTimeoutMillis = this@cfg.connectTimeoutMillis
+            socketTimeoutMillis = this@cfg.socketTimeoutMillis
         }
 
         install(HttpRequestRetry) {
-            retryStrategy?.let { retryIf(maxRequestRetry, it) }
-            retryOnExceptionOrServerErrors(maxRequestRetry)
+            retryStrategy?.let { retryIf(maxRequestRetry, it) } ?: retryOnExceptionOrServerErrors(maxRequestRetry)
             delayMillis { retry ->
                 retry * retryDelay
             }
         }
 
         engine {
-            proxy = this@run.proxy
+            proxy = this@cfg.proxy
         }
 
         defaultRequest {

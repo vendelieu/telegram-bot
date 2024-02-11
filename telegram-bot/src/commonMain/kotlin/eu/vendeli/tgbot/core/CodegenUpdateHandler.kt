@@ -1,7 +1,6 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.FailedUpdate
@@ -107,7 +106,7 @@ class CodegenUpdateHandler internal constructor(
         }.onFailure {
             logger.error(
                 it,
-            ) { "Method ${second.qualifier} > ${second.function} invocation error at handling update: $pUpdate" }
+            ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $pUpdate" }
             caughtExceptions.send(FailedUpdate(it.cause ?: it, pUpdate.update))
         }.onSuccess {
             logger.info { "Handled update#${pUpdate.updateId} to method ${second.qualifier + "::" + second.function}" }

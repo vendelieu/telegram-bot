@@ -3,6 +3,7 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.types.internal.LogLvl
 import korlibs.logger.BaseConsole
 import korlibs.logger.BaseConsole.Kind
+import kotlinx.datetime.Clock
 
 abstract class Logger(private val id: String) {
     abstract fun setLevel(level: LogLvl)
@@ -13,7 +14,7 @@ abstract class Logger(private val id: String) {
     abstract fun error(throwable: Throwable? = null, message: () -> String): Unit?
 }
 
-internal open class KorLogger(id: String) : Logger(id) {
+internal open class KorLogger(private val id: String) : Logger(id) {
     private val logger = BaseConsole()
 
     private var lvl = Kind.INFO
@@ -36,8 +37,15 @@ internal open class KorLogger(id: String) : Logger(id) {
     override fun trace(message: () -> String) = log(Kind.TRACE) { message() }
     override fun error(throwable: Throwable?, message: () -> String) = log(Kind.ERROR, throwable) { message() }
 
+    @Suppress("NOTHING_TO_INLINE")
+    private inline fun String.logEntry(
+        kind: Kind,
+    ) = "${Clock.System.now()} [$id] $kind $this"
     private inline fun log(level: Kind, throwable: Throwable? = null, message: () -> String): Unit? =
-        if (level.ordinal <= lvl.ordinal) logger.log(level, throwable, message()) else null
+        if (level.ordinal <= lvl.ordinal)
+            throwable?.let { logger.log(level, message().logEntry(level), it) }
+                ?: logger.log(level, message().logEntry(level))
+        else null
 }
 
 internal open class Logging(id: String = "TelegramBot") {
