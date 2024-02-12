@@ -2,10 +2,12 @@ package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
+import eu.vendeli.tgbot.types.internal.LogLvl
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.HttpSendPipeline
 import io.ktor.client.request.header
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -18,6 +20,11 @@ internal fun TelegramBot.getConfiguredHttpClient() = config.httpClient.run cfg@{
             sendPipeline.intercept(HttpSendPipeline.Monitoring) {
                 logger.trace { "TgApiRequest: ${context.method} ${context.url.buildString()}" }
             }
+        }
+
+        install(Logging) {
+            logger = KorLogger("HttpClient").apply { setLevel(LogLvl.TRACE) }
+            level = config.logging.httpLogLevel.toKtorLvl()
         }
 
         install(HttpTimeout) {

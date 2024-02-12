@@ -4,7 +4,6 @@ import eu.vendeli.tgbot.implementations.ClassManagerImpl
 import eu.vendeli.tgbot.implementations.InputListenerMapImpl
 import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.interfaces.InputListener
-import eu.vendeli.tgbot.types.internal.LogLvl
 
 /**
  * The class containing the bot configuration.
@@ -17,9 +16,9 @@ data class BotConfiguration(
     var apiHost: String = "api.telegram.org",
     var inputListener: InputListener = InputListenerMapImpl(),
     var classManager: ClassManager = ClassManagerImpl(),
-    var botLogLevel: LogLvl = LogLvl.INFO,
     internal var rateLimiter: RateLimiterConfiguration = RateLimiterConfiguration(),
     internal var httpClient: HttpConfiguration = HttpConfiguration(),
+    internal var logging: LoggingConfiguration = LoggingConfiguration(),
     internal var updatesListener: UpdatesListenerConfiguration = UpdatesListenerConfiguration(),
     internal var context: ContextConfiguration = ContextConfiguration(),
     internal var commandParsing: CommandParsingConfiguration = CommandParsingConfiguration(),
@@ -29,6 +28,13 @@ data class BotConfiguration(
      */
     fun httpClient(block: HttpConfiguration.() -> Unit) {
         httpClient.block()
+    }
+
+    /**
+     * Function for configuring logging. See [LoggingConfiguration].
+     */
+    fun logging(block: LoggingConfiguration.() -> Unit) {
+        logging.block()
     }
 
     /**
@@ -65,7 +71,7 @@ data class BotConfiguration(
         classManager = new.classManager
         rateLimiter = new.rateLimiter
         httpClient = new.httpClient
-        botLogLevel = new.botLogLevel
+        logging = new.logging
         rateLimiter = new.rateLimiter
         updatesListener = new.updatesListener
         context = new.context

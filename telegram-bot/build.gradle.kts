@@ -37,6 +37,7 @@ kotlin {
 
                 implementation(libs.stately)
                 implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.logging)
                 implementation(libs.logging)
 
                 api(libs.coroutines.core)

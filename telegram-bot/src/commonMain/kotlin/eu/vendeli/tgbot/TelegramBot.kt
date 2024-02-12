@@ -55,7 +55,7 @@ class TelegramBot(
     val chatData get() = config.context.chatData
 
     init {
-        logger.setLevel(config.botLogLevel)
+        logger.setLevel(config.logging.botLogLevel)
     }
 
     /**

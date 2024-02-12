@@ -43,7 +43,7 @@ object EnvConfigLoaderImpl : ConfigLoader {
         getVal("HTTPC_MAX_RQ_RETRY")?.toIntOrNull()?.also { httpClient.maxRequestRetry = it }
         getVal("HTTPC_RETRY_DELAY")?.toLongOrNull()?.also { httpClient.retryDelay = it }
         // logging
-        getVal("LOG_BOT_LVL")?.also { botLogLevel = LogLvl.valueOf(it) }
+        getVal("LOG_BOT_LVL")?.also { logging.botLogLevel = LogLvl.valueOf(it) }
         // rateLimits
         getVal("RATES_PERIOD")?.toLongOrNull()?.also { rateLimiter.limits.period = it }
         getVal("RATES_RATE")?.toLongOrNull()?.also { rateLimiter.limits.rate = it }
