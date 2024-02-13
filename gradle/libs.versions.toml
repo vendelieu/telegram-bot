@@ -13,11 +13,12 @@ deteKT = "1.23.4"
 
 kotest = "5.8.0"
 mockk = "1.13.9"
-junit = "5.10.1"
 kover = "0.7.5"
 
 ksp = "1.9.22-1.0.17"
 poet = "1.16.0"
+
+javaTarget = "11"
 
 [libraries]
 # ktor
@@ -38,7 +39,6 @@ stately = { module = "co.touchlab:stately-concurrent-collections", version.ref =
 # test
 test-kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 test-kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
-test-junit-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
 test-ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -50,7 +50,6 @@ poet-ksp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "poet" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 [plugins]
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }

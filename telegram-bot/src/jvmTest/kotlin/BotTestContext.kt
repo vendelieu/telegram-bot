@@ -5,6 +5,7 @@ import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
+import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.getOrNull
@@ -82,7 +83,10 @@ abstract class BotTestContext(
         val ctx = BOT_CTX
         BOT_ID = ctx.first
         if (withPreparedBot) bot = TelegramBot(ctx.second, "eu.vendeli") {
-            botLogLevel = LogLvl.DEBUG
+            logging {
+                botLogLevel = LogLvl.DEBUG
+                httpLogLevel = HttpLogLevel.BODY
+            }
             httpClient {
                 maxRequestRetry = 0
                 connectTimeoutMillis = 10.seconds.inWholeMilliseconds
@@ -97,7 +101,7 @@ abstract class BotTestContext(
     }
 
     fun doMockHttp(mockUpdates: MockUpdate = MockUpdate.SINGLE()) {
-        bot.httpClient = HttpClient(
+        every { bot.httpClient } returns HttpClient(
             MockEngine {
                 respond(
                     content = ByteReadChannel(mockUpdates.response),

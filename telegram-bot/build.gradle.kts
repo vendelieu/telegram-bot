@@ -3,7 +3,7 @@ import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.time.LocalDate
 
-private val javaTargetVer = JavaVersion.VERSION_11
+private val javaTargetVer = libs.versions.javaTarget.get()
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -19,17 +19,17 @@ kotlin {
     jvm {
         withJava()
         compilations.all {
-            kotlinOptions.jvmTarget = javaTargetVer.majorVersion
+            kotlinOptions.jvmTarget = javaTargetVer
         }
     }
     js { nodejs() }
     mingwX64()
     linuxArm64()
     linuxX64()
-    jvmToolchain(javaTargetVer.majorVersion.toInt())
+    jvmToolchain(javaTargetVer.toInt())
 
     sourceSets {
-        val commonMain by getting {
+        named("commonMain") {
             dependencies {
                 implementation(libs.kotlin.serialization)
                 implementation(libs.kotlin.datetime)
@@ -43,36 +43,35 @@ kotlin {
                 api(libs.coroutines.core)
             }
         }
-        val jvmTest by getting {
+        named("jvmTest") {
             dependencies {
                 implementation(libs.test.kotest.junit5)
                 implementation(libs.test.kotest.assertions)
-                implementation(libs.test.junit.params)
                 implementation(libs.test.ktor.mock)
                 implementation(libs.mockk)
             }
         }
-        val jvmMain by getting {
+        named("jvmMain") {
             dependencies {
                 implementation(libs.ktor.client.cio)
             }
         }
-        val jsMain by getting {
+        named("jsMain") {
             dependencies {
                 implementation(libs.ktor.client.js)
             }
         }
-        val linuxArm64Main by getting {
+        named("linuxArm64Main") {
             dependencies {
                 implementation(libs.ktor.client.cio)
             }
         }
-        val linuxX64Main by getting {
+        named("linuxX64Main") {
             dependencies {
                 implementation(libs.ktor.client.cio)
             }
         }
-        val mingwX64Main by getting {
+        named("mingwX64Main") {
             dependencies {
                 implementation(libs.ktor.client.winhttp)
             }
@@ -88,11 +87,9 @@ kotlin {
     }
 }
 
-group = "eu.vendeli"
 libraryData {
     name.set("Telegram Bot")
     description.set("Telegram Bot API wrapper, with handy Kotlin DSL.")
-    version = providers.gradleProperty("libVersion").getOrElse("dev")
 }
 
 detekt {

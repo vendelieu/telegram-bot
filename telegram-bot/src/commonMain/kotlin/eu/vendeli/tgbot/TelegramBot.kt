@@ -74,7 +74,7 @@ class TelegramBot(
         )
     }
 
-    internal var httpClient = getConfiguredHttpClient()
+    internal val httpClient = getConfiguredHttpClient()
 
     /**
      * Get direct url from [File] if [File.filePath] is present

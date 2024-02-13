@@ -257,7 +257,7 @@ class TelegramBotTest : BotTestContext() {
             httpClient.maxRequestRetry shouldBe 13
             httpClient.retryDelay shouldBe 1000
 
-            botLogLevel shouldBe LogLvl.WARN
+            logging.botLogLevel shouldBe LogLvl.WARN
 
             rateLimiter.limits.period shouldBe 14
             rateLimiter.limits.rate shouldBe 15
