@@ -217,7 +217,7 @@ class TelegramBotTest : BotTestContext() {
     @Test
     fun `env configure testing`() {
         // when token not specified np will be thrown
-        shouldThrow<NullPointerException> { TelegramBot(EnvConfigLoaderImpl) }
+        shouldThrow<IllegalStateException> { TelegramBot(EnvConfigLoaderImpl) }
 
         EnvConfigLoaderImpl.envVars = mapOf(
             "TGBOT_TOKEN" to "test",

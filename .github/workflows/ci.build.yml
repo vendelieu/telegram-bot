@@ -32,7 +32,7 @@ jobs:
           BOT_ID: ${{ secrets.BOT_ID }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           BOT_TOKEN_2: ${{ secrets.BOT_TOKEN_2 }}
-        run: ./gradlew build koverXmlReport -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
+        run: ./gradlew koverXmlReport -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3

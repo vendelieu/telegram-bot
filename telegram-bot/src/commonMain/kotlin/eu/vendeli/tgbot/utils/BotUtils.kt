@@ -111,4 +111,4 @@ internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T):
 @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
 internal inline fun <T> Any?.cast() = this as T
 
-fun <T : ChainLink> InputListener.setChain(user: User, firstLink: T) = set(user, firstLink::class.simpleName!!)
+expect inline fun <T : ChainLink> InputListener.setChain(user: User, firstLink: T)

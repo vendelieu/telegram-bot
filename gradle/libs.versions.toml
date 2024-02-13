@@ -18,6 +18,7 @@ kover = "0.7.5"
 ksp = "1.9.22-1.0.17"
 poet = "1.16.0"
 
+binvalid = "0.14.0"
 javaTarget = "11"
 
 [libraries]
@@ -52,6 +53,7 @@ mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-compatability-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binvalid" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ktlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }

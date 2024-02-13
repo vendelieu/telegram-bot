@@ -18,6 +18,7 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
     fun prepareBot() = bot.config.run {
         limiter.resetState()
         spykIt()
+        doMockHttp()
         rateLimiter {
             mechanism = limiter
             limits = RateLimits(10000, 5)

@@ -8,6 +8,7 @@ private val javaTargetVer = libs.versions.javaTarget.get()
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.compatability.validator)
     alias(libs.plugins.ktlinter)
     alias(libs.plugins.deteKT)
     alias(libs.plugins.kover)
@@ -110,7 +111,9 @@ tasks {
             exclude("**/ActivitiesData.kt")
         }
     }
-
+    withType<Test> {
+        useJUnitPlatform()
+    }
     dokkaHtml.configure {
         outputDirectory.set(layout.buildDirectory.asFile.orNull?.resolve("dokka"))
         dokkaSourceSets {
@@ -124,6 +127,11 @@ tasks {
             footerMessage = "© ${LocalDate.now().year} Vendelieu"
         }
     }
+}
+
+apiValidation {
+    ignoredPackages.add("utils")
+    nonPublicMarkers.add("eu.vendeli.tgbot.annotations.internal.ExperimentalFeature")
 }
 
 koverReport {
