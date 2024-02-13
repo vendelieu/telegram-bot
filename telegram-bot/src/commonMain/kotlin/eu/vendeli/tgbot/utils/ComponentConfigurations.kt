@@ -14,7 +14,8 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNamingStrategy
 
-internal fun TelegramBot.getConfiguredHttpClient() = config.httpClient.run cfg@{
+@Suppress("NOTHING_TO_INLINE")
+internal inline fun TelegramBot.getConfiguredHttpClient() = config.httpClient.run cfg@{
     HttpClient {
         install("RequestLogging") {
             sendPipeline.intercept(HttpSendPipeline.Monitoring) {
