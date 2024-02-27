@@ -1,5 +1,6 @@
-package eu.vendeli.tgbot.types
+package eu.vendeli.tgbot.types.boost
 
+import eu.vendeli.tgbot.types.User
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

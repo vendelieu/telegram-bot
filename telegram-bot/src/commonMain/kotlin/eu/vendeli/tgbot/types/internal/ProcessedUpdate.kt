@@ -1,8 +1,8 @@
 package eu.vendeli.tgbot.types.internal
 
 import eu.vendeli.tgbot.types.CallbackQuery
-import eu.vendeli.tgbot.types.ChatBoostRemoved
-import eu.vendeli.tgbot.types.ChatBoostUpdated
+import eu.vendeli.tgbot.types.boost.ChatBoostRemoved
+import eu.vendeli.tgbot.types.boost.ChatBoostUpdated
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.MessageReactionCountUpdated
 import eu.vendeli.tgbot.types.MessageReactionUpdated

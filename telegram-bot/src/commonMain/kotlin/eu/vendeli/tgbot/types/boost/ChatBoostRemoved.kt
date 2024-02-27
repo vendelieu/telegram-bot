@@ -1,4 +1,4 @@
-package eu.vendeli.tgbot.types
+package eu.vendeli.tgbot.types.boost
 
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.utils.serde.InstantSerializer

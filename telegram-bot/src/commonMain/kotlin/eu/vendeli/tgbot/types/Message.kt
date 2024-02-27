@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types
 
 import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.types.boost.ChatBoostAdded
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatShared
 import eu.vendeli.tgbot.types.forum.ForumTopicClosed
@@ -39,6 +40,7 @@ data class Message(
     val messageThreadId: Int? = null,
     val from: User? = null,
     val senderChat: Chat? = null,
+    val senderBoostCount: Int? = null,
     @Serializable(InstantSerializer::class)
     override val date: Instant,
     override val chat: Chat,
@@ -47,6 +49,7 @@ data class Message(
     val isAutomaticForward: Boolean? = null,
     val replyToMessage: Message? = null,
     val externalReply: ExternalReplyInfo? = null,
+    val replyToStory: Story? = null,
     val quote: TextQuote? = null,
     val viaBot: User? = null,
     @Serializable(InstantSerializer::class)
@@ -94,6 +97,7 @@ data class Message(
     val writeAccessAllowed: WriteAccessAllowed? = null,
     val passportData: PassportData? = null,
     val proximityAlertTriggered: ProximityAlertTriggered? = null,
+    val boostAdded: ChatBoostAdded? = null,
     val forumTopicCreated: ForumTopicCreated? = null,
     val forumTopicEdited: ForumTopicEdited? = null,
     val forumTopicClosed: ForumTopicClosed? = null,

@@ -1,4 +1,4 @@
-package eu.vendeli.tgbot.types
+package eu.vendeli.tgbot.types.boost
 
 import kotlinx.serialization.Serializable
 

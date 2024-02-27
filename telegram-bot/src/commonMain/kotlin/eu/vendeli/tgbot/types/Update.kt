@@ -1,6 +1,8 @@
 package eu.vendeli.tgbot.types
 
 import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.types.boost.ChatBoostRemoved
+import eu.vendeli.tgbot.types.boost.ChatBoostUpdated
 import eu.vendeli.tgbot.types.chat.ChatJoinRequest
 import eu.vendeli.tgbot.types.chat.ChatMemberUpdated
 import eu.vendeli.tgbot.types.inline.ChosenInlineResult
