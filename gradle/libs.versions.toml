@@ -1,25 +1,25 @@
 [versions]
-ktor = "2.3.7"
-logging = "5.3.1"
+ktor = "2.3.8"
+logging = "5.3.2"
 datetime = "0.5.0"
-serialization = "1.6.2"
-stately = "2.0.0"
+serialization = "1.6.3"
+stately = "2.0.6"
 
 kotlin = "1.9.22"
-coroutines = "1.7.3"
+coroutines = "1.8.0"
 dokka = "1.9.10"
 kotlinter = "4.1.1"
 deteKT = "1.23.4"
 
 kotest = "5.8.0"
 mockk = "1.13.9"
-kover = "0.7.5"
+kover = "0.7.6"
+krypto = "4.0.10"
 
 ksp = "1.9.22-1.0.17"
 poet = "1.16.0"
 
 binvalid = "0.14.0"
-javaTarget = "11"
 
 [libraries]
 # ktor
@@ -36,6 +36,7 @@ kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-j
 kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 stately = { module = "co.touchlab:stately-concurrent-collections", version.ref = "stately" }
+krypto = { module = "com.soywiz.korlibs.krypto:krypto", version.ref = "krypto" }
 
 # test
 test-kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }

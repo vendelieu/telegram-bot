@@ -3,8 +3,6 @@ import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.time.LocalDate
 
-private val javaTargetVer = libs.versions.javaTarget.get()
-
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
@@ -20,14 +18,14 @@ kotlin {
     jvm {
         withJava()
         compilations.all {
-            kotlinOptions.jvmTarget = javaTargetVer
+            kotlinOptions.jvmTarget = JAVA_TARGET_V
         }
     }
     js { nodejs() }
     mingwX64()
     linuxArm64()
     linuxX64()
-    jvmToolchain(javaTargetVer.toInt())
+    jvmToolchain(JAVA_TARGET_V_int)
 
     sourceSets {
         named("commonMain") {

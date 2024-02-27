@@ -1,5 +1,3 @@
-val javaTargetVer: String = libs.versions.javaTarget.get()
-
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.ktlinter)
@@ -20,10 +18,10 @@ kotlin {
     jvm {
         withJava()
         compilations.all {
-            kotlinOptions.jvmTarget = javaTargetVer
+            kotlinOptions.jvmTarget = JAVA_TARGET_V
         }
     }
-    jvmToolchain(javaTargetVer.toInt())
+    jvmToolchain(JAVA_TARGET_V_int)
 
     sourceSets {
         named("jvmMain") {
