@@ -7,13 +7,13 @@ import eu.vendeli.webapps.core.WebApp
  * @return The callback which should be used in case you want to turn off events handling
  */
 fun WebApp.onThemeChanged(eventHandler: NoParamsEventHandler) =
-    onEvent(EventType.ThemeChanged, EventHandler.NoParams {})
+    onEvent(EventType.ThemeChanged, EventHandler.NoParams(eventHandler))
 
 /**
  * @return The callback which should be used in case you want to turn off events handling
  */
 fun WebApp.onMainButtonClicked(eventHandler: NoParamsEventHandler) =
-    onEvent(EventType.MainButtonClicked, EventHandler.NoParams {})
+    onEvent(EventType.MainButtonClicked, EventHandler.NoParams(eventHandler))
 
 /**
  * @return The callback which should be used in case you want to turn off events handling
@@ -25,13 +25,13 @@ fun WebApp.onViewportChanged(eventHandler: ViewportChangedEventHandler) =
  * @return The callback which should be used in case you want to turn off events handling
  */
 fun WebApp.onBackButtonClicked(eventHandler: NoParamsEventHandler) =
-    onEvent(EventType.BackButtonClicked, EventHandler.NoParams {})
+    onEvent(EventType.BackButtonClicked, EventHandler.NoParams(eventHandler))
 
 /**
  * @return The callback which should be used in case you want to turn off events handling
  */
 fun WebApp.onSettingsButtonClicked(eventHandler: NoParamsEventHandler) =
-    onEvent(EventType.SettingsButtonClicked, EventHandler.NoParams { })
+    onEvent(EventType.SettingsButtonClicked, EventHandler.NoParams(eventHandler))
 
 /**
  * @return The callback which should be used in case you want to turn off events handling
