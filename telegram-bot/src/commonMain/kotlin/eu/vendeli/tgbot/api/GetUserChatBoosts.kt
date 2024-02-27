@@ -4,7 +4,7 @@ package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.UserChatBoosts
+import eu.vendeli.tgbot.types.boost.UserChatBoosts
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement

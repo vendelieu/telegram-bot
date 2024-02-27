@@ -1,6 +1,5 @@
-package eu.vendeli.tgbot.types
+package eu.vendeli.tgbot.types.boost
 
-import eu.vendeli.tgbot.types.boost.ChatBoost
 import kotlinx.serialization.Serializable
 
 @Serializable
