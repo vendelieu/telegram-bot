@@ -5,6 +5,14 @@ import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
+/**
+ * This object represents a boost removed from a chat.
+ * @property chat Chat which was boosted
+ * @property boostId Unique identifier of the boost
+ * @property removeDate Point in time (Unix timestamp) when the boost was removed
+ * @property source Source of the removed boost
+ * Api reference: https://core.telegram.org/bots/api#chatboostremoved
+*/
 @Serializable
 data class ChatBoostRemoved(
     val chat: Chat,

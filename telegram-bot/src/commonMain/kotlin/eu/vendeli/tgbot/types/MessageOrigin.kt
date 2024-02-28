@@ -6,6 +6,15 @@ import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * This object describes the origin of a message. It can be one of
+ * - MessageOriginUser
+ * - MessageOriginHiddenUser
+ * - MessageOriginChat
+ * - MessageOriginChannel
+ * 
+ * Api reference: https://core.telegram.org/bots/api#messageorigin
+*/
 @Serializable
 sealed class MessageOrigin(val type: String) {
     @Serializable(InstantSerializer::class)

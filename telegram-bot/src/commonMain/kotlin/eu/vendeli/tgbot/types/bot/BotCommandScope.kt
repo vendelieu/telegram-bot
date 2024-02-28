@@ -3,6 +3,18 @@ package eu.vendeli.tgbot.types.bot
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * This object represents the scope to which bot commands are applied. Currently, the following 7 scopes are supported:
+ * - BotCommandScopeDefault
+ * - BotCommandScopeAllPrivateChats
+ * - BotCommandScopeAllGroupChats
+ * - BotCommandScopeAllChatAdministrators
+ * - BotCommandScopeChat
+ * - BotCommandScopeChatAdministrators
+ * - BotCommandScopeChatMember
+ * 
+ * Api reference: https://core.telegram.org/bots/api#botcommandscope
+*/
 @Serializable
 sealed class BotCommandScope(val type: String) {
     @Serializable

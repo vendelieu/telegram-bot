@@ -6,6 +6,16 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * This object represents the content of a media message to be sent. It should be one of
+ * - InputMediaAnimation
+ * - InputMediaDocument
+ * - InputMediaAudio
+ * - InputMediaPhoto
+ * - InputMediaVideo
+ * 
+ * Api reference: https://core.telegram.org/bots/api#inputmedia
+*/
 @Serializable
 sealed class InputMedia(val type: String) {
     abstract var media: ImplicitFile
