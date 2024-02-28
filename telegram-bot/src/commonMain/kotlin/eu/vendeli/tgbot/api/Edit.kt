@@ -27,23 +27,23 @@ class EditMessageTextAction private constructor() :
     OptionsFeature<EditMessageTextAction, EditMessageOptions>,
     MarkupFeature<EditMessageTextAction>,
     EntitiesFeature<EditMessageTextAction> {
-        override val method = TgMethod("editMessageText")
-        override val returnType = getReturnType()
-        override val options = EditMessageOptions()
+    override val method = TgMethod("editMessageText")
+    override val returnType = getReturnType()
+    override val options = EditMessageOptions()
 
-        constructor(messageId: Long, text: String) : this() {
-            parameters["message_id"] = messageId.toJsonElement()
-            parameters["text"] = text.toJsonElement()
-        }
-
-        constructor(text: String) : this() {
-            parameters["text"] = text.toJsonElement()
-        }
-
-        internal constructor(block: EntitiesContextBuilder<EditMessageTextAction>.() -> String) : this() {
-            parameters["text"] = block(this).toJsonElement()
-        }
+    constructor(messageId: Long, text: String) : this() {
+        parameters["message_id"] = messageId.toJsonElement()
+        parameters["text"] = text.toJsonElement()
     }
+
+    constructor(text: String) : this() {
+        parameters["text"] = text.toJsonElement()
+    }
+
+    internal constructor(block: EntitiesContextBuilder<EditMessageTextAction>.() -> String) : this() {
+        parameters["text"] = block(this).toJsonElement()
+    }
+}
 
 class EditMessageCaptionAction() :
     InlinableAction<Message>(),
@@ -58,6 +58,8 @@ class EditMessageCaptionAction() :
         parameters["message_id"] = messageId.toJsonElement()
     }
 }
+
+// todo separate it to different files
 
 class EditMessageMediaAction :
     InlinableAction<Message>,
@@ -77,15 +79,6 @@ class EditMessageMediaAction :
     }
 
     /**
- * Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
- * @param chatId  Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
- * @param messageId  Required if inline_message_id is not specified. Identifier of the message to edit
- * @param inlineMessageId  Required if chat_id and message_id are not specified. Identifier of the inline message
- * @param replyMarkup  A JSON-serialized object for an inline keyboard.
- * @returns [Message]|[Boolean]
- * Api reference: https://core.telegram.org/bots/api#editmessagereplymarkup
-*/
-/**
  * Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
  * @param chatId Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageId Required if inline_message_id is not specified. Identifier of the message to edit
