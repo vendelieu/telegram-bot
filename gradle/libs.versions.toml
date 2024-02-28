@@ -12,7 +12,7 @@ kotlinter = "4.1.1"
 deteKT = "1.23.5"
 
 kotest = "5.8.0"
-mockk = "1.13.9"
+mockk = "1.13.10"
 junit = "5.10.2"
 kover = "0.7.5"
 
