@@ -10,12 +10,6 @@ import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-/**
- * Use this method to create a topic in a forum supergroup chat.
- * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights.
- * Returns information about the created topic as a [ForumTopic] object.
- *
- */
 class CreateForumTopicAction(
     name: String,
     iconColor: IconColor? = null,

@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ChatBoostAdded(
-    val boostCount: Int
+    val boostCount: Int,
 )

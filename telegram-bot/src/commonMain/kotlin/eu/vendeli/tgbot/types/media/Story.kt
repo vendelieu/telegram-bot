@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Story(
     val id: Int,
-    val chat: Chat
+    val chat: Chat,
 )

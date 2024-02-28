@@ -17,18 +17,6 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 
-/**
- * Use this method to copy messages of any kind. Service messages and invoice messages can't be copied.
- * A quiz poll can be copied only if the value of the field correct_option_id is known to the bot.
- * The method is analogous to the method forwardMessage,
- * but the copied message doesn't have a link to the original message.
- *
- * @param chatId Unique identifier for the target chat or username
- * of the target channel (in the format @channelusername)
- * @param fromChatId Unique identifier for the chat where the original message was sent
- * (or channel username in the format @channelusername)
- * @param messageId Message identifier in the chat specified in fromChatId
- */
 class CopyMessageAction(
     fromChatId: Identifier,
     messageId: Long,

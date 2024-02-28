@@ -12,11 +12,6 @@ import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-/**
- * Create invoice link -
- * use this method to create a link for an invoice. Returns the created invoice link as String on success.
- *
- */
 class CreateInvoiceLinkAction(
     title: String,
     description: String,

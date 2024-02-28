@@ -10,11 +10,6 @@ import eu.vendeli.tgbot.utils.getReturnType
 import kotlinx.serialization.builtins.serializer
 import kotlin.jvm.JvmName
 
-/**
- * Use this method to get information about custom emoji stickers by their identifiers
- *
- * @param customEmojiIds List of custom emoji identifiers. At most 200 custom emoji identifiers can be specified.
- */
 class GetCustomEmojiStickersAction(customEmojiIds: List<String>) : SimpleAction<List<Sticker>>() {
     override val method = TgMethod("getCustomEmojiStickers")
     override val returnType = getReturnType()

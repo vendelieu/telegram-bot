@@ -15,15 +15,6 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 
-/**
- * Use this action to forward messages of any kind. Service messages can't be forwarded.
- *
- * @param chatId Unique identifier for the target chat or username of the target channel
- * (in the format @channelusername)
- * @param fromChatId Unique identifier for the chat where the original message was sent
- * (or channel username in the format @channelusername)
- * @param messageId Message identifier in the chat specified in fromChatId
- */
 class ForwardMessageAction(fromChatId: Identifier, messageId: Long) :
     Action<Message>(),
     OptionsFeature<ForwardMessageAction, ForwardMessageOptions> {

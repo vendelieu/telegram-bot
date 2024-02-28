@@ -104,7 +104,9 @@ buildscript {
 }
 
 tasks {
+    register<Kdokker>("kdocUpdate")
     withType<KotlinCompile> {
+        mustRunAfter(named("kdocUpdate"))
         doLast {
             exclude("**/ActivitiesData.kt")
         }
