@@ -28,6 +28,17 @@ class ForwardMessagesAction(fromChatId: Identifier, messageIds: List<Long>) :
     }
 }
 
+/**
+ * Use this method to forward multiple messages of any kind. If some of the specified messages can't be found or forwarded, they are skipped. Service messages and messages with protected content can't be forwarded. Album grouping is kept for forwarded messages. On success, an array of MessageId of the sent messages is returned.
+ * @param chatId Required 
+ * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+ * @param fromChatId Required 
+ * @param messageIds Required 
+ * @param disableNotification Sends the messages silently. Users will receive a notification with no sound.
+ * @param protectContent Protects the contents of the forwarded messages from forwarding and saving
+ * @returns [Array of MessageId]
+ * Api reference: https://core.telegram.org/bots/api#forwardmessages
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun forwardMessages(fromChatId: Identifier, messageIds: List<Long>) =
     ForwardMessagesAction(fromChatId, messageIds)

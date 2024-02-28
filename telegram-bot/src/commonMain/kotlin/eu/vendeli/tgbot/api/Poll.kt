@@ -28,6 +28,29 @@ class SendPollAction(question: String, pollOptions: List<String>) :
     }
 }
 
+/**
+ * Use this method to send a native poll. On success, the sent Message is returned.
+ * @param chatId Required 
+ * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+ * @param question Required 
+ * @param options Required 
+ * @param isAnonymous True, if the poll needs to be anonymous, defaults to True
+ * @param type Poll type, "quiz" or "regular", defaults to "regular"
+ * @param allowsMultipleAnswers True, if the poll allows multiple answers, ignored for polls in quiz mode, defaults to False
+ * @param correctOptionId 0-based identifier of the correct answer option, required for polls in quiz mode
+ * @param explanation Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters with at most 2 line feeds after entities parsing
+ * @param explanationParseMode Mode for parsing entities in the explanation. See formatting options for more details.
+ * @param explanationEntities A JSON-serialized list of special entities that appear in the poll explanation, which can be specified instead of parse_mode
+ * @param openPeriod Amount of time in seconds the poll will be active after creation, 5-600. Can't be used together with close_date.
+ * @param closeDate Point in time (Unix timestamp) when the poll will be automatically closed. Must be at least 5 and no more than 600 seconds in the future. Can't be used together with open_period.
+ * @param isClosed Pass True if the poll needs to be immediately closed. This can be useful for poll preview.
+ * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
+ * @param protectContent Protects the contents of the sent message from forwarding and saving
+ * @param replyParameters Description of the message to reply to
+ * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+ * @returns [Message]
+ * Api reference: https://core.telegram.org/bots/api#sendpoll
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun poll(question: String, options: List<String>) = SendPollAction(question, options)
 fun poll(question: String, options: ListingBuilder<String>.() -> Unit) = poll(question, ListingBuilder.build(options))

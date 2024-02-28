@@ -30,6 +30,18 @@ class SetGameScoreAction :
     }
 }
 
+/**
+ * Use this method to set the score of the specified user in a game message. On success, if the message is not an inline message, the Message is returned, otherwise True is returned. Returns an error, if the new score is not greater than the user's current score in the chat and force is False.
+ * @param userId Required 
+ * @param score Required 
+ * @param force Pass True if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters
+ * @param disableEditMessage Pass True if the game message should not be automatically edited to include the current scoreboard
+ * @param chatId Required if inline_message_id is not specified. Unique identifier for the target chat
+ * @param messageId Required if inline_message_id is not specified. Identifier of the sent message
+ * @param inlineMessageId Required if chat_id and message_id are not specified. Identifier of the inline message
+ * @returns [Message]|[Boolean]
+ * Api reference: https://core.telegram.org/bots/api#setgamescore
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun setGameScore(userId: Long, messageId: Long, score: Long) = SetGameScoreAction(userId, messageId, score)
 

@@ -20,5 +20,12 @@ class SetStickerSetTitleAction(
     }
 }
 
+/**
+ * Use this method to set the title of a created sticker set. Returns True on success.
+ * @param name Required 
+ * @param title Required 
+ * @returns [Boolean]
+ * Api reference: https://core.telegram.org/bots/api#setstickersettitle
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun setStickerSetTitle(name: String, title: String) = SetStickerSetTitleAction(name, title)

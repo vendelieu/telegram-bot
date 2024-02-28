@@ -18,5 +18,13 @@ class StopPollAction(messageId: Long) : Action<Poll>(), MarkupFeature<SendPollAc
     }
 }
 
+/**
+ * Use this method to stop a poll which was sent by the bot. On success, the stopped Poll is returned.
+ * @param chatId Required 
+ * @param messageId Required 
+ * @param replyMarkup A JSON-serialized object for a new message inline keyboard.
+ * @returns [Poll]
+ * Api reference: https://core.telegram.org/bots/api#stoppoll
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun stopPoll(messageId: Long) = StopPollAction(messageId)

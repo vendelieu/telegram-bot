@@ -12,5 +12,11 @@ class GetChatAction : Action<Chat>() {
     override val returnType = getReturnType()
 }
 
+/**
+ * Use this method to get up to date information about the chat. Returns a Chat object on success.
+ * @param chatId Required 
+ * @returns [Chat]
+ * Api reference: https://core.telegram.org/bots/api#getchat
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun getChat() = GetChatAction()

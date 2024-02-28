@@ -31,6 +31,25 @@ class SendVenueAction(
     }
 }
 
+/**
+ * Use this method to send information about a venue. On success, the sent Message is returned.
+ * @param chatId Required 
+ * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+ * @param latitude Required 
+ * @param longitude Required 
+ * @param title Required 
+ * @param address Required 
+ * @param foursquareId Foursquare identifier of the venue
+ * @param foursquareType Foursquare type of the venue, if known. (For example, "arts_entertainment/default", "arts_entertainment/aquarium" or "food/icecream".)
+ * @param googlePlaceId Google Places identifier of the venue
+ * @param googlePlaceType Google Places type of the venue. (See supported types.)
+ * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
+ * @param protectContent Protects the contents of the sent message from forwarding and saving
+ * @param replyParameters Description of the message to reply to
+ * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+ * @returns [Message]
+ * Api reference: https://core.telegram.org/bots/api#sendvenue
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun venue(latitude: Float, longitude: Float, title: String, address: String) =
     SendVenueAction(latitude, longitude, title, address)

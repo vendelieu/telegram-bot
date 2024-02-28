@@ -17,5 +17,11 @@ class GetMyNameAction(languageCode: String? = null) : SimpleAction<BotName>() {
     }
 }
 
+/**
+ * Use this method to get the current bot name for the given user language. Returns BotName on success.
+ * @param languageCode A two-letter ISO 639-1 language code or an empty string
+ * @returns [BotName]
+ * Api reference: https://core.telegram.org/bots/api#getmyname
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun getMyName(languageCode: String? = null) = GetMyNameAction(languageCode)

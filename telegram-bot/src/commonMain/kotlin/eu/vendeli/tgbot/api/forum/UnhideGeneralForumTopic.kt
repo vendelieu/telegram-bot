@@ -12,10 +12,10 @@ class UnhideGeneralForumTopicAction : Action<Boolean>() {
 }
 
 /**
- * Use this method to unhide 'General' topic in a forum supergroup chat.
- * The bot must be an administrator in the chat for this to work
- * and must have the can_manage_topics administrator rights.
- * Returns True on success.
- */
+ * Use this method to unhide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.
+ * @param chatId Required 
+ * @returns [Boolean]
+ * Api reference: https://core.telegram.org/bots/api#unhidegeneralforumtopic
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun unhideGeneralForumTopic() = UnhideGeneralForumTopicAction()

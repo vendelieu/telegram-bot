@@ -27,6 +27,21 @@ class SendContactAction(
     }
 }
 
+/**
+ * Use this method to send phone contacts. On success, the sent Message is returned.
+ * @param chatId Required 
+ * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+ * @param phoneNumber Required 
+ * @param firstName Required 
+ * @param lastName Contact's last name
+ * @param vcard Additional data about the contact in the form of a vCard, 0-2048 bytes
+ * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
+ * @param protectContent Protects the contents of the sent message from forwarding and saving
+ * @param replyParameters Description of the message to reply to
+ * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+ * @returns [Message]
+ * Api reference: https://core.telegram.org/bots/api#sendcontact
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun contact(firstName: String, phoneNumber: String) = SendContactAction(phoneNumber, firstName)
 

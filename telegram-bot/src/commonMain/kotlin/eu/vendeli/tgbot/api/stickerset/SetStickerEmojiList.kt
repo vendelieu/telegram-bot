@@ -22,6 +22,13 @@ class SetStickerEmojiListAction(
     }
 }
 
+/**
+ * Use this method to change the list of emoji assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.
+ * @param sticker Required 
+ * @param emojiList Required 
+ * @returns [Boolean]
+ * Api reference: https://core.telegram.org/bots/api#setstickeremojilist
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun setStickerEmojiList(sticker: String, emojiList: List<String>) =
     SetStickerEmojiListAction(sticker, emojiList)

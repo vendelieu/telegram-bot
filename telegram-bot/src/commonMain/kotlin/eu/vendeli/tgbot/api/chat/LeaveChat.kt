@@ -11,5 +11,11 @@ class LeaveChatAction : Action<Boolean>() {
     override val returnType = getReturnType()
 }
 
+/**
+ * Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
+ * @param chatId Required 
+ * @returns [Boolean]
+ * Api reference: https://core.telegram.org/bots/api#leavechat
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun leaveChat() = LeaveChatAction()

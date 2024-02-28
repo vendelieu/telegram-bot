@@ -34,6 +34,31 @@ class CreateInvoiceLinkAction(
     }
 }
 
+/**
+ * Use this method to create a link for an invoice. Returns the created invoice link as String on success.
+ * @param title Required 
+ * @param description Required 
+ * @param payload Required 
+ * @param providerToken Required 
+ * @param currency Required 
+ * @param prices Required 
+ * @param maxTipAmount The maximum accepted amount for tips in the smallest units of the currency (integer, not float/double). For example, for a maximum tip of US$ 1.45 pass max_tip_amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0
+ * @param suggestedTipAmounts A JSON-serialized array of suggested amounts of tips in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed max_tip_amount.
+ * @param providerData JSON-serialized data about the invoice, which will be shared with the payment provider. A detailed description of required fields should be provided by the payment provider.
+ * @param photoUrl URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service.
+ * @param photoSize Photo size in bytes
+ * @param photoWidth Photo width
+ * @param photoHeight Photo height
+ * @param needName Pass True if you require the user's full name to complete the order
+ * @param needPhoneNumber Pass True if you require the user's phone number to complete the order
+ * @param needEmail Pass True if you require the user's email address to complete the order
+ * @param needShippingAddress Pass True if you require the user's shipping address to complete the order
+ * @param sendPhoneNumberToProvider Pass True if the user's phone number should be sent to the provider
+ * @param sendEmailToProvider Pass True if the user's email address should be sent to the provider
+ * @param isFlexible Pass True if the final price depends on the shipping method
+ * @returns [String]
+ * Api reference: https://core.telegram.org/bots/api#createinvoicelink
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun createInvoiceLink(
     title: String,

@@ -17,5 +17,11 @@ class GetStickerSetAction(name: String) : SimpleAction<StickerSet>() {
     }
 }
 
+/**
+ * Use this method to get a sticker set. On success, a StickerSet object is returned.
+ * @param name Required 
+ * @returns [StickerSet]
+ * Api reference: https://core.telegram.org/bots/api#getstickerset
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun getStickerSet(name: String) = GetStickerSetAction(name)

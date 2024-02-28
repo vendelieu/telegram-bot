@@ -12,10 +12,10 @@ class HideGeneralForumTopicAction : Action<Boolean>() {
 }
 
 /**
- * Use this method to hide 'General' topic in a forum supergroup chat.
- * The bot must be an administrator in the chat for this to work
- * and must have the can_manage_topics administrator rights.
- * Returns True on success.
- */
+ * Use this method to hide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically closed if it was open. Returns True on success.
+ * @param chatId Required 
+ * @returns [Boolean]
+ * Api reference: https://core.telegram.org/bots/api#hidegeneralforumtopic
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun hideGeneralForumTopic() = HideGeneralForumTopicAction()

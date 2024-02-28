@@ -25,6 +25,18 @@ class SendGameAction(
     }
 }
 
+/**
+ * Use this method to send a game. On success, the sent Message is returned.
+ * @param chatId Required 
+ * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+ * @param gameShortName Required 
+ * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
+ * @param protectContent Protects the contents of the sent message from forwarding and saving
+ * @param replyParameters Description of the message to reply to
+ * @param replyMarkup A JSON-serialized object for an inline keyboard. If empty, one 'Play game_title' button will be shown. If not empty, the first button must launch the game.
+ * @returns [Message]
+ * Api reference: https://core.telegram.org/bots/api#sendgame
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun sendGame(gameShortName: String) = game(gameShortName)
 

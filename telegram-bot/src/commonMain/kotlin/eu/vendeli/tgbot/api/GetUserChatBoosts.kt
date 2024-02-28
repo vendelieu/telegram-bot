@@ -20,6 +20,13 @@ class GetUserChatBoostsAction(
     }
 }
 
+/**
+ * Use this method to get the list of boosts added to a chat by a user. Requires administrator rights in the chat. Returns a UserChatBoosts object.
+ * @param chatId Required 
+ * @param userId Required 
+ * @returns [UserChatBoosts]
+ * Api reference: https://core.telegram.org/bots/api#getuserchatboosts
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun getUserChatBoosts(userId: Long) = GetUserChatBoostsAction(userId)
 

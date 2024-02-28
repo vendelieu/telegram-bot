@@ -17,10 +17,11 @@ class DeleteForumTopicAction(messageThreadId: Int) : Action<Boolean>() {
 }
 
 /**
- * Use this method to delete a forum topic along with all its messages in a forum supergroup chat.
- * The bot must be an administrator in the chat for this to work
- * and must have the canDeleteMessages administrator rights.
- * Returns True on success.
- */
+ * Use this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_delete_messages administrator rights. Returns True on success.
+ * @param chatId Required 
+ * @param messageThreadId Required 
+ * @returns [Boolean]
+ * Api reference: https://core.telegram.org/bots/api#deleteforumtopic
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun deleteForumTopic(messageThreadId: Int) = DeleteForumTopicAction(messageThreadId)

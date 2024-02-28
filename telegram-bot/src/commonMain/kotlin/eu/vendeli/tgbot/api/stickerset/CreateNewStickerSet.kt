@@ -41,6 +41,18 @@ class CreateNewStickerSetAction(
     }
 }
 
+/**
+ * Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. Returns True on success.
+ * @param userId Required 
+ * @param name Required 
+ * @param title Required 
+ * @param stickers Required 
+ * @param stickerFormat Required 
+ * @param stickerType Type of stickers in the set, pass "regular", "mask", or "custom_emoji". By default, a regular sticker set is created.
+ * @param needsRepainting Pass True if stickers in the sticker set must be repainted to the color of text when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context; for custom emoji sticker sets only
+ * @returns [Boolean]
+ * Api reference: https://core.telegram.org/bots/api#createnewstickerset
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun createNewStickerSet(
     name: String,

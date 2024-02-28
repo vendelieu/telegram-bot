@@ -25,6 +25,14 @@ class UploadStickerFileAction(sticker: InputFile, stickerFormat: StickerFormat) 
     }
 }
 
+/**
+ * Use this method to upload a file with a sticker for later use in the createNewStickerSet and addStickerToSet methods (the file can be used multiple times). Returns the uploaded File on success.
+ * @param userId Required 
+ * @param sticker Required 
+ * @param stickerFormat Required 
+ * @returns [File]
+ * Api reference: https://core.telegram.org/bots/api#uploadstickerfile
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun uploadStickerFile(sticker: InputFile, stickerFormat: StickerFormat) =
     UploadStickerFileAction(sticker, stickerFormat)

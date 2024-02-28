@@ -30,7 +30,9 @@ private val mapper = Json { ignoreUnknownKeys = true }
 
 abstract class Kdokker : DefaultTask() {
     private val jsonRes = mapper.decodeFromString<Api>(javaClass.getResource("api.json")!!.readText())
-    private val funRegex = Regex("(@\\w+\\s*\\(\\\".*\\\"\\))?\\s*(inline\\s+)?fun\\s+(\\w+)\\s*\\((.*)\\)")
+    private val funRegex = Regex(
+        "(@\\w+\\s*\\(\\\".*\\\"\\))?\\s*(inline\\s+)?fun\\s+(\\w+)\\s*\\((.*)\\)", RegexOption.DOT_MATCHES_ALL,
+    )
     private val kdocRegex = Regex("\\n/\\*\\*.*\\*/", RegexOption.DOT_MATCHES_ALL)
     private val NEWLINE = "\n"
     private val apiFiles = project.layout.projectDirectory
@@ -65,8 +67,7 @@ abstract class Kdokker : DefaultTask() {
                 kdoc += "$NEWLINE * "
 
                 kdoc += methodMeta.fields.joinToString("\n * ") {
-                    "@param " + it.name.snakeToCamelCase() + " " +
-                        " " + if (it.required) "Required" else "" + it.description
+                    "@param " + it.name.snakeToCamelCase() + " " + if (it.required) "Required " else "" + it.description
                 }
 
                 kdoc += NEWLINE + methodMeta.returns.joinToString("|", " * @returns ") { "[$it]" }

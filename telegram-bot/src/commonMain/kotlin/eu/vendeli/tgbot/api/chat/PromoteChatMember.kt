@@ -22,6 +22,28 @@ class PromoteChatMemberAction(userId: Long) :
     }
 }
 
+/**
+ * Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass False for all boolean parameters to demote a user. Returns True on success.
+ * @param chatId Required 
+ * @param userId Required 
+ * @param isAnonymous Pass True if the administrator's presence in the chat is hidden
+ * @param canManageChat Pass True if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report spam messages and ignore slow mode. Implied by any other administrator privilege.
+ * @param canDeleteMessages Pass True if the administrator can delete messages of other users
+ * @param canManageVideoChats Pass True if the administrator can manage video chats
+ * @param canRestrictMembers Pass True if the administrator can restrict, ban or unban chat members, or access supergroup statistics
+ * @param canPromoteMembers Pass True if the administrator can add new administrators with a subset of their own privileges or demote administrators that they have promoted, directly or indirectly (promoted by administrators that were appointed by him)
+ * @param canChangeInfo Pass True if the administrator can change chat title, photo and other settings
+ * @param canInviteUsers Pass True if the administrator can invite new users to the chat
+ * @param canPostStories Pass True if the administrator can post stories to the chat
+ * @param canEditStories Pass True if the administrator can edit stories posted by other users
+ * @param canDeleteStories Pass True if the administrator can delete stories posted by other users
+ * @param canPostMessages Pass True if the administrator can post messages in the channel, or access channel statistics; channels only
+ * @param canEditMessages Pass True if the administrator can edit messages of other users and can pin messages; channels only
+ * @param canPinMessages Pass True if the administrator can pin messages, supergroups only
+ * @param canManageTopics Pass True if the user is allowed to create, rename, close, and reopen forum topics, supergroups only
+ * @returns [Boolean]
+ * Api reference: https://core.telegram.org/bots/api#promotechatmember
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun promoteChatMember(userId: Long) = PromoteChatMemberAction(userId)
 

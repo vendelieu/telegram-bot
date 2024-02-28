@@ -12,5 +12,11 @@ class GetChatAdministratorsAction : Action<List<ChatMember>>() {
     override val returnType = getReturnType()
 }
 
+/**
+ * Use this method to get a list of administrators in a chat, which aren't bots. Returns an Array of ChatMember objects.
+ * @param chatId Required 
+ * @returns [Array of ChatMember]
+ * Api reference: https://core.telegram.org/bots/api#getchatadministrators
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun getChatAdministrators() = GetChatAdministratorsAction()

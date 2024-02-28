@@ -29,6 +29,26 @@ class SendAudioAction(audio: ImplicitFile) :
     }
 }
 
+/**
+ * Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
+ * For sending voice messages, use the sendVoice method instead.
+ * @param chatId Required 
+ * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+ * @param audio Required 
+ * @param caption Audio caption, 0-1024 characters after entities parsing
+ * @param parseMode Mode for parsing entities in the audio caption. See formatting options for more details.
+ * @param captionEntities A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parse_mode
+ * @param duration Duration of the audio in seconds
+ * @param performer Performer
+ * @param title Track name
+ * @param thumbnail Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass "attach://<file_attach_name>" if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files: https://core.telegram.org/bots/api#sending-files
+ * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
+ * @param protectContent Protects the contents of the sent message from forwarding and saving
+ * @param replyParameters Description of the message to reply to
+ * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+ * @returns [Message]
+ * Api reference: https://core.telegram.org/bots/api#sendaudio
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun audio(file: ImplicitFile) = SendAudioAction(file)
 

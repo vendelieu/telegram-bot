@@ -11,5 +11,11 @@ class GetChatMemberCountAction : Action<Int>() {
     override val returnType = getReturnType()
 }
 
+/**
+ * Use this method to get the number of members in a chat. Returns Int on success.
+ * @param chatId Required 
+ * @returns [Integer]
+ * Api reference: https://core.telegram.org/bots/api#getchatmembercount
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun getChatMemberCount() = GetChatMemberCountAction()

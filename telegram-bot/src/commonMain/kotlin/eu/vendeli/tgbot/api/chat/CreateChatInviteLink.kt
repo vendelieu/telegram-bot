@@ -17,5 +17,15 @@ class CreateChatInviteLinkAction :
     override val options = ChatInviteLinkOptions()
 }
 
+/**
+ * Use this method to create an additional invite link for a chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. The link can be revoked using the method revokeChatInviteLink. Returns the new invite link as ChatInviteLink object.
+ * @param chatId Required 
+ * @param name Invite link name; 0-32 characters
+ * @param expireDate Point in time (Unix timestamp) when the link will expire
+ * @param memberLimit The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999
+ * @param createsJoinRequest True, if users joining the chat via the link need to be approved by chat administrators. If True, member_limit can't be specified
+ * @returns [ChatInviteLink]
+ * Api reference: https://core.telegram.org/bots/api#createchatinvitelink
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun createChatInviteLink() = CreateChatInviteLinkAction()

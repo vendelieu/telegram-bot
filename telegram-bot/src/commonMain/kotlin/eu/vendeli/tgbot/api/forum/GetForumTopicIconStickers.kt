@@ -13,8 +13,10 @@ class GetForumTopicIconStickersAction : Action<List<Sticker>>() {
 }
 
 /**
- * Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user.
- * Requires no parameters. Returns an Array of Sticker objects.
- */
+ * Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user. Requires no parameters. Returns an Array of Sticker objects.
+ * 
+ * @returns [Array of Sticker]
+ * Api reference: https://core.telegram.org/bots/api#getforumtopiciconstickers
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun getForumTopicIconStickers() = GetForumTopicIconStickersAction()

@@ -7,7 +7,7 @@ import eu.vendeli.tgbot.api.chat.chatAction
 import eu.vendeli.tgbot.api.chat.declineChatJoinRequest
 import eu.vendeli.tgbot.api.chat.pinChatMessage
 import eu.vendeli.tgbot.api.chat.restrictChatMember
-import eu.vendeli.tgbot.api.chat.unpinAllChatMessage
+import eu.vendeli.tgbot.api.chat.unpinAllChatMessages
 import eu.vendeli.tgbot.api.chat.unpinChatMessage
 import eu.vendeli.tgbot.api.message
 import eu.vendeli.tgbot.types.chat.ChatAction
@@ -31,7 +31,7 @@ class ChatGeneralMethodsTest : BotTestContext() {
 
     @Test
     suspend fun `unpin all chat message method test`() {
-        val result = unpinAllChatMessage().sendReturning(CHAT_ID, bot).shouldSuccess()
+        val result = unpinAllChatMessages().sendReturning(CHAT_ID, bot).shouldSuccess()
         result.shouldBeTrue()
     }
 

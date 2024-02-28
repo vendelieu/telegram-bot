@@ -17,10 +17,11 @@ class UnpinAllForumTopicMessagesAction(messageThreadId: Int) : Action<Boolean>()
 }
 
 /**
- * Use this method to clear the list of pinned messages in a forum topic.
- * The bot must be an administrator in the chat for this to work and must have
- * the can_pin_messages administrator right in the supergroup.
- * Returns True on success.
- */
+ * Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.
+ * @param chatId Required 
+ * @param messageThreadId Required 
+ * @returns [Boolean]
+ * Api reference: https://core.telegram.org/bots/api#unpinallforumtopicmessages
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun unpinAllForumTopicMessages(messageThreadId: Int) = UnpinAllForumTopicMessagesAction(messageThreadId)
