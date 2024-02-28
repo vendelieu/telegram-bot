@@ -33,10 +33,18 @@ abstract class Kdokker : DefaultTask() {
     private val funRegex = Regex(
         "(@\\w+\\s*\\(\\\".*\\\"\\))?\\s*(inline\\s+)?fun\\s+(\\w+)\\s*\\((.*)\\)", RegexOption.DOT_MATCHES_ALL,
     )
+    private val classRegex = Regex(
+        "@Serializable(?:\\(.*\\))?\\s(?:data|sealed)?\\s?class\\s+(\\w+)\\s*(?:\\(|\\{)",
+        RegexOption.DOT_MATCHES_ALL,
+    )
     private val kdocRegex = Regex("\\n/\\*\\*.*\\*/", RegexOption.DOT_MATCHES_ALL)
     private val NEWLINE = "\n"
     private val apiFiles = project.layout.projectDirectory
         .dir("src/commonMain/kotlin/eu/vendeli/tgbot/api").asFileTree.files
+    private val typeFiles = project.layout.projectDirectory
+        .dir("src/commonMain/kotlin/eu/vendeli/tgbot/types").asFileTree.files.filter {
+            !it.path.contains("internal")
+        }
 
     private fun String.beginWithUpperCase(): String = when (this.length) {
         0 -> ""
@@ -74,6 +82,31 @@ abstract class Kdokker : DefaultTask() {
                 kdoc += NEWLINE + " * Api reference: ${methodMeta.href}\n*/\n"
 
                 modifiedContent = modifiedContent.replace(method.value, kdoc + method.value)
+
+                file.writeText(modifiedContent)
+            }
+        }
+
+        typeFiles.parallelStream().forEach { file ->
+            if (file.isFile && file.extension == "kt") {
+                val fileContent = file.readText()
+                var modifiedContent = fileContent.replace(kdocRegex, "") // remove old kdocs
+                val clazz = classRegex.find(modifiedContent) ?: return@forEach
+                val className = clazz.groups.last()!!.value
+                val classMeta = jsonRes.types[className]
+                if (classMeta == null) {
+                    logger.warn("Class $className details not found")
+                    return@forEach
+                }
+
+                var kdoc = "/**\n"
+                kdoc += classMeta.description.joinToString("\n * ", " * ")
+                kdoc += "$NEWLINE * "
+                kdoc += classMeta.fields.joinToString("\n * ") {
+                    "@param " + it.name.snakeToCamelCase() + " " + it.description
+                }
+                kdoc += NEWLINE + " * Api reference: ${classMeta.href}\n*/\n"
+                modifiedContent = modifiedContent.replace(clazz.value, kdoc + clazz.value)
 
                 file.writeText(modifiedContent)
             }
