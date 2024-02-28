@@ -103,7 +103,7 @@ abstract class Kdokker : DefaultTask() {
                 kdoc += classMeta.description.joinToString("\n * ", " * ")
                 kdoc += "$NEWLINE * "
                 kdoc += classMeta.fields.joinToString("\n * ") {
-                    "@param " + it.name.snakeToCamelCase() + " " + it.description
+                    "@property " + it.name.snakeToCamelCase() + " " + it.description
                 }
                 kdoc += NEWLINE + " * Api reference: ${classMeta.href}\n*/\n"
                 modifiedContent = modifiedContent.replace(clazz.value, kdoc + clazz.value)
