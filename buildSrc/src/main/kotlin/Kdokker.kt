@@ -70,16 +70,16 @@ abstract class Kdokker : DefaultTask() {
                 val methodMeta = jsonRes.methods[methodName]
                     ?: jsonRes.methods["send" + methodName.beginWithUpperCase()]
                     ?: return@forEach
-                var kdoc = "/**\n"
-                kdoc += methodMeta.description.joinToString("\n * ", " * ")
+                var kdoc = "/**$NEWLINE"
+                kdoc += methodMeta.description.joinToString("$NEWLINE * ", " * ")
                 kdoc += "$NEWLINE * "
 
-                kdoc += methodMeta.fields.joinToString("\n * ") {
+                kdoc += methodMeta.fields.joinToString("$NEWLINE * ") {
                     "@param " + it.name.snakeToCamelCase() + " " + if (it.required) "Required " else "" + it.description
                 }
 
                 kdoc += NEWLINE + methodMeta.returns.joinToString("|", " * @returns ") { "[$it]" }
-                kdoc += NEWLINE + " * Api reference: ${methodMeta.href}\n*/\n"
+                kdoc += NEWLINE + " * Api reference: ${methodMeta.href}$NEWLINE*/$NEWLINE"
 
                 modifiedContent = modifiedContent.replace(method.value, kdoc + method.value)
 
@@ -99,13 +99,13 @@ abstract class Kdokker : DefaultTask() {
                     return@forEach
                 }
 
-                var kdoc = "/**\n"
-                kdoc += classMeta.description.joinToString("\n * ", " * ")
+                var kdoc = "/**$NEWLINE"
+                kdoc += classMeta.description.joinToString("$NEWLINE * ", " * ")
                 kdoc += "$NEWLINE * "
-                kdoc += classMeta.fields.joinToString("\n * ") {
+                kdoc += classMeta.fields.joinToString("$NEWLINE * ") {
                     "@property " + it.name.snakeToCamelCase() + " " + it.description
                 }
-                kdoc += NEWLINE + " * Api reference: ${classMeta.href}\n*/\n"
+                kdoc += NEWLINE + " * Api reference: ${classMeta.href}$NEWLINE*/$NEWLINE"
                 modifiedContent = modifiedContent.replace(clazz.value, kdoc + clazz.value)
 
                 file.writeText(modifiedContent)
