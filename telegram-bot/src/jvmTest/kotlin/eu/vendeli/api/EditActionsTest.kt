@@ -1,12 +1,12 @@
 package eu.vendeli.api
 
 import BotTestContext
-import eu.vendeli.tgbot.api.editMessageCaption
-import eu.vendeli.tgbot.api.editMessageMedia
-import eu.vendeli.tgbot.api.editMessageReplyMarkup
-import eu.vendeli.tgbot.api.editMessageText
+import eu.vendeli.tgbot.api.message.editMessageCaption
+import eu.vendeli.tgbot.api.message.editMessageMedia
+import eu.vendeli.tgbot.api.message.editMessageReplyMarkup
+import eu.vendeli.tgbot.api.message.editMessageText
 import eu.vendeli.tgbot.api.media.photo
-import eu.vendeli.tgbot.api.message
+import eu.vendeli.tgbot.api.message.message
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardButton
 import eu.vendeli.tgbot.types.media.InputMedia

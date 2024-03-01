@@ -1,7 +1,7 @@
 package eu.vendeli.api
 
 import BotTestContext
-import eu.vendeli.tgbot.api.message
+import eu.vendeli.tgbot.api.message.message
 import eu.vendeli.tgbot.types.LinkPreviewOptions
 import eu.vendeli.tgbot.types.ParseMode
 import io.kotest.matchers.shouldBe

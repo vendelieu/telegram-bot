@@ -1,13 +1,13 @@
 package eu.vendeli.api
 
 import BotTestContext
-import eu.vendeli.tgbot.api.copyMessage
-import eu.vendeli.tgbot.api.copyMessages
-import eu.vendeli.tgbot.api.deleteMessage
-import eu.vendeli.tgbot.api.deleteMessages
-import eu.vendeli.tgbot.api.forwardMessage
-import eu.vendeli.tgbot.api.forwardMessages
-import eu.vendeli.tgbot.api.message
+import eu.vendeli.tgbot.api.message.copyMessage
+import eu.vendeli.tgbot.api.message.copyMessages
+import eu.vendeli.tgbot.api.message.deleteMessage
+import eu.vendeli.tgbot.api.message.deleteMessages
+import eu.vendeli.tgbot.api.message.forwardMessage
+import eu.vendeli.tgbot.api.message.forwardMessages
+import eu.vendeli.tgbot.api.message.message
 import eu.vendeli.tgbot.api.setMessageReaction
 import eu.vendeli.tgbot.types.EmojiType
 import eu.vendeli.tgbot.types.ReactionType

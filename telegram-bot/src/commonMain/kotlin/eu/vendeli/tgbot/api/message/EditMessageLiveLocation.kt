@@ -1,6 +1,6 @@
 @file:Suppress("MatchingDeclarationName")
 
-package eu.vendeli.tgbot.api
+package eu.vendeli.tgbot.api.message
 
 import eu.vendeli.tgbot.interfaces.InlinableAction
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature

@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.api.chat.pinChatMessage
 import eu.vendeli.tgbot.api.chat.restrictChatMember
 import eu.vendeli.tgbot.api.chat.unpinAllChatMessages
 import eu.vendeli.tgbot.api.chat.unpinChatMessage
-import eu.vendeli.tgbot.api.message
+import eu.vendeli.tgbot.api.message.message
 import eu.vendeli.tgbot.types.chat.ChatAction
 import eu.vendeli.tgbot.types.internal.onFailure
 import io.kotest.core.annotation.EnabledIf

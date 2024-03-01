@@ -14,6 +14,7 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import eu.vendeli.tgbot.types.internal.options.FileOptions
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import io.ktor.http.content.PartData
@@ -81,11 +82,13 @@ internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getRe
 @OptIn(ExperimentalSerializationApi::class)
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun <R> TgAction<R>.handleImplicitFile(input: ImplicitFile, fieldName: String) {
+    val definedFileName = (options as? FileOptions)?.fileName
     if (input is ImplicitFile.Str) {
         parameters[fieldName] = JsonPrimitive(input.file)
     } else if (input is ImplicitFile.InpFile) {
-        multipartData += input.file.toPartData(input.file.fileName)
-        parameters[fieldName] = JsonUnquotedLiteral("attach://${input.file.fileName}")
+        val fileName = definedFileName ?: input.file.fileName
+        multipartData += input.file.toPartData(fileName)
+        parameters[fieldName] = JsonUnquotedLiteral("attach://${fileName}")
     }
 }
 

@@ -2,7 +2,7 @@ package eu.vendeli.fixtures
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.InputChain
-import eu.vendeli.tgbot.api.message
+import eu.vendeli.tgbot.api.message.message
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.BreakCondition
 import eu.vendeli.tgbot.types.internal.ChainLink

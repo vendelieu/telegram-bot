@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.api.message
+import eu.vendeli.tgbot.api.message.message
 import eu.vendeli.tgbot.implementations.TokenBucketLimiterImpl
 import eu.vendeli.tgbot.interfaces.RateLimitMechanism
 

@@ -1,6 +1,6 @@
 @file:Suppress("MatchingDeclarationName")
 
-package eu.vendeli.tgbot.api
+package eu.vendeli.tgbot.api.answer
 
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature

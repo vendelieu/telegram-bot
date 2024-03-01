@@ -1,7 +1,7 @@
 package eu.vendeli.api
 
 import BotTestContext
-import eu.vendeli.tgbot.api.editMessageLiveLocation
+import eu.vendeli.tgbot.api.message.editMessageLiveLocation
 import eu.vendeli.tgbot.api.location
 import eu.vendeli.tgbot.api.stopMessageLiveLocation
 import eu.vendeli.tgbot.api.venue

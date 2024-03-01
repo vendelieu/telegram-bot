@@ -1,11 +1,11 @@
 package eu.vendeli.api
 
 import BotTestContext
-import eu.vendeli.tgbot.api.answerCallbackQuery
-import eu.vendeli.tgbot.api.answerInlineQuery
-import eu.vendeli.tgbot.api.answerPreCheckoutQuery
-import eu.vendeli.tgbot.api.answerShippingQuery
-import eu.vendeli.tgbot.api.answerWebAppQuery
+import eu.vendeli.tgbot.api.answer.answerCallbackQuery
+import eu.vendeli.tgbot.api.answer.answerInlineQuery
+import eu.vendeli.tgbot.api.answer.answerPreCheckoutQuery
+import eu.vendeli.tgbot.api.answer.answerShippingQuery
+import eu.vendeli.tgbot.api.answer.answerWebAppQuery
 import eu.vendeli.tgbot.types.inline.InlineQueryResult
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.payment.LabeledPrice

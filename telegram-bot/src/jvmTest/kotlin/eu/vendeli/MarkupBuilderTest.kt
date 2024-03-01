@@ -1,7 +1,7 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.api.message
+import eu.vendeli.tgbot.api.message.message
 import eu.vendeli.tgbot.types.keyboard.ForceReply
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.types.keyboard.KeyboardButtonPollType

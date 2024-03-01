@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.utils.builders
 
-import eu.vendeli.tgbot.api.CopyMessageAction
-import eu.vendeli.tgbot.api.EditMessageCaptionAction
+import eu.vendeli.tgbot.api.message.CopyMessageAction
+import eu.vendeli.tgbot.api.message.EditMessageCaptionAction
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.EntityType
