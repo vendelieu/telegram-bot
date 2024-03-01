@@ -65,8 +65,6 @@ fun WebApp.onEvent(type: EventType.SettingsButtonClicked, eventHandler: EventHan
     onEvent(type.name, eventHandler)
 }
 
-fun WebApp.isInitDataSafe(botToken: String) = initData.isInitDataSafe(botToken, initDataUnsafe.hash)
-
 fun WebApp.showPopup(
     message: String,
     title: String?,

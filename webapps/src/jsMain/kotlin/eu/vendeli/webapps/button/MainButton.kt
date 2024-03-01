@@ -39,7 +39,8 @@ class MainButtonParams(
     var isVisible: Boolean? = null,
 )
 
-fun MainButton.setParams(new: MainButtonParams): MainButton = build<MainButtonParams> {
+fun MainButton.setParams(block: MainButtonParams.() -> Unit): MainButton = build<MainButtonParams> {
+    val new = MainButtonParams().apply(block)
     if (new.text != null) text = new.text
     if (new.color != null) color = new.color
     if (new.textColor != null) textColor = new.textColor

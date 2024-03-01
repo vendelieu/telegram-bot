@@ -16,7 +16,6 @@ kotlin {
             dependencies {
                 implementation(libs.kotlin.serialization)
                 implementation(libs.kotlin.datetime)
-                implementation(libs.krypto)
                 implementation(project(":telegram-bot"))
             }
         }
