@@ -21,6 +21,15 @@ class EditMessageReplyMarkupAction() :
     }
 }
 
+/**
+ * Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+ * @param chatId Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param messageId Required if inline_message_id is not specified. Identifier of the message to edit
+ * @param inlineMessageId Required if chat_id and message_id are not specified. Identifier of the inline message
+ * @param replyMarkup A JSON-serialized object for an inline keyboard.
+ * @returns [Message]|[Boolean]
+ * Api reference: https://core.telegram.org/bots/api#editmessagereplymarkup
+*/
 @Suppress("NOTHING_TO_INLINE")
 inline fun editMessageReplyMarkup() = editMarkup()
 
