@@ -1,5 +1,13 @@
 # Telegram-bot changelog
 
+# 5.0.0
+
+* Moved the library to kotlin multiplatform with `jvm`/`js`/`native` goals. Experimental at the moment.
+* Serialization library replaced with `kotlinx-serialization`.
+* Logging utility changed.
+* Added webapp module.
+* Moved message-related methods to a separate package (your imports could be broken).
+
 ### 4.3.1
 
 * Fix coroutines space overconsumption bug.
