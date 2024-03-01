@@ -25,6 +25,7 @@ jobs:
           gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.SECRET_PASSPHRASE}}" \
           --output /home/runner/work/secret.gpg publish_key.gpg
 
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3-beta
         with:
