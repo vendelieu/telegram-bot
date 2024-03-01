@@ -3,12 +3,9 @@ package eu.vendeli.api
 import BotTestContext
 import eu.vendeli.tgbot.api.getUserChatBoosts
 import eu.vendeli.tgbot.api.getUserProfilePhotos
-import eu.vendeli.tgbot.types.internal.Response
-import io.kotest.matchers.booleans.shouldBeFalse
+import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.string.shouldContain
-import io.kotest.matchers.types.shouldBeInstanceOf
 
 class UserTest : BotTestContext() {
     @Test
@@ -28,9 +25,8 @@ class UserTest : BotTestContext() {
 
     @Test
     suspend fun `get user chat boost method test`() {
-        getUserChatBoosts(TG_ID.asUser()).sendReturning(CHAT_ID, bot).run {
-            ok.shouldBeFalse()
-            shouldBeInstanceOf<Response.Failure>().description shouldContain "PEER_ID_INVALID"
+        getUserChatBoosts(TG_ID.asUser()).sendReturning(CHAT_ID, bot).shouldSuccess().run {
+            boosts.shouldBeEmpty()
         }
     }
 }
