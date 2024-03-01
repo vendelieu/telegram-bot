@@ -12,11 +12,10 @@ data class VideoOptions(
     var width: Int? = null,
     var supportsStreaming: Boolean? = null,
     var thumbnail: ImplicitFile? = null,
-    override var fileName: String? = null,
     override var parseMode: ParseMode? = null,
     override var disableNotification: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,
     override var protectContent: Boolean? = null,
     override var messageThreadId: Int? = null,
     override var hasSpoiler: Boolean? = null,
-) : OptionsCommon, OptionsParseMode, FileOptions, MediaSpoiler
+) : OptionsCommon, OptionsParseMode, MediaSpoiler

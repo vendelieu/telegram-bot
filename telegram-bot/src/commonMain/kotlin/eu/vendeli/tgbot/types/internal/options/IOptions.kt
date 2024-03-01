@@ -16,10 +16,6 @@ interface MediaSpoiler : Options {
     var hasSpoiler: Boolean?
 }
 
-interface FileOptions : Options {
-    var fileName: String?
-}
-
 interface LinkPreviewProp {
     var linkPreviewOptions: LinkPreviewOptions?
 

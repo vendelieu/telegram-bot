@@ -10,5 +10,4 @@ data class StickerOptions(
     override var replyParameters: ReplyParameters? = null,
     override var protectContent: Boolean? = null,
     override var messageThreadId: Int? = null,
-    override var fileName: String? = null,
-) : OptionsCommon, FileOptions
+) : OptionsCommon

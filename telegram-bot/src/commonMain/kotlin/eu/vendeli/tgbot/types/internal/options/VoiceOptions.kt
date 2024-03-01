@@ -12,5 +12,4 @@ data class VoiceOptions(
     override var protectContent: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,
     override var messageThreadId: Int? = null,
-    override var fileName: String? = null,
-) : OptionsCommon, OptionsParseMode, FileOptions
+) : OptionsCommon, OptionsParseMode
