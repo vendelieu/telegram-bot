@@ -29,16 +29,16 @@ class SendStickerAction(sticker: ImplicitFile) :
 
 /**
  * Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.
- * @param chatId Required 
+ * Api reference: https://core.telegram.org/bots/api#sendsticker
+ * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
- * @param sticker Required 
+ * @param sticker Sticker to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP sticker from the Internet, or upload a new .WEBP or .TGS sticker using multipart/form-data. More information on Sending Files: https://core.telegram.org/bots/api#sending-files. Video stickers can only be sent by a file_id. Animated stickers can't be sent via an HTTP URL.
  * @param emoji Emoji associated with the sticker; only for just uploaded stickers
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving
  * @param replyParameters Description of the message to reply to
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
  * @returns [Message]
- * Api reference: https://core.telegram.org/bots/api#sendsticker
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun sticker(file: ImplicitFile) = SendStickerAction(file)

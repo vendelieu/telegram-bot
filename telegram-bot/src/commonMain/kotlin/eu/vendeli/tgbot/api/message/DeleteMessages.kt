@@ -19,10 +19,10 @@ class DeleteMessagesAction(messageIds: List<Long>) : Action<Boolean>() {
 
 /**
  * Use this method to delete multiple messages simultaneously. If some of the specified messages can't be found, they are skipped. Returns True on success.
- * @param chatId Required 
- * @param messageIds Required 
- * @returns [Boolean]
  * Api reference: https://core.telegram.org/bots/api#deletemessages
+ * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param messageIds Identifiers of 1-100 messages to delete. See deleteMessage for limitations on which messages can be deleted
+ * @returns [Boolean]
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun deleteMessages(messageIds: List<Long>) = DeleteMessagesAction(messageIds)

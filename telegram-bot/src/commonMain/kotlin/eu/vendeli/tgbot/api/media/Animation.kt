@@ -31,9 +31,10 @@ class SendAnimationAction(animation: ImplicitFile) :
 
 /**
  * Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
- * @param chatId Required 
+ * Api reference: https://core.telegram.org/bots/api#sendanimation
+ * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
- * @param animation Required 
+ * @param animation Animation to send. Pass a file_id as String to send an animation that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an animation from the Internet, or upload a new animation using multipart/form-data. More information on Sending Files: https://core.telegram.org/bots/api#sending-files
  * @param duration Duration of sent animation in seconds
  * @param width Animation width
  * @param height Animation height
@@ -47,7 +48,6 @@ class SendAnimationAction(animation: ImplicitFile) :
  * @param replyParameters Description of the message to reply to
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
  * @returns [Message]
- * Api reference: https://core.telegram.org/bots/api#sendanimation
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun animation(file: ImplicitFile) = SendAnimationAction(file)

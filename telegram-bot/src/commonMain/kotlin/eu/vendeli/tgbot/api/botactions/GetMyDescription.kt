@@ -19,9 +19,9 @@ class GetMyDescriptionAction(languageCode: String? = null) : SimpleAction<BotDes
 
 /**
  * Use this method to get the current bot description for the given user language. Returns BotDescription on success.
+ * Api reference: https://core.telegram.org/bots/api#getmydescription
  * @param languageCode A two-letter ISO 639-1 language code or an empty string
  * @returns [BotDescription]
- * Api reference: https://core.telegram.org/bots/api#getmydescription
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun getMyDescription(languageCode: String? = null) = GetMyDescriptionAction(languageCode)

@@ -22,10 +22,10 @@ class SetMyDescriptionAction(
 
 /**
  * Use this method to change the bot's description, which is shown in the chat with the bot if the chat is empty. Returns True on success.
+ * Api reference: https://core.telegram.org/bots/api#setmydescription
  * @param description New bot description; 0-512 characters. Pass an empty string to remove the dedicated description for the given language.
  * @param languageCode A two-letter ISO 639-1 language code. If empty, the description will be applied to all users for whose language there is no dedicated description.
  * @returns [Boolean]
- * Api reference: https://core.telegram.org/bots/api#setmydescription
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun setMyDescription(

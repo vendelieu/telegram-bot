@@ -24,10 +24,10 @@ class SetStickerMaskPositionAction(
 
 /**
  * Use this method to change the mask position of a mask sticker. The sticker must belong to a sticker set that was created by the bot. Returns True on success.
- * @param sticker Required 
+ * Api reference: https://core.telegram.org/bots/api#setstickermaskposition
+ * @param sticker File identifier of the sticker
  * @param maskPosition A JSON-serialized object with the position where the mask should be placed on faces. Omit the parameter to remove the mask position.
  * @returns [Boolean]
- * Api reference: https://core.telegram.org/bots/api#setstickermaskposition
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun setStickerMaskPosition(sticker: String, maskPosition: MaskPosition? = null) =

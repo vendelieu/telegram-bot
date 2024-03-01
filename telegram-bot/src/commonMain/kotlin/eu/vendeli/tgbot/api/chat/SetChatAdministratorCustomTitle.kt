@@ -20,11 +20,11 @@ class SetChatAdministratorCustomTitleAction(userId: Long, customTitle: String) :
 
 /**
  * Use this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns True on success.
- * @param chatId Required 
- * @param userId Required 
- * @param customTitle Required 
- * @returns [Boolean]
  * Api reference: https://core.telegram.org/bots/api#setchatadministratorcustomtitle
+ * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+ * @param userId Unique identifier of the target user
+ * @param customTitle New custom title for the administrator; 0-16 characters, emoji are not allowed
+ * @returns [Boolean]
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun setChatAdministratorCustomTitle(userId: Long, customTitle: String) =

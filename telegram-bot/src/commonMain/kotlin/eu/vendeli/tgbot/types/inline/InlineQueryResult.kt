@@ -30,7 +30,7 @@ import kotlinx.serialization.Serializable
  * - InlineQueryResultVideo
  * - InlineQueryResultVoice
  * Note: All URLs passed in inline query results will be available to end users and therefore must be assumed to be public.
- * 
+ *
  * Api reference: https://core.telegram.org/bots/api#inlinequeryresult
 */
 @Serializable

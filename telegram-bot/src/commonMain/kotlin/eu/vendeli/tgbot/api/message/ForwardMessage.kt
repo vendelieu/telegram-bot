@@ -30,14 +30,14 @@ class ForwardMessageAction(fromChatId: Identifier, messageId: Long) :
 
 /**
  * Use this method to forward messages of any kind. Service messages and messages with protected content can't be forwarded. On success, the sent Message is returned.
- * @param chatId Required 
+ * Api reference: https://core.telegram.org/bots/api#forwardmessage
+ * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
- * @param fromChatId Required 
+ * @param fromChatId Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername)
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the forwarded message from forwarding and saving
- * @param messageId Required 
+ * @param messageId Message identifier in the chat specified in from_chat_id
  * @returns [Message]
- * Api reference: https://core.telegram.org/bots/api#forwardmessage
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun forwardMessage(fromChatId: Identifier, messageId: Long) = ForwardMessageAction(fromChatId, messageId)

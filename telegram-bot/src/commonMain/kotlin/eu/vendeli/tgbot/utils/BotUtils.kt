@@ -88,7 +88,7 @@ internal inline fun <R> TgAction<R>.handleImplicitFile(input: ImplicitFile, fiel
     } else if (input is ImplicitFile.InpFile) {
         val fileName = definedFileName ?: input.file.fileName
         multipartData += input.file.toPartData(fileName)
-        parameters[fieldName] = JsonUnquotedLiteral("attach://${fileName}")
+        parameters[fieldName] = JsonUnquotedLiteral("attach://$fileName")
     }
 }
 

@@ -34,9 +34,10 @@ class SendMessageAction private constructor() :
 
 /**
  * Use this method to send text messages. On success, the sent Message is returned.
- * @param chatId Required 
+ * Api reference: https://core.telegram.org/bots/api#sendmessage
+ * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
- * @param text Required 
+ * @param text Text of the message to be sent, 1-4096 characters after entities parsing
  * @param parseMode Mode for parsing entities in the message text. See formatting options for more details.
  * @param entities A JSON-serialized list of special entities that appear in message text, which can be specified instead of parse_mode
  * @param linkPreviewOptions Link preview generation options for the message
@@ -45,7 +46,6 @@ class SendMessageAction private constructor() :
  * @param replyParameters Description of the message to reply to
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
  * @returns [Message]
- * Api reference: https://core.telegram.org/bots/api#sendmessage
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun message(text: String) = SendMessageAction(text)

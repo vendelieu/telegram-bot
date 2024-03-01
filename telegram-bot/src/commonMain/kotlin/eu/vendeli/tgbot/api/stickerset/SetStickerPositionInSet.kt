@@ -19,10 +19,10 @@ class SetStickerPositionInSetAction(sticker: String, position: Int) : SimpleActi
 
 /**
  * Use this method to move a sticker in a set created by the bot to a specific position. Returns True on success.
- * @param sticker Required 
- * @param position Required 
- * @returns [Boolean]
  * Api reference: https://core.telegram.org/bots/api#setstickerpositioninset
+ * @param sticker File identifier of the sticker
+ * @param position New sticker position in the set, zero-based
+ * @returns [Boolean]
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun setStickerPositionInSet(sticker: String, position: Int) = SetStickerPositionInSetAction(sticker, position)

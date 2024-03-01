@@ -29,10 +29,11 @@ class SendLocationAction(
 
 /**
  * Use this method to send point on the map. On success, the sent Message is returned.
- * @param chatId Required 
+ * Api reference: https://core.telegram.org/bots/api#sendlocation
+ * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
- * @param latitude Required 
- * @param longitude Required 
+ * @param latitude Latitude of the location
+ * @param longitude Longitude of the location
  * @param horizontalAccuracy The radius of uncertainty for the location, measured in meters; 0-1500
  * @param livePeriod Period in seconds for which the location will be updated (see Live Locations, should be between 60 and 86400.
  * @param heading For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.
@@ -42,7 +43,6 @@ class SendLocationAction(
  * @param replyParameters Description of the message to reply to
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
  * @returns [Message]
- * Api reference: https://core.telegram.org/bots/api#sendlocation
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun sendLocation(latitude: Float, longitude: Float) = location(latitude, longitude)

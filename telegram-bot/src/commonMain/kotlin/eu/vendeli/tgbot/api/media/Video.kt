@@ -31,9 +31,10 @@ class SendVideoAction(video: ImplicitFile) :
 
 /**
  * Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
- * @param chatId Required 
+ * Api reference: https://core.telegram.org/bots/api#sendvideo
+ * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
- * @param video Required 
+ * @param video Video to send. Pass a file_id as String to send a video that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a video from the Internet, or upload a new video using multipart/form-data. More information on Sending Files: https://core.telegram.org/bots/api#sending-files
  * @param duration Duration of sent video in seconds
  * @param width Video width
  * @param height Video height
@@ -48,7 +49,6 @@ class SendVideoAction(video: ImplicitFile) :
  * @param replyParameters Description of the message to reply to
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
  * @returns [Message]
- * Api reference: https://core.telegram.org/bots/api#sendvideo
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun video(file: ImplicitFile) = SendVideoAction(file)

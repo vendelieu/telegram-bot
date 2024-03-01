@@ -28,12 +28,12 @@ class GetGameHighScoresAction : InlinableAction<List<GameHighScore>> {
 
 /**
  * Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of GameHighScore objects.
- * @param userId Required 
+ * Api reference: https://core.telegram.org/bots/api#getgamehighscores
+ * @param userId Target user id
  * @param chatId Required if inline_message_id is not specified. Unique identifier for the target chat
  * @param messageId Required if inline_message_id is not specified. Identifier of the sent message
  * @param inlineMessageId Required if chat_id and message_id are not specified. Identifier of the inline message
  * @returns [Array of GameHighScore]
- * Api reference: https://core.telegram.org/bots/api#getgamehighscores
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun getGameHighScores(userId: Long, messageId: Long) =

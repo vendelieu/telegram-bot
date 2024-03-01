@@ -40,14 +40,15 @@ class SendInvoiceAction(
 
 /**
  * Use this method to send invoices. On success, the sent Message is returned.
- * @param chatId Required 
+ * Api reference: https://core.telegram.org/bots/api#sendinvoice
+ * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
- * @param title Required 
- * @param description Required 
- * @param payload Required 
- * @param providerToken Required 
- * @param currency Required 
- * @param prices Required 
+ * @param title Product name, 1-32 characters
+ * @param description Product description, 1-255 characters
+ * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
+ * @param providerToken Payment provider token, obtained via @BotFather
+ * @param currency Three-letter ISO 4217 currency code, see more on currencies
+ * @param prices Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.)
  * @param maxTipAmount The maximum accepted amount for tips in the smallest units of the currency (integer, not float/double). For example, for a maximum tip of US$ 1.45 pass max_tip_amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0
  * @param suggestedTipAmounts A JSON-serialized array of suggested amounts of tips in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed max_tip_amount.
  * @param startParameter Unique deep-linking parameter. If left empty, forwarded copies of the sent message will have a Pay button, allowing multiple users to pay directly from the forwarded message, using the same invoice. If non-empty, forwarded copies of the sent message will have a URL button with a deep link to the bot (instead of a Pay button), with the value used as the start parameter
@@ -68,7 +69,6 @@ class SendInvoiceAction(
  * @param replyParameters Description of the message to reply to
  * @param replyMarkup A JSON-serialized object for an inline keyboard. If empty, one 'Pay total price' button will be shown. If not empty, the first button must be a Pay button.
  * @returns [Message]
- * Api reference: https://core.telegram.org/bots/api#sendinvoice
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun invoice(

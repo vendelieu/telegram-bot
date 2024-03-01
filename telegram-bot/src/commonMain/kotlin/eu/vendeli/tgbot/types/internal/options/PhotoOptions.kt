@@ -12,5 +12,5 @@ data class PhotoOptions(
     override var protectContent: Boolean? = null,
     override var messageThreadId: Int? = null,
     override var hasSpoiler: Boolean? = null,
-    override var fileName: String? = null
+    override var fileName: String? = null,
 ) : OptionsCommon, OptionsParseMode, MediaSpoiler, FileOptions

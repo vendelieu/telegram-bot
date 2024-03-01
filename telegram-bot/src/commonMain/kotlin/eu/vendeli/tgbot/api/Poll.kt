@@ -30,10 +30,11 @@ class SendPollAction(question: String, pollOptions: List<String>) :
 
 /**
  * Use this method to send a native poll. On success, the sent Message is returned.
- * @param chatId Required 
+ * Api reference: https://core.telegram.org/bots/api#sendpoll
+ * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
- * @param question Required 
- * @param options Required 
+ * @param question Poll question, 1-300 characters
+ * @param options A JSON-serialized list of answer options, 2-10 strings 1-100 characters each
  * @param isAnonymous True, if the poll needs to be anonymous, defaults to True
  * @param type Poll type, "quiz" or "regular", defaults to "regular"
  * @param allowsMultipleAnswers True, if the poll allows multiple answers, ignored for polls in quiz mode, defaults to False
@@ -49,7 +50,6 @@ class SendPollAction(question: String, pollOptions: List<String>) :
  * @param replyParameters Description of the message to reply to
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
  * @returns [Message]
- * Api reference: https://core.telegram.org/bots/api#sendpoll
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun poll(question: String, options: List<String>) = SendPollAction(question, options)

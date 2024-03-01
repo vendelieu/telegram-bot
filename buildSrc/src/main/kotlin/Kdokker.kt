@@ -72,14 +72,15 @@ abstract class Kdokker : DefaultTask() {
                     ?: return@forEach
                 var kdoc = "/**$NEWLINE"
                 kdoc += methodMeta.description.joinToString("$NEWLINE * ", " * ")
+                kdoc += "$NEWLINE * Api reference: ${methodMeta.href}"
                 kdoc += "$NEWLINE * "
 
                 kdoc += methodMeta.fields.joinToString("$NEWLINE * ") {
-                    "@param " + it.name.snakeToCamelCase() + " " + if (it.required) "Required " else "" + it.description
+                    "@param " + it.name.snakeToCamelCase() + " " + it.description
                 }
 
                 kdoc += NEWLINE + methodMeta.returns.joinToString("|", " * @returns ") { "[$it]" }
-                kdoc += NEWLINE + " * Api reference: ${methodMeta.href}$NEWLINE*/$NEWLINE"
+                kdoc += "$NEWLINE*/$NEWLINE"
 
                 modifiedContent = modifiedContent.replace(method.value, kdoc + method.value)
 

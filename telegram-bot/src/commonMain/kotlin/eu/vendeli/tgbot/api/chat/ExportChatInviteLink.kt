@@ -13,9 +13,9 @@ class ExportChatInviteLinkAction : Action<String>() {
 
 /**
  * Use this method to generate a new primary invite link for a chat; any previously generated primary link is revoked. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as String on success.
- * @param chatId Required 
- * @returns [String]
  * Api reference: https://core.telegram.org/bots/api#exportchatinvitelink
+ * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @returns [String]
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun exportChatInviteLink() = ExportChatInviteLinkAction()

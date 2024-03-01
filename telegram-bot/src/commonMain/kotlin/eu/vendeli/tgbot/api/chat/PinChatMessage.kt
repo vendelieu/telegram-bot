@@ -19,11 +19,11 @@ class PinChatMessageAction(messageId: Long, disableNotification: Boolean? = null
 
 /**
  * Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.
- * @param chatId Required 
- * @param messageId Required 
+ * Api reference: https://core.telegram.org/bots/api#pinchatmessage
+ * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param messageId Identifier of a message to pin
  * @param disableNotification Pass True if it is not necessary to send a notification to all chat members about the new pinned message. Notifications are always disabled in channels and private chats.
  * @returns [Boolean]
- * Api reference: https://core.telegram.org/bots/api#pinchatmessage
 */
 @Suppress("NOTHING_TO_INLINE")
 inline fun pinChatMessage(messageId: Long, disableNotification: Boolean? = null) =

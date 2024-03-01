@@ -229,7 +229,7 @@ enum class EmojiType(val literal: String) {
  * This object describes the type of a reaction. Currently, it can be one of
  * - ReactionTypeEmoji
  * - ReactionTypeCustomEmoji
- * 
+ *
  * Api reference: https://core.telegram.org/bots/api#reactiontype
 */
 @Serializable
