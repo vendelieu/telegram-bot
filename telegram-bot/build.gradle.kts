@@ -1,49 +1,100 @@
+
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.time.LocalDate
 
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-    `java-library`
-    alias(libs.plugins.dokka)
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.compatability.validator)
     alias(libs.plugins.ktlinter)
     alias(libs.plugins.deteKT)
     alias(libs.plugins.kover)
+    alias(libs.plugins.dokka)
+    id("publish")
 }
 
-val javaTargetVersion = JavaVersion.VERSION_11
+kotlin {
+    jvm {
+        withJava()
+        compilations.all {
+            kotlinOptions.jvmTarget = JAVA_TARGET_V
+        }
+    }
+    js { nodejs() }
+    mingwX64()
+    linuxArm64()
+    linuxX64()
+    jvmToolchain(JAVA_TARGET_V_int)
 
-repositories {
-    mavenCentral()
+    sourceSets {
+        named("commonMain") {
+            dependencies {
+                implementation(libs.kotlin.serialization)
+                implementation(libs.kotlin.datetime)
+                implementation(libs.kotlin.reflect)
+
+                implementation(libs.krypto)
+                implementation(libs.stately)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.logging)
+                implementation(libs.logging)
+
+                api(libs.coroutines.core)
+            }
+        }
+        named("jvmTest") {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.8.0")
+                implementation("ch.qos.logback:logback-classic:1.5.1")
+
+                implementation(libs.test.kotest.junit5)
+                implementation(libs.test.kotest.assertions)
+                implementation(libs.test.ktor.mock)
+                implementation(libs.mockk)
+            }
+        }
+        named("jvmMain") {
+            dependencies {
+                implementation(libs.ktor.client.cio)
+            }
+        }
+        named("jsMain") {
+            dependencies {
+                implementation(libs.ktor.client.js)
+            }
+        }
+        named("linuxArm64Main") {
+            dependencies {
+                implementation(libs.ktor.client.cio)
+            }
+        }
+        named("linuxX64Main") {
+            dependencies {
+                implementation(libs.ktor.client.cio)
+            }
+        }
+        named("mingwX64Main") {
+            dependencies {
+                implementation(libs.ktor.client.winhttp)
+            }
+        }
+    }
+
+    targets.all {
+        compilations.all {
+            compilerOptions.configure {
+                allWarningsAsErrors.set(true)
+            }
+        }
+    }
 }
 
-dependencies {
-    implementation(libs.jackson.kotlin)
-    implementation(libs.jackson.databind)
-    implementation(libs.jackson.datatype.jsr310)
-
-    implementation(libs.ktor.client.core)
-    implementation(libs.ktor.client.cio)
-    implementation(libs.ktor.client.logging)
-
-    implementation(libs.mu.logging)
-    implementation(libs.logback.classic)
-
-    api(libs.coroutines.core)
-
-    testImplementation(libs.logback.classic)
-    testImplementation(libs.test.kotest.junit5)
-    testImplementation(libs.test.kotest.assertions)
-    testImplementation(libs.test.junit.params)
-    testImplementation(libs.test.ktor.mock)
-    testImplementation(libs.mockk)
+libraryData {
+    name.set("Telegram Bot")
+    description.set("Telegram Bot API wrapper, with handy Kotlin DSL.")
 }
-
-group = "eu.vendeli"
-version = providers.gradleProperty("libVersion").getOrElse("dev")
-description = "Telegram Bot API wrapper, with handy Kotlin DSL."
-
-apply(from = "../publishing.gradle.kts")
 
 detekt {
     buildUponDefaultConfig = true
@@ -58,26 +109,24 @@ buildscript {
 }
 
 tasks {
-    compileKotlin {
-        kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
-        kotlinOptions.allWarningsAsErrors = true
-        incremental = true
-    }
+    register<Kdokker>("kdocUpdate")
 
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
+    withType<KotlinCompile> {
+        doLast {
+            exclude("**/ActivitiesData.kt")
+        }
     }
-
-    test {
+    withType<Test> {
         useJUnitPlatform()
     }
-
     dokkaHtml.configure {
         outputDirectory.set(layout.buildDirectory.asFile.orNull?.resolve("dokka"))
         dokkaSourceSets {
-            named("main") {
-                moduleName.set("Telegram Bot")
-            }
+            named("commonMain") { sourceRoots.setFrom(project.projectDir.resolve("src/commonMain/kotlin")) }
+            named("jvmMain") { sourceRoots.setFrom(project.projectDir.resolve("src/jvmMain/kotlin")) }
+            named("jsMain") { sourceRoots.setFrom(project.projectDir.resolve("src/jsMain/kotlin")) }
+            named("nativeMain") { sourceRoots.setFrom(project.projectDir.resolve("src/nativeMain/kotlin")) }
+            collectionSchema.elements.forEach { _ -> moduleName.set("Telegram Bot") }
         }
         pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
             customStyleSheets = listOf(rootDir.resolve("assets/logo-styles.css"))
@@ -85,6 +134,11 @@ tasks {
             footerMessage = "© ${LocalDate.now().year} Vendelieu"
         }
     }
+}
+
+apiValidation {
+    ignoredPackages.add("utils")
+    nonPublicMarkers.add("eu.vendeli.tgbot.annotations.internal.ExperimentalFeature")
 }
 
 koverReport {
@@ -109,9 +163,3 @@ koverReport {
     }
 }
 
-java {
-    withSourcesJar()
-    withJavadocJar()
-    sourceCompatibility = javaTargetVersion
-    targetCompatibility = javaTargetVersion
-}

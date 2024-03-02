@@ -1,46 +1,46 @@
 [versions]
 ktor = "2.3.8"
-mu-logging = "3.0.5"
-logback = "1.4.14"
-jackson = "2.16.1"
-reflections = "0.10.2"
+logging = "5.3.2"
+datetime = "0.5.0"
+serialization = "1.6.3"
+stately = "2.0.6"
 
 kotlin = "1.9.22"
-coroutines = "1.7.3"
+coroutines = "1.8.0"
 dokka = "1.9.10"
 kotlinter = "4.1.1"
 deteKT = "1.23.5"
 
 kotest = "5.8.0"
-mockk = "1.13.9"
-junit = "5.10.2"
-kover = "0.7.5"
+mockk = "1.13.10"
+kover = "0.7.6"
+krypto = "4.0.10"
 
 ksp = "1.9.22-1.0.17"
 poet = "1.16.0"
 
-[libraries]
-# jackson
-jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
-jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
+binvalid = "0.14.0"
 
+[libraries]
 # ktor
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-client-winhttp = { module = "io.ktor:ktor-client-winhttp", version.ref = "ktor" }
+ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
 
 # logging
-mu-logging = { module = "io.github.microutils:kotlin-logging-jvm", version.ref = "mu-logging" }
-logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+logging = { module = "com.soywiz.korge:korlibs-logger", version.ref = "logging" }
 
-reflections = { module = "org.reflections:reflections", version.ref = "reflections" }
-kotlin-reflections = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+stately = { module = "co.touchlab:stately-concurrent-collections", version.ref = "stately" }
+krypto = { module = "com.soywiz.korlibs.krypto:krypto", version.ref = "krypto" }
 
 # test
 test-kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 test-kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
-test-junit-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
 test-ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -52,7 +52,9 @@ poet-ksp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "poet" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 [plugins]
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-compatability-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binvalid" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ktlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }

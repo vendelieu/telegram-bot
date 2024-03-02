@@ -1,3 +1,5 @@
-rootProject.name = "tgbot"
-include("telegram-bot")
-include("ksp")
+rootProject.name = "ktgram"
+
+include(":telegram-bot")
+include(":ksp")
+include(":webapps")

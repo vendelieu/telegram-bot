@@ -2,14 +2,12 @@
 
 # Telegram Bot
 
-[![Maven Central](https://img.shields.io/maven-central/v/eu.vendeli/telegram-bot?style=flat&label=Maven&logo=apache-maven)](https://search.maven.org/artifact/eu.vendeli/telegram-bot)
-[![Supported version](https://img.shields.io/badge/Bot%20Api-7.0-blue?logo=telegram)](https://core.telegram.org/bots/api#december-29-2023)
-
-[![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
-[![codecov](https://codecov.io/gh/vendelieu/telegram-bot/branch/master/graph/badge.svg?token=xn5xo6fu6r)](https://codecov.io/gh/vendelieu/telegram-bot)
-
-[![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/venny_tgbot)
-[![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Channel&color=blue&logo=telegram)](https://t.me/v_telegramBot)
+ [![Maven Central](https://img.shields.io/maven-central/v/eu.vendeli/telegram-bot?style=flat&label=Maven&logo=apache-maven)](https://search.maven.org/artifact/eu.vendeli/telegram-bot)
+ [![Supported version](https://img.shields.io/badge/Bot%20Api-7.1-blue?logo=telegram)](https://core.telegram.org/bots/api#february-16-2024)\
+ [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
+ [![codecov](https://codecov.io/gh/vendelieu/telegram-bot/branch/master/graph/badge.svg?token=xn5xo6fu6r)](https://codecov.io/gh/vendelieu/telegram-bot) \
+ [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/venny_tgbot)
+ [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Channel&color=blue&logo=telegram)](https://t.me/v_telegramBot)
 
 Telegram Bot Api wrapper with a user-friendly interface.
 
@@ -22,7 +20,7 @@ build.gradle.kts example:
 ```gradle
 plugins {
     // ...
-    id("com.google.devtools.ksp") version "1.9.22-1.0.17"
+    id("com.google.devtools.ksp") version "1.9.22-1.0.18"
 }
 
 dependencies {
@@ -138,7 +136,7 @@ methods [`getOrNull()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bo
 
 ### Additional resources
 
-There is also a [wiki](https://github.com/vendelieu/telegram-bot/wiki) section which is updated frequently.
+> There is a [wiki](https://github.com/vendelieu/telegram-bot/wiki) section that have helpful information.
 
 ### Questions
 

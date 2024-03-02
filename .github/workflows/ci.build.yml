@@ -12,23 +12,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up JDK 11
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: 11
 
-      - name: Build with Gradle
-        uses: eskatos/gradle-command-action@v3
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3-beta
+        with:
+          gradle-version: current
+          dependency-graph: generate-and-submit
+
+      - name: Build artifact
         env:
           TELEGRAM_ID: ${{ secrets.TELEGRAM_ID }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
           BOT_ID: ${{ secrets.BOT_ID }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           BOT_TOKEN_2: ${{ secrets.BOT_TOKEN_2 }}
-        with:
-          gradle-version: current
-          arguments: build koverXmlReport -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
+        run: ./gradlew koverXmlReport -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         env:

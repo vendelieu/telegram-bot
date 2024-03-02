@@ -1,50 +1,42 @@
-val javaTargetVersion = JavaVersion.VERSION_11
-
 plugins {
-    `java-library`
-    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.ktlinter)
     alias(libs.plugins.deteKT)
+    id("publish")
 }
 
-group = "eu.vendeli"
-version = providers.gradleProperty("libVersion").getOrElse("dev")
-description = "KSP plugin for Telegram-bot lib to collect actions."
+libraryData {
+    name = "KSP processor"
+    description = "KSP plugin for Telegram-bot lib to collect actions."
+}
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation(libs.ksp)
-    implementation(libs.poet)
-    implementation(libs.poet.ksp)
-    implementation(project(":telegram-bot"))
-}
+kotlin {
+    jvm {
+        withJava()
+        compilations.all {
+            kotlinOptions.jvmTarget = JAVA_TARGET_V
+        }
+    }
+    jvmToolchain(JAVA_TARGET_V_int)
 
-apply(from = "../publishing.gradle.kts")
+    sourceSets {
+        named("jvmMain") {
+            dependencies {
+                implementation(libs.ksp)
+                implementation(libs.poet)
+                implementation(libs.poet.ksp)
+                implementation(project(":telegram-bot"))
+            }
+        }
+    }
+}
 
 detekt {
     buildUponDefaultConfig = true
     allRules = false
     config.from(files("$rootDir/detekt.yml"))
-}
-
-tasks {
-    compileKotlin {
-        kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
-        kotlinOptions.allWarningsAsErrors = true
-        incremental = true
-    }
-
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = javaTargetVersion.majorVersion
-    }
-}
-
-java {
-    withSourcesJar()
-    withJavadocJar()
-    sourceCompatibility = javaTargetVersion
-    targetCompatibility = javaTargetVersion
 }

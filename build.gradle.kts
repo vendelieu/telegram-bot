@@ -2,8 +2,12 @@ allprojects {
     repositories {
         mavenCentral()
     }
+    group = "eu.vendeli"
+    version = providers.gradleProperty("libVersion").getOrElse("dev")
 }
 
-tasks.create<Delete>("clean") {
-    delete.add(rootProject.layout.buildDirectory.asFile.get())
+plugins {
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.ktlinter) apply false
+    alias(libs.plugins.deteKT) apply false
 }
