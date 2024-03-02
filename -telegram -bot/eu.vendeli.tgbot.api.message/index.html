@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>eu.vendeli.tgbot.api.message</title>
+    <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+<link href="../../images/tgbotkt-logo.png">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../index.html">
+                            Telegram Bot
+                    </a>
+            </div>
+            <div class="library-version">
+5.0.0            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":telegram-bot:dokkaHtml/commonMain">common</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageIds="Telegram Bot::eu.vendeli.tgbot.api.message////PointingToDeclaration//-739924179">
+  <div class="breadcrumbs"><a href="../../index.html">Telegram Bot</a><span class="delimiter">/</span><span class="current">eu.vendeli.tgbot.api.message</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-756425554%2FClasslikes%2F-739924179" anchor-label="CopyMessageAction" id="-756425554%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-copy-message-action/index.html"><span>Copy</span><wbr></wbr><span>Message</span><wbr></wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-756425554%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-copy-message-action/index.html">CopyMessageAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.internal/-identifier/index.html">Identifier</a><span class="token punctuation">, </span></span><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces/-action/index.html">Action</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types/-message-id/index.html">MessageId</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-options-feature/index.html">OptionsFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-copy-message-action/index.html">CopyMessageAction</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types.internal.options/-copy-message-options/index.html">CopyMessageOptions</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-markup-feature/index.html">MarkupFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-copy-message-action/index.html">CopyMessageAction</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-caption-feature/index.html">CaptionFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-copy-message-action/index.html">CopyMessageAction</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1641969643%2FClasslikes%2F-739924179" anchor-label="CopyMessagesAction" id="-1641969643%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-copy-messages-action/index.html"><span>Copy</span><wbr></wbr><span>Messages</span><wbr></wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1641969643%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-copy-messages-action/index.html">CopyMessagesAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.internal/-identifier/index.html">Identifier</a><span class="token punctuation">, </span></span><span class="parameter ">messageIds<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces/-action/index.html">Action</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types/-message-id/index.html">MessageId</a><span class="token operator">&gt;</span><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-options-feature/index.html">OptionsFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-copy-messages-action/index.html">CopyMessagesAction</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types.internal.options/-copy-messages-options/index.html">CopyMessagesOptions</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1604298020%2FClasslikes%2F-739924179" anchor-label="DeleteMessageAction" id="1604298020%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-delete-message-action/index.html"><span>Delete</span><wbr></wbr><span>Message</span><wbr></wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1604298020%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-delete-message-action/index.html">DeleteMessageAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces/-action/index.html">Action</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1473982881%2FClasslikes%2F-739924179" anchor-label="DeleteMessagesAction" id="-1473982881%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-delete-messages-action/index.html"><span>Delete</span><wbr></wbr><span>Messages</span><wbr></wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1473982881%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-delete-messages-action/index.html">DeleteMessagesAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageIds<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces/-action/index.html">Action</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="117616173%2FClasslikes%2F-739924179" anchor-label="EditMessageCaptionAction" id="117616173%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-edit-message-caption-action/index.html"><span>Edit</span><wbr></wbr><span>Message</span><wbr></wbr><span>Caption</span><wbr></wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="117616173%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-edit-message-caption-action/index.html">EditMessageCaptionAction</a> : <a href="../eu.vendeli.tgbot.interfaces/-inlinable-action/index.html">InlinableAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types/-message/index.html">Message</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-options-feature/index.html">OptionsFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-edit-message-caption-action/index.html">EditMessageCaptionAction</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types.internal.options/-edit-caption-options/index.html">EditCaptionOptions</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-markup-feature/index.html">MarkupFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-edit-message-caption-action/index.html">EditMessageCaptionAction</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-caption-feature/index.html">CaptionFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-edit-message-caption-action/index.html">EditMessageCaptionAction</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1380372862%2FClasslikes%2F-739924179" anchor-label="EditMessageLiveLocationAction" id="-1380372862%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-edit-message-live-location-action/index.html"><span>Edit</span><wbr></wbr><span>Message</span><wbr></wbr><span>Live</span><wbr></wbr><span>Location</span><wbr></wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1380372862%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-edit-message-live-location-action/index.html">EditMessageLiveLocationAction</a> : <a href="../eu.vendeli.tgbot.interfaces/-inlinable-action/index.html">InlinableAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types/-message/index.html">Message</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-options-feature/index.html">OptionsFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-edit-message-live-location-action/index.html">EditMessageLiveLocationAction</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types.internal.options/-edit-message-live-location-options/index.html">EditMessageLiveLocationOptions</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-markup-feature/index.html">MarkupFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-edit-message-live-location-action/index.html">EditMessageLiveLocationAction</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1982154351%2FClasslikes%2F-739924179" anchor-label="EditMessageMediaAction" id="1982154351%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-edit-message-media-action/index.html"><span>Edit</span><wbr></wbr><span>Message</span><wbr></wbr><span>Media</span><wbr></wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1982154351%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-edit-message-media-action/index.html">EditMessageMediaAction</a> : <a href="../eu.vendeli.tgbot.interfaces/-inlinable-action/index.html">InlinableAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types/-message/index.html">Message</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-markup-feature/index.html">MarkupFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-edit-message-media-action/index.html">EditMessageMediaAction</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1479822111%2FClasslikes%2F-739924179" anchor-label="EditMessageReplyMarkupAction" id="-1479822111%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-edit-message-reply-markup-action/index.html"><span>Edit</span><wbr></wbr><span>Message</span><wbr></wbr><span>Reply</span><wbr></wbr><span>Markup</span><wbr></wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1479822111%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-edit-message-reply-markup-action/index.html">EditMessageReplyMarkupAction</a> : <a href="../eu.vendeli.tgbot.interfaces/-inlinable-action/index.html">InlinableAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types/-message/index.html">Message</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-markup-feature/index.html">MarkupFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-edit-message-reply-markup-action/index.html">EditMessageReplyMarkupAction</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-371151722%2FClasslikes%2F-739924179" anchor-label="EditMessageTextAction" id="-371151722%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-edit-message-text-action/index.html"><span>Edit</span><wbr></wbr><span>Message</span><wbr></wbr><span>Text</span><wbr></wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-371151722%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-edit-message-text-action/index.html">EditMessageTextAction</a> : <a href="../eu.vendeli.tgbot.interfaces/-inlinable-action/index.html">InlinableAction</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types/-message/index.html">Message</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.utils.builders/-entities-context-builder/index.html">EntitiesContextBuilder</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-edit-message-text-action/index.html">EditMessageTextAction</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-options-feature/index.html">OptionsFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-edit-message-text-action/index.html">EditMessageTextAction</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types.internal.options/-edit-message-options/index.html">EditMessageOptions</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-markup-feature/index.html">MarkupFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-edit-message-text-action/index.html">EditMessageTextAction</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-entities-feature/index.html">EntitiesFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-edit-message-text-action/index.html">EditMessageTextAction</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1918917740%2FClasslikes%2F-739924179" anchor-label="ForwardMessageAction" id="-1918917740%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-forward-message-action/index.html"><span>Forward</span><wbr></wbr><span>Message</span><wbr></wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1918917740%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-forward-message-action/index.html">ForwardMessageAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.internal/-identifier/index.html">Identifier</a><span class="token punctuation">, </span></span><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces/-action/index.html">Action</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types/-message/index.html">Message</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-options-feature/index.html">OptionsFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-forward-message-action/index.html">ForwardMessageAction</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types.internal.options/-forward-message-options/index.html">ForwardMessageOptions</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="975478255%2FClasslikes%2F-739924179" anchor-label="ForwardMessagesAction" id="975478255%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-forward-messages-action/index.html"><span>Forward</span><wbr></wbr><span>Messages</span><wbr></wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="975478255%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-forward-messages-action/index.html">ForwardMessagesAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.internal/-identifier/index.html">Identifier</a><span class="token punctuation">, </span></span><span class="parameter ">messageIds<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces/-action/index.html">Action</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types/-message-id/index.html">MessageId</a><span class="token operator">&gt;</span><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-options-feature/index.html">OptionsFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-forward-messages-action/index.html">ForwardMessagesAction</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types.internal.options/-forward-message-options/index.html">ForwardMessageOptions</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1616161151%2FClasslikes%2F-739924179" anchor-label="SendMessageAction" id="-1616161151%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-send-message-action/index.html"><span>Send</span><wbr></wbr><span>Message</span><wbr></wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1616161151%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-send-message-action/index.html">SendMessageAction</a> : <a href="../eu.vendeli.tgbot.interfaces/-action/index.html">Action</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types/-message/index.html">Message</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-options-feature/index.html">OptionsFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-send-message-action/index.html">SendMessageAction</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.types.internal.options/-message-options/index.html">MessageOptions</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-markup-feature/index.html">MarkupFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-send-message-action/index.html">SendMessageAction</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-entities-feature/index.html">EntitiesFeature</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-send-message-action/index.html">SendMessageAction</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.utils.builders/-entities-context-builder/index.html">EntitiesContextBuilder</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-send-message-action/index.html">SendMessageAction</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1027520995%2FFunctions%2F-739924179" anchor-label="copyMessage" id="1027520995%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="copy-message.html"><span>copy</span><wbr></wbr><span><span>Message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1027520995%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="copy-message.html"><span class="token function">copyMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types/-user/index.html">User</a><span class="token punctuation">, </span></span><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-copy-message-action/index.html">CopyMessageAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="copy-message.html"><span class="token function">copyMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.chat/-chat/index.html">Chat</a><span class="token punctuation">, </span></span><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-copy-message-action/index.html">CopyMessageAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="copy-message.html"><span class="token function">copyMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-copy-message-action/index.html">CopyMessageAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="copy-message.html"><span class="token function">copyMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-copy-message-action/index.html">CopyMessageAction</a></div><br><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="copy-message.html"><span class="token function">copyMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.internal/-identifier/index.html">Identifier</a><span class="token punctuation">, </span></span><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-copy-message-action/index.html">CopyMessageAction</a></div><div class="brief "><p class="paragraph">Use this method to copy messages of any kind. Service messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success. Api reference: https://core.telegram.org/bots/api#copymessage</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-916132880%2FFunctions%2F-739924179" anchor-label="copyMessages" id="-916132880%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="copy-messages.html"><span>copy</span><wbr></wbr><span><span>Messages</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-916132880%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="copy-messages.html"><span class="token function">copyMessages</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types/-user/index.html">User</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-copy-messages-action/index.html">CopyMessagesAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="copy-messages.html"><span class="token function">copyMessages</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.chat/-chat/index.html">Chat</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-copy-messages-action/index.html">CopyMessagesAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="copy-messages.html"><span class="token function">copyMessages</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-copy-messages-action/index.html">CopyMessagesAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="copy-messages.html"><span class="token function">copyMessages</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-copy-messages-action/index.html">CopyMessagesAction</a></div><br><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="copy-messages.html"><span class="token function">copyMessages</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.internal/-identifier/index.html">Identifier</a><span class="token punctuation">, </span></span><span class="parameter ">messageIds<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-copy-messages-action/index.html">CopyMessagesAction</a></div><div class="brief "><p class="paragraph">Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an array of MessageId of the sent messages is returned. Api reference: https://core.telegram.org/bots/api#copymessages</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1316099310%2FFunctions%2F-739924179" anchor-label="deleteMessage" id="1316099310%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-message.html"><span>delete</span><wbr></wbr><span><span>Message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1316099310%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="delete-message.html"><span class="token function">deleteMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-delete-message-action/index.html">DeleteMessageAction</a></div><div class="brief "><p class="paragraph">Use this method to delete a message, including service messages, with the following limitations:</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1114170767%2FFunctions%2F-739924179" anchor-label="deleteMessages" id="-1114170767%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-messages.html"><span>delete</span><wbr></wbr><span><span>Messages</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1114170767%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="delete-messages.html"><span class="token function">deleteMessages</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-delete-messages-action/index.html">DeleteMessagesAction</a></div><br><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="delete-messages.html"><span class="token function">deleteMessages</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageIds<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-delete-messages-action/index.html">DeleteMessagesAction</a></div><div class="brief "><p class="paragraph">Use this method to delete multiple messages simultaneously. If some of the specified messages can't be found, they are skipped. Returns True on success. Api reference: https://core.telegram.org/bots/api#deletemessages</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1965344623%2FFunctions%2F-739924179" anchor-label="editCaption" id="1965344623%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="edit-caption.html"><span>edit</span><wbr></wbr><span><span>Caption</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1965344623%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="edit-caption.html"><span class="token function">editCaption</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-caption-action/index.html">EditMessageCaptionAction</a></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="edit-caption.html"><span class="token function">editCaption</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-caption-action/index.html">EditMessageCaptionAction</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1085393331%2FFunctions%2F-739924179" anchor-label="editMarkup" id="-1085393331%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="edit-markup.html"><span>edit</span><wbr></wbr><span><span>Markup</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1085393331%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-markup.html"><span class="token function">editMarkup</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-reply-markup-action/index.html">EditMessageReplyMarkupAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-markup.html"><span class="token function">editMarkup</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-reply-markup-action/index.html">EditMessageReplyMarkupAction</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1802089030%2FFunctions%2F-739924179" anchor-label="editMedia" id="1802089030%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="edit-media.html"><span>edit</span><wbr></wbr><span><span>Media</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1802089030%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="edit-media.html"><span class="token function">editMedia</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">inputMedia<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.media/-input-media/index.html">InputMedia</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-media-action/index.html">EditMessageMediaAction</a></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="edit-media.html"><span class="token function">editMedia</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">inputMedia<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.media/-input-media/index.html">InputMedia</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-media-action/index.html">EditMessageMediaAction</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="407097581%2FFunctions%2F-739924179" anchor-label="editMessageCaption" id="407097581%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="edit-message-caption.html"><span>edit</span><wbr></wbr><span>Message</span><wbr></wbr><span><span>Caption</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="407097581%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-message-caption.html"><span class="token function">editMessageCaption</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-caption-action/index.html">EditMessageCaptionAction</a></div><br><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-message-caption.html"><span class="token function">editMessageCaption</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-caption-action/index.html">EditMessageCaptionAction</a></div><div class="brief "><p class="paragraph">Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Api reference: https://core.telegram.org/bots/api#editmessagecaption</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-562850394%2FFunctions%2F-739924179" anchor-label="editMessageLiveLocation" id="-562850394%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="edit-message-live-location.html"><span>edit</span><wbr></wbr><span>Message</span><wbr></wbr><span>Live</span><wbr></wbr><span><span>Location</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-562850394%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-message-live-location.html"><span class="token function">editMessageLiveLocation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">latitude<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span></span><span class="parameter ">longitude<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-live-location-action/index.html">EditMessageLiveLocationAction</a></div><br><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-message-live-location.html"><span class="token function">editMessageLiveLocation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">latitude<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span></span><span class="parameter ">longitude<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-live-location-action/index.html">EditMessageLiveLocationAction</a></div><div class="brief "><p class="paragraph">Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Api reference: https://core.telegram.org/bots/api#editmessagelivelocation</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-84025354%2FFunctions%2F-739924179" anchor-label="editMessageMedia" id="-84025354%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="edit-message-media.html"><span>edit</span><wbr></wbr><span>Message</span><wbr></wbr><span><span>Media</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-84025354%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-message-media.html"><span class="token function">editMessageMedia</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">inputMedia<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.media/-input-media/index.html">InputMedia</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-media-action/index.html">EditMessageMediaAction</a></div><br><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-message-media.html"><span class="token function">editMessageMedia</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">inputMedia<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.media/-input-media/index.html">InputMedia</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-media-action/index.html">EditMessageMediaAction</a></div><div class="brief "><p class="paragraph">Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Api reference: https://core.telegram.org/bots/api#editmessagemedia</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1687142291%2FFunctions%2F-739924179" anchor-label="editMessageReplyMarkup" id="-1687142291%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="edit-message-reply-markup.html"><span>edit</span><wbr></wbr><span>Message</span><wbr></wbr><span>Reply</span><wbr></wbr><span><span>Markup</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1687142291%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-message-reply-markup.html"><span class="token function">editMessageReplyMarkup</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-reply-markup-action/index.html">EditMessageReplyMarkupAction</a></div><div class="brief "><p class="paragraph">Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Api reference: https://core.telegram.org/bots/api#editmessagereplymarkup</p></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-message-reply-markup.html"><span class="token function">editMessageReplyMarkup</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-reply-markup-action/index.html">EditMessageReplyMarkupAction</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-364834472%2FFunctions%2F-739924179" anchor-label="editMessageText" id="-364834472%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="edit-message-text.html"><span>edit</span><wbr></wbr><span>Message</span><wbr></wbr><span><span>Text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-364834472%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="edit-message-text.html"><span class="token function">editMessageText</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.utils.builders/-entities-context-builder/index.html">EntitiesContextBuilder</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-edit-message-text-action/index.html">EditMessageTextAction</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-text-action/index.html">EditMessageTextAction</a></div><br><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-message-text.html"><span class="token function">editMessageText</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-text-action/index.html">EditMessageTextAction</a></div><div class="brief "><p class="paragraph">Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Api reference: https://core.telegram.org/bots/api#editmessagetext</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2111705112%2FFunctions%2F-739924179" anchor-label="editText" id="-2111705112%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="edit-text.html"><span>edit</span><wbr></wbr><span><span>Text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2111705112%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="edit-text.html"><span class="token function">editText</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.utils.builders/-entities-context-builder/index.html">EntitiesContextBuilder</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-edit-message-text-action/index.html">EditMessageTextAction</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-text-action/index.html">EditMessageTextAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-text.html"><span class="token function">editText</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-text-action/index.html">EditMessageTextAction</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-155019059%2FFunctions%2F-739924179" anchor-label="forwardMessage" id="-155019059%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="forward-message.html"><span>forward</span><wbr></wbr><span><span>Message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-155019059%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="forward-message.html"><span class="token function">forwardMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types/-user/index.html">User</a><span class="token punctuation">, </span></span><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-forward-message-action/index.html">ForwardMessageAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="forward-message.html"><span class="token function">forwardMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.chat/-chat/index.html">Chat</a><span class="token punctuation">, </span></span><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-forward-message-action/index.html">ForwardMessageAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="forward-message.html"><span class="token function">forwardMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-forward-message-action/index.html">ForwardMessageAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="forward-message.html"><span class="token function">forwardMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-forward-message-action/index.html">ForwardMessageAction</a></div><br><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="forward-message.html"><span class="token function">forwardMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.internal/-identifier/index.html">Identifier</a><span class="token punctuation">, </span></span><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-forward-message-action/index.html">ForwardMessageAction</a></div><div class="brief "><p class="paragraph">Use this method to forward messages of any kind. Service messages and messages with protected content can't be forwarded. On success, the sent Message is returned. Api reference: https://core.telegram.org/bots/api#forwardmessage</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1294797294%2FFunctions%2F-739924179" anchor-label="forwardMessages" id="-1294797294%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="forward-messages.html"><span>forward</span><wbr></wbr><span><span>Messages</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1294797294%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="forward-messages.html"><span class="token function">forwardMessages</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types/-user/index.html">User</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-forward-messages-action/index.html">ForwardMessagesAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="forward-messages.html"><span class="token function">forwardMessages</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.chat/-chat/index.html">Chat</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-forward-messages-action/index.html">ForwardMessagesAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="forward-messages.html"><span class="token function">forwardMessages</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-forward-messages-action/index.html">ForwardMessagesAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="forward-messages.html"><span class="token function">forwardMessages</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-forward-messages-action/index.html">ForwardMessagesAction</a></div><br><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="forward-messages.html"><span class="token function">forwardMessages</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromChatId<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.internal/-identifier/index.html">Identifier</a><span class="token punctuation">, </span></span><span class="parameter ">messageIds<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-forward-messages-action/index.html">ForwardMessagesAction</a></div><div class="brief "><p class="paragraph">Use this method to forward multiple messages of any kind. If some of the specified messages can't be found or forwarded, they are skipped. Service messages and messages with protected content can't be forwarded. Album grouping is kept for forwarded messages. On success, an array of MessageId of the sent messages is returned. Api reference: https://core.telegram.org/bots/api#forwardmessages</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="927041566%2FFunctions%2F-739924179" anchor-label="message" id="927041566%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="message.html"><span><span>message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="927041566%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="message.html"><span class="token function">message</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.utils.builders/-entities-context-builder/index.html">EntitiesContextBuilder</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-send-message-action/index.html">SendMessageAction</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-send-message-action/index.html">SendMessageAction</a></div><br><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="message.html"><span class="token function">message</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-send-message-action/index.html">SendMessageAction</a></div><div class="brief "><p class="paragraph">Use this method to send text messages. On success, the sent Message is returned. Api reference: https://core.telegram.org/bots/api#sendmessage</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1772810702%2FFunctions%2F-739924179" anchor-label="sendMessage" id="1772810702%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="send-message.html"><span>send</span><wbr></wbr><span><span>Message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1772810702%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="send-message.html"><span class="token function">sendMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword"></span><a href="../eu.vendeli.tgbot.utils.builders/-entities-context-builder/index.html">EntitiesContextBuilder</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-send-message-action/index.html">SendMessageAction</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-send-message-action/index.html">SendMessageAction</a></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="send-message.html"><span class="token function">sendMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">text<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-send-message-action/index.html">SendMessageAction</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Vendelieu</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
