@@ -88,14 +88,16 @@ internal val chatBoostUpdateClass = ChatBoostUpdate::class.asTypeName()
 internal val removedChatBoostUpdateClass = RemovedChatBoostUpdate::class.asTypeName()
 
 internal val callbackQueryList = listOf(UpdateType.CALLBACK_QUERY)
+internal val messageList = listOf(UpdateType.MESSAGE)
+internal val notLimitedRateLimits = 0L to 0L
 
-internal fun List<KSValueArgument>.parseAsCommandHandler() = Triple(
+internal fun List<KSValueArgument>.parseAsCommandHandler(isCallbackQ: Boolean) = Triple(
     first { it.name?.asString() == "value" }.value.cast<List<String>>(),
-    first { it.name?.asString() == "rateLimits" }.value.cast<KSAnnotation>().arguments.let {
+    first { it.name?.asString() == "rateLimits" }.value?.safeCast<KSAnnotation>()?.arguments?.let {
         it.first().value.cast<Long>() to it.last().value.cast<Long>()
-    },
+    } ?: notLimitedRateLimits,
     firstOrNull { it.name?.asString() == "scope" }?.value?.safeCast<List<KSType>>()
-        ?.map { UpdateType.valueOf(it.declaration.toString()) } ?: callbackQueryList,
+        ?.map { UpdateType.valueOf(it.declaration.toString()) } ?: if (isCallbackQ) callbackQueryList else messageList,
 )
 
 internal fun List<KSValueArgument>.parseAsInputHandler() = Pair(

@@ -35,12 +35,18 @@ internal fun FileBuilder.collectCommandActivities(
         ),
         symbols,
     ) { function ->
+        var isCallbackQAnnotation = false
         val annotationData = function.annotations.first {
-            it.shortName.asString() in listOf(
-                CommandHandler::class.simpleName,
-                CallbackQuery::class.simpleName,
-            )
-        }.arguments.parseAsCommandHandler()
+            val shortName = it.shortName.asString()
+            when (shortName) {
+                CallbackQuery::class.simpleName -> {
+                    isCallbackQAnnotation = true
+                    true
+                }
+                CommandHandler::class.simpleName -> true
+                else -> false
+            }
+        }.arguments.parseAsCommandHandler(isCallbackQAnnotation)
 
         annotationData.first.forEach {
             annotationData.third.forEach { updT ->

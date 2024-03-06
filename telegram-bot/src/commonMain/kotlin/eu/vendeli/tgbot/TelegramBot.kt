@@ -2,6 +2,7 @@ package eu.vendeli.tgbot
 
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
+import eu.vendeli.tgbot.generated.__ACTIVITIES
 import eu.vendeli.tgbot.interfaces.ConfigLoader
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
@@ -65,8 +66,7 @@ class TelegramBot(
         val activities = (
             if (commandsPackage != null) __ACTIVITIES[commandsPackage]
             else __ACTIVITIES.entries.firstOrNull()?.value
-        )
-            ?: error("Not found generated actions, check if ksp plugin and ksp processor is connected correctly.")
+        ) ?: error("Not found generated actions, check if ksp plugin and ksp processor is connected correctly.")
 
         CodegenUpdateHandler(
             activities,

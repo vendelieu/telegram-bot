@@ -1,3 +1,3 @@
-package eu.vendeli.tgbot
+package eu.vendeli.tgbot.generated
 
-val __ACTIVITIES = emptyMap<String, List<Any?>>()
+internal val __ACTIVITIES = emptyMap<String, List<Any?>>()

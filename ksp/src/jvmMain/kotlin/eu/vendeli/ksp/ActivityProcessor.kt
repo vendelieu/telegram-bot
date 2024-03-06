@@ -35,7 +35,7 @@ class ActivityProcessor(
 ) : SymbolProcessor {
     private val targetPackage = options["package"]
     override fun process(resolver: Resolver): List<KSAnnotated> {
-        val fileSpec = FileSpec.builder("eu.vendeli.tgbot", "ActivitiesData").apply {
+        val fileSpec = FileSpec.builder("eu.vendeli.tgbot.generated", "ActivitiesData").apply {
             addSuppressions()
             addImport("eu.vendeli.tgbot.utils", "InvocationLambda", "Invocable")
             addImport("eu.vendeli.tgbot.types.internal", "InvocationMeta")

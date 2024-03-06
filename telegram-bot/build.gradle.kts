@@ -1,4 +1,3 @@
-
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -24,7 +23,6 @@ kotlin {
     }
     js { nodejs() }
     mingwX64()
-    linuxArm64()
     linuxX64()
     jvmToolchain(JAVA_TARGET_V_int)
 
@@ -65,14 +63,9 @@ kotlin {
                 implementation(libs.ktor.client.js)
             }
         }
-        named("linuxArm64Main") {
-            dependencies {
-                implementation(libs.ktor.client.cio)
-            }
-        }
         named("linuxX64Main") {
             dependencies {
-                implementation(libs.ktor.client.cio)
+                implementation(libs.ktor.client.curl)
             }
         }
         named("mingwX64Main") {
@@ -112,10 +105,9 @@ tasks {
     register<Kdokker>("kdocUpdate")
 
     withType<KotlinCompile> {
-        doLast {
-            exclude("**/ActivitiesData.kt")
-        }
+        doLast { exclude("**/ActivitiesData.kt") }
     }
+    withType<Jar> { exclude("**/ActivitiesData.kt") }
     withType<Test> {
         useJUnitPlatform()
     }

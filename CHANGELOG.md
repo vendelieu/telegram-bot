@@ -1,5 +1,11 @@
 # Telegram-bot changelog
 
+# 5.0.1
+
+* Changed internal modifier for `context {}` config section. #103
+* Fixed annotation processing error in ksp processor for non-jvm modules.
+* Added basic `ClassManager` for Kotlin Native target.
+
 # 5.0.0
 
 * Moved the library to kotlin multiplatform with `jvm`/`js`/`native` goals. Experimental at the moment.
