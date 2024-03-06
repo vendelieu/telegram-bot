@@ -1,5 +1,5 @@
 [versions]
-ktor = "2.3.8"
+ktor = "2.3.9"
 logging = "5.3.2"
 datetime = "0.5.0"
 serialization = "1.6.3"
@@ -16,7 +16,7 @@ mockk = "1.13.10"
 kover = "0.7.6"
 krypto = "4.0.10"
 
-ksp = "1.9.22-1.0.17"
+ksp = "1.9.22-1.0.18"
 poet = "1.16.0"
 
 binvalid = "0.14.0"
