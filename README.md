@@ -2,12 +2,12 @@
 
 # Telegram Bot
 
- [![Maven Central](https://img.shields.io/maven-central/v/eu.vendeli/telegram-bot?style=flat&label=Maven&logo=apache-maven)](https://search.maven.org/artifact/eu.vendeli/telegram-bot)
- [![Supported version](https://img.shields.io/badge/Bot%20Api-7.1-blue?logo=telegram)](https://core.telegram.org/bots/api#february-16-2024)\
- [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
- [![codecov](https://codecov.io/gh/vendelieu/telegram-bot/branch/master/graph/badge.svg?token=xn5xo6fu6r)](https://codecov.io/gh/vendelieu/telegram-bot) \
- [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/venny_tgbot)
- [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Channel&color=blue&logo=telegram)](https://t.me/v_telegramBot)
+[![Maven Central](https://img.shields.io/maven-central/v/eu.vendeli/telegram-bot?style=flat&label=Maven&logo=apache-maven)](https://search.maven.org/artifact/eu.vendeli/telegram-bot)
+[![Supported version](https://img.shields.io/badge/Bot%20Api-7.1-blue?logo=telegram)](https://core.telegram.org/bots/api#february-16-2024)\
+[![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
+[![codecov](https://codecov.io/gh/vendelieu/telegram-bot/branch/master/graph/badge.svg?token=xn5xo6fu6r)](https://codecov.io/gh/vendelieu/telegram-bot) \
+[![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/venny_tgbot)
+[![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Channel&color=blue&logo=telegram)](https://t.me/v_telegramBot)
 
 Telegram Bot Api wrapper with a user-friendly interface.
 
@@ -35,25 +35,32 @@ the [installation](https://github.com/vendelieu/telegram-bot/wiki/Installation) 
 
 # Samples
 
-You can see the samples in the [telegram-bot_template](https://github.com/vendelieu/telegram-bot_template) repository.
-In the basic branch itself there is an empty draft that can be used to create any bot you want.
-
-there you can find in the appropriate branches:
-
+- [Template repository](https://github.com/vendelieu/telegram-bot_template) - draft example.
 - [FeedbackBot](https://github.com/ktgram/feedback-bot) - Use ready example of a feedback bot.
-- [Conversation](https://github.com/vendelieu/telegram-bot_template/tree/conversation) - An example of using `FSM` and usage of `BotContext`.
+- [Conversation](https://github.com/vendelieu/telegram-bot_template/tree/conversation) - An example of using `FSM` and
+  usage of `BotContext`.
 - [Echo](https://github.com/vendelieu/telegram-bot_template/tree/echo) - Echo bot :)
-- [Ktor-webhook](https://github.com/vendelieu/telegram-bot_template/tree/ktor-webhook) - An example of using webhook
-  with Ktor.
 - [Poll](https://github.com/vendelieu/telegram-bot_template/tree/poll) - An example of how to build a questionnaire bot.
 - [Spring Boot usage](https://github.com/vendelieu/telegram-bot_template/tree/spring-bot) - An example of using the bot
   organically in the Spring ecosystem, using its built-in DI.
 - [Heroku ready example](https://github.com/vendelieu/telegram-bot_template/tree/heroku) - An example of a bot working
   via Heroku.
 
+<details>
+  <summary>More samples</summary>
+
+- [Ktor webhook](https://github.com/vendelieu/telegram-bot_template/tree/ktor-webhook) - An example of using webhook
+  with Ktor.
+- [Native example](https://github.com/ktgram/native-example) - An example of using a bot with Kotlin Native target.
+- [Web app](https://github.com/ktgram/webapp) - Example of a bot using Telegram Webapps.
+
+</details>
+
 # Usage
 
 ```kotlin
+import jdk.internal.joptsimple.internal.Messages.message
+
 suspend fun main() {
     val bot = TelegramBot("BOT_TOKEN")
 
@@ -64,7 +71,7 @@ suspend fun main() {
 @CommandHandler(["/start"])
 suspend fun start(user: User, bot: TelegramBot) {
     message { "Hello, what's your name?" }.send(user, bot)
-    bot.inputListener.set(user) { "conversation" }
+    bot.inputListener[user] = "conversation"
 }
 
 @RegexCommandHandler("blue colo?r")
@@ -76,7 +83,7 @@ suspend fun color(user: User, bot: TelegramBot) {
 suspend fun startConversation(user: User, bot: TelegramBot) {
     message { "Nice to meet you, ${message.text}" }.send(user, bot)
     message { "What is your favorite food?" }.send(user, bot)
-    bot.inputListener[user] = "conversation-2step" // another way to set input
+    bot.inputListener.set(user) { "conversation-2step" } // another way to set input
 }
 //..
 ```
