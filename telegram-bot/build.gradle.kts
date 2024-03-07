@@ -122,7 +122,10 @@ tasks {
 
 apiValidation {
     ignoredPackages.add("utils")
-    nonPublicMarkers.add("eu.vendeli.tgbot.annotations.internal.ExperimentalFeature")
+    nonPublicMarkers.apply {
+        add("eu.vendeli.tgbot.annotations.internal.ExperimentalFeature")
+        add("eu.vendeli.tgbot.annotations.internal.InternalApi")
+    }
 }
 
 koverReport {

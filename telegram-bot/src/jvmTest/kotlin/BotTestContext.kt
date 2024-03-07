@@ -1,5 +1,6 @@
 import eu.vendeli.fixtures.`$ACTIVITIES_eu_vendeli_fixtures`
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
@@ -11,6 +12,7 @@ import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.utils.Logging
+import eu.vendeli.tgbot.utils.defineActivities
 import eu.vendeli.tgbot.utils.serde
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
@@ -79,6 +81,7 @@ abstract class BotTestContext(
     protected val DUMB_USER = User(1, false, "Test")
 
     @BeforeAll
+    @OptIn(InternalApi::class)
     fun prepareTestBot() {
         val ctx = BOT_CTX
         BOT_ID = ctx.first
@@ -95,6 +98,7 @@ abstract class BotTestContext(
                 pullingDelay = 100
             }
         }
+        bot.defineActivities(mapOf("default" to `$ACTIVITIES_eu_vendeli_fixtures`))
         if (spykIt) spykIt()
 
         if (mockHttp) doMockHttp()

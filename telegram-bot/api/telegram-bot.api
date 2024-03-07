@@ -60,6 +60,9 @@ public abstract interface annotation class eu/vendeli/tgbot/annotations/UpdateHa
 public abstract interface annotation class eu/vendeli/tgbot/annotations/internal/ExperimentalFeature : java/lang/annotation/Annotation {
 }
 
+public abstract interface annotation class eu/vendeli/tgbot/annotations/internal/InternalApi : java/lang/annotation/Annotation {
+}
+
 public final class eu/vendeli/tgbot/api/ContactKt {
 	public static final fun contact (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/api/SendContactAction;
 	public static final fun sendContact (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/api/SendContactAction;
@@ -11413,6 +11416,7 @@ public final class eu/vendeli/tgbot/types/payment/SuccessfulPayment$Companion {
 }
 
 public final class eu/vendeli/tgbot/utils/BotUtils_jvmKt {
+	public static final fun get_OperatingActivities ()Ljava/util/Map;
 	public static final fun setChain (Leu/vendeli/tgbot/interfaces/InputListener;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/ChainLink;)V
 }
 

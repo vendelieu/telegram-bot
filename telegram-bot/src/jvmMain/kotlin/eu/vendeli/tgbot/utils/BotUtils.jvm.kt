@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.utils
 
+import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ChainLink
@@ -13,11 +15,19 @@ actual inline fun <T : ChainLink> InputListener.setChain(
     firstLink: T,
 ) = set(user, firstLink::class.qualifiedName!!)
 
-private val activities =
+@InternalApi
+@Suppress("UnusedReceiverParameter")
+fun TelegramBot.defineActivities(input: Map<String, List<Any?>>) {
+    activities = input
+}
+
+@Suppress("UNCHECKED_CAST")
+private var activities: Map<String, List<Any?>> = runCatching {
     Class.forName("eu.vendeli.tgbot.generated.ActivitiesDataKt")
         .getDeclaredMethod("get__ACTIVITIES")
-        .invoke(null)
+        .invoke(null) as Map<String, List<Any?>>
+}.getOrNull() ?: emptyMap()
 
-@Suppress("UNCHECKED_CAST", "ObjectPropertyName")
+@Suppress("ObjectPropertyName")
 actual val _OperatingActivities: Map<String, List<Any?>>
-    get() = activities as Map<String, List<Any?>>
+    get() = activities

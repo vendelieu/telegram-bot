@@ -18,6 +18,7 @@ fun TelegramBot.defineActivities(input: Map<String, List<Any?>>) {
     activities = input
 }
 private var activities: Map<String, List<Any?>> = emptyMap()
+
 @Suppress("ObjectPropertyName")
 actual val _OperatingActivities: Map<String, List<Any?>>
     get() = activities
