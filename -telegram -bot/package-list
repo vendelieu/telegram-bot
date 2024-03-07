@@ -2,6 +2,7 @@ $dokka.format:html-v1
 $dokka.linkExtension:html
 $dokka.location:eu.vendeli.tgbot.annotations.internal////PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations.internal/index.html
 $dokka.location:eu.vendeli.tgbot.annotations.internal/ExperimentalFeature///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations.internal/-experimental-feature/index.html
+$dokka.location:eu.vendeli.tgbot.annotations.internal/InternalApi///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations.internal/-internal-api/index.html
 $dokka.location:eu.vendeli.tgbot.annotations////PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/index.html
 $dokka.location:eu.vendeli.tgbot.annotations/CommandHandler.CallbackQuery///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-command-handler/-callback-query/index.html
 $dokka.location:eu.vendeli.tgbot.annotations/CommandHandler.CallbackQuery/rateLimits/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-command-handler/-callback-query/rate-limits.html
@@ -3019,7 +3020,9 @@ $dokka.location:eu.vendeli.tgbot.utils.builders/ReplyKeyboardMarkupBuilder/webAp
 $dokka.location:eu.vendeli.tgbot.utils////PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/index.html
 $dokka.location:eu.vendeli.tgbot.utils//DEFAULT_CONTENT_TYPE/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/-d-e-f-a-u-l-t_-c-o-n-t-e-n-t_-t-y-p-e.html
 $dokka.location:eu.vendeli.tgbot.utils//DEFAULT_FILENAME/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/-d-e-f-a-u-l-t_-f-i-l-e-n-a-m-e.html
+$dokka.location:eu.vendeli.tgbot.utils//_OperatingActivities/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/_-operating-activities.html
 $dokka.location:eu.vendeli.tgbot.utils//checkIsInitDataSafe/kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/check-is-init-data-safe.html
+$dokka.location:eu.vendeli.tgbot.utils//defineActivities/eu.vendeli.tgbot.TelegramBot#kotlin.collections.Map[kotlin.String,kotlin.collections.List[kotlin.Any?]]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/[native]define-activities.html
 $dokka.location:eu.vendeli.tgbot.utils//processUpdate/eu.vendeli.tgbot.types.Update#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/process-update.html
 $dokka.location:eu.vendeli.tgbot.utils//setChain/eu.vendeli.tgbot.interfaces.InputListener#eu.vendeli.tgbot.types.User#TypeParam(bounds=[eu.vendeli.tgbot.types.internal.ChainLink])/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/set-chain.html
 $dokka.location:eu.vendeli.tgbot.utils//toImplicitFile/eu.vendeli.tgbot.types.internal.InputFile#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/to-implicit-file.html
