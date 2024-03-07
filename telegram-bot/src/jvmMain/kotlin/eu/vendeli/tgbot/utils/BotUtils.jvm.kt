@@ -12,3 +12,12 @@ actual inline fun <T : ChainLink> InputListener.setChain(
     user: User,
     firstLink: T,
 ) = set(user, firstLink::class.qualifiedName!!)
+
+private val activities =
+    Class.forName("eu.vendeli.tgbot.generated.ActivitiesDataKt")
+        .getDeclaredMethod("get__ACTIVITIES")
+        .invoke(null)
+
+@Suppress("UNCHECKED_CAST", "ObjectPropertyName")
+actual val _OperatingActivities: Map<String, List<Any?>>
+    get() = activities as Map<String, List<Any?>>

@@ -1,6 +1,5 @@
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.time.LocalDate
 
 plugins {
@@ -45,7 +44,7 @@ kotlin {
         named("jvmTest") {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.8.0")
-                implementation("ch.qos.logback:logback-classic:1.5.1")
+                implementation("ch.qos.logback:logback-classic:1.5.3")
 
                 implementation(libs.test.kotest.junit5)
                 implementation(libs.test.kotest.assertions)
@@ -103,14 +102,7 @@ buildscript {
 
 tasks {
     register<Kdokker>("kdocUpdate")
-
-    withType<KotlinCompile> {
-        doLast { exclude("**/ActivitiesData.kt") }
-    }
-    withType<Jar> { exclude("**/ActivitiesData.kt") }
-    withType<Test> {
-        useJUnitPlatform()
-    }
+    withType<Test> { useJUnitPlatform() }
     dokkaHtml.configure {
         outputDirectory.set(layout.buildDirectory.asFile.orNull?.resolve("dokka"))
         dokkaSourceSets {

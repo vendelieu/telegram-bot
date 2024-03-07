@@ -114,7 +114,7 @@ internal fun FileBuilder.collectRegexActivities(
             it.shortName.asString() == RegexCommandHandler::class.simpleName!!
         }.arguments.parseAsRegexHandler()
         addStatement(
-            "Regex(\"%L\") to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
+            "Regex(%S) to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
             annotationData.first,
             buildInvocationLambdaCodeBlock(function, injectableTypes),
             function.qualifiedName!!.getQualifier(),

@@ -102,16 +102,16 @@ internal fun List<KSValueArgument>.parseAsCommandHandler(isCallbackQ: Boolean) =
 
 internal fun List<KSValueArgument>.parseAsInputHandler() = Pair(
     first { it.name?.asString() == "value" }.value.cast<List<String>>(),
-    first { it.name?.asString() == "rateLimits" }.value.cast<KSAnnotation>().arguments.let {
+    first { it.name?.asString() == "rateLimits" }.value?.safeCast<KSAnnotation>()?.arguments?.let {
         it.first().value.cast<Long>() to it.last().value.cast<Long>()
-    },
+    } ?: notLimitedRateLimits,
 )
 
 internal fun List<KSValueArgument>.parseAsRegexHandler() = Pair(
     first { it.name?.asString() == "value" }.value.cast<String>(),
-    first { it.name?.asString() == "rateLimits" }.value.cast<KSAnnotation>().arguments.let {
+    first { it.name?.asString() == "rateLimits" }.value?.safeCast<KSAnnotation>()?.arguments?.let {
         it.first().value.cast<Long>() to it.last().value.cast<Long>()
-    },
+    } ?: notLimitedRateLimits,
 )
 
 internal fun List<KSValueArgument>.parseAsUpdateHandler() = first().value.cast<List<KSType>>().map {

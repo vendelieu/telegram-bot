@@ -1,6 +1,11 @@
 # Telegram-bot changelog
 
-# 5.0.1
+### 5.0.2
+
+* Fix ksp processor for regex handlers. #106
+* Fix ksp processor InputHandler and RegexHandler RateLimits collecting.
+
+### 5.0.1
 
 * Changed internal modifier for `context {}` config section. #103
 * Fixed annotation processing error in ksp processor for non-jvm modules.
