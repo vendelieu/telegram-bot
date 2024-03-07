@@ -5,7 +5,7 @@ datetime = "0.5.0"
 serialization = "1.6.3"
 stately = "2.0.6"
 
-kotlin = "1.9.22"
+kotlin = "1.9.23"
 coroutines = "1.8.0"
 dokka = "1.9.20"
 kotlinter = "4.1.1"
