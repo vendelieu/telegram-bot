@@ -5,11 +5,11 @@ import kotlinx.serialization.Serializable
 
 /**
  * This object contains information about an incoming shipping query.
+ * Api reference: https://core.telegram.org/bots/api#shippingquery
  * @property id Unique query identifier
  * @property from User who sent the query
  * @property invoicePayload Bot specified invoice payload
  * @property shippingAddress User specified shipping address
- * Api reference: https://core.telegram.org/bots/api#shippingquery
 */
 @Serializable
 data class ShippingQuery(

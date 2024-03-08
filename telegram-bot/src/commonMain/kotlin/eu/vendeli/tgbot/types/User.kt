@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 /**
  * This object represents a Telegram user or bot.
+ * Api reference: https://core.telegram.org/bots/api#user
  * @property id Unique identifier for this user or bot. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier.
  * @property isBot True, if this user is a bot
  * @property firstName User's or bot's first name
@@ -15,7 +16,6 @@ import kotlinx.serialization.Serializable
  * @property canJoinGroups Optional. True, if the bot can be invited to groups. Returned only in getMe.
  * @property canReadAllGroupMessages Optional. True, if privacy mode is disabled for the bot. Returned only in getMe.
  * @property supportsInlineQueries Optional. True, if the bot supports inline queries. Returned only in getMe.
- * Api reference: https://core.telegram.org/bots/api#user
 */
 @Serializable
 data class User(

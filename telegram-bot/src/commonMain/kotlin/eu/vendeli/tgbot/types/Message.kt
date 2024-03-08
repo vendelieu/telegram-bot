@@ -36,6 +36,7 @@ import kotlinx.serialization.Serializable
 
 /**
  * This object represents a message.
+ * Api reference: https://core.telegram.org/bots/api#message
  * @property messageId Unique message identifier inside this chat
  * @property messageThreadId Optional. Unique identifier of a message thread to which the message belongs; for supergroups only
  * @property from Optional. Sender of the message; empty for messages sent to channels. For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
@@ -113,7 +114,6 @@ import kotlinx.serialization.Serializable
  * @property videoChatParticipantsInvited Optional. Service message: new participants invited to a video chat
  * @property webAppData Optional. Service message: data sent by a Web App
  * @property replyMarkup Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons.
- * Api reference: https://core.telegram.org/bots/api#message
 */
 @Serializable
 data class Message(

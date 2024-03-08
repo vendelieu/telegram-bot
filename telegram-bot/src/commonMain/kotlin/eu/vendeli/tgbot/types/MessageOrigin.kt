@@ -12,8 +12,8 @@ import kotlinx.serialization.Serializable
  * - MessageOriginHiddenUser
  * - MessageOriginChat
  * - MessageOriginChannel
- *
  * Api reference: https://core.telegram.org/bots/api#messageorigin
+ *
 */
 @Serializable
 sealed class MessageOrigin(val type: String) {

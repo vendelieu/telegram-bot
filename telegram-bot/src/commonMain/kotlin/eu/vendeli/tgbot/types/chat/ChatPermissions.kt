@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 /**
  * Describes actions that a non-administrator user is allowed to take in a chat.
+ * Api reference: https://core.telegram.org/bots/api#chatpermissions
  * @property canSendMessages Optional. True, if the user is allowed to send text messages, contacts, giveaways, giveaway winners, invoices, locations and venues
  * @property canSendAudios Optional. True, if the user is allowed to send audios
  * @property canSendDocuments Optional. True, if the user is allowed to send documents
@@ -18,7 +19,6 @@ import kotlinx.serialization.Serializable
  * @property canInviteUsers Optional. True, if the user is allowed to invite new users to the chat
  * @property canPinMessages Optional. True, if the user is allowed to pin messages. Ignored in public supergroups
  * @property canManageTopics Optional. True, if the user is allowed to create forum topics. If omitted defaults to the value of can_pin_messages
- * Api reference: https://core.telegram.org/bots/api#chatpermissions
 */
 @Serializable
 data class ChatPermissions(

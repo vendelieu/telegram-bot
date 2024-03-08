@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 
 /**
  * This object represents a message about the completion of a giveaway with public winners.
+ * Api reference: https://core.telegram.org/bots/api#giveawaywinners
  * @property chat The chat that created the giveaway
  * @property giveawayMessageId Identifier of the message with the giveaway in the chat
  * @property winnersSelectionDate Point in time (Unix timestamp) when winners of the giveaway were selected
@@ -16,7 +17,6 @@ import kotlinx.serialization.Serializable
  * @property onlyNewMembers Optional. True, if only users who had joined the chats after the giveaway started were eligible to win
  * @property wasRefunded Optional. True, if the giveaway was canceled because the payment for it was refunded
  * @property prizeDescription Optional. Description of additional giveaway prize
- * Api reference: https://core.telegram.org/bots/api#giveawaywinners
 */
 @Serializable
 data class GiveawayWinners(

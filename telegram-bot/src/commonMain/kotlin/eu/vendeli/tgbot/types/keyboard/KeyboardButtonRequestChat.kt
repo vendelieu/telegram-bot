@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 
 /**
  * This object defines the criteria used to request a suitable chat. The identifier of the selected chat will be shared with the bot when the corresponding button is pressed. More about requesting chats: https://core.telegram.org/bots/features#chat-and-user-selection
+ * Api reference: https://core.telegram.org/bots/api#keyboardbuttonrequestchat
  * @property requestId Signed 32-bit identifier of the request, which will be received back in the ChatShared object. Must be unique within the message
  * @property chatIsChannel Pass True to request a channel chat, pass False to request a group or a supergroup chat.
  * @property chatIsForum Optional. Pass True to request a forum supergroup, pass False to request a non-forum chat. If not specified, no additional restrictions are applied.
@@ -13,7 +14,6 @@ import kotlinx.serialization.Serializable
  * @property userAdministratorRights Optional. A JSON-serialized object listing the required administrator rights of the user in the chat. The rights must be a superset of bot_administrator_rights. If not specified, no additional restrictions are applied.
  * @property botAdministratorRights Optional. A JSON-serialized object listing the required administrator rights of the bot in the chat. The rights must be a subset of user_administrator_rights. If not specified, no additional restrictions are applied.
  * @property botIsMember Optional. Pass True to request a chat with the bot as a member. Otherwise, no additional restrictions are applied.
- * Api reference: https://core.telegram.org/bots/api#keyboardbuttonrequestchat
 */
 @Serializable
 data class KeyboardButtonRequestChat(

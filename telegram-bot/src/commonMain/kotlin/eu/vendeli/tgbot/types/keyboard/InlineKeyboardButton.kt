@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 
 /**
  * This object represents one button of an inline keyboard. You must use exactly one of the optional fields.
+ * Api reference: https://core.telegram.org/bots/api#inlinekeyboardbutton
  * @property text Label text on the button
  * @property url Optional. HTTP or tg:// URL to be opened when the button is pressed. Links tg://user?id=<user_id> can be used to mention a user by their identifier without using a username, if this is allowed by their privacy settings.
  * @property callbackData Optional. Data to be sent in a callback query to the bot when button is pressed, 1-64 bytes
@@ -17,7 +18,6 @@ import kotlinx.serialization.Serializable
  * @property switchInlineQueryChosenChat Optional. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field
  * @property callbackGame Optional. Description of the game that will be launched when the user presses the button. NOTE: This type of button must always be the first button in the first row.
  * @property pay Optional. Specify True, to send a Pay button. NOTE: This type of button must always be the first button in the first row and can only be used in invoice messages.
- * Api reference: https://core.telegram.org/bots/api#inlinekeyboardbutton
 */
 @Serializable
 data class InlineKeyboardButton(

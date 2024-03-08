@@ -102,11 +102,12 @@ abstract class Kdokker : DefaultTask() {
 
                 var kdoc = "/**$NEWLINE"
                 kdoc += classMeta.description.joinToString("$NEWLINE * ", " * ")
+                kdoc += NEWLINE + " * Api reference: ${classMeta.href}"
                 kdoc += "$NEWLINE * "
                 kdoc += classMeta.fields.joinToString("$NEWLINE * ") {
                     "@property " + it.name.snakeToCamelCase() + " " + it.description
                 }
-                kdoc += NEWLINE + " * Api reference: ${classMeta.href}$NEWLINE*/$NEWLINE"
+                kdoc += "$NEWLINE*/$NEWLINE"
                 modifiedContent = modifiedContent.replace(clazz.value, kdoc + clazz.value)
 
                 file.writeText(modifiedContent)

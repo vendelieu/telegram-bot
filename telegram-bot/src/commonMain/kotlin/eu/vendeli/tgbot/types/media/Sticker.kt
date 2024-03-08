@@ -18,6 +18,7 @@ enum class StickerFormat {
 
 /**
  * This object represents a sticker.
+ * Api reference: https://core.telegram.org/bots/api#sticker
  * @property fileId Identifier for this file, which can be used to download or reuse the file
  * @property fileUniqueId Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
  * @property type Type of the sticker, currently one of "regular", "mask", "custom_emoji". The type of the sticker is independent from its format, which is determined by the fields is_animated and is_video.
@@ -33,7 +34,6 @@ enum class StickerFormat {
  * @property customEmojiId Optional. For custom emoji stickers, unique identifier of the custom emoji
  * @property needsRepainting Optional. True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places
  * @property fileSize Optional. File size in bytes
- * Api reference: https://core.telegram.org/bots/api#sticker
 */
 @Serializable
 data class Sticker(
