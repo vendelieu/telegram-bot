@@ -3,5 +3,7 @@
     "config:base",
     ":automergeMinor"
   ],
-  "baseBranches": ["dev"]
+  "baseBranches": ["dev"],
+  "branchConcurrentLimit": 1,
+  "prHourlyLimit": 1
 }
