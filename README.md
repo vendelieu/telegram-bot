@@ -59,8 +59,6 @@ the [installation](https://github.com/vendelieu/telegram-bot/wiki/Installation) 
 # Usage
 
 ```kotlin
-import jdk.internal.joptsimple.internal.Messages.message
-
 suspend fun main() {
     val bot = TelegramBot("BOT_TOKEN")
 
