@@ -1647,6 +1647,7 @@ $dokka.location:eu.vendeli.tgbot.types.internal/Action/invoke/#eu.vendeli.tgbot.
 $dokka.location:eu.vendeli.tgbot.types.internal/ActivityCtx///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-activity-ctx/index.html
 $dokka.location:eu.vendeli.tgbot.types.internal/ActivityCtx/ActivityCtx/#TypeParam(bounds=[eu.vendeli.tgbot.types.internal.ProcessedUpdate])/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-activity-ctx/-activity-ctx.html
 $dokka.location:eu.vendeli.tgbot.types.internal/ActivityCtx/update/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-activity-ctx/update.html
+$dokka.location:eu.vendeli.tgbot.types.internal/ActivityCtx/user/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-activity-ctx/user.html
 $dokka.location:eu.vendeli.tgbot.types.internal/BreakCondition///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-break-condition/index.html
 $dokka.location:eu.vendeli.tgbot.types.internal/BreakCondition/invoke/#eu.vendeli.tgbot.types.User#eu.vendeli.tgbot.types.internal.ProcessedUpdate#eu.vendeli.tgbot.TelegramBot/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-break-condition/invoke.html
 $dokka.location:eu.vendeli.tgbot.types.internal/CallbackQueryUpdate///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-callback-query-update/index.html
@@ -1697,6 +1698,7 @@ $dokka.location:eu.vendeli.tgbot.types.internal/CommandContext///PointingToDecla
 $dokka.location:eu.vendeli.tgbot.types.internal/CommandContext/CommandContext/#TypeParam(bounds=[eu.vendeli.tgbot.types.internal.ProcessedUpdate])#kotlin.collections.Map[kotlin.String,kotlin.String]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-command-context/-command-context.html
 $dokka.location:eu.vendeli.tgbot.types.internal/CommandContext/parameters/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-command-context/parameters.html
 $dokka.location:eu.vendeli.tgbot.types.internal/CommandContext/update/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-command-context/update.html
+$dokka.location:eu.vendeli.tgbot.types.internal/CommandContext/user/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-command-context/user.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Currency.AED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-telegram -bot/eu.vendeli.tgbot.types.internal/-currency/-a-e-d/index.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Currency.AFN///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-telegram -bot/eu.vendeli.tgbot.types.internal/-currency/-a-f-n/index.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Currency.ALL///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-telegram -bot/eu.vendeli.tgbot.types.internal/-currency/-a-l-l/index.html
