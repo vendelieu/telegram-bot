@@ -1,5 +1,9 @@
 # Telegram-bot changelog
 
+### 5.0.3
+
+* Fix `user` parameter missing in functional handlers.
+
 ### 5.0.2
 
 * Fix ksp processor for regex handlers. #106
