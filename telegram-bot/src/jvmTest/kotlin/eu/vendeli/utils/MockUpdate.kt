@@ -41,7 +41,7 @@ sealed class MockUpdate {
 
     data class RAW_RESPONSE(val raw: String) : MockUpdate() {
         override val response: ByteArray = raw.toByteArray()
-        override val updates: List<Update> = serde.decodeFromString(raw)
+        override val updates: List<Update> = serde.decodeFromString<Success<List<Update>>>(raw).result
     }
 
     protected fun generateMsg(text: String) = run {

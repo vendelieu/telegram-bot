@@ -2,7 +2,6 @@
 import eu.vendeli.fixtures.`$ACTIVITIES_eu_vendeli_fixtures`
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.InternalApi
-import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
@@ -110,7 +109,6 @@ abstract class BotTestContext(
 
     fun spykIt() {
         bot = spyk(bot, recordPrivateCalls = true)
-        every { bot.update } returns CodegenUpdateHandler("default", bot)
     }
 
     protected suspend fun <T> Action<T>.sendReturning(id: Long, bot: TelegramBot): Response<out T> {
