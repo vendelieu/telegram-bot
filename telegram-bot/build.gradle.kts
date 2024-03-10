@@ -100,6 +100,10 @@ buildscript {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
 tasks {
     register<Kdokker>("kdocUpdate")
     withType<Test> { useJUnitPlatform() }

@@ -9,7 +9,6 @@ import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.BotConfigurator
 import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.Logging
-import eu.vendeli.tgbot.utils._OperatingActivities
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.readBytes
@@ -62,17 +61,7 @@ class TelegramBot(
     /**
      * Current bot UpdateHandler instance
      */
-    val update by lazy {
-        val activities = (
-            if (commandsPackage != null) _OperatingActivities[commandsPackage]
-            else _OperatingActivities.entries.firstOrNull()?.value
-        ) ?: error("Not found generated actions, check if ksp plugin and ksp processor is connected correctly.")
-
-        CodegenUpdateHandler(
-            activities,
-            this,
-        )
-    }
+    val update = CodegenUpdateHandler(commandsPackage, this)
 
     internal val httpClient = getConfiguredHttpClient()
 
