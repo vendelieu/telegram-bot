@@ -98,10 +98,10 @@ fun main() = runBlocking {
             bot.inputListener[user] = "conversation"
         }
         inputChain("conversation") {
-            message { "Nice to meet you, ${message.text}" }.send(user, bot)
-            message { "What is your favorite food?" }.send(user, bot)
+            message { "Nice to meet you, ${message.text}" }.send(update.getUser(), bot)
+            message { "What is your favorite food?" }.send(update.getUser(), bot)
         }.breakIf({ message.text == "peanut butter" }) { // chain break condition
-            message { "Oh, too bad, I'm allergic to it." }.send(user, bot)
+            message { "Oh, too bad, I'm allergic to it." }.send(update.getUser(), bot)
             // action that will be applied when match
         }.andThen {
             // next input point if break condition doesn't match
