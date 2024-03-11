@@ -57,6 +57,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             onMessage {
                 throw NoSuchElementException("test")
             }
+            delay(100)
             bot.update.stopListener()
         }
         val throwableUpdatePair = bot.update.caughtExceptions.tryReceive().getOrNull()

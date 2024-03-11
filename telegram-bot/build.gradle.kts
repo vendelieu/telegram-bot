@@ -48,7 +48,6 @@ kotlin {
 
                 implementation(libs.test.kotest.junit5)
                 implementation(libs.test.kotest.assertions)
-                implementation(libs.test.ktor.mock)
                 implementation(libs.mockk)
             }
         }
@@ -98,6 +97,10 @@ buildscript {
     dependencies {
         classpath(libs.dokka.base)
     }
+}
+
+repositories {
+    mavenCentral()
 }
 
 tasks {

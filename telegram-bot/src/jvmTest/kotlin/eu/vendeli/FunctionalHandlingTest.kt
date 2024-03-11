@@ -33,6 +33,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
 
     @Test
     suspend fun `input chaining`() {
+        doMockHttp()
         val loopCounter = AtomicInteger(0)
 
         bot.inputListener.set(1, "test")
