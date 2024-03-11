@@ -67,7 +67,7 @@ abstract class BotTestContext(
     protected val CHAT_ID by lazy { System.getenv("CHAT_ID").toLong() }
     protected val PAYMENT_PROVIDER_TOKEN = "1877036958:TEST:5a97ee6bbb1010e9c1033d00979832763c7622a4"
 
-    protected val RANDOM_PIC_URL = "https://random.imagecdn.app/10/10"
+    protected val RANDOM_PIC_URL = "https://source.unsplash.com/random/10x10?sig=incrementingIdentifier"
     protected val RANDOM_PIC: ByteArray
         get() {
             return runBlocking { bot.httpClient.get(RANDOM_PIC_URL).readBytes() }
