@@ -8,7 +8,7 @@ stately = "2.0.6"
 kotlin = "1.9.23"
 coroutines = "1.8.0"
 dokka = "1.9.20"
-kotlinter = "4.1.1"
+kotlinter = "4.3.0"
 deteKT = "1.23.5"
 
 kotest = "5.8.1"
