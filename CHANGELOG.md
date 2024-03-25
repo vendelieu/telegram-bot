@@ -3,6 +3,7 @@
 ### 5.0.5
 
 * Fix nullable type resolving issue for `Autowiring` mechanics.
+* Changed default ktor engine to java-http. 
 
 ### 5.0.4
 
