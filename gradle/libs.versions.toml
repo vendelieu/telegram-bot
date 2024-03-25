@@ -9,7 +9,7 @@ kotlin = "1.9.23"
 coroutines = "1.8.0"
 dokka = "1.9.20"
 kotlinter = "4.3.0"
-deteKT = "1.23.5"
+deteKT = "1.23.6"
 
 kotest = "5.8.1"
 mockk = "1.13.10"
