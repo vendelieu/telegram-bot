@@ -12,4 +12,4 @@ plugins {
     alias(libs.plugins.deteKT) apply false
 }
 
-tasks.register<ExtGenerator>("generateBotExt")
+tasks.register<ScGenerator>("generateBotExt")

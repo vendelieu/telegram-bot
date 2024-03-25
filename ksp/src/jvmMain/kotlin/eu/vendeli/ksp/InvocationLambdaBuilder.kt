@@ -71,10 +71,10 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
             ).let {
                 "parameters[\"$it\"]"
             }
-            val typeName = parameter.type.toTypeName()
-            val nullabilityMark = if (typeName.isNullable) "" else "!!"
+            val typeName = parameter.type.toTypeName().copy(false)
+            val nullabilityMark = if (parameter.type.toTypeName().isNullable) "" else "!!"
 
-            val value = when (typeName.copy(false)) {
+            val value = when (typeName) {
                 userClass -> "user$nullabilityMark"
                 botClass -> "bot"
                 STRING -> "$paramCall.toString()"
