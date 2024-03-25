@@ -53,7 +53,7 @@ kotlin {
         }
         named("jvmMain") {
             dependencies {
-                implementation(libs.ktor.client.cio)
+                implementation(libs.ktor.client.java)
             }
         }
         named("jsMain") {

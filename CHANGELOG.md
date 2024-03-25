@@ -1,5 +1,14 @@
 # Telegram-bot changelog
 
+### 5.0.5
+
+* Fix nullable type resolving issue for `Autowiring` mechanics.
+* Changed default ktor engine to java-http. 
+
+### 5.0.4
+
+* Remove lazy structures that cause performance issues
+
 ### 5.0.3
 
 * Fix `user` parameter missing in functional handlers.
