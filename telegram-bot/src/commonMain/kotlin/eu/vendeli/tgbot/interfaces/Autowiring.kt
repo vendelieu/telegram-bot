@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.types.internal.ProcessedUpdate
  *
  * @param T
  */
-fun interface Autowiring<T> {
+interface Autowiring<T : Any> {
     /**
      * method which will be used to retrieve the object.
      *
