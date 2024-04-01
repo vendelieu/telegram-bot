@@ -8,6 +8,9 @@ import eu.vendeli.tgbot.utils.makeRequestAsync
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.coroutines.Deferred
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.json.JsonUnquotedLiteral
+import kotlinx.serialization.json.jsonPrimitive
 import kotlin.collections.set
 
 /**
@@ -29,21 +32,25 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
      */
     override suspend fun send(to: String, via: TelegramBot) {
         parameters[idRefField] = to.toJsonElement()
+        handleParseModeInMultipart()
         via.makeSilentRequest(method, parameters, multipartData)
     }
 
     override suspend fun send(to: Long, via: TelegramBot) {
         parameters[idRefField] = to.toJsonElement()
+        handleParseModeInMultipart()
         via.makeSilentRequest(method, parameters, multipartData)
     }
 
     override suspend fun send(to: User, via: TelegramBot) {
         parameters[idRefField] = to.id.toJsonElement()
+        handleParseModeInMultipart()
         via.makeSilentRequest(method, parameters, multipartData)
     }
 
     override suspend fun send(to: Chat, via: TelegramBot) {
         parameters[idRefField] = to.id.toJsonElement()
+        handleParseModeInMultipart()
         via.makeSilentRequest(method, parameters, multipartData)
     }
 
@@ -58,6 +65,7 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.toJsonElement()
+        handleParseModeInMultipart()
         return via.makeRequestAsync(method, parameters, returnType, multipartData)
     }
 
@@ -66,6 +74,7 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.toJsonElement()
+        handleParseModeInMultipart()
         return via.makeRequestAsync(method, parameters, returnType, multipartData)
     }
 
@@ -74,6 +83,7 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.id.toJsonElement()
+        handleParseModeInMultipart()
         return via.makeRequestAsync(method, parameters, returnType, multipartData)
     }
 
@@ -82,6 +92,14 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.id.toJsonElement()
+        handleParseModeInMultipart()
         return via.makeRequestAsync(method, parameters, returnType, multipartData)
+    }
+
+    @OptIn(ExperimentalSerializationApi::class)
+    private fun handleParseModeInMultipart() {
+        if (multipartData.isNotEmpty()) parameters["parse_mode"]?.let {
+            parameters["parse_mode"] = JsonUnquotedLiteral(it.jsonPrimitive.content)
+        }
     }
 }
