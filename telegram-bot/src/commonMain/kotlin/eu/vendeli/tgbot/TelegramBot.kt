@@ -106,5 +106,5 @@ class TelegramBot(
         }
     }
 
-    internal companion object : Logging()
+    internal companion object : Logging("TgUpdateHandler")
 }
