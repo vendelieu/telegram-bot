@@ -140,5 +140,5 @@ abstract class BotTestContext(
         ) as T
     }
 
-    internal companion object : Logging("TgUpdateHandler")
+    internal companion object : Logging("BotTest")
 }

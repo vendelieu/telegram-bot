@@ -4,7 +4,7 @@ import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.types.internal.LogLvl
 import org.slf4j.LoggerFactory
 
-internal open class Sl4jLogger(id: String) : Logger(id) {
+internal open class LogbackLogger(id: String) : Logger(id) {
     private val logger = LoggerFactory.getLogger(id)
 
     private var lvl = Level.INFO
@@ -33,5 +33,5 @@ internal open class Sl4jLogger(id: String) : Logger(id) {
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 internal actual open class Logging actual constructor(tag: String) {
-    actual val logger: Logger = Sl4jLogger(tag)
+    actual val logger: Logger = LogbackLogger(tag)
 }
