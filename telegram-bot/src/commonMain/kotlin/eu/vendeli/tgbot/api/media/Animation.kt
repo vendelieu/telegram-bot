@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api.media
 
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
@@ -17,6 +18,7 @@ import eu.vendeli.tgbot.utils.toImplicitFile
 
 class SendAnimationAction(animation: ImplicitFile) :
     MediaAction<Message>(),
+    BusinessActionExt<Message>,
     OptionsFeature<SendAnimationAction, AnimationOptions>,
     MarkupFeature<SendAnimationAction>,
     CaptionFeature<SendAnimationAction> {

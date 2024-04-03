@@ -17,6 +17,18 @@ enum class UpdateType {
     @SerialName("edited_channel_post")
     EDITED_CHANNEL_POST,
 
+    @SerialName("business_connection")
+    BUSINESS_CONNECTION,
+
+    @SerialName("business_message")
+    BUSINESS_MESSAGE,
+
+    @SerialName("edited_business_message")
+    EDITED_BUSINESS_MESSAGE,
+
+    @SerialName("deleted_business_messages")
+    DELETED_BUSINESS_MESSAGES,
+
     @SerialName("message_reaction")
     MESSAGE_REACTION,
 

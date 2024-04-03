@@ -3,6 +3,7 @@
 package eu.vendeli.tgbot.api.message
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -15,6 +16,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 
 class SendMessageAction private constructor() :
     Action<Message>(),
+    BusinessActionExt<Message>,
     OptionsFeature<SendMessageAction, MessageOptions>,
     MarkupFeature<SendMessageAction>,
     EntitiesFeature<SendMessageAction>,

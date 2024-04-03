@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api.media
 
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -19,6 +20,7 @@ import kotlin.collections.set
 
 class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
     MediaAction<List<Message>>(),
+    BusinessActionExt<List<Message>>,
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions> {
     override val method = TgMethod("sendMediaGroup")
     override val returnType = getReturnType()

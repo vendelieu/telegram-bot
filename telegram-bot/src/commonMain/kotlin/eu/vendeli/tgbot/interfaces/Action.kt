@@ -4,8 +4,6 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Response
-import eu.vendeli.tgbot.utils.makeRequestAsync
-import eu.vendeli.tgbot.utils.makeSilentRequest
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.coroutines.Deferred
 
@@ -23,22 +21,22 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
      */
     open suspend fun send(to: String, via: TelegramBot) {
         parameters["chat_id"] = to.toJsonElement()
-        via.makeSilentRequest(method, parameters, multipartData)
+        doRequest(via)
     }
 
     open suspend fun send(to: Long, via: TelegramBot) {
         parameters["chat_id"] = to.toJsonElement()
-        via.makeSilentRequest(method, parameters, multipartData)
+        doRequest(via)
     }
 
     open suspend fun send(to: User, via: TelegramBot) {
         parameters["chat_id"] = to.id.toJsonElement()
-        via.makeSilentRequest(method, parameters, multipartData)
+        doRequest(via)
     }
 
     open suspend fun send(to: Chat, via: TelegramBot) {
         parameters["chat_id"] = to.id.toJsonElement()
-        via.makeSilentRequest(method, parameters, multipartData)
+        doRequest(via)
     }
 
     /**
@@ -52,7 +50,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType, multipartData)
+        return doRequestAsync(via)
     }
 
     open suspend fun sendAsync(
@@ -60,7 +58,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType, multipartData)
+        return doRequestAsync(via)
     }
 
     open suspend fun sendAsync(
@@ -68,7 +66,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.id.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType, multipartData)
+        return doRequestAsync(via)
     }
 
     open suspend fun sendAsync(
@@ -76,6 +74,6 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.id.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType, multipartData)
+        return doRequestAsync(via)
     }
 }

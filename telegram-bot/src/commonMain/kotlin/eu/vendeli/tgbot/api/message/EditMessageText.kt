@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.api.message
 
-import eu.vendeli.tgbot.interfaces.InlinableAction
+import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -12,7 +13,8 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
 class EditMessageTextAction private constructor() :
-    InlinableAction<Message>(),
+    Action<Message>(),
+    InlineActionExt<Message>,
     EntitiesContextBuilder<EditMessageTextAction>,
     OptionsFeature<EditMessageTextAction, EditMessageOptions>,
     MarkupFeature<EditMessageTextAction>,

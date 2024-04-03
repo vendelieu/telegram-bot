@@ -3,6 +3,7 @@
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -13,6 +14,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 
 class SendDiceAction(emoji: String? = null) :
     Action<Message>(),
+    BusinessActionExt<Message>,
     OptionsFeature<SendDiceAction, DiceOptions>,
     MarkupFeature<SendDiceAction> {
     override val method = TgMethod("sendDice")

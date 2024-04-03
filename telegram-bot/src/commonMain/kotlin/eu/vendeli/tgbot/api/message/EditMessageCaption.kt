@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.api.message
 
-import eu.vendeli.tgbot.interfaces.InlinableAction
+import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -11,7 +12,8 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
 class EditMessageCaptionAction() :
-    InlinableAction<Message>(),
+    Action<Message>(),
+    InlineActionExt<Message>,
     OptionsFeature<EditMessageCaptionAction, EditCaptionOptions>,
     MarkupFeature<EditMessageCaptionAction>,
     CaptionFeature<EditMessageCaptionAction> {

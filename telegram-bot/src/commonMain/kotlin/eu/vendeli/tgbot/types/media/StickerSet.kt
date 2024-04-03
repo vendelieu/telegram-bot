@@ -31,8 +31,6 @@ data class StickerSet(
     val name: String,
     val title: String,
     val stickerType: StickerType,
-    val isAnimated: Boolean,
-    val isVideo: Boolean,
     val stickers: List<Sticker>,
     val thumbnail: PhotoSize? = null,
 )

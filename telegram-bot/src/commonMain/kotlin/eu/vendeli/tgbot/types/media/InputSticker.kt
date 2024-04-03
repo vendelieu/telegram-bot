@@ -14,6 +14,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class InputSticker(
     var sticker: ImplicitFile,
+    val format: StickerFormat,
     val emojiList: List<String>,
     val maskPosition: MaskPosition? = null,
     val keywords: List<String>? = null,

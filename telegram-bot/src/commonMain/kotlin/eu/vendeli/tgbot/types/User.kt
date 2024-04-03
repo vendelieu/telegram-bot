@@ -30,4 +30,5 @@ data class User(
     val canJoinGroups: Boolean? = null,
     val canReadAllGroupMessages: Boolean? = null,
     val supportsInlineQueries: Boolean? = null,
+    val canConnectToBusiness: Boolean? = null,
 )

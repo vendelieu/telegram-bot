@@ -7,6 +7,8 @@ import eu.vendeli.tgbot.interfaces.ClassManager
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivityCtx
+import eu.vendeli.tgbot.types.internal.BusinessConnectionUpdate
+import eu.vendeli.tgbot.types.internal.BusinessMessageUpdate
 import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
 import eu.vendeli.tgbot.types.internal.ChannelPostUpdate
 import eu.vendeli.tgbot.types.internal.ChatBoostUpdate
@@ -14,6 +16,8 @@ import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
 import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
 import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
 import eu.vendeli.tgbot.types.internal.CommandContext
+import eu.vendeli.tgbot.types.internal.DeletedBusinessMessagesUpdate
+import eu.vendeli.tgbot.types.internal.EditedBusinessMessageUpdate
 import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
 import eu.vendeli.tgbot.types.internal.EditedMessageUpdate
 import eu.vendeli.tgbot.types.internal.FunctionalInvocation
@@ -54,6 +58,10 @@ typealias OnMessageReactionActivity = suspend ActivityCtx<MessageReactionUpdate>
 typealias OnMessageReactionCountActivity = suspend ActivityCtx<MessageReactionCountUpdate>.() -> Unit
 typealias OnChatBoostActivity = suspend ActivityCtx<ChatBoostUpdate>.() -> Unit
 typealias OnRemovedChatBoostActivity = suspend ActivityCtx<RemovedChatBoostUpdate>.() -> Unit
+typealias OnBusinessConnectionActivity = suspend ActivityCtx<BusinessConnectionUpdate>.() -> Unit
+typealias OnBusinessMessageActivity = suspend ActivityCtx<BusinessMessageUpdate>.() -> Unit
+typealias OnEditedBusinessMessageActivity = suspend ActivityCtx<EditedBusinessMessageUpdate>.() -> Unit
+typealias OnDeletedBusinessMessagesActivity = suspend ActivityCtx<DeletedBusinessMessagesUpdate>.() -> Unit
 
 typealias WhenNotHandledActivity = suspend Update.() -> Unit
 typealias OnCommandActivity = suspend CommandContext<ProcessedUpdate>.() -> Unit

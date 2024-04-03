@@ -1,7 +1,11 @@
 package eu.vendeli.tgbot.types.chat
 
+import eu.vendeli.tgbot.types.Birthdate
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.ReactionType
+import eu.vendeli.tgbot.types.business.BusinessIntro
+import eu.vendeli.tgbot.types.business.BusinessLocation
+import eu.vendeli.tgbot.types.business.BusinessOpeningHours
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
@@ -65,7 +69,7 @@ enum class ChatType {
  * @property customEmojiStickerSetName Optional. For supergroups, the name of the group's custom emoji sticker set. Custom emoji from this set can be used by all users and bots in the group. Returned only in getChat.
  * @property linkedChatId Optional. Unique identifier for the linked chat, i.e. the discussion group identifier for a channel and vice versa; for supergroups and channel chats. This identifier may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier. Returned only in getChat.
  * @property location Optional. For supergroups, the location to which the supergroup is connected. Returned only in getChat.
-*/
+ */
 @Serializable
 data class Chat(
     val id: Long,
@@ -77,6 +81,11 @@ data class Chat(
     val isForum: Boolean? = null,
     val photo: ChatPhoto? = null,
     val activeUsernames: List<String>? = null,
+    val birthdate: Birthdate? = null,
+    val businessIntro: BusinessIntro? = null,
+    val businessLocation: BusinessLocation? = null,
+    val businessOpeningHours: BusinessOpeningHours? = null,
+    val personalChat: Chat? = null,
     val availableReactions: List<ReactionType>? = null,
     val accentColorId: Int? = null,
     val backgroundCustomEmojiId: String? = null,

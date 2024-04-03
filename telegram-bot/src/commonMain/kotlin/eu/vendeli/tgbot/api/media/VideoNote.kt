@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api.media
 
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -16,6 +17,7 @@ import eu.vendeli.tgbot.utils.toImplicitFile
 
 class SendVideoNoteAction(videoNote: ImplicitFile) :
     MediaAction<Message>(),
+    BusinessActionExt<Message>,
     OptionsFeature<SendVideoNoteAction, VideoNoteOptions>,
     MarkupFeature<SendVideoNoteAction> {
     override val method = TgMethod("sendVideoNote")

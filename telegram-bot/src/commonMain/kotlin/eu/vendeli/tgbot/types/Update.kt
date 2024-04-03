@@ -3,6 +3,8 @@ package eu.vendeli.tgbot.types
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.boost.ChatBoostRemoved
 import eu.vendeli.tgbot.types.boost.ChatBoostUpdated
+import eu.vendeli.tgbot.types.business.BusinessConnection
+import eu.vendeli.tgbot.types.business.BusinessMessagesDeleted
 import eu.vendeli.tgbot.types.chat.ChatJoinRequest
 import eu.vendeli.tgbot.types.chat.ChatMemberUpdated
 import eu.vendeli.tgbot.types.inline.ChosenInlineResult
@@ -34,7 +36,7 @@ import kotlinx.serialization.Serializable
  * @property chatJoinRequest Optional. A request to join the chat has been sent. The bot must have the can_invite_users administrator right in the chat to receive these updates.
  * @property chatBoost Optional. A chat boost was added or changed. The bot must be an administrator in the chat to receive these updates.
  * @property removedChatBoost Optional. A boost was removed from a chat. The bot must be an administrator in the chat to receive these updates.
-*/
+ */
 @Serializable
 data class Update(
     val updateId: Int,
@@ -42,6 +44,10 @@ data class Update(
     val editedMessage: Message? = null,
     val channelPost: Message? = null,
     val editedChannelPost: Message? = null,
+    val businessConnection: BusinessConnection? = null,
+    val businessMessage: Message? = null,
+    val editedBusinessMessage: Message? = null,
+    val deletedBusinessMessages: BusinessMessagesDeleted? = null,
     val messageReaction: MessageReactionUpdated? = null,
     val messageReactionCount: MessageReactionCountUpdated? = null,
     val inlineQuery: InlineQuery? = null,

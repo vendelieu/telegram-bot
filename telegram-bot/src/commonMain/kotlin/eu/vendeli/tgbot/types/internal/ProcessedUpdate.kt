@@ -1,8 +1,6 @@
 package eu.vendeli.tgbot.types.internal
 
 import eu.vendeli.tgbot.types.CallbackQuery
-import eu.vendeli.tgbot.types.boost.ChatBoostRemoved
-import eu.vendeli.tgbot.types.boost.ChatBoostUpdated
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.MessageReactionCountUpdated
 import eu.vendeli.tgbot.types.MessageReactionUpdated
@@ -10,6 +8,10 @@ import eu.vendeli.tgbot.types.Poll
 import eu.vendeli.tgbot.types.PollAnswer
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.boost.ChatBoostRemoved
+import eu.vendeli.tgbot.types.boost.ChatBoostUpdated
+import eu.vendeli.tgbot.types.business.BusinessConnection
+import eu.vendeli.tgbot.types.business.BusinessMessagesDeleted
 import eu.vendeli.tgbot.types.chat.ChatJoinRequest
 import eu.vendeli.tgbot.types.chat.ChatMemberUpdated
 import eu.vendeli.tgbot.types.inline.ChosenInlineResult
@@ -67,6 +69,38 @@ data class EditedChannelPostUpdate(
     override val user = editedChannelPost.from
     override val text = editedChannelPost.text.orEmpty()
 }
+
+data class BusinessConnectionUpdate(
+    override val updateId: Int,
+    override val update: Update,
+    val businessConnection: BusinessConnection,
+) : ProcessedUpdate(updateId, update, UpdateType.BUSINESS_CONNECTION), UserReference {
+    override val user = businessConnection.user
+}
+
+data class BusinessMessageUpdate(
+    override val updateId: Int,
+    override val update: Update,
+    val businessMessage: Message,
+) : ProcessedUpdate(updateId, update, UpdateType.BUSINESS_MESSAGE), UserReference {
+    override val user = businessMessage.from
+    override val text = businessMessage.text.orEmpty()
+}
+
+data class EditedBusinessMessageUpdate(
+    override val updateId: Int,
+    override val update: Update,
+    val editedBusinessMessage: Message,
+) : ProcessedUpdate(updateId, update, UpdateType.EDITED_BUSINESS_MESSAGE), UserReference {
+    override val user = editedBusinessMessage.from
+    override val text = editedBusinessMessage.text.orEmpty()
+}
+
+data class DeletedBusinessMessagesUpdate(
+    override val updateId: Int,
+    override val update: Update,
+    val deletedBusinessMessages: BusinessMessagesDeleted,
+) : ProcessedUpdate(updateId, update, UpdateType.DELETED_BUSINESS_MESSAGES)
 
 data class MessageReactionUpdate(
     override val updateId: Int,

@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.chat
 
+import eu.vendeli.tgbot.types.media.PhotoSize
 import kotlinx.serialization.Serializable
 
 /**
@@ -12,4 +13,7 @@ import kotlinx.serialization.Serializable
 data class ChatShared(
     val requestId: Int,
     val chatId: Long,
+    val title: String? = null,
+    val username: String? = null,
+    val photo: List<PhotoSize>? = null
 )

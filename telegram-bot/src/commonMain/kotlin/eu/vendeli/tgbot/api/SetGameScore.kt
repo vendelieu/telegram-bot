@@ -2,7 +2,8 @@
 
 package eu.vendeli.tgbot.api
 
-import eu.vendeli.tgbot.interfaces.InlinableAction
+import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.User
@@ -12,7 +13,8 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
 class SetGameScoreAction :
-    InlinableAction<Message>,
+    Action<Message>,
+    InlineActionExt<Message>,
     OptionsFeature<SetGameScoreAction, SetGameScoreOptions> {
     override val method = TgMethod("setGameScore")
     override val returnType = getReturnType()

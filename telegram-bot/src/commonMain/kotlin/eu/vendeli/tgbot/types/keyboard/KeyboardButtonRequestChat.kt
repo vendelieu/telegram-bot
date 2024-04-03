@@ -20,9 +20,12 @@ data class KeyboardButtonRequestChat(
     val requestId: Int,
     val chatIsChannel: Boolean,
     val chatIsForum: Boolean? = null,
-    val chatHasUserName: Boolean? = null,
+    val chatHasUsername: Boolean? = null,
     val chatIsCreated: Boolean? = null,
     val userAdministratorRights: ChatAdministratorRights? = null,
     val botAdministratorRights: ChatAdministratorRights? = null,
     val botIsMember: Boolean? = null,
+    val requestTitle: Boolean? = null,
+    val requestUsername: Boolean? = null,
+    val requestPhoto: Boolean? = null
 )

@@ -3,11 +3,14 @@
 package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.toImplicitFile
 import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.toPartData
 import kotlin.collections.set
 
 class AddStickerToSetAction(
@@ -20,7 +23,14 @@ class AddStickerToSetAction(
 
     init {
         parameters["name"] = name.toJsonElement()
-        parameters["sticker"] = input.encodeWith(InputSticker.serializer())
+        parameters["sticker"] = input.also {
+            if (it.sticker is ImplicitFile.InpFile) {
+                val inpSticker = it.sticker as ImplicitFile.InpFile
+                multipartData += inpSticker.file.toPartData(inpSticker.file.fileName)
+
+                it.sticker = "attach://${inpSticker.file.fileName}".toImplicitFile()
+            }
+        }.encodeWith(InputSticker.serializer())
     }
 }
 

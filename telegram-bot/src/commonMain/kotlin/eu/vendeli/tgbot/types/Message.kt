@@ -122,8 +122,10 @@ data class Message(
     val from: User? = null,
     val senderChat: Chat? = null,
     val senderBoostCount: Int? = null,
+    val senderBusinessBot: User? = null,
     @Serializable(InstantSerializer::class)
     override val date: Instant,
+    val businessConnectionId: String? = null,
     override val chat: Chat,
     val forwardOrigin: MessageOrigin? = null,
     val isTopicMessage: Boolean? = null,
@@ -136,6 +138,7 @@ data class Message(
     @Serializable(InstantSerializer::class)
     val editDate: Instant? = null,
     val hasProtectedContent: Boolean? = null,
+    val isFromOffline: Boolean? = null,
     val mediaGroupId: String? = null,
     val authorSignature: String? = null,
     val text: String? = null,

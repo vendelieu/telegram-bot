@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api.media
 
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
@@ -17,6 +18,7 @@ import eu.vendeli.tgbot.utils.toImplicitFile
 
 class SendVoiceAction(voice: ImplicitFile) :
     MediaAction<Message>(),
+    BusinessActionExt<Message>,
     OptionsFeature<SendVoiceAction, VoiceOptions>,
     MarkupFeature<SendVoiceAction>,
     CaptionFeature<SendVoiceAction> {

@@ -3,6 +3,7 @@
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -15,6 +16,7 @@ class SendLocationAction(
     latitude: Float,
     longitude: Float,
 ) : Action<Message>(),
+    BusinessActionExt<Message>,
     OptionsFeature<SendLocationAction, LocationOptions>,
     MarkupFeature<SendLocationAction> {
     override val method = TgMethod("sendLocation")

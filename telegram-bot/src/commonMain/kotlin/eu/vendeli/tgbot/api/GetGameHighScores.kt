@@ -2,7 +2,7 @@
 
 package eu.vendeli.tgbot.api
 
-import eu.vendeli.tgbot.interfaces.InlinableAction
+import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.game.GameHighScore
 import eu.vendeli.tgbot.types.internal.Identifier
@@ -12,7 +12,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class GetGameHighScoresAction : InlinableAction<List<GameHighScore>> {
+class GetGameHighScoresAction : Action<List<GameHighScore>> {
     override val method = TgMethod("getGameHighScores")
     override val returnType = getReturnType()
 
