@@ -170,7 +170,8 @@ inline fun TelegramBot.animationSc(file: ImplicitFile) = animation(file)
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.getChatSc() = getChat()
 @Suppress("NOTHING_TO_INLINE")
-inline fun TelegramBot.replaceStickerInSetSc(name: String) = replaceStickerInSet(name)
+inline fun TelegramBot.replaceStickerInSetSc(userId: Long, name: String, oldSticker: String, sticker: InputSticker) =
+    replaceStickerInSet(userId, name, oldSticker, sticker)
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.answerInlineQuerySc(inlineQueryId: String, results: List<InlineQueryResult>) = answerInlineQuery(inlineQueryId,  results)
 @Suppress("NOTHING_TO_INLINE")
@@ -188,11 +189,11 @@ inline fun TelegramBot.createInvoiceLinkSc(
     currency: Currency,
     prices: List<LabeledPrice>,
 ) = createInvoiceLink(
-    title, 
-    description, 
-    payload, 
-    providerToken, 
-    currency, 
+    title,
+    description,
+    payload,
+    providerToken,
+    currency,
     prices, )
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.approveChatJoinRequestSc(userId: Long) = approveChatJoinRequest(userId)
@@ -207,7 +208,7 @@ inline fun TelegramBot.setMyShortDescriptionSc(
     description: String? = null,
     languageCode: String? = null,
 ) = setMyShortDescription(
-    description, 
+    description,
     languageCode, )
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.deleteChatStickerSetSc() = deleteChatStickerSet()
@@ -260,9 +261,9 @@ inline fun TelegramBot.answerShippingQuerySc(
     shippingOptions: List<ShippingOption>? = null,
     errorMessage: String? = null,
 ) = answerShippingQuery(
-    shippingQueryId, 
-    ok, 
-    shippingOptions, 
+    shippingQueryId,
+    ok,
+    shippingOptions,
     errorMessage, )
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.editGeneralForumTopicSc(name: String) = editGeneralForumTopic(name)
@@ -279,11 +280,11 @@ inline fun TelegramBot.invoiceSc(
     currency: Currency,
     prices: List<LabeledPrice>,
 ) = invoice(
-    title, 
-    description, 
-    payload, 
-    providerToken, 
-    currency, 
+    title,
+    description,
+    payload,
+    providerToken,
+    currency,
     prices, )
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.unbanChatMemberSc(userId: Long, onlyIfBanned: Boolean? = null) = unbanChatMember(userId,  onlyIfBanned)
@@ -301,9 +302,9 @@ inline fun TelegramBot.restrictChatMemberSc(
     untilDate: Instant? = null,
     useIndependentChatPermissions: Boolean? = null,
     chatPermissions: ChatPermissions.() -> Unit) = restrictChatMember(
-    userId, 
-    untilDate, 
-    useIndependentChatPermissions, 
+    userId,
+    untilDate,
+    useIndependentChatPermissions,
     chatPermissions)
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.editMessageLiveLocationSc(messageId: Long, latitude: Float, longitude: Float) = editMessageLiveLocation(messageId,  latitude,  longitude)
@@ -320,7 +321,7 @@ inline fun TelegramBot.setMyDescriptionSc(
     description: String? = null,
     languageCode: String? = null,
 ) = setMyDescription(
-    description, 
+    description,
     languageCode, )
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.sendLocationSc(latitude: Float, longitude: Float) = sendLocation(latitude,  longitude)
@@ -362,8 +363,8 @@ inline fun TelegramBot.createNewStickerSetSc(
     title: String,
     stickers: List<InputSticker>,
 ) = createNewStickerSet(
-    name, 
-    title, 
+    name,
+    title,
     stickers, )
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.setStickerSetTitleSc(name: String, title: String) = setStickerSetTitle(name,  title)
@@ -410,7 +411,7 @@ inline fun TelegramBot.setChatPermissionsSc(
     permissions: ChatPermissions,
     useIndependentChatPermissions: Boolean? = null,
 ) = setChatPermissions(
-    permissions, 
+    permissions,
     useIndependentChatPermissions, )
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.setStickerMaskPositionSc(sticker: String, maskPosition: MaskPosition? = null) = setStickerMaskPosition(sticker,  maskPosition)
@@ -427,7 +428,7 @@ inline fun TelegramBot.answerWebAppQuerySc(
     webAppQueryId: String,
     result: InlineQueryResult,
 ) = answerWebAppQuery(
-    webAppQueryId, 
+    webAppQueryId,
     result, )
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.deleteWebhookSc(dropPendingUpdates: Boolean = false) = deleteWebhook(dropPendingUpdates)
