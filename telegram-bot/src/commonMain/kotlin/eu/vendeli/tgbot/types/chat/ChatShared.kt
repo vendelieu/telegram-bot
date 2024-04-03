@@ -15,5 +15,5 @@ data class ChatShared(
     val chatId: Long,
     val title: String? = null,
     val username: String? = null,
-    val photo: List<PhotoSize>? = null
+    val photo: List<PhotoSize>? = null,
 )

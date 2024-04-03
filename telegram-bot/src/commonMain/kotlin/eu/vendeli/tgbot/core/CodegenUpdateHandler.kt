@@ -67,8 +67,9 @@ class CodegenUpdateHandler internal constructor(
         when {
             invocation != null -> invocation.invokeCatching(this, user, request.params)
 
-            activities.unprocessedHandler != null -> activities.unprocessedHandler!!
-                .invokeCatching(this, request.params)
+            activities.unprocessedHandler != null ->
+                activities.unprocessedHandler!!
+                    .invokeCatching(this, request.params)
 
             else -> logger.warn { "update: $update not handled." }
         }

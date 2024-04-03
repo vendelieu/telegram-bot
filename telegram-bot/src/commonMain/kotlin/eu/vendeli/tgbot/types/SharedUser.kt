@@ -9,5 +9,5 @@ data class SharedUser(
     val firstName: String? = null,
     val lastName: String? = null,
     val username: String? = null,
-    val photo: List<PhotoSize>? = null
+    val photo: List<PhotoSize>? = null,
 )

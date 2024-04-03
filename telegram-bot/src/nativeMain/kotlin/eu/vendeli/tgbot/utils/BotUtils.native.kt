@@ -18,6 +18,6 @@ fun TelegramBot.defineActivities(input: Map<String, List<Any?>>) {
 }
 private var activities: Map<String, List<Any?>> = emptyMap()
 
-@Suppress("ObjectPropertyName")
+@Suppress("ObjectPropertyName", "ktlint:standard:backing-property-naming")
 actual val _OperatingActivities: Map<String, List<Any?>>
     get() = activities

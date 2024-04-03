@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class BusinessOpeningHoursInterval(
     val openingMinute: Int,
-    val closingMinute: Int
+    val closingMinute: Int,
 )

@@ -28,6 +28,6 @@ private var activities: Map<String, List<Any?>> = runCatching {
         .invoke(null) as Map<String, List<Any?>>
 }.getOrNull() ?: emptyMap()
 
-@Suppress("ObjectPropertyName")
+@Suppress("ObjectPropertyName", "ktlint:standard:backing-property-naming")
 actual val _OperatingActivities: Map<String, List<Any?>>
     get() = activities

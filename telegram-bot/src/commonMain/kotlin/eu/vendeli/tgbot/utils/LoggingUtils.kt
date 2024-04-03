@@ -18,4 +18,3 @@ abstract class Logger(val id: String) : io.ktor.client.plugins.logging.Logger {
 internal expect open class Logging(tag: String = "TelegramBot") {
     val logger: Logger
 }
-

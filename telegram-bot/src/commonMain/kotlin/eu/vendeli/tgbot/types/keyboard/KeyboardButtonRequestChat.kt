@@ -27,5 +27,5 @@ data class KeyboardButtonRequestChat(
     val botIsMember: Boolean? = null,
     val requestTitle: Boolean? = null,
     val requestUsername: Boolean? = null,
-    val requestPhoto: Boolean? = null
+    val requestPhoto: Boolean? = null,
 )

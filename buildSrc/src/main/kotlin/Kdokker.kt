@@ -78,7 +78,7 @@ abstract class Kdokker : DefaultTask() {
             }
 
             kdoc += NEWLINE + methodMeta.returns.joinToString("|", " * @returns ") { "[$it]" }
-            kdoc += "$NEWLINE*/$NEWLINE"
+            kdoc += "$NEWLINE */$NEWLINE"
 
             modifiedContent = modifiedContent.replace(method.value, kdoc + method.value)
 
@@ -104,7 +104,7 @@ abstract class Kdokker : DefaultTask() {
             kdoc += classMeta.fields.joinToString("$NEWLINE * ") {
                 "@property " + it.name.snakeToCamelCase() + " " + it.description
             }
-            kdoc += "$NEWLINE*/$NEWLINE"
+            kdoc += "$NEWLINE */$NEWLINE"
             modifiedContent = modifiedContent.replace(clazz.value, kdoc + clazz.value)
 
             file.writeText(modifiedContent)

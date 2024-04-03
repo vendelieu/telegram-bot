@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 data class BusinessMessagesDeleted(
     val businessConnectionId: String,
     val chat: Chat,
-    val messageIds: List<Int>
+    val messageIds: List<Int>,
 )

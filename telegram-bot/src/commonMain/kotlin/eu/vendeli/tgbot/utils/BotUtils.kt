@@ -113,5 +113,5 @@ internal inline fun <T> Any?.cast() = this as T
 
 expect inline fun <T : ChainLink> InputListener.setChain(user: User, firstLink: T)
 
-@Suppress("ObjectPropertyName")
+@Suppress("ObjectPropertyName", "ktlint:standard:backing-property-naming")
 expect val _OperatingActivities: Map<String, List<Any?>>
