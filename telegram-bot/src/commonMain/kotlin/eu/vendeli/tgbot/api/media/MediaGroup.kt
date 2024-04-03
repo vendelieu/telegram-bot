@@ -52,7 +52,9 @@ class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
 
 /**
  * Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
+ *
  * Api reference: https://core.telegram.org/bots/api#sendmediagroup
+ * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
  * @param media A JSON-serialized array describing messages to be sent, must include 2-10 items
@@ -60,7 +62,7 @@ class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
  * @param protectContent Protects the contents of the sent messages from forwarding and saving
  * @param replyParameters Description of the message to reply to
  * @returns [Array of Message]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun sendMediaGroup(media: List<InputMedia>) = SendMediaGroupAction(media)
 

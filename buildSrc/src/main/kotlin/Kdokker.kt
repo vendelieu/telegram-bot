@@ -70,7 +70,7 @@ abstract class Kdokker : DefaultTask() {
                 ?: return@forEach
             var kdoc = "/**$NEWLINE"
             kdoc += methodMeta.description?.joinToString("$NEWLINE * ", " * ") ?: ""
-            kdoc += "$NEWLINE * Api reference: ${methodMeta.href}"
+            kdoc += "$NEWLINE * $NEWLINE * Api reference: ${methodMeta.href}"
             kdoc += "$NEWLINE * "
 
             kdoc += methodMeta.fields.joinToString("$NEWLINE * ") {
@@ -99,7 +99,7 @@ abstract class Kdokker : DefaultTask() {
 
             var kdoc = "/**$NEWLINE"
             kdoc += classMeta.description?.joinToString("$NEWLINE * ", " * ") ?: ""
-            kdoc += NEWLINE + " * Api reference: ${classMeta.href}"
+            kdoc += "$NEWLINE * $NEWLINE * Api reference: ${classMeta.href}"
             kdoc += "$NEWLINE * "
             kdoc += classMeta.fields.joinToString("$NEWLINE * ") {
                 "@property " + it.name.snakeToCamelCase() + " " + it.description

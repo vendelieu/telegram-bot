@@ -28,16 +28,18 @@ class SendDiceAction(emoji: String? = null) :
 
 /**
  * Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
+ *
  * Api reference: https://core.telegram.org/bots/api#senddice
+ * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
  * @param emoji Emoji on which the dice throw animation is based. Currently, must be one of "🎲", "🎯", "🏀", "⚽", "🎳", or "🎰". Dice can have values 1-6 for "🎲", "🎯" and "🎳", values 1-5 for "🏀" and "⚽", and values 1-64 for "🎰". Defaults to "🎲"
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding
  * @param replyParameters Description of the message to reply to
- * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+ * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
  * @returns [Message]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun sendDice(emoji: String? = null) = dice(emoji)
 

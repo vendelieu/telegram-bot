@@ -24,11 +24,12 @@ class SetStickerKeywordsAction(
 
 /**
  * Use this method to change search keywords assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.
+ *
  * Api reference: https://core.telegram.org/bots/api#setstickerkeywords
  * @param sticker File identifier of the sticker
  * @param keywords A JSON-serialized list of 0-20 search keywords for the sticker with total length of up to 64 characters
  * @returns [Boolean]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun setStickerKeywords(sticker: String, keywords: List<String>? = null) =
     SetStickerKeywordsAction(sticker, keywords)

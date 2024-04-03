@@ -20,11 +20,12 @@ class UnbanChatSenderChatAction(senderChatId: Long) : Action<Boolean>() {
 
 /**
  * Use this method to unban a previously banned channel chat in a supergroup or channel. The bot must be an administrator for this to work and must have the appropriate administrator rights. Returns True on success.
+ *
  * Api reference: https://core.telegram.org/bots/api#unbanchatsenderchat
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param senderChatId Unique identifier of the target sender chat
  * @returns [Boolean]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun unbanChatSenderChat(senderChatId: Long) = UnbanChatSenderChatAction(senderChatId)
 

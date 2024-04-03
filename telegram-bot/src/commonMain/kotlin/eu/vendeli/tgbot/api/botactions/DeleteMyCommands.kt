@@ -24,11 +24,12 @@ class DeleteMyCommandsAction(
 
 /**
  * Use this method to delete the list of the bot's commands for the given scope and user language. After deletion, higher level commands will be shown to affected users. Returns True on success.
+ *
  * Api reference: https://core.telegram.org/bots/api#deletemycommands
  * @param scope A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to BotCommandScopeDefault.
  * @param languageCode A two-letter ISO 639-1 language code. If empty, commands will be applied to all users from the given scope, for whose language there are no dedicated commands
  * @returns [Boolean]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun deleteMyCommands(languageCode: String? = null, scope: BotCommandScope? = null) =
     DeleteMyCommandsAction(scope, languageCode)

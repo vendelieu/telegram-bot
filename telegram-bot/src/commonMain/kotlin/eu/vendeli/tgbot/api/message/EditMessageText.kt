@@ -39,6 +39,7 @@ class EditMessageTextAction private constructor() :
 
 /**
  * Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+ *
  * Api reference: https://core.telegram.org/bots/api#editmessagetext
  * @param chatId Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageId Required if inline_message_id is not specified. Identifier of the message to edit
@@ -49,7 +50,7 @@ class EditMessageTextAction private constructor() :
  * @param linkPreviewOptions Link preview generation options for the message
  * @param replyMarkup A JSON-serialized object for an inline keyboard.
  * @returns [Message]|[Boolean]
-*/
+ */
 inline fun editMessageText(messageId: Long, block: () -> String) = editText(messageId, block)
 
 fun editMessageText(block: EntitiesContextBuilder<EditMessageTextAction>.() -> String) = EditMessageTextAction(block)

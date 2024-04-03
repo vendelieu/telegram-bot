@@ -35,13 +35,14 @@ class AddStickerToSetAction(
 }
 
 /**
- * Use this method to add a new sticker to a set created by the bot. The format of the added sticker must match the format of the other stickers in the set. Emoji sticker sets can have up to 200 stickers. Animated and video sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.
+ * Use this method to add a new sticker to a set created by the bot. Emoji sticker sets can have up to 200 stickers. Other sticker sets can have up to 120 stickers. Returns True on success.
+ *
  * Api reference: https://core.telegram.org/bots/api#addstickertoset
  * @param userId User identifier of sticker set owner
  * @param name Sticker set name
  * @param sticker A JSON-serialized object with information about the added sticker. If exactly the same sticker had already been added to the set, then the set isn't changed.
  * @returns [Boolean]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun addStickerToSet(name: String, input: InputSticker) = AddStickerToSetAction(name, input)
 

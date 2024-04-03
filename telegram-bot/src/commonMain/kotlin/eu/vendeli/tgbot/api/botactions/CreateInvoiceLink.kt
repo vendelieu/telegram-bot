@@ -36,6 +36,7 @@ class CreateInvoiceLinkAction(
 
 /**
  * Use this method to create a link for an invoice. Returns the created invoice link as String on success.
+ *
  * Api reference: https://core.telegram.org/bots/api#createinvoicelink
  * @param title Product name, 1-32 characters
  * @param description Product description, 1-255 characters
@@ -58,7 +59,7 @@ class CreateInvoiceLinkAction(
  * @param sendEmailToProvider Pass True if the user's email address should be sent to the provider
  * @param isFlexible Pass True if the final price depends on the shipping method
  * @returns [String]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun createInvoiceLink(
     title: String,

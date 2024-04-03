@@ -24,6 +24,7 @@ class PromoteChatMemberAction(userId: Long) :
 
 /**
  * Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass False for all boolean parameters to demote a user. Returns True on success.
+ *
  * Api reference: https://core.telegram.org/bots/api#promotechatmember
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param userId Unique identifier of the target user
@@ -38,12 +39,12 @@ class PromoteChatMemberAction(userId: Long) :
  * @param canPostStories Pass True if the administrator can post stories to the chat
  * @param canEditStories Pass True if the administrator can edit stories posted by other users
  * @param canDeleteStories Pass True if the administrator can delete stories posted by other users
- * @param canPostMessages Pass True if the administrator can post messages in the channel, or access channel statistics; channels only
- * @param canEditMessages Pass True if the administrator can edit messages of other users and can pin messages; channels only
- * @param canPinMessages Pass True if the administrator can pin messages, supergroups only
- * @param canManageTopics Pass True if the user is allowed to create, rename, close, and reopen forum topics, supergroups only
+ * @param canPostMessages Pass True if the administrator can post messages in the channel, or access channel statistics; for channels only
+ * @param canEditMessages Pass True if the administrator can edit messages of other users and can pin messages; for channels only
+ * @param canPinMessages Pass True if the administrator can pin messages; for supergroups only
+ * @param canManageTopics Pass True if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only
  * @returns [Boolean]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun promoteChatMember(userId: Long) = PromoteChatMemberAction(userId)
 

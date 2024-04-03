@@ -31,6 +31,7 @@ enum class ChatType {
 
 /**
  * This object represents a chat.
+ *
  * Api reference: https://core.telegram.org/bots/api#chat
  * @property id Unique identifier for this chat. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
  * @property type Type of chat, can be either "private", "group", "supergroup" or "channel"
@@ -41,6 +42,11 @@ enum class ChatType {
  * @property isForum Optional. True, if the supergroup chat is a forum (has topics enabled)
  * @property photo Optional. Chat photo. Returned only in getChat.
  * @property activeUsernames Optional. If non-empty, the list of all active chat usernames; for private chats, supergroups and channels. Returned only in getChat.
+ * @property birthdate Optional. For private chats, the date of birth of the user. Returned only in getChat.
+ * @property businessIntro Optional. For private chats with business accounts, the intro of the business. Returned only in getChat.
+ * @property businessLocation Optional. For private chats with business accounts, the location of the business. Returned only in getChat.
+ * @property businessOpeningHours Optional. For private chats with business accounts, the opening hours of the business. Returned only in getChat.
+ * @property personalChat Optional. For private chats, the personal channel of the user. Returned only in getChat.
  * @property availableReactions Optional. List of available reactions allowed in the chat. If omitted, then all emoji reactions are allowed. Returned only in getChat.
  * @property accentColorId Optional. Identifier of the accent color for the chat name and backgrounds of the chat photo, reply header, and link preview. See accent colors for more details. Returned only in getChat. Always returned in getChat.
  * @property backgroundCustomEmojiId Optional. Custom emoji identifier of emoji chosen by the chat for the reply header and link preview background. Returned only in getChat.

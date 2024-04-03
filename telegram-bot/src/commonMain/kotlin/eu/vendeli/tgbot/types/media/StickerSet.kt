@@ -17,15 +17,14 @@ enum class StickerType {
 
 /**
  * This object represents a sticker set.
+ *
  * Api reference: https://core.telegram.org/bots/api#stickerset
  * @property name Sticker set name
  * @property title Sticker set title
  * @property stickerType Type of stickers in the set, currently one of "regular", "mask", "custom_emoji"
- * @property isAnimated True, if the sticker set contains animated stickers
- * @property isVideo True, if the sticker set contains video stickers
  * @property stickers List of all set stickers
  * @property thumbnail Optional. Sticker set thumbnail in the .WEBP, .TGS, or .WEBM format
-*/
+ */
 @Serializable
 data class StickerSet(
     val name: String,
