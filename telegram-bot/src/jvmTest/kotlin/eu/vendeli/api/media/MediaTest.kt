@@ -15,6 +15,7 @@ import eu.vendeli.tgbot.api.media.sticker
 import eu.vendeli.tgbot.api.media.video
 import eu.vendeli.tgbot.api.media.videoNote
 import eu.vendeli.tgbot.api.media.voice
+import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.utils.LOREM
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -25,7 +26,9 @@ class MediaTest : BotTestContext() {
     @Test
     suspend fun `audio method test`() {
         val lorem = LOREM.AUDIO
-        val bytesResult = audio(lorem.bytes).sendReturning(TG_ID, bot).shouldSuccess()
+        val bytesResult = audio(lorem.bytes)
+            .caption { "test" }.options { parseMode = ParseMode.Markdown }
+            .sendReturning(TG_ID, bot).shouldSuccess()
         val textResult = sendAudio { bytesResult.audio!!.fileId }.sendReturning(TG_ID, bot).shouldSuccess()
         val fileResult = audio(lorem.file).sendReturning(TG_ID, bot).shouldSuccess()
         val inputResult = audio(lorem.inputFile).sendReturning(TG_ID, bot).shouldSuccess()
@@ -44,7 +47,9 @@ class MediaTest : BotTestContext() {
     @Test
     suspend fun `animation method test`() {
         val lorem = LOREM.ANIMATION
-        val textResult = sendAnimation { lorem.url }.sendReturning(TG_ID, bot).shouldSuccess()
+        val textResult = sendAnimation { lorem.url }
+            .caption { "test" }.options { parseMode = ParseMode.Markdown }
+            .sendReturning(TG_ID, bot).shouldSuccess()
         val bytesResult = animation(lorem.bytes).sendReturning(TG_ID, bot).shouldSuccess()
         val fileResult = animation(lorem.file).sendReturning(TG_ID, bot).shouldSuccess()
         val inputResult = animation(lorem.inputFile).sendReturning(TG_ID, bot).shouldSuccess()

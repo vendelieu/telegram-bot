@@ -40,6 +40,7 @@ class SendInvoiceAction(
 
 /**
  * Use this method to send invoices. On success, the sent Message is returned.
+ *
  * Api reference: https://core.telegram.org/bots/api#sendinvoice
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -69,7 +70,7 @@ class SendInvoiceAction(
  * @param replyParameters Description of the message to reply to
  * @param replyMarkup A JSON-serialized object for an inline keyboard. If empty, one 'Pay total price' button will be shown. If not empty, the first button must be a Pay button.
  * @returns [Message]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun invoice(
     title: String,

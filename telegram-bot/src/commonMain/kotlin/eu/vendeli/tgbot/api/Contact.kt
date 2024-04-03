@@ -3,6 +3,7 @@
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
@@ -15,6 +16,7 @@ class SendContactAction(
     phoneNumber: String,
     firstName: String,
 ) : Action<Message>(),
+    BusinessActionExt<Message>,
     OptionsFeature<SendContactAction, ContactOptions>,
     MarkupFeature<SendContactAction> {
     override val method = TgMethod("sendContact")
@@ -29,7 +31,9 @@ class SendContactAction(
 
 /**
  * Use this method to send phone contacts. On success, the sent Message is returned.
+ *
  * Api reference: https://core.telegram.org/bots/api#sendcontact
+ * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
  * @param phoneNumber Contact's phone number
@@ -39,9 +43,9 @@ class SendContactAction(
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving
  * @param replyParameters Description of the message to reply to
- * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+ * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
  * @returns [Message]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun contact(firstName: String, phoneNumber: String) = SendContactAction(phoneNumber, firstName)
 

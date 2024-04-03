@@ -6,11 +6,12 @@ import kotlinx.serialization.Serializable
 
 /**
  * This object represents one row of the high scores table for a game.
+ *
  * Api reference: https://core.telegram.org/bots/api#gamehighscore
  * @property position Position in high score table for the game
  * @property user User
  * @property score Score
-*/
+ */
 @Serializable
 data class GameHighScore(
     val position: Int,

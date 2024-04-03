@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api.media
 
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
@@ -17,6 +18,7 @@ import eu.vendeli.tgbot.utils.toImplicitFile
 
 class SendDocumentAction(document: ImplicitFile) :
     MediaAction<Message>(),
+    BusinessActionExt<Message>,
     CaptionFeature<SendDocumentAction>,
     OptionsFeature<SendDocumentAction, DocumentOptions>,
     MarkupFeature<SendDocumentAction> {
@@ -31,7 +33,9 @@ class SendDocumentAction(document: ImplicitFile) :
 
 /**
  * Use this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
+ *
  * Api reference: https://core.telegram.org/bots/api#senddocument
+ * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
  * @param document File to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files: https://core.telegram.org/bots/api#sending-files
@@ -43,9 +47,9 @@ class SendDocumentAction(document: ImplicitFile) :
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving
  * @param replyParameters Description of the message to reply to
- * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+ * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
  * @returns [Message]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun document(file: ImplicitFile) = SendDocumentAction(file)
 inline fun document(block: () -> String) = document(block().toImplicitFile())

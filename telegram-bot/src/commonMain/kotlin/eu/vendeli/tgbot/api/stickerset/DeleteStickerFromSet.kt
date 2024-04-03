@@ -18,9 +18,10 @@ class DeleteStickerFromSetAction(sticker: String) : SimpleAction<Boolean>() {
 
 /**
  * Use this method to delete a sticker from a set created by the bot. Returns True on success.
+ *
  * Api reference: https://core.telegram.org/bots/api#deletestickerfromset
  * @param sticker File identifier of the sticker
  * @returns [Boolean]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun deleteStickerFromSet(sticker: String) = DeleteStickerFromSetAction(sticker)

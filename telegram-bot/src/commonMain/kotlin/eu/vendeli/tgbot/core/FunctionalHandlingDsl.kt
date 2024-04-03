@@ -10,6 +10,8 @@ import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.DEFAULT_COMMAND_SCOPE
+import eu.vendeli.tgbot.utils.OnBusinessConnectionActivity
+import eu.vendeli.tgbot.utils.OnBusinessMessageActivity
 import eu.vendeli.tgbot.utils.OnCallbackQueryActivity
 import eu.vendeli.tgbot.utils.OnChannelPostActivity
 import eu.vendeli.tgbot.utils.OnChatBoostActivity
@@ -17,6 +19,8 @@ import eu.vendeli.tgbot.utils.OnChatJoinRequestActivity
 import eu.vendeli.tgbot.utils.OnChatMemberActivity
 import eu.vendeli.tgbot.utils.OnChosenInlineResultActivity
 import eu.vendeli.tgbot.utils.OnCommandActivity
+import eu.vendeli.tgbot.utils.OnDeletedBusinessMessagesActivity
+import eu.vendeli.tgbot.utils.OnEditedBusinessMessageActivity
 import eu.vendeli.tgbot.utils.OnEditedChannelPostActivity
 import eu.vendeli.tgbot.utils.OnEditedMessageActivity
 import eu.vendeli.tgbot.utils.OnInlineQueryActivity
@@ -168,6 +172,34 @@ class FunctionalHandlingDsl internal constructor(
      */
     fun onRemovedChatBoost(block: OnRemovedChatBoostActivity) {
         functionalActivities.onUpdateActivities[UpdateType.REMOVED_CHAT_BOOST] = block.cast()
+    }
+
+    /**
+     * Action that is performed on the presence of BusinessConnection in the Update.
+     */
+    fun onBusinessConnection(block: OnBusinessConnectionActivity) {
+        functionalActivities.onUpdateActivities[UpdateType.BUSINESS_CONNECTION] = block.cast()
+    }
+
+    /**
+     * Action that is performed on the presence of BusinessMessage in the Update.
+     */
+    fun onBusinessMessage(block: OnBusinessMessageActivity) {
+        functionalActivities.onUpdateActivities[UpdateType.BUSINESS_MESSAGE] = block.cast()
+    }
+
+    /**
+     * Action that is performed on the presence of EditedBusinessMessage in the Update.
+     */
+    fun onEditedBusinessMessage(block: OnEditedBusinessMessageActivity) {
+        functionalActivities.onUpdateActivities[UpdateType.EDITED_BUSINESS_MESSAGE] = block.cast()
+    }
+
+    /**
+     * Action that is performed on the presence of DeletedBusinessMessages in the Update.
+     */
+    fun onDeletedBusinessMessages(block: OnDeletedBusinessMessagesActivity) {
+        functionalActivities.onUpdateActivities[UpdateType.DELETED_BUSINESS_MESSAGES] = block.cast()
     }
 
     /**

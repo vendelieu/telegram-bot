@@ -4,8 +4,6 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Response
-import eu.vendeli.tgbot.utils.makeRequestAsync
-import eu.vendeli.tgbot.utils.makeSilentRequest
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.coroutines.Deferred
 import kotlin.collections.set
@@ -29,22 +27,22 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
      */
     override suspend fun send(to: String, via: TelegramBot) {
         parameters[idRefField] = to.toJsonElement()
-        via.makeSilentRequest(method, parameters, multipartData)
+        doRequest(via)
     }
 
     override suspend fun send(to: Long, via: TelegramBot) {
         parameters[idRefField] = to.toJsonElement()
-        via.makeSilentRequest(method, parameters, multipartData)
+        doRequest(via)
     }
 
     override suspend fun send(to: User, via: TelegramBot) {
         parameters[idRefField] = to.id.toJsonElement()
-        via.makeSilentRequest(method, parameters, multipartData)
+        doRequest(via)
     }
 
     override suspend fun send(to: Chat, via: TelegramBot) {
         parameters[idRefField] = to.id.toJsonElement()
-        via.makeSilentRequest(method, parameters, multipartData)
+        doRequest(via)
     }
 
     /**
@@ -58,7 +56,7 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType, multipartData)
+        return doRequestAsync(via)
     }
 
     override suspend fun sendAsync(
@@ -66,7 +64,7 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType, multipartData)
+        return doRequestAsync(via)
     }
 
     override suspend fun sendAsync(
@@ -74,7 +72,7 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.id.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType, multipartData)
+        return doRequestAsync(via)
     }
 
     override suspend fun sendAsync(
@@ -82,6 +80,6 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters[idRefField] = to.id.toJsonElement()
-        return via.makeRequestAsync(method, parameters, returnType, multipartData)
+        return doRequestAsync(via)
     }
 }

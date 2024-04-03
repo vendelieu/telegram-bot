@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 
 /**
  * This object represents a change of a reaction on a message performed by a user.
+ *
  * Api reference: https://core.telegram.org/bots/api#messagereactionupdated
  * @property chat The chat containing the message the user reacted to
  * @property messageId Unique identifier of the message inside the chat
@@ -15,7 +16,7 @@ import kotlinx.serialization.Serializable
  * @property date Date of the change in Unix time
  * @property oldReaction Previous list of reaction types that were set by the user
  * @property newReaction New list of reaction types that have been set by the user
-*/
+ */
 @Serializable
 data class MessageReactionUpdated(
     val chat: Chat,

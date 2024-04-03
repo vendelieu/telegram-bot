@@ -36,7 +36,6 @@ kotlin {
                 implementation(libs.stately)
                 implementation(libs.ktor.client.core)
                 implementation(libs.ktor.client.logging)
-                implementation(libs.logging)
 
                 api(libs.coroutines.core)
             }
@@ -44,7 +43,7 @@ kotlin {
         named("jvmTest") {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.8.0")
-                implementation("ch.qos.logback:logback-classic:1.5.3")
+                implementation(libs.logback)
 
                 implementation(libs.test.kotest.junit5)
                 implementation(libs.test.kotest.assertions)
@@ -53,21 +52,25 @@ kotlin {
         }
         named("jvmMain") {
             dependencies {
+                implementation(libs.logback)
                 implementation(libs.ktor.client.java)
             }
         }
         named("jsMain") {
             dependencies {
+                implementation(libs.logging)
                 implementation(libs.ktor.client.js)
             }
         }
         named("linuxX64Main") {
             dependencies {
+                implementation(libs.logging)
                 implementation(libs.ktor.client.curl)
             }
         }
         named("mingwX64Main") {
             dependencies {
+                implementation(libs.logging)
                 implementation(libs.ktor.client.winhttp)
             }
         }

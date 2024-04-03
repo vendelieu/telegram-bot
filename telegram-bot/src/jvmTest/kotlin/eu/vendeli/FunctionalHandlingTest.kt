@@ -156,6 +156,10 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             onChatJoinRequest { onUpdateInvocationsCount++ }
             onChatBoost { onUpdateInvocationsCount++ }
             onRemovedChatBoost { onUpdateInvocationsCount++ }
+            onBusinessConnection { onUpdateInvocationsCount++ }
+            onBusinessMessage { onUpdateInvocationsCount++ }
+            onEditedBusinessMessage { onUpdateInvocationsCount++ }
+            onDeletedBusinessMessages { onUpdateInvocationsCount++ }
         }
 
         UpdateType.entries.forEach {

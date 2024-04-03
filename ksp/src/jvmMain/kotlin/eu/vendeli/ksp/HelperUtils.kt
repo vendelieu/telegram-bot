@@ -22,6 +22,8 @@ import com.squareup.kotlinpoet.asTypeName
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.Autowiring
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.internal.BusinessConnectionUpdate
+import eu.vendeli.tgbot.types.internal.BusinessMessageUpdate
 import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
 import eu.vendeli.tgbot.types.internal.ChainLink
 import eu.vendeli.tgbot.types.internal.ChannelPostUpdate
@@ -29,6 +31,8 @@ import eu.vendeli.tgbot.types.internal.ChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
 import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
 import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
+import eu.vendeli.tgbot.types.internal.DeletedBusinessMessagesUpdate
+import eu.vendeli.tgbot.types.internal.EditedBusinessMessageUpdate
 import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
 import eu.vendeli.tgbot.types.internal.EditedMessageUpdate
 import eu.vendeli.tgbot.types.internal.InlineQueryUpdate
@@ -86,6 +90,10 @@ internal val chatMemberUpdateClass = ChatMemberUpdate::class.asTypeName()
 internal val chatJoinRequestUpdateClass = ChatJoinRequestUpdate::class.asTypeName()
 internal val chatBoostUpdateClass = ChatBoostUpdate::class.asTypeName()
 internal val removedChatBoostUpdateClass = RemovedChatBoostUpdate::class.asTypeName()
+internal val businessConnectionUpdateClass = BusinessConnectionUpdate::class.asTypeName()
+internal val businessMessageUpdateClass = BusinessMessageUpdate::class.asTypeName()
+internal val editedBusinessMessageClass = EditedBusinessMessageUpdate::class.asTypeName()
+internal val deletedBusinessMessagesClass = DeletedBusinessMessagesUpdate::class.asTypeName()
 
 internal val callbackQueryList = listOf(UpdateType.CALLBACK_QUERY)
 internal val messageList = listOf(UpdateType.MESSAGE)

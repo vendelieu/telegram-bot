@@ -3,6 +3,7 @@
 package eu.vendeli.tgbot.api.message
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -15,6 +16,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 
 class SendMessageAction private constructor() :
     Action<Message>(),
+    BusinessActionExt<Message>,
     OptionsFeature<SendMessageAction, MessageOptions>,
     MarkupFeature<SendMessageAction>,
     EntitiesFeature<SendMessageAction>,
@@ -34,7 +36,9 @@ class SendMessageAction private constructor() :
 
 /**
  * Use this method to send text messages. On success, the sent Message is returned.
+ *
  * Api reference: https://core.telegram.org/bots/api#sendmessage
+ * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
  * @param text Text of the message to be sent, 1-4096 characters after entities parsing
@@ -44,9 +48,9 @@ class SendMessageAction private constructor() :
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving
  * @param replyParameters Description of the message to reply to
- * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+ * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
  * @returns [Message]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun message(text: String) = SendMessageAction(text)
 fun message(block: EntitiesContextBuilder<SendMessageAction>.() -> String) = SendMessageAction(block)

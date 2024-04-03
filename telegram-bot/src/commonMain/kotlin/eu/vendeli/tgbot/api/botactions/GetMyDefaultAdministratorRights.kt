@@ -20,10 +20,11 @@ class GetMyDefaultAdministratorRightsAction(forChannel: Boolean? = null) :
 
 /**
  * Use this method to get the current default administrator rights of the bot. Returns ChatAdministratorRights on success.
+ *
  * Api reference: https://core.telegram.org/bots/api#getmydefaultadministratorrights
  * @param forChannels Pass True to get default administrator rights of the bot in channels. Otherwise, default administrator rights of the bot for groups and supergroups will be returned.
  * @returns [ChatAdministratorRights]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun getMyDefaultAdministratorRights(forChannel: Boolean? = null) =
     GetMyDefaultAdministratorRightsAction(forChannel)

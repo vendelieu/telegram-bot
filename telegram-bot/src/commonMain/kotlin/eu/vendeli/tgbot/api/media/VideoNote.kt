@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api.media
 
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -16,6 +17,7 @@ import eu.vendeli.tgbot.utils.toImplicitFile
 
 class SendVideoNoteAction(videoNote: ImplicitFile) :
     MediaAction<Message>(),
+    BusinessActionExt<Message>,
     OptionsFeature<SendVideoNoteAction, VideoNoteOptions>,
     MarkupFeature<SendVideoNoteAction> {
     override val method = TgMethod("sendVideoNote")
@@ -29,7 +31,9 @@ class SendVideoNoteAction(videoNote: ImplicitFile) :
 
 /**
  * As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
+ *
  * Api reference: https://core.telegram.org/bots/api#sendvideonote
+ * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
  * @param videoNote Video note to send. Pass a file_id as String to send a video note that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data. More information on Sending Files: https://core.telegram.org/bots/api#sending-files. Sending video notes by a URL is currently unsupported
@@ -39,9 +43,9 @@ class SendVideoNoteAction(videoNote: ImplicitFile) :
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving
  * @param replyParameters Description of the message to reply to
- * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+ * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
  * @returns [Message]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun videoNote(file: ImplicitFile) = SendVideoNoteAction(file)
 inline fun videoNote(block: () -> String) = videoNote(block().toImplicitFile())

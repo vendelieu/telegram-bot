@@ -1,12 +1,16 @@
 package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.internal.BusinessConnectionUpdate
+import eu.vendeli.tgbot.types.internal.BusinessMessageUpdate
 import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
 import eu.vendeli.tgbot.types.internal.ChannelPostUpdate
 import eu.vendeli.tgbot.types.internal.ChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
 import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
 import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
+import eu.vendeli.tgbot.types.internal.DeletedBusinessMessagesUpdate
+import eu.vendeli.tgbot.types.internal.EditedBusinessMessageUpdate
 import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
 import eu.vendeli.tgbot.types.internal.EditedMessageUpdate
 import eu.vendeli.tgbot.types.internal.InlineQueryUpdate
@@ -40,5 +44,9 @@ fun Update.processUpdate() = when {
     chatJoinRequest != null -> ChatJoinRequestUpdate(updateId, this, chatJoinRequest)
     chatBoost != null -> ChatBoostUpdate(updateId, this, chatBoost)
     removedChatBoost != null -> RemovedChatBoostUpdate(updateId, this, removedChatBoost)
+    businessConnection != null -> BusinessConnectionUpdate(updateId, this, businessConnection)
+    businessMessage != null -> BusinessMessageUpdate(updateId, this, businessMessage)
+    editedBusinessMessage != null -> EditedBusinessMessageUpdate(updateId, this, editedBusinessMessage)
+    deletedBusinessMessages != null -> DeletedBusinessMessagesUpdate(updateId, this, deletedBusinessMessages)
     else -> throw IllegalArgumentException("Unknown type of update.")
 }

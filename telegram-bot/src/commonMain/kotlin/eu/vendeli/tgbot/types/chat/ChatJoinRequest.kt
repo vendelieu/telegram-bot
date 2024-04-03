@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 
 /**
  * Represents a join request sent to a chat.
+ *
  * Api reference: https://core.telegram.org/bots/api#chatjoinrequest
  * @property chat Chat to which the request was sent
  * @property from User that sent the join request
@@ -14,7 +15,7 @@ import kotlinx.serialization.Serializable
  * @property date Date the request was sent in Unix time
  * @property bio Optional. Bio of the user.
  * @property inviteLink Optional. Chat invite link that was used by the user to send the join request
-*/
+ */
 @Serializable
 data class ChatJoinRequest(
     val chat: Chat,

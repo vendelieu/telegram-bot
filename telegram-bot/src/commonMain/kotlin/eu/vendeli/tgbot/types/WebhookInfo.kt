@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 
 /**
  * Describes the current status of a webhook.
+ *
  * Api reference: https://core.telegram.org/bots/api#webhookinfo
  * @property url Webhook URL, may be empty if webhook is not set up
  * @property hasCustomCertificate True, if a custom certificate was provided for webhook certificate checks
@@ -17,7 +18,7 @@ import kotlinx.serialization.Serializable
  * @property lastSynchronizationErrorDate Optional. Unix time of the most recent error that happened when trying to synchronize available updates with Telegram datacenters
  * @property maxConnections Optional. The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery
  * @property allowedUpdates Optional. A list of update types the bot is subscribed to. Defaults to all update types except chat_member
-*/
+ */
 @Serializable
 data class WebhookInfo(
     val url: String,

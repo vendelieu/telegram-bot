@@ -14,7 +14,7 @@ data class Api(
 data class ApiEntity(
     var name: String,
     var href: String,
-    var description: List<String>,
+    var description: List<String>? = null,
     var returns: List<String> = emptyList(),
     var fields: List<Field> = emptyList(),
 )
@@ -69,8 +69,8 @@ abstract class Kdokker : DefaultTask() {
                 ?: jsonRes.methods["send" + methodName.beginWithUpperCase()]
                 ?: return@forEach
             var kdoc = "/**$NEWLINE"
-            kdoc += methodMeta.description.joinToString("$NEWLINE * ", " * ")
-            kdoc += "$NEWLINE * Api reference: ${methodMeta.href}"
+            kdoc += methodMeta.description?.joinToString("$NEWLINE * ", " * ") ?: ""
+            kdoc += "$NEWLINE * $NEWLINE * Api reference: ${methodMeta.href}"
             kdoc += "$NEWLINE * "
 
             kdoc += methodMeta.fields.joinToString("$NEWLINE * ") {
@@ -78,7 +78,7 @@ abstract class Kdokker : DefaultTask() {
             }
 
             kdoc += NEWLINE + methodMeta.returns.joinToString("|", " * @returns ") { "[$it]" }
-            kdoc += "$NEWLINE*/$NEWLINE"
+            kdoc += "$NEWLINE */$NEWLINE"
 
             modifiedContent = modifiedContent.replace(method.value, kdoc + method.value)
 
@@ -98,13 +98,13 @@ abstract class Kdokker : DefaultTask() {
             }
 
             var kdoc = "/**$NEWLINE"
-            kdoc += classMeta.description.joinToString("$NEWLINE * ", " * ")
-            kdoc += NEWLINE + " * Api reference: ${classMeta.href}"
+            kdoc += classMeta.description?.joinToString("$NEWLINE * ", " * ") ?: ""
+            kdoc += "$NEWLINE * $NEWLINE * Api reference: ${classMeta.href}"
             kdoc += "$NEWLINE * "
             kdoc += classMeta.fields.joinToString("$NEWLINE * ") {
                 "@property " + it.name.snakeToCamelCase() + " " + it.description
             }
-            kdoc += "$NEWLINE*/$NEWLINE"
+            kdoc += "$NEWLINE */$NEWLINE"
             modifiedContent = modifiedContent.replace(clazz.value, kdoc + clazz.value)
 
             file.writeText(modifiedContent)

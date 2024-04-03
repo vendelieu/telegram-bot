@@ -25,12 +25,16 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.JsonUnquotedLiteral
+
 @Suppress("NOTHING_TO_INLINE")
 private inline fun buildHeadersForItem(name: String) = HeadersBuilder().apply {
     append(HttpHeaders.ContentType, ContentType.Application.Json)
     append(HttpHeaders.ContentDisposition, "form-data; name=${name.escapeIfNeeded()}")
 }.build()
 
+@Suppress("OPT_IN_USAGE")
 private fun HttpRequestBuilder.formReqBody(
     data: Map<String, JsonElement>,
     multipartData: List<PartData.BinaryItem>,
@@ -38,7 +42,11 @@ private fun HttpRequestBuilder.formReqBody(
     if (data.isEmpty() && multipartData.isEmpty()) return
     if (multipartData.isNotEmpty()) {
         val dataParts = data.also { logger.debug { "RequestBody: $it" } }.map {
-            PartData.FormItem(serde.encodeToString(JsonElement.serializer(), it.value), {}, buildHeadersForItem(it.key))
+            val item = (it.value as? JsonPrimitive)?.let { v ->
+                if (v.isString) JsonUnquotedLiteral(v.content) else v
+            } ?: it.value
+
+            PartData.FormItem(serde.encodeToString(JsonElement.serializer(), item), {}, buildHeadersForItem(it.key))
         }
 
         setBody(MultiPartFormDataContent(multipartData + dataParts))

@@ -16,6 +16,7 @@ enum class PollType {
 
 /**
  * This object contains information about a poll.
+ *
  * Api reference: https://core.telegram.org/bots/api#poll
  * @property id Unique poll identifier
  * @property question Poll question, 1-300 characters
@@ -30,7 +31,7 @@ enum class PollType {
  * @property explanationEntities Optional. Special entities like usernames, URLs, bot commands, etc. that appear in the explanation
  * @property openPeriod Optional. Amount of time in seconds the poll will be active after creation
  * @property closeDate Optional. Point in time (Unix timestamp) when the poll will be automatically closed
-*/
+ */
 @Serializable
 data class Poll(
     val id: String,

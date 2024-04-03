@@ -12,9 +12,10 @@ import kotlinx.serialization.Serializable
  * - BotCommandScopeChat
  * - BotCommandScopeChatAdministrators
  * - BotCommandScopeChatMember
+ *
  * Api reference: https://core.telegram.org/bots/api#botcommandscope
  *
-*/
+ */
 @Serializable
 sealed class BotCommandScope(val type: String) {
     @Serializable

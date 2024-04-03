@@ -29,7 +29,6 @@ import io.mockk.mockkStatic
 import io.mockk.spyk
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.sync.Mutex
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.json.JsonElement
@@ -37,17 +36,6 @@ import kotlinx.serialization.serializer
 import kotlin.properties.Delegates
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.seconds
-
-private val mutex = Mutex()
-private suspend fun Mutex.toggle() = if (isLocked) unlock() else lock()
-private val BOT_DATA: Iterator<Pair<Long, String>> = generateSequence {
-    runBlocking {
-        mutex.toggle()
-        System.getenv("BOT_TOKEN" + if (mutex.isLocked) "_2" else "").let {
-            it.substringBefore(':').toLong() to it
-        }
-    }
-}.iterator()
 
 @Suppress("VariableNaming", "PropertyName", "PrivatePropertyName", "SpellCheckingInspection")
 abstract class BotTestContext(
@@ -61,7 +49,6 @@ abstract class BotTestContext(
     private val updatesAction = spyk(GET_UPDATES_ACTION)
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
-    private val BOT_CTX get() = BOT_DATA.next()
     protected val TG_ID by lazy { System.getenv("TELEGRAM_ID").toLong() }
     protected var BOT_ID by Delegates.notNull<Long>()
     protected val CHAT_ID by lazy { System.getenv("CHAT_ID").toLong() }
@@ -80,9 +67,9 @@ abstract class BotTestContext(
     @BeforeAll
     @OptIn(InternalApi::class)
     fun prepareTestBot() {
-        val ctx = BOT_CTX
-        BOT_ID = ctx.first
-        if (withPreparedBot) bot = TelegramBot(ctx.second, "eu.vendeli") {
+        val ctx = BotInstance.current
+        BOT_ID = ctx.id
+        if (withPreparedBot) bot = TelegramBot(ctx.token, "eu.vendeli") {
             logging {
                 botLogLevel = LogLvl.DEBUG
                 httpLogLevel = HttpLogLevel.BODY
@@ -140,5 +127,5 @@ abstract class BotTestContext(
         ) as T
     }
 
-    internal companion object : Logging()
+    internal companion object : Logging("BotTest")
 }

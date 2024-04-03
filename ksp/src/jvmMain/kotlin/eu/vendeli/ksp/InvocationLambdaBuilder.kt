@@ -14,12 +14,16 @@ import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toTypeName
+import eu.vendeli.tgbot.types.internal.BusinessConnectionUpdate
+import eu.vendeli.tgbot.types.internal.BusinessMessageUpdate
 import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
 import eu.vendeli.tgbot.types.internal.ChannelPostUpdate
 import eu.vendeli.tgbot.types.internal.ChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
 import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
 import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
+import eu.vendeli.tgbot.types.internal.DeletedBusinessMessagesUpdate
+import eu.vendeli.tgbot.types.internal.EditedBusinessMessageUpdate
 import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
 import eu.vendeli.tgbot.types.internal.EditedMessageUpdate
 import eu.vendeli.tgbot.types.internal.InlineQueryUpdate
@@ -103,6 +107,10 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 chatJoinRequestUpdateClass -> addUpdate(ChatJoinRequestUpdate::class, nullabilityMark)
                 chatBoostUpdateClass -> addUpdate(ChatBoostUpdate::class, nullabilityMark)
                 removedChatBoostUpdateClass -> addUpdate(RemovedChatBoostUpdate::class, nullabilityMark)
+                businessConnectionUpdateClass -> addUpdate(BusinessConnectionUpdate::class, nullabilityMark)
+                businessMessageUpdateClass -> addUpdate(BusinessMessageUpdate::class, nullabilityMark)
+                editedBusinessMessageClass -> addUpdate(EditedBusinessMessageUpdate::class, nullabilityMark)
+                deletedBusinessMessagesClass -> addUpdate(DeletedBusinessMessagesUpdate::class, nullabilityMark)
 
                 in injectableTypes.keys -> {
                     val type = injectableTypes[typeName]!!

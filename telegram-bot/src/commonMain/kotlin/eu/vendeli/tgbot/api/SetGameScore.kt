@@ -2,7 +2,8 @@
 
 package eu.vendeli.tgbot.api
 
-import eu.vendeli.tgbot.interfaces.InlinableAction
+import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.User
@@ -12,7 +13,8 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
 class SetGameScoreAction :
-    InlinableAction<Message>,
+    Action<Message>,
+    InlineActionExt<Message>,
     OptionsFeature<SetGameScoreAction, SetGameScoreOptions> {
     override val method = TgMethod("setGameScore")
     override val returnType = getReturnType()
@@ -32,6 +34,7 @@ class SetGameScoreAction :
 
 /**
  * Use this method to set the score of the specified user in a game message. On success, if the message is not an inline message, the Message is returned, otherwise True is returned. Returns an error, if the new score is not greater than the user's current score in the chat and force is False.
+ *
  * Api reference: https://core.telegram.org/bots/api#setgamescore
  * @param userId User identifier
  * @param score New score, must be non-negative
@@ -41,7 +44,7 @@ class SetGameScoreAction :
  * @param messageId Required if inline_message_id is not specified. Identifier of the sent message
  * @param inlineMessageId Required if chat_id and message_id are not specified. Identifier of the inline message
  * @returns [Message]|[Boolean]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun setGameScore(userId: Long, messageId: Long, score: Long) = SetGameScoreAction(userId, messageId, score)
 

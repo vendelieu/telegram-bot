@@ -36,6 +36,7 @@ class CopyMessageAction(
 
 /**
  * Use this method to copy messages of any kind. Service messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.
+ *
  * Api reference: https://core.telegram.org/bots/api#copymessage
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
@@ -49,7 +50,7 @@ class CopyMessageAction(
  * @param replyParameters Description of the message to reply to
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
  * @returns [MessageId]
-*/
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun copyMessage(fromChatId: Identifier, messageId: Long) = CopyMessageAction(fromChatId, messageId)
 

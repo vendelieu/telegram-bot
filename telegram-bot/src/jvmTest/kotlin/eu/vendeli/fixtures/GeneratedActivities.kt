@@ -41,7 +41,8 @@ private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 TgAnnotationsModel
             val param0 = bot
             TgAnnotationsModel::stopHandling.invoke(
-                inst, param0,
+                inst,
+                param0,
             )
         }
             to InvocationMeta("eu.vendeli.fixtures.TgAnnotationsModel", "stopHandling", zeroRateLimits)
@@ -142,7 +143,8 @@ private val `TG_$REGEX`: Map<Regex, Invocable> = mapOf(
                 RegexCommands
             val param0 = bot
             RegexCommands::testR.invoke(
-                inst, param0,
+                inst,
+                param0,
             )
         }
             to InvocationMeta("eu.vendeli.fixtures.RegexCommands", "testR", zeroRateLimits)

@@ -36,13 +36,16 @@ import kotlinx.serialization.Serializable
 
 /**
  * This object represents a message.
+ *
  * Api reference: https://core.telegram.org/bots/api#message
  * @property messageId Unique message identifier inside this chat
  * @property messageThreadId Optional. Unique identifier of a message thread to which the message belongs; for supergroups only
  * @property from Optional. Sender of the message; empty for messages sent to channels. For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
  * @property senderChat Optional. Sender of the message, sent on behalf of a chat. For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group. For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
  * @property senderBoostCount Optional. If the sender of the message boosted the chat, the number of boosts added by the user
+ * @property senderBusinessBot Optional. The bot that actually sent the message on behalf of the business account. Available only for outgoing messages sent on behalf of the connected business account.
  * @property date Date the message was sent in Unix time. It is always a positive number, representing a valid date.
+ * @property businessConnectionId Optional. Unique identifier of the business connection from which the message was received. If non-empty, the message belongs to a chat of the corresponding business account that is independent from any potential bot chat which might share the same identifier.
  * @property chat Chat the message belongs to
  * @property forwardOrigin Optional. Information about the original message for forwarded messages
  * @property isTopicMessage Optional. True, if the message is sent to a forum topic
@@ -54,6 +57,7 @@ import kotlinx.serialization.Serializable
  * @property viaBot Optional. Bot through which the message was sent
  * @property editDate Optional. Date the message was last edited in Unix time
  * @property hasProtectedContent Optional. True, if the message can't be forwarded
+ * @property isFromOffline Optional. True, if the message was sent by an implicit action, for example, as an away or a greeting business message, or as a scheduled message
  * @property mediaGroupId Optional. The unique identifier of a media message group this message belongs to
  * @property authorSignature Optional. Signature of the post author for messages in channels, or the custom title of an anonymous group administrator
  * @property text Optional. For text messages, the actual UTF-8 text of the message
@@ -114,7 +118,7 @@ import kotlinx.serialization.Serializable
  * @property videoChatParticipantsInvited Optional. Service message: new participants invited to a video chat
  * @property webAppData Optional. Service message: data sent by a Web App
  * @property replyMarkup Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons.
-*/
+ */
 @Serializable
 data class Message(
     override val messageId: Long,
@@ -122,8 +126,10 @@ data class Message(
     val from: User? = null,
     val senderChat: Chat? = null,
     val senderBoostCount: Int? = null,
+    val senderBusinessBot: User? = null,
     @Serializable(InstantSerializer::class)
     override val date: Instant,
+    val businessConnectionId: String? = null,
     override val chat: Chat,
     val forwardOrigin: MessageOrigin? = null,
     val isTopicMessage: Boolean? = null,
@@ -136,6 +142,7 @@ data class Message(
     @Serializable(InstantSerializer::class)
     val editDate: Instant? = null,
     val hasProtectedContent: Boolean? = null,
+    val isFromOffline: Boolean? = null,
     val mediaGroupId: String? = null,
     val authorSignature: String? = null,
     val text: String? = null,

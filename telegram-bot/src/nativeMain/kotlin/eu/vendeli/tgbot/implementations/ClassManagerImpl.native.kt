@@ -11,7 +11,7 @@ import kotlin.reflect.KClass
  */
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual class ClassManagerImpl : ClassManager {
-    @Suppress("PropertyName")
+    @Suppress("PropertyName", "ktlint:standard:backing-property-naming")
     val _INSTANCES: MutableMap<KClass<*>, Any> = mutableMapOf()
     override fun getInstance(kClass: KClass<*>, vararg initParams: Any?): Any = _INSTANCES[kClass]
         ?: error("Class $kClass not found.")

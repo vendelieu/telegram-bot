@@ -13,9 +13,10 @@ import kotlinx.serialization.Serializable
  * - InputMediaAudio
  * - InputMediaPhoto
  * - InputMediaVideo
+ *
  * Api reference: https://core.telegram.org/bots/api#inputmedia
  *
-*/
+ */
 @Serializable
 sealed class InputMedia(val type: String) {
     abstract var media: ImplicitFile
