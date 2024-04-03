@@ -23,3 +23,8 @@ tasks.create("prepareRelease") {
 
     dependsOn("telegram-bot:apiCheck")
 }
+
+tasks.create("polishingRelease") {
+    dependsOn("telegram-bot:kdocUpdate")
+    dependsOn("generateBotSc")
+}

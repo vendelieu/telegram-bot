@@ -14,7 +14,7 @@ data class Api(
 data class ApiEntity(
     var name: String,
     var href: String,
-    var description: List<String>,
+    var description: List<String>? = null,
     var returns: List<String> = emptyList(),
     var fields: List<Field> = emptyList(),
 )
@@ -69,7 +69,7 @@ abstract class Kdokker : DefaultTask() {
                 ?: jsonRes.methods["send" + methodName.beginWithUpperCase()]
                 ?: return@forEach
             var kdoc = "/**$NEWLINE"
-            kdoc += methodMeta.description.joinToString("$NEWLINE * ", " * ")
+            kdoc += methodMeta.description?.joinToString("$NEWLINE * ", " * ") ?: ""
             kdoc += "$NEWLINE * Api reference: ${methodMeta.href}"
             kdoc += "$NEWLINE * "
 
@@ -98,7 +98,7 @@ abstract class Kdokker : DefaultTask() {
             }
 
             var kdoc = "/**$NEWLINE"
-            kdoc += classMeta.description.joinToString("$NEWLINE * ", " * ")
+            kdoc += classMeta.description?.joinToString("$NEWLINE * ", " * ") ?: ""
             kdoc += NEWLINE + " * Api reference: ${classMeta.href}"
             kdoc += "$NEWLINE * "
             kdoc += classMeta.fields.joinToString("$NEWLINE * ") {
