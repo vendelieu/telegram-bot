@@ -13,6 +13,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.toPartData
 
 class ReplaceStickerInSetAction(
+    userId: Long,
     name: String,
     oldSticker: String,
     sticker: InputSticker,
@@ -21,6 +22,7 @@ class ReplaceStickerInSetAction(
     override val returnType = getReturnType()
 
     init {
+        parameters["user_id"] = userId.toJsonElement()
         parameters["name"] = name.toJsonElement()
         parameters["old_sticker"] = oldSticker.toJsonElement()
         parameters["sticker"] = sticker.also {
@@ -45,4 +47,9 @@ class ReplaceStickerInSetAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
-inline fun replaceStickerInSet(name: String) = DeleteStickerSetAction(name)
+inline fun replaceStickerInSet(
+    userId: Long,
+    name: String,
+    oldSticker: String,
+    sticker: InputSticker,
+) = ReplaceStickerInSetAction(userId, name, oldSticker, sticker)
