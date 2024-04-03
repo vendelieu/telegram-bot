@@ -1,5 +1,13 @@
 # Telegram-bot changelog
 
+## 5.1.0
+
+* Fixed multipart requests data redundant quotation.
+* Returned `logback` as logger for `jvm` target.
+* Moved inline mode methods to extension interface from separate `InlinableAction`.
+* Added `Any` upperbounds for `Autowiring` interface to avoid wrong behaviour.
+* Covered 7.2 TelegramApi changes.
+
 ### 5.0.5
 
 * Fix nullable type resolving issue for `Autowiring` mechanics.
