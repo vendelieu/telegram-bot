@@ -28,7 +28,7 @@ external interface BiometricManager {
 
     fun updateBiometricToken(
         token: String,
-        callback: BiometricUpdateTokenCallback
+        callback: BiometricUpdateTokenCallback = definedExternally
     ): BiometricManager
 
     fun openSettings(): BiometricManager
