@@ -16,20 +16,20 @@ external interface BiometricManager {
     val isBiometricTokenSaved: Boolean
     val deviceId: String
 
-    fun init(callback: () -> Unit = definedExternally)
+    fun init(callback: () -> Unit = definedExternally): BiometricManager
     fun requestAccess(
         params: BiometricRequestAccessParams,
         callback: BiometricRequestAccessCallback = definedExternally,
-    )
+    ): BiometricManager
     fun authenticate(
         params: BiometricAuthenticateParams,
         callback: BiometricAuthenticateCallback = definedExternally
-    )
+    ): BiometricManager
 
     fun updateBiometricToken(
         token: String,
         callback: BiometricUpdateTokenCallback
-    )
+    ): BiometricManager
 
-    fun openSettings()
+    fun openSettings(): BiometricManager
 }
