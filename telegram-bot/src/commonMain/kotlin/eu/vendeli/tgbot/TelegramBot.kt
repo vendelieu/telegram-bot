@@ -19,7 +19,7 @@ import io.ktor.client.statement.readBytes
  * @property token Token of your bot
  *
  * @param commandsPackage The place where the search for commands and inputs will be done.
- * @param botConfiguration Lambda function to customize the bots instance. Watch [BotConfiguration]
+ * @param botConfiguration Lambda function to customize the bots instance. See [BotConfiguration]
  */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class TelegramBot(
@@ -53,6 +53,11 @@ class TelegramBot(
      * A tool for managing Chat context.
      */
     val chatData get() = config.context.chatData
+
+    /**
+     * Property to identify different bot instances during multi-bot processing.
+     */
+    var identifier: String = "KtGram"
 
     init {
         logger.setLevel(config.logging.botLogLevel)

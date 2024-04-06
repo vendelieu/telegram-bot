@@ -46,7 +46,7 @@ class CodegenUpdateHandler internal constructor(
             }
 
         // remove input listener point
-        if (user != null) bot.inputListener.del(user.id)
+        if (user != null && bot.config.inputAutoRemoval) bot.inputListener.del(user.id)
 
         // if there's no command and input > check regex handlers
         if (invocation == null) invocation = activities.regexHandlers.entries.firstOrNull {
