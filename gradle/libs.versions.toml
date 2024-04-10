@@ -17,6 +17,7 @@ kotest = "5.8.1"
 mockk = "1.13.10"
 kover = "0.7.6"
 krypto = "4.0.10"
+sslcontext = "8.3.4"
 
 ksp = "1.9.23-1.0.20"
 poet = "1.16.0"
@@ -31,6 +32,9 @@ ktor-client-java = { module = "io.ktor:ktor-client-java", version.ref = "ktor" }
 ktor-client-curl = { module = "io.ktor:ktor-client-curl", version.ref = "ktor" }
 ktor-client-winhttp = { module = "io.ktor:ktor-client-winhttp", version.ref = "ktor" }
 ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
+
+ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
+ktor-server-netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor" }
 
 # logging
 logging = { module = "co.touchlab:kermit", version.ref = "logging" }
@@ -54,8 +58,11 @@ poet = { module = "com.squareup:kotlinpoet", version.ref = "poet" }
 poet-ksp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "poet" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
+ssl-utils = { module = "io.github.hakky54:sslcontext-kickstart-for-pem", version.ref = "sslcontext" }
+
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-compatability-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binvalid" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
