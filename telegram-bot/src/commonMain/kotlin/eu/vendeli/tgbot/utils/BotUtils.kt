@@ -100,6 +100,7 @@ internal fun InputFile.toPartData(name: String) = PartData.BinaryItem(
     },
 )
 
+val DEFAULT_HANDLING_BEHAVIOUR: HandlingBehaviourBlock = { handle(it) }
 internal val GET_UPDATES_ACTION = getUpdates()
 internal val DEFAULT_COMMAND_SCOPE = setOf(UpdateType.MESSAGE)
 internal expect val PROCESSING_DISPATCHER: CoroutineDispatcher

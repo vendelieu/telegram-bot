@@ -1,23 +1,29 @@
 package eu.vendeli.ktor.starter
 
 import eu.vendeli.tgbot.utils.BotConfigurator
+import eu.vendeli.tgbot.utils.DEFAULT_HANDLING_BEHAVIOUR
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import io.ktor.server.netty.NettyApplicationEngine
 
 class ServerBuilder internal constructor() {
+    internal var server: Configuration? = null
     internal var botCfg: BotConfigurator = {}
-    internal var serverCfg: NettyApplicationEngine.Configuration.() -> Unit = {}
-    internal var handlingBehav: HandlingBehaviourBlock = { handle(it) }
+    internal var engineCfg: NettyApplicationEngine.Configuration.() -> Unit = {}
+    internal var handlingBehav: HandlingBehaviourBlock = DEFAULT_HANDLING_BEHAVIOUR
 
-    fun configureBot(botConfigurator: BotConfigurator) {
+    fun server(configurator: ManualConfiguration.() -> Unit) {
+        server = ManualConfiguration().apply(configurator)
+    }
+
+    fun bot(botConfigurator: BotConfigurator) {
         botCfg = botConfigurator
     }
 
-    fun configureServer(serverConfigurator: NettyApplicationEngine.Configuration.() -> Unit) {
-        serverCfg = serverConfigurator
+    fun engine(serverConfigurator: NettyApplicationEngine.Configuration.() -> Unit) {
+        engineCfg = serverConfigurator
     }
 
-    fun configureHandlingBehaviour(handlingBehaviour: HandlingBehaviourBlock) {
+    fun handlingBehaviour(handlingBehaviour: HandlingBehaviourBlock) {
         handlingBehav = handlingBehaviour
     }
 }

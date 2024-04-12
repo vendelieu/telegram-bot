@@ -10,8 +10,8 @@ kotlin {
         named("jvmMain") {
             dependencies {
                 compileOnly(project(":telegram-bot"))
-                implementation(libs.ktor.server.core)
-                implementation(libs.ktor.server.netty)
+                api(libs.ktor.server.core)
+                api(libs.ktor.server.netty)
                 implementation(libs.ssl.utils)
             }
         }
