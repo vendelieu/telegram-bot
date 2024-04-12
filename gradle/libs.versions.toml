@@ -1,7 +1,7 @@
 [versions]
 ktor = "2.3.10"
 logging = "2.0.3"
-logback = "1.5.3"
+logback = "1.5.5"
 
 datetime = "0.5.0"
 serialization = "1.6.3"
