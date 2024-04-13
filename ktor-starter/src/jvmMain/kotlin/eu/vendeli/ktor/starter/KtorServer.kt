@@ -1,7 +1,6 @@
 package eu.vendeli.ktor.starter
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.api.botactions.setWebhook
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.call
 import io.ktor.server.engine.applicationEngineEnvironment
@@ -14,7 +13,6 @@ import io.ktor.server.request.receiveText
 import io.ktor.server.response.respond
 import io.ktor.server.routing.post
 import io.ktor.server.routing.routing
-import kotlinx.coroutines.runBlocking
 import nl.altindag.ssl.pem.util.PemUtils
 import java.io.File
 import java.security.KeyStore
@@ -24,8 +22,16 @@ import java.security.PrivateKey
 fun serveWebhook(wait: Boolean = true, serverBuilder: ServerBuilder.() -> Unit = {}): NettyApplicationEngine {
     val cfg = ServerBuilder().apply(serverBuilder)
     val serverCfg = cfg.server ?: EnvConfiguration
-    val bot = TelegramBot(serverCfg.TOKEN, serverCfg.PACKAGE, cfg.botCfg)
-    bot.update.setBehaviour(cfg.handlingBehav)
+    val botInstances = cfg.botCfgs.associate {
+        it.token to TelegramBot(
+            it.token,
+            it.pckg,
+            it.configuration,
+        ).also { bot ->
+            bot.identifier = it.identifier
+            bot.update.setBehaviour(it.handlingBehaviour)
+        }
+    }
 
     val keystoreFile = File(serverCfg.KEYSTORE_PATH)
 
@@ -65,15 +71,15 @@ fun serveWebhook(wait: Boolean = true, serverBuilder: ServerBuilder.() -> Unit =
         }
         module {
             routing {
-                post(serverCfg.WEBHOOK_URL) {
-                    bot.update.parseAndHandle(call.receiveText())
-                    call.respond(HttpStatusCode.OK)
+                botInstances.forEach { (token, bot) ->
+                    post("/$token") {
+                        bot.update.parseAndHandle(call.receiveText())
+                        call.respond(HttpStatusCode.OK)
+                    }
                 }
             }
         }
     }
-
-    runBlocking { setWebhook(serverCfg.WEBHOOK_PREFIX + serverCfg.WEBHOOK_URL).send(bot) }
 
     return embeddedServer(Netty, environment, cfg.engineCfg).start(wait)
 }

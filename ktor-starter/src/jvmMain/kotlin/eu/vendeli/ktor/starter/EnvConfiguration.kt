@@ -9,17 +9,13 @@ internal object EnvConfiguration : Configuration() {
     private fun getRequired(name: String, missingExCause: () -> String): String =
         env[name] ?: missingExCause().also { throw ApplicationConfigurationException(it) }
 
-    override val TOKEN = getRequired("TOKEN") { "TOKEN is not set" }
-    override val PACKAGE = getEnv("PACKAGE")
     override val HOST = getEnv("HOST") ?: "0.0.0.0"
     override val PORT = getEnv("PORT")?.toInt() ?: 8080
     override val SSL_PORT = getEnv("SSL_PORT")?.toInt() ?: 8443
-    override val WEBHOOK_URL = getEnv("WEBHOOK_URL") ?: "/$TOKEN"
     override val PEM_PRIVATE_KEY_PATH = getRequired("PEM_PRIVATE_KEY_PATH") { "PEM_PRIVATE_KEY_PATH is not set" }
     override val PEM_CHAIN_PATH = getRequired("CHAIN_PATH") { "PEM_CHAIN_PATH is not set" }
     override val PEM_PRIVATE_KEY = getRequired("PRIVATE_KEY") { "PEM_PRIVATE_key is not set" }.toCharArray()
     override val KEYSTORE_PATH = getRequired("KEYSTORE_PATH") { "KEYSTORE_PATH is not set" }
     override val KEYSTORE_PASSWORD = getRequired("KEYSTORE_PASSWORD") { "KEYSTORE_PASSWORD is not set" }.toCharArray()
     override val KEY_ALIAS = getEnv("KEY_ALIAS") ?: "serverSsl"
-    override var WEBHOOK_PREFIX = getEnv("WEBHOOK_PREFIX") ?: super.WEBHOOK_PREFIX
 }
