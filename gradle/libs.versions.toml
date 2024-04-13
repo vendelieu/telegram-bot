@@ -62,7 +62,6 @@ ssl-utils = { module = "io.github.hakky54:sslcontext-kickstart-for-pem", version
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-compatability-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binvalid" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
