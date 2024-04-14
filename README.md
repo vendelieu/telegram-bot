@@ -20,7 +20,7 @@ build.gradle.kts example:
 ```gradle
 plugins {
     // ...
-    id("com.google.devtools.ksp") version "1.9.23-1.0.19"
+    id("com.google.devtools.ksp") version "1.9.23-1.0.20"
 }
 
 dependencies {
@@ -41,6 +41,8 @@ the [installation](https://github.com/vendelieu/telegram-bot/wiki/Installation) 
   usage of `BotContext`.
 - [Echo](https://github.com/vendelieu/telegram-bot_template/tree/echo) - Echo bot :)
 - [Poll](https://github.com/vendelieu/telegram-bot_template/tree/poll) - An example of how to build a questionnaire bot.
+- [Ktor webhook starter](https://github.com/ktgram/webhook) - An example of using webhook mode
+    with Ktor.
 - [Spring Boot usage](https://github.com/vendelieu/telegram-bot_template/tree/spring-bot) - An example of using the bot
   organically in the Spring ecosystem, using its built-in DI.
 - [Heroku ready example](https://github.com/vendelieu/telegram-bot_template/tree/heroku) - An example of a bot working
@@ -49,8 +51,6 @@ the [installation](https://github.com/vendelieu/telegram-bot/wiki/Installation) 
 <details>
   <summary>More samples</summary>
 
-- [Ktor webhook](https://github.com/vendelieu/telegram-bot_template/tree/ktor-webhook) - An example of using webhook
-  with Ktor.
 - [Native example](https://github.com/ktgram/native-example) - An example of using a bot with Kotlin Native target.
 - [Web app](https://github.com/ktgram/webapp) - Example of a bot using Telegram Webapps.
 
@@ -146,3 +146,10 @@ methods [`getOrNull()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bo
 ### Questions
 
 You're always welcome in our [chat](https://t.me/venny_tgbot), feel free to ask.
+
+## Acknowledgements
+
+A big thank you to everyone who has contributed to this project. Your support and feedback are invaluable.
+
+If you find this library useful, please consider giving it a star. Your support helps us continue to improve
+and maintain this project.
