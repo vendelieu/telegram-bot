@@ -11,11 +11,13 @@ import eu.vendeli.tgbot.interfaces.InputListener
  * @property apiHost Host of telegram api.
  * @property inputListener Input handling class instance.
  * @property classManager The manager that will be used to get classes.
+ * @property inputAutoRemoval A flag that regulates the auto-deletion of the input point during processing.
  */
 data class BotConfiguration(
     var apiHost: String = "api.telegram.org",
     var inputListener: InputListener = InputListenerMapImpl(),
     var classManager: ClassManager = ClassManagerImpl(),
+    var inputAutoRemoval: Boolean = true,
     internal var rateLimiter: RateLimiterConfiguration = RateLimiterConfiguration(),
     internal var httpClient: HttpConfiguration = HttpConfiguration(),
     internal var logging: LoggingConfiguration = LoggingConfiguration(),

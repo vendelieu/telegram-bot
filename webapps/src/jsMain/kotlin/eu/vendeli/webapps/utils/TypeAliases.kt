@@ -10,6 +10,9 @@ typealias ClosePopupCallback = (id: String) -> Unit
 typealias ConfirmCallback = (confirmed: Boolean) -> Unit
 typealias QRTextReceivedCallback = (String) -> Boolean
 typealias ClipboardTextReceivedCallback = (String) -> Unit
+typealias BiometricRequestAccessCallback = (accessGranted: Boolean) -> Unit
+typealias BiometricAuthenticateCallback = (userAuthenticated: Boolean) -> Unit
+typealias BiometricUpdateTokenCallback = (tokenUpdated: Boolean) -> Unit
 
 // Handlers
 typealias NoParamsEventHandler = WebApp.() -> Unit

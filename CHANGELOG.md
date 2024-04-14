@@ -1,4 +1,13 @@
-# Telegram-bot changelog
+# Telegram-bot (KtGram) changelog
+
+## 5.2.0
+
+* Added `ktor-starter` module for a quick webhook server setup.
+* Added `identifier` parameter for `TelegramBot` instance.
+* Changed `kotlinx-datetime` to transitive dependency, since its entities used in parameters.
+* Returned missing inline mode action extension for `getGameHighScores` method.
+* Added `inputAutoRemoval` parameter to configuration, for more precise control of inputListener flow.
+* Added missing 7.2 api `BiometricManager` to webapps.
 
 ## 5.1.0
 
@@ -11,7 +20,7 @@
 ### 5.0.5
 
 * Fix nullable type resolving issue for `Autowiring` mechanics.
-* Changed default ktor engine to java-http. 
+* Changed default ktor engine to java-http.
 
 ### 5.0.4
 

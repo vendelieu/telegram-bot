@@ -79,7 +79,7 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
             return true
         }
     }
-    if (user != null) bot.inputListener.del(user.id) // clean listener
+    if (user != null && bot.config.inputAutoRemoval) bot.inputListener.del(user.id) // clean listener
 
     if (parsedText.command.isNotBlank()) functionalActivities.regexCommands.entries.firstOrNull { i ->
         i.key.matchEntire(parsedText.command) != null

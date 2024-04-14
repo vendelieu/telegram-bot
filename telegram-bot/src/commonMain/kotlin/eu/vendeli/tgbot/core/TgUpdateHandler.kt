@@ -5,6 +5,7 @@ import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.utils.DEFAULT_HANDLING_BEHAVIOUR
 import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
@@ -28,7 +29,7 @@ import kotlinx.coroutines.launch
 abstract class TgUpdateHandler internal constructor(
     internal val bot: TelegramBot,
 ) {
-    private var handlingBehaviour: HandlingBehaviourBlock = { handle(it) }
+    private var handlingBehaviour: HandlingBehaviourBlock = DEFAULT_HANDLING_BEHAVIOUR
     private val updatesChannel = Channel<Update>()
     internal val handlerScope = bot.config.updatesListener.run {
         CoroutineScope(dispatcher + CoroutineName("TgBot"))

@@ -54,6 +54,9 @@ external class WebApp {
     @JsName("CloudStorage")
     val cloudStorage: CloudStorage
 
+    @JsName("BiometricManager")
+    val biometricManager: BiometricManager
+
     @JsName("SettingsButton")
     val settingsButton: SettingsButton
 
