@@ -20,5 +20,5 @@ kotlin {
 
 libraryData {
     name.set("Ktor starter")
-    description.set("KtGram ktor webhook starter.")
+    description.set("Ktor webhook starter for KtGram.")
 }
