@@ -65,7 +65,7 @@ fun serveWebhook(wait: Boolean = true, serverBuilder: ServerBuilder.() -> Unit =
         module {
             routing {
                 cfg.botInstances.forEach { (token, bot) ->
-                    post("/$token") {
+                    post("${cfg.WEBHOOK_PREFIX}$token") {
                         bot.update.parseAndHandle(call.receiveText())
                         call.respond(HttpStatusCode.OK)
                     }

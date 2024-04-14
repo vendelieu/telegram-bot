@@ -10,6 +10,7 @@ class ServerBuilder internal constructor() {
     internal val ktorModules = mutableListOf<Application.() -> Unit>()
     internal var server: Configuration? = null
     internal var engineCfg: NettyApplicationEngine.Configuration.() -> Unit = {}
+    var WEBHOOK_PREFIX = "/"
 
     fun server(configurator: ManualConfiguration.() -> Unit) {
         server = ManualConfiguration().apply(configurator)
