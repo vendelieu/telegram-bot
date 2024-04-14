@@ -1,6 +1,5 @@
 package eu.vendeli.ktor.starter
 
-import eu.vendeli.tgbot.TelegramBot
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.call
 import io.ktor.server.engine.applicationEngineEnvironment
@@ -22,16 +21,6 @@ import java.security.PrivateKey
 fun serveWebhook(wait: Boolean = true, serverBuilder: ServerBuilder.() -> Unit = {}): NettyApplicationEngine {
     val cfg = ServerBuilder().apply(serverBuilder)
     val serverCfg = cfg.server ?: EnvConfiguration
-    val botInstances = cfg.botCfgs.associate {
-        it.token to TelegramBot(
-            it.token,
-            it.pckg,
-            it.configuration,
-        ).also { bot ->
-            bot.identifier = it.identifier
-            bot.update.setBehaviour(it.handlingBehaviour)
-        }
-    }
 
     val keystoreFile = File(serverCfg.KEYSTORE_PATH)
 
@@ -69,9 +58,10 @@ fun serveWebhook(wait: Boolean = true, serverBuilder: ServerBuilder.() -> Unit =
             port = serverCfg.SSL_PORT
             keyStorePath = keystoreFile
         }
+        modules.addAll(cfg.ktorModules)
         module {
             routing {
-                botInstances.forEach { (token, bot) ->
+                cfg.botInstances.forEach { (token, bot) ->
                     post("/$token") {
                         bot.update.parseAndHandle(call.receiveText())
                         call.respond(HttpStatusCode.OK)

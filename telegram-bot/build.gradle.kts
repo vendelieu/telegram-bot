@@ -29,7 +29,6 @@ kotlin {
         named("commonMain") {
             dependencies {
                 implementation(libs.kotlin.serialization)
-                implementation(libs.kotlin.datetime)
                 implementation(libs.kotlin.reflect)
 
                 implementation(libs.krypto)
@@ -38,6 +37,7 @@ kotlin {
                 implementation(libs.ktor.client.logging)
 
                 api(libs.coroutines.core)
+                api(libs.kotlin.datetime)
             }
         }
         named("jvmTest") {
