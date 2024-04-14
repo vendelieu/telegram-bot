@@ -16,7 +16,7 @@ class ServerBuilder internal constructor() {
     }
 
     fun declareBot(block: BotConfiguration.() -> Unit) = BotConfiguration().apply(block).also {
-        botInstances[it.identifier] = TelegramBot(
+        botInstances[it.token] = TelegramBot(
             it.token,
             it.pckg,
             it.configuration,
