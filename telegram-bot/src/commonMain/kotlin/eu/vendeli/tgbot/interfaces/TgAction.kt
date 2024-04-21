@@ -45,4 +45,7 @@ abstract class TgAction<ReturnType> : Request<ReturnType> {
 
     override suspend fun Request<ReturnType>.doRequestAsync(bot: TelegramBot) =
         bot.makeRequestAsync(method, parameters, returnType, multipartData)
+
+    override val Request<ReturnType>.parameters: MutableMap<String, JsonElement>
+        get() = this@TgAction.parameters
 }

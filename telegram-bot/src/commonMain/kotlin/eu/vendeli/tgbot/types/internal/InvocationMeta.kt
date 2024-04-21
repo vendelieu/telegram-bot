@@ -6,4 +6,6 @@ data class InvocationMeta(
     val qualifier: String,
     val function: String,
     val rateLimits: RateLimits,
-)
+) {
+    override fun toString(): String = "$qualifier::$function $rateLimits"
+}

@@ -113,9 +113,14 @@ internal fun FileBuilder.collectRegexActivities(
         val annotationData = function.annotations.first {
             it.shortName.asString() == RegexCommandHandler::class.simpleName!!
         }.arguments.parseAsRegexHandler()
+        val options = annotationData.third.toSet().toString()
+            .replace("[", "setOf(")
+            .replace("]", ")")
+
         addStatement(
-            "Regex(%S) to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
+            "Regex(%S, %L) to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
             annotationData.first,
+            options,
             buildInvocationLambdaCodeBlock(function, injectableTypes),
             function.qualifiedName!!.getQualifier(),
             function.simpleName.asString(),

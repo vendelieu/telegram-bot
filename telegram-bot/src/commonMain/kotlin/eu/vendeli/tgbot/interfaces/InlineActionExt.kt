@@ -18,7 +18,7 @@ interface InlineActionExt<ReturnType> : Request<ReturnType> {
      * @param via Instance of the bot through which the request will be made.
      */
     suspend fun sendInline(inlineMessageId: String, via: TelegramBot) {
-        getParameters()["inline_message_id"] = inlineMessageId.toJsonElement()
+        parameters["inline_message_id"] = inlineMessageId.toJsonElement()
         doRequest(via)
     }
 
@@ -32,7 +32,7 @@ interface InlineActionExt<ReturnType> : Request<ReturnType> {
         inlineMessageId: String,
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
-        getParameters()["inline_message_id"] = inlineMessageId.toJsonElement()
+        parameters["inline_message_id"] = inlineMessageId.toJsonElement()
         return doRequestAsync(via)
     }
 }

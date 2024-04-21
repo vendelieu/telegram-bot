@@ -115,11 +115,12 @@ internal fun List<KSValueArgument>.parseAsInputHandler() = Pair(
     } ?: notLimitedRateLimits,
 )
 
-internal fun List<KSValueArgument>.parseAsRegexHandler() = Pair(
+internal fun List<KSValueArgument>.parseAsRegexHandler() = Triple(
     first { it.name?.asString() == "value" }.value.cast<String>(),
     first { it.name?.asString() == "rateLimits" }.value?.safeCast<KSAnnotation>()?.arguments?.let {
         it.first().value.cast<Long>() to it.last().value.cast<Long>()
     } ?: notLimitedRateLimits,
+    first { it.name?.asString() == "options" }.value?.safeCast<List<RegexOption>>() ?: emptyList()
 )
 
 internal fun List<KSValueArgument>.parseAsUpdateHandler() = first().value.cast<List<KSType>>().map {
