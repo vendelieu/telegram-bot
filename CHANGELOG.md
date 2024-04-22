@@ -1,5 +1,11 @@
 # Telegram-bot (KtGram) changelog
 
+## 5.3.0
+
+* Fixed bug with throwing exception in ActionExt(Inline, Business).
+* Added parameter to `@RegexCommandHandler` to pass regex options.
+* Added experimental Spring starter.
+
 ## 5.2.0
 
 * Added `ktor-starter` module for a quick webhook server setup.
