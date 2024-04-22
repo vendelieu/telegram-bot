@@ -11,4 +11,5 @@ package eu.vendeli.tgbot.annotations
 annotation class RegexCommandHandler(
     val value: String,
     val rateLimits: RateLimits = RateLimits(0, 0),
+    val options: Array<RegexOption> = [],
 )
