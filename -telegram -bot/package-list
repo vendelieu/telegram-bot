@@ -22,6 +22,7 @@ $dokka.location:eu.vendeli.tgbot.annotations/RateLimits///PointingToDeclaration/
 $dokka.location:eu.vendeli.tgbot.annotations/RateLimits/period/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-rate-limits/period.html
 $dokka.location:eu.vendeli.tgbot.annotations/RateLimits/rate/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-rate-limits/rate.html
 $dokka.location:eu.vendeli.tgbot.annotations/RegexCommandHandler///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-regex-command-handler/index.html
+$dokka.location:eu.vendeli.tgbot.annotations/RegexCommandHandler/options/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-regex-command-handler/options.html
 $dokka.location:eu.vendeli.tgbot.annotations/RegexCommandHandler/rateLimits/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-regex-command-handler/rate-limits.html
 $dokka.location:eu.vendeli.tgbot.annotations/RegexCommandHandler/value/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-regex-command-handler/value.html
 $dokka.location:eu.vendeli.tgbot.annotations/UnprocessedHandler///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations/-unprocessed-handler/index.html
@@ -718,7 +719,7 @@ $dokka.location:eu.vendeli.tgbot.interfaces/RateLimitMechanism/isLimited/#eu.ven
 $dokka.location:eu.vendeli.tgbot.interfaces/Request///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-request/index.html
 $dokka.location:eu.vendeli.tgbot.interfaces/Request/doRequest/eu.vendeli.tgbot.interfaces.Request[TypeParam(bounds=[kotlin.Any?])]#eu.vendeli.tgbot.TelegramBot/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-request/do-request.html
 $dokka.location:eu.vendeli.tgbot.interfaces/Request/doRequestAsync/eu.vendeli.tgbot.interfaces.Request[TypeParam(bounds=[kotlin.Any?])]#eu.vendeli.tgbot.TelegramBot/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-request/do-request-async.html
-$dokka.location:eu.vendeli.tgbot.interfaces/Request/getParameters/eu.vendeli.tgbot.interfaces.Request[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-request/get-parameters.html
+$dokka.location:eu.vendeli.tgbot.interfaces/Request/parameters/eu.vendeli.tgbot.interfaces.Request[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-request/parameters.html
 $dokka.location:eu.vendeli.tgbot.interfaces/SimpleAction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-simple-action/index.html
 $dokka.location:eu.vendeli.tgbot.interfaces/SimpleAction/SimpleAction/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-simple-action/-simple-action.html
 $dokka.location:eu.vendeli.tgbot.interfaces/SimpleAction/send/#eu.vendeli.tgbot.TelegramBot/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-simple-action/send.html
@@ -727,6 +728,7 @@ $dokka.location:eu.vendeli.tgbot.interfaces/TgAction///PointingToDeclaration/-t
 $dokka.location:eu.vendeli.tgbot.interfaces/TgAction/TgAction/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-tg-action/-tg-action.html
 $dokka.location:eu.vendeli.tgbot.interfaces/TgAction/doRequest/eu.vendeli.tgbot.interfaces.Request[TypeParam(bounds=[kotlin.Any?])]#eu.vendeli.tgbot.TelegramBot/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-tg-action/do-request.html
 $dokka.location:eu.vendeli.tgbot.interfaces/TgAction/doRequestAsync/eu.vendeli.tgbot.interfaces.Request[TypeParam(bounds=[kotlin.Any?])]#eu.vendeli.tgbot.TelegramBot/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-tg-action/do-request-async.html
+$dokka.location:eu.vendeli.tgbot.interfaces/TgAction/parameters/eu.vendeli.tgbot.interfaces.Request[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-tg-action/parameters.html
 $dokka.location:eu.vendeli.tgbot.interfaces/UserData///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces/-user-data/index.html
 $dokka.location:eu.vendeli.tgbot.types.boost////PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.boost/index.html
 $dokka.location:eu.vendeli.tgbot.types.boost/ChatBoost///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.boost/-chat-boost/index.html
@@ -1944,6 +1946,7 @@ $dokka.location:eu.vendeli.tgbot.types.internal/InvocationMeta/InvocationMeta/#k
 $dokka.location:eu.vendeli.tgbot.types.internal/InvocationMeta/function/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-invocation-meta/function.html
 $dokka.location:eu.vendeli.tgbot.types.internal/InvocationMeta/qualifier/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-invocation-meta/qualifier.html
 $dokka.location:eu.vendeli.tgbot.types.internal/InvocationMeta/rateLimits/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-invocation-meta/rate-limits.html
+$dokka.location:eu.vendeli.tgbot.types.internal/InvocationMeta/toString/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-invocation-meta/to-string.html
 $dokka.location:eu.vendeli.tgbot.types.internal/LogLvl.ALL///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-telegram -bot/eu.vendeli.tgbot.types.internal/-log-lvl/-a-l-l/index.html
 $dokka.location:eu.vendeli.tgbot.types.internal/LogLvl.DEBUG///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-telegram -bot/eu.vendeli.tgbot.types.internal/-log-lvl/-d-e-b-u-g/index.html
 $dokka.location:eu.vendeli.tgbot.types.internal/LogLvl.ERROR///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-telegram -bot/eu.vendeli.tgbot.types.internal/-log-lvl/-e-r-r-o-r/index.html
