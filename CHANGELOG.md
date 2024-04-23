@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) changelog
 
+### 5.3.1
+
+* Fix wrong classmanager in spring starter.
+
 ## 5.3.0
 
 * Fixed bug with throwing exception in ActionExt(Inline, Business).
