@@ -1,5 +1,10 @@
 # Telegram-bot (KtGram) changelog
 
+### 5.3.1
+
+* Fixed the wrong class manager passed to spring starter configuration.
+* Added ability to manually configure instances.
+
 ## 5.3.0
 
 * Fixed bug with throwing exception in ActionExt(Inline, Business).
@@ -11,7 +16,7 @@
 * Added `ktor-starter` module for a quick webhook server setup.
 * Added `identifier` parameter for `TelegramBot` instance.
 * Changed `kotlinx-datetime` to transitive dependency, since its entities used in parameters.
-* Returned missing inline mode action extension for `getGameHighScores` method.
+* Returned a missing inline mode action extension for `getGameHighScores` method.
 * Added `inputAutoRemoval` parameter to configuration, for more precise control of inputListener flow.
 * Added missing 7.2 api `BiometricManager` to webapps.
 
@@ -20,7 +25,7 @@
 * Fixed multipart requests data redundant quotation.
 * Returned `logback` as logger for `jvm` target.
 * Moved inline mode methods to extension interface from separate `InlinableAction`.
-* Added `Any` upperbounds for `Autowiring` interface to avoid wrong behaviour.
+* Added `Any` upperbounds for `Autowiring` interface to avoid wrong behavior.
 * Covered 7.2 TelegramApi changes.
 
 ### 5.0.5
@@ -69,7 +74,7 @@
 * Internal structure of `FunctionalHandling` has been improved.
 * Improved flow of coroutines in long polling mode, added request timeout in configuration, \
   see `updatesListener` block in configuration.
-* Retry processing in the client has been improved, so it doesn't repeat all requests (e.g. 400 status),
+* Retry processing in the client has been improved, so it doesn't repeat all requests (e.g., 400 status),
   only the necessary ones.
 * The type of the parameter `messageThreadId` has been changed to `Int`, as it better represents the data.
 * The base scope of commands for friendliness towards beginners and better understanding has been
@@ -96,7 +101,7 @@
   parameters (`MaybeInaccessibleMessage`, `MessageOrigin`, `ChatBoostSource`, `ChatMember`).
 * Removed ReflectionHandler as CodegenHandler has proven effective.
 * Changed long-polling handling, separated updates collecting and handling.
-* Returned `coroutines` dependency as transitive, since it make inconvenience in `sendAsync` methods process.
+* Returned `coroutines` dependency as transitive, since it makes inconvenience in `sendAsync` methods process.
 * Add `getOrNull()` method for `Deferred<Response<T>>` to lower verbosity for handling.
 * Set default names for media methods using ByteArray and File to prevent incorrect API behavior when unset.
 * Changed `botLogLevel` type to new proxy enum `LogLvl` since `logback` it's not transitive more.
@@ -104,15 +109,15 @@
 ## 4.1.0
 
 * Added shortcut annotation for `CallbackQuery` handling > `@CommandHandler.CallbackQuery` (or you can import it and use
-  without prefix).
+  without a prefix).
 * Changed all date fields that represent timestamp to `Instant` and `Duration` when it's period.
 * Changed structure of `caughtExceptions` event from `Pair` to `FailedUpdate`.
-* Changed `logback`, `coroutines` from api-dependency to implementation-dependency (ie not transitive now).
+* Changed `logback`, `coroutines` from api-dependency to implementation-dependency (i.e., not transitive now).
 * Covered Telegram API `7.0` version.
 
 ### 4.0.1
 
-* Fix parsing annotations bug when parameters not well-ordered.
+* Fix parsing annotations bug when parameters are not well-ordered.
 
 # 4.0.0
 
@@ -145,7 +150,7 @@
 
 ## 3.3.0
 
-* Fixed bug with missing media within input handling process.
+* Fixed bug with missing media within an input handling process.
 * Moved rate limit mechanism setting and its general limits to one configuration section `rateLimiter{}`, also now you
   can set rate exceeded action in configuration.
 * Added new convenient shortcuts for `InputListener` and `BotContext` interfaces.
@@ -163,7 +168,8 @@
 * Changed `Autowiring` and `ClassManager` interfaces to fun interfaces.
 * Added extensions to `ProcessedUpdate` class.
     * parameter `userOrNull` which returns `User` or `null` :)
-    * function `getUser` which returns `User` or throws NPE. (it's actually nullable only in rare cases but anyway use
+    * function `getUser` which returns `User` or throws NPE.
+      (it's actually nullable only in rare cases, but anyway, use it
       with caution)
 * Added shortcut functions to `Markup` interfaces for `InlineKeyboardMarkup`, `ReplyKeyboardMarkup`, `ForceReply`.
 
@@ -226,7 +232,7 @@
 * Added default implementation for context interfaces based on `ConcurrentHashMap`. #25
 * Make `MagicObject.get` function suspendable. #19
 * Add scope parameter for manual commands. #20
-* Add additional parsing for deeplink case.
+* Add additional parsing for a deeplink case.
 
 ### 2.7.4
 
@@ -305,7 +311,7 @@
 
 ### 2.5.2
 
-* Add new method for defining behaviour of update processing.
+* Add a new method for defining behavior of update processing.
   to avoid redefining in webhook processing.
 
 ### 2.5.1
@@ -329,7 +335,7 @@
 #### Bot internal improvements
 
 * Deleted some too verbose constructors of `ReplyKeyboardMarkup`.
-* Created new convenient DSL for creating markup - `replyKeyboardMarkup()`, similar to inline keyboard version, see
+* Created new convenient DSL for creating markup - `replyKeyboardMarkup()`, similar to an inline keyboard version, see
   examples in wiki.
 * A new parameter `TelegramUpdateHandler.caughtExceptions` was introduced, where centralized caught errors will be sent.
   Exceptions that occurred during manual update processing are now also intercepted.
@@ -389,7 +395,7 @@
 * Fixed a bug throwing `IllegalArgumentException` caused by `ClassManagerImpl`
 * Added saving instances to the `ClassManagerImpl`, to improve memory handling
 * Made `ChatPermissions` mutable to fix some functions wrong logic.
-* Added handling of commands containing at character, i.e. such as `/command@bot`
+* Added handling of commands containing at character, i.e., such as `/command@bot`
 * Expanded and moved configuration of `TelegramBot` instance to more handy variant, see `BotConfiguration` in docs.
 * Upgrade dependencies versions:
     * `Logback`: `1.4.0` -> `1.4.4`
@@ -417,9 +423,9 @@
   entities.
 * Remove `isInline` parameter from `send` methods and moved it \
   to separate interface `InlineMode` to leave it only at the necessary
-  methods and not to overload the methods that do not have inline mode.
+  methods and not to overload the methods that do not have an inline mode.
 * Make ManualHandlingBehaviour parameter lazy, is made to optimize cases where only annotation processing is used.
-* Moved options saving mechanism from helper functions to mapper, for more consistency.
+* Moved option saving mechanism from helper functions to mapper, for more consistency.
 * Improved and optimized `MediaAction` mechanism, make it less verbose.
 * Moved samples to separate repository.
 

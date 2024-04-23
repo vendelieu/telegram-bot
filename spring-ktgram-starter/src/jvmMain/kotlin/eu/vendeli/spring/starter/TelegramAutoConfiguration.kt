@@ -5,35 +5,35 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.AutoConfiguration
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Import
 
-@Import(SpringClassManager::class)
 @AutoConfiguration
+@Import(SpringClassManager::class)
 @EnableConfigurationProperties(TgConfigProperties::class)
 open class TelegramAutoConfiguration(
     private val config: TgConfigProperties,
+    private val springClassManager: SpringClassManager,
 ) {
+    @Autowired(required = false)
+    private lateinit var cfg: BotConfiguration
 
     @Bean
     open fun botInstances(): List<TelegramBot> = config.bot.map {
         TelegramBot(it.token, it.pckg) {
-            it.commandParsing?.let { c ->
-                commandParsing {
-                    commandDelimiter = c.commandDelimiter
-                    parametersDelimiter = c.parametersDelimiter
-                    parameterValueDelimiter = c.parameterValueDelimiter
-                    restrictSpacesInCommands = c.restrictSpacesInCommands
-                }
+            classManager = springClassManager
+            if (this@TelegramAutoConfiguration::cfg.isInitialized && cfg.identifier == it.identifier) {
+                this.apply(cfg.applyCfg())
             }
-        }.tryRunHandler()
+        }.also { bot -> bot.identifier = it.identifier }.tryRunHandler()
     }
 
     @OptIn(DelicateCoroutinesApi::class)
     private fun TelegramBot.tryRunHandler(): TelegramBot {
-        GlobalScope.launch(Dispatchers.IO) {
+        if (config.autoStartPolling) GlobalScope.launch(Dispatchers.IO) {
             launch(Dispatchers.IO) {
                 handleUpdates()
             }
