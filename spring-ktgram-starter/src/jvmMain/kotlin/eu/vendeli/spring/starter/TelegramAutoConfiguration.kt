@@ -10,16 +10,18 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Import
 
-@Import(SpringClassManager::class)
 @AutoConfiguration
+@Import(SpringClassManager::class)
 @EnableConfigurationProperties(TgConfigProperties::class)
 open class TelegramAutoConfiguration(
     private val config: TgConfigProperties,
+    private val springClassManager: SpringClassManager
 ) {
 
     @Bean
     open fun botInstances(): List<TelegramBot> = config.bot.map {
         TelegramBot(it.token, it.pckg) {
+            classManager = springClassManager
             it.commandParsing?.let { c ->
                 commandParsing {
                     commandDelimiter = c.commandDelimiter
@@ -33,7 +35,7 @@ open class TelegramAutoConfiguration(
 
     @OptIn(DelicateCoroutinesApi::class)
     private fun TelegramBot.tryRunHandler(): TelegramBot {
-        GlobalScope.launch(Dispatchers.IO) {
+        if (config.autoStartPolling) GlobalScope.launch(Dispatchers.IO) {
             launch(Dispatchers.IO) {
                 handleUpdates()
             }
