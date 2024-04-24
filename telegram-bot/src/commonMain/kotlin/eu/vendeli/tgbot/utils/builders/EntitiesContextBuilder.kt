@@ -26,9 +26,8 @@ import eu.vendeli.tgbot.types.EntityType.Url
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.utils.encodeWith
-import eu.vendeli.tgbot.utils.serde
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.decodeFromJsonElement
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.jsonArray
 import kotlin.jvm.JvmName
 
 @Suppress("TooManyFunctions")
@@ -40,12 +39,12 @@ interface EntitiesContextBuilder<Action : TgAction<*>> {
         else "entities"
         this as TgAction<*>
         val oldEntity = parameters[fieldName]?.let {
-            serde.decodeFromJsonElement<MutableList<JsonElement>>(it)
+            it.jsonArray.toMutableList()
         } ?: mutableListOf()
 
         parameters[fieldName] = oldEntity.also {
             it.add(entity.encodeWith(MessageEntity.serializer()))
-        }.encodeWith(JsonElement.serializer())
+        }.let { JsonArray(it) }
     }
 
     operator fun String.minus(other: String): String = this + other
