@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 /**
  * Represents the rights of an administrator in a chat.
  *
- * Api reference: https://core.telegram.org/bots/api#chatadministratorrights
+ * [Api reference](https://core.telegram.org/bots/api#chatadministratorrights)
  * @property isAnonymous True, if the user's presence in the chat is hidden
  * @property canManageChat True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report spam messages and ignore slow mode. Implied by any other administrator privilege.
  * @property canDeleteMessages True, if the administrator can delete messages of other users

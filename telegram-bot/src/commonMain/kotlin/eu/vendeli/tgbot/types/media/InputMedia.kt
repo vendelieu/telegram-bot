@@ -14,7 +14,7 @@ import kotlinx.serialization.Serializable
  * - InputMediaPhoto
  * - InputMediaVideo
  *
- * Api reference: https://core.telegram.org/bots/api#inputmedia
+ * [Api reference](https://core.telegram.org/bots/api#inputmedia)
  *
  */
 @Serializable

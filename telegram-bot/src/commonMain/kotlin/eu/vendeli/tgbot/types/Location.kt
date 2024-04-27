@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents a point on the map.
  *
- * Api reference: https://core.telegram.org/bots/api#location
+ * [Api reference](https://core.telegram.org/bots/api#location)
  * @property latitude Latitude as defined by sender
  * @property longitude Longitude as defined by sender
  * @property horizontalAccuracy Optional. The radius of uncertainty for the location, measured in meters; 0-1500

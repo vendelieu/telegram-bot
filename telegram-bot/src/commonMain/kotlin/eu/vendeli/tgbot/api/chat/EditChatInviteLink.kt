@@ -25,7 +25,7 @@ class EditChatInviteLinkAction(inviteLink: String) :
 /**
  * Use this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the edited invite link as a ChatInviteLink object.
  *
- * Api reference: https://core.telegram.org/bots/api#editchatinvitelink
+ * [Api reference](https://core.telegram.org/bots/api#editchatinvitelink)
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param inviteLink The invite link to edit
  * @param name Invite link name; 0-32 characters

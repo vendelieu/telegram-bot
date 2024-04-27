@@ -19,7 +19,7 @@ class DeleteWebhookAction(dropPendingUpdates: Boolean = false) : SimpleAction<Bo
 /**
  * Use this method to remove webhook integration if you decide to switch back to getUpdates. Returns True on success.
  *
- * Api reference: https://core.telegram.org/bots/api#deletewebhook
+ * [Api reference](https://core.telegram.org/bots/api#deletewebhook)
  * @param dropPendingUpdates Pass True to drop all pending updates
  * @returns [Boolean]
  */

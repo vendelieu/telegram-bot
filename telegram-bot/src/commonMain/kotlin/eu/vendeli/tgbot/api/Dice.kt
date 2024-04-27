@@ -29,7 +29,7 @@ class SendDiceAction(emoji: String? = null) :
 /**
  * Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
  *
- * Api reference: https://core.telegram.org/bots/api#senddice
+ * [Api reference](https://core.telegram.org/bots/api#senddice)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only

@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents a game. Use BotFather to create and edit games, their short names will act as unique identifiers.
  *
- * Api reference: https://core.telegram.org/bots/api#game
+ * [Api reference](https://core.telegram.org/bots/api#game)
  * @property title Title of the game
  * @property description Description of the game
  * @property photo Photo that will be displayed in the game message in chats.

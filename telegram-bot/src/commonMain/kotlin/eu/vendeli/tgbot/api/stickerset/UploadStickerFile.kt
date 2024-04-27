@@ -28,7 +28,7 @@ class UploadStickerFileAction(sticker: InputFile, stickerFormat: StickerFormat) 
 /**
  * Use this method to upload a file with a sticker for later use in the createNewStickerSet, addStickerToSet, or replaceStickerInSet methods (the file can be used multiple times). Returns the uploaded File on success.
  *
- * Api reference: https://core.telegram.org/bots/api#uploadstickerfile
+ * [Api reference](https://core.telegram.org/bots/api#uploadstickerfile)
  * @param userId User identifier of sticker file owner
  * @param sticker A file with the sticker in .WEBP, .PNG, .TGS, or .WEBM format. See https://core.telegram.org/stickers for technical requirements. More information on Sending Files: https://core.telegram.org/bots/api#sending-files
  * @param stickerFormat Format of the sticker, must be one of "static", "animated", "video"

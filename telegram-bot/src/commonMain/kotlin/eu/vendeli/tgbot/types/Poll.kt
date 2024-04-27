@@ -17,7 +17,7 @@ enum class PollType {
 /**
  * This object contains information about a poll.
  *
- * Api reference: https://core.telegram.org/bots/api#poll
+ * [Api reference](https://core.telegram.org/bots/api#poll)
  * @property id Unique poll identifier
  * @property question Poll question, 1-300 characters
  * @property options List of poll options

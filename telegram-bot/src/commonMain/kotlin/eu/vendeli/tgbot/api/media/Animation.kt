@@ -34,7 +34,7 @@ class SendAnimationAction(animation: ImplicitFile) :
 /**
  * Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
  *
- * Api reference: https://core.telegram.org/bots/api#sendanimation
+ * [Api reference](https://core.telegram.org/bots/api#sendanimation)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only

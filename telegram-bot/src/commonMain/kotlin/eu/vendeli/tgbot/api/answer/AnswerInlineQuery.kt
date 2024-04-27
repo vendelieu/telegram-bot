@@ -31,7 +31,7 @@ class AnswerInlineQueryAction(inlineQueryId: String, results: List<InlineQueryRe
  * Use this method to send answers to an inline query. On success, True is returned.
  * No more than 50 results per query are allowed.
  *
- * Api reference: https://core.telegram.org/bots/api#answerinlinequery
+ * [Api reference](https://core.telegram.org/bots/api#answerinlinequery)
  * @param inlineQueryId Unique identifier for the answered query
  * @param results A JSON-serialized array of results for the inline query
  * @param cacheTime The maximum amount of time in seconds that the result of the inline query may be cached on the server. Defaults to 300.

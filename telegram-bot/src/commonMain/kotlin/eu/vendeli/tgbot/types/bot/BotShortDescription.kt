@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents the bot's short description.
  *
- * Api reference: https://core.telegram.org/bots/api#botshortdescription
+ * [Api reference](https://core.telegram.org/bots/api#botshortdescription)
  * @property shortDescription The bot's short description
  */
 @Serializable

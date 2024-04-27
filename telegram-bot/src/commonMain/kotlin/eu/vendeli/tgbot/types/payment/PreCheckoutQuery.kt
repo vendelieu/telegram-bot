@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object contains information about an incoming pre-checkout query.
  *
- * Api reference: https://core.telegram.org/bots/api#precheckoutquery
+ * [Api reference](https://core.telegram.org/bots/api#precheckoutquery)
  * @property id Unique query identifier
  * @property from User who sent the query
  * @property currency Three-letter ISO 4217 currency code

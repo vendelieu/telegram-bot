@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents a video file.
  *
- * Api reference: https://core.telegram.org/bots/api#video
+ * [Api reference](https://core.telegram.org/bots/api#video)
  * @property fileId Identifier for this file, which can be used to download or reuse the file
  * @property fileUniqueId Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
  * @property width Video width as defined by sender

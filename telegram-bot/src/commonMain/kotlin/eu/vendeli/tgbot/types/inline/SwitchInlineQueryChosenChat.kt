@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents an inline button that switches the current user to inline mode in a chosen chat, with an optional default inline query.
  *
- * Api reference: https://core.telegram.org/bots/api#switchinlinequerychosenchat
+ * [Api reference](https://core.telegram.org/bots/api#switchinlinequerychosenchat)
  * @property query Optional. The default inline query to be inserted in the input field. If left empty, only the bot's username will be inserted
  * @property allowUserChats Optional. True, if private chats with users can be chosen
  * @property allowBotChats Optional. True, if private chats with bots can be chosen

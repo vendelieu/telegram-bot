@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents changes in the status of a chat member.
  *
- * Api reference: https://core.telegram.org/bots/api#chatmemberupdated
+ * [Api reference](https://core.telegram.org/bots/api#chatmemberupdated)
  * @property chat Chat the user belongs to
  * @property from Performer of the action, which resulted in the change
  * @property date Date the change was done in Unix time

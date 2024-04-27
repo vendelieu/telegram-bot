@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents reaction changes on a message with anonymous reactions.
  *
- * Api reference: https://core.telegram.org/bots/api#messagereactioncountupdated
+ * [Api reference](https://core.telegram.org/bots/api#messagereactioncountupdated)
  * @property chat The chat containing the message
  * @property messageId Unique message identifier inside the chat
  * @property date Date of the change in Unix time

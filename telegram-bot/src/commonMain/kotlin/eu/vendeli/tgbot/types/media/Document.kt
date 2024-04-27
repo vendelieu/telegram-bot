@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents a general file (as opposed to photos, voice messages and audio files).
  *
- * Api reference: https://core.telegram.org/bots/api#document
+ * [Api reference](https://core.telegram.org/bots/api#document)
  * @property fileId Identifier for this file, which can be used to download or reuse the file
  * @property fileUniqueId Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
  * @property thumbnail Optional. Document thumbnail as defined by sender

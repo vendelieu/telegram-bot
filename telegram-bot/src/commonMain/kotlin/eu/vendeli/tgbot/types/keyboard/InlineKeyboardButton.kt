@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents one button of an inline keyboard. You must use exactly one of the optional fields.
  *
- * Api reference: https://core.telegram.org/bots/api#inlinekeyboardbutton
+ * [Api reference](https://core.telegram.org/bots/api#inlinekeyboardbutton)
  * @property text Label text on the button
  * @property url Optional. HTTP or tg:// URL to be opened when the button is pressed. Links tg://user?id=<user_id> can be used to mention a user by their identifier without using a username, if this is allowed by their privacy settings.
  * @property callbackData Optional. Data to be sent in a callback query to the bot when button is pressed, 1-64 bytes

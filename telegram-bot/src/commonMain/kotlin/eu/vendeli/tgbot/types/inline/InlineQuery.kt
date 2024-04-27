@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents an incoming inline query. When the user sends an empty query, your bot could return some default or trending results.
  *
- * Api reference: https://core.telegram.org/bots/api#inlinequery
+ * [Api reference](https://core.telegram.org/bots/api#inlinequery)
  * @property id Unique identifier for this query
  * @property from Sender
  * @property query Text of the query (up to 256 characters)

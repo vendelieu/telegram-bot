@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents a shipping address.
  *
- * Api reference: https://core.telegram.org/bots/api#shippingaddress
+ * [Api reference](https://core.telegram.org/bots/api#shippingaddress)
  * @property countryCode Two-letter ISO 3166-1 alpha-2 country code
  * @property state State, if applicable
  * @property city City

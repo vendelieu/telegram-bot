@@ -15,7 +15,7 @@ class GetMeAction : SimpleAction<User>() {
 /**
  * A simple method for testing your bot's authentication token. Requires no parameters. Returns basic information about the bot in form of a User object.
  *
- * Api reference: https://core.telegram.org/bots/api#getme
+ * [Api reference](https://core.telegram.org/bots/api#getme)
  *
  * @returns [User]
  */

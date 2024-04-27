@@ -37,7 +37,7 @@ class CreateInvoiceLinkAction(
 /**
  * Use this method to create a link for an invoice. Returns the created invoice link as String on success.
  *
- * Api reference: https://core.telegram.org/bots/api#createinvoicelink
+ * [Api reference](https://core.telegram.org/bots/api#createinvoicelink)
  * @param title Product name, 1-32 characters
  * @param description Product description, 1-255 characters
  * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.

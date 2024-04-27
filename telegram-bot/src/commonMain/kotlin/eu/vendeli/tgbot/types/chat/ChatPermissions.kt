@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 /**
  * Describes actions that a non-administrator user is allowed to take in a chat.
  *
- * Api reference: https://core.telegram.org/bots/api#chatpermissions
+ * [Api reference](https://core.telegram.org/bots/api#chatpermissions)
  * @property canSendMessages Optional. True, if the user is allowed to send text messages, contacts, giveaways, giveaway winners, invoices, locations and venues
  * @property canSendAudios Optional. True, if the user is allowed to send audios
  * @property canSendDocuments Optional. True, if the user is allowed to send documents

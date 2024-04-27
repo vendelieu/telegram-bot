@@ -20,7 +20,7 @@ class GetMyShortDescriptionAction(languageCode: String? = null) : SimpleAction<B
 /**
  * Use this method to get the current bot short description for the given user language. Returns BotShortDescription on success.
  *
- * Api reference: https://core.telegram.org/bots/api#getmyshortdescription
+ * [Api reference](https://core.telegram.org/bots/api#getmyshortdescription)
  * @param languageCode A two-letter ISO 639-1 language code or an empty string
  * @returns [BotShortDescription]
  */

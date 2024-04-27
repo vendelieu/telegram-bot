@@ -15,7 +15,7 @@ class GetChatMenuButtonAction : Action<MenuButton>() {
 /**
  * Use this method to get the current value of the bot's menu button in a private chat, or the default menu button. Returns MenuButton on success.
  *
- * Api reference: https://core.telegram.org/bots/api#getchatmenubutton
+ * [Api reference](https://core.telegram.org/bots/api#getchatmenubutton)
  * @param chatId Unique identifier for the target private chat. If not specified, default bot's menu button will be returned
  * @returns [MenuButton]
  */

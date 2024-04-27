@@ -48,7 +48,7 @@ enum class EncryptedPassportElementType {
 /**
  * Describes documents or other Telegram Passport elements shared with the bot by the user.
  *
- * Api reference: https://core.telegram.org/bots/api#encryptedpassportelement
+ * [Api reference](https://core.telegram.org/bots/api#encryptedpassportelement)
  * @property type Element type. One of "personal_details", "passport", "driver_license", "identity_card", "internal_passport", "address", "utility_bill", "bank_statement", "rental_agreement", "passport_registration", "temporary_registration", "phone_number", "email".
  * @property data Optional. Base64-encoded encrypted Telegram Passport element data provided by the user; available only for "personal_details", "passport", "driver_license", "identity_card", "internal_passport" and "address" types. Can be decrypted and verified using the accompanying EncryptedCredentials.
  * @property phoneNumber Optional. User's verified phone number; available only for "phone_number" type

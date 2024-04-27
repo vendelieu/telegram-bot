@@ -34,7 +34,7 @@ class SendVenueAction(
 /**
  * Use this method to send information about a venue. On success, the sent Message is returned.
  *
- * Api reference: https://core.telegram.org/bots/api#sendvenue
+ * [Api reference](https://core.telegram.org/bots/api#sendvenue)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only

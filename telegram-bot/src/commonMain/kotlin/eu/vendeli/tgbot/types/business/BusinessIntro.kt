@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 /**
 
  *
- * Api reference: https://core.telegram.org/bots/api#businessintro
+ * [Api reference](https://core.telegram.org/bots/api#businessintro)
  * @property title Optional. Title text of the business intro
  * @property message Optional. Message text of the business intro
  * @property sticker Optional. Sticker of the business intro

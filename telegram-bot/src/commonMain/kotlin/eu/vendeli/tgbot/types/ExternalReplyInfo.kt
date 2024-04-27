@@ -18,7 +18,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object contains information about a message that is being replied to, which may come from another chat or forum topic.
  *
- * Api reference: https://core.telegram.org/bots/api#externalreplyinfo
+ * [Api reference](https://core.telegram.org/bots/api#externalreplyinfo)
  * @property origin Origin of the message replied to by the given message
  * @property chat Optional. Chat the original message belongs to. Available only if the chat is a supergroup or a channel.
  * @property messageId Optional. Unique message identifier inside the original chat. Available only if the original chat is a supergroup or a channel.

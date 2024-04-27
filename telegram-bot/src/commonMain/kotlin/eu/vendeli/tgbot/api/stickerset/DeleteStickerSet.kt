@@ -19,7 +19,7 @@ class DeleteStickerSetAction(name: String) : SimpleAction<Boolean>() {
 /**
  * Use this method to delete a sticker set that was created by the bot. Returns True on success.
  *
- * Api reference: https://core.telegram.org/bots/api#deletestickerset
+ * [Api reference](https://core.telegram.org/bots/api#deletestickerset)
  * @param name Sticker set name
  * @returns [Boolean]
  */

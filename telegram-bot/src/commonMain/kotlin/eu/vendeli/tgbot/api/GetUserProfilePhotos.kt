@@ -27,7 +27,7 @@ class GetUserProfilePhotosAction(
 /**
  * Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
  *
- * Api reference: https://core.telegram.org/bots/api#getuserprofilephotos
+ * [Api reference](https://core.telegram.org/bots/api#getuserprofilephotos)
  * @param userId Unique identifier of the target user
  * @param offset Sequential number of the first photo to be returned. By default, all photos are returned.
  * @param limit Limits the number of photos to be retrieved. Values between 1-100 are accepted. Defaults to 100.

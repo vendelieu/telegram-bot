@@ -30,7 +30,7 @@ class GetGameHighScoresAction : Action<List<GameHighScore>>, InlineActionExt<Lis
 /**
  * Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of GameHighScore objects.
  *
- * Api reference: https://core.telegram.org/bots/api#getgamehighscores
+ * [Api reference](https://core.telegram.org/bots/api#getgamehighscores)
  * @param userId Target user id
  * @param chatId Required if inline_message_id is not specified. Unique identifier for the target chat
  * @param messageId Required if inline_message_id is not specified. Identifier of the sent message

@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).
  *
- * Api reference: https://core.telegram.org/bots/api#animation
+ * [Api reference](https://core.telegram.org/bots/api#animation)
  * @property fileId Identifier for this file, which can be used to download or reuse the file
  * @property fileUniqueId Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
  * @property width Video width as defined by sender

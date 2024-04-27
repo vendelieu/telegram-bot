@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object contains basic information about an invoice.
  *
- * Api reference: https://core.telegram.org/bots/api#invoice
+ * [Api reference](https://core.telegram.org/bots/api#invoice)
  * @property title Product name
  * @property description Product description
  * @property startParameter Unique bot deep-linking parameter that can be used to generate this invoice

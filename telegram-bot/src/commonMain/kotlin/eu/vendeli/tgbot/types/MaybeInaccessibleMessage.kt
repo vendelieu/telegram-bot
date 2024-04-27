@@ -15,7 +15,7 @@ import kotlinx.serialization.json.longOrNull
  * - Message
  * - InaccessibleMessage
  *
- * Api reference: https://core.telegram.org/bots/api#maybeinaccessiblemessage
+ * [Api reference](https://core.telegram.org/bots/api#maybeinaccessiblemessage)
  *
  */
 @Serializable(MaybeInaccessibleMessage.Companion::class)

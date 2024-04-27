@@ -39,7 +39,7 @@ class ReplaceStickerInSetAction(
 /**
  * Use this method to replace an existing sticker in a sticker set with a new one. The method is equivalent to calling deleteStickerFromSet, then addStickerToSet, then setStickerPositionInSet. Returns True on success.
  *
- * Api reference: https://core.telegram.org/bots/api#replacestickerinset
+ * [Api reference](https://core.telegram.org/bots/api#replacestickerinset)
  * @param userId User identifier of the sticker set owner
  * @param name Sticker set name
  * @param oldSticker File identifier of the replaced sticker
