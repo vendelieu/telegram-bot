@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 /**
  * Describes the current status of a webhook.
  *
- * Api reference: https://core.telegram.org/bots/api#webhookinfo
+ * [Api reference](https://core.telegram.org/bots/api#webhookinfo)
  * @property url Webhook URL, may be empty if webhook is not set up
  * @property hasCustomCertificate True, if a custom certificate was provided for webhook certificate checks
  * @property pendingUpdateCount Number of updates awaiting delivery

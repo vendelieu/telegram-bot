@@ -31,7 +31,7 @@ class ForwardMessageAction(fromChatId: Identifier, messageId: Long) :
 /**
  * Use this method to forward messages of any kind. Service messages and messages with protected content can't be forwarded. On success, the sent Message is returned.
  *
- * Api reference: https://core.telegram.org/bots/api#forwardmessage
+ * [Api reference](https://core.telegram.org/bots/api#forwardmessage)
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
  * @param fromChatId Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername)

@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents a service message about a new forum topic created in the chat.
  *
- * Api reference: https://core.telegram.org/bots/api#forumtopiccreated
+ * [Api reference](https://core.telegram.org/bots/api#forumtopiccreated)
  * @property name Name of the topic
  * @property iconColor Color of the topic icon in RGB format
  * @property iconCustomEmojiId Optional. Unique identifier of the custom emoji shown as the topic icon

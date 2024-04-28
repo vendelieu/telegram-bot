@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents an audio file to be treated as music by the Telegram clients.
  *
- * Api reference: https://core.telegram.org/bots/api#audio
+ * [Api reference](https://core.telegram.org/bots/api#audio)
  * @property fileId Identifier for this file, which can be used to download or reuse the file
  * @property fileUniqueId Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
  * @property duration Duration of the audio in seconds as defined by sender

@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 /**
  * Represents an invite link for a chat.
  *
- * Api reference: https://core.telegram.org/bots/api#chatinvitelink
+ * [Api reference](https://core.telegram.org/bots/api#chatinvitelink)
  * @property inviteLink The invite link. If the link was created by another chat administrator, then the second part of the link will be replaced with "...".
  * @property creator Creator of the link
  * @property createsJoinRequest True, if users joining the chat via the link need to be approved by chat administrators

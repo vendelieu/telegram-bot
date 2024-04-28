@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 /**
  * Describes a Web App.
  *
- * Api reference: https://core.telegram.org/bots/api#webappinfo
+ * [Api reference](https://core.telegram.org/bots/api#webappinfo)
  * @property url An HTTPS URL of a Web App to be opened with additional data as specified in Initializing Web Apps
  */
 @Serializable

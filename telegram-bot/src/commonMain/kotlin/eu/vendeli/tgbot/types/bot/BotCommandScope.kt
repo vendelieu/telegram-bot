@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
  * - BotCommandScopeChatAdministrators
  * - BotCommandScopeChatMember
  *
- * Api reference: https://core.telegram.org/bots/api#botcommandscope
+ * [Api reference](https://core.telegram.org/bots/api#botcommandscope)
  *
  */
 @Serializable

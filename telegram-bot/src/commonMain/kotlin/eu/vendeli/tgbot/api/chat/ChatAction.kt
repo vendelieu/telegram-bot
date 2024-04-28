@@ -24,7 +24,7 @@ class SendChatAction(action: ChatAction, messageThreadId: Int? = null) : Action<
  * Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success.
  * We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
  *
- * Api reference: https://core.telegram.org/bots/api#sendchataction
+ * [Api reference](https://core.telegram.org/bots/api#sendchataction)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the action will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread; for supergroups only

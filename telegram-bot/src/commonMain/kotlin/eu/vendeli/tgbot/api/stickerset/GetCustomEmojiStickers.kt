@@ -22,7 +22,7 @@ class GetCustomEmojiStickersAction(customEmojiIds: List<String>) : SimpleAction<
 /**
  * Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of Sticker objects.
  *
- * Api reference: https://core.telegram.org/bots/api#getcustomemojistickers
+ * [Api reference](https://core.telegram.org/bots/api#getcustomemojistickers)
  * @param customEmojiIds A JSON-serialized list of custom emoji identifiers. At most 200 custom emoji identifiers can be specified.
  * @returns [Array of Sticker]
  */

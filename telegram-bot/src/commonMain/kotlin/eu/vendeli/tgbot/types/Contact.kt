@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 /**
  * This object represents a phone contact.
  *
- * Api reference: https://core.telegram.org/bots/api#contact
+ * [Api reference](https://core.telegram.org/bots/api#contact)
  * @property phoneNumber Contact's phone number
  * @property firstName Contact's first name
  * @property lastName Optional. Contact's last name

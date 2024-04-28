@@ -28,7 +28,7 @@ class DeleteMessageAction(messageId: Long) : Action<Boolean>() {
  * - If the bot has can_delete_messages permission in a supergroup or a channel, it can delete any message there.
  * Returns True on success.
  *
- * Api reference: https://core.telegram.org/bots/api#deletemessage
+ * [Api reference](https://core.telegram.org/bots/api#deletemessage)
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageId Identifier of the message to delete
  * @returns [Boolean]

@@ -32,7 +32,7 @@ class SendVideoNoteAction(videoNote: ImplicitFile) :
 /**
  * As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
  *
- * Api reference: https://core.telegram.org/bots/api#sendvideonote
+ * [Api reference](https://core.telegram.org/bots/api#sendvideonote)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only

@@ -32,7 +32,7 @@ class RestrictChatMemberAction(
 /**
  * Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights. Pass True for all permissions to lift restrictions from a user. Returns True on success.
  *
- * Api reference: https://core.telegram.org/bots/api#restrictchatmember
+ * [Api reference](https://core.telegram.org/bots/api#restrictchatmember)
  * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
  * @param userId Unique identifier of the target user
  * @param permissions A JSON-serialized object for new user permissions
@@ -40,6 +40,7 @@ class RestrictChatMemberAction(
  * @param untilDate Date when restrictions will be lifted for the user; Unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, they are considered to be restricted forever
  * @returns [Boolean]
  */
+
 inline fun restrictChatMember(
     userId: Long,
     untilDate: Instant? = null,

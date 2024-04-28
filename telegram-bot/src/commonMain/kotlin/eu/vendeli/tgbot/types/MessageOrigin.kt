@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
  * - MessageOriginChat
  * - MessageOriginChannel
  *
- * Api reference: https://core.telegram.org/bots/api#messageorigin
+ * [Api reference](https://core.telegram.org/bots/api#messageorigin)
  *
  */
 @Serializable

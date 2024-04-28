@@ -24,7 +24,7 @@ class AnswerCallbackQueryAction(callbackQueryId: String) :
 /**
  * Use this method to send answers to callback queries sent from inline keyboards. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, True is returned.
  *
- * Api reference: https://core.telegram.org/bots/api#answercallbackquery
+ * [Api reference](https://core.telegram.org/bots/api#answercallbackquery)
  * @param callbackQueryId Unique identifier for the query to be answered
  * @param text Text of the notification. If not specified, nothing will be shown to the user, 0-200 characters
  * @param showAlert If True, an alert will be shown by the client instead of a notification at the top of the chat screen. Defaults to false.

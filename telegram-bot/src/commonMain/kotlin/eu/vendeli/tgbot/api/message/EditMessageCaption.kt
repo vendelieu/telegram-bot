@@ -29,7 +29,7 @@ class EditMessageCaptionAction() :
 /**
  * Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
  *
- * Api reference: https://core.telegram.org/bots/api#editmessagecaption
+ * [Api reference](https://core.telegram.org/bots/api#editmessagecaption)
  * @param chatId Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageId Required if inline_message_id is not specified. Identifier of the message to edit
  * @param inlineMessageId Required if chat_id and message_id are not specified. Identifier of the inline message

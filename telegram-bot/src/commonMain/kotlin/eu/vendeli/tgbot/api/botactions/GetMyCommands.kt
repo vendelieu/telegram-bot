@@ -26,7 +26,7 @@ class GetMyCommandsAction(
 /**
  * Use this method to get the current list of the bot's commands for the given scope and user language. Returns an Array of BotCommand objects. If commands aren't set, an empty list is returned.
  *
- * Api reference: https://core.telegram.org/bots/api#getmycommands
+ * [Api reference](https://core.telegram.org/bots/api#getmycommands)
  * @param scope A JSON-serialized object, describing scope of users. Defaults to BotCommandScopeDefault.
  * @param languageCode A two-letter ISO 639-1 language code or an empty string
  * @returns [Array of BotCommand]

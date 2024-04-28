@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) changelog
 
+### 5.3.2
+
+* Fix `EntitiesContextualBuilder` bug.
+
 ### 5.3.1
 
 * Fixed the wrong class manager passed to spring starter configuration.

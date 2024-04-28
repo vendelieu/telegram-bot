@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
  * Represents a result of an inline query that was chosen by the user and sent to their chat partner.
  * Note: It is necessary to enable inline feedback via @BotFather in order to receive these objects in updates.
  *
- * Api reference: https://core.telegram.org/bots/api#choseninlineresult
+ * [Api reference](https://core.telegram.org/bots/api#choseninlineresult)
  * @property resultId The unique identifier for the result that was chosen
  * @property from The user that chose the result
  * @property location Optional. Sender location, only for bots that require user location

@@ -25,7 +25,7 @@ class PromoteChatMemberAction(userId: Long) :
 /**
  * Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass False for all boolean parameters to demote a user. Returns True on success.
  *
- * Api reference: https://core.telegram.org/bots/api#promotechatmember
+ * [Api reference](https://core.telegram.org/bots/api#promotechatmember)
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param userId Unique identifier of the target user
  * @param isAnonymous Pass True if the administrator's presence in the chat is hidden

@@ -41,7 +41,7 @@ class SendInvoiceAction(
 /**
  * Use this method to send invoices. On success, the sent Message is returned.
  *
- * Api reference: https://core.telegram.org/bots/api#sendinvoice
+ * [Api reference](https://core.telegram.org/bots/api#sendinvoice)
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
  * @param title Product name, 1-32 characters

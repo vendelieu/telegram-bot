@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 /**
 
  *
- * Api reference: https://core.telegram.org/bots/api#businesslocation
+ * [Api reference](https://core.telegram.org/bots/api#businesslocation)
  * @property address Address of the business
  * @property location Optional. Location of the business
  */

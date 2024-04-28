@@ -18,7 +18,7 @@ enum class StickerType {
 /**
  * This object represents a sticker set.
  *
- * Api reference: https://core.telegram.org/bots/api#stickerset
+ * [Api reference](https://core.telegram.org/bots/api#stickerset)
  * @property name Sticker set name
  * @property title Sticker set title
  * @property stickerType Type of stickers in the set, currently one of "regular", "mask", "custom_emoji"
