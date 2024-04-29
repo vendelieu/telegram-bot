@@ -19,16 +19,16 @@ open class TelegramAutoConfiguration(
     private val springClassManager: SpringClassManager,
 ) {
     @Autowired(required = false)
-    private lateinit var cfg: BotConfiguration
+    private lateinit var cfg: List<BotConfiguration>
 
     @Bean
-    open fun botInstances(): List<TelegramBot> = config.bot.map {
-        TelegramBot(it.token, it.pckg) {
+    open fun botInstances(): List<TelegramBot> = config.bot.map { bot ->
+        TelegramBot(bot.token, bot.pckg) {
             classManager = springClassManager
-            if (this@TelegramAutoConfiguration::cfg.isInitialized && cfg.identifier == it.identifier) {
-                this.apply(cfg.applyCfg())
+            if (this@TelegramAutoConfiguration::cfg.isInitialized) {
+                cfg.find { bot.identifier == it.identifier }?.let { this.apply(it.applyCfg()) }
             }
-        }.also { bot -> bot.identifier = it.identifier }.tryRunHandler()
+        }.also { it.identifier = bot.identifier }.tryRunHandler()
     }
 
     @OptIn(DelicateCoroutinesApi::class)
