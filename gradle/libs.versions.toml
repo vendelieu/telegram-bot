@@ -17,7 +17,7 @@ kotest = "5.8.1"
 mockk = "1.13.10"
 kover = "0.7.6"
 krypto = "4.0.10"
-sslcontext = "8.3.4"
+sslcontext = "8.3.5"
 spring = "3.2.5"
 
 ksp = "1.9.23-1.0.20"
