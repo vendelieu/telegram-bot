@@ -20,7 +20,7 @@ krypto = "4.0.10"
 sslcontext = "8.3.5"
 spring = "3.2.5"
 
-ksp = "1.9.23-1.0.20"
+ksp = "1.9.24-1.0.20"
 poet = "1.16.0"
 
 binvalid = "0.14.0"
