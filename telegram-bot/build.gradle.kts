@@ -42,7 +42,7 @@ kotlin {
         }
         named("jvmTest") {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.8.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.8.1")
                 implementation(libs.logback)
 
                 implementation(libs.test.kotest.junit5)
