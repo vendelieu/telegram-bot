@@ -21,6 +21,6 @@ interface EntitiesFeature<Action : TgAction<*>> : Feature {
      */
     @Suppress("UNCHECKED_CAST")
     fun entities(entities: List<MessageEntity>): Action = (this as Action).apply {
-        parameters["entities"] = entities.encodeWith(MessageEntity.serializer())
+        parameters[entitiesFieldName] = entities.encodeWith(MessageEntity.serializer())
     }
 }

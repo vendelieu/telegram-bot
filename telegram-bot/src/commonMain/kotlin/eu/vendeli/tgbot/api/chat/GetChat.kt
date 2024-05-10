@@ -4,10 +4,11 @@ package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.chat.Chat
+import eu.vendeli.tgbot.types.chat.ChatFullInfo
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
-class GetChatAction : Action<Chat>() {
+class GetChatAction : Action<ChatFullInfo>() {
     override val method = TgMethod("getChat")
     override val returnType = getReturnType()
 }

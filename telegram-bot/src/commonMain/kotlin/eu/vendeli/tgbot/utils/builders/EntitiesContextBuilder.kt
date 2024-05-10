@@ -1,8 +1,5 @@
 package eu.vendeli.tgbot.utils.builders
 
-import eu.vendeli.tgbot.api.message.CopyMessageAction
-import eu.vendeli.tgbot.api.message.EditMessageCaptionAction
-import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.EntityType
 import eu.vendeli.tgbot.types.EntityType.Blockquote
@@ -33,13 +30,10 @@ import kotlin.jvm.JvmName
 interface EntitiesContextBuilder<Action : TgAction<*>> {
     @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST", "unused")
     private inline fun addEntity(entity: MessageEntity) {
-        val fieldName = if (this is MediaAction<*> || this is CopyMessageAction || this is EditMessageCaptionAction)
-            "caption_entities"
-        else "entities"
         this as TgAction<*>
-        val oldEntity = (parameters[fieldName] as? JsonArray)?.toMutableList() ?: mutableListOf()
+        val oldEntity = (parameters[entitiesFieldName] as? JsonArray)?.toMutableList() ?: mutableListOf()
 
-        parameters[fieldName] = oldEntity.also {
+        parameters[entitiesFieldName] = oldEntity.also {
             it.add(entity.encodeWith(MessageEntity.serializer()))
         }.let { JsonArray(it) }
     }

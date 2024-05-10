@@ -27,6 +27,7 @@ class CopyMessageAction(
     override val method = TgMethod("copyMessage")
     override val returnType = getReturnType()
     override val options = CopyMessageOptions()
+    override val entitiesFieldName: String = "caption_entities"
 
     init {
         parameters["from_chat_id"] = fromChatId.encodeWith(DynamicLookupSerializer)

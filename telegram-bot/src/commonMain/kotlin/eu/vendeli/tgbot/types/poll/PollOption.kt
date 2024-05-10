@@ -1,5 +1,6 @@
-package eu.vendeli.tgbot.types
+package eu.vendeli.tgbot.types.poll
 
+import eu.vendeli.tgbot.types.MessageEntity
 import kotlinx.serialization.Serializable
 
 /**
@@ -13,4 +14,5 @@ import kotlinx.serialization.Serializable
 data class PollOption(
     val text: String,
     val voterCount: Int,
+    val textEntities: List<MessageEntity>? = null
 )

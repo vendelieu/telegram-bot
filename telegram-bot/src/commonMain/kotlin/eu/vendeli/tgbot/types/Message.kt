@@ -3,6 +3,7 @@ package eu.vendeli.tgbot.types
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.boost.ChatBoostAdded
 import eu.vendeli.tgbot.types.chat.Chat
+import eu.vendeli.tgbot.types.chat.ChatBackground
 import eu.vendeli.tgbot.types.chat.ChatShared
 import eu.vendeli.tgbot.types.forum.ForumTopicClosed
 import eu.vendeli.tgbot.types.forum.ForumTopicCreated
@@ -30,6 +31,7 @@ import eu.vendeli.tgbot.types.media.Voice
 import eu.vendeli.tgbot.types.passport.PassportData
 import eu.vendeli.tgbot.types.payment.Invoice
 import eu.vendeli.tgbot.types.payment.SuccessfulPayment
+import eu.vendeli.tgbot.types.poll.Poll
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
@@ -193,6 +195,7 @@ data class Message(
     val generalForumTopicHidden: GeneralForumTopicHidden? = null,
     val generalForumTopicUnhidden: GeneralForumTopicUnhidden? = null,
     val giveawayCreated: GiveawayCreated? = null,
+    val chatBackgroundSet: ChatBackground? = null,
     val giveaway: Giveaway? = null,
     val giveawayWinners: GiveawayWinners? = null,
     val giveawayCompleted: GiveawayCompleted? = null,

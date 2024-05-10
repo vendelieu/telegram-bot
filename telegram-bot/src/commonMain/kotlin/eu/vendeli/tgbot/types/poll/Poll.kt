@@ -1,5 +1,6 @@
-package eu.vendeli.tgbot.types
+package eu.vendeli.tgbot.types.poll
 
+import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
@@ -37,6 +38,7 @@ data class Poll(
     val id: String,
     val question: String,
     val options: List<PollOption>,
+    val questionEntities: List<MessageEntity>? = null,
     val totalVoterCount: Int,
     val isClosed: Boolean,
     val isAnonymous: Boolean,

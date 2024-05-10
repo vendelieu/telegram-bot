@@ -18,6 +18,7 @@ abstract class MediaAction<ReturnType> : Action<ReturnType>() {
      * Field name used as target id.
      */
     internal open val idRefField: String = "chat_id"
+    override val entitiesFieldName: String = "caption_entities"
 
     /**
      * Make a request for action.

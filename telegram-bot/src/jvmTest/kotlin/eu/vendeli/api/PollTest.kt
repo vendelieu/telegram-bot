@@ -3,8 +3,8 @@ package eu.vendeli.api
 import BotTestContext
 import eu.vendeli.tgbot.api.poll
 import eu.vendeli.tgbot.api.stopPoll
-import eu.vendeli.tgbot.types.PollOption
-import eu.vendeli.tgbot.types.PollType
+import eu.vendeli.tgbot.types.poll.PollOption
+import eu.vendeli.tgbot.types.poll.PollType
 import eu.vendeli.tgbot.types.internal.getOrNull
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.nulls.shouldNotBeNull

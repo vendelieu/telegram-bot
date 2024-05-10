@@ -13,6 +13,7 @@ import eu.vendeli.tgbot.types.media.Video
 import eu.vendeli.tgbot.types.media.VideoNote
 import eu.vendeli.tgbot.types.media.Voice
 import eu.vendeli.tgbot.types.payment.Invoice
+import eu.vendeli.tgbot.types.poll.Poll
 import kotlinx.serialization.Serializable
 
 /**

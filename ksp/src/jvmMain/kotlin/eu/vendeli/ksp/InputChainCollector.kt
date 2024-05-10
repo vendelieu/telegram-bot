@@ -1,5 +1,6 @@
 package eu.vendeli.ksp
 
+import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.squareup.kotlinpoet.CodeBlock
@@ -16,7 +17,7 @@ internal fun collectInputChains(
     }
     symbols.forEach { chain ->
         val links = chain.declarations.filter { i ->
-            i is KSClassDeclaration && i.superTypes.any { it.toTypeName() == chainLinkClass }
+            i is KSClassDeclaration && i.getAllSuperTypes().any { it.toTypeName() == chainLinkClass }
         }.toList().cast<List<KSClassDeclaration>>()
 
         links.asSequence().forEachIndexed { idx, c ->

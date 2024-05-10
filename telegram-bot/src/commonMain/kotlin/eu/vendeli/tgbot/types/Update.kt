@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.types.inline.ChosenInlineResult
 import eu.vendeli.tgbot.types.inline.InlineQuery
 import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
 import eu.vendeli.tgbot.types.payment.ShippingQuery
+import eu.vendeli.tgbot.types.poll.Poll
 import kotlinx.serialization.Serializable
 
 /**

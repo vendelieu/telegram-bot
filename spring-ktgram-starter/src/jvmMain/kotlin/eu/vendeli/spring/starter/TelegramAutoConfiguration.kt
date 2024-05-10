@@ -22,22 +22,23 @@ open class TelegramAutoConfiguration(
     private lateinit var cfg: List<BotConfiguration>
 
     @Bean
-    open fun botInstances(): List<TelegramBot> = config.bot.map { bot ->
-        TelegramBot(bot.token, bot.pckg) {
-            classManager = springClassManager
-            if (this@TelegramAutoConfiguration::cfg.isInitialized) {
-                cfg.find { bot.identifier == it.identifier }?.let { this.apply(it.applyCfg()) }
-            }
-        }.also { it.identifier = bot.identifier }.tryRunHandler()
-    }
-
     @OptIn(DelicateCoroutinesApi::class)
-    private fun TelegramBot.tryRunHandler(): TelegramBot {
-        if (config.autoStartPolling) GlobalScope.launch(Dispatchers.IO) {
-            launch(Dispatchers.IO) {
-                handleUpdates()
+    open fun botInstances(): List<TelegramBot> = config.bot.map { bot ->
+        val botCfg = if (this::cfg.isInitialized) cfg.find { bot.identifier == it.identifier } else null
+        val botInstance = TelegramBot(bot.token, bot.pckg) {
+            classManager = springClassManager
+            botCfg?.let { this.apply(it.applyCfg()) }
+        }
+        botInstance.identifier = bot.identifier
+
+        if (botCfg?.autostartLongPolling != false && config.autoStartPolling) {
+            GlobalScope.launch(Dispatchers.IO) {
+                launch(Dispatchers.IO) {
+                    botInstance.handleUpdates(botCfg?.allowedUpdates)
+                }
             }
         }
-        return this
+
+        return@map botInstance
     }
 }
