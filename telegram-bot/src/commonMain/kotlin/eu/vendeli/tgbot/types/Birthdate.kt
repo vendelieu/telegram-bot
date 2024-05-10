@@ -3,7 +3,7 @@ package eu.vendeli.tgbot.types
 import kotlinx.serialization.Serializable
 
 /**
-
+ * Describes the birthdate of a user.
  *
  * [Api reference](https://core.telegram.org/bots/api#birthdate)
  * @property day Day of the user's birth; 1-31

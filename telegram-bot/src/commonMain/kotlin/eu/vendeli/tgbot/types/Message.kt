@@ -104,6 +104,7 @@ import kotlinx.serialization.Serializable
  * @property passportData Optional. Telegram Passport data
  * @property proximityAlertTriggered Optional. Service message. A user in the chat triggered another user's proximity alert while sharing Live Location.
  * @property boostAdded Optional. Service message: user boosted the chat
+ * @property chatBackgroundSet Optional. Service message: chat background set
  * @property forumTopicCreated Optional. Service message: forum topic created
  * @property forumTopicEdited Optional. Service message: forum topic edited
  * @property forumTopicClosed Optional. Service message: forum topic closed

@@ -4,7 +4,7 @@ import eu.vendeli.tgbot.types.Location
 import kotlinx.serialization.Serializable
 
 /**
-
+ * Contains information about the location of a Telegram Business account.
  *
  * [Api reference](https://core.telegram.org/bots/api#businesslocation)
  * @property address Address of the business

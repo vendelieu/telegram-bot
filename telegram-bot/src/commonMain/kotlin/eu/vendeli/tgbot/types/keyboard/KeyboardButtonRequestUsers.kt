@@ -10,9 +10,9 @@ import kotlinx.serialization.Serializable
  * @property userIsBot Optional. Pass True to request bots, pass False to request regular users. If not specified, no additional restrictions are applied.
  * @property userIsPremium Optional. Pass True to request premium users, pass False to request non-premium users. If not specified, no additional restrictions are applied.
  * @property maxQuantity Optional. The maximum number of users to be selected; 1-10. Defaults to 1.
- * @property requestName Optional. Pass True to request the users' first and last name
- * @property requestUsername Optional. Pass True to request the users' username
- * @property requestPhoto Optional. Pass True to request the users' photo
+ * @property requestName Optional. Pass True to request the users' first and last names
+ * @property requestUsername Optional. Pass True to request the users' usernames
+ * @property requestPhoto Optional. Pass True to request the users' photos
  */
 @Serializable
 data class KeyboardButtonRequestUsers(

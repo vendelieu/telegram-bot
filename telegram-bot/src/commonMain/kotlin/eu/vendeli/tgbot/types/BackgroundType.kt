@@ -3,6 +3,16 @@ package eu.vendeli.tgbot.types
 import eu.vendeli.tgbot.types.media.Document
 import kotlinx.serialization.Serializable
 
+/**
+ * This object describes the type of a background. Currently, it can be one of
+ * - BackgroundTypeFill
+ * - BackgroundTypeWallpaper
+ * - BackgroundTypePattern
+ * - BackgroundTypeChatTheme
+ *
+ * [Api reference](https://core.telegram.org/bots/api#backgroundtype)
+ *
+ */
 @Serializable
 sealed class BackgroundType(val type: String) {
     @Serializable

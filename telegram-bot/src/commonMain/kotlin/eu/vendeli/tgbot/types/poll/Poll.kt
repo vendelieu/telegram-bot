@@ -21,6 +21,7 @@ enum class PollType {
  * [Api reference](https://core.telegram.org/bots/api#poll)
  * @property id Unique poll identifier
  * @property question Poll question, 1-300 characters
+ * @property questionEntities Optional. Special entities that appear in the question. Currently, only custom emoji entities are allowed in poll questions
  * @property options List of poll options
  * @property totalVoterCount Total number of users that voted in the poll
  * @property isClosed True, if the poll is closed
