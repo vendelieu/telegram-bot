@@ -59,7 +59,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ChatFullInfo(
     val id: Long,
-    val type: String,
+    val type: ChatType,
     val title: String? = null,
     val username: String? = null,
     val firstName: String? = null,

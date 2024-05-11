@@ -27,16 +27,8 @@ import kotlinx.serialization.json.JsonArray
 import kotlin.jvm.JvmName
 
 @Suppress("TooManyFunctions")
-interface EntitiesContextBuilder<Action : TgAction<*>> {
-    @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST", "unused")
-    private inline fun addEntity(entity: MessageEntity) {
-        this as TgAction<*>
-        val oldEntity = (parameters[entitiesFieldName] as? JsonArray)?.toMutableList() ?: mutableListOf()
-
-        parameters[entitiesFieldName] = oldEntity.also {
-            it.add(entity.encodeWith(MessageEntity.serializer()))
-        }.let { JsonArray(it) }
-    }
+interface EntitiesExtBuilder {
+    fun EntitiesExtBuilder.addEntity(entity: MessageEntity)
 
     operator fun String.minus(other: String): String = this + other
 
@@ -100,45 +92,56 @@ interface EntitiesContextBuilder<Action : TgAction<*>> {
     }
 
     // functions
+    fun EntitiesExtBuilder.mention(block: () -> String) = Mention to block()
+    fun EntitiesExtBuilder.hashtag(block: () -> String) = Hashtag to block()
+    fun EntitiesExtBuilder.cashtag(block: () -> String) = Cashtag to block()
+    fun EntitiesExtBuilder.botCommand(block: () -> String) = BotCommand to block()
+    fun EntitiesExtBuilder.url(block: () -> String) = Url to block()
+    fun EntitiesExtBuilder.email(block: () -> String) = Email to block()
+    fun EntitiesExtBuilder.phoneNumber(block: () -> String) = PhoneNumber to block()
+    fun EntitiesExtBuilder.bold(block: () -> String) = Bold to block()
+    fun EntitiesExtBuilder.italic(block: () -> String) = Italic to block()
+    fun EntitiesExtBuilder.underline(block: () -> String) = Underline to block()
+    fun EntitiesExtBuilder.strikethrough(block: () -> String) = Strikethrough to block()
+    fun EntitiesExtBuilder.spoiler(block: () -> String) = Spoiler to block()
+    fun EntitiesExtBuilder.blockquote(block: () -> String) = Blockquote to block()
+    fun EntitiesExtBuilder.code(block: () -> String) = Code to block()
 
-    fun EntitiesContextBuilder<Action>.mention(block: () -> String) = Mention to block()
-    fun EntitiesContextBuilder<Action>.hashtag(block: () -> String) = Hashtag to block()
-    fun EntitiesContextBuilder<Action>.cashtag(block: () -> String) = Cashtag to block()
-    fun EntitiesContextBuilder<Action>.botCommand(block: () -> String) = BotCommand to block()
-    fun EntitiesContextBuilder<Action>.url(block: () -> String) = Url to block()
-    fun EntitiesContextBuilder<Action>.email(block: () -> String) = Email to block()
-    fun EntitiesContextBuilder<Action>.phoneNumber(block: () -> String) = PhoneNumber to block()
-    fun EntitiesContextBuilder<Action>.bold(block: () -> String) = Bold to block()
-    fun EntitiesContextBuilder<Action>.italic(block: () -> String) = Italic to block()
-    fun EntitiesContextBuilder<Action>.underline(block: () -> String) = Underline to block()
-    fun EntitiesContextBuilder<Action>.strikethrough(block: () -> String) = Strikethrough to block()
-    fun EntitiesContextBuilder<Action>.spoiler(block: () -> String) = Spoiler to block()
-    fun EntitiesContextBuilder<Action>.blockquote(block: () -> String) = Blockquote to block()
-    fun EntitiesContextBuilder<Action>.code(block: () -> String) = Code to block()
-
-    fun EntitiesContextBuilder<Action>.customEmoji(
+    fun EntitiesExtBuilder.customEmoji(
         customEmojiId: String? = null,
         block: () -> String,
     ) = Triple(CustomEmoji, block(), customEmojiId)
 
     @Suppress("INAPPLICABLE_JVM_NAME")
     @JvmName("pre")
-    fun EntitiesContextBuilder<Action>.pre(
+    fun EntitiesExtBuilder.pre(
         language: String? = null,
         block: () -> String,
     ) = Triple(Pre, block(), language)
 
     @Suppress("INAPPLICABLE_JVM_NAME")
     @JvmName("textLink")
-    fun EntitiesContextBuilder<Action>.textLink(
+    fun EntitiesExtBuilder.textLink(
         url: String? = null,
         block: () -> String,
     ) = Triple(TextLink, block(), url)
 
     @Suppress("INAPPLICABLE_JVM_NAME")
     @JvmName("textMention")
-    fun EntitiesContextBuilder<Action>.textMention(
+    fun EntitiesExtBuilder.textMention(
         user: User? = null,
         block: () -> String,
     ) = Triple(TextMention, block(), user)
+}
+
+interface EntitiesCtxBuilder<Action : TgAction<*>> : EntitiesExtBuilder {
+    @Suppress("UNCHECKED_CAST", "unused")
+    override fun EntitiesExtBuilder.addEntity(entity: MessageEntity)  {
+        this as TgAction<*>
+        val oldEntity = (parameters[entitiesFieldName] as? JsonArray)?.toMutableList() ?: mutableListOf()
+
+        parameters[entitiesFieldName] = oldEntity.also {
+            it.add(entity.encodeWith(MessageEntity.serializer()))
+        }.let { JsonArray(it) }
+    }
 }

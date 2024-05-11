@@ -3,7 +3,7 @@ package eu.vendeli.tgbot.interfaces.features
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.utils.builders.EntitiesBuilder
-import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
+import eu.vendeli.tgbot.utils.builders.EntitiesCtxBuilder
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.toJsonElement
 
@@ -12,7 +12,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
  *
  * @param Action Action class itself.
  */
-interface CaptionFeature<Action> : Feature, EntitiesContextBuilder<Action>
+interface CaptionFeature<Action> : Feature, EntitiesCtxBuilder<Action>
     where Action : TgAction<*>, Action : CaptionFeature<Action> {
     @Suppress("UNCHECKED_CAST")
     private val thisAsReturn: Action
@@ -24,7 +24,7 @@ interface CaptionFeature<Action> : Feature, EntitiesContextBuilder<Action>
      * @param block
      * @return [Action]
      */
-    fun caption(block: EntitiesContextBuilder<Action>.() -> String): Action = thisAsReturn.apply {
+    fun caption(block: EntitiesCtxBuilder<Action>.() -> String): Action = thisAsReturn.apply {
         parameters["caption"] = block(thisAsReturn).toJsonElement()
     }
 

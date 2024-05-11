@@ -3,9 +3,10 @@ package eu.vendeli.api
 import BotTestContext
 import eu.vendeli.tgbot.api.poll
 import eu.vendeli.tgbot.api.stopPoll
+import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.types.poll.InputPollOption
 import eu.vendeli.tgbot.types.poll.PollOption
 import eu.vendeli.tgbot.types.poll.PollType
-import eu.vendeli.tgbot.types.internal.getOrNull
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -16,8 +17,8 @@ class PollTest : BotTestContext() {
     @Test
     suspend fun `poll method test`() {
         listOf(
-            poll("Test", "test1", "test2"),
-            poll("Test") { arrayOf("test1", "test2") },
+            poll("Test", InputPollOption("test1"), InputPollOption("test2")),
+            poll("Test") { addAll(InputPollOption("test1"), InputPollOption("test2")) },
         ).forEach { action ->
             val result = action.options {
                 type = PollType.Quiz
@@ -40,7 +41,7 @@ class PollTest : BotTestContext() {
 
     @Test
     suspend fun `close poll method test`() {
-        val poll = poll("Test", "test1", "test2").options {
+        val poll = poll("Test", InputPollOption("test1"), InputPollOption("test1")).options {
             type = PollType.Quiz
             openPeriod = 565.seconds
             correctOptionId = 1

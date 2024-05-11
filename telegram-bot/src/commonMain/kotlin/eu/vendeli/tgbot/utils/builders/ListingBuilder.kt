@@ -18,18 +18,11 @@ class ListingBuilder<T : Any> {
     }
 
     /**
-     * Shorcut method for backward compatability.
+     * Function to add multiple elements
      *
      * @param elements
      */
-    fun arrayOf(vararg elements: T) = list.addAll(elements)
-
-    /**
-     * Shorcut method for backward compatability.
-     *
-     * @param elements
-     */
-    fun listOf(vararg elements: T) = list.addAll(elements)
+    fun addAll(vararg elements: T) = list.addAll(elements)
 
     /**
      * Operator function to add elements by [unaryPlus] operator.
