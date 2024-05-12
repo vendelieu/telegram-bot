@@ -4,7 +4,7 @@ import eu.vendeli.tgbot.types.CallbackQuery
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.MessageReactionCountUpdated
 import eu.vendeli.tgbot.types.MessageReactionUpdated
-import eu.vendeli.tgbot.types.Poll
+import eu.vendeli.tgbot.types.poll.Poll
 import eu.vendeli.tgbot.types.PollAnswer
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User

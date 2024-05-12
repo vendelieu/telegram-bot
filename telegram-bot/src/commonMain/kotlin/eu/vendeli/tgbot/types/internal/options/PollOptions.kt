@@ -2,13 +2,14 @@ package eu.vendeli.tgbot.types.internal.options
 
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.ParseMode
-import eu.vendeli.tgbot.types.PollType
 import eu.vendeli.tgbot.types.ReplyParameters
+import eu.vendeli.tgbot.types.poll.PollType
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import kotlin.time.Duration
+
 @Serializable
 data class PollOptions(
     var isAnonymous: Boolean? = null,
@@ -23,6 +24,8 @@ data class PollOptions(
     @Serializable(InstantSerializer::class)
     var closeDate: Instant? = null,
     var isClosed: Boolean? = null,
+    var questionParseMode: ParseMode? = null,
+    var questionEntities: List<MessageEntity>? = null,
     override var disableNotification: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,
     override var protectContent: Boolean? = null,

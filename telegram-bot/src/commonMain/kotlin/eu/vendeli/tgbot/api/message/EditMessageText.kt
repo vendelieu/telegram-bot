@@ -8,14 +8,14 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.EditMessageOptions
-import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
+import eu.vendeli.tgbot.utils.builders.EntitiesCtxBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
 class EditMessageTextAction private constructor() :
     Action<Message>(),
     InlineActionExt<Message>,
-    EntitiesContextBuilder<EditMessageTextAction>,
+    EntitiesCtxBuilder<EditMessageTextAction>,
     OptionsFeature<EditMessageTextAction, EditMessageOptions>,
     MarkupFeature<EditMessageTextAction>,
     EntitiesFeature<EditMessageTextAction> {
@@ -32,7 +32,7 @@ class EditMessageTextAction private constructor() :
             parameters["text"] = text.toJsonElement()
         }
 
-        internal constructor(block: EntitiesContextBuilder<EditMessageTextAction>.() -> String) : this() {
+        internal constructor(block: EntitiesCtxBuilder<EditMessageTextAction>.() -> String) : this() {
             parameters["text"] = block(this).toJsonElement()
         }
     }
@@ -53,6 +53,6 @@ class EditMessageTextAction private constructor() :
  */
 inline fun editMessageText(messageId: Long, block: () -> String) = editText(messageId, block)
 
-fun editMessageText(block: EntitiesContextBuilder<EditMessageTextAction>.() -> String) = EditMessageTextAction(block)
+fun editMessageText(block: EntitiesCtxBuilder<EditMessageTextAction>.() -> String) = EditMessageTextAction(block)
 inline fun editText(messageId: Long, block: () -> String) = EditMessageTextAction(messageId, text = block())
-fun editText(block: EntitiesContextBuilder<EditMessageTextAction>.() -> String) = EditMessageTextAction(block)
+fun editText(block: EntitiesCtxBuilder<EditMessageTextAction>.() -> String) = EditMessageTextAction(block)

@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  * [Api reference](https://core.telegram.org/bots/api#businessmessagesdeleted)
  * @property businessConnectionId Unique identifier of the business connection
  * @property chat Information about a chat in the business account. The bot may not have access to the chat or the corresponding user.
- * @property messageIds A JSON-serialized list of identifiers of deleted messages in the chat of the business account
+ * @property messageIds The list of identifiers of deleted messages in the chat of the business account
  */
 @Serializable
 data class BusinessMessagesDeleted(

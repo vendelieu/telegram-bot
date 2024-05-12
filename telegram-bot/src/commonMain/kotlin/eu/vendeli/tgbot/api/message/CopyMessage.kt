@@ -27,6 +27,7 @@ class CopyMessageAction(
     override val method = TgMethod("copyMessage")
     override val returnType = getReturnType()
     override val options = CopyMessageOptions()
+    override val entitiesFieldName: String = "caption_entities"
 
     init {
         parameters["from_chat_id"] = fromChatId.encodeWith(DynamicLookupSerializer)
@@ -48,7 +49,7 @@ class CopyMessageAction(
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving
  * @param replyParameters Description of the message to reply to
- * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+ * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [MessageId]
  */
 @Suppress("NOTHING_TO_INLINE")

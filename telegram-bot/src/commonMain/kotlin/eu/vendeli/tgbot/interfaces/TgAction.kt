@@ -30,6 +30,11 @@ abstract class TgAction<ReturnType> : Request<ReturnType> {
     internal open val returnType by Delegates.notNull<KSerializer<ReturnType>>()
 
     /**
+     * Field where entities should be stored.
+     */
+    internal open val entitiesFieldName = "entities"
+
+    /**
      * Action data storage parameter.
      */
     internal val parameters: MutableMap<String, JsonElement> = mutableMapOf()

@@ -37,7 +37,7 @@ class PromoteChatMemberAction(userId: Long) :
  * @param canChangeInfo Pass True if the administrator can change chat title, photo and other settings
  * @param canInviteUsers Pass True if the administrator can invite new users to the chat
  * @param canPostStories Pass True if the administrator can post stories to the chat
- * @param canEditStories Pass True if the administrator can edit stories posted by other users
+ * @param canEditStories Pass True if the administrator can edit stories posted by other users, post stories to the chat page, pin chat stories, and access the chat's story archive
  * @param canDeleteStories Pass True if the administrator can delete stories posted by other users
  * @param canPostMessages Pass True if the administrator can post messages in the channel, or access channel statistics; for channels only
  * @param canEditMessages Pass True if the administrator can edit messages of other users and can pin messages; for channels only

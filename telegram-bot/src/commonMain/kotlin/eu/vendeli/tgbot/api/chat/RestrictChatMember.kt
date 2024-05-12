@@ -40,7 +40,6 @@ class RestrictChatMemberAction(
  * @param untilDate Date when restrictions will be lifted for the user; Unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, they are considered to be restricted forever
  * @returns [Boolean]
  */
-
 inline fun restrictChatMember(
     userId: Long,
     untilDate: Instant? = null,

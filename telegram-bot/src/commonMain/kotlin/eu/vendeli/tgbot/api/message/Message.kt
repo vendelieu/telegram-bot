@@ -10,7 +10,7 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.MessageOptions
-import eu.vendeli.tgbot.utils.builders.EntitiesContextBuilder
+import eu.vendeli.tgbot.utils.builders.EntitiesCtxBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
@@ -20,7 +20,7 @@ class SendMessageAction private constructor() :
     OptionsFeature<SendMessageAction, MessageOptions>,
     MarkupFeature<SendMessageAction>,
     EntitiesFeature<SendMessageAction>,
-    EntitiesContextBuilder<SendMessageAction> {
+    EntitiesCtxBuilder<SendMessageAction> {
         override val method = TgMethod("sendMessage")
         override val returnType = getReturnType()
         override val options = MessageOptions()
@@ -29,7 +29,7 @@ class SendMessageAction private constructor() :
             parameters["text"] = data.toJsonElement()
         }
 
-        internal constructor(block: EntitiesContextBuilder<SendMessageAction>.() -> String) : this() {
+        internal constructor(block: EntitiesCtxBuilder<SendMessageAction>.() -> String) : this() {
             parameters["text"] = block.invoke(this).toJsonElement()
         }
     }
@@ -48,13 +48,13 @@ class SendMessageAction private constructor() :
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving
  * @param replyParameters Description of the message to reply to
- * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
+ * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
 @Suppress("NOTHING_TO_INLINE")
 inline fun message(text: String) = SendMessageAction(text)
-fun message(block: EntitiesContextBuilder<SendMessageAction>.() -> String) = SendMessageAction(block)
+fun message(block: EntitiesCtxBuilder<SendMessageAction>.() -> String) = SendMessageAction(block)
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun sendMessage(text: String) = message(text)
-fun sendMessage(block: EntitiesContextBuilder<SendMessageAction>.() -> String) = message(block)
+fun sendMessage(block: EntitiesCtxBuilder<SendMessageAction>.() -> String) = message(block)

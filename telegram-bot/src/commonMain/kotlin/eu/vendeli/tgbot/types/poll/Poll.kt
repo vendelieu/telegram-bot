@@ -1,5 +1,6 @@
-package eu.vendeli.tgbot.types
+package eu.vendeli.tgbot.types.poll
 
+import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
@@ -20,6 +21,7 @@ enum class PollType {
  * [Api reference](https://core.telegram.org/bots/api#poll)
  * @property id Unique poll identifier
  * @property question Poll question, 1-300 characters
+ * @property questionEntities Optional. Special entities that appear in the question. Currently, only custom emoji entities are allowed in poll questions
  * @property options List of poll options
  * @property totalVoterCount Total number of users that voted in the poll
  * @property isClosed True, if the poll is closed
@@ -37,6 +39,7 @@ data class Poll(
     val id: String,
     val question: String,
     val options: List<PollOption>,
+    val questionEntities: List<MessageEntity>? = null,
     val totalVoterCount: Int,
     val isClosed: Boolean,
     val isAnonymous: Boolean,

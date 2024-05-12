@@ -15,6 +15,7 @@ import kotlinx.serialization.Serializable
  * @property oldChatMember Previous information about the chat member
  * @property newChatMember New information about the chat member
  * @property inviteLink Optional. Chat invite link, which was used by the user to join the chat; for joining by invite link events only.
+ * @property viaJoinRequest Optional. True, if the user joined the chat after sending a direct join request without using an invite link and being approved by an administrator
  * @property viaChatFolderInviteLink Optional. True, if the user joined the chat via a chat folder invite link
  */
 @Serializable
@@ -26,5 +27,6 @@ data class ChatMemberUpdated(
     val oldChatMember: ChatMember,
     val newChatMember: ChatMember,
     val inviteLink: ChatInviteLink? = null,
+    val viaJoinRequest: Boolean? = null,
     val viaChatFolderInviteLink: Boolean? = null,
 )

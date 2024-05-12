@@ -1,5 +1,5 @@
 [versions]
-ktor = "2.3.10"
+ktor = "2.3.11"
 logging = "2.0.3"
 logback = "1.5.6"
 
@@ -7,20 +7,20 @@ datetime = "0.5.0"
 serialization = "1.6.3"
 stately = "2.0.7"
 
-kotlin = "1.9.23"
-coroutines = "1.8.0"
+kotlin = "1.9.24"
+coroutines = "1.8.1"
 dokka = "1.9.20"
 kotlinter = "4.3.0"
 deteKT = "1.23.6"
 
-kotest = "5.8.1"
+kotest = "5.9.0"
 mockk = "1.13.10"
 kover = "0.7.6"
 krypto = "4.0.10"
-sslcontext = "8.3.4"
+sslcontext = "8.3.5"
 spring = "3.2.5"
 
-ksp = "1.9.23-1.0.20"
+ksp = "1.9.24-1.0.20"
 poet = "1.16.0"
 
 binvalid = "0.14.0"

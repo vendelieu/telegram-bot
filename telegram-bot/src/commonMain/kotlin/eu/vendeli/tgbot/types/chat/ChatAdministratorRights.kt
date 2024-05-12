@@ -15,7 +15,7 @@ import kotlinx.serialization.Serializable
  * @property canChangeInfo True, if the user is allowed to change the chat title, photo and other settings
  * @property canInviteUsers True, if the user is allowed to invite new users to the chat
  * @property canPostStories True, if the administrator can post stories to the chat
- * @property canEditStories True, if the administrator can edit stories posted by other users
+ * @property canEditStories True, if the administrator can edit stories posted by other users, post stories to the chat page, pin chat stories, and access the chat's story archive
  * @property canDeleteStories True, if the administrator can delete stories posted by other users
  * @property canPostMessages Optional. True, if the administrator can post messages in the channel, or access channel statistics; for channels only
  * @property canEditMessages Optional. True, if the administrator can edit messages of other users and can pin messages; for channels only

@@ -139,6 +139,7 @@ import eu.vendeli.tgbot.types.media.StickerFormat
 import eu.vendeli.tgbot.types.passport.PassportElementError
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 import eu.vendeli.tgbot.types.payment.ShippingOption
+import eu.vendeli.tgbot.types.poll.InputPollOption
 import kotlinx.datetime.Instant
 
 @Suppress("NOTHING_TO_INLINE")
@@ -443,4 +444,4 @@ inline fun TelegramBot.setMyNameSc(name: String? = null, languageCode: String? =
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.getUserProfilePhotosSc(userId: Long, offset: Int? = null, limit: Int? = null) = getUserProfilePhotos(userId,  offset,  limit)
 @Suppress("NOTHING_TO_INLINE")
-inline fun TelegramBot.pollSc(question: String, options: List<String>) = poll(question,  options)
+inline fun TelegramBot.pollSc(question: String, options: List<InputPollOption>) = poll(question,  options)
