@@ -10,7 +10,7 @@ import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PollOptions
 import eu.vendeli.tgbot.types.poll.InputPollOption
-import eu.vendeli.tgbot.utils.builders.ListingBuilder
+import eu.vendeli.tgbot.utils.builders.PollOptionsBuilder
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
@@ -62,9 +62,9 @@ class SendPollAction(question: String, pollOptions: List<InputPollOption>) :
 inline fun poll(question: String, options: List<InputPollOption>) = SendPollAction(question, options)
 fun poll(
     question: String,
-    options: ListingBuilder<InputPollOption>.() -> Unit,
-) = poll(question, ListingBuilder.build(options))
+    options: PollOptionsBuilder.() -> Unit,
+) = poll(question, PollOptionsBuilder.build(options))
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun poll(question: String, vararg options: InputPollOption) = poll(question, options.toList())
-fun sendPoll(question: String, options: ListingBuilder<InputPollOption>.() -> Unit) = poll(question, options)
+fun sendPoll(question: String, options: PollOptionsBuilder.() -> Unit) = poll(question, options)

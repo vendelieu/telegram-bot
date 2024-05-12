@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types.poll
 
 import eu.vendeli.tgbot.types.MessageEntity
+import eu.vendeli.tgbot.types.ParseMode
 import kotlinx.serialization.Serializable
 
 /**
@@ -14,6 +15,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class InputPollOption(
     val text: String,
-    val textParseMode: String? = null,
+    val textParseMode: ParseMode? = null,
     val textEntities: List<MessageEntity>? = null,
 )
