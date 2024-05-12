@@ -136,7 +136,7 @@ interface EntitiesExtBuilder {
 
 interface EntitiesCtxBuilder<Action : TgAction<*>> : EntitiesExtBuilder {
     @Suppress("UNCHECKED_CAST", "unused")
-    override fun EntitiesExtBuilder.addEntity(entity: MessageEntity)  {
+    override fun EntitiesExtBuilder.addEntity(entity: MessageEntity) {
         this as TgAction<*>
         val oldEntity = (parameters[entitiesFieldName] as? JsonArray)?.toMutableList() ?: mutableListOf()
 

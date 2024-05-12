@@ -93,7 +93,6 @@ class PollTest : BotTestContext() {
                     ),
                 ),
             )
-
         }
     }
 }
