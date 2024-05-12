@@ -30,9 +30,6 @@ dependencies {
 }
 ```
 
-Or if you use a different builder, look in
-the [installation](https://github.com/vendelieu/telegram-bot/wiki/Installation) article.
-
 # Samples
 
 - [Template repository](https://github.com/vendelieu/telegram-bot_template) - draft example.
