@@ -1,5 +1,13 @@
 # Telegram-bot (KtGram) changelog
 
+## 5.4.0
+
+* Covered 7.3 telegram api.
+* Added ability to use own implementation of `ChainLink` in `InputChain`.
+* Improved Spring starter configuration.
+* Removed old methods of `ListingBuilder` for multiple elements, now use `addAll()`.
+* Added new builder for `sendPoll`/`poll` options.
+
 ### 5.3.2
 
 * Fix `EntitiesContextualBuilder` bug.

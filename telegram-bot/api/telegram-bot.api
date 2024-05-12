@@ -1130,31 +1130,32 @@ public final class eu/vendeli/tgbot/api/media/Photo_jvmKt {
 
 public final class eu/vendeli/tgbot/api/media/SendAnimationAction : eu/vendeli/tgbot/interfaces/MediaAction, eu/vendeli/tgbot/interfaces/BusinessActionExt, eu/vendeli/tgbot/interfaces/features/CaptionFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
 	public fun <init> (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
-	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendAnimationAction;
 	public synthetic fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/api/media/SendAnimationAction;
 	public synthetic fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendAnimationAction;
 	public synthetic fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendAnimationAction;
 	public synthetic fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public synthetic fun getOptions$telegram_bot ()Leu/vendeli/tgbot/types/internal/options/Options;
-	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendAnimationAction;
 	public synthetic fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/api/media/SendAnimationAction;
 	public synthetic fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/media/SendAnimationAction;
 	public synthetic fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun minus (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
@@ -1162,49 +1163,50 @@ public final class eu/vendeli/tgbot/api/media/SendAnimationAction : eu/vendeli/t
 	public fun minus (Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
 	public fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendAnimationAction;
 	public synthetic fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
 	public fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendAnimationAction;
 	public synthetic fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendAnimationAction;
 	public synthetic fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun sendBusiness (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sendBusinessAsync (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 }
 
 public final class eu/vendeli/tgbot/api/media/SendAudioAction : eu/vendeli/tgbot/interfaces/MediaAction, eu/vendeli/tgbot/interfaces/BusinessActionExt, eu/vendeli/tgbot/interfaces/features/CaptionFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
 	public fun <init> (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
-	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendAudioAction;
 	public synthetic fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/api/media/SendAudioAction;
 	public synthetic fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendAudioAction;
 	public synthetic fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendAudioAction;
 	public synthetic fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public synthetic fun getOptions$telegram_bot ()Leu/vendeli/tgbot/types/internal/options/Options;
-	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendAudioAction;
 	public synthetic fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/api/media/SendAudioAction;
 	public synthetic fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/media/SendAudioAction;
 	public synthetic fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun minus (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
@@ -1212,49 +1214,50 @@ public final class eu/vendeli/tgbot/api/media/SendAudioAction : eu/vendeli/tgbot
 	public fun minus (Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
 	public fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendAudioAction;
 	public synthetic fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
 	public fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendAudioAction;
 	public synthetic fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendAudioAction;
 	public synthetic fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun sendBusiness (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sendBusinessAsync (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 }
 
 public final class eu/vendeli/tgbot/api/media/SendDocumentAction : eu/vendeli/tgbot/interfaces/MediaAction, eu/vendeli/tgbot/interfaces/BusinessActionExt, eu/vendeli/tgbot/interfaces/features/CaptionFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
 	public fun <init> (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
-	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendDocumentAction;
 	public synthetic fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/api/media/SendDocumentAction;
 	public synthetic fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendDocumentAction;
 	public synthetic fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendDocumentAction;
 	public synthetic fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public synthetic fun getOptions$telegram_bot ()Leu/vendeli/tgbot/types/internal/options/Options;
-	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendDocumentAction;
 	public synthetic fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/api/media/SendDocumentAction;
 	public synthetic fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/media/SendDocumentAction;
 	public synthetic fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun minus (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
@@ -1262,20 +1265,20 @@ public final class eu/vendeli/tgbot/api/media/SendDocumentAction : eu/vendeli/tg
 	public fun minus (Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
 	public fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendDocumentAction;
 	public synthetic fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
 	public fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendDocumentAction;
 	public synthetic fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendDocumentAction;
 	public synthetic fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun sendBusiness (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sendBusinessAsync (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 }
 
 public final class eu/vendeli/tgbot/api/media/SendMediaGroupAction : eu/vendeli/tgbot/interfaces/MediaAction, eu/vendeli/tgbot/interfaces/BusinessActionExt, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
@@ -1289,31 +1292,32 @@ public final class eu/vendeli/tgbot/api/media/SendMediaGroupAction : eu/vendeli/
 
 public final class eu/vendeli/tgbot/api/media/SendPhotoAction : eu/vendeli/tgbot/interfaces/MediaAction, eu/vendeli/tgbot/interfaces/BusinessActionExt, eu/vendeli/tgbot/interfaces/features/CaptionFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
 	public fun <init> (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
-	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendPhotoAction;
 	public synthetic fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/api/media/SendPhotoAction;
 	public synthetic fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendPhotoAction;
 	public synthetic fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendPhotoAction;
 	public synthetic fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public synthetic fun getOptions$telegram_bot ()Leu/vendeli/tgbot/types/internal/options/Options;
-	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendPhotoAction;
 	public synthetic fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/api/media/SendPhotoAction;
 	public synthetic fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/media/SendPhotoAction;
 	public synthetic fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun minus (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
@@ -1321,20 +1325,20 @@ public final class eu/vendeli/tgbot/api/media/SendPhotoAction : eu/vendeli/tgbot
 	public fun minus (Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
 	public fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendPhotoAction;
 	public synthetic fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
 	public fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendPhotoAction;
 	public synthetic fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendPhotoAction;
 	public synthetic fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun sendBusiness (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sendBusinessAsync (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 }
 
 public final class eu/vendeli/tgbot/api/media/SendStickerAction : eu/vendeli/tgbot/interfaces/MediaAction, eu/vendeli/tgbot/interfaces/BusinessActionExt, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
@@ -1360,31 +1364,32 @@ public final class eu/vendeli/tgbot/api/media/SendStickerAction : eu/vendeli/tgb
 
 public final class eu/vendeli/tgbot/api/media/SendVideoAction : eu/vendeli/tgbot/interfaces/MediaAction, eu/vendeli/tgbot/interfaces/BusinessActionExt, eu/vendeli/tgbot/interfaces/features/CaptionFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
 	public fun <init> (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
-	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendVideoAction;
 	public synthetic fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/api/media/SendVideoAction;
 	public synthetic fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendVideoAction;
 	public synthetic fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendVideoAction;
 	public synthetic fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public synthetic fun getOptions$telegram_bot ()Leu/vendeli/tgbot/types/internal/options/Options;
-	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendVideoAction;
 	public synthetic fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/api/media/SendVideoAction;
 	public synthetic fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/media/SendVideoAction;
 	public synthetic fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun minus (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
@@ -1392,20 +1397,20 @@ public final class eu/vendeli/tgbot/api/media/SendVideoAction : eu/vendeli/tgbot
 	public fun minus (Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
 	public fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendVideoAction;
 	public synthetic fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
 	public fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendVideoAction;
 	public synthetic fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendVideoAction;
 	public synthetic fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun sendBusiness (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sendBusinessAsync (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 }
 
 public final class eu/vendeli/tgbot/api/media/SendVideoNoteAction : eu/vendeli/tgbot/interfaces/MediaAction, eu/vendeli/tgbot/interfaces/BusinessActionExt, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
@@ -1431,31 +1436,32 @@ public final class eu/vendeli/tgbot/api/media/SendVideoNoteAction : eu/vendeli/t
 
 public final class eu/vendeli/tgbot/api/media/SendVoiceAction : eu/vendeli/tgbot/interfaces/MediaAction, eu/vendeli/tgbot/interfaces/BusinessActionExt, eu/vendeli/tgbot/interfaces/features/CaptionFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
 	public fun <init> (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
-	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendVoiceAction;
 	public synthetic fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/api/media/SendVoiceAction;
 	public synthetic fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendVoiceAction;
 	public synthetic fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendVoiceAction;
 	public synthetic fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public synthetic fun getOptions$telegram_bot ()Leu/vendeli/tgbot/types/internal/options/Options;
-	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendVoiceAction;
 	public synthetic fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/api/media/SendVoiceAction;
 	public synthetic fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/media/SendVoiceAction;
 	public synthetic fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun minus (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
@@ -1463,20 +1469,20 @@ public final class eu/vendeli/tgbot/api/media/SendVoiceAction : eu/vendeli/tgbot
 	public fun minus (Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
 	public fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendVoiceAction;
 	public synthetic fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
 	public fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendVoiceAction;
 	public synthetic fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendVoiceAction;
 	public synthetic fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun sendBusiness (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sendBusinessAsync (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 }
 
 public final class eu/vendeli/tgbot/api/media/StickerKt {
@@ -1533,31 +1539,32 @@ public final class eu/vendeli/tgbot/api/media/Voice_jvmKt {
 
 public final class eu/vendeli/tgbot/api/message/CopyMessageAction : eu/vendeli/tgbot/interfaces/Action, eu/vendeli/tgbot/interfaces/features/CaptionFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
 	public fun <init> (Leu/vendeli/tgbot/types/internal/Identifier;J)V
-	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/CopyMessageAction;
 	public synthetic fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/api/message/CopyMessageAction;
 	public synthetic fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/CopyMessageAction;
 	public synthetic fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/message/CopyMessageAction;
 	public synthetic fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public synthetic fun getOptions$telegram_bot ()Leu/vendeli/tgbot/types/internal/options/Options;
-	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/CopyMessageAction;
 	public synthetic fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/api/message/CopyMessageAction;
 	public synthetic fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/message/CopyMessageAction;
 	public synthetic fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun minus (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
@@ -1565,18 +1572,18 @@ public final class eu/vendeli/tgbot/api/message/CopyMessageAction : eu/vendeli/t
 	public fun minus (Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
 	public fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/CopyMessageAction;
 	public synthetic fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
 	public fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/CopyMessageAction;
 	public synthetic fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/message/CopyMessageAction;
 	public synthetic fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 }
 
 public final class eu/vendeli/tgbot/api/message/CopyMessageKt {
@@ -1622,31 +1629,32 @@ public final class eu/vendeli/tgbot/api/message/DeleteMessagesKt {
 public final class eu/vendeli/tgbot/api/message/EditMessageCaptionAction : eu/vendeli/tgbot/interfaces/Action, eu/vendeli/tgbot/interfaces/InlineActionExt, eu/vendeli/tgbot/interfaces/features/CaptionFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
 	public fun <init> ()V
 	public fun <init> (J)V
-	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/EditMessageCaptionAction;
 	public synthetic fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/api/message/EditMessageCaptionAction;
 	public synthetic fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/EditMessageCaptionAction;
 	public synthetic fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/message/EditMessageCaptionAction;
 	public synthetic fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public synthetic fun getOptions$telegram_bot ()Leu/vendeli/tgbot/types/internal/options/Options;
-	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/EditMessageCaptionAction;
 	public synthetic fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/api/message/EditMessageCaptionAction;
 	public synthetic fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/message/EditMessageCaptionAction;
 	public synthetic fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun minus (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
@@ -1654,20 +1662,20 @@ public final class eu/vendeli/tgbot/api/message/EditMessageCaptionAction : eu/ve
 	public fun minus (Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
 	public fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/EditMessageCaptionAction;
 	public synthetic fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
 	public fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/EditMessageCaptionAction;
 	public synthetic fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/message/EditMessageCaptionAction;
 	public synthetic fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun sendInline (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sendInlineAsync (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 }
 
 public final class eu/vendeli/tgbot/api/message/EditMessageCaptionKt {
@@ -1756,16 +1764,17 @@ public final class eu/vendeli/tgbot/api/message/EditMessageReplyMarkupKt {
 	public static final fun editMessageReplyMarkup (J)Leu/vendeli/tgbot/api/message/EditMessageReplyMarkupAction;
 }
 
-public final class eu/vendeli/tgbot/api/message/EditMessageTextAction : eu/vendeli/tgbot/interfaces/Action, eu/vendeli/tgbot/interfaces/InlineActionExt, eu/vendeli/tgbot/interfaces/features/EntitiesFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature, eu/vendeli/tgbot/utils/builders/EntitiesContextBuilder {
+public final class eu/vendeli/tgbot/api/message/EditMessageTextAction : eu/vendeli/tgbot/interfaces/Action, eu/vendeli/tgbot/interfaces/InlineActionExt, eu/vendeli/tgbot/interfaces/features/EntitiesFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature, eu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder {
 	public fun <init> (JLjava/lang/String;)V
 	public fun <init> (Ljava/lang/String;)V
-	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun entities (Ljava/util/List;)Leu/vendeli/tgbot/api/message/EditMessageTextAction;
 	public synthetic fun entities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun entities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/EditMessageTextAction;
@@ -1773,15 +1782,15 @@ public final class eu/vendeli/tgbot/api/message/EditMessageTextAction : eu/vende
 	public fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/message/EditMessageTextAction;
 	public synthetic fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public synthetic fun getOptions$telegram_bot ()Leu/vendeli/tgbot/types/internal/options/Options;
-	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/EditMessageTextAction;
 	public synthetic fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/api/message/EditMessageTextAction;
 	public synthetic fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/message/EditMessageTextAction;
 	public synthetic fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun minus (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
@@ -1789,20 +1798,20 @@ public final class eu/vendeli/tgbot/api/message/EditMessageTextAction : eu/vende
 	public fun minus (Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
 	public fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/EditMessageTextAction;
 	public synthetic fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
 	public fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/EditMessageTextAction;
 	public synthetic fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/message/EditMessageTextAction;
 	public synthetic fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun sendInline (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sendInlineAsync (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 }
 
 public final class eu/vendeli/tgbot/api/message/EditMessageTextKt {
@@ -1849,15 +1858,16 @@ public final class eu/vendeli/tgbot/api/message/MessageKt {
 	public static final fun sendMessage (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/SendMessageAction;
 }
 
-public final class eu/vendeli/tgbot/api/message/SendMessageAction : eu/vendeli/tgbot/interfaces/Action, eu/vendeli/tgbot/interfaces/BusinessActionExt, eu/vendeli/tgbot/interfaces/features/EntitiesFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature, eu/vendeli/tgbot/utils/builders/EntitiesContextBuilder {
+public final class eu/vendeli/tgbot/api/message/SendMessageAction : eu/vendeli/tgbot/interfaces/Action, eu/vendeli/tgbot/interfaces/BusinessActionExt, eu/vendeli/tgbot/interfaces/features/EntitiesFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature, eu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder {
 	public fun <init> (Ljava/lang/String;)V
-	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun entities (Ljava/util/List;)Leu/vendeli/tgbot/api/message/SendMessageAction;
 	public synthetic fun entities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun entities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/SendMessageAction;
@@ -1865,15 +1875,15 @@ public final class eu/vendeli/tgbot/api/message/SendMessageAction : eu/vendeli/t
 	public fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/message/SendMessageAction;
 	public synthetic fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public synthetic fun getOptions$telegram_bot ()Leu/vendeli/tgbot/types/internal/options/Options;
-	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/SendMessageAction;
 	public synthetic fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/api/message/SendMessageAction;
 	public synthetic fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/message/SendMessageAction;
 	public synthetic fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun minus (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
 	public fun minus (Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
@@ -1881,20 +1891,20 @@ public final class eu/vendeli/tgbot/api/message/SendMessageAction : eu/vendeli/t
 	public fun minus (Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
 	public fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/SendMessageAction;
 	public synthetic fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
 	public fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/SendMessageAction;
 	public synthetic fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/message/SendMessageAction;
 	public synthetic fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun sendBusiness (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sendBusinessAsync (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 }
 
 public final class eu/vendeli/tgbot/api/stickerset/AddStickerToSetAction : eu/vendeli/tgbot/interfaces/MediaAction {
@@ -2312,39 +2322,40 @@ public final class eu/vendeli/tgbot/interfaces/UserData$DefaultImpls {
 	public static fun setAsync (Leu/vendeli/tgbot/interfaces/UserData;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public abstract interface class eu/vendeli/tgbot/interfaces/features/CaptionFeature : eu/vendeli/tgbot/interfaces/features/Feature, eu/vendeli/tgbot/utils/builders/EntitiesContextBuilder {
+public abstract interface class eu/vendeli/tgbot/interfaces/features/CaptionFeature : eu/vendeli/tgbot/interfaces/features/Feature, eu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder {
 	public abstract fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public abstract fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public abstract fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 }
 
 public final class eu/vendeli/tgbot/interfaces/features/CaptionFeature$DefaultImpls {
-	public static fun blockquote (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun bold (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun botCommand (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun addEntity (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+	public static fun blockquote (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun bold (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun botCommand (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public static fun caption (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public static fun captionEntities (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Ljava/util/List;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public static fun captionEntities (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
-	public static fun cashtag (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun code (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun customEmoji (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public static fun email (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun hashtag (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun italic (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun mention (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun cashtag (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun code (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun customEmoji (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public static fun email (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun hashtag (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun italic (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun mention (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public static fun minus (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public static fun minus (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
 	public static fun minus (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
 	public static fun minus (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Lkotlin/Pair;Ljava/lang/String;)Ljava/lang/String;
 	public static fun minus (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
-	public static fun phoneNumber (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun pre (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public static fun spoiler (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun strikethrough (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun textLink (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public static fun textMention (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public static fun underline (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun url (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun phoneNumber (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun pre (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public static fun spoiler (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun strikethrough (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun textLink (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public static fun textMention (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public static fun underline (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun url (Leu/vendeli/tgbot/interfaces/features/CaptionFeature;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/features/EntitiesFeature : eu/vendeli/tgbot/interfaces/features/Feature {
@@ -5417,8 +5428,8 @@ public final class eu/vendeli/tgbot/types/chat/ChatBackground$Companion {
 
 public final class eu/vendeli/tgbot/types/chat/ChatFullInfo {
 	public static final field Companion Leu/vendeli/tgbot/types/chat/ChatFullInfo$Companion;
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;)V
-	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (JLeu/vendeli/tgbot/types/chat/ChatType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;)V
+	public synthetic fun <init> (JLeu/vendeli/tgbot/types/chat/ChatType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()J
 	public final fun component10 ()Leu/vendeli/tgbot/types/chat/ChatPhoto;
 	public final fun component11 ()Ljava/util/List;
@@ -5430,7 +5441,7 @@ public final class eu/vendeli/tgbot/types/chat/ChatFullInfo {
 	public final fun component17 ()Ljava/util/List;
 	public final fun component18 ()Ljava/lang/String;
 	public final fun component19 ()Ljava/lang/Integer;
-	public final fun component2 ()Ljava/lang/String;
+	public final fun component2 ()Leu/vendeli/tgbot/types/chat/ChatType;
 	public final fun component20 ()Ljava/lang/String;
 	public final fun component21 ()Ljava/lang/String;
 	public final fun component22 ()Ljava/lang/Integer;
@@ -5462,8 +5473,8 @@ public final class eu/vendeli/tgbot/types/chat/ChatFullInfo {
 	public final fun component7 ()Ljava/lang/Boolean;
 	public final fun component8 ()Ljava/lang/Integer;
 	public final fun component9 ()Ljava/lang/Integer;
-	public final fun copy (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;)Leu/vendeli/tgbot/types/chat/ChatFullInfo;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/chat/ChatFullInfo;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;IILjava/lang/Object;)Leu/vendeli/tgbot/types/chat/ChatFullInfo;
+	public final fun copy (JLeu/vendeli/tgbot/types/chat/ChatType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;)Leu/vendeli/tgbot/types/chat/ChatFullInfo;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/chat/ChatFullInfo;JLeu/vendeli/tgbot/types/chat/ChatType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;IILjava/lang/Object;)Leu/vendeli/tgbot/types/chat/ChatFullInfo;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAccentColorId ()Ljava/lang/Integer;
 	public final fun getActiveUsernames ()Ljava/util/List;
@@ -5504,7 +5515,7 @@ public final class eu/vendeli/tgbot/types/chat/ChatFullInfo {
 	public final fun getSlowModeDelay ()Ljava/lang/Integer;
 	public final fun getStickerSetName ()Ljava/lang/String;
 	public final fun getTitle ()Ljava/lang/String;
-	public final fun getType ()Ljava/lang/String;
+	public final fun getType ()Leu/vendeli/tgbot/types/chat/ChatType;
 	public final fun getUnrestrictBoostCount ()Ljava/lang/Integer;
 	public final fun getUsername ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -12096,17 +12107,17 @@ public final class eu/vendeli/tgbot/types/payment/SuccessfulPayment$Companion {
 
 public final class eu/vendeli/tgbot/types/poll/InputPollOption {
 	public static final field Companion Leu/vendeli/tgbot/types/poll/InputPollOption$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
+	public final fun component2 ()Leu/vendeli/tgbot/types/ParseMode;
 	public final fun component3 ()Ljava/util/List;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Leu/vendeli/tgbot/types/poll/InputPollOption;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/poll/InputPollOption;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Leu/vendeli/tgbot/types/poll/InputPollOption;
+	public final fun copy (Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;)Leu/vendeli/tgbot/types/poll/InputPollOption;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/poll/InputPollOption;Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;ILjava/lang/Object;)Leu/vendeli/tgbot/types/poll/InputPollOption;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getText ()Ljava/lang/String;
 	public final fun getTextEntities ()Ljava/util/List;
-	public final fun getTextParseMode ()Ljava/lang/String;
+	public final fun getTextParseMode ()Leu/vendeli/tgbot/types/ParseMode;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -12307,60 +12318,92 @@ public final class eu/vendeli/tgbot/utils/builders/EntitiesBuilder$EntityData {
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class eu/vendeli/tgbot/utils/builders/EntitiesContextBuilder {
-	public abstract fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public abstract fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public abstract fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public abstract fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public abstract fun code (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public abstract fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public abstract fun email (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public abstract fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public abstract fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public abstract fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+public abstract interface class eu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder : eu/vendeli/tgbot/utils/builders/EntitiesExtBuilder {
+	public abstract fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+}
+
+public final class eu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder$DefaultImpls {
+	public static fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+	public static fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun code (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public static fun email (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
+	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
+	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Lkotlin/Pair;Ljava/lang/String;)Ljava/lang/String;
+	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
+	public static fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public static fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public static fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public static fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun url (Leu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+}
+
+public abstract interface class eu/vendeli/tgbot/utils/builders/EntitiesExtBuilder {
+	public abstract fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+	public abstract fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public abstract fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public abstract fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public abstract fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public abstract fun code (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public abstract fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public abstract fun email (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public abstract fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public abstract fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public abstract fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public abstract fun minus (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public abstract fun minus (Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
 	public abstract fun minus (Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
 	public abstract fun minus (Lkotlin/Pair;Ljava/lang/String;)Ljava/lang/String;
 	public abstract fun minus (Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
-	public abstract fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public abstract fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public abstract fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public abstract fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public abstract fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public abstract fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public abstract fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public abstract fun url (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public abstract fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public abstract fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public abstract fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public abstract fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public abstract fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public abstract fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public abstract fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public abstract fun url (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 }
 
-public final class eu/vendeli/tgbot/utils/builders/EntitiesContextBuilder$DefaultImpls {
-	public static fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun code (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public static synthetic fun customEmoji$default (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Lkotlin/Triple;
-	public static fun email (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
-	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
-	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/Pair;Ljava/lang/String;)Ljava/lang/String;
-	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
-	public static fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public static synthetic fun pre$default (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Lkotlin/Triple;
-	public static fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public static synthetic fun textLink$default (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Lkotlin/Triple;
-	public static fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
-	public static synthetic fun textMention$default (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Lkotlin/Triple;
-	public static fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
-	public static fun url (Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesContextBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+public final class eu/vendeli/tgbot/utils/builders/EntitiesExtBuilder$DefaultImpls {
+	public static fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun code (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public static synthetic fun customEmoji$default (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Lkotlin/Triple;
+	public static fun email (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
+	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
+	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/Pair;Ljava/lang/String;)Ljava/lang/String;
+	public static fun minus (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
+	public static fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public static synthetic fun pre$default (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Lkotlin/Triple;
+	public static fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public static synthetic fun textLink$default (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Lkotlin/Triple;
+	public static fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public static synthetic fun textMention$default (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Lkotlin/Triple;
+	public static fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public static fun url (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 }
 
 public final class eu/vendeli/tgbot/utils/builders/InlineKeyboardMarkupBuilder : eu/vendeli/tgbot/interfaces/KeyboardBuilder {
@@ -12390,9 +12433,16 @@ public final class eu/vendeli/tgbot/utils/builders/InlineKeyboardMarkupBuilderKt
 public final class eu/vendeli/tgbot/utils/builders/ListingBuilder {
 	public fun <init> ()V
 	public final fun add (Ljava/lang/Object;)V
-	public final fun arrayOf ([Ljava/lang/Object;)Z
-	public final fun listOf ([Ljava/lang/Object;)Z
+	public final fun addAll ([Ljava/lang/Object;)Z
 	public final fun unaryPlus (Ljava/lang/Object;)V
+}
+
+public final class eu/vendeli/tgbot/utils/builders/PollOptionsBuilder {
+	public fun <init> ()V
+	public final fun customEmoji (Ljava/lang/String;Ljava/lang/String;I)Ljava/lang/String;
+	public static synthetic fun customEmoji$default (Leu/vendeli/tgbot/utils/builders/PollOptionsBuilder;Ljava/lang/String;Ljava/lang/String;IILjava/lang/Object;)Ljava/lang/String;
+	public final fun option (Leu/vendeli/tgbot/types/ParseMode;Lkotlin/jvm/functions/Function0;)V
+	public static synthetic fun option$default (Leu/vendeli/tgbot/utils/builders/PollOptionsBuilder;Leu/vendeli/tgbot/types/ParseMode;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
 }
 
 public final class eu/vendeli/tgbot/utils/builders/ReplyKeyboardMarkupBuilder : eu/vendeli/tgbot/interfaces/KeyboardBuilder {
