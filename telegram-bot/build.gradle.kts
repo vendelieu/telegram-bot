@@ -1,3 +1,5 @@
+
+import kotlinx.kover.gradle.plugin.dsl.KoverReportExtension
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import java.time.LocalDate
@@ -134,7 +136,7 @@ apiValidation {
     }
 }
 
-koverReport {
+extensions.configure<KoverReportExtension>("koverReport") {
     defaults {
         xml {
             filters {
