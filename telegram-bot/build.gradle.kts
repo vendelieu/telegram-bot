@@ -1,5 +1,3 @@
-
-import kotlinx.kover.gradle.plugin.dsl.KoverReportExtension
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import java.time.LocalDate
@@ -136,23 +134,21 @@ apiValidation {
     }
 }
 
-extensions.configure<KoverReportExtension>("koverReport") {
-    defaults {
-        xml {
-            filters {
-                excludes {
-                    packages(
-                        "eu.vendeli.tgbot.interfaces",
-                        "eu.vendeli.tgbot.types",
-                        "eu.vendeli.tgbot.utils",
-                    )
-                    classes(
-                        "eu.vendeli.tgbot.api.botactions.Close*", // test is ignored
-                        "eu.vendeli.tgbot.api.botactions.Logout*",
-                        "eu.vendeli.tgbot.api.stickerset.*CustomEmoji*",
-                        "eu.vendeli.tgbot.implementations.EnvConfigLoader*",
-                    )
-                }
+kover {
+    reports {
+        filters {
+            excludes {
+                packages(
+                    "eu.vendeli.tgbot.interfaces",
+                    "eu.vendeli.tgbot.types",
+                    "eu.vendeli.tgbot.utils",
+                )
+                classes(
+                    "eu.vendeli.tgbot.api.botactions.Close*", // test is ignored
+                    "eu.vendeli.tgbot.api.botactions.Logout*",
+                    "eu.vendeli.tgbot.api.stickerset.*CustomEmoji*",
+                    "eu.vendeli.tgbot.implementations.EnvConfigLoader*",
+                )
             }
         }
     }
