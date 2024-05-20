@@ -14,7 +14,7 @@ kotlinter = "4.3.0"
 deteKT = "1.23.6"
 
 kotest = "5.9.0"
-mockk = "1.13.10"
+mockk = "1.13.11"
 kover = "0.8.0"
 krypto = "4.0.10"
 sslcontext = "8.3.5"
