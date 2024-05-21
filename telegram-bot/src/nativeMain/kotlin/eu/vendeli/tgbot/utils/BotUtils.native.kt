@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 
 internal actual val PROCESSING_DISPATCHER = Dispatchers.IO
+@Suppress("NOTHING_TO_INLINE")
 actual inline fun <T : ChainLink> InputListener.setChain(
     user: User,
     firstLink: T,

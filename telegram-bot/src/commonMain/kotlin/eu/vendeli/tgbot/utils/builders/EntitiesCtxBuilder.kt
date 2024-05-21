@@ -24,7 +24,6 @@ import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.utils.encodeWith
 import kotlinx.serialization.json.JsonArray
-import kotlin.jvm.JvmName
 
 @Suppress("TooManyFunctions")
 interface EntitiesExtBuilder {
@@ -112,22 +111,16 @@ interface EntitiesExtBuilder {
         block: () -> String,
     ) = Triple(CustomEmoji, block(), customEmojiId)
 
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    @JvmName("pre")
     fun EntitiesExtBuilder.pre(
         language: String? = null,
         block: () -> String,
     ) = Triple(Pre, block(), language)
 
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    @JvmName("textLink")
     fun EntitiesExtBuilder.textLink(
         url: String? = null,
         block: () -> String,
     ) = Triple(TextLink, block(), url)
 
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    @JvmName("textMention")
     fun EntitiesExtBuilder.textMention(
         user: User? = null,
         block: () -> String,
@@ -135,7 +128,7 @@ interface EntitiesExtBuilder {
 }
 
 interface EntitiesCtxBuilder<Action : TgAction<*>> : EntitiesExtBuilder {
-    @Suppress("UNCHECKED_CAST", "unused")
+    @Suppress("unused")
     override fun EntitiesExtBuilder.addEntity(entity: MessageEntity) {
         this as TgAction<*>
         val oldEntity = (parameters[entitiesFieldName] as? JsonArray)?.toMutableList() ?: mutableListOf()
