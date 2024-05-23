@@ -5,7 +5,7 @@ import eu.vendeli.tgbot.utils.OnInputActivity
 
 data class SingleInputChain(
     internal val id: String,
-    internal val inputAction: OnInputActivity,
+    internal val inputActivity: OnInputActivity,
     internal val rateLimits: RateLimits,
     internal val currentLevel: Int = 0,
     internal var tail: String? = null,

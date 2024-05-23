@@ -4,6 +4,6 @@ import eu.vendeli.tgbot.utils.OnInputActivity
 
 data class InputBreakPoint(
     val condition: ActivityCtx<ProcessedUpdate>.() -> Boolean,
-    val action: OnInputActivity? = null,
+    val activity: OnInputActivity? = null,
     val repeat: Boolean = true,
 )

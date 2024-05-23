@@ -22,7 +22,7 @@ private inline val SingleInputChain.prevChainId: String?
     }
 
 /**
- * Method that tries to find action in given text and invoke action matches it
+ * Method that tries to find activity in given text and invoke it.
  *
  * @param update
  */
@@ -34,7 +34,7 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
     val user = userOrNull
     val cmdCtx = CommandContext(update, parsedText.params)
 
-    // find action which match command and invoke it
+    // find activity that matches command and invoke it
     functionalActivities.commands[parsedText.command to type]?.run {
         logger.debug { "Matched command ${parsedText.command} for text $text" }
         if (user != null) bot.inputListener.del(user.id) // clean input listener
@@ -60,15 +60,15 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
             val isBreakCase = prevChain?.breakPoint?.condition?.invoke(inputContext) == true
 
             if (!isBreakCase) {
-                foundChain.inputAction.invoke(inputContext)
+                foundChain.inputActivity.invoke(inputContext)
                 // invoke chain if break condition is false
             } else {
-                prevChain?.breakPoint?.action?.invoke(inputContext)
-                // invoke break point action when it's break case
+                prevChain?.breakPoint?.activity?.invoke(inputContext)
+                // invoke break point activity when it's a break case
             }
 
             if (isBreakCase && prevChain?.breakPoint?.repeat == true) {
-                // and if we need to repeat do set listener again
+                // and if we need to repeat, do set listener again
                 bot.inputListener.set(user.id, foundChain.id)
                 return true
             }
@@ -94,19 +94,19 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
     return false
 }
 
-private suspend fun ((suspend ActivityCtx<ProcessedUpdate>.() -> Unit)?).invokeAction(
+private suspend fun ((suspend ActivityCtx<ProcessedUpdate>.() -> Unit)?).invokeActivity(
     bot: TelegramBot,
     updateType: UpdateType,
-    actionCtx: ActivityCtx<ProcessedUpdate>,
+    activityCtx: ActivityCtx<ProcessedUpdate>,
 ): Boolean {
-    this?.runCatching { invoke(actionCtx) }?.onFailure {
-        bot.update.caughtExceptions.send(FailedUpdate(it.cause ?: it, actionCtx.update.update))
+    this?.runCatching { invoke(activityCtx) }?.onFailure {
+        bot.update.caughtExceptions.send(FailedUpdate(it.cause ?: it, activityCtx.update.update))
         logger.error(it) {
-            "An error occurred while functionally processing update: ${actionCtx.update} to UpdateType($updateType)."
+            "An error occurred while functionally processing update: ${activityCtx.update} to UpdateType($updateType)."
         }
     }?.onSuccess {
         logger.info {
-            "Update #${actionCtx.update.updateId} processed in functional mode with UpdateType($updateType) action."
+            "Update #${activityCtx.update.updateId} processed in functional mode with UpdateType($updateType) activity."
         }
         return true
     }
@@ -118,7 +118,7 @@ private inline fun Boolean?.ifAffected(block: () -> Unit) {
 }
 
 /**
- * Process update by functional defined actions.
+ * Process update by functional defined activities.
  *
  * @param update
  */
@@ -126,16 +126,16 @@ private inline fun Boolean?.ifAffected(block: () -> Unit) {
 internal suspend fun FunctionalHandlingDsl.process(update: Update) = with(update.processUpdate()) {
     logger.info { "Handling update #${update.updateId}" }
     if (bot.update.checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id)) return@with
-    var affectedActions = 0
+    var affectedActivities = 0
 
-    checkMessageForActivities(this).ifAffected { affectedActions += 1 }
-    functionalActivities.onUpdateActivities[type]?.invokeAction(bot, type, ActivityCtx(this))
-        .ifAffected { affectedActions += 1 }
+    checkMessageForActivities(this).ifAffected { affectedActivities += 1 }
+    functionalActivities.onUpdateActivities[type]?.invokeActivity(bot, type, ActivityCtx(this))
+        .ifAffected { affectedActivities += 1 }
 
-    if (affectedActions == 0) functionalActivities.whenNotHandled?.invoke(update)?.also {
-        logger.info { "Update #${update.updateId} processed in functional mode with whenNotHandled action." }
-        affectedActions += 1
+    if (affectedActivities == 0) functionalActivities.whenNotHandled?.invoke(update)?.also {
+        logger.info { "Update #${update.updateId} processed in functional mode with whenNotHandled activity." }
+        affectedActivities += 1
     }
 
-    logger.info { "Number of affected functional actions - $affectedActions." }
+    logger.info { "Number of affected functional activities - $affectedActivities." }
 }
