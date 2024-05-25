@@ -31,16 +31,16 @@ external class MainButton {
 @JsPlainObject
 external interface MainButtonParams {
     val text: String?
-    var color: String?
+    val color: String?
 
     @JsName("text_color")
-    var textColor: String?
+    val textColor: String?
 
     @JsName("is_active")
-    var isActive: Boolean?
+    val isActive: Boolean?
 
     @JsName("is_visible")
-    var isVisible: Boolean?
+    val isVisible: Boolean?
 }
 
 fun MainButton.setParams(block: MainButtonParams.() -> Unit): MainButton = MainButtonParams().apply(block).let {

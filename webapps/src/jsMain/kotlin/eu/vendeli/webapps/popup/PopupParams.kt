@@ -4,9 +4,9 @@ import kotlinx.js.JsPlainObject
 
 @JsPlainObject
 external interface PopupParams {
-    var message: String
-    var title: String?
-    var buttons: Array<PopupButton>
+    val message: String
+    val title: String?
+    val buttons: Array<PopupButton>
 }
 
 fun PopupParams(

@@ -7,9 +7,9 @@ import kotlinx.serialization.Serializable
 
 @JsPlainObject
 external interface PopupButton {
-    var id: String
-    var type: PopupButtonType
-    var text: String?
+    val id: String
+    val type: PopupButtonType
+    val text: String?
 }
 
 @Serializable
