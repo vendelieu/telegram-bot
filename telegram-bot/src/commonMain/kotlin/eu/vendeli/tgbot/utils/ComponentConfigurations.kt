@@ -24,7 +24,7 @@ internal inline fun TelegramBot.getConfiguredHttpClient() = config.httpClient.ru
         }
 
         install(Logging) {
-            logger = Logging("HttpClient").logger.apply { setLevel(LogLvl.TRACE) }
+            logger = Logging("eu.vendeli.HttpClient").logger.apply { setLevel(LogLvl.TRACE) }
             level = config.logging.httpLogLevel.toKtorLvl()
         }
 
