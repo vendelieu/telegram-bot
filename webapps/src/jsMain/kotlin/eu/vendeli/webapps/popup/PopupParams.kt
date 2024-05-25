@@ -1,7 +1,8 @@
 package eu.vendeli.webapps.popup
 
-import eu.vendeli.webapps.utils.build
+import kotlinx.js.JsPlainObject
 
+@JsPlainObject
 external interface PopupParams {
     var message: String
     var title: String?
@@ -10,22 +11,12 @@ external interface PopupParams {
 
 fun PopupParams(
     message: String,
-    title: String?,
-    buttons: Array<PopupButton>,
-) = build<PopupParams> {
-    this.message = message
-    this.buttons = buttons
-    if (title != null) this.title = title
-}
-
-fun PopupParams(
-    message: String,
     firstButton: PopupButton,
     vararg otherButtons: PopupButton,
 ) = PopupParams(
-    message,
-    null,
-    arrayOf(
+    message = message,
+    title = null,
+    buttons = arrayOf(
         firstButton,
         *otherButtons,
     ),
@@ -37,9 +28,9 @@ fun PopupParams(
     firstButton: PopupButton,
     vararg otherButtons: PopupButton,
 ) = PopupParams(
-    message,
-    title,
-    arrayOf(
+    message = message,
+    title = title,
+    buttons = arrayOf(
         firstButton,
         *otherButtons,
     ),

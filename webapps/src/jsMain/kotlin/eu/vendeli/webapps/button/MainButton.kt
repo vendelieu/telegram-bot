@@ -1,6 +1,6 @@
 package eu.vendeli.webapps.button
 
-import eu.vendeli.webapps.utils.build
+import kotlinx.js.JsPlainObject
 import kotlin.js.Json
 
 external class MainButton {
@@ -28,25 +28,22 @@ external class MainButton {
     internal fun setParams(params: Json): MainButton
 }
 
-class MainButtonParams(
-    var text: String? = null,
-    var color: String? = null,
-    @JsName("text_color")
-    var textColor: String? = null,
-    @JsName("is_active")
-    var isActive: Boolean? = null,
-    @JsName("is_visible")
-    var isVisible: Boolean? = null,
-)
+@JsPlainObject
+external interface MainButtonParams {
+    val text: String?
+    var color: String?
 
-fun MainButton.setParams(block: MainButtonParams.() -> Unit): MainButton = build<MainButtonParams> {
-    val new = MainButtonParams().apply(block)
-    if (new.text != null) text = new.text
-    if (new.color != null) color = new.color
-    if (new.textColor != null) textColor = new.textColor
-    if (new.isActive != null) isActive = new.isActive
-    if (new.isVisible != null) isVisible = new.isVisible
-}.let {
+    @JsName("text_color")
+    var textColor: String?
+
+    @JsName("is_active")
+    var isActive: Boolean?
+
+    @JsName("is_visible")
+    var isVisible: Boolean?
+}
+
+fun MainButton.setParams(block: MainButtonParams.() -> Unit): MainButton = MainButtonParams().apply(block).let {
     @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
     this.setParams(it.asDynamic() as Json)
 }

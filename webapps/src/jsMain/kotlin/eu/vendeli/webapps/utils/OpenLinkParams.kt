@@ -1,12 +1,9 @@
 package eu.vendeli.webapps.utils
 
+import kotlinx.js.JsPlainObject
+
+@JsPlainObject
 external interface OpenLinkParams {
     @JsName("try_instant_view")
-    var tryInstantView: Boolean
-}
-
-fun OpenLinkParams(
-    tryInstantView: Boolean,
-) = build<OpenLinkParams> {
-    this.tryInstantView = tryInstantView
+    val tryInstantView: Boolean
 }
