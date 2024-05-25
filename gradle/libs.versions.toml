@@ -18,7 +18,7 @@ mockk = "1.13.11"
 kover = "0.8.0"
 krypto = "4.0.10"
 sslcontext = "8.3.5"
-spring = "3.2.5"
+spring = "3.3.0"
 
 ksp = "2.0.0-1.0.21"
 poet = "1.16.0"
