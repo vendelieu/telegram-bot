@@ -46,9 +46,11 @@ class SendAnimationAction(animation: ImplicitFile) :
  * @param caption Animation caption (may also be used when resending animation by file_id), 0-1024 characters after entities parsing
  * @param parseMode Mode for parsing entities in the animation caption. See formatting options for more details.
  * @param captionEntities A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parse_mode
+ * @param showCaptionAboveMedia Pass True, if the caption must be shown above the message media
  * @param hasSpoiler Pass True if the animation needs to be covered with a spoiler animation
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving
+ * @param messageEffectId Unique identifier of the message effect to be added to the message; for private chats only
  * @param replyParameters Description of the message to reply to
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]

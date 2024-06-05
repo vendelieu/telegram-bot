@@ -4,7 +4,7 @@ import eu.vendeli.tgbot.interfaces.Button
 import kotlinx.serialization.Serializable
 
 /**
- * This object represents one button of the reply keyboard. For simple text buttons, String can be used instead of this object to specify the button text. The optional fields web_app, request_users, request_chat, request_contact, request_location, and request_poll are mutually exclusive.
+ * This object represents one button of the reply keyboard. At most one of the optional fields must be used to specify type of the button. For simple text buttons, String can be used instead of this object to specify the button text.
  * Note: request_users and request_chat options will only work in Telegram versions released after 3 February, 2023. Older clients will display unsupported message.
  *
  * [Api reference](https://core.telegram.org/bots/api#keyboardbutton)

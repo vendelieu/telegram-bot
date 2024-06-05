@@ -46,6 +46,7 @@ class CopyMessageAction(
  * @param caption New caption for media, 0-1024 characters after entities parsing. If not specified, the original caption is kept
  * @param parseMode Mode for parsing entities in the new caption. See formatting options for more details.
  * @param captionEntities A JSON-serialized list of special entities that appear in the new caption, which can be specified instead of parse_mode
+ * @param showCaptionAboveMedia Pass True, if the caption must be shown above the message media. Ignored if a new caption isn't specified.
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving
  * @param replyParameters Description of the message to reply to

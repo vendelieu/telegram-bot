@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.types.inline.SwitchInlineQueryChosenChat
 import kotlinx.serialization.Serializable
 
 /**
- * This object represents one button of an inline keyboard. You must use exactly one of the optional fields.
+ * This object represents one button of an inline keyboard. Exactly one of the optional fields must be used to specify type of the button.
  *
  * [Api reference](https://core.telegram.org/bots/api#inlinekeyboardbutton)
  * @property text Label text on the button
@@ -18,7 +18,7 @@ import kotlinx.serialization.Serializable
  * @property switchInlineQueryCurrentChat Optional. If set, pressing the button will insert the bot's username and the specified inline query in the current chat's input field. May be empty, in which case only the bot's username will be inserted. This offers a quick way for the user to open your bot in inline mode in the same chat - good for selecting something from multiple options. Not supported in channels and for messages sent on behalf of a Telegram Business account.
  * @property switchInlineQueryChosenChat Optional. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field. Not supported for messages sent on behalf of a Telegram Business account.
  * @property callbackGame Optional. Description of the game that will be launched when the user presses the button. NOTE: This type of button must always be the first button in the first row.
- * @property pay Optional. Specify True, to send a Pay button. NOTE: This type of button must always be the first button in the first row and can only be used in invoice messages.
+ * @property pay Optional. Specify True, to send a Pay button. Substrings "⭐" and "XTR" in the buttons's text will be replaced with a Telegram Star icon. NOTE: This type of button must always be the first button in the first row and can only be used in invoice messages.
  */
 @Serializable
 data class InlineKeyboardButton(
