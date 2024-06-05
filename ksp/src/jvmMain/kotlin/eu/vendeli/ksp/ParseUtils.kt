@@ -1,6 +1,7 @@
 package eu.vendeli.ksp
 
 import com.google.devtools.ksp.symbol.KSAnnotation
+import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSType
 import com.google.devtools.ksp.symbol.KSValueArgument
 import eu.vendeli.tgbot.types.internal.UpdateType
@@ -9,8 +10,14 @@ import eu.vendeli.tgbot.utils.DefaultFilter
 internal fun List<KSValueArgument>.parseAsCommandHandler(isCallbackQ: Boolean) = AnnotationData(
     value = parseValueList(),
     rateLimits = parseRateLimits(),
-    scope = firstOrNull { it.name?.asString() == "scope" }?.value?.safeCast<List<KSType>>()
-        ?.map { UpdateType.valueOf(it.declaration.toString()) } ?: if (isCallbackQ) callbackQueryList else messageList,
+    scope = firstOrNull { it.name?.asString() == "scope" }?.value?.safeCast<List<*>>()?.map {
+        val value = when {
+            it is KSType -> it.declaration.toString()
+            it is KSClassDeclaration -> it.simpleName.getShortName()
+            else -> throw IllegalStateException("Unknown type $it")
+        }
+        UpdateType.valueOf(value)
+    } ?: if (isCallbackQ) callbackQueryList else messageList,
     guardClass = parseGuard(),
 )
 
@@ -46,5 +53,5 @@ internal fun List<KSValueArgument>.parseAsUpdateHandler() = first().value.cast<L
 internal fun List<KSValueArgument>.parseRateLimits(): Pair<Long, Long> = firstOrNull {
     it.name?.asString() == "rateLimits"
 }?.value?.safeCast<KSAnnotation>()?.arguments?.let {
-    it.first().value.cast<Long>() to it.last().value.cast()
+    (it.firstOrNull()?.value?.safeCast<Long>() ?: 0) to (it.lastOrNull()?.value?.safeCast() ?: 0)
 } ?: notLimitedRateLimits

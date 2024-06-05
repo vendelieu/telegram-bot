@@ -4,6 +4,7 @@
 
 * Added new guard mechanism to `@CommandHandler` (+`@CallbackQuery`), `@InputHandler` to make checks before processing.
 * Added `beforeAction` and `afterAction` hooks to `ChainLink`. #153
+* Added `ksp2` support, add `ksp.useKSP2=true` in gradle.properties to turn on.
 * Fixed missing `chatId` in action `BusinessExt`.
 * Fixed `TgUpdateHandler` logging level mismatching. #149
 * Fixed `replyKeyboardMarkup` missing option changes. #152
