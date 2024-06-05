@@ -58,6 +58,9 @@ enum class EntityType {
 
     @SerialName("custom_emoji")
     CustomEmoji,
+
+    @SerialName("expandable_blockquote")
+    ExpandableBlockQuote,
 }
 
 /**

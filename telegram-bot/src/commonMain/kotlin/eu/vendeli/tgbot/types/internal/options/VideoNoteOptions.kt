@@ -12,5 +12,5 @@ data class VideoNoteOptions(
     override var disableNotification: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,
     override var protectContent: Boolean? = null,
-    override var messageThreadId: Int? = null,
+    override var messageThreadId: Int? = null, override var messageEffectId: String? = null,
 ) : OptionsCommon

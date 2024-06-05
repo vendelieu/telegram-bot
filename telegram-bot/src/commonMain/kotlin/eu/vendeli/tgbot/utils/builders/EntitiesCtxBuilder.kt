@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.EntityType.Cashtag
 import eu.vendeli.tgbot.types.EntityType.Code
 import eu.vendeli.tgbot.types.EntityType.CustomEmoji
 import eu.vendeli.tgbot.types.EntityType.Email
+import eu.vendeli.tgbot.types.EntityType.ExpandableBlockQuote
 import eu.vendeli.tgbot.types.EntityType.Hashtag
 import eu.vendeli.tgbot.types.EntityType.Italic
 import eu.vendeli.tgbot.types.EntityType.Mention
@@ -104,6 +105,7 @@ interface EntitiesExtBuilder {
     fun EntitiesExtBuilder.strikethrough(block: () -> String) = Strikethrough to block()
     fun EntitiesExtBuilder.spoiler(block: () -> String) = Spoiler to block()
     fun EntitiesExtBuilder.blockquote(block: () -> String) = Blockquote to block()
+    fun EntitiesExtBuilder.expandableBlockquote(block: () -> String) = ExpandableBlockQuote to block()
     fun EntitiesExtBuilder.code(block: () -> String) = Code to block()
 
     fun EntitiesExtBuilder.customEmoji(

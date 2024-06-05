@@ -18,7 +18,7 @@ class SendInvoiceAction(
     title: String,
     description: String,
     payload: String,
-    providerToken: String,
+    providerToken: String? = null,
     currency: Currency,
     prices: List<LabeledPrice>,
 ) : Action<Message>(),
@@ -32,9 +32,9 @@ class SendInvoiceAction(
         parameters["title"] = title.toJsonElement()
         parameters["description"] = description.toJsonElement()
         parameters["payload"] = payload.toJsonElement()
-        parameters["provider_token"] = providerToken.toJsonElement()
         parameters["currency"] = currency.name.toJsonElement()
         parameters["prices"] = prices.encodeWith(LabeledPrice.serializer())
+        if (providerToken != null) parameters["provider_token"] = providerToken.toJsonElement()
     }
 }
 
@@ -76,14 +76,15 @@ inline fun invoice(
     title: String,
     description: String,
     payload: String,
-    providerToken: String,
+    providerToken: String? = null,
     currency: Currency,
     prices: List<LabeledPrice>,
 ) = SendInvoiceAction(title, description, payload, providerToken, currency, prices)
+
 inline fun invoice(
     title: String,
     description: String,
-    providerToken: String,
+    providerToken: String? = null,
     currency: Currency,
     vararg prices: LabeledPrice,
     payload: () -> String,
@@ -94,7 +95,7 @@ inline fun sendInvoice(
     title: String,
     description: String,
     payload: String,
-    providerToken: String,
+    providerToken: String? = null,
     currency: Currency,
     prices: List<LabeledPrice>,
 ) = invoice(title, description, payload, providerToken, currency, prices)

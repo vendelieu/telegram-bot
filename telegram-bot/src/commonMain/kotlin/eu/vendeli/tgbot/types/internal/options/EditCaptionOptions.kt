@@ -5,5 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class EditCaptionOptions(
+    var showCaptionAboveMedia: Boolean? = null,
     override var parseMode: ParseMode? = null,
 ) : OptionsParseMode

@@ -34,6 +34,7 @@ sealed interface OptionsCommon : Options {
     var replyParameters: ReplyParameters?
     var protectContent: Boolean?
     var messageThreadId: Int?
+    var messageEffectId: String?
 
     fun replyParameters(messageId: Long, block: ReplyParameters.() -> Unit = {}) {
         replyParameters = ReplyParameters(messageId).apply(block)

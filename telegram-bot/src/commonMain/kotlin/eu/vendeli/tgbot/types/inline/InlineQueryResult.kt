@@ -65,6 +65,7 @@ sealed class InlineQueryResult(val type: String) {
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val inputMessageContent: InputMessageContent? = null,
+        val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("photo")
 
     @Serializable
@@ -83,6 +84,7 @@ sealed class InlineQueryResult(val type: String) {
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val inputMessageContent: InputMessageContent? = null,
+        val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("gif")
 
     @Serializable
@@ -101,6 +103,7 @@ sealed class InlineQueryResult(val type: String) {
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val inputMessageContent: InputMessageContent? = null,
+        val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("mpeg4_gif")
 
     @Serializable
@@ -120,6 +123,7 @@ sealed class InlineQueryResult(val type: String) {
         val description: String? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val inputMessageContent: InputMessageContent? = null,
+        val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("video")
 
     @Serializable
@@ -243,6 +247,7 @@ sealed class InlineQueryResult(val type: String) {
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val inputMessageContent: InputMessageContent? = null,
+        val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("photo")
 
     @Serializable
@@ -256,6 +261,7 @@ sealed class InlineQueryResult(val type: String) {
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val inputMessageContent: InputMessageContent? = null,
+        val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("gif")
 
     @Serializable
@@ -269,6 +275,7 @@ sealed class InlineQueryResult(val type: String) {
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val inputMessageContent: InputMessageContent? = null,
+        val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("mpeg4_gif")
 
     @Serializable
@@ -306,6 +313,7 @@ sealed class InlineQueryResult(val type: String) {
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val inputMessageContent: InputMessageContent? = null,
+        val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("video")
 
     @Serializable
