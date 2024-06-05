@@ -29,7 +29,7 @@ internal suspend inline fun KClass<out Filter>.checkIsGuarded(
     update: ProcessedUpdate,
     bot: TelegramBot,
 ): Boolean {
-    if (this.qualifiedName == DefaultFilter::class.qualifiedName) return true
+    if (fullName == "eu.vendeli.tgbot.utils.DefaultFilter") return true
     return bot.config.classManager.getInstance(this).cast<Filter>().condition(user, update, bot)
 }
 

@@ -39,6 +39,7 @@ import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.JsonUnquotedLiteral
 import kotlinx.serialization.serializer
 import kotlin.jvm.JvmName
+import kotlin.reflect.KClass
 
 internal suspend inline fun TgUpdateHandler.coHandle(
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
@@ -123,3 +124,5 @@ expect inline fun <T : ChainLink> InputListener.setChain(user: User, firstLink: 
 
 @Suppress("ObjectPropertyName", "ktlint:standard:backing-property-naming")
 expect val _OperatingActivities: Map<String, List<Any?>>
+
+internal expect val KClass<*>.fullName: String
