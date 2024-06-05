@@ -26,7 +26,6 @@ internal fun List<KSValueArgument>.parseAsRegexHandler() = Triple(
     firstOrNull { it.name?.asString() == "options" }?.value?.safeCast<List<RegexOption>>() ?: emptyList(),
 )
 
-
 /*
  argument parsers:
 */

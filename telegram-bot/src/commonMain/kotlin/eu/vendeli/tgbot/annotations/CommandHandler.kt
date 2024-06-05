@@ -18,7 +18,7 @@ annotation class CommandHandler(
     val value: Array<String>,
     val rateLimits: RateLimits = RateLimits(0, 0),
     val scope: Array<UpdateType> = [UpdateType.MESSAGE],
-    val guard: KClass<out Filter> = DefaultFilter::class
+    val guard: KClass<out Filter> = DefaultFilter::class,
 ) {
     /**
      * Shortcut [CommandHandler] annotation with specified scope for [UpdateType.CALLBACK_QUERY].
@@ -29,6 +29,6 @@ annotation class CommandHandler(
     annotation class CallbackQuery(
         val value: Array<String>,
         val rateLimits: RateLimits = RateLimits(0, 0),
-        val guard: KClass<out Filter> = DefaultFilter::class
+        val guard: KClass<out Filter> = DefaultFilter::class,
     )
 }

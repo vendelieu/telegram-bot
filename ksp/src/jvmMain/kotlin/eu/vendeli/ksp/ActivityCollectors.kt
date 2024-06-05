@@ -60,7 +60,7 @@ internal fun FileBuilder.collectCommandActivities(
                     function.qualifiedName!!.getQualifier(),
                     function.simpleName.asString(),
                     annotationData.rateLimits.toRateLimits(),
-                    annotationData.guardClass
+                    annotationData.guardClass,
                 )
             }
         }
@@ -94,7 +94,7 @@ internal fun FileBuilder.collectInputActivities(
                 function.qualifiedName!!.getQualifier(),
                 function.simpleName.asString(),
                 annotationData.second.toRateLimits(),
-                annotationData.third
+                annotationData.third,
             )
         }
     }

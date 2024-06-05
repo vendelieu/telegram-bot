@@ -59,7 +59,7 @@ internal fun collectInputChains(
                 qualifier,
                 name,
                 "zeroRateLimits",
-                DefaultFilter::class.qualifiedName
+                DefaultFilter::class.qualifiedName,
             )
         }
     }

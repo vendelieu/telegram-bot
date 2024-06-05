@@ -13,5 +13,5 @@ sealed class ImplicitFile {
     @Serializable
     class InpFile(override val file: InputFile) : ImplicitFile()
 
-    internal companion object: ToStringSerializer<ImplicitFile>({ (this as? Str)?.file.toString() })
+    internal companion object : ToStringSerializer<ImplicitFile>({ (this as? Str)?.file.toString() })
 }

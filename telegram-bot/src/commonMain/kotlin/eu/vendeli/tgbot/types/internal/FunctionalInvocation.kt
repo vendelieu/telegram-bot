@@ -10,5 +10,5 @@ internal data class FunctionalInvocation(
     val invocation: OnCommandActivity,
     val scope: Set<UpdateType>,
     val rateLimits: RateLimits,
-    val guard: KClass<out Filter>
+    val guard: KClass<out Filter>,
 )
