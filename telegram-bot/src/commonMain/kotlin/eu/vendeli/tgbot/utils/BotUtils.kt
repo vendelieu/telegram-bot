@@ -2,9 +2,11 @@
 
 package eu.vendeli.tgbot.utils
 
+import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.api.botactions.getUpdates
 import eu.vendeli.tgbot.core.TgUpdateHandler
+import eu.vendeli.tgbot.interfaces.Filter
 import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.TgAction
@@ -12,6 +14,7 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ChainLink
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import io.ktor.http.Headers
@@ -99,6 +102,10 @@ internal fun InputFile.toPartData(name: String) = PartData.BinaryItem(
         append(HttpHeaders.ContentLength, data.size.toString())
     },
 )
+
+object DefaultFilter : Filter {
+    override suspend fun condition(user: User?, update: ProcessedUpdate, bot: TelegramBot): Boolean = true
+}
 
 val DEFAULT_HANDLING_BEHAVIOUR: HandlingBehaviourBlock = { handle(it) }
 internal val GET_UPDATES_ACTION = getUpdates()

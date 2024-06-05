@@ -1,6 +1,9 @@
 package eu.vendeli.tgbot.annotations
 
+import eu.vendeli.tgbot.interfaces.Filter
 import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.utils.DefaultFilter
+import kotlin.reflect.KClass
 
 /**
  * The annotation used to mark the function that is used to process the specified commands.
@@ -15,6 +18,7 @@ annotation class CommandHandler(
     val value: Array<String>,
     val rateLimits: RateLimits = RateLimits(0, 0),
     val scope: Array<UpdateType> = [UpdateType.MESSAGE],
+    val guard: KClass<out Filter> = DefaultFilter::class
 ) {
     /**
      * Shortcut [CommandHandler] annotation with specified scope for [UpdateType.CALLBACK_QUERY].
@@ -25,5 +29,6 @@ annotation class CommandHandler(
     annotation class CallbackQuery(
         val value: Array<String>,
         val rateLimits: RateLimits = RateLimits(0, 0),
+        val guard: KClass<out Filter> = DefaultFilter::class
     )
 }

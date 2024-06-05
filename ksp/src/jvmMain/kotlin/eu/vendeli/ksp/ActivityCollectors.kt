@@ -48,18 +48,19 @@ internal fun FileBuilder.collectCommandActivities(
             }
         }.arguments.parseAsCommandHandler(isCallbackQAnnotation)
 
-        annotationData.first.forEach {
-            annotationData.third.forEach { updT ->
+        annotationData.value.forEach {
+            annotationData.scope.forEach { updT ->
                 logger.info("Command: $it UpdateType: ${updT.name} --> ${function.qualifiedName?.asString()}")
 
                 addImport(UpdateType::class, updT.name)
                 addStatement(
-                    "(\"$it\" to %L) to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
+                    "(\"$it\" to %L) to (%L to InvocationMeta(\"%L\", \"%L\", %L, %L::class)),",
                     updT.name,
                     buildInvocationLambdaCodeBlock(function, injectableTypes),
                     function.qualifiedName!!.getQualifier(),
                     function.simpleName.asString(),
-                    annotationData.second.toRateLimits(),
+                    annotationData.rateLimits.toRateLimits(),
+                    annotationData.guardClass
                 )
             }
         }
@@ -88,11 +89,12 @@ internal fun FileBuilder.collectInputActivities(
         annotationData.first.forEach {
             logger.info("Input: $it --> ${function.qualifiedName?.asString()}")
             addStatement(
-                "\"$it\" to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
+                "\"$it\" to (%L to InvocationMeta(\"%L\", \"%L\", %L, %L::class)),",
                 buildInvocationLambdaCodeBlock(function, injectableTypes),
                 function.qualifiedName!!.getQualifier(),
                 function.simpleName.asString(),
                 annotationData.second.toRateLimits(),
+                annotationData.third
             )
         }
     }
