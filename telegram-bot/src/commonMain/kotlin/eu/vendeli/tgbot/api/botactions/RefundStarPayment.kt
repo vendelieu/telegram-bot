@@ -16,4 +16,5 @@ class RefundStarPaymentAction(
     }
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun refundStarPayment(telegramPaymentChargeId: String) = RefundStarPaymentAction(telegramPaymentChargeId)
