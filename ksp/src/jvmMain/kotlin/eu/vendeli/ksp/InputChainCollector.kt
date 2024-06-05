@@ -6,6 +6,7 @@ import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toTypeName
+import eu.vendeli.tgbot.utils.DefaultFilter
 
 internal fun collectInputChains(
     symbols: Sequence<KSClassDeclaration>,
@@ -37,6 +38,7 @@ internal fun collectInputChains(
                 beginControlFlow("suspendCall { classManager, update, user, bot, parameters ->").apply {
                     add("if(user == null) return@suspendCall Unit\n")
                     add("val inst = classManager.getInstance($reference::class) as $reference\n")
+                    add("inst.beforeAction?.invoke(user, update, bot)\n")
                     add("val nextLink: String? = %P\n", nextLink)
                     add("val breakPoint = inst.breakCondition?.invoke(user, update, bot) ?: false\n")
                     add(
@@ -47,15 +49,17 @@ internal fun collectInputChains(
 
                     add("inst.action(user, update, bot)")
                     add(".also {\nif (nextLink != null) bot.inputListener[user] = nextLink }\n")
+                    add("inst.afterAction?.invoke(user, update, bot)\n")
                 }.endControlFlow()
             }
 
             add(
-                "\"$curLinkId\" to (%L to InvocationMeta(\"%L\", \"%L\", %L)),\n",
+                "\"$curLinkId\" to (%L to InvocationMeta(\"%L\", \"%L\", %L, %L::class)),\n",
                 block,
                 qualifier,
                 name,
                 "zeroRateLimits",
+                DefaultFilter::class.qualifiedName
             )
         }
     }
