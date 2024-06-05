@@ -15,7 +15,7 @@ class ActionExtTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `BussinesExt test`() = shouldNotThrowAny {
-        message { "test" }.sendBusiness("test", bot)
+    suspend fun `BusinessExt test`() = shouldNotThrowAny {
+        message { "test" }.sendBusiness(CHAT_ID, "test", bot)
     }
 }

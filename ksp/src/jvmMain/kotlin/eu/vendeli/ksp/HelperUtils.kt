@@ -3,11 +3,8 @@
 package eu.vendeli.ksp
 
 import com.google.devtools.ksp.processing.Resolver
-import com.google.devtools.ksp.symbol.KSAnnotation
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
-import com.google.devtools.ksp.symbol.KSType
-import com.google.devtools.ksp.symbol.KSValueArgument
 import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
@@ -98,34 +95,6 @@ internal val deletedBusinessMessagesClass = DeletedBusinessMessagesUpdate::class
 internal val callbackQueryList = listOf(UpdateType.CALLBACK_QUERY)
 internal val messageList = listOf(UpdateType.MESSAGE)
 internal val notLimitedRateLimits = 0L to 0L
-
-internal fun List<KSValueArgument>.parseAsCommandHandler(isCallbackQ: Boolean) = Triple(
-    first { it.name?.asString() == "value" }.value.cast<List<String>>(),
-    first { it.name?.asString() == "rateLimits" }.value?.safeCast<KSAnnotation>()?.arguments?.let {
-        it.first().value.cast<Long>() to it.last().value.cast<Long>()
-    } ?: notLimitedRateLimits,
-    firstOrNull { it.name?.asString() == "scope" }?.value?.safeCast<List<KSType>>()
-        ?.map { UpdateType.valueOf(it.declaration.toString()) } ?: if (isCallbackQ) callbackQueryList else messageList,
-)
-
-internal fun List<KSValueArgument>.parseAsInputHandler() = Pair(
-    first { it.name?.asString() == "value" }.value.cast<List<String>>(),
-    first { it.name?.asString() == "rateLimits" }.value?.safeCast<KSAnnotation>()?.arguments?.let {
-        it.first().value.cast<Long>() to it.last().value.cast<Long>()
-    } ?: notLimitedRateLimits,
-)
-
-internal fun List<KSValueArgument>.parseAsRegexHandler() = Triple(
-    first { it.name?.asString() == "value" }.value.cast<String>(),
-    first { it.name?.asString() == "rateLimits" }.value?.safeCast<KSAnnotation>()?.arguments?.let {
-        it.first().value.cast<Long>() to it.last().value.cast<Long>()
-    } ?: notLimitedRateLimits,
-    first { it.name?.asString() == "options" }.value?.safeCast<List<RegexOption>>() ?: emptyList(),
-)
-
-internal fun List<KSValueArgument>.parseAsUpdateHandler() = first().value.cast<List<KSType>>().map {
-    UpdateType.valueOf(it.declaration.toString())
-}
 
 internal fun FileBuilder.addZeroLimitsProp() {
     addProperty(

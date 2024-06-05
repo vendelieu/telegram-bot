@@ -65,6 +65,7 @@ import kotlinx.serialization.Serializable
  * @property text Optional. For text messages, the actual UTF-8 text of the message
  * @property entities Optional. For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text
  * @property linkPreviewOptions Optional. Options used for link preview generation for the message, if it is a text message and link preview options were changed
+ * @property effectId Optional. Unique identifier of the message effect added to the message
  * @property animation Optional. Message is an animation, information about the animation. For backward compatibility, when this field is set, the document field will also be set
  * @property audio Optional. Message is an audio file, information about the file
  * @property document Optional. Message is a general file, information about the file
@@ -76,6 +77,7 @@ import kotlinx.serialization.Serializable
  * @property voice Optional. Message is a voice message, information about the file
  * @property caption Optional. Caption for the animation, audio, document, photo, video or voice
  * @property captionEntities Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption
+ * @property showCaptionAboveMedia Optional. True, if the caption must be shown above the message media
  * @property hasMediaSpoiler Optional. True, if the message media is covered by a spoiler animation
  * @property contact Optional. Message is a shared contact, information about the contact
  * @property dice Optional. Message is a dice with random value
@@ -150,6 +152,7 @@ data class Message(
     val authorSignature: String? = null,
     val text: String? = null,
     val entities: List<MessageEntity>? = null,
+    val effectId: String? = null,
     val linkPreviewOptions: LinkPreviewOptions? = null,
     val animation: Animation? = null,
     val audio: Audio? = null,
@@ -162,6 +165,7 @@ data class Message(
     val voice: Voice? = null,
     val caption: String? = null,
     val captionEntities: List<MessageEntity>? = null,
+    val showCaptionAboveMedia: Boolean? = null,
     val contact: Contact? = null,
     val dice: Dice? = null,
     val game: Game? = null,

@@ -1,5 +1,15 @@
 # Telegram-bot (KtGram) changelog
 
+## 5.5.0
+
+* Added new guard mechanism to `@CommandHandler` (+`@CallbackQuery`), `@InputHandler` to make checks before processing.
+* Added `beforeAction` and `afterAction` hooks to `ChainLink`. #153
+* Added `ksp2` support, add `ksp.useKSP2=true` in gradle.properties to turn on.
+* Fixed missing `chatId` in action `BusinessExt`.
+* Fixed `TgUpdateHandler` logging level mismatching. #149
+* Fixed `replyKeyboardMarkup` missing option changes. #152
+* Covered Telegram `7.4` api version.
+
 ## 5.4.0
 
 * Covered 7.3 telegram api.

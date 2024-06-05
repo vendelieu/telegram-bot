@@ -51,7 +51,7 @@ data class InvoiceContent(
     val title: String,
     val description: String,
     val payload: String,
-    val providerToken: String,
+    val providerToken: String? = null,
     val currency: Currency,
     val prices: List<LabeledPrice>,
     val maxTipAmount: Int? = null,

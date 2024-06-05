@@ -3,7 +3,7 @@
 # Telegram Bot
 
 [![Maven Central](https://img.shields.io/maven-central/v/eu.vendeli/telegram-bot?style=flat&label=Maven&logo=apache-maven)](https://search.maven.org/artifact/eu.vendeli/telegram-bot)
-[![Supported version](https://img.shields.io/badge/Bot%20Api-7.3-blue?logo=telegram)](https://core.telegram.org/bots/api#may-6-2024)\
+[![Supported version](https://img.shields.io/badge/Bot%20Api-7.4-blue?logo=telegram)](https://core.telegram.org/bots/api#may-28-2024)\
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
 [![codecov](https://codecov.io/gh/vendelieu/telegram-bot/branch/master/graph/badge.svg?token=xn5xo6fu6r)](https://codecov.io/gh/vendelieu/telegram-bot) \
 [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/venny_tgbot)
@@ -17,10 +17,10 @@ Add the ksp plugin and library to the dependencies.
 
 build.gradle.kts example:
 
-```gradle
+```gradle`
 plugins {
     // ...
-    id("com.google.devtools.ksp") version "1.9.24-1.0.20"
+    id("com.google.devtools.ksp") version "2.0.0-1.0.21"
 }
 
 dependencies {

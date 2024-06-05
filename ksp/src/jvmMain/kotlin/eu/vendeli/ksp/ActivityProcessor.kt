@@ -33,7 +33,7 @@ class ActivityProcessor(
     private val logger: KSPLogger,
     private val codeGenerator: CodeGenerator,
 ) : SymbolProcessor {
-    private val targetPackage = options["package"]
+    private val targetPackage = options["package"]?.split(';')
     override fun process(resolver: Resolver): List<KSAnnotated> {
         val fileSpec = FileSpec.builder("eu.vendeli.tgbot.generated", "ActivitiesData").apply {
             addSuppressions()
@@ -44,7 +44,6 @@ class ActivityProcessor(
             addSuspendCallFun()
             addZeroLimitsProp()
         }
-        val targetPackage = targetPackage?.split(';')
 
         targetPackage?.forEachIndexed { idx, pkg ->
             processPackage(fileSpec, resolver, idx to pkg)

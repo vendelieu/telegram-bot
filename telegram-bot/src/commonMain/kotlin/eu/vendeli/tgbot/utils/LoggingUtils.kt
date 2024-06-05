@@ -15,6 +15,6 @@ abstract class Logger(val id: String) : io.ktor.client.plugins.logging.Logger {
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-internal expect open class Logging(tag: String = "TelegramBot") {
+internal expect open class Logging(tag: String = "eu.vendeli.TelegramBot") {
     val logger: Logger
 }

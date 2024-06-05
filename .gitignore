@@ -35,3 +35,4 @@ application.properties
 .vscode/
 /build/
 /telegram-bot/out/
+/.kotlin/

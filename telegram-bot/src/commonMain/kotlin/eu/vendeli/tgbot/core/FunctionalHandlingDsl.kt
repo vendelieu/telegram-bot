@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.interfaces.Filter
 import eu.vendeli.tgbot.types.internal.ActivityCtx
 import eu.vendeli.tgbot.types.internal.FunctionalActivities
 import eu.vendeli.tgbot.types.internal.FunctionalInvocation
@@ -10,6 +11,7 @@ import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.DEFAULT_COMMAND_SCOPE
+import eu.vendeli.tgbot.utils.DefaultFilter
 import eu.vendeli.tgbot.utils.OnBusinessConnectionActivity
 import eu.vendeli.tgbot.utils.OnBusinessMessageActivity
 import eu.vendeli.tgbot.utils.OnCallbackQueryActivity
@@ -36,6 +38,7 @@ import eu.vendeli.tgbot.utils.OnRemovedChatBoostActivity
 import eu.vendeli.tgbot.utils.OnShippingQueryActivity
 import eu.vendeli.tgbot.utils.WhenNotHandledActivity
 import eu.vendeli.tgbot.utils.cast
+import kotlin.reflect.KClass
 
 /**
  * DSL for functional update management.
@@ -213,10 +216,12 @@ class FunctionalHandlingDsl internal constructor(
         command: String,
         scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        guard: KClass<out Filter> = DefaultFilter::class,
         block: OnCommandActivity,
     ) {
         scope.forEach {
-            functionalActivities.commands[command to it] = FunctionalInvocation(command, block, scope, rateLimits)
+            functionalActivities.commands[command to it] =
+                FunctionalInvocation(command, block, scope, rateLimits, guard)
         }
     }
 
@@ -231,9 +236,11 @@ class FunctionalHandlingDsl internal constructor(
         command: Regex,
         scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        guard: KClass<out Filter> = DefaultFilter::class,
         block: OnCommandActivity,
     ) {
-        functionalActivities.regexCommands[command] = FunctionalInvocation(command.pattern, block, scope, rateLimits)
+        functionalActivities.regexCommands[command] =
+            FunctionalInvocation(command.pattern, block, scope, rateLimits, guard)
     }
 
     /**
@@ -246,9 +253,10 @@ class FunctionalHandlingDsl internal constructor(
     fun onInput(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        guard: KClass<out Filter> = DefaultFilter::class,
         block: OnInputActivity,
     ) {
-        functionalActivities.inputs[identifier] = SingleInputChain(identifier, block, rateLimits)
+        functionalActivities.inputs[identifier] = SingleInputChain(identifier, block, rateLimits, guard)
     }
 
     /**
@@ -269,9 +277,10 @@ class FunctionalHandlingDsl internal constructor(
     fun inputChain(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        guard: KClass<out Filter> = DefaultFilter::class,
         block: OnInputActivity,
     ): SingleInputChain {
-        val firstChain = SingleInputChain(identifier, block, rateLimits)
+        val firstChain = SingleInputChain(identifier, block, rateLimits, guard)
         functionalActivities.inputs[identifier] = firstChain
 
         return firstChain
@@ -286,6 +295,7 @@ class FunctionalHandlingDsl internal constructor(
      */
     fun SingleInputChain.andThen(
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        guard: KClass<out Filter> = DefaultFilter::class,
         block: OnInputActivity,
     ): SingleInputChain {
         val nextLevel = currentLevel + 1
@@ -299,7 +309,7 @@ class FunctionalHandlingDsl internal constructor(
         }
 
         functionalActivities.inputs[id]?.tail = newId
-        functionalActivities.inputs[newId] = SingleInputChain(newId, block, rateLimits, nextLevel)
+        functionalActivities.inputs[newId] = SingleInputChain(newId, block, rateLimits, guard, nextLevel)
         return this
     }
 

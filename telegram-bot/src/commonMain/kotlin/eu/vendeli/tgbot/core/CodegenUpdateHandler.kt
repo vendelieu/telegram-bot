@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.userOrNull
 import eu.vendeli.tgbot.utils.Invocable
 import eu.vendeli.tgbot.utils.InvocationLambda
+import eu.vendeli.tgbot.utils.checkIsGuarded
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.processUpdate
@@ -56,6 +57,12 @@ class CodegenUpdateHandler internal constructor(
         }?.value
 
         logger.debug { "Result of finding action - ${invocation?.second}" }
+
+        // check guard condition
+        if (invocation?.second?.guard?.checkIsGuarded(user, this, bot) == false) {
+            logger.debug { "Invocation guarded: ${invocation.second}" }
+            return@run
+        }
 
         // if we found any action > check for its limits
         if (invocation != null && checkIsLimited(invocation.second.rateLimits, user?.id, activityId))

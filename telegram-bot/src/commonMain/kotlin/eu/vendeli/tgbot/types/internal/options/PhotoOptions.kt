@@ -6,10 +6,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PhotoOptions(
+    var showCaptionAboveMedia: Boolean? = null,
     override var parseMode: ParseMode? = null,
     override var disableNotification: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,
     override var protectContent: Boolean? = null,
     override var messageThreadId: Int? = null,
     override var hasSpoiler: Boolean? = null,
+    override var messageEffectId: String? = null,
 ) : OptionsCommon, OptionsParseMode, MediaSpoiler

@@ -138,5 +138,5 @@ abstract class TgUpdateHandler internal constructor(
         }
     }
 
-    internal companion object : Logging("TgUpdateHandler")
+    internal companion object : Logging("eu.vendeli.core.TgUpdateHandler")
 }

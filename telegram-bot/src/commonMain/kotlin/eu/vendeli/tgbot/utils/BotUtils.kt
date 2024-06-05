@@ -2,9 +2,11 @@
 
 package eu.vendeli.tgbot.utils
 
+import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.api.botactions.getUpdates
 import eu.vendeli.tgbot.core.TgUpdateHandler
+import eu.vendeli.tgbot.interfaces.Filter
 import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.TgAction
@@ -12,6 +14,7 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ChainLink
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import io.ktor.http.Headers
@@ -36,6 +39,7 @@ import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.JsonUnquotedLiteral
 import kotlinx.serialization.serializer
 import kotlin.jvm.JvmName
+import kotlin.reflect.KClass
 
 internal suspend inline fun TgUpdateHandler.coHandle(
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
@@ -100,6 +104,10 @@ internal fun InputFile.toPartData(name: String) = PartData.BinaryItem(
     },
 )
 
+object DefaultFilter : Filter {
+    override suspend fun condition(user: User?, update: ProcessedUpdate, bot: TelegramBot): Boolean = true
+}
+
 val DEFAULT_HANDLING_BEHAVIOUR: HandlingBehaviourBlock = { handle(it) }
 internal val GET_UPDATES_ACTION = getUpdates()
 internal val DEFAULT_COMMAND_SCOPE = setOf(UpdateType.MESSAGE)
@@ -116,3 +124,5 @@ expect inline fun <T : ChainLink> InputListener.setChain(user: User, firstLink: 
 
 @Suppress("ObjectPropertyName", "ktlint:standard:backing-property-naming")
 expect val _OperatingActivities: Map<String, List<Any?>>
+
+internal expect val KClass<*>.fullName: String

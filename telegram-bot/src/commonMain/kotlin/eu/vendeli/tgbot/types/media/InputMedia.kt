@@ -53,6 +53,7 @@ sealed class InputMedia(val type: String) {
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val hasSpoiler: Boolean? = null,
+        val showCaptionAboveMedia: Boolean? = null,
     ) : InputMedia(type = "photo")
 
     @Serializable
@@ -68,6 +69,7 @@ sealed class InputMedia(val type: String) {
         val duration: Int? = null,
         val supportsStreaming: Boolean? = null,
         val hasSpoiler: Boolean? = null,
+        val showCaptionAboveMedia: Boolean? = null,
     ) : InputMedia(type = "video")
 
     @Serializable
@@ -82,5 +84,6 @@ sealed class InputMedia(val type: String) {
         val height: Int? = null,
         val duration: Int? = null,
         val hasSpoiler: Boolean? = null,
+        val showCaptionAboveMedia: Boolean? = null,
     ) : InputMedia(type = "animation")
 }

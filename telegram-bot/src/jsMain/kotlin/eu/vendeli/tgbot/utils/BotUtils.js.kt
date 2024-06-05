@@ -5,6 +5,7 @@ import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ChainLink
 import kotlinx.coroutines.Dispatchers
+import kotlin.reflect.KClass
 
 internal actual val PROCESSING_DISPATCHER = Dispatchers.Unconfined
 
@@ -22,3 +23,6 @@ private var activities: Map<String, List<Any?>> = emptyMap()
 @Suppress("ObjectPropertyName", "ktlint:standard:backing-property-naming")
 actual val _OperatingActivities: Map<String, List<Any?>>
     get() = activities
+
+@Suppress("unused")
+internal actual inline val KClass<*>.fullName: String get() = simpleName ?: "Unknown"

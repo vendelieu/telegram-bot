@@ -72,9 +72,9 @@ fun WebApp.showPopup(
     callback: ClosePopupCallback? = null,
 ) = showPopup(
     PopupParams(
-        message,
-        title,
-        buttons,
+        message = message,
+        title = title,
+        buttons = buttons,
     ),
     callback,
 )
@@ -87,9 +87,9 @@ fun WebApp.showPopup(
     callback: ClosePopupCallback? = null,
 ) = showPopup(
     PopupParams(
-        message,
-        title,
-        arrayOf(firstButton, *otherButtons),
+        message = message,
+        title = title,
+        buttons = arrayOf(firstButton, *otherButtons),
     ),
     callback,
 )
