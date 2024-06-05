@@ -1,17 +1,15 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.interfaces.Filter
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivitiesData
 import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.userOrNull
-import eu.vendeli.tgbot.utils.DefaultFilter
 import eu.vendeli.tgbot.utils.Invocable
 import eu.vendeli.tgbot.utils.InvocationLambda
-import eu.vendeli.tgbot.utils.cast
+import eu.vendeli.tgbot.utils.checkIsGuarded
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.processUpdate
@@ -61,13 +59,8 @@ class CodegenUpdateHandler internal constructor(
         logger.debug { "Result of finding action - ${invocation?.second}" }
 
         // check guard condition
-        val guard = invocation?.second?.guard?.let {
-            if (it.qualifiedName == DefaultFilter::class.qualifiedName) return@let true
-            bot.config.classManager.getInstance(it).cast<Filter>().condition(user, this, bot)
-        } ?: true
-
-        if (!guard) {
-            logger.debug { "Invocation guarded: ${invocation?.second}" }
+        if (invocation?.second?.guard?.checkIsGuarded(user, this, bot) == false) {
+            logger.debug { "Invocation guarded: ${invocation.second}" }
             return@run
         }
 

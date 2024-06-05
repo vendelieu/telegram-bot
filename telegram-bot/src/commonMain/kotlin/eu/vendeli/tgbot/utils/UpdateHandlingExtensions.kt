@@ -3,7 +3,9 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
+import eu.vendeli.tgbot.interfaces.Filter
 import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivityCtx
 import eu.vendeli.tgbot.types.internal.CommandContext
 import eu.vendeli.tgbot.types.internal.FailedUpdate
@@ -11,6 +13,7 @@ import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.userOrNull
+import kotlin.reflect.KClass
 
 private inline val SingleInputChain.prevChainId: String?
     get() = if (currentLevel == 1) {
@@ -20,6 +23,15 @@ private inline val SingleInputChain.prevChainId: String?
     } else {
         null
     }
+
+internal suspend inline fun KClass<out Filter>.checkIsGuarded(
+    user: User?,
+    update: ProcessedUpdate,
+    bot: TelegramBot,
+): Boolean {
+    if (this.qualifiedName == DefaultFilter::class.qualifiedName) return true
+    return bot.config.classManager.getInstance(this).cast<Filter>().condition(user, update, bot)
+}
 
 /**
  * Method that tries to find activity in given text and invoke it.
@@ -38,6 +50,11 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
     functionalActivities.commands[parsedText.command to type]?.run {
         logger.debug { "Matched command ${parsedText.command} for text $text" }
         if (user != null) bot.inputListener.del(user.id) // clean input listener
+        // check guard condition
+        if (!guard.checkIsGuarded(user, update, bot)) {
+            logger.debug { "Invocation guarded: $this" }
+            return false
+        }
         // check for limit exceed
         if (bot.update.checkIsLimited(rateLimits, user?.id, parsedText.command)) return false
         logger.info { "Invoking command $id" }
@@ -51,6 +68,12 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
         // search matching input handler for listening point
         val foundChain = functionalActivities.inputs[it]
         if (foundChain != null) {
+            // check guard condition
+            if (!foundChain.guard.checkIsGuarded(user, update, bot)) {
+                logger.debug { "Invocation guarded: $foundChain" }
+                return false
+            }
+
             // check for limit exceed
             if (bot.update.checkIsLimited(foundChain.rateLimits, user.id, foundChain.id)) return false
 
@@ -125,8 +148,8 @@ private inline fun Boolean?.ifAffected(block: () -> Unit) {
 @Suppress("CyclomaticComplexMethod", "LongMethod")
 internal suspend fun FunctionalHandlingDsl.process(update: Update) = with(update.processUpdate()) {
     logger.info { "Handling update #${update.updateId}" }
-    if (bot.update.checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id)) return@with
     var affectedActivities = 0
+    if (bot.update.checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id)) return@with
 
     checkMessageForActivities(this).ifAffected { affectedActivities += 1 }
     functionalActivities.onUpdateActivities[type]?.invokeActivity(bot, type, ActivityCtx(this))

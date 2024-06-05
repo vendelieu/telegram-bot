@@ -33,7 +33,7 @@ private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 inst,
             )
         }
-            to InvocationMeta("eu.vendeli.fixtures.TgAnnotationsModel", "test", zeroRateLimits)
+            to InvocationMeta("eu.vendeli.fixtures.TgAnnotationsModel", "test", zeroRateLimits, eu.vendeli.tgbot.utils.DefaultFilter::class)
     ),
     ("STOP" to MESSAGE) to (
         suspendCall { classManager, update, user, bot, parameters ->
@@ -45,19 +45,19 @@ private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 param0,
             )
         }
-            to InvocationMeta("eu.vendeli.fixtures.TgAnnotationsModel", "stopHandling", zeroRateLimits)
+            to InvocationMeta("eu.vendeli.fixtures.TgAnnotationsModel", "stopHandling", zeroRateLimits, eu.vendeli.tgbot.utils.DefaultFilter::class)
     ),
     ("test2" to MESSAGE) to (
         suspendCall { classManager, update, user, bot, parameters ->
             ::testMethod.invoke()
         }
-            to InvocationMeta("eu.vendeli.fixtures", "testMethod", zeroRateLimits)
+            to InvocationMeta("eu.vendeli.fixtures", "testMethod", zeroRateLimits, eu.vendeli.tgbot.utils.DefaultFilter::class)
     ),
     ("test3" to MESSAGE) to (
         suspendCall { classManager, update, user, bot, parameters ->
             TestObj::test.invoke()
         }
-            to InvocationMeta("eu.vendeli.fixtures.TestObj", "test", zeroRateLimits)
+            to InvocationMeta("eu.vendeli.fixtures.TestObj", "test", zeroRateLimits, eu.vendeli.tgbot.utils.DefaultFilter::class)
     ),
 )
 
@@ -70,19 +70,19 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 inst,
             )
         }
-            to InvocationMeta("eu.vendeli.fixtures.TgAnnotationsModel", "test2", zeroRateLimits)
+            to InvocationMeta("eu.vendeli.fixtures.TgAnnotationsModel", "test2", zeroRateLimits, eu.vendeli.tgbot.utils.DefaultFilter::class)
     ),
     "testInp2" to (
         suspendCall { classManager, update, user, bot, parameters ->
             ::testMethod2.invoke()
         }
-            to InvocationMeta("eu.vendeli.fixtures", "testMethod2", zeroRateLimits)
+            to InvocationMeta("eu.vendeli.fixtures", "testMethod2", zeroRateLimits, eu.vendeli.tgbot.utils.DefaultFilter::class)
     ),
     "testInp3" to (
         suspendCall { classManager, update, user, bot, parameters ->
             TestObj::test2.invoke()
         }
-            to InvocationMeta("eu.vendeli.fixtures.TestObj", "test2", zeroRateLimits)
+            to InvocationMeta("eu.vendeli.fixtures.TestObj", "test2", zeroRateLimits, eu.vendeli.tgbot.utils.DefaultFilter::class)
     ),
     "eu.vendeli.fixtures.Conversation.Name" to (
         suspendCall {
@@ -107,7 +107,7 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 if (nextLink != null) bot.inputListener[user] = nextLink
             }
         }
-            to InvocationMeta("eu.vendeli.fixtures.Conversation", "Name", zeroRateLimits)
+            to InvocationMeta("eu.vendeli.fixtures.Conversation", "Name", zeroRateLimits, eu.vendeli.tgbot.utils.DefaultFilter::class)
     ),
     "eu.vendeli.fixtures.Conversation.Age" to (
         suspendCall {
@@ -132,7 +132,7 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 if (nextLink != null) bot.inputListener[user] = nextLink
             }
         }
-            to InvocationMeta("eu.vendeli.fixtures.Conversation", "Age", zeroRateLimits)
+            to InvocationMeta("eu.vendeli.fixtures.Conversation", "Age", zeroRateLimits, eu.vendeli.tgbot.utils.DefaultFilter::class)
     ),
 )
 
@@ -147,7 +147,7 @@ private val `TG_$REGEX`: Map<Regex, Invocable> = mapOf(
                 param0,
             )
         }
-            to InvocationMeta("eu.vendeli.fixtures.RegexCommands", "testR", zeroRateLimits)
+            to InvocationMeta("eu.vendeli.fixtures.RegexCommands", "testR", zeroRateLimits, eu.vendeli.tgbot.utils.DefaultFilter::class)
     ),
 )
 
