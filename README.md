@@ -17,7 +17,7 @@ Add the ksp plugin and library to the dependencies.
 
 build.gradle.kts example:
 
-```gradle`
+```gradle
 plugins {
     // ...
     id("com.google.devtools.ksp") version "2.0.0-1.0.21"
