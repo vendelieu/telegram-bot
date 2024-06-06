@@ -37,7 +37,7 @@ private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TgAnnotationsModel",
                 "test",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
     ("STOP" to MESSAGE) to (
@@ -54,7 +54,7 @@ private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TgAnnotationsModel",
                 "stopHandling",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
     ("test2" to MESSAGE) to (
@@ -65,7 +65,7 @@ private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 "eu.vendeli.fixtures",
                 "testMethod",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
     ("test3" to MESSAGE) to (
@@ -76,7 +76,7 @@ private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TestObj",
                 "test",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
 )
@@ -94,7 +94,7 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TgAnnotationsModel",
                 "test2",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
     "testInp2" to (
@@ -105,7 +105,7 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 "eu.vendeli.fixtures",
                 "testMethod2",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
     "testInp3" to (
@@ -116,7 +116,7 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TestObj",
                 "test2",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
     "eu.vendeli.fixtures.Conversation.Name" to (
@@ -148,7 +148,7 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 "eu.vendeli.fixtures.Conversation",
                 "Name",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
     "eu.vendeli.fixtures.Conversation.Age" to (
@@ -179,7 +179,7 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 "eu.vendeli.fixtures.Conversation",
                 "Age",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
 )
@@ -199,7 +199,7 @@ private val `TG_$REGEX`: Map<Regex, Invocable> = mapOf(
                 "eu.vendeli.fixtures.RegexCommands",
                 "testR",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
 )

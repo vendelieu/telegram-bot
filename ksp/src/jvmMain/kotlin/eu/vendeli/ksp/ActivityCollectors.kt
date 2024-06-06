@@ -4,6 +4,7 @@ import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.MAP
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
@@ -13,6 +14,16 @@ import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.buildCodeBlock
+import eu.vendeli.ksp.dto.CommonAnnotationData
+import eu.vendeli.ksp.utils.FileBuilder
+import eu.vendeli.ksp.utils.addMap
+import eu.vendeli.ksp.utils.commonMatcherClass
+import eu.vendeli.ksp.utils.invocableType
+import eu.vendeli.ksp.utils.parseAsCommandHandler
+import eu.vendeli.ksp.utils.parseAsInputHandler
+import eu.vendeli.ksp.utils.parseAsRegexHandler
+import eu.vendeli.ksp.utils.parseAsUpdateHandler
+import eu.vendeli.ksp.utils.toRateLimits
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.CommandHandler.CallbackQuery
 import eu.vendeli.tgbot.annotations.InputHandler
@@ -43,6 +54,7 @@ internal fun FileBuilder.collectCommandActivities(
                     isCallbackQAnnotation = true
                     true
                 }
+
                 CommandHandler::class.simpleName -> true
                 else -> false
             }
@@ -158,6 +170,39 @@ internal fun FileBuilder.collectUpdateTypeActivities(
             )
         }
     }
+}
+
+internal fun FileBuilder.collectCommonActivities(
+    data: List<CommonAnnotationData>,
+    injectableTypes: Map<TypeName, ClassName>,
+    logger: KSPLogger,
+    idxPostfix: String,
+) {
+    logger.info("Collecting common handlers.")
+    addProperty(
+        PropertySpec.builder(
+            "__TG_COMMONS$idxPostfix",
+            MAP.parameterizedBy(commonMatcherClass, invocableType),
+            KModifier.PRIVATE,
+        ).apply {
+            initializer(
+                CodeBlock.builder().apply {
+                    add("mapOf(\n")
+                    data.forEach {
+                        addStatement(
+                            "%L to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
+                            it.value.toCommonMatcher(it.filter),
+                            buildInvocationLambdaCodeBlock(it.funDeclaration, injectableTypes),
+                            it.funQualifier,
+                            it.funSimpleName,
+                            it.rateLimits.let { l -> if (l.rate == 0L && l.period == 0L) "zeroRateLimits" else l },
+                        )
+                    }
+                    add(")\n")
+                }.build(),
+            )
+        }.build(),
+    )
 }
 
 internal fun FileBuilder.collectUnprocessed(

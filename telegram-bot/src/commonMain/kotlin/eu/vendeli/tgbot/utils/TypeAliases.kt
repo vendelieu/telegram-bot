@@ -16,6 +16,7 @@ import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
 import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
 import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
 import eu.vendeli.tgbot.types.internal.CommandContext
+import eu.vendeli.tgbot.types.internal.CommonMatcher
 import eu.vendeli.tgbot.types.internal.DeletedBusinessMessagesUpdate
 import eu.vendeli.tgbot.types.internal.EditedBusinessMessageUpdate
 import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
@@ -83,4 +84,5 @@ typealias Invocable = Pair<InvocationLambda, InvocationMeta>
 internal typealias CommandHandlers = Map<Pair<String, UpdateType>, Invocable>
 internal typealias InputHandlers = Map<String, Invocable>
 internal typealias RegexHandlers = Map<Regex, Invocable>
+internal typealias CommonHandlers = Map<CommonMatcher, Invocable>
 internal typealias UpdateTypeHandlers = Map<UpdateType, InvocationLambda>

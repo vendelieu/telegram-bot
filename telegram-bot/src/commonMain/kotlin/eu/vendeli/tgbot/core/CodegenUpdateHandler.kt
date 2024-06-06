@@ -49,6 +49,13 @@ class CodegenUpdateHandler internal constructor(
         // remove input listener point
         if (user != null && bot.config.inputAutoRemoval) bot.inputListener.del(user.id)
 
+        // if there's no command and input > check common handlers
+        if (invocation == null) invocation = activities.commonHandlers.entries.firstOrNull {
+            it.key.match(text, this, bot)
+        }?.also {
+            activityId = it.key.value.toString()
+        }?.value
+
         // if there's no command and input > check regex handlers
         if (invocation == null) invocation = activities.regexHandlers.entries.firstOrNull {
             it.key.matchEntire(text) != null

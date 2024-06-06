@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.annotations
 
-import eu.vendeli.tgbot.interfaces.Filter
-import eu.vendeli.tgbot.utils.DefaultFilter
+import eu.vendeli.tgbot.interfaces.Guard
+import eu.vendeli.tgbot.utils.DefaultGuard
 import kotlin.reflect.KClass
 
 /**
@@ -15,5 +15,5 @@ import kotlin.reflect.KClass
 annotation class InputHandler(
     val value: Array<String>,
     val rateLimits: RateLimits = RateLimits(0, 0),
-    val guard: KClass<out Filter> = DefaultFilter::class
+    val guard: KClass<out Guard> = DefaultGuard::class
 )
