@@ -74,7 +74,7 @@ suspend fun color(user: User, bot: TelegramBot) {
     message { "Oh you also like blue colour?" }.send(user, bot)
 }
 
-@InputHandler(["conversation"])
+@InputHandler(["conversation"], guard = UserPresentGuard::class)
 suspend fun startConversation(user: User, bot: TelegramBot) {
     message { "Nice to meet you, ${message.text}" }.send(user, bot)
     message { "What is your favorite food?" }.send(user, bot)
