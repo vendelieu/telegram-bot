@@ -1,5 +1,12 @@
 # Telegram-bot (KtGram) changelog
 
+# 6.0.0
+
+* Introduced new `@CommonHandler` which have nested annotations `@CommonHandler.Text`, `@CommonHandler.Regex`
+  with rich configuration.
+* Removed `@RegexCommandHandler` since it can be fully replaced with `@CommonHandler.Regex`.
+* Changed guard interface from `Filter` to `Guard` since `@CommonHandler` have filtering mechanics.
+
 ## 5.5.0
 
 * Added new guard mechanism to `@CommandHandler` (+`@CallbackQuery`), `@InputHandler` to make checks before processing.
