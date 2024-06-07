@@ -32,7 +32,6 @@ import eu.vendeli.tgbot.annotations.CommonHandler
 import eu.vendeli.tgbot.annotations.Injectable
 import eu.vendeli.tgbot.annotations.InputChain
 import eu.vendeli.tgbot.annotations.InputHandler
-import eu.vendeli.tgbot.annotations.RegexCommandHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
 
@@ -61,7 +60,7 @@ class ActivityProcessor(
             val paramInitBlock = StringBuilder()
             paramInitBlock.append("mapOf(")
             (targetPackage ?: listOf("default")).forEachIndexed { idx, pkg ->
-                val block = "listOf(__TG_COMMANDS$idx, __TG_INPUTS$idx, __TG_REGEX$idx," +
+                val block = "listOf(__TG_COMMANDS$idx, __TG_INPUTS$idx, " +
                     "  __TG_COMMONS$idx, __TG_UPDATE_TYPES$idx, __TG_UNPROCESSED$idx)"
                 paramInitBlock.append("\"$pkg\" to $block,")
             }
@@ -94,7 +93,6 @@ class ActivityProcessor(
 
         val commandHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, CommandHandler::class, CallbackQuery::class)
         val inputHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, InputHandler::class)
-        val regexHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, RegexCommandHandler::class)
         val updateHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, UpdateHandler::class)
         val unprocessedHandlerSymbol = resolver.getAnnotatedFnSymbols(pkg, UnprocessedHandler::class)
             .firstOrNull()
@@ -122,11 +120,9 @@ class ActivityProcessor(
         fileSpec.apply {
             collectCommandActivities(commandHandlerSymbols, injectableTypes, logger, idxPostfix)
             collectInputActivities(inputHandlerSymbols, inputChainSymbols, injectableTypes, logger, idxPostfix)
-            collectRegexActivities(regexHandlerSymbols, injectableTypes, logger, idxPostfix)
+            collectCommonActivities(commonHandlerData, injectableTypes, logger, idxPostfix)
             collectUpdateTypeActivities(updateHandlerSymbols, injectableTypes, logger, idxPostfix)
             collectUnprocessed(unprocessedHandlerSymbol, injectableTypes, logger, idxPostfix)
-
-            collectCommonActivities(commonHandlerData, injectableTypes, logger, idxPostfix)
         }
     }
 

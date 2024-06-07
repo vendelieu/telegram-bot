@@ -5,7 +5,6 @@ import eu.vendeli.tgbot.utils.CommandHandlers
 import eu.vendeli.tgbot.utils.CommonHandlers
 import eu.vendeli.tgbot.utils.InputHandlers
 import eu.vendeli.tgbot.utils.InvocationLambda
-import eu.vendeli.tgbot.utils.RegexHandlers
 import eu.vendeli.tgbot.utils.UpdateTypeHandlers
 import eu.vendeli.tgbot.utils._OperatingActivities
 import eu.vendeli.tgbot.utils.logString
@@ -20,16 +19,14 @@ internal class ActivitiesData(pkg: String? = null) {
 
     val commandHandlers = activities[0] as CommandHandlers
     val inputHandlers = activities[1] as InputHandlers
-    val regexHandlers = activities[2] as RegexHandlers
-    val commonHandlers = activities[3] as CommonHandlers
-    val updateTypeHandlers = activities[4] as UpdateTypeHandlers
-    val unprocessedHandler = activities[5] as InvocationLambda?
+    val commonHandlers = activities[2] as CommonHandlers
+    val updateTypeHandlers = activities[3] as UpdateTypeHandlers
+    val unprocessedHandler = activities[4] as InvocationLambda?
 
     init {
         TgUpdateHandler.logger.info {
             "\nCommandHandlers:\n${commandHandlers.logString}\n" +
                 "InputHandlers:\n${inputHandlers.logString}\n" +
-                "RegexCommandHandlers:\n${regexHandlers.logString}\n" +
                 "CommonHandlers:\n${commonHandlers.logString}\n" +
                 "UpdateTypeHandlers:\n${updateTypeHandlers.logString}\n" +
                 "UnprocessedHandler:\n${unprocessedHandler ?: "None"}"

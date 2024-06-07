@@ -21,13 +21,11 @@ import eu.vendeli.ksp.utils.commonMatcherClass
 import eu.vendeli.ksp.utils.invocableType
 import eu.vendeli.ksp.utils.parseAsCommandHandler
 import eu.vendeli.ksp.utils.parseAsInputHandler
-import eu.vendeli.ksp.utils.parseAsRegexHandler
 import eu.vendeli.ksp.utils.parseAsUpdateHandler
 import eu.vendeli.ksp.utils.toRateLimits
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.CommandHandler.CallbackQuery
 import eu.vendeli.tgbot.annotations.InputHandler
-import eu.vendeli.tgbot.annotations.RegexCommandHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.internal.UpdateType
 
@@ -109,38 +107,6 @@ internal fun FileBuilder.collectInputActivities(
                 annotationData.third,
             )
         }
-    }
-}
-
-internal fun FileBuilder.collectRegexActivities(
-    symbols: Sequence<KSFunctionDeclaration>,
-    injectableTypes: Map<TypeName, ClassName>,
-    logger: KSPLogger,
-    idxPostfix: String,
-) {
-    logger.info("Collecting regex handlers.")
-    addMap(
-        "__TG_REGEX$idxPostfix",
-        MAP.parameterizedBy(Regex::class.asTypeName(), invocableType),
-        symbols,
-    ) { function ->
-        val annotationData = function.annotations.first {
-            it.shortName.asString() == RegexCommandHandler::class.simpleName!!
-        }.arguments.parseAsRegexHandler()
-        val options = annotationData.third.toSet().toString()
-            .replace("[", "setOf(")
-            .replace("]", ")")
-
-        addStatement(
-            "Regex(%S, %L) to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
-            annotationData.first,
-            options,
-            buildInvocationLambdaCodeBlock(function, injectableTypes),
-            function.qualifiedName!!.getQualifier(),
-            function.simpleName.asString(),
-            annotationData.second.toRateLimits(),
-        )
-        logger.info("Regex: ${annotationData.first} --> ${function.qualifiedName?.asString()}")
     }
 }
 

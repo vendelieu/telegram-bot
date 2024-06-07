@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.utils.DefaultGuard
 import kotlin.reflect.KClass
 
 /**
- * The annotation used to mark the function that is used to process the specified commands.
+ * The annotation used to mark the function used to process the specified commands.
  *
  * @property value Keywords of the command.
  * @property rateLimits Query limits for this particular command.

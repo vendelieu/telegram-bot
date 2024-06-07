@@ -84,6 +84,5 @@ typealias Invocable = Pair<InvocationLambda, InvocationMeta>
 
 internal typealias CommandHandlers = Map<Pair<String, UpdateType>, Invocable>
 internal typealias InputHandlers = Map<String, Invocable>
-internal typealias RegexHandlers = Map<Regex, Invocable>
 internal typealias CommonHandlers = Map<CommonMatcher, Invocable>
 internal typealias UpdateTypeHandlers = Map<UpdateType, InvocationLambda>

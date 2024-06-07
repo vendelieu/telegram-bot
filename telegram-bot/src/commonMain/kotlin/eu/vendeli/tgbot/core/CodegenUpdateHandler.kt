@@ -56,13 +56,6 @@ class CodegenUpdateHandler internal constructor(
             activityId = it.key.value.toString()
         }?.value
 
-        // if there's no command and input > check regex handlers
-        if (invocation == null) invocation = activities.regexHandlers.entries.firstOrNull {
-            it.key.matchEntire(text) != null
-        }?.also {
-            activityId = it.key.pattern
-        }?.value
-
         logger.debug { "Result of finding action - ${invocation?.second}" }
 
         // check guard condition

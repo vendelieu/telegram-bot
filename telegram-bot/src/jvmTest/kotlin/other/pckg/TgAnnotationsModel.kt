@@ -3,8 +3,8 @@
 package other.pckg
 
 import eu.vendeli.tgbot.annotations.CommandHandler
+import eu.vendeli.tgbot.annotations.CommonHandler
 import eu.vendeli.tgbot.annotations.InputHandler
-import eu.vendeli.tgbot.annotations.RegexCommandHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.internal.UpdateType
@@ -18,7 +18,7 @@ class TgAnnotationsModel {
     fun test2() {
     }
 
-    @RegexCommandHandler("test colou?r")
+    @CommonHandler.Regex("test colou?r")
     fun testR() {
     }
 

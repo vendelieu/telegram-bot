@@ -212,6 +212,7 @@ class FunctionalHandlingDsl internal constructor(
      * The action that is performed when the command is matched.
      *
      * @param command The command that will be processed.
+     * @param scope update type that should match for command.
      * @param rateLimits Restriction of command requests.
      * @param block Action that will be applied.
      */
@@ -269,6 +270,15 @@ class FunctionalHandlingDsl internal constructor(
         functionalActivities.whenNotHandled = block
     }
 
+    /**
+     * Common action that will be checked after other activities.
+     *
+     * @param value value that will be matched.
+     * @param filter condition that will be checked in a matching process.
+     * @param scope update type that should match for command.
+     * @param rateLimits restriction of command requests.
+     * @param block action that will be applied.
+     */
     fun common(
         value: String,
         filter: KClass<out Filter> = DefaultFilter::class,
@@ -280,6 +290,15 @@ class FunctionalHandlingDsl internal constructor(
             FunctionalInvocation(value, block, scope, rateLimits, filter = filter)
     }
 
+    /**
+     * Common action that will be checked after other activities.
+     *
+     * @param value value that will be matched.
+     * @param filter condition that will be checked in a matching process.
+     * @param scope update type that should match for command.
+     * @param rateLimits restriction of command requests.
+     * @param block action that will be applied.
+     */
     fun common(
         value: Regex,
         filter: KClass<out Filter> = DefaultFilter::class,

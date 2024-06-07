@@ -10,7 +10,7 @@ sealed class CommonAnnotationValue {
     class String(override val value: kotlin.String) : CommonAnnotationValue()
     class Regex(override val value: kotlin.text.Regex) : CommonAnnotationValue()
 
-    fun toCommonMatcher(filter: kotlin.String, scope: List<UpdateType>) = when (this) {
+    internal fun toCommonMatcher(filter: kotlin.String, scope: List<UpdateType>) = when (this) {
         is String -> "CommonMatcher.String(value = \"$value\", filter = $filter::class, setOf(${scope.joinToString()}))"
         is Regex -> "CommonMatcher.Regex(value = Regex(\"$value\"${
             value.options.takeIf { it.isNotEmpty() }?.joinToString(prefix = " ,") { "RegexOption.$it" } ?: ""

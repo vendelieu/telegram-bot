@@ -69,16 +69,16 @@ suspend fun start(user: User, bot: TelegramBot) {
     bot.inputListener[user] = "conversation"
 }
 
-@RegexCommandHandler("blue colo?r")
-suspend fun color(user: User, bot: TelegramBot) {
-    message { "Oh you also like blue colour?" }.send(user, bot)
-}
-
 @InputHandler(["conversation"], guard = UserPresentGuard::class)
-suspend fun startConversation(user: User, bot: TelegramBot) {
-    message { "Nice to meet you, ${message.text}" }.send(user, bot)
+suspend fun startConversation(update: ProcessedUpdate, user: User, bot: TelegramBot) {
+    message { "Nice to meet you, ${update.text}" }.send(user, bot)
     message { "What is your favorite food?" }.send(user, bot)
     bot.inputListener.set(user) { "conversation-2step" } // another way to set input
+}
+
+@CommonHandler.Regex("blue colo?r")
+suspend fun color(user: User, bot: TelegramBot) {
+    message { "Oh you also like blue color?" }.send(user, bot)
 }
 //..
 ```

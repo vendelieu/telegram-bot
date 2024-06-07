@@ -5,7 +5,7 @@ import eu.vendeli.tgbot.utils.DefaultGuard
 import kotlin.reflect.KClass
 
 /**
- * The annotation used to denote the function that is used to process the specified I/O event.
+ * The annotation used to denote the function used to process the specified I/O event.
  *
  * @property value Keywords of the input.
  * @property rateLimits Query limits for this particular command.
