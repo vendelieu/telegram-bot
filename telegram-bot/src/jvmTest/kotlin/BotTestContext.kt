@@ -1,5 +1,5 @@
 
-import eu.vendeli.fixtures.`$ACTIVITIES_eu_vendeli_fixtures`
+import eu.vendeli.fixtures.__ACTIVITIES
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.interfaces.Action
@@ -82,7 +82,7 @@ abstract class BotTestContext(
                 pullingDelay = 100
             }
         }
-        bot.defineActivities(mapOf("default" to `$ACTIVITIES_eu_vendeli_fixtures`))
+        bot.defineActivities(__ACTIVITIES)
         if (spykIt) spykIt()
 
         if (mockHttp) doMockHttp()
