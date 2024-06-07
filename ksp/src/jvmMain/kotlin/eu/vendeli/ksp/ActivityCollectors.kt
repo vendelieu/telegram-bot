@@ -191,7 +191,7 @@ internal fun FileBuilder.collectCommonActivities(
                     data.forEach {
                         addStatement(
                             "%L to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
-                            it.value.toCommonMatcher(it.filter),
+                            it.value.toCommonMatcher(it.filter, it.scope),
                             buildInvocationLambdaCodeBlock(it.funDeclaration, injectableTypes),
                             it.funQualifier,
                             it.funSimpleName,

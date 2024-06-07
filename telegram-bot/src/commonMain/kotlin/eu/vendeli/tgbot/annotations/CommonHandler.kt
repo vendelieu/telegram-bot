@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.annotations
 
 import eu.vendeli.tgbot.interfaces.Filter
+import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.utils.DefaultFilter
 import kotlin.reflect.KClass
 
@@ -13,6 +14,7 @@ annotation class CommonHandler {
         val value: Array<String>,
         val filter: KClass<out Filter> = DefaultFilter::class,
         val priority: Int = 0,
+        val scope: Array<UpdateType> = [UpdateType.MESSAGE],
         val rateLimits: RateLimits = RateLimits(0, 0),
     )
 
@@ -23,6 +25,7 @@ annotation class CommonHandler {
         val options: Array<RegexOption> = [],
         val filter: KClass<out Filter> = DefaultFilter::class,
         val priority: Int = 0,
+        val scope: Array<UpdateType> = [UpdateType.MESSAGE],
         val rateLimits: RateLimits = RateLimits(0, 0),
     )
 }

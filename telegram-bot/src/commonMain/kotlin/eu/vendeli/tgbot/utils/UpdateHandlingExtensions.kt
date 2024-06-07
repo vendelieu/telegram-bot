@@ -114,10 +114,21 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
     }
     if (user != null && bot.config.inputAutoRemoval) bot.inputListener.del(user.id) // clean listener
 
-    if (parsedText.command.isNotBlank()) functionalActivities.regexCommands.entries.firstOrNull { i ->
+    functionalActivities.commonActivities.entries.firstOrNull { i ->
+        i.key.match(parsedText.command, update, bot)
+    }?.value?.run {
+        logger.debug { "Matched common handler $this for text $text" }
+        // check for limit exceed
+        if (bot.update.checkIsLimited(rateLimits, user?.id, parsedText.command)) return false
+        logger.info { "Invoking command $id" }
+        invocation.invoke(cmdCtx)
+        return true
+    }
+
+    if (parsedText.command.isNotBlank()) functionalActivities.regexActivities.entries.firstOrNull { i ->
         i.key.matchEntire(parsedText.command) != null
     }?.value?.run {
-        logger.debug { "Matched regex command $this for text $text" }
+        logger.debug { "Matched regex handler $this for text $text" }
         // check for limit exceed
         if (bot.update.checkIsLimited(rateLimits, user?.id, parsedText.command)) return false
         logger.info { "Invoking command $id" }

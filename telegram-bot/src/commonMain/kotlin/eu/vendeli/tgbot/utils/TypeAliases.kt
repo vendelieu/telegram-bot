@@ -68,10 +68,11 @@ typealias WhenNotHandledActivity = suspend Update.() -> Unit
 typealias OnCommandActivity = suspend CommandContext<ProcessedUpdate>.() -> Unit
 typealias OnInputActivity = suspend ActivityCtx<ProcessedUpdate>.() -> Unit
 
-typealias OnUpdateActivities = MutableMap<UpdateType, suspend ActivityCtx<ProcessedUpdate>.() -> Unit>
-typealias InputActivities = MutableMap<String, SingleInputChain>
+internal typealias OnUpdateActivities = MutableMap<UpdateType, suspend ActivityCtx<ProcessedUpdate>.() -> Unit>
+internal typealias InputActivities = MutableMap<String, SingleInputChain>
 internal typealias CommandActivities = MutableMap<Pair<String, UpdateType>, FunctionalInvocation>
 internal typealias RegexCommandActivities = MutableMap<Regex, FunctionalInvocation>
+internal typealias CommonActivities = MutableMap<CommonMatcher, FunctionalInvocation>
 
 typealias HandlingBehaviourBlock = suspend TgUpdateHandler.(Update) -> Unit
 typealias FunctionalHandlingBlock = suspend FunctionalHandlingDsl.() -> Unit

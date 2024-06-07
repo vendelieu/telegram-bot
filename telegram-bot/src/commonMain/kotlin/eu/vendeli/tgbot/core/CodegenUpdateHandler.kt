@@ -51,7 +51,7 @@ class CodegenUpdateHandler internal constructor(
 
         // if there's no command and input > check common handlers
         if (invocation == null) invocation = activities.commonHandlers.entries.firstOrNull {
-            it.key.match(text, this, bot)
+            it.key.match(request.command, this, bot)
         }?.also {
             activityId = it.key.value.toString()
         }?.value

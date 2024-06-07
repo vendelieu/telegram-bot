@@ -1,8 +1,10 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.interfaces.Filter
 import eu.vendeli.tgbot.interfaces.Guard
 import eu.vendeli.tgbot.types.internal.ActivityCtx
+import eu.vendeli.tgbot.types.internal.CommonMatcher
 import eu.vendeli.tgbot.types.internal.FunctionalActivities
 import eu.vendeli.tgbot.types.internal.FunctionalInvocation
 import eu.vendeli.tgbot.types.internal.InputBreakPoint
@@ -11,6 +13,7 @@ import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.DEFAULT_COMMAND_SCOPE
+import eu.vendeli.tgbot.utils.DefaultFilter
 import eu.vendeli.tgbot.utils.DefaultGuard
 import eu.vendeli.tgbot.utils.OnBusinessConnectionActivity
 import eu.vendeli.tgbot.utils.OnBusinessMessageActivity
@@ -239,7 +242,7 @@ class FunctionalHandlingDsl internal constructor(
         guard: KClass<out Guard> = DefaultGuard::class,
         block: OnCommandActivity,
     ) {
-        functionalActivities.regexCommands[command] =
+        functionalActivities.regexActivities[command] =
             FunctionalInvocation(command.pattern, block, scope, rateLimits, guard)
     }
 
@@ -264,6 +267,28 @@ class FunctionalHandlingDsl internal constructor(
      */
     fun whenNotHandled(block: WhenNotHandledActivity) {
         functionalActivities.whenNotHandled = block
+    }
+
+    fun common(
+        value: String,
+        filter: KClass<out Filter> = DefaultFilter::class,
+        scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
+        rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        block: OnCommandActivity,
+    ) {
+        functionalActivities.commonActivities[CommonMatcher.String(value, filter, scope)] =
+            FunctionalInvocation(value, block, scope, rateLimits, filter = filter)
+    }
+
+    fun common(
+        value: Regex,
+        filter: KClass<out Filter> = DefaultFilter::class,
+        scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
+        rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        block: OnCommandActivity,
+    ) {
+        functionalActivities.commonActivities[CommonMatcher.Regex(value, filter, scope)] =
+            FunctionalInvocation(value.pattern, block, scope, rateLimits, filter = filter)
     }
 
     /**

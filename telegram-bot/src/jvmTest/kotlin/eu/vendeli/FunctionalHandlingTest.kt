@@ -179,7 +179,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 setOf(UpdateType.CALLBACK_QUERY),
                 RateLimits.NOT_LIMITED,
             ) { }
-            functionalActivities.regexCommands[regex].shouldNotBeNull()
+            functionalActivities.regexActivities[regex].shouldNotBeNull()
 
             onInput("test") { }
             functionalActivities.inputs["test"].shouldNotBeNull()

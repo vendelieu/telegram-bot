@@ -16,14 +16,7 @@ import eu.vendeli.tgbot.utils.DefaultGuard
 internal fun List<KSValueArgument>.parseAsCommandHandler(isCallbackQ: Boolean) = AnnotationData(
     value = parseValueList(),
     rateLimits = parseRateLimits(),
-    scope = firstOrNull { it.name?.asString() == "scope" }?.value?.safeCast<List<*>>()?.map {
-        val value = when {
-            it is KSType -> it.declaration.toString()
-            it is KSClassDeclaration -> it.simpleName.getShortName()
-            else -> throw IllegalStateException("Unknown type $it")
-        }
-        UpdateType.valueOf(value)
-    } ?: if (isCallbackQ) callbackQueryList else messageList,
+    scope = parseScopes() ?: if (isCallbackQ) callbackQueryList else messageList,
     guardClass = parseGuard(),
 )
 
@@ -52,6 +45,7 @@ object CommonAnnotationHandler {
         } ?: DefaultFilter::class.qualifiedName!!
         val priority = arguments.firstOrNull { it.name?.asString() == "priority" }?.value?.safeCast<Int>() ?: 0
         val rateLimits = arguments.parseRateLimits()
+        val scope = arguments.parseScopes() ?: messageList
 
         if (value is List<*>) {
             value.forEach {
@@ -63,6 +57,7 @@ object CommonAnnotationHandler {
                         filter = filter,
                         priority = priority,
                         rateLimits = RateLimits(rateLimits.first, rateLimits.second),
+                        scope = scope,
                         funDeclaration = function,
                     ),
                 )
@@ -70,7 +65,6 @@ object CommonAnnotationHandler {
         }
 
         if (value is String) {
-
             val regexOptions = arguments.parseRegexOptions()
             commonAnnotations.add(
                 CommonAnnotationData(
@@ -80,6 +74,7 @@ object CommonAnnotationHandler {
                     filter = filter,
                     priority = priority,
                     rateLimits = RateLimits(rateLimits.first, rateLimits.second),
+                    scope = scope,
                     funDeclaration = function,
                 ),
             )
@@ -96,6 +91,17 @@ object CommonAnnotationHandler {
 /*
  argument parsers:
 */
+
+internal fun List<KSValueArgument>.parseScopes(): List<UpdateType>? = firstOrNull {
+    it.name?.asString() == "scope"
+}?.value?.safeCast<List<*>>()?.map {
+    val value = when {
+        it is KSType -> it.declaration.toString()
+        it is KSClassDeclaration -> it.simpleName.getShortName()
+        else -> throw IllegalStateException("Unknown type $it")
+    }
+    UpdateType.valueOf(value)
+}
 
 internal fun List<KSValueArgument>.parseRegexOptions(): List<RegexOption> =
     firstOrNull { it.name?.asString() == "options" }?.value?.safeCast<List<*>>()?.map { i ->
