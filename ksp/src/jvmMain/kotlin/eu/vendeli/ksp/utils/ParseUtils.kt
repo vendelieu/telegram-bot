@@ -95,9 +95,9 @@ object CommonAnnotationHandler {
 internal fun List<KSValueArgument>.parseScopes(): List<UpdateType>? = firstOrNull {
     it.name?.asString() == "scope"
 }?.value?.safeCast<List<*>>()?.map {
-    val value = when {
-        it is KSType -> it.declaration.toString()
-        it is KSClassDeclaration -> it.simpleName.getShortName()
+    val value = when (it) {
+        is KSType -> it.declaration.toString()
+        is KSClassDeclaration -> it.simpleName.getShortName()
         else -> throw IllegalStateException("Unknown type $it")
     }
     UpdateType.valueOf(value)
@@ -121,8 +121,12 @@ internal fun List<KSValueArgument>.parseGuard(): String =
         it.declaration.qualifiedName!!.asString()
     } ?: DefaultGuard::class.qualifiedName!!
 
-internal fun List<KSValueArgument>.parseAsUpdateHandler() = first().value.cast<List<KSType>>().map {
-    UpdateType.valueOf(it.declaration.toString())
+internal fun List<KSValueArgument>.parseAsUpdateHandler() = first().value.cast<List<*>>().map { i ->
+    when (i) {
+        is KSType -> i.declaration.toString()
+        is KSClassDeclaration -> i.simpleName.getShortName()
+        else -> throw IllegalStateException("Unknown type $i")
+    }.let { UpdateType.valueOf(it) }
 }
 
 internal fun List<KSValueArgument>.parseRateLimits(): Pair<Long, Long> = firstOrNull {

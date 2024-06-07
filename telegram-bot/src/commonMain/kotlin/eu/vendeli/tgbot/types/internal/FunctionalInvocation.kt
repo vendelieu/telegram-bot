@@ -15,4 +15,9 @@ internal data class FunctionalInvocation(
     val rateLimits: RateLimits,
     val guard: KClass<out Guard> = DefaultGuard::class,
     val filter: KClass<out Filter> = DefaultFilter::class,
-)
+) {
+    override fun toString(): String =
+        "FunctionalInvocation[" +
+            "id = $id, CommandContext, scope = $scope, rateLimits = $rateLimits, guard = $guard, filter = $filter" +
+            "]"
+}

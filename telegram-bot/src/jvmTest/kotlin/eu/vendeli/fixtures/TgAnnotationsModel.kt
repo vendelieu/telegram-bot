@@ -4,6 +4,7 @@ package eu.vendeli.fixtures
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.CommandHandler
+import eu.vendeli.tgbot.annotations.CommonHandler
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
@@ -27,6 +28,10 @@ class TgAnnotationsModel {
 
     @UpdateHandler([UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY])
     fun updateHandler() {
+    }
+
+    @CommonHandler.Text(["common", "common2"])
+    suspend fun common() {
     }
 
     @UnprocessedHandler

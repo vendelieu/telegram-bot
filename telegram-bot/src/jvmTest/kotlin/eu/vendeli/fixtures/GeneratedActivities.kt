@@ -27,6 +27,17 @@ private inline fun suspendCall(noinline block: InvocationLambda): InvocationLamb
 private val zeroRateLimits: RateLimits = RateLimits(0, 0)
 
 private val __TG_COMMANDS0: Map<Pair<String, UpdateType>, Invocable> = mapOf(
+    ("test2" to MESSAGE) to (
+        suspendCall { classManager, update, user, bot, parameters ->
+            ::testMethod.invoke()
+        }
+            to InvocationMeta(
+                "eu.vendeli.fixtures",
+                "testMethod",
+                zeroRateLimits,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
+            )
+    ),
     ("test" to MESSAGE) to (
         suspendCall { classManager, update, user, bot, parameters ->
             val inst = classManager.getInstance(TgAnnotationsModel::class) as
@@ -59,17 +70,6 @@ private val __TG_COMMANDS0: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
-    ("test2" to MESSAGE) to (
-        suspendCall { classManager, update, user, bot, parameters ->
-            ::testMethod.invoke()
-        }
-            to InvocationMeta(
-                "eu.vendeli.fixtures",
-                "testMethod",
-                zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultGuard::class,
-            )
-    ),
     ("test3" to MESSAGE) to (
         suspendCall { classManager, update, user, bot, parameters ->
             TestObj::test.invoke()
@@ -84,6 +84,17 @@ private val __TG_COMMANDS0: Map<Pair<String, UpdateType>, Invocable> = mapOf(
 )
 
 private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
+    "testInp2" to (
+        suspendCall { classManager, update, user, bot, parameters ->
+            ::testMethod2.invoke()
+        }
+            to InvocationMeta(
+                "eu.vendeli.fixtures",
+                "testMethod2",
+                zeroRateLimits,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
+            )
+    ),
     "testInp" to (
         suspendCall { classManager, update, user, bot, parameters ->
             val inst = classManager.getInstance(TgAnnotationsModel::class) as
@@ -95,17 +106,6 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
             to InvocationMeta(
                 "eu.vendeli.fixtures.TgAnnotationsModel",
                 "test2",
-                zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultGuard::class,
-            )
-    ),
-    "testInp2" to (
-        suspendCall { classManager, update, user, bot, parameters ->
-            ::testMethod2.invoke()
-        }
-            to InvocationMeta(
-                "eu.vendeli.fixtures",
-                "testMethod2",
                 zeroRateLimits,
                 eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
@@ -188,6 +188,34 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
 )
 
 private val __TG_COMMONS0: Map<CommonMatcher, Invocable> = mapOf(
+    CommonMatcher.String(
+        value = "common",
+        filter = eu.vendeli.tgbot.utils.DefaultFilter::class,
+        setOf(MESSAGE),
+    ) to (
+        suspendCall { classManager, update, user, bot, parameters ->
+            val inst = classManager.getInstance(TgAnnotationsModel::class) as
+                TgAnnotationsModel
+            TgAnnotationsModel::common.invoke(
+                inst,
+            )
+        }
+            to InvocationMeta("eu.vendeli.fixtures.TgAnnotationsModel", "common", zeroRateLimits)
+    ),
+    CommonMatcher.String(
+        value = "common2",
+        filter = eu.vendeli.tgbot.utils.DefaultFilter::class,
+        setOf(MESSAGE),
+    ) to (
+        suspendCall { classManager, update, user, bot, parameters ->
+            val inst = classManager.getInstance(TgAnnotationsModel::class) as
+                TgAnnotationsModel
+            TgAnnotationsModel::common.invoke(
+                inst,
+            )
+        }
+            to InvocationMeta("eu.vendeli.fixtures.TgAnnotationsModel", "common", zeroRateLimits)
+    ),
     CommonMatcher.Regex(
         value = Regex("test colou?r"),
         filter =

@@ -47,7 +47,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 (update as? MessageUpdate)?.message?.chat?.id shouldBe 1
             }.andThen {
                 update.userOrNull?.id shouldBe 2
-                // processing should not reach this point so the check will not fail our test
+                // processing should not reach this point, so the check will not fail our test
             }.andThen {
                 println(this)
             }.breakIf(
@@ -117,6 +117,37 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         generalCounter.get() shouldBeGreaterThanOrEqual 5
         startCounter.get() shouldBeGreaterThanOrEqual 2
         notHandledCounter.get() shouldBe 3
+    }
+
+    @Test
+    suspend fun `common handler reaching test`() {
+        val generalCounter = AtomicInteger(0)
+        val startCounter = AtomicInteger(0)
+        val commonHandler = AtomicInteger(0)
+        val regexCommonHandler = AtomicInteger(0)
+
+        doMockHttp(MockUpdate.TEXT_LIST(listOf("test", "/start", "123")))
+
+        bot.handleUpdates {
+            onCommand("/start") {
+                startCounter.incrementAndGet()
+            }
+
+            common("test") {
+                commonHandler.incrementAndGet()
+            }
+
+            common("^\\d+\$".toRegex()) {
+                regexCommonHandler.incrementAndGet()
+            }
+
+            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
+        }
+
+        generalCounter.get() shouldBeGreaterThanOrEqual 5
+        startCounter.get() shouldBeGreaterThanOrEqual 2
+        commonHandler.get() shouldBe 2
+        commonHandler.get() shouldBe 2
     }
 
     @Test
