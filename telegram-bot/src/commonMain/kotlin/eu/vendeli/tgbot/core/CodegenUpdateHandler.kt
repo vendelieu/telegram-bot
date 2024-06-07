@@ -49,11 +49,11 @@ class CodegenUpdateHandler internal constructor(
         // remove input listener point
         if (user != null && bot.config.inputAutoRemoval) bot.inputListener.del(user.id)
 
-        // if there's no command and input > check regex handlers
-        if (invocation == null) invocation = activities.regexHandlers.entries.firstOrNull {
-            it.key.matchEntire(text) != null
+        // if there's no command and input > check common handlers
+        if (invocation == null) invocation = activities.commonHandlers.entries.firstOrNull {
+            it.key.match(request.command, this, bot)
         }?.also {
-            activityId = it.key.pattern
+            activityId = it.key.value.toString()
         }?.value
 
         logger.debug { "Result of finding action - ${invocation?.second}" }

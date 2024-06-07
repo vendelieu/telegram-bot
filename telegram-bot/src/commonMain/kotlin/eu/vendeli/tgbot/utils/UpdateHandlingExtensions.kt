@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
 import eu.vendeli.tgbot.interfaces.Filter
+import eu.vendeli.tgbot.interfaces.Guard
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivityCtx
@@ -24,13 +25,22 @@ private inline val SingleInputChain.prevChainId: String?
         null
     }
 
-internal suspend inline fun KClass<out Filter>.checkIsGuarded(
+internal suspend inline fun KClass<out Guard>.checkIsGuarded(
+    user: User?,
+    update: ProcessedUpdate,
+    bot: TelegramBot,
+): Boolean {
+    if (fullName == "eu.vendeli.tgbot.utils.DefaultGuard") return true
+    return bot.config.classManager.getInstance(this).cast<Guard>().condition(user, update, bot)
+}
+
+internal suspend inline fun KClass<out Filter>.checkIsFiltered(
     user: User?,
     update: ProcessedUpdate,
     bot: TelegramBot,
 ): Boolean {
     if (fullName == "eu.vendeli.tgbot.utils.DefaultFilter") return true
-    return bot.config.classManager.getInstance(this).cast<Filter>().condition(user, update, bot)
+    return bot.config.classManager.getInstance(this).cast<Filter>().match(user, update, bot)
 }
 
 /**
@@ -104,16 +114,18 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
     }
     if (user != null && bot.config.inputAutoRemoval) bot.inputListener.del(user.id) // clean listener
 
-    if (parsedText.command.isNotBlank()) functionalActivities.regexCommands.entries.firstOrNull { i ->
-        i.key.matchEntire(parsedText.command) != null
+    // if there's no command and input > check common handlers
+    functionalActivities.commonActivities.entries.firstOrNull { i ->
+        i.key.match(parsedText.command, update, bot)
     }?.value?.run {
-        logger.debug { "Matched regex command $this for text $text" }
+        logger.debug { "Matched common handler $this for text $text" }
         // check for limit exceed
         if (bot.update.checkIsLimited(rateLimits, user?.id, parsedText.command)) return false
         logger.info { "Invoking command $id" }
         invocation.invoke(cmdCtx)
         return true
     }
+
     return false
 }
 

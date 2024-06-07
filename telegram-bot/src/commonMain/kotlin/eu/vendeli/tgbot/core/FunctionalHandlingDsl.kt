@@ -2,7 +2,9 @@ package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.Filter
+import eu.vendeli.tgbot.interfaces.Guard
 import eu.vendeli.tgbot.types.internal.ActivityCtx
+import eu.vendeli.tgbot.types.internal.CommonMatcher
 import eu.vendeli.tgbot.types.internal.FunctionalActivities
 import eu.vendeli.tgbot.types.internal.FunctionalInvocation
 import eu.vendeli.tgbot.types.internal.InputBreakPoint
@@ -12,6 +14,7 @@ import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.DEFAULT_COMMAND_SCOPE
 import eu.vendeli.tgbot.utils.DefaultFilter
+import eu.vendeli.tgbot.utils.DefaultGuard
 import eu.vendeli.tgbot.utils.OnBusinessConnectionActivity
 import eu.vendeli.tgbot.utils.OnBusinessMessageActivity
 import eu.vendeli.tgbot.utils.OnCallbackQueryActivity
@@ -209,6 +212,7 @@ class FunctionalHandlingDsl internal constructor(
      * The action that is performed when the command is matched.
      *
      * @param command The command that will be processed.
+     * @param scope update type that should match for command.
      * @param rateLimits Restriction of command requests.
      * @param block Action that will be applied.
      */
@@ -216,7 +220,7 @@ class FunctionalHandlingDsl internal constructor(
         command: String,
         scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Filter> = DefaultFilter::class,
+        guard: KClass<out Guard> = DefaultGuard::class,
         block: OnCommandActivity,
     ) {
         scope.forEach {
@@ -236,10 +240,10 @@ class FunctionalHandlingDsl internal constructor(
         command: Regex,
         scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Filter> = DefaultFilter::class,
+        guard: KClass<out Guard> = DefaultGuard::class,
         block: OnCommandActivity,
     ) {
-        functionalActivities.regexCommands[command] =
+        functionalActivities.regexActivities[command] =
             FunctionalInvocation(command.pattern, block, scope, rateLimits, guard)
     }
 
@@ -253,7 +257,7 @@ class FunctionalHandlingDsl internal constructor(
     fun onInput(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Filter> = DefaultFilter::class,
+        guard: KClass<out Guard> = DefaultGuard::class,
         block: OnInputActivity,
     ) {
         functionalActivities.inputs[identifier] = SingleInputChain(identifier, block, rateLimits, guard)
@@ -267,6 +271,46 @@ class FunctionalHandlingDsl internal constructor(
     }
 
     /**
+     * Common action that will be checked after other activities.
+     *
+     * @param value value that will be matched.
+     * @param filter condition that will be checked in a matching process.
+     * @param scope update type that should match for command.
+     * @param rateLimits restriction of command requests.
+     * @param block action that will be applied.
+     */
+    fun common(
+        value: String,
+        filter: KClass<out Filter> = DefaultFilter::class,
+        scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
+        rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        block: OnCommandActivity,
+    ) {
+        functionalActivities.commonActivities[CommonMatcher.String(value, filter, scope)] =
+            FunctionalInvocation(value, block, scope, rateLimits, filter = filter)
+    }
+
+    /**
+     * Common action that will be checked after other activities.
+     *
+     * @param value value that will be matched.
+     * @param filter condition that will be checked in a matching process.
+     * @param scope update type that should match for command.
+     * @param rateLimits restriction of command requests.
+     * @param block action that will be applied.
+     */
+    fun common(
+        value: Regex,
+        filter: KClass<out Filter> = DefaultFilter::class,
+        scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
+        rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        block: OnCommandActivity,
+    ) {
+        functionalActivities.commonActivities[CommonMatcher.Regex(value, filter, scope)] =
+            FunctionalInvocation(value.pattern, block, scope, rateLimits, filter = filter)
+    }
+
+    /**
      * Dsl for creating chain of input processing
      *
      * @param identifier id of input
@@ -277,7 +321,7 @@ class FunctionalHandlingDsl internal constructor(
     fun inputChain(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Filter> = DefaultFilter::class,
+        guard: KClass<out Guard> = DefaultGuard::class,
         block: OnInputActivity,
     ): SingleInputChain {
         val firstChain = SingleInputChain(identifier, block, rateLimits, guard)
@@ -295,7 +339,7 @@ class FunctionalHandlingDsl internal constructor(
      */
     fun SingleInputChain.andThen(
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Filter> = DefaultFilter::class,
+        guard: KClass<out Guard> = DefaultGuard::class,
         block: OnInputActivity,
     ): SingleInputChain {
         val nextLevel = currentLevel + 1

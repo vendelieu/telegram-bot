@@ -1,8 +1,8 @@
-package eu.vendeli.ksp
+package eu.vendeli.ksp.dto
 
 import eu.vendeli.tgbot.types.internal.UpdateType
 
-data class AnnotationData(
+internal data class AnnotationData(
     val value: List<String>,
     val rateLimits: Pair<Long, Long>,
     val scope: List<UpdateType>,

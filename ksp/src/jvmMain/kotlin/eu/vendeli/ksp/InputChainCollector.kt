@@ -6,7 +6,9 @@ import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toTypeName
-import eu.vendeli.tgbot.utils.DefaultFilter
+import eu.vendeli.ksp.utils.cast
+import eu.vendeli.ksp.utils.chainLinkClass
+import eu.vendeli.tgbot.utils.DefaultGuard
 
 internal fun collectInputChains(
     symbols: Sequence<KSClassDeclaration>,
@@ -59,7 +61,7 @@ internal fun collectInputChains(
                 qualifier,
                 name,
                 "zeroRateLimits",
-                DefaultFilter::class.qualifiedName,
+                DefaultGuard::class.qualifiedName,
             )
         }
     }

@@ -8,10 +8,12 @@
     "RedundantNullableReturnType",
     "KotlinConstantConditions",
     "USELESS_ELVIS",
+    "ktlint:standard:backing-property-naming",
 )
 
 package eu.vendeli.fixtures
 
+import eu.vendeli.tgbot.types.internal.CommonMatcher
 import eu.vendeli.tgbot.types.internal.InvocationMeta
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.UpdateType.CALLBACK_QUERY
@@ -24,7 +26,18 @@ private inline fun suspendCall(noinline block: InvocationLambda): InvocationLamb
 
 private val zeroRateLimits: RateLimits = RateLimits(0, 0)
 
-private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
+private val __TG_COMMANDS0: Map<Pair<String, UpdateType>, Invocable> = mapOf(
+    ("test2" to MESSAGE) to (
+        suspendCall { classManager, update, user, bot, parameters ->
+            ::testMethod.invoke()
+        }
+            to InvocationMeta(
+                "eu.vendeli.fixtures",
+                "testMethod",
+                zeroRateLimits,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
+            )
+    ),
     ("test" to MESSAGE) to (
         suspendCall { classManager, update, user, bot, parameters ->
             val inst = classManager.getInstance(TgAnnotationsModel::class) as
@@ -37,7 +50,7 @@ private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TgAnnotationsModel",
                 "test",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
     ("STOP" to MESSAGE) to (
@@ -54,18 +67,7 @@ private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TgAnnotationsModel",
                 "stopHandling",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
-            )
-    ),
-    ("test2" to MESSAGE) to (
-        suspendCall { classManager, update, user, bot, parameters ->
-            ::testMethod.invoke()
-        }
-            to InvocationMeta(
-                "eu.vendeli.fixtures",
-                "testMethod",
-                zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
     ("test3" to MESSAGE) to (
@@ -76,12 +78,23 @@ private val `TG_$COMMANDS`: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TestObj",
                 "test",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
 )
 
-private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
+private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
+    "testInp2" to (
+        suspendCall { classManager, update, user, bot, parameters ->
+            ::testMethod2.invoke()
+        }
+            to InvocationMeta(
+                "eu.vendeli.fixtures",
+                "testMethod2",
+                zeroRateLimits,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
+            )
+    ),
     "testInp" to (
         suspendCall { classManager, update, user, bot, parameters ->
             val inst = classManager.getInstance(TgAnnotationsModel::class) as
@@ -94,18 +107,7 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TgAnnotationsModel",
                 "test2",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
-            )
-    ),
-    "testInp2" to (
-        suspendCall { classManager, update, user, bot, parameters ->
-            ::testMethod2.invoke()
-        }
-            to InvocationMeta(
-                "eu.vendeli.fixtures",
-                "testMethod2",
-                zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
     "testInp3" to (
@@ -116,7 +118,7 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TestObj",
                 "test2",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
     "eu.vendeli.fixtures.Conversation.Name" to (
@@ -148,7 +150,7 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 "eu.vendeli.fixtures.Conversation",
                 "Name",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
     "eu.vendeli.fixtures.Conversation.Age" to (
@@ -160,7 +162,8 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 parameters,
             ->
             if (user == null) return@suspendCall Unit
-            val inst = classManager.getInstance(Conversation.Age::class) as Conversation.Age
+            val inst = classManager.getInstance(Conversation.Age::class) as
+                Conversation.Age
             inst.beforeAction?.invoke(user, update, bot)
             val nextLink: String? = null
             val breakPoint = Conversation.Age.breakCondition?.invoke(user, update, bot) ?: false
@@ -179,14 +182,53 @@ private val `TG_$INPUTS`: Map<String, Invocable> = mapOf(
                 "eu.vendeli.fixtures.Conversation",
                 "Age",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
+                eu.vendeli.tgbot.utils.DefaultGuard::class,
             )
     ),
 )
 
-private val `TG_$REGEX`: Map<Regex, Invocable> = mapOf(
-    Regex("test colou?r") to (
+private val __TG_COMMONS0: Map<CommonMatcher, Invocable> = mapOf(
+    CommonMatcher.String(
+        value = "common",
+        filter = eu.vendeli.tgbot.utils.DefaultFilter::class,
+        setOf(MESSAGE),
+    ) to (
         suspendCall { classManager, update, user, bot, parameters ->
+            val inst = classManager.getInstance(TgAnnotationsModel::class) as
+                TgAnnotationsModel
+            TgAnnotationsModel::common.invoke(
+                inst,
+            )
+        }
+            to InvocationMeta("eu.vendeli.fixtures.TgAnnotationsModel", "common", zeroRateLimits)
+    ),
+    CommonMatcher.String(
+        value = "common2",
+        filter = eu.vendeli.tgbot.utils.DefaultFilter::class,
+        setOf(MESSAGE),
+    ) to (
+        suspendCall { classManager, update, user, bot, parameters ->
+            val inst = classManager.getInstance(TgAnnotationsModel::class) as
+                TgAnnotationsModel
+            TgAnnotationsModel::common.invoke(
+                inst,
+            )
+        }
+            to InvocationMeta("eu.vendeli.fixtures.TgAnnotationsModel", "common", zeroRateLimits)
+    ),
+    CommonMatcher.Regex(
+        value = Regex("test colou?r"),
+        filter =
+            eu.vendeli.tgbot.utils.DefaultFilter::class,
+        setOf(MESSAGE),
+    ) to (
+        suspendCall {
+                classManager,
+                update,
+                user,
+                bot,
+                parameters,
+            ->
             val inst = classManager.getInstance(RegexCommands::class) as
                 RegexCommands
             val param0 = bot
@@ -195,16 +237,11 @@ private val `TG_$REGEX`: Map<Regex, Invocable> = mapOf(
                 param0,
             )
         }
-            to InvocationMeta(
-                "eu.vendeli.fixtures.RegexCommands",
-                "testR",
-                zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultFilter::class,
-            )
+            to InvocationMeta("eu.vendeli.fixtures.RegexCommands", "testR", zeroRateLimits)
     ),
 )
 
-private val `TG_$UPDATE_TYPES`: Map<UpdateType, InvocationLambda> = mapOf(
+private val __TG_UPDATE_TYPES0: Map<UpdateType, InvocationLambda> = mapOf(
     MESSAGE to suspendCall { classManager, update, user, bot, parameters ->
         val inst = classManager.getInstance(TgAnnotationsModel::class) as
             TgAnnotationsModel
@@ -221,7 +258,7 @@ private val `TG_$UPDATE_TYPES`: Map<UpdateType, InvocationLambda> = mapOf(
     },
 )
 
-private val `TG_$UNPROCESSED`: InvocationLambda? = suspendCall {
+private val __TG_UNPROCESSED0: InvocationLambda? = suspendCall {
         classManager,
         update,
         user,
@@ -235,10 +272,12 @@ private val `TG_$UNPROCESSED`: InvocationLambda? = suspendCall {
     )
 }
 
-internal val `$ACTIVITIES_eu_vendeli_fixtures`: List<Any?> = listOf(
-    `TG_$COMMANDS`,
-    `TG_$INPUTS`,
-    `TG_$REGEX`,
-    `TG_$UPDATE_TYPES`,
-    `TG_$UNPROCESSED`,
+internal val __ACTIVITIES: Map<String, List<Any?>> = mapOf(
+    "default" to listOf(
+        __TG_COMMANDS0,
+        __TG_INPUTS0,
+        __TG_COMMONS0,
+        __TG_UPDATE_TYPES0,
+        __TG_UNPROCESSED0,
+    ),
 )

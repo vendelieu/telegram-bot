@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.api.botactions.getUpdates
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.interfaces.Filter
+import eu.vendeli.tgbot.interfaces.Guard
 import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.TgAction
@@ -104,8 +105,12 @@ internal fun InputFile.toPartData(name: String) = PartData.BinaryItem(
     },
 )
 
-object DefaultFilter : Filter {
+object DefaultGuard : Guard {
     override suspend fun condition(user: User?, update: ProcessedUpdate, bot: TelegramBot): Boolean = true
+}
+
+object DefaultFilter : Filter {
+    override suspend fun match(user: User?, update: ProcessedUpdate, bot: TelegramBot): Boolean = true
 }
 
 val DEFAULT_HANDLING_BEHAVIOUR: HandlingBehaviourBlock = { handle(it) }

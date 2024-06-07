@@ -4,7 +4,7 @@ logging = "2.0.3"
 logback = "1.5.6"
 
 datetime = "0.6.0"
-serialization = "1.6.3"
+serialization = "1.7.0"
 stately = "2.0.7"
 
 kotlin = "2.0.0"
@@ -13,14 +13,14 @@ dokka = "1.9.20"
 kotlinter = "4.3.0"
 deteKT = "1.23.6"
 
-kotest = "5.9.0"
+kotest = "5.9.1"
 mockk = "1.13.11"
 kover = "0.8.0"
 krypto = "4.0.10"
-sslcontext = "8.3.5"
+sslcontext = "8.3.6"
 spring = "3.3.0"
 
-ksp = "2.0.0-1.0.21"
+ksp = "2.0.0-1.0.22"
 poet = "1.17.0"
 
 binvalid = "0.14.0"

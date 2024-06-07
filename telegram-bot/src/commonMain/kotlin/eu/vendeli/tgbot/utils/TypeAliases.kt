@@ -16,6 +16,7 @@ import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
 import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
 import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
 import eu.vendeli.tgbot.types.internal.CommandContext
+import eu.vendeli.tgbot.types.internal.CommonMatcher
 import eu.vendeli.tgbot.types.internal.DeletedBusinessMessagesUpdate
 import eu.vendeli.tgbot.types.internal.EditedBusinessMessageUpdate
 import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
@@ -67,10 +68,11 @@ typealias WhenNotHandledActivity = suspend Update.() -> Unit
 typealias OnCommandActivity = suspend CommandContext<ProcessedUpdate>.() -> Unit
 typealias OnInputActivity = suspend ActivityCtx<ProcessedUpdate>.() -> Unit
 
-typealias OnUpdateActivities = MutableMap<UpdateType, suspend ActivityCtx<ProcessedUpdate>.() -> Unit>
-typealias InputActivities = MutableMap<String, SingleInputChain>
+internal typealias OnUpdateActivities = MutableMap<UpdateType, suspend ActivityCtx<ProcessedUpdate>.() -> Unit>
+internal typealias InputActivities = MutableMap<String, SingleInputChain>
 internal typealias CommandActivities = MutableMap<Pair<String, UpdateType>, FunctionalInvocation>
 internal typealias RegexCommandActivities = MutableMap<Regex, FunctionalInvocation>
+internal typealias CommonActivities = MutableMap<CommonMatcher, FunctionalInvocation>
 
 typealias HandlingBehaviourBlock = suspend TgUpdateHandler.(Update) -> Unit
 typealias FunctionalHandlingBlock = suspend FunctionalHandlingDsl.() -> Unit
@@ -82,5 +84,5 @@ typealias Invocable = Pair<InvocationLambda, InvocationMeta>
 
 internal typealias CommandHandlers = Map<Pair<String, UpdateType>, Invocable>
 internal typealias InputHandlers = Map<String, Invocable>
-internal typealias RegexHandlers = Map<Regex, Invocable>
+internal typealias CommonHandlers = Map<CommonMatcher, Invocable>
 internal typealias UpdateTypeHandlers = Map<UpdateType, InvocationLambda>

@@ -1,6 +1,6 @@
 @file:Suppress("TooManyFunctions")
 
-package eu.vendeli.ksp
+package eu.vendeli.ksp.utils
 
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.KSClassDeclaration
@@ -28,6 +28,7 @@ import eu.vendeli.tgbot.types.internal.ChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
 import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
 import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
+import eu.vendeli.tgbot.types.internal.CommonMatcher
 import eu.vendeli.tgbot.types.internal.DeletedBusinessMessagesUpdate
 import eu.vendeli.tgbot.types.internal.EditedBusinessMessageUpdate
 import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
@@ -92,6 +93,7 @@ internal val businessMessageUpdateClass = BusinessMessageUpdate::class.asTypeNam
 internal val editedBusinessMessageClass = EditedBusinessMessageUpdate::class.asTypeName()
 internal val deletedBusinessMessagesClass = DeletedBusinessMessagesUpdate::class.asTypeName()
 
+internal val commonMatcherClass = CommonMatcher::class.asTypeName()
 internal val callbackQueryList = listOf(UpdateType.CALLBACK_QUERY)
 internal val messageList = listOf(UpdateType.MESSAGE)
 internal val notLimitedRateLimits = 0L to 0L

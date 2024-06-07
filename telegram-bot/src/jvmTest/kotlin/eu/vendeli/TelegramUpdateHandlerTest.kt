@@ -91,6 +91,17 @@ class TelegramUpdateHandlerTest : BotTestContext() {
     }
 
     @Test
+    suspend fun `commonhandler via annotation handling`() {
+        doMockHttp(MockUpdate.SINGLE("common"))
+
+        bot.update.setListener {
+            handle(it)
+            stopListener()
+        }
+        bot.update.caughtExceptions.tryReceive().getOrNull().shouldBeNull()
+    }
+
+    @Test
     fun `valid command parsing`() {
         bot.config.apply {
             commandParsing.restrictSpacesInCommands = true

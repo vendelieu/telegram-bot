@@ -19,12 +19,19 @@ import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
+import eu.vendeli.ksp.utils.CommonAnnotationHandler
+import eu.vendeli.ksp.utils.FileBuilder
+import eu.vendeli.ksp.utils.activitiesType
+import eu.vendeli.ksp.utils.addZeroLimitsProp
+import eu.vendeli.ksp.utils.autoWiringClassName
+import eu.vendeli.ksp.utils.getAnnotatedClassSymbols
+import eu.vendeli.ksp.utils.getAnnotatedFnSymbols
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.CommandHandler.CallbackQuery
+import eu.vendeli.tgbot.annotations.CommonHandler
 import eu.vendeli.tgbot.annotations.Injectable
 import eu.vendeli.tgbot.annotations.InputChain
 import eu.vendeli.tgbot.annotations.InputHandler
-import eu.vendeli.tgbot.annotations.RegexCommandHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
 
@@ -53,8 +60,8 @@ class ActivityProcessor(
             val paramInitBlock = StringBuilder()
             paramInitBlock.append("mapOf(")
             (targetPackage ?: listOf("default")).forEachIndexed { idx, pkg ->
-                val block = "listOf(__TG_COMMANDS$idx, __TG_INPUTS$idx, __TG_REGEX$idx," +
-                    " __TG_UPDATE_TYPES$idx, __TG_UNPROCESSED$idx)"
+                val block = "listOf(__TG_COMMANDS$idx, __TG_INPUTS$idx, " +
+                    "  __TG_COMMONS$idx, __TG_UPDATE_TYPES$idx, __TG_UNPROCESSED$idx)"
                 paramInitBlock.append("\"$pkg\" to $block,")
             }
             paramInitBlock.append(")")
@@ -86,10 +93,23 @@ class ActivityProcessor(
 
         val commandHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, CommandHandler::class, CallbackQuery::class)
         val inputHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, InputHandler::class)
-        val regexHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, RegexCommandHandler::class)
         val updateHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, UpdateHandler::class)
         val unprocessedHandlerSymbol = resolver.getAnnotatedFnSymbols(pkg, UnprocessedHandler::class)
             .firstOrNull()
+
+        resolver.getAnnotatedFnSymbols(
+            pkg,
+            CommonHandler.Text::class,
+            CommonHandler.Regex::class,
+        ).forEach { function ->
+            function.annotations.filter {
+                it.shortName.asString() == CommonHandler.Text::class.simpleName!! ||
+                    it.shortName.asString() == CommonHandler.Regex::class.simpleName!!
+            }.forEach {
+                CommonAnnotationHandler.parse(function, it.arguments)
+            }
+        }
+        val commonHandlerData = CommonAnnotationHandler.collect()
 
         val inputChainSymbols = resolver.getAnnotatedClassSymbols(InputChain::class, pkg)
 
@@ -100,7 +120,7 @@ class ActivityProcessor(
         fileSpec.apply {
             collectCommandActivities(commandHandlerSymbols, injectableTypes, logger, idxPostfix)
             collectInputActivities(inputHandlerSymbols, inputChainSymbols, injectableTypes, logger, idxPostfix)
-            collectRegexActivities(regexHandlerSymbols, injectableTypes, logger, idxPostfix)
+            collectCommonActivities(commonHandlerData, injectableTypes, logger, idxPostfix)
             collectUpdateTypeActivities(updateHandlerSymbols, injectableTypes, logger, idxPostfix)
             collectUnprocessed(unprocessedHandlerSymbol, injectableTypes, logger, idxPostfix)
         }
