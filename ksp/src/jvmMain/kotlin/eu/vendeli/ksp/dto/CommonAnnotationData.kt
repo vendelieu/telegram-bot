@@ -12,9 +12,10 @@ sealed class CommonAnnotationValue {
 
     internal fun toCommonMatcher(filter: kotlin.String, scope: List<UpdateType>) = when (this) {
         is String -> "CommonMatcher.String(value = \"$value\", filter = $filter::class, setOf(${scope.joinToString()}))"
-        is Regex -> "CommonMatcher.Regex(value = Regex(\"$value\"${
-            value.options.takeIf { it.isNotEmpty() }?.joinToString(prefix = " ,") { "RegexOption.$it" } ?: ""
-        }), filter = $filter::class, setOf(${scope.joinToString()}))"
+        is Regex ->
+            "CommonMatcher.Regex(value = Regex(\"$value\"${
+                value.options.takeIf { it.isNotEmpty() }?.joinToString(prefix = " ,") { "RegexOption.$it" } ?: ""
+            }), filter = $filter::class, setOf(${scope.joinToString()}))"
     }
 }
 

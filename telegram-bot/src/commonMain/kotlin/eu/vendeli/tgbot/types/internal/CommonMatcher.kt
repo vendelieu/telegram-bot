@@ -18,9 +18,9 @@ sealed class CommonMatcher(
         scope: Set<UpdateType>,
     ) : CommonMatcher(value, filter, scope) {
         override suspend fun match(text: kotlin.String, update: ProcessedUpdate, bot: TelegramBot): Boolean =
-            update.type in scope
-                && filter.checkIsFiltered(update.userOrNull, update, bot)
-                && text == value
+            update.type in scope &&
+                filter.checkIsFiltered(update.userOrNull, update, bot) &&
+                text == value
 
         override fun toString(): kotlin.String = "String(value = $value, filter = $filter, scope = $scope)"
     }
@@ -31,9 +31,9 @@ sealed class CommonMatcher(
         scope: Set<UpdateType>,
     ) : CommonMatcher(value, filter, scope) {
         override suspend fun match(text: kotlin.String, update: ProcessedUpdate, bot: TelegramBot): Boolean =
-            update.type in scope
-                && filter.checkIsFiltered(update.userOrNull, update, bot)
-                && value.matchEntire(text) != null
+            update.type in scope &&
+                filter.checkIsFiltered(update.userOrNull, update, bot) &&
+                value.matchEntire(text) != null
 
         override fun toString(): kotlin.String = "Regex(value = $value, filter = $filter, scope = $scope)"
     }

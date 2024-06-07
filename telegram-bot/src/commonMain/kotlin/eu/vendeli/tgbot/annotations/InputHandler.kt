@@ -15,5 +15,5 @@ import kotlin.reflect.KClass
 annotation class InputHandler(
     val value: Array<String>,
     val rateLimits: RateLimits = RateLimits(0, 0),
-    val guard: KClass<out Guard> = DefaultGuard::class
+    val guard: KClass<out Guard> = DefaultGuard::class,
 )

@@ -14,5 +14,5 @@ internal data class FunctionalInvocation(
     val scope: Set<UpdateType>,
     val rateLimits: RateLimits,
     val guard: KClass<out Guard> = DefaultGuard::class,
-    val filter: KClass<out Filter> = DefaultFilter::class
+    val filter: KClass<out Filter> = DefaultFilter::class,
 )
