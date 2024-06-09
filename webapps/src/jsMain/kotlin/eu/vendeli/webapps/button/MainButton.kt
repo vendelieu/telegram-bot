@@ -1,6 +1,5 @@
 package eu.vendeli.webapps.button
 
-import kotlinx.js.JsPlainObject
 import kotlin.js.Json
 
 external class MainButton {
@@ -28,20 +27,16 @@ external class MainButton {
     internal fun setParams(params: Json): MainButton
 }
 
-@JsPlainObject
-external interface MainButtonParams {
-    val text: String?
-    val color: String?
-
+class MainButtonParams(
+    var text: String? = null,
+    var color: String? = null,
     @JsName("text_color")
-    val textColor: String?
-
+    var textColor: String? = null,
     @JsName("is_active")
-    val isActive: Boolean?
-
+    var isActive: Boolean? = null,
     @JsName("is_visible")
-    val isVisible: Boolean?
-}
+    var isVisible: Boolean? = null,
+)
 
 fun MainButton.setParams(block: MainButtonParams.() -> Unit): MainButton = MainButtonParams().apply(block).let {
     @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
