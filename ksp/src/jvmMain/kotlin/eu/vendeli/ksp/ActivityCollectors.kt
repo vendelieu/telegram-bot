@@ -62,10 +62,9 @@ internal fun FileBuilder.collectCommandActivities(
             annotationData.scope.forEach { updT ->
                 logger.info("Command: $it UpdateType: ${updT.name} --> ${function.qualifiedName?.asString()}")
 
-                addImport(UpdateType::class, updT.name)
                 addStatement(
                     "(\"$it\" to %L) to (%L to InvocationMeta(\"%L\", \"%L\", %L, %L::class)),",
-                    updT.name,
+                    updT,
                     buildInvocationLambdaCodeBlock(function, injectableTypes),
                     function.qualifiedName!!.getQualifier(),
                     function.simpleName.asString(),
@@ -128,10 +127,9 @@ internal fun FileBuilder.collectUpdateTypeActivities(
 
         annotationData.forEach {
             logger.info("UpdateType: ${it.name} --> ${function.qualifiedName?.asString()}")
-            addImport(UpdateType::class, it.name)
             addStatement(
                 "%L to %L,",
-                it.name,
+                it,
                 buildInvocationLambdaCodeBlock(function, injectableTypes),
             )
         }
