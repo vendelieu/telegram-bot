@@ -58,6 +58,7 @@ sealed class InlineQueryResult(val type: String) {
         val photoUrl: String,
         val thumbnailUrl: String,
         val photoWidth: Int? = null,
+        val photoHeight: Int? = null,
         val title: String? = null,
         val description: String? = null,
         val caption: String? = null,
