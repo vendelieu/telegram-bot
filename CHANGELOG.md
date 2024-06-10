@@ -1,5 +1,11 @@
 # Telegram-bot (KtGram) changelog
 
+### 6.0.1
+
+* Fix webapp `setParams` immutability.
+* Fix ksp `UpdateType` resolving problem.
+* Fix `photoHeight` missing in `InlineQueryResult`.
+
 # 6.0.0
 
 * Introduced new `@CommonHandler` which have nested annotations `@CommonHandler.Text`, `@CommonHandler.Regex`
