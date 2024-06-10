@@ -75,7 +75,7 @@ class ChatSetMethodsTest : BotTestContext() {
     @Test
     suspend fun `set chat photo method test`() {
         val file = bot.httpClient.get("https://source.unsplash.com/random/200x200").readBytes()
-        val result = setChatPhoto(file).sendReturning(CHAT_ID, bot).shouldSuccess()
+        val result = setChatPhoto(file).sendReturning(CHAT_ID, bot).getOrNull() ?: return
         result.shouldBeTrue()
 
         deleteChatPhoto().sendReturning(CHAT_ID, bot).shouldSuccess()

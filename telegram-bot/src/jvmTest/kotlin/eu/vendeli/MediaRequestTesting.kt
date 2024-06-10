@@ -19,9 +19,10 @@ import kotlin.io.path.writeBytes
 class MediaRequestTesting : BotTestContext() {
     @Test
     suspend fun `media requests testing`() {
+        val pic = RANDOM_PIC ?: return
         val imageFile = withContext(Dispatchers.IO) {
             Files.createTempFile("test", "file").also {
-                it.writeBytes(RANDOM_PIC)
+                it.writeBytes(pic)
             }.toFile()
         }
 
@@ -29,7 +30,7 @@ class MediaRequestTesting : BotTestContext() {
             .sendReturning(TG_ID, bot).getOrNull()
         photoString.shouldNotBeNull()
 
-        val photoBa = photo(RANDOM_PIC).sendReturning(TG_ID, bot).getOrNull()
+        val photoBa = photo(pic).sendReturning(TG_ID, bot).getOrNull()
         photoBa.shouldNotBeNull()
 
         val photoFile = photo(imageFile).sendReturning(TG_ID, bot).getOrNull()

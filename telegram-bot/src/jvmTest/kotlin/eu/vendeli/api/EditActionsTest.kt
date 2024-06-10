@@ -1,11 +1,11 @@
 package eu.vendeli.api
 
 import BotTestContext
+import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.api.message.editMessageCaption
 import eu.vendeli.tgbot.api.message.editMessageMedia
 import eu.vendeli.tgbot.api.message.editMessageReplyMarkup
 import eu.vendeli.tgbot.api.message.editMessageText
-import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.api.message.message
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardButton
@@ -52,7 +52,7 @@ class EditActionsTest : BotTestContext() {
 
     @Test
     suspend fun `edit media test method test`() {
-        val msg = photo(RANDOM_PIC).sendReturning(TG_ID, bot).getOrNull()
+        val msg = photo(RANDOM_PIC ?: return).sendReturning(TG_ID, bot).getOrNull()
         msg.shouldNotBeNull()
 
         val result = editMessageMedia(
@@ -69,7 +69,7 @@ class EditActionsTest : BotTestContext() {
 
     @Test
     suspend fun `edit media caption test method test`() {
-        val msg = photo(RANDOM_PIC).sendReturning(TG_ID, bot).getOrNull()
+        val msg = photo(RANDOM_PIC ?: return).sendReturning(TG_ID, bot).getOrNull()
         msg.shouldNotBeNull()
         msg.caption.shouldBeNull()
 

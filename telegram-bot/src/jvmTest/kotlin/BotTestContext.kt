@@ -1,4 +1,3 @@
-
 import eu.vendeli.fixtures.__ACTIVITIES
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.InternalApi
@@ -23,6 +22,7 @@ import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.ktor.client.request.get
 import io.ktor.client.statement.readBytes
+import io.ktor.http.isSuccess
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockkStatic
@@ -55,9 +55,11 @@ abstract class BotTestContext(
     protected val PAYMENT_PROVIDER_TOKEN = "1877036958:TEST:5a97ee6bbb1010e9c1033d00979832763c7622a4"
 
     protected val RANDOM_PIC_URL = "https://source.unsplash.com/random/10x10?sig=incrementingIdentifier"
-    protected val RANDOM_PIC: ByteArray
+    protected val RANDOM_PIC: ByteArray?
         get() {
-            return runBlocking { bot.httpClient.get(RANDOM_PIC_URL).readBytes() }
+            return runBlocking { bot.httpClient.get(RANDOM_PIC_URL).takeIf { it.status.isSuccess() }?.readBytes()?.also {
+                logger.warn { "RANDOM PIC OBTAINING ERROR." }
+            } }
         }
     protected val CUR_INSTANT: Instant get() = Clock.System.now()
     protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()
