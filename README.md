@@ -116,8 +116,7 @@ You can read more in a [Bot configuration](https://github.com/vendelieu/telegram
 
 ### Processing responses
 
-if you want to operate with response you can
-use [`sendAsync()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send-async.html)
+All requests are async but to operate with response and have more control over flow you need use [`sendAsync()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send-async.html)
 instead
 of [`send()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send.html)
 method, which
@@ -129,7 +128,7 @@ message { "test" }.sendAsync(user, bot).onFailure {
 }
 ```
 
-Any async request returns
+Any `sendAsync` method returns
 a [`Response`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-response/index.html)
 on which you can also use
 methods [`getOrNull()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/get-or-null.html)
