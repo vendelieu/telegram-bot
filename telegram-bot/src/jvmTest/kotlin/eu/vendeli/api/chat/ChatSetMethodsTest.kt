@@ -21,6 +21,7 @@ import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.ktor.client.request.get
 import io.ktor.client.statement.readBytes
+import utils.RandomPicResource
 
 @EnabledIf(ChatTestingOnlyCondition::class)
 class ChatSetMethodsTest : BotTestContext() {
@@ -74,7 +75,7 @@ class ChatSetMethodsTest : BotTestContext() {
 
     @Test
     suspend fun `set chat photo method test`() {
-        val file = bot.httpClient.get("https://source.unsplash.com/random/200x200").readBytes()
+        val file = bot.httpClient.get(RandomPicResource.current.getPicUrl(200, 200)).readBytes()
         val result = setChatPhoto(file).sendReturning(CHAT_ID, bot).getOrNull() ?: return
         result.shouldBeTrue()
 
