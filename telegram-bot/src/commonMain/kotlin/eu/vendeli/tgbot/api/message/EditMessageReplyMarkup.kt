@@ -3,6 +3,7 @@
 package eu.vendeli.tgbot.api.message
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.types.Message
@@ -13,6 +14,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class EditMessageReplyMarkupAction() :
     Action<Message>(),
     InlineActionExt<Message>,
+    BusinessActionExt<Message>,
     MarkupFeature<EditMessageReplyMarkupAction> {
     override val method = TgMethod("editMessageReplyMarkup")
     override val returnType = getReturnType()

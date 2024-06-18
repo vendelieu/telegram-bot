@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.api.message
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.types.Message
@@ -17,6 +18,7 @@ import eu.vendeli.tgbot.utils.toPartData
 class EditMessageMediaAction :
     Action<Message>,
     InlineActionExt<Message>,
+    BusinessActionExt<Message>,
     MarkupFeature<EditMessageMediaAction> {
     override val method = TgMethod("editMessageMedia")
     override val returnType = getReturnType()

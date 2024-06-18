@@ -22,7 +22,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 /**
- * A basic update processing class that is extends by a [CodegenUpdateHandler].
+ * A basic update processing class that is extended by a [CodegenUpdateHandler].
  *
  * @property bot bot instance.
  */
@@ -105,7 +105,7 @@ abstract class TgUpdateHandler internal constructor(
 
     /**
      * A method for handling updates from a string.
-     * Define processing behaviour before calling, see [setBehaviour].
+     * Define processing behavior before calling, see [setBehaviour].
      */
     suspend fun parseAndHandle(update: String) {
         logger.debug { "Trying to parse update from string - $update" }

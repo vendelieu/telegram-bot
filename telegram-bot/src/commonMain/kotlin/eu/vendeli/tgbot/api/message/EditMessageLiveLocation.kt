@@ -3,6 +3,7 @@
 package eu.vendeli.tgbot.api.message
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -15,6 +16,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class EditMessageLiveLocationAction :
     Action<Message>,
     InlineActionExt<Message>,
+    BusinessActionExt<Message>,
     OptionsFeature<EditMessageLiveLocationAction, EditMessageLiveLocationOptions>,
     MarkupFeature<EditMessageLiveLocationAction> {
     override val method = TgMethod("editMessageLiveLocation")
