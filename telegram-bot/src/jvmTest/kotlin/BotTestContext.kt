@@ -58,7 +58,7 @@ abstract class BotTestContext(
 
     protected val RANDOM_PIC: ByteArray?
         get() = getRandomPic() ?: run {
-            println("-------!--------" + RandomPicResource.swapAndGet().getPicUrl())
+            RandomPicResource.swapAndGet()
             getRandomPic()
         }
 
