@@ -16,6 +16,7 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
+import utils.RandomPicResource
 
 class EditActionsTest : BotTestContext() {
     @Test
@@ -57,7 +58,7 @@ class EditActionsTest : BotTestContext() {
 
         val result = editMessageMedia(
             msg.messageId,
-            InputMedia.Photo(RANDOM_PIC_URL.toImplicitFile()),
+            InputMedia.Photo(RandomPicResource.RANDOM_PIC_URL.toImplicitFile()),
         ).sendAsync(TG_ID, bot).shouldSuccess()
 
         with(result) {

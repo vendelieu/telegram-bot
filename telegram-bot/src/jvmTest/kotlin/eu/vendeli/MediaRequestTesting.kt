@@ -12,6 +12,7 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.assertThrows
+import utils.RandomPicResource
 import java.io.File
 import java.nio.file.Files
 import kotlin.io.path.writeBytes
@@ -26,8 +27,9 @@ class MediaRequestTesting : BotTestContext() {
             }.toFile()
         }
 
-        val photoString = photo { RANDOM_PIC_URL }.options { parseMode = ParseMode.HTML }.caption { "test" }
-            .sendReturning(TG_ID, bot).getOrNull()
+        val photoString =
+            photo { RandomPicResource.RANDOM_PIC_URL }.options { parseMode = ParseMode.HTML }.caption { "test" }
+                .sendReturning(TG_ID, bot).getOrNull()
         photoString.shouldNotBeNull()
 
         val photoBa = photo(pic).sendReturning(TG_ID, bot).getOrNull()
@@ -68,7 +70,7 @@ class MediaRequestTesting : BotTestContext() {
                 parseMode = ParseMode.HTML,
             ),
             InputMedia.Photo(imageBytes.toImplicitFile()),
-            InputMedia.Photo(RANDOM_PIC_URL.toImplicitFile()),
+            InputMedia.Photo(RandomPicResource.RANDOM_PIC_URL.toImplicitFile()),
         ).sendReturning(TG_ID, bot).getOrNull()
 
         mediaRequest.shouldNotBeNull()

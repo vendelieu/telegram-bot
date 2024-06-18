@@ -33,6 +33,8 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.serializer
+import utils.BotResource
+import utils.RandomPicResource
 import kotlin.properties.Delegates
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.seconds
@@ -54,13 +56,12 @@ abstract class BotTestContext(
     protected val CHAT_ID by lazy { System.getenv("CHAT_ID").toLong() }
     protected val PAYMENT_PROVIDER_TOKEN = "1877036958:TEST:5a97ee6bbb1010e9c1033d00979832763c7622a4"
 
-    protected val RANDOM_PIC_URL = "https://source.unsplash.com/random/10x10?sig=incrementingIdentifier"
     protected val RANDOM_PIC: ByteArray?
-        get() {
-            return runBlocking { bot.httpClient.get(RANDOM_PIC_URL).takeIf { it.status.isSuccess() }?.readBytes()?.also {
-                logger.warn { "RANDOM PIC OBTAINING ERROR." }
-            } }
+        get() = getRandomPic() ?: run {
+            RandomPicResource.swapAndGet()
+            getRandomPic()
         }
+
     protected val CUR_INSTANT: Instant get() = Clock.System.now()
     protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()
     protected val RAND_INT: Int get() = RANDOM_INST.nextInt()
@@ -69,7 +70,7 @@ abstract class BotTestContext(
     @BeforeAll
     @OptIn(InternalApi::class)
     fun prepareTestBot() {
-        val ctx = BotInstance.current
+        val ctx = BotResource.swapAndGet()
         BOT_ID = ctx.id
         if (withPreparedBot) bot = TelegramBot(ctx.token, "eu.vendeli") {
             logging {
@@ -105,10 +106,11 @@ abstract class BotTestContext(
         return sendAsync(id, bot).await()
     }
 
-    protected fun randomPicUrl(width: Int, height: Int) = "https://random.imagecdn.app/$width/$height"
-
-    protected suspend fun randomPic(width: Int, height: Int) =
-        bot.httpClient.get(randomPicUrl(width, height)).readBytes()
+    private fun getRandomPic(): ByteArray? = runBlocking {
+        bot.httpClient.get(RandomPicResource.RANDOM_PIC_URL).takeIf { it.status.isSuccess() }?.readBytes()?.also {
+            logger.warn { "RANDOM PIC OBTAINING ERROR." }
+        }
+    }
 
     protected fun Long.asUser() = User(this, false, "test")
     protected fun Long.asChat() = Chat(this, ChatType.Private)

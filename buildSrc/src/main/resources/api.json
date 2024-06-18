@@ -1,7 +1,7 @@
 {
-  "version": "Bot API 7.4",
-  "release_date": "May 28, 2024",
-  "changelog": "https://core.telegram.org/bots/api#may-28-2024",
+  "version": "Bot API 7.5",
+  "release_date": "June 18, 2024",
+  "changelog": "https://core.telegram.org/bots/api#june-18-2024",
   "methods": {
     "getUpdates": {
       "name": "getUpdates",
@@ -4243,13 +4243,21 @@
       "name": "editMessageText",
       "href": "https://core.telegram.org/bots/api#editmessagetext",
       "description": [
-        "Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned."
+        "Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent."
       ],
       "returns": [
         "Message",
         "Boolean"
       ],
       "fields": [
+        {
+          "name": "business_connection_id",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Unique identifier of the business connection on behalf of which the message to be edited was sent"
+        },
         {
           "name": "chat_id",
           "types": [
@@ -4321,13 +4329,21 @@
       "name": "editMessageCaption",
       "href": "https://core.telegram.org/bots/api#editmessagecaption",
       "description": [
-        "Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned."
+        "Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent."
       ],
       "returns": [
         "Message",
         "Boolean"
       ],
       "fields": [
+        {
+          "name": "business_connection_id",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Unique identifier of the business connection on behalf of which the message to be edited was sent"
+        },
         {
           "name": "chat_id",
           "types": [
@@ -4399,13 +4415,21 @@
       "name": "editMessageMedia",
       "href": "https://core.telegram.org/bots/api#editmessagemedia",
       "description": [
-        "Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned."
+        "Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent."
       ],
       "returns": [
         "Message",
         "Boolean"
       ],
       "fields": [
+        {
+          "name": "business_connection_id",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Unique identifier of the business connection on behalf of which the message to be edited was sent"
+        },
         {
           "name": "chat_id",
           "types": [
@@ -4460,6 +4484,14 @@
         "Boolean"
       ],
       "fields": [
+        {
+          "name": "business_connection_id",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Unique identifier of the business connection on behalf of which the message to be edited was sent"
+        },
         {
           "name": "chat_id",
           "types": [
@@ -4555,6 +4587,14 @@
       ],
       "fields": [
         {
+          "name": "business_connection_id",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Unique identifier of the business connection on behalf of which the message to be edited was sent"
+        },
+        {
           "name": "chat_id",
           "types": [
             "Integer",
@@ -4593,13 +4633,21 @@
       "name": "editMessageReplyMarkup",
       "href": "https://core.telegram.org/bots/api#editmessagereplymarkup",
       "description": [
-        "Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned."
+        "Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent."
       ],
       "returns": [
         "Message",
         "Boolean"
       ],
       "fields": [
+        {
+          "name": "business_connection_id",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Unique identifier of the business connection on behalf of which the message to be edited was sent"
+        },
         {
           "name": "chat_id",
           "types": [
@@ -4645,6 +4693,14 @@
         "Poll"
       ],
       "fields": [
+        {
+          "name": "business_connection_id",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Unique identifier of the business connection on behalf of which the message to be edited was sent"
+        },
         {
           "name": "chat_id",
           "types": [
@@ -5880,6 +5936,34 @@
           ],
           "required": false,
           "description": "Required if ok is False. Error message in human readable form that explains the reason for failure to proceed with the checkout (e.g. \"Sorry, somebody just bought the last of our amazing black T-shirts while you were busy filling out your payment details. Please choose a different color or garment!\"). Telegram will display this message to the user."
+        }
+      ]
+    },
+    "getStarTransactions": {
+      "name": "getStarTransactions",
+      "href": "https://core.telegram.org/bots/api#getstartransactions",
+      "description": [
+        "Returns the bot's Telegram Star transactions in chronological order. On success, returns a StarTransactions object."
+      ],
+      "returns": [
+        "StarTransactions"
+      ],
+      "fields": [
+        {
+          "name": "offset",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "Number of transactions to skip in the response"
+        },
+        {
+          "name": "limit",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "The maximum number of transactions to be retrieved. Values between 1-100 are accepted. Defaults to 100."
         }
       ]
     },
@@ -10565,7 +10649,7 @@
             "String"
           ],
           "required": false,
-          "description": "Optional. Data to be sent in a callback query to the bot when button is pressed, 1-64 bytes. Not supported for messages sent on behalf of a Telegram Business account."
+          "description": "Optional. Data to be sent in a callback query to the bot when the button is pressed, 1-64 bytes"
         },
         {
           "name": "web_app",
@@ -16674,6 +16758,254 @@
           ],
           "required": false,
           "description": "Optional. Order information provided by the user"
+        }
+      ]
+    },
+    "RevenueWithdrawalState": {
+      "name": "RevenueWithdrawalState",
+      "href": "https://core.telegram.org/bots/api#revenuewithdrawalstate",
+      "description": [
+        "This object describes the state of a revenue withdrawal operation. Currently, it can be one of",
+        "- RevenueWithdrawalStatePending",
+        "- RevenueWithdrawalStateSucceeded",
+        "- RevenueWithdrawalStateFailed"
+      ],
+      "subtypes": [
+        "RevenueWithdrawalStatePending",
+        "RevenueWithdrawalStateSucceeded",
+        "RevenueWithdrawalStateFailed"
+      ]
+    },
+    "RevenueWithdrawalStatePending": {
+      "name": "RevenueWithdrawalStatePending",
+      "href": "https://core.telegram.org/bots/api#revenuewithdrawalstatepending",
+      "description": [
+        "The withdrawal is in progress."
+      ],
+      "fields": [
+        {
+          "name": "type",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "Type of the state, always \"pending\""
+        }
+      ],
+      "subtype_of": [
+        "RevenueWithdrawalState"
+      ]
+    },
+    "RevenueWithdrawalStateSucceeded": {
+      "name": "RevenueWithdrawalStateSucceeded",
+      "href": "https://core.telegram.org/bots/api#revenuewithdrawalstatesucceeded",
+      "description": [
+        "The withdrawal succeeded."
+      ],
+      "fields": [
+        {
+          "name": "type",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "Type of the state, always \"succeeded\""
+        },
+        {
+          "name": "date",
+          "types": [
+            "Integer"
+          ],
+          "required": true,
+          "description": "Date the withdrawal was completed in Unix time"
+        },
+        {
+          "name": "url",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "An HTTPS URL that can be used to see transaction details"
+        }
+      ],
+      "subtype_of": [
+        "RevenueWithdrawalState"
+      ]
+    },
+    "RevenueWithdrawalStateFailed": {
+      "name": "RevenueWithdrawalStateFailed",
+      "href": "https://core.telegram.org/bots/api#revenuewithdrawalstatefailed",
+      "description": [
+        "The withdrawal failed and the transaction was refunded."
+      ],
+      "fields": [
+        {
+          "name": "type",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "Type of the state, always \"failed\""
+        }
+      ],
+      "subtype_of": [
+        "RevenueWithdrawalState"
+      ]
+    },
+    "TransactionPartner": {
+      "name": "TransactionPartner",
+      "href": "https://core.telegram.org/bots/api#transactionpartner",
+      "description": [
+        "This object describes the source of a transaction, or its recipient for outgoing transactions. Currently, it can be one of",
+        "- TransactionPartnerFragment",
+        "- TransactionPartnerUser",
+        "- TransactionPartnerOther"
+      ],
+      "subtypes": [
+        "TransactionPartnerFragment",
+        "TransactionPartnerUser",
+        "TransactionPartnerOther"
+      ]
+    },
+    "TransactionPartnerFragment": {
+      "name": "TransactionPartnerFragment",
+      "href": "https://core.telegram.org/bots/api#transactionpartnerfragment",
+      "description": [
+        "Describes a withdrawal transaction with Fragment."
+      ],
+      "fields": [
+        {
+          "name": "type",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "Type of the transaction partner, always \"fragment\""
+        },
+        {
+          "name": "withdrawal_state",
+          "types": [
+            "RevenueWithdrawalState"
+          ],
+          "required": false,
+          "description": "Optional. State of the transaction if the transaction is outgoing"
+        }
+      ],
+      "subtype_of": [
+        "TransactionPartner"
+      ]
+    },
+    "TransactionPartnerUser": {
+      "name": "TransactionPartnerUser",
+      "href": "https://core.telegram.org/bots/api#transactionpartneruser",
+      "description": [
+        "Describes a transaction with a user."
+      ],
+      "fields": [
+        {
+          "name": "type",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "Type of the transaction partner, always \"user\""
+        },
+        {
+          "name": "user",
+          "types": [
+            "User"
+          ],
+          "required": true,
+          "description": "Information about the user"
+        }
+      ],
+      "subtype_of": [
+        "TransactionPartner"
+      ]
+    },
+    "TransactionPartnerOther": {
+      "name": "TransactionPartnerOther",
+      "href": "https://core.telegram.org/bots/api#transactionpartnerother",
+      "description": [
+        "Describes a transaction with an unknown source or recipient."
+      ],
+      "fields": [
+        {
+          "name": "type",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "Type of the transaction partner, always \"other\""
+        }
+      ],
+      "subtype_of": [
+        "TransactionPartner"
+      ]
+    },
+    "StarTransaction": {
+      "name": "StarTransaction",
+      "href": "https://core.telegram.org/bots/api#startransaction",
+      "description": [
+        "Describes a Telegram Star transaction."
+      ],
+      "fields": [
+        {
+          "name": "id",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "Unique identifier of the transaction. Coincides with the identifer of the original transaction for refund transactions. Coincides with SuccessfulPayment.telegram_payment_charge_id for successful incoming payments from users."
+        },
+        {
+          "name": "amount",
+          "types": [
+            "Integer"
+          ],
+          "required": true,
+          "description": "Number of Telegram Stars transferred by the transaction"
+        },
+        {
+          "name": "date",
+          "types": [
+            "Integer"
+          ],
+          "required": true,
+          "description": "Date the transaction was created in Unix time"
+        },
+        {
+          "name": "source",
+          "types": [
+            "TransactionPartner"
+          ],
+          "required": false,
+          "description": "Optional. Source of an incoming transaction (e.g., a user purchasing goods or services, Fragment refunding a failed withdrawal). Only for incoming transactions"
+        },
+        {
+          "name": "receiver",
+          "types": [
+            "TransactionPartner"
+          ],
+          "required": false,
+          "description": "Optional. Receiver of an outgoing transaction (e.g., a user for a purchase refund, Fragment for a withdrawal). Only for outgoing transactions"
+        }
+      ]
+    },
+    "StarTransactions": {
+      "name": "StarTransactions",
+      "href": "https://core.telegram.org/bots/api#startransactions",
+      "description": [
+        "Contains a list of Telegram Star transactions."
+      ],
+      "fields": [
+        {
+          "name": "transactions",
+          "types": [
+            "Array of StarTransaction"
+          ],
+          "required": true,
+          "description": "The list of transactions"
         }
       ]
     },

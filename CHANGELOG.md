@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) changelog
 
+## 6.1.0
+
+* Covered 7.5 Telegram api.
+
 ### 6.0.1
 
 * Fix webapp `setParams` immutability.

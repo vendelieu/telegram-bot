@@ -3,6 +3,7 @@
 package eu.vendeli.tgbot.api.message
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -15,6 +16,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class EditMessageLiveLocationAction :
     Action<Message>,
     InlineActionExt<Message>,
+    BusinessActionExt<Message>,
     OptionsFeature<EditMessageLiveLocationAction, EditMessageLiveLocationOptions>,
     MarkupFeature<EditMessageLiveLocationAction> {
     override val method = TgMethod("editMessageLiveLocation")
@@ -37,6 +39,7 @@ class EditMessageLiveLocationAction :
  * Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
  *
  * [Api reference](https://core.telegram.org/bots/api#editmessagelivelocation)
+ * @param businessConnectionId Unique identifier of the business connection on behalf of which the message to be edited was sent
  * @param chatId Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageId Required if inline_message_id is not specified. Identifier of the message to edit
  * @param inlineMessageId Required if chat_id and message_id are not specified. Identifier of the inline message
