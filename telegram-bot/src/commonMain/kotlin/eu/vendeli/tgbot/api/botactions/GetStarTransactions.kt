@@ -18,5 +18,13 @@ class GetStarTransactionsAction(offset: Int? = null, limit: Int? = null) : Simpl
     }
 }
 
+/**
+ * Returns the bot's Telegram Star transactions in chronological order. On success, returns a StarTransactions object.
+ *
+ * [Api reference](https://core.telegram.org/bots/api#getstartransactions)
+ * @param offset Number of transactions to skip in the response
+ * @param limit The maximum number of transactions to be retrieved. Values between 1-100 are accepted. Defaults to 100.
+ * @returns [StarTransactions]
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun getStarTransactions(offset: Int? = null, limit: Int? = null) = GetStarTransactionsAction(offset, limit)

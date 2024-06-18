@@ -69,7 +69,9 @@ enum class UpdateType {
     CHAT_BOOST,
 
     @SerialName("removed_chat_boost")
-    REMOVED_CHAT_BOOST;
+    REMOVED_CHAT_BOOST,
+
+    ;
 
     override fun toString(): String = "UpdateType.$name"
 }

@@ -1,6 +1,5 @@
 package utils
 
-
 abstract class ResourcePicker<T>(resource: List<T>) {
     private val range = LoopedRange(0, resource.size)
     private var pool: List<T> = listOf()

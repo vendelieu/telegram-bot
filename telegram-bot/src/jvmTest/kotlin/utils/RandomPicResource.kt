@@ -1,6 +1,5 @@
 package utils
 
-
 abstract class RandomPicSource {
     abstract fun getPicUrl(height: Int, width: Int): String
 
