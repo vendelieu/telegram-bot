@@ -74,6 +74,7 @@ $dokka.location:eu.vendeli.tgbot.api.botactions//getMyDefaultAdministratorRights
 $dokka.location:eu.vendeli.tgbot.api.botactions//getMyDescription/#kotlin.String?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/get-my-description.html
 $dokka.location:eu.vendeli.tgbot.api.botactions//getMyName/#kotlin.String?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/get-my-name.html
 $dokka.location:eu.vendeli.tgbot.api.botactions//getMyShortDescription/#kotlin.String?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/get-my-short-description.html
+$dokka.location:eu.vendeli.tgbot.api.botactions//getStarTransactions/#kotlin.Int?#kotlin.Int?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/get-star-transactions.html
 $dokka.location:eu.vendeli.tgbot.api.botactions//getUpdates/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/get-updates.html
 $dokka.location:eu.vendeli.tgbot.api.botactions//getWebhookInfo/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/get-webhook-info.html
 $dokka.location:eu.vendeli.tgbot.api.botactions//logOut/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/log-out.html
@@ -108,6 +109,8 @@ $dokka.location:eu.vendeli.tgbot.api.botactions/GetMyNameAction///PointingToDecl
 $dokka.location:eu.vendeli.tgbot.api.botactions/GetMyNameAction/GetMyNameAction/#kotlin.String?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/-get-my-name-action/-get-my-name-action.html
 $dokka.location:eu.vendeli.tgbot.api.botactions/GetMyShortDescriptionAction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/-get-my-short-description-action/index.html
 $dokka.location:eu.vendeli.tgbot.api.botactions/GetMyShortDescriptionAction/GetMyShortDescriptionAction/#kotlin.String?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/-get-my-short-description-action/-get-my-short-description-action.html
+$dokka.location:eu.vendeli.tgbot.api.botactions/GetStarTransactionsAction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/-get-star-transactions-action/index.html
+$dokka.location:eu.vendeli.tgbot.api.botactions/GetStarTransactionsAction/GetStarTransactionsAction/#kotlin.Int?#kotlin.Int?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/-get-star-transactions-action/-get-star-transactions-action.html
 $dokka.location:eu.vendeli.tgbot.api.botactions/GetUpdatesAction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/-get-updates-action/index.html
 $dokka.location:eu.vendeli.tgbot.api.botactions/GetUpdatesAction/GetUpdatesAction/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/-get-updates-action/-get-updates-action.html
 $dokka.location:eu.vendeli.tgbot.api.botactions/GetWebhookInfoAction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.botactions/-get-webhook-info-action/index.html
@@ -2625,6 +2628,34 @@ $dokka.location:eu.vendeli.tgbot.types.poll/PollType///PointingToDeclaration/-t
 $dokka.location:eu.vendeli.tgbot.types.poll/PollType/entries/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.poll/-poll-type/entries.html
 $dokka.location:eu.vendeli.tgbot.types.poll/PollType/valueOf/#kotlin.String/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.poll/-poll-type/value-of.html
 $dokka.location:eu.vendeli.tgbot.types.poll/PollType/values/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.poll/-poll-type/values.html
+$dokka.location:eu.vendeli.tgbot.types.stars////PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/index.html
+$dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState.Failed///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/-failed/index.html
+$dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState.Pending///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/-pending/index.html
+$dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState.Succeeded///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/-succeeded/index.html
+$dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState.Succeeded/Succeeded/#kotlin.Int#kotlin.String/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/-succeeded/-succeeded.html
+$dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState.Succeeded/date/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/-succeeded/date.html
+$dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState.Succeeded/url/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/-succeeded/url.html
+$dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/index.html
+$dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState/type/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/type.html
+$dokka.location:eu.vendeli.tgbot.types.stars/StarTransaction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transaction/index.html
+$dokka.location:eu.vendeli.tgbot.types.stars/StarTransaction/StarTransaction/#kotlin.String#kotlin.Int#kotlin.Int#eu.vendeli.tgbot.types.stars.TransactionPartner?#eu.vendeli.tgbot.types.stars.TransactionPartner?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transaction/-star-transaction.html
+$dokka.location:eu.vendeli.tgbot.types.stars/StarTransaction/amount/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transaction/amount.html
+$dokka.location:eu.vendeli.tgbot.types.stars/StarTransaction/date/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transaction/date.html
+$dokka.location:eu.vendeli.tgbot.types.stars/StarTransaction/id/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transaction/id.html
+$dokka.location:eu.vendeli.tgbot.types.stars/StarTransaction/receiver/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transaction/receiver.html
+$dokka.location:eu.vendeli.tgbot.types.stars/StarTransaction/source/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transaction/source.html
+$dokka.location:eu.vendeli.tgbot.types.stars/StarTransactions///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transactions/index.html
+$dokka.location:eu.vendeli.tgbot.types.stars/StarTransactions/StarTransactions/#kotlin.collections.List[eu.vendeli.tgbot.types.stars.StarTransaction]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transactions/-star-transactions.html
+$dokka.location:eu.vendeli.tgbot.types.stars/StarTransactions/transactions/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transactions/transactions.html
+$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.Fragment///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-fragment/index.html
+$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.Fragment/Fragment/#eu.vendeli.tgbot.types.stars.RevenueWithdrawalState?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-fragment/-fragment.html
+$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.Fragment/withdrawalState/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-fragment/withdrawal-state.html
+$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.Other///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-other/index.html
+$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.User///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user/index.html
+$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.User/User/#eu.vendeli.tgbot.types.User/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user/-user.html
+$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.User/user/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user/user.html
+$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/index.html
+$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner/type/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/type.html
 $dokka.location:eu.vendeli.tgbot.types////PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/index.html
 $dokka.location:eu.vendeli.tgbot.types/BackgroundFill.FreeformGradient///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-background-fill/-freeform-gradient/index.html
 $dokka.location:eu.vendeli.tgbot.types/BackgroundFill.FreeformGradient/FreeformGradient/#kotlin.collections.List[kotlin.Int]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-background-fill/-freeform-gradient/-freeform-gradient.html
@@ -3387,6 +3418,7 @@ eu.vendeli.tgbot.types.media
 eu.vendeli.tgbot.types.passport
 eu.vendeli.tgbot.types.payment
 eu.vendeli.tgbot.types.poll
+eu.vendeli.tgbot.types.stars
 eu.vendeli.tgbot.utils
 eu.vendeli.tgbot.utils.builders
 
