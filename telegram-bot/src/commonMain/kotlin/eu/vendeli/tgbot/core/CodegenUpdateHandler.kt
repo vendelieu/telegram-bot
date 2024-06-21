@@ -89,7 +89,7 @@ class CodegenUpdateHandler internal constructor(
             val prevClassName = getAsync<String>(user.id, "PrevInvokedClass").await()
             if (prevClassName != second.qualifier) clearAllAsync(user.id).await()
 
-            setAsync(user.id, "PrevInvokedClass", second.function).await()
+            setAsync(user.id, "PrevInvokedClass", second.qualifier).await()
         }
         first.runCatching {
             invoke(bot.config.classManager, pUpdate, user, bot, params)
