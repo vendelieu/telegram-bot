@@ -73,9 +73,14 @@ fun <T> Collection<T>.joinToInlineKeyboard(
     }
     val pageElWindow = toList().subList(elWindowEdge.first, elWindowEdge.last.takeIf { it <= size } ?: size)
 
-    pageElWindow.forEachIndexed { idx, i ->
+    var lineElements = 0
+    pageElWindow.forEach { i ->
         callbackData(i.nameSelector()) { i.callbackSelector() }
-        if (idx == perLine - 1) br()
+        lineElements++
+        if (lineElements == perLine) {
+            br()
+            lineElements = 0
+        }
     }
 
     br()
