@@ -17,19 +17,72 @@ fun String.checkIsInitDataSafe(botToken: String, hash: String): Boolean {
 }
 
 
+/**
+ * Helper function to paginate over a collection.
+ *
+ * @param T generic for paginating data.
+ * @param nameSelector selector for button name.
+ * @param callbackSelector selector for callback data.
+ * @param paginationCallbackPattern pattern that will be used for pagination buttons.
+ *  ex: `/start?page=%P` where `%P` will be replaced with page number.
+ * @param currentPage current page
+ * @param perPage elements per page.
+ * @param perLine elements  per line.
+ * @return InlineKeyboardMarkup.
+ *
+ * Example of Usage:
+ * ```
+ *     @CommandHandler(["/start"])
+ *     suspend fun start(bot: TelegramBot, user: User) {
+ *         message("Hello").markup(
+ *             elements.joinToInlineKeyboard(
+ *                 { "button $name" },
+ *                 { "selector?id=$id" },
+ *                 "/start?page=%P",
+ *             )
+ *         ).sendAsync(user, bot).getOrNull()?.also {
+ *             bot.userData[user, "startPage"] = it.messageId
+ *         }
+ *     }
+ *
+ *     @CommandHandler.CallbackQuery(["/start"])
+ *     suspend fun paginator(bot: TelegramBot, user: User, page: Int) {
+ *         editMarkup(
+ *             bot.userData.get<Long>(user.id, "startPage")!!
+ *         ).markup(
+ *             elements.joinToInlineKeyboard(
+ *                 { "button $name" },
+ *                 { "selector?id=$id" },
+ *                 "/start?page=%P",
+ *                 currentPage = page
+ *             )
+ *         ).send(user, bot)
+ *     }
+ * ```
+ */
 fun <T> Collection<T>.joinToInlineKeyboard(
     nameSelector: T.() -> String,
     callbackSelector: T.() -> String,
+    paginationCallbackPattern: String,
     currentPage: Int = 1,
     perPage: Int = 5,
     perLine: Int = 1,
 ): InlineKeyboardMarkup = inlineKeyboardMarkup {
-    val elWindowLeftEdge = if (currentPage == 1) 0 else ((currentPage - 1) * perPage - 1)
-    val elWindowRightEdge = if (currentPage == 1) perPage else (currentPage * perPage - 1)
-    val pageElWindow = toList().subList(elWindowLeftEdge, elWindowRightEdge.takeIf { it <= size } ?: size)
+    val elWindowEdge = if (currentPage == 1) 0..perPage else {
+        (currentPage - 1) * perPage..<(currentPage + 1) * perPage
+    }
+    val pageElWindow = toList().subList(elWindowEdge.first, elWindowEdge.last.takeIf { it <= size } ?: size)
 
     pageElWindow.forEachIndexed { idx, i ->
         callbackData(i.nameSelector()) { i.callbackSelector() }
         if (idx == perLine - 1) br()
+    }
+
+    br()
+    if (elWindowEdge.first > 0) callbackData("<<") {
+        paginationCallbackPattern.replace("%P", "${currentPage - 1}")
+    }
+    if (elWindowEdge.last < size) callbackData(">>") {
+        paginationCallbackPattern.replace("%P", "${currentPage + 1}")
     }
 }
