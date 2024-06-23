@@ -125,7 +125,16 @@ internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T):
 @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
 internal inline fun <T> Any?.cast() = this as T
 
-expect inline fun <T : ChainLink> InputListener.setChain(user: User, firstLink: T)
+/**
+ * Set chain for input listening.
+ *
+ * Basically uses chain full qualified name as a chain id.
+ *
+ * @param T given ChainLink
+ * @param user The user for whom it will be set.
+ * @param firstLink The First link that will be processed (it doesn't have to be the first link in the chain, feel free to set up any of).
+ */
+fun <T : ChainLink> InputListener.setChain(user: User, firstLink: T) = set(user, firstLink::class.fullName)
 
 @Suppress("ObjectPropertyName", "ktlint:standard:backing-property-naming")
 expect val _OperatingActivities: Map<String, List<Any?>>
