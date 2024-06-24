@@ -1,5 +1,13 @@
 # Telegram-bot (KtGram) changelog
 
+### 6.1.1
+
+* Fix `String` always non-nullability issue in ksp processor.
+* Fix `chatData` wrong clearing behavior, even within same class.
+* Change `date` type from long to `Instant` in `RevenueWithdrawalState`, `StarTransaction`.
+* Change `TransactionPartner.User` to `TransactionPartner.UserPartner`, to not confuse base `User` resolving.
+* Added experimental `Collection<>.joinToInlineKeyboard` function to use basic pagination.
+
 ## 6.1.0
 
 * Covered 7.5 Telegram api.

@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.types.stars
 
+import eu.vendeli.tgbot.utils.serde.InstantSerializer
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
 /**
@@ -17,7 +19,11 @@ sealed class RevenueWithdrawalState(val type: String) {
     data object Pending : RevenueWithdrawalState("pending")
 
     @Serializable
-    data class Succeeded(val date: Int, val url: String) : RevenueWithdrawalState("succeeded")
+    data class Succeeded(
+        @Serializable(InstantSerializer::class)
+        val date: Instant,
+        val url: String,
+    ) : RevenueWithdrawalState("succeeded")
 
     @Serializable
     data object Failed : RevenueWithdrawalState("failed")

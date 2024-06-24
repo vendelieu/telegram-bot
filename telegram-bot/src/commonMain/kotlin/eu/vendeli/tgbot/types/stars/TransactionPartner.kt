@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.stars
 
+import eu.vendeli.tgbot.types.User
 import kotlinx.serialization.Serializable
 
 /**
@@ -17,7 +18,7 @@ sealed class TransactionPartner(val type: String) {
     data class Fragment(val withdrawalState: RevenueWithdrawalState? = null) : TransactionPartner("fragment")
 
     @Serializable
-    data class User(val user: eu.vendeli.tgbot.types.User) : TransactionPartner("user")
+    data class UserPartner(val user: User) : TransactionPartner("user")
 
     @Serializable
     data object Other : TransactionPartner("other")
