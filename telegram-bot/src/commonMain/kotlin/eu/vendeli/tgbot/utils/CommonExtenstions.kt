@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.utils
 
+import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
 import io.ktor.http.decodeURLQueryComponent
@@ -60,6 +61,7 @@ fun String.checkIsInitDataSafe(botToken: String, hash: String): Boolean {
  *     }
  * ```
  */
+@ExperimentalFeature
 fun <T> Collection<T>.joinToInlineKeyboard(
     nameSelector: T.() -> String,
     callbackSelector: T.() -> String,
