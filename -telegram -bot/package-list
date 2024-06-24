@@ -2632,13 +2632,13 @@ $dokka.location:eu.vendeli.tgbot.types.stars////PointingToDeclaration/-telegram
 $dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState.Failed///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/-failed/index.html
 $dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState.Pending///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/-pending/index.html
 $dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState.Succeeded///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/-succeeded/index.html
-$dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState.Succeeded/Succeeded/#kotlin.Int#kotlin.String/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/-succeeded/-succeeded.html
+$dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState.Succeeded/Succeeded/#kotlinx.datetime.Instant#kotlin.String/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/-succeeded/-succeeded.html
 $dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState.Succeeded/date/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/-succeeded/date.html
 $dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState.Succeeded/url/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/-succeeded/url.html
 $dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/index.html
 $dokka.location:eu.vendeli.tgbot.types.stars/RevenueWithdrawalState/type/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-revenue-withdrawal-state/type.html
 $dokka.location:eu.vendeli.tgbot.types.stars/StarTransaction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transaction/index.html
-$dokka.location:eu.vendeli.tgbot.types.stars/StarTransaction/StarTransaction/#kotlin.String#kotlin.Int#kotlin.Int#eu.vendeli.tgbot.types.stars.TransactionPartner?#eu.vendeli.tgbot.types.stars.TransactionPartner?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transaction/-star-transaction.html
+$dokka.location:eu.vendeli.tgbot.types.stars/StarTransaction/StarTransaction/#kotlin.String#kotlin.Int#kotlinx.datetime.Instant#eu.vendeli.tgbot.types.stars.TransactionPartner?#eu.vendeli.tgbot.types.stars.TransactionPartner?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transaction/-star-transaction.html
 $dokka.location:eu.vendeli.tgbot.types.stars/StarTransaction/amount/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transaction/amount.html
 $dokka.location:eu.vendeli.tgbot.types.stars/StarTransaction/date/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transaction/date.html
 $dokka.location:eu.vendeli.tgbot.types.stars/StarTransaction/id/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-star-transaction/id.html
@@ -2651,9 +2651,9 @@ $dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.Fragment///Point
 $dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.Fragment/Fragment/#eu.vendeli.tgbot.types.stars.RevenueWithdrawalState?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-fragment/-fragment.html
 $dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.Fragment/withdrawalState/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-fragment/withdrawal-state.html
 $dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.Other///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-other/index.html
-$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.User///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user/index.html
-$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.User/User/#eu.vendeli.tgbot.types.User/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user/-user.html
-$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.User/user/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user/user.html
+$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user-partner/index.html
+$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner/UserPartner/#eu.vendeli.tgbot.types.User/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user-partner/-user-partner.html
+$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner/user/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user-partner/user.html
 $dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/index.html
 $dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner/type/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/type.html
 $dokka.location:eu.vendeli.tgbot.types////PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/index.html
@@ -3321,6 +3321,7 @@ $dokka.location:eu.vendeli.tgbot.utils//DEFAULT_HANDLING_BEHAVIOUR/#/PointingToD
 $dokka.location:eu.vendeli.tgbot.utils//_OperatingActivities/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/_-operating-activities.html
 $dokka.location:eu.vendeli.tgbot.utils//checkIsInitDataSafe/kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/check-is-init-data-safe.html
 $dokka.location:eu.vendeli.tgbot.utils//defineActivities/eu.vendeli.tgbot.TelegramBot#kotlin.collections.Map[kotlin.String,kotlin.collections.List[kotlin.Any?]]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/[native]define-activities.html
+$dokka.location:eu.vendeli.tgbot.utils//joinToInlineKeyboard/kotlin.collections.Collection[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.String]#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.String]#kotlin.String#kotlin.Int#kotlin.Int#kotlin.Int/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/join-to-inline-keyboard.html
 $dokka.location:eu.vendeli.tgbot.utils//processUpdate/eu.vendeli.tgbot.types.Update#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/process-update.html
 $dokka.location:eu.vendeli.tgbot.utils//setChain/eu.vendeli.tgbot.interfaces.InputListener#eu.vendeli.tgbot.types.User#TypeParam(bounds=[eu.vendeli.tgbot.types.internal.ChainLink])/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/set-chain.html
 $dokka.location:eu.vendeli.tgbot.utils//toImplicitFile/eu.vendeli.tgbot.types.internal.InputFile#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/to-implicit-file.html
