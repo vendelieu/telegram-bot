@@ -8,16 +8,17 @@ plugins {
 
 val libraryData = extensions.create("libraryData", PublishingExtension::class)
 
-val stubJavadoc by tasks.creating(Jar::class) {
+val javadoc by tasks.creating(Jar::class) {
+    project.layout.buildDirectory.dir("dokka").orNull?.takeIf { it.asFile.exists() }?.also {
+        from(it)
+    }
     archiveClassifier.set("javadoc")
 }
 
 publishing {
     publications.configureEach {
         if (this is MavenPublication) {
-            if (name != "kotlinMultiplatform") {
-                artifact(stubJavadoc)
-            }
+            if (name != "kotlinMultiplatform") artifact(javadoc)
             pom {
                 name = libraryData.name
                 description = libraryData.description
