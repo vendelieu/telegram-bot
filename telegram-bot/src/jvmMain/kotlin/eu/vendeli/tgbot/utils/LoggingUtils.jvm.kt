@@ -25,23 +25,23 @@ internal open class LogbackLogger(id: String) : Logger(id) {
     }
 
     override fun info(message: () -> String) {
-        if (lvl.isGreaterOrEqual(Level.INFO)) logger.info(message())
+        logger.info(message())
     }
 
     override fun warn(message: () -> String) {
-        if (lvl.isGreaterOrEqual(Level.WARN)) logger.warn(message())
+        logger.warn(message())
     }
 
     override fun debug(message: () -> String) {
-        if (lvl.isGreaterOrEqual(Level.DEBUG)) logger.debug(message())
+        logger.debug(message())
     }
 
     override fun trace(message: () -> String) {
-        if (lvl.isGreaterOrEqual(Level.TRACE)) logger.trace(message())
+        logger.trace(message())
     }
 
     override fun error(throwable: Throwable?, message: () -> String) {
-        if (lvl.isGreaterOrEqual(Level.ERROR)) logger.error(message(), throwable)
+        logger.error(message(), throwable)
     }
 }
 
