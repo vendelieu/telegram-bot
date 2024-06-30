@@ -42,8 +42,10 @@ private val __TG_COMMANDS0: Map<Pair<String, UpdateType>, Invocable> = mapOf(
         suspendCall { classManager, update, user, bot, parameters ->
             val inst = classManager.getInstance(TgAnnotationsModel::class) as
                 TgAnnotationsModel
+            val param0 = bot
             TgAnnotationsModel::test.invoke(
                 inst,
+                param0
             )
         }
             to InvocationMeta(
