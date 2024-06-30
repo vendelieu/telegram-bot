@@ -15,7 +15,7 @@ deteKT = "1.23.6"
 
 kotest = "5.9.1"
 mockk = "1.13.11"
-kover = "0.8.1"
+kover = "0.8.2"
 krypto = "4.0.10"
 sslcontext = "8.3.6"
 spring = "3.3.1"
