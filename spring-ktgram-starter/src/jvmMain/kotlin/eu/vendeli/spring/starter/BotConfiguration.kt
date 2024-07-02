@@ -9,4 +9,6 @@ abstract class BotConfiguration {
     open val allowedUpdates: List<UpdateType> = emptyList()
 
     abstract fun applyCfg(): BotConfigurator
+
+    open suspend fun onInit() {}
 }

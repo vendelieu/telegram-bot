@@ -7,6 +7,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.AutoConfiguration
+import org.springframework.boot.autoconfigure.context.LifecycleAutoConfiguration
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Import
@@ -23,7 +24,7 @@ open class TelegramAutoConfiguration(
 
     @Bean
     @OptIn(DelicateCoroutinesApi::class)
-    open fun botInstances(): List<TelegramBot> = config.bot.map { bot ->
+    open fun botInstances(lifecycleAutoConfiguration: LifecycleAutoConfiguration): List<TelegramBot> = config.bot.map { bot ->
         val botCfg = if (this::cfg.isInitialized) cfg.find { bot.identifier == it.identifier } else null
         val botInstance = TelegramBot(bot.token, bot.pckg) {
             classManager = springClassManager
@@ -33,6 +34,7 @@ open class TelegramAutoConfiguration(
 
         if (botCfg?.autostartLongPolling != false && config.autoStartPolling) {
             GlobalScope.launch(Dispatchers.IO) {
+                botCfg?.onInit()
                 launch(Dispatchers.IO) {
                     botInstance.handleUpdates(botCfg?.allowedUpdates)
                 }
