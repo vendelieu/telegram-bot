@@ -14,4 +14,4 @@ data class PhotoOptions(
     override var messageThreadId: Int? = null,
     override var hasSpoiler: Boolean? = null,
     override var messageEffectId: String? = null,
-) : OptionsCommon, OptionsParseMode, MediaSpoiler
+) : OptionsCommon, OptionsParseMode, MediaSpoiler, MessageEffectIdProp

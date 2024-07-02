@@ -14,4 +14,4 @@ data class MessageOptions(
     override var replyParameters: ReplyParameters? = null,
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
-) : OptionsCommon, OptionsParseMode, LinkPreviewProp
+) : OptionsCommon, OptionsParseMode, LinkPreviewProp, MessageEffectIdProp

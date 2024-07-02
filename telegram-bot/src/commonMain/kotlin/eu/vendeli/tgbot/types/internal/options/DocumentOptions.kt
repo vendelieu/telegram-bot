@@ -15,4 +15,4 @@ data class DocumentOptions(
     override var protectContent: Boolean? = null,
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
-) : OptionsCommon, OptionsParseMode
+) : OptionsCommon, OptionsParseMode, MessageEffectIdProp

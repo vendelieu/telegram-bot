@@ -10,4 +10,4 @@ data class GameOptions(
     override var replyParameters: ReplyParameters? = null,
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
-) : OptionsCommon
+) : OptionsCommon, MessageEffectIdProp

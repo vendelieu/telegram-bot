@@ -28,13 +28,16 @@ interface LinkPreviewProp {
     }
 }
 
+interface MessageEffectIdProp {
+    var messageEffectId: String?
+}
+
 @Serializable
 sealed interface OptionsCommon : Options {
     var disableNotification: Boolean?
     var replyParameters: ReplyParameters?
     var protectContent: Boolean?
     var messageThreadId: Int?
-    var messageEffectId: String?
 
     var replyToMessageId: Long?
         get() = replyParameters?.messageId
