@@ -7,5 +7,5 @@ interface ImplicitMediaData {
     @Deprecated("Not present.", level = DeprecationLevel.ERROR)
     var thumbnail: ImplicitFile?
         get() = null
-        set(value) = TODO()
+        set(value) {}
 }

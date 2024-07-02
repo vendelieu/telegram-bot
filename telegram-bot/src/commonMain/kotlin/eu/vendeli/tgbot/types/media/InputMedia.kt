@@ -18,8 +18,8 @@ import kotlinx.serialization.Serializable
  * [Api reference](https://core.telegram.org/bots/api#inputmedia)
  *
  */
-@Suppress("OVERRIDE_DEPRECATION")
 @Serializable
+@Suppress("OVERRIDE_DEPRECATION")
 sealed class InputMedia(val type: String) : ImplicitMediaData {
     @Serializable
     @SerialName("audio")

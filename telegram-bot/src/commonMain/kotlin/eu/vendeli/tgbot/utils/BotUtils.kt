@@ -90,7 +90,7 @@ internal inline fun <R> TgAction<R>.handleImplicitFile(input: ImplicitFile, fiel
     parameters[fieldName] = input.transform(multipartData)
 }
 
-@Suppress("DEPRECATION_ERROR")
+@Suppress("DEPRECATION_ERROR", "NOTHING_TO_INLINE")
 internal inline fun <T : ImplicitMediaData, R> TgAction<R>.handleImplicitFileGroup(
     input: List<T>,
     fieldName: String = "media",
@@ -108,8 +108,10 @@ internal inline fun <T : ImplicitMediaData, R> TgAction<R>.handleImplicitFileGro
     }.encodeWith(JsonElement.serializer())
 }
 
+@Suppress("NOTHING_TO_INLINE")
 private inline fun JsonElement.toImplicitStr() = ImplicitFile.Str(jsonPrimitive.content)
 
+@Suppress("NOTHING_TO_INLINE")
 private inline fun ImplicitFile.transform(multiParts: MutableList<PartData.BinaryItem>): JsonElement {
     if (this is ImplicitFile.Str) return file.toJsonElement()
     val media = file as InputFile
