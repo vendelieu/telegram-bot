@@ -32,6 +32,10 @@ interface MessageEffectIdProp {
     var messageEffectId: String?
 }
 
+interface ShowCaptionAboveMediaProp {
+    var showCaptionAboveMedia: Boolean?
+}
+
 @Serializable
 sealed interface OptionsCommon : Options {
     var disableNotification: Boolean?

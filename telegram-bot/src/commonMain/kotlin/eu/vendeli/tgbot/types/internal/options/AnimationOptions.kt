@@ -11,7 +11,7 @@ data class AnimationOptions(
     var width: Int? = null,
     var height: Int? = null,
     var thumbnail: ImplicitFile? = null,
-    var showCaptionAboveMedia: Boolean? = null,
+    override var showCaptionAboveMedia: Boolean? = null,
     override var parseMode: ParseMode? = null,
     override var disableNotification: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,
@@ -19,4 +19,4 @@ data class AnimationOptions(
     override var messageThreadId: Int? = null,
     override var hasSpoiler: Boolean? = null,
     override var messageEffectId: String? = null,
-) : OptionsCommon, OptionsParseMode, MediaSpoiler, MessageEffectIdProp
+) : OptionsCommon, OptionsParseMode, MediaSpoiler, MessageEffectIdProp, ShowCaptionAboveMediaProp
