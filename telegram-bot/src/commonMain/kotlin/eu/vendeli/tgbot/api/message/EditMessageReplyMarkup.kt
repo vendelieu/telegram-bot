@@ -1,4 +1,4 @@
-@file:Suppress("MatchingDeclarationName", "TooManyFunctions")
+@file:Suppress("MatchingDeclarationName", "TooManyFunctions", "ktlint:standard:class-signature")
 
 package eu.vendeli.tgbot.api.message
 
@@ -11,7 +11,6 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-@Suppress("ktlint:standard:class-signature")
 class EditMessageReplyMarkupAction() :
     Action<Message>(),
     InlineActionExt<Message>,

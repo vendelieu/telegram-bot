@@ -5,7 +5,7 @@ import eu.vendeli.tgbot.types.ParseMode
 import kotlinx.serialization.Serializable
 
 /**
- * This object contains information about one answer option in a poll to send.
+ * This object contains information about one answer option in a poll to be sent.
  *
  * [Api reference](https://core.telegram.org/bots/api#inputpolloption)
  * @property text Option text, 1-100 characters

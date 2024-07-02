@@ -1335,7 +1335,7 @@ public final class eu/vendeli/tgbot/api/media/SendMediaGroupAction : eu/vendeli/
 	public fun sendBusinessAsync (JLjava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class eu/vendeli/tgbot/api/media/SendPaidMediaAction : eu/vendeli/tgbot/interfaces/MediaAction, eu/vendeli/tgbot/interfaces/features/CaptionFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
+public final class eu/vendeli/tgbot/api/media/SendPaidMediaAction : eu/vendeli/tgbot/interfaces/MediaAction, eu/vendeli/tgbot/interfaces/features/CaptionFeature, eu/vendeli/tgbot/interfaces/features/EntitiesFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
 	public fun <init> (ILjava/util/List;)V
 	public fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
 	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
@@ -1351,6 +1351,10 @@ public final class eu/vendeli/tgbot/api/media/SendPaidMediaAction : eu/vendeli/t
 	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
 	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun entities (Ljava/util/List;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+	public synthetic fun entities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/TgAction;
+	public fun entities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+	public synthetic fun entities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 	public fun expandableBlockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
 	public synthetic fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;

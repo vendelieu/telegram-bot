@@ -3,6 +3,15 @@ package eu.vendeli.tgbot.types.media
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * This object describes paid media. Currently, it can be one of
+ * - PaidMediaPreview
+ * - PaidMediaPhoto
+ * - PaidMediaVideo
+ *
+ * [Api reference](https://core.telegram.org/bots/api#paidmedia)
+ *
+ */
 @Serializable
 sealed class PaidMedia(
     val type: String,
