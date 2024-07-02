@@ -2,16 +2,23 @@ package eu.vendeli.tgbot.types.internal
 
 import eu.vendeli.tgbot.types.ResponseParameters
 import kotlinx.coroutines.Deferred
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonClassDiscriminator
 
 @Serializable
+@JsonClassDiscriminator("ok")
+@OptIn(ExperimentalSerializationApi::class)
 sealed class Response<T>(val ok: Boolean) {
     @Serializable
+    @SerialName("true")
     data class Success<T>(
         val result: T,
     ) : Response<T>(true)
 
     @Serializable
+    @SerialName("false")
     data class Failure(
         val errorCode: Int,
         val description: String? = null,
