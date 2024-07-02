@@ -20,7 +20,9 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 @Suppress("OVERRIDE_DEPRECATION")
-sealed class InputMedia(val type: String) : ImplicitMediaData {
+sealed class InputMedia(
+    val type: String,
+) : ImplicitMediaData {
     @Serializable
     @SerialName("audio")
     data class Audio(

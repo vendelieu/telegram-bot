@@ -40,7 +40,8 @@ data class MessageUpdate(
     override val updateId: Int,
     override val origin: Update,
     val message: Message,
-) : ProcessedUpdate(updateId, origin, UpdateType.MESSAGE), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.MESSAGE),
+    UserReference {
     override val user = message.from!!
     override val text = message.text.orEmpty()
 }
@@ -49,7 +50,8 @@ data class EditedMessageUpdate(
     override val updateId: Int,
     override val origin: Update,
     val editedMessage: Message,
-) : ProcessedUpdate(updateId, origin, UpdateType.EDIT_MESSAGE), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.EDIT_MESSAGE),
+    UserReference {
     override val user = editedMessage.from!!
     override val text = editedMessage.text.orEmpty()
 }
@@ -58,7 +60,8 @@ data class ChannelPostUpdate(
     override val updateId: Int,
     override val origin: Update,
     val channelPost: Message,
-) : ProcessedUpdate(updateId, origin, UpdateType.CHANNEL_POST), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.CHANNEL_POST),
+    UserReference {
     override val user = channelPost.from
     override val text = channelPost.text.orEmpty()
 }
@@ -67,7 +70,8 @@ data class EditedChannelPostUpdate(
     override val updateId: Int,
     override val origin: Update,
     val editedChannelPost: Message,
-) : ProcessedUpdate(updateId, origin, UpdateType.EDITED_CHANNEL_POST), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.EDITED_CHANNEL_POST),
+    UserReference {
     override val user = editedChannelPost.from
     override val text = editedChannelPost.text.orEmpty()
 }
@@ -76,7 +80,8 @@ data class BusinessConnectionUpdate(
     override val updateId: Int,
     override val origin: Update,
     val businessConnection: BusinessConnection,
-) : ProcessedUpdate(updateId, origin, UpdateType.BUSINESS_CONNECTION), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.BUSINESS_CONNECTION),
+    UserReference {
     override val user = businessConnection.user
 }
 
@@ -84,7 +89,8 @@ data class BusinessMessageUpdate(
     override val updateId: Int,
     override val origin: Update,
     val businessMessage: Message,
-) : ProcessedUpdate(updateId, origin, UpdateType.BUSINESS_MESSAGE), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.BUSINESS_MESSAGE),
+    UserReference {
     override val user = businessMessage.from
     override val text = businessMessage.text.orEmpty()
 }
@@ -93,7 +99,8 @@ data class EditedBusinessMessageUpdate(
     override val updateId: Int,
     override val origin: Update,
     val editedBusinessMessage: Message,
-) : ProcessedUpdate(updateId, origin, UpdateType.EDITED_BUSINESS_MESSAGE), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.EDITED_BUSINESS_MESSAGE),
+    UserReference {
     override val user = editedBusinessMessage.from
     override val text = editedBusinessMessage.text.orEmpty()
 }
@@ -108,7 +115,8 @@ data class MessageReactionUpdate(
     override val updateId: Int,
     override val origin: Update,
     val messageReaction: MessageReactionUpdated,
-) : ProcessedUpdate(updateId, origin, UpdateType.MESSAGE_REACTION), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.MESSAGE_REACTION),
+    UserReference {
     override val user = messageReaction.user
 }
 
@@ -122,7 +130,8 @@ data class InlineQueryUpdate(
     override val updateId: Int,
     override val origin: Update,
     val inlineQuery: InlineQuery,
-) : ProcessedUpdate(updateId, origin, UpdateType.INLINE_QUERY), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.INLINE_QUERY),
+    UserReference {
     override val user: User = inlineQuery.from
     override val text = inlineQuery.query
 }
@@ -131,7 +140,8 @@ data class ChosenInlineResultUpdate(
     override val updateId: Int,
     override val origin: Update,
     val chosenInlineResult: ChosenInlineResult,
-) : ProcessedUpdate(updateId, origin, UpdateType.CHOSEN_INLINE_RESULT), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.CHOSEN_INLINE_RESULT),
+    UserReference {
     override val user: User = chosenInlineResult.from
     override val text = chosenInlineResult.query
 }
@@ -140,7 +150,8 @@ data class CallbackQueryUpdate(
     override val updateId: Int,
     override val origin: Update,
     val callbackQuery: CallbackQuery,
-) : ProcessedUpdate(updateId, origin, UpdateType.CALLBACK_QUERY), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.CALLBACK_QUERY),
+    UserReference {
     override val user: User = callbackQuery.from
     override val text = callbackQuery.data.orEmpty()
 }
@@ -149,7 +160,8 @@ data class ShippingQueryUpdate(
     override val updateId: Int,
     override val origin: Update,
     val shippingQuery: ShippingQuery,
-) : ProcessedUpdate(updateId, origin, UpdateType.SHIPPING_QUERY), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.SHIPPING_QUERY),
+    UserReference {
     override val user: User = shippingQuery.from
     override val text = shippingQuery.invoicePayload
 }
@@ -158,7 +170,8 @@ data class PreCheckoutQueryUpdate(
     override val updateId: Int,
     override val origin: Update,
     val preCheckoutQuery: PreCheckoutQuery,
-) : ProcessedUpdate(updateId, origin, UpdateType.PRE_CHECKOUT_QUERY), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.PRE_CHECKOUT_QUERY),
+    UserReference {
     override val user: User = preCheckoutQuery.from
     override val text = preCheckoutQuery.invoicePayload
 }
@@ -175,7 +188,8 @@ data class PollAnswerUpdate(
     override val updateId: Int,
     override val origin: Update,
     val pollAnswer: PollAnswer,
-) : ProcessedUpdate(updateId, origin, UpdateType.POLL_ANSWER), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.POLL_ANSWER),
+    UserReference {
     override val user: User = pollAnswer.user
 }
 
@@ -183,7 +197,8 @@ data class MyChatMemberUpdate(
     override val updateId: Int,
     override val origin: Update,
     val myChatMember: ChatMemberUpdated,
-) : ProcessedUpdate(updateId, origin, UpdateType.MY_CHAT_MEMBER), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.MY_CHAT_MEMBER),
+    UserReference {
     override val user: User = myChatMember.from
 }
 
@@ -191,7 +206,8 @@ data class ChatMemberUpdate(
     override val updateId: Int,
     override val origin: Update,
     val chatMember: ChatMemberUpdated,
-) : ProcessedUpdate(updateId, origin, UpdateType.CHAT_MEMBER), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.CHAT_MEMBER),
+    UserReference {
     override val user: User = chatMember.from
 }
 
@@ -199,7 +215,8 @@ data class ChatJoinRequestUpdate(
     override val updateId: Int,
     override val origin: Update,
     val chatJoinRequest: ChatJoinRequest,
-) : ProcessedUpdate(updateId, origin, UpdateType.CHAT_JOIN_REQUEST), UserReference {
+) : ProcessedUpdate(updateId, origin, UpdateType.CHAT_JOIN_REQUEST),
+    UserReference {
     override val user: User = chatJoinRequest.from
 }
 

@@ -50,11 +50,12 @@ class CodegenUpdateHandler internal constructor(
         if (user != null && bot.config.inputAutoRemoval) bot.inputListener.del(user.id)
 
         // if there's no command and input > check common handlers
-        if (invocation == null) invocation = activities.commonHandlers.entries.firstOrNull {
-            it.key.match(request.command, this, bot)
-        }?.also {
-            activityId = it.key.value.toString()
-        }?.value
+        if (invocation == null) invocation = activities.commonHandlers.entries
+            .firstOrNull {
+                it.key.match(request.command, this, bot)
+            }?.also {
+                activityId = it.key.value.toString()
+            }?.value
 
         logger.debug { "Result of finding action - ${invocation?.second}" }
 
@@ -91,16 +92,19 @@ class CodegenUpdateHandler internal constructor(
 
             setAsync(user.id, "PrevInvokedClass", second.qualifier).await()
         }
-        first.runCatching {
-            invoke(bot.config.classManager, pUpdate, user, bot, params)
-        }.onFailure {
-            logger.error(
-                it,
-            ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $pUpdate" }
-            caughtExceptions.send(FailedUpdate(it.cause ?: it, pUpdate.update))
-        }.onSuccess {
-            logger.info { "Handled update#${pUpdate.updateId} to method ${second.qualifier + "::" + second.function}" }
-        }
+        first
+            .runCatching {
+                invoke(bot.config.classManager, pUpdate, user, bot, params)
+            }.onFailure {
+                logger.error(
+                    it,
+                ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $pUpdate" }
+                caughtExceptions.send(FailedUpdate(it.cause ?: it, pUpdate.update))
+            }.onSuccess {
+                logger.info {
+                    "Handled update#${pUpdate.updateId} to method ${second.qualifier + "::" + second.function}"
+                }
+            }
     }
 
     private suspend fun InvocationLambda.invokeCatching(

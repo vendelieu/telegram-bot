@@ -14,10 +14,14 @@ import kotlinx.serialization.Serializable
  *
  */
 @Serializable
-sealed class TransactionPartner(val type: String) {
+sealed class TransactionPartner(
+    val type: String,
+) {
     @Serializable
     @SerialName("fragment")
-    data class Fragment(val withdrawalState: RevenueWithdrawalState? = null) : TransactionPartner("fragment")
+    data class Fragment(
+        val withdrawalState: RevenueWithdrawalState? = null,
+    ) : TransactionPartner("fragment")
 
     @Serializable
     @SerialName("user")

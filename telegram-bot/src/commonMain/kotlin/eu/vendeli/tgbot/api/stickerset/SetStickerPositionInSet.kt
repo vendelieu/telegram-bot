@@ -7,7 +7,10 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class SetStickerPositionInSetAction(sticker: String, position: Int) : SimpleAction<Boolean>() {
+class SetStickerPositionInSetAction(
+    sticker: String,
+    position: Int,
+) : SimpleAction<Boolean>() {
     override val method = TgMethod("setStickerPositionInSet")
     override val returnType = getReturnType()
 

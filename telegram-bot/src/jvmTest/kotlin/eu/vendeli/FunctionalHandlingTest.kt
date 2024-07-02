@@ -59,7 +59,10 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             if (loopCounter.incrementAndGet() == 5) bot.update.stopListener()
         }
 
-        bot.update.caughtExceptions.tryReceive().getOrNull().shouldBeNull()
+        bot.update.caughtExceptions
+            .tryReceive()
+            .getOrNull()
+            .shouldBeNull()
     }
 
     @Test
@@ -91,7 +94,10 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         firstChainCounter.get() shouldBe 1
         breakCounter.get() shouldBe 1
         secondChainCounter.get() shouldBe 2
-        bot.update.caughtExceptions.tryReceive().getOrNull().shouldBeNull()
+        bot.update.caughtExceptions
+            .tryReceive()
+            .getOrNull()
+            .shouldBeNull()
     }
 
     @Test
@@ -167,7 +173,8 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
 
         var onUpdateInvocationsCount = 0
 
-        bot.update.functionalHandlingBehavior.functionalActivities.onUpdateActivities.clear()
+        bot.update.functionalHandlingBehavior.functionalActivities.onUpdateActivities
+            .clear()
         bot.update.functionalHandlingBehavior.apply {
             onMessage { onUpdateInvocationsCount++ }
             onEditedMessage { onUpdateInvocationsCount++ }
@@ -196,7 +203,9 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         UpdateType.entries.forEach {
             shouldNotThrowAny {
                 bot.update.functionalHandlingBehavior.functionalActivities
-                    .onUpdateActivities[it].shouldNotBeNull().invoke(ctx)
+                    .onUpdateActivities[it]
+                    .shouldNotBeNull()
+                    .invoke(ctx)
             }
         }
 

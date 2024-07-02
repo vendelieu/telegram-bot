@@ -8,7 +8,9 @@ import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import kotlinx.serialization.builtins.serializer
 
-class DeleteMessagesAction(messageIds: List<Long>) : Action<Boolean>() {
+class DeleteMessagesAction(
+    messageIds: List<Long>,
+) : Action<Boolean>() {
     override val method = TgMethod("deleteMessages")
     override val returnType = getReturnType()
 

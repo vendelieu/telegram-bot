@@ -8,7 +8,10 @@ import eu.vendeli.tgbot.types.stars.StarTransactions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class GetStarTransactionsAction(offset: Int? = null, limit: Int? = null) : SimpleAction<StarTransactions>() {
+class GetStarTransactionsAction(
+    offset: Int? = null,
+    limit: Int? = null,
+) : SimpleAction<StarTransactions>() {
     override val method = TgMethod("getStarTransactions")
     override val returnType = getReturnType()
 

@@ -29,10 +29,11 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonUnquotedLiteral
 
 @Suppress("NOTHING_TO_INLINE")
-private inline fun buildHeadersForItem(name: String) = HeadersBuilder().apply {
-    append(HttpHeaders.ContentType, ContentType.Application.Json)
-    append(HttpHeaders.ContentDisposition, "form-data; name=${name.escapeIfNeeded()}")
-}.build()
+private inline fun buildHeadersForItem(name: String) = HeadersBuilder()
+    .apply {
+        append(HttpHeaders.ContentType, ContentType.Application.Json)
+        append(HttpHeaders.ContentDisposition, "form-data; name=${name.escapeIfNeeded()}")
+    }.build()
 
 @Suppress("OPT_IN_USAGE")
 private fun HttpRequestBuilder.formReqBody(
@@ -78,9 +79,10 @@ internal suspend inline fun TelegramBot.makeSilentRequest(
     method: TgMethod,
     data: Map<String, JsonElement>,
     multipartData: List<PartData.BinaryItem>,
-) = httpClient.post(method.getUrl(config.apiHost, token)) {
-    formReqBody(data, multipartData)
-}.logFailure()
+) = httpClient
+    .post(method.getUrl(config.apiHost, token)) {
+        formReqBody(data, multipartData)
+    }.logFailure()
 
 internal suspend inline fun HttpResponse.logFailure(): HttpResponse {
     if (!status.isSuccess()) {

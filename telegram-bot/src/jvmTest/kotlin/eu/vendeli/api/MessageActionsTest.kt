@@ -103,7 +103,8 @@ class MessageActionsTest : BotTestContext() {
     suspend fun `set message reaction method test`() {
         val msg = message("test").sendReturning(TG_ID, bot).shouldSuccess()
 
-        val result = setMessageReaction(msg.messageId, ReactionType.Emoji(EmojiType.Eyes)).sendReturning(TG_ID, bot)
+        val result = setMessageReaction(msg.messageId, ReactionType.Emoji(EmojiType.Eyes))
+            .sendReturning(TG_ID, bot)
             .shouldSuccess()
         val listingResult = setMessageReaction(msg.messageId) {
             +ReactionType.Emoji("\uD83C\uDF83")

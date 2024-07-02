@@ -12,7 +12,11 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import kotlin.random.Random
 
-sealed class LOREM(val url: String, fileName: String, contentType: String) {
+sealed class LOREM(
+    val url: String,
+    fileName: String,
+    contentType: String,
+) {
     val bytes: ByteArray = runBlocking { httpClient.get(url).readBytes() }
     val file: File = runBlocking {
         withContext(Dispatchers.IO) {

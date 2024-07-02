@@ -12,8 +12,9 @@ import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFileGroup
 
-class SendMediaGroupAction(inputMedia: List<InputMedia>) :
-    MediaAction<List<Message>>(),
+class SendMediaGroupAction(
+    inputMedia: List<InputMedia>,
+) : MediaAction<List<Message>>(),
     BusinessActionExt<List<Message>>,
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions> {
     override val method = TgMethod("sendMediaGroup")

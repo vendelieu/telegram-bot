@@ -4,7 +4,9 @@ import eu.vendeli.tgbot.interfaces.ChatData
 import eu.vendeli.tgbot.utils.asyncAction
 import kotlinx.coroutines.Deferred
 
-class ChatDataMapImpl : BotContextMapImpl(), ChatData {
+class ChatDataMapImpl :
+    BotContextMapImpl(),
+    ChatData {
     override fun clearAll(telegramId: Long) {
         storage.keys.forEach(storage::remove)
     }

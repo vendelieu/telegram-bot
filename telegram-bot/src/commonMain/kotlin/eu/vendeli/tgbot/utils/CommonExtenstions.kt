@@ -17,7 +17,6 @@ fun String.checkIsInitDataSafe(botToken: String, hash: String): Boolean {
     return HMAC.hmacSHA256(secretKey.bytes, decodedData.encodeToByteArray()).hexLower == hash.lowercase()
 }
 
-
 /**
  * Helper function to paginate over a collection.
  *
@@ -70,7 +69,9 @@ fun <T> Collection<T>.joinToInlineKeyboard(
     perPage: Int = 5,
     perLine: Int = 1,
 ): InlineKeyboardMarkup = inlineKeyboardMarkup {
-    val elWindowEdge = if (currentPage == 1) 0..perPage else {
+    val elWindowEdge = if (currentPage == 1) {
+        0..perPage
+    } else {
         (currentPage - 1) * perPage..<(currentPage + 1) * perPage
     }
     val pageElWindow = toList().subList(elWindowEdge.first, elWindowEdge.last.takeIf { it <= size } ?: size)

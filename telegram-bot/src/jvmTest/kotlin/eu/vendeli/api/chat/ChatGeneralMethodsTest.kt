@@ -53,17 +53,19 @@ class ChatGeneralMethodsTest : BotTestContext() {
     @Test
     suspend fun `approve chat join request method test`() {
         val result = approveChatJoinRequest(TG_ID).sendReturning(CHAT_ID, bot)
-        result.onFailure {
-            it.description shouldContain "USER_ALREADY_PARTICIPANT"
-        }.shouldBeNull()
+        result
+            .onFailure {
+                it.description shouldContain "USER_ALREADY_PARTICIPANT"
+            }.shouldBeNull()
     }
 
     @Test
     suspend fun `decline chat join request method test`() {
         val result = declineChatJoinRequest(TG_ID).sendReturning(CHAT_ID, bot)
-        result.onFailure {
-            it.description shouldContain "HIDE_REQUESTER_MISSING"
-        }.shouldBeNull()
+        result
+            .onFailure {
+                it.description shouldContain "HIDE_REQUESTER_MISSING"
+            }.shouldBeNull()
     }
 
     @Test

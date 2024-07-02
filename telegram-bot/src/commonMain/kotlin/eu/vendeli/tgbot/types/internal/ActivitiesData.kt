@@ -10,7 +10,9 @@ import eu.vendeli.tgbot.utils._OperatingActivities
 import eu.vendeli.tgbot.utils.logString
 
 @Suppress("UNCHECKED_CAST")
-internal class ActivitiesData(pkg: String? = null) {
+internal class ActivitiesData(
+    pkg: String? = null,
+) {
     private val activities = when {
         _OperatingActivities.size == 1 -> _OperatingActivities.entries.firstOrNull()?.value
         _OperatingActivities.size > 1 && pkg != null -> _OperatingActivities[pkg]

@@ -17,7 +17,9 @@ sealed class Identifier {
     abstract val get: Any
 
     @Serializable(String.Companion::class)
-    data class String(val to: kotlin.String) : Identifier() {
+    data class String(
+        val to: kotlin.String,
+    ) : Identifier() {
         override val get: kotlin.String get(): kotlin.String = to
         internal companion object : KSerializer<String> {
             override val descriptor = PrimitiveSerialDescriptor("String serde", PrimitiveKind.LONG)
@@ -30,7 +32,9 @@ sealed class Identifier {
     }
 
     @Serializable(Long.Companion::class)
-    data class Long(val to: kotlin.Long) : Identifier() {
+    data class Long(
+        val to: kotlin.Long,
+    ) : Identifier() {
         override val get: kotlin.Long get(): kotlin.Long = to
 
         internal companion object : KSerializer<Long> {

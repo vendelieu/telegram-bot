@@ -22,4 +22,5 @@ data class InvoiceOptions(
     override var replyParameters: ReplyParameters? = null,
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
-) : OptionsCommon, MessageEffectIdProp
+) : OptionsCommon,
+    MessageEffectIdProp

@@ -27,9 +27,12 @@ import utils.RandomPicResource
 class ChatSetMethodsTest : BotTestContext() {
     @Test
     suspend fun `set chat custom title method test`() {
-        promoteChatMember(TG_ID.asUser()).options {
-            canDeleteMessages = true
-        }.sendReturning(CHAT_ID, bot).shouldSuccess().shouldBeTrue()
+        promoteChatMember(TG_ID.asUser())
+            .options {
+                canDeleteMessages = true
+            }.sendReturning(CHAT_ID, bot)
+            .shouldSuccess()
+            .shouldBeTrue()
 
         val result = setChatAdministratorCustomTitle(TG_ID, "test").sendReturning(CHAT_ID, bot).shouldSuccess()
         result.shouldBeTrue()
@@ -84,20 +87,30 @@ class ChatSetMethodsTest : BotTestContext() {
 
     @Test
     suspend fun `set chat sticker set method test`() {
-        val botName = getMe().sendAsync(bot).await().getOrNull().shouldNotBeNull().username.shouldNotBeNull()
+        val botName = getMe()
+            .sendAsync(bot)
+            .await()
+            .getOrNull()
+            .shouldNotBeNull()
+            .username
+            .shouldNotBeNull()
         val setName = "Test_2_by_$botName"
 
-        val result = setChatStickerSet(setName).sendReturning(CHAT_ID, bot).onFailure {
-            if (it.description?.contains("can't set supergroup sticker set") == true) return
-        }.shouldNotBeNull()
+        val result = setChatStickerSet(setName)
+            .sendReturning(CHAT_ID, bot)
+            .onFailure {
+                if (it.description?.contains("can't set supergroup sticker set") == true) return
+            }.shouldNotBeNull()
         result.shouldBeTrue()
     }
 
     @Test
     suspend fun `delete chat sticker set method test`() {
-        val result = deleteChatStickerSet().sendReturning(CHAT_ID, bot).onFailure {
-            if (it.description?.contains("can't set supergroup sticker set") == true) return
-        }.shouldNotBeNull()
+        val result = deleteChatStickerSet()
+            .sendReturning(CHAT_ID, bot)
+            .onFailure {
+                if (it.description?.contains("can't set supergroup sticker set") == true) return
+            }.shouldNotBeNull()
         result.shouldBeTrue()
     }
 

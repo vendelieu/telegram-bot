@@ -14,7 +14,10 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.JsonUnquotedLiteral
 
 @OptIn(ExperimentalSerializationApi::class)
-class UploadStickerFileAction(sticker: InputFile, stickerFormat: StickerFormat) : MediaAction<File>() {
+class UploadStickerFileAction(
+    sticker: InputFile,
+    stickerFormat: StickerFormat,
+) : MediaAction<File>() {
     override val method = TgMethod("uploadStickerFile")
     override val returnType = getReturnType()
     override val idRefField: String = "user_id"

@@ -15,10 +15,15 @@ import kotlinx.serialization.Serializable
  *
  */
 @Serializable
-sealed class BackgroundType(val type: String) {
+sealed class BackgroundType(
+    val type: String,
+) {
     @Serializable
     @SerialName("fill")
-    data class Fill(val fill: BackgroundFill, val darkThemeDimming: Int? = null) : BackgroundType("fill")
+    data class Fill(
+        val fill: BackgroundFill,
+        val darkThemeDimming: Int? = null,
+    ) : BackgroundType("fill")
 
     @Serializable
     @SerialName("wallpaper")
@@ -41,5 +46,7 @@ sealed class BackgroundType(val type: String) {
 
     @Serializable
     @SerialName("chat_theme")
-    data class ChatTheme(val themeName: String) : BackgroundType("chat_theme")
+    data class ChatTheme(
+        val themeName: String,
+    ) : BackgroundType("chat_theme")
 }

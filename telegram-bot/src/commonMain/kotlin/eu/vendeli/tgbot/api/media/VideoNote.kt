@@ -15,8 +15,9 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 
-class SendVideoNoteAction(videoNote: ImplicitFile) :
-    MediaAction<Message>(),
+class SendVideoNoteAction(
+    videoNote: ImplicitFile,
+) : MediaAction<Message>(),
     BusinessActionExt<Message>,
     OptionsFeature<SendVideoNoteAction, VideoNoteOptions>,
     MarkupFeature<SendVideoNoteAction> {

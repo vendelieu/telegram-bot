@@ -8,7 +8,9 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("source")
 @OptIn(ExperimentalSerializationApi::class)
-sealed class PassportElementError(val source: String) {
+sealed class PassportElementError(
+    val source: String,
+) {
     @Serializable
     @SerialName("data")
     data class DataField(

@@ -6,10 +6,13 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @Suppress("OVERRIDE_DEPRECATION")
-sealed class InputPaidMedia(val type: String) : ImplicitMediaData {
-
+sealed class InputPaidMedia(
+    val type: String,
+) : ImplicitMediaData {
     @Serializable
-    data class Photo(override var media: ImplicitFile) : InputPaidMedia("photo")
+    data class Photo(
+        override var media: ImplicitFile,
+    ) : InputPaidMedia("photo")
 
     @Serializable
     data class Video(

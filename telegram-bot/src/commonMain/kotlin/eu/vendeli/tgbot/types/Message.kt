@@ -213,4 +213,5 @@ data class Message(
     val webAppData: WebAppData? = null,
     val replyMarkup: InlineKeyboardMarkup? = null,
     val hasMediaSpoiler: Boolean? = null,
-) : MaybeInaccessibleMessage(), MultipleResponse
+) : MaybeInaccessibleMessage(),
+    MultipleResponse

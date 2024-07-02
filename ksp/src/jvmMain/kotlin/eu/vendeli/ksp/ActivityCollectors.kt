@@ -45,18 +45,20 @@ internal fun FileBuilder.collectCommandActivities(
         symbols,
     ) { function ->
         var isCallbackQAnnotation = false
-        val annotationData = function.annotations.first {
-            val shortName = it.shortName.asString()
-            when (shortName) {
-                CallbackQuery::class.simpleName -> {
-                    isCallbackQAnnotation = true
-                    true
-                }
+        val annotationData = function.annotations
+            .first {
+                val shortName = it.shortName.asString()
+                when (shortName) {
+                    CallbackQuery::class.simpleName -> {
+                        isCallbackQAnnotation = true
+                        true
+                    }
 
-                CommandHandler::class.simpleName -> true
-                else -> false
-            }
-        }.arguments.parseAsCommandHandler(isCallbackQAnnotation)
+                    CommandHandler::class.simpleName -> true
+                    else -> false
+                }
+            }.arguments
+            .parseAsCommandHandler(isCallbackQAnnotation)
 
         annotationData.value.forEach {
             annotationData.scope.forEach { updT ->
@@ -92,9 +94,11 @@ internal fun FileBuilder.collectInputActivities(
         symbols,
         tailBlock,
     ) { function ->
-        val annotationData = function.annotations.first {
-            it.shortName.asString() == InputHandler::class.simpleName!!
-        }.arguments.parseAsInputHandler()
+        val annotationData = function.annotations
+            .first {
+                it.shortName.asString() == InputHandler::class.simpleName!!
+            }.arguments
+            .parseAsInputHandler()
         annotationData.first.forEach {
             logger.info("Input: $it --> ${function.qualifiedName?.asString()}")
             addStatement(
@@ -121,9 +125,11 @@ internal fun FileBuilder.collectUpdateTypeActivities(
         MAP.parameterizedBy(UpdateType::class.asTypeName(), TypeVariableName("InvocationLambda")),
         symbols,
     ) { function ->
-        val annotationData = function.annotations.first {
-            it.shortName.asString() == UpdateHandler::class.simpleName!!
-        }.arguments.parseAsUpdateHandler()
+        val annotationData = function.annotations
+            .first {
+                it.shortName.asString() == UpdateHandler::class.simpleName!!
+            }.arguments
+            .parseAsUpdateHandler()
 
         annotationData.forEach {
             logger.info("UpdateType: ${it.name} --> ${function.qualifiedName?.asString()}")
@@ -144,28 +150,35 @@ internal fun FileBuilder.collectCommonActivities(
 ) {
     logger.info("Collecting common handlers.")
     addProperty(
-        PropertySpec.builder(
-            "__TG_COMMONS$idxPostfix",
-            MAP.parameterizedBy(commonMatcherClass, invocableType),
-            KModifier.PRIVATE,
-        ).apply {
-            initializer(
-                CodeBlock.builder().apply {
-                    add("mapOf(\n")
-                    data.forEach {
-                        addStatement(
-                            "%L to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
-                            it.value.toCommonMatcher(it.filter, it.scope),
-                            buildInvocationLambdaCodeBlock(it.funDeclaration, injectableTypes),
-                            it.funQualifier,
-                            it.funSimpleName,
-                            it.rateLimits.let { l -> if (l.rate == 0L && l.period == 0L) "zeroRateLimits" else l },
-                        )
-                    }
-                    add(")\n")
-                }.build(),
-            )
-        }.build(),
+        PropertySpec
+            .builder(
+                "__TG_COMMONS$idxPostfix",
+                MAP.parameterizedBy(commonMatcherClass, invocableType),
+                KModifier.PRIVATE,
+            ).apply {
+                initializer(
+                    CodeBlock
+                        .builder()
+                        .apply {
+                            add("mapOf(\n")
+                            data.forEach {
+                                addStatement(
+                                    "%L to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
+                                    it.value.toCommonMatcher(it.filter, it.scope),
+                                    buildInvocationLambdaCodeBlock(it.funDeclaration, injectableTypes),
+                                    it.funQualifier,
+                                    it.funSimpleName,
+                                    it.rateLimits.let { l ->
+                                        if (l.rate == 0L &&
+                                            l.period == 0L
+                                        ) "zeroRateLimits" else l
+                                    },
+                                )
+                            }
+                            add(")\n")
+                        }.build(),
+                )
+            }.build(),
     )
 }
 
@@ -176,22 +189,23 @@ internal fun FileBuilder.collectUnprocessed(
     idxPostfix: String,
 ) {
     addProperty(
-        PropertySpec.builder(
-            "__TG_UNPROCESSED$idxPostfix",
-            TypeVariableName("InvocationLambda").copy(true),
-            KModifier.PRIVATE,
-        ).apply {
-            initializer(
-                buildCodeBlock {
-                    add(
-                        "%L",
-                        unprocessedHandlerSymbols?.let {
-                            logger.info("Unprocessed handler --> ${it.qualifiedName?.asString()}")
-                            buildInvocationLambdaCodeBlock(it, injectableTypes)
-                        },
-                    )
-                },
-            )
-        }.build(),
+        PropertySpec
+            .builder(
+                "__TG_UNPROCESSED$idxPostfix",
+                TypeVariableName("InvocationLambda").copy(true),
+                KModifier.PRIVATE,
+            ).apply {
+                initializer(
+                    buildCodeBlock {
+                        add(
+                            "%L",
+                            unprocessedHandlerSymbols?.let {
+                                logger.info("Unprocessed handler --> ${it.qualifiedName?.asString()}")
+                                buildInvocationLambdaCodeBlock(it, injectableTypes)
+                            },
+                        )
+                    },
+                )
+            }.build(),
     )
 }

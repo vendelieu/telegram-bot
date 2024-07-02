@@ -1,6 +1,9 @@
 package utils
 
-class LoopedRange(start: Int, count: Int) : Iterable<Int> {
+class LoopedRange(
+    start: Int,
+    count: Int,
+) : Iterable<Int> {
     private val range = start..<start + count * 1
     private var currentIndex = start
     val currentIdx: Int get() = currentIndex

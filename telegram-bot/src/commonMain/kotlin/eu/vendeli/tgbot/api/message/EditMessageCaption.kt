@@ -12,6 +12,7 @@ import eu.vendeli.tgbot.types.internal.options.EditCaptionOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@Suppress("ktlint:standard:class-signature")
 class EditMessageCaptionAction() :
     Action<Message>(),
     InlineActionExt<Message>,

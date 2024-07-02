@@ -12,7 +12,9 @@ import eu.vendeli.tgbot.utils.toJsonElement
  *
  * @param Action Action class itself.
  */
-interface CaptionFeature<Action> : Feature, EntitiesCtxBuilder<Action>
+interface CaptionFeature<Action> :
+    Feature,
+    EntitiesCtxBuilder<Action>
     where Action : TgAction<*>, Action : CaptionFeature<Action> {
     @Suppress("UNCHECKED_CAST")
     private val thisAsReturn: Action

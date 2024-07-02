@@ -85,79 +85,82 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
     }
     val isObject = (function.parent as? KSClassDeclaration)?.classKind == ClassKind.OBJECT
 
-    beginControlFlow("suspendCall { classManager, update, user, bot, parameters ->").apply {
-        var parametersEnumeration = ""
-        if (!isTopLvl && !isObject && function.functionKind != FunctionKind.STATIC) {
-            parametersEnumeration = "inst, "
-            add(
-                "val inst = classManager.getInstance(%L::class) as %L\n",
-                funQualifier,
-                funQualifier,
-            )
-        }
-        function.parameters.forEachIndexed { index, parameter ->
-            if (parameter.name == null) return@forEachIndexed
-            val paramCall = (
-                parameter.annotations.firstOrNull { i ->
-                    i.shortName.asString() == "ParamMapping"
-                }?.let { i ->
-                    i.arguments.first { a -> a.name?.asString() == "name" }.value as? String
-                } ?: parameter.name!!.getShortName()
-            ).let {
-                "parameters[\"$it\"]"
+    beginControlFlow("suspendCall { classManager, update, user, bot, parameters ->")
+        .apply {
+            var parametersEnumeration = ""
+            if (!isTopLvl && !isObject && function.functionKind != FunctionKind.STATIC) {
+                parametersEnumeration = "inst, "
+                add(
+                    "val inst = classManager.getInstance(%L::class) as %L\n",
+                    funQualifier,
+                    funQualifier,
+                )
             }
-            val parameterTypeName = parameter.type.toTypeName()
-            val typeName = parameterTypeName.copy(false)
-            val nullabilityMark = if (parameterTypeName.isNullable) "" else "!!"
-
-            val value = when (typeName) {
-                userClass -> "user$nullabilityMark"
-                botClass -> "bot"
-                STRING -> "$paramCall$nullabilityMark"
-                INT, intPrimitiveType -> "$paramCall?.toIntOrNull()$nullabilityMark"
-                LONG, longPrimitiveType -> "$paramCall?.toLongOrNull()$nullabilityMark"
-                SHORT, shortPrimitiveType -> "$paramCall?.toShortOrNull()$nullabilityMark"
-                FLOAT, floatPrimitiveType -> "$paramCall?.toFloatOrNull()$nullabilityMark"
-                DOUBLE, doublePrimitiveType -> "$paramCall?.toDoubleOrNull()$nullabilityMark"
-
-                updateClass -> "update"
-                messageUpdClass -> addUpdate(MessageUpdate::class, nullabilityMark)
-                callbackQueryUpdateClass -> addUpdate(CallbackQueryUpdate::class, nullabilityMark)
-                editedMessageUpdateClass -> addUpdate(EditedMessageUpdate::class, nullabilityMark)
-                channelPostUpdateClass -> addUpdate(ChannelPostUpdate::class, nullabilityMark)
-                editedChannelPostUpdateClass -> addUpdate(EditedChannelPostUpdate::class, nullabilityMark)
-                messageReactionUpdateClass -> addUpdate(MessageReactionUpdate::class, nullabilityMark)
-                messageReactionCountUpdateClass -> addUpdate(MessageReactionCountUpdate::class, nullabilityMark)
-                inlineQueryUpdateClass -> addUpdate(InlineQueryUpdate::class, nullabilityMark)
-                chosenInlineResultUpdateClass -> addUpdate(ChosenInlineResultUpdate::class, nullabilityMark)
-                shippingQueryUpdateClass -> addUpdate(ShippingQueryUpdate::class, nullabilityMark)
-                preCheckoutQueryUpdateClass -> addUpdate(PreCheckoutQueryUpdate::class, nullabilityMark)
-                pollUpdateClass -> addUpdate(PollUpdate::class, nullabilityMark)
-                pollAnswerUpdateClass -> addUpdate(PollAnswerUpdate::class, nullabilityMark)
-                myChatMemberUpdateClass -> addUpdate(MyChatMemberUpdate::class, nullabilityMark)
-                chatMemberUpdateClass -> addUpdate(ChatMemberUpdate::class, nullabilityMark)
-                chatJoinRequestUpdateClass -> addUpdate(ChatJoinRequestUpdate::class, nullabilityMark)
-                chatBoostUpdateClass -> addUpdate(ChatBoostUpdate::class, nullabilityMark)
-                removedChatBoostUpdateClass -> addUpdate(RemovedChatBoostUpdate::class, nullabilityMark)
-                businessConnectionUpdateClass -> addUpdate(BusinessConnectionUpdate::class, nullabilityMark)
-                businessMessageUpdateClass -> addUpdate(BusinessMessageUpdate::class, nullabilityMark)
-                editedBusinessMessageClass -> addUpdate(EditedBusinessMessageUpdate::class, nullabilityMark)
-                deletedBusinessMessagesClass -> addUpdate(DeletedBusinessMessagesUpdate::class, nullabilityMark)
-
-                in injectableTypes.keys -> {
-                    val type = injectableTypes[typeName]!!
-                    addImport(type.packageName, type.simpleName)
-                    "(classManager.getInstance(${type.simpleName}::class) as ${type.simpleName}).get(update, bot)"
+            function.parameters.forEachIndexed { index, parameter ->
+                if (parameter.name == null) return@forEachIndexed
+                val paramCall = (
+                    parameter.annotations
+                        .firstOrNull { i ->
+                            i.shortName.asString() == "ParamMapping"
+                        }?.let { i ->
+                            i.arguments.first { a -> a.name?.asString() == "name" }.value as? String
+                        } ?: parameter.name!!.getShortName()
+                ).let {
+                    "parameters[\"$it\"]"
                 }
+                val parameterTypeName = parameter.type.toTypeName()
+                val typeName = parameterTypeName.copy(false)
+                val nullabilityMark = if (parameterTypeName.isNullable) "" else "!!"
 
-                else -> "null"
+                val value = when (typeName) {
+                    userClass -> "user$nullabilityMark"
+                    botClass -> "bot"
+                    STRING -> "$paramCall$nullabilityMark"
+                    INT, intPrimitiveType -> "$paramCall?.toIntOrNull()$nullabilityMark"
+                    LONG, longPrimitiveType -> "$paramCall?.toLongOrNull()$nullabilityMark"
+                    SHORT, shortPrimitiveType -> "$paramCall?.toShortOrNull()$nullabilityMark"
+                    FLOAT, floatPrimitiveType -> "$paramCall?.toFloatOrNull()$nullabilityMark"
+                    DOUBLE, doublePrimitiveType -> "$paramCall?.toDoubleOrNull()$nullabilityMark"
+
+                    updateClass -> "update"
+                    messageUpdClass -> addUpdate(MessageUpdate::class, nullabilityMark)
+                    callbackQueryUpdateClass -> addUpdate(CallbackQueryUpdate::class, nullabilityMark)
+                    editedMessageUpdateClass -> addUpdate(EditedMessageUpdate::class, nullabilityMark)
+                    channelPostUpdateClass -> addUpdate(ChannelPostUpdate::class, nullabilityMark)
+                    editedChannelPostUpdateClass -> addUpdate(EditedChannelPostUpdate::class, nullabilityMark)
+                    messageReactionUpdateClass -> addUpdate(MessageReactionUpdate::class, nullabilityMark)
+                    messageReactionCountUpdateClass -> addUpdate(MessageReactionCountUpdate::class, nullabilityMark)
+                    inlineQueryUpdateClass -> addUpdate(InlineQueryUpdate::class, nullabilityMark)
+                    chosenInlineResultUpdateClass -> addUpdate(ChosenInlineResultUpdate::class, nullabilityMark)
+                    shippingQueryUpdateClass -> addUpdate(ShippingQueryUpdate::class, nullabilityMark)
+                    preCheckoutQueryUpdateClass -> addUpdate(PreCheckoutQueryUpdate::class, nullabilityMark)
+                    pollUpdateClass -> addUpdate(PollUpdate::class, nullabilityMark)
+                    pollAnswerUpdateClass -> addUpdate(PollAnswerUpdate::class, nullabilityMark)
+                    myChatMemberUpdateClass -> addUpdate(MyChatMemberUpdate::class, nullabilityMark)
+                    chatMemberUpdateClass -> addUpdate(ChatMemberUpdate::class, nullabilityMark)
+                    chatJoinRequestUpdateClass -> addUpdate(ChatJoinRequestUpdate::class, nullabilityMark)
+                    chatBoostUpdateClass -> addUpdate(ChatBoostUpdate::class, nullabilityMark)
+                    removedChatBoostUpdateClass -> addUpdate(RemovedChatBoostUpdate::class, nullabilityMark)
+                    businessConnectionUpdateClass -> addUpdate(BusinessConnectionUpdate::class, nullabilityMark)
+                    businessMessageUpdateClass -> addUpdate(BusinessMessageUpdate::class, nullabilityMark)
+                    editedBusinessMessageClass -> addUpdate(EditedBusinessMessageUpdate::class, nullabilityMark)
+                    deletedBusinessMessagesClass -> addUpdate(DeletedBusinessMessagesUpdate::class, nullabilityMark)
+
+                    in injectableTypes.keys -> {
+                        val type = injectableTypes[typeName]!!
+                        addImport(type.packageName, type.simpleName)
+                        "(classManager.getInstance(${type.simpleName}::class) as ${type.simpleName}).get(update, bot)"
+                    }
+
+                    else -> "null"
+                }
+                add("val param%L = %L\n", index, value)
+                parametersEnumeration += "param$index"
+                if (index < function.parameters.lastIndex) parametersEnumeration += ", "
             }
-            add("val param%L = %L\n", index, value)
-            parametersEnumeration += "param$index"
-            if (index < function.parameters.lastIndex) parametersEnumeration += ", "
-        }
-        add("%L.invoke(\n\t%L\n)\n", funName, parametersEnumeration)
-    }.endControlFlow().build()
+            add("%L.invoke(\n\t%L\n)\n", funName, parametersEnumeration)
+        }.endControlFlow()
+        .build()
 }
 
 private fun <T : ProcessedUpdate> FileBuilder.addUpdate(

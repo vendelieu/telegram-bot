@@ -15,8 +15,9 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 
-class SendStickerAction(sticker: ImplicitFile) :
-    MediaAction<Message>(),
+class SendStickerAction(
+    sticker: ImplicitFile,
+) : MediaAction<Message>(),
     BusinessActionExt<Message>,
     OptionsFeature<SendStickerAction, StickerOptions>,
     MarkupFeature<SendStickerAction> {

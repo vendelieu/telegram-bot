@@ -100,13 +100,14 @@ internal val notLimitedRateLimits = 0L to 0L
 
 internal fun FileBuilder.addZeroLimitsProp() {
     addProperty(
-        PropertySpec.builder(
-            "zeroRateLimits",
-            rateLimitsClass,
-            KModifier.PRIVATE,
-        ).apply {
-            initializer("RateLimits(0, 0)")
-        }.build(),
+        PropertySpec
+            .builder(
+                "zeroRateLimits",
+                rateLimitsClass,
+                KModifier.PRIVATE,
+            ).apply {
+                initializer("RateLimits(0, 0)")
+            }.build(),
     )
 }
 
@@ -122,23 +123,28 @@ internal fun Pair<Long, Long>.toRateLimits(): Any =
 internal fun <T : Annotation> Resolver.getAnnotatedFnSymbols(
     targetPackage: String? = null,
     vararg kClasses: KClass<out T>,
-): Sequence<KSFunctionDeclaration> = kClasses.map {
-    getSymbolsWithAnnotation(it.qualifiedName!!)
-}.asSequence().flatten().let {
-    if (targetPackage != null) {
-        it.filter { f ->
-            f is KSFunctionDeclaration && f.packageName.asString().startsWith(targetPackage)
-        }.cast()
-    } else {
-        it.filterIsInstance<KSFunctionDeclaration>()
+): Sequence<KSFunctionDeclaration> = kClasses
+    .map {
+        getSymbolsWithAnnotation(it.qualifiedName!!)
+    }.asSequence()
+    .flatten()
+    .let {
+        if (targetPackage != null) {
+            it
+                .filter { f ->
+                    f is KSFunctionDeclaration && f.packageName.asString().startsWith(targetPackage)
+                }.cast()
+        } else {
+            it.filterIsInstance<KSFunctionDeclaration>()
+        }
     }
-}
 
 internal fun <T : Annotation> Resolver.getAnnotatedClassSymbols(clazz: KClass<T>, targetPackage: String? = null) =
     if (targetPackage == null) getSymbolsWithAnnotation(clazz.qualifiedName!!).filterIsInstance<KSClassDeclaration>()
-    else getSymbolsWithAnnotation(clazz.qualifiedName!!).filter {
-        it is KSClassDeclaration && it.packageName.asString().startsWith(targetPackage)
-    }.cast()
+    else getSymbolsWithAnnotation(clazz.qualifiedName!!)
+        .filter {
+            it is KSClassDeclaration && it.packageName.asString().startsWith(targetPackage)
+        }.cast()
 
 internal fun FileBuilder.addMap(
     name: String,
@@ -147,20 +153,23 @@ internal fun FileBuilder.addMap(
     tailBlock: CodeBlock? = null,
     iterableAction: CodeBlock.Builder.(KSFunctionDeclaration) -> Unit,
 ) = addProperty(
-    PropertySpec.builder(
-        name,
-        type,
-        KModifier.PRIVATE,
-    ).apply {
-        initializer(
-            CodeBlock.builder().apply {
-                add("mapOf(\n")
-                if (symbols.iterator().hasNext()) symbols.forEach {
-                    iterableAction(it)
-                }
-                tailBlock?.also { add(it) }
-                add(")\n")
-            }.build(),
-        )
-    }.build(),
+    PropertySpec
+        .builder(
+            name,
+            type,
+            KModifier.PRIVATE,
+        ).apply {
+            initializer(
+                CodeBlock
+                    .builder()
+                    .apply {
+                        add("mapOf(\n")
+                        if (symbols.iterator().hasNext()) symbols.forEach {
+                            iterableAction(it)
+                        }
+                        tailBlock?.also { add(it) }
+                        add(")\n")
+                    }.build(),
+            )
+        }.build(),
 )

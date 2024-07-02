@@ -9,7 +9,9 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class BanChatSenderChatAction(senderChatId: Long) : Action<Boolean>() {
+class BanChatSenderChatAction(
+    senderChatId: Long,
+) : Action<Boolean>() {
     override val method = TgMethod("banChatSenderChat")
     override val returnType = getReturnType()
 

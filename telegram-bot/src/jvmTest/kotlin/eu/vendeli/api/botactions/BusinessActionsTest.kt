@@ -8,6 +8,11 @@ import io.kotest.matchers.shouldBe
 class BusinessActionsTest : BotTestContext() {
     @Test
     suspend fun `getBusinessConnection method testing`() {
-        getBusinessConnection("test").sendAsync(bot).getOrNull()?.user?.id?.shouldBe(TG_ID)
+        getBusinessConnection("test")
+            .sendAsync(bot)
+            .getOrNull()
+            ?.user
+            ?.id
+            ?.shouldBe(TG_ID)
     }
 }

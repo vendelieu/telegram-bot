@@ -17,4 +17,6 @@ data class AudioOptions(
     override var replyParameters: ReplyParameters? = null,
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
-) : OptionsCommon, OptionsParseMode, MessageEffectIdProp
+) : OptionsCommon,
+    OptionsParseMode,
+    MessageEffectIdProp

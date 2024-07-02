@@ -13,8 +13,10 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFileGroup
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class SendPaidMediaAction(starCount: Int, inputPaidMedia: List<InputPaidMedia>) :
-    MediaAction<Message>(),
+class SendPaidMediaAction(
+    starCount: Int,
+    inputPaidMedia: List<InputPaidMedia>,
+) : MediaAction<Message>(),
     OptionsFeature<SendPaidMediaAction, PaidMediaOptions>,
     CaptionFeature<SendPaidMediaAction>,
     MarkupFeature<SendPaidMediaAction> {

@@ -9,4 +9,6 @@ import kotlinx.serialization.Serializable
  * @property description The bot's description
  */
 @Serializable
-data class BotDescription(val description: String)
+data class BotDescription(
+    val description: String,
+)

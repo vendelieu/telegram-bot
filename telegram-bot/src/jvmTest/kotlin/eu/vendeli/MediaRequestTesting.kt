@@ -22,14 +22,19 @@ class MediaRequestTesting : BotTestContext() {
     suspend fun `media requests testing`() {
         val pic = RANDOM_PIC ?: return
         val imageFile = withContext(Dispatchers.IO) {
-            Files.createTempFile("test", "file").also {
-                it.writeBytes(pic)
-            }.toFile()
+            Files
+                .createTempFile("test", "file")
+                .also {
+                    it.writeBytes(pic)
+                }.toFile()
         }
 
         val photoString =
-            photo { RandomPicResource.RANDOM_PIC_URL }.options { parseMode = ParseMode.HTML }.caption { "test" }
-                .sendReturning(TG_ID, bot).getOrNull()
+            photo { RandomPicResource.RANDOM_PIC_URL }
+                .options { parseMode = ParseMode.HTML }
+                .caption { "test" }
+                .sendReturning(TG_ID, bot)
+                .getOrNull()
         photoString.shouldNotBeNull()
 
         val photoBa = photo(pic).sendReturning(TG_ID, bot).getOrNull()

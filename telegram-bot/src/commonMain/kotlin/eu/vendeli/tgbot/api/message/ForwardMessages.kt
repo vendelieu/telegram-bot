@@ -15,8 +15,10 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import kotlinx.serialization.builtins.serializer
 
-class ForwardMessagesAction(fromChatId: Identifier, messageIds: List<Long>) :
-    Action<List<MessageId>>(),
+class ForwardMessagesAction(
+    fromChatId: Identifier,
+    messageIds: List<Long>,
+) : Action<List<MessageId>>(),
     OptionsFeature<ForwardMessagesAction, ForwardMessageOptions> {
     override val method = TgMethod("forwardMessages")
     override val returnType = getReturnType()

@@ -13,10 +13,14 @@ import kotlinx.serialization.Serializable
  *
  */
 @Serializable
-sealed class BackgroundFill(val type: String) {
+sealed class BackgroundFill(
+    val type: String,
+) {
     @Serializable
     @SerialName("solid")
-    data class Solid(val color: Int) : BackgroundFill("solid")
+    data class Solid(
+        val color: Int,
+    ) : BackgroundFill("solid")
 
     @Serializable
     @SerialName("gradient")
@@ -28,5 +32,7 @@ sealed class BackgroundFill(val type: String) {
 
     @Serializable
     @SerialName("freeform_gradient")
-    data class FreeformGradient(val colors: List<Int>) : BackgroundFill("freeform_gradient")
+    data class FreeformGradient(
+        val colors: List<Int>,
+    ) : BackgroundFill("freeform_gradient")
 }

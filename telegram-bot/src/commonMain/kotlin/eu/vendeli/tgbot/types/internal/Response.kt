@@ -10,7 +10,9 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("ok")
 @OptIn(ExperimentalSerializationApi::class)
-sealed class Response<T>(val ok: Boolean) {
+sealed class Response<T>(
+    val ok: Boolean,
+) {
     @Serializable
     @SerialName("true")
     data class Success<T>(

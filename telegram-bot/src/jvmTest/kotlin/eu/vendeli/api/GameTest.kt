@@ -26,12 +26,16 @@ class GameTest : BotTestContext() {
     suspend fun `set score method test`() {
         val game = game("testestes").sendReturning(TG_ID, bot).getOrNull()
 
-        val userResult = setGameScore(TG_ID.asUser(), game!!.messageId, ITER_INT.toLong()).options {
-            force = true
-        }.sendReturning(TG_ID, bot).shouldSuccess()
-        val idResult = setGameScore(TG_ID, game.messageId, ITER_INT.toLong()).options {
-            force = true
-        }.sendReturning(TG_ID, bot).shouldSuccess()
+        val userResult = setGameScore(TG_ID.asUser(), game!!.messageId, ITER_INT.toLong())
+            .options {
+                force = true
+            }.sendReturning(TG_ID, bot)
+            .shouldSuccess()
+        val idResult = setGameScore(TG_ID, game.messageId, ITER_INT.toLong())
+            .options {
+                force = true
+            }.sendReturning(TG_ID, bot)
+            .shouldSuccess()
 
         listOf(userResult, idResult).forEach { result ->
             with(result.game) {
@@ -46,13 +50,16 @@ class GameTest : BotTestContext() {
     suspend fun `get game high score method test`() {
         val game = game("testestes").sendReturning(TG_ID, bot).getOrNull()
         val newScore = Random.nextLong(1L..10_000)
-        setGameScore(TG_ID, game!!.messageId, newScore).options {
-            force = true
-        }.sendReturning(TG_ID, bot)
+        setGameScore(TG_ID, game!!.messageId, newScore)
+            .options {
+                force = true
+            }.sendReturning(TG_ID, bot)
 
-        val idResult = getGameHighScores(TG_ID, game.messageId).sendAsync(TG_ID, bot)
+        val idResult = getGameHighScores(TG_ID, game.messageId)
+            .sendAsync(TG_ID, bot)
             .shouldSuccess()
-        val userResult = getGameHighScores(TG_ID.asUser(), game.messageId).sendAsync(TG_ID, bot)
+        val userResult = getGameHighScores(TG_ID.asUser(), game.messageId)
+            .sendAsync(TG_ID, bot)
             .shouldSuccess()
 
         listOf(idResult, userResult).forEach { result ->

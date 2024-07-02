@@ -15,7 +15,9 @@ import kotlinx.serialization.Serializable
  *
  */
 @Serializable
-sealed class RevenueWithdrawalState(val type: String) {
+sealed class RevenueWithdrawalState(
+    val type: String,
+) {
     @Serializable
     @SerialName("pending")
     data object Pending : RevenueWithdrawalState("pending")

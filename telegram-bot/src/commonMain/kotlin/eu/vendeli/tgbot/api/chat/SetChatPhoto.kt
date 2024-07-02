@@ -10,7 +10,9 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 
-class SetChatPhotoAction(photo: ImplicitFile) : MediaAction<Boolean>() {
+class SetChatPhotoAction(
+    photo: ImplicitFile,
+) : MediaAction<Boolean>() {
     override val method = TgMethod("setChatPhoto")
     override val returnType = getReturnType()
 

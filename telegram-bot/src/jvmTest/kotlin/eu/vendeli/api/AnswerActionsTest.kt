@@ -53,9 +53,11 @@ class AnswerActionsTest : BotTestContext() {
     @Test
     suspend fun `answer pre checkout query test`() {
         val failureResult = answerPreCheckoutQuery("test", false, "test1")
-            .sendAsync(bot).await()
+            .sendAsync(bot)
+            .await()
         val successResult = answerPreCheckoutQuery("test")
-            .sendAsync(bot).await()
+            .sendAsync(bot)
+            .await()
 
         listOf(failureResult, successResult).forEach { result ->
             result.ok.shouldBeFalse()

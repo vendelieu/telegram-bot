@@ -18,7 +18,8 @@ class CreateNewStickerSetAction(
     name: String,
     title: String,
     stickers: List<InputSticker>,
-) : MediaAction<Boolean>(), OptionsFeature<CreateNewStickerSetAction, CreateNewStickerSetOptions> {
+) : MediaAction<Boolean>(),
+    OptionsFeature<CreateNewStickerSetAction, CreateNewStickerSetOptions> {
     override val method = TgMethod("createNewStickerSet")
     override val returnType = getReturnType()
     override val options = CreateNewStickerSetOptions()
@@ -27,14 +28,15 @@ class CreateNewStickerSetAction(
     init {
         parameters["name"] = name.toJsonElement()
         parameters["title"] = title.toJsonElement()
-        parameters["stickers"] = stickers.onEach {
-            if (it.sticker is ImplicitFile.InpFile) {
-                val sticker = it.sticker as ImplicitFile.InpFile
-                multipartData += sticker.file.toPartData(sticker.file.fileName)
+        parameters["stickers"] = stickers
+            .onEach {
+                if (it.sticker is ImplicitFile.InpFile) {
+                    val sticker = it.sticker as ImplicitFile.InpFile
+                    multipartData += sticker.file.toPartData(sticker.file.fileName)
 
-                it.sticker = "attach://${sticker.file.fileName}".toImplicitFile()
-            }
-        }.encodeWith(InputSticker.serializer())
+                    it.sticker = "attach://${sticker.file.fileName}".toImplicitFile()
+                }
+            }.encodeWith(InputSticker.serializer())
     }
 }
 

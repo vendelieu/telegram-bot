@@ -47,14 +47,17 @@ abstract class TgUpdateHandler internal constructor(
             var lastUpdateId = 0
             while (isActive) {
                 logger.debug { "Running listener with offset - $lastUpdateId" }
-                GET_UPDATES_ACTION.options {
-                    offset = lastUpdateId
-                    allowedUpdates = types
-                    timeout = updatesPollingTimeout
-                }.sendAsync(bot).getOrNull()?.forEach {
-                    updatesChannel.send(it)
-                    lastUpdateId = it.updateId + 1
-                }
+                GET_UPDATES_ACTION
+                    .options {
+                        offset = lastUpdateId
+                        allowedUpdates = types
+                        timeout = updatesPollingTimeout
+                    }.sendAsync(bot)
+                    .getOrNull()
+                    ?.forEach {
+                        updatesChannel.send(it)
+                        lastUpdateId = it.updateId + 1
+                    }
                 pullingDelay.takeIf { it > 0 }?.let { delay(it) }
             }
         }
@@ -109,12 +112,18 @@ abstract class TgUpdateHandler internal constructor(
      */
     suspend fun parseAndHandle(update: String) {
         logger.debug { "Trying to parse update from string - $update" }
-        serde.runCatching { decodeFromString(Update.serializer(), update) }.onFailure {
-            logger.error(it) { "error during the update parsing process." }
-        }.onSuccess { logger.info { "Successfully parsed update to $it" } }.getOrNull()?.let {
-            logger.debug { "Processing update with preset behaviour." }
-            coHandle(bot.config.updatesListener.processingDispatcher) { handlingBehaviour(this@TgUpdateHandler, it) }
-        }
+        serde
+            .runCatching { decodeFromString(Update.serializer(), update) }
+            .onFailure {
+                logger.error(it) { "error during the update parsing process." }
+            }.onSuccess { logger.info { "Successfully parsed update to $it" } }
+            .getOrNull()
+            ?.let {
+                logger.debug { "Processing update with preset behaviour." }
+                coHandle(
+                    bot.config.updatesListener.processingDispatcher,
+                ) { handlingBehaviour(this@TgUpdateHandler, it) }
+            }
     }
 
     /**

@@ -20,4 +20,8 @@ data class VideoOptions(
     override var messageThreadId: Int? = null,
     override var hasSpoiler: Boolean? = null,
     override var messageEffectId: String? = null,
-) : OptionsCommon, OptionsParseMode, MediaSpoiler, MessageEffectIdProp, ShowCaptionAboveMediaProp
+) : OptionsCommon,
+    OptionsParseMode,
+    MediaSpoiler,
+    MessageEffectIdProp,
+    ShowCaptionAboveMediaProp

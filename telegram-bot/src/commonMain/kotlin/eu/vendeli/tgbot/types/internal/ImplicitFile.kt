@@ -8,10 +8,14 @@ sealed class ImplicitFile {
     abstract val file: Any
 
     @Serializable
-    class Str(override val file: String) : ImplicitFile()
+    class Str(
+        override val file: String,
+    ) : ImplicitFile()
 
     @Serializable
-    class InpFile(override val file: InputFile) : ImplicitFile()
+    class InpFile(
+        override val file: InputFile,
+    ) : ImplicitFile()
 
     internal companion object : ToStringSerializer<ImplicitFile>({ (this as? Str)?.file.toString() })
 }

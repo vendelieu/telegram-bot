@@ -12,7 +12,9 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
 @JsonClassDiscriminator("status")
-sealed class ChatMember(val status: String) : MultipleResponse {
+sealed class ChatMember(
+    val status: String,
+) : MultipleResponse {
     abstract val user: User
 
     @Serializable

@@ -66,13 +66,14 @@ class ActivityProcessor(
             }
             paramInitBlock.append(")")
             addProperty(
-                PropertySpec.builder(
-                    "__ACTIVITIES",
-                    activitiesType,
-                    KModifier.INTERNAL,
-                ).apply {
-                    initializer(paramInitBlock.toString())
-                }.build(),
+                PropertySpec
+                    .builder(
+                        "__ACTIVITIES",
+                        activitiesType,
+                        KModifier.INTERNAL,
+                    ).apply {
+                        initializer(paramInitBlock.toString())
+                    }.build(),
             )
         }
 
@@ -94,27 +95,35 @@ class ActivityProcessor(
         val commandHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, CommandHandler::class, CallbackQuery::class)
         val inputHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, InputHandler::class)
         val updateHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, UpdateHandler::class)
-        val unprocessedHandlerSymbol = resolver.getAnnotatedFnSymbols(pkg, UnprocessedHandler::class)
+        val unprocessedHandlerSymbol = resolver
+            .getAnnotatedFnSymbols(pkg, UnprocessedHandler::class)
             .firstOrNull()
 
-        resolver.getAnnotatedFnSymbols(
-            pkg,
-            CommonHandler.Text::class,
-            CommonHandler.Regex::class,
-        ).forEach { function ->
-            function.annotations.filter {
-                it.shortName.asString() == CommonHandler.Text::class.simpleName!! ||
-                    it.shortName.asString() == CommonHandler.Regex::class.simpleName!!
-            }.forEach {
-                CommonAnnotationHandler.parse(function, it.arguments)
+        resolver
+            .getAnnotatedFnSymbols(
+                pkg,
+                CommonHandler.Text::class,
+                CommonHandler.Regex::class,
+            ).forEach { function ->
+                function.annotations
+                    .filter {
+                        it.shortName.asString() == CommonHandler.Text::class.simpleName!! ||
+                            it.shortName.asString() == CommonHandler.Regex::class.simpleName!!
+                    }.forEach {
+                        CommonAnnotationHandler.parse(function, it.arguments)
+                    }
             }
-        }
         val commonHandlerData = CommonAnnotationHandler.collect()
 
         val inputChainSymbols = resolver.getAnnotatedClassSymbols(InputChain::class, pkg)
 
         val injectableTypes = resolver.getAnnotatedClassSymbols(Injectable::class, pkg).associate { c ->
-            c.getAllSuperTypes().first { it.toClassName() == autoWiringClassName }.arguments.first().toTypeName() to
+            c
+                .getAllSuperTypes()
+                .first { it.toClassName() == autoWiringClassName }
+                .arguments
+                .first()
+                .toTypeName() to
                 c.toClassName()
         }
         fileSpec.apply {
@@ -129,35 +138,40 @@ class ActivityProcessor(
     @Suppress("SpellCheckingInspection")
     private fun FileBuilder.addSuppressions() {
         addAnnotation(
-            AnnotationSpec.builder(Suppress::class).apply {
-                addMember(
-                    "\t\n            \"NOTHING_TO_INLINE\",\n" +
-                        "            \"ObjectPropertyName\",\n" +
-                        "            \"UNUSED_ANONYMOUS_PARAMETER\",\n" +
-                        "            \"UnnecessaryVariable\",\n" +
-                        "            \"TopLevelPropertyNaming\",\n" +
-                        "            \"UNNECESSARY_SAFE_CALL\",\n" +
-                        "            \"RedundantNullableReturnType\",\n" +
-                        "            \"KotlinConstantConditions\",\n" +
-                        "            \"USELESS_ELVIS\",\n",
-                )
-                useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
-            }.build(),
+            AnnotationSpec
+                .builder(Suppress::class)
+                .apply {
+                    addMember(
+                        "\t\n            \"NOTHING_TO_INLINE\",\n" +
+                            "            \"ObjectPropertyName\",\n" +
+                            "            \"UNUSED_ANONYMOUS_PARAMETER\",\n" +
+                            "            \"UnnecessaryVariable\",\n" +
+                            "            \"TopLevelPropertyNaming\",\n" +
+                            "            \"UNNECESSARY_SAFE_CALL\",\n" +
+                            "            \"RedundantNullableReturnType\",\n" +
+                            "            \"KotlinConstantConditions\",\n" +
+                            "            \"USELESS_ELVIS\",\n",
+                    )
+                    useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
+                }.build(),
         )
     }
 
     private fun FileBuilder.addSuspendCallFun() = addFunction(
-        FunSpec.builder("suspendCall").apply {
-            addModifiers(KModifier.PRIVATE, KModifier.INLINE)
-            addParameter(
-                ParameterSpec.builder(
-                    "block",
-                    TypeVariableName("InvocationLambda"),
-                    KModifier.NOINLINE,
-                ).build(),
-            )
-            returns(TypeVariableName("InvocationLambda"))
-            addStatement("return block")
-        }.build(),
+        FunSpec
+            .builder("suspendCall")
+            .apply {
+                addModifiers(KModifier.PRIVATE, KModifier.INLINE)
+                addParameter(
+                    ParameterSpec
+                        .builder(
+                            "block",
+                            TypeVariableName("InvocationLambda"),
+                            KModifier.NOINLINE,
+                        ).build(),
+                )
+                returns(TypeVariableName("InvocationLambda"))
+                addStatement("return block")
+            }.build(),
     )
 }

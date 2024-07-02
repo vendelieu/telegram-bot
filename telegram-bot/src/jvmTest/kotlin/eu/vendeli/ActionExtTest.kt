@@ -9,9 +9,10 @@ import io.kotest.assertions.throwables.shouldNotThrowAny
 class ActionExtTest : BotTestContext() {
     @Test
     suspend fun `InlineExt test`() = shouldNotThrowAny {
-        editText { "test" }.entities {
-            entity(EntityType.Bold, 0, 5)
-        }.sendInline("test", bot)
+        editText { "test" }
+            .entities {
+                entity(EntityType.Bold, 0, 5)
+            }.sendInline("test", bot)
     }
 
     @Test

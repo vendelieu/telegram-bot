@@ -2,11 +2,9 @@ package eu.vendeli.tgbot.types
 
 import eu.vendeli.tgbot.types.internal.Currency
 import eu.vendeli.tgbot.types.payment.LabeledPrice
-import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import kotlinx.serialization.Serializable
 
-@Suppress("SERIALIZER_TYPE_INCOMPATIBLE")
-@Serializable(with = DynamicLookupSerializer::class)
+@Serializable
 sealed class InputMessageContent
 
 @Serializable

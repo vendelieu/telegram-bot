@@ -51,7 +51,10 @@ class TelegramUpdateHandlerTest : BotTestContext() {
     suspend fun `exception catching via functional handling`() {
         doMockHttp()
 
-        bot.update.caughtExceptions.tryReceive().getOrNull().shouldBeNull()
+        bot.update.caughtExceptions
+            .tryReceive()
+            .getOrNull()
+            .shouldBeNull()
 
         bot.handleUpdates {
             onMessage {
@@ -60,7 +63,9 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             delay(100)
             bot.update.stopListener()
         }
-        val throwableUpdatePair = bot.update.caughtExceptions.tryReceive().getOrNull()
+        val throwableUpdatePair = bot.update.caughtExceptions
+            .tryReceive()
+            .getOrNull()
         throwableUpdatePair.shouldNotBeNull()
 
         throwableUpdatePair.exception shouldNotBeSameInstanceAs NoSuchElementException::class
@@ -74,13 +79,18 @@ class TelegramUpdateHandlerTest : BotTestContext() {
     suspend fun `exception catching via annotation handling`() {
         doMockHttp(MockUpdate.SINGLE("test"))
 
-        bot.update.caughtExceptions.tryReceive().getOrNull().shouldBeNull()
+        bot.update.caughtExceptions
+            .tryReceive()
+            .getOrNull()
+            .shouldBeNull()
         bot.update.setListener {
             handle(it)
             stopListener()
         }
 
-        val throwableUpdatePair = bot.update.caughtExceptions.tryReceive().getOrNull()
+        val throwableUpdatePair = bot.update.caughtExceptions
+            .tryReceive()
+            .getOrNull()
         throwableUpdatePair.shouldNotBeNull()
 
         throwableUpdatePair.exception shouldNotBeSameInstanceAs IllegalArgumentException::class
@@ -98,7 +108,10 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             handle(it)
             stopListener()
         }
-        bot.update.caughtExceptions.tryReceive().getOrNull().shouldBeNull()
+        bot.update.caughtExceptions
+            .tryReceive()
+            .getOrNull()
+            .shouldBeNull()
     }
 
     @Test
@@ -173,7 +186,10 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             if (it.message?.text == "aaaa") stopListener()
         }
 
-        bot.update.caughtExceptions.tryReceive().getOrNull().shouldNotBeNull()
+        bot.update.caughtExceptions
+            .tryReceive()
+            .getOrNull()
+            .shouldNotBeNull()
     }
 
     @Test

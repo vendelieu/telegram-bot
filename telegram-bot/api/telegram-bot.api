@@ -1335,6 +1335,62 @@ public final class eu/vendeli/tgbot/api/media/SendMediaGroupAction : eu/vendeli/
 	public fun sendBusinessAsync (JLjava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public final class eu/vendeli/tgbot/api/media/SendPaidMediaAction : eu/vendeli/tgbot/interfaces/MediaAction, eu/vendeli/tgbot/interfaces/features/CaptionFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
+	public fun <init> (ILjava/util/List;)V
+	public fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
+	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun botCommand (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+	public synthetic fun caption (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
+	public fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+	public synthetic fun captionEntities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/TgAction;
+	public fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+	public synthetic fun captionEntities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
+	public fun cashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun code (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun customEmoji (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun email (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun expandableBlockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+	public synthetic fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
+	public synthetic fun getOptions$telegram_bot ()Leu/vendeli/tgbot/types/internal/options/Options;
+	public fun hashtag (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+	public synthetic fun inlineKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
+	public fun italic (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+	public synthetic fun markup (Leu/vendeli/tgbot/interfaces/Keyboard;)Leu/vendeli/tgbot/interfaces/TgAction;
+	public fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+	public synthetic fun markup (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/interfaces/TgAction;
+	public fun mention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun minus (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public fun minus (Ljava/lang/String;Lkotlin/Pair;)Ljava/lang/String;
+	public fun minus (Ljava/lang/String;Lkotlin/Triple;)Ljava/lang/String;
+	public fun minus (Lkotlin/Pair;Ljava/lang/String;)Ljava/lang/String;
+	public fun minus (Lkotlin/Triple;Ljava/lang/String;)Ljava/lang/String;
+	public fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+	public synthetic fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
+	public fun phoneNumber (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun pre (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+	public synthetic fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
+	public fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+	public synthetic fun replyKeyboardRemove (Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/TgAction;
+	public fun spoiler (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun strikethrough (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun textLink (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun textMention (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Lkotlin/Triple;
+	public fun underline (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
+}
+
+public final class eu/vendeli/tgbot/api/media/SendPaidMediaKt {
+	public static final fun sendPaidMedia (ILjava/util/List;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+	public static final fun sendPaidMedia (ILkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+	public static final fun sendPaidMedia (I[Leu/vendeli/tgbot/types/media/InputPaidMedia;)Leu/vendeli/tgbot/api/media/SendPaidMediaAction;
+}
+
 public final class eu/vendeli/tgbot/api/media/SendPhotoAction : eu/vendeli/tgbot/interfaces/MediaAction, eu/vendeli/tgbot/interfaces/BusinessActionExt, eu/vendeli/tgbot/interfaces/features/CaptionFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
 	public fun <init> (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
 	public fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/MessageEntity;)V
@@ -2306,6 +2362,18 @@ public abstract interface class eu/vendeli/tgbot/interfaces/Guard {
 	public abstract fun condition (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public abstract interface class eu/vendeli/tgbot/interfaces/ImplicitMediaData {
+	public abstract fun getMedia ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public abstract fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public abstract fun setMedia (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
+	public abstract fun setThumbnail (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
+}
+
+public final class eu/vendeli/tgbot/interfaces/ImplicitMediaData$DefaultImpls {
+	public static fun getThumbnail (Leu/vendeli/tgbot/interfaces/ImplicitMediaData;)Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public static fun setThumbnail (Leu/vendeli/tgbot/interfaces/ImplicitMediaData;Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
+}
+
 public abstract interface class eu/vendeli/tgbot/interfaces/InlineActionExt : eu/vendeli/tgbot/interfaces/Request {
 	public abstract fun sendInline (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun sendInlineAsync (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -2976,33 +3044,34 @@ public final class eu/vendeli/tgbot/types/EntityType$Companion {
 
 public final class eu/vendeli/tgbot/types/ExternalReplyInfo {
 	public static final field Companion Leu/vendeli/tgbot/types/ExternalReplyInfo$Companion;
-	public fun <init> (Leu/vendeli/tgbot/types/MessageOrigin;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Long;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/Location;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;)V
-	public synthetic fun <init> (Leu/vendeli/tgbot/types/MessageOrigin;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Long;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/Location;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Leu/vendeli/tgbot/types/MessageOrigin;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Long;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Leu/vendeli/tgbot/types/media/PaidMediaInfo;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/Location;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;)V
+	public synthetic fun <init> (Leu/vendeli/tgbot/types/MessageOrigin;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Long;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Leu/vendeli/tgbot/types/media/PaidMediaInfo;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/Location;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Leu/vendeli/tgbot/types/MessageOrigin;
-	public final fun component10 ()Leu/vendeli/tgbot/types/media/Story;
-	public final fun component11 ()Leu/vendeli/tgbot/types/media/Video;
-	public final fun component12 ()Leu/vendeli/tgbot/types/media/VideoNote;
-	public final fun component13 ()Leu/vendeli/tgbot/types/media/Voice;
-	public final fun component14 ()Ljava/lang/Boolean;
-	public final fun component15 ()Leu/vendeli/tgbot/types/Contact;
-	public final fun component16 ()Leu/vendeli/tgbot/types/game/Dice;
-	public final fun component17 ()Leu/vendeli/tgbot/types/game/Game;
-	public final fun component18 ()Leu/vendeli/tgbot/types/Giveaway;
-	public final fun component19 ()Leu/vendeli/tgbot/types/GiveawayWinners;
+	public final fun component10 ()Leu/vendeli/tgbot/types/media/Sticker;
+	public final fun component11 ()Leu/vendeli/tgbot/types/media/Story;
+	public final fun component12 ()Leu/vendeli/tgbot/types/media/Video;
+	public final fun component13 ()Leu/vendeli/tgbot/types/media/VideoNote;
+	public final fun component14 ()Leu/vendeli/tgbot/types/media/Voice;
+	public final fun component15 ()Ljava/lang/Boolean;
+	public final fun component16 ()Leu/vendeli/tgbot/types/Contact;
+	public final fun component17 ()Leu/vendeli/tgbot/types/game/Dice;
+	public final fun component18 ()Leu/vendeli/tgbot/types/game/Game;
+	public final fun component19 ()Leu/vendeli/tgbot/types/Giveaway;
 	public final fun component2 ()Leu/vendeli/tgbot/types/chat/Chat;
-	public final fun component20 ()Leu/vendeli/tgbot/types/payment/Invoice;
-	public final fun component21 ()Leu/vendeli/tgbot/types/Location;
-	public final fun component22 ()Leu/vendeli/tgbot/types/poll/Poll;
-	public final fun component23 ()Leu/vendeli/tgbot/types/Venue;
+	public final fun component20 ()Leu/vendeli/tgbot/types/GiveawayWinners;
+	public final fun component21 ()Leu/vendeli/tgbot/types/payment/Invoice;
+	public final fun component22 ()Leu/vendeli/tgbot/types/Location;
+	public final fun component23 ()Leu/vendeli/tgbot/types/poll/Poll;
+	public final fun component24 ()Leu/vendeli/tgbot/types/Venue;
 	public final fun component3 ()Ljava/lang/Long;
 	public final fun component4 ()Leu/vendeli/tgbot/types/LinkPreviewOptions;
 	public final fun component5 ()Leu/vendeli/tgbot/types/media/Animation;
 	public final fun component6 ()Leu/vendeli/tgbot/types/media/Audio;
 	public final fun component7 ()Leu/vendeli/tgbot/types/media/Document;
-	public final fun component8 ()Ljava/util/List;
-	public final fun component9 ()Leu/vendeli/tgbot/types/media/Sticker;
-	public final fun copy (Leu/vendeli/tgbot/types/MessageOrigin;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Long;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/Location;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;)Leu/vendeli/tgbot/types/ExternalReplyInfo;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/ExternalReplyInfo;Leu/vendeli/tgbot/types/MessageOrigin;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Long;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/Location;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;ILjava/lang/Object;)Leu/vendeli/tgbot/types/ExternalReplyInfo;
+	public final fun component8 ()Leu/vendeli/tgbot/types/media/PaidMediaInfo;
+	public final fun component9 ()Ljava/util/List;
+	public final fun copy (Leu/vendeli/tgbot/types/MessageOrigin;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Long;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Leu/vendeli/tgbot/types/media/PaidMediaInfo;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/Location;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;)Leu/vendeli/tgbot/types/ExternalReplyInfo;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/ExternalReplyInfo;Leu/vendeli/tgbot/types/MessageOrigin;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Long;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Leu/vendeli/tgbot/types/media/PaidMediaInfo;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/Location;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;ILjava/lang/Object;)Leu/vendeli/tgbot/types/ExternalReplyInfo;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAnimation ()Leu/vendeli/tgbot/types/media/Animation;
 	public final fun getAudio ()Leu/vendeli/tgbot/types/media/Audio;
@@ -3019,6 +3088,7 @@ public final class eu/vendeli/tgbot/types/ExternalReplyInfo {
 	public final fun getLocation ()Leu/vendeli/tgbot/types/Location;
 	public final fun getMessageId ()Ljava/lang/Long;
 	public final fun getOrigin ()Leu/vendeli/tgbot/types/MessageOrigin;
+	public final fun getPaidMedia ()Leu/vendeli/tgbot/types/media/PaidMediaInfo;
 	public final fun getPhoto ()Ljava/util/List;
 	public final fun getPoll ()Leu/vendeli/tgbot/types/poll/Poll;
 	public final fun getSticker ()Leu/vendeli/tgbot/types/media/Sticker;
@@ -3048,18 +3118,18 @@ public final class eu/vendeli/tgbot/types/ExternalReplyInfo$Companion {
 
 public final class eu/vendeli/tgbot/types/Giveaway {
 	public static final field Companion Leu/vendeli/tgbot/types/Giveaway$Companion;
-	public fun <init> (Ljava/util/List;JILjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;)V
-	public synthetic fun <init> (Ljava/util/List;JILjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/util/List;Lkotlinx/datetime/Instant;ILjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/util/List;Lkotlinx/datetime/Instant;ILjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/util/List;
-	public final fun component2 ()J
+	public final fun component2 ()Lkotlinx/datetime/Instant;
 	public final fun component3 ()I
 	public final fun component4 ()Ljava/lang/Boolean;
 	public final fun component5 ()Ljava/lang/Boolean;
 	public final fun component6 ()Ljava/lang/String;
 	public final fun component7 ()Ljava/util/List;
 	public final fun component8 ()Ljava/lang/Integer;
-	public final fun copy (Ljava/util/List;JILjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;)Leu/vendeli/tgbot/types/Giveaway;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/Giveaway;Ljava/util/List;JILjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;ILjava/lang/Object;)Leu/vendeli/tgbot/types/Giveaway;
+	public final fun copy (Ljava/util/List;Lkotlinx/datetime/Instant;ILjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;)Leu/vendeli/tgbot/types/Giveaway;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/Giveaway;Ljava/util/List;Lkotlinx/datetime/Instant;ILjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;ILjava/lang/Object;)Leu/vendeli/tgbot/types/Giveaway;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getChats ()Ljava/util/List;
 	public final fun getCountryCodes ()Ljava/util/List;
@@ -3068,7 +3138,7 @@ public final class eu/vendeli/tgbot/types/Giveaway {
 	public final fun getPremiumSubscriptionMonthCount ()Ljava/lang/Integer;
 	public final fun getPrizeDescription ()Ljava/lang/String;
 	public final fun getWinnerCount ()I
-	public final fun getWinnersSelectionDate ()J
+	public final fun getWinnersSelectionDate ()Lkotlinx/datetime/Instant;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -3130,21 +3200,21 @@ public final class eu/vendeli/tgbot/types/GiveawayCreated {
 
 public final class eu/vendeli/tgbot/types/GiveawayWinners {
 	public static final field Companion Leu/vendeli/tgbot/types/GiveawayWinners$Companion;
-	public fun <init> (Leu/vendeli/tgbot/types/chat/Chat;JJILjava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;)V
-	public synthetic fun <init> (Leu/vendeli/tgbot/types/chat/Chat;JJILjava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Leu/vendeli/tgbot/types/chat/Chat;JLkotlinx/datetime/Instant;ILjava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;)V
+	public synthetic fun <init> (Leu/vendeli/tgbot/types/chat/Chat;JLkotlinx/datetime/Instant;ILjava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Leu/vendeli/tgbot/types/chat/Chat;
 	public final fun component10 ()Ljava/lang/Boolean;
 	public final fun component11 ()Ljava/lang/String;
 	public final fun component2 ()J
-	public final fun component3 ()J
+	public final fun component3 ()Lkotlinx/datetime/Instant;
 	public final fun component4 ()I
 	public final fun component5 ()Ljava/util/List;
 	public final fun component6 ()Ljava/lang/Integer;
 	public final fun component7 ()Ljava/lang/Integer;
 	public final fun component8 ()Ljava/lang/Integer;
 	public final fun component9 ()Ljava/lang/Boolean;
-	public final fun copy (Leu/vendeli/tgbot/types/chat/Chat;JJILjava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;)Leu/vendeli/tgbot/types/GiveawayWinners;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/chat/Chat;JJILjava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/GiveawayWinners;
+	public final fun copy (Leu/vendeli/tgbot/types/chat/Chat;JLkotlinx/datetime/Instant;ILjava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;)Leu/vendeli/tgbot/types/GiveawayWinners;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/chat/Chat;JLkotlinx/datetime/Instant;ILjava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/GiveawayWinners;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAdditionalChatCount ()Ljava/lang/Integer;
 	public final fun getChat ()Leu/vendeli/tgbot/types/chat/Chat;
@@ -3156,7 +3226,7 @@ public final class eu/vendeli/tgbot/types/GiveawayWinners {
 	public final fun getWasRefunded ()Ljava/lang/Boolean;
 	public final fun getWinnerCount ()I
 	public final fun getWinners ()Ljava/util/List;
-	public final fun getWinnersSelectionDate ()J
+	public final fun getWinnersSelectionDate ()Lkotlinx/datetime/Instant;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -3409,8 +3479,8 @@ public final class eu/vendeli/tgbot/types/MaybeInaccessibleMessage$InaccessibleM
 
 public final class eu/vendeli/tgbot/types/Message : eu/vendeli/tgbot/types/MaybeInaccessibleMessage, eu/vendeli/tgbot/interfaces/MultipleResponse {
 	public static final field Companion Leu/vendeli/tgbot/types/Message$Companion;
-	public fun <init> (JLjava/lang/Integer;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Integer;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/String;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/MessageOrigin;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/ExternalReplyInfo;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/TextQuote;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;Leu/vendeli/tgbot/types/Location;Ljava/util/List;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/MessageAutoDeleteTimerChanged;Ljava/lang/Long;Ljava/lang/Long;Leu/vendeli/tgbot/types/MaybeInaccessibleMessage;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/payment/SuccessfulPayment;Leu/vendeli/tgbot/types/UsersShared;Leu/vendeli/tgbot/types/chat/ChatShared;Ljava/lang/String;Leu/vendeli/tgbot/types/WriteAccessAllowed;Leu/vendeli/tgbot/types/passport/PassportData;Leu/vendeli/tgbot/types/ProximityAlertTriggered;Leu/vendeli/tgbot/types/boost/ChatBoostAdded;Leu/vendeli/tgbot/types/forum/ForumTopicCreated;Leu/vendeli/tgbot/types/forum/ForumTopicEdited;Leu/vendeli/tgbot/types/forum/ForumTopicClosed;Leu/vendeli/tgbot/types/forum/ForumTopicReopened;Leu/vendeli/tgbot/types/forum/GeneralForumTopicHidden;Leu/vendeli/tgbot/types/forum/GeneralForumTopicUnhidden;Leu/vendeli/tgbot/types/GiveawayCreated;Leu/vendeli/tgbot/types/chat/ChatBackground;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/GiveawayCompleted;Leu/vendeli/tgbot/types/media/VideoChatScheduled;Leu/vendeli/tgbot/types/media/VideoChatStarted;Leu/vendeli/tgbot/types/media/VideoChatEnded;Leu/vendeli/tgbot/types/media/VideoChatParticipantsInvited;Leu/vendeli/tgbot/types/keyboard/WebAppData;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/Boolean;)V
-	public synthetic fun <init> (JLjava/lang/Integer;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Integer;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/String;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/MessageOrigin;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/ExternalReplyInfo;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/TextQuote;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;Leu/vendeli/tgbot/types/Location;Ljava/util/List;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/MessageAutoDeleteTimerChanged;Ljava/lang/Long;Ljava/lang/Long;Leu/vendeli/tgbot/types/MaybeInaccessibleMessage;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/payment/SuccessfulPayment;Leu/vendeli/tgbot/types/UsersShared;Leu/vendeli/tgbot/types/chat/ChatShared;Ljava/lang/String;Leu/vendeli/tgbot/types/WriteAccessAllowed;Leu/vendeli/tgbot/types/passport/PassportData;Leu/vendeli/tgbot/types/ProximityAlertTriggered;Leu/vendeli/tgbot/types/boost/ChatBoostAdded;Leu/vendeli/tgbot/types/forum/ForumTopicCreated;Leu/vendeli/tgbot/types/forum/ForumTopicEdited;Leu/vendeli/tgbot/types/forum/ForumTopicClosed;Leu/vendeli/tgbot/types/forum/ForumTopicReopened;Leu/vendeli/tgbot/types/forum/GeneralForumTopicHidden;Leu/vendeli/tgbot/types/forum/GeneralForumTopicUnhidden;Leu/vendeli/tgbot/types/GiveawayCreated;Leu/vendeli/tgbot/types/chat/ChatBackground;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/GiveawayCompleted;Leu/vendeli/tgbot/types/media/VideoChatScheduled;Leu/vendeli/tgbot/types/media/VideoChatStarted;Leu/vendeli/tgbot/types/media/VideoChatEnded;Leu/vendeli/tgbot/types/media/VideoChatParticipantsInvited;Leu/vendeli/tgbot/types/keyboard/WebAppData;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/Boolean;IIILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (JLjava/lang/Integer;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Integer;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/String;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/MessageOrigin;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/ExternalReplyInfo;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/TextQuote;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Leu/vendeli/tgbot/types/media/PaidMediaInfo;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;Leu/vendeli/tgbot/types/Location;Ljava/util/List;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/MessageAutoDeleteTimerChanged;Ljava/lang/Long;Ljava/lang/Long;Leu/vendeli/tgbot/types/MaybeInaccessibleMessage;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/payment/SuccessfulPayment;Leu/vendeli/tgbot/types/UsersShared;Leu/vendeli/tgbot/types/chat/ChatShared;Ljava/lang/String;Leu/vendeli/tgbot/types/WriteAccessAllowed;Leu/vendeli/tgbot/types/passport/PassportData;Leu/vendeli/tgbot/types/ProximityAlertTriggered;Leu/vendeli/tgbot/types/boost/ChatBoostAdded;Leu/vendeli/tgbot/types/forum/ForumTopicCreated;Leu/vendeli/tgbot/types/forum/ForumTopicEdited;Leu/vendeli/tgbot/types/forum/ForumTopicClosed;Leu/vendeli/tgbot/types/forum/ForumTopicReopened;Leu/vendeli/tgbot/types/forum/GeneralForumTopicHidden;Leu/vendeli/tgbot/types/forum/GeneralForumTopicUnhidden;Leu/vendeli/tgbot/types/GiveawayCreated;Leu/vendeli/tgbot/types/chat/ChatBackground;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/GiveawayCompleted;Leu/vendeli/tgbot/types/media/VideoChatScheduled;Leu/vendeli/tgbot/types/media/VideoChatStarted;Leu/vendeli/tgbot/types/media/VideoChatEnded;Leu/vendeli/tgbot/types/media/VideoChatParticipantsInvited;Leu/vendeli/tgbot/types/keyboard/WebAppData;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (JLjava/lang/Integer;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Integer;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/String;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/MessageOrigin;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/ExternalReplyInfo;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/TextQuote;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Leu/vendeli/tgbot/types/media/PaidMediaInfo;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;Leu/vendeli/tgbot/types/Location;Ljava/util/List;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/MessageAutoDeleteTimerChanged;Ljava/lang/Long;Ljava/lang/Long;Leu/vendeli/tgbot/types/MaybeInaccessibleMessage;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/payment/SuccessfulPayment;Leu/vendeli/tgbot/types/UsersShared;Leu/vendeli/tgbot/types/chat/ChatShared;Ljava/lang/String;Leu/vendeli/tgbot/types/WriteAccessAllowed;Leu/vendeli/tgbot/types/passport/PassportData;Leu/vendeli/tgbot/types/ProximityAlertTriggered;Leu/vendeli/tgbot/types/boost/ChatBoostAdded;Leu/vendeli/tgbot/types/forum/ForumTopicCreated;Leu/vendeli/tgbot/types/forum/ForumTopicEdited;Leu/vendeli/tgbot/types/forum/ForumTopicClosed;Leu/vendeli/tgbot/types/forum/ForumTopicReopened;Leu/vendeli/tgbot/types/forum/GeneralForumTopicHidden;Leu/vendeli/tgbot/types/forum/GeneralForumTopicUnhidden;Leu/vendeli/tgbot/types/GiveawayCreated;Leu/vendeli/tgbot/types/chat/ChatBackground;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/GiveawayCompleted;Leu/vendeli/tgbot/types/media/VideoChatScheduled;Leu/vendeli/tgbot/types/media/VideoChatStarted;Leu/vendeli/tgbot/types/media/VideoChatEnded;Leu/vendeli/tgbot/types/media/VideoChatParticipantsInvited;Leu/vendeli/tgbot/types/keyboard/WebAppData;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/Boolean;IIILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()J
 	public final fun component10 ()Leu/vendeli/tgbot/types/MessageOrigin;
 	public final fun component11 ()Ljava/lang/Boolean;
@@ -3434,68 +3504,69 @@ public final class eu/vendeli/tgbot/types/Message : eu/vendeli/tgbot/types/Maybe
 	public final fun component28 ()Leu/vendeli/tgbot/types/media/Audio;
 	public final fun component29 ()Leu/vendeli/tgbot/types/media/Document;
 	public final fun component3 ()Leu/vendeli/tgbot/types/User;
-	public final fun component30 ()Ljava/util/List;
-	public final fun component31 ()Leu/vendeli/tgbot/types/media/Sticker;
-	public final fun component32 ()Leu/vendeli/tgbot/types/media/Story;
-	public final fun component33 ()Leu/vendeli/tgbot/types/media/Video;
-	public final fun component34 ()Leu/vendeli/tgbot/types/media/VideoNote;
-	public final fun component35 ()Leu/vendeli/tgbot/types/media/Voice;
-	public final fun component36 ()Ljava/lang/String;
-	public final fun component37 ()Ljava/util/List;
-	public final fun component38 ()Ljava/lang/Boolean;
-	public final fun component39 ()Leu/vendeli/tgbot/types/Contact;
+	public final fun component30 ()Leu/vendeli/tgbot/types/media/PaidMediaInfo;
+	public final fun component31 ()Ljava/util/List;
+	public final fun component32 ()Leu/vendeli/tgbot/types/media/Sticker;
+	public final fun component33 ()Leu/vendeli/tgbot/types/media/Story;
+	public final fun component34 ()Leu/vendeli/tgbot/types/media/Video;
+	public final fun component35 ()Leu/vendeli/tgbot/types/media/VideoNote;
+	public final fun component36 ()Leu/vendeli/tgbot/types/media/Voice;
+	public final fun component37 ()Ljava/lang/String;
+	public final fun component38 ()Ljava/util/List;
+	public final fun component39 ()Ljava/lang/Boolean;
 	public final fun component4 ()Leu/vendeli/tgbot/types/chat/Chat;
-	public final fun component40 ()Leu/vendeli/tgbot/types/game/Dice;
-	public final fun component41 ()Leu/vendeli/tgbot/types/game/Game;
-	public final fun component42 ()Leu/vendeli/tgbot/types/poll/Poll;
-	public final fun component43 ()Leu/vendeli/tgbot/types/Venue;
-	public final fun component44 ()Leu/vendeli/tgbot/types/Location;
-	public final fun component45 ()Ljava/util/List;
-	public final fun component46 ()Leu/vendeli/tgbot/types/User;
-	public final fun component47 ()Ljava/lang/String;
-	public final fun component48 ()Ljava/util/List;
-	public final fun component49 ()Ljava/lang/Boolean;
+	public final fun component40 ()Leu/vendeli/tgbot/types/Contact;
+	public final fun component41 ()Leu/vendeli/tgbot/types/game/Dice;
+	public final fun component42 ()Leu/vendeli/tgbot/types/game/Game;
+	public final fun component43 ()Leu/vendeli/tgbot/types/poll/Poll;
+	public final fun component44 ()Leu/vendeli/tgbot/types/Venue;
+	public final fun component45 ()Leu/vendeli/tgbot/types/Location;
+	public final fun component46 ()Ljava/util/List;
+	public final fun component47 ()Leu/vendeli/tgbot/types/User;
+	public final fun component48 ()Ljava/lang/String;
+	public final fun component49 ()Ljava/util/List;
 	public final fun component5 ()Ljava/lang/Integer;
 	public final fun component50 ()Ljava/lang/Boolean;
 	public final fun component51 ()Ljava/lang/Boolean;
 	public final fun component52 ()Ljava/lang/Boolean;
-	public final fun component53 ()Leu/vendeli/tgbot/types/MessageAutoDeleteTimerChanged;
-	public final fun component54 ()Ljava/lang/Long;
+	public final fun component53 ()Ljava/lang/Boolean;
+	public final fun component54 ()Leu/vendeli/tgbot/types/MessageAutoDeleteTimerChanged;
 	public final fun component55 ()Ljava/lang/Long;
-	public final fun component56 ()Leu/vendeli/tgbot/types/MaybeInaccessibleMessage;
-	public final fun component57 ()Leu/vendeli/tgbot/types/payment/Invoice;
-	public final fun component58 ()Leu/vendeli/tgbot/types/payment/SuccessfulPayment;
-	public final fun component59 ()Leu/vendeli/tgbot/types/UsersShared;
+	public final fun component56 ()Ljava/lang/Long;
+	public final fun component57 ()Leu/vendeli/tgbot/types/MaybeInaccessibleMessage;
+	public final fun component58 ()Leu/vendeli/tgbot/types/payment/Invoice;
+	public final fun component59 ()Leu/vendeli/tgbot/types/payment/SuccessfulPayment;
 	public final fun component6 ()Leu/vendeli/tgbot/types/User;
-	public final fun component60 ()Leu/vendeli/tgbot/types/chat/ChatShared;
-	public final fun component61 ()Ljava/lang/String;
-	public final fun component62 ()Leu/vendeli/tgbot/types/WriteAccessAllowed;
-	public final fun component63 ()Leu/vendeli/tgbot/types/passport/PassportData;
-	public final fun component64 ()Leu/vendeli/tgbot/types/ProximityAlertTriggered;
-	public final fun component65 ()Leu/vendeli/tgbot/types/boost/ChatBoostAdded;
-	public final fun component66 ()Leu/vendeli/tgbot/types/forum/ForumTopicCreated;
-	public final fun component67 ()Leu/vendeli/tgbot/types/forum/ForumTopicEdited;
-	public final fun component68 ()Leu/vendeli/tgbot/types/forum/ForumTopicClosed;
-	public final fun component69 ()Leu/vendeli/tgbot/types/forum/ForumTopicReopened;
+	public final fun component60 ()Leu/vendeli/tgbot/types/UsersShared;
+	public final fun component61 ()Leu/vendeli/tgbot/types/chat/ChatShared;
+	public final fun component62 ()Ljava/lang/String;
+	public final fun component63 ()Leu/vendeli/tgbot/types/WriteAccessAllowed;
+	public final fun component64 ()Leu/vendeli/tgbot/types/passport/PassportData;
+	public final fun component65 ()Leu/vendeli/tgbot/types/ProximityAlertTriggered;
+	public final fun component66 ()Leu/vendeli/tgbot/types/boost/ChatBoostAdded;
+	public final fun component67 ()Leu/vendeli/tgbot/types/forum/ForumTopicCreated;
+	public final fun component68 ()Leu/vendeli/tgbot/types/forum/ForumTopicEdited;
+	public final fun component69 ()Leu/vendeli/tgbot/types/forum/ForumTopicClosed;
 	public final fun component7 ()Lkotlinx/datetime/Instant;
-	public final fun component70 ()Leu/vendeli/tgbot/types/forum/GeneralForumTopicHidden;
-	public final fun component71 ()Leu/vendeli/tgbot/types/forum/GeneralForumTopicUnhidden;
-	public final fun component72 ()Leu/vendeli/tgbot/types/GiveawayCreated;
-	public final fun component73 ()Leu/vendeli/tgbot/types/chat/ChatBackground;
-	public final fun component74 ()Leu/vendeli/tgbot/types/Giveaway;
-	public final fun component75 ()Leu/vendeli/tgbot/types/GiveawayWinners;
-	public final fun component76 ()Leu/vendeli/tgbot/types/GiveawayCompleted;
-	public final fun component77 ()Leu/vendeli/tgbot/types/media/VideoChatScheduled;
-	public final fun component78 ()Leu/vendeli/tgbot/types/media/VideoChatStarted;
-	public final fun component79 ()Leu/vendeli/tgbot/types/media/VideoChatEnded;
+	public final fun component70 ()Leu/vendeli/tgbot/types/forum/ForumTopicReopened;
+	public final fun component71 ()Leu/vendeli/tgbot/types/forum/GeneralForumTopicHidden;
+	public final fun component72 ()Leu/vendeli/tgbot/types/forum/GeneralForumTopicUnhidden;
+	public final fun component73 ()Leu/vendeli/tgbot/types/GiveawayCreated;
+	public final fun component74 ()Leu/vendeli/tgbot/types/chat/ChatBackground;
+	public final fun component75 ()Leu/vendeli/tgbot/types/Giveaway;
+	public final fun component76 ()Leu/vendeli/tgbot/types/GiveawayWinners;
+	public final fun component77 ()Leu/vendeli/tgbot/types/GiveawayCompleted;
+	public final fun component78 ()Leu/vendeli/tgbot/types/media/VideoChatScheduled;
+	public final fun component79 ()Leu/vendeli/tgbot/types/media/VideoChatStarted;
 	public final fun component8 ()Ljava/lang/String;
-	public final fun component80 ()Leu/vendeli/tgbot/types/media/VideoChatParticipantsInvited;
-	public final fun component81 ()Leu/vendeli/tgbot/types/keyboard/WebAppData;
-	public final fun component82 ()Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;
-	public final fun component83 ()Ljava/lang/Boolean;
+	public final fun component80 ()Leu/vendeli/tgbot/types/media/VideoChatEnded;
+	public final fun component81 ()Leu/vendeli/tgbot/types/media/VideoChatParticipantsInvited;
+	public final fun component82 ()Leu/vendeli/tgbot/types/keyboard/WebAppData;
+	public final fun component83 ()Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;
+	public final fun component84 ()Ljava/lang/Boolean;
 	public final fun component9 ()Leu/vendeli/tgbot/types/chat/Chat;
-	public final fun copy (JLjava/lang/Integer;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Integer;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/String;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/MessageOrigin;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/ExternalReplyInfo;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/TextQuote;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;Leu/vendeli/tgbot/types/Location;Ljava/util/List;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/MessageAutoDeleteTimerChanged;Ljava/lang/Long;Ljava/lang/Long;Leu/vendeli/tgbot/types/MaybeInaccessibleMessage;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/payment/SuccessfulPayment;Leu/vendeli/tgbot/types/UsersShared;Leu/vendeli/tgbot/types/chat/ChatShared;Ljava/lang/String;Leu/vendeli/tgbot/types/WriteAccessAllowed;Leu/vendeli/tgbot/types/passport/PassportData;Leu/vendeli/tgbot/types/ProximityAlertTriggered;Leu/vendeli/tgbot/types/boost/ChatBoostAdded;Leu/vendeli/tgbot/types/forum/ForumTopicCreated;Leu/vendeli/tgbot/types/forum/ForumTopicEdited;Leu/vendeli/tgbot/types/forum/ForumTopicClosed;Leu/vendeli/tgbot/types/forum/ForumTopicReopened;Leu/vendeli/tgbot/types/forum/GeneralForumTopicHidden;Leu/vendeli/tgbot/types/forum/GeneralForumTopicUnhidden;Leu/vendeli/tgbot/types/GiveawayCreated;Leu/vendeli/tgbot/types/chat/ChatBackground;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/GiveawayCompleted;Leu/vendeli/tgbot/types/media/VideoChatScheduled;Leu/vendeli/tgbot/types/media/VideoChatStarted;Leu/vendeli/tgbot/types/media/VideoChatEnded;Leu/vendeli/tgbot/types/media/VideoChatParticipantsInvited;Leu/vendeli/tgbot/types/keyboard/WebAppData;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/Boolean;)Leu/vendeli/tgbot/types/Message;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/Message;JLjava/lang/Integer;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Integer;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/String;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/MessageOrigin;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/ExternalReplyInfo;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/TextQuote;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;Leu/vendeli/tgbot/types/Location;Ljava/util/List;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/MessageAutoDeleteTimerChanged;Ljava/lang/Long;Ljava/lang/Long;Leu/vendeli/tgbot/types/MaybeInaccessibleMessage;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/payment/SuccessfulPayment;Leu/vendeli/tgbot/types/UsersShared;Leu/vendeli/tgbot/types/chat/ChatShared;Ljava/lang/String;Leu/vendeli/tgbot/types/WriteAccessAllowed;Leu/vendeli/tgbot/types/passport/PassportData;Leu/vendeli/tgbot/types/ProximityAlertTriggered;Leu/vendeli/tgbot/types/boost/ChatBoostAdded;Leu/vendeli/tgbot/types/forum/ForumTopicCreated;Leu/vendeli/tgbot/types/forum/ForumTopicEdited;Leu/vendeli/tgbot/types/forum/ForumTopicClosed;Leu/vendeli/tgbot/types/forum/ForumTopicReopened;Leu/vendeli/tgbot/types/forum/GeneralForumTopicHidden;Leu/vendeli/tgbot/types/forum/GeneralForumTopicUnhidden;Leu/vendeli/tgbot/types/GiveawayCreated;Leu/vendeli/tgbot/types/chat/ChatBackground;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/GiveawayCompleted;Leu/vendeli/tgbot/types/media/VideoChatScheduled;Leu/vendeli/tgbot/types/media/VideoChatStarted;Leu/vendeli/tgbot/types/media/VideoChatEnded;Leu/vendeli/tgbot/types/media/VideoChatParticipantsInvited;Leu/vendeli/tgbot/types/keyboard/WebAppData;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/Boolean;IIILjava/lang/Object;)Leu/vendeli/tgbot/types/Message;
+	public final fun copy (JLjava/lang/Integer;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Integer;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/String;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/MessageOrigin;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/ExternalReplyInfo;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/TextQuote;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Leu/vendeli/tgbot/types/media/PaidMediaInfo;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;Leu/vendeli/tgbot/types/Location;Ljava/util/List;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/MessageAutoDeleteTimerChanged;Ljava/lang/Long;Ljava/lang/Long;Leu/vendeli/tgbot/types/MaybeInaccessibleMessage;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/payment/SuccessfulPayment;Leu/vendeli/tgbot/types/UsersShared;Leu/vendeli/tgbot/types/chat/ChatShared;Ljava/lang/String;Leu/vendeli/tgbot/types/WriteAccessAllowed;Leu/vendeli/tgbot/types/passport/PassportData;Leu/vendeli/tgbot/types/ProximityAlertTriggered;Leu/vendeli/tgbot/types/boost/ChatBoostAdded;Leu/vendeli/tgbot/types/forum/ForumTopicCreated;Leu/vendeli/tgbot/types/forum/ForumTopicEdited;Leu/vendeli/tgbot/types/forum/ForumTopicClosed;Leu/vendeli/tgbot/types/forum/ForumTopicReopened;Leu/vendeli/tgbot/types/forum/GeneralForumTopicHidden;Leu/vendeli/tgbot/types/forum/GeneralForumTopicUnhidden;Leu/vendeli/tgbot/types/GiveawayCreated;Leu/vendeli/tgbot/types/chat/ChatBackground;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/GiveawayCompleted;Leu/vendeli/tgbot/types/media/VideoChatScheduled;Leu/vendeli/tgbot/types/media/VideoChatStarted;Leu/vendeli/tgbot/types/media/VideoChatEnded;Leu/vendeli/tgbot/types/media/VideoChatParticipantsInvited;Leu/vendeli/tgbot/types/keyboard/WebAppData;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/Boolean;)Leu/vendeli/tgbot/types/Message;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/Message;JLjava/lang/Integer;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/chat/Chat;Ljava/lang/Integer;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/String;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/MessageOrigin;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/ExternalReplyInfo;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/TextQuote;Leu/vendeli/tgbot/types/User;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/media/Animation;Leu/vendeli/tgbot/types/media/Audio;Leu/vendeli/tgbot/types/media/Document;Leu/vendeli/tgbot/types/media/PaidMediaInfo;Ljava/util/List;Leu/vendeli/tgbot/types/media/Sticker;Leu/vendeli/tgbot/types/media/Story;Leu/vendeli/tgbot/types/media/Video;Leu/vendeli/tgbot/types/media/VideoNote;Leu/vendeli/tgbot/types/media/Voice;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/Contact;Leu/vendeli/tgbot/types/game/Dice;Leu/vendeli/tgbot/types/game/Game;Leu/vendeli/tgbot/types/poll/Poll;Leu/vendeli/tgbot/types/Venue;Leu/vendeli/tgbot/types/Location;Ljava/util/List;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/MessageAutoDeleteTimerChanged;Ljava/lang/Long;Ljava/lang/Long;Leu/vendeli/tgbot/types/MaybeInaccessibleMessage;Leu/vendeli/tgbot/types/payment/Invoice;Leu/vendeli/tgbot/types/payment/SuccessfulPayment;Leu/vendeli/tgbot/types/UsersShared;Leu/vendeli/tgbot/types/chat/ChatShared;Ljava/lang/String;Leu/vendeli/tgbot/types/WriteAccessAllowed;Leu/vendeli/tgbot/types/passport/PassportData;Leu/vendeli/tgbot/types/ProximityAlertTriggered;Leu/vendeli/tgbot/types/boost/ChatBoostAdded;Leu/vendeli/tgbot/types/forum/ForumTopicCreated;Leu/vendeli/tgbot/types/forum/ForumTopicEdited;Leu/vendeli/tgbot/types/forum/ForumTopicClosed;Leu/vendeli/tgbot/types/forum/ForumTopicReopened;Leu/vendeli/tgbot/types/forum/GeneralForumTopicHidden;Leu/vendeli/tgbot/types/forum/GeneralForumTopicUnhidden;Leu/vendeli/tgbot/types/GiveawayCreated;Leu/vendeli/tgbot/types/chat/ChatBackground;Leu/vendeli/tgbot/types/Giveaway;Leu/vendeli/tgbot/types/GiveawayWinners;Leu/vendeli/tgbot/types/GiveawayCompleted;Leu/vendeli/tgbot/types/media/VideoChatScheduled;Leu/vendeli/tgbot/types/media/VideoChatStarted;Leu/vendeli/tgbot/types/media/VideoChatEnded;Leu/vendeli/tgbot/types/media/VideoChatParticipantsInvited;Leu/vendeli/tgbot/types/keyboard/WebAppData;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/Boolean;IIILjava/lang/Object;)Leu/vendeli/tgbot/types/Message;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAnimation ()Leu/vendeli/tgbot/types/media/Animation;
 	public final fun getAudio ()Leu/vendeli/tgbot/types/media/Audio;
@@ -3547,6 +3618,7 @@ public final class eu/vendeli/tgbot/types/Message : eu/vendeli/tgbot/types/Maybe
 	public final fun getNewChatMembers ()Ljava/util/List;
 	public final fun getNewChatPhoto ()Ljava/util/List;
 	public final fun getNewChatTitle ()Ljava/lang/String;
+	public final fun getPaidMedia ()Leu/vendeli/tgbot/types/media/PaidMediaInfo;
 	public final fun getPassportData ()Leu/vendeli/tgbot/types/passport/PassportData;
 	public final fun getPhoto ()Ljava/util/List;
 	public final fun getPinnedMessage ()Leu/vendeli/tgbot/types/MaybeInaccessibleMessage;
@@ -4646,17 +4718,17 @@ public final class eu/vendeli/tgbot/types/WriteAccessAllowed$Companion {
 
 public final class eu/vendeli/tgbot/types/boost/ChatBoost {
 	public static final field Companion Leu/vendeli/tgbot/types/boost/ChatBoost$Companion;
-	public fun <init> (Ljava/lang/String;JJLeu/vendeli/tgbot/types/boost/ChatBoostSource;)V
+	public fun <init> (Ljava/lang/String;Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/boost/ChatBoostSource;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()J
-	public final fun component3 ()J
+	public final fun component2 ()Lkotlinx/datetime/Instant;
+	public final fun component3 ()Lkotlinx/datetime/Instant;
 	public final fun component4 ()Leu/vendeli/tgbot/types/boost/ChatBoostSource;
-	public final fun copy (Ljava/lang/String;JJLeu/vendeli/tgbot/types/boost/ChatBoostSource;)Leu/vendeli/tgbot/types/boost/ChatBoost;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/boost/ChatBoost;Ljava/lang/String;JJLeu/vendeli/tgbot/types/boost/ChatBoostSource;ILjava/lang/Object;)Leu/vendeli/tgbot/types/boost/ChatBoost;
+	public final fun copy (Ljava/lang/String;Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/boost/ChatBoostSource;)Leu/vendeli/tgbot/types/boost/ChatBoost;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/boost/ChatBoost;Ljava/lang/String;Lkotlinx/datetime/Instant;Lkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/boost/ChatBoostSource;ILjava/lang/Object;)Leu/vendeli/tgbot/types/boost/ChatBoost;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getAddDate ()J
+	public final fun getAddDate ()Lkotlinx/datetime/Instant;
 	public final fun getBoostId ()Ljava/lang/String;
-	public final fun getExpirationDate ()J
+	public final fun getExpirationDate ()Lkotlinx/datetime/Instant;
 	public final fun getSource ()Leu/vendeli/tgbot/types/boost/ChatBoostSource;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -5179,18 +5251,18 @@ public final class eu/vendeli/tgbot/types/bot/BotShortDescription$Companion {
 
 public final class eu/vendeli/tgbot/types/business/BusinessConnection {
 	public static final field Companion Leu/vendeli/tgbot/types/business/BusinessConnection$Companion;
-	public fun <init> (Ljava/lang/String;Leu/vendeli/tgbot/types/User;JJZZ)V
+	public fun <init> (Ljava/lang/String;Leu/vendeli/tgbot/types/User;JLkotlinx/datetime/Instant;ZZ)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Leu/vendeli/tgbot/types/User;
 	public final fun component3 ()J
-	public final fun component4 ()J
+	public final fun component4 ()Lkotlinx/datetime/Instant;
 	public final fun component5 ()Z
 	public final fun component6 ()Z
-	public final fun copy (Ljava/lang/String;Leu/vendeli/tgbot/types/User;JJZZ)Leu/vendeli/tgbot/types/business/BusinessConnection;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/business/BusinessConnection;Ljava/lang/String;Leu/vendeli/tgbot/types/User;JJZZILjava/lang/Object;)Leu/vendeli/tgbot/types/business/BusinessConnection;
+	public final fun copy (Ljava/lang/String;Leu/vendeli/tgbot/types/User;JLkotlinx/datetime/Instant;ZZ)Leu/vendeli/tgbot/types/business/BusinessConnection;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/business/BusinessConnection;Ljava/lang/String;Leu/vendeli/tgbot/types/User;JLkotlinx/datetime/Instant;ZZILjava/lang/Object;)Leu/vendeli/tgbot/types/business/BusinessConnection;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCanReply ()Z
-	public final fun getDate ()J
+	public final fun getDate ()Lkotlinx/datetime/Instant;
 	public final fun getId ()Ljava/lang/String;
 	public final fun getUser ()Leu/vendeli/tgbot/types/User;
 	public final fun getUserChatId ()J
@@ -5512,8 +5584,8 @@ public final class eu/vendeli/tgbot/types/chat/ChatBackground$Companion {
 
 public final class eu/vendeli/tgbot/types/chat/ChatFullInfo {
 	public static final field Companion Leu/vendeli/tgbot/types/chat/ChatFullInfo$Companion;
-	public fun <init> (JLeu/vendeli/tgbot/types/chat/ChatType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;)V
-	public synthetic fun <init> (JLeu/vendeli/tgbot/types/chat/ChatType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (JLeu/vendeli/tgbot/types/chat/ChatType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;)V
+	public synthetic fun <init> (JLeu/vendeli/tgbot/types/chat/ChatType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()J
 	public final fun component10 ()Leu/vendeli/tgbot/types/chat/ChatPhoto;
 	public final fun component11 ()Ljava/util/List;
@@ -5539,26 +5611,27 @@ public final class eu/vendeli/tgbot/types/chat/ChatFullInfo {
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component30 ()Leu/vendeli/tgbot/types/Message;
 	public final fun component31 ()Leu/vendeli/tgbot/types/chat/ChatPermissions;
-	public final fun component32 ()Ljava/lang/Integer;
+	public final fun component32 ()Ljava/lang/Boolean;
 	public final fun component33 ()Ljava/lang/Integer;
 	public final fun component34 ()Ljava/lang/Integer;
-	public final fun component35 ()Ljava/lang/Boolean;
+	public final fun component35 ()Ljava/lang/Integer;
 	public final fun component36 ()Ljava/lang/Boolean;
 	public final fun component37 ()Ljava/lang/Boolean;
 	public final fun component38 ()Ljava/lang/Boolean;
-	public final fun component39 ()Ljava/lang/String;
+	public final fun component39 ()Ljava/lang/Boolean;
 	public final fun component4 ()Ljava/lang/String;
-	public final fun component40 ()Ljava/lang/Boolean;
-	public final fun component41 ()Ljava/lang/String;
-	public final fun component42 ()Ljava/lang/Long;
-	public final fun component43 ()Leu/vendeli/tgbot/types/chat/ChatLocation;
+	public final fun component40 ()Ljava/lang/String;
+	public final fun component41 ()Ljava/lang/Boolean;
+	public final fun component42 ()Ljava/lang/String;
+	public final fun component43 ()Ljava/lang/Long;
+	public final fun component44 ()Leu/vendeli/tgbot/types/chat/ChatLocation;
 	public final fun component5 ()Ljava/lang/String;
 	public final fun component6 ()Ljava/lang/String;
 	public final fun component7 ()Ljava/lang/Boolean;
 	public final fun component8 ()Ljava/lang/Integer;
 	public final fun component9 ()Ljava/lang/Integer;
-	public final fun copy (JLeu/vendeli/tgbot/types/chat/ChatType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;)Leu/vendeli/tgbot/types/chat/ChatFullInfo;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/chat/ChatFullInfo;JLeu/vendeli/tgbot/types/chat/ChatType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;IILjava/lang/Object;)Leu/vendeli/tgbot/types/chat/ChatFullInfo;
+	public final fun copy (JLeu/vendeli/tgbot/types/chat/ChatType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;)Leu/vendeli/tgbot/types/chat/ChatFullInfo;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/chat/ChatFullInfo;JLeu/vendeli/tgbot/types/chat/ChatType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/chat/ChatPhoto;Ljava/util/List;Leu/vendeli/tgbot/types/Birthdate;Leu/vendeli/tgbot/types/business/BusinessIntro;Leu/vendeli/tgbot/types/business/BusinessLocation;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;Leu/vendeli/tgbot/types/chat/Chat;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/Message;Leu/vendeli/tgbot/types/chat/ChatPermissions;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Long;Leu/vendeli/tgbot/types/chat/ChatLocation;IILjava/lang/Object;)Leu/vendeli/tgbot/types/chat/ChatFullInfo;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAccentColorId ()Ljava/lang/Integer;
 	public final fun getActiveUsernames ()Ljava/util/List;
@@ -5569,6 +5642,7 @@ public final class eu/vendeli/tgbot/types/chat/ChatFullInfo {
 	public final fun getBusinessIntro ()Leu/vendeli/tgbot/types/business/BusinessIntro;
 	public final fun getBusinessLocation ()Leu/vendeli/tgbot/types/business/BusinessLocation;
 	public final fun getBusinessOpeningHours ()Leu/vendeli/tgbot/types/business/BusinessOpeningHours;
+	public final fun getCanSendPaidMedia ()Ljava/lang/Boolean;
 	public final fun getCanSetStickerSet ()Ljava/lang/Boolean;
 	public final fun getCustomEmojiStickerSetName ()Ljava/lang/String;
 	public final fun getDescription ()Ljava/lang/String;
@@ -7545,7 +7619,7 @@ public final class eu/vendeli/tgbot/types/internal/BusinessConnectionUpdate : eu
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/BusinessConnectionUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/business/BusinessConnection;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/BusinessConnectionUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBusinessConnection ()Leu/vendeli/tgbot/types/business/BusinessConnection;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -7561,8 +7635,8 @@ public final class eu/vendeli/tgbot/types/internal/BusinessMessageUpdate : eu/ve
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/BusinessMessageUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/Message;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/BusinessMessageUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBusinessMessage ()Leu/vendeli/tgbot/types/Message;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getText ()Ljava/lang/String;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -7578,8 +7652,8 @@ public final class eu/vendeli/tgbot/types/internal/CallbackQueryUpdate : eu/vend
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/CallbackQueryUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/CallbackQuery;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/CallbackQueryUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCallbackQuery ()Leu/vendeli/tgbot/types/CallbackQuery;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getText ()Ljava/lang/String;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -7605,8 +7679,8 @@ public final class eu/vendeli/tgbot/types/internal/ChannelPostUpdate : eu/vendel
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/ChannelPostUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/Message;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/ChannelPostUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getChannelPost ()Leu/vendeli/tgbot/types/Message;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getText ()Ljava/lang/String;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -7622,7 +7696,7 @@ public final class eu/vendeli/tgbot/types/internal/ChatBoostUpdate : eu/vendeli/
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/ChatBoostUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/boost/ChatBoostUpdated;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/ChatBoostUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getChatBoost ()Leu/vendeli/tgbot/types/boost/ChatBoostUpdated;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -7637,7 +7711,7 @@ public final class eu/vendeli/tgbot/types/internal/ChatJoinRequestUpdate : eu/ve
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/ChatJoinRequestUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/chat/ChatJoinRequest;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/ChatJoinRequestUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getChatJoinRequest ()Leu/vendeli/tgbot/types/chat/ChatJoinRequest;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -7653,7 +7727,7 @@ public final class eu/vendeli/tgbot/types/internal/ChatMemberUpdate : eu/vendeli
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/ChatMemberUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/chat/ChatMemberUpdated;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/ChatMemberUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getChatMember ()Leu/vendeli/tgbot/types/chat/ChatMemberUpdated;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -7669,8 +7743,8 @@ public final class eu/vendeli/tgbot/types/internal/ChosenInlineResultUpdate : eu
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/ChosenInlineResultUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/inline/ChosenInlineResult;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/ChosenInlineResultUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getChosenInlineResult ()Leu/vendeli/tgbot/types/inline/ChosenInlineResult;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getText ()Ljava/lang/String;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -7819,7 +7893,7 @@ public final class eu/vendeli/tgbot/types/internal/DeletedBusinessMessagesUpdate
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/DeletedBusinessMessagesUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/business/BusinessMessagesDeleted;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/DeletedBusinessMessagesUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDeletedBusinessMessages ()Leu/vendeli/tgbot/types/business/BusinessMessagesDeleted;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -7834,8 +7908,8 @@ public final class eu/vendeli/tgbot/types/internal/EditedBusinessMessageUpdate :
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/EditedBusinessMessageUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/Message;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/EditedBusinessMessageUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getEditedBusinessMessage ()Leu/vendeli/tgbot/types/Message;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getText ()Ljava/lang/String;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -7851,8 +7925,8 @@ public final class eu/vendeli/tgbot/types/internal/EditedChannelPostUpdate : eu/
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/EditedChannelPostUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/Message;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/EditedChannelPostUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getEditedChannelPost ()Leu/vendeli/tgbot/types/Message;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getText ()Ljava/lang/String;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -7868,8 +7942,8 @@ public final class eu/vendeli/tgbot/types/internal/EditedMessageUpdate : eu/vend
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/EditedMessageUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/Message;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/EditedMessageUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getEditedMessage ()Leu/vendeli/tgbot/types/Message;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getText ()Ljava/lang/String;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -7996,8 +8070,8 @@ public final class eu/vendeli/tgbot/types/internal/InlineQueryUpdate : eu/vendel
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/InlineQueryUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/inline/InlineQuery;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/InlineQueryUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getInlineQuery ()Leu/vendeli/tgbot/types/inline/InlineQuery;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getText ()Ljava/lang/String;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -8092,7 +8166,7 @@ public final class eu/vendeli/tgbot/types/internal/MessageReactionCountUpdate : 
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/MessageReactionCountUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/MessageReactionCountUpdated;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/MessageReactionCountUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getMessageReactionCount ()Leu/vendeli/tgbot/types/MessageReactionCountUpdated;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -8107,7 +8181,7 @@ public final class eu/vendeli/tgbot/types/internal/MessageReactionUpdate : eu/ve
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/MessageReactionUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/MessageReactionUpdated;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/MessageReactionUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getMessageReaction ()Leu/vendeli/tgbot/types/MessageReactionUpdated;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -8123,8 +8197,8 @@ public final class eu/vendeli/tgbot/types/internal/MessageUpdate : eu/vendeli/tg
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/MessageUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/Message;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/MessageUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getMessage ()Leu/vendeli/tgbot/types/Message;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getText ()Ljava/lang/String;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -8140,7 +8214,7 @@ public final class eu/vendeli/tgbot/types/internal/MyChatMemberUpdate : eu/vende
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/MyChatMemberUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/chat/ChatMemberUpdated;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/MyChatMemberUpdate;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getMyChatMember ()Leu/vendeli/tgbot/types/chat/ChatMemberUpdated;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -8155,8 +8229,8 @@ public final class eu/vendeli/tgbot/types/internal/PollAnswerUpdate : eu/vendeli
 	public final fun copy (ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/PollAnswer;)Leu/vendeli/tgbot/types/internal/PollAnswerUpdate;
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/PollAnswerUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/PollAnswer;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/PollAnswerUpdate;
 	public fun equals (Ljava/lang/Object;)Z
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public final fun getPollAnswer ()Leu/vendeli/tgbot/types/PollAnswer;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -8171,9 +8245,9 @@ public final class eu/vendeli/tgbot/types/internal/PollUpdate : eu/vendeli/tgbot
 	public final fun copy (ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/poll/Poll;)Leu/vendeli/tgbot/types/internal/PollUpdate;
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/PollUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/poll/Poll;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/PollUpdate;
 	public fun equals (Ljava/lang/Object;)Z
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public final fun getPoll ()Leu/vendeli/tgbot/types/poll/Poll;
 	public fun getText ()Ljava/lang/String;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -8187,9 +8261,9 @@ public final class eu/vendeli/tgbot/types/internal/PreCheckoutQueryUpdate : eu/v
 	public final fun copy (ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/payment/PreCheckoutQuery;)Leu/vendeli/tgbot/types/internal/PreCheckoutQueryUpdate;
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/PreCheckoutQueryUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/payment/PreCheckoutQuery;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/PreCheckoutQueryUpdate;
 	public fun equals (Ljava/lang/Object;)Z
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public final fun getPreCheckoutQuery ()Leu/vendeli/tgbot/types/payment/PreCheckoutQuery;
 	public fun getText ()Ljava/lang/String;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -8198,8 +8272,9 @@ public final class eu/vendeli/tgbot/types/internal/PreCheckoutQueryUpdate : eu/v
 
 public abstract class eu/vendeli/tgbot/types/internal/ProcessedUpdate : eu/vendeli/tgbot/types/internal/TextReference {
 	public synthetic fun <init> (ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/internal/UpdateType;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getText ()Ljava/lang/String;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
+	public final fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 }
 
@@ -8216,8 +8291,8 @@ public final class eu/vendeli/tgbot/types/internal/RemovedChatBoostUpdate : eu/v
 	public final fun copy (ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/boost/ChatBoostRemoved;)Leu/vendeli/tgbot/types/internal/RemovedChatBoostUpdate;
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/RemovedChatBoostUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/boost/ChatBoostRemoved;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/RemovedChatBoostUpdate;
 	public fun equals (Ljava/lang/Object;)Z
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public final fun getRemovedChatBoost ()Leu/vendeli/tgbot/types/boost/ChatBoostRemoved;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -8311,9 +8386,9 @@ public final class eu/vendeli/tgbot/types/internal/ShippingQueryUpdate : eu/vend
 	public final fun copy (ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/payment/ShippingQuery;)Leu/vendeli/tgbot/types/internal/ShippingQueryUpdate;
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/ShippingQueryUpdate;ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/payment/ShippingQuery;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/ShippingQueryUpdate;
 	public fun equals (Ljava/lang/Object;)Z
+	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public final fun getShippingQuery ()Leu/vendeli/tgbot/types/payment/ShippingQuery;
 	public fun getText ()Ljava/lang/String;
-	public fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
@@ -8567,7 +8642,7 @@ public final class eu/vendeli/tgbot/types/internal/configuration/UpdatesListener
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/AnimationOptions : eu/vendeli/tgbot/types/internal/options/MediaSpoiler, eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode {
+public final class eu/vendeli/tgbot/types/internal/options/AnimationOptions : eu/vendeli/tgbot/types/internal/options/MediaSpoiler, eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode, eu/vendeli/tgbot/types/internal/options/ShowCaptionAboveMediaProp {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/AnimationOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/internal/ImplicitFile;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/String;)V
@@ -8596,7 +8671,8 @@ public final class eu/vendeli/tgbot/types/internal/options/AnimationOptions : eu
 	public fun getParseMode ()Leu/vendeli/tgbot/types/ParseMode;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
-	public final fun getShowCaptionAboveMedia ()Ljava/lang/Boolean;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
+	public fun getShowCaptionAboveMedia ()Ljava/lang/Boolean;
 	public final fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public final fun getWidth ()Ljava/lang/Integer;
 	public fun hashCode ()I
@@ -8610,7 +8686,8 @@ public final class eu/vendeli/tgbot/types/internal/options/AnimationOptions : eu
 	public fun setParseMode (Leu/vendeli/tgbot/types/ParseMode;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
-	public final fun setShowCaptionAboveMedia (Ljava/lang/Boolean;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
+	public fun setShowCaptionAboveMedia (Ljava/lang/Boolean;)V
 	public final fun setThumbnail (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
 	public final fun setWidth (Ljava/lang/Integer;)V
 	public fun toString ()Ljava/lang/String;
@@ -8709,7 +8786,7 @@ public final class eu/vendeli/tgbot/types/internal/options/AnswerInlineQueryOpti
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/AudioOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode {
+public final class eu/vendeli/tgbot/types/internal/options/AudioOptions : eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/AudioOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/internal/ImplicitFile;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Ljava/lang/String;)V
@@ -8735,6 +8812,7 @@ public final class eu/vendeli/tgbot/types/internal/options/AudioOptions : eu/ven
 	public final fun getPerformer ()Ljava/lang/String;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
 	public final fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public final fun getTitle ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -8747,6 +8825,7 @@ public final class eu/vendeli/tgbot/types/internal/options/AudioOptions : eu/ven
 	public final fun setPerformer (Ljava/lang/String;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
 	public final fun setThumbnail (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
 	public final fun setTitle (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
@@ -8806,7 +8885,7 @@ public final class eu/vendeli/tgbot/types/internal/options/ChatInviteLinkOptions
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/ContactOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon {
+public final class eu/vendeli/tgbot/types/internal/options/ContactOptions : eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/ContactOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;)V
@@ -8827,6 +8906,7 @@ public final class eu/vendeli/tgbot/types/internal/options/ContactOptions : eu/v
 	public fun getMessageThreadId ()Ljava/lang/Integer;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
 	public final fun getVcard ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun replyParameters (JLkotlin/jvm/functions/Function1;)V
@@ -8836,6 +8916,7 @@ public final class eu/vendeli/tgbot/types/internal/options/ContactOptions : eu/v
 	public fun setMessageThreadId (Ljava/lang/Integer;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
 	public final fun setVcard (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
 }
@@ -8855,37 +8936,36 @@ public final class eu/vendeli/tgbot/types/internal/options/ContactOptions$Compan
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/CopyMessageOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode {
+public final class eu/vendeli/tgbot/types/internal/options/CopyMessageOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode, eu/vendeli/tgbot/types/internal/options/ShowCaptionAboveMediaProp {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/CopyMessageOptions$Companion;
 	public fun <init> ()V
-	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/Boolean;
 	public final fun component2 ()Ljava/lang/Boolean;
 	public final fun component3 ()Ljava/lang/Boolean;
 	public final fun component4 ()Leu/vendeli/tgbot/types/ParseMode;
 	public final fun component5 ()Leu/vendeli/tgbot/types/ReplyParameters;
 	public final fun component6 ()Ljava/lang/Integer;
-	public final fun component7 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Ljava/lang/String;)Leu/vendeli/tgbot/types/internal/options/CopyMessageOptions;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/options/CopyMessageOptions;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/options/CopyMessageOptions;
+	public final fun copy (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;)Leu/vendeli/tgbot/types/internal/options/CopyMessageOptions;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/options/CopyMessageOptions;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/options/CopyMessageOptions;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getDisableNotification ()Ljava/lang/Boolean;
-	public fun getMessageEffectId ()Ljava/lang/String;
 	public fun getMessageThreadId ()Ljava/lang/Integer;
 	public fun getParseMode ()Leu/vendeli/tgbot/types/ParseMode;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
-	public final fun getShowCaptionAboveMedia ()Ljava/lang/Boolean;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
+	public fun getShowCaptionAboveMedia ()Ljava/lang/Boolean;
 	public fun hashCode ()I
 	public fun replyParameters (JLkotlin/jvm/functions/Function1;)V
 	public fun setDisableNotification (Ljava/lang/Boolean;)V
-	public fun setMessageEffectId (Ljava/lang/String;)V
 	public fun setMessageThreadId (Ljava/lang/Integer;)V
 	public fun setParseMode (Leu/vendeli/tgbot/types/ParseMode;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
-	public final fun setShowCaptionAboveMedia (Ljava/lang/Boolean;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
+	public fun setShowCaptionAboveMedia (Ljava/lang/Boolean;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -9045,7 +9125,7 @@ public final class eu/vendeli/tgbot/types/internal/options/CreateNewStickerSetOp
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/DiceOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon {
+public final class eu/vendeli/tgbot/types/internal/options/DiceOptions : eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/DiceOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;)V
@@ -9063,6 +9143,7 @@ public final class eu/vendeli/tgbot/types/internal/options/DiceOptions : eu/vend
 	public fun getMessageThreadId ()Ljava/lang/Integer;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public fun replyParameters (JLkotlin/jvm/functions/Function1;)V
 	public fun setDisableNotification (Ljava/lang/Boolean;)V
@@ -9070,6 +9151,7 @@ public final class eu/vendeli/tgbot/types/internal/options/DiceOptions : eu/vend
 	public fun setMessageThreadId (Ljava/lang/Integer;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -9088,7 +9170,7 @@ public final class eu/vendeli/tgbot/types/internal/options/DiceOptions$Companion
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/DocumentOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode {
+public final class eu/vendeli/tgbot/types/internal/options/DocumentOptions : eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/DocumentOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Leu/vendeli/tgbot/types/internal/ImplicitFile;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;)V
@@ -9111,6 +9193,7 @@ public final class eu/vendeli/tgbot/types/internal/options/DocumentOptions : eu/
 	public fun getParseMode ()Leu/vendeli/tgbot/types/ParseMode;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
 	public final fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public fun hashCode ()I
 	public fun replyParameters (JLkotlin/jvm/functions/Function1;)V
@@ -9121,6 +9204,7 @@ public final class eu/vendeli/tgbot/types/internal/options/DocumentOptions : eu/
 	public fun setParseMode (Leu/vendeli/tgbot/types/ParseMode;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
 	public final fun setThumbnail (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
 	public fun toString ()Ljava/lang/String;
 }
@@ -9140,7 +9224,7 @@ public final class eu/vendeli/tgbot/types/internal/options/DocumentOptions$Compa
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/EditCaptionOptions : eu/vendeli/tgbot/types/internal/options/OptionsParseMode {
+public final class eu/vendeli/tgbot/types/internal/options/EditCaptionOptions : eu/vendeli/tgbot/types/internal/options/OptionsParseMode, eu/vendeli/tgbot/types/internal/options/ShowCaptionAboveMediaProp {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/EditCaptionOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;)V
@@ -9151,10 +9235,10 @@ public final class eu/vendeli/tgbot/types/internal/options/EditCaptionOptions : 
 	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/options/EditCaptionOptions;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/options/EditCaptionOptions;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getParseMode ()Leu/vendeli/tgbot/types/ParseMode;
-	public final fun getShowCaptionAboveMedia ()Ljava/lang/Boolean;
+	public fun getShowCaptionAboveMedia ()Ljava/lang/Boolean;
 	public fun hashCode ()I
 	public fun setParseMode (Leu/vendeli/tgbot/types/ParseMode;)V
-	public final fun setShowCaptionAboveMedia (Ljava/lang/Boolean;)V
+	public fun setShowCaptionAboveMedia (Ljava/lang/Boolean;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -9276,7 +9360,7 @@ public final class eu/vendeli/tgbot/types/internal/options/ForwardMessageOptions
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/GameOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon {
+public final class eu/vendeli/tgbot/types/internal/options/GameOptions : eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/GameOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Ljava/lang/String;)V
@@ -9294,6 +9378,7 @@ public final class eu/vendeli/tgbot/types/internal/options/GameOptions : eu/vend
 	public fun getMessageThreadId ()Ljava/lang/Integer;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public fun replyParameters (JLkotlin/jvm/functions/Function1;)V
 	public fun setDisableNotification (Ljava/lang/Boolean;)V
@@ -9301,6 +9386,7 @@ public final class eu/vendeli/tgbot/types/internal/options/GameOptions : eu/vend
 	public fun setMessageThreadId (Ljava/lang/Integer;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -9358,7 +9444,7 @@ public final class eu/vendeli/tgbot/types/internal/options/GetUpdatesOptions$Com
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/InvoiceOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon {
+public final class eu/vendeli/tgbot/types/internal/options/InvoiceOptions : eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/InvoiceOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Ljava/lang/String;)V
@@ -9397,6 +9483,7 @@ public final class eu/vendeli/tgbot/types/internal/options/InvoiceOptions : eu/v
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public final fun getProviderData ()Ljava/lang/String;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
 	public final fun getStartParameter ()Ljava/lang/String;
 	public final fun getSuggestedTipAmounts ()Ljava/util/List;
 	public fun hashCode ()I
@@ -9417,6 +9504,7 @@ public final class eu/vendeli/tgbot/types/internal/options/InvoiceOptions : eu/v
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public final fun setProviderData (Ljava/lang/String;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
 	public final fun setStartParameter (Ljava/lang/String;)V
 	public final fun setSuggestedTipAmounts (Ljava/util/List;)V
 	public fun toString ()Ljava/lang/String;
@@ -9449,7 +9537,7 @@ public final class eu/vendeli/tgbot/types/internal/options/LinkPreviewProp$Defau
 	public static fun linkPreviewOptions (Leu/vendeli/tgbot/types/internal/options/LinkPreviewProp;Lkotlin/jvm/functions/Function1;)V
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/LocationOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon {
+public final class eu/vendeli/tgbot/types/internal/options/LocationOptions : eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/LocationOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/Float;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Ljava/lang/String;)V
@@ -9475,6 +9563,7 @@ public final class eu/vendeli/tgbot/types/internal/options/LocationOptions : eu/
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public final fun getProximityAlertRadius ()Ljava/lang/Integer;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public fun replyParameters (JLkotlin/jvm/functions/Function1;)V
 	public fun setDisableNotification (Ljava/lang/Boolean;)V
@@ -9486,6 +9575,7 @@ public final class eu/vendeli/tgbot/types/internal/options/LocationOptions : eu/
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public final fun setProximityAlertRadius (Ljava/lang/Integer;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -9504,7 +9594,7 @@ public final class eu/vendeli/tgbot/types/internal/options/LocationOptions$Compa
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/MediaGroupOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon {
+public final class eu/vendeli/tgbot/types/internal/options/MediaGroupOptions : eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/MediaGroupOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Ljava/lang/String;)V
@@ -9522,6 +9612,7 @@ public final class eu/vendeli/tgbot/types/internal/options/MediaGroupOptions : e
 	public fun getMessageThreadId ()Ljava/lang/Integer;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public fun replyParameters (JLkotlin/jvm/functions/Function1;)V
 	public fun setDisableNotification (Ljava/lang/Boolean;)V
@@ -9529,6 +9620,7 @@ public final class eu/vendeli/tgbot/types/internal/options/MediaGroupOptions : e
 	public fun setMessageThreadId (Ljava/lang/Integer;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -9552,7 +9644,12 @@ public abstract interface class eu/vendeli/tgbot/types/internal/options/MediaSpo
 	public abstract fun setHasSpoiler (Ljava/lang/Boolean;)V
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/MessageOptions : eu/vendeli/tgbot/types/internal/options/LinkPreviewProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode {
+public abstract interface class eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp {
+	public abstract fun getMessageEffectId ()Ljava/lang/String;
+	public abstract fun setMessageEffectId (Ljava/lang/String;)V
+}
+
+public final class eu/vendeli/tgbot/types/internal/options/MessageOptions : eu/vendeli/tgbot/types/internal/options/LinkPreviewProp, eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/MessageOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Leu/vendeli/tgbot/types/LinkPreviewOptions;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Ljava/lang/String;)V
@@ -9575,6 +9672,7 @@ public final class eu/vendeli/tgbot/types/internal/options/MessageOptions : eu/v
 	public fun getParseMode ()Leu/vendeli/tgbot/types/ParseMode;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public fun linkPreviewOptions (Lkotlin/jvm/functions/Function1;)V
 	public fun replyParameters (JLkotlin/jvm/functions/Function1;)V
@@ -9585,6 +9683,7 @@ public final class eu/vendeli/tgbot/types/internal/options/MessageOptions : eu/v
 	public fun setParseMode (Leu/vendeli/tgbot/types/ParseMode;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -9614,16 +9713,16 @@ public final class eu/vendeli/tgbot/types/internal/options/Options$Companion {
 public abstract interface class eu/vendeli/tgbot/types/internal/options/OptionsCommon : eu/vendeli/tgbot/types/internal/options/Options {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/OptionsCommon$Companion;
 	public abstract fun getDisableNotification ()Ljava/lang/Boolean;
-	public abstract fun getMessageEffectId ()Ljava/lang/String;
 	public abstract fun getMessageThreadId ()Ljava/lang/Integer;
 	public abstract fun getProtectContent ()Ljava/lang/Boolean;
 	public abstract fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public abstract fun getReplyToMessageId ()Ljava/lang/Long;
 	public abstract fun replyParameters (JLkotlin/jvm/functions/Function1;)V
 	public abstract fun setDisableNotification (Ljava/lang/Boolean;)V
-	public abstract fun setMessageEffectId (Ljava/lang/String;)V
 	public abstract fun setMessageThreadId (Ljava/lang/Integer;)V
 	public abstract fun setProtectContent (Ljava/lang/Boolean;)V
 	public abstract fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public abstract fun setReplyToMessageId (Ljava/lang/Long;)V
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/OptionsCommon$Companion {
@@ -9631,8 +9730,10 @@ public final class eu/vendeli/tgbot/types/internal/options/OptionsCommon$Compani
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/OptionsCommon$DefaultImpls {
+	public static fun getReplyToMessageId (Leu/vendeli/tgbot/types/internal/options/OptionsCommon;)Ljava/lang/Long;
 	public static fun replyParameters (Leu/vendeli/tgbot/types/internal/options/OptionsCommon;JLkotlin/jvm/functions/Function1;)V
 	public static synthetic fun replyParameters$default (Leu/vendeli/tgbot/types/internal/options/OptionsCommon;JLkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static fun setReplyToMessageId (Leu/vendeli/tgbot/types/internal/options/OptionsCommon;Ljava/lang/Long;)V
 }
 
 public abstract interface class eu/vendeli/tgbot/types/internal/options/OptionsParseMode : eu/vendeli/tgbot/types/internal/options/Options {
@@ -9640,7 +9741,52 @@ public abstract interface class eu/vendeli/tgbot/types/internal/options/OptionsP
 	public abstract fun setParseMode (Leu/vendeli/tgbot/types/ParseMode;)V
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/PhotoOptions : eu/vendeli/tgbot/types/internal/options/MediaSpoiler, eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode {
+public final class eu/vendeli/tgbot/types/internal/options/PaidMediaOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode {
+	public static final field Companion Leu/vendeli/tgbot/types/internal/options/PaidMediaOptions$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Leu/vendeli/tgbot/types/ParseMode;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Leu/vendeli/tgbot/types/ParseMode;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Boolean;
+	public final fun component2 ()Ljava/lang/Boolean;
+	public final fun component3 ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public final fun component4 ()Ljava/lang/Integer;
+	public final fun component5 ()Leu/vendeli/tgbot/types/ParseMode;
+	public final fun copy (Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Leu/vendeli/tgbot/types/ParseMode;)Leu/vendeli/tgbot/types/internal/options/PaidMediaOptions;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/options/PaidMediaOptions;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Leu/vendeli/tgbot/types/ParseMode;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/options/PaidMediaOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getDisableNotification ()Ljava/lang/Boolean;
+	public fun getMessageThreadId ()Ljava/lang/Integer;
+	public fun getParseMode ()Leu/vendeli/tgbot/types/ParseMode;
+	public fun getProtectContent ()Ljava/lang/Boolean;
+	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
+	public fun hashCode ()I
+	public fun replyParameters (JLkotlin/jvm/functions/Function1;)V
+	public fun setDisableNotification (Ljava/lang/Boolean;)V
+	public fun setMessageThreadId (Ljava/lang/Integer;)V
+	public fun setParseMode (Leu/vendeli/tgbot/types/ParseMode;)V
+	public fun setProtectContent (Ljava/lang/Boolean;)V
+	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class eu/vendeli/tgbot/types/internal/options/PaidMediaOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/internal/options/PaidMediaOptions$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/internal/options/PaidMediaOptions;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/PaidMediaOptions;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/internal/options/PaidMediaOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/internal/options/PhotoOptions : eu/vendeli/tgbot/types/internal/options/MediaSpoiler, eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode, eu/vendeli/tgbot/types/internal/options/ShowCaptionAboveMediaProp {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/PhotoOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/String;)V
@@ -9663,7 +9809,8 @@ public final class eu/vendeli/tgbot/types/internal/options/PhotoOptions : eu/ven
 	public fun getParseMode ()Leu/vendeli/tgbot/types/ParseMode;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
-	public final fun getShowCaptionAboveMedia ()Ljava/lang/Boolean;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
+	public fun getShowCaptionAboveMedia ()Ljava/lang/Boolean;
 	public fun hashCode ()I
 	public fun replyParameters (JLkotlin/jvm/functions/Function1;)V
 	public fun setDisableNotification (Ljava/lang/Boolean;)V
@@ -9673,7 +9820,8 @@ public final class eu/vendeli/tgbot/types/internal/options/PhotoOptions : eu/ven
 	public fun setParseMode (Leu/vendeli/tgbot/types/ParseMode;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
-	public final fun setShowCaptionAboveMedia (Ljava/lang/Boolean;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
+	public fun setShowCaptionAboveMedia (Ljava/lang/Boolean;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -9692,7 +9840,7 @@ public final class eu/vendeli/tgbot/types/internal/options/PhotoOptions$Companio
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/PollOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon {
+public final class eu/vendeli/tgbot/types/internal/options/PollOptions : eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/PollOptions$Companion;
 	public synthetic fun <init> (Ljava/lang/Boolean;Leu/vendeli/tgbot/types/poll/PollType;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Lkotlin/time/Duration;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public synthetic fun <init> (Ljava/lang/Boolean;Leu/vendeli/tgbot/types/poll/PollType;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Lkotlin/time/Duration;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -9730,6 +9878,7 @@ public final class eu/vendeli/tgbot/types/internal/options/PollOptions : eu/vend
 	public final fun getQuestionEntities ()Ljava/util/List;
 	public final fun getQuestionParseMode ()Leu/vendeli/tgbot/types/ParseMode;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
 	public final fun getType ()Leu/vendeli/tgbot/types/poll/PollType;
 	public fun hashCode ()I
 	public final fun isAnonymous ()Ljava/lang/Boolean;
@@ -9751,6 +9900,7 @@ public final class eu/vendeli/tgbot/types/internal/options/PollOptions : eu/vend
 	public final fun setQuestionEntities (Ljava/util/List;)V
 	public final fun setQuestionParseMode (Leu/vendeli/tgbot/types/ParseMode;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
 	public final fun setType (Leu/vendeli/tgbot/types/poll/PollType;)V
 	public fun toString ()Ljava/lang/String;
 }
@@ -9959,7 +10109,12 @@ public final class eu/vendeli/tgbot/types/internal/options/SetWebhookOptions$Com
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/StickerOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon {
+public abstract interface class eu/vendeli/tgbot/types/internal/options/ShowCaptionAboveMediaProp {
+	public abstract fun getShowCaptionAboveMedia ()Ljava/lang/Boolean;
+	public abstract fun setShowCaptionAboveMedia (Ljava/lang/Boolean;)V
+}
+
+public final class eu/vendeli/tgbot/types/internal/options/StickerOptions : eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/StickerOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;)V
@@ -9979,6 +10134,7 @@ public final class eu/vendeli/tgbot/types/internal/options/StickerOptions : eu/v
 	public fun getMessageThreadId ()Ljava/lang/Integer;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public fun replyParameters (JLkotlin/jvm/functions/Function1;)V
 	public fun setDisableNotification (Ljava/lang/Boolean;)V
@@ -9986,6 +10142,7 @@ public final class eu/vendeli/tgbot/types/internal/options/StickerOptions : eu/v
 	public fun setMessageThreadId (Ljava/lang/Integer;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -10004,7 +10161,7 @@ public final class eu/vendeli/tgbot/types/internal/options/StickerOptions$Compan
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/VenueOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon {
+public final class eu/vendeli/tgbot/types/internal/options/VenueOptions : eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/VenueOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;)V
@@ -10030,6 +10187,7 @@ public final class eu/vendeli/tgbot/types/internal/options/VenueOptions : eu/ven
 	public fun getMessageThreadId ()Ljava/lang/Integer;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public fun replyParameters (JLkotlin/jvm/functions/Function1;)V
 	public fun setDisableNotification (Ljava/lang/Boolean;)V
@@ -10041,6 +10199,7 @@ public final class eu/vendeli/tgbot/types/internal/options/VenueOptions : eu/ven
 	public fun setMessageThreadId (Ljava/lang/Integer;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -10059,7 +10218,7 @@ public final class eu/vendeli/tgbot/types/internal/options/VenueOptions$Companio
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/VideoNoteOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon {
+public final class eu/vendeli/tgbot/types/internal/options/VideoNoteOptions : eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/VideoNoteOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/internal/ImplicitFile;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;)V
@@ -10082,6 +10241,7 @@ public final class eu/vendeli/tgbot/types/internal/options/VideoNoteOptions : eu
 	public fun getMessageThreadId ()Ljava/lang/Integer;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
 	public final fun getThumb ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public fun hashCode ()I
 	public fun replyParameters (JLkotlin/jvm/functions/Function1;)V
@@ -10092,6 +10252,7 @@ public final class eu/vendeli/tgbot/types/internal/options/VideoNoteOptions : eu
 	public fun setMessageThreadId (Ljava/lang/Integer;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
 	public final fun setThumb (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
 	public fun toString ()Ljava/lang/String;
 }
@@ -10111,7 +10272,7 @@ public final class eu/vendeli/tgbot/types/internal/options/VideoNoteOptions$Comp
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/VideoOptions : eu/vendeli/tgbot/types/internal/options/MediaSpoiler, eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode {
+public final class eu/vendeli/tgbot/types/internal/options/VideoOptions : eu/vendeli/tgbot/types/internal/options/MediaSpoiler, eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode, eu/vendeli/tgbot/types/internal/options/ShowCaptionAboveMediaProp {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/VideoOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/internal/ImplicitFile;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/String;)V
@@ -10141,7 +10302,8 @@ public final class eu/vendeli/tgbot/types/internal/options/VideoOptions : eu/ven
 	public fun getParseMode ()Leu/vendeli/tgbot/types/ParseMode;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
-	public final fun getShowCaptionAboveMedia ()Ljava/lang/Boolean;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
+	public fun getShowCaptionAboveMedia ()Ljava/lang/Boolean;
 	public final fun getSupportsStreaming ()Ljava/lang/Boolean;
 	public final fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public final fun getWidth ()Ljava/lang/Integer;
@@ -10156,7 +10318,8 @@ public final class eu/vendeli/tgbot/types/internal/options/VideoOptions : eu/ven
 	public fun setParseMode (Leu/vendeli/tgbot/types/ParseMode;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
-	public final fun setShowCaptionAboveMedia (Ljava/lang/Boolean;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
+	public fun setShowCaptionAboveMedia (Ljava/lang/Boolean;)V
 	public final fun setSupportsStreaming (Ljava/lang/Boolean;)V
 	public final fun setThumbnail (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
 	public final fun setWidth (Ljava/lang/Integer;)V
@@ -10178,7 +10341,7 @@ public final class eu/vendeli/tgbot/types/internal/options/VideoOptions$Companio
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/internal/options/VoiceOptions : eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode {
+public final class eu/vendeli/tgbot/types/internal/options/VoiceOptions : eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon, eu/vendeli/tgbot/types/internal/options/OptionsParseMode {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/VoiceOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Integer;Ljava/lang/String;)V
@@ -10200,6 +10363,7 @@ public final class eu/vendeli/tgbot/types/internal/options/VoiceOptions : eu/ven
 	public fun getParseMode ()Leu/vendeli/tgbot/types/ParseMode;
 	public fun getProtectContent ()Ljava/lang/Boolean;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public fun getReplyToMessageId ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public fun replyParameters (JLkotlin/jvm/functions/Function1;)V
 	public fun setDisableNotification (Ljava/lang/Boolean;)V
@@ -10209,6 +10373,7 @@ public final class eu/vendeli/tgbot/types/internal/options/VoiceOptions : eu/ven
 	public fun setParseMode (Leu/vendeli/tgbot/types/ParseMode;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
+	public fun setReplyToMessageId (Ljava/lang/Long;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -10881,13 +11046,13 @@ public final class eu/vendeli/tgbot/types/media/File$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public abstract class eu/vendeli/tgbot/types/media/InputMedia {
+public abstract class eu/vendeli/tgbot/types/media/InputMedia : eu/vendeli/tgbot/interfaces/ImplicitMediaData {
 	public static final field Companion Leu/vendeli/tgbot/types/media/InputMedia$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public abstract fun getMedia ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public final fun getType ()Ljava/lang/String;
-	public abstract fun setMedia (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
+	public fun setThumbnail (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
 	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/media/InputMedia;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
@@ -10916,10 +11081,11 @@ public final class eu/vendeli/tgbot/types/media/InputMedia$Animation : eu/vendel
 	public fun getMedia ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public final fun getParseMode ()Leu/vendeli/tgbot/types/ParseMode;
 	public final fun getShowCaptionAboveMedia ()Ljava/lang/Boolean;
-	public final fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public final fun getWidth ()Ljava/lang/Integer;
 	public fun hashCode ()I
 	public fun setMedia (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
+	public fun setThumbnail (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -10959,10 +11125,11 @@ public final class eu/vendeli/tgbot/types/media/InputMedia$Audio : eu/vendeli/tg
 	public fun getMedia ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public final fun getParseMode ()Leu/vendeli/tgbot/types/ParseMode;
 	public final fun getPerformer ()Ljava/lang/String;
-	public final fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public final fun getTitle ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun setMedia (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
+	public fun setThumbnail (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -11003,9 +11170,10 @@ public final class eu/vendeli/tgbot/types/media/InputMedia$Document : eu/vendeli
 	public final fun getDisableTypeDetection ()Ljava/lang/Boolean;
 	public fun getMedia ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public final fun getParseMode ()Leu/vendeli/tgbot/types/ParseMode;
-	public final fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public fun hashCode ()I
 	public fun setMedia (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
+	public fun setThumbnail (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -11090,10 +11258,11 @@ public final class eu/vendeli/tgbot/types/media/InputMedia$Video : eu/vendeli/tg
 	public final fun getParseMode ()Leu/vendeli/tgbot/types/ParseMode;
 	public final fun getShowCaptionAboveMedia ()Ljava/lang/Boolean;
 	public final fun getSupportsStreaming ()Ljava/lang/Boolean;
-	public final fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public final fun getWidth ()Ljava/lang/Integer;
 	public fun hashCode ()I
 	public fun setMedia (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
+	public fun setThumbnail (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -11109,6 +11278,88 @@ public synthetic class eu/vendeli/tgbot/types/media/InputMedia$Video$$serializer
 }
 
 public final class eu/vendeli/tgbot/types/media/InputMedia$Video$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract class eu/vendeli/tgbot/types/media/InputPaidMedia : eu/vendeli/tgbot/interfaces/ImplicitMediaData {
+	public static final field Companion Leu/vendeli/tgbot/types/media/InputPaidMedia$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public final fun getType ()Ljava/lang/String;
+	public fun setThumbnail (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
+	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/media/InputPaidMedia;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class eu/vendeli/tgbot/types/media/InputPaidMedia$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/media/InputPaidMedia$Photo : eu/vendeli/tgbot/types/media/InputPaidMedia {
+	public static final field Companion Leu/vendeli/tgbot/types/media/InputPaidMedia$Photo$Companion;
+	public fun <init> (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
+	public final fun component1 ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public final fun copy (Leu/vendeli/tgbot/types/internal/ImplicitFile;)Leu/vendeli/tgbot/types/media/InputPaidMedia$Photo;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/media/InputPaidMedia$Photo;Leu/vendeli/tgbot/types/internal/ImplicitFile;ILjava/lang/Object;)Leu/vendeli/tgbot/types/media/InputPaidMedia$Photo;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMedia ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public fun hashCode ()I
+	public fun setMedia (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class eu/vendeli/tgbot/types/media/InputPaidMedia$Photo$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/media/InputPaidMedia$Photo$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/media/InputPaidMedia$Photo;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/InputPaidMedia$Photo;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/media/InputPaidMedia$Photo$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/media/InputPaidMedia$Video : eu/vendeli/tgbot/types/media/InputPaidMedia {
+	public static final field Companion Leu/vendeli/tgbot/types/media/InputPaidMedia$Video$Companion;
+	public fun <init> (Leu/vendeli/tgbot/types/internal/ImplicitFile;Leu/vendeli/tgbot/types/internal/ImplicitFile;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Leu/vendeli/tgbot/types/internal/ImplicitFile;Leu/vendeli/tgbot/types/internal/ImplicitFile;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public final fun component2 ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public final fun component3 ()Ljava/lang/Integer;
+	public final fun component4 ()Ljava/lang/Integer;
+	public final fun component5 ()Ljava/lang/Integer;
+	public final fun component6 ()Ljava/lang/Boolean;
+	public final fun copy (Leu/vendeli/tgbot/types/internal/ImplicitFile;Leu/vendeli/tgbot/types/internal/ImplicitFile;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;)Leu/vendeli/tgbot/types/media/InputPaidMedia$Video;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/media/InputPaidMedia$Video;Leu/vendeli/tgbot/types/internal/ImplicitFile;Leu/vendeli/tgbot/types/internal/ImplicitFile;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;ILjava/lang/Object;)Leu/vendeli/tgbot/types/media/InputPaidMedia$Video;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDuration ()Ljava/lang/Integer;
+	public final fun getHeight ()Ljava/lang/Integer;
+	public fun getMedia ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public final fun getSupportsStreaming ()Ljava/lang/Boolean;
+	public fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
+	public final fun getWidth ()Ljava/lang/Integer;
+	public fun hashCode ()I
+	public fun setMedia (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
+	public fun setThumbnail (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class eu/vendeli/tgbot/types/media/InputPaidMedia$Video$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/media/InputPaidMedia$Video$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/media/InputPaidMedia$Video;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/InputPaidMedia$Video;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/media/InputPaidMedia$Video$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -11194,6 +11445,132 @@ public synthetic class eu/vendeli/tgbot/types/media/MaskPosition$$serializer : k
 }
 
 public final class eu/vendeli/tgbot/types/media/MaskPosition$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract class eu/vendeli/tgbot/types/media/PaidMedia {
+	public static final field Companion Leu/vendeli/tgbot/types/media/PaidMedia$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getType ()Ljava/lang/String;
+	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/media/PaidMedia;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class eu/vendeli/tgbot/types/media/PaidMedia$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/media/PaidMedia$Photo : eu/vendeli/tgbot/types/media/PaidMedia {
+	public static final field Companion Leu/vendeli/tgbot/types/media/PaidMedia$Photo$Companion;
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Leu/vendeli/tgbot/types/media/PaidMedia$Photo;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/media/PaidMedia$Photo;Ljava/util/List;ILjava/lang/Object;)Leu/vendeli/tgbot/types/media/PaidMedia$Photo;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPhoto ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class eu/vendeli/tgbot/types/media/PaidMedia$Photo$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/media/PaidMedia$Photo$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/media/PaidMedia$Photo;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/PaidMedia$Photo;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/media/PaidMedia$Photo$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/media/PaidMedia$Preview : eu/vendeli/tgbot/types/media/PaidMedia {
+	public static final field Companion Leu/vendeli/tgbot/types/media/PaidMedia$Preview$Companion;
+	public fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)V
+	public final fun component1 ()Ljava/lang/Integer;
+	public final fun component2 ()Ljava/lang/Integer;
+	public final fun component3 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)Leu/vendeli/tgbot/types/media/PaidMedia$Preview;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/media/PaidMedia$Preview;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Leu/vendeli/tgbot/types/media/PaidMedia$Preview;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDuration ()Ljava/lang/Integer;
+	public final fun getHeight ()Ljava/lang/Integer;
+	public final fun getWidth ()Ljava/lang/Integer;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class eu/vendeli/tgbot/types/media/PaidMedia$Preview$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/media/PaidMedia$Preview$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/media/PaidMedia$Preview;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/PaidMedia$Preview;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/media/PaidMedia$Preview$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/media/PaidMedia$Video : eu/vendeli/tgbot/types/media/PaidMedia {
+	public static final field Companion Leu/vendeli/tgbot/types/media/PaidMedia$Video$Companion;
+	public fun <init> (Leu/vendeli/tgbot/types/media/Video;)V
+	public final fun component1 ()Leu/vendeli/tgbot/types/media/Video;
+	public final fun copy (Leu/vendeli/tgbot/types/media/Video;)Leu/vendeli/tgbot/types/media/PaidMedia$Video;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/media/PaidMedia$Video;Leu/vendeli/tgbot/types/media/Video;ILjava/lang/Object;)Leu/vendeli/tgbot/types/media/PaidMedia$Video;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getVideo ()Leu/vendeli/tgbot/types/media/Video;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class eu/vendeli/tgbot/types/media/PaidMedia$Video$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/media/PaidMedia$Video$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/media/PaidMedia$Video;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/PaidMedia$Video;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/media/PaidMedia$Video$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/media/PaidMediaInfo {
+	public static final field Companion Leu/vendeli/tgbot/types/media/PaidMediaInfo$Companion;
+	public fun <init> (ILjava/util/List;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (ILjava/util/List;)Leu/vendeli/tgbot/types/media/PaidMediaInfo;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/media/PaidMediaInfo;ILjava/util/List;ILjava/lang/Object;)Leu/vendeli/tgbot/types/media/PaidMediaInfo;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPaidMedia ()Ljava/util/List;
+	public final fun getStarCount ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class eu/vendeli/tgbot/types/media/PaidMediaInfo$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/media/PaidMediaInfo$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/media/PaidMediaInfo;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/PaidMediaInfo;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/media/PaidMediaInfo$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -12486,13 +12863,13 @@ public final class eu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Pending :
 
 public final class eu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Succeeded : eu/vendeli/tgbot/types/stars/RevenueWithdrawalState {
 	public static final field Companion Leu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Succeeded$Companion;
-	public fun <init> (ILjava/lang/String;)V
-	public final fun component1 ()I
+	public fun <init> (Lkotlinx/datetime/Instant;Ljava/lang/String;)V
+	public final fun component1 ()Lkotlinx/datetime/Instant;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun copy (ILjava/lang/String;)Leu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Succeeded;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Succeeded;ILjava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Succeeded;
+	public final fun copy (Lkotlinx/datetime/Instant;Ljava/lang/String;)Leu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Succeeded;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Succeeded;Lkotlinx/datetime/Instant;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Succeeded;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getDate ()I
+	public final fun getDate ()Lkotlinx/datetime/Instant;
 	public final fun getUrl ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -12515,18 +12892,18 @@ public final class eu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Succeeded
 
 public final class eu/vendeli/tgbot/types/stars/StarTransaction {
 	public static final field Companion Leu/vendeli/tgbot/types/stars/StarTransaction$Companion;
-	public fun <init> (Ljava/lang/String;IILeu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;)V
-	public synthetic fun <init> (Ljava/lang/String;IILeu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;ILkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;)V
+	public synthetic fun <init> (Ljava/lang/String;ILkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()I
-	public final fun component3 ()I
+	public final fun component3 ()Lkotlinx/datetime/Instant;
 	public final fun component4 ()Leu/vendeli/tgbot/types/stars/TransactionPartner;
 	public final fun component5 ()Leu/vendeli/tgbot/types/stars/TransactionPartner;
-	public final fun copy (Ljava/lang/String;IILeu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;)Leu/vendeli/tgbot/types/stars/StarTransaction;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/stars/StarTransaction;Ljava/lang/String;IILeu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;ILjava/lang/Object;)Leu/vendeli/tgbot/types/stars/StarTransaction;
+	public final fun copy (Ljava/lang/String;ILkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;)Leu/vendeli/tgbot/types/stars/StarTransaction;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/stars/StarTransaction;Ljava/lang/String;ILkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;ILjava/lang/Object;)Leu/vendeli/tgbot/types/stars/StarTransaction;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAmount ()I
-	public final fun getDate ()I
+	public final fun getDate ()Lkotlinx/datetime/Instant;
 	public final fun getId ()Ljava/lang/String;
 	public final fun getReceiver ()Leu/vendeli/tgbot/types/stars/TransactionPartner;
 	public final fun getSource ()Leu/vendeli/tgbot/types/stars/TransactionPartner;
@@ -12625,41 +13002,52 @@ public final class eu/vendeli/tgbot/types/stars/TransactionPartner$Other : eu/ve
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class eu/vendeli/tgbot/types/stars/TransactionPartner$User : eu/vendeli/tgbot/types/stars/TransactionPartner {
-	public static final field Companion Leu/vendeli/tgbot/types/stars/TransactionPartner$User$Companion;
-	public fun <init> (Leu/vendeli/tgbot/types/User;)V
-	public final fun component1 ()Leu/vendeli/tgbot/types/User;
-	public final fun copy (Leu/vendeli/tgbot/types/User;)Leu/vendeli/tgbot/types/stars/TransactionPartner$User;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/stars/TransactionPartner$User;Leu/vendeli/tgbot/types/User;ILjava/lang/Object;)Leu/vendeli/tgbot/types/stars/TransactionPartner$User;
+public final class eu/vendeli/tgbot/types/stars/TransactionPartner$TelegramAds : eu/vendeli/tgbot/types/stars/TransactionPartner {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/stars/TransactionPartner$TelegramAds;
 	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class eu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner : eu/vendeli/tgbot/types/stars/TransactionPartner {
+	public static final field Companion Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner$Companion;
+	public fun <init> (Leu/vendeli/tgbot/types/User;Ljava/lang/String;)V
+	public synthetic fun <init> (Leu/vendeli/tgbot/types/User;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Leu/vendeli/tgbot/types/User;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner;Leu/vendeli/tgbot/types/User;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInvoicePayload ()Ljava/lang/String;
 	public final fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class eu/vendeli/tgbot/types/stars/TransactionPartner$User$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Leu/vendeli/tgbot/types/stars/TransactionPartner$User$$serializer;
+public synthetic class eu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/stars/TransactionPartner$User;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/stars/TransactionPartner$User;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/stars/TransactionPartner$User$Companion {
+public final class eu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/utils/BotUtilsKt {
 	public static final fun getDEFAULT_HANDLING_BEHAVIOUR ()Lkotlin/jvm/functions/Function3;
+	public static final fun setChain (Leu/vendeli/tgbot/interfaces/InputListener;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/ChainLink;)V
 }
 
 public final class eu/vendeli/tgbot/utils/BotUtils_jvmKt {
 	public static final fun getFullName (Lkotlin/reflect/KClass;)Ljava/lang/String;
 	public static final fun get_OperatingActivities ()Ljava/util/Map;
-	public static final fun setChain (Leu/vendeli/tgbot/interfaces/InputListener;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/ChainLink;)V
 }
 
 public final class eu/vendeli/tgbot/utils/CommonExtenstionsKt {
@@ -12889,5 +13277,9 @@ public final class eu/vendeli/tgbot/utils/builders/ReplyKeyboardMarkupBuilder : 
 
 public final class eu/vendeli/tgbot/utils/builders/ReplyKeyboardMarkupBuilderKt {
 	public static final fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/types/keyboard/ReplyKeyboardMarkup;
+}
+
+public final class eu/vendeli/tgbot/utils/serde/SerdeHelpersKt {
+	public static final fun getPrimitiveOrNull (Lkotlinx/serialization/json/JsonElement;)Lkotlinx/serialization/json/JsonPrimitive;
 }
 

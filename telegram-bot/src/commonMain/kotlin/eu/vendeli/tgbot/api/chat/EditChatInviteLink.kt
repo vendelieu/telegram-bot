@@ -10,8 +10,9 @@ import eu.vendeli.tgbot.types.internal.options.ChatInviteLinkOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class EditChatInviteLinkAction(inviteLink: String) :
-    Action<ChatInviteLink>(),
+class EditChatInviteLinkAction(
+    inviteLink: String,
+) : Action<ChatInviteLink>(),
     OptionsFeature<EditChatInviteLinkAction, ChatInviteLinkOptions> {
     override val method = TgMethod("editChatInviteLink")
     override val returnType = getReturnType()

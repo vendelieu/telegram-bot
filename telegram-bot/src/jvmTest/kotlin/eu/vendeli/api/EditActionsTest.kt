@@ -30,9 +30,11 @@ class EditActionsTest : BotTestContext() {
 
     @Test
     suspend fun `edit markup test method test`() {
-        val msg = message("test1").markup(
-            inlineKeyboardMarkup { "test" switchInlineQueryCurrentChat "test" },
-        ).sendReturning(TG_ID, bot).getOrNull()
+        val msg = message("test1")
+            .markup(
+                inlineKeyboardMarkup { "test" switchInlineQueryCurrentChat "test" },
+            ).sendReturning(TG_ID, bot)
+            .getOrNull()
         msg.shouldNotBeNull()
 
         val result = editMessageReplyMarkup(msg.messageId)

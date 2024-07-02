@@ -7,7 +7,10 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class SetMyNameAction(name: String? = null, languageCode: String? = null) : SimpleAction<Boolean>() {
+class SetMyNameAction(
+    name: String? = null,
+    languageCode: String? = null,
+) : SimpleAction<Boolean>() {
     override val method = TgMethod("setMyName")
     override val returnType = getReturnType()
 

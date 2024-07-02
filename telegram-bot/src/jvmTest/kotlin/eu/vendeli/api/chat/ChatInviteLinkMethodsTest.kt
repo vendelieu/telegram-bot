@@ -19,11 +19,13 @@ class ChatInviteLinkMethodsTest : BotTestContext() {
     @Test
     suspend fun `create chat invite link method test`() {
         val expireUnix = CUR_INSTANT.plus(120.seconds)
-        val result = createChatInviteLink().options {
-            name = "test"
-            createsJoinRequest = true
-            expireDate = expireUnix
-        }.sendReturning(CHAT_ID, bot).shouldSuccess()
+        val result = createChatInviteLink()
+            .options {
+                name = "test"
+                createsJoinRequest = true
+                expireDate = expireUnix
+            }.sendReturning(CHAT_ID, bot)
+            .shouldSuccess()
 
         with(result) {
             creator.id shouldBe BOT_ID
@@ -37,17 +39,21 @@ class ChatInviteLinkMethodsTest : BotTestContext() {
 
     @Test
     suspend fun `edit chat invite link method test`() {
-        val inviteLink = createChatInviteLink().options {
-            name = "test"
-            createsJoinRequest = true
-        }.sendReturning(CHAT_ID, bot).shouldSuccess()
+        val inviteLink = createChatInviteLink()
+            .options {
+                name = "test"
+                createsJoinRequest = true
+            }.sendReturning(CHAT_ID, bot)
+            .shouldSuccess()
 
         val expireUnix = CUR_INSTANT.plus(1000.milliseconds)
-        val result = editChatInviteLink(inviteLink.inviteLink).options {
-            name = "test2"
-            expireDate = expireUnix
-            createsJoinRequest = false
-        }.sendReturning(CHAT_ID, bot).shouldSuccess()
+        val result = editChatInviteLink(inviteLink.inviteLink)
+            .options {
+                name = "test2"
+                expireDate = expireUnix
+                createsJoinRequest = false
+            }.sendReturning(CHAT_ID, bot)
+            .shouldSuccess()
 
         with(result) {
             creator.id shouldBe BOT_ID
@@ -67,10 +73,12 @@ class ChatInviteLinkMethodsTest : BotTestContext() {
 
     @Test
     suspend fun `revoke chat invite link method test`() {
-        val inviteLink = createChatInviteLink().options {
-            name = "test"
-            createsJoinRequest = true
-        }.sendReturning(CHAT_ID, bot).shouldSuccess()
+        val inviteLink = createChatInviteLink()
+            .options {
+                name = "test"
+                createsJoinRequest = true
+            }.sendReturning(CHAT_ID, bot)
+            .shouldSuccess()
 
         val result = revokeChatInviteLink(inviteLink.inviteLink).sendReturning(CHAT_ID, bot).shouldSuccess()
 

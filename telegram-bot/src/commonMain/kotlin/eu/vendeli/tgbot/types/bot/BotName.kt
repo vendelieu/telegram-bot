@@ -9,4 +9,6 @@ import kotlinx.serialization.Serializable
  * @property name The bot's name
  */
 @Serializable
-data class BotName(val name: String)
+data class BotName(
+    val name: String,
+)

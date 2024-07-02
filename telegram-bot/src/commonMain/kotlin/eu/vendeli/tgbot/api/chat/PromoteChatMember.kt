@@ -10,8 +10,9 @@ import eu.vendeli.tgbot.types.internal.options.PromoteChatMemberOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class PromoteChatMemberAction(userId: Long) :
-    Action<Boolean>(),
+class PromoteChatMemberAction(
+    userId: Long,
+) : Action<Boolean>(),
     OptionsFeature<PromoteChatMemberAction, PromoteChatMemberOptions> {
     override val method = TgMethod("promoteChatMember")
     override val returnType = getReturnType()

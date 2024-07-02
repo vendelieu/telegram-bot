@@ -9,7 +9,9 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class GetChatMemberAction(userId: Long) : Action<ChatMember>() {
+class GetChatMemberAction(
+    userId: Long,
+) : Action<ChatMember>() {
     override val method = TgMethod("getChatMember")
     override val returnType = getReturnType()
 

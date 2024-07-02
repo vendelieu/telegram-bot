@@ -16,8 +16,9 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 
-class SendAnimationAction(animation: ImplicitFile) :
-    MediaAction<Message>(),
+class SendAnimationAction(
+    animation: ImplicitFile,
+) : MediaAction<Message>(),
     BusinessActionExt<Message>,
     OptionsFeature<SendAnimationAction, AnimationOptions>,
     MarkupFeature<SendAnimationAction>,

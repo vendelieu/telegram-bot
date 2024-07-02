@@ -16,8 +16,9 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 
-class SendDocumentAction(document: ImplicitFile) :
-    MediaAction<Message>(),
+class SendDocumentAction(
+    document: ImplicitFile,
+) : MediaAction<Message>(),
     BusinessActionExt<Message>,
     CaptionFeature<SendDocumentAction>,
     OptionsFeature<SendDocumentAction, DocumentOptions>,

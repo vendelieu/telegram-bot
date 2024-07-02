@@ -28,7 +28,10 @@ class MarkupBuilderTest : BotTestContext() {
 
         callbackMarkup.inlineKeyboard shouldHaveSize 1
         callbackMarkup.inlineKeyboard.first() shouldHaveSize 1
-        callbackMarkup.inlineKeyboard.first().first().callbackData shouldBe "testCallback"
+        callbackMarkup.inlineKeyboard
+            .first()
+            .first()
+            .callbackData shouldBe "testCallback"
 
         val newLinedMarkup = inlineKeyboardMarkup {
             "test1" url "testUrl"

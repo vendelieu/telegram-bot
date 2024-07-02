@@ -9,7 +9,9 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("source")
 @OptIn(ExperimentalSerializationApi::class)
-sealed class ChatBoostSource(val source: String) {
+sealed class ChatBoostSource(
+    val source: String,
+) {
     abstract val user: User?
 
     @Serializable

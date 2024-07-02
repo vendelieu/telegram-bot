@@ -9,4 +9,6 @@ import kotlinx.serialization.Serializable
  * @property url An HTTPS URL of a Web App to be opened with additional data as specified in Initializing Web Apps
  */
 @Serializable
-data class WebAppInfo(val url: String)
+data class WebAppInfo(
+    val url: String,
+)

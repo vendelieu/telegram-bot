@@ -10,7 +10,11 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class StopPollAction(messageId: Long) : Action<Poll>(), BusinessActionExt<Poll>, MarkupFeature<SendPollAction> {
+class StopPollAction(
+    messageId: Long,
+) : Action<Poll>(),
+    BusinessActionExt<Poll>,
+    MarkupFeature<SendPollAction> {
     override val method = TgMethod("stopPoll")
     override val returnType = getReturnType()
 

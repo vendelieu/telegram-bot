@@ -10,7 +10,11 @@ import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class SendChatAction(action: ChatAction, messageThreadId: Int? = null) : Action<Boolean>(), BusinessActionExt<Boolean> {
+class SendChatAction(
+    action: ChatAction,
+    messageThreadId: Int? = null,
+) : Action<Boolean>(),
+    BusinessActionExt<Boolean> {
     override val method = TgMethod("sendChatAction")
     override val returnType = getReturnType()
 

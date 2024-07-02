@@ -34,7 +34,11 @@ class ForumCrudTest : BotTestContext() {
 
     @Test
     suspend fun `edit forum topic method test`() {
-        val topic = createForumTopic("testTopic").sendAsync(CHAT_ID, bot).await().getOrNull().shouldNotBeNull()
+        val topic = createForumTopic("testTopic")
+            .sendAsync(CHAT_ID, bot)
+            .await()
+            .getOrNull()
+            .shouldNotBeNull()
         topic.name shouldBe "testTopic"
 
         val result = editForumTopic(
@@ -48,7 +52,11 @@ class ForumCrudTest : BotTestContext() {
 
     @Test
     suspend fun `delete forum topic method test`() {
-        val topic = createForumTopic("testTopic").sendAsync(CHAT_ID, bot).await().getOrNull().shouldNotBeNull()
+        val topic = createForumTopic("testTopic")
+            .sendAsync(CHAT_ID, bot)
+            .await()
+            .getOrNull()
+            .shouldNotBeNull()
         val result = deleteForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
@@ -56,7 +64,11 @@ class ForumCrudTest : BotTestContext() {
 
     @Test
     suspend fun `close forum topic method test`() {
-        val topic = createForumTopic("testTopic").sendAsync(CHAT_ID, bot).await().getOrNull().shouldNotBeNull()
+        val topic = createForumTopic("testTopic")
+            .sendAsync(CHAT_ID, bot)
+            .await()
+            .getOrNull()
+            .shouldNotBeNull()
         val result = closeForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
@@ -65,7 +77,11 @@ class ForumCrudTest : BotTestContext() {
 
     @Test
     suspend fun `open forum topic method test`() {
-        val topic = createForumTopic("testTopic").sendAsync(CHAT_ID, bot).await().getOrNull().shouldNotBeNull()
+        val topic = createForumTopic("testTopic")
+            .sendAsync(CHAT_ID, bot)
+            .await()
+            .getOrNull()
+            .shouldNotBeNull()
         closeForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
         val result = reopenForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
 
@@ -75,7 +91,11 @@ class ForumCrudTest : BotTestContext() {
 
     @Test
     suspend fun `unpin all forum topic method test`() {
-        val topic = createForumTopic("testTopic").sendAsync(CHAT_ID, bot).await().getOrNull().shouldNotBeNull()
+        val topic = createForumTopic("testTopic")
+            .sendAsync(CHAT_ID, bot)
+            .await()
+            .getOrNull()
+            .shouldNotBeNull()
         val result = unpinAllForumTopicMessages(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()

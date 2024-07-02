@@ -8,8 +8,9 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class GetBusinessConnectionAction(businessConnectionId: String) :
-    SimpleAction<BusinessConnection>() {
+class GetBusinessConnectionAction(
+    businessConnectionId: String,
+) : SimpleAction<BusinessConnection>() {
     override val method = TgMethod("getBusinessConnection")
     override val returnType = getReturnType()
 

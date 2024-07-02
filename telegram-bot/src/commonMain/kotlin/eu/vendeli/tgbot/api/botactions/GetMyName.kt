@@ -8,7 +8,9 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class GetMyNameAction(languageCode: String? = null) : SimpleAction<BotName>() {
+class GetMyNameAction(
+    languageCode: String? = null,
+) : SimpleAction<BotName>() {
     override val method = TgMethod("getMyName")
     override val returnType = getReturnType()
 

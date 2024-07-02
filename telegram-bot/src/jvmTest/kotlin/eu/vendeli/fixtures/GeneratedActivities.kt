@@ -45,7 +45,7 @@ private val __TG_COMMANDS0: Map<Pair<String, UpdateType>, Invocable> = mapOf(
             val param0 = bot
             TgAnnotationsModel::test.invoke(
                 inst,
-                param0
+                param0,
             )
         }
             to InvocationMeta(

@@ -9,8 +9,9 @@ import eu.vendeli.tgbot.types.internal.options.AnswerCallbackQueryOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class AnswerCallbackQueryAction(callbackQueryId: String) :
-    Action<Boolean>(),
+class AnswerCallbackQueryAction(
+    callbackQueryId: String,
+) : Action<Boolean>(),
     OptionsFeature<AnswerCallbackQueryAction, AnswerCallbackQueryOptions> {
     override val method = TgMethod("answerCallbackQuery")
     override val returnType = getReturnType()

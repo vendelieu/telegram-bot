@@ -4,7 +4,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class EmojiType(val literal: String) {
+enum class EmojiType(
+    val literal: String,
+) {
     @SerialName("👍")
     ThumbUp("👍"),
 
@@ -248,5 +250,7 @@ sealed class ReactionType(
 
     @Serializable
     @SerialName("custom_emoji")
-    data class CustomEmoji(val customEmoji: String) : ReactionType("custom_emoji")
+    data class CustomEmoji(
+        val customEmoji: String,
+    ) : ReactionType("custom_emoji")
 }

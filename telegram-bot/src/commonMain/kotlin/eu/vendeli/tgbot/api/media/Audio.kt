@@ -16,8 +16,9 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 
-class SendAudioAction(audio: ImplicitFile) :
-    MediaAction<Message>(),
+class SendAudioAction(
+    audio: ImplicitFile,
+) : MediaAction<Message>(),
     BusinessActionExt<Message>,
     OptionsFeature<SendAudioAction, AudioOptions>,
     MarkupFeature<SendAudioAction>,

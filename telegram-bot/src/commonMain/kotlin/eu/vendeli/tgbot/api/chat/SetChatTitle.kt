@@ -7,7 +7,9 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class SetChatTitleAction(title: String) : Action<Boolean>() {
+class SetChatTitleAction(
+    title: String,
+) : Action<Boolean>() {
     override val method = TgMethod("setChatTitle")
     override val returnType = getReturnType()
 

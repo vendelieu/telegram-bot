@@ -13,7 +13,9 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class GetGameHighScoresAction : Action<List<GameHighScore>>, InlineActionExt<List<GameHighScore>> {
+class GetGameHighScoresAction :
+    Action<List<GameHighScore>>,
+    InlineActionExt<List<GameHighScore>> {
     override val method = TgMethod("getGameHighScores")
     override val returnType = getReturnType()
 

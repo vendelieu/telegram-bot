@@ -12,4 +12,6 @@ data class CopyMessageOptions(
     override var parseMode: ParseMode? = null,
     override var replyParameters: ReplyParameters? = null,
     override var messageThreadId: Int? = null,
-) : OptionsParseMode, OptionsCommon, ShowCaptionAboveMediaProp
+) : OptionsParseMode,
+    OptionsCommon,
+    ShowCaptionAboveMediaProp
