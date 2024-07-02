@@ -6,19 +6,13 @@ import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.Message
-import eu.vendeli.tgbot.types.internal.ImplicitFile.InpFile
-import eu.vendeli.tgbot.types.internal.ImplicitFile.Str
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.MediaGroupOptions
 import eu.vendeli.tgbot.types.media.InputMedia
-import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
-import eu.vendeli.tgbot.utils.toPartData
-import kotlinx.serialization.json.JsonElement
-import kotlin.collections.set
+import eu.vendeli.tgbot.utils.handleImplicitFileGroup
 
-class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
+class SendMediaGroupAction(inputMedia: List<InputMedia>) :
     MediaAction<List<Message>>(),
     BusinessActionExt<List<Message>>,
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions> {
@@ -33,20 +27,7 @@ class SendMediaGroupAction(private val inputMedia: List<InputMedia>) :
             "All elements must be of the same specific type and animation is not supported by telegram api"
         }
 
-        // reorganize the media following appropriate approaches
-        parameters["media"] = buildList {
-            inputMedia.forEach {
-                if (it.media is Str) {
-                    add(it.encodeWith(DynamicLookupSerializer))
-                    return@forEach
-                }
-                val media = it.media as InpFile
-                it.media = Str("attach://${media.file.fileName}")
-
-                multipartData += media.file.toPartData(media.file.fileName)
-                add(it.encodeWith(DynamicLookupSerializer))
-            }
-        }.encodeWith(JsonElement.serializer())
+        handleImplicitFileGroup(inputMedia)
     }
 }
 

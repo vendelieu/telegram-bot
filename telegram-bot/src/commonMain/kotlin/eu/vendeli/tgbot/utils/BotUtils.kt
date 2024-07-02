@@ -8,6 +8,7 @@ import eu.vendeli.tgbot.api.botactions.getUpdates
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.interfaces.Filter
 import eu.vendeli.tgbot.interfaces.Guard
+import eu.vendeli.tgbot.interfaces.ImplicitMediaData
 import eu.vendeli.tgbot.interfaces.InputListener
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.TgAction
@@ -18,6 +19,7 @@ import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import io.ktor.http.content.PartData
@@ -32,12 +34,12 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonUnquotedLiteral
+import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.serializer
 import kotlin.jvm.JvmName
 import kotlin.reflect.KClass
@@ -83,15 +85,38 @@ internal inline fun <reified Type : Any> TgAction<Type>.getReturnType(): KSerial
 internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getReturnType(): KSerializer<List<Type>> =
     ListSerializer(Type::class.serializer())
 
-@OptIn(ExperimentalSerializationApi::class)
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun <R> TgAction<R>.handleImplicitFile(input: ImplicitFile, fieldName: String) {
-    if (input is ImplicitFile.Str) {
-        parameters[fieldName] = JsonPrimitive(input.file)
-    } else if (input is ImplicitFile.InpFile) {
-        multipartData += input.file.toPartData(input.file.fileName)
-        parameters[fieldName] = JsonUnquotedLiteral("attach://${input.file.fileName}")
-    }
+    parameters[fieldName] = input.transform(multipartData)
+}
+
+@Suppress("DEPRECATION_ERROR")
+internal inline fun <T : ImplicitMediaData, R> TgAction<R>.handleImplicitFileGroup(
+    input: List<T>,
+    fieldName: String = "media",
+) {
+    parameters[fieldName] = buildList {
+        input.forEach {
+            if (it.media is ImplicitFile.Str && it.thumbnail is ImplicitFile.Str) {
+                add(it.encodeWith(DynamicLookupSerializer))
+                return@forEach
+            }
+            it.media = it.media.transform(multipartData).toImplicitStr()
+            it.thumbnail = it.thumbnail?.transform(multipartData)?.toImplicitStr()
+            add(it.encodeWith(DynamicLookupSerializer))
+        }
+    }.encodeWith(JsonElement.serializer())
+}
+
+private inline fun JsonElement.toImplicitStr() = ImplicitFile.Str(jsonPrimitive.content)
+
+private inline fun ImplicitFile.transform(multiParts: MutableList<PartData.BinaryItem>): JsonElement {
+    if (this is ImplicitFile.Str) return file.toJsonElement()
+    val media = file as InputFile
+    multiParts += media.toPartData(media.fileName)
+
+    @Suppress("OPT_IN_USAGE")
+    return JsonUnquotedLiteral("attach://${media.fileName}")
 }
 
 internal fun InputFile.toPartData(name: String) = PartData.BinaryItem(

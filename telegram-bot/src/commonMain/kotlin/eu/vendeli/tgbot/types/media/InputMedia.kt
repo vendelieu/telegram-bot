@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.media
 
+import eu.vendeli.tgbot.interfaces.ImplicitMediaData
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.internal.ImplicitFile
@@ -17,15 +18,14 @@ import kotlinx.serialization.Serializable
  * [Api reference](https://core.telegram.org/bots/api#inputmedia)
  *
  */
+@Suppress("OVERRIDE_DEPRECATION")
 @Serializable
-sealed class InputMedia(val type: String) {
-    abstract var media: ImplicitFile
-
+sealed class InputMedia(val type: String) : ImplicitMediaData {
     @Serializable
     @SerialName("audio")
     data class Audio(
         override var media: ImplicitFile,
-        val thumbnail: ImplicitFile? = null,
+        override var thumbnail: ImplicitFile? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
@@ -38,7 +38,7 @@ sealed class InputMedia(val type: String) {
     @SerialName("document")
     data class Document(
         override var media: ImplicitFile,
-        val thumbnail: ImplicitFile? = null,
+        override var thumbnail: ImplicitFile? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
@@ -60,7 +60,7 @@ sealed class InputMedia(val type: String) {
     @SerialName("video")
     data class Video(
         override var media: ImplicitFile,
-        val thumbnail: ImplicitFile? = null,
+        override var thumbnail: ImplicitFile? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
@@ -76,7 +76,7 @@ sealed class InputMedia(val type: String) {
     @SerialName("animation")
     data class Animation(
         override var media: ImplicitFile,
-        val thumbnail: ImplicitFile? = null,
+        override var thumbnail: ImplicitFile? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,

@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.utils.serde.primitiveOrNull
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.MultiPartFormDataContent
 import io.ktor.client.request.post
@@ -25,7 +26,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.JsonUnquotedLiteral
 
 @Suppress("NOTHING_TO_INLINE")
@@ -42,7 +42,7 @@ private fun HttpRequestBuilder.formReqBody(
     if (data.isEmpty() && multipartData.isEmpty()) return
     if (multipartData.isNotEmpty()) {
         val dataParts = data.also { logger.debug { "RequestBody: $it" } }.map {
-            val item = (it.value as? JsonPrimitive)?.let { v ->
+            val item = it.value.primitiveOrNull?.let { v ->
                 if (v.isString) JsonUnquotedLiteral(v.content) else v
             } ?: it.value
 
