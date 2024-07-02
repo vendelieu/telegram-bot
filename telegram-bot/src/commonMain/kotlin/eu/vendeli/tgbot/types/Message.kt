@@ -18,6 +18,7 @@ import eu.vendeli.tgbot.types.keyboard.WebAppData
 import eu.vendeli.tgbot.types.media.Animation
 import eu.vendeli.tgbot.types.media.Audio
 import eu.vendeli.tgbot.types.media.Document
+import eu.vendeli.tgbot.types.media.PaidMediaInfo
 import eu.vendeli.tgbot.types.media.PhotoSize
 import eu.vendeli.tgbot.types.media.Sticker
 import eu.vendeli.tgbot.types.media.Story
@@ -157,6 +158,7 @@ data class Message(
     val animation: Animation? = null,
     val audio: Audio? = null,
     val document: Document? = null,
+    val paidMedia: PaidMediaInfo? = null,
     val photo: List<PhotoSize>? = null,
     val sticker: Sticker? = null,
     val story: Story? = null,

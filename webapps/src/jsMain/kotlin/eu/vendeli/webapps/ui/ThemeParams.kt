@@ -37,6 +37,9 @@ external interface ThemeParams {
     @JsName("subtitle_text_color")
     val subtitleTextColor: String?
 
+    @JsName("section_separator_color")
+    val sectionSeparatorColor: String?
+
     @JsName("destructive_text_color")
     val destructiveTextColor: String?
 }

@@ -1,6 +1,8 @@
 package eu.vendeli.tgbot.types
 
 import eu.vendeli.tgbot.types.chat.Chat
+import eu.vendeli.tgbot.utils.serde.InstantSerializer
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
 /**
@@ -19,7 +21,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Giveaway(
     val chats: List<Chat>,
-    val winnersSelectionDate: Long,
+    @Serializable(InstantSerializer::class)
+    val winnersSelectionDate: Instant,
     val winnerCount: Int,
     val onlyNewMembers: Boolean? = null,
     val hasPublicWinners: Boolean? = null,

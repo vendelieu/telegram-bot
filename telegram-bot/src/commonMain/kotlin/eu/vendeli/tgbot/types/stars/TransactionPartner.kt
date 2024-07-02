@@ -18,8 +18,14 @@ sealed class TransactionPartner(val type: String) {
     data class Fragment(val withdrawalState: RevenueWithdrawalState? = null) : TransactionPartner("fragment")
 
     @Serializable
-    data class UserPartner(val user: User) : TransactionPartner("user")
+    data class UserPartner(
+        val user: User,
+        val invoicePayload: String? = null,
+    ) : TransactionPartner("user")
 
     @Serializable
     data object Other : TransactionPartner("other")
+
+    @Serializable
+    data object TelegramAds : TransactionPartner("telegram_ads")
 }

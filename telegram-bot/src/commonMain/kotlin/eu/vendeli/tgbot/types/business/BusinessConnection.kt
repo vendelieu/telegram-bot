@@ -1,6 +1,8 @@
 package eu.vendeli.tgbot.types.business
 
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.utils.serde.InstantSerializer
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
 /**
@@ -19,7 +21,8 @@ data class BusinessConnection(
     val id: String,
     val user: User,
     val userChatId: Long,
-    val date: Long,
+    @Serializable(InstantSerializer::class)
+    val date: Instant,
     val canReply: Boolean,
     val isEnabled: Boolean,
 )
