@@ -22,7 +22,6 @@ import eu.vendeli.tgbot.utils.toJsonElement
  * @param replyMarkup A JSON-serialized object for a new inline keyboard.
  * @returns [Message]|[Boolean]
  */
-@Suppress("")
 class StopMessageLiveLocationAction() :
     Action<Message>(),
     InlineActionExt<Message>,

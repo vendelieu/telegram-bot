@@ -3,7 +3,7 @@
 # Telegram Bot
 
 [![Maven Central](https://img.shields.io/maven-central/v/eu.vendeli/telegram-bot?style=flat&label=Maven&logo=apache-maven)](https://search.maven.org/artifact/eu.vendeli/telegram-bot)
-[![Supported version](https://img.shields.io/badge/Bot%20Api-7.5-blue?logo=telegram)](https://core.telegram.org/bots/api#june-18-2024)\
+[![Supported version](https://img.shields.io/badge/Bot%20Api-7.6-blue?logo=telegram)](https://core.telegram.org/bots/api#july-1-2024)\
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
 [![codecov](https://codecov.io/gh/vendelieu/telegram-bot/branch/master/graph/badge.svg?token=xn5xo6fu6r)](https://codecov.io/gh/vendelieu/telegram-bot) \
 [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/venny_tgbot)

@@ -33,6 +33,11 @@ sealed class ProcessedUpdate(
     open val origin: Update,
     internal val type: UpdateType,
 ) : TextReference {
+    @Deprecated(
+        "Changed parameter name to avoid tautology",
+        replaceWith = ReplaceWith("origin"),
+        DeprecationLevel.WARNING,
+    )
     val update: Update get() = origin
 }
 

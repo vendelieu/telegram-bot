@@ -145,7 +145,7 @@ private suspend fun ((suspend ActivityCtx<ProcessedUpdate>.() -> Unit)?).invokeA
     this
         ?.runCatching { invoke(activityCtx) }
         ?.onFailure {
-            bot.update.caughtExceptions.send(FailedUpdate(it.cause ?: it, activityCtx.update.update))
+            bot.update.caughtExceptions.send(FailedUpdate(it.cause ?: it, activityCtx.update.origin))
             logger.error(it) {
                 "An error occurred while functionally processing update: ${activityCtx.update} to UpdateType($updateType)."
             }

@@ -99,7 +99,7 @@ class CodegenUpdateHandler internal constructor(
                 logger.error(
                     it,
                 ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $pUpdate" }
-                caughtExceptions.send(FailedUpdate(it.cause ?: it, pUpdate.update))
+                caughtExceptions.send(FailedUpdate(it.cause ?: it, pUpdate.origin))
             }.onSuccess {
                 logger.info {
                     "Handled update#${pUpdate.updateId} to method ${second.qualifier + "::" + second.function}"
@@ -118,7 +118,7 @@ class CodegenUpdateHandler internal constructor(
             (if (isTypeUpdate) "UpdateTypeHandler(${pUpdate.type})" else "UnprocessedHandler") +
                 " invocation error at handling update: $pUpdate"
         }
-        caughtExceptions.send(FailedUpdate(it.cause ?: it, pUpdate.update))
+        caughtExceptions.send(FailedUpdate(it.cause ?: it, pUpdate.origin))
     }.onSuccess {
         logger.info {
             "Handled update#${pUpdate.updateId} to " +
