@@ -125,7 +125,12 @@ class SetMyActionsTest : BotTestContext() {
         result.shouldNotBeNull()
         result.shouldBeTrue()
 
-        getMyName().sendAsync(bot).await().getOrNull().shouldNotBeNull().name shouldBe "testbot2"
+        getMyName()
+            .sendAsync(bot)
+            .await()
+            .getOrNull()
+            .shouldNotBeNull()
+            .name shouldBe "testbot2"
 
         setMyName("testbot").send(bot)
     }

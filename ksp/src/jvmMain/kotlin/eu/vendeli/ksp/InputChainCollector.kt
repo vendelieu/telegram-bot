@@ -19,9 +19,11 @@ internal fun collectInputChains(
         return null
     }
     symbols.forEach { chain ->
-        val links = chain.declarations.filter { i ->
-            i is KSClassDeclaration && i.getAllSuperTypes().any { it.toTypeName() == chainLinkClass }
-        }.toList().cast<List<KSClassDeclaration>>()
+        val links = chain.declarations
+            .filter { i ->
+                i is KSClassDeclaration && i.getAllSuperTypes().any { it.toTypeName() == chainLinkClass }
+            }.toList()
+            .cast<List<KSClassDeclaration>>()
 
         links.asSequence().forEachIndexed { idx, c ->
             val curLinkId = c.qualifiedName!!.asString()
@@ -37,22 +39,23 @@ internal fun collectInputChains(
 
             val block = buildCodeBlock {
                 indent()
-                beginControlFlow("suspendCall { classManager, update, user, bot, parameters ->").apply {
-                    add("if(user == null) return@suspendCall Unit\n")
-                    add("val inst = classManager.getInstance($reference::class) as $reference\n")
-                    add("inst.beforeAction?.invoke(user, update, bot)\n")
-                    add("val nextLink: String? = %P\n", nextLink)
-                    add("val breakPoint = inst.breakCondition?.invoke(user, update, bot) ?: false\n")
-                    add(
-                        "if (breakPoint && inst.retryAfterBreak) bot.inputListener[user] = \"%L\"\n",
-                        curLinkId,
-                    )
-                    add("if (breakPoint) {\ninst.breakAction(user, update, bot)\nreturn@suspendCall Unit\n}\n")
+                beginControlFlow("suspendCall { classManager, update, user, bot, parameters ->")
+                    .apply {
+                        add("if(user == null) return@suspendCall Unit\n")
+                        add("val inst = classManager.getInstance($reference::class) as $reference\n")
+                        add("inst.beforeAction?.invoke(user, update, bot)\n")
+                        add("val nextLink: String? = %P\n", nextLink)
+                        add("val breakPoint = inst.breakCondition?.invoke(user, update, bot) ?: false\n")
+                        add(
+                            "if (breakPoint && inst.retryAfterBreak) bot.inputListener[user] = \"%L\"\n",
+                            curLinkId,
+                        )
+                        add("if (breakPoint) {\ninst.breakAction(user, update, bot)\nreturn@suspendCall Unit\n}\n")
 
-                    add("inst.action(user, update, bot)")
-                    add(".also {\nif (nextLink != null) bot.inputListener[user] = nextLink }\n")
-                    add("inst.afterAction?.invoke(user, update, bot)\n")
-                }.endControlFlow()
+                        add("inst.action(user, update, bot)")
+                        add(".also {\nif (nextLink != null) bot.inputListener[user] = nextLink }\n")
+                        add("inst.afterAction?.invoke(user, update, bot)\n")
+                    }.endControlFlow()
             }
 
             add(

@@ -12,14 +12,13 @@ import eu.vendeli.tgbot.types.internal.UpdateType
 
 class TgAnnotationsModel {
     @CommandHandler(["test"])
-    fun test() {
+    fun test(bot: TelegramBot) {
+        bot.chatData.set(1, "test", "value")
         throw IllegalArgumentException("test2")
     }
 
     @InputHandler(["testInp"])
-    fun test2() {
-        throw IllegalArgumentException("test3")
-    }
+    fun test2(): Unit = throw IllegalArgumentException("test3")
 
     @CommandHandler(["STOP"])
     fun stopHandling(bot: TelegramBot) {
@@ -40,9 +39,7 @@ class TgAnnotationsModel {
 }
 
 @CommandHandler(["test2"])
-suspend fun testMethod(): Boolean {
-    return true
-}
+suspend fun testMethod(): Boolean = true
 
 @InputHandler(["testInp2"])
 suspend fun testMethod2() {
@@ -50,9 +47,7 @@ suspend fun testMethod2() {
 
 object TestObj {
     @CommandHandler(["test3"])
-    fun test(): Boolean {
-        return false
-    }
+    fun test(): Boolean = false
 
     @InputHandler(["testInp3"])
     fun test2() {

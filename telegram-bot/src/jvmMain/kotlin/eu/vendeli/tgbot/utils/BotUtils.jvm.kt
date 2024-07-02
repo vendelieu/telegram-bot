@@ -15,7 +15,8 @@ fun TelegramBot.defineActivities(input: Map<String, List<Any?>>) {
 
 @Suppress("UNCHECKED_CAST")
 private var activities: Map<String, List<Any?>> = runCatching {
-    Class.forName("eu.vendeli.tgbot.generated.ActivitiesDataKt")
+    Class
+        .forName("eu.vendeli.tgbot.generated.ActivitiesDataKt")
         .getDeclaredMethod("get__ACTIVITIES")
         .invoke(null) as Map<String, List<Any?>>
 }.getOrNull() ?: emptyMap()

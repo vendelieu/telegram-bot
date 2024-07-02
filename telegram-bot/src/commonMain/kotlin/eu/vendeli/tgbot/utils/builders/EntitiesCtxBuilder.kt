@@ -135,8 +135,9 @@ interface EntitiesCtxBuilder<Action : TgAction<*>> : EntitiesExtBuilder {
         this as TgAction<*>
         val oldEntity = (parameters[entitiesFieldName] as? JsonArray)?.toMutableList() ?: mutableListOf()
 
-        parameters[entitiesFieldName] = oldEntity.also {
-            it.add(entity.encodeWith(MessageEntity.serializer()))
-        }.let { JsonArray(it) }
+        parameters[entitiesFieldName] = oldEntity
+            .also {
+                it.add(entity.encodeWith(MessageEntity.serializer()))
+            }.let { JsonArray(it) }
     }
 }

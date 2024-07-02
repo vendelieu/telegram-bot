@@ -10,4 +10,6 @@ import kotlinx.serialization.Serializable
  * @property type Type of the background
  */
 @Serializable
-data class ChatBackground(val type: BackgroundType)
+data class ChatBackground(
+    val type: BackgroundType,
+)

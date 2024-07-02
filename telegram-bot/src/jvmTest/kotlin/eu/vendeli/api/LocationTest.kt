@@ -12,12 +12,14 @@ import io.kotest.matchers.shouldBe
 class LocationTest : BotTestContext() {
     @Test
     suspend fun `location method test`() {
-        val result = location(1F, 2F).options {
-            horizontalAccuracy = 3F
-            livePeriod = 1000
-            heading = 4
-            proximityAlertRadius = 10
-        }.sendReturning(TG_ID, bot).shouldSuccess()
+        val result = location(1F, 2F)
+            .options {
+                horizontalAccuracy = 3F
+                livePeriod = 1000
+                heading = 4
+                proximityAlertRadius = 10
+            }.sendReturning(TG_ID, bot)
+            .shouldSuccess()
 
         with(result.location) {
             shouldNotBeNull()
@@ -32,18 +34,21 @@ class LocationTest : BotTestContext() {
 
     @Test
     suspend fun `edit live location method test`() {
-        val location = location(1F, 2F).options {
-            horizontalAccuracy = 3F
-            livePeriod = 1000
-            heading = 4
-            proximityAlertRadius = 10
-        }.sendReturning(TG_ID, bot)
+        val location = location(1F, 2F)
+            .options {
+                horizontalAccuracy = 3F
+                livePeriod = 1000
+                heading = 4
+                proximityAlertRadius = 10
+            }.sendReturning(TG_ID, bot)
 
-        val result = editMessageLiveLocation(location.getOrNull()!!.messageId, 2F, 3F).options {
-            heading = 3
-            horizontalAccuracy = 2F
-            proximityAlertRadius = 9
-        }.sendReturning(TG_ID, bot).shouldSuccess()
+        val result = editMessageLiveLocation(location.getOrNull()!!.messageId, 2F, 3F)
+            .options {
+                heading = 3
+                horizontalAccuracy = 2F
+                proximityAlertRadius = 9
+            }.sendReturning(TG_ID, bot)
+            .shouldSuccess()
 
         with(result.location) {
             shouldNotBeNull()
@@ -58,12 +63,13 @@ class LocationTest : BotTestContext() {
 
     @Test
     suspend fun `stop live location method test`() {
-        val location = location(1F, 2F).options {
-            horizontalAccuracy = 3F
-            livePeriod = 1000
-            heading = 4
-            proximityAlertRadius = 10
-        }.sendReturning(TG_ID, bot)
+        val location = location(1F, 2F)
+            .options {
+                horizontalAccuracy = 3F
+                livePeriod = 1000
+                heading = 4
+                proximityAlertRadius = 10
+            }.sendReturning(TG_ID, bot)
 
         val result = stopMessageLiveLocation(
             location.getOrNull()!!.messageId,

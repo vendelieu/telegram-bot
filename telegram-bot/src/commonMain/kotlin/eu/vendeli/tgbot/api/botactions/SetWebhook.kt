@@ -16,8 +16,9 @@ import eu.vendeli.tgbot.utils.toImplicitFile
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.coroutines.Deferred
 
-class SetWebhookAction(url: String) :
-    SimpleAction<Boolean>(),
+class SetWebhookAction(
+    url: String,
+) : SimpleAction<Boolean>(),
     OptionsFeature<SetWebhookAction, SetWebhookOptions> {
     override val method = TgMethod("setWebhook")
     override val returnType = getReturnType()

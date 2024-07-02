@@ -18,6 +18,7 @@ import eu.vendeli.tgbot.types.keyboard.WebAppData
 import eu.vendeli.tgbot.types.media.Animation
 import eu.vendeli.tgbot.types.media.Audio
 import eu.vendeli.tgbot.types.media.Document
+import eu.vendeli.tgbot.types.media.PaidMediaInfo
 import eu.vendeli.tgbot.types.media.PhotoSize
 import eu.vendeli.tgbot.types.media.Sticker
 import eu.vendeli.tgbot.types.media.Story
@@ -69,13 +70,14 @@ import kotlinx.serialization.Serializable
  * @property animation Optional. Message is an animation, information about the animation. For backward compatibility, when this field is set, the document field will also be set
  * @property audio Optional. Message is an audio file, information about the file
  * @property document Optional. Message is a general file, information about the file
+ * @property paidMedia Optional. Message contains paid media; information about the paid media
  * @property photo Optional. Message is a photo, available sizes of the photo
  * @property sticker Optional. Message is a sticker, information about the sticker
  * @property story Optional. Message is a forwarded story
  * @property video Optional. Message is a video, information about the video
  * @property videoNote Optional. Message is a video note, information about the video message
  * @property voice Optional. Message is a voice message, information about the file
- * @property caption Optional. Caption for the animation, audio, document, photo, video or voice
+ * @property caption Optional. Caption for the animation, audio, document, paid media, photo, video or voice
  * @property captionEntities Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption
  * @property showCaptionAboveMedia Optional. True, if the caption must be shown above the message media
  * @property hasMediaSpoiler Optional. True, if the message media is covered by a spoiler animation
@@ -157,6 +159,7 @@ data class Message(
     val animation: Animation? = null,
     val audio: Audio? = null,
     val document: Document? = null,
+    val paidMedia: PaidMediaInfo? = null,
     val photo: List<PhotoSize>? = null,
     val sticker: Sticker? = null,
     val story: Story? = null,
@@ -211,4 +214,5 @@ data class Message(
     val webAppData: WebAppData? = null,
     val replyMarkup: InlineKeyboardMarkup? = null,
     val hasMediaSpoiler: Boolean? = null,
-) : MaybeInaccessibleMessage(), MultipleResponse
+) : MaybeInaccessibleMessage(),
+    MultipleResponse

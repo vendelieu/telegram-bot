@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.types.boost
 
+import eu.vendeli.tgbot.utils.serde.InstantSerializer
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
 /**
@@ -14,7 +16,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ChatBoost(
     val boostId: String,
-    val addDate: Long,
-    val expirationDate: Long,
+    @Serializable(InstantSerializer::class)
+    val addDate: Instant,
+    @Serializable(InstantSerializer::class)
+    val expirationDate: Instant,
     val source: ChatBoostSource,
 )

@@ -31,7 +31,10 @@ internal suspend inline fun KClass<out Guard>.checkIsGuarded(
     bot: TelegramBot,
 ): Boolean {
     if (fullName == "eu.vendeli.tgbot.utils.DefaultGuard") return true
-    return bot.config.classManager.getInstance(this).cast<Guard>().condition(user, update, bot)
+    return bot.config.classManager
+        .getInstance(this)
+        .cast<Guard>()
+        .condition(user, update, bot)
 }
 
 internal suspend inline fun KClass<out Filter>.checkIsFiltered(
@@ -40,7 +43,10 @@ internal suspend inline fun KClass<out Filter>.checkIsFiltered(
     bot: TelegramBot,
 ): Boolean {
     if (fullName == "eu.vendeli.tgbot.utils.DefaultFilter") return true
-    return bot.config.classManager.getInstance(this).cast<Filter>().match(user, update, bot)
+    return bot.config.classManager
+        .getInstance(this)
+        .cast<Filter>()
+        .match(user, update, bot)
 }
 
 /**
@@ -115,16 +121,18 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
     if (user != null && bot.config.inputAutoRemoval) bot.inputListener.del(user.id) // clean listener
 
     // if there's no command and input > check common handlers
-    functionalActivities.commonActivities.entries.firstOrNull { i ->
-        i.key.match(parsedText.command, update, bot)
-    }?.value?.run {
-        logger.debug { "Matched common handler $this for text $text" }
-        // check for limit exceed
-        if (bot.update.checkIsLimited(rateLimits, user?.id, parsedText.command)) return false
-        logger.info { "Invoking command $id" }
-        invocation.invoke(cmdCtx)
-        return true
-    }
+    functionalActivities.commonActivities.entries
+        .firstOrNull { i ->
+            i.key.match(parsedText.command, update, bot)
+        }?.value
+        ?.run {
+            logger.debug { "Matched common handler $this for text $text" }
+            // check for limit exceed
+            if (bot.update.checkIsLimited(rateLimits, user?.id, parsedText.command)) return false
+            logger.info { "Invoking command $id" }
+            invocation.invoke(cmdCtx)
+            return true
+        }
 
     return false
 }
@@ -134,17 +142,19 @@ private suspend fun ((suspend ActivityCtx<ProcessedUpdate>.() -> Unit)?).invokeA
     updateType: UpdateType,
     activityCtx: ActivityCtx<ProcessedUpdate>,
 ): Boolean {
-    this?.runCatching { invoke(activityCtx) }?.onFailure {
-        bot.update.caughtExceptions.send(FailedUpdate(it.cause ?: it, activityCtx.update.update))
-        logger.error(it) {
-            "An error occurred while functionally processing update: ${activityCtx.update} to UpdateType($updateType)."
+    this
+        ?.runCatching { invoke(activityCtx) }
+        ?.onFailure {
+            bot.update.caughtExceptions.send(FailedUpdate(it.cause ?: it, activityCtx.update.origin))
+            logger.error(it) {
+                "An error occurred while functionally processing update: ${activityCtx.update} to UpdateType($updateType)."
+            }
+        }?.onSuccess {
+            logger.info {
+                "Update #${activityCtx.update.updateId} processed in functional mode with UpdateType($updateType) activity."
+            }
+            return true
         }
-    }?.onSuccess {
-        logger.info {
-            "Update #${activityCtx.update.updateId} processed in functional mode with UpdateType($updateType) activity."
-        }
-        return true
-    }
     return false
 }
 
@@ -164,7 +174,8 @@ internal suspend fun FunctionalHandlingDsl.process(update: Update) = with(update
     if (bot.update.checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id)) return@with
 
     checkMessageForActivities(this).ifAffected { affectedActivities += 1 }
-    functionalActivities.onUpdateActivities[type]?.invokeActivity(bot, type, ActivityCtx(this))
+    functionalActivities.onUpdateActivities[type]
+        ?.invokeActivity(bot, type, ActivityCtx(this))
         .ifAffected { affectedActivities += 1 }
 
     if (affectedActivities == 0) functionalActivities.whenNotHandled?.invoke(update)?.also {

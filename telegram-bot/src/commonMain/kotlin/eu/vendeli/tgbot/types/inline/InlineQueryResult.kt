@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.types.InputMessageContent
 import eu.vendeli.tgbot.types.MessageEntity
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -35,13 +36,15 @@ import kotlinx.serialization.Serializable
  *
  */
 @Serializable
-sealed class InlineQueryResult(val type: String) {
+sealed class InlineQueryResult(
+    val type: String,
+) {
     @Serializable
     @SerialName("article")
     data class Article(
         val id: String,
         val title: String,
-        val inputMessageContent: InputMessageContent,
+        val inputMessageContent: @Contextual InputMessageContent,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val url: String? = null,
         val hideUrl: Boolean? = null,
@@ -65,7 +68,7 @@ sealed class InlineQueryResult(val type: String) {
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
         val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("photo")
 
@@ -84,7 +87,7 @@ sealed class InlineQueryResult(val type: String) {
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
         val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("gif")
 
@@ -103,7 +106,7 @@ sealed class InlineQueryResult(val type: String) {
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
         val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("mpeg4_gif")
 
@@ -123,7 +126,7 @@ sealed class InlineQueryResult(val type: String) {
         val videoDuration: Int? = null,
         val description: String? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
         val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("video")
 
@@ -139,7 +142,7 @@ sealed class InlineQueryResult(val type: String) {
         val performer: String? = null,
         val audioDuration: Int? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
     ) : InlineQueryResult("audio")
 
     @Serializable
@@ -153,7 +156,7 @@ sealed class InlineQueryResult(val type: String) {
         val captionEntities: List<MessageEntity>? = null,
         val voiceDuration: Int? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
     ) : InlineQueryResult("voice")
 
     @Serializable
@@ -168,7 +171,7 @@ sealed class InlineQueryResult(val type: String) {
         val mimeType: String,
         val description: String? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
         val thumbnailUrl: String? = null,
         val thumbnailWidth: Int? = null,
         val thumbnailHeight: Int? = null,
@@ -186,7 +189,7 @@ sealed class InlineQueryResult(val type: String) {
         val heading: Int? = null,
         val proximityAlertRadius: Int? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
         val thumbnailUrl: String? = null,
         val thumbnailWidth: Int? = null,
         val thumbnailHeight: Int? = null,
@@ -205,7 +208,7 @@ sealed class InlineQueryResult(val type: String) {
         val googlePlaceId: String? = null,
         val googlePlaceType: String? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
         val thumbUrl: String? = null,
         val thumbWidth: Int? = null,
         val thumbHeight: Int? = null,
@@ -222,7 +225,7 @@ sealed class InlineQueryResult(val type: String) {
         val userId: Long? = null,
         val vcard: String? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
         val thumbnailUrl: String? = null,
         val thumbnailWidth: Int? = null,
         val thumbnailHeight: Int? = null,
@@ -247,7 +250,7 @@ sealed class InlineQueryResult(val type: String) {
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
         val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("photo")
 
@@ -261,7 +264,7 @@ sealed class InlineQueryResult(val type: String) {
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
         val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("gif")
 
@@ -275,7 +278,7 @@ sealed class InlineQueryResult(val type: String) {
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
         val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("mpeg4_gif")
 
@@ -285,7 +288,7 @@ sealed class InlineQueryResult(val type: String) {
         val id: String,
         val stickerFileId: String,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
     ) : InlineQueryResult("sticker")
 
     @Serializable
@@ -299,7 +302,7 @@ sealed class InlineQueryResult(val type: String) {
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
     ) : InlineQueryResult("document")
 
     @Serializable
@@ -313,7 +316,7 @@ sealed class InlineQueryResult(val type: String) {
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
         val showCaptionAboveMedia: Boolean? = null,
     ) : InlineQueryResult("video")
 
@@ -327,7 +330,7 @@ sealed class InlineQueryResult(val type: String) {
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
     ) : InlineQueryResult("voice")
 
     @Serializable
@@ -339,6 +342,6 @@ sealed class InlineQueryResult(val type: String) {
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
-        val inputMessageContent: InputMessageContent? = null,
+        val inputMessageContent: @Contextual InputMessageContent? = null,
     ) : InlineQueryResult("audio")
 }

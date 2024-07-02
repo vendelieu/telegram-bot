@@ -25,14 +25,15 @@ class ReplaceStickerInSetAction(
         parameters["user_id"] = userId.toJsonElement()
         parameters["name"] = name.toJsonElement()
         parameters["old_sticker"] = oldSticker.toJsonElement()
-        parameters["sticker"] = sticker.also {
-            if (it.sticker is ImplicitFile.InpFile) {
-                val inpSticker = it.sticker as ImplicitFile.InpFile
-                multipartData += inpSticker.file.toPartData(inpSticker.file.fileName)
+        parameters["sticker"] = sticker
+            .also {
+                if (it.sticker is ImplicitFile.InpFile) {
+                    val inpSticker = it.sticker as ImplicitFile.InpFile
+                    multipartData += inpSticker.file.toPartData(inpSticker.file.fileName)
 
-                it.sticker = "attach://${inpSticker.file.fileName}".toImplicitFile()
-            }
-        }.encodeWith(InputSticker.serializer())
+                    it.sticker = "attach://${inpSticker.file.fileName}".toImplicitFile()
+                }
+            }.encodeWith(InputSticker.serializer())
     }
 }
 

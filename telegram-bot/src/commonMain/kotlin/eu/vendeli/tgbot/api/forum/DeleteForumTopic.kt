@@ -7,7 +7,9 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class DeleteForumTopicAction(messageThreadId: Int) : Action<Boolean>() {
+class DeleteForumTopicAction(
+    messageThreadId: Int,
+) : Action<Boolean>() {
     override val method = TgMethod("deleteForumTopic")
     override val returnType = getReturnType()
 

@@ -21,9 +21,10 @@ class ChatBanMethodsTest : BotTestContext() {
             1000L.asUser(),
             CUR_INSTANT.plus(100.milliseconds),
             true,
-        ).sendReturning(CHAT_ID, bot).onFailure {
-            it.description shouldContain "PARTICIPANT_ID_INVALID"
-        }.shouldBeNull()
+        ).sendReturning(CHAT_ID, bot)
+            .onFailure {
+                it.description shouldContain "PARTICIPANT_ID_INVALID"
+            }.shouldBeNull()
     }
 
     @Test
@@ -37,17 +38,23 @@ class ChatBanMethodsTest : BotTestContext() {
 
     @Test
     suspend fun `ban unban sender chat chat member method test`() {
-        banChatSenderChat(1000).sendReturning(CHAT_ID, bot).onFailure {
-            it.description shouldContain "PARTICIPANT_ID_INVALID"
-        }.shouldBeNull()
+        banChatSenderChat(1000)
+            .sendReturning(CHAT_ID, bot)
+            .onFailure {
+                it.description shouldContain "PARTICIPANT_ID_INVALID"
+            }.shouldBeNull()
 
-        banChatSenderChat(1000L.asUser()).sendReturning(CHAT_ID, bot).onFailure {
-            it.description shouldContain "PARTICIPANT_ID_INVALID"
-        }.shouldBeNull()
+        banChatSenderChat(1000L.asUser())
+            .sendReturning(CHAT_ID, bot)
+            .onFailure {
+                it.description shouldContain "PARTICIPANT_ID_INVALID"
+            }.shouldBeNull()
 
-        banChatSenderChat(1000L.asChat()).sendReturning(CHAT_ID, bot).onFailure {
-            it.description shouldContain "PARTICIPANT_ID_INVALID"
-        }.shouldBeNull()
+        banChatSenderChat(1000L.asChat())
+            .sendReturning(CHAT_ID, bot)
+            .onFailure {
+                it.description shouldContain "PARTICIPANT_ID_INVALID"
+            }.shouldBeNull()
     }
 
     @Test

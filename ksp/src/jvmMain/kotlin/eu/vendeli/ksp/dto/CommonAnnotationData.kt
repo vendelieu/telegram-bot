@@ -7,8 +7,12 @@ import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 sealed class CommonAnnotationValue {
     abstract val value: Any
 
-    class String(override val value: kotlin.String) : CommonAnnotationValue()
-    class Regex(override val value: kotlin.text.Regex) : CommonAnnotationValue()
+    class String(
+        override val value: kotlin.String,
+    ) : CommonAnnotationValue()
+    class Regex(
+        override val value: kotlin.text.Regex,
+    ) : CommonAnnotationValue()
 
     internal fun toCommonMatcher(filter: kotlin.String, scope: List<UpdateType>) = when (this) {
         is String -> "CommonMatcher.String(value = \"$value\", filter = $filter::class, setOf(${scope.joinToString()}))"

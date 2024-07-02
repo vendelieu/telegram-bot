@@ -8,4 +8,5 @@ import kotlinx.serialization.Serializable
 class EditMessageOptions(
     override var linkPreviewOptions: LinkPreviewOptions? = null,
     override var parseMode: ParseMode? = null,
-) : OptionsParseMode, LinkPreviewProp
+) : OptionsParseMode,
+    LinkPreviewProp

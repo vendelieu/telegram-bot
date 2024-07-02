@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types
 
 import eu.vendeli.tgbot.types.media.Document
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -14,11 +15,18 @@ import kotlinx.serialization.Serializable
  *
  */
 @Serializable
-sealed class BackgroundType(val type: String) {
+sealed class BackgroundType(
+    val type: String,
+) {
     @Serializable
-    data class Fill(val fill: BackgroundFill, val darkThemeDimming: Int? = null) : BackgroundType("fill")
+    @SerialName("fill")
+    data class Fill(
+        val fill: BackgroundFill,
+        val darkThemeDimming: Int? = null,
+    ) : BackgroundType("fill")
 
     @Serializable
+    @SerialName("wallpaper")
     data class Wallpaper(
         val document: Document,
         val darkThemeDimming: Int? = null,
@@ -27,6 +35,7 @@ sealed class BackgroundType(val type: String) {
     ) : BackgroundType("wallpaper")
 
     @Serializable
+    @SerialName("pattern")
     data class Pattern(
         val document: Document,
         val fill: BackgroundFill,
@@ -36,5 +45,8 @@ sealed class BackgroundType(val type: String) {
     ) : BackgroundType("pattern")
 
     @Serializable
-    data class ChatTheme(val themeName: String) : BackgroundType("chat_theme")
+    @SerialName("chat_theme")
+    data class ChatTheme(
+        val themeName: String,
+    ) : BackgroundType("chat_theme")
 }

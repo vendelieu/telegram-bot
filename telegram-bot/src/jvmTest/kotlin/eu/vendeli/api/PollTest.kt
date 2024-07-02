@@ -32,12 +32,14 @@ class PollTest : BotTestContext() {
                 option { "test2" }
             },
         ).forEach { action ->
-            val result = action.options {
-                type = PollType.Quiz
-                openPeriod = 2.minutes
-                correctOptionId = 1
-                isAnonymous = false
-            }.sendReturning(TG_ID, bot).shouldSuccess()
+            val result = action
+                .options {
+                    type = PollType.Quiz
+                    openPeriod = 2.minutes
+                    correctOptionId = 1
+                    isAnonymous = false
+                }.sendReturning(TG_ID, bot)
+                .shouldSuccess()
 
             with(result.poll) {
                 shouldNotBeNull()
@@ -53,12 +55,13 @@ class PollTest : BotTestContext() {
 
     @Test
     suspend fun `close poll method test`() {
-        val poll = poll("Test", InputPollOption("test1"), InputPollOption("test1")).options {
-            type = PollType.Quiz
-            openPeriod = 565.seconds
-            correctOptionId = 1
-            isAnonymous = false
-        }.sendReturning(TG_ID, bot)
+        val poll = poll("Test", InputPollOption("test1"), InputPollOption("test1"))
+            .options {
+                type = PollType.Quiz
+                openPeriod = 565.seconds
+                correctOptionId = 1
+                isAnonymous = false
+            }.sendReturning(TG_ID, bot)
 
         poll.getOrNull().shouldNotBeNull().poll.shouldNotBeNull().run {
             isClosed shouldBe false

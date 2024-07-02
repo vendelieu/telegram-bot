@@ -13,4 +13,6 @@ data class VoiceOptions(
     override var replyParameters: ReplyParameters? = null,
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
-) : OptionsCommon, OptionsParseMode
+) : OptionsCommon,
+    OptionsParseMode,
+    MessageEffectIdProp

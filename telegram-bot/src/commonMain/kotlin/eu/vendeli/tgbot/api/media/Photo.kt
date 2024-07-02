@@ -16,8 +16,9 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 
-class SendPhotoAction(photo: ImplicitFile) :
-    MediaAction<Message>(),
+class SendPhotoAction(
+    photo: ImplicitFile,
+) : MediaAction<Message>(),
     BusinessActionExt<Message>,
     OptionsFeature<SendPhotoAction, PhotoOptions>,
     MarkupFeature<SendPhotoAction>,

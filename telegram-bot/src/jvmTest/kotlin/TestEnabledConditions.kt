@@ -6,3 +6,8 @@ class ChatTestingOnlyCondition : EnabledCondition {
     override fun enabled(kclass: KClass<out Spec>): Boolean =
         System.getenv("CHAT_ID") != null
 }
+
+class ChannelTestingOnlyCondition : EnabledCondition {
+    override fun enabled(kclass: KClass<out Spec>): Boolean =
+        System.getenv("CHANNEL_ID") != null
+}

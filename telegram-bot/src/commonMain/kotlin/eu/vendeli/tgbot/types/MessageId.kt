@@ -10,4 +10,6 @@ import kotlinx.serialization.Serializable
  * @property messageId Unique message identifier
  */
 @Serializable
-data class MessageId(val messageId: Long) : MultipleResponse
+data class MessageId(
+    val messageId: Long,
+) : MultipleResponse

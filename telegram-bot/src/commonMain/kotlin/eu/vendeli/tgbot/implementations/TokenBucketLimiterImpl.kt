@@ -48,7 +48,8 @@ class TokenBucketLimiterImpl : RateLimitMechanism {
         val putResult = state[key]?.let { null } ?: state.put(key, AtomicReference(newStateValue))
 
         // Check if an item was added or updated after currentState read
-        if ((currentState == null && putResult != null) || currentState?.compareAndSet(
+        if ((currentState == null && putResult != null) ||
+            currentState?.compareAndSet(
                 currentStateValue!!,
                 newStateValue,
             ) == false

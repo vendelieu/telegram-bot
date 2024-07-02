@@ -19,7 +19,8 @@ class CreateInvoiceLinkAction(
     providerToken: String,
     currency: Currency,
     prices: List<LabeledPrice>,
-) : SimpleAction<String>(), OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions> {
+) : SimpleAction<String>(),
+    OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions> {
     override val options = CreateInvoiceLinkOptions()
     override val method = TgMethod("createInvoiceLink")
     override val returnType = getReturnType()

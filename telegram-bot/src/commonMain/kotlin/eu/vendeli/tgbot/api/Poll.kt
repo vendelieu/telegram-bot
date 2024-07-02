@@ -15,8 +15,10 @@ import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class SendPollAction(question: String, pollOptions: List<InputPollOption>) :
-    Action<Message>(),
+class SendPollAction(
+    question: String,
+    pollOptions: List<InputPollOption>,
+) : Action<Message>(),
     OptionsFeature<SendPollAction, PollOptions>,
     EntitiesFeature<SendPollAction>,
     MarkupFeature<SendPollAction> {

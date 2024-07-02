@@ -1,3 +1,5 @@
+@file:Suppress("MatchingDeclarationName", "ktlint:standard:class-signature")
+
 package eu.vendeli.tgbot.api.message
 
 import eu.vendeli.tgbot.interfaces.Action

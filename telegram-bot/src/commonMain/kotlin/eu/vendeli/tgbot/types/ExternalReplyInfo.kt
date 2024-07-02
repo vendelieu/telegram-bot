@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.types.game.Game
 import eu.vendeli.tgbot.types.media.Animation
 import eu.vendeli.tgbot.types.media.Audio
 import eu.vendeli.tgbot.types.media.Document
+import eu.vendeli.tgbot.types.media.PaidMediaInfo
 import eu.vendeli.tgbot.types.media.PhotoSize
 import eu.vendeli.tgbot.types.media.Sticker
 import eu.vendeli.tgbot.types.media.Story
@@ -27,6 +28,7 @@ import kotlinx.serialization.Serializable
  * @property animation Optional. Message is an animation, information about the animation
  * @property audio Optional. Message is an audio file, information about the file
  * @property document Optional. Message is a general file, information about the file
+ * @property paidMedia Optional. Message contains paid media; information about the paid media
  * @property photo Optional. Message is a photo, available sizes of the photo
  * @property sticker Optional. Message is a sticker, information about the sticker
  * @property story Optional. Message is a forwarded story
@@ -53,6 +55,7 @@ data class ExternalReplyInfo(
     val animation: Animation? = null,
     val audio: Audio? = null,
     val document: Document? = null,
+    val paidMedia: PaidMediaInfo? = null,
     val photo: List<PhotoSize>? = null,
     val sticker: Sticker? = null,
     val story: Story? = null,

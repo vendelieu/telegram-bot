@@ -1,5 +1,13 @@
 # Telegram-bot (KtGram) changelog
 
+## 6.2.0
+
+* Covered 7.6 telegram api.
+* Added `onInit` hook in spring-boot starter.
+* Fixed a rare issue with sealed structures serialization.
+* Changed parameter for source update in `ProcessedUpdate` from `update` to `origin`, old one is still remains but
+  deprecated.
+
 ### 6.1.1
 
 * Fix `String` always non-nullability issue in ksp processor.

@@ -4,7 +4,9 @@ import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.types.internal.LogLvl
 import org.slf4j.LoggerFactory
 
-internal open class LogbackLogger(id: String) : Logger(id) {
+internal open class LogbackLogger(
+    id: String,
+) : Logger(id) {
     private val logger = LoggerFactory.getLogger(id)
 
     private var lvl = Level.INFO
@@ -25,27 +27,29 @@ internal open class LogbackLogger(id: String) : Logger(id) {
     }
 
     override fun info(message: () -> String) {
-        if (lvl.isGreaterOrEqual(Level.INFO)) logger.info(message())
+        logger.info(message())
     }
 
     override fun warn(message: () -> String) {
-        if (lvl.isGreaterOrEqual(Level.WARN)) logger.warn(message())
+        logger.warn(message())
     }
 
     override fun debug(message: () -> String) {
-        if (lvl.isGreaterOrEqual(Level.DEBUG)) logger.debug(message())
+        logger.debug(message())
     }
 
     override fun trace(message: () -> String) {
-        if (lvl.isGreaterOrEqual(Level.TRACE)) logger.trace(message())
+        logger.trace(message())
     }
 
     override fun error(throwable: Throwable?, message: () -> String) {
-        if (lvl.isGreaterOrEqual(Level.ERROR)) logger.error(message(), throwable)
+        logger.error(message(), throwable)
     }
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-internal actual open class Logging actual constructor(tag: String) {
+internal actual open class Logging actual constructor(
+    tag: String,
+) {
     actual val logger: Logger = LogbackLogger(tag)
 }

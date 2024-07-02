@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  * [Api reference](https://core.telegram.org/bots/api#shippingquery)
  * @property id Unique query identifier
  * @property from User who sent the query
- * @property invoicePayload Bot specified invoice payload
+ * @property invoicePayload Bot-specified invoice payload
  * @property shippingAddress User specified shipping address
  */
 @Serializable

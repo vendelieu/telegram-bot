@@ -17,7 +17,9 @@ import kotlinx.serialization.Serializable
  *
  */
 @Serializable
-sealed class MessageOrigin(val type: String) {
+sealed class MessageOrigin(
+    val type: String,
+) {
     @Serializable(InstantSerializer::class)
     abstract val date: Instant
     open val from: User?

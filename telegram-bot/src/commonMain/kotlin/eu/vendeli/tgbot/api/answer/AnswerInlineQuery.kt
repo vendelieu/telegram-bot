@@ -14,8 +14,10 @@ import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.serialization.builtins.ListSerializer
 
-class AnswerInlineQueryAction(inlineQueryId: String, results: List<InlineQueryResult>) :
-    SimpleAction<Boolean>(),
+class AnswerInlineQueryAction(
+    inlineQueryId: String,
+    results: List<InlineQueryResult>,
+) : SimpleAction<Boolean>(),
     OptionsFeature<AnswerInlineQueryAction, AnswerInlineQueryOptions> {
     override val method = TgMethod("answerInlineQuery")
     override val returnType = getReturnType()

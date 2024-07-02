@@ -7,7 +7,9 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class ReopenForumTopicAction(messageThreadId: Int) : Action<Boolean>() {
+class ReopenForumTopicAction(
+    messageThreadId: Int,
+) : Action<Boolean>() {
     override val method = TgMethod("reopenForumTopic")
     override val returnType = getReturnType()
 

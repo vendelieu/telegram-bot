@@ -17,7 +17,9 @@ import kotlinx.serialization.Serializable
  *
  */
 @Serializable
-sealed class BotCommandScope(val type: String) {
+sealed class BotCommandScope(
+    val type: String,
+) {
     @Serializable
     @SerialName("default")
     class Default : BotCommandScope(type = "default")
@@ -36,13 +38,20 @@ sealed class BotCommandScope(val type: String) {
 
     @Serializable
     @SerialName("chat")
-    data class ChatScope(val chatId: Long) : BotCommandScope(type = "chat")
+    data class ChatScope(
+        val chatId: Long,
+    ) : BotCommandScope(type = "chat")
 
     @Serializable
     @SerialName("chat_administrators")
-    data class ChatAdministrators(val chatId: Long) : BotCommandScope(type = "chat_administrators")
+    data class ChatAdministrators(
+        val chatId: Long,
+    ) : BotCommandScope(type = "chat_administrators")
 
     @Serializable
     @SerialName("chat_member")
-    data class ChatMember(val chatId: Long, val userId: Long) : BotCommandScope(type = "chat_member")
+    data class ChatMember(
+        val chatId: Long,
+        val userId: Long,
+    ) : BotCommandScope(type = "chat_member")
 }

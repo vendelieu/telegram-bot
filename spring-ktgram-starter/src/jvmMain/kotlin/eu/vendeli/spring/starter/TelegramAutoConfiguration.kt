@@ -33,6 +33,7 @@ open class TelegramAutoConfiguration(
 
         if (botCfg?.autostartLongPolling != false && config.autoStartPolling) {
             GlobalScope.launch(Dispatchers.IO) {
+                botCfg?.onInit()
                 launch(Dispatchers.IO) {
                     botInstance.handleUpdates(botCfg?.allowedUpdates)
                 }

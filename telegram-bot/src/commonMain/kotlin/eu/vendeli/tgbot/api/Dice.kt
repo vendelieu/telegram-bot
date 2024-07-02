@@ -12,8 +12,9 @@ import eu.vendeli.tgbot.types.internal.options.DiceOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class SendDiceAction(emoji: String? = null) :
-    Action<Message>(),
+class SendDiceAction(
+    emoji: String? = null,
+) : Action<Message>(),
     BusinessActionExt<Message>,
     OptionsFeature<SendDiceAction, DiceOptions>,
     MarkupFeature<SendDiceAction> {

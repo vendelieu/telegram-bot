@@ -23,14 +23,15 @@ class AddStickerToSetAction(
 
     init {
         parameters["name"] = name.toJsonElement()
-        parameters["sticker"] = input.also {
-            if (it.sticker is ImplicitFile.InpFile) {
-                val inpSticker = it.sticker as ImplicitFile.InpFile
-                multipartData += inpSticker.file.toPartData(inpSticker.file.fileName)
+        parameters["sticker"] = input
+            .also {
+                if (it.sticker is ImplicitFile.InpFile) {
+                    val inpSticker = it.sticker as ImplicitFile.InpFile
+                    multipartData += inpSticker.file.toPartData(inpSticker.file.fileName)
 
-                it.sticker = "attach://${inpSticker.file.fileName}".toImplicitFile()
-            }
-        }.encodeWith(InputSticker.serializer())
+                    it.sticker = "attach://${inpSticker.file.fileName}".toImplicitFile()
+                }
+            }.encodeWith(InputSticker.serializer())
     }
 }
 

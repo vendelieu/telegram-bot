@@ -40,7 +40,10 @@ interface MarkupFeature<Return : TgAction<*>> : Feature {
      * @return Action[Return] itself.
      */
     fun inlineKeyboardMarkup(block: InlineKeyboardMarkupBuilder.() -> Unit): Return =
-        markup(eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup(block))
+        markup(
+            eu.vendeli.tgbot.utils.builders
+                .inlineKeyboardMarkup(block),
+        )
 
     /**
      * Add ReplyKeyboard markup to the [TgAction]<[Return]>.
@@ -49,7 +52,10 @@ interface MarkupFeature<Return : TgAction<*>> : Feature {
      * @return Action[Return] itself.
      */
     fun replyKeyboardMarkup(block: ReplyKeyboardMarkupBuilder.() -> Unit): Return =
-        markup(eu.vendeli.tgbot.utils.builders.replyKeyboardMarkup(block))
+        markup(
+            eu.vendeli.tgbot.utils.builders
+                .replyKeyboardMarkup(block),
+        )
 
     /**
      * Add ForceReply markup to the [TgAction]<[Return]>.

@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.utils.serde.primitiveOrNull
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.MultiPartFormDataContent
 import io.ktor.client.request.post
@@ -25,14 +26,14 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.JsonUnquotedLiteral
 
 @Suppress("NOTHING_TO_INLINE")
-private inline fun buildHeadersForItem(name: String) = HeadersBuilder().apply {
-    append(HttpHeaders.ContentType, ContentType.Application.Json)
-    append(HttpHeaders.ContentDisposition, "form-data; name=${name.escapeIfNeeded()}")
-}.build()
+private inline fun buildHeadersForItem(name: String) = HeadersBuilder()
+    .apply {
+        append(HttpHeaders.ContentType, ContentType.Application.Json)
+        append(HttpHeaders.ContentDisposition, "form-data; name=${name.escapeIfNeeded()}")
+    }.build()
 
 @Suppress("OPT_IN_USAGE")
 private fun HttpRequestBuilder.formReqBody(
@@ -42,7 +43,7 @@ private fun HttpRequestBuilder.formReqBody(
     if (data.isEmpty() && multipartData.isEmpty()) return
     if (multipartData.isNotEmpty()) {
         val dataParts = data.also { logger.debug { "RequestBody: $it" } }.map {
-            val item = (it.value as? JsonPrimitive)?.let { v ->
+            val item = it.value.primitiveOrNull?.let { v ->
                 if (v.isString) JsonUnquotedLiteral(v.content) else v
             } ?: it.value
 
@@ -78,9 +79,10 @@ internal suspend inline fun TelegramBot.makeSilentRequest(
     method: TgMethod,
     data: Map<String, JsonElement>,
     multipartData: List<PartData.BinaryItem>,
-) = httpClient.post(method.getUrl(config.apiHost, token)) {
-    formReqBody(data, multipartData)
-}.logFailure()
+) = httpClient
+    .post(method.getUrl(config.apiHost, token)) {
+        formReqBody(data, multipartData)
+    }.logFailure()
 
 internal suspend inline fun HttpResponse.logFailure(): HttpResponse {
     if (!status.isSuccess()) {

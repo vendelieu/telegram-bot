@@ -10,7 +10,9 @@ import eu.vendeli.tgbot.utils.getReturnType
 import kotlinx.serialization.builtins.serializer
 import kotlin.jvm.JvmName
 
-class GetCustomEmojiStickersAction(customEmojiIds: List<String>) : SimpleAction<List<Sticker>>() {
+class GetCustomEmojiStickersAction(
+    customEmojiIds: List<String>,
+) : SimpleAction<List<Sticker>>() {
     override val method = TgMethod("getCustomEmojiStickers")
     override val returnType = getReturnType()
 

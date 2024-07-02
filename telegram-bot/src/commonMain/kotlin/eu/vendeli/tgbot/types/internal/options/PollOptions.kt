@@ -31,4 +31,5 @@ data class PollOptions(
     override var protectContent: Boolean? = null,
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
-) : OptionsCommon
+) : OptionsCommon,
+    MessageEffectIdProp

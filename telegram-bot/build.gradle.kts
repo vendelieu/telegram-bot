@@ -1,4 +1,3 @@
-
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -123,7 +122,9 @@ tasks {
             named("commonMain") { sourceRoots.setFrom(project.projectDir.resolve("src/commonMain/kotlin")) }
             named("jvmMain") { sourceRoots.setFrom(project.projectDir.resolve("src/jvmMain/kotlin")) }
             named("jsMain") { sourceRoots.setFrom(project.projectDir.resolve("src/jsMain/kotlin")) }
-            named("nativeMain") { sourceRoots.setFrom(project.projectDir.resolve("src/nativeMain/kotlin")) }
+            if ("nativeMain" in names) named("nativeMain") {
+                sourceRoots.setFrom(project.projectDir.resolve("src/nativeMain/kotlin"))
+            }
             collectionSchema.elements.forEach { _ -> moduleName.set("Telegram Bot") }
         }
         pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {

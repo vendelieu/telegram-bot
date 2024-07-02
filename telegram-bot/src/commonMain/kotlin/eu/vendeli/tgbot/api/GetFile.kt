@@ -8,7 +8,9 @@ import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class GetFileAction(fileId: String) : SimpleAction<File>() {
+class GetFileAction(
+    fileId: String,
+) : SimpleAction<File>() {
     override val method = TgMethod("getFile")
     override val returnType = getReturnType()
 

@@ -6,7 +6,9 @@ import co.touchlab.kermit.mutableLoggerConfigInit
 import co.touchlab.kermit.platformLogWriter
 import eu.vendeli.tgbot.types.internal.LogLvl
 
-internal open class KermitLogger(id: String) : Logger(id) {
+internal open class KermitLogger(
+    id: String,
+) : Logger(id) {
     private val logger = co.touchlab.kermit.Logger(
         mutableLoggerConfigInit(platformLogWriter(DefaultFormatter), minSeverity = Severity.Info),
         id,
@@ -36,6 +38,8 @@ internal open class KermitLogger(id: String) : Logger(id) {
 }
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-internal actual open class Logging actual constructor(tag: String) {
+internal actual open class Logging actual constructor(
+    tag: String,
+) {
     actual val logger: Logger = KermitLogger(tag)
 }

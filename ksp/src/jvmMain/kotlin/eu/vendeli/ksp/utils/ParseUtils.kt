@@ -81,10 +81,8 @@ object CommonAnnotationHandler {
         }
     }
 
-    fun collect(): List<CommonAnnotationData> {
-        return commonAnnotations.sortedBy { it.priority }.also {
-            commonAnnotations = mutableListOf()
-        }
+    fun collect(): List<CommonAnnotationData> = commonAnnotations.sortedBy { it.priority }.also {
+        commonAnnotations = mutableListOf()
     }
 }
 

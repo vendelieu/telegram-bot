@@ -8,4 +8,6 @@ package eu.vendeli.tgbot.annotations
  */
 @Target(AnnotationTarget.VALUE_PARAMETER)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class ParamMapping(val name: String)
+annotation class ParamMapping(
+    val name: String,
+)
