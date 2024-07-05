@@ -54,7 +54,7 @@ inline fun sendPaidMedia(starCount: Int, media: List<InputPaidMedia>) = SendPaid
 
 @Suppress("NOTHING_TO_INLINE")
 fun sendPaidMedia(starCount: Int, media: ListingBuilder<InputPaidMedia>.() -> Unit) =
-    SendPaidMediaAction(starCount, ListingBuilder.build(media))
+    sendPaidMedia(starCount, ListingBuilder.build(media))
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun sendPaidMedia(starCount: Int, vararg media: InputPaidMedia) = SendPaidMediaAction(starCount, media.asList())
+inline fun sendPaidMedia(starCount: Int, vararg media: InputPaidMedia) = sendPaidMedia(starCount, media.asList())
