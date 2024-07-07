@@ -31,6 +31,7 @@ import eu.vendeli.tgbot.types.media.VideoNote
 import eu.vendeli.tgbot.types.media.Voice
 import eu.vendeli.tgbot.types.passport.PassportData
 import eu.vendeli.tgbot.types.payment.Invoice
+import eu.vendeli.tgbot.types.payment.RefundedPayment
 import eu.vendeli.tgbot.types.payment.SuccessfulPayment
 import eu.vendeli.tgbot.types.poll.Poll
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
@@ -189,6 +190,7 @@ data class Message(
     val pinnedMessage: MaybeInaccessibleMessage? = null,
     val invoice: Invoice? = null,
     val successfulPayment: SuccessfulPayment? = null,
+    val refundedPayment: RefundedPayment? = null,
     val usersShared: UsersShared? = null,
     val chatShared: ChatShared? = null,
     val connectedWebsite: String? = null,

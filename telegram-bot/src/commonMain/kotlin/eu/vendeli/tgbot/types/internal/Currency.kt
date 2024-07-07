@@ -88,4 +88,5 @@ enum class Currency {
     VND,
     YER,
     ZAR,
+    XTR
 }
