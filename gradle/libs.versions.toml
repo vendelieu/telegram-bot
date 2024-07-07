@@ -21,7 +21,7 @@ sslcontext = "8.3.6"
 spring = "3.3.1"
 
 ksp = "2.0.0-1.0.22"
-poet = "1.17.0"
+poet = "1.18.0"
 
 binvalid = "0.14.0"
 
