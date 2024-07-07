@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) changelog
 
+## 6.3.0
+
+* Covered 7.7 api.
+
 ## 6.2.0
 
 * Covered 7.6 telegram api.
