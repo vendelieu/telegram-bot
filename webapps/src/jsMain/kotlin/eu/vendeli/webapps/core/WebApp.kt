@@ -29,11 +29,14 @@ external class WebApp {
     val viewportHeight: Float
     val viewportStableHeight: Float
     val isClosingConfirmationEnabled: Boolean
+    val isVerticalSwipesEnabled: Boolean
 
     fun setHeaderColor(color: String)
     fun setBackgroundColor(color: String)
     fun enableClosingConfirmation()
     fun disableClosingConfirmation()
+    fun enableVerticalSwipes()
+    fun disableVerticalSwipes()
 
     fun showPopup(params: PopupParams, callback: ClosePopupCallback? = definedExternally)
     fun showAlert(message: String, callback: AlertCallback? = definedExternally)
