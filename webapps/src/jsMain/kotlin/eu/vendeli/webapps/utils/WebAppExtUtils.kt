@@ -65,6 +65,10 @@ fun WebApp.onEvent(type: EventType.SettingsButtonClicked, eventHandler: EventHan
     onEvent(type.name, eventHandler)
 }
 
+fun WebApp.onEvent(type: EventType.ScanQrPopupClosed, eventHandler: EventHandler.NoParams) {
+    onEvent(type.name, eventHandler)
+}
+
 fun WebApp.showPopup(
     message: String,
     title: String?,

@@ -12,4 +12,5 @@ sealed class EventType(val name: String) {
     data object ClipboardTextReceived : EventType("clipboardTextReceived")
     data object WriteAccessRequested : EventType("writeAccessRequested")
     data object ContactRequested : EventType("contactRequested")
+    data object ScanQrPopupClosed : EventType("scanQrPopupClosed")
 }
