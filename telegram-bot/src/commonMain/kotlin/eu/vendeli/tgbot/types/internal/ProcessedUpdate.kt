@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.internal
 
+import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.types.CallbackQuery
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.MessageReactionCountUpdated
@@ -35,7 +36,7 @@ sealed class ProcessedUpdate(
     open val updateId: Int,
     open val origin: Update,
     internal val type: UpdateType,
-) : TextReference {
+) : TextReference, MultipleResponse {
     @Deprecated(
         "Changed parameter name to avoid tautology",
         replaceWith = ReplaceWith("origin"),
