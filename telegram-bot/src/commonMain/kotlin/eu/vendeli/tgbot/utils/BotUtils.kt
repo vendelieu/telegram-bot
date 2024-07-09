@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.api.botactions.getUpdates
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.interfaces.Filter
@@ -163,6 +164,7 @@ internal inline fun <T> Any?.cast() = this as T
  */
 fun <T : ChainLink> InputListener.setChain(user: User, firstLink: T) = set(user, firstLink::class.fullName)
 
+@InternalApi
 @Suppress("ObjectPropertyName", "ktlint:standard:backing-property-naming")
 expect val _OperatingActivities: Map<String, List<Any?>>
 
