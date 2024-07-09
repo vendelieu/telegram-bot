@@ -23,7 +23,7 @@ spring = "3.3.1"
 ksp = "2.0.0-1.0.22"
 poet = "1.18.0"
 
-binvalid = "0.15.0"
+binvalid = "0.15.1"
 
 [libraries]
 # ktor
