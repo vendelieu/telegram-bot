@@ -1,8 +1,8 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.FailedUpdate
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.utils.DEFAULT_HANDLING_BEHAVIOUR
@@ -30,7 +30,7 @@ abstract class TgUpdateHandler internal constructor(
     internal val bot: TelegramBot,
 ) {
     private var handlingBehaviour: HandlingBehaviourBlock = DEFAULT_HANDLING_BEHAVIOUR
-    private val updatesChannel = Channel<Update>()
+    private val updatesChannel = Channel<ProcessedUpdate>()
     internal val handlerScope = bot.config.updatesListener.run {
         CoroutineScope(dispatcher + CoroutineName("TgBot"))
     }
@@ -113,7 +113,7 @@ abstract class TgUpdateHandler internal constructor(
     suspend fun parseAndHandle(update: String) {
         logger.debug { "Trying to parse update from string - $update" }
         serde
-            .runCatching { decodeFromString(Update.serializer(), update) }
+            .runCatching { decodeFromString(ProcessedUpdate.serializer(), update) }
             .onFailure {
                 logger.error(it) { "error during the update parsing process." }
             }.onSuccess { logger.info { "Successfully parsed update to $it" } }
@@ -131,7 +131,7 @@ abstract class TgUpdateHandler internal constructor(
      *
      * @param update
      */
-    abstract suspend fun handle(update: Update)
+    abstract suspend fun handle(update: ProcessedUpdate)
 
     /**
      * Functional handling dsl
@@ -139,7 +139,7 @@ abstract class TgUpdateHandler internal constructor(
      * @param update
      * @param block
      */
-    suspend fun handle(update: Update, block: FunctionalHandlingBlock) {
+    suspend fun handle(update: ProcessedUpdate, block: FunctionalHandlingBlock) {
         logger.debug { "Functionally handling update: $update" }
         functionalHandlingBehavior.apply {
             block()

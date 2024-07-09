@@ -1,7 +1,6 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivitiesData
 import eu.vendeli.tgbot.types.internal.FailedUpdate
@@ -12,7 +11,6 @@ import eu.vendeli.tgbot.utils.InvocationLambda
 import eu.vendeli.tgbot.utils.checkIsGuarded
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.parseCommand
-import eu.vendeli.tgbot.utils.processUpdate
 
 /**
  * Processor for processing actions built via ksp code generation.
@@ -26,7 +24,7 @@ class CodegenUpdateHandler internal constructor(
 ) : TgUpdateHandler(bot) {
     private val activities by lazy { ActivitiesData(commandsPackage) }
 
-    override suspend fun handle(update: Update): Unit = update.processUpdate().run {
+    override suspend fun handle(update: ProcessedUpdate): Unit = update.run {
         logger.debug { "Handling update: $update" }
         val user = userOrNull
         // check general user limits
@@ -83,7 +81,7 @@ class CodegenUpdateHandler internal constructor(
         }
     }
 
-    private suspend fun Invocable.invokeCatching(pUpdate: ProcessedUpdate, user: User?, params: Map<String, String>) {
+    private suspend fun Invocable.invokeCatching(update: ProcessedUpdate, user: User?, params: Map<String, String>) {
         bot.chatData.run {
             if (user == null) return@run
             // check for user id nullability
@@ -94,35 +92,35 @@ class CodegenUpdateHandler internal constructor(
         }
         first
             .runCatching {
-                invoke(bot.config.classManager, pUpdate, user, bot, params)
+                invoke(bot.config.classManager, update, user, bot, params)
             }.onFailure {
                 logger.error(
                     it,
-                ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $pUpdate" }
-                caughtExceptions.send(FailedUpdate(it.cause ?: it, pUpdate.origin))
+                ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $update" }
+                caughtExceptions.send(FailedUpdate(it, update))
             }.onSuccess {
                 logger.info {
-                    "Handled update#${pUpdate.updateId} to method ${second.qualifier + "::" + second.function}"
+                    "Handled update#${update.updateId} to method ${second.qualifier + "::" + second.function}"
                 }
             }
     }
 
     private suspend fun InvocationLambda.invokeCatching(
-        pUpdate: ProcessedUpdate,
+        update: ProcessedUpdate,
         params: Map<String, String>,
         isTypeUpdate: Boolean = false,
     ) = runCatching {
-        invoke(bot.config.classManager, pUpdate, pUpdate.userOrNull, bot, params)
+        invoke(bot.config.classManager, update, update.userOrNull, bot, params)
     }.onFailure {
         logger.error(it) {
-            (if (isTypeUpdate) "UpdateTypeHandler(${pUpdate.type})" else "UnprocessedHandler") +
-                " invocation error at handling update: $pUpdate"
+            (if (isTypeUpdate) "UpdateTypeHandler(${update.type})" else "UnprocessedHandler") +
+                " invocation error at handling update: $update"
         }
-        caughtExceptions.send(FailedUpdate(it.cause ?: it, pUpdate.origin))
+        caughtExceptions.send(FailedUpdate(it, update))
     }.onSuccess {
         logger.info {
-            "Handled update#${pUpdate.updateId} to " +
-                if (isTypeUpdate) "UpdateTypeHandler(${pUpdate.type})" else "UnprocessedHandler"
+            "Handled update#${update.updateId} to " +
+                if (isTypeUpdate) "UpdateTypeHandler(${update.type})" else "UnprocessedHandler"
         }
     }
 }

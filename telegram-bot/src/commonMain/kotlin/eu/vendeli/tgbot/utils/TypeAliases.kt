@@ -4,7 +4,6 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.interfaces.ClassManager
-import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivityCtx
 import eu.vendeli.tgbot.types.internal.BusinessConnectionUpdate
@@ -64,7 +63,7 @@ typealias OnBusinessMessageActivity = suspend ActivityCtx<BusinessMessageUpdate>
 typealias OnEditedBusinessMessageActivity = suspend ActivityCtx<EditedBusinessMessageUpdate>.() -> Unit
 typealias OnDeletedBusinessMessagesActivity = suspend ActivityCtx<DeletedBusinessMessagesUpdate>.() -> Unit
 
-typealias WhenNotHandledActivity = suspend Update.() -> Unit
+typealias WhenNotHandledActivity = suspend ProcessedUpdate.() -> Unit
 typealias OnCommandActivity = suspend CommandContext<ProcessedUpdate>.() -> Unit
 typealias OnInputActivity = suspend ActivityCtx<ProcessedUpdate>.() -> Unit
 
@@ -74,7 +73,7 @@ internal typealias CommandActivities = MutableMap<Pair<String, UpdateType>, Func
 internal typealias RegexCommandActivities = MutableMap<Regex, FunctionalInvocation>
 internal typealias CommonActivities = MutableMap<CommonMatcher, FunctionalInvocation>
 
-typealias HandlingBehaviourBlock = suspend TgUpdateHandler.(Update) -> Unit
+typealias HandlingBehaviourBlock = suspend TgUpdateHandler.(ProcessedUpdate) -> Unit
 typealias FunctionalHandlingBlock = suspend FunctionalHandlingDsl.() -> Unit
 typealias BotConfigurator = BotConfiguration.() -> Unit
 typealias RetryStrategy = HttpRequestRetry.ShouldRetryContext.(HttpRequest, HttpResponse) -> Boolean
