@@ -5,7 +5,6 @@ import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
 import eu.vendeli.tgbot.interfaces.Filter
 import eu.vendeli.tgbot.interfaces.Guard
-import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivityCtx
 import eu.vendeli.tgbot.types.internal.CommandContext
@@ -145,7 +144,7 @@ private suspend fun ((suspend ActivityCtx<ProcessedUpdate>.() -> Unit)?).invokeA
     this
         ?.runCatching { invoke(activityCtx) }
         ?.onFailure {
-            bot.update.caughtExceptions.send(FailedUpdate(it.cause ?: it, activityCtx.update.origin))
+            bot.update.caughtExceptions.send(FailedUpdate(it, activityCtx.update))
             logger.error(it) {
                 "An error occurred while functionally processing update: ${activityCtx.update} to UpdateType($updateType)."
             }
@@ -168,7 +167,7 @@ private inline fun Boolean?.ifAffected(block: () -> Unit) {
  * @param update
  */
 @Suppress("CyclomaticComplexMethod", "LongMethod")
-internal suspend fun FunctionalHandlingDsl.process(update: Update) = with(update.processUpdate()) {
+internal suspend fun FunctionalHandlingDsl.process(update: ProcessedUpdate) = with(update) {
     logger.info { "Handling update #${update.updateId}" }
     var affectedActivities = 0
     if (bot.update.checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id)) return@with

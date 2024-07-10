@@ -12,7 +12,6 @@ import eu.vendeli.webapps.utils.AlertCallback
 import eu.vendeli.webapps.utils.ClipboardTextReceivedCallback
 import eu.vendeli.webapps.utils.ClosePopupCallback
 import eu.vendeli.webapps.utils.ConfirmCallback
-import eu.vendeli.webapps.utils.EventHandler
 import eu.vendeli.webapps.utils.OpenLinkParams
 import eu.vendeli.webapps.utils.QRTextReceivedCallback
 
@@ -63,7 +62,7 @@ external class WebApp {
     @JsName("SettingsButton")
     val settingsButton: SettingsButton
 
-    internal fun onEvent(type: String, callback: EventHandler)
+    internal fun onEvent(type: String, callback: Function<*>)
 
     fun sendData(data: String)
 

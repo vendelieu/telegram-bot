@@ -5,7 +5,9 @@ import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.Response.Success
+import eu.vendeli.tgbot.utils.processUpdate
 import eu.vendeli.tgbot.utils.serde
 import kotlinx.datetime.Instant
 import kotlinx.serialization.encodeToString
@@ -13,7 +15,7 @@ import kotlin.random.Random
 
 @Suppress("ClassName")
 sealed class MockUpdate {
-    abstract val updates: List<Update>
+    abstract val updates: List<ProcessedUpdate>
     abstract val response: ByteArray
 
     data class SINGLE(
@@ -25,8 +27,8 @@ sealed class MockUpdate {
                     Success(updates),
                 ).toByteArray()
 
-        override val updates: List<Update>
-            get() = listOf(Update(Random.nextInt(), generateMsg(text)))
+        override val updates: List<ProcessedUpdate>
+            get() = listOf(Update(Random.nextInt(), generateMsg(text)).processUpdate())
     }
 
     data class TEXT_LIST(
@@ -35,11 +37,17 @@ sealed class MockUpdate {
         override val response: ByteArray
             get() = serde.encodeToString(Success(updates)).toByteArray()
 
-        override val updates: List<Update> get() = texts.map { Update(Random.nextInt(), generateMsg(it)) }
+        override val updates: List<ProcessedUpdate>
+            get() = texts.map {
+                Update(
+                    Random.nextInt(),
+                    generateMsg(it),
+                ).processUpdate()
+            }
     }
 
     data class UPDATES_LIST(
-        override val updates: List<Update>,
+        override val updates: List<ProcessedUpdate>,
     ) : MockUpdate() {
         override val response: ByteArray = serde
             .encodeToString(
@@ -51,7 +59,7 @@ sealed class MockUpdate {
         val raw: String,
     ) : MockUpdate() {
         override val response: ByteArray = raw.toByteArray()
-        override val updates: List<Update> = serde.decodeFromString<Success<List<Update>>>(raw).result
+        override val updates: List<ProcessedUpdate> = serde.decodeFromString<Success<List<ProcessedUpdate>>>(raw).result
     }
 
     protected fun generateMsg(text: String) = run {

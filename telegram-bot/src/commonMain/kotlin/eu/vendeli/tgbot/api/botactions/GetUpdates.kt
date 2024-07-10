@@ -4,13 +4,13 @@ package eu.vendeli.tgbot.api.botactions
 
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.GetUpdatesOptions
 import eu.vendeli.tgbot.utils.getReturnType
 
 class GetUpdatesAction :
-    SimpleAction<List<Update>>(),
+    SimpleAction<List<ProcessedUpdate>>(),
     OptionsFeature<GetUpdatesAction, GetUpdatesOptions> {
     override val method = TgMethod("getUpdates")
     override val returnType = getReturnType()

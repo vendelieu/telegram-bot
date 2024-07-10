@@ -1,5 +1,12 @@
 # Telegram-bot (KtGram) changelog
 
+### 6.3.1
+
+* Fixed `webapp` onEvent handling.
+* Changed `Update` usage in processes to `ProcessedUpdate` (changed also
+  in `bot.handleUpdates()`, `bot.update.caughtExceptions`).
+* Changed in `replyKeyboardMarkup {}` webApp right operand to url string.
+
 ## 6.3.0
 
 * Covered 7.7 api.

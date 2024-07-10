@@ -5,9 +5,12 @@ import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
+import eu.vendeli.tgbot.types.internal.MessageUpdate
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.media.Document
 import eu.vendeli.tgbot.utils.parseCommand
+import eu.vendeli.tgbot.utils.processUpdate
 import eu.vendeli.tgbot.utils.serde
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
@@ -18,6 +21,7 @@ import io.kotest.matchers.maps.shouldContainExactly
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.shouldBeTypeOf
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
 import kotlinx.coroutines.delay
 import kotlinx.datetime.Instant
@@ -34,7 +38,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
     suspend fun `listener workflow`() {
         doMockHttp(MockUpdate.RAW_RESPONSE(updates))
 
-        var update: Update? = null
+        var update: ProcessedUpdate? = null
 
         bot.update.setListener {
             update = it
@@ -42,9 +46,11 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         }
 
         update.shouldNotBeNull()
-        update?.updateId shouldBe 53192527
-        update?.message?.from?.username shouldBe "username"
-        update?.message?.from?.firstName shouldBe "John Doe"
+        update.shouldBeTypeOf<MessageUpdate> {
+            it.updateId shouldBe 53192527
+            it.user.username shouldBe "username"
+            it.user.firstName shouldBe "John Doe"
+        }
     }
 
     @Test
@@ -71,8 +77,10 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         throwableUpdatePair.exception shouldNotBeSameInstanceAs NoSuchElementException::class
         throwableUpdatePair.exception.message shouldBe "test"
 
-        throwableUpdatePair.update.message.shouldNotBeNull()
-        throwableUpdatePair.update.message?.text shouldBe "/start"
+        throwableUpdatePair.update.origin.message
+            .shouldNotBeNull()
+        throwableUpdatePair.update.origin.message
+            ?.text shouldBe "/start"
     }
 
     @Test
@@ -96,8 +104,10 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         throwableUpdatePair.exception shouldNotBeSameInstanceAs IllegalArgumentException::class
         throwableUpdatePair.exception.message shouldBe "test2"
 
-        throwableUpdatePair.update.message.shouldNotBeNull()
-        throwableUpdatePair.update.message?.text shouldBe "test"
+        throwableUpdatePair.update.origin.message
+            .shouldNotBeNull()
+        throwableUpdatePair.update.origin.message
+            ?.text shouldBe "test"
     }
 
     @Test
@@ -183,7 +193,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             bot.inputListener.set(1, "testInp")
             handle(it)
             delay(200)
-            if (it.message?.text == "aaaa") stopListener()
+            if (it.text == "aaaa") stopListener()
         }
 
         bot.update.caughtExceptions
@@ -206,7 +216,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
                             chat = Chat(1, ChatType.Private),
                             document = Document("3", "33"),
                         ),
-                    ),
+                    ).processUpdate(),
                 ),
             ),
         )
@@ -237,12 +247,12 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         val rawUpdate = serde.run {
             encodeToString(
                 decodeFromString(
-                    Response.Success.serializer(ListSerializer(Update.serializer())),
+                    Response.Success.serializer(ListSerializer(ProcessedUpdate.serializer())),
                     MockUpdate.SINGLE().response.toString(Charsets.UTF_8),
                 ).result.first(),
             )
         }
-        var update: Update? = null
+        var update: ProcessedUpdate? = null
         bot.update.setBehaviour {
             update = it
         }
