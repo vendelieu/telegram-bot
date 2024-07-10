@@ -9,5 +9,5 @@ data class RefundedPayment(
     val totalAmount: Int,
     val invoicePayload: String,
     val telegramPaymentChargeId: String,
-    val providerPaymentChargeId: String? = null
+    val providerPaymentChargeId: String? = null,
 )

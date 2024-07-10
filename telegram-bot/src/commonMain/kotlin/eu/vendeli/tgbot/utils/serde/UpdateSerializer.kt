@@ -14,5 +14,9 @@ internal abstract class UpdateSerializer<T : ProcessedUpdate> : KSerializer<T> {
         encoder.encodeSerializableValue(Update.serializer(), value.origin)
     }
 
-    override fun deserialize(decoder: Decoder): T = Update.serializer().deserialize(decoder).processUpdate().cast()
+    override fun deserialize(decoder: Decoder): T = Update
+        .serializer()
+        .deserialize(decoder)
+        .processUpdate()
+        .cast()
 }

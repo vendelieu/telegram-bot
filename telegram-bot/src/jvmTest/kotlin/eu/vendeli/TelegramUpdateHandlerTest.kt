@@ -48,8 +48,8 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         update.shouldNotBeNull()
         update.shouldBeTypeOf<MessageUpdate> {
             it.updateId shouldBe 53192527
-            it.message.from?.username shouldBe "username"
-            it.message.from?.firstName shouldBe "John Doe"
+            it.user.username shouldBe "username"
+            it.user.firstName shouldBe "John Doe"
         }
     }
 
@@ -77,8 +77,10 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         throwableUpdatePair.exception shouldNotBeSameInstanceAs NoSuchElementException::class
         throwableUpdatePair.exception.message shouldBe "test"
 
-        throwableUpdatePair.update.origin.message.shouldNotBeNull()
-        throwableUpdatePair.update.origin.message?.text shouldBe "/start"
+        throwableUpdatePair.update.origin.message
+            .shouldNotBeNull()
+        throwableUpdatePair.update.origin.message
+            ?.text shouldBe "/start"
     }
 
     @Test
@@ -102,8 +104,10 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         throwableUpdatePair.exception shouldNotBeSameInstanceAs IllegalArgumentException::class
         throwableUpdatePair.exception.message shouldBe "test2"
 
-        throwableUpdatePair.update.origin.message.shouldNotBeNull()
-        throwableUpdatePair.update.origin.message?.text shouldBe "test"
+        throwableUpdatePair.update.origin.message
+            .shouldNotBeNull()
+        throwableUpdatePair.update.origin.message
+            ?.text shouldBe "test"
     }
 
     @Test

@@ -36,7 +36,8 @@ sealed class ProcessedUpdate(
     open val updateId: Int,
     open val origin: Update,
     internal val type: UpdateType,
-) : TextReference, MultipleResponse {
+) : TextReference,
+    MultipleResponse {
     @Deprecated(
         "Changed parameter name to avoid tautology",
         replaceWith = ReplaceWith("origin"),
