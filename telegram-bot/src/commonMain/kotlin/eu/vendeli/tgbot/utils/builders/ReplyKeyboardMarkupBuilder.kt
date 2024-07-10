@@ -86,8 +86,8 @@ class ReplyKeyboardMarkupBuilder : KeyboardBuilder<KeyboardButton>() {
      * If specified, the described Web App will be launched when the button is pressed.
      * The Web App will be able to send a “web_app_data” service message. Available in private chats only.
      */
-    infix fun String.webApp(value: WebAppInfo) {
-        buttons += KeyboardButton(this, webApp = value)
+    infix fun String.webApp(url: String) {
+        buttons += KeyboardButton(this, webApp = WebAppInfo(url))
     }
 }
 
