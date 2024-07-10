@@ -243,7 +243,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         val rawUpdate = serde.run {
             encodeToString(
                 decodeFromString(
-                    Response.Success.serializer(ListSerializer(Update.serializer())),
+                    Response.Success.serializer(ListSerializer(ProcessedUpdate.serializer())),
                     MockUpdate.SINGLE().response.toString(Charsets.UTF_8),
                 ).result.first(),
             )

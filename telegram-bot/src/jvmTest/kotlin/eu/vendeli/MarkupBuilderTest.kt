@@ -9,7 +9,6 @@ import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestChat
 import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestUsers
 import eu.vendeli.tgbot.types.keyboard.LoginUrl
 import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardMarkup
-import eu.vendeli.tgbot.types.keyboard.WebAppInfo
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
 import eu.vendeli.tgbot.utils.builders.replyKeyboardMarkup
 import io.kotest.assertions.throwables.shouldThrow
@@ -106,7 +105,7 @@ class MarkupBuilderTest : BotTestContext() {
             "test1" requestLocation true
             "test2" requestPoll KeyboardButtonPollType()
             newLine()
-            "test3" webApp WebAppInfo("test")
+            "test3" webApp "test"
             "test4" requestContact false
             br()
             "test5" requestUser KeyboardButtonRequestUsers(1, userIsBot = true, userIsPremium = false)
