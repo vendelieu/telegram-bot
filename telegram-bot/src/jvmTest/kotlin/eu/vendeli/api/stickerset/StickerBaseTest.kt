@@ -39,9 +39,10 @@ class StickerBaseTest : BotTestContext() {
     @Test
     suspend fun `upload sticker file method test`() {
         val result = uploadStickerFile(
+            TG_ID,
             LOREM.STICKER.inputFile,
             StickerFormat.Animated,
-        ).sendReturning(TG_ID, bot).shouldSuccess()
+        ).sendReturning(bot).shouldSuccess()
 
         with(result) {
             fileSize.shouldNotBeNull() shouldBeGreaterThan 0L
@@ -61,6 +62,7 @@ class StickerBaseTest : BotTestContext() {
         deleteStickerSet(setName).sendAsync(bot).await()
 
         val result = createNewStickerSet(
+            TG_ID,
             setName,
             "test_2",
             listOf(
@@ -70,7 +72,7 @@ class StickerBaseTest : BotTestContext() {
                     listOf("\uD83D\uDCAF"),
                 ),
             ),
-        ).sendReturning(TG_ID, bot).shouldSuccess()
+        ).sendReturning(bot).shouldSuccess()
 
         val oldSticker = getStickerSet(setName)
             .sendAsync(bot)
@@ -126,13 +128,14 @@ class StickerBaseTest : BotTestContext() {
         val setName = "Test_2_by_$botName"
 
         val addResult = addStickerToSet(
+            TG_ID,
             setName,
             InputSticker(
                 TEMP_STICKER_FILE_ID.toImplicitFile(),
                 StickerFormat.Static,
                 listOf("\uD83D\uDC4D\uD83C\uDFFB"),
             ),
-        ).sendAsync(TG_ID, bot).shouldSuccess()
+        ).sendAsync(bot).shouldSuccess()
         addResult.shouldBeTrue()
         val stickerList = getStickerSet(setName).sendAsync(bot).shouldSuccess().stickers
         val fileId = stickerList.last().fileId
@@ -155,8 +158,8 @@ class StickerBaseTest : BotTestContext() {
         ).sendAsync(bot).shouldSuccess()
         setStickerPositionInSetResult.shouldBeTrue()
 
-        val setStickerSetThumbnailResult = setStickerSetThumbnail(setName, StickerFormat.Static)
-            .sendAsync(TG_ID, bot)
+        val setStickerSetThumbnailResult = setStickerSetThumbnail(setName, TG_ID, StickerFormat.Static)
+            .sendAsync(bot)
             .shouldSuccess()
         setStickerSetThumbnailResult.shouldBeTrue()
 
@@ -203,6 +206,7 @@ class StickerBaseTest : BotTestContext() {
         val setName = "Test_3_by_$botName"
 
         val result = createNewStickerSet(
+            TG_ID,
             setName,
             "test_2",
             listOf(
@@ -214,15 +218,16 @@ class StickerBaseTest : BotTestContext() {
             ),
         ).options {
             stickerType = StickerType.CustomEmoji
-        }.sendReturning(TG_ID, bot)
+        }.sendReturning(bot)
             .shouldSuccess()
         result.shouldBeTrue()
 
         val setCustomEmojiStickerSetThumbnailResult = setStickerSetThumbnail(
             setName,
+            TG_ID,
             StickerFormat.Static,
             TEMP_STICKER_FILE_ID.toImplicitFile(),
-        ).sendAsync(TG_ID, bot).shouldSuccess()
+        ).sendAsync(bot).shouldSuccess()
         setCustomEmojiStickerSetThumbnailResult.shouldBeTrue()
 
         val fileId = getStickerSet(setName)

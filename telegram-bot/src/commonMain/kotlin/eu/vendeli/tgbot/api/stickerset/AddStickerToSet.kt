@@ -2,7 +2,7 @@
 
 package eu.vendeli.tgbot.api.stickerset
 
-import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.InputSticker
@@ -17,7 +17,7 @@ class AddStickerToSetAction(
     userId: Long,
     name: String,
     input: InputSticker,
-) : MediaAction<Boolean>() {
+) : SimpleAction<Boolean>() {
     override val method = TgMethod("addStickerToSet")
     override val returnType = getReturnType()
 
