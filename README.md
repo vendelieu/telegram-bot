@@ -20,7 +20,7 @@ build.gradle.kts example:
 ```gradle
 plugins {
     // ...
-    id("com.google.devtools.ksp") version "2.0.0-1.0.22"
+    id("com.google.devtools.ksp") version "2.0.0-1.0.23"
 }
 
 dependencies {
@@ -44,10 +44,6 @@ dependencies {
   organically in the Spring ecosystem, using its built-in DI.
 - [Heroku ready example](https://github.com/vendelieu/telegram-bot_template/tree/heroku) - An example of a bot working
   via Heroku.
-
-<details>
-  <summary>More samples</summary>
-
 - [Native example](https://github.com/ktgram/native-example) - An example of using a bot with Kotlin Native target.
 - [Web app](https://github.com/ktgram/webapp) - Example of a bot using Telegram Webapps.
 
@@ -82,6 +78,7 @@ suspend fun color(user: User, bot: TelegramBot) {
 }
 //..
 ```
+*a little more detailed about handlers you can see in [handlers](https://github.com/vendelieu/telegram-bot/wiki/Handlers) article.*
 
 It is also possible to process updates functionally:
 
@@ -106,6 +103,7 @@ fun main() = runBlocking {
     }
 }
 ```
+
 
 ### Configuration
 
