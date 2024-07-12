@@ -9,8 +9,10 @@ import kotlinx.serialization.json.JsonElement
 interface Request<ReturnType> {
     @InternalApi
     val Request<ReturnType>.parameters: MutableMap<String, JsonElement>
+
     @InternalApi
     suspend fun Request<ReturnType>.doRequest(bot: TelegramBot)
+
     @InternalApi
     suspend fun Request<ReturnType>.doRequestReturning(bot: TelegramBot): Deferred<Response<out ReturnType>>
 }

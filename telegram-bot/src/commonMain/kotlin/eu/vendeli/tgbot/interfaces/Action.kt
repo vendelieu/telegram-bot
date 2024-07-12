@@ -57,7 +57,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
 
     open suspend fun sendReturning(
         to: Long,
-        via: TelegramBot
+        via: TelegramBot,
     ): Deferred<Response<out ReturnType>> = sendAsync(to, via)
 
     open suspend fun sendAsync(
@@ -70,7 +70,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
 
     open suspend fun sendReturning(
         to: String,
-        via: TelegramBot
+        via: TelegramBot,
     ): Deferred<Response<out ReturnType>> = sendAsync(to, via)
 
     open suspend fun sendAsync(
@@ -83,7 +83,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
 
     open suspend fun sendReturning(
         to: User,
-        via: TelegramBot
+        via: TelegramBot,
     ): Deferred<Response<out ReturnType>> = sendAsync(to, via)
 
     open suspend fun sendAsync(
@@ -96,6 +96,6 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
 
     open suspend fun sendReturning(
         to: Chat,
-        via: TelegramBot
+        via: TelegramBot,
     ): Deferred<Response<out ReturnType>> = sendAsync(to, via)
 }

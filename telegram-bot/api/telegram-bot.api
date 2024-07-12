@@ -2029,24 +2029,24 @@ public final class eu/vendeli/tgbot/api/message/SendMessageAction : eu/vendeli/t
 	public fun url (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 }
 
-public final class eu/vendeli/tgbot/api/stickerset/AddStickerToSetAction : eu/vendeli/tgbot/interfaces/MediaAction {
-	public fun <init> (Ljava/lang/String;Leu/vendeli/tgbot/types/media/InputSticker;)V
+public final class eu/vendeli/tgbot/api/stickerset/AddStickerToSetAction : eu/vendeli/tgbot/interfaces/SimpleAction {
+	public fun <init> (JLjava/lang/String;Leu/vendeli/tgbot/types/media/InputSticker;)V
 }
 
 public final class eu/vendeli/tgbot/api/stickerset/AddStickerToSetKt {
-	public static final fun addStickerToSet (Ljava/lang/String;Leu/vendeli/tgbot/types/media/InputSticker;)Leu/vendeli/tgbot/api/stickerset/AddStickerToSetAction;
-	public static final fun addStickerToSet (Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/stickerset/AddStickerToSetAction;
+	public static final fun addStickerToSet (JLjava/lang/String;Leu/vendeli/tgbot/types/media/InputSticker;)Leu/vendeli/tgbot/api/stickerset/AddStickerToSetAction;
+	public static final fun addStickerToSet (JLjava/lang/String;Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/stickerset/AddStickerToSetAction;
 }
 
-public final class eu/vendeli/tgbot/api/stickerset/CreateNewStickerSetAction : eu/vendeli/tgbot/interfaces/MediaAction, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+public final class eu/vendeli/tgbot/api/stickerset/CreateNewStickerSetAction : eu/vendeli/tgbot/interfaces/SimpleAction, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/util/List;)V
 	public synthetic fun getOptions$telegram_bot ()Leu/vendeli/tgbot/types/internal/options/Options;
 	public fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/stickerset/CreateNewStickerSetAction;
 	public synthetic fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/TgAction;
 }
 
 public final class eu/vendeli/tgbot/api/stickerset/CreateNewStickerSetKt {
-	public static final fun createNewStickerSet (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Leu/vendeli/tgbot/api/stickerset/CreateNewStickerSetAction;
+	public static final fun createNewStickerSet (JLjava/lang/String;Ljava/lang/String;Ljava/util/List;)Leu/vendeli/tgbot/api/stickerset/CreateNewStickerSetAction;
 }
 
 public final class eu/vendeli/tgbot/api/stickerset/DeleteStickerFromSetAction : eu/vendeli/tgbot/interfaces/SimpleAction {
@@ -2136,14 +2136,14 @@ public final class eu/vendeli/tgbot/api/stickerset/SetStickerPositionInSetKt {
 	public static final fun setStickerPositionInSet (Ljava/lang/String;I)Leu/vendeli/tgbot/api/stickerset/SetStickerPositionInSetAction;
 }
 
-public final class eu/vendeli/tgbot/api/stickerset/SetStickerSetThumbnailAction : eu/vendeli/tgbot/interfaces/MediaAction {
-	public fun <init> (Ljava/lang/String;Leu/vendeli/tgbot/types/media/StickerFormat;Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
-	public synthetic fun <init> (Ljava/lang/String;Leu/vendeli/tgbot/types/media/StickerFormat;Leu/vendeli/tgbot/types/internal/ImplicitFile;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+public final class eu/vendeli/tgbot/api/stickerset/SetStickerSetThumbnailAction : eu/vendeli/tgbot/interfaces/SimpleAction {
+	public fun <init> (Ljava/lang/String;JLeu/vendeli/tgbot/types/media/StickerFormat;Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
+	public synthetic fun <init> (Ljava/lang/String;JLeu/vendeli/tgbot/types/media/StickerFormat;Leu/vendeli/tgbot/types/internal/ImplicitFile;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
 public final class eu/vendeli/tgbot/api/stickerset/SetStickerSetThumbnailKt {
-	public static final fun setStickerSetThumbnail (Ljava/lang/String;Leu/vendeli/tgbot/types/media/StickerFormat;Leu/vendeli/tgbot/types/internal/ImplicitFile;)Leu/vendeli/tgbot/api/stickerset/SetStickerSetThumbnailAction;
-	public static synthetic fun setStickerSetThumbnail$default (Ljava/lang/String;Leu/vendeli/tgbot/types/media/StickerFormat;Leu/vendeli/tgbot/types/internal/ImplicitFile;ILjava/lang/Object;)Leu/vendeli/tgbot/api/stickerset/SetStickerSetThumbnailAction;
+	public static final fun setStickerSetThumbnail (Ljava/lang/String;JLeu/vendeli/tgbot/types/media/StickerFormat;Leu/vendeli/tgbot/types/internal/ImplicitFile;)Leu/vendeli/tgbot/api/stickerset/SetStickerSetThumbnailAction;
+	public static synthetic fun setStickerSetThumbnail$default (Ljava/lang/String;JLeu/vendeli/tgbot/types/media/StickerFormat;Leu/vendeli/tgbot/types/internal/ImplicitFile;ILjava/lang/Object;)Leu/vendeli/tgbot/api/stickerset/SetStickerSetThumbnailAction;
 }
 
 public final class eu/vendeli/tgbot/api/stickerset/SetStickerSetTitleAction : eu/vendeli/tgbot/interfaces/SimpleAction {
@@ -2154,12 +2154,12 @@ public final class eu/vendeli/tgbot/api/stickerset/SetStickerSetTitleKt {
 	public static final fun setStickerSetTitle (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/api/stickerset/SetStickerSetTitleAction;
 }
 
-public final class eu/vendeli/tgbot/api/stickerset/UploadStickerFileAction : eu/vendeli/tgbot/interfaces/MediaAction {
-	public fun <init> (Leu/vendeli/tgbot/types/internal/InputFile;Leu/vendeli/tgbot/types/media/StickerFormat;)V
+public final class eu/vendeli/tgbot/api/stickerset/UploadStickerFileAction : eu/vendeli/tgbot/interfaces/SimpleAction {
+	public fun <init> (JLeu/vendeli/tgbot/types/internal/InputFile;Leu/vendeli/tgbot/types/media/StickerFormat;)V
 }
 
 public final class eu/vendeli/tgbot/api/stickerset/UploadStickerFileKt {
-	public static final fun uploadStickerFile (Leu/vendeli/tgbot/types/internal/InputFile;Leu/vendeli/tgbot/types/media/StickerFormat;)Leu/vendeli/tgbot/api/stickerset/UploadStickerFileAction;
+	public static final fun uploadStickerFile (JLeu/vendeli/tgbot/types/internal/InputFile;Leu/vendeli/tgbot/types/media/StickerFormat;)Leu/vendeli/tgbot/api/stickerset/UploadStickerFileAction;
 }
 
 public final class eu/vendeli/tgbot/core/CodegenUpdateHandler : eu/vendeli/tgbot/core/TgUpdateHandler {
@@ -2286,6 +2286,10 @@ public abstract class eu/vendeli/tgbot/interfaces/Action : eu/vendeli/tgbot/inte
 	public fun sendAsync (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sendAsync (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sendAsync (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendReturning (JLeu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendReturning (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendReturning (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendReturning (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/Autowiring {
@@ -2425,14 +2429,6 @@ public abstract class eu/vendeli/tgbot/interfaces/KeyboardBuilder {
 
 public abstract class eu/vendeli/tgbot/interfaces/MediaAction : eu/vendeli/tgbot/interfaces/Action {
 	public fun <init> ()V
-	public fun send (JLeu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun send (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun send (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun send (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun sendAsync (JLeu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun sendAsync (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun sendAsync (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun sendAsync (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/MultipleResponse {
@@ -2443,8 +2439,6 @@ public abstract interface class eu/vendeli/tgbot/interfaces/RateLimitMechanism {
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/Request {
-	public abstract fun doRequest (Leu/vendeli/tgbot/interfaces/Request;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun doRequestAsync (Leu/vendeli/tgbot/interfaces/Request;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun getParameters (Leu/vendeli/tgbot/interfaces/Request;)Ljava/util/Map;
 }
 
@@ -2452,13 +2446,12 @@ public abstract class eu/vendeli/tgbot/interfaces/SimpleAction : eu/vendeli/tgbo
 	public fun <init> ()V
 	public fun send (Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun sendAsync (Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendReturning (Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract class eu/vendeli/tgbot/interfaces/TgAction : eu/vendeli/tgbot/interfaces/Request {
 	public fun <init> ()V
-	public fun doRequest (Leu/vendeli/tgbot/interfaces/Request;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun doRequestAsync (Leu/vendeli/tgbot/interfaces/Request;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getParameters (Leu/vendeli/tgbot/interfaces/Request;)Ljava/util/Map;
+	protected fun getReturnType ()Lkotlinx/serialization/KSerializer;
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/UserData : eu/vendeli/tgbot/interfaces/BotContext {
@@ -13135,10 +13128,6 @@ public abstract class eu/vendeli/tgbot/utils/Logger : io/ktor/client/plugins/log
 	public abstract fun setLevel (Leu/vendeli/tgbot/types/internal/LogLvl;)V
 	public abstract fun trace (Lkotlin/jvm/functions/Function0;)Lkotlin/Unit;
 	public abstract fun warn (Lkotlin/jvm/functions/Function0;)Lkotlin/Unit;
-}
-
-public final class eu/vendeli/tgbot/utils/ProcessUpdateKt {
-	public static final fun processUpdate (Leu/vendeli/tgbot/types/Update;)Leu/vendeli/tgbot/types/internal/ProcessedUpdate;
 }
 
 public final class eu/vendeli/tgbot/utils/builders/BotCommandsBuilder {
