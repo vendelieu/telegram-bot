@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.interfaces
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.coroutines.Deferred
@@ -10,6 +11,7 @@ import kotlinx.coroutines.Deferred
  *
  * @param ReturnType
  */
+@OptIn(InternalApi::class)
 interface BusinessActionExt<ReturnType> : Request<ReturnType> {
     /**
      * Make business request for action.
@@ -36,6 +38,6 @@ interface BusinessActionExt<ReturnType> : Request<ReturnType> {
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = chatId.toJsonElement()
         parameters["business_connection_id"] = businessConnectionId.toJsonElement()
-        return doRequestAsync(via)
+        return doRequestReturning(via)
     }
 }

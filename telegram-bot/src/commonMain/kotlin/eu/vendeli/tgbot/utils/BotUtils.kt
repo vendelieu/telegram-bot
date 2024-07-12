@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.interfaces.Filter
 import eu.vendeli.tgbot.interfaces.Guard
 import eu.vendeli.tgbot.interfaces.ImplicitMediaData
 import eu.vendeli.tgbot.interfaces.InputListener
+import eu.vendeli.tgbot.interfaces.MediaAction
 import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.User
@@ -92,7 +93,7 @@ internal inline fun <R> TgAction<R>.handleImplicitFile(input: ImplicitFile, fiel
 }
 
 @Suppress("DEPRECATION_ERROR", "NOTHING_TO_INLINE")
-internal inline fun <T : ImplicitMediaData, R> TgAction<R>.handleImplicitFileGroup(
+internal inline fun <T : ImplicitMediaData, R> MediaAction<R>.handleImplicitFileGroup(
     input: List<T>,
     fieldName: String = "media",
 ) {

@@ -13,16 +13,17 @@ import eu.vendeli.tgbot.utils.toJsonElement
 
 class SetStickerSetThumbnailAction(
     name: String,
+    userId: Long,
     format: StickerFormat,
     thumbnail: ImplicitFile? = null,
 ) : MediaAction<Boolean>() {
     override val method = TgMethod("setStickerSetThumbnail")
     override val returnType = getReturnType()
-    override val idRefField = "user_id"
 
     init {
         if (thumbnail != null) handleImplicitFile(thumbnail, "thumbnail")
         parameters["name"] = name.toJsonElement()
+        parameters["user_id"] = userId.toJsonElement()
         parameters["format"] = format.encodeWith(StickerFormat.serializer())
     }
 }
@@ -38,5 +39,5 @@ class SetStickerSetThumbnailAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
-inline fun setStickerSetThumbnail(name: String, format: StickerFormat, thumbnail: ImplicitFile? = null) =
-    SetStickerSetThumbnailAction(name, format, thumbnail)
+inline fun setStickerSetThumbnail(name: String, userId: Long, format: StickerFormat, thumbnail: ImplicitFile? = null) =
+    SetStickerSetThumbnailAction(name, userId, format, thumbnail)

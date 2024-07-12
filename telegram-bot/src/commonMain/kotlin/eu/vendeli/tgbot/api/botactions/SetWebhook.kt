@@ -3,6 +3,7 @@
 package eu.vendeli.tgbot.api.botactions
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.Response
@@ -10,8 +11,6 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.SetWebhookOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
-import eu.vendeli.tgbot.utils.makeRequestAsync
-import eu.vendeli.tgbot.utils.makeSilentRequest
 import eu.vendeli.tgbot.utils.toImplicitFile
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.coroutines.Deferred
@@ -28,19 +27,16 @@ class SetWebhookAction(
         parameters["url"] = url.toJsonElement()
     }
 
+    @OptIn(InternalApi::class)
     override suspend fun send(to: TelegramBot) {
         handleCert()
-        to.makeSilentRequest(method, parameters, multipartData)
+        doRequest(to)
     }
 
+    @OptIn(InternalApi::class)
     override suspend fun sendAsync(to: TelegramBot): Deferred<Response<out Boolean>> {
         handleCert()
-        return to.makeRequestAsync(
-            method,
-            parameters,
-            returnType,
-            multipartData,
-        )
+        return doRequestReturning(to)
     }
 
     @Suppress("NOTHING_TO_INLINE")

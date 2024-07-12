@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.interfaces
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.coroutines.Deferred
@@ -10,6 +11,7 @@ import kotlinx.coroutines.Deferred
  *
  * @param ReturnType
  */
+@OptIn(InternalApi::class)
 interface InlineActionExt<ReturnType> : Request<ReturnType> {
     /**
      * Make inline request for action.
@@ -33,6 +35,6 @@ interface InlineActionExt<ReturnType> : Request<ReturnType> {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["inline_message_id"] = inlineMessageId.toJsonElement()
-        return doRequestAsync(via)
+        return doRequestReturning(via)
     }
 }

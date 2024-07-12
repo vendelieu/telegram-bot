@@ -15,6 +15,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.toPartData
 
 class CreateNewStickerSetAction(
+    userId: Long,
     name: String,
     title: String,
     stickers: List<InputSticker>,
@@ -23,9 +24,9 @@ class CreateNewStickerSetAction(
     override val method = TgMethod("createNewStickerSet")
     override val returnType = getReturnType()
     override val options = CreateNewStickerSetOptions()
-    override val idRefField = "user_id"
 
     init {
+        parameters["user_id"] = userId.toJsonElement()
         parameters["name"] = name.toJsonElement()
         parameters["title"] = title.toJsonElement()
         parameters["stickers"] = stickers
@@ -54,7 +55,8 @@ class CreateNewStickerSetAction(
  */
 @Suppress("NOTHING_TO_INLINE")
 inline fun createNewStickerSet(
+    userId: Long,
     name: String,
     title: String,
     stickers: List<InputSticker>,
-) = CreateNewStickerSetAction(name, title, stickers)
+) = CreateNewStickerSetAction(userId, name, title, stickers)

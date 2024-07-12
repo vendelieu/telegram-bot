@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.interfaces
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Response
@@ -12,6 +13,7 @@ import kotlinx.coroutines.Deferred
  *
  * @param ReturnType response type.
  */
+@OptIn(InternalApi::class)
 abstract class Action<ReturnType> : TgAction<ReturnType>() {
     /**
      * Make a request for action.
@@ -50,30 +52,50 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.toJsonElement()
-        return doRequestAsync(via)
+        return doRequestReturning(via)
     }
+
+    open suspend fun sendReturning(
+        to: Long,
+        via: TelegramBot
+    ): Deferred<Response<out ReturnType>> = sendAsync(to, via)
 
     open suspend fun sendAsync(
         to: String,
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.toJsonElement()
-        return doRequestAsync(via)
+        return doRequestReturning(via)
     }
+
+    open suspend fun sendReturning(
+        to: String,
+        via: TelegramBot
+    ): Deferred<Response<out ReturnType>> = sendAsync(to, via)
 
     open suspend fun sendAsync(
         to: User,
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.id.toJsonElement()
-        return doRequestAsync(via)
+        return doRequestReturning(via)
     }
+
+    open suspend fun sendReturning(
+        to: User,
+        via: TelegramBot
+    ): Deferred<Response<out ReturnType>> = sendAsync(to, via)
 
     open suspend fun sendAsync(
         to: Chat,
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["chat_id"] = to.id.toJsonElement()
-        return doRequestAsync(via)
+        return doRequestReturning(via)
     }
+
+    open suspend fun sendReturning(
+        to: Chat,
+        via: TelegramBot
+    ): Deferred<Response<out ReturnType>> = sendAsync(to, via)
 }

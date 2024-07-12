@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.utils.serde
 
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.utils.cast
@@ -14,6 +15,7 @@ internal abstract class UpdateSerializer<T : ProcessedUpdate> : KSerializer<T> {
         encoder.encodeSerializableValue(Update.serializer(), value.origin)
     }
 
+    @OptIn(InternalApi::class)
     override fun deserialize(decoder: Decoder): T = Update
         .serializer()
         .deserialize(decoder)

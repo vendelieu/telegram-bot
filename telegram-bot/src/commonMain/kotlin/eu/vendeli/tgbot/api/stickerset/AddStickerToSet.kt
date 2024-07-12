@@ -14,14 +14,15 @@ import eu.vendeli.tgbot.utils.toPartData
 import kotlin.collections.set
 
 class AddStickerToSetAction(
+    userId: Long,
     name: String,
     input: InputSticker,
 ) : MediaAction<Boolean>() {
     override val method = TgMethod("addStickerToSet")
     override val returnType = getReturnType()
-    override val idRefField = "user_id"
 
     init {
+        parameters["user_id"] = userId.toJsonElement()
         parameters["name"] = name.toJsonElement()
         parameters["sticker"] = input
             .also {
@@ -45,6 +46,7 @@ class AddStickerToSetAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
-inline fun addStickerToSet(name: String, input: InputSticker) = AddStickerToSetAction(name, input)
+inline fun addStickerToSet(userId: Long, name: String, input: InputSticker) = AddStickerToSetAction(userId, name, input)
 
-inline fun addStickerToSet(name: String, input: () -> InputSticker) = AddStickerToSetAction(name, input())
+inline fun addStickerToSet(userId: Long, name: String, input: () -> InputSticker) =
+    AddStickerToSetAction(userId, name, input())
