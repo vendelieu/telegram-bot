@@ -1,7 +1,7 @@
+
 import eu.vendeli.fixtures.__ACTIVITIES
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.InternalApi
-import eu.vendeli.tgbot.interfaces.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
@@ -28,7 +28,6 @@ import io.mockk.every
 import io.mockk.mockkStatic
 import io.mockk.spyk
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.delay
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.json.JsonElement
@@ -100,11 +99,6 @@ abstract class BotTestContext(
 
     fun spykIt() {
         bot = spyk(bot, recordPrivateCalls = true)
-    }
-
-    protected suspend fun <T> Action<T>.sendReturning(id: Long, bot: TelegramBot): Response<out T> {
-        delay(200)
-        return sendAsync(id, bot).await()
     }
 
     private fun getRandomPic(): ByteArray? = runBlocking {
