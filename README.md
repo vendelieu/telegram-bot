@@ -114,19 +114,17 @@ You can read more in a [Bot configuration](https://github.com/vendelieu/telegram
 
 ### Processing responses
 
-All requests are async but to operate with response and have more control over flow you need use [`sendAsync()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send-async.html)
-instead
-of [`send()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send.html)
-method, which
-returns [`Response`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-response/index.html):
+To process over response or/and have more control over request flow use [`sendReturning()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send-async.html)
+instead of [`send()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send.html) method,
+which returns [`Response`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-response/index.html):
 
 ```kotlin
-message { "test" }.sendAsync(user, bot).onFailure {
+message { "test" }.sendReturning(user, bot).onFailure {
     println("code: ${it.errorCode} description: ${it.description}")
 }
 ```
 
-Any `sendAsync` method returns
+Any `sendReturning` method returns
 a [`Response`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-response/index.html)
 on which you can also use
 methods [`getOrNull()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/get-or-null.html)
