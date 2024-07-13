@@ -5,15 +5,13 @@ import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.types.Message
-import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
-import eu.vendeli.tgbot.utils.toImplicitFile
 import eu.vendeli.tgbot.utils.toJsonElement
-import eu.vendeli.tgbot.utils.toPartData
+import eu.vendeli.tgbot.utils.transform
 
 class EditMessageMediaAction :
     Action<Message>,
@@ -24,22 +22,12 @@ class EditMessageMediaAction :
     override val returnType = getReturnType()
 
     constructor(inputMedia: InputMedia) {
-        if (inputMedia.media is ImplicitFile.InpFile) {
-            val media = inputMedia.media as ImplicitFile.InpFile
-            multipartData += media.file.toPartData(media.file.fileName)
-
-            inputMedia.media = "attach://${media.file.fileName}".toImplicitFile()
-        }
+        inputMedia.media = inputMedia.media.transform(multipartData)
         parameters["media"] = inputMedia.encodeWith(DynamicLookupSerializer)
     }
 
     constructor(messageId: Long, inputMedia: InputMedia) {
-        if (inputMedia.media is ImplicitFile.InpFile) {
-            val media = inputMedia.media as ImplicitFile.InpFile
-            multipartData += media.file.toPartData(media.file.fileName)
-
-            inputMedia.media = "attach://${media.file.fileName}".toImplicitFile()
-        }
+        inputMedia.media = inputMedia.media.transform(multipartData)
         parameters["message_id"] = messageId.toJsonElement()
         parameters["media"] = inputMedia.encodeWith(DynamicLookupSerializer)
     }

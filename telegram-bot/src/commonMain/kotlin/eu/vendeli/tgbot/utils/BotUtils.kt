@@ -42,8 +42,6 @@ import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonUnquotedLiteral
-import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.serializer
 import kotlin.jvm.JvmName
 import kotlin.reflect.KClass
@@ -70,15 +68,6 @@ internal suspend inline fun TgUpdateHandler.checkIsLimited(
     return false
 }
 
-internal inline val <K, V : Any> Map<K, V>.logString: String
-    get() = takeIf { isNotEmpty() }?.entries?.joinToString(",\n") {
-        "${it.key} - " + if (it.value is Pair<*, *>) {
-            (it.value as Pair<*, *>).second
-        } else {
-            it.value
-        }.toString()
-    } ?: "None"
-
 @OptIn(InternalSerializationApi::class)
 @Suppress("UnusedReceiverParameter")
 internal inline fun <reified Type : Any> TgAction<Type>.getReturnType(): KSerializer<Type> = Type::class.serializer()
@@ -91,7 +80,7 @@ internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getRe
 
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun <R> TgAction<R>.handleImplicitFile(input: ImplicitFile, fieldName: String) {
-    parameters[fieldName] = input.transform(multipartData)
+    parameters[fieldName] = input.transform(multipartData).file.toJsonElement()
 }
 
 @Suppress("DEPRECATION_ERROR", "NOTHING_TO_INLINE")
@@ -105,27 +94,22 @@ internal inline fun <T : ImplicitMediaData, R> MediaAction<R>.handleImplicitFile
                 add(it.encodeWith(DynamicLookupSerializer))
                 return@forEach
             }
-            it.media = it.media.transform(multipartData).toImplicitStr()
-            it.thumbnail = it.thumbnail?.transform(multipartData)?.toImplicitStr()
+            it.media = it.media.transform(multipartData)
+            it.thumbnail = it.thumbnail?.transform(multipartData)
             add(it.encodeWith(DynamicLookupSerializer))
         }
     }.encodeWith(JsonElement.serializer())
 }
 
 @Suppress("NOTHING_TO_INLINE")
-private inline fun JsonElement.toImplicitStr() = ImplicitFile.Str(jsonPrimitive.content)
-
-@Suppress("NOTHING_TO_INLINE")
-private inline fun ImplicitFile.transform(multiParts: MutableList<PartData.BinaryItem>): JsonElement {
-    if (this is ImplicitFile.Str) return file.toJsonElement()
+internal inline fun ImplicitFile.transform(multiParts: MutableList<PartData.BinaryItem>): ImplicitFile.Str {
+    if (this is ImplicitFile.Str) return file.toImplicitFile()
     val media = file as InputFile
     multiParts += media.toPartData(media.fileName)
 
-    @Suppress("OPT_IN_USAGE")
-    return JsonUnquotedLiteral("attach://${media.fileName}")
+    return "attach://${media.fileName}".toImplicitFile()
 }
 
-// todo change
 internal fun InputFile.toPartData(name: String) = PartData.BinaryItem(
     { ByteReadPacket(data) },
     {},

@@ -39,7 +39,7 @@ import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotBeBlank
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
 import io.ktor.client.statement.bodyAsText
-import io.ktor.http.ContentType
+import io.ktor.http.ContentType.Image
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Deferred
 import kotlinx.datetime.Instant
@@ -174,7 +174,7 @@ class TelegramBotTest : BotTestContext() {
                 "photo" to JsonUnquotedLiteral("attach://image.jpg"),
                 "chat_id" to TG_ID.toJsonElement(),
             ),
-            listOf(InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toPartData("image.jpg")),
+            listOf(InputFile(image, "image.jpg", Image.JPEG.contentType).toPartData("image.jpg")),
         )
         mediaReq.status shouldBe HttpStatusCode.OK
         mediaReq.bodyAsText().isNotBlank().shouldBeTrue()
@@ -189,7 +189,7 @@ class TelegramBotTest : BotTestContext() {
                     "chat_id" to TG_ID.toJsonElement(),
                 ),
                 Message::class.serializer(),
-                listOf(InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toPartData("image.jpg")),
+                listOf(InputFile(image, "image.jpg", Image.JPEG.contentType).toPartData("image.jpg")),
             ).await()
             .isSuccess()
             .shouldBeTrue()
