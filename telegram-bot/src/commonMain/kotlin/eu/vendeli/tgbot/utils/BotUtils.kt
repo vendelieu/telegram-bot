@@ -16,6 +16,7 @@ import eu.vendeli.tgbot.interfaces.MultipleResponse
 import eu.vendeli.tgbot.interfaces.TgAction
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ChainLink
+import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
@@ -34,6 +35,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 import kotlinx.serialization.InternalSerializationApi
@@ -123,6 +125,7 @@ private inline fun ImplicitFile.transform(multiParts: MutableList<PartData.Binar
     return JsonUnquotedLiteral("attach://${media.fileName}")
 }
 
+// todo change
 internal fun InputFile.toPartData(name: String) = PartData.BinaryItem(
     { ByteReadPacket(data) },
     {},
@@ -170,3 +173,23 @@ fun <T : ChainLink> InputListener.setChain(user: User, firstLink: T) = set(user,
 expect val _OperatingActivities: Map<String, List<Any?>>
 
 internal expect val KClass<*>.fullName: String
+
+/**
+ * Runs exception handler loop.
+ *
+ * @param dispatcher Dispatcher used for running handler.
+ * @param delay Delay after each handling iteration.
+ * @param block Handling action.
+ */
+suspend fun TgUpdateHandler.runExceptionHandler(
+    dispatcher: CoroutineDispatcher? = null,
+    delay: Long = 100,
+    block: suspend FailedUpdate.() -> Unit,
+) = coroutineScope {
+    launch(dispatcher ?: PROCESSING_DISPATCHER) {
+        for (e in caughtExceptions) {
+            block(e)
+            delay(delay)
+        }
+    }
+}
