@@ -31,7 +31,7 @@ kotlin {
     jvmToolchain(JAVA_TARGET_V_int)
 
     sourceSets {
-        named("commonMain") {
+        commonMain {
             dependencies {
                 implementation(libs.kotlin.serialization)
                 implementation(libs.kotlin.reflect)
@@ -45,7 +45,7 @@ kotlin {
                 api(libs.kotlin.datetime)
             }
         }
-        named("jvmTest") {
+        jvmTest {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.8.1")
                 implementation(libs.logback)
@@ -55,13 +55,13 @@ kotlin {
                 implementation(libs.mockk)
             }
         }
-        named("jvmMain") {
+        jvmMain {
             dependencies {
                 implementation(libs.logback)
                 implementation(libs.ktor.client.java)
             }
         }
-        named("jsMain") {
+        jsMain {
             dependencies {
                 implementation(libs.logging)
                 implementation(libs.ktor.client.js)
