@@ -1,6 +1,8 @@
 package eu.vendeli.tgbot.types.media
 
 import eu.vendeli.tgbot.types.internal.ImplicitFile
+import eu.vendeli.tgbot.types.internal.InputFile
+import eu.vendeli.tgbot.utils.toImplicitFile
 import kotlinx.serialization.Serializable
 
 /**
@@ -20,4 +22,20 @@ data class InputSticker(
     val emojiList: List<String>,
     val maskPosition: MaskPosition? = null,
     val keywords: List<String>? = null,
-)
+) {
+    constructor(
+        sticker: String,
+        format: StickerFormat,
+        emojiList: List<String>,
+        maskPosition: MaskPosition? = null,
+        keywords: List<String>? = null,
+    ) : this(sticker.toImplicitFile(), format, emojiList, maskPosition, keywords)
+
+    constructor(
+        sticker: InputFile,
+        format: StickerFormat,
+        emojiList: List<String>,
+        maskPosition: MaskPosition? = null,
+        keywords: List<String>? = null,
+    ) : this(sticker.toImplicitFile(), format, emojiList, maskPosition, keywords)
+}

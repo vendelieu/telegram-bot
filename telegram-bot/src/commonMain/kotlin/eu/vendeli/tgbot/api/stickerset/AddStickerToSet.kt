@@ -42,4 +42,4 @@ class AddStickerToSetAction(
 inline fun addStickerToSet(userId: Long, name: String, input: InputSticker) = AddStickerToSetAction(userId, name, input)
 
 inline fun addStickerToSet(userId: Long, name: String, input: () -> InputSticker) =
-    AddStickerToSetAction(userId, name, input())
+    addStickerToSet(userId, name, input())
