@@ -11,7 +11,7 @@ data class VideoOptions(
     var height: Int? = null,
     var width: Int? = null,
     var supportsStreaming: Boolean? = null,
-    var thumbnail: ImplicitFile? = null,
+    override var thumbnail: ImplicitFile? = null,
     override var showCaptionAboveMedia: Boolean? = null,
     override var parseMode: ParseMode? = null,
     override var disableNotification: Boolean? = null,
@@ -24,4 +24,5 @@ data class VideoOptions(
     OptionsParseMode,
     MediaSpoiler,
     MessageEffectIdProp,
+    ThumbnailProp,
     ShowCaptionAboveMediaProp

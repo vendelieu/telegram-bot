@@ -3,6 +3,7 @@ package eu.vendeli.tgbot.types.internal.options
 import eu.vendeli.tgbot.types.LinkPreviewOptions
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.ReplyParameters
+import eu.vendeli.tgbot.types.internal.ImplicitFile
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -26,6 +27,10 @@ interface LinkPreviewProp {
     fun linkPreviewOptions(block: LinkPreviewOptions.() -> Unit) {
         linkPreviewOptions = LinkPreviewOptions().apply(block)
     }
+}
+
+interface ThumbnailProp {
+    var thumbnail: ImplicitFile?
 }
 
 interface MessageEffectIdProp {

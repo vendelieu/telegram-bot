@@ -11,7 +11,7 @@ data class AudioOptions(
     var duration: Int? = null,
     var performer: String? = null,
     var title: String? = null,
-    var thumbnail: ImplicitFile? = null,
+    override var thumbnail: ImplicitFile? = null,
     override var disableNotification: Boolean? = null,
     override var protectContent: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,
@@ -19,4 +19,5 @@ data class AudioOptions(
     override var messageEffectId: String? = null,
 ) : OptionsCommon,
     OptionsParseMode,
+    ThumbnailProp,
     MessageEffectIdProp
