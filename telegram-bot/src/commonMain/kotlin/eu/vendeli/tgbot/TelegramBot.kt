@@ -2,6 +2,7 @@ package eu.vendeli.tgbot
 
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
+import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.interfaces.ConfigLoader
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
@@ -66,7 +67,7 @@ class TelegramBot(
     /**
      * Current bot UpdateHandler instance
      */
-    val update = CodegenUpdateHandler(commandsPackage, this)
+    val update: TgUpdateHandler = CodegenUpdateHandler(commandsPackage, this)
 
     internal val httpClient = getConfiguredHttpClient()
 

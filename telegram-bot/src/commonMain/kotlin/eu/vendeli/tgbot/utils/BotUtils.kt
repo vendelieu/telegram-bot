@@ -32,9 +32,11 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
@@ -165,15 +167,14 @@ internal expect val KClass<*>.fullName: String
  * @param delay Delay after each handling iteration.
  * @param block Handling action.
  */
+@Suppress("OPT_IN_USAGE")
 suspend fun TgUpdateHandler.runExceptionHandler(
-    dispatcher: CoroutineDispatcher? = null,
+    dispatcher: CoroutineDispatcher = PROCESSING_DISPATCHER,
     delay: Long = 100,
     block: suspend FailedUpdate.() -> Unit,
-) = coroutineScope {
-    launch(dispatcher ?: PROCESSING_DISPATCHER) {
-        for (e in caughtExceptions) {
-            block(e)
-            delay(delay)
-        }
+) = GlobalScope.launch(dispatcher + currentCoroutineContext()) {
+    for (e in caughtExceptions) {
+        block(e)
+        delay(delay)
     }
 }
