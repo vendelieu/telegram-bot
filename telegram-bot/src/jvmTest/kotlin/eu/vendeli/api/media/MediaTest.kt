@@ -37,13 +37,25 @@ class MediaTest : BotTestContext() {
         }
 
         val bytesResult = audio(lorem.bytes)
-            .caption { "*test*" }.options(options).sendReturning(TG_ID, bot).shouldSuccess()
+            .caption { "*test*" }
+            .options(options)
+            .sendReturning(TG_ID, bot)
+            .shouldSuccess()
         val textResult = sendAudio { bytesResult.audio!!.fileId }
-            .caption { "*test*" }.options(options).sendReturning(TG_ID, bot).shouldSuccess()
+            .caption { "*test*" }
+            .options(options)
+            .sendReturning(TG_ID, bot)
+            .shouldSuccess()
         val fileResult = audio(lorem.file)
-            .caption { "*test*" }.options(options).sendReturning(TG_ID, bot).shouldSuccess()
+            .caption { "*test*" }
+            .options(options)
+            .sendReturning(TG_ID, bot)
+            .shouldSuccess()
         val inputResult = audio(lorem.inputFile)
-            .caption { "*test*" }.options(options).sendReturning(TG_ID, bot).shouldSuccess()
+            .caption { "*test*" }
+            .options(options)
+            .sendReturning(TG_ID, bot)
+            .shouldSuccess()
 
         listOf(textResult, bytesResult, fileResult, inputResult).forEach { result ->
             with(result) {

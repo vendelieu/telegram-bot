@@ -9,7 +9,6 @@ import eu.vendeli.tgbot.types.internal.options.CreateNewStickerSetOptions
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toImplicitFile
 import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.transform
 
