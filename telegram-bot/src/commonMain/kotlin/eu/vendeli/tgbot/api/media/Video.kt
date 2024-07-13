@@ -26,6 +26,11 @@ class SendVideoAction(
     override val method = TgMethod("sendVideo")
     override val returnType = getReturnType()
     override val options = VideoOptions()
+    override val beforeReq: () -> Unit = {
+        options.thumbnail?.let {
+            handleImplicitFile(it, "thumbnail")
+        }
+    }
 
     init {
         handleImplicitFile(video, "video")

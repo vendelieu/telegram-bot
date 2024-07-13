@@ -24,6 +24,11 @@ class SendVideoNoteAction(
     override val method = TgMethod("sendVideoNote")
     override val returnType = getReturnType()
     override val options = VideoNoteOptions()
+    override val beforeReq: () -> Unit = {
+        options.thumbnail?.let {
+            handleImplicitFile(it, "thumbnail")
+        }
+    }
 
     init {
         handleImplicitFile(videoNote, "video_note")

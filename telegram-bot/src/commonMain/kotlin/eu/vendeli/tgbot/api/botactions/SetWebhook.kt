@@ -2,18 +2,14 @@
 
 package eu.vendeli.tgbot.api.botactions
 
-import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.SetWebhookOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 import eu.vendeli.tgbot.utils.toJsonElement
-import kotlinx.coroutines.Deferred
 
 class SetWebhookAction(
     url: String,
@@ -22,26 +18,12 @@ class SetWebhookAction(
     override val method = TgMethod("setWebhook")
     override val returnType = getReturnType()
     override val options = SetWebhookOptions()
+    override val beforeReq: () -> Unit = {
+        options.certificate?.also { handleImplicitFile(it.toImplicitFile(), "certificate") }
+    }
 
     init {
         parameters["url"] = url.toJsonElement()
-    }
-
-    @OptIn(InternalApi::class)
-    override suspend fun send(to: TelegramBot) {
-        handleCert()
-        doRequest(to)
-    }
-
-    @OptIn(InternalApi::class)
-    override suspend fun sendAsync(to: TelegramBot): Deferred<Response<out Boolean>> {
-        handleCert()
-        return doRequestReturning(to)
-    }
-
-    @Suppress("NOTHING_TO_INLINE")
-    private inline fun handleCert() {
-        options.certificate?.also { handleImplicitFile(it.toImplicitFile(), "certificate") }
     }
 }
 
