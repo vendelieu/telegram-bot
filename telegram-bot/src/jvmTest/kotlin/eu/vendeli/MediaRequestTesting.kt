@@ -75,7 +75,7 @@ class MediaRequestTesting : BotTestContext() {
                 parseMode = ParseMode.HTML,
             ),
             InputMedia.Photo(imageBytes.toImplicitFile()),
-            InputMedia.Photo(RandomPicResource.RANDOM_PIC_URL.toImplicitFile()),
+            InputMedia.Photo(RandomPicResource.RANDOM_PIC_URL),
         ).sendReturning(TG_ID, bot).getOrNull()
 
         mediaRequest.shouldNotBeNull()
@@ -87,8 +87,8 @@ class MediaRequestTesting : BotTestContext() {
         assertThrows<IllegalArgumentException>("All elements must be of the same specific type") {
             SendMediaGroupAction(
                 listOf(
-                    InputMedia.Photo("".toImplicitFile()),
-                    InputMedia.Audio("".toImplicitFile()),
+                    InputMedia.Photo(""),
+                    InputMedia.Audio(""),
                 ),
             )
         }

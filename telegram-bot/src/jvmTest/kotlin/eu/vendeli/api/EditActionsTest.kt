@@ -60,7 +60,7 @@ class EditActionsTest : BotTestContext() {
 
         val result = editMessageMedia(
             msg.messageId,
-            InputMedia.Photo(RandomPicResource.RANDOM_PIC_URL.toImplicitFile()),
+            InputMedia.Photo(RandomPicResource.RANDOM_PIC_URL),
         ).sendAsync(TG_ID, bot).shouldSuccess()
 
         with(result) {
