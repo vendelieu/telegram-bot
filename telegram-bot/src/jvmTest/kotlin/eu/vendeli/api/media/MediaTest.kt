@@ -15,7 +15,10 @@ import eu.vendeli.tgbot.api.media.sticker
 import eu.vendeli.tgbot.api.media.video
 import eu.vendeli.tgbot.api.media.videoNote
 import eu.vendeli.tgbot.api.media.voice
+import eu.vendeli.tgbot.types.EntityType
 import eu.vendeli.tgbot.types.ParseMode
+import eu.vendeli.tgbot.types.internal.options.AudioOptions
+import eu.vendeli.tgbot.utils.toImplicitFile
 import eu.vendeli.utils.LOREM
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -26,22 +29,39 @@ class MediaTest : BotTestContext() {
     @Test
     suspend fun `audio method test`() {
         val lorem = LOREM.AUDIO
+        val image = classloader.getResource("image.png")?.readBytes()?.toImplicitFile("test.png", "image/png")
+        image.shouldNotBeNull()
+        val options: AudioOptions.() -> Unit = {
+            thumbnail = image
+            parseMode = ParseMode.Markdown
+        }
+
         val bytesResult = audio(lorem.bytes)
-            .caption { "test" }
-            .options { parseMode = ParseMode.Markdown }
-            .sendReturning(TG_ID, bot)
-            .shouldSuccess()
-        val textResult = sendAudio { bytesResult.audio!!.fileId }.sendReturning(TG_ID, bot).shouldSuccess()
-        val fileResult = audio(lorem.file).sendReturning(TG_ID, bot).shouldSuccess()
-        val inputResult = audio(lorem.inputFile).sendReturning(TG_ID, bot).shouldSuccess()
+            .caption { "*test*" }.options(options).sendReturning(TG_ID, bot).shouldSuccess()
+        val textResult = sendAudio { bytesResult.audio!!.fileId }
+            .caption { "*test*" }.options(options).sendReturning(TG_ID, bot).shouldSuccess()
+        val fileResult = audio(lorem.file)
+            .caption { "*test*" }.options(options).sendReturning(TG_ID, bot).shouldSuccess()
+        val inputResult = audio(lorem.inputFile)
+            .caption { "*test*" }.options(options).sendReturning(TG_ID, bot).shouldSuccess()
 
         listOf(textResult, bytesResult, fileResult, inputResult).forEach { result ->
             with(result) {
                 shouldNotBeNull()
+                caption.shouldNotBeNull() shouldBe "test"
                 text.shouldBeNull()
                 audio.shouldNotBeNull()
-                audio?.fileName.shouldNotBeNull().shouldNotBeBlank()
-                audio?.duration shouldBe 121
+                audio!!.fileName.shouldNotBeNull().shouldNotBeBlank()
+                audio!!.duration shouldBe 121
+                audio!!.thumbnail.shouldNotBeNull()
+                audio!!.thumbnail!!.width shouldBe 1
+                audio!!.thumbnail!!.height shouldBe 1
+                captionEntities.shouldNotBeNull()
+                captionEntities!!.first().let {
+                    it.offset shouldBe 0
+                    it.length shouldBe 4
+                    it.type shouldBe EntityType.Bold
+                }
             }
         }
     }
@@ -81,7 +101,7 @@ class MediaTest : BotTestContext() {
                 shouldNotBeNull()
                 text.shouldBeNull()
                 document.shouldNotBeNull()
-                document?.fileName.shouldNotBeNull().shouldNotBeBlank()
+                document!!.fileName.shouldNotBeNull().shouldNotBeBlank()
             }
         }
     }
