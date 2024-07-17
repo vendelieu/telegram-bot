@@ -19,7 +19,7 @@ class SendPaidMediaTest : BotTestContext() {
         image.shouldNotBeNull()
 
         val request = sendPaidMedia(1) {
-            +InputPaidMedia.Photo(RANDOM_PIC_URL.toImplicitFile())
+            +InputPaidMedia.Photo(RANDOM_PIC_URL)
             +InputPaidMedia.Photo(File(image).toImplicitFile())
         }.sendReturning(CHANNEL_ID, bot).shouldSuccess()
 

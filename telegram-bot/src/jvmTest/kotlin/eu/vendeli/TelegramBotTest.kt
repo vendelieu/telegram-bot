@@ -21,7 +21,7 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.types.media.File
-import eu.vendeli.tgbot.utils.makeRequestAsync
+import eu.vendeli.tgbot.utils.makeRequestReturning
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.toPartData
@@ -63,7 +63,7 @@ class TelegramBotTest : BotTestContext() {
     @Test
     suspend fun `requests testing`() {
         val getMeReq = bot
-            .makeRequestAsync(
+            .makeRequestReturning(
                 TgMethod("getMe"),
                 emptyMap(),
                 User::class.serializer(),
@@ -92,7 +92,7 @@ class TelegramBotTest : BotTestContext() {
     @Test
     suspend fun `failure response handling`() {
         val failureReq = bot
-            .makeRequestAsync(
+            .makeRequestReturning(
                 TgMethod("sendMessage"),
                 mapOf("text" to "test".toJsonElement()),
                 Message.serializer(),
@@ -182,7 +182,7 @@ class TelegramBotTest : BotTestContext() {
         mediaReq.bodyAsText() shouldContain "\"file_id\""
 
         bot
-            .makeRequestAsync(
+            .makeRequestReturning(
                 method = TgMethod("sendPhoto"),
                 mapOf(
                     "photo" to JsonUnquotedLiteral("attach://image.jpg"),

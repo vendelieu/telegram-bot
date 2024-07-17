@@ -5,7 +5,7 @@ import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.Options
-import eu.vendeli.tgbot.utils.makeRequestAsync
+import eu.vendeli.tgbot.utils.makeRequestReturning
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import io.ktor.http.content.PartData
 import kotlinx.coroutines.Deferred
@@ -58,7 +58,7 @@ abstract class TgAction<ReturnType> : Request<ReturnType> {
     @InternalApi
     override suspend fun Request<ReturnType>.doRequestReturning(bot: TelegramBot): Deferred<Response<out ReturnType>> {
         beforeReq()
-        return bot.makeRequestAsync(method, parameters, returnType, multipartData)
+        return bot.makeRequestReturning(method, parameters, returnType, multipartData)
     }
 
     @InternalApi
