@@ -1,3 +1,4 @@
+
 import eu.vendeli.fixtures.__ACTIVITIES
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.InternalApi
@@ -18,6 +19,7 @@ import eu.vendeli.tgbot.utils.defineActivities
 import eu.vendeli.tgbot.utils.serde
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
+import io.kotest.common.ExperimentalKotest
 import io.kotest.common.runBlocking
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -47,6 +49,10 @@ abstract class BotTestContext(
     private val mockHttp: Boolean = false,
     private val spykIt: Boolean = true,
 ) : AnnotationSpec() {
+    override fun threads() = 1
+    @ExperimentalKotest
+    override fun concurrency() = 1
+
     private val INT_ITERATOR = (1..Int.MAX_VALUE).iterator()
     private val RANDOM_INST: Random get() = Random(CUR_INSTANT.epochSeconds)
     internal lateinit var bot: TelegramBot

@@ -21,7 +21,7 @@ class CreateInvoiceLinkTest : BotTestContext() {
             LabeledPrice("test3", 1000),
         ) {
             "test2"
-        }.sendAsync(bot).shouldSuccess()
+        }.sendReq().shouldSuccess()
 
         result.shouldNotBeNull()
         result shouldContain "https://t.me"

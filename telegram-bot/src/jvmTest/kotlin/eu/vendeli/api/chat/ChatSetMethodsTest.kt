@@ -88,10 +88,8 @@ class ChatSetMethodsTest : BotTestContext() {
     @Test
     suspend fun `set chat sticker set method test`() {
         val botName = getMe()
-            .sendAsync(bot)
-            .await()
-            .getOrNull()
-            .shouldNotBeNull()
+            .sendReq()
+            .shouldSuccess()
             .username
             .shouldNotBeNull()
         val setName = "Test_2_by_$botName"

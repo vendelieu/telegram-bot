@@ -9,20 +9,26 @@ import eu.vendeli.tgbot.api.forum.editForumTopic
 import eu.vendeli.tgbot.api.forum.reopenForumTopic
 import eu.vendeli.tgbot.api.forum.unpinAllForumTopicMessages
 import eu.vendeli.tgbot.types.forum.IconColor
-import eu.vendeli.tgbot.types.internal.getOrNull
 import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.minutes
 
 @EnabledIf(ChatTestingOnlyCondition::class)
 class ForumCrudTest : BotTestContext() {
+    @BeforeClass
+    suspend fun chillOut() {
+        delay(1.minutes)
+    }
+
     @Test
     suspend fun `create forum topic method test`() {
         val result = createForumTopic(
             "testTopic",
             IconColor.GREEN,
-        ).sendAsync(CHAT_ID, bot).shouldSuccess()
+        ).sendReq(CHAT_ID).shouldSuccess()
 
         with(result) {
             shouldNotBeNull()
@@ -35,10 +41,8 @@ class ForumCrudTest : BotTestContext() {
     @Test
     suspend fun `edit forum topic method test`() {
         val topic = createForumTopic("testTopic")
-            .sendAsync(CHAT_ID, bot)
-            .await()
-            .getOrNull()
-            .shouldNotBeNull()
+            .sendReq(CHAT_ID)
+            .shouldSuccess()
         topic.name shouldBe "testTopic"
 
         val result = editForumTopic(
@@ -53,10 +57,8 @@ class ForumCrudTest : BotTestContext() {
     @Test
     suspend fun `delete forum topic method test`() {
         val topic = createForumTopic("testTopic")
-            .sendAsync(CHAT_ID, bot)
-            .await()
-            .getOrNull()
-            .shouldNotBeNull()
+            .sendReq(CHAT_ID)
+            .shouldSuccess()
         val result = deleteForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
@@ -65,10 +67,8 @@ class ForumCrudTest : BotTestContext() {
     @Test
     suspend fun `close forum topic method test`() {
         val topic = createForumTopic("testTopic")
-            .sendAsync(CHAT_ID, bot)
-            .await()
-            .getOrNull()
-            .shouldNotBeNull()
+            .sendReq(CHAT_ID)
+            .shouldSuccess()
         val result = closeForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
@@ -78,10 +78,8 @@ class ForumCrudTest : BotTestContext() {
     @Test
     suspend fun `open forum topic method test`() {
         val topic = createForumTopic("testTopic")
-            .sendAsync(CHAT_ID, bot)
-            .await()
-            .getOrNull()
-            .shouldNotBeNull()
+            .sendReq(CHAT_ID)
+            .shouldSuccess()
         closeForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
         val result = reopenForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
 
@@ -92,10 +90,8 @@ class ForumCrudTest : BotTestContext() {
     @Test
     suspend fun `unpin all forum topic method test`() {
         val topic = createForumTopic("testTopic")
-            .sendAsync(CHAT_ID, bot)
-            .await()
-            .getOrNull()
-            .shouldNotBeNull()
+            .sendReq(CHAT_ID)
+            .shouldSuccess()
         val result = unpinAllForumTopicMessages(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()

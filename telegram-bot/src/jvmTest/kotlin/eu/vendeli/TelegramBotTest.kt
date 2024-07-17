@@ -207,9 +207,8 @@ class TelegramBotTest : BotTestContext() {
             ?.first()
             ?.fileId!!
 
-        val file = getFile(fileId).sendAsync(bot).await().getOrNull()
+        val file = getFile(fileId).sendReq().shouldSuccess()
 
-        file.shouldNotBeNull()
         val fileUrl = bot.getFileDirectUrl(file)
         fileUrl.shouldNotBeNull()
 

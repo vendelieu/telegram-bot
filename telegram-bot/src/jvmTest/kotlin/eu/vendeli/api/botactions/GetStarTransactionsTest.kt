@@ -7,7 +7,7 @@ import io.kotest.matchers.shouldBe
 class GetStarTransactionsTest : BotTestContext() {
     @Test
     suspend fun `getStarTransactions method testing`() {
-        val result = getStarTransactions(10, 20).sendAsync(bot).shouldSuccess()
+        val result = getStarTransactions(10, 20).sendReq().shouldSuccess()
 
         result.run {
             transactions.size shouldBe 0

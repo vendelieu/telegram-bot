@@ -9,7 +9,7 @@ class BusinessActionsTest : BotTestContext() {
     @Test
     suspend fun `getBusinessConnection method testing`() {
         getBusinessConnection("test")
-            .sendAsync(bot)
+            .sendReq()
             .getOrNull()
             ?.user
             ?.id

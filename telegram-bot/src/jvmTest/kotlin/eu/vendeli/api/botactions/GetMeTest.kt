@@ -11,7 +11,7 @@ import io.kotest.matchers.shouldBe
 class GetMeTest : BotTestContext() {
     @Test
     suspend fun `getme method testing`() {
-        val result = getMe().sendAsync(bot).await()
+        val result = getMe().sendReq()
         result.ok.shouldBeTrue()
         result.isSuccess().shouldBeTrue()
         result.getOrNull().shouldNotBeNull()
