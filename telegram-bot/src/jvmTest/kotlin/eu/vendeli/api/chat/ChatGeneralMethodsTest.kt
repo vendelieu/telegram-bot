@@ -22,10 +22,10 @@ import kotlin.time.Duration.Companion.milliseconds
 class ChatGeneralMethodsTest : BotTestContext() {
     @Test
     suspend fun `chat action method test`() {
-        var result = chatAction { ChatAction.ChooseSticker }.sendReturning(TG_ID, bot).shouldSuccess()
+        var result = chatAction { ChatAction.ChooseSticker }.sendReq().shouldSuccess()
         result.shouldBeTrue()
 
-        result = chatAction(ChatAction.RecordVideo).sendReturning(TG_ID, bot).shouldSuccess()
+        result = chatAction(ChatAction.RecordVideo).sendReq().shouldSuccess()
         result.shouldBeTrue()
     }
 

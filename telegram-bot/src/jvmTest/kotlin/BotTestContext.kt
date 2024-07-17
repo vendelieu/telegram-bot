@@ -1,7 +1,9 @@
-
 import eu.vendeli.fixtures.__ACTIVITIES
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.InternalApi
+import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
@@ -28,6 +30,7 @@ import io.mockk.every
 import io.mockk.mockkStatic
 import io.mockk.spyk
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.delay
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.json.JsonElement
@@ -105,6 +108,21 @@ abstract class BotTestContext(
         bot.httpClient.get(RandomPicResource.RANDOM_PIC_URL).takeIf { it.status.isSuccess() }?.readBytes()?.also {
             logger.warn { "RANDOM PIC OBTAINING ERROR." }
         }
+    }
+
+    protected suspend fun <T> Action<T>.sendReq(to: Long = TG_ID, via: TelegramBot = bot): Response<out T> {
+        delay(RANDOM_INST.nextLong(10, 200))
+        return sendReturning(to, via).await()
+    }
+
+    protected suspend fun <T : Any> SimpleAction<T>.sendReq(via: TelegramBot = bot): Response<out T> {
+        delay(RANDOM_INST.nextLong(10, 200))
+        return sendReturning(via).await()
+    }
+
+    protected suspend fun <T> MediaAction<T>.sendReq(to: Long = TG_ID, via: TelegramBot = bot): Response<out T> {
+        delay(RANDOM_INST.nextLong(10, 200))
+        return sendReturning(to, via).await()
     }
 
     protected fun Long.asUser() = User(this, false, "test")

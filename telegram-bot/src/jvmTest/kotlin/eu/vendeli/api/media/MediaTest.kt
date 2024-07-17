@@ -39,22 +39,22 @@ class MediaTest : BotTestContext() {
         val bytesResult = audio(lorem.bytes)
             .caption { "*test*" }
             .options(options)
-            .sendReturning(TG_ID, bot)
+            .sendReq()
             .shouldSuccess()
         val textResult = sendAudio { bytesResult.audio!!.fileId }
             .caption { "*test*" }
             .options(options)
-            .sendReturning(TG_ID, bot)
+            .sendReq()
             .shouldSuccess()
         val fileResult = audio(lorem.file)
             .caption { "*test*" }
             .options(options)
-            .sendReturning(TG_ID, bot)
+            .sendReq()
             .shouldSuccess()
         val inputResult = audio(lorem.inputFile)
             .caption { "*test*" }
             .options(options)
-            .sendReturning(TG_ID, bot)
+            .sendReq()
             .shouldSuccess()
 
         listOf(textResult, bytesResult, fileResult, inputResult).forEach { result ->
@@ -84,11 +84,11 @@ class MediaTest : BotTestContext() {
         val textResult = sendAnimation { lorem.url }
             .caption { "test" }
             .options { parseMode = ParseMode.Markdown }
-            .sendReturning(TG_ID, bot)
+            .sendReq()
             .shouldSuccess()
-        val bytesResult = animation(lorem.bytes).sendReturning(TG_ID, bot).shouldSuccess()
-        val fileResult = animation(lorem.file).sendReturning(TG_ID, bot).shouldSuccess()
-        val inputResult = animation(lorem.inputFile).sendReturning(TG_ID, bot).shouldSuccess()
+        val bytesResult = animation(lorem.bytes).sendReq().shouldSuccess()
+        val fileResult = animation(lorem.file).sendReq().shouldSuccess()
+        val inputResult = animation(lorem.inputFile).sendReq().shouldSuccess()
 
         listOf(textResult, bytesResult, fileResult, inputResult).forEach { result ->
             with(result) {
@@ -103,10 +103,10 @@ class MediaTest : BotTestContext() {
     @Test
     suspend fun `document method test`() {
         val lorem = LOREM.DOCUMENT
-        val textResult = sendDocument { lorem.url }.sendReturning(TG_ID, bot).shouldSuccess()
-        val bytesResult = document(lorem.bytes).sendReturning(TG_ID, bot).shouldSuccess()
-        val fileResult = document(lorem.file).sendReturning(TG_ID, bot).shouldSuccess()
-        val inputResult = document(lorem.inputFile).sendReturning(TG_ID, bot).shouldSuccess()
+        val textResult = sendDocument { lorem.url }.sendReq().shouldSuccess()
+        val bytesResult = document(lorem.bytes).sendReq().shouldSuccess()
+        val fileResult = document(lorem.file).sendReq().shouldSuccess()
+        val inputResult = document(lorem.inputFile).sendReq().shouldSuccess()
 
         listOf(textResult, bytesResult, fileResult, inputResult).forEach { result ->
             with(result) {
@@ -121,10 +121,10 @@ class MediaTest : BotTestContext() {
     @Test
     suspend fun `video method test`() {
         val lorem = LOREM.VIDEO
-        val bytesResult = video(lorem.bytes).sendReturning(TG_ID, bot).shouldSuccess()
-        val textResult = sendVideo { bytesResult.video!!.fileId }.sendReturning(TG_ID, bot).shouldSuccess()
-        val fileResult = video(lorem.file).sendReturning(TG_ID, bot).shouldSuccess()
-        val inputResult = video(lorem.inputFile).sendReturning(TG_ID, bot).shouldSuccess()
+        val bytesResult = video(lorem.bytes).sendReq().shouldSuccess()
+        val textResult = sendVideo { bytesResult.video!!.fileId }.sendReq().shouldSuccess()
+        val fileResult = video(lorem.file).sendReq().shouldSuccess()
+        val inputResult = video(lorem.inputFile).sendReq().shouldSuccess()
 
         listOf(textResult, bytesResult, fileResult, inputResult).forEach { result ->
             with(result) {
@@ -139,10 +139,10 @@ class MediaTest : BotTestContext() {
     @Test
     suspend fun `video note method test`() {
         val lorem = LOREM.VIDEO_NOTE
-        val bytesResult = videoNote(lorem.bytes).sendReturning(TG_ID, bot).shouldSuccess()
-        val textResult = sendVideoNote { bytesResult.videoNote!!.fileId }.sendReturning(TG_ID, bot).shouldSuccess()
-        val fileResult = videoNote(lorem.file).sendReturning(TG_ID, bot).shouldSuccess()
-        val inputResult = videoNote(lorem.inputFile).sendReturning(TG_ID, bot).shouldSuccess()
+        val bytesResult = videoNote(lorem.bytes).sendReq().shouldSuccess()
+        val textResult = sendVideoNote { bytesResult.videoNote!!.fileId }.sendReq().shouldSuccess()
+        val fileResult = videoNote(lorem.file).sendReq().shouldSuccess()
+        val inputResult = videoNote(lorem.inputFile).sendReq().shouldSuccess()
 
         listOf(textResult, bytesResult, fileResult, inputResult).forEach { result ->
             with(result) {
@@ -156,10 +156,10 @@ class MediaTest : BotTestContext() {
     @Test
     suspend fun `voice method test`() {
         val lorem = LOREM.VOICE
-        val bytesResult = voice(lorem.bytes).sendReturning(TG_ID, bot).shouldSuccess()
-        val textResult = sendVoice { bytesResult.voice!!.fileId }.sendReturning(TG_ID, bot).shouldSuccess()
-        val fileResult = voice(lorem.file).sendReturning(TG_ID, bot).shouldSuccess()
-        val inputResult = voice(lorem.inputFile).sendReturning(TG_ID, bot).shouldSuccess()
+        val bytesResult = voice(lorem.bytes).sendReq().shouldSuccess()
+        val textResult = sendVoice { bytesResult.voice!!.fileId }.sendReq().shouldSuccess()
+        val fileResult = voice(lorem.file).sendReq().shouldSuccess()
+        val inputResult = voice(lorem.inputFile).sendReq().shouldSuccess()
 
         listOf(textResult, bytesResult, fileResult, inputResult).forEach { result ->
             with(result) {
@@ -173,10 +173,10 @@ class MediaTest : BotTestContext() {
     @Test
     suspend fun `sticker method test`() {
         val lorem = LOREM.STICKER
-        val bytesResult = sticker(lorem.bytes).sendReturning(TG_ID, bot).shouldSuccess()
-        val textResult = sendSticker { bytesResult.sticker!!.fileId }.sendReturning(TG_ID, bot).shouldSuccess()
-        val fileResult = sticker(lorem.file).sendReturning(TG_ID, bot).shouldSuccess()
-        val inputResult = sticker(lorem.inputFile).sendReturning(TG_ID, bot).shouldSuccess()
+        val bytesResult = sticker(lorem.bytes).sendReq().shouldSuccess()
+        val textResult = sendSticker { bytesResult.sticker!!.fileId }.sendReq().shouldSuccess()
+        val fileResult = sticker(lorem.file).sendReq().shouldSuccess()
+        val inputResult = sticker(lorem.inputFile).sendReq().shouldSuccess()
 
         listOf(textResult, bytesResult, fileResult, inputResult).forEach { result ->
             with(result) {

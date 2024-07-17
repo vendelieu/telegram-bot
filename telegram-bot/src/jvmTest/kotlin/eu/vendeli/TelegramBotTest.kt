@@ -201,7 +201,7 @@ class TelegramBotTest : BotTestContext() {
         image.shouldNotBeNull()
 
         val fileId = photo(image)
-            .sendReturning(TG_ID, bot)
+            .sendReq()
             .getOrNull()
             ?.photo
             ?.first()

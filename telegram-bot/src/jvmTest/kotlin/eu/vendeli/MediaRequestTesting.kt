@@ -33,14 +33,14 @@ class MediaRequestTesting : BotTestContext() {
             photo { RandomPicResource.RANDOM_PIC_URL }
                 .options { parseMode = ParseMode.HTML }
                 .caption { "test" }
-                .sendReturning(TG_ID, bot)
+                .sendReq()
                 .getOrNull()
         photoString.shouldNotBeNull()
 
-        val photoBa = photo(pic).sendReturning(TG_ID, bot).getOrNull()
+        val photoBa = photo(pic).sendReq().getOrNull()
         photoBa.shouldNotBeNull()
 
-        val photoFile = photo(imageFile).sendReturning(TG_ID, bot).getOrNull()
+        val photoFile = photo(imageFile).sendReq().getOrNull()
         photoFile.shouldNotBeNull()
     }
 
@@ -56,7 +56,7 @@ class MediaRequestTesting : BotTestContext() {
                 parseMode = ParseMode.HTML,
             ),
             InputMedia.Photo(File(image).toImplicitFile()),
-        ).sendReturning(TG_ID, bot).getOrNull()
+        ).sendReq().getOrNull()
 
         mediaRequest.shouldNotBeNull()
         mediaRequest.first().mediaGroupId.shouldNotBeNull()
@@ -76,7 +76,7 @@ class MediaRequestTesting : BotTestContext() {
             ),
             InputMedia.Photo(imageBytes.toImplicitFile()),
             InputMedia.Photo(RandomPicResource.RANDOM_PIC_URL),
-        ).sendReturning(TG_ID, bot).getOrNull()
+        ).sendReq().getOrNull()
 
         mediaRequest.shouldNotBeNull()
         mediaRequest.first().mediaGroupId.shouldNotBeNull()

@@ -26,7 +26,7 @@ class MessageTest : BotTestContext() {
                     ?.boolean shouldBe true
                 parameters["parse_mode"]?.jsonPrimitive?.content shouldBe "HTML"
                 parameters["protect_content"]?.jsonPrimitive?.boolean shouldBe true
-            }.sendReturning(TG_ID, bot)
+            }.sendReq()
             .shouldSuccess()
 
         result.hasProtectedContent shouldBe true

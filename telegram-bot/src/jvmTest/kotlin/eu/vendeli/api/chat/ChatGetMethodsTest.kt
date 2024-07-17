@@ -19,7 +19,7 @@ import io.kotest.matchers.types.shouldBeTypeOf
 class ChatGetMethodsTest : BotTestContext() {
     @Test
     suspend fun `get chat method test`() {
-        val result = getChat().sendReturning(TG_ID, bot).shouldSuccess()
+        val result = getChat().sendReq().shouldSuccess()
 
         with(result) {
             id shouldBe TG_ID
@@ -47,7 +47,7 @@ class ChatGetMethodsTest : BotTestContext() {
 
     @Test
     suspend fun `get chat menu button test`() {
-        val result = getChatMenuButton().sendReturning(TG_ID, bot).shouldSuccess()
+        val result = getChatMenuButton().sendReq().shouldSuccess()
 
         with(result) {
             shouldBeTypeOf<MenuButton.Default>()

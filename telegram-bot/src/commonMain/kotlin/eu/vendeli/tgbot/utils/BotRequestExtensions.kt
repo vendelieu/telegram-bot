@@ -62,6 +62,7 @@ private suspend inline fun <T> HttpResponse.toResult(type: KSerializer<T>) = bod
     else serde.decodeFromString(Response.Failure.serializer(), it)
 }
 
+@Suppress("ktlint:standard:backing-property-naming")
 private var _baseUrl: String? = null
 private val TelegramBot.baseUrl: String
     get() {

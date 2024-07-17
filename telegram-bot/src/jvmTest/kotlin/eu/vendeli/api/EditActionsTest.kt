@@ -11,7 +11,6 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardButton
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
-import eu.vendeli.tgbot.utils.toImplicitFile
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -21,9 +20,9 @@ import utils.RandomPicResource
 class EditActionsTest : BotTestContext() {
     @Test
     suspend fun `edit message test method test`() {
-        val msg = message("test1").sendReturning(TG_ID, bot).getOrNull()
+        val msg = message("test1").sendReq().getOrNull()
         msg.shouldNotBeNull()
-        val result = editMessageText(msg.messageId) { "test2" }.sendAsync(TG_ID, bot).shouldSuccess()
+        val result = editMessageText(msg.messageId) { "test2" }.sendReq().shouldSuccess()
 
         result.text shouldBe "test2"
     }
@@ -33,13 +32,13 @@ class EditActionsTest : BotTestContext() {
         val msg = message("test1")
             .markup(
                 inlineKeyboardMarkup { "test" switchInlineQueryCurrentChat "test" },
-            ).sendReturning(TG_ID, bot)
+            ).sendReq()
             .getOrNull()
         msg.shouldNotBeNull()
 
         val result = editMessageReplyMarkup(msg.messageId)
             .inlineKeyboardMarkup { "test2" switchInlineQuery "test" }
-            .sendAsync(TG_ID, bot)
+            .sendReq()
             .shouldSuccess()
 
         with(result) {
@@ -55,13 +54,13 @@ class EditActionsTest : BotTestContext() {
 
     @Test
     suspend fun `edit media test method test`() {
-        val msg = photo(RANDOM_PIC ?: return).sendReturning(TG_ID, bot).getOrNull()
+        val msg = photo(RANDOM_PIC ?: return).sendReq().getOrNull()
         msg.shouldNotBeNull()
 
         val result = editMessageMedia(
             msg.messageId,
             InputMedia.Photo(RandomPicResource.RANDOM_PIC_URL),
-        ).sendAsync(TG_ID, bot).shouldSuccess()
+        ).sendReq().shouldSuccess()
 
         with(result) {
             text.shouldBeNull()
@@ -72,11 +71,11 @@ class EditActionsTest : BotTestContext() {
 
     @Test
     suspend fun `edit media caption test method test`() {
-        val msg = photo(RANDOM_PIC ?: return).sendReturning(TG_ID, bot).getOrNull()
+        val msg = photo(RANDOM_PIC ?: return).sendReq().getOrNull()
         msg.shouldNotBeNull()
         msg.caption.shouldBeNull()
 
-        val result = editMessageCaption(msg.messageId).caption { "test" }.sendAsync(TG_ID, bot).shouldSuccess()
+        val result = editMessageCaption(msg.messageId).caption { "test" }.sendReq().shouldSuccess()
 
         with(result) {
             text.shouldBeNull()

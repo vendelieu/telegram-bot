@@ -26,7 +26,7 @@ class AnswerActionsTest : BotTestContext() {
     suspend fun `answer inline query test`() {
         val result = answerInlineQuery("test") {
             +answerPhoto
-        }.sendAsync(bot).await()
+        }.sendReq()
 
         result.ok.shouldBeFalse()
         result.shouldBeInstanceOf<Response.Failure>()
@@ -39,7 +39,7 @@ class AnswerActionsTest : BotTestContext() {
 
     @Test
     suspend fun `answer callback query test`() {
-        val result = answerCallbackQuery("test").sendAsync(DUMB_USER, bot).await()
+        val result = answerCallbackQuery("test").sendReq()
 
         result.ok.shouldBeFalse()
         result.shouldBeInstanceOf<Response.Failure>()
@@ -53,11 +53,9 @@ class AnswerActionsTest : BotTestContext() {
     @Test
     suspend fun `answer pre checkout query test`() {
         val failureResult = answerPreCheckoutQuery("test", false, "test1")
-            .sendAsync(bot)
-            .await()
+            .sendReq()
         val successResult = answerPreCheckoutQuery("test")
-            .sendAsync(bot)
-            .await()
+            .sendReq()
 
         listOf(failureResult, successResult).forEach { result ->
             result.ok.shouldBeFalse()
@@ -74,14 +72,14 @@ class AnswerActionsTest : BotTestContext() {
     suspend fun `answer shipping query test`() {
         val listingResult = answerShippingQuery("test") {
             +ShippingOption("testOp", "testTitle", listOf(LabeledPrice("testLbl", 1)))
-        }.sendAsync(bot).await()
+        }.sendReq()
         val varargResult = answerShippingQuery(
             "test",
             true,
             null,
             ShippingOption("testOp", "testTitle", listOf(LabeledPrice("testLbl", 1))),
-        ).sendAsync(bot).await()
-        val errorResult = answerShippingQuery("test", false, "test").sendAsync(bot).await()
+        ).sendReq()
+        val errorResult = answerShippingQuery("test", false, "test").sendReq()
 
         listOf(listingResult, varargResult, errorResult).forEach { result ->
             result.ok.shouldBeFalse()
@@ -96,7 +94,7 @@ class AnswerActionsTest : BotTestContext() {
 
     @Test
     suspend fun `answer web app query test`() {
-        val result = answerWebAppQuery("test", answerPhoto).sendAsync(bot).await()
+        val result = answerWebAppQuery("test", answerPhoto).sendReq()
 
         result.ok.shouldBeFalse()
         result.shouldBeInstanceOf<Response.Failure>()
