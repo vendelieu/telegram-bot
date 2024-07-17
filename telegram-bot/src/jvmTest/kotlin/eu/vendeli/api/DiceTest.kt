@@ -11,7 +11,7 @@ class DiceTest : BotTestContext() {
         val result = dice(emoji = "\uD83C\uDFC0")
             .options {
                 protectContent = true
-            }.sendReturning(TG_ID, bot)
+            }.sendReq()
             .shouldSuccess()
 
         result.hasProtectedContent shouldBe true

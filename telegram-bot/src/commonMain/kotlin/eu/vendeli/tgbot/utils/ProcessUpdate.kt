@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.utils
 
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.internal.BusinessConnectionUpdate
 import eu.vendeli.tgbot.types.internal.BusinessMessageUpdate
@@ -24,6 +25,7 @@ import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
 import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 
+@InternalApi
 @Suppress("CyclomaticComplexMethod")
 fun Update.processUpdate() = when {
     message != null -> MessageUpdate(updateId, this, message)

@@ -26,6 +26,11 @@ class SendAnimationAction(
     override val method = TgMethod("sendAnimation")
     override val returnType = getReturnType()
     override val options = AnimationOptions()
+    override val beforeReq: () -> Unit = {
+        options.thumbnail?.let {
+            handleImplicitFile(it, "thumbnail")
+        }
+    }
 
     init {
         handleImplicitFile(animation, "animation")

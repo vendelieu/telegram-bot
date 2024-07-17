@@ -12,7 +12,7 @@ class ContactTest : BotTestContext() {
             .options {
                 lastName = "test1"
                 vcard = "test2"
-            }.sendReturning(TG_ID, bot)
+            }.sendReq()
             .shouldSuccess()
 
         with(result.contact) {

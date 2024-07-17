@@ -38,7 +38,7 @@ class PollTest : BotTestContext() {
                     openPeriod = 2.minutes
                     correctOptionId = 1
                     isAnonymous = false
-                }.sendReturning(TG_ID, bot)
+                }.sendReq()
                 .shouldSuccess()
 
             with(result.poll) {
@@ -61,7 +61,7 @@ class PollTest : BotTestContext() {
                 openPeriod = 565.seconds
                 correctOptionId = 1
                 isAnonymous = false
-            }.sendReturning(TG_ID, bot)
+            }.sendReq()
 
         poll.getOrNull().shouldNotBeNull().poll.shouldNotBeNull().run {
             isClosed shouldBe false
@@ -69,7 +69,7 @@ class PollTest : BotTestContext() {
 
         stopPoll(
             poll.getOrNull()!!.messageId,
-        ).sendReturning(TG_ID, bot).getOrNull().shouldNotBeNull().run {
+        ).sendReq().getOrNull().shouldNotBeNull().run {
             isClosed shouldBe true
         }
     }

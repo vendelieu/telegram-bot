@@ -26,6 +26,11 @@ class SendAudioAction(
     override val method = TgMethod("sendAudio")
     override val returnType = getReturnType()
     override val options = AudioOptions()
+    override val beforeReq: () -> Unit = {
+        options.thumbnail?.let {
+            handleImplicitFile(it, "thumbnail")
+        }
+    }
 
     init {
         handleImplicitFile(audio, "audio")

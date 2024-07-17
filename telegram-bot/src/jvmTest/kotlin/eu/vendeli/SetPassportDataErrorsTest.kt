@@ -20,7 +20,7 @@ class SetPassportDataErrorsTest : BotTestContext() {
                     "test1",
                 ),
             ),
-        ).sendAsync(bot).shouldSuccess()
+        ).sendReq().shouldSuccess()
 
         result.shouldBeTrue()
     }

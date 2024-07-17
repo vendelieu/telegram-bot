@@ -356,8 +356,8 @@ inline fun TelegramBot.invoiceSc(
 inline fun TelegramBot.hideGeneralForumTopicSc() = hideGeneralForumTopic()
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun TelegramBot.uploadStickerFileSc(sticker: InputFile, stickerFormat: StickerFormat) =
-    uploadStickerFile(sticker, stickerFormat)
+inline fun TelegramBot.uploadStickerFileSc(userId: Long, sticker: InputFile, stickerFormat: StickerFormat) =
+    uploadStickerFile(userId, sticker, stickerFormat)
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.editMessageTextSc(messageId: Long, block: () -> String) = editMessageText(messageId,  block)
@@ -416,10 +416,12 @@ inline fun TelegramBot.answerPreCheckoutQuerySc(
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.createNewStickerSetSc(
+    userId: Long,
     name: String,
     title: String,
     stickers: List<InputSticker>,
 ) = createNewStickerSet(
+    userId,
     name,
     title,
     stickers,
@@ -528,8 +530,8 @@ inline fun TelegramBot.setMyNameSc(name: String? = null, languageCode: String? =
 inline fun TelegramBot.getUpdatesSc() = getUpdates()
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun TelegramBot.setStickerSetThumbnailSc(name: String, format: StickerFormat, thumbnail: ImplicitFile? = null) =
-    setStickerSetThumbnail(name, format, thumbnail)
+inline fun TelegramBot.setStickerSetThumbnailSc(name: String, userId: Long, format: StickerFormat, thumbnail: ImplicitFile? = null) =
+    setStickerSetThumbnail(name, userId, format, thumbnail)
 
 @Suppress("NOTHING_TO_INLINE")
 inline fun TelegramBot.setChatDescriptionSc(title: String? = null) = setChatDescription(title)

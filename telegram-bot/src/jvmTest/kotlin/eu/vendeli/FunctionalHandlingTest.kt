@@ -1,6 +1,7 @@
 package eu.vendeli
 
 import BotTestContext
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
@@ -156,6 +157,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         commonHandler.get() shouldBe 2
     }
 
+    @OptIn(InternalApi::class)
     @Test
     suspend fun `functional activities setting test`() {
         val ctx = ActivityCtx(

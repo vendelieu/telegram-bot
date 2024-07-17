@@ -1,8 +1,8 @@
 package eu.vendeli.api
 
 import BotTestContext
-import eu.vendeli.tgbot.api.message.editMessageLiveLocation
 import eu.vendeli.tgbot.api.location
+import eu.vendeli.tgbot.api.message.editMessageLiveLocation
 import eu.vendeli.tgbot.api.stopMessageLiveLocation
 import eu.vendeli.tgbot.api.venue
 import eu.vendeli.tgbot.types.internal.getOrNull
@@ -18,7 +18,7 @@ class LocationTest : BotTestContext() {
                 livePeriod = 1000
                 heading = 4
                 proximityAlertRadius = 10
-            }.sendReturning(TG_ID, bot)
+            }.sendReq()
             .shouldSuccess()
 
         with(result.location) {
@@ -40,14 +40,14 @@ class LocationTest : BotTestContext() {
                 livePeriod = 1000
                 heading = 4
                 proximityAlertRadius = 10
-            }.sendReturning(TG_ID, bot)
+            }.sendReq()
 
         val result = editMessageLiveLocation(location.getOrNull()!!.messageId, 2F, 3F)
             .options {
                 heading = 3
                 horizontalAccuracy = 2F
                 proximityAlertRadius = 9
-            }.sendReturning(TG_ID, bot)
+            }.sendReq()
             .shouldSuccess()
 
         with(result.location) {
@@ -69,11 +69,11 @@ class LocationTest : BotTestContext() {
                 livePeriod = 1000
                 heading = 4
                 proximityAlertRadius = 10
-            }.sendReturning(TG_ID, bot)
+            }.sendReq()
 
         val result = stopMessageLiveLocation(
             location.getOrNull()!!.messageId,
-        ).sendReturning(TG_ID, bot).shouldSuccess()
+        ).sendReq().shouldSuccess()
 
         with(result.location) {
             shouldNotBeNull()
@@ -90,7 +90,7 @@ class LocationTest : BotTestContext() {
             2F,
             "test",
             "address",
-        ).sendReturning(TG_ID, bot).shouldSuccess()
+        ).sendReq().shouldSuccess()
 
         with(result) {
             venue.shouldNotBeNull()

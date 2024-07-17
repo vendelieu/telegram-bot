@@ -21,7 +21,7 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.types.media.File
-import eu.vendeli.tgbot.utils.makeRequestAsync
+import eu.vendeli.tgbot.utils.makeRequestReturning
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.toPartData
@@ -39,7 +39,7 @@ import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotBeBlank
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
 import io.ktor.client.statement.bodyAsText
-import io.ktor.http.ContentType
+import io.ktor.http.ContentType.Image
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Deferred
 import kotlinx.datetime.Instant
@@ -63,7 +63,7 @@ class TelegramBotTest : BotTestContext() {
     @Test
     suspend fun `requests testing`() {
         val getMeReq = bot
-            .makeRequestAsync(
+            .makeRequestReturning(
                 TgMethod("getMe"),
                 emptyMap(),
                 User::class.serializer(),
@@ -92,7 +92,7 @@ class TelegramBotTest : BotTestContext() {
     @Test
     suspend fun `failure response handling`() {
         val failureReq = bot
-            .makeRequestAsync(
+            .makeRequestReturning(
                 TgMethod("sendMessage"),
                 mapOf("text" to "test".toJsonElement()),
                 Message.serializer(),
@@ -174,7 +174,7 @@ class TelegramBotTest : BotTestContext() {
                 "photo" to JsonUnquotedLiteral("attach://image.jpg"),
                 "chat_id" to TG_ID.toJsonElement(),
             ),
-            listOf(InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toPartData("image.jpg")),
+            listOf(InputFile(image, "image.jpg", Image.JPEG.contentType).toPartData("image.jpg")),
         )
         mediaReq.status shouldBe HttpStatusCode.OK
         mediaReq.bodyAsText().isNotBlank().shouldBeTrue()
@@ -182,14 +182,14 @@ class TelegramBotTest : BotTestContext() {
         mediaReq.bodyAsText() shouldContain "\"file_id\""
 
         bot
-            .makeRequestAsync(
+            .makeRequestReturning(
                 method = TgMethod("sendPhoto"),
                 mapOf(
                     "photo" to JsonUnquotedLiteral("attach://image.jpg"),
                     "chat_id" to TG_ID.toJsonElement(),
                 ),
                 Message::class.serializer(),
-                listOf(InputFile(image, "image.jpg", ContentType.Image.JPEG.contentType).toPartData("image.jpg")),
+                listOf(InputFile(image, "image.jpg", Image.JPEG.contentType).toPartData("image.jpg")),
             ).await()
             .isSuccess()
             .shouldBeTrue()
@@ -201,15 +201,14 @@ class TelegramBotTest : BotTestContext() {
         image.shouldNotBeNull()
 
         val fileId = photo(image)
-            .sendReturning(TG_ID, bot)
+            .sendReq()
             .getOrNull()
             ?.photo
             ?.first()
             ?.fileId!!
 
-        val file = getFile(fileId).sendAsync(bot).await().getOrNull()
+        val file = getFile(fileId).sendReq().shouldSuccess()
 
-        file.shouldNotBeNull()
         val fileUrl = bot.getFileDirectUrl(file)
         fileUrl.shouldNotBeNull()
 

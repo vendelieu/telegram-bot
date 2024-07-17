@@ -8,11 +8,12 @@ import kotlinx.serialization.Serializable
 data class VideoNoteOptions(
     var duration: Int? = null,
     var length: Int? = null,
-    var thumb: ImplicitFile? = null,
+    override var thumbnail: ImplicitFile? = null,
     override var disableNotification: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,
     override var protectContent: Boolean? = null,
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
 ) : OptionsCommon,
+    ThumbnailProp,
     MessageEffectIdProp

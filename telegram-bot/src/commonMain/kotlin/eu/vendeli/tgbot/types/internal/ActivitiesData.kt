@@ -8,7 +8,6 @@ import eu.vendeli.tgbot.utils.InputHandlers
 import eu.vendeli.tgbot.utils.InvocationLambda
 import eu.vendeli.tgbot.utils.UpdateTypeHandlers
 import eu.vendeli.tgbot.utils._OperatingActivities
-import eu.vendeli.tgbot.utils.logString
 
 @Suppress("UNCHECKED_CAST")
 internal class ActivitiesData(
@@ -40,4 +39,13 @@ internal class ActivitiesData(
     @Suppress("NOTHING_TO_INLINE")
     private inline fun notFoundGeneratedActivities(): Nothing =
         error("Not found generated actions, check if ksp plugin and ksp processor is connected correctly.")
+
+    private inline val <K, V : Any> Map<K, V>.logString: String
+        get() = takeIf { isNotEmpty() }?.entries?.joinToString(",\n") {
+            "${it.key} - " + if (it.value is Pair<*, *>) {
+                (it.value as Pair<*, *>).second
+            } else {
+                it.value
+            }.toString()
+        } ?: "None"
 }

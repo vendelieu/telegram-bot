@@ -1,7 +1,10 @@
+
 import eu.vendeli.fixtures.__ACTIVITIES
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
@@ -16,6 +19,7 @@ import eu.vendeli.tgbot.utils.defineActivities
 import eu.vendeli.tgbot.utils.serde
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
+import io.kotest.common.ExperimentalKotest
 import io.kotest.common.runBlocking
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -45,6 +49,10 @@ abstract class BotTestContext(
     private val mockHttp: Boolean = false,
     private val spykIt: Boolean = true,
 ) : AnnotationSpec() {
+    override fun threads() = 1
+    @ExperimentalKotest
+    override fun concurrency() = 1
+
     private val INT_ITERATOR = (1..Int.MAX_VALUE).iterator()
     private val RANDOM_INST: Random get() = Random(CUR_INSTANT.epochSeconds)
     internal lateinit var bot: TelegramBot
@@ -102,15 +110,25 @@ abstract class BotTestContext(
         bot = spyk(bot, recordPrivateCalls = true)
     }
 
-    protected suspend fun <T> Action<T>.sendReturning(id: Long, bot: TelegramBot): Response<out T> {
-        delay(200)
-        return sendAsync(id, bot).await()
-    }
-
     private fun getRandomPic(): ByteArray? = runBlocking {
         bot.httpClient.get(RandomPicResource.RANDOM_PIC_URL).takeIf { it.status.isSuccess() }?.readBytes()?.also {
             logger.warn { "RANDOM PIC OBTAINING ERROR." }
         }
+    }
+
+    protected suspend fun <T> Action<T>.sendReq(to: Long = TG_ID, via: TelegramBot = bot): Response<out T> {
+        delay(RANDOM_INST.nextLong(10, 200))
+        return sendReturning(to, via).await()
+    }
+
+    protected suspend fun <T : Any> SimpleAction<T>.sendReq(via: TelegramBot = bot): Response<out T> {
+        delay(RANDOM_INST.nextLong(10, 200))
+        return sendReturning(via).await()
+    }
+
+    protected suspend fun <T> MediaAction<T>.sendReq(to: Long = TG_ID, via: TelegramBot = bot): Response<out T> {
+        delay(RANDOM_INST.nextLong(10, 200))
+        return sendReturning(to, via).await()
     }
 
     protected fun Long.asUser() = User(this, false, "test")

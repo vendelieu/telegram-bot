@@ -22,8 +22,7 @@ internal open class LogbackLogger(
             LogLvl.ALL -> Level.TRACE
         }
         val id = if (id == "eu.vendeli.TelegramBot") "eu.vendeli" else id
-        val root = LoggerFactory.getLogger(id) as ch.qos.logback.classic.Logger
-        root.setLevel(lvl)
+        LoggerFactory.getLogger(id).cast<ch.qos.logback.classic.Logger>().setLevel(lvl)
     }
 
     override fun info(message: () -> String) {

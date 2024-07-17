@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DocumentOptions(
-    var thumbnail: ImplicitFile? = null,
+    override var thumbnail: ImplicitFile? = null,
     var disableContentTypeDetection: Boolean? = null,
     override var parseMode: ParseMode? = null,
     override var disableNotification: Boolean? = null,
@@ -17,4 +17,5 @@ data class DocumentOptions(
     override var messageEffectId: String? = null,
 ) : OptionsCommon,
     OptionsParseMode,
+    ThumbnailProp,
     MessageEffectIdProp

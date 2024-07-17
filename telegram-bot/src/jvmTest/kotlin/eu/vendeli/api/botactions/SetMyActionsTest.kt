@@ -14,7 +14,6 @@ import eu.vendeli.tgbot.api.botactions.setMyName
 import eu.vendeli.tgbot.api.botactions.setMyShortDescription
 import eu.vendeli.tgbot.types.bot.BotCommand
 import eu.vendeli.tgbot.types.chat.ChatAdministratorRights
-import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.onFailure
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContain
@@ -41,7 +40,7 @@ class SetMyActionsTest : BotTestContext() {
             ),
         ).send(bot)
 
-        val result = getMyDefaultAdministratorRights().sendAsync(bot).shouldSuccess()
+        val result = getMyDefaultAdministratorRights().sendReq().shouldSuccess()
 
         with(result) {
             isAnonymous.shouldBeTrue()
@@ -67,7 +66,7 @@ class SetMyActionsTest : BotTestContext() {
     @Test
     suspend fun `set description method testing`() {
         setMyDescription("test").send(bot)
-        val result = getMyDescription().sendAsync(bot).shouldSuccess()
+        val result = getMyDescription().sendReq().shouldSuccess()
 
         result.shouldNotBeNull()
         result.description shouldBe "test"
@@ -78,7 +77,7 @@ class SetMyActionsTest : BotTestContext() {
     @Test
     suspend fun `set short description method testing`() {
         setMyShortDescription("test").send(bot)
-        val result = getMyShortDescription().sendAsync(bot).shouldSuccess()
+        val result = getMyShortDescription().sendReq().shouldSuccess()
 
         result.shouldNotBeNull()
         result.shortDescription shouldBe "test"
@@ -90,7 +89,7 @@ class SetMyActionsTest : BotTestContext() {
         setMyCommands {
             botCommand("test", "testD")
         }.send(bot)
-        val result = getMyCommands().sendAsync(bot).shouldSuccess()
+        val result = getMyCommands().sendReq().shouldSuccess()
 
         result.shouldNotBeNull()
         result.shouldNotBeEmpty()
@@ -103,10 +102,10 @@ class SetMyActionsTest : BotTestContext() {
 //        setMyCommands("en", BotCommandScope.AllPrivateChats) {
 //            "test" description "testD"
 //        }.send(bot)
-//        getMyCommands("en", BotCommandScope.AllPrivateChats).sendAsync(bot)
+//        getMyCommands("en", BotCommandScope.AllPrivateChats).sendReq()
 //            .await().getOrNull().shouldNotBeNull().shouldNotBeEmpty()
 
-        val result = deleteMyCommands().sendAsync(bot).shouldSuccess()
+        val result = deleteMyCommands().sendReq().shouldSuccess()
 
         result.shouldNotBeNull()
         result.shouldBeTrue()
@@ -114,7 +113,7 @@ class SetMyActionsTest : BotTestContext() {
 
     @Test
     suspend fun `set my name method testing`() {
-        val request = setMyName("testbot2").sendAsync(bot).await()
+        val request = setMyName("testbot2").sendReq()
 
         request.onFailure {
             if (it.errorCode == 429) return // delay due to limit
@@ -126,10 +125,8 @@ class SetMyActionsTest : BotTestContext() {
         result.shouldBeTrue()
 
         getMyName()
-            .sendAsync(bot)
-            .await()
-            .getOrNull()
-            .shouldNotBeNull()
+            .sendReq()
+            .shouldSuccess()
             .name shouldBe "testbot2"
 
         setMyName("testbot").send(bot)

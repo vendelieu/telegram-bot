@@ -13,14 +13,14 @@ import io.kotest.matchers.string.shouldStartWith
 class BotMainActionsTest : BotTestContext() {
     @Test
     suspend fun `get updates method testing`() {
-        val result = getUpdates().sendAsync(bot).shouldSuccess()
+        val result = getUpdates().sendReq().shouldSuccess()
 
         result.shouldNotBeNull()
     }
 
     @Test
     suspend fun `get webhook info method testing`() {
-        val result = getWebhookInfo().sendAsync(bot).shouldSuccess()
+        val result = getWebhookInfo().sendReq().shouldSuccess()
 
         result.shouldNotBeNull()
         result.url.shouldBeEmpty()
@@ -32,7 +32,7 @@ class BotMainActionsTest : BotTestContext() {
         setWebhook("https://vendeli.eu/1")
             .sendAsync(bot)
             .foldResponse({ println(result) }, { println(errorCode) })
-        val result = getWebhookInfo().sendAsync(bot).shouldSuccess()
+        val result = getWebhookInfo().sendReq().shouldSuccess()
 
         result.shouldNotBeNull()
         result.url shouldStartWith "https://vendeli.eu"

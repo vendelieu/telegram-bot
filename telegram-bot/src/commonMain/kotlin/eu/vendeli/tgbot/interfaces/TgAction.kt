@@ -1,11 +1,14 @@
 package eu.vendeli.tgbot.interfaces
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.internal.InternalApi
+import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.Options
-import eu.vendeli.tgbot.utils.makeRequestAsync
+import eu.vendeli.tgbot.utils.makeRequestReturning
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import io.ktor.http.content.PartData
+import kotlinx.coroutines.Deferred
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.JsonElement
 import kotlin.properties.Delegates
@@ -27,7 +30,7 @@ abstract class TgAction<ReturnType> : Request<ReturnType> {
     /**
      * Type of action result.
      */
-    internal open val returnType by Delegates.notNull<KSerializer<ReturnType>>()
+    protected open val returnType by Delegates.notNull<KSerializer<ReturnType>>()
 
     /**
      * Field where entities should be stored.
@@ -44,13 +47,21 @@ abstract class TgAction<ReturnType> : Request<ReturnType> {
      */
     internal val multipartData: MutableList<PartData.BinaryItem> = mutableListOf()
 
+    protected open val beforeReq = {}
+
+    @InternalApi
     override suspend fun Request<ReturnType>.doRequest(bot: TelegramBot) {
+        beforeReq()
         bot.makeSilentRequest(method, parameters, multipartData)
     }
 
-    override suspend fun Request<ReturnType>.doRequestAsync(bot: TelegramBot) =
-        bot.makeRequestAsync(method, parameters, returnType, multipartData)
+    @InternalApi
+    override suspend fun Request<ReturnType>.doRequestReturning(bot: TelegramBot): Deferred<Response<out ReturnType>> {
+        beforeReq()
+        return bot.makeRequestReturning(method, parameters, returnType, multipartData)
+    }
 
+    @InternalApi
     override val Request<ReturnType>.parameters: MutableMap<String, JsonElement>
         get() = this@TgAction.parameters
 }

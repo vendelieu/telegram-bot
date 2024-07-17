@@ -20,7 +20,7 @@ class CloseTest : BotTestContext() {
     @Test
     @Order(1)
     suspend fun `close method testing`() {
-        val result = close().sendAsync(bot).await()
+        val result = close().sendReq()
         result.onFailure { failure ->
             failure.parameters?.retryAfter?.also {
                 delay(it.seconds)
@@ -34,7 +34,7 @@ class CloseTest : BotTestContext() {
     @Test
     @Order(2)
     suspend fun `getting too many requests`() {
-        val result = close().sendAsync(bot).await()
+        val result = close().sendReq()
         result.ok.shouldBeFalse()
         result.getOrNull().shouldBeNull()
         result.onFailure {

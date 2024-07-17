@@ -62,13 +62,22 @@ private suspend inline fun <T> HttpResponse.toResult(type: KSerializer<T>) = bod
     else serde.decodeFromString(Response.Failure.serializer(), it)
 }
 
-internal suspend inline fun <T> TelegramBot.makeRequestAsync(
+@Suppress("ktlint:standard:backing-property-naming")
+private var _baseUrl: String? = null
+private val TelegramBot.baseUrl: String
+    get() {
+        if (_baseUrl != null) return _baseUrl!!
+        _baseUrl = "${config.apiHost}/bot$token" + if (config.isTestEnv) "/test/" else "/"
+        return _baseUrl!!
+    }
+
+internal suspend inline fun <T> TelegramBot.makeRequestReturning(
     method: TgMethod,
     data: Map<String, JsonElement>,
     returnType: KSerializer<T>,
     multipartData: List<PartData.BinaryItem>,
 ): Deferred<Response<out T>> = coroutineScope {
-    val response = httpClient.post(method.getUrl(config.apiHost, token)) {
+    val response = httpClient.post(baseUrl + method.name) {
         formReqBody(data, multipartData)
     }
 
@@ -80,7 +89,7 @@ internal suspend inline fun TelegramBot.makeSilentRequest(
     data: Map<String, JsonElement>,
     multipartData: List<PartData.BinaryItem>,
 ) = httpClient
-    .post(method.getUrl(config.apiHost, token)) {
+    .post(baseUrl + method.name) {
         formReqBody(data, multipartData)
     }.logFailure()
 

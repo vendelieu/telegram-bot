@@ -10,18 +10,18 @@ stately = "2.0.7"
 kotlin = "2.0.0"
 coroutines = "1.8.1"
 dokka = "1.9.20"
-kotlinter = "4.4.0"
+kotlinter = "4.4.1"
 deteKT = "1.23.6"
 
 kotest = "5.9.1"
-mockk = "1.13.11"
+mockk = "1.13.12"
 kover = "0.8.2"
 krypto = "4.0.10"
 sslcontext = "8.3.6"
 spring = "3.3.1"
 
-ksp = "2.0.0-1.0.22"
-poet = "1.18.0"
+ksp = "2.0.0-1.0.23"
+poet = "1.18.1"
 
 binvalid = "0.15.1"
 

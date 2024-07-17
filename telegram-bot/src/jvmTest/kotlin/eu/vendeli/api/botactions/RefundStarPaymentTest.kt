@@ -12,7 +12,7 @@ class RefundStarPaymentTest : BotTestContext() {
         refundStarPayment(
             "test",
             DUMB_USER.id,
-        ).sendAsync(bot)
+        ).sendReq()
             .onFailure {
                 it.description shouldContain "USER_ID_INVALID"
             }?.shouldBeFalse()

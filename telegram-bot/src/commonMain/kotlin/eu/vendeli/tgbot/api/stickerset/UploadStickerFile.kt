@@ -2,7 +2,7 @@
 
 package eu.vendeli.tgbot.api.stickerset
 
-import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.SimpleAction
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.File
@@ -10,20 +10,22 @@ import eu.vendeli.tgbot.types.media.StickerFormat
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
+import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.JsonUnquotedLiteral
 
 @OptIn(ExperimentalSerializationApi::class)
 class UploadStickerFileAction(
+    userId: Long,
     sticker: InputFile,
     stickerFormat: StickerFormat,
-) : MediaAction<File>() {
+) : SimpleAction<File>() {
     override val method = TgMethod("uploadStickerFile")
     override val returnType = getReturnType()
-    override val idRefField: String = "user_id"
 
     init {
         handleImplicitFile(sticker.toImplicitFile(), "sticker")
+        parameters["user_id"] = userId.toJsonElement()
         parameters["sticker_format"] = JsonUnquotedLiteral(stickerFormat.name.lowercase())
     }
 }
@@ -38,5 +40,5 @@ class UploadStickerFileAction(
  * @returns [File]
  */
 @Suppress("NOTHING_TO_INLINE")
-inline fun uploadStickerFile(sticker: InputFile, stickerFormat: StickerFormat) =
-    UploadStickerFileAction(sticker, stickerFormat)
+inline fun uploadStickerFile(userId: Long, sticker: InputFile, stickerFormat: StickerFormat) =
+    UploadStickerFileAction(userId, sticker, stickerFormat)

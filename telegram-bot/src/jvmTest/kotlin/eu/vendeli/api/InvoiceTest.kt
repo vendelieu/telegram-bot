@@ -20,7 +20,7 @@ class InvoiceTest : BotTestContext() {
             PAYMENT_PROVIDER_TOKEN,
             Currency.AED,
             listOf(LabeledPrice("test3", 1000)),
-        ).sendReturning(TG_ID, bot).shouldSuccess()
+        ).sendReq().shouldSuccess()
 
         with(result.invoice) {
             shouldNotBeNull()

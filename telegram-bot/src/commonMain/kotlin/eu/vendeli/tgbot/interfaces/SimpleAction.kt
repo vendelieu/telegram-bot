@@ -1,9 +1,8 @@
 package eu.vendeli.tgbot.interfaces
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.internal.Response
-import eu.vendeli.tgbot.utils.makeRequestAsync
-import eu.vendeli.tgbot.utils.makeSilentRequest
 import kotlinx.coroutines.Deferred
 
 /**
@@ -11,6 +10,7 @@ import kotlinx.coroutines.Deferred
  *
  * @param ReturnType response type.
  */
+@OptIn(InternalApi::class)
 abstract class SimpleAction<ReturnType> : TgAction<ReturnType>() {
     /**
      * Send request for action.
@@ -18,7 +18,7 @@ abstract class SimpleAction<ReturnType> : TgAction<ReturnType>() {
      * @param to recipient.
      */
     open suspend fun send(to: TelegramBot) {
-        to.makeSilentRequest(method, parameters, multipartData)
+        doRequest(to)
     }
 
     /**
@@ -28,5 +28,7 @@ abstract class SimpleAction<ReturnType> : TgAction<ReturnType>() {
      */
     open suspend fun sendAsync(
         to: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = to.makeRequestAsync(method, parameters, returnType, multipartData)
+    ): Deferred<Response<out ReturnType>> = doRequestReturning(to)
+
+    suspend fun sendReturning(to: TelegramBot): Deferred<Response<out ReturnType>> = doRequestReturning(to)
 }

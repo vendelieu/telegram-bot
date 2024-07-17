@@ -26,6 +26,11 @@ class SendDocumentAction(
     override val method = TgMethod("sendDocument")
     override val returnType = getReturnType()
     override val options = DocumentOptions()
+    override val beforeReq: () -> Unit = {
+        options.thumbnail?.let {
+            handleImplicitFile(it, "thumbnail")
+        }
+    }
 
     init {
         handleImplicitFile(document, "document")

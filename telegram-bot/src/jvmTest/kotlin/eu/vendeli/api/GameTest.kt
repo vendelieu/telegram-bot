@@ -13,7 +13,7 @@ import kotlin.random.nextLong
 class GameTest : BotTestContext() {
     @Test
     suspend fun `send game method test`() {
-        val result = game("testestes").sendReturning(TG_ID, bot).shouldSuccess()
+        val result = game("testestes").sendReq().shouldSuccess()
 
         with(result.game) {
             shouldNotBeNull()
@@ -24,17 +24,17 @@ class GameTest : BotTestContext() {
 
     @Test
     suspend fun `set score method test`() {
-        val game = game("testestes").sendReturning(TG_ID, bot).getOrNull()
+        val game = game("testestes").sendReq().getOrNull()
 
         val userResult = setGameScore(TG_ID.asUser(), game!!.messageId, ITER_INT.toLong())
             .options {
                 force = true
-            }.sendReturning(TG_ID, bot)
+            }.sendReq()
             .shouldSuccess()
         val idResult = setGameScore(TG_ID, game.messageId, ITER_INT.toLong())
             .options {
                 force = true
-            }.sendReturning(TG_ID, bot)
+            }.sendReq()
             .shouldSuccess()
 
         listOf(userResult, idResult).forEach { result ->
@@ -48,18 +48,18 @@ class GameTest : BotTestContext() {
 
     @Test
     suspend fun `get game high score method test`() {
-        val game = game("testestes").sendReturning(TG_ID, bot).getOrNull()
+        val game = game("testestes").sendReq().getOrNull()
         val newScore = Random.nextLong(1L..10_000)
         setGameScore(TG_ID, game!!.messageId, newScore)
             .options {
                 force = true
-            }.sendReturning(TG_ID, bot)
+            }.sendReq()
 
         val idResult = getGameHighScores(TG_ID, game.messageId)
-            .sendAsync(TG_ID, bot)
+            .sendReq()
             .shouldSuccess()
         val userResult = getGameHighScores(TG_ID.asUser(), game.messageId)
-            .sendAsync(TG_ID, bot)
+            .sendReq()
             .shouldSuccess()
 
         listOf(idResult, userResult).forEach { result ->
