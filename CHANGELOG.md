@@ -1,5 +1,16 @@
 # Telegram-bot (KtGram) changelog
 
+## 6.4.0
+
+* Change a request url forming scheme, now you can set protocol, plus added `isTestEnv` parameter to turn testing env.
+* Added `bot.update.runExceptionHandler {}` to run ex. handling loop.
+* Added secondary constructors for places where `ImplicitFile` used with `String`, `InputFile` options.
+* Added `.sendReturning()` method (same as `sendAsync()`) for a more understandable flow.
+* Moved `user_id` parameter from `send*` method to constructor
+  in `createNewStickerSet`, `setStickerSetThumbnail`, `uploadStickerFile`, `addStickerToSet`,
+  it wasn't obvious and didn't reflect the telegram api.
+* Improved optional `thumbnail` passing for media (photo, document, etc.) actions.
+
 ### 6.3.1
 
 * Fixed `webapp` onEvent handling.
