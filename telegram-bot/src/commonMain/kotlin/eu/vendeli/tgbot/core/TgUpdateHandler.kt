@@ -34,7 +34,7 @@ abstract class TgUpdateHandler internal constructor(
     internal val handlerScope = bot.config.updatesListener.run {
         CoroutineScope(dispatcher + CoroutineName("TgBot"))
     }
-    internal val functionalHandlingBehavior = FunctionalHandlingDsl(bot)
+    internal val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
 
     /**
      * The channel where errors caught during update processing are stored with update that caused them.

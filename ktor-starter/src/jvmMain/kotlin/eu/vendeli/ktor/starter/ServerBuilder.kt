@@ -16,15 +16,15 @@ class ServerBuilder internal constructor() {
         server = ManualConfiguration().apply(configurator)
     }
 
-    fun declareBot(block: BotConfiguration.() -> Unit) = BotConfiguration().apply(block).also {
-        botInstances[it.token] = TelegramBot(
-            it.token,
-            it.pckg,
-            it.configuration,
+    fun declareBot(block: BotConfiguration.() -> Unit) = BotConfiguration().apply(block).also { cfg ->
+        botInstances[cfg.token] = TelegramBot(
+            cfg.token,
+            cfg.pckg,
+            cfg.configuration,
         ).also { bot ->
-            bot.identifier = it.identifier
-            bot.update.setBehaviour(it.handlingBehaviour)
-            runBlocking { it.onInitHook.invoke(bot) }
+            bot.identifier = cfg.identifier
+            cfg.handlingBehaviour?.let { bot.update.setBehaviour(it) }
+            runBlocking { cfg.onInitHook.invoke(bot) }
         }
     }
 
