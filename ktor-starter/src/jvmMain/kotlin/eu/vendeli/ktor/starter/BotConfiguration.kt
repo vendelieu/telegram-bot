@@ -12,7 +12,7 @@ class BotConfiguration {
 
     var token by Delegates.notNull<String>()
     var pckg: String? = null
-    var identifier by Delegates.notNull<String>()
+    var identifier = "KtGram"
 
     fun configuration(config: BotConfigurator) {
         configuration = config

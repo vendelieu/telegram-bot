@@ -11,11 +11,11 @@ data class AnswerInlineQueryOptions(
     var nextOffset: String? = null,
     var button: InlineQueryResultsButton? = null,
 ) : Options {
-    fun button(text: String, webAppInfo: () -> WebAppInfo) {
-        button = InlineQueryResultsButton(text, webApp = webAppInfo())
+    fun button(text: String, webAppInfoUrl: () -> String) {
+        button = InlineQueryResultsButton(text, webApp = WebAppInfo(url = webAppInfoUrl()))
     }
 
-    fun button(text: String, startParameter: () -> String) {
-        button = InlineQueryResultsButton(text, startParameter = startParameter())
+    fun button(text: String, startParameter: String) {
+        button = InlineQueryResultsButton(text, startParameter = startParameter)
     }
 }
