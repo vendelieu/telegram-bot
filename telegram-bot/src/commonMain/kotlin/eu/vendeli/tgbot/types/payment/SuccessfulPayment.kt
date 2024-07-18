@@ -21,7 +21,7 @@ data class SuccessfulPayment(
     val totalAmount: Int,
     val invoicePayload: String,
     val shippingOptionId: String? = null,
-    val orderInfo: OrderInfo,
+    val orderInfo: OrderInfo? = null,
     val telegramPaymentChargeId: String,
     val providerPaymentChargeId: String,
 )
