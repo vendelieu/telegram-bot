@@ -22,7 +22,7 @@ sealed class Identifier {
     ) : Identifier() {
         override val get: kotlin.String get(): kotlin.String = to
         internal companion object : KSerializer<String> {
-            override val descriptor = PrimitiveSerialDescriptor("String serde", PrimitiveKind.LONG)
+            override val descriptor = PrimitiveSerialDescriptor("String serde", PrimitiveKind.STRING)
             override fun serialize(encoder: Encoder, value: String) {
                 encoder.encodeString(value.to)
             }

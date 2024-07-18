@@ -16,6 +16,6 @@ import kotlinx.serialization.Serializable
 data class PollAnswer(
     val pollId: String,
     val voterChat: Chat? = null,
-    val user: User,
+    val user: User? = null,
     val optionIds: List<Int>,
 )

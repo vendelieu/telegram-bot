@@ -251,7 +251,7 @@ data class PollAnswerUpdate(
     val pollAnswer: PollAnswer,
 ) : ProcessedUpdate(updateId, origin, UpdateType.POLL_ANSWER),
     UserReference {
-    override val user: User = pollAnswer.user
+    override val user: User? = pollAnswer.user
 
     internal companion object : UpdateSerializer<PollAnswerUpdate>()
 }
