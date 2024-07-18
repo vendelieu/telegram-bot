@@ -2657,7 +2657,7 @@ $dokka.location:eu.vendeli.tgbot.types.payment/ShippingQuery/id/#/PointingToDecl
 $dokka.location:eu.vendeli.tgbot.types.payment/ShippingQuery/invoicePayload/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.payment/-shipping-query/invoice-payload.html
 $dokka.location:eu.vendeli.tgbot.types.payment/ShippingQuery/shippingAddress/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.payment/-shipping-query/shipping-address.html
 $dokka.location:eu.vendeli.tgbot.types.payment/SuccessfulPayment///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.payment/-successful-payment/index.html
-$dokka.location:eu.vendeli.tgbot.types.payment/SuccessfulPayment/SuccessfulPayment/#eu.vendeli.tgbot.types.internal.Currency#kotlin.Int#kotlin.String#kotlin.String?#eu.vendeli.tgbot.types.payment.OrderInfo#kotlin.String#kotlin.String/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.payment/-successful-payment/-successful-payment.html
+$dokka.location:eu.vendeli.tgbot.types.payment/SuccessfulPayment/SuccessfulPayment/#eu.vendeli.tgbot.types.internal.Currency#kotlin.Int#kotlin.String#kotlin.String?#eu.vendeli.tgbot.types.payment.OrderInfo?#kotlin.String#kotlin.String/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.payment/-successful-payment/-successful-payment.html
 $dokka.location:eu.vendeli.tgbot.types.payment/SuccessfulPayment/currency/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.payment/-successful-payment/currency.html
 $dokka.location:eu.vendeli.tgbot.types.payment/SuccessfulPayment/invoicePayload/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.payment/-successful-payment/invoice-payload.html
 $dokka.location:eu.vendeli.tgbot.types.payment/SuccessfulPayment/orderInfo/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.payment/-successful-payment/order-info.html
@@ -3166,7 +3166,7 @@ $dokka.location:eu.vendeli.tgbot.types/ParseMode/entries/#/PointingToDeclaration
 $dokka.location:eu.vendeli.tgbot.types/ParseMode/valueOf/#kotlin.String/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-parse-mode/value-of.html
 $dokka.location:eu.vendeli.tgbot.types/ParseMode/values/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-parse-mode/values.html
 $dokka.location:eu.vendeli.tgbot.types/PollAnswer///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-poll-answer/index.html
-$dokka.location:eu.vendeli.tgbot.types/PollAnswer/PollAnswer/#kotlin.String#eu.vendeli.tgbot.types.chat.Chat?#eu.vendeli.tgbot.types.User#kotlin.collections.List[kotlin.Int]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-poll-answer/-poll-answer.html
+$dokka.location:eu.vendeli.tgbot.types/PollAnswer/PollAnswer/#kotlin.String#eu.vendeli.tgbot.types.chat.Chat?#eu.vendeli.tgbot.types.User?#kotlin.collections.List[kotlin.Int]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-poll-answer/-poll-answer.html
 $dokka.location:eu.vendeli.tgbot.types/PollAnswer/optionIds/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-poll-answer/option-ids.html
 $dokka.location:eu.vendeli.tgbot.types/PollAnswer/pollId/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-poll-answer/poll-id.html
 $dokka.location:eu.vendeli.tgbot.types/PollAnswer/user/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-poll-answer/user.html
