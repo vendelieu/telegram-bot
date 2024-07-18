@@ -22,7 +22,7 @@ class ServerBuilder internal constructor() {
             cfg.pckg,
             cfg.configuration,
         ).also { bot ->
-            bot.identifier = cfg.identifier
+            cfg.identifier?.let { bot.identifier = it }
             cfg.handlingBehaviour?.let { bot.update.setBehaviour(it) }
             runBlocking { cfg.onInitHook.invoke(bot) }
         }
