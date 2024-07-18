@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) changelog
 
+### 6.4.1
+
+* Fix `SuccessfulPayment` absence of `orderInfo` nullability bug.
+
 ## 6.4.0
 
 * Change a request url forming scheme, now you can set protocol, plus added `isTestEnv` parameter to turn testing env.
