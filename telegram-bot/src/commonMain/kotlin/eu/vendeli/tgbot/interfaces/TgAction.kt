@@ -25,6 +25,7 @@ abstract class TgAction<ReturnType> : Request<ReturnType> {
      * [there](https://core.telegram.org/bots/faq#how-can-i-make-requests-in-response-to-updates).
      */
     fun toWebhookResponse(): String {
+        require(multipartData.isEmpty()) { "Multipart files is not supported for webhook response flow." }
         parameters["method"] = method.name.toJsonElement()
         return serde.encodeToString(parameters)
     }
