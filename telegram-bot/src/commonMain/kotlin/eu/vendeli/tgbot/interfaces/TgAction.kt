@@ -7,9 +7,12 @@ import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.Options
 import eu.vendeli.tgbot.utils.makeRequestReturning
 import eu.vendeli.tgbot.utils.makeSilentRequest
+import eu.vendeli.tgbot.utils.serde
+import eu.vendeli.tgbot.utils.toJsonElement
 import io.ktor.http.content.PartData
 import kotlinx.coroutines.Deferred
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.JsonElement
 import kotlin.properties.Delegates
 
@@ -17,6 +20,15 @@ import kotlin.properties.Delegates
  * Tg action, see [Actions article](https://github.com/vendelieu/telegram-bot/wiki/Actions)
  */
 abstract class TgAction<ReturnType> : Request<ReturnType> {
+    /**
+     * Payload to make response for the webhook request as described
+     * [there](https://core.telegram.org/bots/faq#how-can-i-make-requests-in-response-to-updates).
+     */
+    fun toWebhookResponse(): String {
+        parameters["method"] = method.name.toJsonElement()
+        return serde.encodeToString(parameters)
+    }
+
     /**
      * A method that is implemented in Action.
      */
