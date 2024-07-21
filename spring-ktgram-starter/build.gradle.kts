@@ -7,9 +7,10 @@ kotlin {
     jvmToolchain(JAVA_TARGET_V_int)
     jvm()
     sourceSets {
-        named("jvmMain") {
+        jvmMain {
             dependencies {
                 compileOnly(project(":telegram-bot"))
+                compileOnly(libs.ktor.client.core)
                 compileOnly(libs.spring.starter)
             }
         }

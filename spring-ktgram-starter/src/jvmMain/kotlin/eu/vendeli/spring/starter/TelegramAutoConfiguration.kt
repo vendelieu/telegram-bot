@@ -1,6 +1,7 @@
 package eu.vendeli.spring.starter
 
 import eu.vendeli.tgbot.TelegramBot
+import io.ktor.client.HttpClient
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -21,11 +22,14 @@ open class TelegramAutoConfiguration(
     @Autowired(required = false)
     private lateinit var cfg: List<BotConfiguration>
 
+    @Autowired(required = false)
+    private lateinit var client: HttpClient
+
     @Bean
     @OptIn(DelicateCoroutinesApi::class)
     open fun botInstances(): List<TelegramBot> = config.bot.map { bot ->
-        val botCfg = if (this::cfg.isInitialized) cfg.find { bot.identifier == it.identifier } else null
-        val botInstance = TelegramBot(bot.token, bot.pckg) {
+        val botCfg = cfg.takeIf { ::cfg.isInitialized }?.find { bot.identifier == it.identifier }
+        val botInstance = TelegramBot(bot.token, bot.pckg, client.takeIf { ::cfg.isInitialized }) {
             classManager = springClassManager
             botCfg?.let { this.apply(it.applyCfg()) }
         }
