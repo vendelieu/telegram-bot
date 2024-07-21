@@ -34,7 +34,7 @@ abstract class TgUpdateHandler internal constructor(
     internal val handlerScope = bot.config.updatesListener.run {
         CoroutineScope(dispatcher + CoroutineName("TgBot"))
     }
-    internal val functionalHandlingBehavior = FunctionalHandlingDsl(bot)
+    internal val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
 
     /**
      * The channel where errors caught during update processing are stored with update that caused them.
@@ -110,20 +110,25 @@ abstract class TgUpdateHandler internal constructor(
      * A method for handling updates from a string.
      * Define processing behavior before calling, see [setBehaviour].
      */
-    suspend fun parseAndHandle(update: String) {
+    suspend fun parseAndHandle(update: String) = parse(update)
+        ?.let {
+            logger.debug { "Processing update with preset behaviour." }
+            coHandle(
+                bot.config.updatesListener.processingDispatcher,
+            ) { handlingBehaviour(this@TgUpdateHandler, it) }
+        }
+
+    /**
+     * A method to parse update from string.
+     */
+    fun parse(update: String): ProcessedUpdate? {
         logger.debug { "Trying to parse update from string - $update" }
-        serde
+        return serde
             .runCatching { decodeFromString(ProcessedUpdate.serializer(), update) }
             .onFailure {
                 logger.error(it) { "error during the update parsing process." }
             }.onSuccess { logger.info { "Successfully parsed update to $it" } }
             .getOrNull()
-            ?.let {
-                logger.debug { "Processing update with preset behaviour." }
-                coHandle(
-                    bot.config.updatesListener.processingDispatcher,
-                ) { handlingBehaviour(this@TgUpdateHandler, it) }
-            }
     }
 
     /**

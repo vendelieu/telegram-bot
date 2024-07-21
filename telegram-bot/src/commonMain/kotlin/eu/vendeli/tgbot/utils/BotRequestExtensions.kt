@@ -62,15 +62,6 @@ private suspend inline fun <T> HttpResponse.toResult(type: KSerializer<T>) = bod
     else serde.decodeFromString(Response.Failure.serializer(), it)
 }
 
-@Suppress("ktlint:standard:backing-property-naming")
-private var _baseUrl: String? = null
-private val TelegramBot.baseUrl: String
-    get() {
-        if (_baseUrl != null) return _baseUrl!!
-        _baseUrl = "${config.apiHost}/bot$token" + if (config.isTestEnv) "/test/" else "/"
-        return _baseUrl!!
-    }
-
 internal suspend inline fun <T> TelegramBot.makeRequestReturning(
     method: TgMethod,
     data: Map<String, JsonElement>,

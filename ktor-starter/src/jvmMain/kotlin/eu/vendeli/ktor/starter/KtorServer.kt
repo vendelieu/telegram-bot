@@ -1,5 +1,6 @@
 package eu.vendeli.ktor.starter
 
+import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.call
 import io.ktor.server.engine.applicationEngineEnvironment
@@ -10,7 +11,7 @@ import io.ktor.server.netty.Netty
 import io.ktor.server.netty.NettyApplicationEngine
 import io.ktor.server.request.receiveText
 import io.ktor.server.response.respond
-import io.ktor.server.routing.post
+import io.ktor.server.routing.route
 import io.ktor.server.routing.routing
 import nl.altindag.ssl.pem.util.PemUtils
 import java.io.File
@@ -61,17 +62,19 @@ fun serveWebhook(wait: Boolean = true, serverBuilder: ServerBuilder.() -> Unit =
             }
         }
 
-        modules.addAll(cfg.ktorModules)
-        module {
+        modules.add {
             routing {
                 cfg.botInstances.forEach { (token, bot) ->
-                    post("${cfg.WEBHOOK_PREFIX}$token") {
-                        bot.update.parseAndHandle(call.receiveText())
-                        call.respond(HttpStatusCode.OK)
+                    route("${cfg.WEBHOOK_PREFIX}$token", HttpMethod.Post) {
+                        handle {
+                            bot.update.parseAndHandle(call.receiveText())
+                            call.respond(HttpStatusCode.OK)
+                        }
                     }
                 }
             }
         }
+        modules.addAll(cfg.ktorModules)
     }
 
     return embeddedServer(Netty, environment, cfg.engineCfg).start(wait)

@@ -1,5 +1,14 @@
 # Telegram-bot (KtGram) changelog
 
+### 6.5.0
+
+* Added `button(...)` function to define button in `answerInlineQuery` options.
+* Added method `toWebhookResponse` to actions to give an option to respond to webhook.
+* Added separate `bot.update.parse(...)`, helpful if you're using webhook responses.
+* Fixed incorrect request url resolution when using multiple bot instances.
+* Added ability to share `httpClient` between instances in ktor starter, spring starter will also use the httClient, if
+  bean is defined.
+
 ### 6.4.1
 
 * Fix `SuccessfulPayment` absence of `orderInfo` nullability bug.
