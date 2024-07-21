@@ -62,7 +62,6 @@ fun serveWebhook(wait: Boolean = true, serverBuilder: ServerBuilder.() -> Unit =
             }
         }
 
-        modules.addAll(cfg.ktorModules)
         modules.add {
             routing {
                 cfg.botInstances.forEach { (token, bot) ->
@@ -75,6 +74,7 @@ fun serveWebhook(wait: Boolean = true, serverBuilder: ServerBuilder.() -> Unit =
                 }
             }
         }
+        modules.addAll(cfg.ktorModules)
     }
 
     return embeddedServer(Netty, environment, cfg.engineCfg).start(wait)

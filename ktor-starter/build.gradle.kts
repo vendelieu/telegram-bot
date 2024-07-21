@@ -7,7 +7,7 @@ kotlin {
     jvmToolchain(JAVA_TARGET_V_int)
     jvm()
     sourceSets {
-        named("jvmMain") {
+        jvmMain {
             dependencies {
                 compileOnly(project(":telegram-bot"))
                 api(libs.ktor.server.core)
