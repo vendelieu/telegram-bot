@@ -1,8 +1,9 @@
 package eu.vendeli.tgbot.utils
 
-import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.internal.LogLvl
+import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpTimeout
@@ -14,8 +15,8 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNamingStrategy
 
-@Suppress("NOTHING_TO_INLINE")
-internal inline fun TelegramBot.getConfiguredHttpClient() = config.httpClient.run cfg@{
+@InternalApi
+fun getConfiguredHttpClient(config: BotConfiguration) = config.httpClient.run cfg@{
     HttpClient {
         install("RequestLogging") {
             sendPipeline.intercept(HttpSendPipeline.Monitoring) {

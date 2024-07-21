@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot
 
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler
@@ -11,6 +12,7 @@ import eu.vendeli.tgbot.utils.BotConfigurator
 import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.Logging
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
+import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.readBytes
 
@@ -36,6 +38,16 @@ class TelegramBot(
         configLoader.commandsPackage,
     ) {
         config.apply(configLoader.load())
+    }
+
+    @OptIn(InternalApi::class)
+    constructor(
+        token: String,
+        commandsPackage: String? = null,
+        httpClient: HttpClient? = null,
+        botConfiguration: BotConfigurator = {},
+    ) : this(token, commandsPackage, botConfiguration) {
+        this.httpClient = httpClient ?: getConfiguredHttpClient(config)
     }
 
     internal val config = BotConfiguration().apply(botConfiguration)
@@ -71,7 +83,8 @@ class TelegramBot(
      */
     val update: TgUpdateHandler = CodegenUpdateHandler(commandsPackage, this)
 
-    internal val httpClient = getConfiguredHttpClient()
+    @OptIn(InternalApi::class)
+    internal var httpClient = getConfiguredHttpClient(config)
 
     /**
      * Get direct url from [File] if [File.filePath] is present
