@@ -40,6 +40,8 @@ class TelegramBot(
 
     internal val config = BotConfiguration().apply(botConfiguration)
 
+    internal val baseUrl by lazy { "${config.apiHost}/bot$token" + if (config.isTestEnv) "/test/" else "/" }
+
     /**
      * A tool for managing input waiting.
      */
