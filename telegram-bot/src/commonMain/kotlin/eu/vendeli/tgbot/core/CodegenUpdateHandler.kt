@@ -82,7 +82,6 @@ class CodegenUpdateHandler internal constructor(
     }
 
     private suspend fun Invocable.invokeCatching(update: ProcessedUpdate, user: User?, params: Map<String, String>) {
-        user?.also { userClassSteps[it.id] = second.qualifier }
         first
             .runCatching {
                 invoke(bot.config.classManager, update, user, bot, params)
@@ -96,6 +95,7 @@ class CodegenUpdateHandler internal constructor(
                     "Handled update#${update.updateId} to method ${second.qualifier + "::" + second.function}"
                 }
             }
+        user?.also { userClassSteps[it.id] = second.qualifier }
     }
 
     private suspend fun InvocationLambda.invokeCatching(
