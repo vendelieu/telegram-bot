@@ -82,18 +82,19 @@ class CodegenUpdateHandler internal constructor(
     }
 
     private suspend fun Invocable.invokeCatching(update: ProcessedUpdate, user: User?, params: Map<String, String>) {
-        first.runCatching {
-            invoke(bot.config.classManager, update, user, bot, params)
-        }.onFailure {
-            logger.error(
-                it,
-            ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $update" }
-            caughtExceptions.send(FailedUpdate(it, update))
-        }.onSuccess {
-            logger.info {
-                "Handled update#${update.updateId} to method ${second.qualifier + "::" + second.function}"
+        first
+            .runCatching {
+                invoke(bot.config.classManager, update, user, bot, params)
+            }.onFailure {
+                logger.error(
+                    it,
+                ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $update" }
+                caughtExceptions.send(FailedUpdate(it, update))
+            }.onSuccess {
+                logger.info {
+                    "Handled update#${update.updateId} to method ${second.qualifier + "::" + second.function}"
+                }
             }
-        }
     }
 
     private suspend fun InvocationLambda.invokeCatching(

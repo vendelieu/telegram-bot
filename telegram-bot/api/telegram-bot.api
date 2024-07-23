@@ -4,18 +4,19 @@ public final class eu/vendeli/tgbot/TelegramBot {
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lio/ktor/client/HttpClient;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getChatData ()Leu/vendeli/tgbot/interfaces/ChatData;
 	public final fun getFileContent (Leu/vendeli/tgbot/types/media/File;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getFileDirectUrl (Leu/vendeli/tgbot/types/media/File;)Ljava/lang/String;
 	public final fun getIdentifier ()Ljava/lang/String;
 	public final fun getInputListener ()Leu/vendeli/tgbot/interfaces/InputListener;
 	public final fun getUpdate ()Leu/vendeli/tgbot/core/TgUpdateHandler;
-	public final fun getUserData ()Leu/vendeli/tgbot/interfaces/UserData;
 	public final fun handleUpdates (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun handleUpdates (Ljava/util/List;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun handleUpdates$default (Leu/vendeli/tgbot/TelegramBot;Ljava/util/List;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun handleUpdates$default (Leu/vendeli/tgbot/TelegramBot;Ljava/util/List;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun setIdentifier (Ljava/lang/String;)V
+}
+
+public abstract interface annotation class eu/vendeli/tgbot/annotations/BotCtxProvider : java/lang/annotation/Annotation {
 }
 
 public abstract interface annotation class eu/vendeli/tgbot/annotations/CommandHandler : java/lang/annotation/Annotation {
@@ -2214,6 +2215,7 @@ public final class eu/vendeli/tgbot/core/FunctionalHandlingDsl {
 
 public abstract class eu/vendeli/tgbot/core/TgUpdateHandler {
 	public final fun getCaughtExceptions ()Lkotlinx/coroutines/channels/Channel;
+	public final fun getUserClassSteps ()Ljava/util/Map;
 	public abstract fun handle (Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun handle (Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun parse (Ljava/lang/String;)Leu/vendeli/tgbot/types/internal/ProcessedUpdate;
@@ -2228,34 +2230,28 @@ public abstract class eu/vendeli/tgbot/implementations/BotContextMapImpl : eu/ve
 	public fun <init> ()V
 	public fun del (JLjava/lang/String;)V
 	public fun delAsync (JLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun get (JLjava/lang/String;)Ljava/lang/Object;
+	public synthetic fun get (JLjava/lang/String;)Ljava/lang/Object;
+	public fun get (JLjava/lang/String;)Ljava/lang/String;
+	public synthetic fun get (Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Ljava/lang/Object;
 	public fun get (Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Ljava/lang/String;
 	public fun getAsync (JLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	protected final fun getStorage ()Lio/ktor/util/collections/ConcurrentMap;
-	public fun set (JLjava/lang/String;Ljava/lang/Object;)V
-	public fun set (Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/lang/Object;)V
-	public fun set (Leu/vendeli/tgbot/types/User;Lkotlin/Pair;)V
-	public fun setAsync (JLjava/lang/String;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun setAsync (Leu/vendeli/tgbot/types/User;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun setAsync (Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public synthetic fun set (JLjava/lang/String;Ljava/lang/Object;)V
+	public fun set (JLjava/lang/String;Ljava/lang/String;)V
+	public synthetic fun set (Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/lang/Object;)V
+	public fun set (Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun setAsync (JLjava/lang/String;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun setAsync (JLjava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class eu/vendeli/tgbot/implementations/ChatDataMapImpl : eu/vendeli/tgbot/implementations/BotContextMapImpl, eu/vendeli/tgbot/interfaces/ChatData {
+public final class eu/vendeli/tgbot/implementations/ClassDataImpl : eu/vendeli/tgbot/implementations/BotContextMapImpl, eu/vendeli/tgbot/interfaces/ClassData {
 	public fun <init> ()V
-	public fun clearAll (J)V
-	public fun clearAllAsync (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun clearAll (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class eu/vendeli/tgbot/implementations/ClassManagerImpl : eu/vendeli/tgbot/interfaces/ClassManager {
 	public fun <init> ()V
 	public fun getInstance (Lkotlin/reflect/KClass;[Ljava/lang/Object;)Ljava/lang/Object;
-}
-
-public final class eu/vendeli/tgbot/implementations/EnvConfigLoaderImpl : eu/vendeli/tgbot/interfaces/ConfigLoader {
-	public static final field INSTANCE Leu/vendeli/tgbot/implementations/EnvConfigLoaderImpl;
-	public fun getCommandsPackage ()Ljava/lang/String;
-	public fun getToken ()Ljava/lang/String;
-	public fun load ()Leu/vendeli/tgbot/types/internal/configuration/BotConfiguration;
 }
 
 public final class eu/vendeli/tgbot/implementations/InputListenerMapImpl : eu/vendeli/tgbot/interfaces/InputListener {
@@ -2305,22 +2301,16 @@ public abstract interface class eu/vendeli/tgbot/interfaces/BotContext {
 	public abstract fun del (JLjava/lang/String;)V
 	public abstract fun delAsync (JLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun get (JLjava/lang/String;)Ljava/lang/Object;
-	public abstract fun get (Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Ljava/lang/String;
+	public abstract fun get (Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Ljava/lang/Object;
 	public abstract fun getAsync (JLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun set (JLjava/lang/String;Ljava/lang/Object;)V
 	public abstract fun set (Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/lang/Object;)V
-	public abstract fun set (Leu/vendeli/tgbot/types/User;Lkotlin/Pair;)V
 	public abstract fun setAsync (JLjava/lang/String;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun setAsync (Leu/vendeli/tgbot/types/User;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun setAsync (Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class eu/vendeli/tgbot/interfaces/BotContext$DefaultImpls {
-	public static fun get (Leu/vendeli/tgbot/interfaces/BotContext;Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Ljava/lang/String;
+	public static fun get (Leu/vendeli/tgbot/interfaces/BotContext;Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Ljava/lang/Object;
 	public static fun set (Leu/vendeli/tgbot/interfaces/BotContext;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/lang/Object;)V
-	public static fun set (Leu/vendeli/tgbot/interfaces/BotContext;Leu/vendeli/tgbot/types/User;Lkotlin/Pair;)V
-	public static fun setAsync (Leu/vendeli/tgbot/interfaces/BotContext;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static fun setAsync (Leu/vendeli/tgbot/interfaces/BotContext;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/BusinessActionExt : eu/vendeli/tgbot/interfaces/Request {
@@ -2336,17 +2326,13 @@ public final class eu/vendeli/tgbot/interfaces/BusinessActionExt$DefaultImpls {
 public abstract interface class eu/vendeli/tgbot/interfaces/Button {
 }
 
-public abstract interface class eu/vendeli/tgbot/interfaces/ChatData : eu/vendeli/tgbot/interfaces/BotContext {
-	public abstract fun clearAll (J)V
-	public abstract fun clearAllAsync (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+public abstract interface class eu/vendeli/tgbot/interfaces/ClassData : eu/vendeli/tgbot/interfaces/BotContext {
+	public abstract fun clearAll (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class eu/vendeli/tgbot/interfaces/ChatData$DefaultImpls {
-	public static fun get (Leu/vendeli/tgbot/interfaces/ChatData;Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Ljava/lang/String;
-	public static fun set (Leu/vendeli/tgbot/interfaces/ChatData;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/lang/Object;)V
-	public static fun set (Leu/vendeli/tgbot/interfaces/ChatData;Leu/vendeli/tgbot/types/User;Lkotlin/Pair;)V
-	public static fun setAsync (Leu/vendeli/tgbot/interfaces/ChatData;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static fun setAsync (Leu/vendeli/tgbot/interfaces/ChatData;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+public final class eu/vendeli/tgbot/interfaces/ClassData$DefaultImpls {
+	public static fun get (Leu/vendeli/tgbot/interfaces/ClassData;Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Ljava/lang/Object;
+	public static fun set (Leu/vendeli/tgbot/interfaces/ClassData;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/lang/Object;)V
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/ClassManager {
@@ -2465,11 +2451,8 @@ public abstract interface class eu/vendeli/tgbot/interfaces/UserData : eu/vendel
 }
 
 public final class eu/vendeli/tgbot/interfaces/UserData$DefaultImpls {
-	public static fun get (Leu/vendeli/tgbot/interfaces/UserData;Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Ljava/lang/String;
+	public static fun get (Leu/vendeli/tgbot/interfaces/UserData;Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Ljava/lang/Object;
 	public static fun set (Leu/vendeli/tgbot/interfaces/UserData;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/lang/Object;)V
-	public static fun set (Leu/vendeli/tgbot/interfaces/UserData;Leu/vendeli/tgbot/types/User;Lkotlin/Pair;)V
-	public static fun setAsync (Leu/vendeli/tgbot/interfaces/UserData;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static fun setAsync (Leu/vendeli/tgbot/interfaces/UserData;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/features/CaptionFeature : eu/vendeli/tgbot/interfaces/features/Feature, eu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder {
@@ -8472,17 +8455,16 @@ public abstract interface class eu/vendeli/tgbot/types/internal/UserReference {
 
 public final class eu/vendeli/tgbot/types/internal/configuration/BotConfiguration {
 	public fun <init> ()V
-	public fun <init> (Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/InputListener;Leu/vendeli/tgbot/interfaces/ClassManager;ZLeu/vendeli/tgbot/types/internal/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;Leu/vendeli/tgbot/types/internal/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/internal/configuration/ContextConfiguration;Leu/vendeli/tgbot/types/internal/configuration/CommandParsingConfiguration;)V
-	public synthetic fun <init> (Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/InputListener;Leu/vendeli/tgbot/interfaces/ClassManager;ZLeu/vendeli/tgbot/types/internal/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;Leu/vendeli/tgbot/types/internal/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/internal/configuration/ContextConfiguration;Leu/vendeli/tgbot/types/internal/configuration/CommandParsingConfiguration;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/InputListener;Leu/vendeli/tgbot/interfaces/ClassManager;ZLeu/vendeli/tgbot/types/internal/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;Leu/vendeli/tgbot/types/internal/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/internal/configuration/CommandParsingConfiguration;)V
+	public synthetic fun <init> (Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/InputListener;Leu/vendeli/tgbot/interfaces/ClassManager;ZLeu/vendeli/tgbot/types/internal/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;Leu/vendeli/tgbot/types/internal/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/internal/configuration/CommandParsingConfiguration;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun commandParsing (Lkotlin/jvm/functions/Function1;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Z
 	public final fun component3 ()Leu/vendeli/tgbot/interfaces/InputListener;
 	public final fun component4 ()Leu/vendeli/tgbot/interfaces/ClassManager;
 	public final fun component5 ()Z
-	public final fun context (Lkotlin/jvm/functions/Function1;)V
-	public final fun copy (Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/InputListener;Leu/vendeli/tgbot/interfaces/ClassManager;ZLeu/vendeli/tgbot/types/internal/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;Leu/vendeli/tgbot/types/internal/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/internal/configuration/ContextConfiguration;Leu/vendeli/tgbot/types/internal/configuration/CommandParsingConfiguration;)Leu/vendeli/tgbot/types/internal/configuration/BotConfiguration;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/configuration/BotConfiguration;Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/InputListener;Leu/vendeli/tgbot/interfaces/ClassManager;ZLeu/vendeli/tgbot/types/internal/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;Leu/vendeli/tgbot/types/internal/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/internal/configuration/ContextConfiguration;Leu/vendeli/tgbot/types/internal/configuration/CommandParsingConfiguration;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/configuration/BotConfiguration;
+	public final fun copy (Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/InputListener;Leu/vendeli/tgbot/interfaces/ClassManager;ZLeu/vendeli/tgbot/types/internal/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;Leu/vendeli/tgbot/types/internal/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/internal/configuration/CommandParsingConfiguration;)Leu/vendeli/tgbot/types/internal/configuration/BotConfiguration;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/configuration/BotConfiguration;Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/InputListener;Leu/vendeli/tgbot/interfaces/ClassManager;ZLeu/vendeli/tgbot/types/internal/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;Leu/vendeli/tgbot/types/internal/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/internal/configuration/CommandParsingConfiguration;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/configuration/BotConfiguration;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getApiHost ()Ljava/lang/String;
 	public final fun getClassManager ()Leu/vendeli/tgbot/interfaces/ClassManager;
@@ -8522,23 +8504,6 @@ public final class eu/vendeli/tgbot/types/internal/configuration/CommandParsingC
 	public final fun setParameterValueDelimiter (C)V
 	public final fun setParametersDelimiter (C)V
 	public final fun setRestrictSpacesInCommands (Z)V
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class eu/vendeli/tgbot/types/internal/configuration/ContextConfiguration {
-	public fun <init> ()V
-	public fun <init> (Leu/vendeli/tgbot/interfaces/UserData;Leu/vendeli/tgbot/interfaces/ChatData;)V
-	public synthetic fun <init> (Leu/vendeli/tgbot/interfaces/UserData;Leu/vendeli/tgbot/interfaces/ChatData;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Leu/vendeli/tgbot/interfaces/UserData;
-	public final fun component2 ()Leu/vendeli/tgbot/interfaces/ChatData;
-	public final fun copy (Leu/vendeli/tgbot/interfaces/UserData;Leu/vendeli/tgbot/interfaces/ChatData;)Leu/vendeli/tgbot/types/internal/configuration/ContextConfiguration;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/configuration/ContextConfiguration;Leu/vendeli/tgbot/interfaces/UserData;Leu/vendeli/tgbot/interfaces/ChatData;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/configuration/ContextConfiguration;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getChatData ()Leu/vendeli/tgbot/interfaces/ChatData;
-	public final fun getUserData ()Leu/vendeli/tgbot/interfaces/UserData;
-	public fun hashCode ()I
-	public final fun setChatData (Leu/vendeli/tgbot/interfaces/ChatData;)V
-	public final fun setUserData (Leu/vendeli/tgbot/interfaces/UserData;)V
 	public fun toString ()Ljava/lang/String;
 }
 

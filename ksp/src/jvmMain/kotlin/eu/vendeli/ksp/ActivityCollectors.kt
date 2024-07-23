@@ -34,7 +34,7 @@ internal fun FileBuilder.collectCommandActivities(
     injectableTypes: Map<TypeName, ClassName>,
     logger: KSPLogger,
     idxPostfix: String,
-    pkg: String? = null
+    pkg: String? = null,
 ) {
     logger.info("Collecting commands.")
     addMap(
@@ -85,7 +85,7 @@ internal fun FileBuilder.collectInputActivities(
     injectableTypes: Map<TypeName, ClassName>,
     logger: KSPLogger,
     idxPostfix: String,
-    pkg: String? = null
+    pkg: String? = null,
 ) {
     logger.info("Collecting inputs.")
     val tailBlock = collectInputChains(chainSymbols, logger)
@@ -149,7 +149,7 @@ internal fun FileBuilder.collectCommonActivities(
     injectableTypes: Map<TypeName, ClassName>,
     logger: KSPLogger,
     idxPostfix: String,
-    pkg: String? = null
+    pkg: String? = null,
 ) {
     logger.info("Collecting common handlers.")
     addProperty(

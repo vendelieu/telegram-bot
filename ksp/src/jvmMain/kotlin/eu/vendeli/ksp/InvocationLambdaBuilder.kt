@@ -106,9 +106,9 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                         }?.let { i ->
                             i.arguments.first { a -> a.name?.asString() == "name" }.value as? String
                         } ?: parameter.name!!.getShortName()
-                    ).let {
-                        "parameters[\"$it\"]"
-                    }
+                ).let {
+                    "parameters[\"$it\"]"
+                }
                 val parameterTypeName = parameter.type.toTypeName()
                 val typeName = parameterTypeName.copy(false)
                 val nullabilityMark = if (parameterTypeName.isNullable) "" else "!!"
@@ -162,7 +162,8 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
 
             if (pkg != null) add(
                 "if (user != null && bot.update.userClassSteps[user.id] != %S) %L.____clearClassData(user.id)\n",
-                funQualifier, pkg
+                funQualifier,
+                pkg,
             )
             add("%L.invoke(\n\t%L\n)\n", funName, parametersEnumeration)
         }.endControlFlow()

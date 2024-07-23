@@ -22,102 +22,117 @@ import eu.vendeli.ksp.utils.userDataCtx
 import eu.vendeli.ksp.utils.userDataCtxDef
 import eu.vendeli.tgbot.annotations.BotCtxProvider
 
-internal fun ActivityProcessor.processCtxProviders(codeGenerator: CodeGenerator, resolver: Resolver, pkg: String? = null) {
+internal fun ActivityProcessor.processCtxProviders(
+    codeGenerator: CodeGenerator,
+    resolver: Resolver,
+    pkg: String? = null,
+) {
     val filePkg = pkg ?: "eu.vendeli.tgbot.generated"
-    FileSpec.builder(
-        filePkg,
-        "BotCtx",
-    ).apply {
-        val providers = resolver.getAnnotatedClassSymbols(BotCtxProvider::class, pkg)
-        var userDataType = STRING
+    FileSpec
+        .builder(
+            filePkg,
+            "BotCtx",
+        ).apply {
+            val providers = resolver.getAnnotatedClassSymbols(BotCtxProvider::class, pkg)
+            var userDataType = STRING
 
-        val userDataCtxClass = providers.firstOrNull { c ->
-            c.getAllSuperTypes().firstOrNull { it.toClassName() == userDataCtx }?.also {
-                userDataType = it.arguments.first().type?.resolve()?.toClassName() ?: STRING
-            } != null
-        }?.takeIf {
-            it.classKind == ClassKind.CLASS
-        }?.toClassName() ?: userDataCtxDef
+            val userDataCtxClass = providers
+                .firstOrNull { c ->
+                    c.getAllSuperTypes().firstOrNull { it.toClassName() == userDataCtx }?.also {
+                        userDataType = it.arguments
+                            .first()
+                            .type
+                            ?.resolve()
+                            ?.toClassName() ?: STRING
+                    } != null
+                }?.takeIf {
+                    it.classKind == ClassKind.CLASS
+                }?.toClassName() ?: userDataCtxDef
 
+            val classDataCtxClass = providers
+                .firstOrNull { c ->
+                    c.getAllSuperTypes().any { it.toClassName() == classDataCtx }
+                }?.takeIf {
+                    it.classKind == ClassKind.CLASS
+                }?.toClassName() ?: classDataCtxDef
 
-        val classDataCtxClass = providers.firstOrNull { c ->
-            c.getAllSuperTypes().any { it.toClassName() == classDataCtx }
-        }?.takeIf {
-            it.classKind == ClassKind.CLASS
-        }?.toClassName() ?: classDataCtxDef
+            addProperty(
+                PropertySpec
+                    .builder(
+                        "_userData",
+                        userDataCtxClass,
+                        KModifier.PRIVATE,
+                    ).apply {
+                        initializer(userDataCtxClass.reflectionName() + "()")
+                    }.build(),
+            )
 
-        addProperty(
-            PropertySpec
-                .builder(
-                    "_userData",
-                    userDataCtxClass,
-                    KModifier.PRIVATE,
-                ).apply {
-                    initializer(userDataCtxClass.reflectionName() + "()")
-                }.build(),
-        )
+            addProperty(
+                PropertySpec
+                    .builder(
+                        "_classData",
+                        classDataCtxClass,
+                        KModifier.PRIVATE,
+                    ).apply {
+                        initializer(classDataCtxClass.reflectionName() + "()")
+                    }.build(),
+            )
 
-        addProperty(
-            PropertySpec
-                .builder(
-                    "_classData",
-                    classDataCtxClass,
-                    KModifier.PRIVATE,
-                ).apply {
-                    initializer(classDataCtxClass.reflectionName() + "()")
-                }.build(),
-        )
+            addFunction(
+                FunSpec
+                    .builder("____clearClassData")
+                    .addModifiers(KModifier.SUSPEND)
+                    .addParameter("tgId", LONG)
+                    .addCode("return _classData.clearAll(tgId)")
+                    .build(),
+            )
 
-        addFunction(
-            FunSpec.builder("____clearClassData")
-                .addModifiers(KModifier.SUSPEND)
-                .addParameter("tgId", LONG)
-                .addCode("return _classData.clearAll(tgId)").build(),
-        )
+            addProperty(
+                PropertySpec
+                    .builder(
+                        "userData",
+                        userDataCtxClass,
+                    ).receiver(botClass)
+                    .getter(FunSpec.getterBuilder().addCode("return _userData").build())
+                    .build(),
+            )
 
-        addProperty(
-            PropertySpec
-                .builder(
-                    "userData",
-                    userDataCtxClass,
-                )
-                .receiver(botClass)
-                .getter(FunSpec.getterBuilder().addCode("return _userData").build())
-                .build(),
-        )
+            addProperty(
+                PropertySpec
+                    .builder(
+                        "classData",
+                        classDataCtxClass,
+                    ).receiver(botClass)
+                    .getter(FunSpec.getterBuilder().addCode("return _classData").build())
+                    .build(),
+            )
 
-        addProperty(
-            PropertySpec
-                .builder(
-                    "classData",
-                    classDataCtxClass,
-                )
-                .receiver(botClass)
-                .getter(FunSpec.getterBuilder().addCode("return _classData").build())
-                .build(),
-        )
+            addFunction(
+                FunSpec
+                    .builder("get")
+                    .addModifiers(KModifier.OPERATOR)
+                    .receiver(userClass)
+                    .addParameter("key", STRING)
+                    .returns(userDataType.copy(true))
+                    .addCode("return _userData.get(id, key)")
+                    .build(),
+            )
 
-        addFunction(
-            FunSpec.builder("get")
-                .addModifiers(KModifier.OPERATOR)
-                .receiver(userClass)
-                .addParameter("key", STRING)
-                .returns(userDataType.copy(true))
-                .addCode("return _userData.get(id, key)").build(),
-        )
-
-        addFunction(
-            FunSpec.builder("set")
-                .addModifiers(KModifier.OPERATOR)
-                .receiver(userClass)
-                .addParameter("key", STRING)
-                .addParameter("value", userDataType)
-                .addCode("return _userData.set(id, key, value)").build(),
-        )
-    }.build().runCatching {
-        writeTo(
-            codeGenerator = codeGenerator,
-            dependencies = Dependencies(false, *resolver.getAllFiles().toList().toTypedArray()),
-        )
-    }
+            addFunction(
+                FunSpec
+                    .builder("set")
+                    .addModifiers(KModifier.OPERATOR)
+                    .receiver(userClass)
+                    .addParameter("key", STRING)
+                    .addParameter("value", userDataType)
+                    .addCode("return _userData.set(id, key, value)")
+                    .build(),
+            )
+        }.build()
+        .runCatching {
+            writeTo(
+                codeGenerator = codeGenerator,
+                dependencies = Dependencies(false, *resolver.getAllFiles().toList().toTypedArray()),
+            )
+        }
 }
