@@ -41,6 +41,11 @@ abstract class TgUpdateHandler internal constructor(
      */
     val caughtExceptions by lazy { Channel<FailedUpdate>(Channel.CONFLATED) }
 
+    /**
+     * Previous invoked function qualified path (i.e., full class path).
+     */
+    val userClassSteps = mutableMapOf<Long, String>()
+
     private suspend fun collectUpdates(types: List<UpdateType>?) = bot.config.updatesListener.run {
         logger.debug { "Starting updates collector." }
         coHandle {

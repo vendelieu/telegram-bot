@@ -17,7 +17,11 @@ import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.asTypeName
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.implementations.ClassDataImpl
+import eu.vendeli.tgbot.implementations.UserDataMapImpl
 import eu.vendeli.tgbot.interfaces.Autowiring
+import eu.vendeli.tgbot.interfaces.ClassData
+import eu.vendeli.tgbot.interfaces.UserData
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.BusinessConnectionUpdate
 import eu.vendeli.tgbot.types.internal.BusinessMessageUpdate
@@ -94,6 +98,11 @@ internal val editedBusinessMessageClass = EditedBusinessMessageUpdate::class.asT
 internal val deletedBusinessMessagesClass = DeletedBusinessMessagesUpdate::class.asTypeName()
 
 internal val commonMatcherClass = CommonMatcher::class.asTypeName()
+internal val userDataCtx = UserData::class.asTypeName()
+internal val userDataCtxDef = UserDataMapImpl::class.asTypeName()
+internal val classDataCtx = ClassData::class.asTypeName()
+internal val classDataCtxDef = ClassDataImpl::class.asTypeName()
+
 internal val callbackQueryList = listOf(UpdateType.CALLBACK_QUERY)
 internal val messageList = listOf(UpdateType.MESSAGE)
 internal val notLimitedRateLimits = 0L to 0L

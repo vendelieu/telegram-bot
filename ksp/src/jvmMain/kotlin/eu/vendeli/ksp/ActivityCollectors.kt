@@ -34,6 +34,7 @@ internal fun FileBuilder.collectCommandActivities(
     injectableTypes: Map<TypeName, ClassName>,
     logger: KSPLogger,
     idxPostfix: String,
+    pkg: String? = null
 ) {
     logger.info("Collecting commands.")
     addMap(
@@ -67,7 +68,7 @@ internal fun FileBuilder.collectCommandActivities(
                 addStatement(
                     "(\"$it\" to %L) to (%L to InvocationMeta(\"%L\", \"%L\", %L, %L::class)),",
                     updT,
-                    buildInvocationLambdaCodeBlock(function, injectableTypes),
+                    buildInvocationLambdaCodeBlock(function, injectableTypes, pkg),
                     function.qualifiedName!!.getQualifier(),
                     function.simpleName.asString(),
                     annotationData.rateLimits.toRateLimits(),
@@ -84,6 +85,7 @@ internal fun FileBuilder.collectInputActivities(
     injectableTypes: Map<TypeName, ClassName>,
     logger: KSPLogger,
     idxPostfix: String,
+    pkg: String? = null
 ) {
     logger.info("Collecting inputs.")
     val tailBlock = collectInputChains(chainSymbols, logger)
@@ -103,7 +105,7 @@ internal fun FileBuilder.collectInputActivities(
             logger.info("Input: $it --> ${function.qualifiedName?.asString()}")
             addStatement(
                 "\"$it\" to (%L to InvocationMeta(\"%L\", \"%L\", %L, %L::class)),",
-                buildInvocationLambdaCodeBlock(function, injectableTypes),
+                buildInvocationLambdaCodeBlock(function, injectableTypes, pkg),
                 function.qualifiedName!!.getQualifier(),
                 function.simpleName.asString(),
                 annotationData.second.toRateLimits(),
@@ -147,6 +149,7 @@ internal fun FileBuilder.collectCommonActivities(
     injectableTypes: Map<TypeName, ClassName>,
     logger: KSPLogger,
     idxPostfix: String,
+    pkg: String? = null
 ) {
     logger.info("Collecting common handlers.")
     addProperty(
@@ -165,7 +168,7 @@ internal fun FileBuilder.collectCommonActivities(
                                 addStatement(
                                     "%L to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
                                     it.value.toCommonMatcher(it.filter, it.scope),
-                                    buildInvocationLambdaCodeBlock(it.funDeclaration, injectableTypes),
+                                    buildInvocationLambdaCodeBlock(it.funDeclaration, injectableTypes, pkg),
                                     it.funQualifier,
                                     it.funSimpleName,
                                     it.rateLimits.let { l ->

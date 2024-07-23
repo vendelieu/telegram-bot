@@ -24,7 +24,6 @@ data class BotConfiguration(
     internal var httpClient: HttpConfiguration = HttpConfiguration(),
     internal var logging: LoggingConfiguration = LoggingConfiguration(),
     internal var updatesListener: UpdatesListenerConfiguration = UpdatesListenerConfiguration(),
-    internal var context: ContextConfiguration = ContextConfiguration(),
     internal var commandParsing: CommandParsingConfiguration = CommandParsingConfiguration(),
 ) {
     /**
@@ -56,13 +55,6 @@ data class BotConfiguration(
     }
 
     /**
-     * Function for bot context configuration. See [ContextConfiguration].
-     */
-    fun context(block: ContextConfiguration.() -> Unit) {
-        context.block()
-    }
-
-    /**
      * Function for specifying command parsing pattern. See [CommandParsingConfiguration].
      */
     fun commandParsing(block: CommandParsingConfiguration.() -> Unit) {
@@ -78,7 +70,6 @@ data class BotConfiguration(
         logging = new.logging
         rateLimiter = new.rateLimiter
         updatesListener = new.updatesListener
-        context = new.context
         commandParsing = new.commandParsing
 
         return this

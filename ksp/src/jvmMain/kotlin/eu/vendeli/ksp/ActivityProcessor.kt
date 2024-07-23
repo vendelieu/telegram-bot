@@ -41,6 +41,7 @@ class ActivityProcessor(
     private val codeGenerator: CodeGenerator,
 ) : SymbolProcessor {
     private val targetPackage = options["package"]?.split(';')
+
     override fun process(resolver: Resolver): List<KSAnnotated> {
         val fileSpec = FileSpec.builder("eu.vendeli.tgbot.generated", "ActivitiesData").apply {
             addSuppressions()
@@ -92,6 +93,8 @@ class ActivityProcessor(
         val pkg = target?.second
         val idxPostfix = target?.first?.let { "$it" } ?: "0"
 
+        processCtxProviders(codeGenerator, resolver, pkg)
+
         val commandHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, CommandHandler::class, CallbackQuery::class)
         val inputHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, InputHandler::class)
         val updateHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, UpdateHandler::class)
@@ -126,10 +129,18 @@ class ActivityProcessor(
                 .toTypeName() to
                 c.toClassName()
         }
+        val classRefPkg = pkg ?: "eu.vendeli.tgbot.generated"
         fileSpec.apply {
-            collectCommandActivities(commandHandlerSymbols, injectableTypes, logger, idxPostfix)
-            collectInputActivities(inputHandlerSymbols, inputChainSymbols, injectableTypes, logger, idxPostfix)
-            collectCommonActivities(commonHandlerData, injectableTypes, logger, idxPostfix)
+            collectCommandActivities(commandHandlerSymbols, injectableTypes, logger, idxPostfix, classRefPkg)
+            collectInputActivities(
+                inputHandlerSymbols,
+                inputChainSymbols,
+                injectableTypes,
+                logger,
+                idxPostfix,
+                classRefPkg,
+            )
+            collectCommonActivities(commonHandlerData, injectableTypes, logger, idxPostfix, classRefPkg)
             collectUpdateTypeActivities(updateHandlerSymbols, injectableTypes, logger, idxPostfix)
             collectUnprocessed(unprocessedHandlerSymbol, injectableTypes, logger, idxPostfix)
         }

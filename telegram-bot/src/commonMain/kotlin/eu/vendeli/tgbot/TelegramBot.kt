@@ -60,16 +60,6 @@ class TelegramBot(
     val inputListener get() = config.inputListener
 
     /**
-     * A tool for managing User context.
-     */
-    val userData get() = config.context.userData
-
-    /**
-     * A tool for managing Chat context.
-     */
-    val chatData get() = config.context.chatData
-
-    /**
      * Property to identify different bot instances during multi-bot processing.
      */
     var identifier: String = "KtGram"

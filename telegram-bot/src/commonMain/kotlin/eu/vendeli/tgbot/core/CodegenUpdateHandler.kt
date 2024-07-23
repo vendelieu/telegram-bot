@@ -82,27 +82,18 @@ class CodegenUpdateHandler internal constructor(
     }
 
     private suspend fun Invocable.invokeCatching(update: ProcessedUpdate, user: User?, params: Map<String, String>) {
-        bot.chatData.run {
-            if (user == null) return@run
-            // check for user id nullability
-            val prevClassName = getAsync<String>(user.id, "PrevInvokedClass").await()
-            if (prevClassName != second.qualifier) clearAllAsync(user.id).await()
-
-            setAsync(user.id, "PrevInvokedClass", second.qualifier).await()
-        }
-        first
-            .runCatching {
-                invoke(bot.config.classManager, update, user, bot, params)
-            }.onFailure {
-                logger.error(
-                    it,
-                ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $update" }
-                caughtExceptions.send(FailedUpdate(it, update))
-            }.onSuccess {
-                logger.info {
-                    "Handled update#${update.updateId} to method ${second.qualifier + "::" + second.function}"
-                }
+        first.runCatching {
+            invoke(bot.config.classManager, update, user, bot, params)
+        }.onFailure {
+            logger.error(
+                it,
+            ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $update" }
+            caughtExceptions.send(FailedUpdate(it, update))
+        }.onSuccess {
+            logger.info {
+                "Handled update#${update.updateId} to method ${second.qualifier + "::" + second.function}"
             }
+        }
     }
 
     private suspend fun InvocationLambda.invokeCatching(

@@ -74,6 +74,7 @@ import kotlin.reflect.KClass
 internal fun FileBuilder.buildInvocationLambdaCodeBlock(
     function: KSFunctionDeclaration,
     injectableTypes: Map<TypeName, ClassName>,
+    pkg: String? = null,
 ) = buildCodeBlock {
     val isTopLvl = function.functionKind == FunctionKind.TOP_LEVEL
     val funQualifier = function.qualifiedName!!.getQualifier()
@@ -105,9 +106,9 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                         }?.let { i ->
                             i.arguments.first { a -> a.name?.asString() == "name" }.value as? String
                         } ?: parameter.name!!.getShortName()
-                ).let {
-                    "parameters[\"$it\"]"
-                }
+                    ).let {
+                        "parameters[\"$it\"]"
+                    }
                 val parameterTypeName = parameter.type.toTypeName()
                 val typeName = parameterTypeName.copy(false)
                 val nullabilityMark = if (parameterTypeName.isNullable) "" else "!!"
@@ -158,6 +159,11 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 parametersEnumeration += "param$index"
                 if (index < function.parameters.lastIndex) parametersEnumeration += ", "
             }
+
+            if (pkg != null) add(
+                "if (user != null && bot.update.userClassSteps[user.id] != %S) %L.____clearClassData(user.id)\n",
+                funQualifier, pkg
+            )
             add("%L.invoke(\n\t%L\n)\n", funName, parametersEnumeration)
         }.endControlFlow()
         .build()
