@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.types.internal.UpdateType
 class TgAnnotationsModel {
     @CommandHandler(["test"])
     fun test(bot: TelegramBot) {
-        bot.chatData.set(1, "test", "value")
+        bot.classData[1, "test"] = "value"
         throw IllegalArgumentException("test2")
     }
 
