@@ -114,7 +114,7 @@ internal fun ActivityProcessor.processCtxProviders(
                     .receiver(userClass)
                     .addParameter("key", STRING)
                     .returns(userDataType.copy(true))
-                    .addCode("return _userData.get(id, key)")
+                    .addCode("return _userData[id, key]")
                     .build(),
             )
 
