@@ -1,22 +1,22 @@
 package other.pckg
 
-import eu.vendeli.tgbot.interfaces.ChatData
+import eu.vendeli.tgbot.interfaces.ClassData
 import kotlinx.coroutines.Deferred
 
-class ChatDataImpl : ChatData {
-    override fun set(telegramId: Long, key: String, value: Any?) {
+class ChatDataImpl : ClassData<String> {
+    override fun set(telegramId: Long, key: String, value: String?) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun setAsync(telegramId: Long, key: String, value: Any?): Deferred<Boolean> {
+    override suspend fun setAsync(telegramId: Long, key: String, value: String?): Deferred<Boolean> {
         TODO("Not yet implemented")
     }
 
-    override fun <T> get(telegramId: Long, key: String): T? {
+    override fun get(telegramId: Long, key: String): String? {
         TODO("Not yet implemented")
     }
 
-    override suspend fun <T> getAsync(telegramId: Long, key: String): Deferred<T?> {
+    override suspend fun getAsync(telegramId: Long, key: String): Deferred<String?> {
         TODO("Not yet implemented")
     }
 
@@ -28,11 +28,7 @@ class ChatDataImpl : ChatData {
         TODO("Not yet implemented")
     }
 
-    override fun clearAll(telegramId: Long) {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun clearAllAsync(telegramId: Long): Deferred<Boolean> {
+    override suspend fun clearAll(telegramId: Long) {
         TODO("Not yet implemented")
     }
 }

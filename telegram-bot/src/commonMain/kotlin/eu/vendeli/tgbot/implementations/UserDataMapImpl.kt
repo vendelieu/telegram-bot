@@ -4,4 +4,4 @@ import eu.vendeli.tgbot.interfaces.UserData
 
 class UserDataMapImpl :
     BotContextMapImpl(),
-    UserData
+    UserData<String>

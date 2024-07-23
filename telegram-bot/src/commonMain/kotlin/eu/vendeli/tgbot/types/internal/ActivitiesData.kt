@@ -17,8 +17,8 @@ internal class ActivitiesData(
     private val activities = when {
         _OperatingActivities.size == 1 -> _OperatingActivities.entries.firstOrNull()?.value
         _OperatingActivities.size > 1 && pkg != null -> _OperatingActivities[pkg]
-        else -> notFoundGeneratedActivities()
-    } ?: notFoundGeneratedActivities()
+        else -> generatedActivitiesNotFound()
+    } ?: generatedActivitiesNotFound()
 
     val commandHandlers = activities[0] as CommandHandlers
     val inputHandlers = activities[1] as InputHandlers
@@ -37,8 +37,8 @@ internal class ActivitiesData(
     }
 
     @Suppress("NOTHING_TO_INLINE")
-    private inline fun notFoundGeneratedActivities(): Nothing =
-        error("Not found generated actions, check if ksp plugin and ksp processor is connected correctly.")
+    private inline fun generatedActivitiesNotFound(): Nothing =
+        error("Generated activities not found, check if ksp plugin and ksp processor is connected correctly.")
 
     private inline val <K, V : Any> Map<K, V>.logString: String
         get() = takeIf { isNotEmpty() }?.entries?.joinToString(",\n") {
