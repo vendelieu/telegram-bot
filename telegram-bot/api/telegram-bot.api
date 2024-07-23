@@ -8265,7 +8265,6 @@ public abstract class eu/vendeli/tgbot/types/internal/ProcessedUpdate : eu/vende
 	public synthetic fun <init> (ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/internal/UpdateType;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public fun getText ()Ljava/lang/String;
-	public final fun getUpdate ()Leu/vendeli/tgbot/types/Update;
 	public fun getUpdateId ()I
 }
 

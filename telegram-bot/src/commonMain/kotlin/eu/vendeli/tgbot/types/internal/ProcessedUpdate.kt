@@ -38,13 +38,6 @@ sealed class ProcessedUpdate(
     internal val type: UpdateType,
 ) : TextReference,
     MultipleResponse {
-    @Deprecated(
-        "Changed parameter name to avoid tautology",
-        replaceWith = ReplaceWith("origin"),
-        DeprecationLevel.WARNING,
-    )
-    val update: Update get() = origin
-
     internal companion object : UpdateSerializer<ProcessedUpdate>()
 }
 
