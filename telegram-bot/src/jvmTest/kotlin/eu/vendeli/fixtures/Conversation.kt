@@ -14,9 +14,9 @@ class Conversation {
         override val breakCondition = BreakCondition { _, update, _ -> update.text.isEmpty() }
 
         override suspend fun action(user: User, update: ProcessedUpdate, bot: TelegramBot) {
-            bot.userData[user, "name"] = update.text
+            user["name"] = update.text
 
-            message { "Oh, ${update.text}, nice to meet you!" }
+            message { "Oh, ${update.text}, nice to meet you!" }.send(user, bot)
             message { "How old are you?" }.send(user, bot)
         }
 
@@ -32,7 +32,7 @@ class Conversation {
         override val retryAfterBreak = false
 
         override suspend fun action(user: User, update: ProcessedUpdate, bot: TelegramBot) {
-            val name = bot.userData[user, "name"]
+            val name = user["name"]
             message {
                 "I'm not good at remembering, but I remembered you! You're $name and you're ${update.text} years old."
             }.send(user, bot)

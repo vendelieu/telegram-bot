@@ -21,6 +21,7 @@ import eu.vendeli.ksp.utils.userClass
 import eu.vendeli.ksp.utils.userDataCtx
 import eu.vendeli.ksp.utils.userDataCtxDef
 import eu.vendeli.tgbot.annotations.BotCtxProvider
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 
 internal fun ActivityProcessor.processCtxProviders(
     codeGenerator: CodeGenerator,
@@ -83,6 +84,7 @@ internal fun ActivityProcessor.processCtxProviders(
                     .builder("____clearClassData")
                     .addModifiers(KModifier.SUSPEND)
                     .addParameter("tgId", LONG)
+                    .addAnnotation(InternalApi::class)
                     .addCode("return _classData.clearAll(tgId)")
                     .build(),
             )
