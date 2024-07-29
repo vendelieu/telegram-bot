@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.utils.BotConfigurator
 abstract class BotConfiguration {
     open val autostartLongPolling = true
     open val identifier: String = "KtGram"
-    open val allowedUpdates: List<UpdateType> = emptyList()
+    open val allowedUpdates: List<UpdateType>? = null
 
     abstract fun applyCfg(): BotConfigurator
 
