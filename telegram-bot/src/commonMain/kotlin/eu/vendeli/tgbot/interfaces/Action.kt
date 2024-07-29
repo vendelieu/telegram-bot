@@ -55,6 +55,12 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         return doRequestReturning(via)
     }
 
+    /**
+     * Make a request for action returning its [Response].
+     *
+     * @param to Recipient
+     * @param via Instance of the bot through which the request will be made.
+     */
     open suspend fun sendReturning(
         to: Long,
         via: TelegramBot,

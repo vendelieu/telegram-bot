@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) changelog
 
+### 6.5.1
+
+* Fixed `httpClient` wrong initialization exception in spring starter.
+
 ### 6.5.0
 
 * Added `button(...)` function to define button in `answerInlineQuery` options.
