@@ -33,5 +33,5 @@ data class User(
     val canReadAllGroupMessages: Boolean? = null,
     val supportsInlineQueries: Boolean? = null,
     val canConnectToBusiness: Boolean? = null,
-    val hasMainWebApp: Boolean? = null
+    val hasMainWebApp: Boolean? = null,
 )

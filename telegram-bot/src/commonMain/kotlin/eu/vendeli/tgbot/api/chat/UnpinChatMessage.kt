@@ -10,7 +10,8 @@ import eu.vendeli.tgbot.utils.toJsonElement
 
 class UnpinChatMessageAction(
     messageId: Long,
-) : Action<Boolean>(), BusinessActionExt<Boolean> {
+) : Action<Boolean>(),
+    BusinessActionExt<Boolean> {
     override val method = TgMethod("unpinChatMessage")
     override val returnType = getReturnType()
 

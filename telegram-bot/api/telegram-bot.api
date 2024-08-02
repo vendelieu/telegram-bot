@@ -1,5 +1,7 @@
 public final class eu/vendeli/tgbot/TelegramBot {
 	public fun <init> (Leu/vendeli/tgbot/interfaces/ConfigLoader;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lio/ktor/client/HttpClient;Lkotlin/jvm/functions/Function1;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lio/ktor/client/HttpClient;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getChatData ()Leu/vendeli/tgbot/interfaces/ChatData;
@@ -837,9 +839,11 @@ public final class eu/vendeli/tgbot/api/chat/LeaveChatKt {
 	public static final fun leaveChat ()Leu/vendeli/tgbot/api/chat/LeaveChatAction;
 }
 
-public final class eu/vendeli/tgbot/api/chat/PinChatMessageAction : eu/vendeli/tgbot/interfaces/Action {
+public final class eu/vendeli/tgbot/api/chat/PinChatMessageAction : eu/vendeli/tgbot/interfaces/Action, eu/vendeli/tgbot/interfaces/BusinessActionExt {
 	public fun <init> (JLjava/lang/Boolean;)V
 	public synthetic fun <init> (JLjava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun sendBusiness (JLjava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendBusinessAsync (JLjava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class eu/vendeli/tgbot/api/chat/PinChatMessageKt {
@@ -991,8 +995,10 @@ public final class eu/vendeli/tgbot/api/chat/UnpinAllChatMessagesAction : eu/ven
 	public fun <init> ()V
 }
 
-public final class eu/vendeli/tgbot/api/chat/UnpinChatMessageAction : eu/vendeli/tgbot/interfaces/Action {
+public final class eu/vendeli/tgbot/api/chat/UnpinChatMessageAction : eu/vendeli/tgbot/interfaces/Action, eu/vendeli/tgbot/interfaces/BusinessActionExt {
 	public fun <init> (J)V
+	public fun sendBusiness (JLjava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendBusinessAsync (JLjava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class eu/vendeli/tgbot/api/chat/UnpinChatMessageKt {
@@ -2210,6 +2216,7 @@ public abstract class eu/vendeli/tgbot/core/TgUpdateHandler {
 	public final fun getCaughtExceptions ()Lkotlinx/coroutines/channels/Channel;
 	public abstract fun handle (Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun handle (Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun parse (Ljava/lang/String;)Leu/vendeli/tgbot/types/internal/ProcessedUpdate;
 	public final fun parseAndHandle (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setBehaviour (Lkotlin/jvm/functions/Function3;)V
 	public final fun setListener (Ljava/util/List;Lkotlin/jvm/functions/Function3;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -2451,6 +2458,7 @@ public abstract class eu/vendeli/tgbot/interfaces/TgAction : eu/vendeli/tgbot/in
 	public fun <init> ()V
 	protected fun getBeforeReq ()Lkotlin/jvm/functions/Function0;
 	protected fun getReturnType ()Lkotlinx/serialization/KSerializer;
+	public final fun toWebhookResponse ()Ljava/lang/String;
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/UserData : eu/vendeli/tgbot/interfaces/BotContext {
@@ -4449,12 +4457,13 @@ public final class eu/vendeli/tgbot/types/Update$Companion {
 
 public final class eu/vendeli/tgbot/types/User {
 	public static final field Companion Leu/vendeli/tgbot/types/User$Companion;
-	public fun <init> (JZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
-	public synthetic fun <init> (JZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (JZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (JZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()J
 	public final fun component10 ()Ljava/lang/Boolean;
 	public final fun component11 ()Ljava/lang/Boolean;
 	public final fun component12 ()Ljava/lang/Boolean;
+	public final fun component13 ()Ljava/lang/Boolean;
 	public final fun component2 ()Z
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()Ljava/lang/String;
@@ -4463,14 +4472,15 @@ public final class eu/vendeli/tgbot/types/User {
 	public final fun component7 ()Ljava/lang/Boolean;
 	public final fun component8 ()Ljava/lang/Boolean;
 	public final fun component9 ()Ljava/lang/Boolean;
-	public final fun copy (JZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)Leu/vendeli/tgbot/types/User;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/User;JZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILjava/lang/Object;)Leu/vendeli/tgbot/types/User;
+	public final fun copy (JZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)Leu/vendeli/tgbot/types/User;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/User;JZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILjava/lang/Object;)Leu/vendeli/tgbot/types/User;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAddedToAttachmentMenu ()Ljava/lang/Boolean;
 	public final fun getCanConnectToBusiness ()Ljava/lang/Boolean;
 	public final fun getCanJoinGroups ()Ljava/lang/Boolean;
 	public final fun getCanReadAllGroupMessages ()Ljava/lang/Boolean;
 	public final fun getFirstName ()Ljava/lang/String;
+	public final fun getHasMainWebApp ()Ljava/lang/Boolean;
 	public final fun getId ()J
 	public final fun getLanguageCode ()Ljava/lang/String;
 	public final fun getLastName ()Ljava/lang/String;
@@ -8753,6 +8763,8 @@ public final class eu/vendeli/tgbot/types/internal/options/AnswerInlineQueryOpti
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/String;Leu/vendeli/tgbot/types/inline/InlineQueryResultsButton;)V
 	public synthetic fun <init> (Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/String;Leu/vendeli/tgbot/types/inline/InlineQueryResultsButton;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun button (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun button (Ljava/lang/String;Lkotlin/jvm/functions/Function0;)V
 	public final fun component1 ()Ljava/lang/Integer;
 	public final fun component2 ()Ljava/lang/Boolean;
 	public final fun component3 ()Ljava/lang/String;

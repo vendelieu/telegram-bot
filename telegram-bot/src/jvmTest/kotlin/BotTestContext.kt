@@ -50,6 +50,7 @@ abstract class BotTestContext(
     private val spykIt: Boolean = true,
 ) : AnnotationSpec() {
     override fun threads() = 1
+
     @ExperimentalKotest
     override fun concurrency() = 1
 
