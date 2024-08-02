@@ -25,8 +25,8 @@ plugins {
 
 dependencies {
     // ...
-    implementation("eu.vendeli:telegram-bot:6.5.1")
-    ksp("eu.vendeli:ksp:6.5.1")
+    implementation("eu.vendeli:telegram-bot:6.6.0")
+    ksp("eu.vendeli:ksp:6.6.0")
 }
 ```
 
