@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) changelog
 
+### 6.6.0
+
+* Covered 7.8 telegram api.
+
 ### 6.5.1
 
 * Fixed `httpClient` wrong initialization exception in spring starter.
