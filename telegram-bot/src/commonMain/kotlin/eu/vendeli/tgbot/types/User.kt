@@ -18,6 +18,7 @@ import kotlinx.serialization.Serializable
  * @property canReadAllGroupMessages Optional. True, if privacy mode is disabled for the bot. Returned only in getMe.
  * @property supportsInlineQueries Optional. True, if the bot supports inline queries. Returned only in getMe.
  * @property canConnectToBusiness Optional. True, if the bot can be connected to a Telegram Business account to receive its messages. Returned only in getMe.
+ * @property hasMainWebApp Optional. True, if the bot has a main Web App. Returned only in getMe.
  */
 @Serializable
 data class User(
