@@ -14,6 +14,7 @@ import eu.vendeli.webapps.utils.ClosePopupCallback
 import eu.vendeli.webapps.utils.ConfirmCallback
 import eu.vendeli.webapps.utils.OpenLinkParams
 import eu.vendeli.webapps.utils.QRTextReceivedCallback
+import eu.vendeli.webapps.utils.StoryShareParams
 
 external class WebApp {
     val version: String
@@ -43,6 +44,7 @@ external class WebApp {
     fun showScanQrPopup(params: ScanQrPopupParams, callback: QRTextReceivedCallback? = definedExternally)
     fun closeScanQrPopup()
     fun readTextFromClipboard(callback: ClipboardTextReceivedCallback? = definedExternally)
+    fun shareToStory(mediaUrl: String, params: StoryShareParams? = definedExternally)
 
     @JsName("MainButton")
     val mainButton: MainButton

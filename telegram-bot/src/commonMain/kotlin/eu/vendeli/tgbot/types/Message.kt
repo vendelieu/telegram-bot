@@ -102,6 +102,7 @@ import kotlinx.serialization.Serializable
  * @property pinnedMessage Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
  * @property invoice Optional. Message is an invoice for a payment, information about the invoice. More about payments: https://core.telegram.org/bots/api#payments
  * @property successfulPayment Optional. Message is a service message about a successful payment, information about the payment. More about payments: https://core.telegram.org/bots/api#payments
+ * @property refundedPayment Optional. Message is a service message about a refunded payment, information about the payment. More about payments: https://core.telegram.org/bots/api#payments
  * @property usersShared Optional. Service message: users were shared with the bot
  * @property chatShared Optional. Service message: a chat was shared with the bot
  * @property connectedWebsite Optional. The domain name of the website on which the user has logged in. More about Telegram Login: https://core.telegram.org/widgets/login

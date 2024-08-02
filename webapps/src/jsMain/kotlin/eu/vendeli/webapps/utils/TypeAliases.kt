@@ -14,6 +14,7 @@ typealias BiometricRequestAccessCallback = (accessGranted: Boolean) -> Unit
 typealias BiometricAuthenticateCallback = (userAuthenticated: Boolean) -> Unit
 typealias BiometricUpdateTokenCallback = (tokenUpdated: Boolean) -> Unit
 
+
 // Handlers
 typealias NoParamsEventHandler = WebApp.() -> Unit
 typealias ViewportChangedEventHandler = WebApp.(ViewportChangedData) -> Unit
