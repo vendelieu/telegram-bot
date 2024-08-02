@@ -21,27 +21,6 @@ jobs:
         run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
         shell: bash
 
-  readme:
-    needs: version
-    name: Replace version in README.md
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-      - uses: jacobtomlinson/gha-find-replace@v3
-        with:
-          find: '[0-9]+.[0-9]+.[0-9]+\"\)'
-          replace: "${{ needs.version.outputs.version }}\")"
-          include: "**README.md"
-      - name: Push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Bump library version.
-          branch: master
-
   docs:
     needs: [ version ]
     runs-on: ubuntu-latest
@@ -63,7 +42,7 @@ jobs:
           FOLDER: telegram-bot/build/dokka
 
   publish:
-    needs: [ readme, version, docs ]
+    needs: [ readme, version ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -86,7 +65,28 @@ jobs:
 
       - name: Publish with Gradle
         run: ./gradlew publish -Psigning.secretKeyRingFile=/home/runner/work/secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }}
-  
+
+  readme:
+    needs: [version, publish]
+    name: Replace version in README.md
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: '[0-9]+.[0-9]+.[0-9]+\"\)'
+          replace: "${{ needs.version.outputs.version }}\")"
+          include: "**README.md"
+      - name: Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Bump library version.
+          branch: master
+
   create-release:
     needs: publish
     runs-on: ubuntu-latest
