@@ -28,7 +28,7 @@ jobs:
       - name: Get build version
         id: version
         run: |
-          echo "{version}={$(date +'%y%m%d~%H%M%5N')}" >> $GITHUB_STATE
+          echo "version=$(date +'%y%m%d~%H%M%5N')" >> "$GITHUB_ENV"
 
       - name: Build artifact
         env:
