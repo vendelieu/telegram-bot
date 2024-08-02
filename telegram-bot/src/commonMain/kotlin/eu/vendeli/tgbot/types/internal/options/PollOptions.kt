@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.internal.options
 
-import eu.vendeli.tgbot.types.MessageEntity
+import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.ReplyParameters
 import eu.vendeli.tgbot.types.poll.PollType

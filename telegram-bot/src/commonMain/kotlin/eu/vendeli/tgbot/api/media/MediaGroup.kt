@@ -2,10 +2,10 @@
 
 package eu.vendeli.tgbot.api.media
 
-import eu.vendeli.tgbot.interfaces.BusinessActionExt
-import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
+import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.MediaGroupOptions
 import eu.vendeli.tgbot.types.media.InputMedia

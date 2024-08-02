@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.internal
 
-import eu.vendeli.tgbot.interfaces.Filter
-import eu.vendeli.tgbot.interfaces.Guard
+import eu.vendeli.tgbot.interfaces.helper.Filter
+import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.DefaultFilter
 import eu.vendeli.tgbot.utils.DefaultGuard

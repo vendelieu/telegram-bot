@@ -2,7 +2,7 @@ package eu.vendeli.tgbot.implementations
 
 import co.touchlab.stately.concurrency.AtomicReference
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
-import eu.vendeli.tgbot.interfaces.RateLimitMechanism
+import eu.vendeli.tgbot.interfaces.helper.RateLimitMechanism
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import io.ktor.util.collections.ConcurrentMap
 import kotlinx.coroutines.delay

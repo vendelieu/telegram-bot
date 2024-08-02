@@ -2,7 +2,7 @@ package eu.vendeli
 
 import BotTestContext
 import eu.vendeli.tgbot.annotations.internal.InternalApi
-import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat

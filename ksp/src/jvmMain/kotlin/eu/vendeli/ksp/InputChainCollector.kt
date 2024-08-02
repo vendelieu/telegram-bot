@@ -51,9 +51,8 @@ internal fun collectInputChains(
                             curLinkId,
                         )
                         add("if (breakPoint) {\ninst.breakAction(user, update, bot)\nreturn@suspendCall Unit\n}\n")
-
-                        add("inst.action(user, update, bot)")
-                        add(".also {\nif (nextLink != null) bot.inputListener[user] = nextLink }\n")
+                        add("inst.action(user, update, bot)\n")
+                        add("if (nextLink != null) bot.inputListener[user] = nextLink\n")
                         add("inst.afterAction?.invoke(user, update, bot)\n")
                     }.endControlFlow()
             }

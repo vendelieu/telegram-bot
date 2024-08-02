@@ -1,8 +1,8 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.interfaces.Filter
-import eu.vendeli.tgbot.interfaces.Guard
+import eu.vendeli.tgbot.interfaces.helper.Filter
+import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.types.internal.ActivityCtx
 import eu.vendeli.tgbot.types.internal.CommonMatcher
 import eu.vendeli.tgbot.types.internal.FunctionalActivities

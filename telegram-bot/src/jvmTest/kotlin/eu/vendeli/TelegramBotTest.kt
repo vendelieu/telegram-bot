@@ -5,8 +5,8 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.botactions.getMe
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
-import eu.vendeli.tgbot.interfaces.InputListener
-import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.interfaces.ctx.InputListener
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat

@@ -20,7 +20,7 @@ import eu.vendeli.ksp.utils.getAnnotatedClassSymbols
 import eu.vendeli.ksp.utils.userClass
 import eu.vendeli.ksp.utils.userDataCtx
 import eu.vendeli.ksp.utils.userDataCtxDef
-import eu.vendeli.tgbot.annotations.BotCtxProvider
+import eu.vendeli.tgbot.annotations.CtxProvider
 import eu.vendeli.tgbot.annotations.internal.InternalApi
 
 internal fun ActivityProcessor.processCtxProviders(
@@ -34,7 +34,7 @@ internal fun ActivityProcessor.processCtxProviders(
             filePkg,
             "BotCtx",
         ).apply {
-            val providers = resolver.getAnnotatedClassSymbols(BotCtxProvider::class, pkg)
+            val providers = resolver.getAnnotatedClassSymbols(CtxProvider::class, pkg)
             var userDataType = STRING
 
             val userDataCtxClass = providers

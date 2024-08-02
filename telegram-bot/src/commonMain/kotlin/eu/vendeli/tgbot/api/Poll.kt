@@ -2,11 +2,11 @@
 
 package eu.vendeli.tgbot.api
 
-import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PollOptions
 import eu.vendeli.tgbot.types.poll.InputPollOption

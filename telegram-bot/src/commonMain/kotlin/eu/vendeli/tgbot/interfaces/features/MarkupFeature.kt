@@ -1,12 +1,13 @@
 package eu.vendeli.tgbot.interfaces.features
 
-import eu.vendeli.tgbot.interfaces.Keyboard
-import eu.vendeli.tgbot.interfaces.TgAction
+import eu.vendeli.tgbot.interfaces.action.TgAction
+import eu.vendeli.tgbot.interfaces.marker.Keyboard
 import eu.vendeli.tgbot.types.keyboard.ForceReply
 import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardRemove
 import eu.vendeli.tgbot.utils.builders.InlineKeyboardMarkupBuilder
 import eu.vendeli.tgbot.utils.builders.ReplyKeyboardMarkupBuilder
 import eu.vendeli.tgbot.utils.encodeWith
+import eu.vendeli.tgbot.utils.serde.KeyboardSerializer
 
 /**
  * Markup feature, see [Features article](https://github.com/vendelieu/telegram-bot/wiki/Features)
@@ -22,7 +23,7 @@ interface MarkupFeature<Return : TgAction<*>> : Feature {
      */
     @Suppress("UNCHECKED_CAST")
     fun markup(keyboard: Keyboard): Return = (this as Return).apply {
-        parameters["reply_markup"] = keyboard.encodeWith(Keyboard.Companion)
+        parameters["reply_markup"] = keyboard.encodeWith(KeyboardSerializer)
     }
 
     /**

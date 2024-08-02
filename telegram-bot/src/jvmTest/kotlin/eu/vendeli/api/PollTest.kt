@@ -3,8 +3,8 @@ package eu.vendeli.api
 import BotTestContext
 import eu.vendeli.tgbot.api.poll
 import eu.vendeli.tgbot.api.stopPoll
-import eu.vendeli.tgbot.types.EntityType
-import eu.vendeli.tgbot.types.MessageEntity
+import eu.vendeli.tgbot.types.msg.EntityType
+import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.poll.InputPollOption
 import eu.vendeli.tgbot.types.poll.PollOption

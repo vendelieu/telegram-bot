@@ -2,7 +2,7 @@
 
 package eu.vendeli.tgbot.api.stickerset
 
-import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.utils.encodeWith

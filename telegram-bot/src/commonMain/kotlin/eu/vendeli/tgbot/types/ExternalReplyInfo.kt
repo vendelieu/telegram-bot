@@ -3,6 +3,8 @@ package eu.vendeli.tgbot.types
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.game.Dice
 import eu.vendeli.tgbot.types.game.Game
+import eu.vendeli.tgbot.types.giveaway.Giveaway
+import eu.vendeli.tgbot.types.giveaway.GiveawayWinners
 import eu.vendeli.tgbot.types.media.Animation
 import eu.vendeli.tgbot.types.media.Audio
 import eu.vendeli.tgbot.types.media.Document
@@ -13,6 +15,7 @@ import eu.vendeli.tgbot.types.media.Story
 import eu.vendeli.tgbot.types.media.Video
 import eu.vendeli.tgbot.types.media.VideoNote
 import eu.vendeli.tgbot.types.media.Voice
+import eu.vendeli.tgbot.types.msg.MessageOrigin
 import eu.vendeli.tgbot.types.payment.Invoice
 import eu.vendeli.tgbot.types.poll.Poll
 import kotlinx.serialization.Serializable

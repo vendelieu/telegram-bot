@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.implementations
 
-import eu.vendeli.tgbot.interfaces.InputListener
+import eu.vendeli.tgbot.interfaces.ctx.InputListener
 import io.ktor.util.collections.ConcurrentMap
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async

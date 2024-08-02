@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types
 
-import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
 import eu.vendeli.tgbot.types.boost.ChatBoostRemoved
 import eu.vendeli.tgbot.types.boost.ChatBoostUpdated
 import eu.vendeli.tgbot.types.business.BusinessConnection
@@ -9,6 +9,9 @@ import eu.vendeli.tgbot.types.chat.ChatJoinRequest
 import eu.vendeli.tgbot.types.chat.ChatMemberUpdated
 import eu.vendeli.tgbot.types.inline.ChosenInlineResult
 import eu.vendeli.tgbot.types.inline.InlineQuery
+import eu.vendeli.tgbot.types.msg.Message
+import eu.vendeli.tgbot.types.msg.MessageReactionCountUpdated
+import eu.vendeli.tgbot.types.msg.MessageReactionUpdated
 import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
 import eu.vendeli.tgbot.types.payment.ShippingQuery
 import eu.vendeli.tgbot.types.poll.Poll

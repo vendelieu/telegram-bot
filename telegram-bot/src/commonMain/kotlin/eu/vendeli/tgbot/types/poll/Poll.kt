@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.poll
 
-import eu.vendeli.tgbot.types.MessageEntity
+import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName

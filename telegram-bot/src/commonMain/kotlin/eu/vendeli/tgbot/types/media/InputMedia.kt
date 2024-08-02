@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.media
 
-import eu.vendeli.tgbot.interfaces.ImplicitMediaData
-import eu.vendeli.tgbot.types.MessageEntity
+import eu.vendeli.tgbot.interfaces.helper.ImplicitMediaData
+import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile

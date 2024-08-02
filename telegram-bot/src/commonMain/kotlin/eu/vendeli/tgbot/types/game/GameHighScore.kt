@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.game
 
-import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
 import eu.vendeli.tgbot.types.User
 import kotlinx.serialization.Serializable
 

@@ -1,10 +1,10 @@
 package eu.vendeli.tgbot.types.internal
 
-import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
 import eu.vendeli.tgbot.types.CallbackQuery
-import eu.vendeli.tgbot.types.Message
-import eu.vendeli.tgbot.types.MessageReactionCountUpdated
-import eu.vendeli.tgbot.types.MessageReactionUpdated
+import eu.vendeli.tgbot.types.msg.Message
+import eu.vendeli.tgbot.types.msg.MessageReactionCountUpdated
+import eu.vendeli.tgbot.types.msg.MessageReactionUpdated
 import eu.vendeli.tgbot.types.PollAnswer
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User

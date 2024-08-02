@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.keyboard
 
-import eu.vendeli.tgbot.interfaces.Button
+import eu.vendeli.tgbot.interfaces.marker.Button
 import eu.vendeli.tgbot.types.game.CallbackGame
 import eu.vendeli.tgbot.types.inline.SwitchInlineQueryChosenChat
 import kotlinx.serialization.Serializable

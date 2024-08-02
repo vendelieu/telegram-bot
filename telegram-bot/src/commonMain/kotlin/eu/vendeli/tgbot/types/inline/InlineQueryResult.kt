@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.inline
 
 import eu.vendeli.tgbot.types.InputMessageContent
-import eu.vendeli.tgbot.types.MessageEntity
+import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import kotlinx.serialization.Contextual

@@ -2,8 +2,8 @@ package eu.vendeli.tgbot.types.internal.configuration
 
 import eu.vendeli.tgbot.implementations.ClassManagerImpl
 import eu.vendeli.tgbot.implementations.InputListenerMapImpl
-import eu.vendeli.tgbot.interfaces.ClassManager
-import eu.vendeli.tgbot.interfaces.InputListener
+import eu.vendeli.tgbot.interfaces.ctx.ClassManager
+import eu.vendeli.tgbot.interfaces.ctx.InputListener
 
 /**
  * The class containing the bot configuration.

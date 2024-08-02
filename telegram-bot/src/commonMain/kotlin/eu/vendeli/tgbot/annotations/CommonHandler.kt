@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.annotations
 
-import eu.vendeli.tgbot.interfaces.Filter
+import eu.vendeli.tgbot.interfaces.helper.Filter
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.utils.DefaultFilter
 import kotlin.reflect.KClass

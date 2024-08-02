@@ -1,12 +1,12 @@
 package eu.vendeli.tgbot.api.message
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.BusinessActionExt
-import eu.vendeli.tgbot.interfaces.InlineActionExt
+import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
+import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.EditMessageOptions
 import eu.vendeli.tgbot.utils.builders.EntitiesCtxBuilder

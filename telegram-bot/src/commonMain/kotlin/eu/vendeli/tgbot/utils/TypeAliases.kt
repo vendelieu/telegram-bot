@@ -3,7 +3,7 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler
-import eu.vendeli.tgbot.interfaces.ClassManager
+import eu.vendeli.tgbot.interfaces.ctx.ClassManager
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivityCtx
 import eu.vendeli.tgbot.types.internal.BusinessConnectionUpdate

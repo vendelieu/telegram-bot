@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.chat
 
-import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import kotlinx.datetime.Instant

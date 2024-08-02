@@ -2,7 +2,7 @@
 
 package eu.vendeli.tgbot.api
 
-import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.ReactionType
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.builders.ListingBuilder

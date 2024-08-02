@@ -2,7 +2,7 @@
 
 package eu.vendeli.tgbot.api.answer
 
-import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.SentWebAppMessage
 import eu.vendeli.tgbot.types.inline.InlineQueryResult
 import eu.vendeli.tgbot.types.internal.TgMethod

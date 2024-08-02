@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.media
 
-import eu.vendeli.tgbot.interfaces.ImplicitMediaData
+import eu.vendeli.tgbot.interfaces.helper.ImplicitMediaData
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.utils.toImplicitFile

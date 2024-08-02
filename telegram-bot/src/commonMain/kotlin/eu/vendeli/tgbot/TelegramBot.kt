@@ -4,7 +4,7 @@ import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler
-import eu.vendeli.tgbot.interfaces.ConfigLoader
+import eu.vendeli.tgbot.interfaces.helper.ConfigLoader
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.media.File

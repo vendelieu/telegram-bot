@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types
 
 import eu.vendeli.tgbot.types.internal.Currency
+import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 import kotlinx.serialization.Serializable
 

@@ -2,9 +2,9 @@
 import eu.vendeli.fixtures.__ACTIVITIES
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.InternalApi
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.MediaAction
-import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.MediaAction
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType

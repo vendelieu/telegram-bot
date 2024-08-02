@@ -2,9 +2,9 @@
 
 package eu.vendeli.tgbot.api.message
 
-import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.MessageId
+import eu.vendeli.tgbot.types.msg.MessageId
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Identifier

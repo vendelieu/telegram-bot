@@ -3,8 +3,8 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
-import eu.vendeli.tgbot.interfaces.Filter
-import eu.vendeli.tgbot.interfaces.Guard
+import eu.vendeli.tgbot.interfaces.helper.Filter
+import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivityCtx
 import eu.vendeli.tgbot.types.internal.CommandContext

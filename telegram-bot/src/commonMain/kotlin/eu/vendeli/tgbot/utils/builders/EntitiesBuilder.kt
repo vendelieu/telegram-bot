@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.utils.builders
 
-import eu.vendeli.tgbot.types.EntityType
-import eu.vendeli.tgbot.types.MessageEntity
+import eu.vendeli.tgbot.types.msg.EntityType
+import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.User
 
 /**

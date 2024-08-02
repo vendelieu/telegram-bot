@@ -1,6 +1,5 @@
 package eu.vendeli.tgbot.utils.builders
 
-import eu.vendeli.tgbot.interfaces.KeyboardBuilder
 import eu.vendeli.tgbot.types.game.CallbackGame
 import eu.vendeli.tgbot.types.inline.SwitchInlineQueryChosenChat
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardButton

@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.internal
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.interfaces.Filter
+import eu.vendeli.tgbot.interfaces.helper.Filter
 import eu.vendeli.tgbot.utils.checkIsFiltered
 import kotlin.reflect.KClass
 

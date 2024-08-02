@@ -15,9 +15,9 @@ import eu.vendeli.tgbot.api.media.sticker
 import eu.vendeli.tgbot.api.media.video
 import eu.vendeli.tgbot.api.media.videoNote
 import eu.vendeli.tgbot.api.media.voice
-import eu.vendeli.tgbot.types.EntityType
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.internal.options.AudioOptions
+import eu.vendeli.tgbot.types.msg.EntityType
 import eu.vendeli.tgbot.utils.toImplicitFile
 import eu.vendeli.utils.LOREM
 import io.kotest.matchers.nulls.shouldBeNull

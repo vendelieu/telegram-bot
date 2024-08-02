@@ -10,6 +10,7 @@ import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
@@ -19,6 +20,7 @@ import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
+import eu.vendeli.ksp.dto.ProcessorCtxData
 import eu.vendeli.ksp.utils.CommonAnnotationHandler
 import eu.vendeli.ksp.utils.FileBuilder
 import eu.vendeli.ksp.utils.activitiesType
@@ -45,6 +47,8 @@ class ActivityProcessor(
     override fun process(resolver: Resolver): List<KSAnnotated> {
         val fileSpec = FileSpec.builder("eu.vendeli.tgbot.generated", "ActivitiesData").apply {
             addSuppressions()
+            addOptIn()
+
             addImport("eu.vendeli.tgbot.utils", "InvocationLambda", "Invocable")
             addImport("eu.vendeli.tgbot.types.internal", "InvocationMeta")
             addImport("eu.vendeli.tgbot.types.internal.configuration", "RateLimits")
@@ -130,19 +134,17 @@ class ActivityProcessor(
                 c.toClassName()
         }
         val classRefPkg = pkg ?: "eu.vendeli.tgbot.generated"
+        val collectorsData = ProcessorCtxData(
+            injectableTypes = injectableTypes,
+            logger = logger,
+            idxPostfix = idxPostfix,
+        )
         fileSpec.apply {
-            collectCommandActivities(commandHandlerSymbols, injectableTypes, logger, idxPostfix, classRefPkg)
-            collectInputActivities(
-                inputHandlerSymbols,
-                inputChainSymbols,
-                injectableTypes,
-                logger,
-                idxPostfix,
-                classRefPkg,
-            )
-            collectCommonActivities(commonHandlerData, injectableTypes, logger, idxPostfix, classRefPkg)
-            collectUpdateTypeActivities(updateHandlerSymbols, injectableTypes, logger, idxPostfix)
-            collectUnprocessed(unprocessedHandlerSymbol, injectableTypes, logger, idxPostfix)
+            collectCommandActivities(commandHandlerSymbols, collectorsData, classRefPkg)
+            collectInputActivities(inputHandlerSymbols, inputChainSymbols, collectorsData, classRefPkg)
+            collectCommonActivities(commonHandlerData, collectorsData, classRefPkg)
+            collectUpdateTypeActivities(updateHandlerSymbols, collectorsData)
+            collectUnprocessed(unprocessedHandlerSymbol, collectorsData)
         }
     }
 
@@ -151,20 +153,30 @@ class ActivityProcessor(
         addAnnotation(
             AnnotationSpec
                 .builder(Suppress::class)
-                .apply {
-                    addMember(
-                        "\t\n            \"NOTHING_TO_INLINE\",\n" +
-                            "            \"ObjectPropertyName\",\n" +
-                            "            \"UNUSED_ANONYMOUS_PARAMETER\",\n" +
-                            "            \"UnnecessaryVariable\",\n" +
-                            "            \"TopLevelPropertyNaming\",\n" +
-                            "            \"UNNECESSARY_SAFE_CALL\",\n" +
-                            "            \"RedundantNullableReturnType\",\n" +
-                            "            \"KotlinConstantConditions\",\n" +
-                            "            \"USELESS_ELVIS\",\n",
-                    )
-                    useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
-                }.build(),
+                .useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
+                .addMember(
+                    "\t\n            \"NOTHING_TO_INLINE\",\n" +
+                        "            \"ObjectPropertyName\",\n" +
+                        "            \"UNUSED_ANONYMOUS_PARAMETER\",\n" +
+                        "            \"UnnecessaryVariable\",\n" +
+                        "            \"TopLevelPropertyNaming\",\n" +
+                        "            \"UNNECESSARY_SAFE_CALL\",\n" +
+                        "            \"RedundantNullableReturnType\",\n" +
+                        "            \"KotlinConstantConditions\",\n" +
+                        "            \"USELESS_ELVIS\",\n",
+                )
+                .build(),
+        )
+    }
+
+    private fun FileBuilder.addOptIn() {
+        addImport("eu.vendeli.tgbot.annotations.internal", "InternalApi")
+        addAnnotation(
+            AnnotationSpec
+                .builder(ClassName("kotlin", "OptIn"))
+                .useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
+                .addMember("InternalApi::class")
+                .build(),
         )
     }
 

@@ -2,7 +2,7 @@
 
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.TgMethod

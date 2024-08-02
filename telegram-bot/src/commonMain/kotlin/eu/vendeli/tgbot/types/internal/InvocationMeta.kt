@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.internal
 
-import eu.vendeli.tgbot.interfaces.Guard
+import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.DefaultGuard
 import kotlin.reflect.KClass

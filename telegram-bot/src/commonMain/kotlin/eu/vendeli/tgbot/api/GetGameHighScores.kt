@@ -2,8 +2,8 @@
 
 package eu.vendeli.tgbot.api
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.InlineActionExt
+import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.game.GameHighScore
 import eu.vendeli.tgbot.types.internal.Identifier
