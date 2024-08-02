@@ -3254,12 +3254,13 @@ $dokka.location:eu.vendeli.tgbot.types/Update/removedChatBoost/#/PointingToDecla
 $dokka.location:eu.vendeli.tgbot.types/Update/shippingQuery/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-update/shipping-query.html
 $dokka.location:eu.vendeli.tgbot.types/Update/updateId/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-update/update-id.html
 $dokka.location:eu.vendeli.tgbot.types/User///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-user/index.html
-$dokka.location:eu.vendeli.tgbot.types/User/User/#kotlin.Long#kotlin.Boolean#kotlin.String#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-user/-user.html
+$dokka.location:eu.vendeli.tgbot.types/User/User/#kotlin.Long#kotlin.Boolean#kotlin.String#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-user/-user.html
 $dokka.location:eu.vendeli.tgbot.types/User/addedToAttachmentMenu/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-user/added-to-attachment-menu.html
 $dokka.location:eu.vendeli.tgbot.types/User/canConnectToBusiness/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-user/can-connect-to-business.html
 $dokka.location:eu.vendeli.tgbot.types/User/canJoinGroups/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-user/can-join-groups.html
 $dokka.location:eu.vendeli.tgbot.types/User/canReadAllGroupMessages/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-user/can-read-all-group-messages.html
 $dokka.location:eu.vendeli.tgbot.types/User/firstName/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-user/first-name.html
+$dokka.location:eu.vendeli.tgbot.types/User/hasMainWebApp/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-user/has-main-web-app.html
 $dokka.location:eu.vendeli.tgbot.types/User/id/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-user/id.html
 $dokka.location:eu.vendeli.tgbot.types/User/isBot/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-user/is-bot.html
 $dokka.location:eu.vendeli.tgbot.types/User/isPremium/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-user/is-premium.html
