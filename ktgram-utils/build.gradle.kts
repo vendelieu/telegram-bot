@@ -5,10 +5,6 @@ plugins {
     id("publish")
 }
 
-repositories {
-    mavenCentral()
-}
-
 kotlin {
     jvm {
         withJava()

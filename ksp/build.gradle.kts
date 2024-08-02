@@ -12,10 +12,6 @@ libraryData {
     description = "KSP plugin for Telegram-bot lib to collect actions."
 }
 
-repositories {
-    mavenCentral()
-}
-
 kotlin {
     jvm {
         withJava()

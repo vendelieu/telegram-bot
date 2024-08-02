@@ -3,8 +3,7 @@ name: build
 on:
   push:
     branches:
-      - master
-  pull_request:
+      - dev
 
 permissions:
   contents: write
@@ -27,6 +26,11 @@ jobs:
           gradle-version: current
           dependency-graph: generate-and-submit
 
+      - name: Get build version
+        id: version
+        run: |
+          echo "{version}={$(date +'%y%m%d~%H%M%5N')}" >> $GITHUB_STATE
+
       - name: Build artifact
         env:
           TELEGRAM_ID: ${{ secrets.TELEGRAM_ID }}
@@ -35,12 +39,5 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           BOT_TOKEN_2: ${{ secrets.BOT_TOKEN_2 }}
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
-        run: ./gradlew koverXmlReport -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        with:
-          files: telegram-bot/build/reports/kover/report.xml
-          verbose: true
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: ./gradlew publishAllPublicationsToGHPackagesRepository -PlibVersion=${{ env.version }}

@@ -48,11 +48,20 @@ publishing {
     }
     repositories {
         maven {
+            name = "OSSRH"
             credentials {
                 username = sonatypeUsername
                 password = sonatypePassword
             }
             url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+        }
+        maven {
+            name = "GHPackages"
+            url = uri("https://maven.pkg.github.com/vendelieu/telegram-bot")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
         }
     }
 }
