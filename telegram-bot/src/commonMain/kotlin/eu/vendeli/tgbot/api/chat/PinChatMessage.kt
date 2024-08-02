@@ -3,6 +3,7 @@
 package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.interfaces.BusinessActionExt
 import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
@@ -10,7 +11,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class PinChatMessageAction(
     messageId: Long,
     disableNotification: Boolean? = null,
-) : Action<Boolean>() {
+) : Action<Boolean>(), BusinessActionExt<Boolean> {
     override val method = TgMethod("pinChatMessage")
     override val returnType = getReturnType()
 
