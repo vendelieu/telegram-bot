@@ -24,7 +24,6 @@ jobs:
         uses: gradle/actions/setup-gradle@v3-beta
         with:
           gradle-version: current
-          dependency-graph: generate-and-submit
 
       - name: Get build version
         id: version
