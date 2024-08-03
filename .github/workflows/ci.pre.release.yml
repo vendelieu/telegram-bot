@@ -2,11 +2,6 @@ name: Pre-release
 
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        type: string
-        description: Version of artifact
-        required: true
 
 jobs:
   publish:
