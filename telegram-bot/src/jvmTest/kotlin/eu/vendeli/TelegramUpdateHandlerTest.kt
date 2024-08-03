@@ -18,6 +18,7 @@ import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.maps.shouldBeEmpty
 import io.kotest.matchers.maps.shouldContainExactly
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -184,6 +185,23 @@ class TelegramUpdateHandlerTest : BotTestContext() {
                 parameters shouldContainExactly mapOf("deepLink" to "test")
             }
             bot.update.stopListener()
+        }
+    }
+
+    @Test
+    fun `group command test`() {
+        val text = "/test@KtGram?param1"
+        bot.config.commandParsing.useIdentifierInGroupCommands = true
+
+        bot.update.parseCommand(text).run {
+            command shouldBe "/test"
+            params.size shouldBe 1
+            params.entries.first().toPair() shouldBe Pair("param_1","param1")
+        }
+
+        bot.update.parseCommand("/test@KtGram1?param1").run {
+            command shouldBe "/test@KtGram1?param1"
+            params.shouldBeEmpty()
         }
     }
 

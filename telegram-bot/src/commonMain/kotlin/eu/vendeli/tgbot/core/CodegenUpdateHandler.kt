@@ -31,7 +31,7 @@ class CodegenUpdateHandler internal constructor(
         if (checkIsLimited(bot.config.rateLimiter.limits, user?.id))
             return@run
 
-        val request = parseCommand(text.substringBefore('@'))
+        val request = parseCommand(text)
         var activityId = request.command
 
         // check parsed command existence
