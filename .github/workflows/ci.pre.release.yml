@@ -19,11 +19,10 @@ jobs:
           distribution: 'zulu'
           java-version: 11
 
-      - name: Prepare to publish
+      - name: Get build version
+        id: version
         run: |
-          echo '${{secrets.GPG_KEY_CONTENTS}}' | base64 -d > publish_key.gpg
-          gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.SECRET_PASSPHRASE}}" \
-          --output /home/runner/work/secret.gpg publish_key.gpg
+          echo "version=$(date +'%y%m%d~%H%M%5N')" >> "$GITHUB_ENV"
 
 
       - name: Setup Gradle
@@ -31,5 +30,7 @@ jobs:
         with:
           gradle-version: current
 
-      - name: Publish with Gradle
-        run: ./gradlew publish -Psigning.secretKeyRingFile=/home/runner/work/secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ github.event.inputs.version }}
+      - name: Publish to Gh
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: ./gradlew publishAllPublicationsToGHPackagesRepository -PlibVersion=${{ env.version }}

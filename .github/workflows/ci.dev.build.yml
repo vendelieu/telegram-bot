@@ -33,11 +33,5 @@ jobs:
 
       - name: Build artifact
         env:
-          TELEGRAM_ID: ${{ secrets.TELEGRAM_ID }}
-          CHAT_ID: ${{ secrets.CHAT_ID }}
-          BOT_ID: ${{ secrets.BOT_ID }}
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-          BOT_TOKEN_2: ${{ secrets.BOT_TOKEN_2 }}
-          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: ./gradlew publishAllPublicationsToGHPackagesRepository -PlibVersion=${{ env.version }}
