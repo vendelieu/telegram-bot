@@ -23,7 +23,7 @@ internal fun TgUpdateHandler.parseCommand(
                         state = ParserState.READING_PARAM_NAME
                     }
 
-                    useIdentifierInGroupCommands && i == '@' -> {
+                    i == '@' -> {
                         state = ParserState.MATCHING_IDENTIFIER
                     }
 
@@ -35,7 +35,8 @@ internal fun TgUpdateHandler.parseCommand(
 
             ParserState.MATCHING_IDENTIFIER -> {
                 if (i == commandDelimiter || (restrictSpacesInCommands && i == ' ')) {
-                    if (bot.identifier != commandAt) return@with ParsedText(text, emptyMap())
+                    if (useIdentifierInGroupCommands && bot.identifier != commandAt)
+                        return@with ParsedText(text, emptyMap())
                     state = ParserState.READING_PARAM_NAME
                 } else {
                     commandAt += i

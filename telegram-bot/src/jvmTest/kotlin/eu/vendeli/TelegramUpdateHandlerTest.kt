@@ -2,7 +2,6 @@ package eu.vendeli
 
 import BotTestContext
 import eu.vendeli.tgbot.annotations.internal.InternalApi
-import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
@@ -10,6 +9,7 @@ import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.media.Document
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.processUpdate
 import eu.vendeli.tgbot.utils.serde
@@ -202,6 +202,13 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         bot.update.parseCommand("/test@KtGram1?param1").run {
             command shouldBe "/test@KtGram1?param1"
             params.shouldBeEmpty()
+        }
+
+        bot.config.commandParsing.useIdentifierInGroupCommands = false
+        bot.update.parseCommand("/test@KtGram1?param1").run {
+            command shouldBe "/test"
+            params.size shouldBe 1
+            params.entries.first().toPair() shouldBe Pair("param_1","param1")
         }
     }
 
