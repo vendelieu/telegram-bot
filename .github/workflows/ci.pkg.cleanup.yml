@@ -1,0 +1,42 @@
+name: Packages Cleanup
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package_name: [
+          "eu.vendeli.telegram-bot-jvm",
+          "eu.vendeli.telegram-bot",
+          "eu.vendeli.ksp",
+          "eu.vendeli.ksp-jvm",
+          "eu.vendeli.ktor-starter-jvm",
+          "eu.vendeli.ktor-starter",
+          "eu.vendeli.ktgram-utils-js",
+          "eu.vendeli.ktgram-utils-jvm",
+          "eu.vendeli.ktgram-utils",
+          "eu.vendeli.ktgram-utils-linuxx64",
+          "eu.vendeli.ktgram-utils-mingwx64",
+          "eu.vendeli.spring-ktgram-starter",
+          "eu.vendeli.spring-ktgram-starter-jvm",
+          "eu.vendeli.telegram-bot-js",
+          "eu.vendeli.telegram-bot-linuxx64",
+          "eu.vendeli.telegram-bot-mingwx64",
+          "eu.vendeli.webapps",
+          "eu.vendeli.webapps-js"
+        ]
+    steps:
+      - name: Delete old versions of ${{ matrix.package_name }}
+        uses: actions/delete-package-versions@v5.0.0
+        with:
+          package-type: maven
+          package-name: ${{ matrix.package_name }}
+          min-versions-to-keep: 5
