@@ -30,6 +30,22 @@ dependencies {
 }
 ```
 
+<details>
+  <summary><i>Snapshots</i></summary>
+  To install snapshot versions add dev repository:
+
+```gradle
+repositories {
+    mavenCentral()
+    // ...
+    maven("https://mvn.vendeli.eu/telegram-bot") // this
+}
+```
+
+And use the latest package version from [packages](https://github.com/vendelieu?tab=packages&repo_name=telegram-bot).
+
+</details>
+
 # Samples
 
 - [Template repository](https://github.com/vendelieu/telegram-bot_template) - draft example.
