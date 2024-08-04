@@ -35,7 +35,7 @@ internal fun TgUpdateHandler.parseCommand(
 
             ParserState.MATCHING_IDENTIFIER -> {
                 if (i == commandDelimiter || (restrictSpacesInCommands && i == ' ')) {
-                    if (useIdentifierInGroupCommands && bot.identifier != commandAt)
+                    if (useIdentifierInGroupCommands && bot.config.identifier != commandAt)
                         return@with ParsedText(text, emptyMap())
                     state = ParserState.READING_PARAM_NAME
                 } else {

@@ -31,9 +31,9 @@ open class TelegramAutoConfiguration(
         val botCfg = cfg?.find { bot.identifier == it.identifier }
         val botInstance = TelegramBot(bot.token, bot.pckg, client.takeIf { config.shareHttpClient }) {
             classManager = springClassManager
-            botCfg?.let { this.apply(it.applyCfg()) }
+            identifier = bot.identifier
+            botCfg?.let { apply(it.applyCfg()) }
         }
-        botInstance.identifier = bot.identifier
 
         if (botCfg?.autostartLongPolling != false && config.autoStartPolling) {
             GlobalScope.launch(Dispatchers.IO) {

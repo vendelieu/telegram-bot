@@ -59,11 +59,6 @@ class TelegramBot(
      */
     val inputListener get() = config.inputListener
 
-    /**
-     * Property to identify different bot instances during multi-bot processing.
-     */
-    var identifier: String = "KtGram"
-
     init {
         logger.setLevel(config.logging.botLogLevel)
     }

@@ -8,6 +8,7 @@ import eu.vendeli.tgbot.interfaces.ctx.InputListener
 /**
  * The class containing the bot configuration.
  *
+ * @property identifier Property to identify different bot instances during multi-bot processing.
  * @property apiHost Host of telegram api.
  * @property isTestEnv Test environment flag.
  * @property inputListener Input handling class instance.
@@ -15,6 +16,7 @@ import eu.vendeli.tgbot.interfaces.ctx.InputListener
  * @property inputAutoRemoval A flag that regulates the auto-deletion of the input point during processing.
  */
 data class BotConfiguration(
+    var identifier: String = "KtGram",
     var apiHost: String = "https://api.telegram.org",
     var isTestEnv: Boolean = false,
     var inputListener: InputListener = InputListenerMapImpl(),

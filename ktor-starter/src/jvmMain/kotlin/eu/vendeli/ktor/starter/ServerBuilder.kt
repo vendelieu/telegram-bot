@@ -35,7 +35,6 @@ class ServerBuilder internal constructor() {
             },
             botConfiguration = cfg.configuration,
         ).also { bot ->
-            cfg.identifier?.let { bot.identifier = it }
             cfg.handlingBehaviour?.let { bot.update.setBehaviour(it) }
             runBlocking { cfg.onInitHook.invoke(bot) }
         }
