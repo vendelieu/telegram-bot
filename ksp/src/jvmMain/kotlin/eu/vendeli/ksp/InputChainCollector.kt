@@ -47,7 +47,7 @@ internal fun collectInputChains(
                         add("val nextLink: String? = %P\n", nextLink)
                         add("val breakPoint = inst.breakCondition?.invoke(user, update, bot) ?: false\n")
                         add(
-                            "if (breakPoint && inst.retryAfterBreak) bot.inputListener[user] = \"%L\"\n",
+                            "if (breakPoint && inst.retryAfterBreak){\nbot.inputListener[user] = \"%L\"\n}\n",
                             curLinkId,
                         )
                         add("if (breakPoint) {\ninst.breakAction(user, update, bot)\nreturn@suspendCall Unit\n}\n")
