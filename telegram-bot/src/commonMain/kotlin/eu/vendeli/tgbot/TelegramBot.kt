@@ -64,6 +64,11 @@ class TelegramBot(
     }
 
     /**
+     * Bot identifier set through configuration.
+     */
+    val identifier: String get() = config.identifier
+
+    /**
      * Current bot UpdateHandler instance
      */
     val update: TgUpdateHandler = CodegenUpdateHandler(commandsPackage, this)
