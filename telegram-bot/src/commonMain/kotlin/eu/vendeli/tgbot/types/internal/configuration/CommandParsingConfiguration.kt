@@ -8,8 +8,9 @@ package eu.vendeli.tgbot.types.internal.configuration
  * @property parameterValueDelimiter Separator between key and value of parameter
  * @property restrictSpacesInCommands If this flag is enabled, if there is a space in the command,
  * parser will treat this as the end of the command and start parsing parameters
- * @property useIdentifierInGroupCommands Use `TelegramBot.identifier` to match commands containing @,
+ * @property useIdentifierInGroupCommands Use bot's identifier to match commands containing @,
  * helpful in matching chat commands.
+ * By default, it's just omitted.
  */
 data class CommandParsingConfiguration(
     var commandDelimiter: Char = '?',

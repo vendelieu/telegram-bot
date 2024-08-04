@@ -7,9 +7,11 @@ import kotlinx.coroutines.Dispatchers
 /**
  * A class containing configurations related to updates pulling.
  *
- * @property dispatcher Dispatcher used for processing incoming updates.
+ * @property dispatcher Dispatcher used for collecting incoming updates.
+ * @property processingDispatcher Dispatcher that is used to process updates.
+ * Default is [Dispatchers.IO]/[Dispatchers.Unconfined], depends on a platform.
  * @property pullingDelay Delay after each pulling request.
- * @property updatesPollingTimeout timeout option in getUpdates request for long-polling mechanism.
+ * @property updatesPollingTimeout timeout option in getUpdates request for a long-polling mechanism.
  */
 data class UpdatesListenerConfiguration(
     var dispatcher: CoroutineDispatcher = Dispatchers.Default,
