@@ -1,10 +1,12 @@
 package eu.vendeli.tgbot.utils
 
+import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
 import io.ktor.http.decodeURLQueryComponent
 import korlibs.crypto.HMAC
+import kotlin.reflect.KClass
 
 fun String.checkIsInitDataSafe(botToken: String, hash: String): Boolean {
     val secretKey = HMAC.hmacSHA256(botToken.encodeToByteArray(), "WebAppData".encodeToByteArray())
@@ -16,6 +18,17 @@ fun String.checkIsInitDataSafe(botToken: String, hash: String): Boolean {
 
     return HMAC.hmacSHA256(secretKey.bytes, decodedData.encodeToByteArray()).hexLower == hash.lowercase()
 }
+
+/**
+ * Method to get given class instance through defined ClassManager.
+ *
+ * @param T output type.
+ * @param kClass class to get instance.
+ * @param initParams option to pass init parameters.
+ */
+@ExperimentalFeature
+fun <T : Any> TelegramBot.getInstance(kClass: KClass<T>, vararg initParams: Any?): T =
+    config.classManager.getInstance(kClass, initParams).cast()
 
 /**
  * Helper function to paginate over a collection.
