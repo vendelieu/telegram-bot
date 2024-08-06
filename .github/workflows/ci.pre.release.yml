@@ -17,7 +17,9 @@ jobs:
       - name: Get build version
         id: version
         run: |
-          echo "version=$(date +'%y%m%d~%H%M%5N')" >> "$GITHUB_ENV"
+          echo "git_branch=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
+          echo "git_hash=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
+          echo "date=$(date +'%y%m%d')" >> "$GITHUB_ENV"
 
 
       - name: Setup Gradle
@@ -28,4 +30,4 @@ jobs:
       - name: Publish to Gh
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: ./gradlew publishAllPublicationsToGHPackagesRepository -PlibVersion=${{ env.version }}
+        run: ./gradlew publishAllPublicationsToGHPackagesRepository -PlibVersion=${{ env.git_branch }}-${{ env.date }}~${{ env.git_hash }}

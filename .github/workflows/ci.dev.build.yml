@@ -29,9 +29,10 @@ jobs:
       - name: Get build version
         id: version
         run: |
-          echo "version=$(date +'%y%m%d~%H%M%5N')" >> "$GITHUB_ENV"
+          echo "git_hash=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
+          echo "date=$(date +'%y%m%d')" >> "$GITHUB_ENV"
 
       - name: Build artifact
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: ./gradlew publishAllPublicationsToGHPackagesRepository -PlibVersion=${{ env.version }}
+        run: ./gradlew publishAllPublicationsToGHPackagesRepository -PlibVersion=dev-${{ env.date }}~${{ env.git_hash }}
