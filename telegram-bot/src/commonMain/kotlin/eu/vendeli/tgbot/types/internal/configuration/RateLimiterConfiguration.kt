@@ -5,7 +5,6 @@ import eu.vendeli.tgbot.api.message.message
 import eu.vendeli.tgbot.implementations.TokenBucketLimiterImpl
 import eu.vendeli.tgbot.interfaces.helper.RateLimitMechanism
 
-
 /**
  * Class containing configuration for global rate limiting.
  *

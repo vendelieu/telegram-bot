@@ -164,8 +164,7 @@ class ActivityProcessor(
                         "            \"RedundantNullableReturnType\",\n" +
                         "            \"KotlinConstantConditions\",\n" +
                         "            \"USELESS_ELVIS\",\n",
-                )
-                .build(),
+                ).build(),
         )
     }
 

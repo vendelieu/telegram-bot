@@ -196,7 +196,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         bot.update.parseCommand(text).run {
             command shouldBe "/test"
             params.size shouldBe 1
-            params.entries.first().toPair() shouldBe Pair("param_1","param1")
+            params.entries.first().toPair() shouldBe Pair("param_1", "param1")
         }
 
         bot.update.parseCommand("/test@KtGram1?param1").run {
@@ -208,7 +208,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         bot.update.parseCommand("/test@KtGram1?param1").run {
             command shouldBe "/test"
             params.size shouldBe 1
-            params.entries.first().toPair() shouldBe Pair("param_1","param1")
+            params.entries.first().toPair() shouldBe Pair("param_1", "param1")
         }
     }
 
