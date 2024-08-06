@@ -1,11 +1,11 @@
 name: GH Packages Autorelease
 
-on:
-  workflow_dispatch:
+on: [push]
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    if: "!startsWith(github.ref, 'refs/heads/renovate/')"
     steps:
       - uses: actions/checkout@v4
 
