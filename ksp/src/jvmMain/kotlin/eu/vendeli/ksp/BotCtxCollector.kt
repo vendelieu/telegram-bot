@@ -23,7 +23,7 @@ import eu.vendeli.ksp.utils.userDataCtxDef
 import eu.vendeli.tgbot.annotations.CtxProvider
 import eu.vendeli.tgbot.annotations.internal.InternalApi
 
-internal fun ActivityProcessor.processCtxProviders(
+internal fun processCtxProviders(
     codeGenerator: CodeGenerator,
     resolver: Resolver,
     pkg: String? = null,

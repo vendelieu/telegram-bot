@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.BreakCondition
 import eu.vendeli.tgbot.types.internal.ChainLink
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.StateSelector
 
 @InputChain
 class Conversation {
@@ -30,6 +31,7 @@ class Conversation {
     object Age : ChainLink() {
         override val breakCondition = BreakCondition { _, update, _ -> update.text.toIntOrNull() == null }
         override val retryAfterBreak = false
+        override val stateSelector = StateSelector.Custom { updateId }
 
         override suspend fun action(user: User, update: ProcessedUpdate, bot: TelegramBot) {
             val name = user["name"]

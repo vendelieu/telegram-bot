@@ -5,12 +5,15 @@ import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.buildCodeBlock
+import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
+import eu.vendeli.ksp.utils.FileBuilder
 import eu.vendeli.ksp.utils.cast
 import eu.vendeli.ksp.utils.chainLinkClass
+import eu.vendeli.ksp.utils.stateManager
 import eu.vendeli.tgbot.utils.DefaultGuard
 
-internal fun collectInputChains(
+internal fun FileBuilder.collectInputChains(
     symbols: Sequence<KSClassDeclaration>,
     logger: KSPLogger,
 ): CodeBlock? = buildCodeBlock {
@@ -25,10 +28,18 @@ internal fun collectInputChains(
             }.toList()
             .cast<List<KSClassDeclaration>>()
 
-        links.asSequence().forEachIndexed { idx, c ->
-            val curLinkId = c.qualifiedName!!.asString()
-            val qualifier = c.qualifiedName!!.getQualifier()
-            val name = c.simpleName.asString()
+        val isStateManagerChain = chain.getAllSuperTypes().firstOrNull {
+            it.toClassName() == stateManager
+        } != null
+
+        if (isStateManagerChain) {
+            addImport("eu.vendeli.tgbot.types.internal", "StoredState")
+        }
+
+        links.asSequence().forEachIndexed { idx, link ->
+            val curLinkId = link.qualifiedName!!.asString()
+            val qualifier = link.qualifiedName!!.getQualifier()
+            val name = link.simpleName.asString()
             val reference = "$qualifier.$name"
 
             val nextLink = if (idx < links.lastIndex) {
@@ -51,6 +62,11 @@ internal fun collectInputChains(
                             curLinkId,
                         )
                         add("if (breakPoint) {\ninst.breakAction(user, update, bot)\nreturn@suspendCall Unit\n}\n")
+                        if (isStateManagerChain) {
+                            add("val chainInst = classManager.getInstance($qualifier::class) as $qualifier\n")
+                            if (idx == 0) add("chainInst.clearAllState(user, \"$qualifier\")\n")
+                            add("chainInst.setState(user, \"$reference\", StoredState(update, inst.stateSelector))\n")
+                        }
                         add("inst.action(user, update, bot)\n")
                         add("if (nextLink != null) bot.inputListener[user] = nextLink\n")
                         add("inst.afterAction?.invoke(user, update, bot)\n")

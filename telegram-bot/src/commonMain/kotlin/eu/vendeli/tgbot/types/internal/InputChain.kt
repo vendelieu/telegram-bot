@@ -16,6 +16,7 @@ abstract class ChainLink {
     open val breakCondition: BreakCondition? = null
     open val beforeAction: Action? = null
     open val afterAction: Action? = null
+    open val stateSelector: StateSelector = StateSelector.Text
 
     abstract suspend fun action(user: User, update: ProcessedUpdate, bot: TelegramBot)
 
