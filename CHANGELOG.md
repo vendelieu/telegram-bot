@@ -1,5 +1,17 @@
 # Telegram-bot (KtGram) changelog
 
+## -7.0.0
+
+* Reorganized internal structure (mostly interfaces and some types), imports may break.
+* Renamed `chatData` > `classData` since it's more appropriate functionally.
+* Decoupled `BotContext` (`userData`, `classData`) from bot itself, to set your own implementation there's new
+  annotation `@CtxProvider`.
+* Reworked base methods of `BotContext`, now they're more strongly typed.
+* Added operator extensions `get`, `set` for `User` class that coupled with `userData`, i.e., now you
+  can use `user["key"] = "value"`.
+* Added experimental method `TelegramBot.getInstance` to get instance through defined `ClassManager`.
+* Added `@InputChain` state manager that will save selected state from update automatically.
+
 ### 6.6.0
 
 * Covered 7.8 telegram api.
