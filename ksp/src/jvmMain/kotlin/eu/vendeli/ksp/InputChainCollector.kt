@@ -16,6 +16,7 @@ import eu.vendeli.tgbot.utils.DefaultGuard
 internal fun FileBuilder.collectInputChains(
     symbols: Sequence<KSClassDeclaration>,
     logger: KSPLogger,
+    pkg: String? = null,
 ): CodeBlock? = buildCodeBlock {
     if (!symbols.iterator().hasNext()) {
         logger.info("No input chains were found.")
@@ -67,6 +68,11 @@ internal fun FileBuilder.collectInputChains(
                             if (idx == 0) add("chainInst.clearAllState(user, \"$qualifier\")\n")
                             add("chainInst.setState(user, \"$reference\", StoredState(update, inst.stateSelector))\n")
                         }
+                        if (pkg != null) add(
+                            "if (user != null && bot.update.userClassSteps[user.id] != %S) %L.____clearClassData(user.id)\n",
+                            qualifier,
+                            pkg,
+                        )
                         add("inst.action(user, update, bot)\n")
                         add("if (nextLink != null) bot.inputListener[user] = nextLink\n")
                         add("inst.afterAction?.invoke(user, update, bot)\n")

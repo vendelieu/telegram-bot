@@ -82,7 +82,7 @@ internal fun FileBuilder.collectInputActivities(
     pkg: String? = null,
 ) = ctx.run {
     logger.info("Collecting inputs.")
-    val tailBlock = collectInputChains(chainSymbols, logger)
+    val tailBlock = collectInputChains(chainSymbols, logger, pkg)
 
     addMap(
         "__TG_INPUTS$idxPostfix",
