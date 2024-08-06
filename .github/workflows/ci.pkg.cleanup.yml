@@ -39,4 +39,4 @@ jobs:
         with:
           package-type: maven
           package-name: ${{ matrix.package_name }}
-          min-versions-to-keep: 5
+          min-versions-to-keep: 10

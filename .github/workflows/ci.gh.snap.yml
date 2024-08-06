@@ -1,16 +1,10 @@
-name: Dev build snap
+name: GH Packages Autorelease
 
 on:
-  push:
-    branches:
-      - dev
-
-permissions:
-  contents: write
-  packages: write
+  workflow_dispatch:
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,18 +15,20 @@ jobs:
           distribution: 'zulu'
           java-version: 11
 
+      - name: Get build version
+        id: version
+        run: |
+          echo "git_branch=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
+          echo "git_hash=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
+          echo "date=$(date +'%y%m%d')" >> "$GITHUB_ENV"
+
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3-beta
         with:
           gradle-version: current
 
-      - name: Get build version
-        id: version
-        run: |
-          echo "git_hash=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
-          echo "date=$(date +'%y%m%d')" >> "$GITHUB_ENV"
-
-      - name: Build artifact
+      - name: Publish to Gh
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: ./gradlew publishAllPublicationsToGHPackagesRepository -PlibVersion=dev-${{ env.date }}~${{ env.git_hash }}
+        run: ./gradlew publishAllPublicationsToGHPackagesRepository -PlibVersion=${{ env.git_branch }}-${{ env.date }}~${{ env.git_hash }}
