@@ -11,6 +11,8 @@
   can use `user["key"] = "value"`.
 * Added experimental method `TelegramBot.getInstance` to get instance through defined `ClassManager`.
 * Added `@InputChain` state manager that will save selected state from update automatically.
+* Added `catchExceptions` to turn off catching exceptions to `caughtExceptions`, and `throwExOnActionsFailure` to throw
+  exceptions on api request sending failures.
 
 ### 6.6.0
 
