@@ -43,7 +43,7 @@ internal suspend inline fun TgUpdateHandler.checkIsLimited(
 
 internal suspend inline fun TgUpdateHandler.handleFailure(update: ProcessedUpdate, throwable: Throwable) {
     if (bot.config.catchExceptions) caughtExceptions.send(FailedUpdate(throwable, update))
-    else throw throwable
+    else throw TgException(message = "Caught exception while processing $update", cause = throwable)
 }
 
 internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T): Deferred<T> = coroutineScope {
