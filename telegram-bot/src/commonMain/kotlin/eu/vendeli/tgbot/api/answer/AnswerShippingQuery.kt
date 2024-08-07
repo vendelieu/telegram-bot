@@ -3,7 +3,6 @@
 package eu.vendeli.tgbot.api.answer
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.payment.ShippingOption
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.encodeWith
@@ -16,7 +15,7 @@ class AnswerShippingQueryAction(
     shippingOptions: List<ShippingOption>? = null,
     errorMessage: String? = null,
 ) : SimpleAction<Boolean>() {
-    override val method = TgMethod("answerShippingQuery")
+    override val method = "answerShippingQuery"
     override val returnType = getReturnType()
 
     init {

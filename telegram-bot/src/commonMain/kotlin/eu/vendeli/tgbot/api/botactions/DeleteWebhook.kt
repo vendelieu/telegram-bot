@@ -3,14 +3,13 @@
 package eu.vendeli.tgbot.api.botactions
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
 class DeleteWebhookAction(
     dropPendingUpdates: Boolean = false,
 ) : SimpleAction<Boolean>() {
-    override val method = TgMethod("deleteWebhook")
+    override val method = "deleteWebhook"
     override val returnType = getReturnType()
 
     init {

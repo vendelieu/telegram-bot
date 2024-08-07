@@ -10,7 +10,6 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
@@ -23,7 +22,7 @@ class SendVideoAction(
     OptionsFeature<SendVideoAction, VideoOptions>,
     MarkupFeature<SendVideoAction>,
     CaptionFeature<SendVideoAction> {
-    override val method = TgMethod("sendVideo")
+    override val method = "sendVideo"
     override val returnType = getReturnType()
     override val options = VideoOptions()
     override val beforeReq: () -> Unit = {

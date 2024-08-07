@@ -8,7 +8,6 @@ import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.msg.Message
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.MessageOptions
 import eu.vendeli.tgbot.utils.builders.EntitiesCtxBuilder
 import eu.vendeli.tgbot.utils.getReturnType
@@ -21,7 +20,7 @@ class SendMessageAction private constructor() :
     MarkupFeature<SendMessageAction>,
     EntitiesFeature<SendMessageAction>,
     EntitiesCtxBuilder<SendMessageAction> {
-        override val method = TgMethod("sendMessage")
+        override val method = "sendMessage"
         override val returnType = getReturnType()
         override val options = MessageOptions()
 

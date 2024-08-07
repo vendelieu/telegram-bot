@@ -9,7 +9,6 @@ import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.msg.Message
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.EditCaptionOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
@@ -21,7 +20,7 @@ class EditMessageCaptionAction() :
     OptionsFeature<EditMessageCaptionAction, EditCaptionOptions>,
     MarkupFeature<EditMessageCaptionAction>,
     CaptionFeature<EditMessageCaptionAction> {
-    override val method = TgMethod("editMessageCaption")
+    override val method = "editMessageCaption"
     override val returnType = getReturnType()
     override val options = EditCaptionOptions()
     override val entitiesFieldName: String = "caption_entities"

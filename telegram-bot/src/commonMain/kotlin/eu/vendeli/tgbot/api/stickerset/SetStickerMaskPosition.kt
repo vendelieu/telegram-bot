@@ -3,7 +3,6 @@
 package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.MaskPosition
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
@@ -13,7 +12,7 @@ class SetStickerMaskPositionAction(
     sticker: String,
     maskPosition: MaskPosition? = null,
 ) : SimpleAction<Boolean>() {
-    override val method = TgMethod("setStickerMaskPosition")
+    override val method = "setStickerMaskPosition"
     override val returnType = getReturnType()
 
     init {

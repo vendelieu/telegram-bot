@@ -10,7 +10,6 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PhotoOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
@@ -23,7 +22,7 @@ class SendPhotoAction(
     OptionsFeature<SendPhotoAction, PhotoOptions>,
     MarkupFeature<SendPhotoAction>,
     CaptionFeature<SendPhotoAction> {
-    override val method = TgMethod("sendPhoto")
+    override val method = "sendPhoto"
     override val returnType = getReturnType()
     override val options = PhotoOptions()
 

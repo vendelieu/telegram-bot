@@ -5,7 +5,6 @@ package eu.vendeli.tgbot.api.botactions
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.bot.BotCommand
 import eu.vendeli.tgbot.types.bot.BotCommandScope
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
@@ -14,7 +13,7 @@ class GetMyCommandsAction(
     scope: BotCommandScope? = null,
     languageCode: String? = null,
 ) : SimpleAction<List<BotCommand>>() {
-    override val method = TgMethod("getMyCommands")
+    override val method = "getMyCommands"
     override val returnType = getReturnType()
 
     init {

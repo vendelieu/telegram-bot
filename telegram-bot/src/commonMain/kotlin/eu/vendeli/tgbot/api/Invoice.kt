@@ -7,7 +7,6 @@ import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.internal.Currency
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.InvoiceOptions
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 import eu.vendeli.tgbot.utils.encodeWith
@@ -24,7 +23,7 @@ class SendInvoiceAction(
 ) : Action<Message>(),
     OptionsFeature<SendInvoiceAction, InvoiceOptions>,
     MarkupFeature<SendInvoiceAction> {
-    override val method = TgMethod("sendInvoice")
+    override val method = "sendInvoice"
     override val returnType = getReturnType()
     override val options = InvoiceOptions()
 

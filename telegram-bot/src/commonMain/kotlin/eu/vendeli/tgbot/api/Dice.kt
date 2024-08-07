@@ -7,7 +7,6 @@ import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.msg.Message
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.DiceOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
@@ -18,7 +17,7 @@ class SendDiceAction(
     BusinessActionExt<Message>,
     OptionsFeature<SendDiceAction, DiceOptions>,
     MarkupFeature<SendDiceAction> {
-    override val method = TgMethod("sendDice")
+    override val method = "sendDice"
     override val returnType = getReturnType()
     override val options = DiceOptions()
 

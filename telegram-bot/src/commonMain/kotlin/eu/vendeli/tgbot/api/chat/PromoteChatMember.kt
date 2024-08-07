@@ -5,7 +5,6 @@ package eu.vendeli.tgbot.api.chat
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PromoteChatMemberOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
@@ -14,7 +13,7 @@ class PromoteChatMemberAction(
     userId: Long,
 ) : Action<Boolean>(),
     OptionsFeature<PromoteChatMemberAction, PromoteChatMemberOptions> {
-    override val method = TgMethod("promoteChatMember")
+    override val method = "promoteChatMember"
     override val returnType = getReturnType()
     override val options = PromoteChatMemberOptions()
 

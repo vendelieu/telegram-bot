@@ -5,7 +5,6 @@ package eu.vendeli.tgbot.api
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.UserProfilePhotos
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
@@ -14,7 +13,7 @@ class GetUserProfilePhotosAction(
     offset: Int? = null,
     limit: Int? = null,
 ) : SimpleAction<UserProfilePhotos>() {
-    override val method = TgMethod("getUserProfilePhotos")
+    override val method = "getUserProfilePhotos"
     override val returnType = getReturnType()
 
     init {

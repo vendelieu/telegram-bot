@@ -3,7 +3,6 @@
 package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
@@ -16,7 +15,7 @@ class AddStickerToSetAction(
     name: String,
     input: InputSticker,
 ) : SimpleAction<Boolean>() {
-    override val method = TgMethod("addStickerToSet")
+    override val method = "addStickerToSet"
     override val returnType = getReturnType()
 
     init {

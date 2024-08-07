@@ -5,7 +5,6 @@ package eu.vendeli.tgbot.api.answer
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.SentWebAppMessage
 import eu.vendeli.tgbot.types.inline.InlineQueryResult
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
@@ -15,7 +14,7 @@ class AnswerWebAppQueryAction(
     webAppQueryId: String,
     result: InlineQueryResult,
 ) : SimpleAction<SentWebAppMessage>() {
-    override val method = TgMethod("answerWebAppQuery")
+    override val method = "answerWebAppQuery"
     override val returnType = getReturnType()
 
     init {

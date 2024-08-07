@@ -7,7 +7,6 @@ import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.types.msg.Message
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
@@ -16,7 +15,7 @@ class StopMessageLiveLocationAction() :
     InlineActionExt<Message>,
     BusinessActionExt<Message>,
     MarkupFeature<StopMessageLiveLocationAction> {
-    override val method = TgMethod("stopMessageLiveLocation")
+    override val method = "stopMessageLiveLocation"
     override val returnType = getReturnType()
 
     constructor(messageId: Long) : this() {

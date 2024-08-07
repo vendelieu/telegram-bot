@@ -3,7 +3,6 @@
 package eu.vendeli.tgbot.api.forum
 
 import eu.vendeli.tgbot.interfaces.action.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
@@ -12,7 +11,7 @@ class EditForumTopicAction(
     name: String? = null,
     iconCustomEmojiId: String? = null,
 ) : Action<Boolean>() {
-    override val method = TgMethod("editForumTopic")
+    override val method = "editForumTopic"
     override val returnType = getReturnType()
 
     init {

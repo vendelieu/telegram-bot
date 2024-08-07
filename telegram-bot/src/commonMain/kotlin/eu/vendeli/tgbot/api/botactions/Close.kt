@@ -3,11 +3,10 @@
 package eu.vendeli.tgbot.api.botactions
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
 class CloseAction : SimpleAction<Boolean>() {
-    override val method = TgMethod("close")
+    override val method = "close"
     override val returnType = getReturnType()
 }
 

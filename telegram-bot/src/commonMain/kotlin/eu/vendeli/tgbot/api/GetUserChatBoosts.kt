@@ -5,14 +5,13 @@ package eu.vendeli.tgbot.api
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.boost.UserChatBoosts
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
 class GetUserChatBoostsAction(
     val userId: Long,
 ) : Action<UserChatBoosts>() {
-    override val method = TgMethod("getUserChatBoosts")
+    override val method = "getUserChatBoosts"
     override val returnType = getReturnType()
 
     init {

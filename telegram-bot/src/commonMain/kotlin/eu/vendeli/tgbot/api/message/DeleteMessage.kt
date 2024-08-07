@@ -3,14 +3,13 @@
 package eu.vendeli.tgbot.api.message
 
 import eu.vendeli.tgbot.interfaces.action.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
 class DeleteMessageAction(
     messageId: Long,
 ) : Action<Boolean>() {
-    override val method = TgMethod("deleteMessage")
+    override val method = "deleteMessage"
     override val returnType = getReturnType()
 
     init {

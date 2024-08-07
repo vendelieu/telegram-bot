@@ -4,7 +4,6 @@ package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CreateNewStickerSetOptions
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.utils.encodeWith
@@ -19,7 +18,7 @@ class CreateNewStickerSetAction(
     stickers: List<InputSticker>,
 ) : SimpleAction<Boolean>(),
     OptionsFeature<CreateNewStickerSetAction, CreateNewStickerSetOptions> {
-    override val method = TgMethod("createNewStickerSet")
+    override val method = "createNewStickerSet"
     override val returnType = getReturnType()
     override val options = CreateNewStickerSetOptions()
 

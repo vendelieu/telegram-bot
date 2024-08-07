@@ -4,14 +4,13 @@ package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.chat.ChatInviteLink
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
 class RevokeChatInviteLinkAction(
     inviteLink: String,
 ) : Action<ChatInviteLink>() {
-    override val method = TgMethod("revokeChatInviteLink")
+    override val method = "revokeChatInviteLink"
     override val returnType = getReturnType()
 
     init {

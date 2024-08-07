@@ -4,7 +4,6 @@ package eu.vendeli.tgbot.api.botactions
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.SetWebhookOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
@@ -15,7 +14,7 @@ class SetWebhookAction(
     url: String,
 ) : SimpleAction<Boolean>(),
     OptionsFeature<SetWebhookAction, SetWebhookOptions> {
-    override val method = TgMethod("setWebhook")
+    override val method = "setWebhook"
     override val returnType = getReturnType()
     override val options = SetWebhookOptions()
     override val beforeReq: () -> Unit = {

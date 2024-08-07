@@ -4,7 +4,6 @@ package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.datetime.Instant
@@ -14,7 +13,7 @@ class BanChatMemberAction(
     untilDate: Instant? = null,
     revokeMessages: Boolean? = null,
 ) : Action<Boolean>() {
-    override val method = TgMethod("banChatMember")
+    override val method = "banChatMember"
     override val returnType = getReturnType()
 
     init {

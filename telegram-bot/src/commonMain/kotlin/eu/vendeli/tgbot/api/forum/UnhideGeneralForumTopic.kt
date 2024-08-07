@@ -3,11 +3,10 @@
 package eu.vendeli.tgbot.api.forum
 
 import eu.vendeli.tgbot.interfaces.action.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
 class UnhideGeneralForumTopicAction : Action<Boolean>() {
-    override val method = TgMethod("unhideGeneralForumTopic")
+    override val method = "unhideGeneralForumTopic"
     override val returnType = getReturnType()
 }
 

@@ -5,7 +5,6 @@ package eu.vendeli.tgbot.api.botactions
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.Currency
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CreateInvoiceLinkOptions
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 import eu.vendeli.tgbot.utils.encodeWith
@@ -22,7 +21,7 @@ class CreateInvoiceLinkAction(
 ) : SimpleAction<String>(),
     OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions> {
     override val options = CreateInvoiceLinkOptions()
-    override val method = TgMethod("createInvoiceLink")
+    override val method = "createInvoiceLink"
     override val returnType = getReturnType()
 
     init {

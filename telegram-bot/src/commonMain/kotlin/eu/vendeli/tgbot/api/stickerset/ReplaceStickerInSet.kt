@@ -3,7 +3,6 @@
 package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.interfaces.action.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
@@ -16,7 +15,7 @@ class ReplaceStickerInSetAction(
     oldSticker: String,
     sticker: InputSticker,
 ) : Action<Boolean>() {
-    override val method = TgMethod("replaceStickerInSet")
+    override val method = "replaceStickerInSet"
     override val returnType = getReturnType()
 
     init {

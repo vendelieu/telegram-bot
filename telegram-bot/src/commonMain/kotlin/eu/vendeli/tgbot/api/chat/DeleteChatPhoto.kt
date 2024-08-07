@@ -3,11 +3,10 @@
 package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.action.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
 class DeleteChatPhotoAction : Action<Boolean>() {
-    override val method = TgMethod("deleteChatPhoto")
+    override val method = "deleteChatPhoto"
     override val returnType = getReturnType()
 }
 

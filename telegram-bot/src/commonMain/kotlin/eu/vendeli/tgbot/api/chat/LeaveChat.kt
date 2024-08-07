@@ -3,11 +3,10 @@
 package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.action.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
 class LeaveChatAction : Action<Boolean>() {
-    override val method = TgMethod("leaveChat")
+    override val method = "leaveChat"
     override val returnType = getReturnType()
 }
 

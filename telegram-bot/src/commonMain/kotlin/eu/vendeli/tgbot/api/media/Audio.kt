@@ -10,7 +10,6 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AudioOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
@@ -23,7 +22,7 @@ class SendAudioAction(
     OptionsFeature<SendAudioAction, AudioOptions>,
     MarkupFeature<SendAudioAction>,
     CaptionFeature<SendAudioAction> {
-    override val method = TgMethod("sendAudio")
+    override val method = "sendAudio"
     override val returnType = getReturnType()
     override val options = AudioOptions()
     override val beforeReq: () -> Unit = {

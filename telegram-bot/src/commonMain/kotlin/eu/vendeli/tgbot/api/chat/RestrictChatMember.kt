@@ -5,7 +5,6 @@ package eu.vendeli.tgbot.api.chat
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.ChatPermissions
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
@@ -17,7 +16,7 @@ class RestrictChatMemberAction(
     untilDate: Instant? = null,
     useIndependentChatPermissions: Boolean? = null,
 ) : Action<Boolean>() {
-    override val method = TgMethod("restrictChatMember")
+    override val method = "restrictChatMember"
     override val returnType = getReturnType()
 
     init {

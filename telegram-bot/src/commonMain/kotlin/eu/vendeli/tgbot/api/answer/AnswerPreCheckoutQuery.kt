@@ -3,7 +3,6 @@
 package eu.vendeli.tgbot.api.answer
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
@@ -13,7 +12,7 @@ class AnswerPreCheckoutQueryAction(
     errorMessage: String? = null,
 ) : SimpleAction<Boolean>() {
     override val returnType = getReturnType()
-    override val method = TgMethod("answerPreCheckoutQuery")
+    override val method = "answerPreCheckoutQuery"
 
     init {
         parameters["pre_checkout_query_id"] = preCheckoutQueryId.toJsonElement()

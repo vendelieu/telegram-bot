@@ -3,7 +3,6 @@
 package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
@@ -13,7 +12,7 @@ class SetStickerKeywordsAction(
     sticker: String,
     keywords: List<String>? = null,
 ) : SimpleAction<Boolean>() {
-    override val method = TgMethod("setStickerKeywords")
+    override val method = "setStickerKeywords"
     override val returnType = getReturnType()
 
     init {

@@ -3,14 +3,13 @@
 package eu.vendeli.tgbot.api.forum
 
 import eu.vendeli.tgbot.interfaces.action.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
 class EditGeneralForumTopicAction(
     name: String,
 ) : Action<Boolean>() {
-    override val method = TgMethod("editGeneralForumTopic")
+    override val method = "editGeneralForumTopic"
     override val returnType = getReturnType()
 
     init {

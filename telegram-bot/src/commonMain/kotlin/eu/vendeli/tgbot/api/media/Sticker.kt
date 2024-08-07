@@ -9,7 +9,6 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.StickerOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
@@ -21,7 +20,7 @@ class SendStickerAction(
     BusinessActionExt<Message>,
     OptionsFeature<SendStickerAction, StickerOptions>,
     MarkupFeature<SendStickerAction> {
-    override val method = TgMethod("sendSticker")
+    override val method = "sendSticker"
     override val returnType = getReturnType()
     override val options = StickerOptions()
 

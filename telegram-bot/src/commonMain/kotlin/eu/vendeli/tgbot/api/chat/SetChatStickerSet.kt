@@ -3,14 +3,13 @@
 package eu.vendeli.tgbot.api.chat
 
 import eu.vendeli.tgbot.interfaces.action.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
 class SetChatStickerSetAction(
     stickerSetName: String,
 ) : Action<Boolean>() {
-    override val method = TgMethod("setChatStickerSet")
+    override val method = "setChatStickerSet"
     override val returnType = getReturnType()
 
     init {

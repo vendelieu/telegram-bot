@@ -3,7 +3,6 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.types.internal.Response
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.serde.primitiveOrNull
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.MultiPartFormDataContent
@@ -63,12 +62,12 @@ private suspend inline fun <T> HttpResponse.toResult(type: KSerializer<T>) = bod
 }
 
 internal suspend inline fun <T> TelegramBot.makeRequestReturning(
-    method: TgMethod,
+    method: String,
     data: Map<String, JsonElement>,
     returnType: KSerializer<T>,
     multipartData: List<PartData.BinaryItem>,
 ): Deferred<Response<out T>> = coroutineScope {
-    val response = httpClient.post(baseUrl + method.name) {
+    val response = httpClient.post(baseUrl + method) {
         formReqBody(data, multipartData)
     }
 
@@ -76,11 +75,11 @@ internal suspend inline fun <T> TelegramBot.makeRequestReturning(
 }
 
 internal suspend inline fun TelegramBot.makeSilentRequest(
-    method: TgMethod,
+    method: String,
     data: Map<String, JsonElement>,
     multipartData: List<PartData.BinaryItem>,
 ) = httpClient
-    .post(baseUrl + method.name) {
+    .post(baseUrl + method) {
         formReqBody(data, multipartData)
     }.logFailure()
 

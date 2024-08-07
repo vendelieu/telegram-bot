@@ -6,7 +6,6 @@ import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.msg.Message
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.PaidMediaOptions
 import eu.vendeli.tgbot.types.media.InputPaidMedia
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
@@ -22,7 +21,7 @@ class SendPaidMediaAction(
     CaptionFeature<SendPaidMediaAction>,
     EntitiesFeature<SendPaidMediaAction>,
     MarkupFeature<SendPaidMediaAction> {
-    override val method = TgMethod("sendPaidMedia")
+    override val method = "sendPaidMedia"
     override val returnType = getReturnType()
     override val options = PaidMediaOptions()
 

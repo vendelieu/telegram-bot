@@ -4,7 +4,6 @@ package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.internal.ImplicitFile
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.StickerFormat
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
@@ -17,7 +16,7 @@ class SetStickerSetThumbnailAction(
     format: StickerFormat,
     thumbnail: ImplicitFile? = null,
 ) : SimpleAction<Boolean>() {
-    override val method = TgMethod("setStickerSetThumbnail")
+    override val method = "setStickerSetThumbnail"
     override val returnType = getReturnType()
 
     init {

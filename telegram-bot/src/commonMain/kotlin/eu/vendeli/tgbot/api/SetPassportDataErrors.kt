@@ -3,7 +3,6 @@
 package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.passport.PassportElementError
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.encodeWith
@@ -16,7 +15,7 @@ class SetPassportDataErrorsAction(
     userId: Long,
     errors: List<PassportElementError>,
 ) : SimpleAction<Boolean>() {
-    override val method = TgMethod("setPassportDataErrors")
+    override val method = "setPassportDataErrors"
     override val returnType = getReturnType()
 
     init {

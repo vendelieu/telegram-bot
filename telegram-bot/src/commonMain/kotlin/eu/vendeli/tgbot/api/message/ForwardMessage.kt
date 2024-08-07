@@ -8,7 +8,6 @@ import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Identifier
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.ForwardMessageOptions
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
@@ -20,7 +19,7 @@ class ForwardMessageAction(
     messageId: Long,
 ) : Action<Message>(),
     OptionsFeature<ForwardMessageAction, ForwardMessageOptions> {
-    override val method = TgMethod("forwardMessage")
+    override val method = "forwardMessage"
     override val returnType = getReturnType()
     override val options = ForwardMessageOptions()
 

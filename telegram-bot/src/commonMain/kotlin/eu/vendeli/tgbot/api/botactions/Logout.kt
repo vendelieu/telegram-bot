@@ -3,11 +3,10 @@
 package eu.vendeli.tgbot.api.botactions
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
 class LogOutAction : SimpleAction<Boolean>() {
-    override val method = TgMethod("logOut")
+    override val method = "logOut"
     override val returnType = getReturnType()
 }
 

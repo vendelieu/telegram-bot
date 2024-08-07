@@ -3,14 +3,13 @@
 package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
 class DeleteStickerFromSetAction(
     sticker: String,
 ) : SimpleAction<Boolean>() {
-    override val method = TgMethod("deleteStickerFromSet")
+    override val method = "deleteStickerFromSet"
     override val returnType = getReturnType()
 
     init {

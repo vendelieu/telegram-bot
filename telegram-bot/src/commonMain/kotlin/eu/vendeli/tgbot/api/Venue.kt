@@ -7,7 +7,6 @@ import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.msg.Message
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VenueOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
@@ -20,7 +19,7 @@ class SendVenueAction(
 ) : Action<Message>(),
     OptionsFeature<SendVenueAction, VenueOptions>,
     MarkupFeature<SendVenueAction> {
-    override val method = TgMethod("sendVenue")
+    override val method = "sendVenue"
     override val returnType = getReturnType()
     override val options = VenueOptions()
     init {

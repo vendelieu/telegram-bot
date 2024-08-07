@@ -3,7 +3,6 @@ package eu.vendeli.tgbot.interfaces.action
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.internal.Response
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.Options
 import eu.vendeli.tgbot.utils.makeRequestReturning
 import eu.vendeli.tgbot.utils.makeSilentRequest
@@ -26,14 +25,14 @@ abstract class TgAction<ReturnType> : Request<ReturnType> {
      */
     fun toWebhookResponse(): String {
         require(multipartData.isEmpty()) { "Multipart files is not supported for webhook response flow." }
-        parameters["method"] = method.name.toJsonElement()
+        parameters["method"] = method.toJsonElement()
         return serde.encodeToString(parameters)
     }
 
     /**
      * A method that is implemented in Action.
      */
-    internal open val method by Delegates.notNull<TgMethod>()
+    internal open val method: String = ""
 
     /**
      * The parameter that stores the options.

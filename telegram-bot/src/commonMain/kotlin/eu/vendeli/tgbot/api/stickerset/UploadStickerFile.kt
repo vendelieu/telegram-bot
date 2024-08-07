@@ -4,7 +4,6 @@ package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.internal.InputFile
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.types.media.StickerFormat
 import eu.vendeli.tgbot.utils.getReturnType
@@ -20,7 +19,7 @@ class UploadStickerFileAction(
     sticker: InputFile,
     stickerFormat: StickerFormat,
 ) : SimpleAction<File>() {
-    override val method = TgMethod("uploadStickerFile")
+    override val method = "uploadStickerFile"
     override val returnType = getReturnType()
 
     init {

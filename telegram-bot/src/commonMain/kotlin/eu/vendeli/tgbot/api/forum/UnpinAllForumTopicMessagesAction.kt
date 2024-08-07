@@ -3,14 +3,13 @@
 package eu.vendeli.tgbot.api.forum
 
 import eu.vendeli.tgbot.interfaces.action.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
 class UnpinAllForumTopicMessagesAction(
     messageThreadId: Int,
 ) : Action<Boolean>() {
-    override val method = TgMethod("unpinAllForumTopicMessages")
+    override val method = "unpinAllForumTopicMessages"
     override val returnType = getReturnType()
 
     init {

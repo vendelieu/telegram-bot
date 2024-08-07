@@ -4,7 +4,6 @@ package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.ReactionType
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
@@ -17,7 +16,7 @@ class SetMessageReactionAction(
     reaction: List<ReactionType>? = null,
     isBig: Boolean? = null,
 ) : Action<Boolean>() {
-    override val method = TgMethod("setMessageReaction")
+    override val method = "setMessageReaction"
     override val returnType = getReturnType()
 
     init {

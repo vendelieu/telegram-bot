@@ -4,7 +4,6 @@ package eu.vendeli.tgbot.api.botactions
 
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.bot.BotCommandScope
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
@@ -13,7 +12,7 @@ class DeleteMyCommandsAction(
     scope: BotCommandScope? = null,
     languageCode: String? = null,
 ) : SimpleAction<Boolean>() {
-    override val method = TgMethod("deleteMyCommands")
+    override val method = "deleteMyCommands"
     override val returnType = getReturnType()
 
     init {
