@@ -56,9 +56,14 @@ private fun HttpRequestBuilder.formReqBody(
     }
 }
 
-private suspend inline fun <T> HttpResponse.toResult(type: KSerializer<T>) = bodyAsText().let {
+private suspend inline fun <T> HttpResponse.toResult(
+    type: KSerializer<T>,
+    doThrowOnFailure: Boolean = false,
+) = bodyAsText().let {
     if (status.isSuccess()) serde.decodeFromString(Response.Success.serializer(type), it)
-    else serde.decodeFromString(Response.Failure.serializer(), it)
+    else serde.decodeFromString(Response.Failure.serializer(), it).also {f->
+        if (doThrowOnFailure) throw TgFailureException(f.toString())
+    }
 }
 
 internal suspend inline fun <T> TelegramBot.makeRequestReturning(
@@ -71,7 +76,7 @@ internal suspend inline fun <T> TelegramBot.makeRequestReturning(
         formReqBody(data, multipartData)
     }
 
-    return@coroutineScope async { response.toResult(returnType) }
+    return@coroutineScope async { response.toResult(returnType, config.throwExOnActionsFailure) }
 }
 
 internal suspend inline fun TelegramBot.makeSilentRequest(
@@ -81,10 +86,11 @@ internal suspend inline fun TelegramBot.makeSilentRequest(
 ) = httpClient
     .post(baseUrl + method) {
         formReqBody(data, multipartData)
-    }.logFailure()
+    }.logFailure(config.throwExOnActionsFailure)
 
-internal suspend inline fun HttpResponse.logFailure(): HttpResponse {
+internal suspend inline fun HttpResponse.logFailure(doThrowOnFailure: Boolean = false): HttpResponse {
     if (!status.isSuccess()) {
+        if (doThrowOnFailure) throw TgFailureException(bodyAsText())
         val body = bodyAsText()
         logger.error { "Request - ${request.content} received failure response: $body" }
     }
