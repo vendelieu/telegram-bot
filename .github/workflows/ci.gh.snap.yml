@@ -1,11 +1,18 @@
 name: GH Packages Autorelease
 
-on: [push]
+on:
+  push:
+    paths:
+      - 'telegram-bot/**'
+      - 'ksp/**'
+      - 'webapps/**'
+      - 'ktgram-utils/**'
+      - 'ktor-starter/**'
+      - 'spring-ktgram-starter/**'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    if: "!startsWith(github.ref, 'refs/heads/renovate/')"
     steps:
       - uses: actions/checkout@v4
 
