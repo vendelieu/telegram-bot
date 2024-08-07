@@ -3,7 +3,7 @@
 # Telegram Bot
 
 [![Maven Central](https://img.shields.io/maven-central/v/eu.vendeli/telegram-bot?style=flat&label=Maven&logo=apache-maven)](https://search.maven.org/artifact/eu.vendeli/telegram-bot)
-[![Supported version](https://img.shields.io/badge/Bot%20Api-7.8-blue?logo=telegram)](https://core.telegram.org/bots/api#july-31-2024)\
+[![Supported version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2Fvendelieu%2Ftelegram-bot%2Fraw%2Fmaster%2FbuildSrc%2Fsrc%2Fmain%2Fresources%2Fapi.json&query=%24.version&style=flat&logo=telegram&label=Telegram&color=blue)](https://core.telegram.org/bots/api)\
 [![KDocs](https://img.shields.io/static/v1?label=Dokka&message=KDocs&color=blue&logo=kotlin)](https://vendelieu.github.io/telegram-bot/)
 [![codecov](https://codecov.io/gh/vendelieu/telegram-bot/branch/master/graph/badge.svg?token=xn5xo6fu6r)](https://codecov.io/gh/vendelieu/telegram-bot) \
 [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/venny_tgbot)
@@ -17,10 +17,10 @@ Add the ksp plugin and library to the dependencies.
 
 build.gradle.kts example:
 
-```gradle
+```gradle copy
 plugins {
     // ...
-    id("com.google.devtools.ksp") version "2.0.0-1.0.23"
+    id("com.google.devtools.ksp") version "2.0.0-1.0.24"
 }
 
 dependencies {
@@ -34,7 +34,7 @@ dependencies {
   <summary><i>Snapshots</i></summary>
   To install snapshot versions add dev repository:
 
-```gradle
+```gradle copy
 repositories {
     mavenCentral()
     // ...
@@ -55,7 +55,7 @@ And use the latest package version from [packages](https://github.com/vendelieu?
 - [Echo](https://github.com/vendelieu/telegram-bot_template/tree/echo) - Echo bot :)
 - [Poll](https://github.com/vendelieu/telegram-bot_template/tree/poll) - An example of how to build a questionnaire bot.
 - [Ktor webhook starter](https://github.com/ktgram/webhook) - An example of using webhook mode
-    with Ktor.
+  with Ktor.
 - [Spring Boot usage](https://github.com/vendelieu/telegram-bot_template/tree/spring-bot) - An example of using the bot
   organically in the Spring ecosystem, using its built-in DI.
 - [Heroku ready example](https://github.com/vendelieu/telegram-bot_template/tree/heroku) - An example of a bot working
@@ -94,7 +94,9 @@ suspend fun color(user: User, bot: TelegramBot) {
 }
 //..
 ```
-*a little more detailed about handlers you can see in [handlers](https://github.com/vendelieu/telegram-bot/wiki/Handlers) article.*
+
+*a little more detailed about handlers you can see
+in [handlers](https://github.com/vendelieu/telegram-bot/wiki/Handlers) article.*
 
 It is also possible to process updates functionally:
 
@@ -120,7 +122,6 @@ fun main() = runBlocking {
 }
 ```
 
-
 ### Configuration
 
 The library has very flexible customization options, \
@@ -130,9 +131,13 @@ You can read more in a [Bot configuration](https://github.com/vendelieu/telegram
 
 ### Processing responses
 
-To process over response or/and have more control over request flow use [`sendReturning()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send-returning.html)
-instead of [`send()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send.html) method,
-which returns [`Response`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-response/index.html):
+To process over response or/and have more control over request flow
+use [`sendReturning()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send-returning.html)
+instead
+of [`send()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send.html)
+method,
+which
+returns [`Response`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-response/index.html):
 
 ```kotlin
 message { "test" }.sendReturning(user, bot).onFailure {
