@@ -176,7 +176,7 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
                     inst.stateSelector,
                 ),
             )
-            if (user != null && bot.update.userClassSteps[user.id] != "eu.vendeli.fixtures.Conversation")
+            if (bot.update.userClassSteps[user.id] != "eu.vendeli.fixtures.Conversation")
                 eu.vendeli.fixtures.____clearClassData(user.id)
             inst.action(user, update, bot)
             if (nextLink != null) bot.inputListener[user] = nextLink
@@ -220,7 +220,7 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
                     inst.stateSelector,
                 ),
             )
-            if (user != null && bot.update.userClassSteps[user.id] != "eu.vendeli.fixtures.Conversation")
+            if (bot.update.userClassSteps[user.id] != "eu.vendeli.fixtures.Conversation")
                 eu.vendeli.fixtures.____clearClassData(user.id)
             inst.action(user, update, bot)
             if (nextLink != null) bot.inputListener[user] = nextLink

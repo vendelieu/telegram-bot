@@ -6,7 +6,6 @@ import eu.vendeli.tgbot.api.botactions.getMe
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.interfaces.ctx.InputListener
-import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
@@ -18,6 +17,7 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.types.media.File
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.makeRequestReturning
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import eu.vendeli.tgbot.utils.toJsonElement
@@ -57,7 +57,7 @@ class TelegramBotTest : BotTestContext() {
     suspend fun `requests testing`() {
         val getMeReq = bot
             .makeRequestReturning(
-                TgMethod("getMe"),
+                "getMe",
                 emptyMap(),
                 User::class.serializer(),
                 emptyList(),
@@ -71,7 +71,7 @@ class TelegramBotTest : BotTestContext() {
     @Test
     suspend fun `test silent requesting`() {
         val silentReq = bot.makeSilentRequest(
-            TgMethod("sendMessage"),
+            "sendMessage",
             mapOf("text" to "test".toJsonElement(), "chat_id" to TG_ID.toJsonElement()),
             emptyList(),
         )
@@ -86,7 +86,7 @@ class TelegramBotTest : BotTestContext() {
     suspend fun `failure response handling`() {
         val failureReq = bot
             .makeRequestReturning(
-                TgMethod("sendMessage"),
+                "sendMessage",
                 mapOf("text" to "test".toJsonElement()),
                 Message.serializer(),
                 emptyList(),
@@ -137,7 +137,7 @@ class TelegramBotTest : BotTestContext() {
         image.shouldNotBeNull()
 
         val mediaReq = bot.makeSilentRequest(
-            method = TgMethod("sendPhoto"),
+            method = "sendPhoto",
             data = mapOf(
                 "photo" to JsonUnquotedLiteral("attach://image.jpg"),
                 "chat_id" to TG_ID.toJsonElement(),
@@ -151,7 +151,7 @@ class TelegramBotTest : BotTestContext() {
 
         bot
             .makeRequestReturning(
-                method = TgMethod("sendPhoto"),
+                method = "sendPhoto",
                 mapOf(
                     "photo" to JsonUnquotedLiteral("attach://image.jpg"),
                     "chat_id" to TG_ID.toJsonElement(),
