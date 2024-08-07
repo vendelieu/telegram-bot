@@ -17,7 +17,7 @@ Add the ksp plugin and library to the dependencies.
 
 build.gradle.kts example:
 
-```gradle copy
+```gradle
 plugins {
     // ...
     id("com.google.devtools.ksp") version "2.0.0-1.0.24"
@@ -34,7 +34,7 @@ dependencies {
   <summary><i>Snapshots</i></summary>
   To install snapshot versions add dev repository:
 
-```gradle copy
+```gradle
 repositories {
     mavenCentral()
     // ...
