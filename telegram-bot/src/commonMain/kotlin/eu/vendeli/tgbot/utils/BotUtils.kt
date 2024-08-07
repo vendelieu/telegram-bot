@@ -5,6 +5,8 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.core.TgUpdateHandler
+import eu.vendeli.tgbot.types.internal.FailedUpdate
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -37,6 +39,11 @@ internal suspend inline fun TgUpdateHandler.checkIsLimited(
         return true
     }
     return false
+}
+
+internal suspend inline fun TgUpdateHandler.handleFailure(update: ProcessedUpdate, throwable: Throwable) {
+    if (bot.config.catchExceptions) caughtExceptions.send(FailedUpdate(throwable, update))
+    else throw throwable
 }
 
 internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T): Deferred<T> = coroutineScope {

@@ -10,7 +10,6 @@ import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivityCtx
 import eu.vendeli.tgbot.types.internal.CommandContext
-import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
@@ -146,7 +145,7 @@ private suspend fun ((suspend ActivityCtx<ProcessedUpdate>.() -> Unit)?).invokeA
     this
         ?.runCatching { invoke(activityCtx) }
         ?.onFailure {
-            bot.update.caughtExceptions.send(FailedUpdate(it, activityCtx.update))
+            bot.update.handleFailure(activityCtx.update, it)
             logger.error(it) {
                 "An error occurred while functionally processing update: ${activityCtx.update} to UpdateType($updateType)."
             }

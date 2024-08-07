@@ -3,13 +3,13 @@ package eu.vendeli.tgbot.core
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivitiesData
-import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.userOrNull
 import eu.vendeli.tgbot.utils.Invocable
 import eu.vendeli.tgbot.utils.InvocationLambda
 import eu.vendeli.tgbot.utils.checkIsGuarded
 import eu.vendeli.tgbot.utils.checkIsLimited
+import eu.vendeli.tgbot.utils.handleFailure
 import eu.vendeli.tgbot.utils.parseCommand
 
 /**
@@ -89,7 +89,7 @@ class CodegenUpdateHandler internal constructor(
                 logger.error(
                     it,
                 ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $update" }
-                caughtExceptions.send(FailedUpdate(it, update))
+                handleFailure(update, it)
             }.onSuccess {
                 logger.info {
                     "Handled update#${update.updateId} to method ${second.qualifier + "::" + second.function}"
@@ -109,7 +109,7 @@ class CodegenUpdateHandler internal constructor(
             (if (isTypeUpdate) "UpdateTypeHandler(${update.type})" else "UnprocessedHandler") +
                 " invocation error at handling update: $update"
         }
-        caughtExceptions.send(FailedUpdate(it, update))
+        handleFailure(update, it)
     }.onSuccess {
         logger.info {
             "Handled update#${update.updateId} to " +

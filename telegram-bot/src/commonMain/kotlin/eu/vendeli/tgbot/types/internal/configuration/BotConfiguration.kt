@@ -14,6 +14,7 @@ import eu.vendeli.tgbot.interfaces.ctx.InputListener
  * @property inputListener Input handling class instance.
  * @property classManager The manager that will be used to get classes.
  * @property inputAutoRemoval A flag that regulates the auto-deletion of the input point during processing.
+ * @property catchExceptions On true > catch raised during processing exceptions and wrap it to caughtExceptions.
  * @property throwExOnActionsFailure Throw exception when the action (any bot request) ends with failure.
  */
 data class BotConfiguration(
@@ -23,6 +24,7 @@ data class BotConfiguration(
     var inputListener: InputListener = InputListenerMapImpl(),
     var classManager: ClassManager = ClassManagerImpl(),
     var inputAutoRemoval: Boolean = true,
+    var catchExceptions: Boolean = true,
     var throwExOnActionsFailure: Boolean = false,
     internal var rateLimiter: RateLimiterConfiguration = RateLimiterConfiguration(),
     internal var httpClient: HttpConfiguration = HttpConfiguration(),
