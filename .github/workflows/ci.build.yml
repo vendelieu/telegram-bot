@@ -4,8 +4,39 @@ on:
   push:
     branches:
       - master
-      - dev
+    paths-ignore:
+      - '.github/**'
+      - 'assets/**'
+      - 'kotlin-js-store/**'
+      - '.editorconfig'
+      - '.gitignore'
+      - 'CHANGELOG.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'FUNDING.yml'
+      - 'LICENSE'
+      - 'README.md'
+      - 'detekt.yml'
+      - 'gradlew'
+      - 'gradlew.bat'
+      - 'renovate.json'
   pull_request:
+    paths-ignore:
+      - '.github/**'
+      - 'assets/**'
+      - 'kotlin-js-store/**'
+      - '.editorconfig'
+      - '.gitignore'
+      - 'CHANGELOG.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'FUNDING.yml'
+      - 'LICENSE'
+      - 'README.md'
+      - 'detekt.yml'
+      - 'gradlew'
+      - 'gradlew.bat'
+      - 'renovate.json'
 
 permissions:
   contents: write

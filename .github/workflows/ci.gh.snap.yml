@@ -1,0 +1,41 @@
+name: GH Packages Autorelease
+
+on:
+  push:
+    paths:
+      - 'telegram-bot/**'
+      - 'ksp/**'
+      - 'webapps/**'
+      - 'ktgram-utils/**'
+      - 'ktor-starter/**'
+      - 'spring-ktgram-starter/**'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 11
+
+      - name: Get build version
+        id: version
+        run: |
+          echo "git_branch=${GITHUB_REF#refs/heads/}" >> "$GITHUB_ENV"
+          echo "git_hash=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
+          echo "date=$(date +'%y%m%d')" >> "$GITHUB_ENV"
+
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3-beta
+        with:
+          gradle-version: current
+
+      - name: Publish to Gh
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: ./gradlew publishAllPublicationsToGHPackagesRepository -PlibVersion=${{ env.git_branch }}-${{ env.date }}~${{ env.git_hash }}
