@@ -11,7 +11,7 @@ import eu.vendeli.ksp.utils.FileBuilder
 import eu.vendeli.ksp.utils.cast
 import eu.vendeli.ksp.utils.chainLinkClass
 import eu.vendeli.ksp.utils.stateManager
-import eu.vendeli.tgbot.utils.DefaultGuard
+import eu.vendeli.tgbot.implementations.DefaultGuard
 
 internal fun FileBuilder.collectInputChains(
     symbols: Sequence<KSClassDeclaration>,

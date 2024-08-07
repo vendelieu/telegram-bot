@@ -3,9 +3,6 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 
-const val DEFAULT_CONTENT_TYPE = "text/plain"
-const val DEFAULT_FILENAME = "file"
-
 internal expect inline fun ByteArray.getContentType(): String
 
 fun ByteArray.toInputFile(

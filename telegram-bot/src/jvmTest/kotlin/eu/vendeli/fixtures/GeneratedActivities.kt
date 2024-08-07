@@ -38,7 +38,7 @@ private val __TG_COMMANDS0: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 "eu.vendeli.fixtures",
                 "testMethod",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultGuard::class,
+                eu.vendeli.tgbot.implementations.DefaultGuard::class,
             )
     ),
     ("test" to UpdateType.MESSAGE) to (
@@ -59,7 +59,7 @@ private val __TG_COMMANDS0: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TgAnnotationsModel",
                 "test",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultGuard::class,
+                eu.vendeli.tgbot.implementations.DefaultGuard::class,
             )
     ),
     ("STOP" to UpdateType.MESSAGE) to (
@@ -80,7 +80,7 @@ private val __TG_COMMANDS0: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TgAnnotationsModel",
                 "stopHandling",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultGuard::class,
+                eu.vendeli.tgbot.implementations.DefaultGuard::class,
             )
     ),
     ("test3" to UpdateType.MESSAGE) to (
@@ -93,7 +93,7 @@ private val __TG_COMMANDS0: Map<Pair<String, UpdateType>, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TestObj",
                 "test",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultGuard::class,
+                eu.vendeli.tgbot.implementations.DefaultGuard::class,
             )
     ),
 )
@@ -109,7 +109,7 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
                 "eu.vendeli.fixtures",
                 "testMethod2",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultGuard::class,
+                eu.vendeli.tgbot.implementations.DefaultGuard::class,
             )
     ),
     "testInp" to (
@@ -128,7 +128,7 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TgAnnotationsModel",
                 "test2",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultGuard::class,
+                eu.vendeli.tgbot.implementations.DefaultGuard::class,
             )
     ),
     "testInp3" to (
@@ -141,7 +141,7 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
                 "eu.vendeli.fixtures.TestObj",
                 "test2",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultGuard::class,
+                eu.vendeli.tgbot.implementations.DefaultGuard::class,
             )
     ),
     "eu.vendeli.fixtures.Conversation.Name" to (
@@ -186,7 +186,7 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
                 "eu.vendeli.fixtures.Conversation",
                 "Name",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultGuard::class,
+                eu.vendeli.tgbot.implementations.DefaultGuard::class,
             )
     ),
     "eu.vendeli.fixtures.Conversation.Age" to (
@@ -230,7 +230,7 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
                 "eu.vendeli.fixtures.Conversation",
                 "Age",
                 zeroRateLimits,
-                eu.vendeli.tgbot.utils.DefaultGuard::class,
+                eu.vendeli.tgbot.implementations.DefaultGuard::class,
             )
     ),
 )
@@ -238,7 +238,7 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
 private val __TG_COMMONS0: Map<CommonMatcher, Invocable> = mapOf(
     CommonMatcher.String(
         value = "common",
-        filter = eu.vendeli.tgbot.utils.DefaultFilter::class,
+        filter = eu.vendeli.tgbot.implementations.DefaultFilter::class,
         setOf(),
     ) to (
         suspendCall { classManager, update, user, bot, parameters ->
@@ -257,7 +257,7 @@ private val __TG_COMMONS0: Map<CommonMatcher, Invocable> = mapOf(
     ),
     CommonMatcher.String(
         value = "common2",
-        filter = eu.vendeli.tgbot.utils.DefaultFilter::class,
+        filter = eu.vendeli.tgbot.implementations.DefaultFilter::class,
         setOf(),
     ) to (
         suspendCall { classManager, update, user, bot, parameters ->
@@ -277,7 +277,7 @@ private val __TG_COMMONS0: Map<CommonMatcher, Invocable> = mapOf(
     CommonMatcher.Regex(
         value = Regex("test colou?r"),
         filter =
-            eu.vendeli.tgbot.utils.DefaultFilter::class,
+            eu.vendeli.tgbot.implementations.DefaultFilter::class,
         setOf(),
     ) to (
         suspendCall {

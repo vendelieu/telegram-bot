@@ -3,6 +3,8 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
+import eu.vendeli.tgbot.implementations.DefaultFilter
+import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.interfaces.helper.Filter
 import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.types.User
@@ -29,7 +31,7 @@ internal suspend inline fun KClass<out Guard>.checkIsGuarded(
     update: ProcessedUpdate,
     bot: TelegramBot,
 ): Boolean {
-    if (fullName == "eu.vendeli.tgbot.utils.DefaultGuard") return true
+    if (fullName == DefaultGuard::class.fullName) return true
     return bot.config.classManager
         .getInstance(this)
         .cast<Guard>()
@@ -41,7 +43,7 @@ internal suspend inline fun KClass<out Filter>.checkIsFiltered(
     update: ProcessedUpdate,
     bot: TelegramBot,
 ): Boolean {
-    if (fullName == "eu.vendeli.tgbot.utils.DefaultFilter") return true
+    if (fullName == DefaultFilter::class.fullName) return true
     return bot.config.classManager
         .getInstance(this)
         .cast<Filter>()
