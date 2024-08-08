@@ -31,7 +31,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 /**
- * A basic update processing class that is extended by a [CodegenUpdateHandler].
+ * An update processing class.
  *
  * @property bot bot instance.
  */
