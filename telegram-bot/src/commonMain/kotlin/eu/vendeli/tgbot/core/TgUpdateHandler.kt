@@ -1,16 +1,25 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.internal.ActivitiesData
 import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.types.internal.userOrNull
 import eu.vendeli.tgbot.utils.DEFAULT_HANDLING_BEHAVIOUR
 import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
+import eu.vendeli.tgbot.utils.Invocable
+import eu.vendeli.tgbot.utils.InvocationLambda
 import eu.vendeli.tgbot.utils.Logging
+import eu.vendeli.tgbot.utils.checkIsGuarded
+import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.coHandle
+import eu.vendeli.tgbot.utils.handleFailure
+import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.process
 import eu.vendeli.tgbot.utils.serde
 import kotlinx.coroutines.CoroutineName
@@ -26,9 +35,11 @@ import kotlinx.coroutines.launch
  *
  * @property bot bot instance.
  */
-abstract class TgUpdateHandler internal constructor(
+class TgUpdateHandler internal constructor(
+    commandsPackage: String? = null,
     internal val bot: TelegramBot,
 ) {
+    private val activities by lazy { ActivitiesData(commandsPackage) }
     private var handlingBehaviour: HandlingBehaviourBlock = DEFAULT_HANDLING_BEHAVIOUR
     private val updatesChannel = Channel<ProcessedUpdate>()
     internal val handlerScope = bot.config.updatesListener.run {
@@ -141,7 +152,98 @@ abstract class TgUpdateHandler internal constructor(
      *
      * @param update
      */
-    abstract suspend fun handle(update: ProcessedUpdate)
+    suspend fun handle(update: ProcessedUpdate): Unit = update.run {
+        logger.debug { "Handling update: $update" }
+        val user = userOrNull
+        // check general user limits
+        if (checkIsLimited(bot.config.rateLimiter.limits, user?.id))
+            return@run
+
+        val request = parseCommand(text)
+        var activityId = request.command
+
+        // check parsed command existence
+        var invocation: Invocable? = activities.commandHandlers[request.command to type]
+
+        // if there's no command > check input point
+        if (invocation == null && user != null)
+            invocation = bot.inputListener.getAsync(user.id).await()?.let {
+                activityId = it
+                activities.inputHandlers[it]
+            }
+
+        // remove input listener point
+        if (user != null && bot.config.inputAutoRemoval) bot.inputListener.del(user.id)
+
+        // if there's no command and input > check common handlers
+        if (invocation == null) invocation = activities.commonHandlers.entries
+            .firstOrNull {
+                it.key.match(request.command, this, bot)
+            }?.also {
+                activityId = it.key.value.toString()
+            }?.value
+
+        logger.debug { "Result of finding action - ${invocation?.second}" }
+
+        // check guard condition
+        if (invocation?.second?.guard?.checkIsGuarded(user, this, bot) == false) {
+            logger.debug { "Invocation guarded: ${invocation.second}" }
+            return@run
+        }
+
+        // if we found any action > check for its limits
+        if (invocation != null && checkIsLimited(invocation.second.rateLimits, user?.id, activityId))
+            return@run
+
+        // invoke update type handler if there's
+        activities.updateTypeHandlers[type]?.invokeCatching(this, request.params, true)
+
+        when {
+            invocation != null -> invocation.invokeCatching(this, user, request.params)
+
+            activities.unprocessedHandler != null ->
+                activities.unprocessedHandler!!
+                    .invokeCatching(this, request.params)
+
+            else -> logger.warn { "update: $update not handled." }
+        }
+    }
+
+    private suspend fun Invocable.invokeCatching(update: ProcessedUpdate, user: User?, params: Map<String, String>) {
+        first
+            .runCatching {
+                invoke(bot.config.classManager, update, user, bot, params)
+            }.onFailure {
+                logger.error(
+                    it,
+                ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $update" }
+                handleFailure(update, it)
+            }.onSuccess {
+                logger.info {
+                    "Handled update#${update.updateId} to method ${second.qualifier + "::" + second.function}"
+                }
+            }
+        user?.also { userClassSteps[it.id] = second.qualifier }
+    }
+
+    private suspend fun InvocationLambda.invokeCatching(
+        update: ProcessedUpdate,
+        params: Map<String, String>,
+        isTypeUpdate: Boolean = false,
+    ) = runCatching {
+        invoke(bot.config.classManager, update, update.userOrNull, bot, params)
+    }.onFailure {
+        logger.error(it) {
+            (if (isTypeUpdate) "UpdateTypeHandler(${update.type})" else "UnprocessedHandler") +
+                " invocation error at handling update: $update"
+        }
+        handleFailure(update, it)
+    }.onSuccess {
+        logger.info {
+            "Handled update#${update.updateId} to " +
+                if (isTypeUpdate) "UpdateTypeHandler(${update.type})" else "UnprocessedHandler"
+        }
+    }
 
     /**
      * Functional handling dsl
