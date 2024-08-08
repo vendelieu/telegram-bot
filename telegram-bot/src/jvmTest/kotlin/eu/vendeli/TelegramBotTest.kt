@@ -205,7 +205,10 @@ class TelegramBotTest : BotTestContext() {
             }
             stopListener()
         }
-        bot.update.caughtExceptions.tryReceive().getOrNull().shouldBeNull()
+        bot.update.caughtExceptions
+            .tryReceive()
+            .getOrNull()
+            .shouldBeNull()
 
         bot.config.catchExceptions = true
         doMockHttp(MockUpdate.SINGLE("test"))
@@ -215,7 +218,10 @@ class TelegramBotTest : BotTestContext() {
             }
             stopListener()
         }
-        bot.update.caughtExceptions.tryReceive().getOrNull().shouldNotBeNull()
+        bot.update.caughtExceptions
+            .tryReceive()
+            .getOrNull()
+            .shouldNotBeNull()
     }
 
     @Test

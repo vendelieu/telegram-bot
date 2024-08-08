@@ -61,7 +61,7 @@ private suspend inline fun <T> HttpResponse.toResult(
     doThrowOnFailure: Boolean = false,
 ) = bodyAsText().let {
     if (status.isSuccess()) serde.decodeFromString(Response.Success.serializer(type), it)
-    else serde.decodeFromString(Response.Failure.serializer(), it).also {f->
+    else serde.decodeFromString(Response.Failure.serializer(), it).also { f ->
         if (doThrowOnFailure) throw TgFailureException(f.toString())
     }
 }
