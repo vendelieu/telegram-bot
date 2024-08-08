@@ -5,6 +5,7 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.botactions.getMe
 import eu.vendeli.tgbot.api.getFile
 import eu.vendeli.tgbot.api.media.photo
+import eu.vendeli.tgbot.api.message.editMessageText
 import eu.vendeli.tgbot.interfaces.ctx.InputListener
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
@@ -18,12 +19,15 @@ import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.types.internal.onFailure
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.types.msg.Message
+import eu.vendeli.tgbot.utils.TgException
+import eu.vendeli.tgbot.utils.TgFailureException
 import eu.vendeli.tgbot.utils.makeRequestReturning
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.toPartData
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
@@ -189,6 +193,42 @@ class TelegramBotTest : BotTestContext() {
         val file = File("", "")
         bot.getFileDirectUrl(file).shouldBeNull()
         bot.getFileContent(file).shouldBeNull()
+    }
+
+    @Test
+    suspend fun `check exception catch turned off`() {
+        bot.config.catchExceptions = false
+        doMockHttp(MockUpdate.SINGLE("test"))
+        bot.update.setListener {
+            shouldThrow<TgException> {
+                handle(it)
+            }
+            stopListener()
+        }
+        bot.update.caughtExceptions.tryReceive().getOrNull().shouldBeNull()
+
+        bot.config.catchExceptions = true
+        doMockHttp(MockUpdate.SINGLE("test"))
+        bot.update.setListener {
+            shouldNotThrowAny {
+                handle(it)
+            }
+            stopListener()
+        }
+        bot.update.caughtExceptions.tryReceive().getOrNull().shouldNotBeNull()
+    }
+
+    @Test
+    suspend fun `check failure throws exception`() {
+        bot.config.throwExOnActionsFailure = false
+        shouldNotThrowAny {
+            editMessageText { "test" }.sendInline("test", bot)
+        }
+
+        bot.config.throwExOnActionsFailure = true
+        shouldThrow<TgFailureException> {
+            editMessageText { "test" }.sendInline("test", bot)
+        }.message shouldContain "\"error_code\":400"
     }
 
     internal companion object {

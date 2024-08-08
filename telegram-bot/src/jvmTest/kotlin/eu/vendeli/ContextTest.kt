@@ -46,7 +46,7 @@ class ContextTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `chat data test`() {
+    suspend fun `class data test`() {
         val empty = bot.classData[TG_ID, "test"]
         empty.shouldBeNull()
 
