@@ -75,6 +75,10 @@ jobs:
           gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.SECRET_PASSPHRASE}}" \
           --output /home/runner/work/secret.gpg publish_key.gpg
 
+      - name: Get Sonatype token
+        run: |
+          echo "SONATYPE_TOKEN=${echo '${{secrets.SONATYPE_USERNAME}}:${{secrets.SONATYPE_PASSWORD}}' | base64}" >> "$GITHUB_ENV"
+
       - name: Publish with Gradle
         run: ./gradlew publishToMavenCentralPortal -Psigning.secretKeyRingFile=/home/runner/work/secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }}
 
