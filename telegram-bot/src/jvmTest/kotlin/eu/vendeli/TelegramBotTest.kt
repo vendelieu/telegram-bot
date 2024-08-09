@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
+import eu.vendeli.tgbot.types.internal.ExceptionHandlingStrategy
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.foldResponse
@@ -197,7 +198,7 @@ class TelegramBotTest : BotTestContext() {
 
     @Test
     suspend fun `check exception catch turned off`() {
-        bot.config.catchExceptions = false
+        bot.config.exceptionHandlingStrategy = ExceptionHandlingStrategy.Throw
         doMockHttp(MockUpdate.SINGLE("test"))
         bot.update.setListener {
             shouldThrow<TgException> {
@@ -210,7 +211,7 @@ class TelegramBotTest : BotTestContext() {
             .getOrNull()
             .shouldBeNull()
 
-        bot.config.catchExceptions = true
+        bot.config.exceptionHandlingStrategy = ExceptionHandlingStrategy.CollectToChannel
         doMockHttp(MockUpdate.SINGLE("test"))
         bot.update.setListener {
             shouldNotThrowAny {

@@ -12,7 +12,7 @@
 * Added experimental method `TelegramBot.getInstance` to get instance through defined `ClassManager`.
 * Added `@InputChain` state manager that will save selected state from update automatically.
 * Removed `EnvConfigLoader`, since it seems not much in demand.
-* Added `catchExceptions` to the configuration to turn off catching exceptions to `caughtExceptions`.
+* Added `exceptionHandlingStrategy` to the configuration to have more control over exception handling.
 * Added `throwExOnActionsFailure` to the configuration to throw exceptions on api request sending failures.
 * Added `retryOnTooManyRequests()` to the `httpClient` configuration, which returns a `RetryStrategy` that retries on an
   api request with status `429` given its delay status.

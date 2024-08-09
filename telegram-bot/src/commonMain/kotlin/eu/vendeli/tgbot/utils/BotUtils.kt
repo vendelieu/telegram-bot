@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.core.TgUpdateHandler
+import eu.vendeli.tgbot.types.internal.ExceptionHandlingStrategy
 import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
@@ -41,9 +42,16 @@ internal suspend inline fun TgUpdateHandler.checkIsLimited(
     return false
 }
 
-internal suspend inline fun TgUpdateHandler.handleFailure(update: ProcessedUpdate, throwable: Throwable) {
-    if (bot.config.catchExceptions) caughtExceptions.send(FailedUpdate(throwable, update))
-    else throw TgException(message = "Caught exception while processing $update", cause = throwable)
+internal suspend inline fun TgUpdateHandler.handleFailure(
+    update: ProcessedUpdate,
+    throwable: Throwable,
+) = when (val strategy = bot.config.exceptionHandlingStrategy) {
+    is ExceptionHandlingStrategy.CollectToChannel -> caughtExceptions.send(FailedUpdate(throwable, update))
+    is ExceptionHandlingStrategy.DoNothing -> {}
+    is ExceptionHandlingStrategy.Throw ->
+        throw TgException(message = "Caught exception while processing $update", cause = throwable)
+
+    is ExceptionHandlingStrategy.Handle -> strategy.handler.handle(throwable, update)
 }
 
 internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T): Deferred<T> = coroutineScope {
