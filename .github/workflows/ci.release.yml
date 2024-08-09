@@ -42,13 +42,12 @@ jobs:
           echo '${{secrets.GPG_KEY_CONTENTS}}' | base64 -d > publish_key.gpg
           gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.SECRET_PASSPHRASE}}" \
           --output /home/runner/work/secret.gpg publish_key.gpg
-          echo "memoryGPG=$(gpg --export-secret-keys --armor ${{secrets.SIGNING_KEYID}} /home/runner/work/secret.gpg | grep -v '\-\-' | grep -v '^=.' | tr -d '\n')" >> "$GITHUB_ENV"
+          echo "ORG_GRADLE_PROJECT_signingInMemoryKey=$(gpg --export-secret-keys --armor ${{secrets.SIGNING_KEYID}} /home/runner/work/secret.gpg | grep -v '\-\-' | grep -v '^=.' | tr -d '\n')" >> "$GITHUB_ENV"
 
       - name: Publish with Gradle
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{secrets.SONATYPE_USERNAME}}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{secrets.SONATYPE_PASSWORD}}
-          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{env.memoryGPG}}
           ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{secrets.SIGNING_KEYID}}
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{secrets.SIGNING_PASSWORD}}
         run: ./gradlew publishAllPublicationsToMavenCentralRepository -PlibVersion=${{ needs.version.outputs.version }}
