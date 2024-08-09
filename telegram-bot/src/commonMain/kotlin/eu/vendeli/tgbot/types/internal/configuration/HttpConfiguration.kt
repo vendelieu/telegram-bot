@@ -3,6 +3,7 @@ package eu.vendeli.tgbot.types.internal.configuration
 import eu.vendeli.tgbot.utils.RetryStrategy
 import io.ktor.client.engine.ProxyConfig
 import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpStatusCode
 
 /**
@@ -35,4 +36,6 @@ data class HttpConfiguration(
     fun retryOnTooManyRequests(): RetryStrategy = { _, response ->
         response.status == HttpStatusCode.TooManyRequests
     }
+
+    val HttpResponse.rawStatus: Int get() = status.value
 }
