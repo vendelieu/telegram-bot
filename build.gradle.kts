@@ -1,9 +1,10 @@
 allprojects {
     repositories {
         mavenCentral()
+        gradlePluginPortal()
     }
     group = "eu.vendeli"
-    version = providers.gradleProperty("libVersion").getOrElse("dev-SNAPSHOT")
+    version = providers.gradleProperty("libVersion").getOrElse("dev")
 }
 
 plugins {

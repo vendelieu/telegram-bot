@@ -1,12 +1,8 @@
-
-import com.vanniktech.maven.publish.JavadocJar
-import com.vanniktech.maven.publish.KotlinMultiplatform
-import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.publisher)
+    id("publish")
 }
 
 kotlin {
@@ -35,21 +31,7 @@ kotlin {
     }
 }
 
-publishing { addGhRepository() }
-mavenPublishing {
-    coordinates("eu.vendeli", project.name, project.version.toString())
-
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, true)
-    signAllPublications()
-
-    pom {
-        configurePom("KtGram utils", "KtGram library utilities.")
-    }
-
-    configure(
-        KotlinMultiplatform(
-            javadocJar = JavadocJar.Empty(),
-            sourcesJar = true,
-        ),
-    )
+libraryData {
+    name.set("KtGram utils")
+    description.set("KtGram library utilities.")
 }

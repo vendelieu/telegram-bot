@@ -24,7 +24,6 @@ ksp = "2.0.10-1.0.24"
 poet = "1.18.1"
 
 binvalid = "0.16.3"
-publisher = "0.29.0"
 
 [libraries]
 # ktor
@@ -62,10 +61,8 @@ mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 ssl-utils = { module = "io.github.hakky54:sslcontext-kickstart-for-pem", version.ref = "sslcontext" }
 spring-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "spring" }
-publisher = { module = "com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin", version.ref = "publisher" }
 
 [plugins]
-publisher = { id = "com.vanniktech.maven.publish", version.ref = "publisher" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-js-plain-objects = { id = "org.jetbrains.kotlin.plugin.js-plain-objects", version.ref = "kotlin" }

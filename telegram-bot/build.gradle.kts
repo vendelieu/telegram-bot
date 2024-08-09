@@ -1,6 +1,4 @@
-import com.vanniktech.maven.publish.JavadocJar
-import com.vanniktech.maven.publish.KotlinMultiplatform
-import com.vanniktech.maven.publish.SonatypeHost
+
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -14,7 +12,7 @@ plugins {
     alias(libs.plugins.deteKT)
     alias(libs.plugins.kover)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.publisher)
+    id("publish")
 }
 
 kotlin {
@@ -95,23 +93,9 @@ kotlin {
     }
 }
 
-publishing { addGhRepository() }
-mavenPublishing {
-    coordinates("eu.vendeli", project.name, project.version.toString())
-
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, true)
-    signAllPublications()
-
-    pom {
-        configurePom("Telegram Bot", "Telegram Bot API wrapper, with handy Kotlin DSL.")
-    }
-
-    configure(
-        KotlinMultiplatform(
-            javadocJar = JavadocJar.Dokka("dokkaHtml"),
-            sourcesJar = true,
-        ),
-    )
+libraryData {
+    name.set("Telegram Bot")
+    description.set("Telegram Bot API wrapper, with handy Kotlin DSL.")
 }
 
 detekt {

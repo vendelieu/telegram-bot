@@ -1,14 +1,15 @@
-
-import com.vanniktech.maven.publish.JavadocJar
-import com.vanniktech.maven.publish.KotlinMultiplatform
-import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.ktlinter)
     alias(libs.plugins.deteKT)
-    alias(libs.plugins.publisher)
+    id("publish")
+}
+
+libraryData {
+    name = "KSP processor"
+    description = "KSP plugin for Telegram-bot lib to collect actions."
 }
 
 kotlin {
@@ -34,25 +35,6 @@ kotlin {
             }
         }
     }
-}
-
-publishing { addGhRepository() }
-mavenPublishing {
-    coordinates("eu.vendeli", project.name, project.version.toString())
-
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, true)
-    signAllPublications()
-
-    pom {
-        configurePom("KSP processor", "KSP plugin for Telegram-bot lib to collect actions.")
-    }
-
-    configure(
-        KotlinMultiplatform(
-            javadocJar = JavadocJar.Empty(),
-            sourcesJar = true,
-        ),
-    )
 }
 
 detekt {

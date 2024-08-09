@@ -1,10 +1,6 @@
-import com.vanniktech.maven.publish.JavadocJar
-import com.vanniktech.maven.publish.KotlinMultiplatform
-import com.vanniktech.maven.publish.SonatypeHost
-
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.publisher)
+    id("publish")
 }
 
 kotlin {
@@ -21,21 +17,7 @@ kotlin {
     }
 }
 
-publishing { addGhRepository() }
-mavenPublishing {
-    coordinates("eu.vendeli", project.name, project.version.toString())
-
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, true)
-    signAllPublications()
-
-    pom {
-        configurePom("Spring boot starter", "Spring boot starter for KtGram.")
-    }
-
-    configure(
-        KotlinMultiplatform(
-            javadocJar = JavadocJar.Empty(),
-            sourcesJar = true,
-        ),
-    )
+libraryData {
+    name.set("Spring boot starter")
+    description.set("Spring boot starter for KtGram.")
 }
