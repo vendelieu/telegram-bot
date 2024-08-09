@@ -62,6 +62,7 @@ mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 ssl-utils = { module = "io.github.hakky54:sslcontext-kickstart-for-pem", version.ref = "sslcontext" }
 spring-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "spring" }
+publisher = { module = "com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin", version.ref = "publisher" }
 
 [plugins]
 publisher = { id = "com.vanniktech.maven.publish", version.ref = "publisher" }

@@ -23,15 +23,7 @@ kotlin {
 }
 
 
-publishing {
-    repositories {
-        maven {
-            name = "GHPackages"
-            url = uri("https://maven.pkg.github.com/vendelieu/telegram-bot")
-            credentials(PasswordCredentials::class)
-        }
-    }
-}
+publishing { addGhRepository() }
 mavenPublishing {
     coordinates("eu.vendeli", project.name, project.version.toString())
 
@@ -39,34 +31,7 @@ mavenPublishing {
     signAllPublications()
 
     pom {
-        name.set("WebApps")
-        description.set("Implementation of WebApp applications Telegram Bot Api.")
-        //
-        url.set("https:/github.com/vendelieu/telegram-bot")
-        inceptionYear.set("2022")
-
-        licenses {
-            license {
-                name.set("Apache-2.0")
-                url.set("https://www.apache.org/licenses/LICENSE-2.0")
-            }
-        }
-        developers {
-            developer {
-                id.set("Vendelieu")
-                name.set("Vendelieu")
-                email.set("vendelieu@gmail.com")
-                url.set("https://vendeli.eu")
-            }
-        }
-        scm {
-            connection.set("https://github.com/vendelieu/telegram-bot.git")
-            url.set("https://github.com/vendelieu/telegram-bot")
-        }
-        issueManagement {
-            system.set("Github")
-            url.set("https://github.com/vendelieu/telegram-bot/issues")
-        }
+        configurePom("WebApps", "Implementation of WebApp applications Telegram Bot Api.")
     }
 
     configure(

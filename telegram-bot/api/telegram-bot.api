@@ -8001,11 +8001,13 @@ public final class eu/vendeli/tgbot/types/internal/configuration/HttpConfigurati
 	public final fun getConnectTimeoutMillis ()J
 	public final fun getMaxRequestRetry ()I
 	public final fun getProxy ()Ljava/net/Proxy;
+	public final fun getRawStatus (Lio/ktor/client/statement/HttpResponse;)I
 	public final fun getRequestTimeoutMillis ()J
 	public final fun getRetryDelay ()J
 	public final fun getRetryStrategy ()Lkotlin/jvm/functions/Function3;
 	public final fun getSocketTimeoutMillis ()J
 	public fun hashCode ()I
+	public final fun retryOnTooManyRequests ()Lkotlin/jvm/functions/Function3;
 	public final fun setAdditionalHeaders (Ljava/util/Map;)V
 	public final fun setConnectTimeoutMillis (J)V
 	public final fun setMaxRequestRetry (I)V

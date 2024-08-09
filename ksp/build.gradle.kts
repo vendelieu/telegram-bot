@@ -1,7 +1,8 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.vanniktech.maven.publish.SonatypeHost
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -35,15 +36,7 @@ kotlin {
     }
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "GHPackages"
-            url = uri("https://maven.pkg.github.com/vendelieu/telegram-bot")
-            credentials(PasswordCredentials::class)
-        }
-    }
-}
+publishing { addGhRepository() }
 mavenPublishing {
     coordinates("eu.vendeli", project.name, project.version.toString())
 
@@ -51,34 +44,7 @@ mavenPublishing {
     signAllPublications()
 
     pom {
-        name.set("KSP processor")
-        description.set("KSP plugin for Telegram-bot lib to collect actions.")
-        //
-        url.set("https:/github.com/vendelieu/telegram-bot")
-        inceptionYear.set("2022")
-
-        licenses {
-            license {
-                name.set("Apache-2.0")
-                url.set("https://www.apache.org/licenses/LICENSE-2.0")
-            }
-        }
-        developers {
-            developer {
-                id.set("Vendelieu")
-                name.set("Vendelieu")
-                email.set("vendelieu@gmail.com")
-                url.set("https://vendeli.eu")
-            }
-        }
-        scm {
-            connection.set("https://github.com/vendelieu/telegram-bot.git")
-            url.set("https://github.com/vendelieu/telegram-bot")
-        }
-        issueManagement {
-            system.set("Github")
-            url.set("https://github.com/vendelieu/telegram-bot/issues")
-        }
+        configurePom("KSP processor", "KSP plugin for Telegram-bot lib to collect actions.")
     }
 
     configure(
