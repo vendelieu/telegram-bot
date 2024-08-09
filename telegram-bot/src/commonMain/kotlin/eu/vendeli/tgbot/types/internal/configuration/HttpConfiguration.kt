@@ -3,6 +3,7 @@ package eu.vendeli.tgbot.types.internal.configuration
 import eu.vendeli.tgbot.utils.RetryStrategy
 import io.ktor.client.engine.ProxyConfig
 import io.ktor.client.plugins.HttpTimeout
+import io.ktor.http.HttpStatusCode
 
 /**
  * A class containing the configuration for the bot http client.
@@ -17,7 +18,7 @@ import io.ktor.client.plugins.HttpTimeout
  * @property maxRequestRetry Specifies a http request maximum retry if had some exceptions
  * @property retryStrategy By default client uses retryOnExceptionOrServerErrors strategy, but you can define custom.
  * @property retryDelay Multiplier for timeout at each retry, in milliseconds
- * i.e. for the base value [maxRequestRetry] the attempts will be in 3, 6, 9 seconds
+ * i.e., for the base value [maxRequestRetry] the attempts will be in 3, 6, 9 seconds
  * @property proxy Specifies proxy that will be used for http calls.
  * @property additionalHeaders Headers that will be applied to every request.
  */
@@ -30,4 +31,8 @@ data class HttpConfiguration(
     var retryDelay: Long = 3000L,
     var proxy: ProxyConfig? = null,
     var additionalHeaders: Map<String, Any?>? = null,
-)
+) {
+    fun retryOnTooManyRequests(): RetryStrategy = { _, response ->
+        response.status == HttpStatusCode.TooManyRequests
+    }
+}
