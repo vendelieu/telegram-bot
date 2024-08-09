@@ -16,6 +16,7 @@
 * Added `throwExOnActionsFailure` to the configuration to throw exceptions on api request sending failures.
 * Added `retryOnTooManyRequests()` to the `httpClient` configuration, which returns a `RetryStrategy` that retries on an
   api request with status `429` given its delay status.
+* Added bot parameter to `spring-starter`'s `onInit` hook.
 
 ### 6.6.0
 

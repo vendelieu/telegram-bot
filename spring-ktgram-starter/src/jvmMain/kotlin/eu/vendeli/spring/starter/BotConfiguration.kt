@@ -1,5 +1,6 @@
 package eu.vendeli.spring.starter
 
+import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.utils.BotConfigurator
 
@@ -10,5 +11,5 @@ abstract class BotConfiguration {
 
     abstract fun applyCfg(): BotConfigurator
 
-    open suspend fun onInit() {}
+    open suspend fun onInit(bot: TelegramBot) {}
 }
