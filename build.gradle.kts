@@ -3,7 +3,7 @@ allprojects {
         mavenCentral()
     }
     group = "eu.vendeli"
-    version = providers.gradleProperty("libVersion").getOrElse("dev")
+    version = providers.gradleProperty("libVersion").getOrElse("dev-SNAPSHOT")
 }
 
 plugins {

@@ -21,26 +21,6 @@ jobs:
         run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
         shell: bash
 
-  docs:
-    needs: version
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: 11
-      - name: Build documentation
-        run: ./gradlew dokkaHtml -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }}
-      - name: Publish documentation
-        uses: JamesIves/github-pages-deploy-action@releases/v4
-        with:
-          BRANCH: gh-pages
-          FOLDER: telegram-bot/build/dokka
-
   publish:
     needs: version
     runs-on: ubuntu-latest
@@ -62,12 +42,25 @@ jobs:
           echo '${{secrets.GPG_KEY_CONTENTS}}' | base64 -d > publish_key.gpg
           gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.SECRET_PASSPHRASE}}" \
           --output /home/runner/work/secret.gpg publish_key.gpg
+          echo "memoryGPG=$(gpg --export-secret-keys --armor ${{secrets.SIGNING_KEYID}} /home/runner/work/secret.gpg | grep -v '\-\-' | grep -v '^=.' | tr -d '\n')" >> "$GITHUB_ENV"
 
       - name: Publish with Gradle
-        run: ./gradlew publishAllPublicationsToOSSRHRepository -Psigning.secretKeyRingFile=/home/runner/work/secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }}
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{secrets.SONATYPE_USERNAME}}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{secrets.SONATYPE_PASSWORD}}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{env.memoryGPG}}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{secrets.SIGNING_KEYID}}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{secrets.SIGNING_PASSWORD}}
+        run: ./gradlew publishAllPublicationsToMavenCentralRepository -PlibVersion=${{ needs.version.outputs.version }}
+
+      - name: Publish documentation
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          BRANCH: gh-pages
+          FOLDER: telegram-bot/build/dokka
 
   readme:
-    needs: [version, publish]
+    needs: [ version, publish ]
     name: Replace version in README.md
     runs-on: ubuntu-latest
     permissions:
