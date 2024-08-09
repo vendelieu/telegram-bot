@@ -37,6 +37,6 @@ jobs:
 
       - name: Publish to Gh
         env:
-          ORG_GRADLE_PROJECT_githubPackagesUsername: ${{ env.GITHUB_ACTOR }}
+          ORG_GRADLE_PROJECT_githubPackagesUsername: vendelieu
           ORG_GRADLE_PROJECT_githubPackagesPassword: ${{ secrets.ACCESS_TOKEN }}
         run: ./gradlew publishAllPublicationsToGHPackagesRepository -PlibVersion=${{ env.git_branch }}-${{ env.date }}~${{ env.git_hash }}
