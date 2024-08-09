@@ -1,4 +1,3 @@
-
 import eu.vendeli.fixtures.__ACTIVITIES
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.InternalApi
