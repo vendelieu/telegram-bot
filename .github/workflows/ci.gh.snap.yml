@@ -9,6 +9,7 @@ on:
       - 'ktgram-utils/**'
       - 'ktor-starter/**'
       - 'spring-ktgram-starter/**'
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -37,5 +38,6 @@ jobs:
 
       - name: Publish to Gh
         env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ORG_GRADLE_PROJECT_githubPackagesUsername: vendelieu
+          ORG_GRADLE_PROJECT_githubPackagesPassword: ${{ secrets.ACCESS_TOKEN }}
         run: ./gradlew publishAllPublicationsToGHPackagesRepository -PlibVersion=${{ env.git_branch }}-${{ env.date }}~${{ env.git_hash }}
