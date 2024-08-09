@@ -14,6 +14,8 @@
 * Removed `EnvConfigLoader`, since it seems not much in demand.
 * Added `catchExceptions` to the configuration to turn off catching exceptions to `caughtExceptions`.
 * Added `throwExOnActionsFailure` to the configuration to throw exceptions on api request sending failures.
+* Added function `retryOnTooManyRequests()` to `httpClient` configuration that returns `RetryStrategy` that retries on
+  api request status `429` respecting its delay status.
 
 ### 6.6.0
 
