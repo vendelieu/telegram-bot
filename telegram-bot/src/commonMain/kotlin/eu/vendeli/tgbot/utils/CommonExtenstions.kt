@@ -4,16 +4,17 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.interfaces.ctx.InputListener
+import eu.vendeli.tgbot.interfaces.helper.ExceptionHandler
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ChainLink
-import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
 import io.ktor.http.decodeURLQueryComponent
 import korlibs.crypto.HMAC
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.reflect.KClass
@@ -46,11 +47,11 @@ fun String.checkIsInitDataSafe(botToken: String, hash: String): Boolean {
 suspend fun TgUpdateHandler.runExceptionHandler(
     dispatcher: CoroutineDispatcher = PROCESSING_DISPATCHER,
     delay: Long = 100,
-    block: suspend FailedUpdate.() -> Unit,
-) = GlobalScope.launch(dispatcher + currentCoroutineContext()) {
-    for (e in caughtExceptions) {
-        block(e)
-        delay(delay)
+    block: ExceptionHandler,
+) = GlobalScope.launch(dispatcher + CoroutineName("ExHandler")) {
+    caughtExceptions.consumeEach { fUpd ->
+        block.handle(fUpd.exception, fUpd.update)
+        delay.takeIf { it > 0 }?.let { delay(it) }
     }
 }
 

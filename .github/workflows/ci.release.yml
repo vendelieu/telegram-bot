@@ -32,7 +32,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: 11
+          java-version: 17
       - name: Build documentation
         run: ./gradlew dokkaHtml -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }}
       - name: Publish documentation
@@ -62,7 +62,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: 11
+          java-version: 17
 
       - name: Setup gradle
         uses: gradle/actions/setup-gradle@v3-beta
