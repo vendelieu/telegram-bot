@@ -5,14 +5,16 @@ import io.ktor.client.plugins.logging.LogLevel
 /**
  * Proxy enum for Bot logger leveling.
  */
-enum class LogLvl {
-    OFF,
-    ERROR,
-    WARN,
-    INFO,
-    DEBUG,
-    TRACE,
-    ALL,
+enum class LogLvl(
+    val int: Int,
+) {
+    OFF(Int.MAX_VALUE),
+    ERROR(40000),
+    WARN(30000),
+    INFO(20000),
+    DEBUG(10000),
+    TRACE(5000),
+    ALL(Int.MIN_VALUE),
 }
 
 /**

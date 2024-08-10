@@ -14,7 +14,8 @@ import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.Invocable
 import eu.vendeli.tgbot.utils.InvocationLambda
-import eu.vendeli.tgbot.utils.Logging
+import eu.vendeli.tgbot.utils.LoggingWrapper
+import eu.vendeli.tgbot.utils.asyncAction
 import eu.vendeli.tgbot.utils.checkIsGuarded
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.coHandle
@@ -24,6 +25,7 @@ import eu.vendeli.tgbot.utils.process
 import eu.vendeli.tgbot.utils.serde
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
@@ -39,18 +41,19 @@ class TgUpdateHandler internal constructor(
     commandsPackage: String? = null,
     internal val bot: TelegramBot,
 ) {
-    private val activities by lazy { ActivitiesData(commandsPackage) }
+    private val activities by lazy { ActivitiesData(commandsPackage, logger) }
     private var handlingBehaviour: HandlingBehaviourBlock = DEFAULT_HANDLING_BEHAVIOUR
     private val updatesChannel = Channel<ProcessedUpdate>()
     internal val handlerScope = bot.config.updatesListener.run {
         CoroutineScope(dispatcher + CoroutineName("TgBot"))
     }
-    internal val functionalHandlingBehavior = FunctionalHandlingDsl(bot)
+    internal val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
+    internal val logger = LoggingWrapper(bot.config.logging, "eu.vendeli.core.TgUpdateHandler")
 
     /**
      * The channel where errors caught during update processing is stored with update that caused them.
      */
-    val caughtExceptions = Channel<FailedUpdate>(Channel.CONFLATED)
+    val caughtExceptions by lazy { Channel<FailedUpdate>(Channel.CONFLATED) }
 
     /**
      * Previous invoked function qualified path (i.e., full class path).
@@ -97,7 +100,7 @@ class TgUpdateHandler internal constructor(
      * @param block action that will be applied.
      */
     suspend fun setListener(allowedUpdates: List<UpdateType>? = null, block: HandlingBehaviourBlock) {
-        stopListener()
+        stopListener().await()
         logger.debug { "The listener is set." }
         handlingBehaviour = block
         collectUpdates(allowedUpdates)
@@ -108,7 +111,7 @@ class TgUpdateHandler internal constructor(
      * Stops listening of new updates.
      *
      */
-    fun stopListener() {
+    suspend fun stopListener() = asyncAction {
         handlerScope.coroutineContext.cancelChildren()
         logger.debug { "The listener is stopped." }
     }
@@ -116,9 +119,9 @@ class TgUpdateHandler internal constructor(
     /**
      * A function for defining the behavior to handle updates.
      */
-    fun setBehaviour(block: HandlingBehaviourBlock) {
+    suspend fun setBehaviour(block: HandlingBehaviourBlock) {
         logger.debug { "Handling behaviour is set." }
-        stopListener()
+        stopListener().await()
         handlingBehaviour = block
     }
 
@@ -127,6 +130,7 @@ class TgUpdateHandler internal constructor(
      * Define processing behavior before calling, see [setBehaviour].
      */
     suspend fun parseAndHandle(update: String) = parse(update)
+        .await()
         ?.let {
             logger.debug { "Processing update with preset behaviour." }
             coHandle(
@@ -137,9 +141,9 @@ class TgUpdateHandler internal constructor(
     /**
      * A method to parse update from string.
      */
-    fun parse(update: String): ProcessedUpdate? {
+    suspend fun parse(update: String): Deferred<ProcessedUpdate?> = asyncAction {
         logger.debug { "Trying to parse update from string - $update" }
-        return serde
+        return@asyncAction serde
             .runCatching { decodeFromString(ProcessedUpdate.serializer(), update) }
             .onFailure {
                 logger.error(it) { "error during the update parsing process." }
@@ -258,6 +262,4 @@ class TgUpdateHandler internal constructor(
             process(update)
         }
     }
-
-    internal companion object : Logging("eu.vendeli.core.TgUpdateHandler")
 }

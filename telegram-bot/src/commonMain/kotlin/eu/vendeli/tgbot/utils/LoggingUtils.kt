@@ -1,24 +1,22 @@
 package eu.vendeli.tgbot.utils
 
+import eu.vendeli.tgbot.interfaces.helper.Logger
 import eu.vendeli.tgbot.types.internal.LogLvl
+import eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration
 
-abstract class Logger(
-    val id: String,
-) : io.ktor.client.plugins.logging.Logger {
-    abstract fun setLevel(level: LogLvl)
-    abstract fun info(message: () -> String): Unit?
-    abstract fun warn(message: () -> String): Unit?
-    abstract fun debug(message: () -> String): Unit?
-    abstract fun trace(message: () -> String): Unit?
-    abstract fun error(throwable: Throwable? = null, message: () -> String): Unit?
-    override fun log(message: String) {
-        trace { message }
-    }
-}
-
-@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-internal expect open class Logging(
-    tag: String = "eu.vendeli.TelegramBot",
+class LoggingWrapper(
+    private val cfg: LoggingConfiguration,
+    private val tag: String,
 ) {
-    val logger: Logger
+    suspend fun info(message: () -> String) = log(LogLvl.INFO, message, null)
+    suspend fun warn(message: () -> String) = log(LogLvl.WARN, message, null)
+    suspend fun debug(message: () -> String) = log(LogLvl.DEBUG, message, null)
+    suspend fun trace(message: () -> String) = log(LogLvl.TRACE, message, null)
+    suspend fun error(throwable: Throwable? = null, message: () -> String) =
+        log(LogLvl.ERROR, message, throwable)
+
+    private suspend inline fun log(logLvl: LogLvl, message: () -> String, throwable: Throwable?) =
+        if (cfg.botLogLevel.int > logLvl.int) cfg.logger.log(logLvl, tag, message(), throwable) else Unit
 }
+
+internal expect val DEFAULT_LOGGER: Logger

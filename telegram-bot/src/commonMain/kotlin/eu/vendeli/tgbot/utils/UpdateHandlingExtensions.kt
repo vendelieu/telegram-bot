@@ -2,7 +2,6 @@ package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
-import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
 import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.interfaces.helper.Filter
@@ -138,19 +137,19 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
 }
 
 private suspend fun ((suspend ActivityCtx<ProcessedUpdate>.() -> Unit)?).invokeActivity(
-    bot: TelegramBot,
+    functionalHandler: FunctionalHandlingDsl,
     updateType: UpdateType,
     activityCtx: ActivityCtx<ProcessedUpdate>,
 ): Boolean {
     this
         ?.runCatching { invoke(activityCtx) }
         ?.onFailure {
-            bot.update.handleFailure(activityCtx.update, it)
-            logger.error(it) {
+            functionalHandler.bot.update.handleFailure(activityCtx.update, it)
+            functionalHandler.logger.error(it) {
                 "An error occurred while functionally processing update: ${activityCtx.update} to UpdateType($updateType)."
             }
         }?.onSuccess {
-            logger.info {
+            functionalHandler.logger.info {
                 "Update #${activityCtx.update.updateId} processed in functional mode with UpdateType($updateType) activity."
             }
             return true
@@ -175,7 +174,7 @@ internal suspend fun FunctionalHandlingDsl.process(update: ProcessedUpdate) = wi
 
     checkMessageForActivities(this).ifAffected { affectedActivities += 1 }
     functionalActivities.onUpdateActivities[type]
-        ?.invokeActivity(bot, type, ActivityCtx(this))
+        ?.invokeActivity(this@process, type, ActivityCtx(this))
         .ifAffected { affectedActivities += 1 }
 
     if (affectedActivities == 0) functionalActivities.whenNotHandled?.invoke(update)?.also {

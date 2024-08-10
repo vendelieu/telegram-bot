@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.BotConfigurator
 import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
-import eu.vendeli.tgbot.utils.Logging
+import eu.vendeli.tgbot.utils.LoggingWrapper
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
@@ -46,10 +46,11 @@ class TelegramBot(
         httpClient: HttpClient? = null,
         botConfiguration: BotConfigurator = {},
     ) : this(token, commandsPackage, botConfiguration) {
-        this.httpClient = httpClient ?: getConfiguredHttpClient(config)
+        this.httpClient = httpClient ?: getConfiguredHttpClient(config.httpClient, config.logging)
     }
 
     internal val config = BotConfiguration().apply(botConfiguration)
+    internal val logger = LoggingWrapper(config.logging, "eu.vendeli.TelegramBot")
 
     internal val baseUrl by lazy { "${config.apiHost}/bot$token" + if (config.isTestEnv) "/test/" else "/" }
 
@@ -57,10 +58,6 @@ class TelegramBot(
      * A tool for managing input waiting.
      */
     val inputListener get() = config.inputListener
-
-    init {
-        logger.setLevel(config.logging.botLogLevel)
-    }
 
     /**
      * Bot identifier set through configuration.
@@ -73,7 +70,7 @@ class TelegramBot(
     val update = TgUpdateHandler(commandsPackage, this)
 
     @OptIn(InternalApi::class)
-    internal var httpClient = getConfiguredHttpClient(config)
+    internal var httpClient = getConfiguredHttpClient(config.httpClient, config.logging)
 
     /**
      * Get direct url from [File] if [File.filePath] is present
@@ -115,6 +112,4 @@ class TelegramBot(
             handle(it, block)
         }
     }
-
-    internal companion object : Logging()
 }

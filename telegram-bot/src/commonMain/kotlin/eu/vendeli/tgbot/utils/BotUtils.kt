@@ -2,7 +2,6 @@
 
 package eu.vendeli.tgbot.utils
 
-import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.types.internal.ExceptionHandlingStrategy

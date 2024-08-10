@@ -26,5 +26,7 @@ sealed class ExceptionHandlingStrategy {
      *
      * @property handler exception handler.
      */
-    data class Handle(val handler: ExceptionHandler) : ExceptionHandlingStrategy()
+    data class Handle(
+        val handler: ExceptionHandler,
+    ) : ExceptionHandlingStrategy()
 }

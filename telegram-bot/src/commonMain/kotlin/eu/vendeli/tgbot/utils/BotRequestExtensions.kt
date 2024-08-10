@@ -1,7 +1,6 @@
 package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.utils.serde.primitiveOrNull
 import io.ktor.client.request.HttpRequestBuilder
@@ -35,9 +34,10 @@ private inline fun buildHeadersForItem(name: String) = HeadersBuilder()
     }.build()
 
 @Suppress("OPT_IN_USAGE")
-private fun HttpRequestBuilder.formReqBody(
+private suspend fun HttpRequestBuilder.formReqBody(
     data: Map<String, JsonElement>,
     multipartData: List<PartData.BinaryItem>,
+    logger: LoggingWrapper,
 ) {
     if (data.isEmpty() && multipartData.isEmpty()) return
     if (multipartData.isNotEmpty()) {
@@ -73,7 +73,7 @@ internal suspend inline fun <T> TelegramBot.makeRequestReturning(
     multipartData: List<PartData.BinaryItem>,
 ): Deferred<Response<out T>> = coroutineScope {
     val response = httpClient.post(baseUrl + method) {
-        formReqBody(data, multipartData)
+        formReqBody(data, multipartData, logger)
     }
 
     return@coroutineScope async { response.toResult(returnType, config.throwExOnActionsFailure) }
@@ -83,16 +83,13 @@ internal suspend inline fun TelegramBot.makeSilentRequest(
     method: String,
     data: Map<String, JsonElement>,
     multipartData: List<PartData.BinaryItem>,
-) = httpClient
-    .post(baseUrl + method) {
-        formReqBody(data, multipartData)
-    }.logFailure(config.throwExOnActionsFailure)
-
-internal suspend inline fun HttpResponse.logFailure(doThrowOnFailure: Boolean = false): HttpResponse {
-    if (!status.isSuccess()) {
-        if (doThrowOnFailure) throw TgFailureException(bodyAsText())
-        val body = bodyAsText()
-        logger.error { "Request - ${request.content} received failure response: $body" }
+) {
+    val call = httpClient.post(baseUrl + method) {
+        formReqBody(data, multipartData, logger)
     }
-    return this
+    if (!call.status.isSuccess()) {
+        if (config.throwExOnActionsFailure) throw TgFailureException(call.bodyAsText())
+        val body = call.bodyAsText()
+        logger.error { "Request - ${call.request.content} received failure response: $body" }
+    }
 }
