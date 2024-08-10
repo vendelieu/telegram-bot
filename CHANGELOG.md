@@ -17,7 +17,7 @@
 * Added `retryOnTooManyRequests()` to the `httpClient` configuration, which returns a `RetryStrategy` that retries on an
   api request with status `429` given its delay status.
 * Added bot parameter to `spring-starter`'s `onInit` hook.
-* Added `logger` to `LoggingConfiguration` where can be passed any `Logger` interface implementation passed.
+* Added `logger` to `LoggingConfiguration` where can be any `Logger` interface implementation passed.
 
 ### 6.6.0
 

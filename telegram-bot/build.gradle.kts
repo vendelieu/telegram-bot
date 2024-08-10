@@ -1,11 +1,9 @@
 
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.time.LocalDate
 
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.compatability.validator)
     alias(libs.plugins.ktlinter)
@@ -15,22 +13,7 @@ plugins {
     id("publish")
 }
 
-kotlin {
-    jvm {
-        withJava()
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions {
-                    jvmTarget.set(JvmTarget.fromTarget(JAVA_TARGET_V))
-                }
-            }
-        }
-    }
-    js { nodejs() }
-    mingwX64()
-    linuxX64()
-    jvmToolchain(JAVA_TARGET_V_int)
-
+configuredKotlin {
     sourceSets {
         commonMain {
             dependencies {

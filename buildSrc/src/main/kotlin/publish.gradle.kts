@@ -30,8 +30,9 @@ publishing {
             pom {
                 name = libraryData.name
                 description = libraryData.description
+                inceptionYear = "2022"
+                url = "https://github.com/vendelieu/telegram-bot"
 
-                url.set("https://github.com/vendelieu/telegram-bot")
                 licenses {
                     license {
                         name.set("Apache 2.0")
@@ -50,6 +51,10 @@ publishing {
                     connection.set("scm:git:github.com/vendelieu/telegram-bot.git")
                     developerConnection.set("scm:git:ssh://github.com/vendelieu/telegram-bot.git")
                     url.set("https://github.com/vendelieu/telegram-bot.git")
+                }
+                issueManagement {
+                    system.set("Github")
+                    url.set("https://github.com/vendelieu/telegram-bot/issues")
                 }
             }
         }

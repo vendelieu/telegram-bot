@@ -5,7 +5,8 @@ plugins {
 
 dependencies {
     implementation(libs.kotlin.serialization)
-    implementation("tech.yanand.gradle:maven-central-publish:1.1.1")
+    implementation(libs.kotlin.gradlePlugin)
+    implementation(libs.publisher)
 }
 
 repositories {

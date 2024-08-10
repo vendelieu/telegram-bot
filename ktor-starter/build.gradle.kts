@@ -1,11 +1,8 @@
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
     id("publish")
 }
 
-kotlin {
-    jvmToolchain(JAVA_TARGET_V_int)
-    jvm()
+onlyJvmConfiguredKotlin {
     sourceSets {
         jvmMain {
             dependencies {

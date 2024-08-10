@@ -1,7 +1,4 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.ktlinter)
     alias(libs.plugins.deteKT)
     id("publish")
@@ -12,21 +9,9 @@ libraryData {
     description = "KSP plugin for Telegram-bot lib to collect actions."
 }
 
-kotlin {
-    jvm {
-        withJava()
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions {
-                    jvmTarget.set(JvmTarget.fromTarget(JAVA_TARGET_V))
-                }
-            }
-        }
-    }
-    jvmToolchain(JAVA_TARGET_V_int)
-
+onlyJvmConfiguredKotlin {
     sourceSets {
-        named("jvmMain") {
+        jvmMain {
             dependencies {
                 implementation(libs.ksp)
                 implementation(libs.poet)
@@ -42,3 +27,4 @@ detekt {
     allRules = false
     config.from(files("$rootDir/detekt.yml"))
 }
+
