@@ -8,6 +8,7 @@ configuredKotlin {
             dependencies {
                 implementation(project(":telegram-bot"))
                 implementation(libs.env)
+                compileOnly(libs.ktor.client.core)
             }
         }
     }
