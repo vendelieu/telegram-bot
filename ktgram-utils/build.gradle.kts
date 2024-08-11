@@ -13,6 +13,6 @@ configuredKotlin {
 }
 
 libraryData {
-    name.set("KtGram utils")
-    description.set("KtGram library utilities.")
+    name = "KtGram utils"
+    description = "KtGram library utilities."
 }

@@ -17,6 +17,6 @@ onlyJvmConfiguredKotlin {
 }
 
 libraryData {
-    name.set("Ktor starter")
-    description.set("Ktor webhook starter for KtGram.")
+    name = "Ktor starter"
+    description = "Ktor webhook starter for KtGram."
 }

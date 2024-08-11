@@ -69,7 +69,7 @@ configuredKotlin {
         compilations.all {
             compileTaskProvider.configure {
                 compilerOptions {
-                    allWarningsAsErrors.set(true)
+                    allWarningsAsErrors = true
                 }
             }
         }
@@ -77,8 +77,8 @@ configuredKotlin {
 }
 
 libraryData {
-    name.set("Telegram Bot")
-    description.set("Telegram Bot API wrapper, with handy Kotlin DSL.")
+    name = "Telegram Bot"
+    description = "Telegram Bot API wrapper, with handy Kotlin DSL."
 }
 
 detekt {
@@ -97,7 +97,7 @@ tasks {
     register<Kdokker>("kdocUpdate")
     withType<Test> { useJUnitPlatform() }
     dokkaHtml.configure {
-        outputDirectory.set(layout.buildDirectory.asFile.orNull?.resolve("dokka"))
+        outputDirectory = layout.buildDirectory.asFile.orNull?.resolve("dokka")
         dokkaSourceSets {
             named("commonMain") { sourceRoots.setFrom(project.projectDir.resolve("src/commonMain/kotlin")) }
             named("jvmMain") { sourceRoots.setFrom(project.projectDir.resolve("src/jvmMain/kotlin")) }
@@ -105,7 +105,7 @@ tasks {
             if ("nativeMain" in names) named("nativeMain") {
                 sourceRoots.setFrom(project.projectDir.resolve("src/nativeMain/kotlin"))
             }
-            collectionSchema.elements.forEach { _ -> moduleName.set("Telegram Bot") }
+            collectionSchema.elements.forEach { _ -> moduleName = "Telegram Bot" }
         }
         pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
             customStyleSheets = listOf(rootDir.resolve("assets/logo-styles.css"))

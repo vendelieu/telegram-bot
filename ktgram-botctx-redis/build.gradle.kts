@@ -18,6 +18,6 @@ onlyJvmConfiguredKotlin {
 }
 
 libraryData {
-    name.set("Ktgram BotCtx Redis")
-    description.set("A collection of BotContext implementations designed to work with Redis.")
+    name = "Ktgram BotCtx Redis"
+    description = "A collection of BotContext implementations designed to work with Redis."
 }

@@ -15,6 +15,6 @@ onlyJvmConfiguredKotlin {
 }
 
 libraryData {
-    name.set("Spring boot starter")
-    description.set("Spring boot starter for KtGram.")
+    name = "Spring boot starter"
+    description = "Spring boot starter for KtGram."
 }
