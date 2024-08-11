@@ -6,7 +6,6 @@ configuredKotlin {
     sourceSets {
         commonMain {
             dependencies {
-                compileOnly(libs.coroutines.core)
                 implementation(libs.redisKM)
                 implementation(project(":telegram-bot"))
             }

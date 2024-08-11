@@ -97,6 +97,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                     funQualifier,
                 )
             }
+            var isUserNullable = true
             function.parameters.forEachIndexed { index, parameter ->
                 if (parameter.name == null) return@forEachIndexed
                 val paramCall = (
@@ -114,7 +115,10 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 val nullabilityMark = if (parameterTypeName.isNullable) "" else "!!"
 
                 val value = when (typeName) {
-                    userClass -> "user$nullabilityMark"
+                    userClass -> "user$nullabilityMark".also {
+                        if (!parameterTypeName.isNullable) isUserNullable = false
+                    }
+
                     botClass -> "bot"
                     STRING -> "$paramCall$nullabilityMark"
                     INT, intPrimitiveType -> "$paramCall?.toIntOrNull()$nullabilityMark"
@@ -161,7 +165,9 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
             }
 
             if (pkg != null) add(
-                "if (\n\tuser != null\n && bot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",
+                "if (\n\t" +
+                    if (isUserNullable) "user != null\n &&" else "" +
+                        "bot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",
                 funQualifier,
                 pkg,
             )

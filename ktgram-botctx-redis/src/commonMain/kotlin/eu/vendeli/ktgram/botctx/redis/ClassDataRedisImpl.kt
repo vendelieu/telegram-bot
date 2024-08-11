@@ -3,6 +3,7 @@ package eu.vendeli.ktgram.botctx.redis
 import com.soywiz.kds.fastCastTo
 import com.soywiz.korio.async.async
 import com.soywiz.korio.async.runBlockingNoJs
+import eu.vendeli.tgbot.annotations.CtxProvider
 import eu.vendeli.tgbot.interfaces.ctx.ClassData
 import io.github.jan.rediskm.core.RedisClient
 import io.github.jan.rediskm.core.params.get.get
@@ -11,7 +12,8 @@ import io.github.jan.rediskm.core.params.put.put
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 
-abstract class ClassDataRedisImpl(
+@CtxProvider
+open class ClassDataRedisImpl(
     host: String = "localhost",
     port: Int = 6379,
     user: String? = null,
@@ -52,7 +54,7 @@ abstract class ClassDataRedisImpl(
             }
     }
 
-    suspend fun <T> set(telegramId: Long, key: String, value: T?) {
+    open suspend fun <T> set(telegramId: Long, key: String, value: T?) {
         redis.put("classData-$telegramId-$key", value ?: "null")
     }
 

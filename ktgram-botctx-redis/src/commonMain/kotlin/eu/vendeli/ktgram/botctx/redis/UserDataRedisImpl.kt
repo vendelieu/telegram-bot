@@ -2,6 +2,7 @@ package eu.vendeli.ktgram.botctx.redis
 
 import com.soywiz.korio.async.async
 import com.soywiz.korio.async.runBlockingNoJs
+import eu.vendeli.tgbot.annotations.CtxProvider
 import eu.vendeli.tgbot.interfaces.ctx.UserData
 import io.github.jan.rediskm.core.RedisClient
 import io.github.jan.rediskm.core.params.get.get
@@ -10,7 +11,8 @@ import io.github.jan.rediskm.core.params.put.put
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 
-abstract class UserDataRedisImpl(
+@CtxProvider
+open class UserDataRedisImpl(
     host: String = "localhost",
     port: Int = 6379,
     user: String? = null,
