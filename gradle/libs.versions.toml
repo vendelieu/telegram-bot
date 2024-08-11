@@ -26,6 +26,7 @@ poet = "1.18.1"
 
 binvalid = "0.16.3"
 publisher = "1.1.1"
+env = "1.0.4"
 
 [libraries]
 # ktor
@@ -66,6 +67,7 @@ spring-starter = { module = "org.springframework.boot:spring-boot-starter", vers
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 publisher = { module = "tech.yanand.gradle:maven-central-publish", version.ref = "publisher" }
 redis = { module = "io.lettuce:lettuce-core", version.ref = "redis" }
+env = { module = "dev.scottpierce:kotlin-env-var", version.ref = "env" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
