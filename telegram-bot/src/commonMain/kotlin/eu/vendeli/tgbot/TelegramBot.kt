@@ -112,4 +112,6 @@ class TelegramBot(
             handle(it, block)
         }
     }
+
+    companion object
 }

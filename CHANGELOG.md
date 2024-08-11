@@ -18,6 +18,7 @@
   api request with status `429` given its delay status.
 * Added bot parameter to `spring-starter`'s `onInit` hook.
 * Added `logger` to `LoggingConfiguration` where can be any `Logger` interface implementation passed.
+* Exposed companion objects for `TelegramBot`, `TgUpdateHandler` to give option for static custom extensions.
 
 ### 6.6.0
 

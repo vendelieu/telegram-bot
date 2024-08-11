@@ -43,9 +43,7 @@ object EnvConfigLoader : ConfigLoader {
             socketTimeoutMillis = EnvVar.get(DEFAULT_ENV_PREFIX + "HTTP_SOCKET_TIMEOUT_MILLIS") { Int.MAX_VALUE.toString() }
                 .toLong(),
             maxRequestRetry = EnvVar.get(DEFAULT_ENV_PREFIX + "HTTP_MAX_REQUEST_RETRY") { "3" }.toInt(),
-            retryDelay = EnvVar.get(DEFAULT_ENV_PREFIX + "HTTP_RETRY_DELAY") { "3000" }.toLong(),
-            proxy = null, // Proxy configuration can be complex and depends on your specific requirements
-            additionalHeaders = null, // Additional headers can be set based on env vars if needed
+            retryDelay = EnvVar.get(DEFAULT_ENV_PREFIX + "HTTP_RETRY_DELAY") { "3000" }.toLong()
         )
 
         val loggingConfiguration = LoggingConfiguration(

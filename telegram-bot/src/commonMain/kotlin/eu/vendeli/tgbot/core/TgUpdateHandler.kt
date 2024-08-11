@@ -262,4 +262,6 @@ class TgUpdateHandler internal constructor(
             process(update)
         }
     }
+
+    companion object
 }
