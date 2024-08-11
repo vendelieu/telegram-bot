@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
+import kotlinx.serialization.Serializable
+
 /**
  * Class for configuration of command parsing parameters
  *
@@ -12,6 +14,7 @@ package eu.vendeli.tgbot.types.internal.configuration
  * helpful in matching chat commands.
  * By default, it's just omitted.
  */
+@Serializable
 data class CommandParsingConfiguration(
     var commandDelimiter: Char = '?',
     var parametersDelimiter: Char = '&',

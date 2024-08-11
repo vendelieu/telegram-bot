@@ -5,6 +5,8 @@ import io.ktor.client.engine.ProxyConfig
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpStatusCode
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 /**
  * A class containing the configuration for the bot http client.
@@ -23,14 +25,18 @@ import io.ktor.http.HttpStatusCode
  * @property proxy Specifies proxy that will be used for http calls.
  * @property additionalHeaders Headers that will be applied to every request.
  */
+@Serializable
 data class HttpConfiguration(
     var requestTimeoutMillis: Long = HttpTimeout.INFINITE_TIMEOUT_MS,
     var connectTimeoutMillis: Long = HttpTimeout.INFINITE_TIMEOUT_MS,
     var socketTimeoutMillis: Long = HttpTimeout.INFINITE_TIMEOUT_MS,
     var maxRequestRetry: Int = 3,
+    @Transient
     var retryStrategy: RetryStrategy? = null,
     var retryDelay: Long = 3000L,
+    @Transient
     var proxy: ProxyConfig? = null,
+    @Transient
     var additionalHeaders: Map<String, Any?>? = null,
 ) {
     fun retryOnTooManyRequests(): RetryStrategy = { _, response ->
