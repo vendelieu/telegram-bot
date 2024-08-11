@@ -31,7 +31,12 @@ jobs:
           "eu.vendeli.telegram-bot-linuxx64",
           "eu.vendeli.telegram-bot-mingwx64",
           "eu.vendeli.webapps",
-          "eu.vendeli.webapps-js"
+          "eu.vendeli.webapps-js",
+          "eu.vendeli.ktgram-botctx-redis-jvm",
+          "eu.vendeli.ktgram-botctx-redis",
+          "eu.vendeli.webapps-jvm",
+          "eu.vendeli.webapps-linuxx64",
+          "eu.vendeli.webapps-mingwx64"
         ]
     steps:
       - name: Delete old versions of ${{ matrix.package_name }}

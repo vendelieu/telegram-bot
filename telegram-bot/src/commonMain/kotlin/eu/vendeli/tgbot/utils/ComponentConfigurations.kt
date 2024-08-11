@@ -23,7 +23,7 @@ fun getConfiguredHttpClient(httpCfg: HttpConfiguration, loggingCfg: LoggingConfi
         install("RequestLogging") {
             sendPipeline.intercept(HttpSendPipeline.Monitoring) {
                 loggingCfg.logger.log(
-                    LogLvl.ALL,
+                    LogLvl.TRACE,
                     loggingTag,
                     "TgApiRequest: ${context.method} ${context.url.buildString()}",
                     null,
@@ -34,7 +34,7 @@ fun getConfiguredHttpClient(httpCfg: HttpConfiguration, loggingCfg: LoggingConfi
         install(Logging) {
             this.logger = object : Logger {
                 override fun log(message: String) {
-                    suspend { loggingCfg.logger.log(LogLvl.ALL, loggingTag, message, null) }
+                    suspend { loggingCfg.logger.log(LogLvl.INFO, loggingTag, message, null) }
                 }
             }
             level = loggingCfg.httpLogLevel.toKtorLvl()

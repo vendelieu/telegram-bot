@@ -218,10 +218,10 @@ class TgUpdateHandler internal constructor(
             .runCatching {
                 invoke(bot.config.classManager, update, user, bot, params)
             }.onFailure {
+                handleFailure(update, it)
                 logger.error(
                     it,
                 ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $update" }
-                handleFailure(update, it)
             }.onSuccess {
                 logger.info {
                     "Handled update#${update.updateId} to method ${second.qualifier + "::" + second.function}"
@@ -237,11 +237,11 @@ class TgUpdateHandler internal constructor(
     ) = runCatching {
         invoke(bot.config.classManager, update, update.userOrNull, bot, params)
     }.onFailure {
+        handleFailure(update, it)
         logger.error(it) {
             (if (isTypeUpdate) "UpdateTypeHandler(${update.type})" else "UnprocessedHandler") +
                 " invocation error at handling update: $update"
         }
-        handleFailure(update, it)
     }.onSuccess {
         logger.info {
             "Handled update#${update.updateId} to " +

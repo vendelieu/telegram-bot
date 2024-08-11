@@ -69,7 +69,7 @@ internal fun FileBuilder.collectInputChains(
                             add("chainInst.setState(user, \"$reference\", StoredState(update, inst.stateSelector))\n")
                         }
                         if (pkg != null) add(
-                            "if (\n\tuser != null\n && bot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",
+                            "if (\n\tbot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",
                             qualifier,
                             pkg,
                         )

@@ -2,12 +2,16 @@ plugins {
     id("publish")
 }
 
-configuredKotlin {
+onlyJvmConfiguredKotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(libs.redisKM)
                 implementation(project(":telegram-bot"))
+            }
+        }
+        jvmMain {
+            dependencies {
+                implementation(libs.redis)
             }
         }
     }
