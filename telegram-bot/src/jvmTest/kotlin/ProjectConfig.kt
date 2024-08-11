@@ -8,7 +8,7 @@ import io.kotest.core.test.TestCaseOrder
 @AutoScan
 object ProjectConfig : AbstractProjectConfig() {
     @ExperimentalKotest
-    override val concurrentTests: Int = 1
+    override val concurrentTests: Int = 1;
 
     @ExperimentalKotest
     override val concurrentSpecs: Int = 1
