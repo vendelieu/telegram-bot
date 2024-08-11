@@ -4,10 +4,9 @@ plugins {
 
 configuredKotlin {
     sourceSets {
-        named("commonMain") {
+        commonMain {
             dependencies {
                 implementation(project(":telegram-bot"))
-                implementation(libs.kotlin.datetime)
             }
         }
     }

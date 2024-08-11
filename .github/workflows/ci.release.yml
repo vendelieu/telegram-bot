@@ -47,7 +47,7 @@ jobs:
           path: telegram-bot/build/dokka
 
   publish:
-    needs: version
+    needs: [docs, version]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

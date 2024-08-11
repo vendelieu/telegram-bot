@@ -14,7 +14,6 @@ configuredKotlin {
         val commonMain by getting {
             dependencies {
                 implementation(libs.kotlin.serialization)
-                implementation(libs.kotlin.datetime)
                 implementation(project(":telegram-bot"))
             }
         }
