@@ -10,9 +10,7 @@ onlyJvmConfiguredKotlin {
         commonMain {
             dependencies {
                 implementation(project(":telegram-bot"))
-                implementation(libs.kotlin.datetime)
-                implementation(libs.ktoml.core)
-                implementation(libs.ktoml.file)
+                implementation(libs.toml)
             }
         }
     }

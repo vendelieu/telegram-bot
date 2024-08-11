@@ -13,7 +13,7 @@ coroutines = "1.8.1"
 dokka = "1.9.20"
 kotlinter = "4.4.1"
 deteKT = "1.23.6"
-ktoml = "0.5.1"
+toml = "0.4.0"
 
 kotest = "5.9.1"
 mockk = "1.13.12"
@@ -69,8 +69,8 @@ kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", ve
 publisher = { module = "tech.yanand.gradle:maven-central-publish", version.ref = "publisher" }
 redis = { module = "io.lettuce:lettuce-core", version.ref = "redis" }
 env = { module = "dev.scottpierce:kotlin-env-var", version.ref = "env" }
-ktoml-core = { module = "com.akuleshov7:ktoml-core", version.ref = "ktoml" }
-ktoml-file = { module = "com.akuleshov7:ktoml-file", version.ref = "ktoml" }
+toml = { module = "net.peanuuutz.tomlkt:tomlkt", version.ref = "toml" }
+
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
