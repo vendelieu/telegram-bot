@@ -21,8 +21,8 @@ class TgAnnotationsModel {
     fun test2(): Unit = throw IllegalArgumentException("test3")
 
     @CommandHandler(["STOP"])
-    fun stopHandling(bot: TelegramBot) {
-        bot.update.stopListener()
+    suspend fun stopHandling(bot: TelegramBot) {
+        bot.update.stopListener().await()
     }
 
     @UpdateHandler([UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY])

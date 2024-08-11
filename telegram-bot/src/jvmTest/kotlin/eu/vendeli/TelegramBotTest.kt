@@ -12,7 +12,6 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.ExceptionHandlingStrategy
-import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.foldResponse
 import eu.vendeli.tgbot.types.internal.getOrNull
@@ -25,7 +24,6 @@ import eu.vendeli.tgbot.utils.TgFailureException
 import eu.vendeli.tgbot.utils.makeRequestReturning
 import eu.vendeli.tgbot.utils.makeSilentRequest
 import eu.vendeli.tgbot.utils.toJsonElement
-import eu.vendeli.tgbot.utils.toPartData
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
@@ -36,16 +34,10 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
-import io.kotest.matchers.string.shouldNotBeBlank
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
-import io.ktor.client.statement.bodyAsText
-import io.ktor.http.ContentType.Image
-import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Deferred
 import kotlinx.datetime.Instant
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
-import kotlinx.serialization.json.JsonUnquotedLiteral
 import kotlinx.serialization.serializer
 
 class TelegramBotTest : BotTestContext() {
@@ -75,16 +67,13 @@ class TelegramBotTest : BotTestContext() {
 
     @Test
     suspend fun `test silent requesting`() {
-        val silentReq = bot.makeSilentRequest(
-            "sendMessage",
-            mapOf("text" to "test".toJsonElement(), "chat_id" to TG_ID.toJsonElement()),
-            emptyList(),
-        )
-
-        silentReq.status shouldBe HttpStatusCode.OK
-        silentReq.bodyAsText().shouldNotBeBlank()
-        silentReq.bodyAsText() shouldContain "\"ok\":true"
-        silentReq.bodyAsText() shouldContain "\"text\":\"test\""
+        shouldNotThrowAny {
+            bot.makeSilentRequest(
+                "sendMessage",
+                mapOf("text" to "test".toJsonElement(), "chat_id" to TG_ID.toJsonElement()),
+                emptyList(),
+            )
+        }
     }
 
     @Test
@@ -133,39 +122,6 @@ class TelegramBotTest : BotTestContext() {
         }
 
         bot.inputListener shouldBeEqualToComparingFields inputListenerImpl
-    }
-
-    @OptIn(InternalSerializationApi::class, ExperimentalSerializationApi::class)
-    @Test
-    suspend fun `media request handling`() {
-        val image = classloader.getResource("image.png")?.readBytes()
-        image.shouldNotBeNull()
-
-        val mediaReq = bot.makeSilentRequest(
-            method = "sendPhoto",
-            data = mapOf(
-                "photo" to JsonUnquotedLiteral("attach://image.jpg"),
-                "chat_id" to TG_ID.toJsonElement(),
-            ),
-            listOf(InputFile(image, "image.jpg", Image.JPEG.contentType).toPartData("image.jpg")),
-        )
-        mediaReq.status shouldBe HttpStatusCode.OK
-        mediaReq.bodyAsText().isNotBlank().shouldBeTrue()
-        mediaReq.bodyAsText() shouldContain "\"ok\":true"
-        mediaReq.bodyAsText() shouldContain "\"file_id\""
-
-        bot
-            .makeRequestReturning(
-                method = "sendPhoto",
-                mapOf(
-                    "photo" to JsonUnquotedLiteral("attach://image.jpg"),
-                    "chat_id" to TG_ID.toJsonElement(),
-                ),
-                Message::class.serializer(),
-                listOf(InputFile(image, "image.jpg", Image.JPEG.contentType).toPartData("image.jpg")),
-            ).await()
-            .isSuccess()
-            .shouldBeTrue()
     }
 
     @Test

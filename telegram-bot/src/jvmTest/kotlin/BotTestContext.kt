@@ -1,3 +1,4 @@
+
 import eu.vendeli.fixtures.__ACTIVITIES
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.InternalApi
@@ -10,10 +11,12 @@ import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.Response
+import eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
+import eu.vendeli.tgbot.utils.DEFAULT_LOGGING_TAG
 import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
-import eu.vendeli.tgbot.utils.Logging
+import eu.vendeli.tgbot.utils.LoggingWrapper
 import eu.vendeli.tgbot.utils.defineActivities
 import eu.vendeli.tgbot.utils.serde
 import eu.vendeli.utils.MockUpdate
@@ -75,6 +78,7 @@ abstract class BotTestContext(
     protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()
     protected val RAND_INT: Int get() = RANDOM_INST.nextInt()
     protected val DUMB_USER = User(1, false, "Test")
+    protected val logger = LoggingWrapper(LoggingConfiguration(), DEFAULT_LOGGING_TAG)
 
     @BeforeAll
     @OptIn(InternalApi::class)
@@ -149,6 +153,4 @@ abstract class BotTestContext(
             this,
         ) as T
     }
-
-    internal companion object : Logging("BotTest")
 }
