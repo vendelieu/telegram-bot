@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.inline
 
-import eu.vendeli.tgbot.types.LocationContent
+import eu.vendeli.tgbot.types.Location
 import eu.vendeli.tgbot.types.User
 import kotlinx.serialization.Serializable
 
@@ -19,7 +19,7 @@ import kotlinx.serialization.Serializable
 data class ChosenInlineResult(
     val resultId: String,
     val from: User,
-    val location: LocationContent? = null,
+    val location: Location? = null,
     val inlineMessageId: String? = null,
     val query: String,
 )

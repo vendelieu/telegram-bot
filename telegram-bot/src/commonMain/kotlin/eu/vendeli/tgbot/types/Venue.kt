@@ -16,11 +16,11 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class Venue(
-    val location: LocationContent,
+    val location: Location,
     val title: String,
     val address: String,
     val foursquareId: String? = null,
-    val fourSquareType: String? = null,
+    val foursquareType: String? = null,
     val googlePlaceId: String? = null,
     val googlePlaceType: String? = null,
 )
