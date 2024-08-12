@@ -31,9 +31,10 @@
 
 * Updated the method extensions to `TelegramBot` from `ktgram-utils` module, removing the `Sc` postfix and adding all
   method variations.
-* Added new experimental module `ktgram-botctx-redis`, `Redis` implementation of `BotContext` (`userData`, `classData`).
-* Added new experimental module `ktgram-config-env`, same as removed `EnvConfigLoader` but for all supported platforms.
-* Added new experimental module `ktgram-config-toml`, gives an option to configure `TelegramBot` through toml file.
+* Added experimental module (jvmOnly) `ktgram-botctx-redis`, `Redis` implementation
+  of `BotContext` (`userData`, `classData`).
+* Added experimental module `ktgram-config-env`, same as removed `EnvConfigLoader` but for all supported platforms.
+* Added experimental module `ktgram-config-toml`, gives an option to configure `TelegramBot` through toml file.
 
 #### Other
 
