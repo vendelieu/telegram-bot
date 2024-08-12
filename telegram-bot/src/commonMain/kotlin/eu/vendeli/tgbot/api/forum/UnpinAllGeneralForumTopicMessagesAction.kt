@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 @TgAPI
 class UnpinAllGeneralForumTopicMessagesAction : Action<Boolean>() {
-    @TgAPI.Method("unpinAllGeneralForumTopicMessages")
+    @TgAPI.Name("unpinAllGeneralForumTopicMessages")
     override val method = "unpinAllGeneralForumTopicMessages"
     override val returnType = getReturnType()
 }

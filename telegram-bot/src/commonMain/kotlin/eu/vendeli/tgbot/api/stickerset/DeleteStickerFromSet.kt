@@ -11,7 +11,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class DeleteStickerFromSetAction(
     sticker: String,
 ) : SimpleAction<Boolean>() {
-    @TgAPI.Method("deleteStickerFromSet")
+    @TgAPI.Name("deleteStickerFromSet")
     override val method = "deleteStickerFromSet"
     override val returnType = getReturnType()
 

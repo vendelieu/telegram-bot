@@ -21,7 +21,7 @@ class UploadStickerFileAction(
     sticker: InputFile,
     stickerFormat: StickerFormat,
 ) : SimpleAction<File>() {
-    @TgAPI.Method("uploadStickerFile")
+    @TgAPI.Name("uploadStickerFile")
     override val method = "uploadStickerFile"
     override val returnType = getReturnType()
 

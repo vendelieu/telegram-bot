@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.msg
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
@@ -36,6 +37,7 @@ sealed class MessageOrigin(
 
     @Serializable
     @SerialName("user")
+    @TgAPI.Name("MessageOriginUser")
     data class UserOrigin(
         @Serializable(InstantSerializer::class)
         override val date: Instant,
@@ -58,6 +60,7 @@ sealed class MessageOrigin(
 
     @Serializable
     @SerialName("chat")
+    @TgAPI.Name("MessageOriginChat")
     data class ChatOrigin(
         @Serializable(InstantSerializer::class)
         override val date: Instant,

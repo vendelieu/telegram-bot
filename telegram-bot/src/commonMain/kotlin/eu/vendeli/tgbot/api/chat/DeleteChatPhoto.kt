@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 @TgAPI
 class DeleteChatPhotoAction : Action<Boolean>() {
-    @TgAPI.Method("deleteChatPhoto")
+    @TgAPI.Name("deleteChatPhoto")
     override val method = "deleteChatPhoto"
     override val returnType = getReturnType()
 }

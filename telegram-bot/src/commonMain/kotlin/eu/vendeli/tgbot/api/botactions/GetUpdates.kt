@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 class GetUpdatesAction :
     SimpleAction<List<ProcessedUpdate>>(),
     OptionsFeature<GetUpdatesAction, GetUpdatesOptions> {
-    @TgAPI.Method("getUpdates")
+    @TgAPI.Name("getUpdates")
     override val method = "getUpdates"
     override val returnType = getReturnType()
     override val options = GetUpdatesOptions()

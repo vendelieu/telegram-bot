@@ -12,7 +12,7 @@ class SetStickerPositionInSetAction(
     sticker: String,
     position: Int,
 ) : SimpleAction<Boolean>() {
-    @TgAPI.Method("setStickerPositionInSet")
+    @TgAPI.Name("setStickerPositionInSet")
     override val method = "setStickerPositionInSet"
     override val returnType = getReturnType()
 

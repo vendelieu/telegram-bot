@@ -14,7 +14,7 @@ class SetMyDefaultAdministratorRightsAction(
     rights: ChatAdministratorRights? = null,
     forChannels: Boolean? = null,
 ) : SimpleAction<Boolean>() {
-    @TgAPI.Method("setMyDefaultAdministratorRights")
+    @TgAPI.Name("setMyDefaultAdministratorRights")
     override val method = "setMyDefaultAdministratorRights"
     override val returnType = getReturnType()
 

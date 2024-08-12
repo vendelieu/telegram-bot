@@ -15,7 +15,7 @@ class GetUserProfilePhotosAction(
     offset: Int? = null,
     limit: Int? = null,
 ) : SimpleAction<UserProfilePhotos>() {
-    @TgAPI.Method("getUserProfilePhotos")
+    @TgAPI.Name("getUserProfilePhotos")
     override val method = "getUserProfilePhotos"
     override val returnType = getReturnType()
 

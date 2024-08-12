@@ -22,7 +22,7 @@ class EditMessageTextAction private constructor() :
     OptionsFeature<EditMessageTextAction, EditMessageOptions>,
     MarkupFeature<EditMessageTextAction>,
     EntitiesFeature<EditMessageTextAction> {
-        @TgAPI.Method("editMessageText")
+        @TgAPI.Name("editMessageText")
         override val method = "editMessageText"
         override val returnType = getReturnType()
         override val options = EditMessageOptions()

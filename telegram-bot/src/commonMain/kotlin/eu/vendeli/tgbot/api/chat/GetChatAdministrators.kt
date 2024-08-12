@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 @TgAPI
 class GetChatAdministratorsAction : Action<List<ChatMember>>() {
-    @TgAPI.Method("getChatAdministrators")
+    @TgAPI.Name("getChatAdministrators")
     override val method = "getChatAdministrators"
     override val returnType = getReturnType()
 }

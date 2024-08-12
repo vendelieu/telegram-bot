@@ -17,7 +17,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class GetGameHighScoresAction :
     Action<List<GameHighScore>>,
     InlineActionExt<List<GameHighScore>> {
-    @TgAPI.Method("getGameHighScores")
+    @TgAPI.Name("getGameHighScores")
     override val method = "getGameHighScores"
     override val returnType = getReturnType()
 

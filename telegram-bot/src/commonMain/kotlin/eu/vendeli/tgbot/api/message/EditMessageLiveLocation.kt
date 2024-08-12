@@ -20,7 +20,7 @@ class EditMessageLiveLocationAction :
     BusinessActionExt<Message>,
     OptionsFeature<EditMessageLiveLocationAction, EditMessageLiveLocationOptions>,
     MarkupFeature<EditMessageLiveLocationAction> {
-    @TgAPI.Method("editMessageLiveLocation")
+    @TgAPI.Name("editMessageLiveLocation")
     override val method = "editMessageLiveLocation"
     override val returnType = getReturnType()
     override val options = EditMessageLiveLocationOptions()

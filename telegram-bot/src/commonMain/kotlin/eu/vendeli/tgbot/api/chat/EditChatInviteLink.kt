@@ -15,7 +15,7 @@ class EditChatInviteLinkAction(
     inviteLink: String,
 ) : Action<ChatInviteLink>(),
     OptionsFeature<EditChatInviteLinkAction, ChatInviteLinkOptions> {
-    @TgAPI.Method("editChatInviteLink")
+    @TgAPI.Name("editChatInviteLink")
     override val method = "editChatInviteLink"
     override val returnType = getReturnType()
     override val options = ChatInviteLinkOptions()

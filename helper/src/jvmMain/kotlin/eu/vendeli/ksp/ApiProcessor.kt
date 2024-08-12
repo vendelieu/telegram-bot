@@ -50,8 +50,10 @@ class ApiProcessor(
         }
 
         fileSpec.build().writeTo(File(utilsDir))
-        resolver.getDeclarationsFromPackage("eu.vendeli.tgbot.api")
-            .filter { i -> i.annotations.firstOrNull { it.shortName.getShortName() == "TgApi" } != null }.forEach {
+        resolver
+            .getDeclarationsFromPackage("eu.vendeli.tgbot.api")
+            .filter { i -> i.annotations.firstOrNull { it.shortName.getShortName() == "TgApi" } != null }
+            .forEach {
                 logger.warn("${it.qualifiedName!!.asString()} not marked as Api.")
             }
 

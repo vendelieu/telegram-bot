@@ -14,7 +14,7 @@ import eu.vendeli.tgbot.utils.toImplicitFile
 class SetChatPhotoAction(
     photo: ImplicitFile,
 ) : MediaAction<Boolean>() {
-    @TgAPI.Method("setChatPhoto")
+    @TgAPI.Name("setChatPhoto")
     override val method = "setChatPhoto"
     override val returnType = getReturnType()
 

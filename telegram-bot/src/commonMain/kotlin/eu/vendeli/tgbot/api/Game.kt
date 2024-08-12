@@ -19,7 +19,7 @@ class SendGameAction(
     BusinessActionExt<Message>,
     OptionsFeature<SendGameAction, GameOptions>,
     MarkupFeature<SendGameAction> {
-    @TgAPI.Method("sendGame")
+    @TgAPI.Name("sendGame")
     override val method = "sendGame"
     override val returnType = getReturnType()
     override val options = GameOptions()

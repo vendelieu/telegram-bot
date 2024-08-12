@@ -12,7 +12,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class GetBusinessConnectionAction(
     businessConnectionId: String,
 ) : SimpleAction<BusinessConnection>() {
-    @TgAPI.Method("getBusinessConnection")
+    @TgAPI.Name("getBusinessConnection")
     override val method = "getBusinessConnection"
     override val returnType = getReturnType()
 

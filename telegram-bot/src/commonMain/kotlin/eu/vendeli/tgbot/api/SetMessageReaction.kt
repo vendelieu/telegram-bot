@@ -18,7 +18,7 @@ class SetMessageReactionAction(
     reaction: List<ReactionType>? = null,
     isBig: Boolean? = null,
 ) : Action<Boolean>() {
-    @TgAPI.Method("setMessageReaction")
+    @TgAPI.Name("setMessageReaction")
     override val method = "setMessageReaction"
     override val returnType = getReturnType()
 

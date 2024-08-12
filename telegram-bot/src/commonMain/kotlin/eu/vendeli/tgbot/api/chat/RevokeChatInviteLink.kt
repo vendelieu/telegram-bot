@@ -12,7 +12,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class RevokeChatInviteLinkAction(
     inviteLink: String,
 ) : Action<ChatInviteLink>() {
-    @TgAPI.Method("revokeChatInviteLink")
+    @TgAPI.Name("revokeChatInviteLink")
     override val method = "revokeChatInviteLink"
     override val returnType = getReturnType()
 

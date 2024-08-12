@@ -49,9 +49,9 @@ class ChatSetMethodsTest : BotTestContext() {
 
     @Test
     suspend fun `set chat menu button method test`() {
-        val result = setChatMenuButton(MenuButton.Commands()).sendReturning(BOT_ID, bot).shouldSuccess()
+        val result = setChatMenuButton(MenuButton.Commands).sendReturning(BOT_ID, bot).shouldSuccess()
         result.shouldBeTrue()
-        setChatMenuButton(MenuButton.Default()).sendReturning(BOT_ID, bot).shouldSuccess()
+        setChatMenuButton(MenuButton.Default).sendReturning(BOT_ID, bot).shouldSuccess()
     }
 
     @Test

@@ -15,7 +15,7 @@ class GetMyCommandsAction(
     scope: BotCommandScope? = null,
     languageCode: String? = null,
 ) : SimpleAction<List<BotCommand>>() {
-    @TgAPI.Method("getMyCommands")
+    @TgAPI.Name("getMyCommands")
     override val method = "getMyCommands"
     override val returnType = getReturnType()
 

@@ -12,7 +12,7 @@ import kotlinx.serialization.builtins.serializer
 class DeleteMessagesAction(
     messageIds: List<Long>,
 ) : Action<Boolean>() {
-    @TgAPI.Method("deleteMessages")
+    @TgAPI.Name("deleteMessages")
     override val method = "deleteMessages"
     override val returnType = getReturnType()
 

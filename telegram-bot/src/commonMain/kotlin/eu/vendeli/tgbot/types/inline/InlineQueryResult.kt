@@ -1,9 +1,9 @@
 package eu.vendeli.tgbot.types.inline
 
 import eu.vendeli.tgbot.types.InputMessageContent
-import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
+import eu.vendeli.tgbot.types.msg.MessageEntity
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -204,14 +204,14 @@ sealed class InlineQueryResult(
         val title: String,
         val address: String,
         val foursquareId: String? = null,
-        val fourSquareType: String? = null,
+        val foursquareType: String? = null,
         val googlePlaceId: String? = null,
         val googlePlaceType: String? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val inputMessageContent: @Contextual InputMessageContent? = null,
-        val thumbUrl: String? = null,
-        val thumbWidth: Int? = null,
-        val thumbHeight: Int? = null,
+        val thumbnailUrl: String? = null,
+        val thumbnailWidth: Int? = null,
+        val thumbnailHeight: Int? = null,
     ) : InlineQueryResult("venue")
 
     @Serializable

@@ -1,10 +1,10 @@
 package eu.vendeli.tgbot.types.media
 
 import eu.vendeli.tgbot.interfaces.helper.ImplicitMediaData
-import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
+import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.utils.toImplicitFile
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -68,7 +68,7 @@ sealed class InputMedia(
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
-        val disableTypeDetection: Boolean? = null,
+        val disableContentTypeDetection: Boolean? = null,
     ) : InputMedia(type = "document") {
         constructor(
             media: String,

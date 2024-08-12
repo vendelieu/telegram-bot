@@ -11,7 +11,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class EditGeneralForumTopicAction(
     name: String,
 ) : Action<Boolean>() {
-    @TgAPI.Method("editGeneralForumTopic")
+    @TgAPI.Name("editGeneralForumTopic")
     override val method = "editGeneralForumTopic"
     override val returnType = getReturnType()
 

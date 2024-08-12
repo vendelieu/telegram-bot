@@ -16,7 +16,7 @@ class AnswerWebAppQueryAction(
     webAppQueryId: String,
     result: InlineQueryResult,
 ) : SimpleAction<SentWebAppMessage>() {
-    @TgAPI.Method("answerWebAppQuery")
+    @TgAPI.Name("answerWebAppQuery")
     override val method = "answerWebAppQuery"
     override val returnType = getReturnType()
 

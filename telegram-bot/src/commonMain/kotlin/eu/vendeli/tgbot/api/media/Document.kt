@@ -24,7 +24,7 @@ class SendDocumentAction(
     CaptionFeature<SendDocumentAction>,
     OptionsFeature<SendDocumentAction, DocumentOptions>,
     MarkupFeature<SendDocumentAction> {
-    @TgAPI.Method("sendDocument")
+    @TgAPI.Name("sendDocument")
     override val method = "sendDocument"
     override val returnType = getReturnType()
     override val options = DocumentOptions()

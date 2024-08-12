@@ -11,7 +11,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class SetChatDescriptionAction(
     description: String? = null,
 ) : Action<Boolean>() {
-    @TgAPI.Method("setChatDescription")
+    @TgAPI.Name("setChatDescription")
     override val method = "setChatDescription"
     override val returnType = getReturnType()
 

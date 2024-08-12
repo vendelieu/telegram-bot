@@ -20,7 +20,7 @@ class SendLocationAction(
     BusinessActionExt<Message>,
     OptionsFeature<SendLocationAction, LocationOptions>,
     MarkupFeature<SendLocationAction> {
-    @TgAPI.Method("sendLocation")
+    @TgAPI.Name("sendLocation")
     override val method = "sendLocation"
     override val returnType = getReturnType()
     override val options = LocationOptions()

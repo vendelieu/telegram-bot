@@ -12,7 +12,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class GetMyNameAction(
     languageCode: String? = null,
 ) : SimpleAction<BotName>() {
-    @TgAPI.Method("getMyName")
+    @TgAPI.Name("getMyName")
     override val method = "getMyName"
     override val returnType = getReturnType()
 

@@ -11,7 +11,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class ReopenForumTopicAction(
     messageThreadId: Int,
 ) : Action<Boolean>() {
-    @TgAPI.Method("reopenForumTopic")
+    @TgAPI.Name("reopenForumTopic")
     override val method = "reopenForumTopic"
     override val returnType = getReturnType()
 

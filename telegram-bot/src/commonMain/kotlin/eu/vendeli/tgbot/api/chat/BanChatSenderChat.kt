@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class BanChatSenderChatAction(
     senderChatId: Long,
 ) : Action<Boolean>() {
-    @TgAPI.Method("banChatSenderChat")
+    @TgAPI.Name("banChatSenderChat")
     override val method = "banChatSenderChat"
     override val returnType = getReturnType()
 

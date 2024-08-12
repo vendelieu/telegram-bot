@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 @TgAPI
 class ReopenGeneralForumTopicAction : Action<Boolean>() {
-    @TgAPI.Method("reopenGeneralForumTopic")
+    @TgAPI.Name("reopenGeneralForumTopic")
     override val method = "reopenGeneralForumTopic"
     override val returnType = getReturnType()
 }

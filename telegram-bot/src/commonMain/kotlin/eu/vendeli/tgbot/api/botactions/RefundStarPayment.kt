@@ -10,7 +10,7 @@ class RefundStarPaymentAction(
     telegramPaymentChargeId: String,
     userId: Long,
 ) : SimpleAction<Boolean>() {
-    @TgAPI.Method("refundStarPayment")
+    @TgAPI.Name("refundStarPayment")
     override val method = "refundStarPayment"
     override val returnType = getReturnType()
 

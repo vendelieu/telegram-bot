@@ -12,9 +12,13 @@ internal fun ApiProcessor.validateTypes(classes: Sequence<KSClassDeclaration>, a
     val types = apiFile.jsonObject["types"]!!.jsonObject
 
     classes.forEach { cls ->
-        val className = cls.annotations.firstOrNull {
-            it.shortName.getShortName() == "Name"
-        }?.arguments?.first()?.value?.toString() ?: cls.simpleName.getShortName()
+        val className = cls.annotations
+            .firstOrNull {
+                it.shortName.getShortName() == "Name"
+            }?.arguments
+            ?.first()
+            ?.value
+            ?.toString() ?: cls.simpleName.getShortName()
         val sealedSubclasses = cls.getSealedSubclasses()
 
         if (sealedSubclasses.any()) {
@@ -22,9 +26,13 @@ internal fun ApiProcessor.validateTypes(classes: Sequence<KSClassDeclaration>, a
                 val sealedName = s.simpleName.getShortName()
                 val sealedFullName = s.qualifiedName!!.asString()
                 val sealedParams = s.getAllProperties().map { it.simpleName.asString() }.toSet()
-                val apiName = s.annotations.firstOrNull {
-                    it.shortName.getShortName() == "Name"
-                }?.arguments?.first()?.value?.toString()
+                val apiName = s.annotations
+                    .firstOrNull {
+                        it.shortName.getShortName() == "Name"
+                    }?.arguments
+                    ?.first()
+                    ?.value
+                    ?.toString()
                     ?: (className + sealedName)
 
                 processClass(types, sealedParams, apiName, sealedFullName)
@@ -39,7 +47,6 @@ internal fun ApiProcessor.validateTypes(classes: Sequence<KSClassDeclaration>, a
     }
 }
 
-
 private fun ApiProcessor.processClass(types: JsonObject, params: Set<String>, name: String, fullName: String) {
     val typeInfo = types[name]?.jsonObject
     if (typeInfo == null) {
@@ -48,8 +55,15 @@ private fun ApiProcessor.processClass(types: JsonObject, params: Set<String>, na
     }
 
     typeInfo["fields"]?.jsonArray?.forEach {
-        val paramName = it.jsonObject["name"]?.jsonPrimitive?.content?.snakeToCamelCase()
+        val paramName = it.jsonObject["name"]
+            ?.jsonPrimitive
+            ?.content
+            ?.snakeToCamelCase()
         if (paramName !in params)
-            logger.exception(IllegalStateException("Parameter $paramName is not present in $fullName\n${typeInfo["href"]!!.jsonPrimitive.content}"))
+            logger.exception(
+                IllegalStateException(
+                    "Parameter $paramName is not present in $fullName\n${typeInfo["href"]!!.jsonPrimitive.content}",
+                ),
+            )
     }
 }

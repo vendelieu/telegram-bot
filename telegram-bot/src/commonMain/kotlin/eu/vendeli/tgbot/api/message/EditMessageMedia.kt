@@ -19,7 +19,7 @@ class EditMessageMediaAction :
     InlineActionExt<Message>,
     BusinessActionExt<Message>,
     MarkupFeature<EditMessageMediaAction> {
-    @TgAPI.Method("editMessageMedia")
+    @TgAPI.Name("editMessageMedia")
     override val method = "editMessageMedia"
     override val returnType = getReturnType()
 

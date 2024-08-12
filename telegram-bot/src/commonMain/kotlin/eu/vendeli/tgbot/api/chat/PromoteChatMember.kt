@@ -15,7 +15,7 @@ class PromoteChatMemberAction(
     userId: Long,
 ) : Action<Boolean>(),
     OptionsFeature<PromoteChatMemberAction, PromoteChatMemberOptions> {
-    @TgAPI.Method("promoteChatMember")
+    @TgAPI.Name("promoteChatMember")
     override val method = "promoteChatMember"
     override val returnType = getReturnType()
     override val options = PromoteChatMemberOptions()

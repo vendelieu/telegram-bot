@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 @TgAPI
 class GetWebhookInfoAction : SimpleAction<WebhookInfo>() {
-    @TgAPI.Method("getWebhookInfo")
+    @TgAPI.Name("getWebhookInfo")
     override val method = "getWebhookInfo"
     override val returnType = getReturnType()
 }

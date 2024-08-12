@@ -12,7 +12,7 @@ class SetMyNameAction(
     name: String? = null,
     languageCode: String? = null,
 ) : SimpleAction<Boolean>() {
-    @TgAPI.Method("setMyName")
+    @TgAPI.Name("setMyName")
     override val method = "setMyName"
     override val returnType = getReturnType()
 

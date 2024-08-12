@@ -18,7 +18,7 @@ class SendMediaGroupAction(
 ) : MediaAction<List<Message>>(),
     BusinessActionExt<List<Message>>,
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions> {
-    @TgAPI.Method("sendMediaGroup")
+    @TgAPI.Name("sendMediaGroup")
     override val method = "sendMediaGroup"
     override val returnType = getReturnType()
     override val options = MediaGroupOptions()

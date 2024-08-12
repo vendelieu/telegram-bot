@@ -11,7 +11,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class CloseForumTopicAction(
     messageThreadId: Int,
 ) : Action<Boolean>() {
-    @TgAPI.Method("closeForumTopic")
+    @TgAPI.Name("closeForumTopic")
     override val method = "closeForumTopic"
     override val returnType = getReturnType()
 

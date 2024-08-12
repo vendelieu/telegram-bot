@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 @TgAPI
 class GetForumTopicIconStickersAction : Action<List<Sticker>>() {
-    @TgAPI.Method("getForumTopicIconStickers")
+    @TgAPI.Name("getForumTopicIconStickers")
     override val method = "getForumTopicIconStickers"
     override val returnType = getReturnType()
 }

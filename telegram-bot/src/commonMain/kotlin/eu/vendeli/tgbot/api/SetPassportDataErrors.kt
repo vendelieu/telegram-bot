@@ -17,7 +17,7 @@ class SetPassportDataErrorsAction(
     userId: Long,
     errors: List<PassportElementError>,
 ) : SimpleAction<Boolean>() {
-    @TgAPI.Method("setPassportDataErrors")
+    @TgAPI.Name("setPassportDataErrors")
     override val method = "setPassportDataErrors"
     override val returnType = getReturnType()
 

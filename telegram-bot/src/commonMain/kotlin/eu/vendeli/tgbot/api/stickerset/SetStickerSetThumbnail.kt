@@ -18,7 +18,7 @@ class SetStickerSetThumbnailAction(
     format: StickerFormat,
     thumbnail: ImplicitFile? = null,
 ) : SimpleAction<Boolean>() {
-    @TgAPI.Method("setStickerSetThumbnail")
+    @TgAPI.Name("setStickerSetThumbnail")
     override val method = "setStickerSetThumbnail"
     override val returnType = getReturnType()
 

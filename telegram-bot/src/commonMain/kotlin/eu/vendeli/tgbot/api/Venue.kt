@@ -21,7 +21,7 @@ class SendVenueAction(
 ) : Action<Message>(),
     OptionsFeature<SendVenueAction, VenueOptions>,
     MarkupFeature<SendVenueAction> {
-    @TgAPI.Method("sendVenue")
+    @TgAPI.Name("sendVenue")
     override val method = "sendVenue"
     override val returnType = getReturnType()
     override val options = VenueOptions()

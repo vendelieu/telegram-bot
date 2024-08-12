@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.msg
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import eu.vendeli.tgbot.utils.serde.primitiveOrNull
@@ -27,6 +28,7 @@ sealed class MaybeInaccessibleMessage {
     abstract val date: Instant
 
     @Serializable
+    @TgAPI.Name("InaccessibleMessage")
     data class InaccessibleMessage(
         override val chat: Chat,
         override val messageId: Long,

@@ -14,7 +14,7 @@ class DeleteMyCommandsAction(
     scope: BotCommandScope? = null,
     languageCode: String? = null,
 ) : SimpleAction<Boolean>() {
-    @TgAPI.Method("deleteMyCommands")
+    @TgAPI.Name("deleteMyCommands")
     override val method = "deleteMyCommands"
     override val returnType = getReturnType()
 

@@ -16,7 +16,7 @@ class SendChatActionAction(
     messageThreadId: Int? = null,
 ) : Action<Boolean>(),
     BusinessActionExt<Boolean> {
-    @TgAPI.Method("sendChatAction")
+    @TgAPI.Name("sendChatAction")
     override val method = "sendChatAction"
     override val returnType = getReturnType()
 

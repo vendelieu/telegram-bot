@@ -17,7 +17,7 @@ class StopMessageLiveLocationAction() :
     InlineActionExt<Message>,
     BusinessActionExt<Message>,
     MarkupFeature<StopMessageLiveLocationAction> {
-    @TgAPI.Method("stopMessageLiveLocation")
+    @TgAPI.Name("stopMessageLiveLocation")
     override val method = "stopMessageLiveLocation"
     override val returnType = getReturnType()
 

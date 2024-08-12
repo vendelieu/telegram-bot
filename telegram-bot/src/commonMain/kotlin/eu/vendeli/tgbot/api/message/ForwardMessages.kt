@@ -21,7 +21,7 @@ class ForwardMessagesAction(
     messageIds: List<Long>,
 ) : Action<List<MessageId>>(),
     OptionsFeature<ForwardMessagesAction, ForwardMessageOptions> {
-    @TgAPI.Method("forwardMessages")
+    @TgAPI.Name("forwardMessages")
     override val method = "forwardMessages"
     override val returnType = getReturnType()
     override val options = ForwardMessageOptions()

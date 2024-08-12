@@ -20,7 +20,7 @@ class CreateNewStickerSetAction(
     stickers: List<InputSticker>,
 ) : SimpleAction<Boolean>(),
     OptionsFeature<CreateNewStickerSetAction, CreateNewStickerSetOptions> {
-    @TgAPI.Method("createNewStickerSet")
+    @TgAPI.Name("createNewStickerSet")
     override val method = "createNewStickerSet"
     override val returnType = getReturnType()
     override val options = CreateNewStickerSetOptions()

@@ -12,7 +12,7 @@ class SetStickerSetTitleAction(
     name: String,
     title: String,
 ) : SimpleAction<Boolean>() {
-    @TgAPI.Method("setStickerSetTitle")
+    @TgAPI.Name("setStickerSetTitle")
     override val method = "setStickerSetTitle"
     override val returnType = getReturnType()
 

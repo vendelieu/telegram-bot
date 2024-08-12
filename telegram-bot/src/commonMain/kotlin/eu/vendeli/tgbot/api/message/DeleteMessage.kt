@@ -11,7 +11,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class DeleteMessageAction(
     messageId: Long,
 ) : Action<Boolean>() {
-    @TgAPI.Method("deleteMessage")
+    @TgAPI.Name("deleteMessage")
     override val method = "deleteMessage"
     override val returnType = getReturnType()
 

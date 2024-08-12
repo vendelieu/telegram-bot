@@ -11,7 +11,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class SetChatTitleAction(
     title: String,
 ) : Action<Boolean>() {
-    @TgAPI.Method("setChatTitle")
+    @TgAPI.Name("setChatTitle")
     override val method = "setChatTitle"
     override val returnType = getReturnType()
 

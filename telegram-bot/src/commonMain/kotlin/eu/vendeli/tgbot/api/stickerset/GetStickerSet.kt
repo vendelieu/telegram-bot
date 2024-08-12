@@ -12,7 +12,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class GetStickerSetAction(
     name: String,
 ) : SimpleAction<StickerSet>() {
-    @TgAPI.Method("getStickerSet")
+    @TgAPI.Name("getStickerSet")
     override val method = "getStickerSet"
     override val returnType = getReturnType()
 

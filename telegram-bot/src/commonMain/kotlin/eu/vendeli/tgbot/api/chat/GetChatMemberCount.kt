@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 @TgAPI
 class GetChatMemberCountAction : Action<Int>() {
-    @TgAPI.Method("getChatMemberCount")
+    @TgAPI.Name("getChatMemberCount")
     override val method = "getChatMemberCount"
     override val returnType = getReturnType()
 }

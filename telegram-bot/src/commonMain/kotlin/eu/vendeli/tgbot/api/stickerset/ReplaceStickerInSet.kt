@@ -17,7 +17,7 @@ class ReplaceStickerInSetAction(
     oldSticker: String,
     sticker: InputSticker,
 ) : Action<Boolean>() {
-    @TgAPI.Method("replaceStickerInSet")
+    @TgAPI.Name("replaceStickerInSet")
     override val method = "replaceStickerInSet"
     override val returnType = getReturnType()
 

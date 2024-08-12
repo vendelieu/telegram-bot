@@ -14,7 +14,7 @@ class SetChatPermissionsAction(
     permissions: ChatPermissions,
     useIndependentChatPermissions: Boolean? = null,
 ) : Action<Boolean>() {
-    @TgAPI.Method("setChatPermissions")
+    @TgAPI.Name("setChatPermissions")
     override val method = "setChatPermissions"
     override val returnType = getReturnType()
 

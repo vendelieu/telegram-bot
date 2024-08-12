@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.internal.Currency
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.payment.LabeledPrice
@@ -8,6 +9,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed class InputMessageContent {
     @Serializable
+    @TgAPI.Name("InputTextMessageContent")
     data class Text(
         val messageText: String,
         val parseMode: ParseMode? = null,
@@ -16,6 +18,7 @@ sealed class InputMessageContent {
     ) : InputMessageContent()
 
     @Serializable
+    @TgAPI.Name("InputLocationMessageContent")
     data class LocationContent(
         val latitude: Float,
         val longitude: Float,
@@ -26,18 +29,20 @@ sealed class InputMessageContent {
     ) : InputMessageContent()
 
     @Serializable
+    @TgAPI.Name("InputVenueMessageContent")
     data class VenueContent(
         val latitude: Float,
         val longitude: Float,
         val title: String,
         val address: String,
         val foursquareId: String? = null,
-        val fourSquareType: String? = null,
+        val foursquareType: String? = null,
         val googlePlaceId: String? = null,
         val googlePlaceType: String? = null,
     ) : InputMessageContent()
 
     @Serializable
+    @TgAPI.Name("InputContactMessageContent")
     data class ContactContent(
         val phoneNumber: String,
         val firstName: String,
@@ -47,6 +52,7 @@ sealed class InputMessageContent {
     ) : InputMessageContent()
 
     @Serializable
+    @TgAPI.Name("InputInvoiceMessageContent")
     data class InvoiceContent(
         val title: String,
         val description: String,

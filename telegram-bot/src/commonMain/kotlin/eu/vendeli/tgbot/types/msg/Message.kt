@@ -1,12 +1,9 @@
 package eu.vendeli.tgbot.types.msg
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
 import eu.vendeli.tgbot.types.Contact
 import eu.vendeli.tgbot.types.ExternalReplyInfo
-import eu.vendeli.tgbot.types.giveaway.Giveaway
-import eu.vendeli.tgbot.types.giveaway.GiveawayCompleted
-import eu.vendeli.tgbot.types.giveaway.GiveawayCreated
-import eu.vendeli.tgbot.types.giveaway.GiveawayWinners
 import eu.vendeli.tgbot.types.LinkPreviewOptions
 import eu.vendeli.tgbot.types.Location
 import eu.vendeli.tgbot.types.ProximityAlertTriggered
@@ -27,6 +24,10 @@ import eu.vendeli.tgbot.types.forum.GeneralForumTopicHidden
 import eu.vendeli.tgbot.types.forum.GeneralForumTopicUnhidden
 import eu.vendeli.tgbot.types.game.Dice
 import eu.vendeli.tgbot.types.game.Game
+import eu.vendeli.tgbot.types.giveaway.Giveaway
+import eu.vendeli.tgbot.types.giveaway.GiveawayCompleted
+import eu.vendeli.tgbot.types.giveaway.GiveawayCreated
+import eu.vendeli.tgbot.types.giveaway.GiveawayWinners
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.types.keyboard.WebAppData
 import eu.vendeli.tgbot.types.media.Animation
@@ -143,6 +144,7 @@ import kotlinx.serialization.Serializable
  * @property replyMarkup Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons.
  */
 @Serializable
+@TgAPI.Name("Message")
 data class Message(
     override val messageId: Long,
     val messageThreadId: Int? = null,

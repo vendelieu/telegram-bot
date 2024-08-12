@@ -13,11 +13,11 @@ internal fun String.beginWithUpperCase(): String = when (this.length) {
     else -> this[0].uppercase() + this.substring(1)
 }
 
-internal fun String.snakeToCamelCase() = split('_').mapIndexed { i, it ->
-    if (i == 0) return@mapIndexed it
-    it.beginWithUpperCase()
-}.joinToString("")
-
+internal fun String.snakeToCamelCase() = split('_')
+    .mapIndexed { i, it ->
+        if (i == 0) return@mapIndexed it
+        it.beginWithUpperCase()
+    }.joinToString("")
 
 @Suppress("UNCHECKED_CAST")
 @OptIn(KspExperimental::class)
@@ -31,11 +31,13 @@ internal fun Resolver.resolveSymbolsFromDir(path: String): List<KSClassDeclarati
     val output: MutableList<KSClassDeclaration> = mutableListOf()
 
     packages.forEach { pkg ->
-        (getDeclarationsFromPackage(pkg).filter {
-            it is KSClassDeclaration &&
-                // not enum
-                it.classKind != ClassKind.ENUM_CLASS
-        } as Sequence<KSClassDeclaration>).toList().let {
+        (
+            getDeclarationsFromPackage(pkg).filter {
+                it is KSClassDeclaration &&
+                    // not enum
+                    it.classKind != ClassKind.ENUM_CLASS
+            } as Sequence<KSClassDeclaration>
+        ).toList().let {
             output.addAll(it)
         }
     }

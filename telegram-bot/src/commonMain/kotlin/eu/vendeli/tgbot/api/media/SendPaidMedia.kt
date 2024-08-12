@@ -23,7 +23,7 @@ class SendPaidMediaAction(
     CaptionFeature<SendPaidMediaAction>,
     EntitiesFeature<SendPaidMediaAction>,
     MarkupFeature<SendPaidMediaAction> {
-    @TgAPI.Method("sendPaidMedia")
+    @TgAPI.Name("sendPaidMedia")
     override val method = "sendPaidMedia"
     override val returnType = getReturnType()
     override val options = PaidMediaOptions()

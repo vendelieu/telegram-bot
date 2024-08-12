@@ -17,7 +17,7 @@ class AddStickerToSetAction(
     name: String,
     sticker: InputSticker,
 ) : SimpleAction<Boolean>() {
-    @TgAPI.Method("addStickerToSet")
+    @TgAPI.Name("addStickerToSet")
     override val method = "addStickerToSet"
     override val returnType = getReturnType()
 

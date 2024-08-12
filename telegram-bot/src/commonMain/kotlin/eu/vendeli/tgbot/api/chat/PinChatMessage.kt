@@ -14,7 +14,7 @@ class PinChatMessageAction(
     disableNotification: Boolean? = null,
 ) : Action<Boolean>(),
     BusinessActionExt<Boolean> {
-    @TgAPI.Method("pinChatMessage")
+    @TgAPI.Name("pinChatMessage")
     override val method = "pinChatMessage"
     override val returnType = getReturnType()
 

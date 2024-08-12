@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 @TgAPI
 class LogOutAction : SimpleAction<Boolean>() {
-    @TgAPI.Method("logOut")
+    @TgAPI.Name("logOut")
     override val method = "logOut"
     override val returnType = getReturnType()
 }

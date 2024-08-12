@@ -40,6 +40,7 @@ sealed class ChatMember(
         val canPostMessages: Boolean? = null,
         val canEditMessages: Boolean? = null,
         val canPinMessages: Boolean? = null,
+        val canManageVideoChats: Boolean? = null,
         val canManageTopics: Boolean? = null,
         val canPostStories: Boolean? = null,
         val canEditStories: Boolean? = null,

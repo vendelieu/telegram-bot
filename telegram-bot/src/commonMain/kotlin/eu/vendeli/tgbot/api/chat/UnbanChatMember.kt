@@ -13,7 +13,7 @@ class UnbanChatMemberAction(
     userId: Long,
     onlyIfBanned: Boolean? = null,
 ) : Action<Boolean>() {
-    @TgAPI.Method("unbanChatMember")
+    @TgAPI.Name("unbanChatMember")
     override val method = "unbanChatMember"
     override val returnType = getReturnType()
 

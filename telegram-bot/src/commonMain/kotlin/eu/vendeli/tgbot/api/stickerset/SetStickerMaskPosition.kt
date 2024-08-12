@@ -14,7 +14,7 @@ class SetStickerMaskPositionAction(
     sticker: String,
     maskPosition: MaskPosition? = null,
 ) : SimpleAction<Boolean>() {
-    @TgAPI.Method("setStickerMaskPosition")
+    @TgAPI.Name("setStickerMaskPosition")
     override val method = "setStickerMaskPosition"
     override val returnType = getReturnType()
 

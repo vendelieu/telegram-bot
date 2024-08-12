@@ -20,7 +20,7 @@ class SendContactAction(
     BusinessActionExt<Message>,
     OptionsFeature<SendContactAction, ContactOptions>,
     MarkupFeature<SendContactAction> {
-    @TgAPI.Method("sendContact")
+    @TgAPI.Name("sendContact")
     override val method = "sendContact"
     override val returnType = getReturnType()
     override val options = ContactOptions()

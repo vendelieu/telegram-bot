@@ -14,7 +14,7 @@ class SetStickerEmojiListAction(
     sticker: String,
     emojiList: List<String>,
 ) : SimpleAction<Boolean>() {
-    @TgAPI.Method("setStickerEmojiList")
+    @TgAPI.Name("setStickerEmojiList")
     override val method = "setStickerEmojiList"
     override val returnType = getReturnType()
 

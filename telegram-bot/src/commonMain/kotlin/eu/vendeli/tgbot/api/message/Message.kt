@@ -22,7 +22,7 @@ class SendMessageAction private constructor() :
     MarkupFeature<SendMessageAction>,
     EntitiesFeature<SendMessageAction>,
     EntitiesCtxBuilder<SendMessageAction> {
-        @TgAPI.Method("sendMessage")
+        @TgAPI.Name("sendMessage")
         override val method = "sendMessage"
         override val returnType = getReturnType()
         override val options = MessageOptions()

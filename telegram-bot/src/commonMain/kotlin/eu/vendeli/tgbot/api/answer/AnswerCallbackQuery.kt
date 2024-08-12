@@ -14,7 +14,7 @@ class AnswerCallbackQueryAction(
     callbackQueryId: String,
 ) : Action<Boolean>(),
     OptionsFeature<AnswerCallbackQueryAction, AnswerCallbackQueryOptions> {
-    @TgAPI.Method("answerCallbackQuery")
+    @TgAPI.Name("answerCallbackQuery")
     override val method = "answerCallbackQuery"
     override val returnType = getReturnType()
     override val options = AnswerCallbackQueryOptions()
