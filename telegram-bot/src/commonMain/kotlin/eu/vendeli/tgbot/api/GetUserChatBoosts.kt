@@ -13,6 +13,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class GetUserChatBoostsAction(
     val userId: Long,
 ) : Action<UserChatBoosts>() {
+    @TgAPI.Method("getUserChatBoosts")
     override val method = "getUserChatBoosts"
     override val returnType = getReturnType()
 

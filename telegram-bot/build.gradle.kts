@@ -102,6 +102,10 @@ ksp {
         "outputDir",
         rootDir.resolve("ktgram-utils/src/commonMain/kotlin/").absolutePath,
     )
+    arg(
+        "apiFile",
+        rootDir.resolve("buildSrc/src/main/resources/api.json").absolutePath
+    )
 }
 
 tasks {

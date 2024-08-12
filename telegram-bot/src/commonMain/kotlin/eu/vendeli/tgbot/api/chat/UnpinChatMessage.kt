@@ -13,6 +13,7 @@ class UnpinChatMessageAction(
     messageId: Long,
 ) : Action<Boolean>(),
     BusinessActionExt<Boolean> {
+    @TgAPI.Method("unpinChatMessage")
     override val method = "unpinChatMessage"
     override val returnType = getReturnType()
 

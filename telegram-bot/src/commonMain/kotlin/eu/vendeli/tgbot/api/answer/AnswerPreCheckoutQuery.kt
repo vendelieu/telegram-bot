@@ -14,6 +14,8 @@ class AnswerPreCheckoutQueryAction(
     errorMessage: String? = null,
 ) : SimpleAction<Boolean>() {
     override val returnType = getReturnType()
+
+    @TgAPI.Method("answerPreCheckoutQuery")
     override val method = "answerPreCheckoutQuery"
 
     init {

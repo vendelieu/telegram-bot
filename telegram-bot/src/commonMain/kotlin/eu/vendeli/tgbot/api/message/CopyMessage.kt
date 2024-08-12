@@ -25,6 +25,7 @@ class CopyMessageAction(
     OptionsFeature<CopyMessageAction, CopyMessageOptions>,
     MarkupFeature<CopyMessageAction>,
     CaptionFeature<CopyMessageAction> {
+    @TgAPI.Method("copyMessage")
     override val method = "copyMessage"
     override val returnType = getReturnType()
     override val options = CopyMessageOptions()

@@ -13,6 +13,7 @@ class EditForumTopicAction(
     name: String? = null,
     iconCustomEmojiId: String? = null,
 ) : Action<Boolean>() {
+    @TgAPI.Method("editForumTopic")
     override val method = "editForumTopic"
     override val returnType = getReturnType()
 

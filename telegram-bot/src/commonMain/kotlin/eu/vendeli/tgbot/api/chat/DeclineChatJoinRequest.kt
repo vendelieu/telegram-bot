@@ -12,6 +12,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class DeclineChatJoinRequestAction(
     userId: Long,
 ) : Action<Boolean>() {
+    @TgAPI.Method("declineChatJoinRequest")
     override val method = "declineChatJoinRequest"
     override val returnType = getReturnType()
 

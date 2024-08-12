@@ -14,22 +14,23 @@ import eu.vendeli.tgbot.utils.handleImplicitFileGroup
 
 @TgAPI
 class SendMediaGroupAction(
-    inputMedia: List<InputMedia>,
+    media: List<InputMedia>,
 ) : MediaAction<List<Message>>(),
     BusinessActionExt<List<Message>>,
     OptionsFeature<SendMediaGroupAction, MediaGroupOptions> {
+    @TgAPI.Method("sendMediaGroup")
     override val method = "sendMediaGroup"
     override val returnType = getReturnType()
     override val options = MediaGroupOptions()
 
     init {
         // check api restricts
-        val mediaType = inputMedia.first().type
-        require(inputMedia.all { it.type == mediaType && it.type != "animation" }) {
+        val mediaType = media.first().type
+        require(media.all { it.type == mediaType && it.type != "animation" }) {
             "All elements must be of the same specific type and animation is not supported by telegram api"
         }
 
-        handleImplicitFileGroup(inputMedia)
+        handleImplicitFileGroup(media)
     }
 }
 

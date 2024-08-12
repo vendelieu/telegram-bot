@@ -22,6 +22,7 @@ class EditMessageCaptionAction() :
     OptionsFeature<EditMessageCaptionAction, EditCaptionOptions>,
     MarkupFeature<EditMessageCaptionAction>,
     CaptionFeature<EditMessageCaptionAction> {
+    @TgAPI.Method("editMessageCaption")
     override val method = "editMessageCaption"
     override val returnType = getReturnType()
     override val options = EditCaptionOptions()

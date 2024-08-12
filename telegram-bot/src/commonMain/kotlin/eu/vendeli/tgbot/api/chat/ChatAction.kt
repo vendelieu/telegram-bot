@@ -11,11 +11,12 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
 @TgAPI
-class SendChatAction(
+class SendChatActionAction(
     action: ChatAction,
     messageThreadId: Int? = null,
 ) : Action<Boolean>(),
     BusinessActionExt<Boolean> {
+    @TgAPI.Method("sendChatAction")
     override val method = "sendChatAction"
     override val returnType = getReturnType()
 
@@ -38,7 +39,7 @@ class SendChatAction(
  */
 @Suppress("NOTHING_TO_INLINE")
 @TgAPI
-inline fun chatAction(action: ChatAction, messageThreadId: Int? = null) = SendChatAction(action, messageThreadId)
+inline fun chatAction(action: ChatAction, messageThreadId: Int? = null) = SendChatActionAction(action, messageThreadId)
 
 @TgAPI
 inline fun chatAction(messageThreadId: Int? = null, block: () -> ChatAction) = chatAction(block(), messageThreadId)

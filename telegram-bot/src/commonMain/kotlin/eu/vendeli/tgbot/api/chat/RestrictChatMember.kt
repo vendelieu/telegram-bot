@@ -18,6 +18,7 @@ class RestrictChatMemberAction(
     untilDate: Instant? = null,
     useIndependentChatPermissions: Boolean? = null,
 ) : Action<Boolean>() {
+    @TgAPI.Method("restrictChatMember")
     override val method = "restrictChatMember"
     override val returnType = getReturnType()
 

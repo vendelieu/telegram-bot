@@ -15,6 +15,7 @@ class BanChatMemberAction(
     untilDate: Instant? = null,
     revokeMessages: Boolean? = null,
 ) : Action<Boolean>() {
+    @TgAPI.Method("banChatMember")
     override val method = "banChatMember"
     override val returnType = getReturnType()
 

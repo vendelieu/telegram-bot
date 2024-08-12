@@ -23,6 +23,8 @@ class CreateInvoiceLinkAction(
 ) : SimpleAction<String>(),
     OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions> {
     override val options = CreateInvoiceLinkOptions()
+
+    @TgAPI.Method("createInvoiceLink")
     override val method = "createInvoiceLink"
     override val returnType = getReturnType()
 

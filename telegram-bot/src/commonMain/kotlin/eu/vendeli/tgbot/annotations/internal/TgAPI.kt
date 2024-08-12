@@ -9,4 +9,10 @@ package eu.vendeli.tgbot.annotations.internal
     AnnotationTarget.CLASS,
     AnnotationTarget.FUNCTION,
 )
-annotation class TgAPI
+annotation class TgAPI {
+    @Retention(AnnotationRetention.SOURCE)
+    @Target(AnnotationTarget.PROPERTY)
+    annotation class Method(
+        val name: String,
+    )
+}

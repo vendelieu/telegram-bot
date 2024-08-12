@@ -12,6 +12,7 @@ class SetCustomEmojiStickerSetThumbnailAction(
     name: String,
     customEmojiId: String? = null,
 ) : SimpleAction<Boolean>() {
+    @TgAPI.Method("setCustomEmojiStickerSetThumbnail")
     override val method = "setCustomEmojiStickerSetThumbnail"
     override val returnType = getReturnType()
 

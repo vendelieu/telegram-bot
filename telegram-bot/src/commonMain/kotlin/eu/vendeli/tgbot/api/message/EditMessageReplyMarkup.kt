@@ -17,6 +17,7 @@ class EditMessageReplyMarkupAction() :
     InlineActionExt<Message>,
     BusinessActionExt<Message>,
     MarkupFeature<EditMessageReplyMarkupAction> {
+    @TgAPI.Method("editMessageReplyMarkup")
     override val method = "editMessageReplyMarkup"
     override val returnType = getReturnType()
 

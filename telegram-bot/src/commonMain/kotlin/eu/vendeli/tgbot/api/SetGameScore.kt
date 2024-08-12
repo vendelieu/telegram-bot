@@ -17,6 +17,7 @@ class SetGameScoreAction :
     Action<Message>,
     InlineActionExt<Message>,
     OptionsFeature<SetGameScoreAction, SetGameScoreOptions> {
+    @TgAPI.Method("setGameScore")
     override val method = "setGameScore"
     override val returnType = getReturnType()
     override val options = SetGameScoreOptions()

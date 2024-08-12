@@ -24,6 +24,7 @@ class SendVoiceAction(
     OptionsFeature<SendVoiceAction, VoiceOptions>,
     MarkupFeature<SendVoiceAction>,
     CaptionFeature<SendVoiceAction> {
+    @TgAPI.Method("sendVoice")
     override val method = "sendVoice"
     override val returnType = getReturnType()
     override val options = VoiceOptions()

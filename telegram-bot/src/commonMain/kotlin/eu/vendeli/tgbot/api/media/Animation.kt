@@ -24,6 +24,7 @@ class SendAnimationAction(
     OptionsFeature<SendAnimationAction, AnimationOptions>,
     MarkupFeature<SendAnimationAction>,
     CaptionFeature<SendAnimationAction> {
+    @TgAPI.Method("sendAnimation")
     override val method = "sendAnimation"
     override val returnType = getReturnType()
     override val options = AnimationOptions()

@@ -17,6 +17,7 @@ class AnswerShippingQueryAction(
     shippingOptions: List<ShippingOption>? = null,
     errorMessage: String? = null,
 ) : SimpleAction<Boolean>() {
+    @TgAPI.Method("answerShippingQuery")
     override val method = "answerShippingQuery"
     override val returnType = getReturnType()
 

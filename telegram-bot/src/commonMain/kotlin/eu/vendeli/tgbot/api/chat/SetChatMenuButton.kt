@@ -12,6 +12,7 @@ import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 class SetChatMenuButtonAction(
     menuButton: MenuButton,
 ) : Action<Boolean>() {
+    @TgAPI.Method("setChatMenuButton")
     override val method = "setChatMenuButton"
     override val returnType = getReturnType()
 

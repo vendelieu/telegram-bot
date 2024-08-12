@@ -12,6 +12,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class GetMyShortDescriptionAction(
     languageCode: String? = null,
 ) : SimpleAction<BotShortDescription>() {
+    @TgAPI.Method("getMyShortDescription")
     override val method = "getMyShortDescription"
     override val returnType = getReturnType()
 

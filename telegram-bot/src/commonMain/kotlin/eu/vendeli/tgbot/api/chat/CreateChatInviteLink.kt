@@ -13,6 +13,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 class CreateChatInviteLinkAction :
     Action<ChatInviteLink>(),
     OptionsFeature<CreateChatInviteLinkAction, ChatInviteLinkOptions> {
+    @TgAPI.Method("createChatInviteLink")
     override val method = "createChatInviteLink"
     override val returnType = getReturnType()
     override val options = ChatInviteLinkOptions()

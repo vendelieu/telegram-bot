@@ -24,6 +24,7 @@ class SendVideoAction(
     OptionsFeature<SendVideoAction, VideoOptions>,
     MarkupFeature<SendVideoAction>,
     CaptionFeature<SendVideoAction> {
+    @TgAPI.Method("sendVideo")
     override val method = "sendVideo"
     override val returnType = getReturnType()
     override val options = VideoOptions()

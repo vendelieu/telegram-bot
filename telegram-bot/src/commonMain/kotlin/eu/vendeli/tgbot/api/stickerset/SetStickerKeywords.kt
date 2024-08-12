@@ -14,6 +14,7 @@ class SetStickerKeywordsAction(
     sticker: String,
     keywords: List<String>? = null,
 ) : SimpleAction<Boolean>() {
+    @TgAPI.Method("setStickerKeywords")
     override val method = "setStickerKeywords"
     override val returnType = getReturnType()
 

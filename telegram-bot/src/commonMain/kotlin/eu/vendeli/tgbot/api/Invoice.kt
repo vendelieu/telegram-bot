@@ -25,6 +25,7 @@ class SendInvoiceAction(
 ) : Action<Message>(),
     OptionsFeature<SendInvoiceAction, InvoiceOptions>,
     MarkupFeature<SendInvoiceAction> {
+    @TgAPI.Method("sendInvoice")
     override val method = "sendInvoice"
     override val returnType = getReturnType()
     override val options = InvoiceOptions()

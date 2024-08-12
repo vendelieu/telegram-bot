@@ -19,18 +19,19 @@ class EditMessageMediaAction :
     InlineActionExt<Message>,
     BusinessActionExt<Message>,
     MarkupFeature<EditMessageMediaAction> {
+    @TgAPI.Method("editMessageMedia")
     override val method = "editMessageMedia"
     override val returnType = getReturnType()
 
-    constructor(inputMedia: InputMedia) {
-        inputMedia.media = inputMedia.media.transform(multipartData)
-        parameters["media"] = inputMedia.encodeWith(DynamicLookupSerializer)
+    constructor(media: InputMedia) {
+        media.media = media.media.transform(multipartData)
+        parameters["media"] = media.encodeWith(DynamicLookupSerializer)
     }
 
-    constructor(messageId: Long, inputMedia: InputMedia) {
-        inputMedia.media = inputMedia.media.transform(multipartData)
+    constructor(messageId: Long, media: InputMedia) {
+        media.media = media.media.transform(multipartData)
         parameters["message_id"] = messageId.toJsonElement()
-        parameters["media"] = inputMedia.encodeWith(DynamicLookupSerializer)
+        parameters["media"] = media.encodeWith(DynamicLookupSerializer)
     }
 }
 

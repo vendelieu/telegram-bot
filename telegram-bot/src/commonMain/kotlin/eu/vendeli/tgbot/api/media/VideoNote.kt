@@ -22,6 +22,7 @@ class SendVideoNoteAction(
     BusinessActionExt<Message>,
     OptionsFeature<SendVideoNoteAction, VideoNoteOptions>,
     MarkupFeature<SendVideoNoteAction> {
+    @TgAPI.Method("sendVideoNote")
     override val method = "sendVideoNote"
     override val returnType = getReturnType()
     override val options = VideoNoteOptions()

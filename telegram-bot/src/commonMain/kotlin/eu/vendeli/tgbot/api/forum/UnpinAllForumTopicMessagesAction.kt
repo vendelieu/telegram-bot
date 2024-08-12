@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class UnpinAllForumTopicMessagesAction(
     messageThreadId: Int,
 ) : Action<Boolean>() {
+    @TgAPI.Method("unpinAllForumTopicMessages")
     override val method = "unpinAllForumTopicMessages"
     override val returnType = getReturnType()
 

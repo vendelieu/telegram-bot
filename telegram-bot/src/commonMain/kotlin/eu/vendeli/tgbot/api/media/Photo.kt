@@ -24,6 +24,7 @@ class SendPhotoAction(
     OptionsFeature<SendPhotoAction, PhotoOptions>,
     MarkupFeature<SendPhotoAction>,
     CaptionFeature<SendPhotoAction> {
+    @TgAPI.Method("sendPhoto")
     override val method = "sendPhoto"
     override val returnType = getReturnType()
     override val options = PhotoOptions()

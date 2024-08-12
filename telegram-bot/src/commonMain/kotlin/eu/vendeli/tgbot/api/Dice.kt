@@ -19,6 +19,7 @@ class SendDiceAction(
     BusinessActionExt<Message>,
     OptionsFeature<SendDiceAction, DiceOptions>,
     MarkupFeature<SendDiceAction> {
+    @TgAPI.Method("sendDice")
     override val method = "sendDice"
     override val returnType = getReturnType()
     override val options = DiceOptions()

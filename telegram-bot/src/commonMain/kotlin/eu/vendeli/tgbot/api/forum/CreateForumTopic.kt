@@ -16,6 +16,7 @@ class CreateForumTopicAction(
     iconColor: IconColor? = null,
     iconCustomEmojiId: String? = null,
 ) : Action<ForumTopic>() {
+    @TgAPI.Method("createForumTopic")
     override val method = "createForumTopic"
     override val returnType = getReturnType()
 

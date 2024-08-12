@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class SetChatStickerSetAction(
     stickerSetName: String,
 ) : Action<Boolean>() {
+    @TgAPI.Method("setChatStickerSet")
     override val method = "setChatStickerSet"
     override val returnType = getReturnType()
 

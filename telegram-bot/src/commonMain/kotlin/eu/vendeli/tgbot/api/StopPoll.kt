@@ -16,6 +16,7 @@ class StopPollAction(
 ) : Action<Poll>(),
     BusinessActionExt<Poll>,
     MarkupFeature<SendPollAction> {
+    @TgAPI.Method("stopPoll")
     override val method = "stopPoll"
     override val returnType = getReturnType()
 

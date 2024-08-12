@@ -23,6 +23,7 @@ class SendPollAction(
     OptionsFeature<SendPollAction, PollOptions>,
     EntitiesFeature<SendPollAction>,
     MarkupFeature<SendPollAction> {
+    @TgAPI.Method("sendPoll")
     override val method = "sendPoll"
     override val returnType = getReturnType()
     override val options = PollOptions()

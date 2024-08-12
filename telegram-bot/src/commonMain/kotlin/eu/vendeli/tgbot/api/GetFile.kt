@@ -12,6 +12,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class GetFileAction(
     fileId: String,
 ) : SimpleAction<File>() {
+    @TgAPI.Method("getFile")
     override val method = "getFile"
     override val returnType = getReturnType()
 

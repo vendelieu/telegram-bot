@@ -20,6 +20,7 @@ class AnswerInlineQueryAction(
     results: List<InlineQueryResult>,
 ) : SimpleAction<Boolean>(),
     OptionsFeature<AnswerInlineQueryAction, AnswerInlineQueryOptions> {
+    @TgAPI.Method("answerInlineQuery")
     override val method = "answerInlineQuery"
     override val returnType = getReturnType()
     override val options = AnswerInlineQueryOptions()

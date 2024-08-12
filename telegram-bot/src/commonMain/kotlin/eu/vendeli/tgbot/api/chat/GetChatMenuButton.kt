@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 @TgAPI
 class GetChatMenuButtonAction : Action<MenuButton>() {
+    @TgAPI.Method("getChatMenuButton")
     override val method = "getChatMenuButton"
     override val returnType = getReturnType()
 }

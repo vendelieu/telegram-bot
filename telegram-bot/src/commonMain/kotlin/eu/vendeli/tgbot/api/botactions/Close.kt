@@ -8,6 +8,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 @TgAPI
 class CloseAction : SimpleAction<Boolean>() {
+    @TgAPI.Method("close")
     override val method = "close"
     override val returnType = getReturnType()
 }

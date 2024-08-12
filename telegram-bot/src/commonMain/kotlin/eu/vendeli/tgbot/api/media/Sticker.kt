@@ -22,6 +22,7 @@ class SendStickerAction(
     BusinessActionExt<Message>,
     OptionsFeature<SendStickerAction, StickerOptions>,
     MarkupFeature<SendStickerAction> {
+    @TgAPI.Method("sendSticker")
     override val method = "sendSticker"
     override val returnType = getReturnType()
     override val options = StickerOptions()

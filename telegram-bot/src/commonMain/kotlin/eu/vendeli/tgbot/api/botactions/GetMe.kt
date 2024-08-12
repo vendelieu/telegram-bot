@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 @TgAPI
 class GetMeAction : SimpleAction<User>() {
+    @TgAPI.Method("getMe")
     override val method = "getMe"
     override val returnType = getReturnType()
 }

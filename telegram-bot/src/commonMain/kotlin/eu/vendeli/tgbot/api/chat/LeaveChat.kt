@@ -8,6 +8,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 @TgAPI
 class LeaveChatAction : Action<Boolean>() {
+    @TgAPI.Method("leaveChat")
     override val method = "leaveChat"
     override val returnType = getReturnType()
 }

@@ -15,15 +15,16 @@ import kotlin.collections.set
 class AddStickerToSetAction(
     userId: Long,
     name: String,
-    input: InputSticker,
+    sticker: InputSticker,
 ) : SimpleAction<Boolean>() {
+    @TgAPI.Method("addStickerToSet")
     override val method = "addStickerToSet"
     override val returnType = getReturnType()
 
     init {
         parameters["user_id"] = userId.toJsonElement()
         parameters["name"] = name.toJsonElement()
-        parameters["sticker"] = input
+        parameters["sticker"] = sticker
             .also {
                 it.sticker = it.sticker.transform(multipartData)
             }.encodeWith(InputSticker.serializer())

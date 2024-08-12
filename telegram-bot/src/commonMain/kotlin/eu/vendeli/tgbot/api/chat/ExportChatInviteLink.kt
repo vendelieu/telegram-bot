@@ -8,6 +8,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 
 @TgAPI
 class ExportChatInviteLinkAction : Action<String>() {
+    @TgAPI.Method("exportChatInviteLink")
     override val method = "exportChatInviteLink"
     override val returnType = getReturnType()
 }

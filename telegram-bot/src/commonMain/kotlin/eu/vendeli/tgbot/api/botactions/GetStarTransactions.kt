@@ -13,6 +13,7 @@ class GetStarTransactionsAction(
     offset: Int? = null,
     limit: Int? = null,
 ) : SimpleAction<StarTransactions>() {
+    @TgAPI.Method("getStarTransactions")
     override val method = "getStarTransactions"
     override val returnType = getReturnType()
 

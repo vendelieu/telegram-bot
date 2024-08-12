@@ -22,12 +22,13 @@ class SendMessageAction private constructor() :
     MarkupFeature<SendMessageAction>,
     EntitiesFeature<SendMessageAction>,
     EntitiesCtxBuilder<SendMessageAction> {
+        @TgAPI.Method("sendMessage")
         override val method = "sendMessage"
         override val returnType = getReturnType()
         override val options = MessageOptions()
 
-        constructor(data: String) : this() {
-            parameters["text"] = data.toJsonElement()
+        constructor(text: String) : this() {
+            parameters["text"] = text.toJsonElement()
         }
 
         internal constructor(block: EntitiesCtxBuilder<SendMessageAction>.() -> String) : this() {

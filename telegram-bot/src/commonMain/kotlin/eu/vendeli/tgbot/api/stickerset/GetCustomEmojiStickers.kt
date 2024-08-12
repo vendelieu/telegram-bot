@@ -14,6 +14,7 @@ import kotlin.jvm.JvmName
 class GetCustomEmojiStickersAction(
     customEmojiIds: List<String>,
 ) : SimpleAction<List<Sticker>>() {
+    @TgAPI.Method("getCustomEmojiStickers")
     override val method = "getCustomEmojiStickers"
     override val returnType = getReturnType()
 

@@ -17,19 +17,20 @@ import eu.vendeli.tgbot.utils.toJsonElement
 @TgAPI
 class SendPaidMediaAction(
     starCount: Int,
-    inputPaidMedia: List<InputPaidMedia>,
+    media: List<InputPaidMedia>,
 ) : MediaAction<Message>(),
     OptionsFeature<SendPaidMediaAction, PaidMediaOptions>,
     CaptionFeature<SendPaidMediaAction>,
     EntitiesFeature<SendPaidMediaAction>,
     MarkupFeature<SendPaidMediaAction> {
+    @TgAPI.Method("sendPaidMedia")
     override val method = "sendPaidMedia"
     override val returnType = getReturnType()
     override val options = PaidMediaOptions()
 
     init {
         parameters["star_count"] = starCount.toJsonElement()
-        handleImplicitFileGroup(inputPaidMedia)
+        handleImplicitFileGroup(media)
     }
 }
 

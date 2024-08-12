@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class DeleteForumTopicAction(
     messageThreadId: Int,
 ) : Action<Boolean>() {
+    @TgAPI.Method("deleteForumTopic")
     override val method = "deleteForumTopic"
     override val returnType = getReturnType()
 

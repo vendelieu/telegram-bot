@@ -13,6 +13,7 @@ class SetChatAdministratorCustomTitleAction(
     userId: Long,
     customTitle: String,
 ) : Action<Boolean>() {
+    @TgAPI.Method("setChatAdministratorCustomTitle")
     override val method = "setChatAdministratorCustomTitle"
     override val returnType = getReturnType()
 

@@ -12,6 +12,7 @@ class SetMyDescriptionAction(
     description: String? = null,
     languageCode: String? = null,
 ) : SimpleAction<Boolean>() {
+    @TgAPI.Method("setMyDescription")
     override val method = "setMyDescription"
     override val returnType = getReturnType()
 

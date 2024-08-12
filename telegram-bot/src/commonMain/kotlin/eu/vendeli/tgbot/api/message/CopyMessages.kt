@@ -21,6 +21,7 @@ class CopyMessagesAction(
     messageIds: List<Long>,
 ) : Action<List<MessageId>>(),
     OptionsFeature<CopyMessagesAction, CopyMessagesOptions> {
+    @TgAPI.Method("copyMessages")
     override val method = "copyMessages"
     override val returnType = getReturnType()
     override val options = CopyMessagesOptions()

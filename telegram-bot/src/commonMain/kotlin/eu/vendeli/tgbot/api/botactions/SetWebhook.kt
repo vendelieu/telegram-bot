@@ -16,6 +16,7 @@ class SetWebhookAction(
     url: String,
 ) : SimpleAction<Boolean>(),
     OptionsFeature<SetWebhookAction, SetWebhookOptions> {
+    @TgAPI.Method("setWebhook")
     override val method = "setWebhook"
     override val returnType = getReturnType()
     override val options = SetWebhookOptions()

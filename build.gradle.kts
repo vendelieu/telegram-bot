@@ -12,8 +12,6 @@ plugins {
     alias(libs.plugins.deteKT) apply false
 }
 
-tasks.register<ScGenerator>("generateBotSc")
-
 tasks.create("prepareRelease") {
     dependsOn("ksp:formatKotlin")
     dependsOn("telegram-bot:formatKotlin")
