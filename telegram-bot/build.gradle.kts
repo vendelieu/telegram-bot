@@ -1,4 +1,3 @@
-
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import java.time.LocalDate
@@ -10,6 +9,7 @@ plugins {
     alias(libs.plugins.deteKT)
     alias(libs.plugins.kover)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.ksp)
     id("publish")
 }
 
@@ -93,9 +93,21 @@ buildscript {
     }
 }
 
+dependencies {
+    add("kspCommonMainMetadata", project(":helper"))
+}
+
+ksp {
+    arg(
+        "outputDir",
+        rootDir.resolve("ktgram-utils/src/commonMain/kotlin/").absolutePath,
+    )
+}
+
 tasks {
     register<Kdokker>("kdocUpdate")
     withType<Test> { useJUnitPlatform() }
+    named("build") { dependsOn("kspCommonMainKotlinMetadata") }
     dokkaHtml.configure {
         outputDirectory = layout.buildDirectory.asFile.orNull?.resolve("dokka")
         dokkaSourceSets {
