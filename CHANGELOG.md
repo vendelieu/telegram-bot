@@ -1,26 +1,45 @@
 # Telegram-bot (KtGram) changelog
 
-## -7.0.0
+# 7.0.0
+
+#### Common
 
 * Reorganized internal structure (mostly interfaces and some types), imports may break.
+* Added experimental method `TelegramBot.getInstance` to get instance through defined `ClassManager`.
+* Removed `EnvConfigLoader` from the main module, since it seems not much in demand.
+* Added bot parameter to `spring-starter`'s `onInit` hook.
+* Exposed companion objects for `TelegramBot`, `TgUpdateHandler` to give option for static custom extensions.
+* Upgraded jvm target version from `11` > `17`.
+
+#### BotContext
+
+* Reworked base methods of `BotContext`, now they're more strongly typed.
 * Renamed `chatData` > `classData` since it's more appropriate functionally.
 * Decoupled `BotContext` (`userData`, `classData`) from bot itself, to set your own implementation there's new
   annotation `@CtxProvider`.
-* Reworked base methods of `BotContext`, now they're more strongly typed.
 * Added operator extensions `get`, `set` for `User` class that coupled with `userData`, i.e., now you
   can use `user["key"] = "value"`.
-* Added experimental method `TelegramBot.getInstance` to get instance through defined `ClassManager`.
-* Added `@InputChain` state manager that will save selected state from update automatically.
-* Removed `EnvConfigLoader`, since it seems not much in demand.
-* Added `exceptionHandlingStrategy` to the configuration to have more control over exception handling.
-* Added `throwExOnActionsFailure` to the configuration to throw exceptions on api request sending failures.
-* Added `retryOnTooManyRequests()` to the `httpClient` configuration, which returns a `RetryStrategy` that retries on an
+
+#### Fail state handling
+
+* Added `exceptionHandlingStrategy` to the `configuration` to have more control over exception handling.
+* Added `throwExOnActionsFailure` to the `configuration` to throw exceptions on api request sending failures.
+* Added `retryOnTooManyRequests()` to the httpClient `configuration`, which returns a `RetryStrategy` that retries on an
   api request with status `429` given its delay status.
-* Added bot parameter to `spring-starter`'s `onInit` hook.
-* Added `logger` to `LoggingConfiguration` where can be any `Logger` interface implementation passed.
-* Updated the method extensions to `TelegramBot` from `ktgram-utils` project, removing the `Sc` postfix and adding all
+
+#### Modules
+
+* Updated the method extensions to `TelegramBot` from `ktgram-utils` module, removing the `Sc` postfix and adding all
   method variations.
-* Exposed companion objects for `TelegramBot`, `TgUpdateHandler` to give option for static custom extensions.
+* Added new experimental module `ktgram-botctx-redis`, `Redis` implementation of `BotContext` (`userData`, `classData`).
+* Added new experimental module `ktgram-config-env`, same as removed `EnvConfigLoader` but for all supported platforms.
+* Added new experimental module `ktgram-config-toml`, gives an option to configure `TelegramBot` through toml file.
+
+#### Other
+
+* Added `logger` to `LoggingConfiguration` where can be any `Logger` interface implementation passed.
+* Added `@InputChain` state manager that will save selected state from update automatically.
+* Added additional api validation for the entire api, fixed typos in several parameters.
 
 ### 6.6.0
 
