@@ -65,7 +65,7 @@ import eu.vendeli.tgbot.api.chat.PinChatMessageAction
 import eu.vendeli.tgbot.api.chat.PromoteChatMemberAction
 import eu.vendeli.tgbot.api.chat.RestrictChatMemberAction
 import eu.vendeli.tgbot.api.chat.RevokeChatInviteLinkAction
-import eu.vendeli.tgbot.api.chat.SendChatAction
+import eu.vendeli.tgbot.api.chat.SendChatActionAction
 import eu.vendeli.tgbot.api.chat.SetChatAdministratorCustomTitleAction
 import eu.vendeli.tgbot.api.chat.SetChatDescriptionAction
 import eu.vendeli.tgbot.api.chat.SetChatMenuButtonAction
@@ -583,21 +583,21 @@ public inline fun TelegramBot.banChatSenderChat(senderChatId: User): BanChatSend
     eu.vendeli.tgbot.api.chat.banChatSenderChat(senderChatId)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.chatAction(action: ChatAction, messageThreadId: Int?): SendChatAction
-    = eu.vendeli.tgbot.api.chat.chatAction(action, messageThreadId)
+public inline fun TelegramBot.chatAction(action: ChatAction, messageThreadId: Int?):
+    SendChatActionAction = eu.vendeli.tgbot.api.chat.chatAction(action, messageThreadId)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.chatAction(messageThreadId: Int?, noinline block: () -> ChatAction):
-    SendChatAction = eu.vendeli.tgbot.api.chat.chatAction(messageThreadId, block)
+    SendChatActionAction = eu.vendeli.tgbot.api.chat.chatAction(messageThreadId, block)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.sendChatAction(messageThreadId: Int?, noinline
-    block: () -> ChatAction): SendChatAction =
+    block: () -> ChatAction): SendChatActionAction =
     eu.vendeli.tgbot.api.chat.sendChatAction(messageThreadId, block)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.sendChatAction(action: ChatAction, messageThreadId: Int?):
-    SendChatAction = eu.vendeli.tgbot.api.chat.sendChatAction(action, messageThreadId)
+    SendChatActionAction = eu.vendeli.tgbot.api.chat.sendChatAction(action, messageThreadId)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.createChatInviteLink(): CreateChatInviteLinkAction =

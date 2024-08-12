@@ -21,10 +21,11 @@ import eu.vendeli.tgbot.utils.fullName
 import java.io.File
 
 class ApiProcessor(
-    private val logger: KSPLogger,
+    internal val logger: KSPLogger,
     options: Map<String, String>,
 ) : SymbolProcessor {
     private val utilsDir = options["outputDir"]!!
+    private val apiFile = options["apiFile"]!!
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
         val fileSpec = FileSpec.builder("eu.vendeli.ktgram.extutils", "TelegramBotSc")
@@ -32,7 +33,6 @@ class ApiProcessor(
 
         val apiClasses = apiMash.filterIsInstance<KSClassDeclaration>()
         val apiFun = apiMash.filterIsInstance<KSFunctionDeclaration>()
-        logger.warn("funs: " + apiFun.toList().size)
 
         fileSpec.apply {
             addAnnotation(
@@ -45,9 +45,9 @@ class ApiProcessor(
             apiFun.forEach { addShortcut(it) }
         }
 
-        val file = File(utilsDir)
-        logger.warn(file.absolutePath)
-        fileSpec.build().writeTo(file)
+        fileSpec.build().writeTo(File(utilsDir))
+
+        validateApi(apiClasses, apiFile)
 
         return emptyList()
     }
