@@ -99,12 +99,16 @@ dependencies {
 
 ksp {
     arg(
-        "outputDir",
+        "utilsDir",
         rootDir.resolve("ktgram-utils/src/commonMain/kotlin/").absolutePath,
     )
     arg(
+        "apiDir",
+        rootDir.resolve("telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/types").absolutePath,
+    )
+    arg(
         "apiFile",
-        rootDir.resolve("buildSrc/src/main/resources/api.json").absolutePath
+        rootDir.resolve("buildSrc/src/main/resources/api.json").absolutePath,
     )
 }
 

@@ -6,7 +6,6 @@ import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
-import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
@@ -27,7 +26,8 @@ class ApiProcessor(
     internal val logger: KSPLogger,
     options: Map<String, String>,
 ) : SymbolProcessor {
-    private val utilsDir = options["outputDir"]!!
+    internal val apiDir = options["apiDir"]!!
+    private val utilsDir = options["utilsDir"]!!
     private val apiFile = options["apiFile"]!!
 
     @OptIn(KspExperimental::class)
@@ -58,15 +58,7 @@ class ApiProcessor(
         val apiJson = Json.parseToJsonElement(File(apiFile).readText())
         validateApi(apiClasses, apiJson)
 
-        @Suppress("UNCHECKED_CAST")
-        val types = resolver.getDeclarationsFromPackage("eu.vendeli.tgbot.types").filter {
-            // it is not sealed class
-            it is KSClassDeclaration && !it.getSealedSubclasses().any() &&
-                // not enum
-                it.classKind != ClassKind.ENUM_CLASS &&
-                it.packageName.asString() != "eu.vendeli.tgbot.types.internal"
-        } as Sequence<KSClassDeclaration>
-
+        val types = resolver.resolveSymbolsFromDir(apiDir).asSequence()
         validateTypes(types, apiJson)
 
         return emptyList()
