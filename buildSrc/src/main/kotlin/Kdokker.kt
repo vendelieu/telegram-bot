@@ -1,8 +1,8 @@
-
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
+import java.io.File
 
 @Serializable
 data class Api(
@@ -35,6 +35,10 @@ abstract class Kdokker : DefaultTask() {
         "@Serializable(?:\\(.*\\))?\\s(?:data|sealed)?\\s?class\\s+(\\w+)\\s*(?:\\(|\\{)",
         RegexOption.DOT_MATCHES_ALL,
     )
+    private val funRegex = Regex(
+        "(@\\w+(\\([^\\)]*\\))?\\s*)*\\b(inline\\s+)?fun\\s+(\\w+)",
+//        RegexOption.DOT_MATCHES_ALL,
+    )
     private val kdocRegex = Regex("\\n/\\*\\*.*\\*/", RegexOption.DOT_MATCHES_ALL)
     private val NEWLINE = "\n"
     private val apiFiles = project.layout.projectDirectory
@@ -43,6 +47,7 @@ abstract class Kdokker : DefaultTask() {
         .dir("src/commonMain/kotlin/eu/vendeli/tgbot/types").asFileTree.files.filter {
             !it.path.contains("internal")
         }
+    private fun File.isKotlinFile() = isFile && extension == "kt"
 
     private fun String.beginWithUpperCase(): String = when (this.length) {
         0 -> ""
@@ -64,23 +69,23 @@ abstract class Kdokker : DefaultTask() {
             var modifiedContent = fileContent.replace(kdocRegex, "") // remove old kdocs
             val method = funRegex.find(modifiedContent) ?: return@forEach
 
-            val methodName = method.groups[3]!!.value
+            val methodName = method.groups[4]!!.value
             val methodMeta = jsonRes.methods[methodName]
                 ?: jsonRes.methods["send" + methodName.beginWithUpperCase()]
                 ?: return@forEach
             var kdoc = "/**$NEWLINE"
             kdoc += methodMeta.description?.joinToString("$NEWLINE * ", " * ") ?: ""
             kdoc += "$NEWLINE *$NEWLINE * [Api reference](${methodMeta.href})"
-            kdoc += "$NEWLINE * "
+            kdoc += "$NEWLINE *"
 
-            kdoc += methodMeta.fields.joinToString("$NEWLINE * ") {
+            kdoc += methodMeta.fields.takeIf { it.isNotEmpty() }?.joinToString("$NEWLINE * ", prefix = " ") {
                 "@param " + it.name.snakeToCamelCase() + " " + it.description
-            }
+            } ?: ""
 
             kdoc += NEWLINE + methodMeta.returns.joinToString("|", " * @returns ") { "[$it]" }
             kdoc += "$NEWLINE */$NEWLINE"
 
-            modifiedContent = modifiedContent.replace(method.value, kdoc + method.value)
+            modifiedContent = modifiedContent.replaceFirst(method.value, kdoc + method.value)
 
             file.writeText(modifiedContent)
         }
@@ -100,10 +105,10 @@ abstract class Kdokker : DefaultTask() {
             var kdoc = "/**$NEWLINE"
             kdoc += classMeta.description?.joinToString("$NEWLINE * ", " * ") ?: ""
             kdoc += "$NEWLINE *$NEWLINE * [Api reference](${classMeta.href})"
-            kdoc += "$NEWLINE * "
-            kdoc += classMeta.fields.joinToString("$NEWLINE * ") {
+            kdoc += "$NEWLINE *"
+            kdoc += classMeta.fields.takeIf { it.isNotEmpty() }?.joinToString("$NEWLINE * ", prefix = " ") {
                 "@property " + it.name.snakeToCamelCase() + " " + it.description
-            }
+            } ?: ""
             kdoc += "$NEWLINE */$NEWLINE"
             modifiedContent = modifiedContent.replace(clazz.value, kdoc + clazz.value)
 
