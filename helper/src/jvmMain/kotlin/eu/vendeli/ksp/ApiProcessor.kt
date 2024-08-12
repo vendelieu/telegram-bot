@@ -6,6 +6,7 @@ import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
+import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
@@ -19,6 +20,7 @@ import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.utils.fullName
+import kotlinx.serialization.json.Json
 import java.io.File
 
 class ApiProcessor(
@@ -52,8 +54,20 @@ class ApiProcessor(
             .filter { i -> i.annotations.firstOrNull { it.shortName.getShortName() == "TgApi" } != null }.forEach {
                 logger.warn("${it.qualifiedName!!.asString()} not marked as Api.")
             }
-// todo for types resolver.getDeclarationsFromPackage()
-        validateApi(apiClasses, apiFile)
+
+        val apiJson = Json.parseToJsonElement(File(apiFile).readText())
+        validateApi(apiClasses, apiJson)
+
+        @Suppress("UNCHECKED_CAST")
+        val types = resolver.getDeclarationsFromPackage("eu.vendeli.tgbot.types").filter {
+            // it is not sealed class
+            it is KSClassDeclaration && !it.getSealedSubclasses().any() &&
+                // not enum
+                it.classKind != ClassKind.ENUM_CLASS &&
+                it.packageName.asString() != "eu.vendeli.tgbot.types.internal"
+        } as Sequence<KSClassDeclaration>
+
+        validateTypes(types, apiJson)
 
         return emptyList()
     }
