@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api.stickerset
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.utils.encodeWith
@@ -10,6 +11,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.transform
 import kotlin.collections.set
 
+@TgAPI
 class AddStickerToSetAction(
     userId: Long,
     name: String,
@@ -38,7 +40,9 @@ class AddStickerToSetAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun addStickerToSet(userId: Long, name: String, input: InputSticker) = AddStickerToSetAction(userId, name, input)
 
+@TgAPI
 inline fun addStickerToSet(userId: Long, name: String, input: () -> InputSticker) =
     addStickerToSet(userId, name, input())

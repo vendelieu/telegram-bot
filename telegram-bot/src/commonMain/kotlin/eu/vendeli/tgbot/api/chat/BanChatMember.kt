@@ -2,12 +2,14 @@
 
 package eu.vendeli.tgbot.api.chat
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.datetime.Instant
 
+@TgAPI
 class BanChatMemberAction(
     userId: Long,
     untilDate: Instant? = null,
@@ -34,9 +36,11 @@ class BanChatMemberAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun banChatMember(userId: Long, untilDate: Instant? = null, revokeMessages: Boolean? = null) =
     BanChatMemberAction(userId, untilDate, revokeMessages)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun banChatMember(user: User, untilDate: Instant? = null, revokeMessages: Boolean? = null) =
     banChatMember(user.id, untilDate, revokeMessages)

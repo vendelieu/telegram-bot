@@ -2,12 +2,14 @@
 
 package eu.vendeli.tgbot.api.chat
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.ChatMember
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class GetChatMemberAction(
     userId: Long,
 ) : Action<ChatMember>() {
@@ -28,7 +30,9 @@ class GetChatMemberAction(
  * @returns [ChatMember]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getChatMember(userId: Long) = GetChatMemberAction(userId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getChatMember(user: User) = getChatMember(user.id)

@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api.chat
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.keyboard.MenuButton
 import eu.vendeli.tgbot.utils.encodeWith
@@ -28,4 +29,5 @@ class SetChatMenuButtonAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setChatMenuButton(menuButton: MenuButton) = SetChatMenuButtonAction(menuButton)

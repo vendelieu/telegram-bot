@@ -2,18 +2,20 @@
 
 package eu.vendeli.tgbot.api.message
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.msg.MessageId
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.options.CopyMessagesOptions
+import eu.vendeli.tgbot.types.msg.MessageId
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import kotlinx.serialization.builtins.serializer
 
+@TgAPI
 class CopyMessagesAction(
     fromChatId: Identifier,
     messageIds: List<Long>,
@@ -43,21 +45,26 @@ class CopyMessagesAction(
  * @returns [Array of MessageId]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun copyMessages(fromChatId: Identifier, messageIds: List<Long>) =
     CopyMessagesAction(fromChatId, messageIds)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun copyMessages(fromChatId: Long, vararg messageId: Long) =
     copyMessages(Identifier.from(fromChatId), messageId.asList())
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun copyMessages(fromChatId: String, vararg messageId: Long) =
     copyMessages(Identifier.from(fromChatId), messageId.asList())
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun copyMessages(fromChatId: User, vararg messageId: Long) =
     copyMessages(Identifier.from(fromChatId), messageId.asList())
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun copyMessages(fromChatId: Chat, vararg messageId: Long) =
     copyMessages(Identifier.from(fromChatId.id), messageId.asList())

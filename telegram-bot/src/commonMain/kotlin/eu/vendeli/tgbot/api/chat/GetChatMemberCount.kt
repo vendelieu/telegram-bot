@@ -2,9 +2,11 @@
 
 package eu.vendeli.tgbot.api.chat
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.utils.getReturnType
 
+@TgAPI
 class GetChatMemberCountAction : Action<Int>() {
     override val method = "getChatMemberCount"
     override val returnType = getReturnType()
@@ -18,4 +20,5 @@ class GetChatMemberCountAction : Action<Int>() {
  * @returns [Integer]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getChatMemberCount() = GetChatMemberCountAction()

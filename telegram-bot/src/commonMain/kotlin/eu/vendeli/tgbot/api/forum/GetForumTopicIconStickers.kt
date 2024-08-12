@@ -2,10 +2,12 @@
 
 package eu.vendeli.tgbot.api.forum
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.media.Sticker
 import eu.vendeli.tgbot.utils.getReturnType
 
+@TgAPI
 class GetForumTopicIconStickersAction : Action<List<Sticker>>() {
     override val method = "getForumTopicIconStickers"
     override val returnType = getReturnType()
@@ -19,4 +21,5 @@ class GetForumTopicIconStickersAction : Action<List<Sticker>>() {
  * @returns [Array of Sticker]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getForumTopicIconStickers() = GetForumTopicIconStickersAction()

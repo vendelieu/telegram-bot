@@ -2,11 +2,13 @@
 
 package eu.vendeli.tgbot.api.botactions
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.business.BusinessConnection
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class GetBusinessConnectionAction(
     businessConnectionId: String,
 ) : SimpleAction<BusinessConnection>() {
@@ -26,4 +28,5 @@ class GetBusinessConnectionAction(
  * @returns [BusinessConnection]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getBusinessConnection(businessConnectionId: String) = GetBusinessConnectionAction(businessConnectionId)

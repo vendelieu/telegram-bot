@@ -2,12 +2,14 @@
 
 package eu.vendeli.tgbot.api
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.boost.UserChatBoosts
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class GetUserChatBoostsAction(
     val userId: Long,
 ) : Action<UserChatBoosts>() {
@@ -28,7 +30,9 @@ class GetUserChatBoostsAction(
  * @returns [UserChatBoosts]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getUserChatBoosts(userId: Long) = GetUserChatBoostsAction(userId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getUserChatBoosts(user: User) = getUserChatBoosts(user.id)

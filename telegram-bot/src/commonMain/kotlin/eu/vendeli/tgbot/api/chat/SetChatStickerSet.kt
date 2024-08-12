@@ -2,10 +2,12 @@
 
 package eu.vendeli.tgbot.api.chat
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class SetChatStickerSetAction(
     stickerSetName: String,
 ) : Action<Boolean>() {
@@ -26,4 +28,5 @@ class SetChatStickerSetAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setChatStickerSet(stickerSetName: String) = SetChatStickerSetAction(stickerSetName)

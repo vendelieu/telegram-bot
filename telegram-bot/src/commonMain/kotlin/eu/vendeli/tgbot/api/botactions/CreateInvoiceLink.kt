@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api.botactions
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.Currency
@@ -11,6 +12,7 @@ import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class CreateInvoiceLinkAction(
     title: String,
     description: String,
@@ -61,6 +63,7 @@ class CreateInvoiceLinkAction(
  * @returns [String]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun createInvoiceLink(
     title: String,
     description: String,
@@ -70,6 +73,7 @@ inline fun createInvoiceLink(
     prices: List<LabeledPrice>,
 ) = CreateInvoiceLinkAction(title, description, payload, providerToken, currency, prices)
 
+@TgAPI
 inline fun createInvoiceLink(
     title: String,
     description: String,

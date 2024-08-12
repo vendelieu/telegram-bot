@@ -2,10 +2,12 @@
 
 package eu.vendeli.tgbot.api.botactions
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.utils.getReturnType
 
+@TgAPI
 class GetMeAction : SimpleAction<User>() {
     override val method = "getMe"
     override val returnType = getReturnType()
@@ -19,4 +21,5 @@ class GetMeAction : SimpleAction<User>() {
  * @returns [User]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getMe() = GetMeAction()

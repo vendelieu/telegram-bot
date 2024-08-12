@@ -2,10 +2,12 @@
 
 package eu.vendeli.tgbot.api.answer
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class AnswerPreCheckoutQueryAction(
     preCheckoutQueryId: String,
     ok: Boolean = true,
@@ -31,5 +33,6 @@ class AnswerPreCheckoutQueryAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun answerPreCheckoutQuery(preCheckoutQueryId: String, ok: Boolean = true, errorMessage: String? = null) =
     AnswerPreCheckoutQueryAction(preCheckoutQueryId, ok, errorMessage)

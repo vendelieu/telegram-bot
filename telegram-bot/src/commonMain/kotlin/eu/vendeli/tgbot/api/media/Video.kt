@@ -2,19 +2,21 @@
 
 package eu.vendeli.tgbot.api.media
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.options.VideoOptions
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 
+@TgAPI
 class SendVideoAction(
     video: ImplicitFile,
 ) : MediaAction<Message>(),
@@ -62,15 +64,23 @@ class SendVideoAction(
  * @returns [Message]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun video(file: ImplicitFile) = SendVideoAction(file)
+
+@TgAPI
 inline fun video(block: () -> String) = video(block().toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun video(ba: ByteArray) = video(ba.toImplicitFile("video.mp4"))
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun video(file: InputFile) = video(file.toImplicitFile())
+
+@TgAPI
 inline fun sendVideo(block: () -> String) = video(block)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun sendVideo(file: ImplicitFile) = video(file)

@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 data class CompleteConfig(
     val token: String,
     val pckg: String? = null,
-    val configuration: BotConfiguration
+    val configuration: BotConfiguration,
 )

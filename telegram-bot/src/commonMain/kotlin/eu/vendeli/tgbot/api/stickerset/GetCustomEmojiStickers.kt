@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api.stickerset
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.media.Sticker
 import eu.vendeli.tgbot.utils.encodeWith
@@ -9,6 +10,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 import kotlinx.serialization.builtins.serializer
 import kotlin.jvm.JvmName
 
+@TgAPI
 class GetCustomEmojiStickersAction(
     customEmojiIds: List<String>,
 ) : SimpleAction<List<Sticker>>() {
@@ -28,8 +30,10 @@ class GetCustomEmojiStickersAction(
  * @returns [Array of Sticker]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getCustomEmojiStickers(customEmojiIds: List<String>) = GetCustomEmojiStickersAction(customEmojiIds)
 
 @Suppress("NOTHING_TO_INLINE")
 @JvmName("getCustomEmojiStickersWithVararg")
+@TgAPI
 inline fun getCustomEmojiStickers(vararg customEmojiId: String) = getCustomEmojiStickers(customEmojiId.asList())

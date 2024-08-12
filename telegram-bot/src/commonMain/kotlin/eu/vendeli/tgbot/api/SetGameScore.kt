@@ -2,15 +2,17 @@
 
 package eu.vendeli.tgbot.api
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.options.SetGameScoreOptions
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class SetGameScoreAction :
     Action<Message>,
     InlineActionExt<Message>,
@@ -45,13 +47,17 @@ class SetGameScoreAction :
  * @returns [Message]|[Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setGameScore(userId: Long, messageId: Long, score: Long) = SetGameScoreAction(userId, messageId, score)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setGameScore(userId: Long, score: Long) = SetGameScoreAction(userId, score)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setGameScore(user: User, score: Long) = setGameScore(user.id, score)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setGameScore(user: User, messageId: Long, score: Long) = setGameScore(user.id, messageId, score)

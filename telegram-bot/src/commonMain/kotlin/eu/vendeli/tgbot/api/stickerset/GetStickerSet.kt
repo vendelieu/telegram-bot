@@ -2,11 +2,13 @@
 
 package eu.vendeli.tgbot.api.stickerset
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.media.StickerSet
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class GetStickerSetAction(
     name: String,
 ) : SimpleAction<StickerSet>() {
@@ -26,4 +28,5 @@ class GetStickerSetAction(
  * @returns [StickerSet]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getStickerSet(name: String) = GetStickerSetAction(name)

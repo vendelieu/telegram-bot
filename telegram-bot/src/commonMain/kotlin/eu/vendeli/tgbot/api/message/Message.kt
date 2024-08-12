@@ -2,17 +2,19 @@
 
 package eu.vendeli.tgbot.api.message
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.internal.options.MessageOptions
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.builders.EntitiesCtxBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class SendMessageAction private constructor() :
     Action<Message>(),
     BusinessActionExt<Message>,
@@ -52,9 +54,11 @@ class SendMessageAction private constructor() :
  * @returns [Message]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun message(text: String) = SendMessageAction(text)
 fun message(block: EntitiesCtxBuilder<SendMessageAction>.() -> String) = SendMessageAction(block)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun sendMessage(text: String) = message(text)
 fun sendMessage(block: EntitiesCtxBuilder<SendMessageAction>.() -> String) = message(block)

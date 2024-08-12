@@ -2,11 +2,13 @@
 
 package eu.vendeli.tgbot.api.message
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import kotlinx.serialization.builtins.serializer
 
+@TgAPI
 class DeleteMessagesAction(
     messageIds: List<Long>,
 ) : Action<Boolean>() {
@@ -27,7 +29,9 @@ class DeleteMessagesAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun deleteMessages(messageIds: List<Long>) = DeleteMessagesAction(messageIds)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun deleteMessages(vararg messageId: Long) = deleteMessages(messageId.asList())

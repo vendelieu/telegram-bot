@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.types.User
@@ -12,6 +13,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class GetGameHighScoresAction :
     Action<List<GameHighScore>>,
     InlineActionExt<List<GameHighScore>> {
@@ -39,14 +41,18 @@ class GetGameHighScoresAction :
  * @returns [Array of GameHighScore]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getGameHighScores(userId: Long, messageId: Long) =
     GetGameHighScoresAction(Identifier.from(userId), messageId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getGameHighScores(userId: Long) = GetGameHighScoresAction(Identifier.from(userId))
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getGameHighScores(user: User, messageId: Long) = getGameHighScores(user.id, messageId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getGameHighScores(user: User) = getGameHighScores(user.id)

@@ -2,17 +2,19 @@
 
 package eu.vendeli.tgbot.api
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.internal.Currency
 import eu.vendeli.tgbot.types.internal.options.InvoiceOptions
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class SendInvoiceAction(
     title: String,
     description: String,
@@ -72,6 +74,7 @@ class SendInvoiceAction(
  * @returns [Message]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun invoice(
     title: String,
     description: String,
@@ -81,6 +84,7 @@ inline fun invoice(
     prices: List<LabeledPrice>,
 ) = SendInvoiceAction(title, description, payload, providerToken, currency, prices)
 
+@TgAPI
 inline fun invoice(
     title: String,
     description: String,
@@ -91,6 +95,7 @@ inline fun invoice(
 ) = invoice(title, description, payload(), providerToken, currency, prices.asList())
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun sendInvoice(
     title: String,
     description: String,

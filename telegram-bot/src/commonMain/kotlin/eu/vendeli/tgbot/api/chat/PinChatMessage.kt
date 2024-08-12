@@ -2,11 +2,13 @@
 
 package eu.vendeli.tgbot.api.chat
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class PinChatMessageAction(
     messageId: Long,
     disableNotification: Boolean? = null,
@@ -32,5 +34,6 @@ class PinChatMessageAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun pinChatMessage(messageId: Long, disableNotification: Boolean? = null) =
     PinChatMessageAction(messageId, disableNotification)

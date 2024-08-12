@@ -2,10 +2,12 @@
 
 package eu.vendeli.tgbot.api.botactions
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.WebhookInfo
 import eu.vendeli.tgbot.utils.getReturnType
 
+@TgAPI
 class GetWebhookInfoAction : SimpleAction<WebhookInfo>() {
     override val method = "getWebhookInfo"
     override val returnType = getReturnType()
@@ -19,4 +21,5 @@ class GetWebhookInfoAction : SimpleAction<WebhookInfo>() {
  * @returns [WebhookInfo]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getWebhookInfo() = GetWebhookInfoAction()

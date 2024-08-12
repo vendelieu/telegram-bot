@@ -2,12 +2,14 @@
 
 package eu.vendeli.tgbot.api.botactions
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.bot.BotCommandScope
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class DeleteMyCommandsAction(
     scope: BotCommandScope? = null,
     languageCode: String? = null,
@@ -30,5 +32,6 @@ class DeleteMyCommandsAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun deleteMyCommands(languageCode: String? = null, scope: BotCommandScope? = null) =
     DeleteMyCommandsAction(scope, languageCode)

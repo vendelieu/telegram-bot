@@ -2,9 +2,11 @@
 
 package eu.vendeli.tgbot.api.botactions
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.utils.getReturnType
 
+@TgAPI
 class CloseAction : SimpleAction<Boolean>() {
     override val method = "close"
     override val returnType = getReturnType()
@@ -18,4 +20,5 @@ class CloseAction : SimpleAction<Boolean>() {
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun close() = CloseAction()

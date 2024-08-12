@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.passport.PassportElementError
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
@@ -11,6 +12,7 @@ import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.serialization.builtins.ListSerializer
 
+@TgAPI
 class SetPassportDataErrorsAction(
     userId: Long,
     errors: List<PassportElementError>,
@@ -33,11 +35,13 @@ class SetPassportDataErrorsAction(
  * Api reference: https://core.telegram.org/bots/api#setpassportdataerrors
 */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setPassportDataErrors(userId: Long, errors: List<PassportElementError>) =
     SetPassportDataErrorsAction(userId, errors)
 fun setPassportDataErrors(userId: Long, errors: ListingBuilder<PassportElementError>.() -> Unit) =
     setPassportDataErrors(userId, ListingBuilder.build(errors))
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setPassportDataError(userId: Long, vararg error: PassportElementError) =
     setPassportDataErrors(userId, error.asList())

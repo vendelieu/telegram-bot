@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api.chat
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.ChatPermissions
@@ -10,6 +11,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.datetime.Instant
 
+@TgAPI
 class RestrictChatMemberAction(
     userId: Long,
     permissions: ChatPermissions,
@@ -39,6 +41,7 @@ class RestrictChatMemberAction(
  * @param untilDate Date when restrictions will be lifted for the user; Unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, they are considered to be restricted forever
  * @returns [Boolean]
  */
+@TgAPI
 inline fun restrictChatMember(
     userId: Long,
     untilDate: Instant? = null,
@@ -47,6 +50,7 @@ inline fun restrictChatMember(
 ) = RestrictChatMemberAction(userId, ChatPermissions().apply(chatPermissions), untilDate, useIndependentChatPermissions)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun restrictChatMember(
     userId: Long,
     chatPermissions: ChatPermissions,
@@ -54,6 +58,7 @@ inline fun restrictChatMember(
     useIndependentChatPermissions: Boolean? = null,
 ) = RestrictChatMemberAction(userId, chatPermissions, untilDate, useIndependentChatPermissions)
 
+@TgAPI
 inline fun restrictChatMember(
     user: User,
     untilDate: Instant? = null,
@@ -62,6 +67,7 @@ inline fun restrictChatMember(
 ) = restrictChatMember(user.id, untilDate, useIndependentChatPermissions, chatPermissions)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun restrictChatMember(
     user: User,
     chatPermissions: ChatPermissions,

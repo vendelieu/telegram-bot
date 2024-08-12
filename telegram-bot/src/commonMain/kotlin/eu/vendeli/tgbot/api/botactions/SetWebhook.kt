@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api.botactions
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.options.SetWebhookOptions
@@ -10,6 +11,7 @@ import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class SetWebhookAction(
     url: String,
 ) : SimpleAction<Boolean>(),
@@ -41,4 +43,5 @@ class SetWebhookAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setWebhook(url: String) = SetWebhookAction(url)

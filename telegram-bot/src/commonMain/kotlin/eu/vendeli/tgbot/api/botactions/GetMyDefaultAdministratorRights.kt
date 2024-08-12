@@ -2,11 +2,13 @@
 
 package eu.vendeli.tgbot.api.botactions
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.chat.ChatAdministratorRights
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class GetMyDefaultAdministratorRightsAction(
     forChannel: Boolean? = null,
 ) : SimpleAction<ChatAdministratorRights>() {
@@ -26,5 +28,6 @@ class GetMyDefaultAdministratorRightsAction(
  * @returns [ChatAdministratorRights]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getMyDefaultAdministratorRights(forChannel: Boolean? = null) =
     GetMyDefaultAdministratorRightsAction(forChannel)

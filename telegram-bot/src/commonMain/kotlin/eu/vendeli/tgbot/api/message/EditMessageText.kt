@@ -1,17 +1,19 @@
 package eu.vendeli.tgbot.api.message
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.internal.options.EditMessageOptions
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.builders.EntitiesCtxBuilder
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class EditMessageTextAction private constructor() :
     Action<Message>(),
     InlineActionExt<Message>,
@@ -54,8 +56,14 @@ class EditMessageTextAction private constructor() :
  * @param replyMarkup A JSON-serialized object for an inline keyboard.
  * @returns [Message]|[Boolean]
  */
+@TgAPI
 inline fun editMessageText(messageId: Long, block: () -> String) = editText(messageId, block)
 
+@TgAPI
 fun editMessageText(block: EntitiesCtxBuilder<EditMessageTextAction>.() -> String) = EditMessageTextAction(block)
+
+@TgAPI
 inline fun editText(messageId: Long, block: () -> String) = EditMessageTextAction(messageId, text = block())
+
+@TgAPI
 fun editText(block: EntitiesCtxBuilder<EditMessageTextAction>.() -> String) = EditMessageTextAction(block)

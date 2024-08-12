@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api.answer
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.inline.InlineQueryResult
@@ -13,6 +14,7 @@ import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.serialization.builtins.ListSerializer
 
+@TgAPI
 class AnswerInlineQueryAction(
     inlineQueryId: String,
     results: List<InlineQueryResult>,
@@ -42,11 +44,15 @@ class AnswerInlineQueryAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun answerInlineQuery(inlineQueryId: String, results: List<InlineQueryResult>) =
     AnswerInlineQueryAction(inlineQueryId, results)
+
+@TgAPI
 fun answerInlineQuery(inlineQueryId: String, results: ListingBuilder<InlineQueryResult>.() -> Unit) =
     answerInlineQuery(inlineQueryId, ListingBuilder.build(results))
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun answerInlineQuery(inlineQueryId: String, vararg result: InlineQueryResult) =
     answerInlineQuery(inlineQueryId, result.asList())

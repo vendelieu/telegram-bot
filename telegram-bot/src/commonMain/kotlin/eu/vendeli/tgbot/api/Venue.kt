@@ -3,14 +3,16 @@
 
 package eu.vendeli.tgbot.api
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.internal.options.VenueOptions
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class SendVenueAction(
     latitude: Float,
     longitude: Float,
@@ -53,9 +55,11 @@ class SendVenueAction(
  * @returns [Message]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun venue(latitude: Float, longitude: Float, title: String, address: String) =
     SendVenueAction(latitude, longitude, title, address)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun sendVenue(latitude: Float, longitude: Float, title: String, address: String) =
     venue(latitude, longitude, title, address)

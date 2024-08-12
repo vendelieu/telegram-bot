@@ -2,19 +2,21 @@
 
 package eu.vendeli.tgbot.api.media
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.internal.options.AudioOptions
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 
+@TgAPI
 class SendAudioAction(
     audio: ImplicitFile,
 ) : MediaAction<Message>(),
@@ -60,17 +62,23 @@ class SendAudioAction(
  * @returns [Message]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun audio(file: ImplicitFile) = SendAudioAction(file)
 
+@TgAPI
 inline fun audio(block: () -> String) = audio(block().toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun audio(ba: ByteArray) = audio(ba.toImplicitFile("audio.mp3"))
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun audio(file: InputFile) = audio(file.toImplicitFile())
 
+@TgAPI
 inline fun sendAudio(block: () -> String) = audio(block)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun sendAudio(file: ImplicitFile) = audio(file)

@@ -2,18 +2,20 @@
 
 package eu.vendeli.tgbot.api.message
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.options.ForwardMessageOptions
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class ForwardMessageAction(
     fromChatId: Identifier,
     messageId: Long,
@@ -42,16 +44,21 @@ class ForwardMessageAction(
  * @returns [Message]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun forwardMessage(fromChatId: Identifier, messageId: Long) = ForwardMessageAction(fromChatId, messageId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun forwardMessage(fromChatId: Long, messageId: Long) = forwardMessage(Identifier.from(fromChatId), messageId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun forwardMessage(fromChatId: String, messageId: Long) = forwardMessage(Identifier.from(fromChatId), messageId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun forwardMessage(fromChatId: User, messageId: Long) = forwardMessage(Identifier.from(fromChatId), messageId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun forwardMessage(fromChatId: Chat, messageId: Long) = forwardMessage(Identifier.from(fromChatId.id), messageId)

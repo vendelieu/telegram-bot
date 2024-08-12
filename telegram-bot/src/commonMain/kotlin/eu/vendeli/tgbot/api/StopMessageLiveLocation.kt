@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.action.InlineActionExt
@@ -10,6 +11,7 @@ import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class StopMessageLiveLocationAction() :
     Action<Message>(),
     InlineActionExt<Message>,
@@ -35,7 +37,9 @@ class StopMessageLiveLocationAction() :
  * @returns [Message]|[Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun stopMessageLiveLocation(messageId: Long) = StopMessageLiveLocationAction(messageId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun stopMessageLiveLocation() = StopMessageLiveLocationAction()

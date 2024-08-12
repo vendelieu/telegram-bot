@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.ReactionType
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
@@ -11,6 +12,7 @@ import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.serialization.builtins.ListSerializer
 
+@TgAPI
 class SetMessageReactionAction(
     messageId: Long,
     reaction: List<ReactionType>? = null,
@@ -37,13 +39,16 @@ class SetMessageReactionAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setMessageReaction(messageId: Long, reaction: List<ReactionType>? = null, isBig: Boolean? = null) =
     SetMessageReactionAction(messageId, reaction, isBig)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setMessageReaction(messageId: Long, vararg reaction: ReactionType, isBig: Boolean? = null) =
     setMessageReaction(messageId, reaction.asList(), isBig)
 
+@TgAPI
 fun setMessageReaction(
     messageId: Long,
     isBig: Boolean? = null,

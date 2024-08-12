@@ -2,6 +2,7 @@
 
 package eu.vendeli.tgbot.api.message
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.action.InlineActionExt
@@ -10,6 +11,7 @@ import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class EditMessageReplyMarkupAction() :
     Action<Message>(),
     InlineActionExt<Message>,
@@ -35,13 +37,17 @@ class EditMessageReplyMarkupAction() :
  * @returns [Message]|[Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun editMessageReplyMarkup() = editMarkup()
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun editMarkup(messageId: Long) = EditMessageReplyMarkupAction(messageId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun editMarkup() = EditMessageReplyMarkupAction()
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun editMessageReplyMarkup(messageId: Long) = editMarkup(messageId)
