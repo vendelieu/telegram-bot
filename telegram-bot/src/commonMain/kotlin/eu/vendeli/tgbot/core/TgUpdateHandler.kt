@@ -26,8 +26,10 @@ import eu.vendeli.tgbot.utils.serde
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -100,7 +102,7 @@ class TgUpdateHandler internal constructor(
      * @param block action that will be applied.
      */
     suspend fun setListener(allowedUpdates: List<UpdateType>? = null, block: HandlingBehaviourBlock) {
-        stopListener().await()
+        stopListener().join()
         logger.debug { "The listener is set." }
         handlingBehaviour = block
         collectUpdates(allowedUpdates)
@@ -111,9 +113,11 @@ class TgUpdateHandler internal constructor(
      * Stops listening of new updates.
      *
      */
-    suspend fun stopListener() = asyncAction {
-        handlerScope.coroutineContext.cancelChildren()
-        logger.debug { "The listener is stopped." }
+    suspend fun stopListener(): Job = coroutineScope {
+        launch {
+            handlerScope.coroutineContext.cancelChildren()
+            logger.debug { "The listener is stopped." }
+        }
     }
 
     /**
@@ -121,7 +125,7 @@ class TgUpdateHandler internal constructor(
      */
     suspend fun setBehaviour(block: HandlingBehaviourBlock) {
         logger.debug { "Handling behaviour is set." }
-        stopListener().await()
+        stopListener().join()
         handlingBehaviour = block
     }
 

@@ -20,7 +20,11 @@ internal class LogbackLoggerWrapper : Logger {
         }
     }
 
-    private fun getLogger(tag: String): org.slf4j.Logger = loggers.computeIfAbsent(tag) { LoggerFactory.getLogger(tag) }
+    private fun getLogger(tag: String): org.slf4j.Logger = loggers.getOrElse(tag) {
+        LoggerFactory.getLogger(tag).also {
+            loggers[tag] = it
+        }
+    }
 }
 
 private val logbackLogger by lazy { LogbackLoggerWrapper() }

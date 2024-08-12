@@ -91,7 +91,7 @@ class ContextTest : BotTestContext() {
         suspend fun runSingleListener() {
             bot.update.setListener {
                 handle(it)
-                stopListener()
+                stopListener().join()
             }
         }
 

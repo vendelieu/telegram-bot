@@ -44,7 +44,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
 
         bot.update.setListener {
             update = it
-            stopListener()
+            stopListener().join()
         }
 
         update.shouldNotBeNull()
@@ -69,7 +69,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
                 throw NoSuchElementException("test")
             }
             delay(100)
-            bot.update.stopListener()
+            bot.update.stopListener().join()
         }
         val throwableUpdatePair = bot.update.caughtExceptions
             .tryReceive()
@@ -95,7 +95,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             .shouldBeNull()
         bot.update.setListener {
             handle(it)
-            stopListener()
+            stopListener().join()
         }
 
         val throwableUpdatePair = bot.update.caughtExceptions
@@ -118,7 +118,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
 
         bot.update.setListener {
             handle(it)
-            stopListener()
+            stopListener().join()
         }
         bot.update.caughtExceptions
             .tryReceive()
@@ -184,7 +184,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             onCommand("/start") {
                 parameters shouldContainExactly mapOf("deepLink" to "test")
             }
-            bot.update.stopListener()
+            bot.update.stopListener().join()
         }
     }
 
@@ -219,7 +219,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             bot.inputListener.set(1, "testInp")
             handle(it)
             delay(200)
-            if (it.text == "aaaa") stopListener()
+            if (it.text == "aaaa") stopListener().join()
         }
 
         bot.update.caughtExceptions
@@ -251,7 +251,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         bot.update.setListener {
             bot.inputListener.set(1, "testInp")
             handle(it)
-            stopListener()
+            stopListener().join()
         }
         bot.update.caughtExceptions.tryReceive().getOrNull().shouldNotBeNull().run {
             exception.message shouldBe "test3"
@@ -263,7 +263,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             onInput("testInp") {
                 inputReached = true
             }
-            bot.update.stopListener()
+            bot.update.stopListener().join()
         }
         inputReached.shouldBeTrue()
     }

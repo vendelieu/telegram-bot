@@ -2,7 +2,6 @@ package eu.vendeli
 
 import BotTestContext
 import eu.vendeli.tgbot.annotations.internal.InternalApi
-import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
@@ -12,6 +11,7 @@ import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.types.internal.userOrNull
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.processUpdate
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
@@ -57,7 +57,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 println(this)
             }
 
-            if (loopCounter.incrementAndGet() == 5) bot.update.stopListener()
+            if (loopCounter.incrementAndGet() == 5) bot.update.stopListener().join()
         }
 
         bot.update.caughtExceptions
@@ -87,7 +87,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 (update as? MessageUpdate)?.message?.text shouldBe "/start"
             }
 
-            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
+            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener().join()
             delay(1)
         }
 
@@ -118,7 +118,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 notHandledCounter.incrementAndGet()
             }
 
-            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
+            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener().join()
         }
 
         generalCounter.get() shouldBeGreaterThanOrEqual 5
@@ -148,7 +148,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 regexCommonHandler.incrementAndGet()
             }
 
-            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
+            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener().join()
         }
 
         generalCounter.get() shouldBeGreaterThanOrEqual 5

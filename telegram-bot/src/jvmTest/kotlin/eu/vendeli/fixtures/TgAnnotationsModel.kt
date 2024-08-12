@@ -22,7 +22,7 @@ class TgAnnotationsModel {
 
     @CommandHandler(["STOP"])
     suspend fun stopHandling(bot: TelegramBot) {
-        bot.update.stopListener().await()
+        bot.update.stopListener().join()
     }
 
     @UpdateHandler([UpdateType.MESSAGE, UpdateType.CALLBACK_QUERY])
