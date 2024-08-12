@@ -21,13 +21,13 @@ class GetGameHighScoresAction :
     override val method = "getGameHighScores"
     override val returnType = getReturnType()
 
-    constructor(user: Identifier, messageId: Long) {
-        parameters["user_id"] = user.encodeWith(DynamicLookupSerializer)
+    constructor(userId: Identifier, messageId: Long) {
+        parameters["user_id"] = userId.encodeWith(DynamicLookupSerializer)
         parameters["message_id"] = messageId.toJsonElement()
     }
 
-    constructor(user: Identifier) {
-        parameters["user_id"] = user.encodeWith(DynamicLookupSerializer)
+    constructor(userId: Identifier) {
+        parameters["user_id"] = userId.encodeWith(DynamicLookupSerializer)
     }
 }
 

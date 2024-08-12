@@ -10,14 +10,14 @@ import eu.vendeli.tgbot.utils.toJsonElement
 
 @TgAPI
 class GetMyDefaultAdministratorRightsAction(
-    forChannel: Boolean? = null,
+    forChannels: Boolean? = null,
 ) : SimpleAction<ChatAdministratorRights>() {
     @TgAPI.Method("getMyDefaultAdministratorRights")
     override val method = "getMyDefaultAdministratorRights"
     override val returnType = getReturnType()
 
     init {
-        if (forChannel != null) parameters["for_channel"] = forChannel.toJsonElement()
+        if (forChannels != null) parameters["for_channels"] = forChannels.toJsonElement()
     }
 }
 

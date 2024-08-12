@@ -18,7 +18,7 @@ import eu.vendeli.tgbot.utils.toJsonElement
 @TgAPI
 class SendPollAction(
     question: String,
-    pollOptions: List<InputPollOption>,
+    options: List<InputPollOption>,
 ) : Action<Message>(),
     OptionsFeature<SendPollAction, PollOptions>,
     EntitiesFeature<SendPollAction>,
@@ -31,7 +31,7 @@ class SendPollAction(
 
     init {
         parameters["question"] = question.toJsonElement()
-        parameters["options"] = pollOptions.encodeWith(InputPollOption.serializer())
+        parameters["options"] = options.encodeWith(InputPollOption.serializer())
     }
 }
 
