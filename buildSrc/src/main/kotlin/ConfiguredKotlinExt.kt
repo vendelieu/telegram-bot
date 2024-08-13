@@ -4,7 +4,7 @@ import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-private val jvmTargetVer = JvmTarget.JVM_17
+private val jvmTargetVer = JvmTarget.JVM_11
 
 fun Project.onlyJvmConfiguredKotlin(block: KotlinMultiplatformExtension.() -> Unit) {
     plugins.apply("kotlin-multiplatform")
