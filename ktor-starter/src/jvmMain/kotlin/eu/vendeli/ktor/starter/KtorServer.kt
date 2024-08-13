@@ -19,8 +19,8 @@ import java.security.KeyStore
 import java.security.PrivateKey
 
 
-fun serveWebhook(wait: Boolean = true, serverBuilder: ServerBuilder.() -> Unit = {}): NettyApplicationEngine {
-    val cfg = ServerBuilder().apply(serverBuilder)
+suspend fun serveWebhook(wait: Boolean = true, serverBuilder: suspend ServerBuilder.() -> Unit = {}): NettyApplicationEngine {
+    val cfg = ServerBuilder().also { serverBuilder.invoke(it) }
     val serverCfg = cfg.server ?: EnvConfiguration
 
     val environment = applicationEngineEnvironment {

@@ -166,8 +166,8 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
 
             if (pkg != null) add(
                 "if (\n\t" +
-                    if (isUserNullable) "user != null\n &&" else "" +
-                        "bot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",
+                    (if (isUserNullable) "user != null\n && " else "") +
+                    "bot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",
                 funQualifier,
                 pkg,
             )

@@ -40,6 +40,8 @@ class SetPassportDataErrorsAction(
 @TgAPI
 inline fun setPassportDataErrors(userId: Long, errors: List<PassportElementError>) =
     SetPassportDataErrorsAction(userId, errors)
+
+@TgAPI
 fun setPassportDataErrors(userId: Long, errors: ListingBuilder<PassportElementError>.() -> Unit) =
     setPassportDataErrors(userId, ListingBuilder.build(errors))
 

@@ -44,6 +44,7 @@ import kotlinx.serialization.serializer
 
 class TelegramBotTest : BotTestContext() {
     override fun threads() = 1
+
     @ExperimentalKotest
     override fun concurrency() = 1
     override fun isolationMode() = IsolationMode.InstancePerLeaf

@@ -4,7 +4,7 @@ allprojects {
         gradlePluginPortal()
     }
     group = "eu.vendeli"
-    version = providers.gradleProperty("libVersion").getOrElse("dev-SNAPSHOT")
+    version = providers.gradleProperty("libVersion").getOrElse("dev")
 }
 
 plugins {
@@ -15,6 +15,7 @@ plugins {
 tasks.create("prepareRelease") {
     dependsOn("ksp:formatKotlin")
     dependsOn("telegram-bot:formatKotlin")
+    dependsOn("helper:formatKotlin")
 
     dependsOn("ksp:detekt")
     dependsOn("telegram-bot:detekt")

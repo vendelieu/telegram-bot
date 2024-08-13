@@ -154,6 +154,7 @@ import eu.vendeli.tgbot.types.poll.InputPollOption
 import eu.vendeli.tgbot.utils.builders.BotCommandsBuilder
 import eu.vendeli.tgbot.utils.builders.EntitiesCtxBuilder
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
+import eu.vendeli.tgbot.utils.builders.PollOptionsBuilder
 import kotlin.Boolean
 import kotlin.ByteArray
 import kotlin.Float
@@ -277,8 +278,18 @@ public inline fun TelegramBot.poll(question: String, options: List<InputPollOpti
     = eu.vendeli.tgbot.api.poll(question, options)
 
 @Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.poll(question: String, noinline
+    options: PollOptionsBuilder.() -> Unit): SendPollAction = eu.vendeli.tgbot.api.poll(question,
+    options)
+
+@Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.poll(question: String, vararg options: InputPollOption):
     SendPollAction = eu.vendeli.tgbot.api.poll(question, options = options)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.sendPoll(question: String, noinline
+    options: PollOptionsBuilder.() -> Unit): SendPollAction =
+    eu.vendeli.tgbot.api.sendPoll(question, options)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.setGameScore(
@@ -327,6 +338,11 @@ public inline fun TelegramBot.setMessageReaction(
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.setPassportDataErrors(userId: Long,
     errors: List<PassportElementError>): SetPassportDataErrorsAction =
+    eu.vendeli.tgbot.api.setPassportDataErrors(userId, errors)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.setPassportDataErrors(userId: Long, noinline
+    errors: ListingBuilder<PassportElementError>.() -> Unit): SetPassportDataErrorsAction =
     eu.vendeli.tgbot.api.setPassportDataErrors(userId, errors)
 
 @Suppress("NOTHING_TO_INLINE")
@@ -1256,8 +1272,18 @@ public inline fun TelegramBot.message(text: String): SendMessageAction =
     eu.vendeli.tgbot.api.message.message(text)
 
 @Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.message(noinline
+    block: EntitiesCtxBuilder<SendMessageAction>.() -> String): SendMessageAction =
+    eu.vendeli.tgbot.api.message.message(block)
+
+@Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.sendMessage(text: String): SendMessageAction =
     eu.vendeli.tgbot.api.message.sendMessage(text)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.sendMessage(noinline
+    block: EntitiesCtxBuilder<SendMessageAction>.() -> String): SendMessageAction =
+    eu.vendeli.tgbot.api.message.sendMessage(block)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.addStickerToSet(

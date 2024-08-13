@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) changelog
 
+## 7.0.1
+
+* Fix ksp generation artifact
+
 # 7.0.0
 
 #### Common

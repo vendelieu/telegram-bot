@@ -6,6 +6,7 @@ import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
+import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
@@ -26,7 +27,7 @@ class ApiProcessor(
     internal val logger: KSPLogger,
     options: Map<String, String>,
 ) : SymbolProcessor {
-    internal val apiDir = options["apiDir"]!!
+    private val apiDir = options["apiDir"]!!
     private val utilsDir = options["utilsDir"]!!
     private val apiFile = options["apiFile"]!!
 
@@ -51,16 +52,22 @@ class ApiProcessor(
 
         fileSpec.build().writeTo(File(utilsDir))
         resolver
-            .getDeclarationsFromPackage("eu.vendeli.tgbot.api")
-            .filter { i -> i.annotations.firstOrNull { it.shortName.getShortName() == "TgApi" } != null }
-            .forEach {
+            .resolveSymbolsFromDir(apiDir.substringBefore("/types") + "/api")
+            .filter { i ->
+                i.annotations.firstOrNull { it.shortName.getShortName() == "TgAPI" } == null
+            }.forEach {
                 logger.warn("${it.qualifiedName!!.asString()} not marked as Api.")
             }
 
         val apiJson = Json.parseToJsonElement(File(apiFile).readText())
         validateApi(apiClasses, apiJson)
 
-        val types = resolver.resolveSymbolsFromDir(apiDir).asSequence()
+        @Suppress("UNCHECKED_CAST")
+        val types = (
+            resolver.resolveSymbolsFromDir(apiDir) {
+                it is KSClassDeclaration && it.classKind != ClassKind.ENUM_CLASS
+            } as List<KSClassDeclaration>
+        ).asSequence()
         validateTypes(types, apiJson)
 
         return emptyList()

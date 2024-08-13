@@ -57,9 +57,13 @@ class SendMessageAction private constructor() :
 @Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun message(text: String) = SendMessageAction(text)
+
+@TgAPI
 fun message(block: EntitiesCtxBuilder<SendMessageAction>.() -> String) = SendMessageAction(block)
 
 @Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendMessage(text: String) = message(text)
+
+@TgAPI
 fun sendMessage(block: EntitiesCtxBuilder<SendMessageAction>.() -> String) = message(block)

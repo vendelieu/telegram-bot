@@ -8,11 +8,12 @@ plugins {
 
 apply(plugin = "org.jetbrains.kotlin.multiplatform")
 val libraryData = extensions.create("libraryData", PublishingExtension::class)
+val doSign = providers.gradleProperty("signing.keyId").isPresent
 
 mavenPublishing {
     coordinates("eu.vendeli", project.name, project.version.toString())
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-    signAllPublications()
+    if (doSign) signAllPublications()
 
     configure(
         KotlinMultiplatform(
