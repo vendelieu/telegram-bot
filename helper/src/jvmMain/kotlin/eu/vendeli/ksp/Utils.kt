@@ -38,9 +38,9 @@ internal fun Resolver.resolveSymbolsFromDir(
             getDeclarationsFromPackage(pkg).filter {
                 additionalFilter(it)
             } as Sequence<KSClassDeclaration>
-            ).toList().let {
-                output.addAll(it)
-            }
+        ).toList().let {
+            output.addAll(it)
+        }
     }
 
     return output

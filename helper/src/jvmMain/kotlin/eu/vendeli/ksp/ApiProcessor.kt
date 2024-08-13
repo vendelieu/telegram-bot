@@ -51,11 +51,11 @@ class ApiProcessor(
         }
 
         fileSpec.build().writeTo(File(utilsDir))
-        resolver.resolveSymbolsFromDir(apiDir.substringBefore("/types") + "/api")
+        resolver
+            .resolveSymbolsFromDir(apiDir.substringBefore("/types") + "/api")
             .filter { i ->
                 i.annotations.firstOrNull { it.shortName.getShortName() == "TgAPI" } == null
-            }
-            .forEach {
+            }.forEach {
                 logger.warn("${it.qualifiedName!!.asString()} not marked as Api.")
             }
 
@@ -63,9 +63,11 @@ class ApiProcessor(
         validateApi(apiClasses, apiJson)
 
         @Suppress("UNCHECKED_CAST")
-        val types = (resolver.resolveSymbolsFromDir(apiDir) {
-            it is KSClassDeclaration && it.classKind != ClassKind.ENUM_CLASS
-        } as List<KSClassDeclaration>).asSequence()
+        val types = (
+            resolver.resolveSymbolsFromDir(apiDir) {
+                it is KSClassDeclaration && it.classKind != ClassKind.ENUM_CLASS
+            } as List<KSClassDeclaration>
+        ).asSequence()
         validateTypes(types, apiJson)
 
         return emptyList()
