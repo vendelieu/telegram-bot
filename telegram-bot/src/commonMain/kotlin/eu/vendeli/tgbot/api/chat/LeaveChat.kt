@@ -2,12 +2,14 @@
 
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.utils.getReturnType
 
+@TgAPI
 class LeaveChatAction : Action<Boolean>() {
-    override val method = TgMethod("leaveChat")
+    @TgAPI.Name("leaveChat")
+    override val method = "leaveChat"
     override val returnType = getReturnType()
 }
 
@@ -19,4 +21,5 @@ class LeaveChatAction : Action<Boolean>() {
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun leaveChat() = LeaveChatAction()

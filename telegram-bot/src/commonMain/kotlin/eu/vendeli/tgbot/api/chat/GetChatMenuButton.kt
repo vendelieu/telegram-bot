@@ -2,13 +2,15 @@
 
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.keyboard.MenuButton
 import eu.vendeli.tgbot.utils.getReturnType
 
+@TgAPI
 class GetChatMenuButtonAction : Action<MenuButton>() {
-    override val method = TgMethod("getChatMenuButton")
+    @TgAPI.Name("getChatMenuButton")
+    override val method = "getChatMenuButton"
     override val returnType = getReturnType()
 }
 
@@ -20,4 +22,5 @@ class GetChatMenuButtonAction : Action<MenuButton>() {
  * @returns [MenuButton]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getChatMenuButton() = GetChatMenuButtonAction()

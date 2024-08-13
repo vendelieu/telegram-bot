@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.implementations
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.interfaces.ClassManager
+import eu.vendeli.tgbot.interfaces.ctx.ClassManager
 import kotlin.reflect.KClass
 
 /**

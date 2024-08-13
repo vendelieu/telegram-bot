@@ -2,26 +2,28 @@
 
 package eu.vendeli.tgbot.api.media
 
-import eu.vendeli.tgbot.interfaces.BusinessActionExt
-import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
+import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.StickerOptions
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 
+@TgAPI
 class SendStickerAction(
     sticker: ImplicitFile,
 ) : MediaAction<Message>(),
     BusinessActionExt<Message>,
     OptionsFeature<SendStickerAction, StickerOptions>,
     MarkupFeature<SendStickerAction> {
-    override val method = TgMethod("sendSticker")
+    @TgAPI.Name("sendSticker")
+    override val method = "sendSticker"
     override val returnType = getReturnType()
     override val options = StickerOptions()
 
@@ -47,16 +49,23 @@ class SendStickerAction(
  * @returns [Message]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun sticker(file: ImplicitFile) = SendStickerAction(file)
+
+@TgAPI
 inline fun sticker(block: () -> String) = sticker(block().toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun sticker(ba: ByteArray) = sticker(ba.toImplicitFile("sticker.webp"))
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun sticker(file: InputFile) = sticker(file.toImplicitFile())
 
+@TgAPI
 inline fun sendSticker(block: () -> String) = sticker(block)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun sendSticker(file: ImplicitFile) = sticker(file)

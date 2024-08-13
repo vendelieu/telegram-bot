@@ -2,16 +2,18 @@
 
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class ApproveChatJoinRequestAction(
     userId: Long,
 ) : Action<Boolean>() {
-    override val method = TgMethod("approveChatJoinRequest")
+    @TgAPI.Name("approveChatJoinRequest")
+    override val method = "approveChatJoinRequest"
     override val returnType = getReturnType()
 
     init {
@@ -28,7 +30,9 @@ class ApproveChatJoinRequestAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun approveChatJoinRequest(userId: Long) = ApproveChatJoinRequestAction(userId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun approveChatJoinRequest(user: User) = approveChatJoinRequest(user.id)

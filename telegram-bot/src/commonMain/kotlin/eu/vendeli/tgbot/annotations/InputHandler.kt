@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.annotations
 
-import eu.vendeli.tgbot.interfaces.Guard
-import eu.vendeli.tgbot.utils.DefaultGuard
+import eu.vendeli.tgbot.interfaces.helper.Guard
+import eu.vendeli.tgbot.implementations.DefaultGuard
 import kotlin.reflect.KClass
 
 /**

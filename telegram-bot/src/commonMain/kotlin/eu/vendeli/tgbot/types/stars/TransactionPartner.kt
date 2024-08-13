@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.stars
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.User
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -26,6 +27,7 @@ sealed class TransactionPartner(
 
     @Serializable
     @SerialName("user")
+    @TgAPI.Name("TransactionPartnerUser")
     data class UserPartner(
         val user: User,
         val invoicePayload: String? = null,

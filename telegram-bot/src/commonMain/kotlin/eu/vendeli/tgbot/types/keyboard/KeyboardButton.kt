@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.keyboard
 
-import eu.vendeli.tgbot.interfaces.Button
+import eu.vendeli.tgbot.interfaces.marker.Button
 import kotlinx.serialization.Serializable
 
 /**

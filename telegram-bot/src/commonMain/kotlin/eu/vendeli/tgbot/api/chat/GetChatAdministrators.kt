@@ -2,13 +2,15 @@
 
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.chat.ChatMember
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 
+@TgAPI
 class GetChatAdministratorsAction : Action<List<ChatMember>>() {
-    override val method = TgMethod("getChatAdministrators")
+    @TgAPI.Name("getChatAdministrators")
+    override val method = "getChatAdministrators"
     override val returnType = getReturnType()
 }
 
@@ -20,4 +22,5 @@ class GetChatAdministratorsAction : Action<List<ChatMember>>() {
  * @returns [Array of ChatMember]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getChatAdministrators() = GetChatAdministratorsAction()

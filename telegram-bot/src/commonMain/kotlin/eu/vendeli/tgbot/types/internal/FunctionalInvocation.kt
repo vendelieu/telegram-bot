@@ -1,10 +1,10 @@
 package eu.vendeli.tgbot.types.internal
 
-import eu.vendeli.tgbot.interfaces.Filter
-import eu.vendeli.tgbot.interfaces.Guard
+import eu.vendeli.tgbot.implementations.DefaultFilter
+import eu.vendeli.tgbot.implementations.DefaultGuard
+import eu.vendeli.tgbot.interfaces.helper.Filter
+import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import eu.vendeli.tgbot.utils.DefaultFilter
-import eu.vendeli.tgbot.utils.DefaultGuard
 import eu.vendeli.tgbot.utils.OnCommandActivity
 import kotlin.reflect.KClass
 

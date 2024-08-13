@@ -2,6 +2,8 @@ package eu.vendeli.ktor.starter
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.InternalApi
+import eu.vendeli.tgbot.types.internal.configuration.HttpConfiguration
+import eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
 import io.ktor.client.HttpClient
 import io.ktor.server.application.Application
@@ -22,9 +24,9 @@ class ServerBuilder internal constructor() {
     }
 
     @OptIn(InternalApi::class)
-    fun declareBot(block: BotConfiguration.() -> Unit) = BotConfiguration().apply(block).also { cfg ->
+    suspend fun declareBot(block: BotConfiguration.() -> Unit) = BotConfiguration().apply(block).also { cfg ->
         val client = if (shareHttpClient) httpClient ?: getConfiguredHttpClient(
-            eu.vendeli.tgbot.types.internal.configuration.BotConfiguration(),
+            HttpConfiguration(), LoggingConfiguration(),
         ) else null
 
         botInstances[cfg.token] = TelegramBot(
@@ -35,7 +37,6 @@ class ServerBuilder internal constructor() {
             },
             botConfiguration = cfg.configuration,
         ).also { bot ->
-            cfg.identifier?.let { bot.identifier = it }
             cfg.handlingBehaviour?.let { bot.update.setBehaviour(it) }
             runBlocking { cfg.onInitHook.invoke(bot) }
         }

@@ -2,13 +2,13 @@ package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
-import eu.vendeli.tgbot.core.TgUpdateHandler.Companion.logger
-import eu.vendeli.tgbot.interfaces.Filter
-import eu.vendeli.tgbot.interfaces.Guard
+import eu.vendeli.tgbot.implementations.DefaultFilter
+import eu.vendeli.tgbot.implementations.DefaultGuard
+import eu.vendeli.tgbot.interfaces.helper.Filter
+import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivityCtx
 import eu.vendeli.tgbot.types.internal.CommandContext
-import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
@@ -29,7 +29,7 @@ internal suspend inline fun KClass<out Guard>.checkIsGuarded(
     update: ProcessedUpdate,
     bot: TelegramBot,
 ): Boolean {
-    if (fullName == "eu.vendeli.tgbot.utils.DefaultGuard") return true
+    if (fullName == DefaultGuard::class.fullName) return true
     return bot.config.classManager
         .getInstance(this)
         .cast<Guard>()
@@ -41,7 +41,7 @@ internal suspend inline fun KClass<out Filter>.checkIsFiltered(
     update: ProcessedUpdate,
     bot: TelegramBot,
 ): Boolean {
-    if (fullName == "eu.vendeli.tgbot.utils.DefaultFilter") return true
+    if (fullName == DefaultFilter::class.fullName) return true
     return bot.config.classManager
         .getInstance(this)
         .cast<Filter>()
@@ -137,19 +137,19 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
 }
 
 private suspend fun ((suspend ActivityCtx<ProcessedUpdate>.() -> Unit)?).invokeActivity(
-    bot: TelegramBot,
+    functionalHandler: FunctionalHandlingDsl,
     updateType: UpdateType,
     activityCtx: ActivityCtx<ProcessedUpdate>,
 ): Boolean {
     this
         ?.runCatching { invoke(activityCtx) }
         ?.onFailure {
-            bot.update.caughtExceptions.send(FailedUpdate(it, activityCtx.update))
-            logger.error(it) {
+            functionalHandler.logger.error(it) {
                 "An error occurred while functionally processing update: ${activityCtx.update} to UpdateType($updateType)."
             }
+            functionalHandler.bot.update.handleFailure(activityCtx.update, it)
         }?.onSuccess {
-            logger.info {
+            functionalHandler.logger.info {
                 "Update #${activityCtx.update.updateId} processed in functional mode with UpdateType($updateType) activity."
             }
             return true
@@ -174,7 +174,7 @@ internal suspend fun FunctionalHandlingDsl.process(update: ProcessedUpdate) = wi
 
     checkMessageForActivities(this).ifAffected { affectedActivities += 1 }
     functionalActivities.onUpdateActivities[type]
-        ?.invokeActivity(bot, type, ActivityCtx(this))
+        ?.invokeActivity(this@process, type, ActivityCtx(this))
         .ifAffected { affectedActivities += 1 }
 
     if (affectedActivities == 0) functionalActivities.whenNotHandled?.invoke(update)?.also {

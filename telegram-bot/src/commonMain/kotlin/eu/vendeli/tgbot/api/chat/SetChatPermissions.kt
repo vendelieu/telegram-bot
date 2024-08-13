@@ -2,18 +2,20 @@
 
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.chat.ChatPermissions
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class SetChatPermissionsAction(
     permissions: ChatPermissions,
     useIndependentChatPermissions: Boolean? = null,
 ) : Action<Boolean>() {
-    override val method = TgMethod("setChatPermissions")
+    @TgAPI.Name("setChatPermissions")
+    override val method = "setChatPermissions"
     override val returnType = getReturnType()
 
     init {
@@ -33,10 +35,13 @@ class SetChatPermissionsAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setChatPermissions(
     permissions: ChatPermissions,
     useIndependentChatPermissions: Boolean? = null,
 ) = SetChatPermissionsAction(permissions, useIndependentChatPermissions)
+
+@TgAPI
 inline fun setChatPermissions(
     useIndependentChatPermissions: Boolean? = null,
     permissions: ChatPermissions.() -> Unit,

@@ -2,17 +2,19 @@
 
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class SetChatAdministratorCustomTitleAction(
     userId: Long,
     customTitle: String,
 ) : Action<Boolean>() {
-    override val method = TgMethod("setChatAdministratorCustomTitle")
+    @TgAPI.Name("setChatAdministratorCustomTitle")
+    override val method = "setChatAdministratorCustomTitle"
     override val returnType = getReturnType()
 
     init {
@@ -31,9 +33,11 @@ class SetChatAdministratorCustomTitleAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setChatAdministratorCustomTitle(userId: Long, customTitle: String) =
     SetChatAdministratorCustomTitleAction(userId, customTitle)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setChatAdministratorCustomTitle(user: User, customTitle: String) =
     setChatAdministratorCustomTitle(user.id, customTitle)

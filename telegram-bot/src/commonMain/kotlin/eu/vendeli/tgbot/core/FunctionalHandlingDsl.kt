@@ -1,8 +1,10 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.interfaces.Filter
-import eu.vendeli.tgbot.interfaces.Guard
+import eu.vendeli.tgbot.implementations.DefaultFilter
+import eu.vendeli.tgbot.implementations.DefaultGuard
+import eu.vendeli.tgbot.interfaces.helper.Filter
+import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.types.internal.ActivityCtx
 import eu.vendeli.tgbot.types.internal.CommonMatcher
 import eu.vendeli.tgbot.types.internal.FunctionalActivities
@@ -13,8 +15,7 @@ import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.DEFAULT_COMMAND_SCOPE
-import eu.vendeli.tgbot.utils.DefaultFilter
-import eu.vendeli.tgbot.utils.DefaultGuard
+import eu.vendeli.tgbot.utils.LoggingWrapper
 import eu.vendeli.tgbot.utils.OnBusinessConnectionActivity
 import eu.vendeli.tgbot.utils.OnBusinessMessageActivity
 import eu.vendeli.tgbot.utils.OnCallbackQueryActivity
@@ -53,6 +54,7 @@ class FunctionalHandlingDsl internal constructor(
     internal val bot: TelegramBot,
 ) {
     internal val functionalActivities = FunctionalActivities()
+    internal val logger = LoggingWrapper(bot.config.logging, "eu.vendeli.FunctionalHandler")
 
     /**
      * Action that is performed on the presence of Message in the Update.

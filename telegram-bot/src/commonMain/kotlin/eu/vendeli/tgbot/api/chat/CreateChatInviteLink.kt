@@ -2,17 +2,19 @@
 
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.chat.ChatInviteLink
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.ChatInviteLinkOptions
 import eu.vendeli.tgbot.utils.getReturnType
 
+@TgAPI
 class CreateChatInviteLinkAction :
     Action<ChatInviteLink>(),
     OptionsFeature<CreateChatInviteLinkAction, ChatInviteLinkOptions> {
-    override val method = TgMethod("createChatInviteLink")
+    @TgAPI.Name("createChatInviteLink")
+    override val method = "createChatInviteLink"
     override val returnType = getReturnType()
     override val options = ChatInviteLinkOptions()
 }
@@ -29,4 +31,5 @@ class CreateChatInviteLinkAction :
  * @returns [ChatInviteLink]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun createChatInviteLink() = CreateChatInviteLinkAction()

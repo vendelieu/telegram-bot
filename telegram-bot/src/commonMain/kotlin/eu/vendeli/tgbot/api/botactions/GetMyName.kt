@@ -2,16 +2,18 @@
 
 package eu.vendeli.tgbot.api.botactions
 
-import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.bot.BotName
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class GetMyNameAction(
     languageCode: String? = null,
 ) : SimpleAction<BotName>() {
-    override val method = TgMethod("getMyName")
+    @TgAPI.Name("getMyName")
+    override val method = "getMyName"
     override val returnType = getReturnType()
 
     init {
@@ -27,4 +29,5 @@ class GetMyNameAction(
  * @returns [BotName]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getMyName(languageCode: String? = null) = GetMyNameAction(languageCode)

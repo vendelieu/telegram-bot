@@ -2,20 +2,22 @@
 
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.BusinessActionExt
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.types.chat.ChatAction
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
-class SendChatAction(
+@TgAPI
+class SendChatActionAction(
     action: ChatAction,
     messageThreadId: Int? = null,
 ) : Action<Boolean>(),
     BusinessActionExt<Boolean> {
-    override val method = TgMethod("sendChatAction")
+    @TgAPI.Name("sendChatAction")
+    override val method = "sendChatAction"
     override val returnType = getReturnType()
 
     init {
@@ -36,11 +38,15 @@ class SendChatAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
-inline fun chatAction(action: ChatAction, messageThreadId: Int? = null) = SendChatAction(action, messageThreadId)
+@TgAPI
+inline fun chatAction(action: ChatAction, messageThreadId: Int? = null) = SendChatActionAction(action, messageThreadId)
 
+@TgAPI
 inline fun chatAction(messageThreadId: Int? = null, block: () -> ChatAction) = chatAction(block(), messageThreadId)
 
+@TgAPI
 inline fun sendChatAction(messageThreadId: Int? = null, block: () -> ChatAction) = chatAction(block(), messageThreadId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun sendChatAction(action: ChatAction, messageThreadId: Int? = null) = chatAction(action, messageThreadId)

@@ -20,6 +20,7 @@ class LoremPicsumPic : RandomPicSource() {
     override fun getPicUrl(): String = "https://picsum.photos/10"
 }
 
-object RandomPicResource : ResourcePicker<RandomPicSource>(listOf(UnsplashRandomPic(), LoremPicsumPic())) {
+object RandomPicResource :
+    ResourcePicker<RandomPicSource>(listOf(UnsplashRandomPic(), LoremPicsumPic())) {
     val RANDOM_PIC_URL get() = current.getPicUrl()
 }

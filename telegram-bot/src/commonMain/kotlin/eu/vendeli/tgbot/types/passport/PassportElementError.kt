@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.passport
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -46,6 +47,7 @@ sealed class PassportElementError(
 
     @Serializable
     @SerialName("file")
+    @TgAPI.Name("PassportElementErrorFile")
     data class FileElement(
         val type: EncryptedPassportElementType,
         val fileHash: String,

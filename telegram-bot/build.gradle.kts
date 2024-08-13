@@ -1,35 +1,19 @@
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.time.LocalDate
 
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.compatability.validator)
     alias(libs.plugins.ktlinter)
     alias(libs.plugins.deteKT)
     alias(libs.plugins.kover)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.ksp)
     id("publish")
 }
 
-kotlin {
-    jvm {
-        withJava()
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions {
-                    jvmTarget.set(JvmTarget.fromTarget(JAVA_TARGET_V))
-                }
-            }
-        }
-    }
-    js { nodejs() }
-    mingwX64()
-    linuxX64()
-    jvmToolchain(JAVA_TARGET_V_int)
-
+configuredKotlin {
     sourceSets {
         commonMain {
             dependencies {
@@ -85,7 +69,7 @@ kotlin {
         compilations.all {
             compileTaskProvider.configure {
                 compilerOptions {
-                    allWarningsAsErrors.set(true)
+                    allWarningsAsErrors = true
                 }
             }
         }
@@ -93,8 +77,8 @@ kotlin {
 }
 
 libraryData {
-    name.set("Telegram Bot")
-    description.set("Telegram Bot API wrapper, with handy Kotlin DSL.")
+    name = "Telegram Bot"
+    description = "Telegram Bot API wrapper, with handy Kotlin DSL."
 }
 
 detekt {
@@ -109,15 +93,31 @@ buildscript {
     }
 }
 
-repositories {
-    mavenCentral()
+dependencies {
+    add("kspCommonMainMetadata", project(":helper"))
+}
+
+ksp {
+    arg(
+        "utilsDir",
+        rootDir.resolve("ktgram-utils/src/commonMain/kotlin/").absolutePath,
+    )
+    arg(
+        "apiDir",
+        rootDir.resolve("telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/types").absolutePath,
+    )
+    arg(
+        "apiFile",
+        rootDir.resolve("buildSrc/src/main/resources/api.json").absolutePath,
+    )
 }
 
 tasks {
     register<Kdokker>("kdocUpdate")
     withType<Test> { useJUnitPlatform() }
+    named("build") { dependsOn("kspCommonMainKotlinMetadata") }
     dokkaHtml.configure {
-        outputDirectory.set(layout.buildDirectory.asFile.orNull?.resolve("dokka"))
+        outputDirectory = layout.buildDirectory.asFile.orNull?.resolve("dokka")
         dokkaSourceSets {
             named("commonMain") { sourceRoots.setFrom(project.projectDir.resolve("src/commonMain/kotlin")) }
             named("jvmMain") { sourceRoots.setFrom(project.projectDir.resolve("src/jvmMain/kotlin")) }
@@ -125,7 +125,7 @@ tasks {
             if ("nativeMain" in names) named("nativeMain") {
                 sourceRoots.setFrom(project.projectDir.resolve("src/nativeMain/kotlin"))
             }
-            collectionSchema.elements.forEach { _ -> moduleName.set("Telegram Bot") }
+            collectionSchema.elements.forEach { _ -> moduleName = "Telegram Bot" }
         }
         pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
             customStyleSheets = listOf(rootDir.resolve("assets/logo-styles.css"))

@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.chat
 
 import eu.vendeli.tgbot.types.Birthdate
-import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.ReactionType
 import eu.vendeli.tgbot.types.business.BusinessIntro
 import eu.vendeli.tgbot.types.business.BusinessLocation

@@ -2,21 +2,23 @@
 
 package eu.vendeli.tgbot.api.message
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.BusinessActionExt
-import eu.vendeli.tgbot.interfaces.InlineActionExt
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
+import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
-import eu.vendeli.tgbot.types.Message
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class EditMessageReplyMarkupAction() :
     Action<Message>(),
     InlineActionExt<Message>,
     BusinessActionExt<Message>,
     MarkupFeature<EditMessageReplyMarkupAction> {
-    override val method = TgMethod("editMessageReplyMarkup")
+    @TgAPI.Name("editMessageReplyMarkup")
+    override val method = "editMessageReplyMarkup"
     override val returnType = getReturnType()
 
     constructor(messageId: Long) : this() {
@@ -36,13 +38,17 @@ class EditMessageReplyMarkupAction() :
  * @returns [Message]|[Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun editMessageReplyMarkup() = editMarkup()
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun editMarkup(messageId: Long) = EditMessageReplyMarkupAction(messageId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun editMarkup() = EditMessageReplyMarkupAction()
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun editMessageReplyMarkup(messageId: Long) = editMarkup(messageId)

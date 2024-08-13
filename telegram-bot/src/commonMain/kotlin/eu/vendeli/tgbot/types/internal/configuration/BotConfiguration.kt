@@ -2,29 +2,42 @@ package eu.vendeli.tgbot.types.internal.configuration
 
 import eu.vendeli.tgbot.implementations.ClassManagerImpl
 import eu.vendeli.tgbot.implementations.InputListenerMapImpl
-import eu.vendeli.tgbot.interfaces.ClassManager
-import eu.vendeli.tgbot.interfaces.InputListener
+import eu.vendeli.tgbot.interfaces.ctx.ClassManager
+import eu.vendeli.tgbot.interfaces.ctx.InputListener
+import eu.vendeli.tgbot.types.internal.ExceptionHandlingStrategy
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 /**
  * The class containing the bot configuration.
  *
+ * @property identifier Property to identify different bot instances during multi-bot processing.
  * @property apiHost Host of telegram api.
  * @property isTestEnv Test environment flag.
  * @property inputListener Input handling class instance.
  * @property classManager The manager that will be used to get classes.
  * @property inputAutoRemoval A flag that regulates the auto-deletion of the input point during processing.
+ * @property exceptionHandlingStrategy Exception handling strategy.
+ * @property throwExOnActionsFailure Throw exception when the action (any bot request) ends with failure.
  */
+@Serializable
 data class BotConfiguration(
+    var identifier: String = "KtGram",
     var apiHost: String = "https://api.telegram.org",
     var isTestEnv: Boolean = false,
+    @Transient
     var inputListener: InputListener = InputListenerMapImpl(),
+    @Transient
     var classManager: ClassManager = ClassManagerImpl(),
     var inputAutoRemoval: Boolean = true,
+    @Transient
+    var exceptionHandlingStrategy: ExceptionHandlingStrategy = ExceptionHandlingStrategy.CollectToChannel,
+    var throwExOnActionsFailure: Boolean = false,
+    @Transient
     internal var rateLimiter: RateLimiterConfiguration = RateLimiterConfiguration(),
     internal var httpClient: HttpConfiguration = HttpConfiguration(),
     internal var logging: LoggingConfiguration = LoggingConfiguration(),
     internal var updatesListener: UpdatesListenerConfiguration = UpdatesListenerConfiguration(),
-    internal var context: ContextConfiguration = ContextConfiguration(),
     internal var commandParsing: CommandParsingConfiguration = CommandParsingConfiguration(),
 ) {
     /**
@@ -56,13 +69,6 @@ data class BotConfiguration(
     }
 
     /**
-     * Function for bot context configuration. See [ContextConfiguration].
-     */
-    fun context(block: ContextConfiguration.() -> Unit) {
-        context.block()
-    }
-
-    /**
      * Function for specifying command parsing pattern. See [CommandParsingConfiguration].
      */
     fun commandParsing(block: CommandParsingConfiguration.() -> Unit) {
@@ -78,7 +84,6 @@ data class BotConfiguration(
         logging = new.logging
         rateLimiter = new.rateLimiter
         updatesListener = new.updatesListener
-        context = new.context
         commandParsing = new.commandParsing
 
         return this

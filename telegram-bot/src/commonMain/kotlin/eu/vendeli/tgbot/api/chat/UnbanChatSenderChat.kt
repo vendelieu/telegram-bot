@@ -2,17 +2,19 @@
 
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class UnbanChatSenderChatAction(
     senderChatId: Long,
 ) : Action<Boolean>() {
-    override val method = TgMethod("unbanChatSenderChat")
+    @TgAPI.Name("unbanChatSenderChat")
+    override val method = "unbanChatSenderChat"
     override val returnType = getReturnType()
 
     init {
@@ -29,10 +31,13 @@ class UnbanChatSenderChatAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun unbanChatSenderChat(senderChatId: Long) = UnbanChatSenderChatAction(senderChatId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun unbanChatSenderChat(senderChatId: Chat) = unbanChatSenderChat(senderChatId.id)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun unbanChatSenderChat(senderChatId: User) = unbanChatSenderChat(senderChatId.id)

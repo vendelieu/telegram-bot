@@ -1,20 +1,18 @@
 package eu.vendeli.ksp
 
-import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
-import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.MAP
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.STRING
-import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.buildCodeBlock
 import eu.vendeli.ksp.dto.CommonAnnotationData
+import eu.vendeli.ksp.dto.ProcessorCtxData
 import eu.vendeli.ksp.utils.FileBuilder
 import eu.vendeli.ksp.utils.addMap
 import eu.vendeli.ksp.utils.commonMatcherClass
@@ -31,10 +29,9 @@ import eu.vendeli.tgbot.types.internal.UpdateType
 
 internal fun FileBuilder.collectCommandActivities(
     symbols: Sequence<KSFunctionDeclaration>,
-    injectableTypes: Map<TypeName, ClassName>,
-    logger: KSPLogger,
-    idxPostfix: String,
-) {
+    ctx: ProcessorCtxData,
+    pkg: String? = null,
+) = ctx.run {
     logger.info("Collecting commands.")
     addMap(
         "__TG_COMMANDS$idxPostfix",
@@ -67,7 +64,7 @@ internal fun FileBuilder.collectCommandActivities(
                 addStatement(
                     "(\"$it\" to %L) to (%L to InvocationMeta(\"%L\", \"%L\", %L, %L::class)),",
                     updT,
-                    buildInvocationLambdaCodeBlock(function, injectableTypes),
+                    buildInvocationLambdaCodeBlock(function, injectableTypes, pkg),
                     function.qualifiedName!!.getQualifier(),
                     function.simpleName.asString(),
                     annotationData.rateLimits.toRateLimits(),
@@ -81,12 +78,11 @@ internal fun FileBuilder.collectCommandActivities(
 internal fun FileBuilder.collectInputActivities(
     symbols: Sequence<KSFunctionDeclaration>,
     chainSymbols: Sequence<KSClassDeclaration>,
-    injectableTypes: Map<TypeName, ClassName>,
-    logger: KSPLogger,
-    idxPostfix: String,
-) {
+    ctx: ProcessorCtxData,
+    pkg: String? = null,
+) = ctx.run {
     logger.info("Collecting inputs.")
-    val tailBlock = collectInputChains(chainSymbols, logger)
+    val tailBlock = collectInputChains(chainSymbols, logger, pkg)
 
     addMap(
         "__TG_INPUTS$idxPostfix",
@@ -103,7 +99,7 @@ internal fun FileBuilder.collectInputActivities(
             logger.info("Input: $it --> ${function.qualifiedName?.asString()}")
             addStatement(
                 "\"$it\" to (%L to InvocationMeta(\"%L\", \"%L\", %L, %L::class)),",
-                buildInvocationLambdaCodeBlock(function, injectableTypes),
+                buildInvocationLambdaCodeBlock(function, injectableTypes, pkg),
                 function.qualifiedName!!.getQualifier(),
                 function.simpleName.asString(),
                 annotationData.second.toRateLimits(),
@@ -115,10 +111,8 @@ internal fun FileBuilder.collectInputActivities(
 
 internal fun FileBuilder.collectUpdateTypeActivities(
     symbols: Sequence<KSFunctionDeclaration>,
-    injectableTypes: Map<TypeName, ClassName>,
-    logger: KSPLogger,
-    idxPostfix: String,
-) {
+    ctx: ProcessorCtxData,
+) = ctx.run {
     logger.info("Collecting `UpdateType` handlers.")
     addMap(
         "__TG_UPDATE_TYPES$idxPostfix",
@@ -144,10 +138,9 @@ internal fun FileBuilder.collectUpdateTypeActivities(
 
 internal fun FileBuilder.collectCommonActivities(
     data: List<CommonAnnotationData>,
-    injectableTypes: Map<TypeName, ClassName>,
-    logger: KSPLogger,
-    idxPostfix: String,
-) {
+    ctx: ProcessorCtxData,
+    pkg: String? = null,
+) = ctx.run {
     logger.info("Collecting common handlers.")
     addProperty(
         PropertySpec
@@ -165,7 +158,7 @@ internal fun FileBuilder.collectCommonActivities(
                                 addStatement(
                                     "%L to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
                                     it.value.toCommonMatcher(it.filter, it.scope),
-                                    buildInvocationLambdaCodeBlock(it.funDeclaration, injectableTypes),
+                                    buildInvocationLambdaCodeBlock(it.funDeclaration, injectableTypes, pkg),
                                     it.funQualifier,
                                     it.funSimpleName,
                                     it.rateLimits.let { l ->
@@ -184,10 +177,8 @@ internal fun FileBuilder.collectCommonActivities(
 
 internal fun FileBuilder.collectUnprocessed(
     unprocessedHandlerSymbols: KSFunctionDeclaration?,
-    injectableTypes: Map<TypeName, ClassName>,
-    logger: KSPLogger,
-    idxPostfix: String,
-) {
+    ctx: ProcessorCtxData,
+) = ctx.run {
     addProperty(
         PropertySpec
             .builder(

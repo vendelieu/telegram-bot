@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.interfaces.features
 
-import eu.vendeli.tgbot.interfaces.TgAction
-import eu.vendeli.tgbot.types.MessageEntity
+import eu.vendeli.tgbot.interfaces.action.TgAction
+import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.utils.builders.EntitiesBuilder
 import eu.vendeli.tgbot.utils.encodeWith
 

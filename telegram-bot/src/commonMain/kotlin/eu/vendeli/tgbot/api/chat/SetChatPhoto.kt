@@ -2,18 +2,20 @@
 
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 
+@TgAPI
 class SetChatPhotoAction(
     photo: ImplicitFile,
 ) : MediaAction<Boolean>() {
-    override val method = TgMethod("setChatPhoto")
+    @TgAPI.Name("setChatPhoto")
+    override val method = "setChatPhoto"
     override val returnType = getReturnType()
 
     init {
@@ -30,8 +32,12 @@ class SetChatPhotoAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setChatPhoto(file: ImplicitFile) = SetChatPhotoAction(file)
+
+@TgAPI
 inline fun setChatPhoto(block: () -> String) = setChatPhoto(block().toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setChatPhoto(file: InputFile) = setChatPhoto(file.toImplicitFile())

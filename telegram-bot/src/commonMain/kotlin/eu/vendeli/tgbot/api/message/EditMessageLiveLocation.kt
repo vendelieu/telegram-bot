@@ -2,24 +2,26 @@
 
 package eu.vendeli.tgbot.api.message
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.BusinessActionExt
-import eu.vendeli.tgbot.interfaces.InlineActionExt
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
+import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.Message
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.EditMessageLiveLocationOptions
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class EditMessageLiveLocationAction :
     Action<Message>,
     InlineActionExt<Message>,
     BusinessActionExt<Message>,
     OptionsFeature<EditMessageLiveLocationAction, EditMessageLiveLocationOptions>,
     MarkupFeature<EditMessageLiveLocationAction> {
-    override val method = TgMethod("editMessageLiveLocation")
+    @TgAPI.Name("editMessageLiveLocation")
+    override val method = "editMessageLiveLocation"
     override val returnType = getReturnType()
     override val options = EditMessageLiveLocationOptions()
 
@@ -53,10 +55,12 @@ class EditMessageLiveLocationAction :
  * @returns [Message]|[Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun editMessageLiveLocation(messageId: Long, latitude: Float, longitude: Float) =
     EditMessageLiveLocationAction(messageId, latitude, longitude)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun editMessageLiveLocation(
     latitude: Float,
     longitude: Float,

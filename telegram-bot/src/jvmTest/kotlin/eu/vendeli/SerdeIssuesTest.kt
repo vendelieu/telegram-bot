@@ -1,8 +1,8 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.types.MaybeInaccessibleMessage
-import eu.vendeli.tgbot.types.Message
+import eu.vendeli.tgbot.types.msg.MaybeInaccessibleMessage
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.keyboard.ForceReply

@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.bot
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -38,6 +39,7 @@ sealed class BotCommandScope(
 
     @Serializable
     @SerialName("chat")
+    @TgAPI.Name("BotCommandScopeChat")
     data class ChatScope(
         val chatId: Long,
     ) : BotCommandScope(type = "chat")

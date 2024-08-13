@@ -1,9 +1,7 @@
 package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.TelegramBot.Companion.logger
 import eu.vendeli.tgbot.types.internal.Response
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.serde.primitiveOrNull
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.MultiPartFormDataContent
@@ -36,9 +34,10 @@ private inline fun buildHeadersForItem(name: String) = HeadersBuilder()
     }.build()
 
 @Suppress("OPT_IN_USAGE")
-private fun HttpRequestBuilder.formReqBody(
+private suspend fun HttpRequestBuilder.formReqBody(
     data: Map<String, JsonElement>,
     multipartData: List<PartData.BinaryItem>,
+    logger: LoggingWrapper,
 ) {
     if (data.isEmpty() && multipartData.isEmpty()) return
     if (multipartData.isNotEmpty()) {
@@ -57,37 +56,42 @@ private fun HttpRequestBuilder.formReqBody(
     }
 }
 
-private suspend inline fun <T> HttpResponse.toResult(type: KSerializer<T>) = bodyAsText().let {
+private suspend fun <T> HttpResponse.toResult(
+    type: KSerializer<T>,
+    bot: TelegramBot,
+) = bodyAsText().let {
     if (status.isSuccess()) serde.decodeFromString(Response.Success.serializer(type), it)
-    else serde.decodeFromString(Response.Failure.serializer(), it)
+    else serde.decodeFromString(Response.Failure.serializer(), it).also { f ->
+        val stringFailure = f.toString()
+        bot.logger.error { "Request - ${call.request.content} received failure response: $stringFailure" }
+        if (bot.config.throwExOnActionsFailure) throw TgFailureException(stringFailure)
+    }
 }
 
 internal suspend inline fun <T> TelegramBot.makeRequestReturning(
-    method: TgMethod,
+    method: String,
     data: Map<String, JsonElement>,
     returnType: KSerializer<T>,
     multipartData: List<PartData.BinaryItem>,
 ): Deferred<Response<out T>> = coroutineScope {
-    val response = httpClient.post(baseUrl + method.name) {
-        formReqBody(data, multipartData)
+    val response = httpClient.post(baseUrl + method) {
+        formReqBody(data, multipartData, logger)
     }
 
-    return@coroutineScope async { response.toResult(returnType) }
+    return@coroutineScope async { response.toResult(returnType, this@makeRequestReturning) }
 }
 
 internal suspend inline fun TelegramBot.makeSilentRequest(
-    method: TgMethod,
+    method: String,
     data: Map<String, JsonElement>,
     multipartData: List<PartData.BinaryItem>,
 ) = httpClient
-    .post(baseUrl + method.name) {
-        formReqBody(data, multipartData)
-    }.logFailure()
-
-internal suspend inline fun HttpResponse.logFailure(): HttpResponse {
-    if (!status.isSuccess()) {
-        val body = bodyAsText()
-        logger.error { "Request - ${request.content} received failure response: $body" }
+    .post(baseUrl + method) {
+        formReqBody(data, multipartData, logger)
+    }.also { call ->
+        if (!call.status.isSuccess()) {
+            val body = call.bodyAsText()
+            logger.error { "Request - ${call.request.content} received failure response: $body" }
+            if (config.throwExOnActionsFailure) throw TgFailureException(body)
+        }
     }
-    return this
-}

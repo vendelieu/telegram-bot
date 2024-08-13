@@ -2,21 +2,23 @@
 
 package eu.vendeli.tgbot.api
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.BusinessActionExt
-import eu.vendeli.tgbot.interfaces.InlineActionExt
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
+import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
-import eu.vendeli.tgbot.types.Message
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class StopMessageLiveLocationAction() :
     Action<Message>(),
     InlineActionExt<Message>,
     BusinessActionExt<Message>,
     MarkupFeature<StopMessageLiveLocationAction> {
-    override val method = TgMethod("stopMessageLiveLocation")
+    @TgAPI.Name("stopMessageLiveLocation")
+    override val method = "stopMessageLiveLocation"
     override val returnType = getReturnType()
 
     constructor(messageId: Long) : this() {
@@ -36,7 +38,9 @@ class StopMessageLiveLocationAction() :
  * @returns [Message]|[Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun stopMessageLiveLocation(messageId: Long) = StopMessageLiveLocationAction(messageId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun stopMessageLiveLocation() = StopMessageLiveLocationAction()

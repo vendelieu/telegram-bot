@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.interfaces.features
 
-import eu.vendeli.tgbot.interfaces.TgAction
+import eu.vendeli.tgbot.interfaces.action.TgAction
 import eu.vendeli.tgbot.types.internal.options.Options
 import eu.vendeli.tgbot.utils.serde
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer

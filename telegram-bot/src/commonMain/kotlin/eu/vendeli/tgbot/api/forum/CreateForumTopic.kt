@@ -2,20 +2,22 @@
 
 package eu.vendeli.tgbot.api.forum
 
-import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.forum.ForumTopic
 import eu.vendeli.tgbot.types.forum.IconColor
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class CreateForumTopicAction(
     name: String,
     iconColor: IconColor? = null,
     iconCustomEmojiId: String? = null,
 ) : Action<ForumTopic>() {
-    override val method = TgMethod("createForumTopic")
+    @TgAPI.Name("createForumTopic")
+    override val method = "createForumTopic"
     override val returnType = getReturnType()
 
     init {
@@ -36,5 +38,6 @@ class CreateForumTopicAction(
  * @returns [ForumTopic]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun createForumTopic(name: String, iconColor: IconColor? = null, iconCustomEmojiId: String? = null) =
     CreateForumTopicAction(name, iconColor, iconCustomEmojiId)

@@ -2,21 +2,23 @@
 
 package eu.vendeli.tgbot.api.answer
 
-import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.payment.ShippingOption
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class AnswerShippingQueryAction(
     shippingQueryId: String,
     ok: Boolean = true,
     shippingOptions: List<ShippingOption>? = null,
     errorMessage: String? = null,
 ) : SimpleAction<Boolean>() {
-    override val method = TgMethod("answerShippingQuery")
+    @TgAPI.Name("answerShippingQuery")
+    override val method = "answerShippingQuery"
     override val returnType = getReturnType()
 
     init {
@@ -39,6 +41,7 @@ class AnswerShippingQueryAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun answerShippingQuery(
     shippingQueryId: String,
     ok: Boolean = true,
@@ -46,6 +49,7 @@ inline fun answerShippingQuery(
     errorMessage: String? = null,
 ) = AnswerShippingQueryAction(shippingQueryId, ok, shippingOptions, errorMessage)
 
+@TgAPI
 fun answerShippingQuery(
     shippingQueryId: String,
     ok: Boolean = true,
@@ -54,6 +58,7 @@ fun answerShippingQuery(
 ) = answerShippingQuery(shippingQueryId, ok, ListingBuilder.build(shippingOptions), errorMessage)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun answerShippingQuery(
     shippingQueryId: String,
     ok: Boolean = true,

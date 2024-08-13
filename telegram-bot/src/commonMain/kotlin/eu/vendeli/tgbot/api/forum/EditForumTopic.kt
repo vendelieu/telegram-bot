@@ -2,17 +2,19 @@
 
 package eu.vendeli.tgbot.api.forum
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class EditForumTopicAction(
     messageThreadId: Int,
     name: String? = null,
     iconCustomEmojiId: String? = null,
 ) : Action<Boolean>() {
-    override val method = TgMethod("editForumTopic")
+    @TgAPI.Name("editForumTopic")
+    override val method = "editForumTopic"
     override val returnType = getReturnType()
 
     init {
@@ -33,5 +35,6 @@ class EditForumTopicAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun editForumTopic(messageThreadId: Int, name: String? = null, iconCustomEmojiId: String? = null) =
     EditForumTopicAction(messageThreadId, name, iconCustomEmojiId)

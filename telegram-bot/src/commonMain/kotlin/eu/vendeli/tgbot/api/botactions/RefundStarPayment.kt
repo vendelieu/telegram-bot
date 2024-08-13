@@ -1,15 +1,17 @@
 package eu.vendeli.tgbot.api.botactions
 
-import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class RefundStarPaymentAction(
     telegramPaymentChargeId: String,
     userId: Long,
 ) : SimpleAction<Boolean>() {
-    override val method = TgMethod("refundStarPayment")
+    @TgAPI.Name("refundStarPayment")
+    override val method = "refundStarPayment"
     override val returnType = getReturnType()
 
     init {
@@ -27,5 +29,6 @@ class RefundStarPaymentAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun refundStarPayment(telegramPaymentChargeId: String, userId: Long) =
     RefundStarPaymentAction(telegramPaymentChargeId, userId)

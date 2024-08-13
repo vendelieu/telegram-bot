@@ -11,5 +11,7 @@ data class PaidMediaOptions(
     override var replyParameters: ReplyParameters? = null,
     override var messageThreadId: Int? = null,
     override var parseMode: ParseMode? = null,
+    override var showCaptionAboveMedia: Boolean? = null,
 ) : OptionsCommon,
-    OptionsParseMode
+    OptionsParseMode,
+    ShowCaptionAboveMediaProp

@@ -9,6 +9,7 @@ package eu.vendeli.tgbot.annotations.internal
     level = RequiresOptIn.Level.ERROR,
     message = "This API is internal in KtGram and should not be used. It could be removed or changed without notice.",
 )
+@MustBeDocumented
 @Target(
     AnnotationTarget.CLASS,
     AnnotationTarget.TYPEALIAS,

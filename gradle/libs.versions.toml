@@ -1,5 +1,6 @@
 [versions]
 ktor = "2.3.12"
+redis = "6.4.0.RELEASE"
 logging = "2.0.4"
 logback = "1.5.6"
 
@@ -7,11 +8,12 @@ datetime = "0.6.0"
 serialization = "1.7.1"
 stately = "2.0.7"
 
-kotlin = "2.0.0"
+kotlin = "2.0.10"
 coroutines = "1.8.1"
 dokka = "1.9.20"
 kotlinter = "4.4.1"
 deteKT = "1.23.6"
+toml = "0.4.0"
 
 kotest = "5.9.1"
 mockk = "1.13.12"
@@ -20,10 +22,12 @@ krypto = "4.0.10"
 sslcontext = "8.3.6"
 spring = "3.3.2"
 
-ksp = "2.0.0-1.0.24"
+ksp = "2.0.10-1.0.24"
 poet = "1.18.1"
 
-binvalid = "0.16.2"
+binvalid = "0.16.3"
+publisher = "1.1.1"
+env = "1.0.4"
 
 [libraries]
 # ktor
@@ -61,12 +65,19 @@ mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 ssl-utils = { module = "io.github.hakky54:sslcontext-kickstart-for-pem", version.ref = "sslcontext" }
 spring-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "spring" }
+kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+publisher = { module = "tech.yanand.gradle:maven-central-publish", version.ref = "publisher" }
+redis = { module = "io.lettuce:lettuce-core", version.ref = "redis" }
+env = { module = "dev.scottpierce:kotlin-env-var", version.ref = "env" }
+toml = { module = "net.peanuuutz.tomlkt:tomlkt", version.ref = "toml" }
+
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-js-plain-objects = { id = "org.jetbrains.kotlin.plugin.js-plain-objects", version.ref = "kotlin" }
 kotlin-compatability-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binvalid" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ktlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }

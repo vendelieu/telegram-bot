@@ -2,12 +2,14 @@
 
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.utils.getReturnType
 
+@TgAPI
 class UnpinAllChatMessagesAction : Action<Boolean>() {
-    override val method = TgMethod("unpinAllChatMessages")
+    @TgAPI.Name("unpinAllChatMessages")
+    override val method = "unpinAllChatMessages"
     override val returnType = getReturnType()
 }
 
@@ -19,4 +21,5 @@ class UnpinAllChatMessagesAction : Action<Boolean>() {
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun unpinAllChatMessages() = UnpinAllChatMessagesAction()

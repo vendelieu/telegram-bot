@@ -1,11 +1,8 @@
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
     id("publish")
 }
 
-kotlin {
-    jvmToolchain(JAVA_TARGET_V_int)
-    jvm()
+onlyJvmConfiguredKotlin {
     sourceSets {
         jvmMain {
             dependencies {
@@ -20,6 +17,6 @@ kotlin {
 }
 
 libraryData {
-    name.set("Ktor starter")
-    description.set("Ktor webhook starter for KtGram.")
+    name = "Ktor starter"
+    description = "Ktor webhook starter for KtGram."
 }

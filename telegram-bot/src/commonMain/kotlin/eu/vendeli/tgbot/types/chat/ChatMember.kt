@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.chat
 
-import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import kotlinx.datetime.Instant
@@ -40,6 +40,7 @@ sealed class ChatMember(
         val canPostMessages: Boolean? = null,
         val canEditMessages: Boolean? = null,
         val canPinMessages: Boolean? = null,
+        val canManageVideoChats: Boolean? = null,
         val canManageTopics: Boolean? = null,
         val canPostStories: Boolean? = null,
         val canEditStories: Boolean? = null,

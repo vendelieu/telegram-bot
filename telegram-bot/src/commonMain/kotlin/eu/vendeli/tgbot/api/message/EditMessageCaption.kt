@@ -2,18 +2,19 @@
 
 package eu.vendeli.tgbot.api.message
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.BusinessActionExt
-import eu.vendeli.tgbot.interfaces.InlineActionExt
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
+import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.Message
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.EditCaptionOptions
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class EditMessageCaptionAction() :
     Action<Message>(),
     InlineActionExt<Message>,
@@ -21,7 +22,8 @@ class EditMessageCaptionAction() :
     OptionsFeature<EditMessageCaptionAction, EditCaptionOptions>,
     MarkupFeature<EditMessageCaptionAction>,
     CaptionFeature<EditMessageCaptionAction> {
-    override val method = TgMethod("editMessageCaption")
+    @TgAPI.Name("editMessageCaption")
+    override val method = "editMessageCaption"
     override val returnType = getReturnType()
     override val options = EditCaptionOptions()
     override val entitiesFieldName: String = "caption_entities"
@@ -47,10 +49,15 @@ class EditMessageCaptionAction() :
  * @returns [Message]|[Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun editMessageCaption(messageId: Long) = EditMessageCaptionAction(messageId)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun editMessageCaption() = EditMessageCaptionAction()
 
+@TgAPI
 fun editCaption() = editMessageCaption()
+
+@TgAPI
 fun editCaption(messageId: Long) = editMessageCaption(messageId)

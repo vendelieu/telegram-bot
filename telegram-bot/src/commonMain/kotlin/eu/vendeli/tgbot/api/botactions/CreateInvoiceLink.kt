@@ -2,16 +2,17 @@
 
 package eu.vendeli.tgbot.api.botactions
 
-import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.Currency
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CreateInvoiceLinkOptions
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class CreateInvoiceLinkAction(
     title: String,
     description: String,
@@ -22,7 +23,9 @@ class CreateInvoiceLinkAction(
 ) : SimpleAction<String>(),
     OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions> {
     override val options = CreateInvoiceLinkOptions()
-    override val method = TgMethod("createInvoiceLink")
+
+    @TgAPI.Name("createInvoiceLink")
+    override val method = "createInvoiceLink"
     override val returnType = getReturnType()
 
     init {
@@ -62,6 +65,7 @@ class CreateInvoiceLinkAction(
  * @returns [String]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun createInvoiceLink(
     title: String,
     description: String,
@@ -71,6 +75,7 @@ inline fun createInvoiceLink(
     prices: List<LabeledPrice>,
 ) = CreateInvoiceLinkAction(title, description, payload, providerToken, currency, prices)
 
+@TgAPI
 inline fun createInvoiceLink(
     title: String,
     description: String,

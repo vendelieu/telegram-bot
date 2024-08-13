@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types
 
+import eu.vendeli.tgbot.types.msg.MaybeInaccessibleMessage
 import kotlinx.serialization.Serializable
 
 /**

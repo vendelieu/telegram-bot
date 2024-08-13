@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.inline
 
-import eu.vendeli.tgbot.types.LocationContent
+import eu.vendeli.tgbot.types.Location
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.ChatType
 import kotlinx.serialization.Serializable
@@ -23,5 +23,5 @@ data class InlineQuery(
     val query: String,
     val offset: String,
     val chatType: ChatType? = null,
-    val location: LocationContent? = null,
+    val location: Location? = null,
 )

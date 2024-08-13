@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.game
 
-import eu.vendeli.tgbot.types.MessageEntity
+import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.media.Animation
 import eu.vendeli.tgbot.types.media.PhotoSize
 import kotlinx.serialization.Serializable

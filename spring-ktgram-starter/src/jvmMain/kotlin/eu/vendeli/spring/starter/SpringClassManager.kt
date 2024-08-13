@@ -1,6 +1,6 @@
 package eu.vendeli.spring.starter
 
-import eu.vendeli.tgbot.interfaces.ClassManager
+import eu.vendeli.tgbot.interfaces.ctx.ClassManager
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Configuration
 import kotlin.reflect.KClass

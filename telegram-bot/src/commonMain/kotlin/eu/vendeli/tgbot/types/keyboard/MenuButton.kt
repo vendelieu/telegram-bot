@@ -22,11 +22,11 @@ sealed class MenuButton(
     class Commands : MenuButton(type = "commands")
 
     @Serializable
-    @SerialName("web_apps")
-    data class WebApps(
+    @SerialName("web_app")
+    data class WebApp(
         val text: String,
         val webApp: WebAppInfo,
-    ) : MenuButton(type = "web_apps")
+    ) : MenuButton(type = "web_app")
 
     @Serializable
     @SerialName("default")

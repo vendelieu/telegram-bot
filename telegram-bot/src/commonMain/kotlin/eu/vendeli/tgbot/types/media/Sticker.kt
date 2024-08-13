@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.media
 
-import eu.vendeli.tgbot.interfaces.MultipleResponse
+import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

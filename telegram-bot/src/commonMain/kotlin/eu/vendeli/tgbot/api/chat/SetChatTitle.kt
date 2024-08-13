@@ -2,15 +2,17 @@
 
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class SetChatTitleAction(
     title: String,
 ) : Action<Boolean>() {
-    override val method = TgMethod("setChatTitle")
+    @TgAPI.Name("setChatTitle")
+    override val method = "setChatTitle"
     override val returnType = getReturnType()
 
     init {
@@ -27,4 +29,5 @@ class SetChatTitleAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setChatTitle(title: String) = SetChatTitleAction(title)

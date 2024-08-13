@@ -2,9 +2,9 @@
 
 package eu.vendeli.tgbot.api.stickerset
 
-import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.CreateNewStickerSetOptions
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.utils.encodeWith
@@ -12,6 +12,7 @@ import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.transform
 
+@TgAPI
 class CreateNewStickerSetAction(
     userId: Long,
     name: String,
@@ -19,7 +20,8 @@ class CreateNewStickerSetAction(
     stickers: List<InputSticker>,
 ) : SimpleAction<Boolean>(),
     OptionsFeature<CreateNewStickerSetAction, CreateNewStickerSetOptions> {
-    override val method = TgMethod("createNewStickerSet")
+    @TgAPI.Name("createNewStickerSet")
+    override val method = "createNewStickerSet"
     override val returnType = getReturnType()
     override val options = CreateNewStickerSetOptions()
 
@@ -47,6 +49,7 @@ class CreateNewStickerSetAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun createNewStickerSet(
     userId: Long,
     name: String,

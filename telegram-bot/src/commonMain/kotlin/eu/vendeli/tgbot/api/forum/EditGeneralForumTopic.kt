@@ -2,15 +2,17 @@
 
 package eu.vendeli.tgbot.api.forum
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class EditGeneralForumTopicAction(
     name: String,
 ) : Action<Boolean>() {
-    override val method = TgMethod("editGeneralForumTopic")
+    @TgAPI.Name("editGeneralForumTopic")
+    override val method = "editGeneralForumTopic"
     override val returnType = getReturnType()
 
     init {
@@ -27,4 +29,5 @@ class EditGeneralForumTopicAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun editGeneralForumTopic(name: String) = EditGeneralForumTopicAction(name)

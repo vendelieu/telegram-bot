@@ -8,10 +8,10 @@ import com.google.devtools.ksp.symbol.KSValueArgument
 import eu.vendeli.ksp.dto.AnnotationData
 import eu.vendeli.ksp.dto.CommonAnnotationData
 import eu.vendeli.ksp.dto.CommonAnnotationValue
+import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import eu.vendeli.tgbot.utils.DefaultFilter
-import eu.vendeli.tgbot.utils.DefaultGuard
+import eu.vendeli.tgbot.implementations.DefaultGuard
 
 internal fun List<KSValueArgument>.parseAsCommandHandler(isCallbackQ: Boolean) = AnnotationData(
     value = parseValueList(),

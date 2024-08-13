@@ -2,7 +2,6 @@ package eu.vendeli
 
 import BotTestContext
 import eu.vendeli.tgbot.annotations.internal.InternalApi
-import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
@@ -12,6 +11,7 @@ import eu.vendeli.tgbot.types.internal.MessageUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.types.internal.userOrNull
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.processUpdate
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny

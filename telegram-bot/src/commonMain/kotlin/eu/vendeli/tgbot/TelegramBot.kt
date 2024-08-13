@@ -1,16 +1,15 @@
 package eu.vendeli.tgbot
 
 import eu.vendeli.tgbot.annotations.internal.InternalApi
-import eu.vendeli.tgbot.core.CodegenUpdateHandler
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler
-import eu.vendeli.tgbot.interfaces.ConfigLoader
+import eu.vendeli.tgbot.interfaces.helper.ConfigLoader
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.BotConfigurator
 import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
-import eu.vendeli.tgbot.utils.Logging
+import eu.vendeli.tgbot.utils.LoggingWrapper
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
@@ -47,10 +46,11 @@ class TelegramBot(
         httpClient: HttpClient? = null,
         botConfiguration: BotConfigurator = {},
     ) : this(token, commandsPackage, botConfiguration) {
-        this.httpClient = httpClient ?: getConfiguredHttpClient(config)
+        this.httpClient = httpClient ?: getConfiguredHttpClient(config.httpClient, config.logging)
     }
 
     internal val config = BotConfiguration().apply(botConfiguration)
+    internal val logger = LoggingWrapper(config.logging, "eu.vendeli.TelegramBot")
 
     internal val baseUrl by lazy { "${config.apiHost}/bot$token" + if (config.isTestEnv) "/test/" else "/" }
 
@@ -60,31 +60,17 @@ class TelegramBot(
     val inputListener get() = config.inputListener
 
     /**
-     * A tool for managing User context.
+     * Bot identifier set through configuration.
      */
-    val userData get() = config.context.userData
-
-    /**
-     * A tool for managing Chat context.
-     */
-    val chatData get() = config.context.chatData
-
-    /**
-     * Property to identify different bot instances during multi-bot processing.
-     */
-    var identifier: String = "KtGram"
-
-    init {
-        logger.setLevel(config.logging.botLogLevel)
-    }
+    val identifier: String get() = config.identifier
 
     /**
      * Current bot UpdateHandler instance
      */
-    val update: TgUpdateHandler = CodegenUpdateHandler(commandsPackage, this)
+    val update = TgUpdateHandler(commandsPackage, this)
 
     @OptIn(InternalApi::class)
-    internal var httpClient = getConfiguredHttpClient(config)
+    internal var httpClient = getConfiguredHttpClient(config.httpClient, config.logging)
 
     /**
      * Get direct url from [File] if [File.filePath] is present
@@ -127,5 +113,5 @@ class TelegramBot(
         }
     }
 
-    internal companion object : Logging()
+    companion object
 }

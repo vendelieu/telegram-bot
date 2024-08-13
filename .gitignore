@@ -36,3 +36,4 @@ application.properties
 /build/
 /telegram-bot/out/
 /.kotlin/
+*/.kotlin/

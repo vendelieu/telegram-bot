@@ -2,18 +2,20 @@
 
 package eu.vendeli.tgbot.api.answer
 
-import eu.vendeli.tgbot.interfaces.Action
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.AnswerCallbackQueryOptions
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class AnswerCallbackQueryAction(
     callbackQueryId: String,
 ) : Action<Boolean>(),
     OptionsFeature<AnswerCallbackQueryAction, AnswerCallbackQueryOptions> {
-    override val method = TgMethod("answerCallbackQuery")
+    @TgAPI.Name("answerCallbackQuery")
+    override val method = "answerCallbackQuery"
     override val returnType = getReturnType()
     override val options = AnswerCallbackQueryOptions()
 
@@ -34,4 +36,5 @@ class AnswerCallbackQueryAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun answerCallbackQuery(callbackQueryId: String) = AnswerCallbackQueryAction(callbackQueryId)

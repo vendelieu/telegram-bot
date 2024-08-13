@@ -1,11 +1,8 @@
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
     id("publish")
 }
 
-kotlin {
-    jvmToolchain(JAVA_TARGET_V_int)
-    jvm()
+onlyJvmConfiguredKotlin {
     sourceSets {
         jvmMain {
             dependencies {
@@ -18,6 +15,6 @@ kotlin {
 }
 
 libraryData {
-    name.set("Spring boot starter")
-    description.set("Spring boot starter for KtGram.")
+    name = "Spring boot starter"
+    description = "Spring boot starter for KtGram."
 }

@@ -4,7 +4,9 @@ val sonatypePassword = (project.findProperty("sonatypePassword") as String?) ?: 
 plugins {
     `maven-publish`
     signing
+    id("tech.yanand.maven-central-publish")
 }
+
 
 val libraryData = extensions.create("libraryData", PublishingExtension::class)
 
@@ -12,7 +14,13 @@ val javadoc by tasks.creating(Jar::class) {
     project.layout.buildDirectory.dir("dokka").orNull?.takeIf { it.asFile.exists() }?.also {
         from(it)
     }
-    archiveClassifier.set("javadoc")
+    archiveClassifier = "javadoc"
+}
+
+mavenCentral {
+    repoDir = layout.buildDirectory.dir("repos/bundles")
+    authToken = System.getenv("SONATYPE_TOKEN")
+    publishingType = "AUTOMATIC"
 }
 
 publishing {
@@ -22,37 +30,47 @@ publishing {
             pom {
                 name = libraryData.name
                 description = libraryData.description
+                inceptionYear = "2022"
+                url = "https://github.com/vendelieu/telegram-bot"
 
-                url.set("https://github.com/vendelieu/telegram-bot")
                 licenses {
                     license {
-                        name.set("Apache 2.0")
-                        url.set("https://www.apache.org/licenses/LICENSE-2.0")
+                        name = "Apache 2.0"
+                        url = "https://www.apache.org/licenses/LICENSE-2.0"
                     }
                 }
                 developers {
                     developer {
-                        id.set("Vendelieu")
-                        name.set("Vendelieu")
-                        email.set("vendelieu@gmail.com")
-                        url.set("https://vendeli.eu")
+                        id = "Vendelieu"
+                        name = "Vendelieu"
+                        email = "vendelieu@gmail.com"
+                        url = "https://vendeli.eu"
                     }
                 }
                 scm {
-                    connection.set("scm:git:github.com/vendelieu/telegram-bot.git")
-                    developerConnection.set("scm:git:ssh://github.com/vendelieu/telegram-bot.git")
-                    url.set("https://github.com/vendelieu/telegram-bot.git")
+                    connection = "scm:git:github.com/vendelieu/telegram-bot.git"
+                    developerConnection = "scm:git:ssh://github.com/vendelieu/telegram-bot.git"
+                    url = "https://github.com/vendelieu/telegram-bot.git"
+                }
+                issueManagement {
+                    system = "Github"
+                    url = "https://github.com/vendelieu/telegram-bot/issues"
                 }
             }
         }
     }
     repositories {
         maven {
+            name = "Local"
+            setUrl(layout.buildDirectory.dir("repos/bundles"))
+        }
+        maven {
+            name = "GHPackages"
+            url = uri("https://maven.pkg.github.com/vendelieu/telegram-bot")
             credentials {
-                username = sonatypeUsername
-                password = sonatypePassword
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
             }
-            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
         }
     }
 }

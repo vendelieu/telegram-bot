@@ -2,18 +2,20 @@
 
 package eu.vendeli.tgbot.api.stickerset
 
-import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.serialization.builtins.serializer
 
+@TgAPI
 class SetStickerKeywordsAction(
     sticker: String,
     keywords: List<String>? = null,
 ) : SimpleAction<Boolean>() {
-    override val method = TgMethod("setStickerKeywords")
+    @TgAPI.Name("setStickerKeywords")
+    override val method = "setStickerKeywords"
     override val returnType = getReturnType()
 
     init {
@@ -31,5 +33,6 @@ class SetStickerKeywordsAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setStickerKeywords(sticker: String, keywords: List<String>? = null) =
     SetStickerKeywordsAction(sticker, keywords)

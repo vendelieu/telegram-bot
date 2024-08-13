@@ -2,16 +2,18 @@
 
 package eu.vendeli.tgbot.api.botactions
 
-import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.business.BusinessConnection
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class GetBusinessConnectionAction(
     businessConnectionId: String,
 ) : SimpleAction<BusinessConnection>() {
-    override val method = TgMethod("getBusinessConnection")
+    @TgAPI.Name("getBusinessConnection")
+    override val method = "getBusinessConnection"
     override val returnType = getReturnType()
 
     init {
@@ -27,4 +29,5 @@ class GetBusinessConnectionAction(
  * @returns [BusinessConnection]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getBusinessConnection(businessConnectionId: String) = GetBusinessConnectionAction(businessConnectionId)

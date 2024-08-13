@@ -4,39 +4,7 @@ on:
   push:
     branches:
       - master
-    paths-ignore:
-      - '.github/**'
-      - 'assets/**'
-      - 'kotlin-js-store/**'
-      - '.editorconfig'
-      - '.gitignore'
-      - 'CHANGELOG.md'
-      - 'CODE_OF_CONDUCT.md'
-      - 'CONTRIBUTING.md'
-      - 'FUNDING.yml'
-      - 'LICENSE'
-      - 'README.md'
-      - 'detekt.yml'
-      - 'gradlew'
-      - 'gradlew.bat'
-      - 'renovate.json'
   pull_request:
-    paths-ignore:
-      - '.github/**'
-      - 'assets/**'
-      - 'kotlin-js-store/**'
-      - '.editorconfig'
-      - '.gitignore'
-      - 'CHANGELOG.md'
-      - 'CODE_OF_CONDUCT.md'
-      - 'CONTRIBUTING.md'
-      - 'FUNDING.yml'
-      - 'LICENSE'
-      - 'README.md'
-      - 'detekt.yml'
-      - 'gradlew'
-      - 'gradlew.bat'
-      - 'renovate.json'
 
 permissions:
   contents: write
@@ -51,7 +19,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: 11
+          java-version: 17
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3-beta
@@ -67,7 +35,7 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           BOT_TOKEN_2: ${{ secrets.BOT_TOKEN_2 }}
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
-        run: ./gradlew koverXmlReport -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
+        run: ./gradlew clean koverXmlReport -PsonatypeUsername=${{secrets.SONATYPE_USERNAME}} -PsonatypePassword=${{secrets.SONATYPE_PASSWORD}}
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4

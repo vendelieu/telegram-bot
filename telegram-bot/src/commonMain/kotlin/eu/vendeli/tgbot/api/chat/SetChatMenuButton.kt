@@ -2,8 +2,8 @@
 
 package eu.vendeli.tgbot.api.chat
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.keyboard.MenuButton
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
@@ -12,7 +12,8 @@ import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 class SetChatMenuButtonAction(
     menuButton: MenuButton,
 ) : Action<Boolean>() {
-    override val method = TgMethod("setChatMenuButton")
+    @TgAPI.Name("setChatMenuButton")
+    override val method = "setChatMenuButton"
     override val returnType = getReturnType()
 
     init {
@@ -29,4 +30,5 @@ class SetChatMenuButtonAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun setChatMenuButton(menuButton: MenuButton) = SetChatMenuButtonAction(menuButton)

@@ -1,11 +1,27 @@
 package eu.vendeli.tgbot.utils
 
+import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
+import eu.vendeli.tgbot.core.TgUpdateHandler
+import eu.vendeli.tgbot.interfaces.ctx.InputListener
+import eu.vendeli.tgbot.interfaces.helper.ExceptionHandler
+import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.internal.ChainLink
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
 import io.ktor.http.decodeURLQueryComponent
 import korlibs.crypto.HMAC
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.delay
+import kotlin.reflect.KClass
 
+/**
+ * Function to check is web app data is safe.
+ *
+ * @param botToken bot token.
+ * @param hash hash from webapp
+ */
 fun String.checkIsInitDataSafe(botToken: String, hash: String): Boolean {
     val secretKey = HMAC.hmacSHA256(botToken.encodeToByteArray(), "WebAppData".encodeToByteArray())
     val decodedData = decodeURLQueryComponent()
@@ -16,6 +32,46 @@ fun String.checkIsInitDataSafe(botToken: String, hash: String): Boolean {
 
     return HMAC.hmacSHA256(secretKey.bytes, decodedData.encodeToByteArray()).hexLower == hash.lowercase()
 }
+
+/**
+ * Runs exception handler loop.
+ *
+ * @param dispatcher Dispatcher used for running handler.
+ * @param delay Delay after each handling iteration.
+ * @param block Handling action.
+ */
+suspend fun TgUpdateHandler.runExceptionHandler(
+    dispatcher: CoroutineDispatcher = PROCESSING_DISPATCHER,
+    delay: Long = 100,
+    block: ExceptionHandler,
+) = coHandle(dispatcher) {
+    caughtExceptions.consumeEach { fUpd ->
+        block.handle(fUpd.exception, fUpd.update)
+        delay.takeIf { it > 0 }?.let { delay(it) }
+    }
+}
+
+/**
+ * Set chain for input listening.
+ *
+ * Basically uses chain full qualified name as a chain id.
+ *
+ * @param T given ChainLink
+ * @param user The user for whom it will be set.
+ * @param firstLink The First link that will be processed (it doesn't have to be the first link in the chain, feel free to set up any of).
+ */
+fun <T : ChainLink> InputListener.setChain(user: User, firstLink: T) = set(user, firstLink::class.fullName)
+
+/**
+ * Method to get given class instance through defined ClassManager.
+ *
+ * @param T output type.
+ * @param kClass class to get instance.
+ * @param initParams option to pass init parameters.
+ */
+@ExperimentalFeature
+fun <T : Any> TelegramBot.getInstance(kClass: KClass<T>, vararg initParams: Any?): T =
+    config.classManager.getInstance(kClass, initParams).cast()
 
 /**
  * Helper function to paginate over a collection.

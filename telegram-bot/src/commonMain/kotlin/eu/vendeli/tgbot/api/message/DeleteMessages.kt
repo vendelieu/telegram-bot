@@ -2,16 +2,18 @@
 
 package eu.vendeli.tgbot.api.message
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import kotlinx.serialization.builtins.serializer
 
+@TgAPI
 class DeleteMessagesAction(
     messageIds: List<Long>,
 ) : Action<Boolean>() {
-    override val method = TgMethod("deleteMessages")
+    @TgAPI.Name("deleteMessages")
+    override val method = "deleteMessages"
     override val returnType = getReturnType()
 
     init {
@@ -28,7 +30,9 @@ class DeleteMessagesAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun deleteMessages(messageIds: List<Long>) = DeleteMessagesAction(messageIds)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun deleteMessages(vararg messageId: Long) = deleteMessages(messageId.asList())

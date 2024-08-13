@@ -2,26 +2,28 @@
 
 package eu.vendeli.tgbot.api.media
 
-import eu.vendeli.tgbot.interfaces.BusinessActionExt
-import eu.vendeli.tgbot.interfaces.MediaAction
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
+import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.Message
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.VideoNoteOptions
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.handleImplicitFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 
+@TgAPI
 class SendVideoNoteAction(
     videoNote: ImplicitFile,
 ) : MediaAction<Message>(),
     BusinessActionExt<Message>,
     OptionsFeature<SendVideoNoteAction, VideoNoteOptions>,
     MarkupFeature<SendVideoNoteAction> {
-    override val method = TgMethod("sendVideoNote")
+    @TgAPI.Name("sendVideoNote")
+    override val method = "sendVideoNote"
     override val returnType = getReturnType()
     override val options = VideoNoteOptions()
     override val beforeReq: () -> Unit = {
@@ -54,15 +56,23 @@ class SendVideoNoteAction(
  * @returns [Message]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun videoNote(file: ImplicitFile) = SendVideoNoteAction(file)
+
+@TgAPI
 inline fun videoNote(block: () -> String) = videoNote(block().toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun videoNote(ba: ByteArray) = videoNote(ba.toImplicitFile("note.mp4"))
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun videoNote(input: InputFile) = videoNote(input.toImplicitFile())
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun sendVideoNote(file: ImplicitFile) = videoNote(file)
+
+@TgAPI
 inline fun sendVideoNote(block: () -> String) = videoNote(block)

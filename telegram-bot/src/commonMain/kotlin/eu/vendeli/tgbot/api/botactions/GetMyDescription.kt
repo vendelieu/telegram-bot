@@ -2,16 +2,18 @@
 
 package eu.vendeli.tgbot.api.botactions
 
-import eu.vendeli.tgbot.interfaces.SimpleAction
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.bot.BotDescription
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class GetMyDescriptionAction(
     languageCode: String? = null,
 ) : SimpleAction<BotDescription>() {
-    override val method = TgMethod("getMyDescription")
+    @TgAPI.Name("getMyDescription")
+    override val method = "getMyDescription"
     override val returnType = getReturnType()
 
     init {
@@ -27,4 +29,5 @@ class GetMyDescriptionAction(
  * @returns [BotDescription]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun getMyDescription(languageCode: String? = null) = GetMyDescriptionAction(languageCode)

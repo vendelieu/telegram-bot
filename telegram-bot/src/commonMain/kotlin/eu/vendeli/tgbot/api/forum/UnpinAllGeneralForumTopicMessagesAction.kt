@@ -2,12 +2,14 @@
 
 package eu.vendeli.tgbot.api.forum
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.utils.getReturnType
 
+@TgAPI
 class UnpinAllGeneralForumTopicMessagesAction : Action<Boolean>() {
-    override val method = TgMethod("unpinAllGeneralForumTopicMessages")
+    @TgAPI.Name("unpinAllGeneralForumTopicMessages")
+    override val method = "unpinAllGeneralForumTopicMessages"
     override val returnType = getReturnType()
 }
 
@@ -19,4 +21,5 @@ class UnpinAllGeneralForumTopicMessagesAction : Action<Boolean>() {
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun unpinAllGeneralForumTopicMessages() = UnpinAllGeneralForumTopicMessagesAction()

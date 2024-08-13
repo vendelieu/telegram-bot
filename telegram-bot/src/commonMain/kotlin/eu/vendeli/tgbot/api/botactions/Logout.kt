@@ -2,12 +2,14 @@
 
 package eu.vendeli.tgbot.api.botactions
 
-import eu.vendeli.tgbot.interfaces.SimpleAction
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.utils.getReturnType
 
+@TgAPI
 class LogOutAction : SimpleAction<Boolean>() {
-    override val method = TgMethod("logOut")
+    @TgAPI.Name("logOut")
+    override val method = "logOut"
     override val returnType = getReturnType()
 }
 
@@ -19,4 +21,5 @@ class LogOutAction : SimpleAction<Boolean>() {
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun logOut() = LogOutAction()

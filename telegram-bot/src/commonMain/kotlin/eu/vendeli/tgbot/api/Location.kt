@@ -2,16 +2,17 @@
 
 package eu.vendeli.tgbot.api
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.interfaces.BusinessActionExt
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.Message
-import eu.vendeli.tgbot.types.internal.TgMethod
 import eu.vendeli.tgbot.types.internal.options.LocationOptions
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 
+@TgAPI
 class SendLocationAction(
     latitude: Float,
     longitude: Float,
@@ -19,7 +20,8 @@ class SendLocationAction(
     BusinessActionExt<Message>,
     OptionsFeature<SendLocationAction, LocationOptions>,
     MarkupFeature<SendLocationAction> {
-    override val method = TgMethod("sendLocation")
+    @TgAPI.Name("sendLocation")
+    override val method = "sendLocation"
     override val returnType = getReturnType()
     override val options = LocationOptions()
 
@@ -50,7 +52,9 @@ class SendLocationAction(
  * @returns [Message]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun sendLocation(latitude: Float, longitude: Float) = location(latitude, longitude)
 
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun location(latitude: Float, longitude: Float) = SendLocationAction(latitude, longitude)

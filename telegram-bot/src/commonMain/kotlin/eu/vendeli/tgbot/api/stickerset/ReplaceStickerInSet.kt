@@ -2,21 +2,23 @@
 
 package eu.vendeli.tgbot.api.stickerset
 
-import eu.vendeli.tgbot.interfaces.Action
-import eu.vendeli.tgbot.types.internal.TgMethod
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.transform
 
+@TgAPI
 class ReplaceStickerInSetAction(
     userId: Long,
     name: String,
     oldSticker: String,
     sticker: InputSticker,
 ) : Action<Boolean>() {
-    override val method = TgMethod("replaceStickerInSet")
+    @TgAPI.Name("replaceStickerInSet")
+    override val method = "replaceStickerInSet"
     override val returnType = getReturnType()
 
     init {
@@ -41,6 +43,7 @@ class ReplaceStickerInSetAction(
  * @returns [Boolean]
  */
 @Suppress("NOTHING_TO_INLINE")
+@TgAPI
 inline fun replaceStickerInSet(
     userId: Long,
     name: String,
