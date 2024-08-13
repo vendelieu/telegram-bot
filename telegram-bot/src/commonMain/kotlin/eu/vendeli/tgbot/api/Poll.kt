@@ -66,6 +66,8 @@ class SendPollAction(
 @Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun poll(question: String, options: List<InputPollOption>) = SendPollAction(question, options)
+
+@TgAPI
 fun poll(
     question: String,
     options: PollOptionsBuilder.() -> Unit,
@@ -74,4 +76,6 @@ fun poll(
 @Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun poll(question: String, vararg options: InputPollOption) = poll(question, options.toList())
+
+@TgAPI
 fun sendPoll(question: String, options: PollOptionsBuilder.() -> Unit) = poll(question, options)

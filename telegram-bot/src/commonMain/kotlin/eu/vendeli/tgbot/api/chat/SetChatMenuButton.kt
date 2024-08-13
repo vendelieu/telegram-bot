@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 
+@TgAPI
 class SetChatMenuButtonAction(
     menuButton: MenuButton,
 ) : Action<Boolean>() {
