@@ -43,7 +43,7 @@ jobs:
           echo '${{secrets.GPG_KEY_CONTENTS}}' | base64 -d > publish_key.gpg
           gpg --quiet --batch --yes --decrypt --passphrase="${{secrets.SECRET_PASSPHRASE}}" \
           --output /home/runner/work/secret.gpg publish_key.gpg
-          echo "ORG_GRADLE_PROJECT_signingInMemoryKey=${gpg --export-secret-keys --armor ${{secrets.SIGNING_KEYID}} /home/runner/work/secret.gpg | grep -v '\-\-' | grep -v '^=.' | tr -d '\n'}" >> $GITHUB_OUTPUT
+          echo "ORG_GRADLE_PROJECT_signingInMemoryKey=$(gpg --export-secret-keys --armor ${{secrets.SIGNING_KEYID}} /home/runner/work/secret.gpg | grep -v '\-\-' | grep -v '^=.' | tr -d '\n')" >> $GITHUB_OUTPUT
 
       - name: Publish with Gradle
         env:
