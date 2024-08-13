@@ -25,13 +25,17 @@ plugins {
 
 dependencies {
     // ...
-    implementation("eu.vendeli:telegram-bot:")
-    ksp("eu.vendeli:ksp:")
+    implementation("eu.vendeli:telegram-bot:7.0.1")
+    ksp("eu.vendeli:ksp:7.0.1")
 }
 ```
 
 <details>
   <summary><i>Snapshots</i></summary>
+
+![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fv229149.hosted-by-vdsina.ru%2Fsnap-ver%2Ftelegram-bot&query=%24%5B0%5D.name&logo=github&label=SNAPSHOT&link=https%3A%2F%2Fgithub.com%2Fvendelieu%3Ftab%3Dpackages%26repo_name%3Dtelegram-bot)
+
+
   To install snapshot versions add dev repository:
 
 ```gradle
@@ -42,7 +46,7 @@ repositories {
 }
 ```
 
-And use the latest package version from [packages](https://github.com/vendelieu?tab=packages&repo_name=telegram-bot).
+And use the latest package version from [packages](https://github.com/vendelieu?tab=packages&repo_name=telegram-bot) or from badge above.
 
 </details>
 

@@ -12,7 +12,7 @@ val doSign = providers.gradleProperty("signing.keyId").isPresent
 
 mavenPublishing {
     coordinates("eu.vendeli", project.name, project.version.toString())
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, true)
     if (doSign) signAllPublications()
 
     configure(
