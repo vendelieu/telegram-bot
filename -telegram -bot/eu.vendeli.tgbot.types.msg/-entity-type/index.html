@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>EntityType</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+<link href="../../../images/tgbotkt-logo.png">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            Telegram Bot
+                    </a>
+            </div>
+            <div class="library-version">
+7.0.0            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":telegram-bot:dokkaHtml/commonMain">common</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="Telegram Bot::eu.vendeli.tgbot.types.msg/EntityType///PointingToDeclaration//-739924179">
+  <div class="breadcrumbs"><a href="../../../index.html">Telegram Bot</a><span class="delimiter">/</span><a href="../index.html">eu.vendeli.tgbot.types.msg</a><span class="delimiter">/</span><span class="current">EntityType</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Entity</span><wbr></wbr><span><span>Type</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">enum </span><a href="index.html">EntityType</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="index.html">EntityType</a><span class="token operator">&gt; </span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="ENTRY">Entries</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="ENTRY">
+        <h2 class="">Entries</h2>
+        <div class="table"><a data-name="-227666727%2FClasslikes%2F-739924179" anchor-label="Mention" id="-227666727%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-mention/index.html">Mention</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-227666727%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;mention&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-mention/index.html">Mention</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-284777669%2FClasslikes%2F-739924179" anchor-label="Hashtag" id="-284777669%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-hashtag/index.html">Hashtag</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-284777669%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;hashtag&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-hashtag/index.html">Hashtag</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1193443914%2FClasslikes%2F-739924179" anchor-label="Cashtag" id="-1193443914%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-cashtag/index.html">Cashtag</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1193443914%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;cashtag&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-cashtag/index.html">Cashtag</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1781566115%2FClasslikes%2F-739924179" anchor-label="BotCommand" id="-1781566115%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-bot-command/index.html">BotCommand</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1781566115%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;bot_command&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-bot-command/index.html">BotCommand</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1746260194%2FClasslikes%2F-739924179" anchor-label="Url" id="-1746260194%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-url/index.html">Url</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1746260194%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;url&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-url/index.html">Url</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1103323595%2FClasslikes%2F-739924179" anchor-label="Email" id="1103323595%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-email/index.html">Email</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1103323595%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;email&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-email/index.html">Email</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-794283258%2FClasslikes%2F-739924179" anchor-label="PhoneNumber" id="-794283258%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-phone-number/index.html">PhoneNumber</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-794283258%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;phone_number&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-phone-number/index.html">PhoneNumber</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2030843810%2FClasslikes%2F-739924179" anchor-label="Bold" id="-2030843810%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-bold/index.html">Bold</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2030843810%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;bold&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-bold/index.html">Bold</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-553199223%2FClasslikes%2F-739924179" anchor-label="Italic" id="-553199223%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-italic/index.html">Italic</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-553199223%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;italic&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-italic/index.html">Italic</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1519541381%2FClasslikes%2F-739924179" anchor-label="Underline" id="-1519541381%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-underline/index.html">Underline</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1519541381%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;underline&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-underline/index.html">Underline</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1345633218%2FClasslikes%2F-739924179" anchor-label="Strikethrough" id="1345633218%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-strikethrough/index.html">Strikethrough</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1345633218%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;strikethrough&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-strikethrough/index.html">Strikethrough</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1245675185%2FClasslikes%2F-739924179" anchor-label="Spoiler" id="1245675185%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-spoiler/index.html">Spoiler</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1245675185%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;spoiler&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-spoiler/index.html">Spoiler</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="551877288%2FClasslikes%2F-739924179" anchor-label="Blockquote" id="551877288%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-blockquote/index.html">Blockquote</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="551877288%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;blockquote&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-blockquote/index.html">Blockquote</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="428570054%2FClasslikes%2F-739924179" anchor-label="Code" id="428570054%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-code/index.html">Code</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="428570054%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;code&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-code/index.html">Code</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2844334%2FClasslikes%2F-739924179" anchor-label="Pre" id="-2844334%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-pre/index.html">Pre</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2844334%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;pre&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-pre/index.html">Pre</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1300588896%2FClasslikes%2F-739924179" anchor-label="TextLink" id="-1300588896%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-text-link/index.html">TextLink</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1300588896%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;text_link&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-text-link/index.html">TextLink</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="165543468%2FClasslikes%2F-739924179" anchor-label="TextMention" id="165543468%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-text-mention/index.html">TextMention</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="165543468%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;text_mention&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-text-mention/index.html">TextMention</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="231949188%2FClasslikes%2F-739924179" anchor-label="CustomEmoji" id="231949188%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-custom-emoji/index.html">CustomEmoji</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="231949188%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;custom_emoji&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-custom-emoji/index.html">CustomEmoji</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="974518108%2FClasslikes%2F-739924179" anchor-label="ExpandableBlockQuote" id="974518108%2FClasslikes%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-expandable-block-quote/index.html">ExpandableBlockQuote</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="974518108%2FClasslikes%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;expandable_blockquote&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><a href="-expandable-block-quote/index.html">ExpandableBlockQuote</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-906931373%2FProperties%2F-739924179" anchor-label="entries" id="-906931373%2FProperties%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="entries.html"><span><span>entries</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-906931373%2FProperties%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="entries.html">entries</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.enums/-enum-entries/index.html">EnumEntries</a><span class="token operator">&lt;</span><a href="index.html">EntityType</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns a representation of an immutable list of all enum entries, in the order they're declared.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-372974862%2FProperties%2F-739924179" anchor-label="name" id="-372974862%2FProperties%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.types.poll/-poll-type/-quiz/index.html#-372974862%2FProperties%2F-739924179"><span><span>name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-372974862%2FProperties%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../eu.vendeli.tgbot.types.poll/-poll-type/-quiz/index.html#-372974862%2FProperties%2F-739924179">name</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-739389684%2FProperties%2F-739924179" anchor-label="ordinal" id="-739389684%2FProperties%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.types.poll/-poll-type/-quiz/index.html#-739389684%2FProperties%2F-739924179"><span><span>ordinal</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-739389684%2FProperties%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../eu.vendeli.tgbot.types.poll/-poll-type/-quiz/index.html#-739389684%2FProperties%2F-739924179">ordinal</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-960378583%2FFunctions%2F-739924179" anchor-label="valueOf" id="-960378583%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="value-of.html"><span>value</span><wbr></wbr><span><span>Of</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-960378583%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="value-of.html"><span class="token function">valueOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">EntityType</a></div><div class="brief "><p class="paragraph">Returns the enum constant of this type with the specified name. The string must match exactly an identifier used to declare an enum constant in this type. (Extraneous whitespace characters are not permitted.)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-936451595%2FFunctions%2F-739924179" anchor-label="values" id="-936451595%2FFunctions%2F-739924179" data-filterable-set=":telegram-bot:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot:dokkaHtml/commonMain" data-filterable-set=":telegram-bot:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="values.html"><span><span>values</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-936451595%2FFunctions%2F-739924179"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="values.html"><span class="token function">values</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="index.html">EntityType</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns an array containing the constants of this enum type, in the order they're declared.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Vendelieu</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
