@@ -37,7 +37,6 @@ abstract class Kdokker : DefaultTask() {
     )
     private val funRegex = Regex(
         "(@\\w+(\\([^\\)]*\\))?\\s*)*\\b(inline\\s+)?fun\\s+(\\w+)",
-//        RegexOption.DOT_MATCHES_ALL,
     )
     private val kdocRegex = Regex("\\n/\\*\\*.*\\*/", RegexOption.DOT_MATCHES_ALL)
     private val NEWLINE = "\n"

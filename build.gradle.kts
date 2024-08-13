@@ -15,6 +15,7 @@ plugins {
 tasks.create("prepareRelease") {
     dependsOn("ksp:formatKotlin")
     dependsOn("telegram-bot:formatKotlin")
+    dependsOn("helper:formatKotlin")
 
     dependsOn("ksp:detekt")
     dependsOn("telegram-bot:detekt")

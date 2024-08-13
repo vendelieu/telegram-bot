@@ -7889,11 +7889,14 @@ public final class eu/vendeli/tgbot/types/internal/SingleInputChain {
 
 public abstract class eu/vendeli/tgbot/types/internal/StateSelector {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/StateSelector$Companion;
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public abstract fun getState ()Lkotlin/jvm/functions/Function1;
 	public abstract fun getType ()Lkotlin/reflect/KClass;
+	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/internal/StateSelector;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class eu/vendeli/tgbot/types/internal/StateSelector$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/StateSelector$Custom : eu/vendeli/tgbot/types/internal/StateSelector {
@@ -7919,6 +7922,7 @@ public final class eu/vendeli/tgbot/types/internal/StateSelector$Text : eu/vende
 }
 
 public final class eu/vendeli/tgbot/types/internal/StoredState {
+	public static final field Companion Leu/vendeli/tgbot/types/internal/StoredState$Companion;
 	public fun <init> (Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Leu/vendeli/tgbot/types/internal/StateSelector;)V
 	public final fun component1 ()Leu/vendeli/tgbot/types/internal/ProcessedUpdate;
 	public final fun component2 ()Leu/vendeli/tgbot/types/internal/StateSelector;
@@ -7931,6 +7935,21 @@ public final class eu/vendeli/tgbot/types/internal/StoredState {
 	public final fun getUpdate ()Leu/vendeli/tgbot/types/internal/ProcessedUpdate;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class eu/vendeli/tgbot/types/internal/StoredState$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/internal/StoredState$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/internal/StoredState;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/StoredState;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/internal/StoredState$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public abstract interface class eu/vendeli/tgbot/types/internal/TextReference {

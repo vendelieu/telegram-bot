@@ -1,7 +1,9 @@
 package eu.vendeli.tgbot.types.internal
 
+import kotlinx.serialization.Serializable
 import kotlin.reflect.KClass
 
+@Serializable
 sealed class StateSelector {
     abstract val state: ProcessedUpdate.() -> Any?
     abstract val type: KClass<*>
@@ -21,6 +23,7 @@ sealed class StateSelector {
     }
 }
 
+@Serializable
 data class StoredState(
     val update: ProcessedUpdate,
     val selector: StateSelector,
