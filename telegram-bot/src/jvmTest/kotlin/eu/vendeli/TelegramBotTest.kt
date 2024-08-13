@@ -160,7 +160,7 @@ class TelegramBotTest : BotTestContext() {
             shouldThrow<TgException> {
                 handle(it)
             }
-            stopListener().join()
+            stopListener()
         }
         bot.update.caughtExceptions
             .tryReceive()
@@ -173,7 +173,7 @@ class TelegramBotTest : BotTestContext() {
             shouldNotThrowAny {
                 handle(it)
             }
-            stopListener().join()
+            stopListener()
         }
         bot.update.caughtExceptions
             .tryReceive()

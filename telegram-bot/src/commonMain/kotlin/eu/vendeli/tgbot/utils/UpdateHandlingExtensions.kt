@@ -144,10 +144,10 @@ private suspend fun ((suspend ActivityCtx<ProcessedUpdate>.() -> Unit)?).invokeA
     this
         ?.runCatching { invoke(activityCtx) }
         ?.onFailure {
-            functionalHandler.bot.update.handleFailure(activityCtx.update, it)
             functionalHandler.logger.error(it) {
                 "An error occurred while functionally processing update: ${activityCtx.update} to UpdateType($updateType)."
             }
+            functionalHandler.bot.update.handleFailure(activityCtx.update, it)
         }?.onSuccess {
             functionalHandler.logger.info {
                 "Update #${activityCtx.update.updateId} processed in functional mode with UpdateType($updateType) activity."

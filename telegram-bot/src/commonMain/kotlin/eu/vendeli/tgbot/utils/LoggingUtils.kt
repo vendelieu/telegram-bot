@@ -16,7 +16,7 @@ class LoggingWrapper(
         log(LogLvl.ERROR, message, throwable)
 
     private suspend inline fun log(logLvl: LogLvl, message: () -> String, throwable: Throwable?) =
-        if (cfg.botLogLevel.int < logLvl.int) cfg.logger.log(logLvl, tag, message(), throwable) else Unit
+        if (cfg.botLogLevel.int <= logLvl.int) cfg.logger.log(logLvl, tag, message(), throwable) else Unit
 }
 
 internal expect val DEFAULT_LOGGER: Logger

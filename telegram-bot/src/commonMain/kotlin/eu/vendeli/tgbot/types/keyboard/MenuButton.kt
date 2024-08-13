@@ -19,7 +19,7 @@ sealed class MenuButton(
 ) {
     @Serializable
     @SerialName("commands")
-    data object Commands : MenuButton(type = "commands")
+    class Commands : MenuButton(type = "commands")
 
     @Serializable
     @SerialName("web_app")
@@ -30,5 +30,5 @@ sealed class MenuButton(
 
     @Serializable
     @SerialName("default")
-    data object Default : MenuButton(type = "default")
+    class Default : MenuButton(type = "default")
 }

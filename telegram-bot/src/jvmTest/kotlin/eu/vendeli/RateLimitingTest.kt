@@ -32,7 +32,7 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
         val loopCounter = AtomicInteger(0)
 
         bot.update.setListener {
-            if (loopCounter.incrementAndGet() == 10) stopListener().join()
+            if (loopCounter.incrementAndGet() == 10) stopListener()
             bot.update.handle(it) {
                 onMessage {
                     hitsCounter.incrementAndGet()
@@ -50,7 +50,7 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
         val loopsCounter = AtomicInteger(0)
 
         bot.update.setListener {
-            if (loopsCounter.incrementAndGet() == 20) stopListener().join()
+            if (loopsCounter.incrementAndGet() == 20) stopListener()
             bot.update.handle(it) {
                 onMessage {
                     messageHitsCounter.incrementAndGet()

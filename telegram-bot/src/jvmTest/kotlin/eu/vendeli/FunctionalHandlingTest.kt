@@ -57,7 +57,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 println(this)
             }
 
-            if (loopCounter.incrementAndGet() == 5) bot.update.stopListener().join()
+            if (loopCounter.incrementAndGet() == 5) bot.update.stopListener()
         }
 
         bot.update.caughtExceptions
@@ -87,7 +87,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 (update as? MessageUpdate)?.message?.text shouldBe "/start"
             }
 
-            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener().join()
+            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
             delay(1)
         }
 
@@ -118,7 +118,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 notHandledCounter.incrementAndGet()
             }
 
-            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener().join()
+            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
         }
 
         generalCounter.get() shouldBeGreaterThanOrEqual 5
@@ -148,7 +148,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 regexCommonHandler.incrementAndGet()
             }
 
-            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener().join()
+            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
         }
 
         generalCounter.get() shouldBeGreaterThanOrEqual 5

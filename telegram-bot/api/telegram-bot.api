@@ -10344,11 +10344,23 @@ public abstract class eu/vendeli/tgbot/types/keyboard/MenuButton {
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/MenuButton$Commands : eu/vendeli/tgbot/types/keyboard/MenuButton {
-	public static final field INSTANCE Leu/vendeli/tgbot/types/keyboard/MenuButton$Commands;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
+	public static final field Companion Leu/vendeli/tgbot/types/keyboard/MenuButton$Commands$Companion;
+	public fun <init> ()V
+}
+
+public synthetic class eu/vendeli/tgbot/types/keyboard/MenuButton$Commands$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/keyboard/MenuButton$Commands$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/keyboard/MenuButton$Commands;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/MenuButton$Commands;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/keyboard/MenuButton$Commands$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-	public fun toString ()Ljava/lang/String;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/MenuButton$Companion {
@@ -10356,11 +10368,23 @@ public final class eu/vendeli/tgbot/types/keyboard/MenuButton$Companion {
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/MenuButton$Default : eu/vendeli/tgbot/types/keyboard/MenuButton {
-	public static final field INSTANCE Leu/vendeli/tgbot/types/keyboard/MenuButton$Default;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
+	public static final field Companion Leu/vendeli/tgbot/types/keyboard/MenuButton$Default$Companion;
+	public fun <init> ()V
+}
+
+public synthetic class eu/vendeli/tgbot/types/keyboard/MenuButton$Default$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/keyboard/MenuButton$Default$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/keyboard/MenuButton$Default;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/MenuButton$Default;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/keyboard/MenuButton$Default$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-	public fun toString ()Ljava/lang/String;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/MenuButton$WebApp : eu/vendeli/tgbot/types/keyboard/MenuButton {

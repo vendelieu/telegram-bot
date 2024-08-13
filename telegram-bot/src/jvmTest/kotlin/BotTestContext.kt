@@ -87,7 +87,7 @@ abstract class BotTestContext(
         BOT_ID = ctx.id
         if (withPreparedBot) bot = TelegramBot(ctx.token, "eu.vendeli") {
             logging {
-                botLogLevel = LogLvl.DEBUG
+                botLogLevel = LogLvl.TRACE
                 httpLogLevel = HttpLogLevel.BODY
             }
             httpClient {

@@ -26,10 +26,8 @@ import eu.vendeli.tgbot.utils.serde
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -102,7 +100,7 @@ class TgUpdateHandler internal constructor(
      * @param block action that will be applied.
      */
     suspend fun setListener(allowedUpdates: List<UpdateType>? = null, block: HandlingBehaviourBlock) {
-        stopListener().join()
+        stopListener()
         logger.debug { "The listener is set." }
         handlingBehaviour = block
         collectUpdates(allowedUpdates)
@@ -113,11 +111,9 @@ class TgUpdateHandler internal constructor(
      * Stops listening of new updates.
      *
      */
-    suspend fun stopListener(): Job = coroutineScope {
-        launch {
-            handlerScope.coroutineContext.cancelChildren()
-            logger.debug { "The listener is stopped." }
-        }
+    suspend fun stopListener() {
+        handlerScope.coroutineContext.cancelChildren()
+        logger.debug { "The listener is stopped." }
     }
 
     /**
@@ -125,7 +121,7 @@ class TgUpdateHandler internal constructor(
      */
     suspend fun setBehaviour(block: HandlingBehaviourBlock) {
         logger.debug { "Handling behaviour is set." }
-        stopListener().join()
+        stopListener()
         handlingBehaviour = block
     }
 
@@ -222,10 +218,10 @@ class TgUpdateHandler internal constructor(
             .runCatching {
                 invoke(bot.config.classManager, update, user, bot, params)
             }.onFailure {
-                handleFailure(update, it)
                 logger.error(
                     it,
                 ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $update" }
+                handleFailure(update, it)
             }.onSuccess {
                 logger.info {
                     "Handled update#${update.updateId} to method ${second.qualifier + "::" + second.function}"
@@ -241,11 +237,11 @@ class TgUpdateHandler internal constructor(
     ) = runCatching {
         invoke(bot.config.classManager, update, update.userOrNull, bot, params)
     }.onFailure {
-        handleFailure(update, it)
         logger.error(it) {
             (if (isTypeUpdate) "UpdateTypeHandler(${update.type})" else "UnprocessedHandler") +
                 " invocation error at handling update: $update"
         }
+        handleFailure(update, it)
     }.onSuccess {
         logger.info {
             "Handled update#${update.updateId} to " +
