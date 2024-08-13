@@ -3,6 +3,7 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.core.TgUpdateHandler
+import eu.vendeli.tgbot.interfaces.ctx.ChainStateManager
 import eu.vendeli.tgbot.interfaces.ctx.InputListener
 import eu.vendeli.tgbot.interfaces.helper.ExceptionHandler
 import eu.vendeli.tgbot.types.User
@@ -50,6 +51,11 @@ suspend fun TgUpdateHandler.runExceptionHandler(
         delay.takeIf { it > 0 }?.let { delay(it) }
     }
 }
+
+/**
+ * Get state which is stored for [link].
+ */
+suspend fun <T : ChainLink> ChainStateManager.getState(user: User, link: T) = getState(user, link::class.fullName)
 
 /**
  * Set chain for input listening.
