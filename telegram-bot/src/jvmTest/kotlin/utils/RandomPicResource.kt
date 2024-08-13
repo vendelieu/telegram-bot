@@ -20,14 +20,7 @@ class LoremPicsumPic : RandomPicSource() {
     override fun getPicUrl(): String = "https://picsum.photos/10"
 }
 
-class LoremFlickrPic : RandomPicSource() {
-    override fun getPicUrl(height: Int, width: Int): String =
-        "https://loremflickr.com/$height/$width"
-
-    override fun getPicUrl(): String = "https://loremflickr.com/10/10"
-}
-
 object RandomPicResource :
-    ResourcePicker<RandomPicSource>(listOf(UnsplashRandomPic(), LoremPicsumPic(), LoremFlickrPic())) {
+    ResourcePicker<RandomPicSource>(listOf(UnsplashRandomPic(), LoremPicsumPic())) {
     val RANDOM_PIC_URL get() = current.getPicUrl()
 }
