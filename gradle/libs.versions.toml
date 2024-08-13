@@ -26,7 +26,7 @@ ksp = "2.0.10-1.0.24"
 poet = "1.18.1"
 
 binvalid = "0.16.3"
-publisher = "1.1.1"
+publisher = "0.29.0"
 env = "1.0.4"
 
 [libraries]
@@ -66,7 +66,7 @@ mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 ssl-utils = { module = "io.github.hakky54:sslcontext-kickstart-for-pem", version.ref = "sslcontext" }
 spring-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "spring" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-publisher = { module = "tech.yanand.gradle:maven-central-publish", version.ref = "publisher" }
+publisher = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "publisher" }
 redis = { module = "io.lettuce:lettuce-core", version.ref = "redis" }
 env = { module = "dev.scottpierce:kotlin-env-var", version.ref = "env" }
 toml = { module = "net.peanuuutz.tomlkt:tomlkt", version.ref = "toml" }

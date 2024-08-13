@@ -1,69 +1,61 @@
-val sonatypeUsername = (project.findProperty("sonatypeUsername") as String?) ?: ""
-val sonatypePassword = (project.findProperty("sonatypePassword") as String?) ?: ""
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinMultiplatform
+import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
-    `maven-publish`
-    signing
-    id("tech.yanand.maven-central-publish")
+    id("com.vanniktech.maven.publish")
 }
 
-
+apply(plugin = "org.jetbrains.kotlin.multiplatform")
 val libraryData = extensions.create("libraryData", PublishingExtension::class)
 
-val javadoc by tasks.creating(Jar::class) {
-    project.layout.buildDirectory.dir("dokka").orNull?.takeIf { it.asFile.exists() }?.also {
-        from(it)
-    }
-    archiveClassifier = "javadoc"
-}
+mavenPublishing {
+    coordinates("eu.vendeli", project.name, project.version.toString())
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
 
-mavenCentral {
-    repoDir = layout.buildDirectory.dir("repos/bundles")
-    authToken = System.getenv("SONATYPE_TOKEN")
-    publishingType = "AUTOMATIC"
+    configure(
+        KotlinMultiplatform(
+            javadocJar = if (project.name == "telegram-bot") JavadocJar.Dokka("dokkaHtml")
+            else JavadocJar.Empty(),
+            sourcesJar = true,
+        ),
+    )
+
+    pom {
+        name = libraryData.name
+        description = libraryData.description
+        inceptionYear = "2022"
+        url = "https://github.com/vendelieu/telegram-bot"
+
+        licenses {
+            license {
+                name = "Apache 2.0"
+                url = "https://www.apache.org/licenses/LICENSE-2.0"
+            }
+        }
+        developers {
+            developer {
+                id = "Vendelieu"
+                name = "Vendelieu"
+                email = "vendelieu@gmail.com"
+                url = "https://vendeli.eu"
+            }
+        }
+        scm {
+            connection = "scm:git:github.com/vendelieu/telegram-bot.git"
+            developerConnection = "scm:git:ssh://github.com/vendelieu/telegram-bot.git"
+            url = "https://github.com/vendelieu/telegram-bot.git"
+        }
+        issueManagement {
+            system = "Github"
+            url = "https://github.com/vendelieu/telegram-bot/issues"
+        }
+    }
 }
 
 publishing {
-    publications.configureEach {
-        if (this is MavenPublication) {
-            if (name != "kotlinMultiplatform") artifact(javadoc)
-            pom {
-                name = libraryData.name
-                description = libraryData.description
-                inceptionYear = "2022"
-                url = "https://github.com/vendelieu/telegram-bot"
-
-                licenses {
-                    license {
-                        name = "Apache 2.0"
-                        url = "https://www.apache.org/licenses/LICENSE-2.0"
-                    }
-                }
-                developers {
-                    developer {
-                        id = "Vendelieu"
-                        name = "Vendelieu"
-                        email = "vendelieu@gmail.com"
-                        url = "https://vendeli.eu"
-                    }
-                }
-                scm {
-                    connection = "scm:git:github.com/vendelieu/telegram-bot.git"
-                    developerConnection = "scm:git:ssh://github.com/vendelieu/telegram-bot.git"
-                    url = "https://github.com/vendelieu/telegram-bot.git"
-                }
-                issueManagement {
-                    system = "Github"
-                    url = "https://github.com/vendelieu/telegram-bot/issues"
-                }
-            }
-        }
-    }
     repositories {
-        maven {
-            name = "Local"
-            setUrl(layout.buildDirectory.dir("repos/bundles"))
-        }
         maven {
             name = "GHPackages"
             url = uri("https://maven.pkg.github.com/vendelieu/telegram-bot")
@@ -73,15 +65,4 @@ publishing {
             }
         }
     }
-}
-
-signing {
-    if (sonatypeUsername.isNotEmpty() && sonatypePassword.isNotEmpty()) {
-        sign(publishing.publications)
-    }
-}
-
-tasks.withType<AbstractPublishToMaven>().configureEach {
-    val signingTasks = tasks.withType<Sign>()
-    mustRunAfter(signingTasks)
 }
