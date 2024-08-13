@@ -1,6 +1,6 @@
 # Telegram-bot (KtGram) changelog
 
-## 7.0.1
+### 7.0.1
 
 * Fix ksp generation artifact
 
@@ -46,7 +46,7 @@
 * Added `@InputChain` state manager that will save selected state from update automatically.
 * Added additional api validation for the entire api, fixed typos in several parameters.
 
-### 6.6.0
+## 6.6.0
 
 * Covered 7.8 telegram api.
 
