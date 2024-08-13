@@ -82,9 +82,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Extract changelog for version
+        id: changelog
+        run: |
+          ./parse_changelog.sh ${{ needs.version.outputs.version }} > release_notes.md
+        shell: bash
+
       - uses: taiki-e/create-gh-release-action@v1
         with:
           title: $version
-          changelog: CHANGELOG.md
+          changelog: release_notes.md
           branch: master
           token: ${{ secrets.ACCESS_TOKEN }}
