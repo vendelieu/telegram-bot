@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.options.VenueOptions
@@ -19,6 +20,7 @@ class SendVenueAction(
     title: String,
     address: String,
 ) : Action<Message>(),
+    BusinessActionExt<Message>,
     OptionsFeature<SendVenueAction, VenueOptions>,
     MarkupFeature<SendVenueAction> {
     @TgAPI.Name("sendVenue")

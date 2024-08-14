@@ -52,6 +52,8 @@ sealed class ChatMember(
     @SerialName("member")
     data class Member(
         override val user: User,
+        @Serializable(InstantSerializer::class)
+        val untilDate: Instant? = null,
     ) : ChatMember("member")
 
     @Serializable

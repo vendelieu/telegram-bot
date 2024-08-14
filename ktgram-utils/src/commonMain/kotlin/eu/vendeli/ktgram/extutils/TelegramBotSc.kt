@@ -50,10 +50,12 @@ import eu.vendeli.tgbot.api.chat.ApproveChatJoinRequestAction
 import eu.vendeli.tgbot.api.chat.BanChatMemberAction
 import eu.vendeli.tgbot.api.chat.BanChatSenderChatAction
 import eu.vendeli.tgbot.api.chat.CreateChatInviteLinkAction
+import eu.vendeli.tgbot.api.chat.CreateChatSubscriptionInviteLinkAction
 import eu.vendeli.tgbot.api.chat.DeclineChatJoinRequestAction
 import eu.vendeli.tgbot.api.chat.DeleteChatPhotoAction
 import eu.vendeli.tgbot.api.chat.DeleteChatStickerSetAction
 import eu.vendeli.tgbot.api.chat.EditChatInviteLinkAction
+import eu.vendeli.tgbot.api.chat.EditChatSubscriptionInviteLinkAction
 import eu.vendeli.tgbot.api.chat.ExportChatInviteLinkAction
 import eu.vendeli.tgbot.api.chat.GetChatAction
 import eu.vendeli.tgbot.api.chat.GetChatAdministratorsAction
@@ -164,6 +166,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.collections.List
+import kotlin.time.Duration
 import kotlinx.datetime.Instant
 
 @Suppress("NOTHING_TO_INLINE")
@@ -620,6 +623,15 @@ public inline fun TelegramBot.createChatInviteLink(): CreateChatInviteLinkAction
     eu.vendeli.tgbot.api.chat.createChatInviteLink()
 
 @Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.createChatSubscriptionInviteLink(
+  subscriptionPrice: Int,
+  name: String?,
+  subscriptionPeriod: Duration,
+): CreateChatSubscriptionInviteLinkAction =
+    eu.vendeli.tgbot.api.chat.createChatSubscriptionInviteLink(subscriptionPrice, name,
+    subscriptionPeriod)
+
+@Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.declineChatJoinRequest(userId: Long): DeclineChatJoinRequestAction =
     eu.vendeli.tgbot.api.chat.declineChatJoinRequest(userId)
 
@@ -638,6 +650,11 @@ public inline fun TelegramBot.deleteChatStickerSet(): DeleteChatStickerSetAction
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.editChatInviteLink(inviteLink: String): EditChatInviteLinkAction =
     eu.vendeli.tgbot.api.chat.editChatInviteLink(inviteLink)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.editChatSubscriptionInviteLink(inviteLink: String, name: String?):
+    EditChatSubscriptionInviteLinkAction =
+    eu.vendeli.tgbot.api.chat.editChatSubscriptionInviteLink(inviteLink, name)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.exportChatInviteLink(): ExportChatInviteLinkAction =

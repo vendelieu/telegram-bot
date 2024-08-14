@@ -253,4 +253,8 @@ sealed class ReactionType(
     data class CustomEmoji(
         val customEmojiId: String,
     ) : ReactionType("custom_emoji")
+
+    @Serializable
+    @SerialName("paid")
+    class Paid : ReactionType("paid")
 }
