@@ -78,7 +78,7 @@ jobs:
           branch: master
 
   create-release:
-    needs: publish
+    needs: [ version, publish ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
