@@ -146,11 +146,13 @@ $dokka.location:eu.vendeli.tgbot.api.chat//banChatSenderChat/#kotlin.Long/Pointi
 $dokka.location:eu.vendeli.tgbot.api.chat//chatAction/#eu.vendeli.tgbot.types.chat.ChatAction#kotlin.Int?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/chat-action.html
 $dokka.location:eu.vendeli.tgbot.api.chat//chatAction/#kotlin.Int?#kotlin.Function0[eu.vendeli.tgbot.types.chat.ChatAction]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/chat-action.html
 $dokka.location:eu.vendeli.tgbot.api.chat//createChatInviteLink/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/create-chat-invite-link.html
+$dokka.location:eu.vendeli.tgbot.api.chat//createChatSubscriptionInviteLink/#kotlin.Int#kotlin.String?#kotlin.time.Duration/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/create-chat-subscription-invite-link.html
 $dokka.location:eu.vendeli.tgbot.api.chat//declineChatJoinRequest/#eu.vendeli.tgbot.types.User/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/decline-chat-join-request.html
 $dokka.location:eu.vendeli.tgbot.api.chat//declineChatJoinRequest/#kotlin.Long/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/decline-chat-join-request.html
 $dokka.location:eu.vendeli.tgbot.api.chat//deleteChatPhoto/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/delete-chat-photo.html
 $dokka.location:eu.vendeli.tgbot.api.chat//deleteChatStickerSet/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/delete-chat-sticker-set.html
 $dokka.location:eu.vendeli.tgbot.api.chat//editChatInviteLink/#kotlin.String/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/edit-chat-invite-link.html
+$dokka.location:eu.vendeli.tgbot.api.chat//editChatSubscriptionInviteLink/#kotlin.String#kotlin.String?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/edit-chat-subscription-invite-link.html
 $dokka.location:eu.vendeli.tgbot.api.chat//exportChatInviteLink/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/export-chat-invite-link.html
 $dokka.location:eu.vendeli.tgbot.api.chat//getChat/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/get-chat.html
 $dokka.location:eu.vendeli.tgbot.api.chat//getChatAdministrators/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/get-chat-administrators.html
@@ -197,6 +199,8 @@ $dokka.location:eu.vendeli.tgbot.api.chat/BanChatSenderChatAction///PointingToDe
 $dokka.location:eu.vendeli.tgbot.api.chat/BanChatSenderChatAction/BanChatSenderChatAction/#kotlin.Long/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-ban-chat-sender-chat-action/-ban-chat-sender-chat-action.html
 $dokka.location:eu.vendeli.tgbot.api.chat/CreateChatInviteLinkAction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-create-chat-invite-link-action/index.html
 $dokka.location:eu.vendeli.tgbot.api.chat/CreateChatInviteLinkAction/CreateChatInviteLinkAction/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-create-chat-invite-link-action/-create-chat-invite-link-action.html
+$dokka.location:eu.vendeli.tgbot.api.chat/CreateChatSubscriptionInviteLinkAction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-create-chat-subscription-invite-link-action/index.html
+$dokka.location:eu.vendeli.tgbot.api.chat/CreateChatSubscriptionInviteLinkAction/CreateChatSubscriptionInviteLinkAction/#kotlin.Int#kotlin.String?#kotlin.time.Duration/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-create-chat-subscription-invite-link-action/-create-chat-subscription-invite-link-action.html
 $dokka.location:eu.vendeli.tgbot.api.chat/DeclineChatJoinRequestAction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-decline-chat-join-request-action/index.html
 $dokka.location:eu.vendeli.tgbot.api.chat/DeclineChatJoinRequestAction/DeclineChatJoinRequestAction/#kotlin.Long/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-decline-chat-join-request-action/-decline-chat-join-request-action.html
 $dokka.location:eu.vendeli.tgbot.api.chat/DeleteChatPhotoAction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-delete-chat-photo-action/index.html
@@ -205,6 +209,8 @@ $dokka.location:eu.vendeli.tgbot.api.chat/DeleteChatStickerSetAction///PointingT
 $dokka.location:eu.vendeli.tgbot.api.chat/DeleteChatStickerSetAction/DeleteChatStickerSetAction/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-delete-chat-sticker-set-action/-delete-chat-sticker-set-action.html
 $dokka.location:eu.vendeli.tgbot.api.chat/EditChatInviteLinkAction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-edit-chat-invite-link-action/index.html
 $dokka.location:eu.vendeli.tgbot.api.chat/EditChatInviteLinkAction/EditChatInviteLinkAction/#kotlin.String/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-edit-chat-invite-link-action/-edit-chat-invite-link-action.html
+$dokka.location:eu.vendeli.tgbot.api.chat/EditChatSubscriptionInviteLinkAction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-edit-chat-subscription-invite-link-action/index.html
+$dokka.location:eu.vendeli.tgbot.api.chat/EditChatSubscriptionInviteLinkAction/EditChatSubscriptionInviteLinkAction/#kotlin.String#kotlin.String?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-edit-chat-subscription-invite-link-action/-edit-chat-subscription-invite-link-action.html
 $dokka.location:eu.vendeli.tgbot.api.chat/ExportChatInviteLinkAction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-export-chat-invite-link-action/index.html
 $dokka.location:eu.vendeli.tgbot.api.chat/ExportChatInviteLinkAction/ExportChatInviteLinkAction/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-export-chat-invite-link-action/-export-chat-invite-link-action.html
 $dokka.location:eu.vendeli.tgbot.api.chat/GetChatAction///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.api.chat/-get-chat-action/index.html
@@ -1016,7 +1022,8 @@ $dokka.location:eu.vendeli.tgbot.types.chat/ChatMember.Left///PointingToDeclarat
 $dokka.location:eu.vendeli.tgbot.types.chat/ChatMember.Left/Left/#eu.vendeli.tgbot.types.User/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.chat/-chat-member/-left/-left.html
 $dokka.location:eu.vendeli.tgbot.types.chat/ChatMember.Left/user/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.chat/-chat-member/-left/user.html
 $dokka.location:eu.vendeli.tgbot.types.chat/ChatMember.Member///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.chat/-chat-member/-member/index.html
-$dokka.location:eu.vendeli.tgbot.types.chat/ChatMember.Member/Member/#eu.vendeli.tgbot.types.User/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.chat/-chat-member/-member/-member.html
+$dokka.location:eu.vendeli.tgbot.types.chat/ChatMember.Member/Member/#eu.vendeli.tgbot.types.User#kotlinx.datetime.Instant?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.chat/-chat-member/-member/-member.html
+$dokka.location:eu.vendeli.tgbot.types.chat/ChatMember.Member/untilDate/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.chat/-chat-member/-member/until-date.html
 $dokka.location:eu.vendeli.tgbot.types.chat/ChatMember.Member/user/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.chat/-chat-member/-member/user.html
 $dokka.location:eu.vendeli.tgbot.types.chat/ChatMember.Owner///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.chat/-chat-member/-owner/index.html
 $dokka.location:eu.vendeli.tgbot.types.chat/ChatMember.Owner/Owner/#eu.vendeli.tgbot.types.User#kotlin.Boolean#kotlin.String?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.chat/-chat-member/-owner/-owner.html
@@ -2991,8 +2998,9 @@ $dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.Fragment/withdra
 $dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.Other///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-other/index.html
 $dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramAds///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-telegram-ads/index.html
 $dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user-partner/index.html
-$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner/UserPartner/#eu.vendeli.tgbot.types.User#kotlin.String?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user-partner/-user-partner.html
+$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner/UserPartner/#eu.vendeli.tgbot.types.User#kotlin.String?#kotlin.collections.List[eu.vendeli.tgbot.types.media.PaidMedia]?/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user-partner/-user-partner.html
 $dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner/invoicePayload/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user-partner/invoice-payload.html
+$dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner/paidMedia/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user-partner/paid-media.html
 $dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner/user/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/-user-partner/user.html
 $dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/index.html
 $dokka.location:eu.vendeli.tgbot.types.stars/TransactionPartner/type/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.stars/-transaction-partner/type.html
@@ -3255,6 +3263,8 @@ $dokka.location:eu.vendeli.tgbot.types/ReactionType.Emoji///PointingToDeclaratio
 $dokka.location:eu.vendeli.tgbot.types/ReactionType.Emoji/Emoji/#eu.vendeli.tgbot.types.EmojiType/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-reaction-type/-emoji/-emoji.html
 $dokka.location:eu.vendeli.tgbot.types/ReactionType.Emoji/Emoji/#kotlin.String/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-reaction-type/-emoji/-emoji.html
 $dokka.location:eu.vendeli.tgbot.types/ReactionType.Emoji/emoji/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-reaction-type/-emoji/emoji.html
+$dokka.location:eu.vendeli.tgbot.types/ReactionType.Paid///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-reaction-type/-paid/index.html
+$dokka.location:eu.vendeli.tgbot.types/ReactionType.Paid/Paid/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-reaction-type/-paid/-paid.html
 $dokka.location:eu.vendeli.tgbot.types/ReactionType///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-reaction-type/index.html
 $dokka.location:eu.vendeli.tgbot.types/ReactionType/type/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-reaction-type/type.html
 $dokka.location:eu.vendeli.tgbot.types/ReplyParameters///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types/-reply-parameters/index.html
@@ -3457,6 +3467,7 @@ $dokka.location:eu.vendeli.tgbot.utils//checkIsInitDataSafe/kotlin.String#kotlin
 $dokka.location:eu.vendeli.tgbot.utils//defineActivities/eu.vendeli.tgbot.TelegramBot#kotlin.collections.Map[kotlin.String,kotlin.collections.List[kotlin.Any?]]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/[native]define-activities.html
 $dokka.location:eu.vendeli.tgbot.utils//getConfiguredHttpClient/#eu.vendeli.tgbot.types.internal.configuration.HttpConfiguration#eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/get-configured-http-client.html
 $dokka.location:eu.vendeli.tgbot.utils//getInstance/eu.vendeli.tgbot.TelegramBot#kotlin.reflect.KClass[TypeParam(bounds=[kotlin.Any])]#kotlin.Array[kotlin.Any?]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/get-instance.html
+$dokka.location:eu.vendeli.tgbot.utils//getState/eu.vendeli.tgbot.interfaces.ctx.ChainStateManager#eu.vendeli.tgbot.types.User#TypeParam(bounds=[eu.vendeli.tgbot.types.internal.ChainLink])/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/get-state.html
 $dokka.location:eu.vendeli.tgbot.utils//joinToInlineKeyboard/kotlin.collections.Collection[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.String]#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.String]#kotlin.String#kotlin.Int#kotlin.Int#kotlin.Int/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/join-to-inline-keyboard.html
 $dokka.location:eu.vendeli.tgbot.utils//processUpdate/eu.vendeli.tgbot.types.Update#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/process-update.html
 $dokka.location:eu.vendeli.tgbot.utils//runExceptionHandler/eu.vendeli.tgbot.core.TgUpdateHandler#kotlinx.coroutines.CoroutineDispatcher#kotlin.Long#eu.vendeli.tgbot.interfaces.helper.ExceptionHandler/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.utils/run-exception-handler.html
