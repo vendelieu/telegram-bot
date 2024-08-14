@@ -1,5 +1,10 @@
 # Telegram-bot (KtGram) changelog
 
+## 7.1.0
+
+* Cover Telegram API [7.9](https://core.telegram.org/bots/api#august-14-2024) version.
+* Added `ChainStateManager.getState` extension to give option get state by passing link itself.
+
 ### 7.0.1
 
 * Fix ksp generation artifact
