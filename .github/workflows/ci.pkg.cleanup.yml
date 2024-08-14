@@ -39,7 +39,6 @@ jobs:
           "eu.vendeli.ktgram-config-env-mingwx64",
           "eu.vendeli.ktgram-config-toml",
           "eu.vendeli.ktgram-config-toml-jvm",
-          "eu.vendeli.ktgram-config-toml-js",
           "eu.vendeli.ktgram-config-toml-linuxx64",
           "eu.vendeli.ktgram-config-toml-mingwx64",
           "eu.vendeli.webapps",

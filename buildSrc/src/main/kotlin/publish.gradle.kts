@@ -17,7 +17,7 @@ mavenPublishing {
 
     configure(
         KotlinMultiplatform(
-            javadocJar = if (project.name == "telegram-bot") JavadocJar.Dokka("dokkaHtml")
+            javadocJar = if (project.name == "telegram-bot" && doSign) JavadocJar.Dokka("dokkaHtml")
             else JavadocJar.Empty(),
             sourcesJar = true,
         ),

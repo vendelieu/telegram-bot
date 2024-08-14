@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.api.media
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
@@ -19,6 +20,7 @@ class SendPaidMediaAction(
     starCount: Int,
     media: List<InputPaidMedia>,
 ) : MediaAction<Message>(),
+    BusinessActionExt<Message>,
     OptionsFeature<SendPaidMediaAction, PaidMediaOptions>,
     CaptionFeature<SendPaidMediaAction>,
     EntitiesFeature<SendPaidMediaAction>,

@@ -20,5 +20,7 @@ tasks.create("prepareRelease") {
     dependsOn("ksp:detekt")
     dependsOn("telegram-bot:detekt")
 
+    dependsOn("telegram-bot:clean")
+    dependsOn("telegram-bot:kspCommonMainKotlinMetadata")
     dependsOn("telegram-bot:apiCheck")
 }

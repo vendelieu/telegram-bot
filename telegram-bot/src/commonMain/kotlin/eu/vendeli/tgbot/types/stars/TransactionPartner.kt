@@ -2,6 +2,7 @@ package eu.vendeli.tgbot.types.stars
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.media.PaidMedia
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -31,6 +32,7 @@ sealed class TransactionPartner(
     data class UserPartner(
         val user: User,
         val invoicePayload: String? = null,
+        val paidMedia: List<PaidMedia>? = null,
     ) : TransactionPartner("user")
 
     @Serializable

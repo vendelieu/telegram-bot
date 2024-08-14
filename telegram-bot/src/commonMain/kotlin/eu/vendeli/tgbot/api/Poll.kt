@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.api
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
@@ -20,6 +21,7 @@ class SendPollAction(
     question: String,
     options: List<InputPollOption>,
 ) : Action<Message>(),
+    BusinessActionExt<Message>,
     OptionsFeature<SendPollAction, PollOptions>,
     EntitiesFeature<SendPollAction>,
     MarkupFeature<SendPollAction> {

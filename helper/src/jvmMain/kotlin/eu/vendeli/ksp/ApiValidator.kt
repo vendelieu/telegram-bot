@@ -1,16 +1,29 @@
 package eu.vendeli.ksp
 
+import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.getConstructors
 import com.google.devtools.ksp.getDeclaredProperties
 import com.google.devtools.ksp.symbol.KSClassDeclaration
+import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
+import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
+import eu.vendeli.tgbot.interfaces.action.InlineActionExt
+import eu.vendeli.tgbot.interfaces.features.CaptionFeature
+import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
+import eu.vendeli.tgbot.interfaces.features.MarkupFeature
+import eu.vendeli.tgbot.utils.fullName
 import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
 internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, apiFile: JsonElement) {
+    val allMethods = apiFile.jsonObject["methods"]!!.jsonObject.toMap()
+    val visitedMethods = mutableSetOf<String>()
+
     classes.forEach { cls ->
         val className = cls.simpleName.getShortName()
         val classFullname = cls.qualifiedName!!.asString()
@@ -25,7 +38,7 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
             .first()
             .value as String
 
-        // validate name class SHOULD be MethodNameAction
+        // validate class name SHOULD be MethodNameAction
         if (!(methodName + "action").equals(className, true)) logger.warn(
             "Action naming convention is broken or wrong method is using in $classFullname (method: $methodName)",
         )
@@ -50,31 +63,81 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
             ?.associate { it.simpleName.getShortName() to it.type.toTypeName() }
             ?.let { parameters.putAll(it) }
 
-        val absentProperties = listOf(
-            "replyMarkup",
-            "chatId",
-            "caption",
-            "entities",
-            "captionEntities",
-            "inlineMessageId",
-            "businessConnectionId",
-        )
+        cls.superTypes.forEach {
+            when (
+                it
+                    .resolve()
+                    .declaration.qualifiedName!!
+                    .asString()
+            ) {
+                CaptionFeature::class.fullName -> {
+                    parameters["caption"] = STRING
+                    parameters["captionEntities"] = entitiesType
+                }
+
+                EntitiesFeature::class.fullName -> parameters["entities"] = entitiesType
+                MarkupFeature::class.fullName -> parameters["replyMarkup"] = replyMarkupType
+                BusinessActionExt::class.fullName -> parameters["businessConnectionId"] = STRING
+                InlineActionExt::class.fullName -> parameters["inlineMessageId"] = STRING
+            }
+        }
 
         // find json info for method
-        val method = apiFile.jsonObject["methods"]!!.jsonObject[methodName]
+        val method = allMethods[methodName]
         if (method == null) {
             logger.exception(IllegalStateException("Api validation gone wrong, no data for method: $methodName"))
             return
         }
+        method.jsonObject["returns"]!!.jsonArray.let { returns ->
+            val actionVariants = listOf("Action", "SimpleAction", "MediaAction")
+            val methodActionRet = cls
+                .getAllSuperTypes()
+                .find {
+                    it.declaration.simpleName.getShortName() in actionVariants
+                }!!
+                .arguments
+                .first()
+                .type!!
+                .resolve()
+
+            val apiReturnMatchType = when (val simpleName = methodActionRet.declaration.simpleName.getShortName()) {
+                "List" ->
+                    "Array of " + methodActionRet.arguments
+                        .first()
+                        .type!!
+                        .resolve()
+                        .toClassName()
+                        .simpleName
+                        .returnTypeCorrection()
+                else -> simpleName.returnTypeCorrection()
+            }
+
+            if (returns.find { (it as? JsonPrimitive)?.content == apiReturnMatchType } == null)
+                logger.warn(
+                    "Possibly return type of $classFullname ($apiReturnMatchType) is wrong, should be one of $returns",
+                )
+        }
+
         method.jsonObject["fields"]?.jsonArray?.forEach {
             val origParameterName = it.jsonObject["name"]!!
                 .jsonPrimitive.content
             val camelParamName = origParameterName.snakeToCamelCase()
-            if (camelParamName !in absentProperties && camelParamName !in parameters) {
+            if (camelParamName != "chatId" && camelParamName !in parameters) {
                 logger.warn(
-                    "Api parameter `$origParameterName`($camelParamName) is possibly not present in class $classFullname (method: `$methodName`)\n${method.jsonObject["href"]!!.jsonPrimitive.content}",
+                    "Api parameter `$origParameterName`($camelParamName) " +
+                        "is possibly not present in class $classFullname (method: `$methodName`)\n" +
+                        method.jsonObject["href"]!!.jsonPrimitive.content,
                 )
             }
         }
+        if (!visitedMethods.add(methodName)) logger.warn("Duplicate processing of a method $methodName")
     }
+    val leftMethods = allMethods.keys - visitedMethods
+    if (leftMethods.isNotEmpty()) logger.warn("Not all methods have been processed; remaining are:: $leftMethods")
+}
+
+private fun String.returnTypeCorrection() = when (this) {
+    "ProcessedUpdate" -> "Update"
+    "Int" -> "Integer"
+    else -> this
 }

@@ -4,8 +4,16 @@ import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSDeclaration
+import com.squareup.kotlinpoet.LIST
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import com.squareup.kotlinpoet.asTypeName
+import eu.vendeli.tgbot.interfaces.marker.Keyboard
+import eu.vendeli.tgbot.types.msg.MessageEntity
 import java.io.File
 import java.io.FileFilter
+
+internal val replyMarkupType = Keyboard::class.asTypeName()
+internal val entitiesType = LIST.parameterizedBy(MessageEntity::class.asTypeName())
 
 internal fun String.beginWithUpperCase(): String = when (this.length) {
     0 -> ""
