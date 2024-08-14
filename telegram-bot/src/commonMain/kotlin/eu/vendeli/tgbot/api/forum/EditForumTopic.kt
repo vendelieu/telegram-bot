@@ -25,7 +25,7 @@ class EditForumTopicAction(
 }
 
 /**
- * Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
+ * Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
  *
  * [Api reference](https://core.telegram.org/bots/api#editforumtopic)
  * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)

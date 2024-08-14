@@ -23,6 +23,15 @@ class EditChatSubscriptionInviteLinkAction(
     }
 }
 
+/**
+ * Use this method to edit a subscription invite link created by the bot. The bot must have the can_invite_users administrator rights. Returns the edited invite link as a ChatInviteLink object.
+ *
+ * [Api reference](https://core.telegram.org/bots/api#editchatsubscriptioninvitelink)
+ * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param inviteLink The invite link to edit
+ * @param name Invite link name; 0-32 characters
+ * @returns [ChatInviteLink]
+ */
 @Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun editChatSubscriptionInviteLink(
