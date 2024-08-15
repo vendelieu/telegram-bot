@@ -22,10 +22,18 @@ jobs:
           java-version: 17
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3-beta
+        uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: current
           dependency-graph: generate-and-submit
+
+      - name: Cache konan dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('*.gradle.kts') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Build artifact
         env:
@@ -35,7 +43,7 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           BOT_TOKEN_2: ${{ secrets.BOT_TOKEN_2 }}
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
-        run: ./gradlew clean koverXmlReport
+        run: ./gradlew koverXmlReport
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4

@@ -18,6 +18,19 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref_type == 'branch'
+    strategy:
+      matrix:
+        module: [
+          ":telegram-bot",
+          ":ksp",
+          ":webapps",
+          ":ktgram-utils",
+          ":ktgram-botctx-redis",
+          ":ktgram-config-env",
+          ":ktgram-config-toml",
+          ":ktor-starter",
+          ":spring-ktgram-starter"
+        ]
     steps:
       - uses: actions/checkout@v4
 
@@ -40,7 +53,15 @@ jobs:
         with:
           gradle-version: current
 
+      - name: Cache konan dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('*.gradle.kts') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
       - name: Publish to Gh
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: ./gradlew publishAllPublicationsToGHPackagesRepository -PlibVersion=${{ env.git_branch }}-${{ env.date }}~${{ env.git_hash }}
+        run: ./gradlew ${{ matrix.module }}:publishAllPublicationsToGHPackagesRepository -PlibVersion=${{ env.git_branch }}-${{ env.date }}~${{ env.git_hash }}  --no-parallel

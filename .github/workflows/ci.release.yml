@@ -34,9 +34,17 @@ jobs:
           java-version: 17
 
       - name: Setup gradle
-        uses: gradle/actions/setup-gradle@v3-beta
+        uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: current
+
+      - name: Cache konan dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('*.gradle.kts') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Prepare to publish
         run: |

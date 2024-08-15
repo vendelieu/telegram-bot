@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.types.internal.Action
 import eu.vendeli.tgbot.types.internal.BreakCondition
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 
-interface Link <T> {
+interface Link<T> {
     val retryAfterBreak: Boolean
     val breakCondition: BreakCondition?
     val beforeAction: Action?
