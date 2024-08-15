@@ -7155,9 +7155,8 @@ public final class eu/vendeli/tgbot/types/internal/CallbackQueryUpdate : eu/vend
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract class eu/vendeli/tgbot/types/internal/ChainLink {
+public abstract class eu/vendeli/tgbot/types/internal/ChainLink : eu/vendeli/tgbot/types/internal/chain/Link {
 	public fun <init> ()V
-	public abstract fun action (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun breakAction (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun getAfterAction ()Leu/vendeli/tgbot/types/internal/Action;
 	public fun getBeforeAction ()Leu/vendeli/tgbot/types/internal/Action;
@@ -8045,6 +8044,47 @@ public final class eu/vendeli/tgbot/types/internal/UpdateType$Companion {
 
 public abstract interface class eu/vendeli/tgbot/types/internal/UserReference {
 	public abstract fun getUser ()Leu/vendeli/tgbot/types/User;
+}
+
+public class eu/vendeli/tgbot/types/internal/chain/BaseLinkStateManager : eu/vendeli/tgbot/types/internal/chain/LinkStateManager {
+	public fun <init> ()V
+	public fun del (Leu/vendeli/tgbot/types/User;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun get (Leu/vendeli/tgbot/types/User;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	protected final fun getData ()Lco/touchlab/stately/collections/ConcurrentMutableMap;
+	public fun set (Leu/vendeli/tgbot/types/User;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract class eu/vendeli/tgbot/types/internal/chain/BaseStatefulLink : eu/vendeli/tgbot/types/internal/chain/StatefulLink {
+	public fun <init> ()V
+}
+
+public abstract interface class eu/vendeli/tgbot/types/internal/chain/Link {
+	public abstract fun action (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun breakAction (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getAfterAction ()Leu/vendeli/tgbot/types/internal/Action;
+	public abstract fun getBeforeAction ()Leu/vendeli/tgbot/types/internal/Action;
+	public abstract fun getBreakCondition ()Leu/vendeli/tgbot/types/internal/BreakCondition;
+	public abstract fun getRetryAfterBreak ()Z
+}
+
+public final class eu/vendeli/tgbot/types/internal/chain/Link$DefaultImpls {
+	public static fun breakAction (Leu/vendeli/tgbot/types/internal/chain/Link;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class eu/vendeli/tgbot/types/internal/chain/LinkStateManager {
+	public abstract fun del (Leu/vendeli/tgbot/types/User;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun get (Leu/vendeli/tgbot/types/User;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun set (Leu/vendeli/tgbot/types/User;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract class eu/vendeli/tgbot/types/internal/chain/StatefulLink : eu/vendeli/tgbot/types/internal/chain/Link {
+	public fun <init> ()V
+	public fun breakAction (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getAfterAction ()Leu/vendeli/tgbot/types/internal/Action;
+	public fun getBeforeAction ()Leu/vendeli/tgbot/types/internal/Action;
+	public fun getBreakCondition ()Leu/vendeli/tgbot/types/internal/BreakCondition;
+	public fun getRetryAfterBreak ()Z
+	public fun getState ()Leu/vendeli/tgbot/types/internal/chain/LinkStateManager;
 }
 
 public final class eu/vendeli/tgbot/types/internal/configuration/BotConfiguration {
@@ -13425,7 +13465,7 @@ public final class eu/vendeli/tgbot/utils/CommonExtenstionsKt {
 	public static final fun getState (Leu/vendeli/tgbot/interfaces/ctx/ChainStateManager;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/ChainLink;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun runExceptionHandler (Leu/vendeli/tgbot/core/TgUpdateHandler;Lkotlinx/coroutines/CoroutineDispatcher;JLeu/vendeli/tgbot/interfaces/helper/ExceptionHandler;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun runExceptionHandler$default (Leu/vendeli/tgbot/core/TgUpdateHandler;Lkotlinx/coroutines/CoroutineDispatcher;JLeu/vendeli/tgbot/interfaces/helper/ExceptionHandler;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public static final fun setChain (Leu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/ChainLink;)V
+	public static final fun setChain (Leu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/chain/Link;)V
 }
 
 public final class eu/vendeli/tgbot/utils/FileExtHelpersKt {

@@ -25,9 +25,10 @@ internal fun FileBuilder.collectInputChains(
     symbols.forEach { chain ->
         val links = chain.declarations
             .filter { i ->
-                i is KSClassDeclaration && i.getAllSuperTypes().any {
-                    it.declaration.qualifiedName?.asString() == linkQName
-                }
+                i is KSClassDeclaration &&
+                    i.getAllSuperTypes().any {
+                        it.declaration.qualifiedName?.asString() == linkQName
+                    }
             }.toList()
             .cast<List<KSClassDeclaration>>()
 
@@ -80,7 +81,9 @@ internal fun FileBuilder.collectInputChains(
                         if (isStatefulLink) {
                             add("val linkState = inst.action(user, update, bot)\n")
                             add("inst.state.set(user, linkState)\n")
-                        } else add("inst.action(user, update, bot)\n")
+                        } else {
+                            add("inst.action(user, update, bot)\n")
+                        }
                         add("if (nextLink != null) bot.inputListener[user] = nextLink\n")
                         add("inst.afterAction?.invoke(user, update, bot)\n")
                     }.endControlFlow()
