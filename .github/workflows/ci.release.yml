@@ -65,7 +65,7 @@ jobs:
           FOLDER: telegram-bot/build/dokka
 
   readme:
-    needs: publish
+    needs: [ version, publish ]
     name: Replace version in README.md
     runs-on: ubuntu-latest
     permissions:
