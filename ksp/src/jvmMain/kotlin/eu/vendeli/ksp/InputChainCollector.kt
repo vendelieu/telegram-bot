@@ -6,12 +6,12 @@ import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toClassName
-import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ksp.utils.FileBuilder
 import eu.vendeli.ksp.utils.cast
-import eu.vendeli.ksp.utils.chainLinkClass
+import eu.vendeli.ksp.utils.linkQName
 import eu.vendeli.ksp.utils.stateManager
 import eu.vendeli.tgbot.implementations.DefaultGuard
+import eu.vendeli.tgbot.types.internal.chain.StatefulLink
 
 internal fun FileBuilder.collectInputChains(
     symbols: Sequence<KSClassDeclaration>,
@@ -25,7 +25,9 @@ internal fun FileBuilder.collectInputChains(
     symbols.forEach { chain ->
         val links = chain.declarations
             .filter { i ->
-                i is KSClassDeclaration && i.getAllSuperTypes().any { it.toTypeName() == chainLinkClass }
+                i is KSClassDeclaration && i.getAllSuperTypes().any {
+                    it.declaration.qualifiedName?.asString() == linkQName
+                }
             }.toList()
             .cast<List<KSClassDeclaration>>()
 
@@ -48,6 +50,8 @@ internal fun FileBuilder.collectInputChains(
             } else {
                 null
             }?.qualifiedName?.asString()
+            val isStatefulLink =
+                link.getAllSuperTypes().any { it.declaration.simpleName.asString() == StatefulLink::class.simpleName!! }
 
             val block = buildCodeBlock {
                 indent()
@@ -73,7 +77,10 @@ internal fun FileBuilder.collectInputChains(
                             qualifier,
                             pkg,
                         )
-                        add("inst.action(user, update, bot)\n")
+                        if (isStatefulLink) {
+                            add("val linkState = inst.action(user, update, bot)\n")
+                            add("inst.state.set(user, linkState)\n")
+                        } else add("inst.action(user, update, bot)\n")
                         add("if (nextLink != null) bot.inputListener[user] = nextLink\n")
                         add("inst.afterAction?.invoke(user, update, bot)\n")
                     }.endControlFlow()
