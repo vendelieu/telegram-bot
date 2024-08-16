@@ -17,7 +17,6 @@ package eu.vendeli.fixtures
 import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.internal.CommonMatcher
 import eu.vendeli.tgbot.types.internal.InvocationMeta
-import eu.vendeli.tgbot.types.internal.StoredState
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.Invocable
@@ -165,20 +164,10 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
                 inst.breakAction(user, update, bot)
                 return@suspendCall Unit
             }
-            val chainInst = classManager.getInstance(eu.vendeli.fixtures.Conversation::class) as
-                eu.vendeli.fixtures.Conversation
-            chainInst.clearAllState(user, "eu.vendeli.fixtures.Conversation")
-            chainInst.setState(
-                user,
-                "eu.vendeli.fixtures.Conversation.Name",
-                StoredState(
-                    update,
-                    inst.stateSelector,
-                ),
-            )
             if (bot.update.userClassSteps[user.id] != "eu.vendeli.fixtures.Conversation")
                 eu.vendeli.fixtures.____clearClassData(user.id)
-            inst.action(user, update, bot)
+            val linkState = inst.action(user, update, bot)
+            inst.state.set(user, linkState)
             if (nextLink != null) bot.inputListener[user] = nextLink
             inst.afterAction?.invoke(user, update, bot)
         }
@@ -210,16 +199,6 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
                 inst.breakAction(user, update, bot)
                 return@suspendCall Unit
             }
-            val chainInst = classManager.getInstance(eu.vendeli.fixtures.Conversation::class) as
-                eu.vendeli.fixtures.Conversation
-            chainInst.setState(
-                user,
-                "eu.vendeli.fixtures.Conversation.Age",
-                StoredState(
-                    update,
-                    inst.stateSelector,
-                ),
-            )
             if (bot.update.userClassSteps[user.id] != "eu.vendeli.fixtures.Conversation")
                 eu.vendeli.fixtures.____clearClassData(user.id)
             inst.action(user, update, bot)
