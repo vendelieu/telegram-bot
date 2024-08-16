@@ -4,7 +4,39 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - '.editorconfig'
+      - '.gitignore'
+      - 'CHANGELOG.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'FUNDING.yml'
+      - 'LICENSE'
+      - 'README.md'
+      - 'SECURITY.md'
+      - 'gradlew'
+      - 'gradlew.bat'
+      - 'parse_changelog.sh'
+      - 'renovate.json'
+      - '.github/**'
+      - 'assets/**'
   pull_request:
+    paths-ignore:
+      - '.editorconfig'
+      - '.gitignore'
+      - 'CHANGELOG.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'FUNDING.yml'
+      - 'LICENSE'
+      - 'README.md'
+      - 'SECURITY.md'
+      - 'gradlew'
+      - 'gradlew.bat'
+      - 'parse_changelog.sh'
+      - 'renovate.json'
+      - '.github/**'
+      - 'assets/**'
 
 permissions:
   contents: write
