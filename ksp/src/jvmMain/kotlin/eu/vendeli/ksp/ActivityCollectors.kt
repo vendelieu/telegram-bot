@@ -11,9 +11,8 @@ import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.buildCodeBlock
+import eu.vendeli.ksp.dto.CollectorsContext
 import eu.vendeli.ksp.dto.CommonAnnotationData
-import eu.vendeli.ksp.dto.ProcessorCtxData
-import eu.vendeli.ksp.utils.FileBuilder
 import eu.vendeli.ksp.utils.addMap
 import eu.vendeli.ksp.utils.commonMatcherClass
 import eu.vendeli.ksp.utils.invocableType
@@ -27,13 +26,12 @@ import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.internal.UpdateType
 
-internal fun FileBuilder.collectCommandActivities(
+internal fun collectCommandActivities(
     symbols: Sequence<KSFunctionDeclaration>,
-    ctx: ProcessorCtxData,
-    pkg: String? = null,
+    ctx: CollectorsContext,
 ) = ctx.run {
     logger.info("Collecting commands.")
-    addMap(
+    activitiesFile.addMap(
         "__TG_COMMANDS$idxPostfix",
         MAP.parameterizedBy(
             Pair::class.asTypeName().parameterizedBy(STRING, UpdateType::class.asTypeName()),
@@ -64,7 +62,7 @@ internal fun FileBuilder.collectCommandActivities(
                 addStatement(
                     "(\"$it\" to %L) to (%L to InvocationMeta(\"%L\", \"%L\", %L, %L::class)),",
                     updT,
-                    buildInvocationLambdaCodeBlock(function, injectableTypes, pkg),
+                    activitiesFile.buildInvocationLambdaCodeBlock(function, injectableTypes, pkg),
                     function.qualifiedName!!.getQualifier(),
                     function.simpleName.asString(),
                     annotationData.rateLimits.toRateLimits(),
@@ -75,16 +73,15 @@ internal fun FileBuilder.collectCommandActivities(
     }
 }
 
-internal fun FileBuilder.collectInputActivities(
+internal fun collectInputActivities(
     symbols: Sequence<KSFunctionDeclaration>,
     chainSymbols: Sequence<KSClassDeclaration>,
-    ctx: ProcessorCtxData,
-    pkg: String? = null,
+    ctx: CollectorsContext,
 ) = ctx.run {
     logger.info("Collecting inputs.")
-    val tailBlock = collectInputChains(chainSymbols, logger, pkg)
+    val tailBlock = collectInputChains(chainSymbols, ctx)
 
-    addMap(
+    activitiesFile.addMap(
         "__TG_INPUTS$idxPostfix",
         MAP.parameterizedBy(STRING, invocableType),
         symbols,
@@ -99,7 +96,7 @@ internal fun FileBuilder.collectInputActivities(
             logger.info("Input: $it --> ${function.qualifiedName?.asString()}")
             addStatement(
                 "\"$it\" to (%L to InvocationMeta(\"%L\", \"%L\", %L, %L::class)),",
-                buildInvocationLambdaCodeBlock(function, injectableTypes, pkg),
+                activitiesFile.buildInvocationLambdaCodeBlock(function, injectableTypes, pkg),
                 function.qualifiedName!!.getQualifier(),
                 function.simpleName.asString(),
                 annotationData.second.toRateLimits(),
@@ -109,12 +106,12 @@ internal fun FileBuilder.collectInputActivities(
     }
 }
 
-internal fun FileBuilder.collectUpdateTypeActivities(
+internal fun collectUpdateTypeActivities(
     symbols: Sequence<KSFunctionDeclaration>,
-    ctx: ProcessorCtxData,
+    ctx: CollectorsContext,
 ) = ctx.run {
     logger.info("Collecting `UpdateType` handlers.")
-    addMap(
+    activitiesFile.addMap(
         "__TG_UPDATE_TYPES$idxPostfix",
         MAP.parameterizedBy(UpdateType::class.asTypeName(), TypeVariableName("InvocationLambda")),
         symbols,
@@ -130,19 +127,18 @@ internal fun FileBuilder.collectUpdateTypeActivities(
             addStatement(
                 "%L to %L,",
                 it,
-                buildInvocationLambdaCodeBlock(function, injectableTypes),
+                activitiesFile.buildInvocationLambdaCodeBlock(function, injectableTypes),
             )
         }
     }
 }
 
-internal fun FileBuilder.collectCommonActivities(
+internal fun collectCommonActivities(
     data: List<CommonAnnotationData>,
-    ctx: ProcessorCtxData,
-    pkg: String? = null,
+    ctx: CollectorsContext,
 ) = ctx.run {
     logger.info("Collecting common handlers.")
-    addProperty(
+    activitiesFile.addProperty(
         PropertySpec
             .builder(
                 "__TG_COMMONS$idxPostfix",
@@ -158,7 +154,7 @@ internal fun FileBuilder.collectCommonActivities(
                                 addStatement(
                                     "%L to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
                                     it.value.toCommonMatcher(it.filter, it.scope),
-                                    buildInvocationLambdaCodeBlock(it.funDeclaration, injectableTypes, pkg),
+                                    activitiesFile.buildInvocationLambdaCodeBlock(it.funDeclaration, injectableTypes, pkg),
                                     it.funQualifier,
                                     it.funSimpleName,
                                     it.rateLimits.let { l ->
@@ -175,11 +171,11 @@ internal fun FileBuilder.collectCommonActivities(
     )
 }
 
-internal fun FileBuilder.collectUnprocessed(
+internal fun collectUnprocessed(
     unprocessedHandlerSymbols: KSFunctionDeclaration?,
-    ctx: ProcessorCtxData,
+    ctx: CollectorsContext,
 ) = ctx.run {
-    addProperty(
+    activitiesFile.addProperty(
         PropertySpec
             .builder(
                 "__TG_UNPROCESSED$idxPostfix",
@@ -192,7 +188,7 @@ internal fun FileBuilder.collectUnprocessed(
                             "%L",
                             unprocessedHandlerSymbols?.let {
                                 logger.info("Unprocessed handler --> ${it.qualifiedName?.asString()}")
-                                buildInvocationLambdaCodeBlock(it, injectableTypes)
+                                activitiesFile.buildInvocationLambdaCodeBlock(it, injectableTypes)
                             },
                         )
                     },
