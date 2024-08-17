@@ -39,10 +39,14 @@ internal fun collectInputChains(
                 activitiesFile.addImport("eu.vendeli.tgbot.types.internal", "StoredState")
             }
 
-            val statefulLinks = chain.declarations.filter { d ->
-                d is KSClassDeclaration && d.getAllSuperTypes()
-                    .find { it.declaration.simpleName.asString() == StatefulLink::class.simpleName } != null
-            }.cast<Sequence<KSClassDeclaration>>().toHashSet()
+            val statefulLinks = chain.declarations
+                .filter { d ->
+                    d is KSClassDeclaration &&
+                        d
+                            .getAllSuperTypes()
+                            .find { it.declaration.simpleName.asString() == StatefulLink::class.simpleName } != null
+                }.cast<Sequence<KSClassDeclaration>>()
+                .toHashSet()
 
             if (statefulLinks.isNotEmpty()) buildChainStateBindings(ctx.botCtxFile, chain, statefulLinks, logger)
 
@@ -76,7 +80,9 @@ internal fun collectInputChains(
                             if (isStateManagerChain) {
                                 add("val chainInst = classManager.getInstance($qualifier::class) as $qualifier\n")
                                 if (idx == 0) add("chainInst.clearAllState(user, \"$qualifier\")\n")
-                                add("chainInst.setState(user, \"$reference\", StoredState(update, inst.stateSelector))\n")
+                                add(
+                                    "chainInst.setState(user, \"$reference\", StoredState(update, inst.stateSelector))\n",
+                                )
                             }
                             if (pkg != null) add(
                                 "if (\n\tbot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",

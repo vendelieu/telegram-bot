@@ -11,5 +11,5 @@ data class CollectorsContext(
     val injectableTypes: Map<TypeName, ClassName>,
     val logger: KSPLogger,
     val idxPostfix: String,
-    val pkg: String? = null
+    val pkg: String? = null,
 )

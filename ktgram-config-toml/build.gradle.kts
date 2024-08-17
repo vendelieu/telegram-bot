@@ -7,11 +7,9 @@ onlyJvmConfiguredKotlin {
     linuxX64()
 
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(project(":telegram-bot"))
-                implementation(libs.toml)
-            }
+        commonMain.dependencies {
+            implementation(project(":telegram-bot"))
+            implementation(libs.toml)
         }
     }
 }

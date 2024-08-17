@@ -154,7 +154,11 @@ internal fun collectCommonActivities(
                                 addStatement(
                                     "%L to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
                                     it.value.toCommonMatcher(it.filter, it.scope),
-                                    activitiesFile.buildInvocationLambdaCodeBlock(it.funDeclaration, injectableTypes, pkg),
+                                    activitiesFile.buildInvocationLambdaCodeBlock(
+                                        it.funDeclaration,
+                                        injectableTypes,
+                                        pkg,
+                                    ),
                                     it.funQualifier,
                                     it.funSimpleName,
                                     it.rateLimits.let { l ->

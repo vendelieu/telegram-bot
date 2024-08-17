@@ -24,14 +24,17 @@ fun buildChainStateBindings(
     val chainType = chainDeclaration.toClassName()
     addImport("kotlinx.coroutines", "runBlocking")
 
-    val user = FunSpec.constructorBuilder()
+    val user = FunSpec
+        .constructorBuilder()
         .addParameter("user", userClass)
         .build()
 
-    val stateBindingClass = TypeSpec.classBuilder(providerName)
+    val stateBindingClass = TypeSpec
+        .classBuilder(providerName)
         .primaryConstructor(user)
         .addProperty(
-            PropertySpec.builder("user", userClass)
+            PropertySpec
+                .builder("user", userClass)
                 .initializer("user")
                 .addModifiers(KModifier.PRIVATE)
                 .build(),
@@ -46,18 +49,23 @@ fun buildChainStateBindings(
             return@forEach
         }
 
-        val linkType = l.getDeclaredFunctions().first {
-            it.simpleName.getShortName() == "action"
-        }.returnType!!.toTypeName().copy(true)
+        val linkType = l
+            .getDeclaredFunctions()
+            .first {
+                it.simpleName.getShortName() == "action"
+            }.returnType!!
+            .toTypeName()
+            .copy(true)
 
         stateBindingClass.addProperty(
-            PropertySpec.builder(linkName, linkType)
+            PropertySpec
+                .builder(linkName, linkType)
                 .getter(
-                    FunSpec.getterBuilder()
+                    FunSpec
+                        .getterBuilder()
                         .addStatement("return runBlocking {\n\t $linkQName.state.get(user) \n\t}")
                         .build(),
-                )
-                .build(),
+                ).build(),
         )
     }
 

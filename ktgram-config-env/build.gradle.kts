@@ -4,12 +4,10 @@ plugins {
 
 configuredKotlin {
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(project(":telegram-bot"))
-                implementation(libs.env)
-                implementation(libs.ktor.client.core)
-            }
+        commonMain.dependencies {
+            implementation(project(":telegram-bot"))
+            implementation(libs.env)
+            implementation(libs.ktor.client.core)
         }
     }
 }
