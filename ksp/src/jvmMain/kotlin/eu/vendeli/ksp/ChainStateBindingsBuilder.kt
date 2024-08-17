@@ -73,7 +73,7 @@ fun buildChainStateBindings(
         FunSpec
             .builder("getAllState")
             .receiver(userClass)
-            .returns(ClassName("", providerName))
+            .returns(ClassName(packageName, providerName))
             .addParameter("chain", chainType)
             .addCode("return $providerName(this)")
             .build(),
