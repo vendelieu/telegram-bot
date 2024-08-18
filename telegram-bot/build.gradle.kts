@@ -24,8 +24,6 @@ configuredKotlin {
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.logging)
 
-            implementation("dev.whyoleg.sweetspi:sweetspi-runtime:0.1.1")
-
             api(libs.coroutines.core)
             api(libs.kotlin.datetime)
         }
