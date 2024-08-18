@@ -17,5 +17,4 @@ abstract class ChainLink : Link<Unit> {
     override val breakCondition: BreakCondition? = null
     override val beforeAction: Action? = null
     override val afterAction: Action? = null
-    open val stateSelector: StateSelector = StateSelector.Text
 }

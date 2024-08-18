@@ -4,11 +4,9 @@ import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.buildCodeBlock
-import com.squareup.kotlinpoet.ksp.toClassName
 import eu.vendeli.ksp.dto.CollectorsContext
 import eu.vendeli.ksp.utils.cast
 import eu.vendeli.ksp.utils.linkQName
-import eu.vendeli.ksp.utils.stateManager
 import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.types.internal.chain.StatefulLink
 
@@ -30,14 +28,6 @@ internal fun collectInputChains(
                         }
                 }.toList()
                 .cast<List<KSClassDeclaration>>()
-
-            val isStateManagerChain = chain.getAllSuperTypes().firstOrNull {
-                it.toClassName() == stateManager
-            } != null
-
-            if (isStateManagerChain) {
-                activitiesFile.addImport("eu.vendeli.tgbot.types.internal", "StoredState")
-            }
 
             val statefulLinks = chain.declarations
                 .filter { d ->
@@ -77,13 +67,6 @@ internal fun collectInputChains(
                                 curLinkId,
                             )
                             add("if (breakPoint) {\ninst.breakAction(user, update, bot)\nreturn@suspendCall Unit\n}\n")
-                            if (isStateManagerChain) {
-                                add("val chainInst = classManager.getInstance($qualifier::class) as $qualifier\n")
-                                if (idx == 0) add("chainInst.clearAllState(user, \"$qualifier\")\n")
-                                add(
-                                    "chainInst.setState(user, \"$reference\", StoredState(update, inst.stateSelector))\n",
-                                )
-                            }
                             if (pkg != null) add(
                                 "if (\n\tbot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",
                                 qualifier,

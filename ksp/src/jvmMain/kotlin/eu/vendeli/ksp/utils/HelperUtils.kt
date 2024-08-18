@@ -19,7 +19,6 @@ import com.squareup.kotlinpoet.asTypeName
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.implementations.ClassDataImpl
 import eu.vendeli.tgbot.implementations.UserDataMapImpl
-import eu.vendeli.tgbot.interfaces.ctx.ChainStateManager
 import eu.vendeli.tgbot.interfaces.ctx.ClassData
 import eu.vendeli.tgbot.interfaces.ctx.UserData
 import eu.vendeli.tgbot.interfaces.marker.Autowiring
@@ -104,7 +103,6 @@ internal val userDataCtx = UserData::class.asTypeName()
 internal val userDataCtxDef = UserDataMapImpl::class.asTypeName()
 internal val classDataCtx = ClassData::class.asTypeName()
 internal val classDataCtxDef = ClassDataImpl::class.asTypeName()
-internal val stateManager = ChainStateManager::class.asTypeName()
 
 internal val callbackQueryList = listOf(UpdateType.CALLBACK_QUERY)
 internal val messageList = listOf(UpdateType.MESSAGE)
