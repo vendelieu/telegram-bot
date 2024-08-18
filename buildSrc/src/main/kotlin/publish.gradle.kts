@@ -1,4 +1,5 @@
 import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinJvm
 import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.vanniktech.maven.publish.SonatypeHost
 
@@ -6,22 +7,24 @@ plugins {
     id("com.vanniktech.maven.publish")
 }
 
-apply(plugin = "org.jetbrains.kotlin.multiplatform")
 val libraryData = extensions.create("libraryData", PublishingExtension::class)
 val doSign = providers.gradleProperty("signing.keyId").isPresent
+val isMultiplatform = !project.plugins.hasPlugin("org.jetbrains.kotlin.jvm")
+
+if (isMultiplatform) apply(plugin = "org.jetbrains.kotlin.multiplatform")
 
 mavenPublishing {
     coordinates("eu.vendeli", project.name, project.version.toString())
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, true)
     if (doSign) signAllPublications()
 
-    configure(
-        KotlinMultiplatform(
-            javadocJar = if (project.name == "telegram-bot" && doSign) JavadocJar.Dokka("dokkaHtml")
-            else JavadocJar.Empty(),
-            sourcesJar = true,
-        ),
-    )
+    val javaDoc = if (project.name == "telegram-bot" && doSign) JavadocJar.Dokka("dokkaHtml")
+    else JavadocJar.Empty()
+
+    val platformArtifact = if (isMultiplatform) KotlinMultiplatform(javaDoc, true)
+    else KotlinJvm(javaDoc, true)
+
+    configure(platformArtifact)
 
     pom {
         name = libraryData.name
