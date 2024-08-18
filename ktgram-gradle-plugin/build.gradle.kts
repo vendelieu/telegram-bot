@@ -12,7 +12,6 @@ val publicationDescription = "A plugin for customizing and adding Telegram-bot l
 gradlePlugin {
     website = "https://vendeli.eu"
     vcsUrl = "https://github.com/vendelieu/telegram-bot"
-    isAutomatedPublishing = true
 
     plugins.register("telegram-bot") {
         id = "eu.vendeli.telegram-bot"
