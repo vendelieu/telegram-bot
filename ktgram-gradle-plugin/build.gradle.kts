@@ -1,13 +1,10 @@
 plugins {
     kotlin("jvm")
-    alias(libs.plugins.gradle.publish)
     `kotlin-dsl`
     `java-gradle-plugin`
-    id("publish")
+    alias(libs.plugins.ktlinter)
+    alias(libs.plugins.gradle.publish)
 }
-
-val publicationName = "Telegram-bot Gradle Plugin"
-val publicationDescription = "A plugin for customizing and adding Telegram-bot library."
 
 gradlePlugin {
     website = "https://vendeli.eu"
@@ -15,17 +12,12 @@ gradlePlugin {
 
     plugins.register("telegram-bot") {
         id = "eu.vendeli.telegram-bot"
-        displayName = publicationName
-        description = publicationDescription
+        displayName = "Telegram-bot Gradle Plugin"
+        description = "A plugin for customizing and adding Telegram-bot library."
         @Suppress("UnstableApiUsage")
         tags = listOf("kotlin", "telegram", "bot", "spring-boot", "ktor", "multiplatform")
         implementationClass = "eu.vendeli.ktgram.gradle.KtGramPlugin"
     }
-}
-
-libraryData {
-    name = publicationName
-    description = publicationDescription
 }
 
 tasks.processResources {

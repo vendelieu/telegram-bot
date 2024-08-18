@@ -27,31 +27,16 @@ abstract class KtGramPlugin : Plugin<Project> {
         }
 
         val isMultiplatform = project.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")
-        when {
-            kspProcessorApplied -> {}
-            isMultiplatform -> {
-                project.extensions.configure(KotlinProjectExtension::class.java) {
-                    sourceSets["commonMain"].apply {
-                        dependencies {
-                            implementation("eu.vendeli:telegram-bot:$libVer")
-                        }
-                    }
-                }
-
-                project.dependencies {
-                    add("ksp", "eu.vendeli:ksp:$libVer")
-                }
-            }
-
-            else -> {
-                project.dependencies.add("implementation", "eu.vendeli:telegram-bot:$libVer")
-                project.dependencies {
-                    add("ksp", "eu.vendeli:ksp:$libVer")
-                }
-            }
-        }
 
         project.afterEvaluate {
+            val targetVer = pluginExtension.forceVersion.orNull?.takeIf { it.isNotBlank() } ?: libVer
+            if (pluginExtension.addSnapshotRepo.getOrElse(false)) {
+                project.repositories.maven {
+                    name = "KtGramSnapRepo"
+                    setUrl("https://mvn.vendeli.eu/telegram-bot")
+                }
+            }
+
             if (isMultiplatform) project.extensions.configure<KotlinMultiplatformExtension> {
                 targets.forEach { target ->
                     val tName = if (target.targetName == "metadata") "CommonMainMetadata"
@@ -59,8 +44,32 @@ abstract class KtGramPlugin : Plugin<Project> {
 
                     project.dependencies.add(
                         "ksp$tName",
-                        "eu.vendeli:ksp:$libVer",
+                        "eu.vendeli:ksp:$targetVer",
                     )
+                }
+            }
+
+            when {
+                kspProcessorApplied -> {}
+                isMultiplatform -> {
+                    project.extensions.configure(KotlinProjectExtension::class.java) {
+                        sourceSets["commonMain"].apply {
+                            dependencies {
+                                implementation("eu.vendeli:telegram-bot:$targetVer")
+                            }
+                        }
+                    }
+
+                    project.dependencies {
+                        add("ksp", "eu.vendeli:ksp:$targetVer")
+                    }
+                }
+
+                else -> {
+                    project.dependencies.add("implementation", "eu.vendeli:telegram-bot:$targetVer")
+                    project.dependencies {
+                        add("ksp", "eu.vendeli:ksp:$targetVer")
+                    }
                 }
             }
 

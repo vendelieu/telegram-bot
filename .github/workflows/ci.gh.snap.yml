@@ -12,7 +12,6 @@ on:
       - 'ktgram-botctx-redis/**'
       - 'ktgram-config-env/**'
       - 'ktgram-config-toml/**'
-      - 'ktgram-gradle-plugin/**'
       - 'ktor-starter/**'
       - 'spring-ktgram-starter/**'
 
@@ -30,7 +29,6 @@ jobs:
           ":ktgram-botctx-redis",
           ":ktgram-config-env",
           ":ktgram-config-toml",
-          ":ktgram-gradle-plugin",
           ":ktor-starter",
           ":spring-ktgram-starter"
         ]
