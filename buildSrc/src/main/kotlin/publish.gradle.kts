@@ -12,17 +12,21 @@ val doSign = providers.gradleProperty("signing.keyId").isPresent
 val isMultiplatform = !project.plugins.hasPlugin("org.jetbrains.kotlin.jvm")
 
 if (isMultiplatform) apply(plugin = "org.jetbrains.kotlin.multiplatform")
+val isJavadocAlreadyPresent = project.plugins.hasPlugin("com.gradle.plugin-publish")
 
 mavenPublishing {
     coordinates("eu.vendeli", project.name, project.version.toString())
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, true)
     if (doSign) signAllPublications()
 
-    val javaDoc = if (project.name == "telegram-bot" && doSign) JavadocJar.Dokka("dokkaHtml")
-    else JavadocJar.Empty()
+    val javaDoc = when {
+        project.name == "telegram-bot" && doSign -> JavadocJar.Dokka("dokkaHtml")
+        isJavadocAlreadyPresent -> JavadocJar.None()
+        else -> JavadocJar.Empty()
+    }
 
     val platformArtifact = if (isMultiplatform) KotlinMultiplatform(javaDoc, true)
-    else KotlinJvm(javaDoc, true)
+    else KotlinJvm(JavadocJar.None(), true)
 
     configure(platformArtifact)
 
