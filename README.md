@@ -61,7 +61,7 @@ ktGram {
 }
 ```
 
-or manually add repository and peek and add dependency:
+or manually add repository and dependency:
 
 ```gradle
 repositories {
