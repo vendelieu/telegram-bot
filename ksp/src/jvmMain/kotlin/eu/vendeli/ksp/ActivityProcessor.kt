@@ -58,6 +58,7 @@ class ActivityProcessor(
         }
 
         targetPackage?.forEachIndexed { idx, pkg ->
+            if (pkg.isBlank()) logger.error("Defined package #$idx is blank.")
             processPackage(fileSpec, resolver, idx to pkg)
         } ?: processPackage(fileSpec, resolver)
 
