@@ -53,7 +53,6 @@ abstract class KtGramPlugin : Plugin<Project> {
 
         project.afterEvaluate {
             if (isMultiplatform) project.extensions.configure<KotlinMultiplatformExtension> {
-                log.error(targets.joinToString { it.targetName })
                 targets.forEach { target ->
                     val tName = if (target.targetName == "metadata") "CommonMainMetadata"
                     else target.targetName.replaceFirstChar { it.uppercaseChar() }
@@ -66,7 +65,7 @@ abstract class KtGramPlugin : Plugin<Project> {
             }
 
             project.extensions.configure<KspExtension> {
-                pluginExtension.packages.orNull?.joinToString(";")?.let {
+                pluginExtension.packages.orNull?.takeIf { it.isNotEmpty() }?.joinToString(";")?.let {
                     arg("package", it)
                 }
             }

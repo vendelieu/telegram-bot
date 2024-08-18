@@ -136,12 +136,12 @@ class ActivityProcessor(
                 c.toClassName()
         }
         val context = CollectorsContext(
-            fileSpec,
-            botCtxSpec,
-            injectableTypes,
-            logger,
-            idxPostfix,
-            filePkg,
+            activitiesFile = fileSpec,
+            botCtxFile = botCtxSpec,
+            injectableTypes = injectableTypes,
+            logger = logger,
+            idxPostfix = idxPostfix,
+            pkg = filePkg,
         )
 
         collectCommandActivities(commandHandlerSymbols, context)
