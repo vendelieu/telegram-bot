@@ -13,7 +13,7 @@ Telegram Bot Api wrapper with a user-friendly interface.
 
 # Installation
 
-Add the ksp plugin and library plugin to the dependencies.
+Add the ksp plugin and library plugin to your Gradle build file.
 
 build.gradle.kts example:
 
