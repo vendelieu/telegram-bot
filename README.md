@@ -154,9 +154,9 @@ You can read more in a [Bot configuration](https://github.com/vendelieu/telegram
 
 To process over response or/and have more control over request flow
 use [
-`sendReturning()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send-returning.html)
+`sendReturning()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces.action/-action/send-returning.html)
 instead
-of [`send()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send.html)
+of [`send()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces.action/-action/send.html)
 method,
 which
 returns [
