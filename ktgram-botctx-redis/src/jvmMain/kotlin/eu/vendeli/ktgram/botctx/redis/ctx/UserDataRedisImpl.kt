@@ -1,4 +1,4 @@
-package eu.vendeli.ktgram.botctx.redis
+package eu.vendeli.ktgram.botctx.redis.ctx
 
 import eu.vendeli.tgbot.interfaces.ctx.UserData
 import io.lettuce.core.RedisClient
