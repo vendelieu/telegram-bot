@@ -3,11 +3,10 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.core.TgUpdateHandler
-import eu.vendeli.tgbot.interfaces.ctx.ChainStateManager
 import eu.vendeli.tgbot.interfaces.ctx.InputListener
 import eu.vendeli.tgbot.interfaces.helper.ExceptionHandler
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.ChainLink
+import eu.vendeli.tgbot.types.internal.chain.Link
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
 import io.ktor.http.decodeURLQueryComponent
@@ -53,11 +52,6 @@ suspend fun TgUpdateHandler.runExceptionHandler(
 }
 
 /**
- * Get state which is stored for [link].
- */
-suspend fun <T : ChainLink> ChainStateManager.getState(user: User, link: T) = getState(user, link::class.fullName)
-
-/**
  * Set chain for input listening.
  *
  * Basically uses chain full qualified name as a chain id.
@@ -66,7 +60,7 @@ suspend fun <T : ChainLink> ChainStateManager.getState(user: User, link: T) = ge
  * @param user The user for whom it will be set.
  * @param firstLink The First link that will be processed (it doesn't have to be the first link in the chain, feel free to set up any of).
  */
-fun <T : ChainLink> InputListener.setChain(user: User, firstLink: T) = set(user, firstLink::class.fullName)
+fun <T : Link<*>> InputListener.setChain(user: User, firstLink: T) = set(user, firstLink::class.fullName)
 
 /**
  * Method to get given class instance through defined ClassManager.

@@ -13,9 +13,21 @@ Telegram Bot Api wrapper with a user-friendly interface.
 
 # Installation
 
-Add the ksp plugin and library to the dependencies.
+Add the ksp plugin and library plugin to your Gradle build file.
 
 build.gradle.kts example:
+
+```gradle
+plugins {
+    // ...
+    id("com.google.devtools.ksp") version "2.0.10-1.0.24"
+    id("eu.vendeli.telegram-bot") version "7.1.0"
+}
+```
+
+<details>
+<summary>Manually</summary>
+To set up the project without using the plugin, you need to add a dependency and configure the ksp processor:
 
 ```gradle
 plugins {
@@ -30,12 +42,27 @@ dependencies {
 }
 ```
 
+For multiplatform, you need to add the dependency to common sources and define ksp for the targets you need, see example
+in [native-example](https://github.com/ktgram/native-example/blob/master/build.gradle.kts).
+</details>
+
+
 <details>
   <summary><i>Snapshots</i></summary>
 
 [![Snapshot version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fv229149.hosted-by-vdsina.ru%2Fsnap-ver%2Ftelegram-bot&query=%24%5B0%5D.name&logo=github&label=SNAPSHOT&link=https%3A%2F%2Fgithub.com%2Fvendelieu%3Ftab%3Dpackages%26repo_name%3Dtelegram-bot)](https://github.com/vendelieu?tab=packages&repo_name=telegram-bot)
 
-To install snapshot versions add dev repository:
+To install snapshot versions, add snapshot repository,
+if you're using plugin just use `addSnapshotRepo` parameter:
+
+```gradle
+ktGram {
+    forceVersion = "branch-xxxxxx~xxxxxx"
+    addSnapshotRepo = true
+}
+```
+
+or manually add repository:
 
 ```gradle
 repositories {
@@ -45,8 +72,8 @@ repositories {
 }
 ```
 
-And use the latest package version from [packages](https://github.com/vendelieu?tab=packages&repo_name=telegram-bot) or
-from badge above.
+And add library dependency (with ksp processor) as described in `manually` section using the latest package version
+from [packages](https://github.com/vendelieu?tab=packages&repo_name=telegram-bot) or from badge above.
 
 </details>
 
@@ -128,7 +155,7 @@ fun main() = runBlocking {
 
 ### Configuration
 
-The library has very flexible customization options, \, 
+The library has very flexible customization options, \,
 and there are different options to configure through external sources.
 
 You can read more in a [Bot configuration](https://github.com/vendelieu/telegram-bot/wiki/Bot-configuration) article.
@@ -136,12 +163,15 @@ You can read more in a [Bot configuration](https://github.com/vendelieu/telegram
 ### Processing responses
 
 To process over response or/and have more control over request flow
-use [`sendReturning()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send-returning.html)
+use [
+`sendReturning()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces.action/-action/send-returning.html)
 instead
-of [`send()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces/-action/send.html)
+of [
+`send()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.interfaces.action/-action/send.html)
 method,
 which
-returns [`Response`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-response/index.html):
+returns [
+`Response`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-response/index.html):
 
 ```kotlin
 message { "test" }.sendReturning(user, bot).onFailure {
@@ -150,11 +180,15 @@ message { "test" }.sendReturning(user, bot).onFailure {
 ```
 
 Any `sendReturning` method returns
-a [`Response`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-response/index.html)
+a [
+`Response`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/-response/index.html)
 on which you can also use
-methods [`getOrNull()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/get-or-null.html)
-, [`isSuccess()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/is-success.html)
-, [`onFailure()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/on-failure.html)
+methods [
+`getOrNull()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/get-or-null.html)
+, [
+`isSuccess()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/is-success.html)
+, [
+`onFailure()`](https://vendelieu.github.io/telegram-bot/-telegram%20-bot/eu.vendeli.tgbot.types.internal/on-failure.html)
 
 ### Additional resources
 

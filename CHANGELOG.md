@@ -1,5 +1,10 @@
 # Telegram-bot (KtGram) changelog
 
+## 7.2.0
+
+* Added new plugin for a more convenient installation of the library.
+* Moved from `ChainStateManager` to `StatefulLink` flow, since it's more convenient.
+
 ## 7.1.0
 
 * Cover Telegram API [7.9](https://core.telegram.org/bots/api#august-14-2024) version.

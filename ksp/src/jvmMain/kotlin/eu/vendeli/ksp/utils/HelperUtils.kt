@@ -19,7 +19,6 @@ import com.squareup.kotlinpoet.asTypeName
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.implementations.ClassDataImpl
 import eu.vendeli.tgbot.implementations.UserDataMapImpl
-import eu.vendeli.tgbot.interfaces.ctx.ChainStateManager
 import eu.vendeli.tgbot.interfaces.ctx.ClassData
 import eu.vendeli.tgbot.interfaces.ctx.UserData
 import eu.vendeli.tgbot.interfaces.marker.Autowiring
@@ -27,7 +26,6 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.BusinessConnectionUpdate
 import eu.vendeli.tgbot.types.internal.BusinessMessageUpdate
 import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
-import eu.vendeli.tgbot.types.internal.ChainLink
 import eu.vendeli.tgbot.types.internal.ChannelPostUpdate
 import eu.vendeli.tgbot.types.internal.ChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
@@ -50,7 +48,9 @@ import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.internal.chain.Link
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import eu.vendeli.tgbot.utils.fullName
 import kotlin.reflect.KClass
 
 internal typealias FileBuilder = FileSpec.Builder
@@ -60,7 +60,7 @@ internal val activitiesType = Map::class.asTypeName().parameterizedBy(
     List::class.asTypeName().parameterizedBy(ANY.copy(true)),
 )
 internal val invocableType = TypeVariableName("Invocable")
-internal val chainLinkClass = ChainLink::class.asTypeName()
+internal val linkQName = Link::class.fullName
 internal val autoWiringClassName = Autowiring::class.asClassName()
 internal val rateLimitsClass = RateLimits::class.asTypeName()
 
@@ -103,7 +103,6 @@ internal val userDataCtx = UserData::class.asTypeName()
 internal val userDataCtxDef = UserDataMapImpl::class.asTypeName()
 internal val classDataCtx = ClassData::class.asTypeName()
 internal val classDataCtxDef = ClassDataImpl::class.asTypeName()
-internal val stateManager = ChainStateManager::class.asTypeName()
 
 internal val callbackQueryList = listOf(UpdateType.CALLBACK_QUERY)
 internal val messageList = listOf(UpdateType.MESSAGE)

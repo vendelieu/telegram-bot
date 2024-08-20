@@ -2,7 +2,6 @@
 
 package eu.vendeli.ksp
 
-import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
@@ -31,7 +30,6 @@ class ApiProcessor(
     private val utilsDir = options["utilsDir"]!!
     private val apiFile = options["apiFile"]!!
 
-    @OptIn(KspExperimental::class)
     override fun process(resolver: Resolver): List<KSAnnotated> {
         val fileSpec = FileSpec.builder("eu.vendeli.ktgram.extutils", "TelegramBotSc")
         val apiMash = resolver.getSymbolsWithAnnotation(TgAPI::class.fullName)

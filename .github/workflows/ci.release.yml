@@ -34,9 +34,17 @@ jobs:
           java-version: 17
 
       - name: Setup gradle
-        uses: gradle/actions/setup-gradle@v3-beta
+        uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: current
+
+      - name: Cache konan dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('*.gradle.kts') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Prepare to publish
         run: |
@@ -56,8 +64,13 @@ jobs:
           BRANCH: gh-pages
           FOLDER: telegram-bot/build/dokka
 
+      - run: ./gradlew publishPlugins -PlibVersion=${{ needs.version.outputs.version }}
+        env:
+          GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
+          GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}
+
   readme:
-    needs: publish
+    needs: [ version, publish ]
     name: Replace version in README.md
     runs-on: ubuntu-latest
     permissions:
@@ -68,8 +81,8 @@ jobs:
           ref: ${{ github.head_ref }}
       - uses: jacobtomlinson/gha-find-replace@v3
         with:
-          find: '[0-9]+.[0-9]+.[0-9]+\"\)'
-          replace: "${{ needs.version.outputs.version }}\")"
+          find: '[:"]([0-9]+\.[0-9]+\.[0-9]+)\"'
+          replace: "${{ needs.version.outputs.version }}"
           include: "**README.md"
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v5

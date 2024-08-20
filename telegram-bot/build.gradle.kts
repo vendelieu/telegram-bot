@@ -15,53 +15,41 @@ plugins {
 
 configuredKotlin {
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(libs.kotlin.serialization)
-                implementation(libs.kotlin.reflect)
+        commonMain.dependencies {
+            implementation(libs.kotlin.serialization)
+            implementation(libs.kotlin.reflect)
 
-                implementation(libs.krypto)
-                implementation(libs.stately)
-                implementation(libs.ktor.client.core)
-                implementation(libs.ktor.client.logging)
+            implementation(libs.krypto)
+            implementation(libs.stately)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.logging)
 
-                api(libs.coroutines.core)
-                api(libs.kotlin.datetime)
-            }
+            api(libs.coroutines.core)
+            api(libs.kotlin.datetime)
         }
-        jvmTest {
-            dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.8.1")
-                implementation(libs.logback)
+        jvmTest.dependencies {
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.8.1")
+            implementation(libs.logback)
 
-                implementation(libs.test.kotest.junit5)
-                implementation(libs.test.kotest.assertions)
-                implementation(libs.mockk)
-            }
+            implementation(libs.test.kotest.junit5)
+            implementation(libs.test.kotest.assertions)
+            implementation(libs.mockk)
         }
-        jvmMain {
-            dependencies {
-                implementation(libs.logback)
-                implementation(libs.ktor.client.java)
-            }
+        jvmMain.dependencies {
+            implementation(libs.logback)
+            implementation(libs.ktor.client.java)
         }
-        jsMain {
-            dependencies {
-                implementation(libs.logging)
-                implementation(libs.ktor.client.js)
-            }
+        jsMain.dependencies {
+            implementation(libs.logging)
+            implementation(libs.ktor.client.js)
         }
-        named("linuxX64Main") {
-            dependencies {
-                implementation(libs.logging)
-                implementation(libs.ktor.client.curl)
-            }
+        named("linuxX64Main").dependencies {
+            implementation(libs.logging)
+            implementation(libs.ktor.client.curl)
         }
-        named("mingwX64Main") {
-            dependencies {
-                implementation(libs.logging)
-                implementation(libs.ktor.client.winhttp)
-            }
+        named("mingwX64Main").dependencies {
+            implementation(libs.logging)
+            implementation(libs.ktor.client.winhttp)
         }
     }
 

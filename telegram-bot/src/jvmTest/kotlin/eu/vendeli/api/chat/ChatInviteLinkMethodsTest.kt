@@ -46,7 +46,8 @@ class ChatInviteLinkMethodsTest : BotTestContext() {
         val expireUnix = CUR_INSTANT.plus(30.days)
         createChatSubscriptionInviteLink(10, "test")
             .sendReturning(CHAT_ID, bot)
-            .getOrNull()?.run {
+            .getOrNull()
+            ?.run {
                 creator.id shouldBe BOT_ID
                 isPrimary.shouldBeFalse()
                 isRevoked.shouldBeFalse()
@@ -60,7 +61,8 @@ class ChatInviteLinkMethodsTest : BotTestContext() {
     suspend fun `edit chat subscription invite link method test`() {
         editChatSubscriptionInviteLink("test", "test2")
             .sendReturning(CHAT_ID, bot)
-            .getOrNull()?.run {
+            .getOrNull()
+            ?.run {
                 creator.id shouldBe BOT_ID
                 isPrimary.shouldBeFalse()
                 isRevoked.shouldBeFalse()
@@ -68,6 +70,7 @@ class ChatInviteLinkMethodsTest : BotTestContext() {
                 createsJoinRequest.shouldBeTrue()
             }
     }
+
     @Test
     suspend fun `edit chat invite link method test`() {
         val inviteLink = createChatInviteLink()

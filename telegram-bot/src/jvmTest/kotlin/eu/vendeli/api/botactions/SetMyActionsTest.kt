@@ -88,6 +88,7 @@ class SetMyActionsTest : BotTestContext() {
     suspend fun `set my commands method testing`() {
         setMyCommands {
             botCommand("test", "testD")
+            "test2" description "testC"
         }.send(bot)
         val result = getMyCommands().sendReq().shouldSuccess()
 

@@ -6,14 +6,12 @@ plugins {
 
 onlyJvmConfiguredKotlin {
     sourceSets {
-        jvmMain {
-            dependencies {
-                implementation(libs.kotlin.serialization)
-                implementation(libs.ksp)
-                implementation(libs.poet)
-                implementation(libs.poet.ksp)
-                implementation(project(":telegram-bot"))
-            }
+        jvmMain.dependencies {
+            implementation(libs.kotlin.serialization)
+            implementation(libs.ksp)
+            implementation(libs.poet)
+            implementation(libs.poet.ksp)
+            implementation(project(":telegram-bot"))
         }
     }
 }

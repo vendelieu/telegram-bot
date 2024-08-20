@@ -11,11 +11,9 @@ libraryData {
 
 configuredKotlin {
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(libs.kotlin.serialization)
-                implementation(project(":telegram-bot"))
-            }
+        commonMain.dependencies {
+            implementation(libs.kotlin.serialization)
+            implementation(project(":telegram-bot"))
         }
     }
 }

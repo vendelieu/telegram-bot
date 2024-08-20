@@ -20,7 +20,7 @@ import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
-import eu.vendeli.ksp.dto.ProcessorCtxData
+import eu.vendeli.ksp.dto.CollectorsContext
 import eu.vendeli.ksp.utils.CommonAnnotationHandler
 import eu.vendeli.ksp.utils.FileBuilder
 import eu.vendeli.ksp.utils.activitiesType
@@ -58,6 +58,7 @@ class ActivityProcessor(
         }
 
         targetPackage?.forEachIndexed { idx, pkg ->
+            if (pkg.isBlank()) logger.error("Defined package #$idx is blank.")
             processPackage(fileSpec, resolver, idx to pkg)
         } ?: processPackage(fileSpec, resolver)
 
@@ -93,11 +94,13 @@ class ActivityProcessor(
         return emptyList()
     }
 
-    private fun processPackage(fileSpec: FileSpec.Builder, resolver: Resolver, target: Pair<Int, String>? = null) {
+    private fun processPackage(fileSpec: FileBuilder, resolver: Resolver, target: Pair<Int, String>? = null) {
         val pkg = target?.second
         val idxPostfix = target?.first?.let { "$it" } ?: "0"
+        val filePkg = pkg ?: "eu.vendeli.tgbot.generated"
 
-        processCtxProviders(codeGenerator, resolver, pkg)
+        val botCtxSpec = FileSpec.builder(filePkg, "BotCtx")
+        processCtxProviders(botCtxSpec, resolver, pkg)
 
         val commandHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, CommandHandler::class, CallbackQuery::class)
         val inputHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, InputHandler::class)
@@ -133,18 +136,27 @@ class ActivityProcessor(
                 .toTypeName() to
                 c.toClassName()
         }
-        val classRefPkg = pkg ?: "eu.vendeli.tgbot.generated"
-        val collectorsData = ProcessorCtxData(
+        val context = CollectorsContext(
+            activitiesFile = fileSpec,
+            botCtxFile = botCtxSpec,
             injectableTypes = injectableTypes,
             logger = logger,
             idxPostfix = idxPostfix,
+            pkg = filePkg,
         )
-        fileSpec.apply {
-            collectCommandActivities(commandHandlerSymbols, collectorsData, classRefPkg)
-            collectInputActivities(inputHandlerSymbols, inputChainSymbols, collectorsData, classRefPkg)
-            collectCommonActivities(commonHandlerData, collectorsData, classRefPkg)
-            collectUpdateTypeActivities(updateHandlerSymbols, collectorsData)
-            collectUnprocessed(unprocessedHandlerSymbol, collectorsData)
+
+        collectCommandActivities(commandHandlerSymbols, context)
+        collectInputActivities(inputHandlerSymbols, inputChainSymbols, context)
+        collectCommonActivities(commonHandlerData, context)
+        collectUpdateTypeActivities(updateHandlerSymbols, context)
+        collectUnprocessed(unprocessedHandlerSymbol, context)
+
+        @Suppress("SpreadOperator")
+        botCtxSpec.build().runCatching {
+            writeTo(
+                codeGenerator = codeGenerator,
+                dependencies = Dependencies(false, *resolver.getAllFiles().toList().toTypedArray()),
+            )
         }
     }
 

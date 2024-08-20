@@ -4,16 +4,12 @@ plugins {
 
 onlyJvmConfiguredKotlin {
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(project(":telegram-bot"))
-                implementation(libs.kotlin.serialization)
-            }
+        commonMain.dependencies {
+            implementation(project(":telegram-bot"))
+            implementation(libs.kotlin.serialization)
         }
-        jvmMain {
-            dependencies {
-                implementation(libs.redis)
-            }
+        jvmMain.dependencies {
+            implementation(libs.redis)
         }
     }
 }
