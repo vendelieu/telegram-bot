@@ -26,6 +26,7 @@ abstract class KtGramPlugin : Plugin<Project> {
                 if (group == "eu.vendeli" && name == "ksp") kspProcessorApplied = true
             }
         }
+        project.applyDependencies(libVer, isMultiplatform, kspProcessorApplied)
 
         project.afterEvaluate {
             val targetVer = pluginExtension.forceVersion.getOrElse(libVer)
@@ -36,7 +37,17 @@ abstract class KtGramPlugin : Plugin<Project> {
                 }
             }
 
-            project.applyDependencies(targetVer, isMultiplatform, kspProcessorApplied)
+            // correct version by forced one
+            if (pluginExtension.forceVersion.isPresent) project.configurations.configureEach cfg@{
+                dependencies.forEach {
+                    if (it.group == "eu.vendeli" && (it.name == "telegram-bot" || it.name == "ksp")) {
+                        dependencies.remove(it)
+                        dependencies {
+                            add(this@cfg.name, "eu.vendeli:${it.name}:$targetVer")
+                        }
+                    }
+                }
+            }
 
             project.extensions.configure<KspExtension> {
                 pluginExtension.packages.orNull?.takeIf { it.isNotEmpty() }?.joinToString(";")?.let {
@@ -53,12 +64,12 @@ abstract class KtGramPlugin : Plugin<Project> {
     }
 
     private fun Project.applyDependencies(depVersion: String, isMultiplatform: Boolean, kspProcessorApplied: Boolean) {
-        if (isMultiplatform) project.extensions.configure<KotlinMultiplatformExtension> {
+        if (isMultiplatform) extensions.configure<KotlinMultiplatformExtension> {
             targets.forEach { target ->
                 val tName = if (target.targetName == "metadata") "CommonMainMetadata"
                 else target.targetName.replaceFirstChar { it.uppercaseChar() }
 
-                project.dependencies.add(
+                dependencies.add(
                     "ksp$tName",
                     "eu.vendeli:ksp:$depVersion",
                 )
@@ -68,7 +79,7 @@ abstract class KtGramPlugin : Plugin<Project> {
         when {
             kspProcessorApplied -> {}
             isMultiplatform -> {
-                project.extensions.configure(KotlinProjectExtension::class.java) {
+                extensions.configure(KotlinProjectExtension::class.java) {
                     sourceSets["commonMain"].apply {
                         dependencies {
                             implementation("eu.vendeli:telegram-bot:$depVersion")
@@ -76,14 +87,14 @@ abstract class KtGramPlugin : Plugin<Project> {
                     }
                 }
 
-                project.dependencies {
+                dependencies {
                     add("ksp", "eu.vendeli:ksp:$depVersion")
                 }
             }
 
             else -> {
-                project.dependencies.add("implementation", "eu.vendeli:telegram-bot:$depVersion")
-                project.dependencies {
+                dependencies.add("implementation", "eu.vendeli:telegram-bot:$depVersion")
+                dependencies {
                     add("ksp", "eu.vendeli:ksp:$depVersion")
                 }
             }

@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) changelog
 
+### 7.2.1
+
+* Fix ksp applying flow in plugin.
+
 ## 7.2.0
 
 * Added new plugin for a more convenient installation of the library.
@@ -14,7 +18,7 @@
 
 * Fix ksp generation artifact
 
-# 7.0.0
+# 7.0.0**
 
 #### Common
 
@@ -248,7 +252,8 @@
 
 * Added `send` method for `Chat` to `Action<>`.
 * Changed ambiguous for `User`/`Chat`
-  names: `MessageOrigin` (`User` > `UserOrigin`, `Chat` > `ChatOrigin`), `BotCommandScope.Chat` > `BotCommandScope.ChatScope`.
+  names: `MessageOrigin` (`User` > `UserOrigin`, `Chat` > `ChatOrigin`), `BotCommandScope.Chat` >
+  `BotCommandScope.ChatScope`.
 * Enhanced `linkPreviewOptions`: Introduced `disableWebPagePreview()` for easier disabling, and `linkPreviewOptions{}`
   for setting through lambda.
 * Improved sealed class structure for better accessibility to general
