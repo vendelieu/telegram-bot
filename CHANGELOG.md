@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) changelog
 
+### 7.2.2
+
+* Added option to define custom keys for stateful links.
+
 ### 7.2.1
 
 * Fix ksp applying flow in plugin.
