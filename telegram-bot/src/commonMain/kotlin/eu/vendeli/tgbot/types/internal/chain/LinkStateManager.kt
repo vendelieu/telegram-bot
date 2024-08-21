@@ -1,11 +1,11 @@
 package eu.vendeli.tgbot.types.internal.chain
 
-import eu.vendeli.tgbot.types.User
+interface LinkStateManager<K, V> {
+    val stateKey: KeySelector<K>
 
-interface LinkStateManager<T> {
-    suspend fun get(user: User): T?
+    suspend fun get(key: K): V?
 
-    suspend fun set(user: User, value: T)
+    suspend fun set(key: K, value: V)
 
-    suspend fun del(user: User)
+    suspend fun del(key: K)
 }

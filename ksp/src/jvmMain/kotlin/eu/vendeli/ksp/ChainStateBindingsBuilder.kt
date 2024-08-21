@@ -8,11 +8,12 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ksp.utils.FileBuilder
-import eu.vendeli.ksp.utils.userClass
+import eu.vendeli.ksp.utils.idLongClass
 
 fun buildChainStateBindings(
     botCtxBuilder: FileBuilder,
@@ -22,23 +23,11 @@ fun buildChainStateBindings(
 ) = botCtxBuilder.run {
     val providerName = "${chainDeclaration.simpleName.getShortName()}AllState"
     val chainType = chainDeclaration.toClassName()
+    val keyClasses = mutableSetOf<TypeName>()
     addImport("kotlinx.coroutines", "runBlocking")
-
-    val user = FunSpec
-        .constructorBuilder()
-        .addParameter("user", userClass)
-        .build()
 
     val stateBindingClass = TypeSpec
         .classBuilder(providerName)
-        .primaryConstructor(user)
-        .addProperty(
-            PropertySpec
-                .builder("user", userClass)
-                .initializer("user")
-                .addModifiers(KModifier.PRIVATE)
-                .build(),
-        )
 
     statefulLinks.forEach { l ->
         val linkName = l.simpleName.getShortName()
@@ -57,27 +46,53 @@ fun buildChainStateBindings(
             .toTypeName()
             .copy(true)
 
+        val stateKeyType = l.getAllProperties()
+            .first {
+                it.simpleName.getShortName() == "state"
+            }.type.resolve().arguments.first().toTypeName()
+
+        keyClasses.add(stateKeyType)
+
         stateBindingClass.addProperty(
             PropertySpec
                 .builder(linkName, linkType)
                 .getter(
                     FunSpec
                         .getterBuilder()
-                        .addStatement("return runBlocking {\n\t $linkQName.state.get(user) \n\t}")
+                        .addStatement("return runBlocking {\n\t $linkQName.state.get(key) \n\t}")
                         .build(),
                 ).build(),
         )
     }
 
-    addFunction(
-        FunSpec
-            .builder("getAllState")
-            .receiver(userClass)
-            .returns(ClassName(packageName, providerName))
-            .addParameter("chain", chainType)
-            .addCode("return $providerName(this)")
-            .build(),
-    )
+    keyClasses.singleOrNull()?.let { keyClass ->
+        val constructorKeyFun = FunSpec
+            .constructorBuilder()
+            .addParameter("key", keyClass)
+            .build()
 
-    addType(stateBindingClass.build())
+        stateBindingClass
+            .primaryConstructor(constructorKeyFun)
+            .addProperty(
+                PropertySpec
+                    .builder("key", keyClass)
+                    .initializer("key")
+                    .addModifiers(KModifier.PRIVATE)
+                    .build(),
+            )
+
+        addFunction(
+            FunSpec
+                .builder("getAllState").also {
+                    if (keyClass == idLongClass) it.receiver(idLongClass)
+                    else it.addParameter("key", keyClass)
+                }
+                .returns(ClassName(packageName, providerName))
+                .addParameter("chain", chainType)
+                .addCode("return $providerName(${if (keyClass == idLongClass) "this" else "key"})")
+                .build(),
+        )
+
+        addType(stateBindingClass.build())
+    }
 }

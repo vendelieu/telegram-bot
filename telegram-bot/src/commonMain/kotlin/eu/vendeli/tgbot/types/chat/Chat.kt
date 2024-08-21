@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.chat
 
+import eu.vendeli.tgbot.types.internal.IdLong
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -35,13 +36,13 @@ enum class ChatType {
  */
 @Serializable
 data class Chat(
-    val id: Long,
+    override val id: Long,
     val type: ChatType,
     val title: String? = null,
     val username: String? = null,
     val firstName: String? = null,
     val lastName: String? = null,
     val isForum: Boolean? = null,
-) {
+) : IdLong {
     val fullName = (firstName?.plus(" ") ?: "") + (lastName ?: "")
 }
