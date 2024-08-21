@@ -155,8 +155,7 @@ fun main() = runBlocking {
 
 ### Configuration
 
-The library has very flexible customization options, \,
-and there are different options to configure through external sources.
+The library has very flexible customization options, and there are different options to configure through external sources.
 
 You can read more in a [Bot configuration](https://github.com/vendelieu/telegram-bot/wiki/Bot-configuration) article.
 
