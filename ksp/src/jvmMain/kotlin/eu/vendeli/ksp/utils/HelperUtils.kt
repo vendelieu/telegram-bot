@@ -36,6 +36,7 @@ import eu.vendeli.tgbot.types.internal.DeletedBusinessMessagesUpdate
 import eu.vendeli.tgbot.types.internal.EditedBusinessMessageUpdate
 import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
 import eu.vendeli.tgbot.types.internal.EditedMessageUpdate
+import eu.vendeli.tgbot.types.internal.IdLong
 import eu.vendeli.tgbot.types.internal.InlineQueryUpdate
 import eu.vendeli.tgbot.types.internal.MessageReactionCountUpdate
 import eu.vendeli.tgbot.types.internal.MessageReactionUpdate
@@ -72,6 +73,7 @@ internal val doublePrimitiveType = TypeVariableName("double")
 
 internal val userClass = User::class.asTypeName()
 internal val botClass = TelegramBot::class.asTypeName()
+internal val idLongClass = IdLong::class.asTypeName()
 
 internal val updateClass = ProcessedUpdate::class.asTypeName()
 internal val messageUpdClass = MessageUpdate::class.asTypeName()

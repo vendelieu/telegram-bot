@@ -1,18 +1,22 @@
 package eu.vendeli.tgbot.types.internal.chain
 
 import co.touchlab.stately.collections.ConcurrentMutableMap
-import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.internal.IdLong
+import eu.vendeli.tgbot.types.internal.userOrNull
 
-open class BaseLinkStateManager<T> : LinkStateManager<T> {
-    protected val data: ConcurrentMutableMap<Long, T> = ConcurrentMutableMap()
+open class BaseLinkStateManager<V>(
+    stateSelector: KeySelector<IdLong> = KeySelector { it.userOrNull },
+) : LinkStateManager<IdLong, V> {
+    protected val data: ConcurrentMutableMap<Long, V> = ConcurrentMutableMap()
+    override val stateKey: KeySelector<IdLong> = stateSelector
 
-    override suspend fun get(user: User): T? = data[user.id]
+    override suspend fun get(key: IdLong): V? = data[key.id]
 
-    override suspend fun set(user: User, value: T) {
-        data[user.id] = value
+    override suspend fun set(key: IdLong, value: V) {
+        data[key.id] = value
     }
 
-    override suspend fun del(user: User) {
-        data.remove(user.id)
+    override suspend fun del(key: IdLong) {
+        data.remove(key.id)
     }
 }

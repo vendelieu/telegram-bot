@@ -74,7 +74,8 @@ internal fun collectInputChains(
                             )
                             if (isStatefulLink) {
                                 add("val linkState = inst.action(user, update, bot)\n")
-                                add("inst.state.set(user, linkState)\n")
+                                add("val stateKey = inst.state.stateKey.select(update)\n")
+                                add("if(stateKey != null) inst.state.set(stateKey, linkState)\n")
                             } else {
                                 add("inst.action(user, update, bot)\n")
                             }

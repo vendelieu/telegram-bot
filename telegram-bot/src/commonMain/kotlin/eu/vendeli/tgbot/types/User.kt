@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types
 
+import eu.vendeli.tgbot.types.internal.IdLong
 import kotlinx.serialization.Serializable
 
 /**
@@ -22,7 +23,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class User(
-    val id: Long,
+    override val id: Long,
     val isBot: Boolean,
     val firstName: String,
     val lastName: String? = null,
@@ -35,4 +36,4 @@ data class User(
     val supportsInlineQueries: Boolean? = null,
     val canConnectToBusiness: Boolean? = null,
     val hasMainWebApp: Boolean? = null,
-)
+) : IdLong
