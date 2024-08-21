@@ -64,7 +64,8 @@ jobs:
           BRANCH: gh-pages
           FOLDER: telegram-bot/build/dokka
 
-      - run: ./gradlew publishPlugins -PlibVersion=${{ needs.version.outputs.version }}
+      - name: Publish plugin
+        run: ./gradlew publishPlugins -PlibVersion=${{ needs.version.outputs.version }}
         env:
           GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
           GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}
