@@ -2320,18 +2320,18 @@ public final class eu/vendeli/tgbot/implementations/UserDataMapImpl : eu/vendeli
 
 public abstract class eu/vendeli/tgbot/interfaces/action/Action : eu/vendeli/tgbot/interfaces/action/TgAction {
 	public fun <init> ()V
-	public fun send (JLeu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun send (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun send (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun send (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun sendAsync (JLeu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun sendAsync (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun sendAsync (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun sendAsync (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun sendReturning (JLeu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun sendReturning (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun sendReturning (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun sendReturning (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun send (JLeu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun send (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun send (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun send (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendAsync (JLeu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendAsync (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendAsync (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendAsync (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendReturning (JLeu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendReturning (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendReturning (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendReturning (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/action/BusinessActionExt : eu/vendeli/tgbot/interfaces/action/Request {
@@ -13455,20 +13455,12 @@ public final class eu/vendeli/tgbot/utils/builders/EntitiesBuilder {
 
 public final class eu/vendeli/tgbot/utils/builders/EntitiesBuilder$EntityData {
 	public fun <init> ()V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Leu/vendeli/tgbot/types/User;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Leu/vendeli/tgbot/utils/builders/EntitiesBuilder$EntityData;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/utils/builders/EntitiesBuilder$EntityData;Ljava/lang/String;Leu/vendeli/tgbot/types/User;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/utils/builders/EntitiesBuilder$EntityData;
-	public fun equals (Ljava/lang/Object;)Z
 	public final fun getLanguage ()Ljava/lang/String;
 	public final fun getUrl ()Ljava/lang/String;
 	public final fun getUser ()Leu/vendeli/tgbot/types/User;
-	public fun hashCode ()I
 	public final fun setLanguage (Ljava/lang/String;)V
 	public final fun setUrl (Ljava/lang/String;)V
 	public final fun setUser (Leu/vendeli/tgbot/types/User;)V
-	public fun toString ()Ljava/lang/String;
 }
 
 public abstract interface class eu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder : eu/vendeli/tgbot/utils/builders/EntitiesExtBuilder {
