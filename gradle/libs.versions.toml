@@ -27,7 +27,7 @@ poet = "1.18.1"
 
 binvalid = "0.16.3"
 publisher = "0.29.0"
-gradle-publish = "1.2.1"
+gradle-publish = "1.2.2"
 env = "1.0.4"
 
 [libraries]
