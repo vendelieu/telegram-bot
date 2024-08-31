@@ -8,7 +8,6 @@ import eu.vendeli.ksp.dto.CollectorsContext
 import eu.vendeli.ksp.utils.cast
 import eu.vendeli.ksp.utils.linkQName
 import eu.vendeli.tgbot.annotations.InputChain
-import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.types.internal.chain.StatefulLink
 
 internal fun collectInputChains(
@@ -22,9 +21,13 @@ internal fun collectInputChains(
         }
         symbols.forEach { chain ->
             activitiesFile.addImport("eu.vendeli.tgbot.utils", "getInstance")
-            val isAutoCleanChain = chain.annotations.first {
-                it.shortName.asString() == InputChain::class.simpleName
-            }.arguments.firstOrNull()?.value?.cast<Boolean>() ?: false
+            val isAutoCleanChain = chain.annotations
+                .first {
+                    it.shortName.asString() == InputChain::class.simpleName
+                }.arguments
+                .firstOrNull()
+                ?.value
+                ?.cast<Boolean>() ?: false
 
             val links = chain.declarations
                 .filter { i ->
@@ -40,8 +43,7 @@ internal fun collectInputChains(
                     l
                         .getAllSuperTypes()
                         .find { it.declaration.simpleName.asString() == StatefulLink::class.simpleName } != null
-                }
-                .toHashSet()
+                }.toHashSet()
 
             if (statefulLinks.isNotEmpty()) buildChainStateBindings(ctx.botCtxFile, chain, statefulLinks, logger)
 
@@ -89,7 +91,9 @@ internal fun collectInputChains(
                                 add("\n// clearing state\n")
                                 statefulLinks.forEachIndexed { stateIdx, statefulLink ->
                                     val keyParam = "stateKey$stateIdx"
-                                    add("val inst$stateIdx = classManager.getInstance<${statefulLink.qualifiedName!!.asString()}>()!!\n")
+                                    add(
+                                        "val inst$stateIdx = classManager.getInstance<${statefulLink.qualifiedName!!.asString()}>()!!\n",
+                                    )
                                     add("val $keyParam = inst$stateIdx.state.stateKey.select(update)\n")
                                     add("if($keyParam != null)\n")
                                     add("inst$stateIdx.state.del($keyParam)\n\n")
@@ -100,12 +104,11 @@ internal fun collectInputChains(
                 }
 
                 add(
-                    "\"$curLinkId\" to (%L to InvocationMeta(\"%L\", \"%L\", %L, %L::class)),\n",
+                    "\"$curLinkId\" to (%L to InvocationMeta(\"%L\", \"%L\", %L)),\n",
                     block,
                     qualifier,
                     name,
                     "zeroRateLimits",
-                    DefaultGuard::class.qualifiedName,
                 )
             }
         }

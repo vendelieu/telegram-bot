@@ -60,13 +60,14 @@ internal fun collectCommandActivities(
                 logger.info("Command: $it UpdateType: ${updT.name} --> ${function.qualifiedName?.asString()}")
 
                 addStatement(
-                    "(\"$it\" to %L) to (%L to InvocationMeta(\"%L\", \"%L\", %L, %L::class)),",
+                    "(\"$it\" to %L) to (%L to InvocationMeta(\"%L\", \"%L\", %L, %L::class, argParser = %L::class)),",
                     updT,
                     activitiesFile.buildInvocationLambdaCodeBlock(function, injectableTypes, pkg),
                     function.qualifiedName!!.getQualifier(),
                     function.simpleName.asString(),
                     annotationData.rateLimits.toRateLimits(),
                     annotationData.guardClass,
+                    annotationData.argParserClass,
                 )
             }
         }
@@ -152,7 +153,7 @@ internal fun collectCommonActivities(
                             add("mapOf(\n")
                             data.forEach {
                                 addStatement(
-                                    "%L to (%L to InvocationMeta(\"%L\", \"%L\", %L)),",
+                                    "%L to (%L to InvocationMeta(\"%L\", \"%L\", %L, argParser = %L::class)),",
                                     it.value.toCommonMatcher(it.filter, it.scope),
                                     activitiesFile.buildInvocationLambdaCodeBlock(
                                         it.funDeclaration,
@@ -166,6 +167,7 @@ internal fun collectCommonActivities(
                                             l.period == 0L
                                         ) "zeroRateLimits" else l
                                     },
+                                    it.argParser,
                                 )
                             }
                             add(")\n")

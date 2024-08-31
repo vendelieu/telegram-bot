@@ -28,6 +28,7 @@ data class CommonAnnotationData(
     val funSimpleName: String,
     val value: CommonAnnotationValue,
     val filter: String,
+    val argParser: String,
     val priority: Int,
     val rateLimits: RateLimits,
     val scope: List<UpdateType>,

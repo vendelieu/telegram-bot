@@ -1,8 +1,10 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.implementations.DefaultGuard
+import eu.vendeli.tgbot.interfaces.helper.ArgumentParser
 import eu.vendeli.tgbot.interfaces.helper.Filter
 import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.types.internal.ActivityCtx
@@ -223,11 +225,12 @@ class FunctionalHandlingDsl internal constructor(
         scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
         guard: KClass<out Guard> = DefaultGuard::class,
+        argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
         block: OnCommandActivity,
     ) {
         scope.forEach {
             functionalActivities.commands[command to it] =
-                FunctionalInvocation(command, block, scope, rateLimits, guard)
+                FunctionalInvocation(command, block, scope, rateLimits, guard, argParser = argParser)
         }
     }
 
@@ -243,10 +246,11 @@ class FunctionalHandlingDsl internal constructor(
         scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
         guard: KClass<out Guard> = DefaultGuard::class,
+        argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
         block: OnCommandActivity,
     ) {
         functionalActivities.regexActivities[command] =
-            FunctionalInvocation(command.pattern, block, scope, rateLimits, guard)
+            FunctionalInvocation(command.pattern, block, scope, rateLimits, guard, argParser = argParser)
     }
 
     /**
@@ -286,10 +290,11 @@ class FunctionalHandlingDsl internal constructor(
         filter: KClass<out Filter> = DefaultFilter::class,
         scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
         block: OnCommandActivity,
     ) {
         functionalActivities.commonActivities[CommonMatcher.String(value, filter, scope)] =
-            FunctionalInvocation(value, block, scope, rateLimits, filter = filter)
+            FunctionalInvocation(value, block, scope, rateLimits, filter = filter, argParser = argParser)
     }
 
     /**
@@ -306,10 +311,11 @@ class FunctionalHandlingDsl internal constructor(
         filter: KClass<out Filter> = DefaultFilter::class,
         scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
         block: OnCommandActivity,
     ) {
         functionalActivities.commonActivities[CommonMatcher.Regex(value, filter, scope)] =
-            FunctionalInvocation(value.pattern, block, scope, rateLimits, filter = filter)
+            FunctionalInvocation(value.pattern, block, scope, rateLimits, filter = filter, argParser = argParser)
     }
 
     /**

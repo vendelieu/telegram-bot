@@ -1,6 +1,8 @@
 package eu.vendeli.tgbot.annotations
 
+import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultGuard
+import eu.vendeli.tgbot.interfaces.helper.ArgumentParser
 import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.types.internal.UpdateType
 import kotlin.reflect.KClass
@@ -19,6 +21,7 @@ annotation class CommandHandler(
     val rateLimits: RateLimits = RateLimits(0, 0),
     val scope: Array<UpdateType> = [UpdateType.MESSAGE],
     val guard: KClass<out Guard> = DefaultGuard::class,
+    val argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
 ) {
     /**
      * Shortcut [CommandHandler] annotation with specified scope for [UpdateType.CALLBACK_QUERY].
@@ -30,5 +33,6 @@ annotation class CommandHandler(
         val value: Array<String>,
         val rateLimits: RateLimits = RateLimits(0, 0),
         val guard: KClass<out Guard> = DefaultGuard::class,
+        val argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
     )
 }
