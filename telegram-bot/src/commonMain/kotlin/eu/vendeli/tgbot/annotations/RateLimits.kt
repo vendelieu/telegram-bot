@@ -7,7 +7,7 @@ package eu.vendeli.tgbot.annotations
  * @property rate The number of requests for a certain period.
  */
 @Target(AnnotationTarget.ANNOTATION_CLASS)
-@Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.SOURCE)
 annotation class RateLimits(
     val period: Long = 0L,
     val rate: Long = 0L,

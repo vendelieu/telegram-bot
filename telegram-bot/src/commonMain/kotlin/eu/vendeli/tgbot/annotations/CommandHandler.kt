@@ -13,7 +13,7 @@ import kotlin.reflect.KClass
  * @property scope Scope in which the command will be checked.
  */
 @Target(AnnotationTarget.FUNCTION)
-@Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.SOURCE)
 annotation class CommandHandler(
     val value: Array<String>,
     val rateLimits: RateLimits = RateLimits(0, 0),

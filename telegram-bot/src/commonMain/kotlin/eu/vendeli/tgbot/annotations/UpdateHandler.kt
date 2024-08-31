@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.types.internal.UpdateType
  * @property type Type of update.
  */
 @Target(AnnotationTarget.FUNCTION)
-@Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.SOURCE)
 annotation class UpdateHandler(
     val type: Array<UpdateType>,
 )
