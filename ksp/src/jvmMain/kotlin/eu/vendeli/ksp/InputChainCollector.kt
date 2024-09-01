@@ -20,7 +20,6 @@ internal fun collectInputChains(
             return null
         }
         symbols.forEach { chain ->
-            activitiesFile.addImport("eu.vendeli.tgbot.utils", "getInstance")
             val isAutoCleanChain = chain.annotations
                 .first {
                     it.shortName.asString() == InputChain::class.simpleName

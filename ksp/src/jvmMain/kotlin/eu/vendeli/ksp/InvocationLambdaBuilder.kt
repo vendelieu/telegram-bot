@@ -76,6 +76,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
     injectableTypes: Map<TypeName, ClassName>,
     pkg: String? = null,
 ) = buildCodeBlock {
+    addImport("eu.vendeli.tgbot.utils", "getInstance")
     val isTopLvl = function.functionKind == FunctionKind.TOP_LEVEL
     val funQualifier = function.qualifiedName!!.getQualifier()
     val funName = if (!isTopLvl) {
@@ -154,7 +155,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                     in injectableTypes.keys -> {
                         val type = injectableTypes[typeName]!!
                         addImport(type.packageName, type.simpleName)
-                        "(classManager.getInstance(${type.simpleName}::class) as ${type.simpleName}).get(update, bot)"
+                        "classManager.getInstance<${type.canonicalName}>()!!.get(update, bot)"
                     }
 
                     else -> "null"
