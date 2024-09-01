@@ -13,6 +13,8 @@ import kotlin.reflect.KClass
  * @property value Keywords of the command.
  * @property rateLimits Query limits for this particular command.
  * @property scope Scope in which the command will be checked.
+ * @property guard Guard condition that will be checked.
+ * @property argParser Custom argument parser.
  */
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.SOURCE)
@@ -28,6 +30,8 @@ annotation class CommandHandler(
      *
      * @property value Keywords of the command.
      * @property rateLimits Query limits for this particular command.
+     * @property guard Guard condition that will be checked.
+     * @property argParser Custom argument parser.
      */
     annotation class CallbackQuery(
         val value: Array<String>,

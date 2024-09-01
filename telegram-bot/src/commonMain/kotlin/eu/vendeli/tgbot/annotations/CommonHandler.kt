@@ -23,6 +23,7 @@ annotation class CommonHandler {
      * @property priority priority of activity. (0 is highest)
      * @property scope scope `UpdateType` in which the command will be checked.
      * @property rateLimits query limits for this particular command.
+     * @property argParser Custom argument parser.
      */
     @Target(AnnotationTarget.FUNCTION)
     @Retention(AnnotationRetention.SOURCE)
@@ -44,6 +45,7 @@ annotation class CommonHandler {
      * @property priority priority of activity. (0 is highest)
      * @property scope scope `UpdateType` in which the command will be checked.
      * @property rateLimits query limits for this particular command.
+     * @property argParser Custom argument parser.
      */
     @Target(AnnotationTarget.FUNCTION)
     @Retention(AnnotationRetention.SOURCE)

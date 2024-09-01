@@ -9,6 +9,7 @@ import kotlin.reflect.KClass
  *
  * @property value Keywords of the input.
  * @property rateLimits Query limits for this particular command.
+ * @property guard Guard condition that will be checked.
  */
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.SOURCE)
