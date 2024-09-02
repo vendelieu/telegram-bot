@@ -70,7 +70,6 @@ internal fun collectInputChains(
                     else -> null // DoNothing | lastChain
                 }
 
-                logger.warn(nextLink.toString())
                 val isStatefulLink = link in statefulLinks
 
                 val block = buildCodeBlock {
