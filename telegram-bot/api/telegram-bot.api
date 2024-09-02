@@ -7157,6 +7157,7 @@ public abstract class eu/vendeli/tgbot/types/internal/ChainLink : eu/vendeli/tgb
 	public fun getAfterAction ()Leu/vendeli/tgbot/types/internal/Action;
 	public fun getBeforeAction ()Leu/vendeli/tgbot/types/internal/Action;
 	public fun getBreakCondition ()Leu/vendeli/tgbot/types/internal/BreakCondition;
+	public fun getChainingStrategy ()Leu/vendeli/tgbot/types/internal/chain/ChainingStrategy;
 	public fun getRetryAfterBreak ()Z
 }
 
@@ -8001,6 +8002,34 @@ public abstract class eu/vendeli/tgbot/types/internal/chain/BaseStatefulLink : e
 	public fun getState ()Leu/vendeli/tgbot/types/internal/chain/LinkStateManager;
 }
 
+public abstract class eu/vendeli/tgbot/types/internal/chain/ChainingStrategy {
+}
+
+public final class eu/vendeli/tgbot/types/internal/chain/ChainingStrategy$Default : eu/vendeli/tgbot/types/internal/chain/ChainingStrategy {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/internal/chain/ChainingStrategy$Default;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class eu/vendeli/tgbot/types/internal/chain/ChainingStrategy$DoNothing : eu/vendeli/tgbot/types/internal/chain/ChainingStrategy {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/internal/chain/ChainingStrategy$DoNothing;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class eu/vendeli/tgbot/types/internal/chain/ChainingStrategy$LinkTo : eu/vendeli/tgbot/types/internal/chain/ChainingStrategy {
+	public fun <init> (Lkotlin/jvm/functions/Function0;)V
+	public final fun component1 ()Lkotlin/jvm/functions/Function0;
+	public final fun copy (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/types/internal/chain/ChainingStrategy$LinkTo;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/chain/ChainingStrategy$LinkTo;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/chain/ChainingStrategy$LinkTo;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getTarget ()Lkotlin/jvm/functions/Function0;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public abstract interface class eu/vendeli/tgbot/types/internal/chain/KeySelector {
 	public abstract fun select (Leu/vendeli/tgbot/types/internal/ProcessedUpdate;)Ljava/lang/Object;
 }
@@ -8011,11 +8040,13 @@ public abstract interface class eu/vendeli/tgbot/types/internal/chain/Link {
 	public abstract fun getAfterAction ()Leu/vendeli/tgbot/types/internal/Action;
 	public abstract fun getBeforeAction ()Leu/vendeli/tgbot/types/internal/Action;
 	public abstract fun getBreakCondition ()Leu/vendeli/tgbot/types/internal/BreakCondition;
+	public abstract fun getChainingStrategy ()Leu/vendeli/tgbot/types/internal/chain/ChainingStrategy;
 	public abstract fun getRetryAfterBreak ()Z
 }
 
 public final class eu/vendeli/tgbot/types/internal/chain/Link$DefaultImpls {
 	public static fun breakAction (Leu/vendeli/tgbot/types/internal/chain/Link;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun getChainingStrategy (Leu/vendeli/tgbot/types/internal/chain/Link;)Leu/vendeli/tgbot/types/internal/chain/ChainingStrategy;
 }
 
 public abstract interface class eu/vendeli/tgbot/types/internal/chain/LinkStateManager {
@@ -8031,6 +8062,7 @@ public abstract class eu/vendeli/tgbot/types/internal/chain/StatefulLink : eu/ve
 	public fun getAfterAction ()Leu/vendeli/tgbot/types/internal/Action;
 	public fun getBeforeAction ()Leu/vendeli/tgbot/types/internal/Action;
 	public fun getBreakCondition ()Leu/vendeli/tgbot/types/internal/BreakCondition;
+	public fun getChainingStrategy ()Leu/vendeli/tgbot/types/internal/chain/ChainingStrategy;
 	public fun getRetryAfterBreak ()Z
 	public abstract fun getState ()Leu/vendeli/tgbot/types/internal/chain/LinkStateManager;
 }

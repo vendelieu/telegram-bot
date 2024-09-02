@@ -1,10 +1,14 @@
 package eu.vendeli.ksp
 
 import com.google.devtools.ksp.getAllSuperTypes
+import com.google.devtools.ksp.getDeclaredProperties
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.ParameterizedTypeName
 import com.squareup.kotlinpoet.buildCodeBlock
+import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ksp.dto.CollectorsContext
+import eu.vendeli.ksp.utils.ChainingStrategyDefault
 import eu.vendeli.ksp.utils.cast
 import eu.vendeli.ksp.utils.linkQName
 import eu.vendeli.tgbot.annotations.InputChain
@@ -52,11 +56,21 @@ internal fun collectInputChains(
                 val name = link.simpleName.asString()
                 val reference = "$qualifier.$name"
 
-                val nextLink = if (idx < links.lastIndex) {
-                    links.getOrNull(idx + 1)
-                } else {
-                    null
-                }?.qualifiedName?.asString()
+                val chainingStrategy = link.getDeclaredProperties().find {
+                    it.simpleName.asString() == "chainingStrategy"
+                }?.type?.resolve()?.toTypeName() ?: ChainingStrategyDefault
+
+                val nextLink = when {
+                    chainingStrategy == ChainingStrategyDefault && idx < links.lastIndex -> {
+                        links.getOrNull(idx + 1)?.qualifiedName?.asString()
+                    }
+                    chainingStrategy is ParameterizedTypeName -> { // linkTo
+                        chainingStrategy.typeArguments.firstOrNull()?.toString()
+                    }
+                    else -> null // DoNothing | lastChain
+                }
+
+                logger.warn(nextLink.toString())
                 val isStatefulLink = link in statefulLinks
 
                 val block = buildCodeBlock {
@@ -66,7 +80,7 @@ internal fun collectInputChains(
                             add("if(user == null) return@suspendCall Unit\n")
                             add("val inst = classManager.getInstance<$reference>()!!\n")
                             add("inst.beforeAction?.invoke(user, update, bot)\n")
-                            if (nextLink != null) add("val nextLink = %P\n", nextLink)
+
                             add("val breakPoint = inst.breakCondition?.invoke(user, update, bot) ?: false\n")
                             add(
                                 "if (breakPoint && inst.retryAfterBreak){\nbot.inputListener[user] = \"%L\"\n}\n",
@@ -85,7 +99,8 @@ internal fun collectInputChains(
                             } else {
                                 add("inst.action(user, update, bot)\n")
                             }
-                            if (nextLink != null) add("bot.inputListener[user] = nextLink\n")
+                            if (nextLink != null) add("bot.inputListener[user] = %P\n", nextLink)
+
                             if (idx == links.lastIndex && isAutoCleanChain) {
                                 add("\n// clearing state\n")
                                 statefulLinks.forEachIndexed { stateIdx, statefulLink ->

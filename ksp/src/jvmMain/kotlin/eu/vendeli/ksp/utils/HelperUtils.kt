@@ -13,6 +13,7 @@ import com.squareup.kotlinpoet.ParameterizedTypeName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.STRING
+import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.asTypeName
@@ -49,6 +50,7 @@ import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.internal.chain.ChainingStrategy
 import eu.vendeli.tgbot.types.internal.chain.Link
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.fullName
@@ -109,6 +111,8 @@ internal val classDataCtxDef = ClassDataImpl::class.asTypeName()
 internal val callbackQueryList = listOf(UpdateType.CALLBACK_QUERY)
 internal val messageList = listOf(UpdateType.MESSAGE)
 internal val notLimitedRateLimits = 0L to 0L
+
+internal val ChainingStrategyDefault: TypeName = ChainingStrategy.Default::class.asTypeName()
 
 internal fun FileBuilder.addZeroLimitsProp() {
     addProperty(

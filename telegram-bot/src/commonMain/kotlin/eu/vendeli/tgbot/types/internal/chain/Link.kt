@@ -11,6 +11,8 @@ interface Link<T> {
     val breakCondition: BreakCondition?
     val beforeAction: Action?
     val afterAction: Action?
+    val chainingStrategy: ChainingStrategy
+        get() = ChainingStrategy.Default
 
     suspend fun action(user: User, update: ProcessedUpdate, bot: TelegramBot): T
 
