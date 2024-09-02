@@ -5,6 +5,7 @@
 * Added option to auto clean state in `@InputChain` as annotation parameter [🔬].
 * Added option to set chaining strategy for `@InputChain` links, to have more control over flow.
 * Added option to set custom argument parser for specific activities (`@CommandHandler`, `@CommonHandler`).
+* Removed special deeplink case handling, now will need to use the basic mechanism (can be caught by ordered parameters).
 
 ### 7.2.2
 
