@@ -206,12 +206,15 @@ class TelegramUpdateHandlerTest : BotTestContext() {
     suspend fun `deeplink test`() {
         doMockHttp(MockUpdate.SINGLE("/start test"))
 
+        var commandReached = false
         bot.handleUpdates {
             onCommand("/start") {
-                parameters shouldContainExactly mapOf("deepLink" to "test")
+                commandReached = true
+                parameters shouldContainExactly mapOf("param_1" to "test")
             }
             bot.update.stopListener()
         }
+        commandReached shouldBe true
     }
 
     @Test

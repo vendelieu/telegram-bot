@@ -20,7 +20,7 @@ internal fun TgUpdateHandler.parseCommand(
                 when {
                     commandDelimiter != ' ' && !restrictSpacesInCommands && command == "/start" -> {
                         // deeplink case
-                        if (text.getOrNull(idx) == ' ') break
+                        if (i == ' ') break
                     }
 
                     i == commandDelimiter || restrictSpacesInCommands && i == ' ' -> {

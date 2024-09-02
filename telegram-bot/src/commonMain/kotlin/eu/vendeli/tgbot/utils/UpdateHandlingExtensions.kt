@@ -70,33 +70,20 @@ internal suspend inline fun Filter.checkIsFiltered(
 internal fun TgUpdateHandler.getParameters(
     parser: KClass<out ArgumentParser>?,
     request: ParsedText,
-): Map<String, String> {
-    val deeplinkPresent = bot.config.commandParsing.run {
-        request.command == "/start" &&
-            commandDelimiter != ' ' &&
-            !restrictSpacesInCommands &&
-            request.tail.getOrNull(0) == ' '
-    }
-
-    return parser
-        ?.let {
-            if (it.fullName == DefaultArgParser::class.fullName) bot.config.commandParsing.run {
-                defaultArgParser(
-                    request.tail,
-                    parametersDelimiter,
-                    parameterValueDelimiter,
-                )
-            }
-            else bot.config.classManager
-                .getInstance(it)
-                .cast<ArgumentParser>()
-                .parse(request.tail)
-        }?.let {
-            if (deeplinkPresent && it.isEmpty())
-                mapOf("deepLink" to request.command.substringAfter("/start "))
-            else it
-        } ?: emptyMap()
-}
+): Map<String, String> = parser
+    ?.let {
+        if (it.fullName == DefaultArgParser::class.fullName) bot.config.commandParsing.run {
+            defaultArgParser(
+                request.tail,
+                parametersDelimiter,
+                parameterValueDelimiter,
+            )
+        }
+        else bot.config.classManager
+            .getInstance(it)
+            .cast<ArgumentParser>()
+            .parse(request.tail)
+    } ?: emptyMap()
 
 /**
  * Method that tries to find activity in given text and invoke it.
