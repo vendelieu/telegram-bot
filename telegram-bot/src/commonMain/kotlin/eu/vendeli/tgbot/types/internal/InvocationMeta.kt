@@ -11,7 +11,7 @@ import kotlin.reflect.KClass
 data class InvocationMeta(
     val qualifier: String,
     val function: String,
-    val rateLimits: RateLimits,
+    val rateLimits: RateLimits = RateLimits.NOT_LIMITED,
     val guard: KClass<out Guard> = DefaultGuard::class,
     val argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
 ) {

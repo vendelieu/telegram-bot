@@ -154,7 +154,6 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
 
                     in injectableTypes.keys -> {
                         val type = injectableTypes[typeName]!!
-                        addImport(type.packageName, type.simpleName)
                         "classManager.getInstance<${type.canonicalName}>()!!.get(update, bot)"
                     }
 
@@ -166,13 +165,13 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
             }
 
             if (pkg != null) add(
-                "if (\n\t" +
+                "\nif (\n\t" +
                     (if (isUserNullable) "user != null\n && " else "") +
                     "bot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",
                 funQualifier,
                 pkg,
             )
-            add("%L.invoke(\n\t%L\n)\n", funName, parametersEnumeration)
+            add("\n%L.invoke(\n\t%L\n)\n", funName, parametersEnumeration)
         }.endControlFlow()
         .build()
 }

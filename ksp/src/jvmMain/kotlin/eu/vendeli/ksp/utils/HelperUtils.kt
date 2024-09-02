@@ -114,27 +114,13 @@ internal val notLimitedRateLimits = 0L to 0L
 
 internal val ChainingStrategyDefault: TypeName = ChainingStrategy.Default::class.asTypeName()
 
-internal fun FileBuilder.addZeroLimitsProp() {
-    addProperty(
-        PropertySpec
-            .builder(
-                "zeroRateLimits",
-                rateLimitsClass,
-                KModifier.PRIVATE,
-            ).apply {
-                initializer("RateLimits(0, 0)")
-            }.build(),
-    )
-}
-
 @Suppress("UNCHECKED_CAST", "NOTHING_TO_INLINE")
 internal inline fun <R> Any?.cast(): R = this as R
 
 @Suppress("UNCHECKED_CAST", "NOTHING_TO_INLINE")
 internal inline fun <R> Any?.safeCast(): R? = this as? R
 
-internal fun Pair<Long, Long>.toRateLimits(): Any =
-    if (first == 0L && second == 0L) "zeroRateLimits" else RateLimits(first, second)
+internal fun Pair<Long, Long>.toRateLimits(): RateLimits = RateLimits(first, second)
 
 internal fun <T : Annotation> Resolver.getAnnotatedFnSymbols(
     targetPackage: String? = null,
@@ -154,6 +140,23 @@ internal fun <T : Annotation> Resolver.getAnnotatedFnSymbols(
             it.filterIsInstance<KSFunctionDeclaration>()
         }
     }
+
+internal fun CodeBlock.Builder.addVarStatement(
+    prefix: String? = null,
+    postFix: String? = null,
+    builder: MutableList<Pair<String, Any?>>.() -> Unit,
+) {
+    val pairList = buildList(builder)
+
+    val format = buildString {
+        prefix?.also(::append)
+        pairList.forEach {
+            append(it.first)
+        }
+        postFix?.also(::append)
+    }
+    addStatement(format, *pairList.map { it.second }.toTypedArray())
+}
 
 internal fun <T : Annotation> Resolver.getAnnotatedClassSymbols(clazz: KClass<T>, targetPackage: String? = null) =
     if (targetPackage == null) getSymbolsWithAnnotation(clazz.qualifiedName!!).filterIsInstance<KSClassDeclaration>()

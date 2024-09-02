@@ -24,7 +24,6 @@ import eu.vendeli.ksp.dto.CollectorsContext
 import eu.vendeli.ksp.utils.CommonAnnotationHandler
 import eu.vendeli.ksp.utils.FileBuilder
 import eu.vendeli.ksp.utils.activitiesType
-import eu.vendeli.ksp.utils.addZeroLimitsProp
 import eu.vendeli.ksp.utils.autoWiringClassName
 import eu.vendeli.ksp.utils.getAnnotatedClassSymbols
 import eu.vendeli.ksp.utils.getAnnotatedFnSymbols
@@ -54,7 +53,6 @@ class ActivityProcessor(
             addImport("eu.vendeli.tgbot.types.internal.configuration", "RateLimits")
 
             addSuspendCallFun()
-            addZeroLimitsProp()
         }
 
         targetPackage?.forEachIndexed { idx, pkg ->
