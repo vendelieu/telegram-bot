@@ -2,7 +2,9 @@ package eu.vendeli.ksp
 
 import com.google.devtools.ksp.getDeclaredProperties
 import com.google.devtools.ksp.symbol.KSClassDeclaration
+import com.google.devtools.ksp.symbol.KSType
 import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.boolean
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
@@ -27,7 +29,7 @@ internal fun ApiProcessor.validateTypes(classes: Sequence<KSClassDeclaration>, a
             sealedSubclasses.forEach sealedLoop@{ s ->
                 val sealedName = s.simpleName.getShortName()
                 val sealedFullName = s.qualifiedName!!.asString()
-                val sealedParams = s.getAllProperties().map { it.simpleName.asString() }.toSet()
+                val sealedParams = s.getAllProperties().associate { it.simpleName.asString() to it.type.resolve() }
                 val apiName = s.annotations
                     .firstOrNull {
                         it.shortName.getShortName() == "Name"
@@ -43,7 +45,7 @@ internal fun ApiProcessor.validateTypes(classes: Sequence<KSClassDeclaration>, a
         }
 
         val classFullName = cls.qualifiedName!!.asString()
-        val classParams = cls.getDeclaredProperties().map { it.simpleName.asString() }.toSet()
+        val classParams = cls.getDeclaredProperties().associate { it.simpleName.asString() to it.type.resolve() }
 
         processClass(types, classParams, className, classFullName, visitedTypes)
     }
@@ -53,7 +55,7 @@ internal fun ApiProcessor.validateTypes(classes: Sequence<KSClassDeclaration>, a
 
 private fun ApiProcessor.processClass(
     types: Map<String, JsonElement>,
-    params: Set<String>,
+    params: Map<String, KSType>,
     name: String,
     fullName: String,
     visitedTypesRef: MutableSet<String>,
@@ -69,12 +71,23 @@ private fun ApiProcessor.processClass(
             ?.jsonPrimitive
             ?.content
             ?.snakeToCamelCase()
-        if (paramName !in params)
+        val isRequiredRef = it.jsonObject["required"]!!.jsonPrimitive.boolean
+        val targetParam = params[paramName]
+
+        if (targetParam == null) {
             logger.exception(
                 IllegalStateException(
                     "Parameter $paramName is not present in $fullName\n${typeInfo["href"]!!.jsonPrimitive.content}",
                 ),
             )
+            return@forEach
+        }
+
+        if (isRequiredRef && targetParam.isMarkedNullable) logger.exception(
+            IllegalStateException(
+                "Wrong nullability for $paramName in $fullName\n${typeInfo["href"]!!.jsonPrimitive.content}"
+            ),
+        )
     }
     visitedTypesRef.add(name)
 }
