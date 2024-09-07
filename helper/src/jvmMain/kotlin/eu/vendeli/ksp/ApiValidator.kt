@@ -125,7 +125,7 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
             if (camelParamName != "chatId" && camelParamName !in parameters) {
                 logger.warn(
                     "Api parameter `$origParameterName`($camelParamName) " +
-                        "is possibly not present in class $classFullname (method: `$methodName`)\n" +
+                        "is probably not present in class $classFullname (method: `$methodName`)\n" +
                         method.jsonObject["href"]!!.jsonPrimitive.content,
                 )
             }

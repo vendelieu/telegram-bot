@@ -25,6 +25,9 @@ external interface ThemeParams {
     @JsName("header_bg_color")
     val headerBgColor: String?
 
+    @JsName("bottom_bar_bg_color")
+    val bottomBarBgColor: String?
+
     @JsName("accent_text_color")
     val accentTextColor: String?
 

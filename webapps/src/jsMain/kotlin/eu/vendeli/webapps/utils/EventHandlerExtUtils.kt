@@ -9,6 +9,9 @@ fun WebApp.onThemeChanged(eventHandler: NoParamsEventHandler) =
 fun WebApp.onMainButtonClicked(eventHandler: NoParamsEventHandler) =
     onEvent(EventType.MainButtonClicked, EventHandler.NoParams(eventHandler))
 
+fun WebApp.onSecondaryButtonClicked(eventHandler: NoParamsEventHandler) =
+    onEvent(EventType.SecondaryButtonClicked, EventHandler.NoParams(eventHandler))
+
 fun WebApp.onViewportChanged(eventHandler: ViewportChangedEventHandler) =
     onEvent(EventType.ViewportChanged, EventHandler.ViewportChanged(eventHandler))
 
