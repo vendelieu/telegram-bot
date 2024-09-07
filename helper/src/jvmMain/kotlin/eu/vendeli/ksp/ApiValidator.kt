@@ -121,7 +121,7 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
                 )
         }
 
-        method.jsonObject["fields"]?.jsonArray?.forEach params@ {
+        method.jsonObject["fields"]?.jsonArray?.forEach params@{
             val origParameterName = it.jsonObject["name"]!!
                 .jsonPrimitive.content
             val camelParamName = origParameterName.snakeToCamelCase()

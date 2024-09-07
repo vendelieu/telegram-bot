@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class PaidMediaPurchased(
     val from: User,
-    val paidMediaPayload: String
+    val paidMediaPayload: String,
 )

@@ -1,7 +1,8 @@
 # Telegram-bot (KtGram) Changelog
 
-## -7.3.0
+## 7.3.0
 
+* Supported Telegram API [7.10](https://core.telegram.org/bots/api-changelog#september-6-2024)
 * Added option to auto clean state in `@InputChain` as annotation parameter [🔬].
 * Added option to set chaining strategy for `@InputChain` links, to have more control over flow.
 * Added option to set custom argument parser for specific activities (`@CommandHandler`, `@CommonHandler`).

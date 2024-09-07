@@ -56,9 +56,13 @@ internal fun collectInputChains(
                 val name = link.simpleName.asString()
                 val reference = "$qualifier.$name"
 
-                val chainingStrategy = link.getDeclaredProperties().find {
-                    it.simpleName.asString() == "chainingStrategy"
-                }?.type?.resolve()?.toTypeName() ?: ChainingStrategyDefault
+                val chainingStrategy = link
+                    .getDeclaredProperties()
+                    .find {
+                        it.simpleName.asString() == "chainingStrategy"
+                    }?.type
+                    ?.resolve()
+                    ?.toTypeName() ?: ChainingStrategyDefault
 
                 val nextLink = when {
                     chainingStrategy == ChainingStrategyDefault && idx < links.lastIndex -> {
