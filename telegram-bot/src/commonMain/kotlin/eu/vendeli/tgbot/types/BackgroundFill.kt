@@ -27,7 +27,7 @@ sealed class BackgroundFill(
     data class Gradient(
         val topColor: Int,
         val bottomColor: Int,
-        val rotationAngle: Int? = null,
+        val rotationAngle: Int,
     ) : BackgroundFill("gradient")
 
     @Serializable

@@ -11,6 +11,6 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class WebAppData(
-    val data: String? = null,
+    val data: String,
     val buttonText: String,
 )
