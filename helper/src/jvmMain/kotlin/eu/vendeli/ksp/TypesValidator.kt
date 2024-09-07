@@ -71,23 +71,19 @@ private fun ApiProcessor.processClass(
             ?.jsonPrimitive
             ?.content
             ?.snakeToCamelCase()
-        val isRequiredRef = it.jsonObject["required"]!!.jsonPrimitive.boolean
+        val isRequired = it.jsonObject["required"]!!.jsonPrimitive.boolean
         val targetParam = params[paramName]
 
         if (targetParam == null) {
-            logger.exception(
-                IllegalStateException(
-                    "Parameter $paramName is not present in $fullName\n${typeInfo["href"]!!.jsonPrimitive.content}",
-                ),
-            )
+            logger.invalid {
+                "Parameter $paramName is not present in $fullName\n${typeInfo["href"]!!.jsonPrimitive.content}"
+            }
             return@forEach
         }
 
-        if (isRequiredRef && targetParam.isMarkedNullable) logger.exception(
-            IllegalStateException(
-                "Wrong nullability for $paramName in $fullName\n${typeInfo["href"]!!.jsonPrimitive.content}"
-            ),
-        )
+        if (isRequired && targetParam.isMarkedNullable) logger.invalid {
+            "Wrong nullability for `$paramName` in $fullName\n${typeInfo["href"]!!.jsonPrimitive.content}"
+        }
     }
     visitedTypesRef.add(name)
 }

@@ -1,6 +1,7 @@
 package eu.vendeli.ksp
 
 import com.google.devtools.ksp.KspExperimental
+import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSDeclaration
@@ -14,6 +15,8 @@ import java.io.FileFilter
 
 internal val replyMarkupType = Keyboard::class.asTypeName()
 internal val entitiesType = LIST.parameterizedBy(MessageEntity::class.asTypeName())
+
+internal inline fun KSPLogger.invalid(message: () -> String) = exception(IllegalStateException(message()))
 
 internal fun String.beginWithUpperCase(): String = when (this.length) {
     0 -> ""

@@ -78,7 +78,6 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
     injectableTypes: Map<TypeName, ClassName>,
     pkg: String? = null,
 ) = buildCodeBlock {
-    addImport("eu.vendeli.tgbot.utils", "getInstance")
     val isTopLvl = function.functionKind == FunctionKind.TOP_LEVEL
     val funQualifier = function.qualifiedName!!.getQualifier()
     val funName = if (!isTopLvl) {

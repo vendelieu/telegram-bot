@@ -53,6 +53,7 @@ class ActivityProcessor(
             addImport("eu.vendeli.tgbot.types.internal.configuration", "RateLimits")
 
             addSuspendCallFun()
+            addImport("eu.vendeli.tgbot.utils", "getInstance")
         }
 
         targetPackage?.forEachIndexed { idx, pkg ->
