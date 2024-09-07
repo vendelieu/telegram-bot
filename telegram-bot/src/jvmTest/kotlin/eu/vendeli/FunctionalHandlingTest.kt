@@ -200,6 +200,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             onBusinessMessage { onUpdateInvocationsCount++ }
             onEditedBusinessMessage { onUpdateInvocationsCount++ }
             onDeletedBusinessMessages { onUpdateInvocationsCount++ }
+            onPurchasedPaidMedia { onUpdateInvocationsCount++ }
         }
 
         UpdateType.entries.forEach {

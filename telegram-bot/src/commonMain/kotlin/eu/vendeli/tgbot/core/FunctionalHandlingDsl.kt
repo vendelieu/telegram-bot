@@ -40,6 +40,7 @@ import eu.vendeli.tgbot.utils.OnMyChatMemberActivity
 import eu.vendeli.tgbot.utils.OnPollActivity
 import eu.vendeli.tgbot.utils.OnPollAnswerActivity
 import eu.vendeli.tgbot.utils.OnPreCheckoutQueryActivity
+import eu.vendeli.tgbot.utils.OnPurchasedPaidMediaActivity
 import eu.vendeli.tgbot.utils.OnRemovedChatBoostActivity
 import eu.vendeli.tgbot.utils.OnShippingQueryActivity
 import eu.vendeli.tgbot.utils.WhenNotHandledActivity
@@ -210,6 +211,13 @@ class FunctionalHandlingDsl internal constructor(
      */
     fun onDeletedBusinessMessages(block: OnDeletedBusinessMessagesActivity) {
         functionalActivities.onUpdateActivities[UpdateType.DELETED_BUSINESS_MESSAGES] = block.cast()
+    }
+
+    /**
+     * Action that is performed on the presence of DeletedBusinessMessages in the Update.
+     */
+    fun onPurchasedPaidMedia(block: OnPurchasedPaidMediaActivity) {
+        functionalActivities.onUpdateActivities[UpdateType.PURCHASED_PAID_MEDIA] = block.cast()
     }
 
     /**

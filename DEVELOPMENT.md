@@ -7,3 +7,4 @@
 4. Add new clause to [processUpdate()](telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/utils/ProcessUpdate.kt)
 5. Add [TypeRef](ksp/src/jvmMain/kotlin/eu/vendeli/ksp/utils/HelperUtils.kt) to ksp and
    to [lambda builder](ksp/src/jvmMain/kotlin/eu/vendeli/ksp/InvocationLambdaBuilder.kt)
+6. Add a new section for [FunctionalDSL](telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/core/FunctionalHandlingDsl.kt).
