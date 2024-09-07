@@ -224,7 +224,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
 
         bot.update.parseCommand(text).run {
             command shouldBe "/test"
-            tail shouldBe "?param1"
+            tail shouldBe "param1"
         }
 
         bot.update.parseCommand("/test@KtGram1?param1").run {
@@ -235,7 +235,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         bot.config.commandParsing.useIdentifierInGroupCommands = false
         bot.update.parseCommand("/test@KtGram1?param1").run {
             command shouldBe "/test"
-            tail shouldBe "?param1"
+            tail shouldBe "param1"
         }
     }
 

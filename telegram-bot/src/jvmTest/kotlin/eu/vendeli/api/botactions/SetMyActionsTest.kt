@@ -37,6 +37,10 @@ class SetMyActionsTest : BotTestContext() {
                 canEditMessages = false,
                 canPinMessages = false,
                 canManageTopics = false,
+                canManageVideoChats = false,
+                canPostStories = false,
+                canEditStories = false,
+                canDeleteStories = false,
             ),
         ).send(bot)
 
@@ -59,6 +63,10 @@ class SetMyActionsTest : BotTestContext() {
                 canEditMessages = false,
                 canPinMessages = false,
                 canManageTopics = false,
+                canPostStories = false,
+                canEditStories = false,
+                canDeleteStories = false,
+                canManageVideoChats = false,
             ),
         ).send(bot)
     }
