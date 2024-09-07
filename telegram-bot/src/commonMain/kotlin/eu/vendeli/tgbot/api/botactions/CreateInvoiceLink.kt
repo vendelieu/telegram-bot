@@ -44,7 +44,7 @@ class CreateInvoiceLinkAction(
  * [Api reference](https://core.telegram.org/bots/api#createinvoicelink)
  * @param title Product name, 1-32 characters
  * @param description Product description, 1-255 characters
- * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
+ * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use it for your internal processes.
  * @param providerToken Payment provider token, obtained via @BotFather. Pass an empty string for payments in Telegram Stars.
  * @param currency Three-letter ISO 4217 currency code, see more on currencies. Pass "XTR" for payments in Telegram Stars.
  * @param prices Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.). Must contain exactly one item for payments in Telegram Stars.
