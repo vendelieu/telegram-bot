@@ -115,14 +115,15 @@ class ApiProcessor(
                 val fdslType = FunctionalHandlingDsl::class.asTypeName()
                 val blockType = ActivityCtx::class.asTypeName()
                 addImport("eu.vendeli.tgbot.types.internal", "UpdateType")
-                addImport("eu.vendeli.tgbot.utils", "cast")
 
                 UpdateType.entries.forEach { type ->
-                    val funName = type.name
+                    val nameRef = type.name
                         .lowercase()
                         .snakeToCamelCase()
+                        .replace("editMessage", "editedMessage")
+                    val funName = nameRef
                         .beginWithUpperCase()
-                        .replace("EditMessage", "EditedMessage")
+
                     val pUpdateType = funName + "Update"
                     addImport("eu.vendeli.tgbot.types.internal", pUpdateType)
 
@@ -134,8 +135,10 @@ class ApiProcessor(
                         FunSpec
                             .builder("on$funName")
                             .receiver(fdslType)
-                            .addKdoc("Action that is performed on the presence of $funName in the Update.")
-                            .addParameter(ParameterSpec.builder("block", blockTypeRef).build())
+                            .addKdoc(
+                                "Action that is performed on the presence of " +
+                                    "[eu.vendeli.tgbot.types.Update.$nameRef] in the [eu.vendeli.tgbot.types.Update].",
+                            ).addParameter(ParameterSpec.builder("block", blockTypeRef).build())
                             .addCode("functionalActivities.onUpdateActivities[$type] = block.cast()")
                             .build(),
                     )
