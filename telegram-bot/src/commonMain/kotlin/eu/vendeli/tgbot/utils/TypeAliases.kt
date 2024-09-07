@@ -41,30 +41,6 @@ import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.request.HttpRequest
 import io.ktor.client.statement.HttpResponse
 
-typealias OnMessageActivity = suspend ActivityCtx<MessageUpdate>.() -> Unit
-typealias OnEditedMessageActivity = suspend ActivityCtx<EditedMessageUpdate>.() -> Unit
-typealias OnPollAnswerActivity = suspend ActivityCtx<PollAnswerUpdate>.() -> Unit
-typealias OnCallbackQueryActivity = suspend ActivityCtx<CallbackQueryUpdate>.() -> Unit
-typealias OnPollActivity = suspend ActivityCtx<PollUpdate>.() -> Unit
-typealias OnChatJoinRequestActivity = suspend ActivityCtx<ChatJoinRequestUpdate>.() -> Unit
-typealias OnChatMemberActivity = suspend ActivityCtx<ChatMemberUpdate>.() -> Unit
-typealias OnMyChatMemberActivity = suspend ActivityCtx<MyChatMemberUpdate>.() -> Unit
-typealias OnChannelPostActivity = suspend ActivityCtx<ChannelPostUpdate>.() -> Unit
-typealias OnEditedChannelPostActivity = suspend ActivityCtx<EditedChannelPostUpdate>.() -> Unit
-typealias OnChosenInlineResultActivity = suspend ActivityCtx<ChosenInlineResultUpdate>.() -> Unit
-typealias OnInlineQueryActivity = suspend ActivityCtx<InlineQueryUpdate>.() -> Unit
-typealias OnPreCheckoutQueryActivity = suspend ActivityCtx<PreCheckoutQueryUpdate>.() -> Unit
-typealias OnShippingQueryActivity = suspend ActivityCtx<ShippingQueryUpdate>.() -> Unit
-typealias OnMessageReactionActivity = suspend ActivityCtx<MessageReactionUpdate>.() -> Unit
-typealias OnMessageReactionCountActivity = suspend ActivityCtx<MessageReactionCountUpdate>.() -> Unit
-typealias OnChatBoostActivity = suspend ActivityCtx<ChatBoostUpdate>.() -> Unit
-typealias OnRemovedChatBoostActivity = suspend ActivityCtx<RemovedChatBoostUpdate>.() -> Unit
-typealias OnBusinessConnectionActivity = suspend ActivityCtx<BusinessConnectionUpdate>.() -> Unit
-typealias OnBusinessMessageActivity = suspend ActivityCtx<BusinessMessageUpdate>.() -> Unit
-typealias OnEditedBusinessMessageActivity = suspend ActivityCtx<EditedBusinessMessageUpdate>.() -> Unit
-typealias OnDeletedBusinessMessagesActivity = suspend ActivityCtx<DeletedBusinessMessagesUpdate>.() -> Unit
-typealias OnPurchasedPaidMediaActivity = suspend ActivityCtx<PurchasedPaidMediaUpdate>.() -> Unit
-
 typealias WhenNotHandledActivity = suspend ProcessedUpdate.() -> Unit
 typealias OnCommandActivity = suspend CommandContext<ProcessedUpdate>.() -> Unit
 typealias OnInputActivity = suspend ActivityCtx<ProcessedUpdate>.() -> Unit
