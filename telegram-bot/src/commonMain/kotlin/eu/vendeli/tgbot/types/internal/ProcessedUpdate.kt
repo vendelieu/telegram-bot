@@ -2,9 +2,6 @@ package eu.vendeli.tgbot.types.internal
 
 import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
 import eu.vendeli.tgbot.types.CallbackQuery
-import eu.vendeli.tgbot.types.msg.Message
-import eu.vendeli.tgbot.types.msg.MessageReactionCountUpdated
-import eu.vendeli.tgbot.types.msg.MessageReactionUpdated
 import eu.vendeli.tgbot.types.PollAnswer
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
@@ -16,6 +13,10 @@ import eu.vendeli.tgbot.types.chat.ChatJoinRequest
 import eu.vendeli.tgbot.types.chat.ChatMemberUpdated
 import eu.vendeli.tgbot.types.inline.ChosenInlineResult
 import eu.vendeli.tgbot.types.inline.InlineQuery
+import eu.vendeli.tgbot.types.media.PaidMediaPurchased
+import eu.vendeli.tgbot.types.msg.Message
+import eu.vendeli.tgbot.types.msg.MessageReactionCountUpdated
+import eu.vendeli.tgbot.types.msg.MessageReactionUpdated
 import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
 import eu.vendeli.tgbot.types.payment.ShippingQuery
 import eu.vendeli.tgbot.types.poll.Poll
@@ -303,8 +304,16 @@ data class RemovedChatBoostUpdate(
     internal companion object : UpdateSerializer<RemovedChatBoostUpdate>()
 }
 
+@Serializable(PurchasedPaidMediaUpdate.Companion::class)
+data class PurchasedPaidMediaUpdate(
+    override val updateId: Int,
+    override val origin: Update,
+    val purchasedPaidMedia: PaidMediaPurchased,
+) : ProcessedUpdate(updateId, origin, UpdateType.PURCHASED_PAID_MEDIA) {
+    internal companion object : UpdateSerializer<PurchasedPaidMediaUpdate>()
+}
+
 inline val ProcessedUpdate.userOrNull: User? get() = (this as? UserReference)?.user
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun ProcessedUpdate.getUser(): User = (this as? UserReference)?.user
-    ?: throw NullPointerException("User not found.")
+inline fun ProcessedUpdate.getUser(): User = userOrNull ?: throw NullPointerException("User not found.")

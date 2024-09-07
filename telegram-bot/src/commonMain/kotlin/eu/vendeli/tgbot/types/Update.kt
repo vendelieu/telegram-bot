@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.chat.ChatJoinRequest
 import eu.vendeli.tgbot.types.chat.ChatMemberUpdated
 import eu.vendeli.tgbot.types.inline.ChosenInlineResult
 import eu.vendeli.tgbot.types.inline.InlineQuery
+import eu.vendeli.tgbot.types.media.PaidMediaPurchased
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.msg.MessageReactionCountUpdated
 import eu.vendeli.tgbot.types.msg.MessageReactionUpdated
@@ -64,6 +65,7 @@ data class Update(
     val callbackQuery: CallbackQuery? = null,
     val shippingQuery: ShippingQuery? = null,
     val preCheckoutQuery: PreCheckoutQuery? = null,
+    val purchasedPaidMedia: PaidMediaPurchased? = null,
     val poll: Poll? = null,
     val pollAnswer: PollAnswer? = null,
     val myChatMember: ChatMemberUpdated? = null,

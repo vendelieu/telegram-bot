@@ -47,6 +47,7 @@ import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
 import eu.vendeli.tgbot.types.internal.PollUpdate
 import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.PurchasedPaidMediaUpdate
 import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
@@ -65,7 +66,6 @@ internal val activitiesType = Map::class.asTypeName().parameterizedBy(
 internal val invocableType = TypeVariableName("Invocable")
 internal val linkQName = Link::class.fullName
 internal val autoWiringClassName = Autowiring::class.asClassName()
-internal val rateLimitsClass = RateLimits::class.asTypeName()
 
 internal val intPrimitiveType = TypeVariableName("int")
 internal val longPrimitiveType = TypeVariableName("long")
@@ -101,6 +101,7 @@ internal val businessConnectionUpdateClass = BusinessConnectionUpdate::class.asT
 internal val businessMessageUpdateClass = BusinessMessageUpdate::class.asTypeName()
 internal val editedBusinessMessageClass = EditedBusinessMessageUpdate::class.asTypeName()
 internal val deletedBusinessMessagesClass = DeletedBusinessMessagesUpdate::class.asTypeName()
+internal val purchasedPaidMediaUpdateClass = PurchasedPaidMediaUpdate::class.asTypeName()
 
 internal val commonMatcherClass = CommonMatcher::class.asTypeName()
 internal val userDataCtx = UserData::class.asTypeName()

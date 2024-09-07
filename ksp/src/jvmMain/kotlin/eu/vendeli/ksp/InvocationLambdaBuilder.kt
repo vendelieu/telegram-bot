@@ -40,6 +40,7 @@ import eu.vendeli.ksp.utils.myChatMemberUpdateClass
 import eu.vendeli.ksp.utils.pollAnswerUpdateClass
 import eu.vendeli.ksp.utils.pollUpdateClass
 import eu.vendeli.ksp.utils.preCheckoutQueryUpdateClass
+import eu.vendeli.ksp.utils.purchasedPaidMediaUpdateClass
 import eu.vendeli.ksp.utils.removedChatBoostUpdateClass
 import eu.vendeli.ksp.utils.shippingQueryUpdateClass
 import eu.vendeli.ksp.utils.shortPrimitiveType
@@ -66,6 +67,7 @@ import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
 import eu.vendeli.tgbot.types.internal.PollUpdate
 import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.PurchasedPaidMediaUpdate
 import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 import kotlin.reflect.KClass
@@ -151,6 +153,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                     businessMessageUpdateClass -> addUpdate(BusinessMessageUpdate::class, nullabilityMark)
                     editedBusinessMessageClass -> addUpdate(EditedBusinessMessageUpdate::class, nullabilityMark)
                     deletedBusinessMessagesClass -> addUpdate(DeletedBusinessMessagesUpdate::class, nullabilityMark)
+                    purchasedPaidMediaUpdateClass -> addUpdate(PurchasedPaidMediaUpdate::class, nullabilityMark)
 
                     in injectableTypes.keys -> {
                         val type = injectableTypes[typeName]!!

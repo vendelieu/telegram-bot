@@ -22,12 +22,14 @@ import eu.vendeli.tgbot.types.internal.MyChatMemberUpdate
 import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
 import eu.vendeli.tgbot.types.internal.PollUpdate
 import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
+import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.PurchasedPaidMediaUpdate
 import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 
 @InternalApi
 @Suppress("CyclomaticComplexMethod")
-fun Update.processUpdate() = when {
+fun Update.processUpdate(): ProcessedUpdate = when {
     message != null -> MessageUpdate(updateId, this, message)
     editedMessage != null -> EditedMessageUpdate(updateId, this, editedMessage)
     channelPost != null -> ChannelPostUpdate(updateId, this, channelPost)
@@ -50,5 +52,6 @@ fun Update.processUpdate() = when {
     businessMessage != null -> BusinessMessageUpdate(updateId, this, businessMessage)
     editedBusinessMessage != null -> EditedBusinessMessageUpdate(updateId, this, editedBusinessMessage)
     deletedBusinessMessages != null -> DeletedBusinessMessagesUpdate(updateId, this, deletedBusinessMessages)
+    purchasedPaidMedia != null -> PurchasedPaidMediaUpdate(updateId, this, purchasedPaidMedia)
     else -> throw IllegalArgumentException("Unknown type of update.")
 }
