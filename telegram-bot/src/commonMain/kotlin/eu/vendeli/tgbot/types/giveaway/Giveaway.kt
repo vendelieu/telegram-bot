@@ -16,7 +16,8 @@ import kotlinx.serialization.Serializable
  * @property hasPublicWinners Optional. True, if the list of giveaway winners will be visible to everyone
  * @property prizeDescription Optional. Description of additional giveaway prize
  * @property countryCodes Optional. A list of two-letter ISO 3166-1 alpha-2 country codes indicating the countries from which eligible users for the giveaway must come. If empty, then all users can participate in the giveaway. Users with a phone number that was bought on Fragment can always participate in giveaways.
- * @property premiumSubscriptionMonthCount Optional. The number of months the Telegram Premium subscription won from the giveaway will be active for
+ * @property prizeStarCount Optional. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only
+ * @property premiumSubscriptionMonthCount Optional. The number of months the Telegram Premium subscription won from the giveaway will be active for; for Telegram Premium giveaways only
  */
 @Serializable
 data class Giveaway(
@@ -28,5 +29,6 @@ data class Giveaway(
     val hasPublicWinners: Boolean? = null,
     val prizeDescription: String? = null,
     val countryCodes: List<String>? = null,
+    val prizeStarCount: Int? = null,
     val premiumSubscriptionMonthCount: Int? = null,
 )

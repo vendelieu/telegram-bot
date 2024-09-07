@@ -5,5 +5,5 @@ package eu.vendeli.tgbot.annotations
  * Only one processing point is possible.
  */
 @Target(AnnotationTarget.FUNCTION)
-@Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.SOURCE)
 annotation class UnprocessedHandler

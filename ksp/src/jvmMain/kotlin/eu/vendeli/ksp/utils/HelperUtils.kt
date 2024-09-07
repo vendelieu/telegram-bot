@@ -13,6 +13,7 @@ import com.squareup.kotlinpoet.ParameterizedTypeName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.STRING
+import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.asTypeName
@@ -46,9 +47,11 @@ import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
 import eu.vendeli.tgbot.types.internal.PollUpdate
 import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.PurchasedPaidMediaUpdate
 import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.internal.chain.ChainingStrategy
 import eu.vendeli.tgbot.types.internal.chain.Link
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.fullName
@@ -63,7 +66,6 @@ internal val activitiesType = Map::class.asTypeName().parameterizedBy(
 internal val invocableType = TypeVariableName("Invocable")
 internal val linkQName = Link::class.fullName
 internal val autoWiringClassName = Autowiring::class.asClassName()
-internal val rateLimitsClass = RateLimits::class.asTypeName()
 
 internal val intPrimitiveType = TypeVariableName("int")
 internal val longPrimitiveType = TypeVariableName("long")
@@ -99,6 +101,7 @@ internal val businessConnectionUpdateClass = BusinessConnectionUpdate::class.asT
 internal val businessMessageUpdateClass = BusinessMessageUpdate::class.asTypeName()
 internal val editedBusinessMessageClass = EditedBusinessMessageUpdate::class.asTypeName()
 internal val deletedBusinessMessagesClass = DeletedBusinessMessagesUpdate::class.asTypeName()
+internal val purchasedPaidMediaUpdateClass = PurchasedPaidMediaUpdate::class.asTypeName()
 
 internal val commonMatcherClass = CommonMatcher::class.asTypeName()
 internal val userDataCtx = UserData::class.asTypeName()
@@ -110,18 +113,7 @@ internal val callbackQueryList = listOf(UpdateType.CALLBACK_QUERY)
 internal val messageList = listOf(UpdateType.MESSAGE)
 internal val notLimitedRateLimits = 0L to 0L
 
-internal fun FileBuilder.addZeroLimitsProp() {
-    addProperty(
-        PropertySpec
-            .builder(
-                "zeroRateLimits",
-                rateLimitsClass,
-                KModifier.PRIVATE,
-            ).apply {
-                initializer("RateLimits(0, 0)")
-            }.build(),
-    )
-}
+internal val ChainingStrategyDefault: TypeName = ChainingStrategy.Default::class.asTypeName()
 
 @Suppress("UNCHECKED_CAST", "NOTHING_TO_INLINE")
 internal inline fun <R> Any?.cast(): R = this as R
@@ -129,8 +121,7 @@ internal inline fun <R> Any?.cast(): R = this as R
 @Suppress("UNCHECKED_CAST", "NOTHING_TO_INLINE")
 internal inline fun <R> Any?.safeCast(): R? = this as? R
 
-internal fun Pair<Long, Long>.toRateLimits(): Any =
-    if (first == 0L && second == 0L) "zeroRateLimits" else RateLimits(first, second)
+internal fun Pair<Long, Long>.toRateLimits(): RateLimits = RateLimits(first, second)
 
 internal fun <T : Annotation> Resolver.getAnnotatedFnSymbols(
     targetPackage: String? = null,
@@ -150,6 +141,23 @@ internal fun <T : Annotation> Resolver.getAnnotatedFnSymbols(
             it.filterIsInstance<KSFunctionDeclaration>()
         }
     }
+
+internal fun CodeBlock.Builder.addVarStatement(
+    prefix: String? = null,
+    postFix: String? = null,
+    builder: MutableList<Pair<String, Any?>>.() -> Unit,
+) {
+    val pairList = buildList(builder)
+
+    val format = buildString {
+        prefix?.also(::append)
+        pairList.forEach {
+            append(it.first)
+        }
+        postFix?.also(::append)
+    }
+    addStatement(format, *pairList.map { it.second }.toTypedArray())
+}
 
 internal fun <T : Annotation> Resolver.getAnnotatedClassSymbols(clazz: KClass<T>, targetPackage: String? = null) =
     if (targetPackage == null) getSymbolsWithAnnotation(clazz.qualifiedName!!).filterIsInstance<KSClassDeclaration>()

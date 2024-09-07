@@ -1,14 +1,19 @@
 package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
+import eu.vendeli.tgbot.core.TgUpdateHandler
+import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.implementations.DefaultGuard
+import eu.vendeli.tgbot.interfaces.helper.ArgumentParser
 import eu.vendeli.tgbot.interfaces.helper.Filter
 import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivityCtx
 import eu.vendeli.tgbot.types.internal.CommandContext
+import eu.vendeli.tgbot.types.internal.ParsedText
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
@@ -33,8 +38,14 @@ internal suspend inline fun KClass<out Guard>.checkIsGuarded(
     return bot.config.classManager
         .getInstance(this)
         .cast<Guard>()
-        .condition(user, update, bot)
+        .checkIsGuarded(user, update, bot)
 }
+
+internal suspend inline fun Guard.checkIsGuarded(
+    user: User?,
+    update: ProcessedUpdate,
+    bot: TelegramBot,
+): Boolean = condition(user, update, bot)
 
 internal suspend inline fun KClass<out Filter>.checkIsFiltered(
     user: User?,
@@ -45,8 +56,34 @@ internal suspend inline fun KClass<out Filter>.checkIsFiltered(
     return bot.config.classManager
         .getInstance(this)
         .cast<Filter>()
-        .match(user, update, bot)
+        .checkIsFiltered(user, update, bot)
 }
+
+internal suspend inline fun Filter.checkIsFiltered(
+    user: User?,
+    update: ProcessedUpdate,
+    bot: TelegramBot,
+): Boolean = match(user, update, bot)
+
+@OptIn(InternalApi::class)
+@Suppress("NOTHING_TO_INLINE")
+internal fun TgUpdateHandler.getParameters(
+    parser: KClass<out ArgumentParser>?,
+    request: ParsedText,
+): Map<String, String> = parser
+    ?.let {
+        if (it.fullName == DefaultArgParser::class.fullName) bot.config.commandParsing.run {
+            defaultArgParser(
+                request.tail,
+                parametersDelimiter,
+                parameterValueDelimiter,
+            )
+        }
+        else bot.config.classManager
+            .getInstance(it)
+            .cast<ArgumentParser>()
+            .parse(request.tail)
+    } ?: emptyMap()
 
 /**
  * Method that tries to find activity in given text and invoke it.
@@ -56,10 +93,9 @@ internal suspend inline fun KClass<out Filter>.checkIsFiltered(
 @Suppress("CyclomaticComplexMethod", "NestedBlockDepth", "ReturnCount")
 private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: ProcessedUpdate): Boolean = update.run {
     // parse text to chosen format
-    val parsedText = text.let { bot.update.parseCommand(it) }
+    val parsedText = bot.update.parseCommand(text)
     logger.debug { "Parsed text - $text to $parsedText" }
     val user = userOrNull
-    val cmdCtx = CommandContext(update, parsedText.params)
 
     // find activity that matches command and invoke it
     functionalActivities.commands[parsedText.command to type]?.run {
@@ -73,6 +109,7 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
         // check for limit exceed
         if (bot.update.checkIsLimited(rateLimits, user?.id, parsedText.command)) return false
         logger.info { "Invoking command $id" }
+        val cmdCtx = CommandContext(update, bot.update.getParameters(argParser, parsedText))
         invocation.invoke(cmdCtx)
         return true
     }
@@ -129,6 +166,7 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
             // check for limit exceed
             if (bot.update.checkIsLimited(rateLimits, user?.id, parsedText.command)) return false
             logger.info { "Invoking command $id" }
+            val cmdCtx = CommandContext(update, bot.update.getParameters(argParser, parsedText))
             invocation.invoke(cmdCtx)
             return true
         }

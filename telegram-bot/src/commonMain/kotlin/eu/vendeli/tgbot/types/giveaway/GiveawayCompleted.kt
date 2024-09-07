@@ -10,10 +10,12 @@ import kotlinx.serialization.Serializable
  * @property winnerCount Number of winners in the giveaway
  * @property unclaimedPrizeCount Optional. Number of undistributed prizes
  * @property giveawayMessage Optional. Message with the giveaway that was completed, if it wasn't deleted
+ * @property isStarGiveaway Optional. True, if the giveaway is a Telegram Star giveaway. Otherwise, currently, the giveaway is a Telegram Premium giveaway.
  */
 @Serializable
 data class GiveawayCompleted(
     val winnerCount: Int,
     val unclaimedPrizeCount: Int? = null,
     val giveawayMessage: Message? = null,
+    val isStarGiveaway: Boolean? = null,
 )

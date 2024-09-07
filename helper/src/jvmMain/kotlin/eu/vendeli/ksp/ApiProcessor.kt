@@ -10,14 +10,21 @@ import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.LambdaTypeName
 import com.squareup.kotlinpoet.ParameterSpec
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import com.squareup.kotlinpoet.UNIT
 import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.core.FunctionalHandlingDsl
+import eu.vendeli.tgbot.types.internal.ActivityCtx
+import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.utils.fullName
 import kotlinx.serialization.json.Json
 import java.io.File
@@ -26,7 +33,7 @@ class ApiProcessor(
     internal val logger: KSPLogger,
     options: Map<String, String>,
 ) : SymbolProcessor {
-    private val apiDir = options["apiDir"]!!
+    private val tgBaseDir = options["tgBaseDir"]!!
     private val utilsDir = options["utilsDir"]!!
     private val apiFile = options["apiFile"]!!
 
@@ -50,7 +57,7 @@ class ApiProcessor(
 
         fileSpec.build().writeTo(File(utilsDir))
         resolver
-            .resolveSymbolsFromDir(apiDir.substringBefore("/types") + "/api")
+            .resolveSymbolsFromDir("$tgBaseDir/api")
             .filter { i ->
                 i.annotations.firstOrNull { it.shortName.getShortName() == "TgAPI" } == null
             }.forEach {
@@ -62,11 +69,13 @@ class ApiProcessor(
 
         @Suppress("UNCHECKED_CAST")
         val types = (
-            resolver.resolveSymbolsFromDir(apiDir) {
+            resolver.resolveSymbolsFromDir("$tgBaseDir/types") {
                 it is KSClassDeclaration && it.classKind != ClassKind.ENUM_CLASS
             } as List<KSClassDeclaration>
         ).asSequence()
         validateTypes(types, apiJson)
+
+        addUpdateEvent2FDSL()
 
         return emptyList()
     }
@@ -97,5 +106,41 @@ class ApiProcessor(
                 .addCode("return ${declaration.qualifiedName!!.asString()}($parametersInlined)")
                 .build(),
         )
+    }
+
+    private fun addUpdateEvent2FDSL() {
+        FileSpec
+            .builder("eu.vendeli.tgbot.utils", "FunctionalDSLUtils")
+            .apply {
+                val fdslType = FunctionalHandlingDsl::class.asTypeName()
+                val blockType = ActivityCtx::class.asTypeName()
+                addImport("eu.vendeli.tgbot.types.internal", "UpdateType")
+                addImport("eu.vendeli.tgbot.utils", "cast")
+
+                UpdateType.entries.forEach { type ->
+                    val funName = type.name
+                        .lowercase()
+                        .snakeToCamelCase()
+                        .beginWithUpperCase()
+                        .replace("EditMessage", "EditedMessage")
+                    val pUpdateType = funName + "Update"
+                    addImport("eu.vendeli.tgbot.types.internal", pUpdateType)
+
+                    val pUpdateTypeClass = ClassName("eu.vendeli.tgbot.types.internal", pUpdateType)
+                    val activityCtxType = blockType.parameterizedBy(pUpdateTypeClass)
+                    val blockTypeRef = LambdaTypeName.get(activityCtxType, returnType = UNIT).copy(suspending = true)
+
+                    addFunction(
+                        FunSpec
+                            .builder("on$funName")
+                            .receiver(fdslType)
+                            .addKdoc("Action that is performed on the presence of $funName in the Update.")
+                            .addParameter(ParameterSpec.builder("block", blockTypeRef).build())
+                            .addCode("functionalActivities.onUpdateActivities[$type] = block.cast()")
+                            .build(),
+                    )
+                }
+            }.build()
+            .writeTo(File(tgBaseDir.replace("eu/vendeli/tgbot", "")))
     }
 }

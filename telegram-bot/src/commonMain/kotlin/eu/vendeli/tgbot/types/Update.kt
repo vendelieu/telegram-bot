@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.chat.ChatJoinRequest
 import eu.vendeli.tgbot.types.chat.ChatMemberUpdated
 import eu.vendeli.tgbot.types.inline.ChosenInlineResult
 import eu.vendeli.tgbot.types.inline.InlineQuery
+import eu.vendeli.tgbot.types.media.PaidMediaPurchased
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.msg.MessageReactionCountUpdated
 import eu.vendeli.tgbot.types.msg.MessageReactionUpdated
@@ -38,6 +39,7 @@ import kotlinx.serialization.Serializable
  * @property callbackQuery Optional. New incoming callback query
  * @property shippingQuery Optional. New incoming shipping query. Only for invoices with flexible price
  * @property preCheckoutQuery Optional. New incoming pre-checkout query. Contains full information about checkout
+ * @property purchasedPaidMedia Optional. A user purchased paid media with a non-empty payload sent by the bot in a non-channel chat
  * @property poll Optional. New poll state. Bots receive only updates about manually stopped polls and polls, which are sent by the bot
  * @property pollAnswer Optional. A user changed their answer in a non-anonymous poll. Bots receive new votes only in polls that were sent by the bot itself.
  * @property myChatMember Optional. The bot's chat member status was updated in a chat. For private chats, this update is received only when the bot is blocked or unblocked by the user.
@@ -64,6 +66,7 @@ data class Update(
     val callbackQuery: CallbackQuery? = null,
     val shippingQuery: ShippingQuery? = null,
     val preCheckoutQuery: PreCheckoutQuery? = null,
+    val purchasedPaidMedia: PaidMediaPurchased? = null,
     val poll: Poll? = null,
     val pollAnswer: PollAnswer? = null,
     val myChatMember: ChatMemberUpdated? = null,

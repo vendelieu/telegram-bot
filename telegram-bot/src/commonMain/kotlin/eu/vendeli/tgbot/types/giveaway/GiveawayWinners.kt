@@ -16,7 +16,8 @@ import kotlinx.serialization.Serializable
  * @property winnerCount Total number of winners in the giveaway
  * @property winners List of up to 100 winners of the giveaway
  * @property additionalChatCount Optional. The number of other chats the user had to join in order to be eligible for the giveaway
- * @property premiumSubscriptionMonthCount Optional. The number of months the Telegram Premium subscription won from the giveaway will be active for
+ * @property prizeStarCount Optional. The number of Telegram Stars that were split between giveaway winners; for Telegram Star giveaways only
+ * @property premiumSubscriptionMonthCount Optional. The number of months the Telegram Premium subscription won from the giveaway will be active for; for Telegram Premium giveaways only
  * @property unclaimedPrizeCount Optional. Number of undistributed prizes
  * @property onlyNewMembers Optional. True, if only users who had joined the chats after the giveaway started were eligible to win
  * @property wasRefunded Optional. True, if the giveaway was canceled because the payment for it was refunded
@@ -31,6 +32,7 @@ data class GiveawayWinners(
     val winnerCount: Int,
     val winners: List<User>,
     val additionalChatCount: Int? = null,
+    val prizeStarCount: Int? = null,
     val premiumSubscriptionMonthCount: Int? = null,
     val unclaimedPrizeCount: Int? = null,
     val onlyNewMembers: Boolean? = null,

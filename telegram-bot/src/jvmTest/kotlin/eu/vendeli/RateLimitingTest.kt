@@ -5,6 +5,7 @@ import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.implementations.TokenBucketLimiterImpl
 import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import eu.vendeli.tgbot.utils.onMessage
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.shouldBe
 import java.util.concurrent.atomic.AtomicInteger

@@ -1,8 +1,8 @@
 package eu.vendeli.tgbot.utils.builders
 
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.msg.EntityType
 import eu.vendeli.tgbot.types.msg.MessageEntity
-import eu.vendeli.tgbot.types.User
 
 /**
  * Entities builder which is used in EntitiesFeature
@@ -17,7 +17,7 @@ class EntitiesBuilder {
      * @property user    User 	Optional. For “text_mention” only, the mentioned user
      * @property language    String 	Optional. For “pre” only, the programming language of the entity text
      */
-    data class EntityData internal constructor(
+    class EntityData internal constructor(
         var url: String? = null,
         var user: User? = null,
         var language: String? = null,

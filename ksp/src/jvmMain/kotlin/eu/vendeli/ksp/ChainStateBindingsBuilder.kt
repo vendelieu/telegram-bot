@@ -46,10 +46,15 @@ fun buildChainStateBindings(
             .toTypeName()
             .copy(true)
 
-        val stateKeyType = l.getAllProperties()
+        val stateKeyType = l
+            .getAllProperties()
             .first {
                 it.simpleName.getShortName() == "state"
-            }.type.resolve().arguments.first().toTypeName()
+            }.type
+            .resolve()
+            .arguments
+            .first()
+            .toTypeName()
 
         keyClasses.add(stateKeyType)
 
@@ -83,11 +88,11 @@ fun buildChainStateBindings(
 
         addFunction(
             FunSpec
-                .builder("getAllState").also {
+                .builder("getAllState")
+                .also {
                     if (keyClass == idLongClass) it.receiver(idLongClass)
                     else it.addParameter("key", keyClass)
-                }
-                .returns(ClassName(packageName, providerName))
+                }.returns(ClassName(packageName, providerName))
                 .addParameter("chain", chainType)
                 .addCode("return $providerName(${if (keyClass == idLongClass) "this" else "key"})")
                 .build(),

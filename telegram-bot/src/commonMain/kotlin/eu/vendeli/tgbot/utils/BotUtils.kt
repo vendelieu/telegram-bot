@@ -4,6 +4,7 @@ package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.core.TgUpdateHandler
+import eu.vendeli.tgbot.interfaces.ctx.ClassManager
 import eu.vendeli.tgbot.types.internal.ExceptionHandlingStrategy
 import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
@@ -19,7 +20,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 import kotlin.reflect.KClass
 
-internal suspend inline fun TgUpdateHandler.coHandle(
+inline fun <reified T : Any> ClassManager.getInstance(vararg initParams: Any?): T? =
+    getInstance(T::class, *initParams) as? T
+
+@InternalApi
+@Suppress("ObjectPropertyName", "ktlint:standard:backing-property-naming")
+expect val _OperatingActivities: Map<String, List<Any?>>
+
+internal inline fun TgUpdateHandler.coHandle(
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
     crossinline block: suspend CoroutineScope.() -> Unit,
 ) = (handlerScope + Job(handlerScope.coroutineContext[Job])).launch(dispatcher) { block() }
@@ -59,9 +67,5 @@ internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T):
 
 @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
 internal inline fun <T> Any?.cast() = this as T
-
-@InternalApi
-@Suppress("ObjectPropertyName", "ktlint:standard:backing-property-naming")
-expect val _OperatingActivities: Map<String, List<Any?>>
 
 internal expect val KClass<*>.fullName: String

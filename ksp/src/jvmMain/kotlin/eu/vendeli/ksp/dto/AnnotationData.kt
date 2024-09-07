@@ -7,4 +7,5 @@ internal data class AnnotationData(
     val rateLimits: Pair<Long, Long>,
     val scope: List<UpdateType>,
     val guardClass: String,
+    val argParserClass: String,
 )

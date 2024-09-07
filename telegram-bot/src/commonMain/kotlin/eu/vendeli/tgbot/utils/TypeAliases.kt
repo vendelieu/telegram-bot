@@ -31,6 +31,7 @@ import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
 import eu.vendeli.tgbot.types.internal.PollUpdate
 import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.PurchasedPaidMediaUpdate
 import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 import eu.vendeli.tgbot.types.internal.SingleInputChain
@@ -62,6 +63,7 @@ typealias OnBusinessConnectionActivity = suspend ActivityCtx<BusinessConnectionU
 typealias OnBusinessMessageActivity = suspend ActivityCtx<BusinessMessageUpdate>.() -> Unit
 typealias OnEditedBusinessMessageActivity = suspend ActivityCtx<EditedBusinessMessageUpdate>.() -> Unit
 typealias OnDeletedBusinessMessagesActivity = suspend ActivityCtx<DeletedBusinessMessagesUpdate>.() -> Unit
+typealias OnPurchasedPaidMediaActivity = suspend ActivityCtx<PurchasedPaidMediaUpdate>.() -> Unit
 
 typealias WhenNotHandledActivity = suspend ProcessedUpdate.() -> Unit
 typealias OnCommandActivity = suspend CommandContext<ProcessedUpdate>.() -> Unit

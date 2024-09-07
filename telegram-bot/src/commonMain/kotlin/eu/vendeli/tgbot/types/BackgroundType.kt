@@ -22,14 +22,14 @@ sealed class BackgroundType(
     @SerialName("fill")
     data class Fill(
         val fill: BackgroundFill,
-        val darkThemeDimming: Int? = null,
+        val darkThemeDimming: Int,
     ) : BackgroundType("fill")
 
     @Serializable
     @SerialName("wallpaper")
     data class Wallpaper(
         val document: Document,
-        val darkThemeDimming: Int? = null,
+        val darkThemeDimming: Int,
         val isBlurred: Boolean? = null,
         val isMoving: Boolean? = null,
     ) : BackgroundType("wallpaper")
@@ -39,7 +39,7 @@ sealed class BackgroundType(
     data class Pattern(
         val document: Document,
         val fill: BackgroundFill,
-        val intensity: Int? = null,
+        val intensity: Int,
         val isInverted: Boolean? = null,
         val isMoving: Boolean? = null,
     ) : BackgroundType("pattern")

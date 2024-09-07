@@ -32,5 +32,6 @@ sealed class ChatBoostSource(
         val giveawayMessageId: Long,
         override val user: User? = null,
         val isUnclaimed: Boolean? = null,
+        val prizeStarCount: Int? = null,
     ) : ChatBoostSource("giveaway")
 }

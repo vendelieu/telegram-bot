@@ -2,13 +2,13 @@
 ktor = "2.3.12"
 redis = "6.4.0.RELEASE"
 logging = "2.0.4"
-logback = "1.5.7"
+logback = "1.5.8"
 
 datetime = "0.6.0"
-serialization = "1.7.1"
-stately = "2.0.7"
+serialization = "1.7.2"
+stately = "2.1.0"
 
-kotlin = "2.0.10"
+kotlin = "2.0.20"
 coroutines = "1.8.1"
 dokka = "1.9.20"
 kotlinter = "4.4.1"
@@ -20,14 +20,14 @@ mockk = "1.13.12"
 kover = "0.8.3"
 krypto = "4.0.10"
 sslcontext = "8.3.6"
-spring = "3.3.2"
+spring = "3.3.3"
 
-ksp = "2.0.10-1.0.24"
+ksp = "2.0.20-1.0.25"
 poet = "1.18.1"
 
 binvalid = "0.16.3"
 publisher = "0.29.0"
-gradle-publish = "1.2.1"
+gradle-publish = "1.2.2"
 env = "1.0.4"
 
 [libraries]

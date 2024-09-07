@@ -16,6 +16,7 @@ import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.utils.fullName
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.boolean
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
@@ -85,7 +86,9 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
         // find json info for method
         val method = allMethods[methodName]
         if (method == null) {
-            logger.exception(IllegalStateException("Api validation gone wrong, no data for method: $methodName"))
+            logger.invalid {
+                "Api validation gone wrong, no data for method: $methodName"
+            }
             return
         }
         method.jsonObject["returns"]!!.jsonArray.let { returns ->
@@ -118,16 +121,24 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
                 )
         }
 
-        method.jsonObject["fields"]?.jsonArray?.forEach {
+        method.jsonObject["fields"]?.jsonArray?.forEach params@{
             val origParameterName = it.jsonObject["name"]!!
                 .jsonPrimitive.content
             val camelParamName = origParameterName.snakeToCamelCase()
-            if (camelParamName != "chatId" && camelParamName !in parameters) {
+            val targetParam = parameters[camelParamName]
+            val isRequired = it.jsonObject["required"]!!.jsonPrimitive.boolean
+            val apiRefLink = method.jsonObject["href"]!!.jsonPrimitive.content
+
+            if (camelParamName != "chatId" && targetParam == null) {
                 logger.warn(
                     "Api parameter `$origParameterName`($camelParamName) " +
-                        "is possibly not present in class $classFullname (method: `$methodName`)\n" +
-                        method.jsonObject["href"]!!.jsonPrimitive.content,
+                        "is probably not present in class $classFullname (method: `$methodName`)\n$apiRefLink",
                 )
+                return@params
+            }
+
+            if (isRequired && targetParam?.isNullable == true) logger.invalid {
+                "Wrong nullability for `$camelParamName` in $classFullname\n$apiRefLink"
             }
         }
         if (!visitedMethods.add(methodName)) logger.warn("Duplicate processing of a method $methodName")

@@ -1,7 +1,7 @@
 {
-  "version": "Bot API 7.9",
-  "release_date": "August 14, 2024",
-  "changelog": "https://core.telegram.org/bots/api#august-14-2024",
+  "version": "Bot API 7.10",
+  "release_date": "September 6, 2024",
+  "changelog": "https://core.telegram.org/bots/api#september-6-2024",
   "methods": {
     "getUpdates": {
       "name": "getUpdates",
@@ -1601,7 +1601,7 @@
             "Integer"
           ],
           "required": true,
-          "description": "The number of Telegram Stars that must be paid to buy access to the media"
+          "description": "The number of Telegram Stars that must be paid to buy access to the media; 1-2500"
         },
         {
           "name": "media",
@@ -1610,6 +1610,14 @@
           ],
           "required": true,
           "description": "A JSON-serialized array describing the media to be sent; up to 10 items"
+        },
+        {
+          "name": "payload",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Bot-defined paid media payload, 0-128 bytes. This will not be displayed to the user, use it for your internal processes."
         },
         {
           "name": "caption",
@@ -5709,7 +5717,7 @@
             "String"
           ],
           "required": true,
-          "description": "Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes."
+          "description": "Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use it for your internal processes."
         },
         {
           "name": "provider_token",
@@ -5929,7 +5937,7 @@
             "String"
           ],
           "required": true,
-          "description": "Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes."
+          "description": "Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use it for your internal processes."
         },
         {
           "name": "provider_token",
@@ -6568,6 +6576,14 @@
           ],
           "required": false,
           "description": "Optional. New incoming pre-checkout query. Contains full information about checkout"
+        },
+        {
+          "name": "purchased_paid_media",
+          "types": [
+            "PaidMediaPurchased"
+          ],
+          "required": false,
+          "description": "Optional. A user purchased paid media with a non-empty payload sent by the bot in a non-channel chat"
         },
         {
           "name": "poll",
@@ -10328,7 +10344,17 @@
       "name": "GiveawayCreated",
       "href": "https://core.telegram.org/bots/api#giveawaycreated",
       "description": [
-        "This object represents a service message about the creation of a scheduled giveaway. Currently holds no information."
+        "This object represents a service message about the creation of a scheduled giveaway."
+      ],
+      "fields": [
+        {
+          "name": "prize_star_count",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "Optional. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only"
+        }
       ]
     },
     "Giveaway": {
@@ -10395,12 +10421,20 @@
           "description": "Optional. A list of two-letter ISO 3166-1 alpha-2 country codes indicating the countries from which eligible users for the giveaway must come. If empty, then all users can participate in the giveaway. Users with a phone number that was bought on Fragment can always participate in giveaways."
         },
         {
+          "name": "prize_star_count",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "Optional. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only"
+        },
+        {
           "name": "premium_subscription_month_count",
           "types": [
             "Integer"
           ],
           "required": false,
-          "description": "Optional. The number of months the Telegram Premium subscription won from the giveaway will be active for"
+          "description": "Optional. The number of months the Telegram Premium subscription won from the giveaway will be active for; for Telegram Premium giveaways only"
         }
       ]
     },
@@ -10460,12 +10494,20 @@
           "description": "Optional. The number of other chats the user had to join in order to be eligible for the giveaway"
         },
         {
+          "name": "prize_star_count",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "Optional. The number of Telegram Stars that were split between giveaway winners; for Telegram Star giveaways only"
+        },
+        {
           "name": "premium_subscription_month_count",
           "types": [
             "Integer"
           ],
           "required": false,
-          "description": "Optional. The number of months the Telegram Premium subscription won from the giveaway will be active for"
+          "description": "Optional. The number of months the Telegram Premium subscription won from the giveaway will be active for; for Telegram Premium giveaways only"
         },
         {
           "name": "unclaimed_prize_count",
@@ -10531,6 +10573,14 @@
           ],
           "required": false,
           "description": "Optional. Message with the giveaway that was completed, if it wasn't deleted"
+        },
+        {
+          "name": "is_star_giveaway",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Optional. True, if the giveaway is a Telegram Star giveaway. Otherwise, currently, the giveaway is a Telegram Premium giveaway."
         }
       ]
     },
@@ -11407,6 +11457,22 @@
           ],
           "required": false,
           "description": "Optional. Number of pending join requests created using this link"
+        },
+        {
+          "name": "subscription_period",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "Optional. The number of seconds the subscription will be active for before the next payment"
+        },
+        {
+          "name": "subscription_price",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "Optional. The amount of Telegram Stars a user must pay initially and after each subsequent subscription period to be a member of the chat using the link"
         }
       ]
     },
@@ -13145,7 +13211,7 @@
       "name": "ChatBoostSourceGiveaway",
       "href": "https://core.telegram.org/bots/api#chatboostsourcegiveaway",
       "description": [
-        "The boost was obtained by the creation of a Telegram Premium giveaway. This boosts the chat 4 times for the duration of the corresponding Telegram Premium subscription."
+        "The boost was obtained by the creation of a Telegram Premium or a Telegram Star giveaway. This boosts the chat 4 times for the duration of the corresponding Telegram Premium subscription for Telegram Premium giveaways and prize_star_count / 500 times for one year for Telegram Star giveaways."
       ],
       "fields": [
         {
@@ -13170,7 +13236,15 @@
             "User"
           ],
           "required": false,
-          "description": "Optional. User that won the prize in the giveaway if any"
+          "description": "Optional. User that won the prize in the giveaway if any; for Telegram Premium giveaways only"
+        },
+        {
+          "name": "prize_star_count",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "Optional. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only"
         },
         {
           "name": "is_unclaimed",
@@ -16705,7 +16779,7 @@
             "String"
           ],
           "required": true,
-          "description": "Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes."
+          "description": "Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use it for your internal processes."
         },
         {
           "name": "provider_token",
@@ -17340,6 +17414,31 @@
         }
       ]
     },
+    "PaidMediaPurchased": {
+      "name": "PaidMediaPurchased",
+      "href": "https://core.telegram.org/bots/api#paidmediapurchased",
+      "description": [
+        "This object contains information about a paid media purchase."
+      ],
+      "fields": [
+        {
+          "name": "from",
+          "types": [
+            "User"
+          ],
+          "required": true,
+          "description": "User who purchased the media"
+        },
+        {
+          "name": "paid_media_payload",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "Bot-specified paid media payload"
+        }
+      ]
+    },
     "RevenueWithdrawalState": {
       "name": "RevenueWithdrawalState",
       "href": "https://core.telegram.org/bots/api#revenuewithdrawalstate",
@@ -17486,6 +17585,14 @@
           ],
           "required": false,
           "description": "Optional. Information about the paid media bought by the user"
+        },
+        {
+          "name": "paid_media_payload",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Optional. Bot-specified paid media payload"
         }
       ],
       "subtype_of": [

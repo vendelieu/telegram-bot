@@ -40,11 +40,11 @@ sealed class ChatMember(
         val canPostMessages: Boolean? = null,
         val canEditMessages: Boolean? = null,
         val canPinMessages: Boolean? = null,
-        val canManageVideoChats: Boolean? = null,
+        val canManageVideoChats: Boolean,
         val canManageTopics: Boolean? = null,
-        val canPostStories: Boolean? = null,
-        val canEditStories: Boolean? = null,
-        val canDeleteStories: Boolean? = null,
+        val canPostStories: Boolean,
+        val canEditStories: Boolean,
+        val canDeleteStories: Boolean,
         val customTitle: String? = null,
     ) : ChatMember("administrator")
 
@@ -63,7 +63,7 @@ sealed class ChatMember(
         val isMember: Boolean,
         val canChangeInfo: Boolean,
         val canInviteUsers: Boolean,
-        val canPinMessages: Boolean? = null,
+        val canPinMessages: Boolean,
         val canSendMessages: Boolean,
         val canSendAudios: Boolean,
         val canSendDocuments: Boolean,
@@ -74,7 +74,7 @@ sealed class ChatMember(
         val canSendPolls: Boolean,
         val canSendOtherMessages: Boolean,
         val canAddWebPagePreviews: Boolean,
-        val canManageTopics: Boolean? = null,
+        val canManageTopics: Boolean,
         @Serializable(InstantSerializer::class)
         val untilDate: Instant,
     ) : ChatMember("restricted")

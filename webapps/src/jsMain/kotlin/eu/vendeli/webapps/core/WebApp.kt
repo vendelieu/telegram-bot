@@ -1,7 +1,7 @@
 package eu.vendeli.webapps.core
 
 import eu.vendeli.webapps.button.BackButton
-import eu.vendeli.webapps.button.MainButton
+import eu.vendeli.webapps.button.BottomButton
 import eu.vendeli.webapps.button.SettingsButton
 import eu.vendeli.webapps.haptic.HapticFeedback
 import eu.vendeli.webapps.invoice.InvoiceClosedInfo
@@ -21,8 +21,9 @@ external class WebApp {
     val platform: String
     val initData: String
     val initDataUnsafe: WebAppInitData
-    val headerColor: String?
-    val backgroundColor: String?
+    val headerColor: String
+    val backgroundColor: String
+    val bottomBarColor: String
     val colorScheme: String
     val themeParams: ThemeParams
     val isExpanded: Boolean
@@ -33,6 +34,7 @@ external class WebApp {
 
     fun setHeaderColor(color: String)
     fun setBackgroundColor(color: String)
+    fun setBottomBarColor(color: String)
     fun enableClosingConfirmation()
     fun disableClosingConfirmation()
     fun enableVerticalSwipes()
@@ -47,7 +49,10 @@ external class WebApp {
     fun shareToStory(mediaUrl: String, params: StoryShareParams? = definedExternally)
 
     @JsName("MainButton")
-    val mainButton: MainButton
+    val mainButton: BottomButton
+
+    @JsName("SecondaryButton")
+    val secondaryButton: BottomButton
 
     @JsName("BackButton")
     val backButton: BackButton

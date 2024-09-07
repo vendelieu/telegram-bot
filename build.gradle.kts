@@ -13,6 +13,10 @@ plugins {
 }
 
 tasks.create("prepareRelease") {
+    dependsOn("telegram-bot:clean")
+    dependsOn("telegram-bot:kspCommonMainKotlinMetadata")
+    dependsOn("telegram-bot:apiCheck")
+
     dependsOn("telegram-bot:kdocUpdate")
     dependsOn("telegram-bot:formatKotlin")
     dependsOn("ktgram-gradle-plugin:formatKotlin")
@@ -20,8 +24,4 @@ tasks.create("prepareRelease") {
 
     dependsOn("ksp:detekt")
     dependsOn("telegram-bot:detekt")
-
-    dependsOn("telegram-bot:clean")
-    dependsOn("telegram-bot:kspCommonMainKotlinMetadata")
-    dependsOn("telegram-bot:apiCheck")
 }

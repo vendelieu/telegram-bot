@@ -21,25 +21,19 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
      * @param to Recipient
      * @param via Instance of the bot through which the request will be made.
      */
-    open suspend fun send(to: String, via: TelegramBot) {
+    suspend fun send(to: String, via: TelegramBot) {
         parameters["chat_id"] = to.toJsonElement()
         doRequest(via)
     }
 
-    open suspend fun send(to: Long, via: TelegramBot) {
+    suspend fun send(to: Long, via: TelegramBot) {
         parameters["chat_id"] = to.toJsonElement()
         doRequest(via)
     }
 
-    open suspend fun send(to: User, via: TelegramBot) {
-        parameters["chat_id"] = to.id.toJsonElement()
-        doRequest(via)
-    }
+    suspend inline fun send(to: User, via: TelegramBot): Unit = send(to.id, via)
 
-    open suspend fun send(to: Chat, via: TelegramBot) {
-        parameters["chat_id"] = to.id.toJsonElement()
-        doRequest(via)
-    }
+    suspend inline fun send(to: Chat, via: TelegramBot): Unit = send(to.id, via)
 
     /**
      * Make a request for action returning its [Response].
@@ -47,26 +41,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
      * @param to Recipient
      * @param via Instance of the bot through which the request will be made.
      */
-    open suspend fun sendAsync(
-        to: Long,
-        via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> {
-        parameters["chat_id"] = to.toJsonElement()
-        return doRequestReturning(via)
-    }
-
-    /**
-     * Make a request for action returning its [Response].
-     *
-     * @param to Recipient
-     * @param via Instance of the bot through which the request will be made.
-     */
-    open suspend fun sendReturning(
-        to: Long,
-        via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = sendAsync(to, via)
-
-    open suspend fun sendAsync(
+    suspend fun sendAsync(
         to: String,
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
@@ -74,34 +49,41 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         return doRequestReturning(via)
     }
 
-    open suspend fun sendReturning(
+    suspend fun sendAsync(
+        to: Long,
+        via: TelegramBot,
+    ): Deferred<Response<out ReturnType>> {
+        parameters["chat_id"] = to.toJsonElement()
+        return doRequestReturning(via)
+    }
+
+    suspend inline fun sendAsync(
+        to: User,
+        via: TelegramBot,
+    ): Deferred<Response<out ReturnType>> = sendAsync(to.id, via)
+
+    suspend inline fun sendAsync(
+        to: Chat,
+        via: TelegramBot,
+    ): Deferred<Response<out ReturnType>> = sendAsync(to.id, via)
+
+    suspend inline fun sendReturning(
         to: String,
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> = sendAsync(to, via)
 
-    open suspend fun sendAsync(
-        to: User,
-        via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> {
-        parameters["chat_id"] = to.id.toJsonElement()
-        return doRequestReturning(via)
-    }
-
-    open suspend fun sendReturning(
-        to: User,
+    suspend inline fun sendReturning(
+        to: Long,
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> = sendAsync(to, via)
 
-    open suspend fun sendAsync(
-        to: Chat,
+    suspend inline fun sendReturning(
+        to: User,
         via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> {
-        parameters["chat_id"] = to.id.toJsonElement()
-        return doRequestReturning(via)
-    }
+    ): Deferred<Response<out ReturnType>> = sendAsync(to.id, via)
 
-    open suspend fun sendReturning(
+    suspend inline fun sendReturning(
         to: Chat,
         via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = sendAsync(to, via)
+    ): Deferred<Response<out ReturnType>> = sendAsync(to.id, via)
 }

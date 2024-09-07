@@ -33,6 +33,7 @@ sealed class TransactionPartner(
         val user: User,
         val invoicePayload: String? = null,
         val paidMedia: List<PaidMedia>? = null,
+        val paidMediaPayload: String? = null,
     ) : TransactionPartner("user")
 
     @Serializable

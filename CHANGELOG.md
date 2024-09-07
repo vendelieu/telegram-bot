@@ -1,344 +1,343 @@
-# Telegram-bot (KtGram) changelog
+# Telegram-bot (KtGram) Changelog
+
+## 7.3.0
+
+* Supported Telegram API [7.10](https://core.telegram.org/bots/api-changelog#september-6-2024)
+* Added option to auto clean state in `@InputChain` as annotation parameter [🔬].
+* Added option to set chaining strategy for `@InputChain` links, to have more control over flow.
+* Added option to set custom argument parser for specific activities (`@CommandHandler`, `@CommonHandler`).
+* Removed special deeplink case handling, now will need to use the basic mechanism (can be caught by ordered parameters).
 
 ### 7.2.2
 
-* Added option to define custom keys for stateful links.
+* Added an option to define custom keys for stateful links.
 
 ### 7.2.1
 
-* Fix ksp applying flow in plugin.
+* Fixed KSP applying flow in the plugin.
 
 ## 7.2.0
 
-* Added new plugin for a more convenient installation of the library.
-* Moved from `ChainStateManager` to `StatefulLink` flow, since it's more convenient.
+* Introduced a new plugin for more convenient library installation.
+* Transitioned from `ChainStateManager` to `StatefulLink` flow for improved convenience.
 
 ## 7.1.0
 
-* Cover Telegram API [7.9](https://core.telegram.org/bots/api#august-14-2024) version.
-* Added `ChainStateManager.getState` extension to give option get state by passing link itself.
+* Supported Telegram API [7.9](https://core.telegram.org/bots/api-changelog#august-14-2024).
+* Added `ChainStateManager.getState` extension to retrieve state via a link.
 
 ### 7.0.1
 
-* Fix ksp generation artifact
+* Fixed KSP generation artifact.
 
-# 7.0.0**
+# 7.0.0
 
 #### Common
 
-* Reorganized internal structure (mostly interfaces and some types), imports may break.
-* Added experimental method `TelegramBot.getInstance` to get instance through defined `ClassManager`.
-* Removed `EnvConfigLoader` from the main module, since it seems not much in demand.
+* Reorganized internal structure (mostly interfaces and some types), potentially breaking imports.
+* Added experimental method `TelegramBot.getInstance` to obtain an instance through `ClassManager`.
+* Removed `EnvConfigLoader` from the main module due to low demand.
 * Added bot parameter to `spring-starter`'s `onInit` hook.
-* Exposed companion objects for `TelegramBot`, `TgUpdateHandler` to give option for static custom extensions.
-* Upgraded jvm target version from `11` > `17`.
+* Exposed companion objects for `TelegramBot` and `TgUpdateHandler` for static custom extensions.
+* Upgraded JVM target version from `11` to `17`.
 
 #### BotContext
 
-* Reworked base methods of `BotContext`, now they're more strongly typed.
-* Renamed `chatData` > `classData` since it's more appropriate functionally.
-* Decoupled `BotContext` (`userData`, `classData`) from bot itself, to set your own implementation there's new
-  annotation `@CtxProvider`.
-* Added operator extensions `get`, `set` for `User` class that coupled with `userData`, i.e., now you
-  can use `user["key"] = "value"`.
+* Reworked base methods of `BotContext` for stronger typing.
+* Renamed `chatData` to `classData` for functional appropriateness.
+* Decoupled `BotContext` (`userData`, `classData`) from the bot.
+  New annotation `@CtxProvider` allows custom implementation.
+* Added operator extensions `get` and `set` for `User` class with `userData`, enabling usage like
+  `user["key"] = "value"`.
 
-#### Fail state handling
+#### Fail State Handling
 
-* Added `exceptionHandlingStrategy` to the `configuration` to have more control over exception handling.
-* Added `throwExOnActionsFailure` to the `configuration` to throw exceptions on api request sending failures.
-* Added `retryOnTooManyRequests()` to the httpClient `configuration`, which returns a `RetryStrategy` that retries on an
-  api request with status `429` given its delay status.
+* Added `exceptionHandlingStrategy` to `configuration` for more control over exception handling.
+* Added `throwExOnActionsFailure` to `configuration` to throw exceptions on API request failures.
+* Added `retryOnTooManyRequests()` to httpClient `configuration`, offering a `RetryStrategy` for API requests with
+  status `429`.
 
 #### Modules
 
-* Updated the method extensions to `TelegramBot` from `ktgram-utils` module, removing the `Sc` postfix and adding all
-  method variations.
-* Added experimental module (jvmOnly) `ktgram-botctx-redis`, `Redis` implementation
-  of `BotContext` (`userData`, `classData`).
-* Added experimental module `ktgram-config-env`, same as removed `EnvConfigLoader` but for all supported platforms.
-* Added experimental module `ktgram-config-toml`, gives an option to configure `TelegramBot` through toml file.
+* Updated method extensions to `TelegramBot` from `ktgram-utils` module, removing `Sc` postfix and adding all
+  variations.
+* Added experimental module (jvmOnly) `ktgram-botctx-redis`, a `Redis` implementation of `BotContext` (`userData`,
+  `classData`).
+* Added experimental module `ktgram-config-env`, similar to the removed `EnvConfigLoader` but for all supported
+  platforms.
+* Added experimental module `ktgram-config-toml`, allowing `TelegramBot` configuration through a TOML file.
 
 #### Other
 
-* Added `logger` to `LoggingConfiguration` where can be any `Logger` interface implementation passed.
-* Added `@InputChain` state manager that will save selected state from update automatically.
-* Added additional api validation for the entire api, fixed typos in several parameters.
+* Added `logger` to `LoggingConfiguration` for any `Logger` interface implementation.
+* Added `@InputChain` state manager for automatic state selection from updates.
+* Enhanced API validation across the project and corrected parameter typos.
 
 ## 6.6.0
 
-* Covered 7.8 telegram api.
+* Supported Telegram API [7.8](https://core.telegram.org/bots/api-changelog#july-31-2024).
 
 ### 6.5.1
 
-* Fixed `httpClient` wrong initialization exception in spring starter.
+* Fixed `httpClient` initialization exception in the spring starter.
 
 ### 6.5.0
 
-* Added `button(...)` function to define button in `answerInlineQuery` options.
-* Added method `toWebhookResponse` to actions to give an option to respond to webhook.
-* Added separate `bot.update.parse(...)`, helpful if you're using webhook responses.
-* Fixed incorrect request url resolution when using multiple bot instances.
-* Added ability to share `httpClient` between instances in ktor starter, spring starter will also use the httClient, if
-  bean is defined.
+* Added `button(...)` function for defining a button in `answerInlineQuery` options.
+* Added `toWebhookResponse` method to actions for webhook responses.
+* Added separate `bot.update.parse(...)` for webhook responses.
+* Fixed incorrect request URL resolution with multiple bot instances.
+* Enabled `httpClient` sharing between instances in ktor starter; spring starter also uses `httpClient` if a bean is
+  defined.
 
 ### 6.4.1
 
-* Fix `SuccessfulPayment` absence of `orderInfo` nullability bug.
+* Fixed `SuccessfulPayment` `orderInfo` nullability bug.
 
 ## 6.4.0
 
-* Change a request url forming scheme, now you can set protocol, plus added `isTestEnv` parameter to turn testing env.
-* Added `bot.update.runExceptionHandler {}` to run ex. handling loop.
-* Added secondary constructors for places where `ImplicitFile` used with `String`, `InputFile` options.
-* Added `.sendReturning()` method (same as `sendAsync()`) for a more understandable flow.
-* Moved `user_id` parameter from `send*` method to constructor
-  in `createNewStickerSet`, `setStickerSetThumbnail`, `uploadStickerFile`, `addStickerToSet`,
-  it wasn't obvious and didn't reflect the telegram api.
-* Improved optional `thumbnail` passing for media (photo, document, etc.) actions.
+* Changed a request URL forming scheme, allowing protocol setting and adding `isTestEnv` parameter for testing
+  environments.
+* Added `bot.update.runExceptionHandler {}` for exception handling loops.
+* Added secondary constructors for `ImplicitFile` with `String` and `InputFile` options.
+* Added `.sendReturning()` method (similar to `sendAsync()`) for clearer flow.
+* Moved `user_id` parameter to constructor in methods like `createNewStickerSet`, reflecting Telegram API more
+  accurately.
+* Improved optional `thumbnail` passing for media actions (photo, document, etc.).
 
 ### 6.3.1
 
 * Fixed `webapp` onEvent handling.
-* Changed `Update` usage in processes to `ProcessedUpdate` (changed also
-  in `bot.handleUpdates()`, `bot.update.caughtExceptions`).
-* Changed in `replyKeyboardMarkup {}` webApp right operand to url string.
+* Changed `Update` usage to `ProcessedUpdate` in processes (also in `bot.handleUpdates()`,
+  `bot.update.caughtExceptions`).
+* Changed `replyKeyboardMarkup {}` webApp right operand to URL string.
 
 ## 6.3.0
 
-* Covered 7.7 api.
+* Supported Telegram API [7.7](https://core.telegram.org/bots/api-changelog#july-7-2024).
 
 ## 6.2.0
 
-* Covered 7.6 telegram api.
+* Supported Telegram API [7.6](https://core.telegram.org/bots/api-changelog#july-1-2024).
 * Added `onInit` hook in spring-boot starter.
-* Fixed a rare issue with sealed structures serialization.
-* Changed parameter for source update in `ProcessedUpdate` from `update` to `origin`, old one is still remains but
-  deprecated.
+* Fixed a rare issue with sealed structure serialization.
+* Changed `ProcessedUpdate` source update parameter from `update` to `origin`; the old one remains but is deprecated.
 
 ### 6.1.1
 
-* Fix `String` always non-nullability issue in ksp processor.
-* Fix `chatData` wrong clearing behavior, even within same class.
-* Change `date` type from long to `Instant` in `RevenueWithdrawalState`, `StarTransaction`.
-* Change `TransactionPartner.User` to `TransactionPartner.UserPartner`, to not confuse base `User` resolving.
-* Added experimental `Collection<>.joinToInlineKeyboard` function to use basic pagination.
+* Fixed `String` non-nullability issue in KSP processor.
+* Fixed `chatData` clearing behavior within the same class.
+* Changed `date` type from long to `Instant` in `RevenueWithdrawalState` and `StarTransaction`.
+* Changed `TransactionPartner.User` to `TransactionPartner.UserPartner` to avoid confusion with base `User` resolution.
+* Added experimental `Collection<>.joinToInlineKeyboard` function for basic pagination.
 
 ## 6.1.0
 
-* Covered 7.5 Telegram api.
+* Supported Telegram API [7.5](https://core.telegram.org/bots/api-changelog#june-18-2024).
 
 ### 6.0.1
 
-* Fix webapp `setParams` immutability.
-* Fix ksp `UpdateType` resolving problem.
-* Fix `photoHeight` missing in `InlineQueryResult`.
+* Fixed webapp `setParams` immutability.
+* Fixed KSP `UpdateType` resolution problem.
+* Fixed `photoHeight` missing in `InlineQueryResult`.
 
 # 6.0.0
 
-* Introduced new `@CommonHandler` which have nested annotations `@CommonHandler.Text`, `@CommonHandler.Regex`
-  with rich configuration.
-* Removed `@RegexCommandHandler` since it can be fully replaced with `@CommonHandler.Regex`.
-* Changed guard interface from `Filter` to `Guard` since `@CommonHandler` have filtering mechanics.
+* Introduced `@CommonHandler` with nested annotations `@CommonHandler.Text` and `@CommonHandler.Regex` for rich
+  configuration.
+* Removed `@RegexCommandHandler`, replaced by `@CommonHandler.Regex`.
+* Changed guard interface from `Filter` to `Guard` due to `@CommonHandler` filtering mechanics.
 
 ## 5.5.0
 
-* Added new guard mechanism to `@CommandHandler` (+`@CallbackQuery`), `@InputHandler` to make checks before processing.
+* Added new guard mechanism to `@CommandHandler` (+`@CallbackQuery`) and `@InputHandler` for pre-processing checks.
 * Added `beforeAction` and `afterAction` hooks to `ChainLink`. #153
-* Added `ksp2` support, add `ksp.useKSP2=true` in gradle.properties to turn on.
-* Fixed missing `chatId` in action `BusinessExt`.
-* Fixed `TgUpdateHandler` logging level mismatching. #149
+* Added `ksp2` support; enable with `ksp.useKSP2=true` in gradle.properties.
+* Fixed missing `chatId` in `BusinessExt` action.
+* Fixed `TgUpdateHandler` logging level mismatch. #149
 * Fixed `replyKeyboardMarkup` missing option changes. #152
-* Covered Telegram `7.4` api version.
+* Supported Telegram API [7.4](https://core.telegram.org/bots/api-changelog#may-28-2024).
 
 ## 5.4.0
 
-* Covered 7.3 telegram api.
-* Added ability to use own implementation of `ChainLink` in `InputChain`.
+* Supported Telegram API [7.3](https://core.telegram.org/bots/api-changelog#may-6-2024).
+* Enabled custom `ChainLink` implementation in `InputChain`.
 * Improved Spring starter configuration.
-* Removed old methods of `ListingBuilder` for multiple elements, now use `addAll()`.
+* Removed old `ListingBuilder` methods for multiple elements; use `addAll()`.
 * Added new builder for `sendPoll`/`poll` options.
 
 ### 5.3.2
 
-* Fix `EntitiesContextualBuilder` bug.
+* Fixed `EntitiesContextualBuilder` bug.
 
 ### 5.3.1
 
-* Fixed the wrong class manager passed to spring starter configuration.
-* Added ability to manually configure instances.
+* Fixed incorrect class manager in spring starter configuration.
+* Enabled manual instance configuration.
 
 ## 5.3.0
 
-* Fixed bug with throwing exception in ActionExt(Inline, Business).
-* Added parameter to `@RegexCommandHandler` to pass regex options.
-* Added experimental Spring starter.
+* Fixed exception throwing bug in `ActionExt(Inline, Business)`.
+* Added parameter to `@RegexCommandHandler` for regex options.
+* Introduced experimental Spring starter.
 
 ## 5.2.0
 
-* Added `ktor-starter` module for a quick webhook server setup.
+* Added `ktor-starter` module for quick webhook server setup.
 * Added `identifier` parameter for `TelegramBot` instance.
-* Changed `kotlinx-datetime` to transitive dependency, since its entities used in parameters.
-* Returned a missing inline mode action extension for `getGameHighScores` method.
-* Added `inputAutoRemoval` parameter to configuration, for more precise control of inputListener flow.
-* Added missing 7.2 api `BiometricManager` to webapps.
+* Changed `kotlinx-datetime` to transitive dependency due to its use in parameters.
+* Restored a missing inline mode action extension for `getGameHighScores` method.
+* Added `inputAutoRemoval` parameter to configuration for precise `inputListener` flow control.
+* Added missing 7.2 API `BiometricManager` to webapps.
 
 ## 5.1.0
 
-* Fixed multipart requests data redundant quotation.
-* Returned `logback` as logger for `jvm` target.
+* Fixed redundant quotation in multipart requests.
+* Restored `logback` as logger for JVM target.
 * Moved inline mode methods to extension interface from separate `InlinableAction`.
-* Added `Any` upperbounds for `Autowiring` interface to avoid wrong behavior.
-* Covered 7.2 TelegramApi changes.
+* Added `Any` upper bounds for `Autowiring` interface to prevent incorrect behavior.
+* Supported Telegram API [7.2](https://core.telegram.org/bots/api-changelog#march-31-2024) changes.
 
 ### 5.0.5
 
-* Fix nullable type resolving issue for `Autowiring` mechanics.
-* Changed default ktor engine to java-http.
+* Fixed nullable type resolution issue in `Autowiring` mechanics.
+* Changed default Ktor engine to java-http.
 
 ### 5.0.4
 
-* Remove lazy structures that cause performance issues
+* Removed lazy structures causing performance issues.
 
 ### 5.0.3
 
-* Fix `user` parameter missing in functional handlers.
+* Fixed missing `user` parameter in functional handlers.
 
 ### 5.0.2
 
-* Fix ksp processor for regex handlers. #106
-* Fix ksp processor InputHandler and RegexHandler RateLimits collecting.
+* Fixed KSP processor for regex handlers. #106
+* Fixed KSP processor `InputHandler` and `RegexHandler` rate limits collection.
 
 ### 5.0.1
 
 * Changed internal modifier for `context {}` config section. #103
-* Fixed annotation processing error in ksp processor for non-jvm modules.
+* Fixed annotation processing error in KSP processor for non-JVM modules.
 * Added basic `ClassManager` for Kotlin Native target.
 
 # 5.0.0
 
-* Moved the library to kotlin multiplatform with `jvm`/`js`/`native` goals. Experimental at the moment.
-* Serialization library replaced with `kotlinx-serialization`.
-* Logging utility changed.
+* Transitioned a library to Kotlin Multiplatform with `jvm`/`js`/`native` goals (experimental).
+* Replaced a serialization library with `kotlinx-serialization`.
+* Updated logging utility.
 * Added webapp module.
-* Moved message-related methods to a separate package (your imports could be broken).
+* Moved message-related methods to a separate package (imports may be broken).
 
 ### 4.3.1
 
-* Fix coroutines space overconsumption bug.
+* Fixed coroutines space overconsumption bug.
 
 ## 4.3.0
 
-* Changed naming of internal components.
-    * `Action` (annotated entities) is now `Activity`, not to be confused with actions that form requests.
-    * `ManualHandling` > `FunctionalHandling` - for better understanding.
-* Added shortcut to `onFailure` method on `Deferred`, for consistency of approach.
-* Added logging of the `Activity` list during the initialization phase.
-* Internal structure of `FunctionalHandling` has been improved.
-* Improved flow of coroutines in long polling mode, added request timeout in configuration, \
-  see `updatesListener` block in configuration.
-* Retry processing in the client has been improved, so it doesn't repeat all requests (e.g., 400 status),
-  only the necessary ones.
-* The type of the parameter `messageThreadId` has been changed to `Int`, as it better represents the data.
-* The base scope of commands for friendliness towards beginners and better understanding has been
-  changed to just `UpdateType.Message`. In other words, by default, it will have similar behavior to other types of
-  libraries.
+* Renamed internal components:
+    * `Action` (annotated entities) is now `Activity`, to avoid confusion with request-forming actions.
+    * `ManualHandling` is now `FunctionalHandling` for clarity.
+* Added `onFailure` shortcut method on `Deferred` for consistency.
+* Logged `Activity` list during initialization.
+* Improved internal structure of `FunctionalHandling`.
+* Enhanced coroutine flow in long polling mode; added request timeout in configuration (`updatesListener` block).
+* Improved retry processing in a client to avoid unnecessary request repetition (e.g., status 400).
+* Changed `messageThreadId` parameter type to `Int` for better data representation.
+* Simplified base scope of commands to `UpdateType.Message` for beginner friendliness.
 
 ### 4.2.1
 
 * Removed unnecessary `bot.addAutowiringObject` method.
-* Enhanced `userData`/`chatData` get method with generic wrapped with catching for safety.
-* Added `allowedUpdates` for long-polling since it necessary for getting special type updates.
-* Fixed `giveawayMessageId` type: `Int` > `Long`.
-* Added `replyParameters(messageId, block: ReplyParameters.() -> Unit)` fun-shortcut for changing replyParameters.
-* Optimized action internal type inference.
+* Enhanced `userData`/`chatData` get method with generic wrapping for safety.
+* Added `allowedUpdates` for long-polling to receive special updates.
+* Fixed `giveawayMessageId` type: `Int` to `Long`.
+* Added `replyParameters(messageId, block: ReplyParameters.() -> Unit)` shortcut for modifying reply parameters.
+* Optimized internal type inference for actions.
 
 ## 4.2.0
 
 * Added `send` method for `Chat` to `Action<>`.
-* Changed ambiguous for `User`/`Chat`
-  names: `MessageOrigin` (`User` > `UserOrigin`, `Chat` > `ChatOrigin`), `BotCommandScope.Chat` >
-  `BotCommandScope.ChatScope`.
-* Enhanced `linkPreviewOptions`: Introduced `disableWebPagePreview()` for easier disabling, and `linkPreviewOptions{}`
-  for setting through lambda.
-* Improved sealed class structure for better accessibility to general
-  parameters (`MaybeInaccessibleMessage`, `MessageOrigin`, `ChatBoostSource`, `ChatMember`).
-* Removed ReflectionHandler as CodegenHandler has proven effective.
-* Changed long-polling handling, separated updates collecting and handling.
-* Returned `coroutines` dependency as transitive, since it makes inconvenience in `sendAsync` methods process.
-* Add `getOrNull()` method for `Deferred<Response<T>>` to lower verbosity for handling.
-* Set default names for media methods using ByteArray and File to prevent incorrect API behavior when unset.
-* Changed `botLogLevel` type to new proxy enum `LogLvl` since `logback` it's not transitive more.
+* Renamed ambiguous `User`/`Chat` names:
+    * `MessageOrigin` (`User` to `UserOrigin`, `Chat` to `ChatOrigin`)
+    * `BotCommandScope.Chat` to `BotCommandScope.ChatScope`
+* Enhanced `linkPreviewOptions`: Introduced `disableWebPagePreview()` and `linkPreviewOptions{}` for lambda setting.
+* Improved sealed class structure for better accessibility to general parameters (`MaybeInaccessibleMessage`,
+  `MessageOrigin`, `ChatBoostSource`, `ChatMember`).
+* Removed `ReflectionHandler` as `CodegenHandler` is effective.
+* Separated updates collection and handling in long-polling.
+* Restored `coroutines` dependency as transitive for `sendAsync` methods.
+* Added `getOrNull()` method for `Deferred<Response<T>>` to reduce verbosity.
+* Set default names for media methods using `ByteArray` and `File` to prevent incorrect API behavior.
+* Changed `botLogLevel` type to new proxy enum `LogLvl` since `logback` is not transitive.
 
 ## 4.1.0
 
-* Added shortcut annotation for `CallbackQuery` handling > `@CommandHandler.CallbackQuery` (or you can import it and use
-  without a prefix).
-* Changed all date fields that represent timestamp to `Instant` and `Duration` when it's period.
-* Changed structure of `caughtExceptions` event from `Pair` to `FailedUpdate`.
-* Changed `logback`, `coroutines` from api-dependency to implementation-dependency (i.e., not transitive now).
-* Covered Telegram API `7.0` version.
+* Introduced `@CommandHandler.CallbackQuery` shortcut annotation (or import without a prefix).
+* Changed all date fields representing timestamps to `Instant` and periods to `Duration`.
+* Changed `caughtExceptions` event structure from `Pair` to `FailedUpdate`.
+* Changed `logback` and `coroutines` from API dependency to implementation-dependency (non-transitive).
+* Supported Telegram API 7.0.
 
 ### 4.0.1
 
-* Fix parsing annotations bug when parameters are not well-ordered.
+* Fixed parsing annotations bug with unordered parameters.
 
 # 4.0.0
 
-* Added the ability to collect actions in compile time.
-* Improved support of input chains in annotation mode.
-* Added support for all scopes for commands.
-* Added ability to pass all subclasses of `ProcessedUpdate` in new codegen update handler.
-* Improved signature of `copyMessage`, `forwardMessage`, `banChatSenderChat`, `unbanChatSenderChat` methods.
+* Enable an action collection at compile time.
+* Enhanced support for input chains in annotation mode.
+* Supported all command scopes.
+* Allowed all `ProcessedUpdate` subclasses in new codegen update handler.
+* Improved signatures of methods like `copyMessage`, `forwardMessage`, `banChatSenderChat`, `unbanChatSenderChat`.
 
 ## 3.5.0
 
-* Added infix functions to `EntitiesBuilder` (which is used in features by `caption {}` and `entities {}`).
-* Added infix function to the builder used in `setMyCommands` for ease of adding a command.
-* Changed the function for methods `answerInlineQuery`, `answerShippingQuery`, `poll`, `setPassportDataErrors` that
-  used `array`/`list` to collect elements, added a new `ListingBuilder`, for convenience of adding enumerable elements.
-* Wherever `userId` is used in function-methods, shortcuts using `User` have been added.
-* For those methods where the `send*` keyword in the function name was omitted, the method shortcuts are added.
-* Refactored the internal structure of actions and features.
+* Added infix functions to `EntitiesBuilder` (used in `caption {}` and `entities {}`).
+* Added infix function to builder used in `setMyCommands` for easier command addition.
+* Changed methods like `answerInlineQuery`, `answerShippingQuery`, `poll`, `setPassportDataErrors` to use
+  `ListingBuilder` for convenience.
+* Added `User` shortcuts where `userId` is used in function-methods.
+* Added method shortcuts where the `send*` keyword was omitted.
+* Refactored internal structure of actions and features.
 
 ## 3.4.0
 
-* Added `InputChaining` in annotation mode as experimental feature.
-* Added `additionalHeaders` that will be applied to requests to `HttpConfiguration`
-    * (maybe useful for authorization via socks proxy)
-* Added `Deffered<Response<T>>.foldResponse()` function to handle async responses.
+* Added `InputChaining` in annotation mode as an experimental feature.
+* Added `additionalHeaders` for requests in `HttpConfiguration` (useful for socks proxy authorization).
+* Added `Deffered<Response<T>>.foldResponse()` function for async responses.
 
 ### 3.3.1
 
-* Added ability to use proxy. See `httpClient{}` section in bot configuration.
+* Enabled proxy usage. See `httpClient{}` section in bot configuration.
 
 ## 3.3.0
 
-* Fixed bug with missing media within an input handling process.
-* Moved rate limit mechanism setting and its general limits to one configuration section `rateLimiter{}`, also now you
-  can set rate exceeded action in configuration.
-* Added new convenient shortcuts for `InputListener` and `BotContext` interfaces.
-* Little internal code optimizations + lib versions bumps.
+* Fixed missing media in an input handling process.
+* Consolidated rate limit mechanism settings into `rateLimiter{}` configuration; set rate exceeded action in
+  configuration.
+* Added convenient shortcuts for `InputListener` and `BotContext` interfaces.
+* Minor internal code optimizations and library version updates.
 
 ## 3.2.0
 
-* Added the fields `fromRequest` and `fromAttachmentMenu` to the class `WriteAccessAllowed`.
-* Added the new administrator privileges `canPostStories`, `canEditStories` and `canDeleteStories` to the
-  classes `ChatMember.Administrator` and `ChatAdministratorRights`.
-* Added the parameters `canPostStories`, `canEditStories` and `canDeleteStories` to the method `promoteChatMember()`.
+* Added `fromRequest` and `fromAttachmentMenu` fields to `WriteAccessAllowed`.
+* Added new admin privileges `canPostStories`, `canEditStories`, and `canDeleteStories` to `ChatMember.Administrator`
+  and `ChatAdministratorRights`.
+* Added `canPostStories`, `canEditStories`, and `canDeleteStories` parameters to `promoteChatMember()`.
 
 ## 3.1.0
 
-* Changed `Autowiring` and `ClassManager` interfaces to fun interfaces.
-* Added extensions to `ProcessedUpdate` class.
-    * parameter `userOrNull` which returns `User` or `null` :)
-    * function `getUser` which returns `User` or throws NPE.
-      (it's actually nullable only in rare cases, but anyway, use it
-      with caution)
+* Changed `Autowiring` and `ClassManager` interfaces to functional interfaces.
+* Added extensions to `ProcessedUpdate` class:
+    * `userOrNull` returns `User` or `null`.
+    * `getUser` returns `User` or throws NPE (nullable in rare cases; use with caution).
 * Added shortcut functions to `Markup` interfaces for `InlineKeyboardMarkup`, `ReplyKeyboardMarkup`, `ForceReply`.
 
 ### 3.0.4
 
-* Improved signatures of some sticker-set and chat related methods.
+* Improved signatures of some sticker-set and chat-related methods.
 
 ### 3.0.3
 
@@ -346,173 +345,163 @@
 
 ### 3.0.2
 
-* Make manual handling flow similar to annotation regarding regex processing.
+* Aligned manual handling flow with annotation regarding regex processing.
 
 ### 3.0.1
 
-* Fixed behavior when no action was found and regex processing threw an exception if the received message did not match.
+* Fixed behavior when no action was found, and regex processing threw an exception if the message did not match.
 
 # 3.0.0
 
-* Added ability for lib to catch actions in top level functions and object functions.
-* Fixed wrong action bugs in forum related actions.
+* Enabled lib to catch actions in top-level and object functions.
+* Fixed wrong action bugs in forum-related actions.
 * Fixed `GetGameHighScores`, `GetMyShortDescription` methods.
-* Changed `Recipient` class that used in some action to `Identifier`
-* Covered `6.8` version of Tg Api.
-    * Added new method `unpinAllGeneralForumTopicMessages.`.
-    * Added new field `story` to `Message`.
-    * Added new field `emojiStatusExpirationDate` to `Chat`.
-    * Added new field `voterChat` to `PollAnswer`.
+* Changed `Recipient` class to `Identifier`.
+* Supported `6.8` version of Telegram API:
+    * Added `unpinAllGeneralForumTopicMessages` method.
+    * Added `story` field to `Message`.
+    * Added `emojiStatusExpirationDate` to `Chat`.
+    * Added `voterChat` to `PollAnswer`.
 
 ## 2.9.0
 
-* Added new annotation `RegexCommandHandler` for handling regex commands.
-* Changed `MagicObject` into `Autowiring` for better understanding.
-* Added ability for passing `MessageUpdate` and `CallbackQueryUpdate` into function (instead more
-  generic `ProcessedUpdate`, passing which is also possible).
+* Added `RegexCommandHandler` annotation for regex commands.
+* Changed `MagicObject` to `Autowiring` for clarity.
+* Enabled passing `MessageUpdate` and `CallbackQueryUpdate` into function (in addition to `ProcessedUpdate`).
 
 ### 2.8.1
 
-* Bumped dependencies versions
-* Little internal logic improvements
+* Updated dependencies versions.
+* Minor internal logic improvements.
 
 ## 2.8.0
 
-#### Telegram Api related changes
+#### Telegram API Changes
 
-* Change `switchPmText` `switchPmParameter` to `button` with `InlineQueryResultsButton` in `answerInlineQuery`.
-* Added the field `webAppName` to the class `WriteAccessAllowed`.
-* Added the ability to set different bot names for different user languages using the method `setMyName`.
-* Added the ability to get the current bot name in the given language as the class `BotName` using the
-  method `getMyName`.
-* Added the field `switchInlineQueryChosenChat` of the type `SwitchInlineQueryChosenChat` to the
-  class `InlineKeyboardButton`.
-* Added the field `viaChatFolderInviteLink` to the class `ChatMemberUpdated`.
+* Changed `switchPmText` and `switchPmParameter` to `button` with `InlineQueryResultsButton` in `answerInlineQuery`.
+* Added `webAppName` field to `WriteAccessAllowed`.
+* Enabled setting different bot names for different user languages using `setMyName`.
+* Added method `getMyName` to retrieve current bot name in a given language as `BotName`.
+* Added `switchInlineQueryChosenChat` field to `InlineKeyboardButton`.
+* Added `viaChatFolderInviteLink` field to `ChatMemberUpdated`.
 
-#### Bot improvements
+#### Bot Improvements
 
-* Deleted deprecated `Bot*` prefix for Context interfaces. #22
+* Removed deprecated `Bot*` prefix from Context interfaces. #22
 * Added default implementation for context interfaces based on `ConcurrentHashMap`. #25
-* Make `MagicObject.get` function suspendable. #19
-* Add scope parameter for manual commands. #20
-* Add additional parsing for a deeplink case.
+* Made `MagicObject.get` function suspendable. #19
+* Added scope parameter for manual commands. #20
+* Added additional parsing for deeplink cases.
 
 ### 2.7.4
 
-* Fix `Voice` wrong parameter type.
-* Fix `ForceReply` wrong parameter name.
+* Fixed `Voice` wrong parameter type.
+* Fixed `ForceReply` wrong parameter name.
 
 ### 2.7.3
 
-* Swap parameters in `chatAction` method for better interface.
+* Swapped parameters in `chatAction` method for better interface.
 * Exposed `Update.processUpdate()` method.
-* Improved logging (better layer separation, error notification even in silent mode).
-* Make `restrictSpacesInCommands` - `false` by default.
-* Add missing `switchInlineQueryCurrentChat` parameter to `InlineKeyboardButton`.
+* Enhanced logging (better layer separation, error notification even in silent mode).
+* Made `restrictSpacesInCommands` `false` by default.
+* Added missing `switchInlineQueryCurrentChat` parameter to `InlineKeyboardButton`.
 * Fixed `ManualDsl.whenNotHandled`.
 * Fixed `InputChaining` logic.
-* Refactor and improve commandParsing logic.
+* Refactored and improved command parsing logic.
 
 ### 2.7.2
 
-* Reworked `ProcessedUpdate` to sealed structure for more consistency.
-* Deprecated Bot* prefix of contextual interfaces to use them without prefix.
-* Added new `scope` parameter to `@CommandHandler` annotation, to be able to isolate the processing.
+* Reworked `ProcessedUpdate` to a sealed structure for consistency.
+* Deprecated `Bot*` prefix for contextual interfaces.
+* Added new `scope` parameter to `@CommandHandler` annotation for isolated processing.
 
 ### 2.7.1
 
-* Added new `ConfigLoader` interface and ability to initialize a `TelegramBot` instance through it.
-  The default implementation of configuring via environment variables is present.
-* A lowered version of the reflection library, due to problems with finding actions on some environments.
+* Added `ConfigLoader` interface and ability to initialize a `TelegramBot` instance through it.
+* Lowered reflection library version due to action-finding issues in some environments.
 
 ## 2.7.0
 
-#### Telegram Api related changes
+#### Telegram API Changes
 
-* Add `setMyDescription`, `getMyDescription`, `setMyShortDescription`, `getMyShortDescription` methods.
-* Add `emoji` parameter to `sendSticker`.
-* Add sticker set related methods and add support of `webp` format.
-* Renamed `thumb` to `thumbnail` in places where it was present.
+* Added methods `setMyDescription`, `getMyDescription`, `setMyShortDescription`, `getMyShortDescription`.
+* Added `emoji` parameter to `sendSticker`.
+* Added sticker set related methods and `webp` format support.
+* Renamed `thumb` to `thumbnail` where applicable.
 
-#### Bot improvements
+#### Bot Improvements
 
-* Add new contextual entities building.
+* Added new contextual entities building.
 * Renamed `CallbackParam` annotation to `ParamMapping`.
-* Reorganized types structure (some imports may have broken because of it).
-* Unnecessary elements (parameters, options etc.) from actions have been hidden from the user interface.
+* Reorganized types structure (some imports may be broken).
+* Hid unnecessary elements (parameters, options, etc.) from the user interface.
 
 ## 2.6.0
 
-#### Telegram Api related changes
+#### Telegram API Changes
 
-* Added the class `KeyboardButtonRequestUser` and the field `requestUser` to the class `KeyboardButton`.
-* Added the class `KeyboardButtonRequestChat` and the field `requestChat` to the class `KeyboardButton`.
-* Added the classes `UserShared`, `ChatShared` and the fields `userShared`, and `chatShared` to the class `Message`.
-* Replaced the fields `canSendMediaMessages` in the classes `ChatMemberRestricted` and `ChatPermissions`
-  with separate fields `canSendAudios`, `canSendDocuments`, `canSendPhotos`, `canSendVideos`, `canSendVideoNotes`,
-  and `canSendVoiceNotes` for different media types.
-* Added the parameter `useIndependentChatPermissions` to the methods `restrictChatMember` and `setChatPermissions`.
-* Added the field `userChatId` to the class `ChatJoinRequest`.
+* Added `KeyboardButtonRequestUser` class and `requestUser` field to `KeyboardButton`.
+* Added `KeyboardButtonRequestChat` class and `requestChat` field to `KeyboardButton`.
+* Added `UserShared`, `ChatShared` classes and `userShared`, `chatShared` fields to `Message`.
+* Replaced `canSendMediaMessages` in `ChatMemberRestricted` and `ChatPermissions` with separate fields for different
+  media types.
+* Added `useIndependentChatPermissions` parameter to `restrictChatMember` and `setChatPermissions`.
+* Added `userChatId` field to `ChatJoinRequest`.
 
-#### Bot internal improvements
+#### Bot Internal Improvements
 
-* Add new `UpdateHandler` annotation to handle update events.
-* Improved command parsing mechanism and make it more flexible and configurable.
-  See `commandParsing` section of bot configuration.
-* Upgrade dependencies versions:
+* Added `UpdateHandler` annotation for update events.
+* Improved command parsing mechanism for flexibility and configurability (see `commandParsing` in bot configuration).
+* Updated dependencies:
     * `Jackson`: `2.14.1` -> `2.14.2`
     * `Ktor`: `2.2.1` -> `2.2.3`
     * `Kotlin`: `1.8.0` -> `1.8.10`
 
 ### 2.5.4
 
-* Fix test and improve `inputChain` logic.
+* Fixed and improved `inputChain` logic.
 
 ### 2.5.3
 
-* Add repeat parameter for `InputChain.breakIf()`
+* Added repeat parameter for `InputChain.breakIf()`.
 
 ### 2.5.2
 
-* Add a new method for defining behavior of update processing.
-  to avoid redefining in webhook processing.
+* Added method for update processing behavior definition to avoid redefinition in webhook processing.
 
 ### 2.5.1
 
-* Add method for only text buttons into `replyKeyboardButton()` builder.
-* Fix not passing isPersistent parameter in `replyKeyboardMarkup()` builder.
-* Pass `Update` next to exception in `TelegramUpdateHandler.caughtExceptions`.
+* Added text button method to `replyKeyboardButton()` builder.
+* Fixed `isPersistent` parameter passing in `replyKeyboardMarkup()` builder.
+* Passed `Update` next to exception in `TelegramUpdateHandler.caughtExceptions`.
 
 ## 2.5.0
 
-#### Telegram Api related changes
+#### Telegram API Changes
 
-* Add the field `isPersistent` to the class `ReplyKeyboardMarkup`.
-* Add `hasSpoiler` to `photo()` `video()` `animation()` options and into `InputMedia.Photo` `InputMedia.Video`
-  `InputMedia.Animation`. Also `hasMediaSpoiler` to `Message`.
-* Add `hasHiddenMembers`, `hasAggressiveAntiSpamEnabled` parameters to `Chat`.
-* Add messageThreadId parameter to `chatAction()`.
-* Add `forumTopicEdited`, `generalForumTopicHidden`, `generalForumTopicUnhidden`, `writeAccessAllowed` to `Message`.
-* Add topic management methods.
+* Added `isPersistent` field to `ReplyKeyboardMarkup`.
+* Added `hasSpoiler` to `photo()`, `video()`, `animation()` options and `InputMedia.Photo`, `InputMedia.Video`,
+  `InputMedia.Animation`. Also added `hasMediaSpoiler` to `Message`.
+* Added `hasHiddenMembers`, `hasAggressiveAntiSpamEnabled` parameters to `Chat`.
+* Added `messageThreadId` parameter to `chatAction()`.
+* Added `forumTopicEdited`, `generalForumTopicHidden`, `generalForumTopicUnhidden`, `writeAccessAllowed` to `Message`.
+* Added topic management methods.
 
-#### Bot internal improvements
+#### Bot Internal Improvements
 
-* Deleted some too verbose constructors of `ReplyKeyboardMarkup`.
-* Created new convenient DSL for creating markup - `replyKeyboardMarkup()`, similar to an inline keyboard version, see
-  examples in wiki.
-* A new parameter `TelegramUpdateHandler.caughtExceptions` was introduced, where centralized caught errors will be sent.
-  Exceptions that occurred during manual update processing are now also intercepted.
-* Changed `invoice()`(`sendInvoice`), `createInvoiceLink`(`createInvoiceLink`) parameters defining by moving it to
-  lambda. For more convenience and less verbosity.
-* Changed `createNewStickerSet()`(`createNewStickerSet`) parameters defining by moving it to lambda.
-* Improved entity defining in `EntitiesBuilder` moving optional parameters to lambda.
-* Add generics to `BotContext`(`chatData`, `userData`) interfaces.
-* Deleted private `Update` extensions for handling and move string update handling to new
-  function `TelegramUpdateHandler.parseAndHandle`.
-* Add some update listener configuring variables to `TelegramBot.botConfiguration` - `updatesListener()`.
-* Moved `BotContext`(`chatData`, `userData`) configuring to `TelegramBot.botConfiguration` - `context()`.
-  And now they are not null, but you can get an exception if you try to access without setting.
-* Upgrade dependencies versions:
+* Deleted verbose `ReplyKeyboardMarkup` constructors.
+* Created `replyKeyboardMarkup()` DSL for markup creation, similar to an inline keyboard version (see wiki for
+  examples).
+* Introduced `TelegramUpdateHandler.caughtExceptions` for centralized error handling.
+* Changed `invoice()` (`sendInvoice`) and `createInvoiceLink` (`createInvoiceLink`) parameters to lambda for
+  convenience.
+* Changed `createNewStickerSet()` (`createNewStickerSet`) parameters to lambda.
+* Improved entity definition in `EntitiesBuilder` by moving optional parameters to lambda.
+* Added generics to `BotContext` (`chatData`, `userData`) interfaces.
+* Deleted private `Update` extensions for handling and created `TelegramUpdateHandler.parseAndHandle`.
+* Added update listener configuration variables to `TelegramBot.botConfiguration` - `updatesListener()`.
+* Moved `BotContext` (`chatData`, `userData`) configuration to `TelegramBot.botConfiguration` - `context()`.
+* Updated dependencies:
     * `Gradle`: `7.5.0` -> `7.6.0`
     * `Jackson`: `2.14.0` -> `2.14.1`
     * `Ktor`: `2.1.3` -> `2.2.1`
@@ -520,47 +509,46 @@
 
 ### 2.4.2
 
-* Fix bug when in the media request additional options violates the query itself.
-* Refactor MediaGroup action, implement a separate processing mechanism from usual media actions that takes into account
-  the possibility of sending different types of attachments (string, bytearray, file).
+* Fixed the media request bug where additional options violated the query.
+* Refactored `MediaGroup` action, implementing separate processing for different attachment types (string, bytearray,
+  file).
 
 ### 2.4.1
 
-* Fix annotation limits not working
+* Fixed annotation limits not working.
 
 ## 2.4.0
 
-* Added a new mechanism to limit requests from users, both general requests and specifically for commands/inputs in both
-  modes (annotations, manual).
-* Long data types are replaced by shorter ones using aliases.
-* Upgrade dependencies versions:
+* Introduced a request limiting mechanism for both general and specific command/input requests in both modes (
+  annotations, manual).
+* Replaced long data types with shorter aliases.
+* Updated dependencies:
     * `Logback`: `1.4.4` -> `1.4.5`
     * `Kotlin`: `1.7.20` -> `1.7.21`
 
 ### 2.3.2
 
-* Fix class initialization bug.
+* Fixed class initialization bug.
 
 ### 2.3.1
 
-* Returned `inputListener` parameter to bot instance.
-* Add `HttpLogLevel` proxy class for http logs managing.
+* Restored `inputListener` parameter to bot instance.
+* Added `HttpLogLevel` proxy class for HTTP log management.
 
 ## 2.3.0
 
-* Add `messageThreadId`,`isTopicMessage`, `forumTopicCreated`, `forumTopicClosed`, `forumTopicReopened` to `Message`
-* Created new related types `ForumTopicCreated`, `ForumTopicClosed`, `ForumTopicReopened`
-* Add `isForum`, `activeUsernames`, `emojiStatusCustomEmojiId` to `Chat`
-* Add `canManageTopics` to `PromoteChatMemberOptions`, `ChatAdministratorRights`, `ChatMember`, `ChatPermissions`
-* Add `messageThreadId` to `OptionsCommon` interface and all related options
+* Added `messageThreadId`, `isTopicMessage`, `forumTopicCreated`, `forumTopicClosed`, `forumTopicReopened` to `Message`.
+* Created related types `ForumTopicCreated`, `ForumTopicClosed`, `ForumTopicReopened`.
+* Added `isForum`, `activeUsernames`, `emojiStatusCustomEmojiId` to `Chat`.
+* Added `canManageTopics` to `PromoteChatMemberOptions`, `ChatAdministratorRights`, `ChatMember`, `ChatPermissions`.
+* Added `messageThreadId` to `OptionsCommon` interface and related options.
 
-
-* Fixed a bug throwing `IllegalArgumentException` caused by `ClassManagerImpl`
-* Added saving instances to the `ClassManagerImpl`, to improve memory handling
-* Made `ChatPermissions` mutable to fix some functions wrong logic.
-* Added handling of commands containing at character, i.e., such as `/command@bot`
-* Expanded and moved configuration of `TelegramBot` instance to more handy variant, see `BotConfiguration` in docs.
-* Upgrade dependencies versions:
+* Fixed `IllegalArgumentException` in `ClassManagerImpl`.
+* Improved memory handling by saving instances in `ClassManagerImpl`.
+* Made `ChatPermissions` mutable to fix logic issues.
+* Handled commands with `@` character, e.g., `/command@bot`.
+* Expanded and moved `TelegramBot` instance configuration to `BotConfiguration` (see docs).
+* Updated dependencies:
     * `Logback`: `1.4.0` -> `1.4.4`
     * `Jackson`: `2.13.4` -> `2.14.0`
     * `Ktor`: `2.1.0` -> `2.1.3`
@@ -568,108 +556,106 @@
 
 ### 2.2.2
 
-* Change ActionRecipientRef class to Recipient and add universal `from` method
-* Fix `forwardMessage`, `copyMessage` methods, add required chatId parameters
+* Changed `ActionRecipientRef` class to `Recipient` and added universal `from` method.
+* Fixed `forwardMessage` and `copyMessage` methods; added required `chatId` parameters.
 
 ### 2.2.1
 
-* Process actions from callback requests in manual mode.
-* Upgrade dependencies versions:
+* Processed actions from callback requests in manual mode.
+* Updated dependencies:
     * `Logback`: `1.2.11` -> `1.4.0`
     * `Jackson`: `2.13.3` -> `2.13.4`
     * `Ktor`: `2.0.3` -> `2.1.0`
 
 ## 2.2.0
 
-* Fixed error response additional parameter name and its parameters optionality bug.
-* Move parameters from `Feature` interface to separate `ParametersBase` interface so as not to overload unnecessary
-  entities.
-* Remove `isInline` parameter from `send` methods and moved it \
-  to separate interface `InlineMode` to leave it only at the necessary
-  methods and not to overload the methods that do not have an inline mode.
-* Make ManualHandlingBehaviour parameter lazy, is made to optimize cases where only annotation processing is used.
-* Moved option saving mechanism from helper functions to mapper, for more consistency.
-* Improved and optimized `MediaAction` mechanism, make it less verbose.
-* Moved samples to separate repository.
+* Fixed error response parameter name and optionality bug.
+* Moved parameters from `Feature` interface to `ParametersBase` to avoid unnecessary entities.
+* Removed `isInline` parameter from `send` methods; moved to `InlineMode` interface for necessary methods.
+* Made `ManualHandlingBehaviour` parameter lazy for optimization when only annotation processing is used.
+* Move an option saving mechanism to mapper for consistency.
+* Optimized `MediaAction` mechanism for verbosity reduction.
+* Moved samples to a separate repository.
 
 ## 2.1.0
 
-* Remove `containMasks` and add `stickerType` to `StickerSet`, `CreateNewStickerSet`.
-* Add new `CustomEmoji` to `EntityType`.
-* Add `customEmojiId` to `MessageEntity`.
-* Add `hasRestrictedVoiceAndVideoMessages` to `Chat`.
-* Add new api method `getCustomEmojiStickers`.
-* Fixed bug in `InputMedia` with nonNullability of `thumb` and `parseMode` in `String` type.
+* Removed `containMasks` and added `stickerType` to `StickerSet` and `CreateNewStickerSet`.
+* Added `CustomEmoji` to `EntityType`.
+* Added `customEmojiId` to `MessageEntity`.
+* Added `hasRestrictedVoiceAndVideoMessages` to `Chat`.
+* Added new API method `getCustomEmojiStickers`.
+* Fixed `InputMedia` bug with non-nullability of `thumb` and `parseMode` in `String` type.
 
 ### 2.0.1
 
-* Upgrade `Kotlin`: `1.6.21` -> `1.7.10`.
+* Updated `Kotlin`: `1.6.21` -> `1.7.10`.
     * `Dokka`: `1.6.21` -> `1.7.10`.
-* Upgrade `kotlinx-coroutines-core`: `1.6.2` -> `1.6.4`.
-* Changed in `ManualHandlingDsl` input context from just Update to `InputContext`.
+* Updated `kotlinx-coroutines-core`: `1.6.2` -> `1.6.4`.
+* Changed `ManualHandlingDsl` input context from `Update` to `InputContext`.
 
 # 2.0.0
 
-* Change annotations name from `TelegramCommand`, `TelegramInput`, `TelegramUnhandled`, `TelegramParameter` \
-  to `CommandHandler`, `InputHandler`, `UnprocessedHandler`, `CallbackParam`.
-* Change `bot.input` to `bot.inputListener`.
-* Change `BotWaitingInput` to `BotInputListener`.
-* Move serde logic from ktor setting to manual.
-* Improved and reworked `ManualHandlingDsl`, added the ability to input chaining.
-* The concept of contexts has been added to the manual processing.
+* Renamed annotations:
+    * `TelegramCommand` to `CommandHandler`
+    * `TelegramInput` to `InputHandler`
+    * `TelegramUnhandled` to `UnprocessedHandler`
+    * `TelegramParameter` to `CallbackParam`
+* Changed `bot.input` to `bot.inputListener`.
+* Renamed `BotWaitingInput` to `BotInputListener`.
+* Moved serde logic from Ktor setting to manual.
+* Improved and reworked `ManualHandlingDsl` with input chaining.
+* Introduced contexts to manual processing.
 
 ### 1.5.2
 
-* Returned single update parsing method.
+* Restored single update parsing method.
 
 ### 1.5.1
 
-* Improved structure of `Response` type.
-* Fixed `List<>` serialized error.
+* Improved `Response` type structure.
+* Fixed `List<>` serialization error.
 
 ## 1.5.0
 
-* Delete old deprecated methods.
-* Added shortcuts to process updates `handleUpdates()`(for annotation handling) and `handleUpdates{}`(for manual
-  handling). \
-  Before that, only a more verbose and detailed mechanism was available via `bot.update.setListener{}` &
-  `bot.update.handle`(which is still available for more detailed process control.).
-* Now the action search path has become nullable to be able to use the bot only in manual mode.
+* Deleted deprecated methods.
+* Added shortcuts for processing updates: `handleUpdates()` (annotation handling) and `handleUpdates{}` (manual
+  handling).
+* Made action search path nullable for manual-only bot usage.
 
 ### 1.4.2
 
-* Add `sender` to `ChatType`.
-* Improved and optimized `MediaAction` mechanism.
-* Add new `ImplicitFile` type so as not to create constructors with double input parameters.
-* Fixed bug with sending optional parameters in media requests.
+* Added `sender` to `ChatType`.
+* Optimized `MediaAction` mechanism.
+* Added `ImplicitFile` type to avoid double input parameter constructors.
+* Fixed optional parameters sending bug in media requests.
 
 ### 1.4.1
 
-* Make coroutines dependency transitive.
-* Fix parameter name in `VideoNoteOptions`.
+* Made coroutines dependency transitive.
+* Fixed parameter name in `VideoNoteOptions`.
 
 ## 1.4.0
 
-* Add new api method `createInvoiceLink`.
-* Change name of interface `IOptionsCommon`, `IFileOption` to `OptionsCommon`, `FileOptions`.
-* Change `fileSize` type from `Int` to `Long` due to api changes.
-* Add `joinToSendMessages`, `joinByRequest` parameters to `Chat`.
-* Add `premiumAnimation` parameter to `Sticker`.
-* Add `isPremium`, `addedToAttachmentMenu` parameter to `User`.
-* Add `secretToken` parameter to `SetWebhookOptions`.
+* Added new API method `createInvoiceLink`.
+* Renamed interfaces `IOptionsCommon` and `IFileOption` to `OptionsCommon` and `FileOptions`.
+* Changed `fileSize` type from `Int` to `Long` due to API changes.
+* Added `joinToSendMessages` and `joinByRequest` parameters to `Chat`.
+* Added `premiumAnimation` parameter to `Sticker`.
+* Added `isPremium` and `addedToAttachmentMenu` parameters to `User`.
+* Added `secretToken` parameter to `SetWebhookOptions`.
 
 ### 1.3.6
 
-* Add update parsing method `parseUpdate` in `TelegramUpdateHandler`.
-* Add async methods to `BotChatData`, `BotUserData`, `BotWaitingInput`.
+* Added `parseUpdate` method in `TelegramUpdateHandler`.
+* Added async methods to `BotChatData`, `BotUserData`, `BotWaitingInput`.
 
 ### 1.3.5
 
-* Fix bug with content-type when sending media request.
+* Fixed media request content-type bug.
 
 ### 1.3.4
 
-* Fix `MediaAction` wrong recipient bug.
+* Fixed `MediaAction` wrong recipient bug.
 
 ### 1.3.3
 
@@ -677,46 +663,45 @@
 
 ### 1.3.2
 
-* Fix `captionEntities` ambiguity.
+* Fixed `captionEntities` ambiguity.
 
 ### 1.3.1
 
-* Move package from `com.github.vendelieu` to `eu.vendeli`
-* Change target repository from `jitpack` to `mavenCentral`.
-* Add trace logging at some points
-* Improve some documentation
+* Moved package from `com.github.vendelieu` to `eu.vendeli`.
+* Changed target repository from `jitpack` to `mavenCentral`.
+* Added trace logging at some points.
+* Improved documentation.
 
 ## 1.3.0
 
-* Added the ability to process requests manually with `ManualHandlingDsl`.
-* Upgrade `Ktor`: `2.0.1` -> `2.0.2`.
+* Added manual request processing with `ManualHandlingDsl`.
+* Updated `Ktor`: `2.0.1` -> `2.0.2`.
 
 ## 1.2.2
 
-* Added functionality for adding a user-defined "magic" objects.
-* Improved `SetMyCommands` method by adding a more convenient dsl to add commands with `BotCommandsBuilder`.
-* To add an `MessageEntity` in `EntityInterface`, an additional method has also been added that works.
-  through `EntityBuilder`.
-* Upgrade `reflections`: `0.9.12` -> `0.10.2`.
+* Added functionality for user-defined "magic" objects.
+* Improved `SetMyCommands` method with `BotCommandsBuilder` DSL.
+* Added method for `MessageEntity` addition through `EntityBuilder`.
+* Updated `reflections`: `0.9.12` -> `0.10.2`.
 
 ### 1.1.2
 
-* Fix serde process of sealed classes `BotCommandScope`, `ChatMember`, `InlineQueryResult`, `InputMedia`, `MenuButton`
-  , `PassportElementError`.
+* Fixed serde process of sealed classes like `BotCommandScope`, `ChatMember`, `InlineQueryResult`, `InputMedia`,
+  `MenuButton`, `PassportElementError`.
 
 ### 1.1.1
 
-* Change commands/inputs search path declaring from `Package` to `String`.
-* Optimize code, make some parts reusable.
+* Changed commands/inputs search a path from `Package` to `String`.
+* Optimized code and made reusable parts.
 
 ## 1.1.0
 
-* Make parameters value nullable.
-* Change `bot.updateHandler` to `bot.update`, to avoid tautology when calling `bot.updateHandler.handleUpdate`, etc.
-* Change `bot.inputHandler` to `bot.input` for same reason.
+* Made parameters values nullable.
+* Changed `bot.updateHandler` to `bot.update` to avoid tautology.
+* Changed `bot.inputHandler` to `bot.input`.
 
 # 1.0.0
 
-* The initial public version.
+* Initial public version.
 
-Before that, the library was written for personal purposes and started with a couple of wrapper methods and as needed.
+Before this, the library was developed for personal use, starting with a few wrapper methods and expanding as needed.

@@ -19,6 +19,7 @@ import eu.vendeli.tgbot.utils.asyncAction
 import eu.vendeli.tgbot.utils.checkIsGuarded
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.coHandle
+import eu.vendeli.tgbot.utils.getParameters
 import eu.vendeli.tgbot.utils.handleFailure
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.process
@@ -187,8 +188,6 @@ class TgUpdateHandler internal constructor(
                 activityId = it.key.value.toString()
             }?.value
 
-        logger.debug { "Result of finding action - ${invocation?.second}" }
-
         // check guard condition
         if (invocation?.second?.guard?.checkIsGuarded(user, this, bot) == false) {
             logger.debug { "Invocation guarded: ${invocation.second}" }
@@ -199,15 +198,20 @@ class TgUpdateHandler internal constructor(
         if (invocation != null && checkIsLimited(invocation.second.rateLimits, user?.id, activityId))
             return@run
 
+        val params = getParameters(invocation?.second?.argParser, request)
+
+        logger.debug { "Result of parsing text: ${request.command} with parameters $params" }
+        logger.debug { "Result of finding action - ${invocation?.second}" }
+
         // invoke update type handler if there's
-        activities.updateTypeHandlers[type]?.invokeCatching(this, request.params, true)
+        activities.updateTypeHandlers[type]?.invokeCatching(this, params, true)
 
         when {
-            invocation != null -> invocation.invokeCatching(this, user, request.params)
+            invocation != null -> invocation.invokeCatching(this, user, params)
 
             activities.unprocessedHandler != null ->
                 activities.unprocessedHandler!!
-                    .invokeCatching(this, request.params)
+                    .invokeCatching(this, params)
 
             else -> logger.warn { "update: $update not handled." }
         }

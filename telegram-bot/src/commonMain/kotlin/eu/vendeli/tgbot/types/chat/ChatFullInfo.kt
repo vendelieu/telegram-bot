@@ -1,11 +1,11 @@
 package eu.vendeli.tgbot.types.chat
 
 import eu.vendeli.tgbot.types.Birthdate
-import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.ReactionType
 import eu.vendeli.tgbot.types.business.BusinessIntro
 import eu.vendeli.tgbot.types.business.BusinessLocation
 import eu.vendeli.tgbot.types.business.BusinessOpeningHours
+import eu.vendeli.tgbot.types.msg.Message
 import kotlinx.serialization.Serializable
 
 /**
@@ -66,8 +66,8 @@ data class ChatFullInfo(
     val firstName: String? = null,
     val lastName: String? = null,
     val isForum: Boolean? = null,
-    val accentColorId: Int? = null,
-    val maxReactionCount: Int? = null,
+    val accentColorId: Int,
+    val maxReactionCount: Int,
     val photo: ChatPhoto? = null,
     val activeUsernames: List<String>? = null,
     val birthdate: Birthdate? = null,

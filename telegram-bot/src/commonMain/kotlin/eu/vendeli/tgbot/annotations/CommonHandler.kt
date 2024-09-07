@@ -1,6 +1,8 @@
 package eu.vendeli.tgbot.annotations
 
+import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultFilter
+import eu.vendeli.tgbot.interfaces.helper.ArgumentParser
 import eu.vendeli.tgbot.interfaces.helper.Filter
 import eu.vendeli.tgbot.types.internal.UpdateType
 import kotlin.reflect.KClass
@@ -21,6 +23,7 @@ annotation class CommonHandler {
      * @property priority priority of activity. (0 is highest)
      * @property scope scope `UpdateType` in which the command will be checked.
      * @property rateLimits query limits for this particular command.
+     * @property argParser Custom argument parser.
      */
     @Target(AnnotationTarget.FUNCTION)
     @Retention(AnnotationRetention.SOURCE)
@@ -30,6 +33,7 @@ annotation class CommonHandler {
         val priority: Int = 0,
         val scope: Array<UpdateType> = [UpdateType.MESSAGE],
         val rateLimits: RateLimits = RateLimits(0, 0),
+        val argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
     )
 
     /**
@@ -41,6 +45,7 @@ annotation class CommonHandler {
      * @property priority priority of activity. (0 is highest)
      * @property scope scope `UpdateType` in which the command will be checked.
      * @property rateLimits query limits for this particular command.
+     * @property argParser Custom argument parser.
      */
     @Target(AnnotationTarget.FUNCTION)
     @Retention(AnnotationRetention.SOURCE)
@@ -51,5 +56,6 @@ annotation class CommonHandler {
         val priority: Int = 0,
         val scope: Array<UpdateType> = [UpdateType.MESSAGE],
         val rateLimits: RateLimits = RateLimits(0, 0),
+        val argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
     )
 }

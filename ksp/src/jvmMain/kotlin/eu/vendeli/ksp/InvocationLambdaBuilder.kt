@@ -40,6 +40,7 @@ import eu.vendeli.ksp.utils.myChatMemberUpdateClass
 import eu.vendeli.ksp.utils.pollAnswerUpdateClass
 import eu.vendeli.ksp.utils.pollUpdateClass
 import eu.vendeli.ksp.utils.preCheckoutQueryUpdateClass
+import eu.vendeli.ksp.utils.purchasedPaidMediaUpdateClass
 import eu.vendeli.ksp.utils.removedChatBoostUpdateClass
 import eu.vendeli.ksp.utils.shippingQueryUpdateClass
 import eu.vendeli.ksp.utils.shortPrimitiveType
@@ -66,6 +67,7 @@ import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
 import eu.vendeli.tgbot.types.internal.PollUpdate
 import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.PurchasedPaidMediaUpdate
 import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
 import kotlin.reflect.KClass
@@ -150,11 +152,11 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                     businessMessageUpdateClass -> addUpdate(BusinessMessageUpdate::class, nullabilityMark)
                     editedBusinessMessageClass -> addUpdate(EditedBusinessMessageUpdate::class, nullabilityMark)
                     deletedBusinessMessagesClass -> addUpdate(DeletedBusinessMessagesUpdate::class, nullabilityMark)
+                    purchasedPaidMediaUpdateClass -> addUpdate(PurchasedPaidMediaUpdate::class, nullabilityMark)
 
                     in injectableTypes.keys -> {
                         val type = injectableTypes[typeName]!!
-                        addImport(type.packageName, type.simpleName)
-                        "(classManager.getInstance(${type.simpleName}::class) as ${type.simpleName}).get(update, bot)"
+                        "classManager.getInstance<${type.canonicalName}>()!!.get(update, bot)"
                     }
 
                     else -> "null"
@@ -165,13 +167,13 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
             }
 
             if (pkg != null) add(
-                "if (\n\t" +
+                "\nif (\n\t" +
                     (if (isUserNullable) "user != null\n && " else "") +
                     "bot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",
                 funQualifier,
                 pkg,
             )
-            add("%L.invoke(\n\t%L\n)\n", funName, parametersEnumeration)
+            add("\n%L.invoke(\n\t%L\n)\n", funName, parametersEnumeration)
         }.endControlFlow()
         .build()
 }

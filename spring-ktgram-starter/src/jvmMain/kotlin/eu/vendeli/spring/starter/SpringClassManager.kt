@@ -10,5 +10,5 @@ open class SpringClassManager(
     private val applicationContext: ApplicationContext
 ) : ClassManager {
     override fun getInstance(kClass: KClass<*>, vararg initParams: Any?): Any =
-        applicationContext.getBean(kClass.java)
+        applicationContext.getBean(kClass.java, *initParams)
 }

@@ -8,28 +8,24 @@ import com.google.devtools.ksp.symbol.KSValueArgument
 import eu.vendeli.ksp.dto.AnnotationData
 import eu.vendeli.ksp.dto.CommonAnnotationData
 import eu.vendeli.ksp.dto.CommonAnnotationValue
+import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultFilter
+import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import eu.vendeli.tgbot.implementations.DefaultGuard
 
 internal fun List<KSValueArgument>.parseAsCommandHandler(isCallbackQ: Boolean) = AnnotationData(
     value = parseValueList(),
     rateLimits = parseRateLimits(),
     scope = parseScopes() ?: if (isCallbackQ) callbackQueryList else messageList,
     guardClass = parseGuard(),
+    argParserClass = parseArgParser(),
 )
 
 internal fun List<KSValueArgument>.parseAsInputHandler() = Triple(
     parseValueList(),
     parseRateLimits(),
     parseGuard(),
-)
-
-internal fun List<KSValueArgument>.parseAsRegexHandler() = Triple(
-    first { it.name?.asString() == "value" }.value.cast<String>(),
-    parseRateLimits(),
-    parseRegexOptions(),
 )
 
 object CommonAnnotationHandler {
@@ -46,6 +42,7 @@ object CommonAnnotationHandler {
         val priority = arguments.firstOrNull { it.name?.asString() == "priority" }?.value?.safeCast<Int>() ?: 0
         val rateLimits = arguments.parseRateLimits()
         val scope = arguments.parseScopes() ?: messageList
+        val argParser = arguments.parseArgParser()
 
         if (value is List<*>) {
             value.forEach {
@@ -55,6 +52,7 @@ object CommonAnnotationHandler {
                         funSimpleName = simpleName,
                         value = CommonAnnotationValue.String(it.cast()),
                         filter = filter,
+                        argParser = argParser,
                         priority = priority,
                         rateLimits = RateLimits(rateLimits.first, rateLimits.second),
                         scope = scope,
@@ -72,6 +70,7 @@ object CommonAnnotationHandler {
                     funSimpleName = simpleName,
                     value = CommonAnnotationValue.Regex(value.toRegex(regexOptions.toSet())),
                     filter = filter,
+                    argParser = argParser,
                     priority = priority,
                     rateLimits = RateLimits(rateLimits.first, rateLimits.second),
                     scope = scope,
@@ -118,6 +117,11 @@ internal fun List<KSValueArgument>.parseGuard(): String =
     firstOrNull { it.name?.asString() == "guard" }?.value?.safeCast<KSType>()?.let {
         it.declaration.qualifiedName!!.asString()
     } ?: DefaultGuard::class.qualifiedName!!
+
+internal fun List<KSValueArgument>.parseArgParser(): String =
+    firstOrNull { it.name?.asString() == "argParser" }?.value?.safeCast<KSType>()?.let {
+        it.declaration.qualifiedName!!.asString()
+    } ?: DefaultArgParser::class.qualifiedName!!
 
 internal fun List<KSValueArgument>.parseAsUpdateHandler() = first().value.cast<List<*>>().map { i ->
     when (i) {
