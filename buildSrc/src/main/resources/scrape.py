@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import string
 
@@ -23,6 +24,10 @@ APPROVED_NO_SUBTYPES = {
 APPROVED_MULTI_RETURNS = [
     ['Message', 'Boolean']  # Edit returns either the new message, or an OK to confirm the edit.
 ]
+
+# Construct the full path for the output file
+def output_path(filename: str) -> str:
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), filename + ".json")
 
 
 def retrieve_info(url: str) -> dict:
@@ -358,7 +363,7 @@ def main():
             print("Failed to validate schema. View logs above for more information.")
             exit(1)
 
-        with open(f"{filename}.json", "w") as f:
+        with open(output_path(filename), "w") as f:
             json.dump(items, f, indent=2)
 
 
