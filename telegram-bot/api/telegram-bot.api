@@ -2219,34 +2219,12 @@ public final class eu/vendeli/tgbot/core/FunctionalHandlingDsl {
 	public static synthetic fun common$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/text/Regex;Lkotlin/reflect/KClass;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
 	public final fun inputChain (Ljava/lang/String;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
 	public static synthetic fun inputChain$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Ljava/lang/String;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
-	public final fun onBusinessConnection (Lkotlin/jvm/functions/Function2;)V
-	public final fun onBusinessMessage (Lkotlin/jvm/functions/Function2;)V
-	public final fun onCallbackQuery (Lkotlin/jvm/functions/Function2;)V
-	public final fun onChannelPost (Lkotlin/jvm/functions/Function2;)V
-	public final fun onChatBoost (Lkotlin/jvm/functions/Function2;)V
-	public final fun onChatJoinRequest (Lkotlin/jvm/functions/Function2;)V
-	public final fun onChatMember (Lkotlin/jvm/functions/Function2;)V
-	public final fun onChosenInlineResult (Lkotlin/jvm/functions/Function2;)V
 	public final fun onCommand (Ljava/lang/String;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;)V
 	public final fun onCommand (Lkotlin/text/Regex;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;)V
 	public static synthetic fun onCommand$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Ljava/lang/String;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
 	public static synthetic fun onCommand$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/text/Regex;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
-	public final fun onDeletedBusinessMessages (Lkotlin/jvm/functions/Function2;)V
-	public final fun onEditedBusinessMessage (Lkotlin/jvm/functions/Function2;)V
-	public final fun onEditedChannelPost (Lkotlin/jvm/functions/Function2;)V
-	public final fun onEditedMessage (Lkotlin/jvm/functions/Function2;)V
-	public final fun onInlineQuery (Lkotlin/jvm/functions/Function2;)V
 	public final fun onInput (Ljava/lang/String;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;)V
 	public static synthetic fun onInput$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Ljava/lang/String;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
-	public final fun onMessage (Lkotlin/jvm/functions/Function2;)V
-	public final fun onMessageReaction (Lkotlin/jvm/functions/Function2;)V
-	public final fun onMessageReactionCount (Lkotlin/jvm/functions/Function2;)V
-	public final fun onMyChatMember (Lkotlin/jvm/functions/Function2;)V
-	public final fun onPoll (Lkotlin/jvm/functions/Function2;)V
-	public final fun onPollAnswer (Lkotlin/jvm/functions/Function2;)V
-	public final fun onPreCheckoutQuery (Lkotlin/jvm/functions/Function2;)V
-	public final fun onRemovedChatBoost (Lkotlin/jvm/functions/Function2;)V
-	public final fun onShippingQuery (Lkotlin/jvm/functions/Function2;)V
 	public final fun whenNotHandled (Lkotlin/jvm/functions/Function2;)V
 }
 
@@ -13542,6 +13520,32 @@ public final class eu/vendeli/tgbot/utils/FileExtHelpers_jvmKt {
 	public static synthetic fun toImplicitFile$default (Ljava/io/File;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/ImplicitFile$InpFile;
 	public static final fun toInputFile (Ljava/io/File;Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/internal/InputFile;
 	public static synthetic fun toInputFile$default (Ljava/io/File;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/InputFile;
+}
+
+public final class eu/vendeli/tgbot/utils/FunctionalDSLUtilsKt {
+	public static final fun onBusinessConnection (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onBusinessMessage (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onCallbackQuery (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onChannelPost (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onChatBoost (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onChatJoinRequest (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onChatMember (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onChosenInlineResult (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onDeletedBusinessMessages (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onEditedBusinessMessage (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onEditedChannelPost (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onEditedMessage (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onInlineQuery (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onMessage (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onMessageReaction (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onMessageReactionCount (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onMyChatMember (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onPoll (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onPollAnswer (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onPreCheckoutQuery (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onPurchasedPaidMedia (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onRemovedChatBoost (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
+	public static final fun onShippingQuery (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
 }
 
 public final class eu/vendeli/tgbot/utils/LoggingWrapper {

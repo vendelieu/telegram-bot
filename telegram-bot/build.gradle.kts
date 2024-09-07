@@ -91,8 +91,8 @@ ksp {
         rootDir.resolve("ktgram-utils/src/commonMain/kotlin/").absolutePath,
     )
     arg(
-        "apiDir",
-        rootDir.resolve("telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/types").absolutePath,
+        "tgBaseDir",
+        rootDir.resolve("telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot").absolutePath,
     )
     arg(
         "apiFile",
