@@ -80,11 +80,24 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
+
       - uses: jacobtomlinson/gha-find-replace@v3
+        name: Replace lib version
         with:
           find: '([:"])([0-9]+\.[0-9]+\.[0-9]+)\"'
           replace: "${1}${{ needs.version.outputs.version }}\""
           include: "**README.md"
+
+      - name: Extract KSP version
+        id: extract_version
+        run: |
+          VERSION=$(grep 'ksp = "' gradle/libs.versions.toml | sed -E 's/.*ksp = "([^"]+)".*/\1/')
+          echo "KSP_VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      - name: Replace ksp plugin version
+        run: |
+          sed -i -E 's/id\("com\.google\.devtools\.ksp"\)\s*version\s*"[^"]+"/id("com.google.devtools.ksp") version "$KSP_VERSION"/g' README.md
+
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
