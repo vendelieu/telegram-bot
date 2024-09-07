@@ -13,6 +13,7 @@ import eu.vendeli.tgbot.types.internal.configuration.CommandParsingConfiguration
 import eu.vendeli.tgbot.types.media.Document
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.getParameters
+import eu.vendeli.tgbot.utils.onMessage
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.processUpdate
 import eu.vendeli.tgbot.utils.serde
