@@ -28,5 +28,6 @@ data class Giveaway(
     val hasPublicWinners: Boolean? = null,
     val prizeDescription: String? = null,
     val countryCodes: List<String>? = null,
+    val prizeStarCount: Int? = null,
     val premiumSubscriptionMonthCount: Int? = null,
 )

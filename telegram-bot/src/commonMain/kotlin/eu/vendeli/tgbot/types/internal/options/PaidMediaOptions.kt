@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PaidMediaOptions(
+    var payload: String? = null,
     override var disableNotification: Boolean? = null,
     override var protectContent: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,

@@ -1,9 +1,11 @@
 package eu.vendeli.tgbot.types.chat
 
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
+import kotlin.time.Duration
 
 /**
  * Represents an invite link for a chat.
@@ -31,4 +33,7 @@ data class ChatInviteLink(
     val expireDate: Instant? = null,
     val memberLimit: Int? = null,
     val pendingJoinRequestCount: Int? = null,
+    @Serializable(DurationSerializer::class)
+    val subscriptionPeriod: Duration? = null,
+    val subscriptionPrice: Int? = null,
 )
