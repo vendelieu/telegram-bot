@@ -53,6 +53,7 @@ class ActivityProcessor(
             addImport("eu.vendeli.tgbot.types.internal.configuration", "RateLimits")
 
             addSuspendCallFun()
+            addSuspendCallFun(true)
             addImport("eu.vendeli.tgbot.utils", "getInstance")
         }
 
@@ -190,11 +191,17 @@ class ActivityProcessor(
         )
     }
 
-    private fun FileBuilder.addSuspendCallFun() = addFunction(
+    private fun FileBuilder.addSuspendCallFun(withMeta: Boolean = false) = addFunction(
         FunSpec
             .builder("suspendCall")
             .apply {
                 addModifiers(KModifier.PRIVATE, KModifier.INLINE)
+                if (withMeta) addParameter(
+                    ParameterSpec.builder(
+                        "meta",
+                        TypeVariableName("InvocationMeta"),
+                    ).build(),
+                )
                 addParameter(
                     ParameterSpec
                         .builder(
@@ -203,8 +210,13 @@ class ActivityProcessor(
                             KModifier.NOINLINE,
                         ).build(),
                 )
-                returns(TypeVariableName("InvocationLambda"))
-                addStatement("return block")
+                if (!withMeta) {
+                    returns(TypeVariableName("InvocationLambda"))
+                    addStatement("return block")
+                } else {
+                    returns(TypeVariableName("Invocable"))
+                    addStatement("return block to meta")
+                }
             }.build(),
     )
 }
