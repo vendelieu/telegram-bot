@@ -7825,7 +7825,7 @@ public final class eu/vendeli/tgbot/types/internal/ProcessedUpdateKt {
 	public static final fun getUserOrNull (Leu/vendeli/tgbot/types/internal/ProcessedUpdate;)Leu/vendeli/tgbot/types/User;
 }
 
-public final class eu/vendeli/tgbot/types/internal/PurchasedPaidMediaUpdate : eu/vendeli/tgbot/types/internal/ProcessedUpdate, eu/vendeli/tgbot/types/internal/TextReference, eu/vendeli/tgbot/types/internal/UserReference {
+public final class eu/vendeli/tgbot/types/internal/PurchasedPaidMediaUpdate : eu/vendeli/tgbot/types/internal/ProcessedUpdate, eu/vendeli/tgbot/types/internal/UserReference {
 	public fun <init> (ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/media/PaidMediaPurchased;)V
 	public final fun component1 ()I
 	public final fun component2 ()Leu/vendeli/tgbot/types/Update;

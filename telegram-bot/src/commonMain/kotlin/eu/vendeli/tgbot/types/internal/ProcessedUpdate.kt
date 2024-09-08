@@ -310,8 +310,7 @@ data class PurchasedPaidMediaUpdate(
     override val origin: Update,
     val purchasedPaidMedia: PaidMediaPurchased,
 ) : ProcessedUpdate(updateId, origin, UpdateType.PURCHASED_PAID_MEDIA),
-    UserReference,
-    TextReference {
+    UserReference {
     override val user: User = purchasedPaidMedia.from
     override val text: String = purchasedPaidMedia.paidMediaPayload
 
