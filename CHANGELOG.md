@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) Changelog
 
+### 7.3.1
+
+* Add missing `user` and `text` references for `PurchasedPaidMediaUpdate`.
+
 ## 7.3.0
 
 * Supported Telegram API [7.10](https://core.telegram.org/bots/api-changelog#september-6-2024)

@@ -1,41 +1,44 @@
 package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
-import eu.vendeli.tgbot.types.internal.ActivityCtx
-import eu.vendeli.tgbot.types.internal.BusinessConnectionUpdate
-import eu.vendeli.tgbot.types.internal.BusinessMessageUpdate
-import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
-import eu.vendeli.tgbot.types.internal.ChannelPostUpdate
-import eu.vendeli.tgbot.types.internal.ChatBoostUpdate
-import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
-import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
-import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
-import eu.vendeli.tgbot.types.internal.DeletedBusinessMessagesUpdate
-import eu.vendeli.tgbot.types.internal.EditedBusinessMessageUpdate
-import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
-import eu.vendeli.tgbot.types.internal.EditedMessageUpdate
-import eu.vendeli.tgbot.types.internal.InlineQueryUpdate
-import eu.vendeli.tgbot.types.internal.MessageReactionCountUpdate
-import eu.vendeli.tgbot.types.internal.MessageReactionUpdate
-import eu.vendeli.tgbot.types.internal.MessageUpdate
-import eu.vendeli.tgbot.types.internal.MyChatMemberUpdate
-import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
-import eu.vendeli.tgbot.types.internal.PollUpdate
-import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
-import eu.vendeli.tgbot.types.internal.PurchasedPaidMediaUpdate
-import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
-import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
-import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.`internal`.ActivityCtx
+import eu.vendeli.tgbot.types.`internal`.BusinessConnectionUpdate
+import eu.vendeli.tgbot.types.`internal`.BusinessMessageUpdate
+import eu.vendeli.tgbot.types.`internal`.CallbackQueryUpdate
+import eu.vendeli.tgbot.types.`internal`.ChannelPostUpdate
+import eu.vendeli.tgbot.types.`internal`.ChatBoostUpdate
+import eu.vendeli.tgbot.types.`internal`.ChatJoinRequestUpdate
+import eu.vendeli.tgbot.types.`internal`.ChatMemberUpdate
+import eu.vendeli.tgbot.types.`internal`.ChosenInlineResultUpdate
+import eu.vendeli.tgbot.types.`internal`.DeletedBusinessMessagesUpdate
+import eu.vendeli.tgbot.types.`internal`.EditedBusinessMessageUpdate
+import eu.vendeli.tgbot.types.`internal`.EditedChannelPostUpdate
+import eu.vendeli.tgbot.types.`internal`.EditedMessageUpdate
+import eu.vendeli.tgbot.types.`internal`.InlineQueryUpdate
+import eu.vendeli.tgbot.types.`internal`.MessageReactionCountUpdate
+import eu.vendeli.tgbot.types.`internal`.MessageReactionUpdate
+import eu.vendeli.tgbot.types.`internal`.MessageUpdate
+import eu.vendeli.tgbot.types.`internal`.MyChatMemberUpdate
+import eu.vendeli.tgbot.types.`internal`.PollAnswerUpdate
+import eu.vendeli.tgbot.types.`internal`.PollUpdate
+import eu.vendeli.tgbot.types.`internal`.PreCheckoutQueryUpdate
+import eu.vendeli.tgbot.types.`internal`.PurchasedPaidMediaUpdate
+import eu.vendeli.tgbot.types.`internal`.RemovedChatBoostUpdate
+import eu.vendeli.tgbot.types.`internal`.ShippingQueryUpdate
+import eu.vendeli.tgbot.types.`internal`.UpdateType
+import kotlin.Unit
 
 /**
- * Action that is performed on the presence of Message in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.message] in the
+ * [eu.vendeli.tgbot.types.Update].
  */
 public fun FunctionalHandlingDsl.onMessage(block: suspend ActivityCtx<MessageUpdate>.() -> Unit) {
   functionalActivities.onUpdateActivities[UpdateType.MESSAGE] = block.cast()
 }
 
 /**
- * Action that is performed on the presence of EditedMessage in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.editedMessage] in the
+ * [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onEditedMessage(block: suspend ActivityCtx<EditedMessageUpdate>.() -> Unit) {
@@ -43,7 +46,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of ChannelPost in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.channelPost] in the
+ * [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onChannelPost(block: suspend ActivityCtx<ChannelPostUpdate>.() -> Unit) {
@@ -51,7 +55,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of EditedChannelPost in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.editedChannelPost] in
+ * the [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onEditedChannelPost(block: suspend ActivityCtx<EditedChannelPostUpdate>.() -> Unit) {
@@ -59,7 +64,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of BusinessConnection in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.businessConnection] in
+ * the [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onBusinessConnection(block: suspend ActivityCtx<BusinessConnectionUpdate>.() -> Unit) {
@@ -67,7 +73,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of BusinessMessage in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.businessMessage] in
+ * the [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onBusinessMessage(block: suspend ActivityCtx<BusinessMessageUpdate>.() -> Unit) {
@@ -75,7 +82,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of EditedBusinessMessage in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.editedBusinessMessage]
+ * in the [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onEditedBusinessMessage(block: suspend ActivityCtx<EditedBusinessMessageUpdate>.() -> Unit) {
@@ -83,7 +91,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of DeletedBusinessMessages in the Update.
+ * Action that is performed on the presence of
+ * [eu.vendeli.tgbot.types.Update.deletedBusinessMessages] in the [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onDeletedBusinessMessages(block: suspend ActivityCtx<DeletedBusinessMessagesUpdate>.() -> Unit) {
@@ -91,7 +100,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of MessageReaction in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.messageReaction] in
+ * the [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onMessageReaction(block: suspend ActivityCtx<MessageReactionUpdate>.() -> Unit) {
@@ -99,7 +109,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of MessageReactionCount in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.messageReactionCount]
+ * in the [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onMessageReactionCount(block: suspend ActivityCtx<MessageReactionCountUpdate>.() -> Unit) {
@@ -107,7 +118,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of InlineQuery in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.inlineQuery] in the
+ * [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onInlineQuery(block: suspend ActivityCtx<InlineQueryUpdate>.() -> Unit) {
@@ -115,7 +127,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of ChosenInlineResult in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.chosenInlineResult] in
+ * the [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onChosenInlineResult(block: suspend ActivityCtx<ChosenInlineResultUpdate>.() -> Unit) {
@@ -123,7 +136,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of CallbackQuery in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.callbackQuery] in the
+ * [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onCallbackQuery(block: suspend ActivityCtx<CallbackQueryUpdate>.() -> Unit) {
@@ -131,7 +145,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of ShippingQuery in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.shippingQuery] in the
+ * [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onShippingQuery(block: suspend ActivityCtx<ShippingQueryUpdate>.() -> Unit) {
@@ -139,7 +154,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of PreCheckoutQuery in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.preCheckoutQuery] in
+ * the [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onPreCheckoutQuery(block: suspend ActivityCtx<PreCheckoutQueryUpdate>.() -> Unit) {
@@ -147,14 +163,16 @@ public
 }
 
 /**
- * Action that is performed on the presence of Poll in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.poll] in the
+ * [eu.vendeli.tgbot.types.Update].
  */
 public fun FunctionalHandlingDsl.onPoll(block: suspend ActivityCtx<PollUpdate>.() -> Unit) {
   functionalActivities.onUpdateActivities[UpdateType.POLL] = block.cast()
 }
 
 /**
- * Action that is performed on the presence of PollAnswer in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.pollAnswer] in the
+ * [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onPollAnswer(block: suspend ActivityCtx<PollAnswerUpdate>.() -> Unit) {
@@ -162,7 +180,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of MyChatMember in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.myChatMember] in the
+ * [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onMyChatMember(block: suspend ActivityCtx<MyChatMemberUpdate>.() -> Unit) {
@@ -170,7 +189,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of ChatMember in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.chatMember] in the
+ * [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onChatMember(block: suspend ActivityCtx<ChatMemberUpdate>.() -> Unit) {
@@ -178,7 +198,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of ChatJoinRequest in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.chatJoinRequest] in
+ * the [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onChatJoinRequest(block: suspend ActivityCtx<ChatJoinRequestUpdate>.() -> Unit) {
@@ -186,7 +207,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of ChatBoost in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.chatBoost] in the
+ * [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onChatBoost(block: suspend ActivityCtx<ChatBoostUpdate>.() -> Unit) {
@@ -194,7 +216,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of RemovedChatBoost in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.removedChatBoost] in
+ * the [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onRemovedChatBoost(block: suspend ActivityCtx<RemovedChatBoostUpdate>.() -> Unit) {
@@ -202,7 +225,8 @@ public
 }
 
 /**
- * Action that is performed on the presence of PurchasedPaidMedia in the Update.
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.purchasedPaidMedia] in
+ * the [eu.vendeli.tgbot.types.Update].
  */
 public
     fun FunctionalHandlingDsl.onPurchasedPaidMedia(block: suspend ActivityCtx<PurchasedPaidMediaUpdate>.() -> Unit) {

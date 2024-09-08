@@ -309,7 +309,12 @@ data class PurchasedPaidMediaUpdate(
     override val updateId: Int,
     override val origin: Update,
     val purchasedPaidMedia: PaidMediaPurchased,
-) : ProcessedUpdate(updateId, origin, UpdateType.PURCHASED_PAID_MEDIA) {
+) : ProcessedUpdate(updateId, origin, UpdateType.PURCHASED_PAID_MEDIA),
+    UserReference,
+    TextReference {
+    override val user: User = purchasedPaidMedia.from
+    override val text: String = purchasedPaidMedia.paidMediaPayload
+
     internal companion object : UpdateSerializer<PurchasedPaidMediaUpdate>()
 }
 

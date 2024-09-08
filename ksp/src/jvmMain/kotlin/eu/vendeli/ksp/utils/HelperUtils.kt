@@ -19,6 +19,8 @@ import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.asTypeName
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.implementations.ClassDataImpl
+import eu.vendeli.tgbot.implementations.DefaultArgParser
+import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.implementations.UserDataMapImpl
 import eu.vendeli.tgbot.interfaces.ctx.ClassData
 import eu.vendeli.tgbot.interfaces.ctx.UserData
@@ -123,6 +125,38 @@ internal inline fun <R> Any?.safeCast(): R? = this as? R
 
 internal fun Pair<Long, Long>.toRateLimits(): RateLimits = RateLimits(first, second)
 
+@Suppress("NOTHING_TO_INLINE")
+internal inline fun buildMeta(
+    qualifier: String,
+    function: String,
+    rateLimits: RateLimits,
+    guardClass: String? = null,
+    argParserClass: String? = null,
+): Pair<String, Array<Any?>> {
+    val parametersList = mutableListOf<Any?>(
+        qualifier,
+        function
+    )
+
+    return buildString {
+        append("InvocationMeta(\n\tqualifier = \"%L\",\n\tfunction = \"%L\"")
+        if (rateLimits.period > 0 || rateLimits.rate > 0) {
+            append(",\n\trateLimits = %L")
+            parametersList.add(rateLimits)
+        }
+
+        if (guardClass != null && guardClass != DefaultGuard::class.fullName) {
+            append(",\n\tguard = %L::class")
+            parametersList.add(guardClass)
+        }
+        if (argParserClass != null && argParserClass != DefaultArgParser::class.fullName) {
+            append(",\n\targParser = %L::class")
+            parametersList.add(argParserClass)
+        }
+        append("\n\t)")
+    } to parametersList.toTypedArray()
+}
+
 internal fun <T : Annotation> Resolver.getAnnotatedFnSymbols(
     targetPackage: String? = null,
     vararg kClasses: KClass<out T>,
@@ -141,23 +175,6 @@ internal fun <T : Annotation> Resolver.getAnnotatedFnSymbols(
             it.filterIsInstance<KSFunctionDeclaration>()
         }
     }
-
-internal fun CodeBlock.Builder.addVarStatement(
-    prefix: String? = null,
-    postFix: String? = null,
-    builder: MutableList<Pair<String, Any?>>.() -> Unit,
-) {
-    val pairList = buildList(builder)
-
-    val format = buildString {
-        prefix?.also(::append)
-        pairList.forEach {
-            append(it.first)
-        }
-        postFix?.also(::append)
-    }
-    addStatement(format, *pairList.map { it.second }.toTypedArray())
-}
 
 internal fun <T : Annotation> Resolver.getAnnotatedClassSymbols(clazz: KClass<T>, targetPackage: String? = null) =
     if (targetPackage == null) getSymbolsWithAnnotation(clazz.qualifiedName!!).filterIsInstance<KSClassDeclaration>()

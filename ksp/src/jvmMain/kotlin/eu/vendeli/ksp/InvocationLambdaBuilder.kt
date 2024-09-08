@@ -77,6 +77,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
     function: KSFunctionDeclaration,
     injectableTypes: Map<TypeName, ClassName>,
     pkg: String? = null,
+    meta: Pair<String, Array<Any?>>? = null,
 ) = buildCodeBlock {
     val isTopLvl = function.functionKind == FunctionKind.TOP_LEVEL
     val funQualifier = function.qualifiedName!!.getQualifier()
@@ -88,7 +89,14 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
     }
     val isObject = (function.parent as? KSClassDeclaration)?.classKind == ClassKind.OBJECT
 
-    beginControlFlow("suspendCall { classManager, update, user, bot, parameters ->")
+    val lambda = meta?.let {
+        beginControlFlow(
+            "suspendCall(\n\t${it.first}\n) { classManager, update, user, bot, parameters ->",
+            *it.second,
+        )
+    } ?: beginControlFlow("suspendCall { classManager, update, user, bot, parameters ->")
+
+    lambda
         .apply {
             var parametersEnumeration = ""
             if (!isTopLvl && !isObject && function.functionKind != FunctionKind.STATIC) {
@@ -109,9 +117,9 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                         }?.let { i ->
                             i.arguments.first { a -> a.name?.asString() == "name" }.value as? String
                         } ?: parameter.name!!.getShortName()
-                ).let {
-                    "parameters[\"$it\"]"
-                }
+                    ).let {
+                        "parameters[\"$it\"]"
+                    }
                 val parameterTypeName = parameter.type.toTypeName()
                 val typeName = parameterTypeName.copy(false)
                 val nullabilityMark = if (parameterTypeName.isNullable) "" else "!!"

@@ -14,7 +14,7 @@ import com.squareup.kotlinpoet.buildCodeBlock
 import eu.vendeli.ksp.dto.CollectorsContext
 import eu.vendeli.ksp.dto.CommonAnnotationData
 import eu.vendeli.ksp.utils.addMap
-import eu.vendeli.ksp.utils.addVarStatement
+import eu.vendeli.ksp.utils.buildMeta
 import eu.vendeli.ksp.utils.commonMatcherClass
 import eu.vendeli.ksp.utils.invocableType
 import eu.vendeli.ksp.utils.parseAsCommandHandler
@@ -25,10 +25,7 @@ import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.CommandHandler.CallbackQuery
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
-import eu.vendeli.tgbot.implementations.DefaultArgParser
-import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.types.internal.UpdateType
-import eu.vendeli.tgbot.utils.fullName
 
 internal fun collectCommandActivities(
     symbols: Sequence<KSFunctionDeclaration>,
@@ -63,24 +60,21 @@ internal fun collectCommandActivities(
             annotationData.scope.forEach { updT ->
                 logger.info("Command: $it UpdateType: ${updT.name} --> ${function.qualifiedName?.asString()}")
 
-                addVarStatement(postFix = "\n)),") {
-                    add("(\"$it\" to %L)" to updT)
-                    add(
-                        " to (%L to InvocationMeta(\n" to activitiesFile.buildInvocationLambdaCodeBlock(
-                            function,
-                            injectableTypes,
-                            pkg,
+                addStatement(
+                    "(\"$it\" to %L) to %L,", updT,
+                    activitiesFile.buildInvocationLambdaCodeBlock(
+                        function,
+                        injectableTypes,
+                        pkg,
+                        buildMeta(
+                            qualifier = function.qualifiedName!!.getQualifier(),
+                            function = function.simpleName.asString(),
+                            rateLimits = annotationData.rateLimits.toRateLimits(),
+                            guardClass = annotationData.guardClass,
+                            argParserClass = annotationData.argParserClass
                         ),
-                    )
-                    add("qualifier = \"%L\"" to function.qualifiedName!!.getQualifier())
-                    add(",\n function = \"%L\"" to function.simpleName.asString())
-                    if (annotationData.rateLimits.first > 0 || annotationData.rateLimits.second > 0)
-                        add(",\n rateLimits = %L" to annotationData.rateLimits.toRateLimits())
-                    if (annotationData.guardClass != DefaultGuard::class.fullName)
-                        add(",\n guard = %L::class" to annotationData.guardClass)
-                    if (annotationData.argParserClass != DefaultArgParser::class.fullName)
-                        add(",\n argParser = %L::class" to annotationData.argParserClass)
-                }
+                    ),
+                )
             }
         }
     }
@@ -107,21 +101,22 @@ internal fun collectInputActivities(
             .parseAsInputHandler()
         annotationData.first.forEach {
             logger.info("Input: $it --> ${function.qualifiedName?.asString()}")
-            addVarStatement(postFix = "\n)),") {
-                add(
-                    "\"$it\" to (%L to InvocationMeta(\n" to activitiesFile.buildInvocationLambdaCodeBlock(
-                        function,
-                        injectableTypes,
-                        pkg,
+
+            addStatement(
+                "\"$it\" to %L,",
+                activitiesFile.buildInvocationLambdaCodeBlock(
+                    function,
+                    injectableTypes,
+                    pkg,
+                    buildMeta(
+                        qualifier = function.qualifiedName!!.getQualifier(),
+                        function = function.simpleName.asString(),
+                        rateLimits = annotationData.second.toRateLimits(),
+                        guardClass = annotationData.third,
+                        argParserClass = null
                     ),
-                )
-                add("qualifier = \"%L\"" to function.qualifiedName!!.getQualifier())
-                add(",\n function = \"%L\"" to function.simpleName.asString())
-                if (annotationData.second.first > 0 || annotationData.second.second > 0)
-                    add(",\n rateLimits = %L" to annotationData.second.toRateLimits())
-                if (annotationData.third != DefaultGuard::class.fullName)
-                    add(",\n guard = %L::class" to annotationData.third)
-            }
+                ),
+            )
         }
     }
 }
@@ -171,22 +166,22 @@ internal fun collectCommonActivities(
                         .apply {
                             add("mapOf(\n")
                             data.forEach {
-                                addVarStatement(postFix = "\n)),") {
-                                    add("%L to " to it.value.toCommonMatcher(it.filter, it.scope))
-                                    add(
-                                        "(%L to InvocationMeta(\n" to activitiesFile.buildInvocationLambdaCodeBlock(
-                                            it.funDeclaration,
-                                            injectableTypes,
-                                            pkg,
+                                addStatement(
+                                    "%L to %L,",
+                                    it.value.toCommonMatcher(it.filter, it.scope),
+                                    activitiesFile.buildInvocationLambdaCodeBlock(
+                                        it.funDeclaration,
+                                        injectableTypes,
+                                        pkg,
+                                        buildMeta(
+                                            qualifier = it.funQualifier,
+                                            function = it.funSimpleName,
+                                            rateLimits = it.rateLimits,
+                                            argParserClass = it.argParser,
+                                            guardClass = null,
                                         ),
-                                    )
-                                    add("qualifier = \"%L\"" to it.funQualifier)
-                                    add(",\n function = \"%L\"" to it.funSimpleName)
-                                    if (it.rateLimits.rate > 0 || it.rateLimits.period > 0)
-                                        add(",\n rateLimits = %L" to it.rateLimits)
-                                    if (it.argParser != DefaultArgParser::class.fullName)
-                                        add(",\n argParser = %L::class" to it.argParser)
-                                }
+                                    ),
+                                )
                             }
                             add(")\n")
                         }.build(),
