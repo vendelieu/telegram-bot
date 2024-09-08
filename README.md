@@ -20,8 +20,8 @@ build.gradle.kts example:
 ```gradle
 plugins {
     // ...
-    id("com.google.devtools.ksp") version "2.0.20-1.0.25"
-    id("eu.vendeli.telegram-bot") version "7.3.0"
+    id("com.google.devtools.ksp") version "$KSP_VERSION"
+    id("eu.vendeli.telegram-bot") version "7.3.1"
 }
 ```
 
@@ -32,13 +32,13 @@ To set up the project without using the plugin, you need to add a dependency and
 ```gradle
 plugins {
     // ...
-    id("com.google.devtools.ksp") version "2.0.20-1.0.24"
+    id("com.google.devtools.ksp") version "$KSP_VERSION"
 }
 
 dependencies {
     // ...
-    implementation("eu.vendeli:telegram-bot:7.3.0")
-    ksp("eu.vendeli:ksp:7.3.0")
+    implementation("eu.vendeli:telegram-bot:7.3.1")
+    ksp("eu.vendeli:ksp:7.3.1")
 }
 ```
 
