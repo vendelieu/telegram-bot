@@ -9,8 +9,10 @@ import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ksp.dto.CollectorsContext
 import eu.vendeli.ksp.utils.ChainingStrategyDefault
+import eu.vendeli.ksp.utils.buildMeta
 import eu.vendeli.ksp.utils.cast
 import eu.vendeli.ksp.utils.linkQName
+import eu.vendeli.ksp.utils.toRateLimits
 import eu.vendeli.tgbot.annotations.InputChain
 import eu.vendeli.tgbot.types.internal.chain.StatefulLink
 
@@ -75,11 +77,14 @@ internal fun collectInputChains(
                 }
 
                 val isStatefulLink = link in statefulLinks
+                val meta = buildMeta(qualifier, name, (0L to 0L).toRateLimits())
 
                 val block = buildCodeBlock {
                     indent()
-                    beginControlFlow("suspendCall { classManager, update, user, bot, parameters ->")
-                        .apply {
+                    beginControlFlow(
+                        "suspendCall(\n\t${meta.first}\n) { classManager, update, user, bot, parameters ->",
+                        *meta.second
+                    ).apply {
                             add("if(user == null) return@suspendCall Unit\n")
                             add("val inst = classManager.getInstance<$reference>()!!\n")
                             add("inst.beforeAction?.invoke(user, update, bot)\n")
@@ -121,11 +126,8 @@ internal fun collectInputChains(
                 }
 
                 add(
-                    "\"$curLinkId\" to (%L to InvocationMeta(\"%L\", \"%L\", %L)),\n",
+                    "\"$curLinkId\" to %L,\n",
                     block,
-                    qualifier,
-                    name,
-                    "zeroRateLimits",
                 )
             }
         }
