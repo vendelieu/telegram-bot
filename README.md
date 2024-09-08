@@ -191,7 +191,8 @@ methods [
 
 ### Additional resources
 
-> There is a [wiki](https://github.com/vendelieu/telegram-bot/wiki) section that have helpful information.
+* There is a [wiki](https://github.com/vendelieu/telegram-bot/wiki) section that has helpful information.
+* [API reference](https://vendelieu.github.io/telegram-bot/)
 
 ### Questions
 

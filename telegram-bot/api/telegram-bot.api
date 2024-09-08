@@ -7825,7 +7825,7 @@ public final class eu/vendeli/tgbot/types/internal/ProcessedUpdateKt {
 	public static final fun getUserOrNull (Leu/vendeli/tgbot/types/internal/ProcessedUpdate;)Leu/vendeli/tgbot/types/User;
 }
 
-public final class eu/vendeli/tgbot/types/internal/PurchasedPaidMediaUpdate : eu/vendeli/tgbot/types/internal/ProcessedUpdate {
+public final class eu/vendeli/tgbot/types/internal/PurchasedPaidMediaUpdate : eu/vendeli/tgbot/types/internal/ProcessedUpdate, eu/vendeli/tgbot/types/internal/TextReference, eu/vendeli/tgbot/types/internal/UserReference {
 	public fun <init> (ILeu/vendeli/tgbot/types/Update;Leu/vendeli/tgbot/types/media/PaidMediaPurchased;)V
 	public final fun component1 ()I
 	public final fun component2 ()Leu/vendeli/tgbot/types/Update;
@@ -7835,7 +7835,9 @@ public final class eu/vendeli/tgbot/types/internal/PurchasedPaidMediaUpdate : eu
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getOrigin ()Leu/vendeli/tgbot/types/Update;
 	public final fun getPurchasedPaidMedia ()Leu/vendeli/tgbot/types/media/PaidMediaPurchased;
+	public fun getText ()Ljava/lang/String;
 	public fun getUpdateId ()I
+	public fun getUser ()Leu/vendeli/tgbot/types/User;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
