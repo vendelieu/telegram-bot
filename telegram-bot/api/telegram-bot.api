@@ -2209,22 +2209,20 @@ public final class eu/vendeli/tgbot/api/stickerset/UploadStickerFileKt {
 }
 
 public final class eu/vendeli/tgbot/core/FunctionalHandlingDsl {
-	public final fun andThen (Leu/vendeli/tgbot/types/internal/SingleInputChain;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
-	public static synthetic fun andThen$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Leu/vendeli/tgbot/types/internal/SingleInputChain;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
+	public final fun andThen (Leu/vendeli/tgbot/types/internal/SingleInputChain;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Leu/vendeli/tgbot/interfaces/helper/Guard;Lkotlin/jvm/functions/Function2;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
+	public static synthetic fun andThen$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Leu/vendeli/tgbot/types/internal/SingleInputChain;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Leu/vendeli/tgbot/interfaces/helper/Guard;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
 	public final fun breakIf (Leu/vendeli/tgbot/types/internal/SingleInputChain;Lkotlin/jvm/functions/Function1;ZLkotlin/jvm/functions/Function2;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
 	public static synthetic fun breakIf$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Leu/vendeli/tgbot/types/internal/SingleInputChain;Lkotlin/jvm/functions/Function1;ZLkotlin/jvm/functions/Function2;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
 	public final fun common (Ljava/lang/String;Lkotlin/reflect/KClass;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;)V
 	public final fun common (Lkotlin/text/Regex;Lkotlin/reflect/KClass;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;)V
 	public static synthetic fun common$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Ljava/lang/String;Lkotlin/reflect/KClass;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
 	public static synthetic fun common$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/text/Regex;Lkotlin/reflect/KClass;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
-	public final fun inputChain (Ljava/lang/String;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
-	public static synthetic fun inputChain$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Ljava/lang/String;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
-	public final fun onCommand (Ljava/lang/String;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;)V
-	public final fun onCommand (Lkotlin/text/Regex;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;)V
-	public static synthetic fun onCommand$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Ljava/lang/String;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
-	public static synthetic fun onCommand$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/text/Regex;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
-	public final fun onInput (Ljava/lang/String;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;)V
-	public static synthetic fun onInput$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Ljava/lang/String;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
+	public final fun inputChain (Ljava/lang/String;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Leu/vendeli/tgbot/interfaces/helper/Guard;Lkotlin/jvm/functions/Function2;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
+	public static synthetic fun inputChain$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Ljava/lang/String;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Leu/vendeli/tgbot/interfaces/helper/Guard;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
+	public final fun onCommand (Ljava/lang/String;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Leu/vendeli/tgbot/interfaces/helper/Guard;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;)V
+	public static synthetic fun onCommand$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Ljava/lang/String;Ljava/util/Set;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Leu/vendeli/tgbot/interfaces/helper/Guard;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
+	public final fun onInput (Ljava/lang/String;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Leu/vendeli/tgbot/interfaces/helper/Guard;Lkotlin/jvm/functions/Function2;)V
+	public static synthetic fun onInput$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Ljava/lang/String;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Leu/vendeli/tgbot/interfaces/helper/Guard;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
 	public final fun whenNotHandled (Lkotlin/jvm/functions/Function2;)V
 }
 
@@ -7272,6 +7270,7 @@ public abstract class eu/vendeli/tgbot/types/internal/CommonMatcher {
 	public final fun getScope ()Ljava/util/Set;
 	public fun getValue ()Ljava/lang/Object;
 	public abstract fun match (Ljava/lang/String;Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class eu/vendeli/tgbot/types/internal/CommonMatcher$Regex : eu/vendeli/tgbot/types/internal/CommonMatcher {
@@ -7279,7 +7278,6 @@ public final class eu/vendeli/tgbot/types/internal/CommonMatcher$Regex : eu/vend
 	public synthetic fun getValue ()Ljava/lang/Object;
 	public fun getValue ()Lkotlin/text/Regex;
 	public fun match (Ljava/lang/String;Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun toString ()Ljava/lang/String;
 }
 
 public final class eu/vendeli/tgbot/types/internal/CommonMatcher$String : eu/vendeli/tgbot/types/internal/CommonMatcher {
@@ -7287,7 +7285,6 @@ public final class eu/vendeli/tgbot/types/internal/CommonMatcher$String : eu/ven
 	public synthetic fun getValue ()Ljava/lang/Object;
 	public fun getValue ()Ljava/lang/String;
 	public fun match (Ljava/lang/String;Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun toString ()Ljava/lang/String;
 }
 
 public final class eu/vendeli/tgbot/types/internal/Currency : java/lang/Enum {
@@ -7955,10 +7952,10 @@ public final class eu/vendeli/tgbot/types/internal/ShippingQueryUpdate : eu/vend
 }
 
 public final class eu/vendeli/tgbot/types/internal/SingleInputChain {
-	public fun <init> (Ljava/lang/String;Lkotlin/jvm/functions/Function2;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;ILjava/lang/String;Leu/vendeli/tgbot/types/internal/InputBreakPoint;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/functions/Function2;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;ILjava/lang/String;Leu/vendeli/tgbot/types/internal/InputBreakPoint;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun copy (Ljava/lang/String;Lkotlin/jvm/functions/Function2;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;ILjava/lang/String;Leu/vendeli/tgbot/types/internal/InputBreakPoint;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/SingleInputChain;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Lkotlin/reflect/KClass;ILjava/lang/String;Leu/vendeli/tgbot/types/internal/InputBreakPoint;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
+	public fun <init> (Ljava/lang/String;Lkotlin/jvm/functions/Function2;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Leu/vendeli/tgbot/interfaces/helper/Guard;ILjava/lang/String;Leu/vendeli/tgbot/types/internal/InputBreakPoint;)V
+	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/functions/Function2;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Leu/vendeli/tgbot/interfaces/helper/Guard;ILjava/lang/String;Leu/vendeli/tgbot/types/internal/InputBreakPoint;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun copy (Ljava/lang/String;Lkotlin/jvm/functions/Function2;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Leu/vendeli/tgbot/interfaces/helper/Guard;ILjava/lang/String;Leu/vendeli/tgbot/types/internal/InputBreakPoint;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/SingleInputChain;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Leu/vendeli/tgbot/interfaces/helper/Guard;ILjava/lang/String;Leu/vendeli/tgbot/types/internal/InputBreakPoint;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/SingleInputChain;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;

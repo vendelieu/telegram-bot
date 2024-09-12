@@ -58,25 +58,6 @@ class FunctionalHandlingDsl internal constructor(
     }
 
     /**
-     * The action that is performed when the command is matched.
-     *
-     * @param command The command that will be processed.
-     * @param rateLimits Restriction of command requests.
-     * @param block Action that will be applied.
-     */
-    fun onCommand(
-        command: Regex,
-        scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
-        rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: Guard = DefaultGuard,
-        argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
-        block: OnCommandActivity,
-    ) {
-        functionalActivities.regexActivities[command] =
-            FunctionalInvocation(command.pattern, block, scope, rateLimits, guard, argParser = argParser)
-    }
-
-    /**
      * The action that is performed when the input is matched.
      *
      * @param identifier Input identifier.
@@ -117,7 +98,7 @@ class FunctionalHandlingDsl internal constructor(
         block: OnCommandActivity,
     ) {
         functionalActivities.commonActivities[CommonMatcher.String(value, filter, scope)] =
-            FunctionalInvocation(value, block, scope, rateLimits, filter = filter, argParser = argParser)
+            FunctionalInvocation(value, block, scope, rateLimits, argParser = argParser)
     }
 
     /**
@@ -138,15 +119,15 @@ class FunctionalHandlingDsl internal constructor(
         block: OnCommandActivity,
     ) {
         functionalActivities.commonActivities[CommonMatcher.Regex(value, filter, scope)] =
-            FunctionalInvocation(value.pattern, block, scope, rateLimits, filter = filter, argParser = argParser)
+            FunctionalInvocation(value.pattern, block, scope, rateLimits, argParser = argParser)
     }
 
     /**
-     * Dsl for creating chain of input processing
+     * Dsl for creating a chain of input processing
      *
      * @param identifier id of input
      * @param rateLimits Restriction of input requests.
-     * @param block action that will be applied if input will match
+     * @param block action that will be applied if input matches
      * @return [SingleInputChain] for further chaining
      */
     fun inputChain(
