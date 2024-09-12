@@ -53,7 +53,7 @@ class FunctionalHandlingDsl internal constructor(
     ) {
         scope.forEach {
             functionalActivities.commands[command to it] =
-                FunctionalInvocation(command, block, scope, rateLimits, guard, argParser = argParser)
+                FunctionalInvocation(command, block, rateLimits, guard, argParser = argParser)
         }
     }
 
@@ -98,7 +98,7 @@ class FunctionalHandlingDsl internal constructor(
         block: OnCommandActivity,
     ) {
         functionalActivities.commonActivities[CommonMatcher.String(value, filter, scope)] =
-            FunctionalInvocation(value, block, scope, rateLimits, argParser = argParser)
+            FunctionalInvocation(value, block, rateLimits, argParser = argParser)
     }
 
     /**
@@ -119,7 +119,7 @@ class FunctionalHandlingDsl internal constructor(
         block: OnCommandActivity,
     ) {
         functionalActivities.commonActivities[CommonMatcher.Regex(value, filter, scope)] =
-            FunctionalInvocation(value.pattern, block, scope, rateLimits, argParser = argParser)
+            FunctionalInvocation(value.pattern, block, rateLimits, argParser = argParser)
     }
 
     /**

@@ -11,13 +11,11 @@ import kotlin.reflect.KClass
 internal data class FunctionalInvocation(
     val id: String,
     val invocation: OnCommandActivity,
-    val scope: Set<UpdateType>,
     val rateLimits: RateLimits,
     val guard: Guard = DefaultGuard,
     val argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
 ) {
     override fun toString(): String =
         "FunctionalInvocation[" +
-            "id = $id, CommandContext, scope = $scope, rateLimits = $rateLimits, guard = $guard," +
-            " argParser = $argParser]"
+            "id = $id, CommandContext, rateLimits = $rateLimits, guard = $guard, argParser = $argParser]"
 }
