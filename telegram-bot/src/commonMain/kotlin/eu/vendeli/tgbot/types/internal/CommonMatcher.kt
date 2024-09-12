@@ -21,8 +21,6 @@ sealed class CommonMatcher(
             update.type in scope &&
                 filter.checkIsFiltered(update.userOrNull, update, bot) &&
                 text == value
-
-        override fun toString(): kotlin.String = "String(value = $value, filter = $filter, scope = $scope)"
     }
 
     class Regex(
@@ -34,7 +32,8 @@ sealed class CommonMatcher(
             update.type in scope &&
                 filter.checkIsFiltered(update.userOrNull, update, bot) &&
                 value.matchEntire(text) != null
-
-        override fun toString(): kotlin.String = "Regex(value = $value, filter = $filter, scope = $scope)"
     }
+
+    override fun toString(): kotlin.String =
+        "${this::class.simpleName}(value = $value, filter = $filter, scope = $scope)"
 }

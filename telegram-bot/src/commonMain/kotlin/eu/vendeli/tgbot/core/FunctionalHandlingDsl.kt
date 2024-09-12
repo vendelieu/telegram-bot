@@ -47,7 +47,7 @@ class FunctionalHandlingDsl internal constructor(
         command: String,
         scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Guard> = DefaultGuard::class,
+        guard: Guard = DefaultGuard,
         argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
         block: OnCommandActivity,
     ) {
@@ -68,7 +68,7 @@ class FunctionalHandlingDsl internal constructor(
         command: Regex,
         scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Guard> = DefaultGuard::class,
+        guard: Guard = DefaultGuard,
         argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
         block: OnCommandActivity,
     ) {
@@ -86,7 +86,7 @@ class FunctionalHandlingDsl internal constructor(
     fun onInput(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Guard> = DefaultGuard::class,
+        guard: Guard = DefaultGuard,
         block: OnInputActivity,
     ) {
         functionalActivities.inputs[identifier] = SingleInputChain(identifier, block, rateLimits, guard)
@@ -152,7 +152,7 @@ class FunctionalHandlingDsl internal constructor(
     fun inputChain(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Guard> = DefaultGuard::class,
+        guard: Guard = DefaultGuard,
         block: OnInputActivity,
     ): SingleInputChain {
         val firstChain = SingleInputChain(identifier, block, rateLimits, guard)
@@ -170,7 +170,7 @@ class FunctionalHandlingDsl internal constructor(
      */
     fun SingleInputChain.andThen(
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Guard> = DefaultGuard::class,
+        guard: Guard = DefaultGuard,
         block: OnInputActivity,
     ): SingleInputChain {
         val nextLevel = currentLevel + 1

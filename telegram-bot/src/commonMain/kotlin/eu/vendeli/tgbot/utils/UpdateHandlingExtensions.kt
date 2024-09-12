@@ -38,14 +38,14 @@ internal suspend inline fun KClass<out Guard>.checkIsGuarded(
     return bot.config.classManager
         .getInstance(this)
         .cast<Guard>()
-        .checkIsGuarded(user, update, bot)
+        .condition(user, update, bot)
 }
 
 internal suspend inline fun Guard.checkIsGuarded(
     user: User?,
     update: ProcessedUpdate,
     bot: TelegramBot,
-): Boolean = condition(user, update, bot)
+): Boolean = if (this::class.fullName == DefaultGuard::class.fullName) true else condition(user, update, bot)
 
 internal suspend inline fun KClass<out Filter>.checkIsFiltered(
     user: User?,
