@@ -239,13 +239,16 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         onUpdateInvocationsCount shouldBe UpdateType.entries.size
 
         bot.update.functionalHandlingBehavior.apply {
+            val scope = setOf(UpdateType.MESSAGE)
             val regex = "^*.".toRegex()
-            onCommand(
+            common(
                 regex,
-                setOf(UpdateType.CALLBACK_QUERY),
-                RateLimits.NOT_LIMITED,
+                scope = scope,
+                rateLimits = RateLimits.NOT_LIMITED,
             ) { }
-            functionalActivities.regexActivities[regex].shouldNotBeNull()
+            functionalActivities.commonActivities.entries.find {
+                it.key.match("t", MockUpdate.SINGLE("t").updates.first(), bot)
+            }.shouldNotBeNull()
 
             onInput("test") { }
             functionalActivities.inputs["test"].shouldNotBeNull()
