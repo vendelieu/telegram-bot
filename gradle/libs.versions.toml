@@ -9,7 +9,7 @@ serialization = "1.7.2"
 stately = "2.1.0"
 
 kotlin = "2.0.20"
-coroutines = "1.8.1"
+coroutines = "1.9.0"
 dokka = "1.9.20"
 kotlinter = "4.4.1"
 deteKT = "1.23.7"
