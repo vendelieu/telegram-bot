@@ -28,7 +28,7 @@ configuredKotlin {
             api(libs.kotlin.datetime)
         }
         jvmTest.dependencies {
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.8.1")
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.9.0")
             implementation(libs.logback)
 
             implementation(libs.test.kotest.junit5)
