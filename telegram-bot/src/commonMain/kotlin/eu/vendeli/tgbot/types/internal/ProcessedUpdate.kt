@@ -42,7 +42,7 @@ sealed class ProcessedUpdate(
     MultipleResponse {
     internal companion object : UpdateSerializer<ProcessedUpdate>()
 
-    internal fun toJsonString() = serde.encodeToString(ProcessedUpdate, this)
+    internal fun toJsonString() = "[$type]" + serde.encodeToString(ProcessedUpdate, this)
 }
 
 @Serializable(MessageUpdate.Companion::class)
