@@ -158,7 +158,8 @@ class TgUpdateHandler internal constructor(
      * @param update
      */
     suspend fun handle(update: ProcessedUpdate): Unit = update.run {
-        logger.debug { "Handling update: $update" }
+        logger.debug { "Handling update: ${update.toJsonString()}" }
+        logger.trace { "Processed into: $update" }
         val user = userOrNull
         // check general user limits
         if (checkIsLimited(bot.config.rateLimiter.limits, user?.id))
@@ -224,7 +225,7 @@ class TgUpdateHandler internal constructor(
             }.onFailure {
                 logger.error(
                     it,
-                ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: $update" }
+                ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: ${update.toJsonString()}" }
                 handleFailure(update, it)
             }.onSuccess {
                 logger.info {
@@ -243,7 +244,7 @@ class TgUpdateHandler internal constructor(
     }.onFailure {
         logger.error(it) {
             (if (isTypeUpdate) "UpdateTypeHandler(${update.type})" else "UnprocessedHandler") +
-                " invocation error at handling update: $update"
+                " invocation error at handling update: ${update.toJsonString()}"
         }
         handleFailure(update, it)
     }.onSuccess {

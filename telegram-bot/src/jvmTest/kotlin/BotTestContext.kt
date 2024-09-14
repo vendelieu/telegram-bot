@@ -14,7 +14,6 @@ import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
-import eu.vendeli.tgbot.utils.DEFAULT_LOGGING_TAG
 import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.LoggingWrapper
 import eu.vendeli.tgbot.utils.defineActivities
@@ -78,7 +77,7 @@ abstract class BotTestContext(
     protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()
     protected val RAND_INT: Int get() = RANDOM_INST.nextInt()
     protected val DUMB_USER = User(1, false, "Test")
-    protected val logger = LoggingWrapper(LoggingConfiguration(), DEFAULT_LOGGING_TAG)
+    protected val logger = LoggingWrapper(LoggingConfiguration())
 
     @BeforeAll
     @OptIn(InternalApi::class)

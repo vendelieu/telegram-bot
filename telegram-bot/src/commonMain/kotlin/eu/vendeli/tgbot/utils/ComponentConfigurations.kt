@@ -34,7 +34,7 @@ fun getConfiguredHttpClient(httpCfg: HttpConfiguration, loggingCfg: LoggingConfi
         install(Logging) {
             this.logger = object : Logger {
                 override fun log(message: String) {
-                    suspend { loggingCfg.logger.log(LogLvl.INFO, loggingTag, message, null) }
+                    suspend { loggingCfg.logger.log(LogLvl.DEBUG, loggingTag, message, null) }
                 }
             }
             level = loggingCfg.httpLogLevel.toKtorLvl()
