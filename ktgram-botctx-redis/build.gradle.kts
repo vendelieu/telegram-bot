@@ -10,8 +10,6 @@ onlyJvmConfiguredKotlin {
         commonMain.dependencies {
             implementation(project(":telegram-bot"))
             implementation(libs.kotlin.serialization)
-        }
-        jvmMain.dependencies {
             implementation(libs.redis)
         }
     }

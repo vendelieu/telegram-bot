@@ -17,5 +17,5 @@ private var activities: Map<String, List<Any?>> = emptyMap()
 actual val _OperatingActivities: Map<String, List<Any?>>
     get() = activities
 
-internal actual val KClass<*>.fullName: String
+actual val KClass<*>.fqName: String
     get() = qualifiedName ?: simpleName ?: "Unknown"

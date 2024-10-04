@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.types.internal.IdLong
 import eu.vendeli.tgbot.types.internal.chain.KeySelector
 import eu.vendeli.tgbot.types.internal.chain.LinkStateManager
 import eu.vendeli.tgbot.types.internal.chain.StatefulLink
-import eu.vendeli.tgbot.utils.fullName
+import eu.vendeli.tgbot.utils.fqName
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializerOrNull
@@ -24,7 +24,7 @@ abstract class RedisLinkStateManager<L, T>(
     where L : StatefulLink<IdLong, T>, T : Any {
     open val redis = ReThis(host, port)
     override val stateKey: KeySelector<IdLong> = stateSelector
-    private val redisMap by lazy { redis.Hash("linkState-${linkRef::class.fullName}") }
+    private val redisMap by lazy { redis.Hash("linkState-${linkRef::class.fqName}") }
 
     @OptIn(InternalSerializationApi::class)
     private val storageTypeSerializer =

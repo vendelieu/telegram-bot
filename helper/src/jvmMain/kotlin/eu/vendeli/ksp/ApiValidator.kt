@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
-import eu.vendeli.tgbot.utils.fullName
+import eu.vendeli.tgbot.utils.fqName
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.boolean
@@ -71,15 +71,15 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
                     .declaration.qualifiedName!!
                     .asString()
             ) {
-                CaptionFeature::class.fullName -> {
+                CaptionFeature::class.fqName -> {
                     parameters["caption"] = STRING
                     parameters["captionEntities"] = entitiesType
                 }
 
-                EntitiesFeature::class.fullName -> parameters["entities"] = entitiesType
-                MarkupFeature::class.fullName -> parameters["replyMarkup"] = replyMarkupType
-                BusinessActionExt::class.fullName -> parameters["businessConnectionId"] = STRING
-                InlineActionExt::class.fullName -> parameters["inlineMessageId"] = STRING
+                EntitiesFeature::class.fqName -> parameters["entities"] = entitiesType
+                MarkupFeature::class.fqName -> parameters["replyMarkup"] = replyMarkupType
+                BusinessActionExt::class.fqName -> parameters["businessConnectionId"] = STRING
+                InlineActionExt::class.fqName -> parameters["inlineMessageId"] = STRING
             }
         }
 

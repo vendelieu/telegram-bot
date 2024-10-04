@@ -121,10 +121,12 @@ tasks {
 }
 
 apiValidation {
+    @Suppress("OPT_IN_USAGE")
+    klib.enabled = true
     ignoredPackages.add("utils")
     nonPublicMarkers.apply {
         add("eu.vendeli.tgbot.annotations.internal.ExperimentalFeature")
-        add("eu.vendeli.tgbot.annotations.internal.InternalApi")
+        add("eu.vendeli.tgbot.annotations.internal.KtGramInternal")
     }
 }
 

@@ -60,7 +60,7 @@ suspend fun TgUpdateHandler.runExceptionHandler(
  * @param user The user for whom it will be set.
  * @param firstLink The First link that will be processed (it doesn't have to be the first link in the chain, feel free to set up any of).
  */
-fun <T : Link<*>> InputListener.setChain(user: User, firstLink: T) = set(user, firstLink::class.fullName)
+fun <T : Link<*>> InputListener.setChain(user: User, firstLink: T) = set(user, firstLink::class.fqName)
 
 /**
  * Method to get given class instance through defined ClassManager.

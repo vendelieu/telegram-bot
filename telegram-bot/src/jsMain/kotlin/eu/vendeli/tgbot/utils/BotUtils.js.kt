@@ -16,4 +16,4 @@ actual val _OperatingActivities: Map<String, List<Any?>>
     get() = activities
 
 @Suppress("unused")
-internal actual inline val KClass<*>.fullName: String get() = simpleName ?: "Unknown"
+actual inline val KClass<*>.fqName: String get() = simpleName ?: "Unknown"

@@ -91,7 +91,7 @@ public abstract interface annotation class eu/vendeli/tgbot/annotations/UpdateHa
 public abstract interface annotation class eu/vendeli/tgbot/annotations/internal/ExperimentalFeature : java/lang/annotation/Annotation {
 }
 
-public abstract interface annotation class eu/vendeli/tgbot/annotations/internal/InternalApi : java/lang/annotation/Annotation {
+public abstract interface annotation class eu/vendeli/tgbot/annotations/internal/KtGramInternal : java/lang/annotation/Annotation {
 }
 
 public abstract interface annotation class eu/vendeli/tgbot/annotations/internal/TgAPI : java/lang/annotation/Annotation {
@@ -2229,7 +2229,6 @@ public final class eu/vendeli/tgbot/core/FunctionalHandlingDsl {
 public final class eu/vendeli/tgbot/core/TgUpdateHandler {
 	public static final field Companion Leu/vendeli/tgbot/core/TgUpdateHandler$Companion;
 	public final fun getCaughtExceptions ()Lkotlinx/coroutines/channels/Channel;
-	public final fun getUserClassSteps ()Ljava/util/Map;
 	public final fun handle (Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun handle (Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun parse (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -13488,7 +13487,7 @@ public final class eu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner$C
 }
 
 public final class eu/vendeli/tgbot/utils/BotUtils_jvmKt {
-	public static final fun getFullName (Lkotlin/reflect/KClass;)Ljava/lang/String;
+	public static final fun getFqName (Lkotlin/reflect/KClass;)Ljava/lang/String;
 	public static final fun get_OperatingActivities ()Ljava/util/Map;
 }
 
@@ -13549,6 +13548,7 @@ public final class eu/vendeli/tgbot/utils/FunctionalDSLUtilsKt {
 
 public final class eu/vendeli/tgbot/utils/LoggingWrapper {
 	public fun <init> (Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;Ljava/lang/String;)V
+	public synthetic fun <init> (Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun debug (Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun error (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun error$default (Leu/vendeli/tgbot/utils/LoggingWrapper;Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;

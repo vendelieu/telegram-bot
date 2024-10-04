@@ -7,6 +7,8 @@ import eu.vendeli.tgbot.utils.InvocationLambda
 import eu.vendeli.tgbot.utils.LoggingWrapper
 import eu.vendeli.tgbot.utils.UpdateTypeHandlers
 import eu.vendeli.tgbot.utils._OperatingActivities
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @Suppress("UNCHECKED_CAST")
 internal class ActivitiesData(
@@ -26,7 +28,8 @@ internal class ActivitiesData(
     val unprocessedHandler = activities[4] as InvocationLambda?
 
     init {
-        suspend {
+        @Suppress("OPT_IN_USAGE")
+        GlobalScope.launch {
             logger.info {
                 "\nCommandHandlers:\n${commandHandlers.logString}\n" +
                     "InputHandlers:\n${inputHandlers.logString}\n" +

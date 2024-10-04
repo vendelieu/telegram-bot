@@ -25,5 +25,5 @@ private var activities: Map<String, List<Any?>> = runCatching {
 actual val _OperatingActivities: Map<String, List<Any?>>
     get() = activities
 
-actual val KClass<*>.fullName: String
+actual val KClass<*>.fqName: String
     get() = qualifiedName ?: simpleName ?: "Unknown"

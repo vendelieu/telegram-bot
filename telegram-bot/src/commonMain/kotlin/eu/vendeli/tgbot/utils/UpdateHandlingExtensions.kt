@@ -33,7 +33,7 @@ internal suspend inline fun KClass<out Guard>.checkIsGuarded(
     update: ProcessedUpdate,
     bot: TelegramBot,
 ): Boolean {
-    if (fullName == DefaultGuard::class.fullName) return true
+    if (fqName == DefaultGuard::class.fqName) return true
     return bot.config.classManager
         .getInstance(this)
         .cast<Guard>()
@@ -44,14 +44,14 @@ internal suspend inline fun Guard.checkIsGuarded(
     user: User?,
     update: ProcessedUpdate,
     bot: TelegramBot,
-): Boolean = if (this::class.fullName == DefaultGuard::class.fullName) true else condition(user, update, bot)
+): Boolean = if (this::class.fqName == DefaultGuard::class.fqName) true else condition(user, update, bot)
 
 internal suspend inline fun KClass<out Filter>.checkIsFiltered(
     user: User?,
     update: ProcessedUpdate,
     bot: TelegramBot,
 ): Boolean {
-    if (fullName == DefaultFilter::class.fullName) return true
+    if (fqName == DefaultFilter::class.fqName) return true
     return bot.config.classManager
         .getInstance(this)
         .cast<Filter>()
@@ -70,7 +70,7 @@ internal fun TgUpdateHandler.getParameters(
     request: ParsedText,
 ): Map<String, String> = parser
     ?.let {
-        if (it.fullName == DefaultArgParser::class.fullName) bot.config.commandParsing.run {
+        if (it.fqName == DefaultArgParser::class.fqName) bot.config.commandParsing.run {
             defaultArgParser(
                 request.tail,
                 parametersDelimiter,

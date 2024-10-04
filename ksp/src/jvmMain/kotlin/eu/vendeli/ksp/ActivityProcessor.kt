@@ -181,12 +181,12 @@ class ActivityProcessor(
     }
 
     private fun FileBuilder.addOptIn() {
-        addImport("eu.vendeli.tgbot.annotations.internal", "InternalApi")
+        addImport("eu.vendeli.tgbot.annotations.internal", "KtGramInternal")
         addAnnotation(
             AnnotationSpec
                 .builder(ClassName("kotlin", "OptIn"))
                 .useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
-                .addMember("InternalApi::class")
+                .addMember("KtGramInternal::class")
                 .build(),
         )
     }

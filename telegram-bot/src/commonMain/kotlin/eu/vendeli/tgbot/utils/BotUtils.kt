@@ -68,4 +68,4 @@ internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T):
 @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
 internal inline fun <T> Any?.cast() = this as T
 
-internal expect val KClass<*>.fullName: String
+expect val KClass<*>.fqName: String
