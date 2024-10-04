@@ -1,7 +1,6 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
@@ -180,7 +179,6 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         commonHandler.get() shouldBe 2
     }
 
-    @OptIn(InternalApi::class)
     @Test
     suspend fun `functional activities setting test`() {
         val ctx = ActivityCtx(
@@ -246,9 +244,10 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 scope = scope,
                 rateLimits = RateLimits.NOT_LIMITED,
             ) { }
-            functionalActivities.commonActivities.entries.find {
-                it.key.match("t", MockUpdate.SINGLE("t").updates.first(), bot)
-            }.shouldNotBeNull()
+            functionalActivities.commonActivities.entries
+                .find {
+                    it.key.match("t", MockUpdate.SINGLE("t").updates.first(), bot)
+                }.shouldNotBeNull()
 
             onInput("test") { }
             functionalActivities.inputs["test"].shouldNotBeNull()

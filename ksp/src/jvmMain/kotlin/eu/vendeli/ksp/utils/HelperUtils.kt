@@ -135,7 +135,7 @@ internal inline fun buildMeta(
 ): Pair<String, Array<Any?>> {
     val parametersList = mutableListOf<Any?>(
         qualifier,
-        function
+        function,
     )
 
     return buildString {

@@ -197,10 +197,11 @@ class ActivityProcessor(
             .apply {
                 addModifiers(KModifier.PRIVATE, KModifier.INLINE)
                 if (withMeta) addParameter(
-                    ParameterSpec.builder(
-                        "meta",
-                        TypeVariableName("InvocationMeta"),
-                    ).build(),
+                    ParameterSpec
+                        .builder(
+                            "meta",
+                            TypeVariableName("InvocationMeta"),
+                        ).build(),
                 )
                 addParameter(
                     ParameterSpec

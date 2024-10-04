@@ -1,6 +1,5 @@
 package eu.vendeli.tgbot
 
-import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.interfaces.helper.ConfigLoader
@@ -39,7 +38,6 @@ class TelegramBot(
         config.apply(configLoader.load())
     }
 
-    @OptIn(InternalApi::class)
     constructor(
         token: String,
         commandsPackage: String? = null,
@@ -69,7 +67,6 @@ class TelegramBot(
      */
     val update = TgUpdateHandler(commandsPackage, this)
 
-    @OptIn(InternalApi::class)
     internal var httpClient = getConfiguredHttpClient(config.httpClient, config.logging)
 
     /**

@@ -18,7 +18,7 @@ import eu.vendeli.ksp.utils.userClass
 import eu.vendeli.ksp.utils.userDataCtx
 import eu.vendeli.ksp.utils.userDataCtxDef
 import eu.vendeli.tgbot.annotations.CtxProvider
-import eu.vendeli.tgbot.annotations.internal.InternalApi
+import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 
 internal fun processCtxProviders(
     fileSpec: FileBuilder,
@@ -75,7 +75,7 @@ internal fun processCtxProviders(
             .builder("____clearClassData")
             .addModifiers(KModifier.SUSPEND)
             .addParameter("tgId", LONG)
-            .addAnnotation(InternalApi::class)
+            .addAnnotation(KtGramInternal::class)
             .addCode("return _classData.clearAll(tgId)")
             .build(),
     )

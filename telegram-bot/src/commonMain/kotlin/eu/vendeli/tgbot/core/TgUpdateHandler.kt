@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivitiesData
 import eu.vendeli.tgbot.types.internal.FailedUpdate
@@ -59,6 +60,7 @@ class TgUpdateHandler internal constructor(
     /**
      * Previous invoked function qualified path (i.e., full class path).
      */
+    @KtGramInternal
     val userClassSteps = mutableMapOf<Long, String>()
 
     private suspend fun collectUpdates(types: List<UpdateType>?) = bot.config.updatesListener.run {
@@ -225,7 +227,9 @@ class TgUpdateHandler internal constructor(
             }.onFailure {
                 logger.error(
                     it,
-                ) { "Method ${second.qualifier}:${second.function} invocation error at handling update: ${update.toJsonString()}" }
+                ) {
+                    "Method ${second.qualifier}:${second.function} invocation error at handling update: ${update.toJsonString()}"
+                }
                 handleFailure(update, it)
             }.onSuccess {
                 logger.info {

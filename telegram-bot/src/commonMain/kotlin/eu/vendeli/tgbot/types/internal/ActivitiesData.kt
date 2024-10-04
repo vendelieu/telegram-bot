@@ -1,6 +1,5 @@
 package eu.vendeli.tgbot.types.internal
 
-import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.utils.CommandHandlers
 import eu.vendeli.tgbot.utils.CommonHandlers
 import eu.vendeli.tgbot.utils.InputHandlers
@@ -14,7 +13,6 @@ internal class ActivitiesData(
     pkg: String? = null,
     logger: LoggingWrapper,
 ) {
-    @OptIn(InternalApi::class)
     private val activities = when {
         _OperatingActivities.size == 1 -> _OperatingActivities.entries.firstOrNull()?.value
         _OperatingActivities.size > 1 && pkg != null -> _OperatingActivities[pkg]

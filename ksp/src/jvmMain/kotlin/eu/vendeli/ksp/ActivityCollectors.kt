@@ -61,7 +61,8 @@ internal fun collectCommandActivities(
                 logger.info("Command: $it UpdateType: ${updT.name} --> ${function.qualifiedName?.asString()}")
 
                 addStatement(
-                    "(\"$it\" to %L) to %L,", updT,
+                    "(\"$it\" to %L) to %L,",
+                    updT,
                     activitiesFile.buildInvocationLambdaCodeBlock(
                         function,
                         injectableTypes,
@@ -71,7 +72,7 @@ internal fun collectCommandActivities(
                             function = function.simpleName.asString(),
                             rateLimits = annotationData.rateLimits.toRateLimits(),
                             guardClass = annotationData.guardClass,
-                            argParserClass = annotationData.argParserClass
+                            argParserClass = annotationData.argParserClass,
                         ),
                     ),
                 )
@@ -113,7 +114,7 @@ internal fun collectInputActivities(
                         function = function.simpleName.asString(),
                         rateLimits = annotationData.second.toRateLimits(),
                         guardClass = annotationData.third,
-                        argParserClass = null
+                        argParserClass = null,
                     ),
                 ),
             )

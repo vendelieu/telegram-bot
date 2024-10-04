@@ -1,7 +1,6 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.chat.Chat
@@ -256,7 +255,6 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             .shouldNotBeNull()
     }
 
-    @OptIn(InternalApi::class)
     @Test
     suspend fun `input media handling test`() {
         doMockHttp(

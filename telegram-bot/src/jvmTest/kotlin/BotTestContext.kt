@@ -1,7 +1,6 @@
 
 import eu.vendeli.fixtures.__ACTIVITIES
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
@@ -80,7 +79,6 @@ abstract class BotTestContext(
     protected val logger = LoggingWrapper(LoggingConfiguration())
 
     @BeforeAll
-    @OptIn(InternalApi::class)
     fun prepareTestBot() {
         val ctx = BotResource.swapAndGet()
         BOT_ID = ctx.id

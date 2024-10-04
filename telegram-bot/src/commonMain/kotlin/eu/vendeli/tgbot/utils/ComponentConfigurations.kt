@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.utils
 
-import eu.vendeli.tgbot.annotations.internal.InternalApi
+import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.configuration.HttpConfiguration
 import eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration
@@ -16,7 +16,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNamingStrategy
 
-@InternalApi
+@KtGramInternal
 fun getConfiguredHttpClient(httpCfg: HttpConfiguration, loggingCfg: LoggingConfiguration) = httpCfg.run cfg@{
     val loggingTag = "eu.vendeli.http"
     HttpClient {

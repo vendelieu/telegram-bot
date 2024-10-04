@@ -1,7 +1,6 @@
 package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.implementations.DefaultArgParser
@@ -65,7 +64,6 @@ internal suspend inline fun Filter.checkIsFiltered(
     bot: TelegramBot,
 ): Boolean = match(user, update, bot)
 
-@OptIn(InternalApi::class)
 @Suppress("NOTHING_TO_INLINE")
 internal fun TgUpdateHandler.getParameters(
     parser: KClass<out ArgumentParser>?,
