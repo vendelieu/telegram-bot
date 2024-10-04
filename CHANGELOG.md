@@ -1,5 +1,12 @@
 # Telegram-bot (KtGram) Changelog
 
+# Unreleased
+
+* Removed `onCommand(Regex)` from FunctionalDSL since `common` is already covering its case and the functionality was
+  removed anyway and the feature remained by chance :)
+* Little improvements to logging process.
+* Added linuxX64 + mingwX64 targets to botctx-redis module
+
 ### 7.3.1
 
 * Add missing `user` and `text` references for `PurchasedPaidMediaUpdate`.
@@ -10,7 +17,8 @@
 * Added option to auto clean state in `@InputChain` as annotation parameter [🔬].
 * Added option to set chaining strategy for `@InputChain` links, to have more control over flow.
 * Added option to set custom argument parser for specific activities (`@CommandHandler`, `@CommonHandler`).
-* Removed special deeplink case handling, now will need to use the basic mechanism (can be caught by ordered parameters).
+* Removed special deeplink case handling, now will need to use the basic mechanism (can be caught by ordered
+  parameters).
 
 ### 7.2.2
 

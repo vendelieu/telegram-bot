@@ -1,6 +1,6 @@
 [versions]
 ktor = "2.3.12"
-redis = "6.4.0.RELEASE"
+redis = "0.1.3"
 logging = "2.0.4"
 logback = "1.5.8"
 
@@ -69,7 +69,7 @@ ssl-utils = { module = "io.github.hakky54:sslcontext-kickstart-for-pem", version
 spring-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "spring" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 publisher = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "publisher" }
-redis = { module = "io.lettuce:lettuce-core", version.ref = "redis" }
+redis = { module = "eu.vendeli:re.this", version.ref = "redis" }
 env = { module = "dev.scottpierce:kotlin-env-var", version.ref = "env" }
 toml = { module = "net.peanuuutz.tomlkt:tomlkt", version.ref = "toml" }
 

@@ -3,6 +3,9 @@ plugins {
 }
 
 onlyJvmConfiguredKotlin {
+    mingwX64()
+    linuxX64()
+
     sourceSets {
         commonMain.dependencies {
             implementation(project(":telegram-bot"))

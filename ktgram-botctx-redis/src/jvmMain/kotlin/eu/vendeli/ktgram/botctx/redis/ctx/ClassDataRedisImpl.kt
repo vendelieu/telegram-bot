@@ -1,38 +1,53 @@
 package eu.vendeli.ktgram.botctx.redis.ctx
 
+import eu.vendeli.rethis.ReThis
+import eu.vendeli.rethis.commands.del
+import eu.vendeli.rethis.commands.get
+import eu.vendeli.rethis.commands.keys
+import eu.vendeli.rethis.commands.set
 import eu.vendeli.tgbot.interfaces.ctx.ClassData
-import io.lettuce.core.RedisClient
-import io.lettuce.core.api.reactive.RedisReactiveCommands
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.future.asDeferred
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
 
 abstract class ClassDataRedisImpl(
-    url: String = "redis://localhost",
+    host: String = "localhost",
+    port: Int = 6379,
 ) : ClassData<String> {
-    open val redis: RedisReactiveCommands<String, String> = RedisClient.create(url).connect().reactive()
+    open val redis = ReThis(host, port)
 
-    override fun get(telegramId: Long, key: String): String? = redis.get("classData-$telegramId-$key").block()
+    override fun get(telegramId: Long, key: String): String? = runBlocking { redis.get("classData-$telegramId-$key") }
 
-    override suspend fun getAsync(telegramId: Long, key: String): Deferred<String?> =
-        redis.get("classData-$telegramId-$key").toFuture().asDeferred()
-
-    override fun del(telegramId: Long, key: String) {
-        redis.del("classData-$telegramId-$key").block()
+    override suspend fun getAsync(telegramId: Long, key: String): Deferred<String?> = coroutineScope {
+        async {
+            redis.get("classData-$telegramId-$key")
+        }
     }
 
-    override suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean> =
-        redis.del("classData-$telegramId-$key").map { it > 0 }.toFuture().asDeferred()
+    override fun del(telegramId: Long, key: String): Unit = runBlocking {
+        redis.del("classData-$telegramId-$key")
+    }
 
-    override suspend fun setAsync(telegramId: Long, key: String, value: String?): Deferred<Boolean> =
-        redis.set("classData-$telegramId-$key", value ?: "null").map { it == "OK" }.toFuture().asDeferred()
+    override suspend fun delAsync(telegramId: Long, key: String): Deferred<Boolean> = coroutineScope {
+        async {
+            redis.del("classData-$telegramId-$key") > 0
+        }
+    }
+
+    override suspend fun setAsync(telegramId: Long, key: String, value: String?): Deferred<Boolean> = coroutineScope {
+        async {
+            redis.set("classData-$telegramId-$key", value ?: "null") == "OK"
+        }
+    }
 
     override suspend fun clearAll(telegramId: Long) {
-        redis.keys("classData-$telegramId*").collectList().block()?.let {
+        redis.keys("classData-$telegramId*").let {
             redis.del(*it.toTypedArray())
         }
     }
 
-    override fun set(telegramId: Long, key: String, value: String?) {
-        redis.set("classData-$telegramId-$key", value ?: "null").block()
+    override fun set(telegramId: Long, key: String, value: String?): Unit = runBlocking {
+        redis.set("classData-$telegramId-$key", value ?: "null")
     }
 }
