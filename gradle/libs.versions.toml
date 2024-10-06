@@ -1,6 +1,6 @@
 [versions]
 ktor = "2.3.12"
-redis = "0.1.4"
+redis = "0.1.5"
 logging = "2.0.4"
 logback = "1.5.8"
 
