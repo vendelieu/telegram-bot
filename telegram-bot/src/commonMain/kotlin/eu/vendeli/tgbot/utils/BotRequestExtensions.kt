@@ -34,7 +34,7 @@ private inline fun buildHeadersForItem(name: String) = HeadersBuilder()
     }.build()
 
 @Suppress("OPT_IN_USAGE")
-private suspend fun HttpRequestBuilder.formReqBody(
+private fun HttpRequestBuilder.formReqBody(
     data: Map<String, JsonElement>,
     multipartData: List<PartData.BinaryItem>,
 ) {
