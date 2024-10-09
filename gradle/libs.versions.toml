@@ -1,5 +1,5 @@
 [versions]
-ktor = "2.3.12"
+ktor = "3.0.0"
 redis = "0.1.5"
 logging = "2.0.4"
 logback = "1.5.9"
