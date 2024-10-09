@@ -23,7 +23,7 @@ internal class LogbackLoggerWrapper : Logger {
 
     private fun getLogger(tag: String): org.slf4j.Logger = loggers.getOrElse(tag) {
         LoggerFactory.getLogger(tag).also {
-            it.cast<ch.qos.logback.classic.Logger>().level = Level.ALL
+            it.cast<ch.qos.logback.classic.Logger>().level = Level.TRACE
             loggers[tag] = it
         }
     }
