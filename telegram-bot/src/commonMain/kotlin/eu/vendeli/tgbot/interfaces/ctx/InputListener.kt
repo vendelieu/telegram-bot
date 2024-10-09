@@ -15,7 +15,7 @@ interface InputListener {
      * @param telegramId
      * @param identifier
      */
-    fun set(telegramId: Long, identifier: () -> String)
+    fun set(telegramId: Long, identifier: () -> String) = set(telegramId, identifier())
 
     /**
      * Set new waiting point
