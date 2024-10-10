@@ -25,7 +25,7 @@ import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.ktor.client.request.get
-import io.ktor.client.statement.readBytes
+import io.ktor.client.statement.readRawBytes
 import io.ktor.http.isSuccess
 import io.mockk.coEvery
 import io.mockk.every
@@ -112,7 +112,7 @@ abstract class BotTestContext(
     }
 
     private fun getRandomPic(): ByteArray? = runBlocking {
-        bot.httpClient.get(RandomPicResource.RANDOM_PIC_URL).takeIf { it.status.isSuccess() }?.readBytes()?.also {
+        bot.httpClient.get(RandomPicResource.RANDOM_PIC_URL).takeIf { it.status.isSuccess() }?.readRawBytes()?.also {
             logger.warn { "RANDOM PIC OBTAINING ERROR." }
         }
     }
