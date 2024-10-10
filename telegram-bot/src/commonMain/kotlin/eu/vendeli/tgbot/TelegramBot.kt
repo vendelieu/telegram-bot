@@ -12,7 +12,7 @@ import eu.vendeli.tgbot.utils.LoggingWrapper
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
-import io.ktor.client.statement.readBytes
+import io.ktor.client.statement.readRawBytes
 
 /**
  * Telegram bot main instance
@@ -84,7 +84,7 @@ class TelegramBot(
      * @return [ByteArray]
      */
     suspend fun getFileContent(file: File): ByteArray? =
-        file.getDirectUrl(config.apiHost, token)?.let { httpClient.get(it).readBytes() }
+        file.getDirectUrl(config.apiHost, token)?.let { httpClient.get(it).readRawBytes() }
 
     /**
      * Function for processing updates by long-pulling using annotation commands.
