@@ -113,9 +113,9 @@ tasks {
             collectionSchema.elements.forEach { _ -> moduleName = "Telegram Bot" }
         }
         pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
-            customStyleSheets = listOf(rootDir.resolve("assets/logo-styles.css"))
-            customAssets = listOf(rootDir.resolve("assets/tgbotkt-logo.png"))
+            customAssets = listOf(rootDir.resolve("assets/logo-icon.svg"))
             footerMessage = "© ${LocalDate.now().year} Vendelieu"
+            homepageLink = "https://github.com/vendelieu/telegram-bot"
         }
     }
 }
