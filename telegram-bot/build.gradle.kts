@@ -130,23 +130,17 @@ apiValidation {
     }
 }
 
-kover {
-    reports {
-        filters {
-            excludes {
-                packages(
-                    "eu.vendeli.tgbot.interfaces",
-                    "eu.vendeli.tgbot.types",
-                    "eu.vendeli.tgbot.utils",
-                )
-                classes(
-                    "eu.vendeli.tgbot.api.botactions.Close*", // test is ignored
-                    "eu.vendeli.tgbot.api.botactions.Logout*",
-                    "eu.vendeli.tgbot.api.stickerset.*CustomEmoji*",
-                    "eu.vendeli.tgbot.implementations.EnvConfigLoader*",
-                )
-            }
-        }
-    }
+kover.reports.filters.excludes {
+    packages(
+        "eu.vendeli.tgbot.interfaces",
+        "eu.vendeli.tgbot.types",
+        "eu.vendeli.tgbot.utils",
+    )
+    classes(
+        "eu.vendeli.tgbot.api.botactions.Close*", // test is ignored
+        "eu.vendeli.tgbot.api.botactions.Logout*",
+        "eu.vendeli.tgbot.api.stickerset.*CustomEmoji*",
+        "eu.vendeli.tgbot.implementations.EnvConfigLoader*",
+    )
 }
 

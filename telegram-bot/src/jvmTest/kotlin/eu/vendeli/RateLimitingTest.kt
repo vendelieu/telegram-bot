@@ -1,7 +1,6 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.implementations.TokenBucketLimiterImpl
 import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
@@ -14,7 +13,6 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
     private val limiter = TokenBucketLimiterImpl()
     override fun isolationMode(): IsolationMode = IsolationMode.InstancePerTest
 
-    @OptIn(ExperimentalFeature::class)
     @BeforeEach
     fun prepareBot() = bot.config.run {
         limiter.resetState()
