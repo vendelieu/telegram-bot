@@ -31,14 +31,14 @@ sealed class MockUpdate {
             get() = listOf(Update(Random.nextInt(), generateMsg(text)).processUpdate())
     }
 
-    data class TEXT_LIST(
-        val texts: List<String>,
+    class TEXT_LIST(
+        vararg val text: String,
     ) : MockUpdate() {
         override val response: ByteArray
             get() = serde.encodeToString(Success(updates)).toByteArray()
 
         override val updates: List<ProcessedUpdate>
-            get() = texts.map {
+            get() = text.map {
                 Update(
                     Random.nextInt(),
                     generateMsg(it),

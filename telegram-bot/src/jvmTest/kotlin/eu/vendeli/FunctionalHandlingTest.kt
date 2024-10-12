@@ -129,7 +129,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         val startCounter = AtomicInteger(0)
         val notHandledCounter = AtomicInteger(0)
 
-        doMockHttp(MockUpdate.TEXT_LIST(listOf("test", "/start")))
+        doMockHttp(MockUpdate.TEXT_LIST("test", "/start"))
 
         bot.handleUpdates {
             onCommand("/start") {
@@ -155,7 +155,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         val commonHandler = AtomicInteger(0)
         val regexCommonHandler = AtomicInteger(0)
 
-        doMockHttp(MockUpdate.TEXT_LIST(listOf("test", "/start", "123")))
+        doMockHttp(MockUpdate.TEXT_LIST("test", "/start", "123"))
 
         bot.handleUpdates {
             onCommand("/start") {

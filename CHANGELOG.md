@@ -4,6 +4,7 @@
 
 * Removed `onCommand(Regex)` from FunctionalDSL since `common` is already covering its case and the functionality was
   removed anyway and the feature remained by chance :)
+* Exposed updates flow `bot.update.flow` [🔬].
 * Little improvements to logging process.
 * Added linuxX64 + mingwX64 targets to botctx-redis module
 

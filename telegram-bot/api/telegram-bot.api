@@ -2289,9 +2289,12 @@ public final class eu/vendeli/tgbot/implementations/InputListenerMapImpl : eu/ve
 	public fun get (Leu/vendeli/tgbot/types/User;)Ljava/lang/String;
 	public fun getAsync (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun set (JLjava/lang/String;)V
+	public fun set (JLkotlin/jvm/functions/Function0;)V
 	public fun set (Leu/vendeli/tgbot/types/User;Ljava/lang/String;)V
 	public fun set (Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)V
 	public fun setAsync (JLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun setAsync (JLkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun setAsync (Leu/vendeli/tgbot/types/User;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun setAsync (Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
@@ -2402,16 +2405,22 @@ public abstract interface class eu/vendeli/tgbot/interfaces/ctx/InputListener {
 	public abstract fun get (Leu/vendeli/tgbot/types/User;)Ljava/lang/String;
 	public abstract fun getAsync (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun set (JLjava/lang/String;)V
+	public abstract fun set (JLkotlin/jvm/functions/Function0;)V
 	public abstract fun set (Leu/vendeli/tgbot/types/User;Ljava/lang/String;)V
 	public abstract fun set (Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)V
 	public abstract fun setAsync (JLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun setAsync (JLkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun setAsync (Leu/vendeli/tgbot/types/User;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun setAsync (Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class eu/vendeli/tgbot/interfaces/ctx/InputListener$DefaultImpls {
 	public static fun get (Leu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/types/User;)Ljava/lang/String;
+	public static fun set (Leu/vendeli/tgbot/interfaces/ctx/InputListener;JLkotlin/jvm/functions/Function0;)V
 	public static fun set (Leu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/types/User;Ljava/lang/String;)V
 	public static fun set (Leu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)V
+	public static fun setAsync (Leu/vendeli/tgbot/interfaces/ctx/InputListener;JLkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun setAsync (Leu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun setAsync (Leu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
@@ -8224,38 +8233,38 @@ public final class eu/vendeli/tgbot/types/internal/configuration/CompleteConfig$
 public final class eu/vendeli/tgbot/types/internal/configuration/HttpConfiguration {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration$Companion;
 	public fun <init> ()V
-	public fun <init> (JJJILkotlin/jvm/functions/Function3;JLjava/net/Proxy;Ljava/util/Map;)V
-	public synthetic fun <init> (JJJILkotlin/jvm/functions/Function3;JLjava/net/Proxy;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()J
-	public final fun component2 ()J
-	public final fun component3 ()J
+	public fun <init> (Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;ILkotlin/jvm/functions/Function3;JLjava/net/Proxy;Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;ILkotlin/jvm/functions/Function3;JLjava/net/Proxy;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Long;
+	public final fun component2 ()Ljava/lang/Long;
+	public final fun component3 ()Ljava/lang/Long;
 	public final fun component4 ()I
 	public final fun component5 ()Lkotlin/jvm/functions/Function3;
 	public final fun component6 ()J
 	public final fun component7 ()Ljava/net/Proxy;
 	public final fun component8 ()Ljava/util/Map;
-	public final fun copy (JJJILkotlin/jvm/functions/Function3;JLjava/net/Proxy;Ljava/util/Map;)Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;JJJILkotlin/jvm/functions/Function3;JLjava/net/Proxy;Ljava/util/Map;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;
+	public final fun copy (Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;ILkotlin/jvm/functions/Function3;JLjava/net/Proxy;Ljava/util/Map;)Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Long;ILkotlin/jvm/functions/Function3;JLjava/net/Proxy;Ljava/util/Map;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAdditionalHeaders ()Ljava/util/Map;
-	public final fun getConnectTimeoutMillis ()J
+	public final fun getConnectTimeoutMillis ()Ljava/lang/Long;
 	public final fun getMaxRequestRetry ()I
 	public final fun getProxy ()Ljava/net/Proxy;
 	public final fun getRawStatus (Lio/ktor/client/statement/HttpResponse;)I
-	public final fun getRequestTimeoutMillis ()J
+	public final fun getRequestTimeoutMillis ()Ljava/lang/Long;
 	public final fun getRetryDelay ()J
 	public final fun getRetryStrategy ()Lkotlin/jvm/functions/Function3;
-	public final fun getSocketTimeoutMillis ()J
+	public final fun getSocketTimeoutMillis ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public final fun retryOnTooManyRequests ()Lkotlin/jvm/functions/Function3;
 	public final fun setAdditionalHeaders (Ljava/util/Map;)V
-	public final fun setConnectTimeoutMillis (J)V
+	public final fun setConnectTimeoutMillis (Ljava/lang/Long;)V
 	public final fun setMaxRequestRetry (I)V
 	public final fun setProxy (Ljava/net/Proxy;)V
-	public final fun setRequestTimeoutMillis (J)V
+	public final fun setRequestTimeoutMillis (Ljava/lang/Long;)V
 	public final fun setRetryDelay (J)V
 	public final fun setRetryStrategy (Lkotlin/jvm/functions/Function3;)V
-	public final fun setSocketTimeoutMillis (J)V
+	public final fun setSocketTimeoutMillis (Ljava/lang/Long;)V
 	public fun toString ()Ljava/lang/String;
 }
 

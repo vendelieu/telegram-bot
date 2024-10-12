@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivitiesData
@@ -28,9 +29,12 @@ import eu.vendeli.tgbot.utils.serde
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
@@ -45,9 +49,10 @@ class TgUpdateHandler internal constructor(
 ) {
     private val activities by lazy { ActivitiesData(commandsPackage, logger) }
     private var handlingBehaviour: HandlingBehaviourBlock = DEFAULT_HANDLING_BEHAVIOUR
-    private val updatesChannel = Channel<ProcessedUpdate>()
+    private val updatesFlow = MutableSharedFlow<ProcessedUpdate>(extraBufferCapacity = 10)
+
     internal val handlerScope = bot.config.updatesListener.run {
-        CoroutineScope(dispatcher + CoroutineName("TgBot"))
+        CoroutineScope(SupervisorJob() + dispatcher + CoroutineName("TgBot"))
     }
     internal val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
     internal val logger = LoggingWrapper(bot.config.logging, "eu.vendeli.core.TgUpdateHandler")
@@ -56,6 +61,12 @@ class TgUpdateHandler internal constructor(
      * The channel where errors caught during update processing is stored with update that caused them.
      */
     val caughtExceptions by lazy { Channel<FailedUpdate>(Channel.CONFLATED) }
+
+    /**
+     * Update flow being processed by the handler.
+     */
+    @ExperimentalFeature
+    val flow: Flow<ProcessedUpdate> get() = updatesFlow
 
     /**
      * Previous invoked function qualified path (i.e., full class path).
@@ -77,7 +88,7 @@ class TgUpdateHandler internal constructor(
                     }.sendAsync(bot)
                     .getOrNull()
                     ?.forEach {
-                        updatesChannel.send(it)
+                        updatesFlow.emit(it)
                         lastUpdateId = it.updateId + 1
                     }
                 pullingDelay.takeIf { it > 0 }?.let { delay(it) }
@@ -85,13 +96,11 @@ class TgUpdateHandler internal constructor(
         }
     }
 
-    private suspend fun processUpdates() {
+    private suspend fun processUpdates() = bot.config.updatesListener.run {
         logger.info { "Starting long-polling listener." }
         coHandle {
-            for (update in updatesChannel) {
-                launch(bot.config.updatesListener.processingDispatcher) {
-                    handlingBehaviour(this@TgUpdateHandler, update)
-                }
+            updatesFlow.collect { update ->
+                launch(processingDispatcher) { handlingBehaviour(this@TgUpdateHandler, update) }
             }
         }.join()
     }
