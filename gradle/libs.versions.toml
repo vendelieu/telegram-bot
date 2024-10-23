@@ -23,7 +23,7 @@ sslcontext = "8.3.7"
 spring = "3.3.4"
 
 ksp = "2.0.21-1.0.25"
-poet = "1.18.1"
+poet = "2.0.0"
 
 binvalid = "0.16.3"
 publisher = "0.30.0"
