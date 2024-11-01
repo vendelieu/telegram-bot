@@ -64,6 +64,7 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
             ?.associate { it.simpleName.getShortName() to it.type.toTypeName() }
             ?.let { parameters.putAll(it) }
 
+        // add parameters that represented in features/etc
         cls.superTypes.forEach {
             when (
                 it
@@ -91,6 +92,7 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
             }
             return
         }
+        // check return type correctness
         method.jsonObject["returns"]!!.jsonArray.let { returns ->
             val actionVariants = listOf("Action", "SimpleAction", "MediaAction")
             val methodActionRet = cls
@@ -112,6 +114,7 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
                         .toClassName()
                         .simpleName
                         .returnTypeCorrection()
+
                 else -> simpleName.returnTypeCorrection()
             }
 
@@ -121,6 +124,7 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
                 )
         }
 
+        // check all fields presence
         method.jsonObject["fields"]?.jsonArray?.forEach params@{
             val origParameterName = it.jsonObject["name"]!!
                 .jsonPrimitive.content
@@ -129,6 +133,7 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
             val isRequired = it.jsonObject["required"]!!.jsonPrimitive.boolean
             val apiRefLink = method.jsonObject["href"]!!.jsonPrimitive.content
 
+            // exclude chatId since it covered in send* methods
             if (camelParamName != "chatId" && targetParam == null) {
                 logger.warn(
                     "Api parameter `$origParameterName`($camelParamName) " +
@@ -137,9 +142,19 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
                 return@params
             }
 
+            // check nullability
             if (isRequired && targetParam?.isNullable == true) logger.invalid {
                 "Wrong nullability for `$camelParamName` in $classFullname\n$apiRefLink"
             }
+            parameters.remove(camelParamName) // remove checked ones
+        }
+        // check is there anything left after checking
+        parameters.remove("block") // remove EntitiesCtxBuilder constructor parameter
+        parameters.takeIf { it.isNotEmpty() }?.let {
+            logger.warn(
+                "Probably redundant parameters for method $methodName: ${parameters.keys.joinToString()}\n" +
+                    "Implemented in $classFullname."
+            )
         }
         if (!visitedMethods.add(methodName)) logger.warn("Duplicate processing of a method $methodName")
     }
