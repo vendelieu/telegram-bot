@@ -50,7 +50,7 @@ in [native-example](https://github.com/ktgram/native-example/blob/master/build.g
 <details>
   <summary><i>Snapshots</i></summary>
 
-[![Snapshot version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fv229149.hosted-by-vdsina.ru%2Fsnap-ver%2Ftelegram-bot&query=%24%5B0%5D.name&logo=github&label=SNAPSHOT&link=https%3A%2F%2Fgithub.com%2Fvendelieu%3Ftab%3Dpackages%26repo_name%3Dtelegram-bot)](https://github.com/vendelieu?tab=packages&repo_name=telegram-bot)
+[![Snapshot version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frx.vendeli.eu%2Fsnap-ver%2Ftelegram-bot&query=%24%5B0%5D.name&logo=github&label=SNAPSHOT&link=https%3A%2F%2Fgithub.com%2Fvendelieu%3Ftab%3Dpackages%26repo_name%3Dtelegram-bot)](https://github.com/vendelieu?tab=packages&repo_name=telegram-bot)
 
 To install snapshot versions, add snapshot repository,
 if you're using plugin just use `addSnapshotRepo` parameter:
