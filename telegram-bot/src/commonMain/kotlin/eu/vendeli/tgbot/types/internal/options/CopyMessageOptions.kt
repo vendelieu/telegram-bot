@@ -13,5 +13,6 @@ data class CopyMessageOptions(
     override var replyParameters: ReplyParameters? = null,
     override var messageThreadId: Int? = null,
 ) : OptionsParseMode,
+    ForumProps,
     OptionsCommon,
     ShowCaptionAboveMediaProp

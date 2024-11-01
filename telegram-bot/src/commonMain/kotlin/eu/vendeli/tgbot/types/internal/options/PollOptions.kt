@@ -32,4 +32,5 @@ data class PollOptions(
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
 ) : OptionsCommon,
+    ForumProps,
     MessageEffectIdProp

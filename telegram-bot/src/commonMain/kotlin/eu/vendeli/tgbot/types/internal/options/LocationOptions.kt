@@ -15,4 +15,5 @@ data class LocationOptions(
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
 ) : OptionsCommon,
+    ForumProps,
     MessageEffectIdProp

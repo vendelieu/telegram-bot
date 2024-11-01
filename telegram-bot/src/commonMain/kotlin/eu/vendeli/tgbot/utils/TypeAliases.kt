@@ -11,8 +11,8 @@ import eu.vendeli.tgbot.types.internal.CommonMatcher
 import eu.vendeli.tgbot.types.internal.FunctionalInvocation
 import eu.vendeli.tgbot.types.internal.InvocationMeta
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
-import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.internal.chain.SingleInputChain
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import io.ktor.client.plugins.HttpRetryShouldRetryContext
 import io.ktor.client.request.HttpRequest

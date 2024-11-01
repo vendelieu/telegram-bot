@@ -15,6 +15,7 @@ data class MessageOptions(
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
 ) : OptionsCommon,
+    ForumProps,
     OptionsParseMode,
     LinkPreviewProp,
     MessageEffectIdProp

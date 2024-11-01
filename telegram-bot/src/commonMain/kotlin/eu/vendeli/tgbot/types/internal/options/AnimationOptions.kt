@@ -20,6 +20,7 @@ data class AnimationOptions(
     override var hasSpoiler: Boolean? = null,
     override var messageEffectId: String? = null,
 ) : OptionsCommon,
+    ForumProps,
     OptionsParseMode,
     MediaSpoiler,
     MessageEffectIdProp,

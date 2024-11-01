@@ -26,4 +26,5 @@ data class InvoiceOptions(
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
 ) : OptionsCommon,
+    ForumProps,
     MessageEffectIdProp

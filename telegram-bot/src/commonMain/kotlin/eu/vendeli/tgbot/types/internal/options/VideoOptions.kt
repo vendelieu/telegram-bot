@@ -21,6 +21,7 @@ data class VideoOptions(
     override var hasSpoiler: Boolean? = null,
     override var messageEffectId: String? = null,
 ) : OptionsCommon,
+    ForumProps,
     OptionsParseMode,
     MediaSpoiler,
     MessageEffectIdProp,

@@ -41,12 +41,15 @@ interface ShowCaptionAboveMediaProp {
     var showCaptionAboveMedia: Boolean?
 }
 
+interface ForumProps {
+    var messageThreadId: Int?
+}
+
 @Serializable
 sealed interface OptionsCommon : Options {
     var disableNotification: Boolean?
     var replyParameters: ReplyParameters?
     var protectContent: Boolean?
-    var messageThreadId: Int?
 
     var replyToMessageId: Long?
         get() = replyParameters?.messageId

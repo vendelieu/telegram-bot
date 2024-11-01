@@ -15,5 +15,6 @@ data class VideoNoteOptions(
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
 ) : OptionsCommon,
+    ForumProps,
     ThumbnailProp,
     MessageEffectIdProp

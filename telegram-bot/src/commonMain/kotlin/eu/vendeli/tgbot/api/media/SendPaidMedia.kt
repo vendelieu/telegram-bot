@@ -4,7 +4,6 @@ import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
-import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.options.PaidMediaOptions
@@ -23,7 +22,6 @@ class SendPaidMediaAction(
     BusinessActionExt<Message>,
     OptionsFeature<SendPaidMediaAction, PaidMediaOptions>,
     CaptionFeature<SendPaidMediaAction>,
-    EntitiesFeature<SendPaidMediaAction>,
     MarkupFeature<SendPaidMediaAction> {
     @TgAPI.Name("sendPaidMedia")
     override val method = "sendPaidMedia"

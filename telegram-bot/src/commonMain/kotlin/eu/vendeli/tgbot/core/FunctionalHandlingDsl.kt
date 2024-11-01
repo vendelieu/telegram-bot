@@ -13,8 +13,8 @@ import eu.vendeli.tgbot.types.internal.FunctionalActivities
 import eu.vendeli.tgbot.types.internal.FunctionalInvocation
 import eu.vendeli.tgbot.types.internal.InputBreakPoint
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
-import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.internal.chain.SingleInputChain
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.DEFAULT_COMMAND_SCOPE
 import eu.vendeli.tgbot.utils.LoggingWrapper
