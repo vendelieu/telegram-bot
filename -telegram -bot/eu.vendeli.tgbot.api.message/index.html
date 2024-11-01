@@ -32,8 +32,7 @@
 <script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
 <script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
-<link href="../../images/tgbotkt-logo.png">
-<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../images/logo-icon.svg">
 </head>
 <body>
     <div class="root">
@@ -47,13 +46,14 @@
                     </a>
             </div>
             <div class="library-version">
-7.3.1            </div>
+7.4.0            </div>
         </div>
         <div class="filter-section" id="filter-section">
                 <button class="platform-tag platform-selector common-like" data-active="" data-filter=":telegram-bot:dokkaHtml/commonMain">common</button>
         </div>
     </div>
     <div class="navigation-controls">
+            <a class="navigation-controls--btn navigation-controls--homepage" id="homepage-link" href="https://github.com/vendelieu/telegram-bot"></a>
         <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
         <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
     </div>
@@ -402,7 +402,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-message-media.html"><span class="token function">editMessageMedia</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">inputMedia<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.media/-input-media/index.html">InputMedia</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-media-action/index.html">EditMessageMediaAction</a></div><br><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-message-media.html"><span class="token function">editMessageMedia</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">inputMedia<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.media/-input-media/index.html">InputMedia</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-media-action/index.html">EditMessageMediaAction</a></div><div class="brief "><p class="paragraph">Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-message-media.html"><span class="token function">editMessageMedia</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">inputMedia<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.media/-input-media/index.html">InputMedia</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-media-action/index.html">EditMessageMediaAction</a></div><br><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="edit-message-media.html"><span class="token function">editMessageMedia</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">inputMedia<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.media/-input-media/index.html">InputMedia</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-edit-message-media-action/index.html">EditMessageMediaAction</a></div><div class="brief "><p class="paragraph">Use this method to edit animation, audio, document, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent.</p></div></div></div>
                 </div>
               </div>
             </div>
