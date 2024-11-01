@@ -336,6 +336,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         doMockHttp(MockUpdate.TEXT_LIST("test1", "test2", "test3", "4test"))
         bot.handleUpdates { bot.update.stopListener() }
 
+        delay(100)
         collectedUpdates.map { it.text } shouldBe listOf("test1", "test2", "test3")
     }
 

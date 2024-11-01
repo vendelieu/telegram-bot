@@ -58,7 +58,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.konan
-          key: ${{ runner.os }}-gradle-${{ hashFiles('*.gradle.kts') }}
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/libs.versions.toml')}}
           restore-keys: |
             ${{ runner.os }}-gradle-
 
