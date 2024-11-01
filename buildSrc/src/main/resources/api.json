@@ -1,7 +1,7 @@
 {
-  "version": "Bot API 7.10",
-  "release_date": "September 6, 2024",
-  "changelog": "https://core.telegram.org/bots/api#september-6-2024",
+  "version": "Bot API 7.11",
+  "release_date": "October 31, 2024",
+  "changelog": "https://core.telegram.org/bots/api#october-31-2024",
   "methods": {
     "getUpdates": {
       "name": "getUpdates",
@@ -260,6 +260,14 @@
           "description": "Protects the contents of the sent message from forwarding and saving"
         },
         {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
+        },
+        {
           "name": "message_effect_id",
           "types": [
             "String"
@@ -505,6 +513,14 @@
           "description": "Protects the contents of the sent message from forwarding and saving"
         },
         {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
+        },
+        {
           "name": "reply_parameters",
           "types": [
             "ReplyParameters"
@@ -696,6 +712,14 @@
           "description": "Protects the contents of the sent message from forwarding and saving"
         },
         {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
+        },
+        {
           "name": "message_effect_id",
           "types": [
             "String"
@@ -843,6 +867,14 @@
           "description": "Protects the contents of the sent message from forwarding and saving"
         },
         {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
+        },
+        {
           "name": "message_effect_id",
           "types": [
             "String"
@@ -971,6 +1003,14 @@
           ],
           "required": false,
           "description": "Protects the contents of the sent message from forwarding and saving"
+        },
+        {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
         },
         {
           "name": "message_effect_id",
@@ -1143,6 +1183,14 @@
           "description": "Protects the contents of the sent message from forwarding and saving"
         },
         {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
+        },
+        {
           "name": "message_effect_id",
           "types": [
             "String"
@@ -1305,6 +1353,14 @@
           "description": "Protects the contents of the sent message from forwarding and saving"
         },
         {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
+        },
+        {
           "name": "message_effect_id",
           "types": [
             "String"
@@ -1426,6 +1482,14 @@
           "description": "Protects the contents of the sent message from forwarding and saving"
         },
         {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
+        },
+        {
           "name": "message_effect_id",
           "types": [
             "String"
@@ -1538,6 +1602,14 @@
           ],
           "required": false,
           "description": "Protects the contents of the sent message from forwarding and saving"
+        },
+        {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
         },
         {
           "name": "message_effect_id",
@@ -1668,6 +1740,14 @@
           "description": "Protects the contents of the sent message from forwarding and saving"
         },
         {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
+        },
+        {
           "name": "reply_parameters",
           "types": [
             "ReplyParameters"
@@ -1749,6 +1829,14 @@
           ],
           "required": false,
           "description": "Protects the contents of the sent messages from forwarding and saving"
+        },
+        {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
         },
         {
           "name": "message_effect_id",
@@ -1866,6 +1954,14 @@
           ],
           "required": false,
           "description": "Protects the contents of the sent message from forwarding and saving"
+        },
+        {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
         },
         {
           "name": "message_effect_id",
@@ -2012,6 +2108,14 @@
           "description": "Protects the contents of the sent message from forwarding and saving"
         },
         {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
+        },
+        {
           "name": "message_effect_id",
           "types": [
             "String"
@@ -2122,6 +2226,14 @@
           ],
           "required": false,
           "description": "Protects the contents of the sent message from forwarding and saving"
+        },
+        {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
         },
         {
           "name": "message_effect_id",
@@ -2316,6 +2428,14 @@
           "description": "Protects the contents of the sent message from forwarding and saving"
         },
         {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
+        },
+        {
           "name": "message_effect_id",
           "types": [
             "String"
@@ -2402,6 +2522,14 @@
           ],
           "required": false,
           "description": "Protects the contents of the sent message from forwarding"
+        },
+        {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
         },
         {
           "name": "message_effect_id",
@@ -4633,7 +4761,7 @@
       "name": "editMessageMedia",
       "href": "https://core.telegram.org/bots/api#editmessagemedia",
       "description": [
-        "Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent."
+        "Use this method to edit animation, audio, document, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within 48 hours from the time they were sent."
       ],
       "returns": [
         "Message",
@@ -5080,6 +5208,14 @@
           ],
           "required": false,
           "description": "Protects the contents of the sent message from forwarding and saving"
+        },
+        {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
         },
         {
           "name": "message_effect_id",
@@ -5880,6 +6016,14 @@
           "description": "Protects the contents of the sent message from forwarding and saving"
         },
         {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
+        },
+        {
           "name": "message_effect_id",
           "types": [
             "String"
@@ -6299,6 +6443,14 @@
           ],
           "required": false,
           "description": "Protects the contents of the sent message from forwarding and saving"
+        },
+        {
+          "name": "allow_paid_broadcast",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance"
         },
         {
           "name": "message_effect_id",
@@ -7276,7 +7428,7 @@
             "Integer"
           ],
           "required": true,
-          "description": "Unique message identifier inside this chat"
+          "description": "Unique message identifier inside this chat. In specific instances (e.g., message containing a video sent to a big chat), the server might automatically schedule a message instead of sending it immediately. In such cases, this field will be 0 and the relevant message will be unusable until it is actually sent"
         },
         {
           "name": "message_thread_id",
@@ -7968,7 +8120,7 @@
             "Integer"
           ],
           "required": true,
-          "description": "Unique message identifier"
+          "description": "Unique message identifier. In specific instances (e.g., message containing a video sent to a big chat), the server might automatically schedule a message instead of sending it immediately. In such cases, this field will be 0 and the relevant message will be unusable until it is actually sent"
         }
       ]
     },
@@ -8034,7 +8186,7 @@
             "String"
           ],
           "required": true,
-          "description": "Type of the entity. Currently, can be \"mention\" (@username), \"hashtag\" (#hashtag), \"cashtag\" ($USD), \"bot_command\" (/start@jobs_bot), \"url\" (https://telegram.org), \"email\" (do-not-reply@telegram.org), \"phone_number\" (+1-212-555-0123), \"bold\" (bold text), \"italic\" (italic text), \"underline\" (underlined text), \"strikethrough\" (strikethrough text), \"spoiler\" (spoiler message), \"blockquote\" (block quotation), \"expandable_blockquote\" (collapsed-by-default block quotation), \"code\" (monowidth string), \"pre\" (monowidth block), \"text_link\" (for clickable text URLs), \"text_mention\" (for users without usernames), \"custom_emoji\" (for inline custom emoji stickers)"
+          "description": "Type of the entity. Currently, can be \"mention\" (@username), \"hashtag\" (#hashtag or #hashtag@chatusername), \"cashtag\" ($USD or $USD@chatusername), \"bot_command\" (/start@jobs_bot), \"url\" (https://telegram.org), \"email\" (do-not-reply@telegram.org), \"phone_number\" (+1-212-555-0123), \"bold\" (bold text), \"italic\" (italic text), \"underline\" (underlined text), \"strikethrough\" (strikethrough text), \"spoiler\" (spoiler message), \"blockquote\" (block quotation), \"expandable_blockquote\" (collapsed-by-default block quotation), \"code\" (monowidth string), \"pre\" (monowidth block), \"text_link\" (for clickable text URLs), \"text_mention\" (for users without usernames), \"custom_emoji\" (for inline custom emoji stickers)"
         },
         {
           "name": "offset",
@@ -11132,6 +11284,14 @@
           "description": "Optional. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field. Not supported for messages sent on behalf of a Telegram Business account."
         },
         {
+          "name": "copy_text",
+          "types": [
+            "CopyTextButton"
+          ],
+          "required": false,
+          "description": "Optional. Description of the button that copies the specified text to the clipboard."
+        },
+        {
           "name": "callback_game",
           "types": [
             "CallbackGame"
@@ -11237,6 +11397,23 @@
           ],
           "required": false,
           "description": "Optional. True, if channel chats can be chosen"
+        }
+      ]
+    },
+    "CopyTextButton": {
+      "name": "CopyTextButton",
+      "href": "https://core.telegram.org/bots/api#copytextbutton",
+      "description": [
+        "This object represents an inline keyboard button that copies specified text to the clipboard."
+      ],
+      "fields": [
+        {
+          "name": "text",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "The text to be copied to the clipboard; 1-256 characters"
         }
       ]
     },
@@ -17538,12 +17715,14 @@
         "- TransactionPartnerUser",
         "- TransactionPartnerFragment",
         "- TransactionPartnerTelegramAds",
+        "- TransactionPartnerTelegramApi",
         "- TransactionPartnerOther"
       ],
       "subtypes": [
         "TransactionPartnerUser",
         "TransactionPartnerFragment",
         "TransactionPartnerTelegramAds",
+        "TransactionPartnerTelegramApi",
         "TransactionPartnerOther"
       ]
     },
@@ -17647,6 +17826,34 @@
         "TransactionPartner"
       ]
     },
+    "TransactionPartnerTelegramApi": {
+      "name": "TransactionPartnerTelegramApi",
+      "href": "https://core.telegram.org/bots/api#transactionpartnertelegramapi",
+      "description": [
+        "Describes a transaction with payment for paid broadcasting."
+      ],
+      "fields": [
+        {
+          "name": "type",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "Type of the transaction partner, always \"telegram_api\""
+        },
+        {
+          "name": "request_count",
+          "types": [
+            "Integer"
+          ],
+          "required": true,
+          "description": "The number of successful requests that exceeded regular limits and were therefore billed"
+        }
+      ],
+      "subtype_of": [
+        "TransactionPartner"
+      ]
+    },
     "TransactionPartnerOther": {
       "name": "TransactionPartnerOther",
       "href": "https://core.telegram.org/bots/api#transactionpartnerother",
@@ -17680,7 +17887,7 @@
             "String"
           ],
           "required": true,
-          "description": "Unique identifier of the transaction. Coincides with the identifer of the original transaction for refund transactions. Coincides with SuccessfulPayment.telegram_payment_charge_id for successful incoming payments from users."
+          "description": "Unique identifier of the transaction. Coincides with the identifier of the original transaction for refund transactions. Coincides with SuccessfulPayment.telegram_payment_charge_id for successful incoming payments from users."
         },
         {
           "name": "amount",
