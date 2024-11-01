@@ -83,46 +83,46 @@ internal fun collectInputChains(
                     indent()
                     beginControlFlow(
                         "suspendCall(\n\t${meta.first}\n) { classManager, update, user, bot, parameters ->",
-                        *meta.second
+                        *meta.second,
                     ).apply {
-                            add("if(user == null) return@suspendCall Unit\n")
-                            add("val inst = classManager.getInstance<$reference>()!!\n")
-                            add("inst.beforeAction?.invoke(user, update, bot)\n")
+                        add("if(user == null) return@suspendCall Unit\n")
+                        add("val inst = classManager.getInstance<$reference>()!!\n")
+                        add("inst.beforeAction?.invoke(user, update, bot)\n")
 
-                            add("val breakPoint = inst.breakCondition?.invoke(user, update, bot) ?: false\n")
-                            add(
-                                "if (breakPoint && inst.retryAfterBreak){\nbot.inputListener[user] = \"%L\"\n}\n",
-                                curLinkId,
-                            )
-                            add("if (breakPoint) {\ninst.breakAction(user, update, bot)\nreturn@suspendCall Unit\n}\n")
-                            if (pkg != null) add(
-                                "if (\n\tbot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",
-                                qualifier,
-                                pkg,
-                            )
-                            if (isStatefulLink) {
-                                add("val linkState = inst.action(user, update, bot)\n")
-                                add("val stateKey = inst.state.stateKey.select(update)\n")
-                                add("if(stateKey != null) inst.state.set(stateKey, linkState)\n")
-                            } else {
-                                add("inst.action(user, update, bot)\n")
-                            }
-                            if (nextLink != null) add("bot.inputListener[user] = %P\n", nextLink)
+                        add("val breakPoint = inst.breakCondition?.invoke(user, update, bot) ?: false\n")
+                        add(
+                            "if (breakPoint && inst.retryAfterBreak){\nbot.inputListener[user] = \"%L\"\n}\n",
+                            curLinkId,
+                        )
+                        add("if (breakPoint) {\ninst.breakAction(user, update, bot)\nreturn@suspendCall Unit\n}\n")
+                        if (pkg != null) add(
+                            "if (\n\tbot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",
+                            qualifier,
+                            pkg,
+                        )
+                        if (isStatefulLink) {
+                            add("val linkState = inst.action(user, update, bot)\n")
+                            add("val stateKey = inst.state.stateKey.select(update)\n")
+                            add("if(stateKey != null) inst.state.set(stateKey, linkState)\n")
+                        } else {
+                            add("inst.action(user, update, bot)\n")
+                        }
+                        if (nextLink != null) add("bot.inputListener[user] = %P\n", nextLink)
 
-                            if (idx == links.lastIndex && isAutoCleanChain) {
-                                add("\n// clearing state\n")
-                                statefulLinks.forEachIndexed { stateIdx, statefulLink ->
-                                    val keyParam = "stateKey$stateIdx"
-                                    add(
-                                        "val inst$stateIdx = classManager.getInstance<${statefulLink.qualifiedName!!.asString()}>()!!\n",
-                                    )
-                                    add("val $keyParam = inst$stateIdx.state.stateKey.select(update)\n")
-                                    add("if($keyParam != null)\n")
-                                    add("inst$stateIdx.state.del($keyParam)\n\n")
-                                }
+                        if (idx == links.lastIndex && isAutoCleanChain) {
+                            add("\n// clearing state\n")
+                            statefulLinks.forEachIndexed { stateIdx, statefulLink ->
+                                val keyParam = "stateKey$stateIdx"
+                                add(
+                                    "val inst$stateIdx = classManager.getInstance<${statefulLink.qualifiedName!!.asString()}>()!!\n",
+                                )
+                                add("val $keyParam = inst$stateIdx.state.stateKey.select(update)\n")
+                                add("if($keyParam != null)\n")
+                                add("inst$stateIdx.state.del($keyParam)\n\n")
                             }
-                            add("inst.afterAction?.invoke(user, update, bot)\n")
-                        }.endControlFlow()
+                        }
+                        add("inst.afterAction?.invoke(user, update, bot)\n")
+                    }.endControlFlow()
                 }
 
                 add(

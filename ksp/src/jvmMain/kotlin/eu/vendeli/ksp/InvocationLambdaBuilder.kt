@@ -117,9 +117,9 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                         }?.let { i ->
                             i.arguments.first { a -> a.name?.asString() == "name" }.value as? String
                         } ?: parameter.name!!.getShortName()
-                    ).let {
-                        "parameters[\"$it\"]"
-                    }
+                ).let {
+                    "parameters[\"$it\"]"
+                }
                 val parameterTypeName = parameter.type.toTypeName()
                 val typeName = parameterTypeName.copy(false)
                 val nullabilityMark = if (parameterTypeName.isNullable) "" else "!!"

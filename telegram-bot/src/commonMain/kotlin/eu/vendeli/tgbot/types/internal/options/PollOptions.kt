@@ -1,8 +1,8 @@
 package eu.vendeli.tgbot.types.internal.options
 
-import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.ReplyParameters
+import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.poll.PollType
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
@@ -31,5 +31,7 @@ data class PollOptions(
     override var protectContent: Boolean? = null,
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
+    override var allowPaidBroadcast: Boolean? = null,
 ) : OptionsCommon,
+    ForumProps,
     MessageEffectIdProp

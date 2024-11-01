@@ -25,7 +25,7 @@ import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.types.internal.ActivityCtx
 import eu.vendeli.tgbot.types.internal.UpdateType
-import eu.vendeli.tgbot.utils.fullName
+import eu.vendeli.tgbot.utils.fqName
 import kotlinx.serialization.json.Json
 import java.io.File
 
@@ -39,7 +39,7 @@ class ApiProcessor(
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
         val fileSpec = FileSpec.builder("eu.vendeli.ktgram.extutils", "TelegramBotSc")
-        val apiMash = resolver.getSymbolsWithAnnotation(TgAPI::class.fullName)
+        val apiMash = resolver.getSymbolsWithAnnotation(TgAPI::class.fqName)
 
         val apiClasses = apiMash.filterIsInstance<KSClassDeclaration>()
         val apiFun = apiMash.filterIsInstance<KSFunctionDeclaration>()

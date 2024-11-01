@@ -2,7 +2,7 @@
 
 package eu.vendeli.tgbot.utils
 
-import eu.vendeli.tgbot.annotations.internal.InternalApi
+import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.interfaces.ctx.ClassManager
 import eu.vendeli.tgbot.types.internal.ExceptionHandlingStrategy
@@ -23,7 +23,7 @@ import kotlin.reflect.KClass
 inline fun <reified T : Any> ClassManager.getInstance(vararg initParams: Any?): T? =
     getInstance(T::class, *initParams) as? T
 
-@InternalApi
+@KtGramInternal
 @Suppress("ObjectPropertyName", "ktlint:standard:backing-property-naming")
 expect val _OperatingActivities: Map<String, List<Any?>>
 
@@ -68,4 +68,4 @@ internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T):
 @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
 internal inline fun <T> Any?.cast() = this as T
 
-internal expect val KClass<*>.fullName: String
+expect val KClass<*>.fqName: String

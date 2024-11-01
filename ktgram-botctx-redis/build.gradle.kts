@@ -3,12 +3,13 @@ plugins {
 }
 
 onlyJvmConfiguredKotlin {
+    mingwX64()
+    linuxX64()
+
     sourceSets {
         commonMain.dependencies {
             implementation(project(":telegram-bot"))
             implementation(libs.kotlin.serialization)
-        }
-        jvmMain.dependencies {
             implementation(libs.redis)
         }
     }

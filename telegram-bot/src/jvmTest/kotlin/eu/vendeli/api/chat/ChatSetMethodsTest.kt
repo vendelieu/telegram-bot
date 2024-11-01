@@ -20,7 +20,7 @@ import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.ktor.client.request.get
-import io.ktor.client.statement.readBytes
+import io.ktor.client.statement.readRawBytes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import utils.RandomPicResource
@@ -81,7 +81,7 @@ class ChatSetMethodsTest : BotTestContext() {
 
     @Test
     suspend fun `set chat photo method test`() {
-        val file = bot.httpClient.get(RandomPicResource.current.getPicUrl(400, 400)).readBytes()
+        val file = bot.httpClient.get(RandomPicResource.current.getPicUrl(400, 400)).readRawBytes()
         val result = setChatPhoto(file).sendReturning(CHAT_ID, bot).getOrNull() ?: return
         result.shouldBeTrue()
 

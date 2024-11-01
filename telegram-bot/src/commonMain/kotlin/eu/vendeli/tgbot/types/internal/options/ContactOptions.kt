@@ -7,10 +7,12 @@ import kotlinx.serialization.Serializable
 data class ContactOptions(
     var lastName: String? = null,
     var vcard: String? = null,
+    override var allowPaidBroadcast: Boolean? = null,
     override var disableNotification: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,
     override var protectContent: Boolean? = null,
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
 ) : OptionsCommon,
+    ForumProps,
     MessageEffectIdProp

@@ -20,4 +20,4 @@ package eu.vendeli.tgbot.annotations.internal
     AnnotationTarget.PROPERTY_SETTER,
     AnnotationTarget.PROPERTY_SETTER,
 )
-annotation class InternalApi
+annotation class KtGramInternal

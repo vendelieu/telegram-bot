@@ -7,6 +7,6 @@ import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 /**
  * Helper interface used with guard mechanics for several handlers.
  */
-interface Guard {
+fun interface Guard {
     suspend fun condition(user: User?, update: ProcessedUpdate, bot: TelegramBot): Boolean
 }

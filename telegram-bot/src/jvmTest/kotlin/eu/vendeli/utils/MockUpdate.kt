@@ -1,15 +1,12 @@
-@file:OptIn(InternalApi::class)
-
 package eu.vendeli.utils
 
-import eu.vendeli.tgbot.annotations.internal.InternalApi
-import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.Response.Success
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.processUpdate
 import eu.vendeli.tgbot.utils.serde
 import kotlinx.datetime.Instant
@@ -34,14 +31,14 @@ sealed class MockUpdate {
             get() = listOf(Update(Random.nextInt(), generateMsg(text)).processUpdate())
     }
 
-    data class TEXT_LIST(
-        val texts: List<String>,
+    class TEXT_LIST(
+        vararg val text: String,
     ) : MockUpdate() {
         override val response: ByteArray
             get() = serde.encodeToString(Success(updates)).toByteArray()
 
         override val updates: List<ProcessedUpdate>
-            get() = texts.map {
+            get() = text.map {
                 Update(
                     Random.nextInt(),
                     generateMsg(it),

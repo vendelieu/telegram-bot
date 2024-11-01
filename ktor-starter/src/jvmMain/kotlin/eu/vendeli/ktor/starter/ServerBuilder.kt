@@ -1,7 +1,7 @@
 package eu.vendeli.ktor.starter
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.annotations.internal.InternalApi
+import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 import eu.vendeli.tgbot.types.internal.configuration.HttpConfiguration
 import eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
@@ -23,7 +23,7 @@ class ServerBuilder internal constructor() {
         server = ManualConfiguration().apply(configurator)
     }
 
-    @OptIn(InternalApi::class)
+    
     suspend fun declareBot(block: BotConfiguration.() -> Unit) = BotConfiguration().apply(block).also { cfg ->
         val client = if (shareHttpClient) httpClient ?: getConfiguredHttpClient(
             HttpConfiguration(), LoggingConfiguration(),

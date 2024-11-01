@@ -56,7 +56,7 @@ import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.chain.ChainingStrategy
 import eu.vendeli.tgbot.types.internal.chain.Link
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import eu.vendeli.tgbot.utils.fullName
+import eu.vendeli.tgbot.utils.fqName
 import kotlin.reflect.KClass
 
 internal typealias FileBuilder = FileSpec.Builder
@@ -66,7 +66,7 @@ internal val activitiesType = Map::class.asTypeName().parameterizedBy(
     List::class.asTypeName().parameterizedBy(ANY.copy(true)),
 )
 internal val invocableType = TypeVariableName("Invocable")
-internal val linkQName = Link::class.fullName
+internal val linkQName = Link::class.fqName
 internal val autoWiringClassName = Autowiring::class.asClassName()
 
 internal val intPrimitiveType = TypeVariableName("int")
@@ -135,7 +135,7 @@ internal inline fun buildMeta(
 ): Pair<String, Array<Any?>> {
     val parametersList = mutableListOf<Any?>(
         qualifier,
-        function
+        function,
     )
 
     return buildString {
@@ -145,11 +145,11 @@ internal inline fun buildMeta(
             parametersList.add(rateLimits)
         }
 
-        if (guardClass != null && guardClass != DefaultGuard::class.fullName) {
+        if (guardClass != null && guardClass != DefaultGuard::class.fqName) {
             append(",\n\tguard = %L::class")
             parametersList.add(guardClass)
         }
-        if (argParserClass != null && argParserClass != DefaultArgParser::class.fullName) {
+        if (argParserClass != null && argParserClass != DefaultArgParser::class.fqName) {
             append(",\n\targParser = %L::class")
             parametersList.add(argParserClass)
         }

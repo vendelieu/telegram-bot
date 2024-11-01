@@ -2,8 +2,8 @@ package eu.vendeli.ktor.starter
 
 import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
-import io.ktor.server.application.call
-import io.ktor.server.engine.applicationEngineEnvironment
+import io.ktor.server.application.serverConfig
+import io.ktor.server.engine.EmbeddedServer
 import io.ktor.server.engine.connector
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.engine.sslConnector
@@ -19,11 +19,32 @@ import java.security.KeyStore
 import java.security.PrivateKey
 
 
-suspend fun serveWebhook(wait: Boolean = true, serverBuilder: suspend ServerBuilder.() -> Unit = {}): NettyApplicationEngine {
+suspend fun serveWebhook(
+    wait: Boolean = true,
+    serverBuilder: suspend ServerBuilder.() -> Unit = {},
+): EmbeddedServer<NettyApplicationEngine, NettyApplicationEngine.Configuration> {
     val cfg = ServerBuilder().also { serverBuilder.invoke(it) }
     val serverCfg = cfg.server ?: EnvConfiguration
 
-    val environment = applicationEngineEnvironment {
+    val ktorCfg = serverConfig {
+        module {
+            routing {
+                cfg.botInstances.forEach { (token, bot) ->
+                    route("${cfg.WEBHOOK_PREFIX}$token", HttpMethod.Post) {
+                        handle {
+                            bot.update.parseAndHandle(call.receiveText())
+                            call.respond(HttpStatusCode.OK)
+                        }
+                    }
+                }
+            }
+        }
+        cfg.ktorModules.forEach(::module)
+    }
+
+    return embeddedServer(Netty, ktorCfg) {
+        enableHttp2 = true
+
         connector {
             host = serverCfg.HOST
             port = serverCfg.PORT
@@ -61,22 +82,6 @@ suspend fun serveWebhook(wait: Boolean = true, serverBuilder: suspend ServerBuil
                 keyStorePath = keystoreFile
             }
         }
-
-        modules.add {
-            routing {
-                cfg.botInstances.forEach { (token, bot) ->
-                    route("${cfg.WEBHOOK_PREFIX}$token", HttpMethod.Post) {
-                        handle {
-                            bot.update.parseAndHandle(call.receiveText())
-                            call.respond(HttpStatusCode.OK)
-                        }
-                    }
-                }
-            }
-        }
-        modules.addAll(cfg.ktorModules)
-    }
-
-    return embeddedServer(Netty, environment, cfg.engineCfg).start(wait)
+    }.start(wait)
 }
 

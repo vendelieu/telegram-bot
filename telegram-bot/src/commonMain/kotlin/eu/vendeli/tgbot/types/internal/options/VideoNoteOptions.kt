@@ -14,6 +14,8 @@ data class VideoNoteOptions(
     override var protectContent: Boolean? = null,
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
+    override var allowPaidBroadcast: Boolean? = null,
 ) : OptionsCommon,
+    ForumProps,
     ThumbnailProp,
     MessageEffectIdProp

@@ -1,7 +1,6 @@
 package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.implementations.DefaultArgParser
@@ -15,8 +14,8 @@ import eu.vendeli.tgbot.types.internal.ActivityCtx
 import eu.vendeli.tgbot.types.internal.CommandContext
 import eu.vendeli.tgbot.types.internal.ParsedText
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
-import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.internal.chain.SingleInputChain
 import eu.vendeli.tgbot.types.internal.userOrNull
 import kotlin.reflect.KClass
 
@@ -34,25 +33,25 @@ internal suspend inline fun KClass<out Guard>.checkIsGuarded(
     update: ProcessedUpdate,
     bot: TelegramBot,
 ): Boolean {
-    if (fullName == DefaultGuard::class.fullName) return true
+    if (fqName == DefaultGuard::class.fqName) return true
     return bot.config.classManager
         .getInstance(this)
         .cast<Guard>()
-        .checkIsGuarded(user, update, bot)
+        .condition(user, update, bot)
 }
 
 internal suspend inline fun Guard.checkIsGuarded(
     user: User?,
     update: ProcessedUpdate,
     bot: TelegramBot,
-): Boolean = condition(user, update, bot)
+): Boolean = if (this::class.fqName == DefaultGuard::class.fqName) true else condition(user, update, bot)
 
 internal suspend inline fun KClass<out Filter>.checkIsFiltered(
     user: User?,
     update: ProcessedUpdate,
     bot: TelegramBot,
 ): Boolean {
-    if (fullName == DefaultFilter::class.fullName) return true
+    if (fqName == DefaultFilter::class.fqName) return true
     return bot.config.classManager
         .getInstance(this)
         .cast<Filter>()
@@ -65,14 +64,13 @@ internal suspend inline fun Filter.checkIsFiltered(
     bot: TelegramBot,
 ): Boolean = match(user, update, bot)
 
-@OptIn(InternalApi::class)
 @Suppress("NOTHING_TO_INLINE")
 internal fun TgUpdateHandler.getParameters(
     parser: KClass<out ArgumentParser>?,
     request: ParsedText,
 ): Map<String, String> = parser
     ?.let {
-        if (it.fullName == DefaultArgParser::class.fullName) bot.config.commandParsing.run {
+        if (it.fqName == DefaultArgParser::class.fqName) bot.config.commandParsing.run {
             defaultArgParser(
                 request.tail,
                 parametersDelimiter,

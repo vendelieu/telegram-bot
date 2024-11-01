@@ -1,7 +1,6 @@
 
 import eu.vendeli.fixtures.__ACTIVITIES
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
@@ -14,7 +13,6 @@ import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
-import eu.vendeli.tgbot.utils.DEFAULT_LOGGING_TAG
 import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.LoggingWrapper
 import eu.vendeli.tgbot.utils.defineActivities
@@ -27,7 +25,7 @@ import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.ktor.client.request.get
-import io.ktor.client.statement.readBytes
+import io.ktor.client.statement.readRawBytes
 import io.ktor.http.isSuccess
 import io.mockk.coEvery
 import io.mockk.every
@@ -78,10 +76,9 @@ abstract class BotTestContext(
     protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()
     protected val RAND_INT: Int get() = RANDOM_INST.nextInt()
     protected val DUMB_USER = User(1, false, "Test")
-    protected val logger = LoggingWrapper(LoggingConfiguration(), DEFAULT_LOGGING_TAG)
+    protected val logger = LoggingWrapper(LoggingConfiguration())
 
     @BeforeAll
-    @OptIn(InternalApi::class)
     fun prepareTestBot() {
         val ctx = BotResource.swapAndGet()
         BOT_ID = ctx.id
@@ -115,7 +112,7 @@ abstract class BotTestContext(
     }
 
     private fun getRandomPic(): ByteArray? = runBlocking {
-        bot.httpClient.get(RandomPicResource.RANDOM_PIC_URL).takeIf { it.status.isSuccess() }?.readBytes()?.also {
+        bot.httpClient.get(RandomPicResource.RANDOM_PIC_URL).takeIf { it.status.isSuccess() }?.readRawBytes()?.also {
             logger.warn { "RANDOM PIC OBTAINING ERROR." }
         }
     }

@@ -2,7 +2,6 @@ package eu.vendeli.tgbot.types.internal.configuration
 
 import eu.vendeli.tgbot.utils.RetryStrategy
 import io.ktor.client.engine.ProxyConfig
-import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpStatusCode
 import kotlinx.serialization.Serializable
@@ -27,9 +26,9 @@ import kotlinx.serialization.Transient
  */
 @Serializable
 data class HttpConfiguration(
-    var requestTimeoutMillis: Long = HttpTimeout.INFINITE_TIMEOUT_MS,
-    var connectTimeoutMillis: Long = HttpTimeout.INFINITE_TIMEOUT_MS,
-    var socketTimeoutMillis: Long = HttpTimeout.INFINITE_TIMEOUT_MS,
+    var requestTimeoutMillis: Long? = null,
+    var connectTimeoutMillis: Long? = null,
+    var socketTimeoutMillis: Long? = null,
     var maxRequestRetry: Int = 3,
     @Transient
     var retryStrategy: RetryStrategy? = null,

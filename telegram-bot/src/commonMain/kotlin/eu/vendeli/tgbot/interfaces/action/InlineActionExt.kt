@@ -1,7 +1,6 @@
 package eu.vendeli.tgbot.interfaces.action
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.coroutines.Deferred
@@ -11,7 +10,7 @@ import kotlinx.coroutines.Deferred
  *
  * @param ReturnType
  */
-@OptIn(InternalApi::class)
+
 interface InlineActionExt<ReturnType> : Request<ReturnType> {
     /**
      * Make inline request for action.

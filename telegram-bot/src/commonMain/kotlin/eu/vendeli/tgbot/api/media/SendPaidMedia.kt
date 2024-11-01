@@ -4,7 +4,6 @@ import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
-import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.options.PaidMediaOptions
@@ -23,7 +22,6 @@ class SendPaidMediaAction(
     BusinessActionExt<Message>,
     OptionsFeature<SendPaidMediaAction, PaidMediaOptions>,
     CaptionFeature<SendPaidMediaAction>,
-    EntitiesFeature<SendPaidMediaAction>,
     MarkupFeature<SendPaidMediaAction> {
     @TgAPI.Name("sendPaidMedia")
     override val method = "sendPaidMedia"
@@ -51,6 +49,7 @@ class SendPaidMediaAction(
  * @param showCaptionAboveMedia Pass True, if the caption must be shown above the message media
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving
+ * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
  * @param replyParameters Description of the message to reply to
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]

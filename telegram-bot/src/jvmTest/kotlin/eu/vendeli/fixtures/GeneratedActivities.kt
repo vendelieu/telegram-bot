@@ -10,11 +10,11 @@
     "USELESS_ELVIS",
     "ktlint:standard:backing-property-naming",
 )
-@file:OptIn(InternalApi::class)
+@file:OptIn(KtGramInternal::class)
 
 package eu.vendeli.fixtures
 
-import eu.vendeli.tgbot.annotations.internal.InternalApi
+import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 import eu.vendeli.tgbot.types.internal.CommonMatcher
 import eu.vendeli.tgbot.types.internal.InvocationMeta
 import eu.vendeli.tgbot.types.internal.UpdateType

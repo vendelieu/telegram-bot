@@ -1,6 +1,5 @@
 package eu.vendeli.tgbot
 
-import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.interfaces.helper.ConfigLoader
@@ -13,7 +12,7 @@ import eu.vendeli.tgbot.utils.LoggingWrapper
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
-import io.ktor.client.statement.readBytes
+import io.ktor.client.statement.readRawBytes
 
 /**
  * Telegram bot main instance
@@ -39,7 +38,6 @@ class TelegramBot(
         config.apply(configLoader.load())
     }
 
-    @OptIn(InternalApi::class)
     constructor(
         token: String,
         commandsPackage: String? = null,
@@ -69,7 +67,6 @@ class TelegramBot(
      */
     val update = TgUpdateHandler(commandsPackage, this)
 
-    @OptIn(InternalApi::class)
     internal var httpClient = getConfiguredHttpClient(config.httpClient, config.logging)
 
     /**
@@ -87,7 +84,7 @@ class TelegramBot(
      * @return [ByteArray]
      */
     suspend fun getFileContent(file: File): ByteArray? =
-        file.getDirectUrl(config.apiHost, token)?.let { httpClient.get(it).readBytes() }
+        file.getDirectUrl(config.apiHost, token)?.let { httpClient.get(it).readRawBytes() }
 
     /**
      * Function for processing updates by long-pulling using annotation commands.

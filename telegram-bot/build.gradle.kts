@@ -28,9 +28,6 @@ configuredKotlin {
             api(libs.kotlin.datetime)
         }
         jvmTest.dependencies {
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.8.1")
-            implementation(libs.logback)
-
             implementation(libs.test.kotest.junit5)
             implementation(libs.test.kotest.assertions)
             implementation(libs.mockk)
@@ -116,38 +113,34 @@ tasks {
             collectionSchema.elements.forEach { _ -> moduleName = "Telegram Bot" }
         }
         pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
-            customStyleSheets = listOf(rootDir.resolve("assets/logo-styles.css"))
-            customAssets = listOf(rootDir.resolve("assets/tgbotkt-logo.png"))
+            customAssets = listOf(rootDir.resolve("assets/logo-icon.svg"))
             footerMessage = "© ${LocalDate.now().year} Vendelieu"
+            homepageLink = "https://github.com/vendelieu/telegram-bot"
         }
     }
 }
 
 apiValidation {
+    @Suppress("OPT_IN_USAGE")
+    klib.enabled = true
     ignoredPackages.add("utils")
     nonPublicMarkers.apply {
         add("eu.vendeli.tgbot.annotations.internal.ExperimentalFeature")
-        add("eu.vendeli.tgbot.annotations.internal.InternalApi")
+        add("eu.vendeli.tgbot.annotations.internal.KtGramInternal")
     }
 }
 
-kover {
-    reports {
-        filters {
-            excludes {
-                packages(
-                    "eu.vendeli.tgbot.interfaces",
-                    "eu.vendeli.tgbot.types",
-                    "eu.vendeli.tgbot.utils",
-                )
-                classes(
-                    "eu.vendeli.tgbot.api.botactions.Close*", // test is ignored
-                    "eu.vendeli.tgbot.api.botactions.Logout*",
-                    "eu.vendeli.tgbot.api.stickerset.*CustomEmoji*",
-                    "eu.vendeli.tgbot.implementations.EnvConfigLoader*",
-                )
-            }
-        }
-    }
+kover.reports.filters.excludes {
+    packages(
+        "eu.vendeli.tgbot.interfaces",
+        "eu.vendeli.tgbot.types",
+        "eu.vendeli.tgbot.utils",
+    )
+    classes(
+        "eu.vendeli.tgbot.api.botactions.Close*", // test is ignored
+        "eu.vendeli.tgbot.api.botactions.Logout*",
+        "eu.vendeli.tgbot.api.stickerset.*CustomEmoji*",
+        "eu.vendeli.tgbot.implementations.EnvConfigLoader*",
+    )
 }
 

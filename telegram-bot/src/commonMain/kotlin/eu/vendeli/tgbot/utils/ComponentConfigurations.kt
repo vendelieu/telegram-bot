@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.utils
 
-import eu.vendeli.tgbot.annotations.internal.InternalApi
+import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.configuration.HttpConfiguration
 import eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration
@@ -12,11 +12,15 @@ import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.HttpSendPipeline
 import io.ktor.client.request.header
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNamingStrategy
 
-@InternalApi
+@OptIn(DelicateCoroutinesApi::class)
+@KtGramInternal
 fun getConfiguredHttpClient(httpCfg: HttpConfiguration, loggingCfg: LoggingConfiguration) = httpCfg.run cfg@{
     val loggingTag = "eu.vendeli.http"
     HttpClient {
@@ -34,7 +38,7 @@ fun getConfiguredHttpClient(httpCfg: HttpConfiguration, loggingCfg: LoggingConfi
         install(Logging) {
             this.logger = object : Logger {
                 override fun log(message: String) {
-                    suspend { loggingCfg.logger.log(LogLvl.INFO, loggingTag, message, null) }
+                    GlobalScope.launch { loggingCfg.logger.log(LogLvl.DEBUG, loggingTag, message, null) }
                 }
             }
             level = loggingCfg.httpLogLevel.toKtorLvl()

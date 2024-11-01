@@ -1,33 +1,33 @@
 [versions]
-ktor = "2.3.12"
-redis = "6.4.0.RELEASE"
+ktor = "3.0.0"
+redis = "0.1.7"
 logging = "2.0.4"
-logback = "1.5.8"
+logback = "1.5.12"
 
 datetime = "0.6.0"
-serialization = "1.7.2"
+serialization = "1.7.3"
 stately = "2.1.0"
 
-kotlin = "2.0.20"
-coroutines = "1.8.1"
+kotlin = "2.0.21"
+coroutines = "1.9.0"
 dokka = "1.9.20"
 kotlinter = "4.4.1"
-deteKT = "1.23.6"
+deteKT = "1.23.7"
 toml = "0.4.0"
 
 kotest = "5.9.1"
-mockk = "1.13.12"
+mockk = "1.13.13"
 kover = "0.8.3"
 krypto = "4.0.10"
-sslcontext = "8.3.6"
-spring = "3.3.3"
+sslcontext = "8.3.7"
+spring = "3.3.5"
 
-ksp = "2.0.20-1.0.25"
-poet = "1.18.1"
+ksp = "2.0.21-1.0.26"
+poet = "2.0.0"
 
 binvalid = "0.16.3"
-publisher = "0.29.0"
-gradle-publish = "1.2.2"
+publisher = "0.30.0"
+gradle-publish = "1.3.0"
 env = "1.0.4"
 
 [libraries]
@@ -69,7 +69,7 @@ ssl-utils = { module = "io.github.hakky54:sslcontext-kickstart-for-pem", version
 spring-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "spring" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 publisher = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "publisher" }
-redis = { module = "io.lettuce:lettuce-core", version.ref = "redis" }
+redis = { module = "eu.vendeli:re.this", version.ref = "redis" }
 env = { module = "dev.scottpierce:kotlin-env-var", version.ref = "env" }
 toml = { module = "net.peanuuutz.tomlkt:tomlkt", version.ref = "toml" }
 

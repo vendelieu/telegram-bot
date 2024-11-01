@@ -20,6 +20,7 @@ import eu.vendeli.tgbot.types.msg.MessageReactionUpdated
 import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
 import eu.vendeli.tgbot.types.payment.ShippingQuery
 import eu.vendeli.tgbot.types.poll.Poll
+import eu.vendeli.tgbot.utils.serde
 import eu.vendeli.tgbot.utils.serde.UpdateSerializer
 import kotlinx.serialization.Serializable
 
@@ -40,6 +41,8 @@ sealed class ProcessedUpdate(
 ) : TextReference,
     MultipleResponse {
     internal companion object : UpdateSerializer<ProcessedUpdate>()
+
+    internal fun toJsonString() = "[$type]" + serde.encodeToString(ProcessedUpdate, this)
 }
 
 @Serializable(MessageUpdate.Companion::class)
@@ -310,8 +313,7 @@ data class PurchasedPaidMediaUpdate(
     override val origin: Update,
     val purchasedPaidMedia: PaidMediaPurchased,
 ) : ProcessedUpdate(updateId, origin, UpdateType.PURCHASED_PAID_MEDIA),
-    UserReference,
-    TextReference {
+    UserReference {
     override val user: User = purchasedPaidMedia.from
     override val text: String = purchasedPaidMedia.paidMediaPayload
 
@@ -320,5 +322,8 @@ data class PurchasedPaidMediaUpdate(
 
 inline val ProcessedUpdate.userOrNull: User? get() = (this as? UserReference)?.user
 
+/**
+ * @throws NullPointerException when user not found.
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun ProcessedUpdate.getUser(): User = userOrNull ?: throw NullPointerException("User not found.")

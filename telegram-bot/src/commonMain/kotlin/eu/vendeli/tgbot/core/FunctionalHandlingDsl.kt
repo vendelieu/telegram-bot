@@ -13,8 +13,8 @@ import eu.vendeli.tgbot.types.internal.FunctionalActivities
 import eu.vendeli.tgbot.types.internal.FunctionalInvocation
 import eu.vendeli.tgbot.types.internal.InputBreakPoint
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
-import eu.vendeli.tgbot.types.internal.SingleInputChain
 import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.internal.chain.SingleInputChain
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.DEFAULT_COMMAND_SCOPE
 import eu.vendeli.tgbot.utils.LoggingWrapper
@@ -47,33 +47,14 @@ class FunctionalHandlingDsl internal constructor(
         command: String,
         scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Guard> = DefaultGuard::class,
+        guard: Guard = DefaultGuard,
         argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
         block: OnCommandActivity,
     ) {
         scope.forEach {
             functionalActivities.commands[command to it] =
-                FunctionalInvocation(command, block, scope, rateLimits, guard, argParser = argParser)
+                FunctionalInvocation(command, block, rateLimits, guard, argParser = argParser)
         }
-    }
-
-    /**
-     * The action that is performed when the command is matched.
-     *
-     * @param command The command that will be processed.
-     * @param rateLimits Restriction of command requests.
-     * @param block Action that will be applied.
-     */
-    fun onCommand(
-        command: Regex,
-        scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
-        rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Guard> = DefaultGuard::class,
-        argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
-        block: OnCommandActivity,
-    ) {
-        functionalActivities.regexActivities[command] =
-            FunctionalInvocation(command.pattern, block, scope, rateLimits, guard, argParser = argParser)
     }
 
     /**
@@ -86,7 +67,7 @@ class FunctionalHandlingDsl internal constructor(
     fun onInput(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Guard> = DefaultGuard::class,
+        guard: Guard = DefaultGuard,
         block: OnInputActivity,
     ) {
         functionalActivities.inputs[identifier] = SingleInputChain(identifier, block, rateLimits, guard)
@@ -117,7 +98,7 @@ class FunctionalHandlingDsl internal constructor(
         block: OnCommandActivity,
     ) {
         functionalActivities.commonActivities[CommonMatcher.String(value, filter, scope)] =
-            FunctionalInvocation(value, block, scope, rateLimits, filter = filter, argParser = argParser)
+            FunctionalInvocation(value, block, rateLimits, argParser = argParser)
     }
 
     /**
@@ -138,21 +119,21 @@ class FunctionalHandlingDsl internal constructor(
         block: OnCommandActivity,
     ) {
         functionalActivities.commonActivities[CommonMatcher.Regex(value, filter, scope)] =
-            FunctionalInvocation(value.pattern, block, scope, rateLimits, filter = filter, argParser = argParser)
+            FunctionalInvocation(value.pattern, block, rateLimits, argParser = argParser)
     }
 
     /**
-     * Dsl for creating chain of input processing
+     * Dsl for creating a chain of input processing
      *
      * @param identifier id of input
      * @param rateLimits Restriction of input requests.
-     * @param block action that will be applied if input will match
+     * @param block action that will be applied if input matches
      * @return [SingleInputChain] for further chaining
      */
     fun inputChain(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Guard> = DefaultGuard::class,
+        guard: Guard = DefaultGuard,
         block: OnInputActivity,
     ): SingleInputChain {
         val firstChain = SingleInputChain(identifier, block, rateLimits, guard)
@@ -170,7 +151,7 @@ class FunctionalHandlingDsl internal constructor(
      */
     fun SingleInputChain.andThen(
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Guard> = DefaultGuard::class,
+        guard: Guard = DefaultGuard,
         block: OnInputActivity,
     ): SingleInputChain {
         val nextLevel = currentLevel + 1

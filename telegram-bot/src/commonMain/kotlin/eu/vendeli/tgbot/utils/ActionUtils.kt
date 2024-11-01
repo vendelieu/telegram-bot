@@ -11,7 +11,7 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import io.ktor.http.content.PartData
 import io.ktor.http.escapeIfNeeded
-import io.ktor.utils.io.core.ByteReadPacket
+import kotlinx.io.Buffer
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
@@ -62,7 +62,11 @@ internal inline fun ImplicitFile.transform(multiParts: MutableList<PartData.Bina
 }
 
 internal fun InputFile.toPartData(name: String) = PartData.BinaryItem(
-    { ByteReadPacket(data) },
+    {
+        Buffer().apply {
+            write(data, startIndex = 0, endIndex = data.size)
+        }
+    },
     {},
     Headers.build {
         append(HttpHeaders.ContentDisposition, "form-data; name=${name.escapeIfNeeded()}")

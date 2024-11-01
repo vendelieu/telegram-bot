@@ -1,7 +1,6 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.chat.Chat
@@ -28,7 +27,12 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.takeWhile
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.launch
 import kotlinx.datetime.Instant
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString
@@ -242,7 +246,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
 
     @Test
     suspend fun `command over input priority test`() {
-        doMockHttp(MockUpdate.TEXT_LIST(listOf("test", "aaaa")))
+        doMockHttp(MockUpdate.TEXT_LIST("test", "aaaa"))
         bot.update.setListener {
             bot.inputListener.set(1, "testInp")
             handle(it)
@@ -256,7 +260,6 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             .shouldNotBeNull()
     }
 
-    @OptIn(InternalApi::class)
     @Test
     suspend fun `input media handling test`() {
         doMockHttp(
@@ -316,6 +319,24 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             delay(1)
         }
         update.shouldNotBeNull()
+    }
+
+    @Test
+    suspend fun `update flow test`() {
+        val collectedUpdates = mutableListOf<ProcessedUpdate>()
+
+        @Suppress("OPT_IN_USAGE")
+        GlobalScope.launch {
+            bot.update.flow
+                .takeWhile {
+                    it.text.startsWith("test")
+                }.take(10)
+                .toList(collectedUpdates)
+        }
+        doMockHttp(MockUpdate.TEXT_LIST("test1", "test2", "test3", "4test"))
+        bot.handleUpdates { bot.update.stopListener() }
+
+        collectedUpdates.map { it.text } shouldBe listOf("test1", "test2", "test3")
     }
 
     companion object {

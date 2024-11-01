@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.types.internal.InputFile
 import io.kotest.common.runBlocking
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
-import io.ktor.client.statement.readBytes
+import io.ktor.client.statement.readRawBytes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -17,7 +17,7 @@ sealed class LOREM(
     fileName: String,
     contentType: String,
 ) {
-    val bytes: ByteArray by lazy { runBlocking { httpClient.get(url).readBytes() } }
+    val bytes: ByteArray by lazy { runBlocking { httpClient.get(url).readRawBytes() } }
     val file: File = runBlocking {
         withContext(Dispatchers.IO) {
             val tempFile = File.createTempFile("test-$rand", "")

@@ -34,14 +34,13 @@ private inline fun buildHeadersForItem(name: String) = HeadersBuilder()
     }.build()
 
 @Suppress("OPT_IN_USAGE")
-private suspend fun HttpRequestBuilder.formReqBody(
+private fun HttpRequestBuilder.formReqBody(
     data: Map<String, JsonElement>,
     multipartData: List<PartData.BinaryItem>,
-    logger: LoggingWrapper,
 ) {
     if (data.isEmpty() && multipartData.isEmpty()) return
     if (multipartData.isNotEmpty()) {
-        val dataParts = data.also { logger.debug { "RequestBody: $it" } }.map {
+        val dataParts = data.map {
             val item = it.value.primitiveOrNull?.let { v ->
                 if (v.isString) JsonUnquotedLiteral(v.content) else v
             } ?: it.value
@@ -51,7 +50,7 @@ private suspend fun HttpRequestBuilder.formReqBody(
 
         setBody(MultiPartFormDataContent(multipartData + dataParts))
     } else {
-        setBody(serde.encodeToString(data).also { logger.debug { "RequestBody: $it" } })
+        setBody(serde.encodeToString(data))
         contentType(ContentType.Application.Json)
     }
 }
@@ -75,7 +74,7 @@ internal suspend inline fun <T> TelegramBot.makeRequestReturning(
     multipartData: List<PartData.BinaryItem>,
 ): Deferred<Response<out T>> = coroutineScope {
     val response = httpClient.post(baseUrl + method) {
-        formReqBody(data, multipartData, logger)
+        formReqBody(data, multipartData)
     }
 
     return@coroutineScope async { response.toResult(returnType, this@makeRequestReturning) }
@@ -87,7 +86,7 @@ internal suspend inline fun TelegramBot.makeSilentRequest(
     multipartData: List<PartData.BinaryItem>,
 ) = httpClient
     .post(baseUrl + method) {
-        formReqBody(data, multipartData, logger)
+        formReqBody(data, multipartData)
     }.also { call ->
         if (!call.status.isSuccess()) {
             val body = call.bodyAsText()

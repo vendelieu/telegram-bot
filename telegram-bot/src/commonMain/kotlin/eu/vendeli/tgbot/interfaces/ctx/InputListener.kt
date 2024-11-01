@@ -15,6 +15,14 @@ interface InputListener {
      * @param telegramId
      * @param identifier
      */
+    fun set(telegramId: Long, identifier: () -> String) = set(telegramId, identifier())
+
+    /**
+     * Set new waiting point
+     *
+     * @param telegramId
+     * @param identifier
+     */
     fun set(telegramId: Long, identifier: String)
 
     /**
@@ -40,6 +48,25 @@ interface InputListener {
      * @param identifier
      */
     suspend fun setAsync(telegramId: Long, identifier: String): Deferred<Boolean>
+
+    /**
+     * Asynchronously set new waiting point
+     *
+     * @param telegramId
+     * @param identifier
+     */
+    suspend fun setAsync(telegramId: Long, identifier: () -> String): Deferred<Boolean> =
+        setAsync(telegramId, identifier())
+
+    /**
+     * Shortcut function for [setAsync] method.
+     *
+     * @param user
+     * @param identifier
+     * @return [Deferred]<[Boolean]>
+     */
+    suspend fun setAsync(user: User, identifier: String): Deferred<Boolean> =
+        setAsync(user.id, identifier)
 
     /**
      * Shortcut function for [setAsync] method.

@@ -1,7 +1,6 @@
 package eu.vendeli.tgbot.interfaces.action
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Response
@@ -13,7 +12,7 @@ import kotlinx.coroutines.Deferred
  *
  * @param ReturnType response type.
  */
-@OptIn(InternalApi::class)
+
 abstract class Action<ReturnType> : TgAction<ReturnType>() {
     /**
      * Make a request for action.

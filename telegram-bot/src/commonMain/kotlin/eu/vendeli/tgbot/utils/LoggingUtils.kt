@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration
 
 class LoggingWrapper(
     private val cfg: LoggingConfiguration,
-    private val tag: String,
+    private val tag: String = DEFAULT_LOGGING_TAG,
 ) {
     suspend fun info(message: () -> String) = log(LogLvl.INFO, message, null)
     suspend fun warn(message: () -> String) = log(LogLvl.WARN, message, null)

@@ -1,7 +1,6 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.annotations.internal.InternalApi
 import eu.vendeli.tgbot.types.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
@@ -130,7 +129,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         val startCounter = AtomicInteger(0)
         val notHandledCounter = AtomicInteger(0)
 
-        doMockHttp(MockUpdate.TEXT_LIST(listOf("test", "/start")))
+        doMockHttp(MockUpdate.TEXT_LIST("test", "/start"))
 
         bot.handleUpdates {
             onCommand("/start") {
@@ -156,7 +155,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         val commonHandler = AtomicInteger(0)
         val regexCommonHandler = AtomicInteger(0)
 
-        doMockHttp(MockUpdate.TEXT_LIST(listOf("test", "/start", "123")))
+        doMockHttp(MockUpdate.TEXT_LIST("test", "/start", "123"))
 
         bot.handleUpdates {
             onCommand("/start") {
@@ -180,7 +179,6 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         commonHandler.get() shouldBe 2
     }
 
-    @OptIn(InternalApi::class)
     @Test
     suspend fun `functional activities setting test`() {
         val ctx = ActivityCtx(
@@ -239,13 +237,17 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         onUpdateInvocationsCount shouldBe UpdateType.entries.size
 
         bot.update.functionalHandlingBehavior.apply {
+            val scope = setOf(UpdateType.MESSAGE)
             val regex = "^*.".toRegex()
-            onCommand(
+            common(
                 regex,
-                setOf(UpdateType.CALLBACK_QUERY),
-                RateLimits.NOT_LIMITED,
+                scope = scope,
+                rateLimits = RateLimits.NOT_LIMITED,
             ) { }
-            functionalActivities.regexActivities[regex].shouldNotBeNull()
+            functionalActivities.commonActivities.entries
+                .find {
+                    it.key.match("t", MockUpdate.SINGLE("t").updates.first(), bot)
+                }.shouldNotBeNull()
 
             onInput("test") { }
             functionalActivities.inputs["test"].shouldNotBeNull()

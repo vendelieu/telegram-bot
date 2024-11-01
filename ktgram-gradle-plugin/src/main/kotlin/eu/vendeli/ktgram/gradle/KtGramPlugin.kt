@@ -39,14 +39,16 @@ abstract class KtGramPlugin : Plugin<Project> {
 
             // correct version by forced one
             if (pluginExtension.forceVersion.isPresent) project.configurations.configureEach cfg@{
-                dependencies.forEach {
-                    if (it.group == "eu.vendeli" && (it.name == "telegram-bot" || it.name == "ksp")) {
-                        dependencies.remove(it)
+                dependencies
+                    .removeIf {
+                        it.group == "eu.vendeli" && (it.name == "telegram-bot" || it.name == "ksp")
+                    }.takeIf { it }
+                    ?.let {
                         dependencies {
-                            add(this@cfg.name, "eu.vendeli:${it.name}:$targetVer")
+                            add(this@cfg.name, "eu.vendeli:telegram-bot:$targetVer")
+                            add(this@cfg.name, "eu.vendeli:ksp:$targetVer")
                         }
                     }
-                }
             }
 
             project.extensions.configure<KspExtension> {

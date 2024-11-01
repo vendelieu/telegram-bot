@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.utils
 
+import ch.qos.logback.classic.Level
 import eu.vendeli.tgbot.interfaces.helper.Logger
 import eu.vendeli.tgbot.types.internal.LogLvl
 import org.slf4j.LoggerFactory
@@ -22,6 +23,7 @@ internal class LogbackLoggerWrapper : Logger {
 
     private fun getLogger(tag: String): org.slf4j.Logger = loggers.getOrElse(tag) {
         LoggerFactory.getLogger(tag).also {
+            it.cast<ch.qos.logback.classic.Logger>().level = Level.TRACE
             loggers[tag] = it
         }
     }

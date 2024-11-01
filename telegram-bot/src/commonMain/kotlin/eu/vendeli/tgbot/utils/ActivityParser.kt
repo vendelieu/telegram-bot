@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.utils
 
-import eu.vendeli.tgbot.annotations.internal.InternalApi
+import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.types.internal.ParsedText
 
@@ -52,7 +52,7 @@ internal fun TgUpdateHandler.parseCommand(
     return ParsedText(command, text.drop(parsedIndex + 1))
 }
 
-@InternalApi
+@KtGramInternal
 @Suppress("CyclomaticComplexMethod", "NestedBlockDepth")
 fun defaultArgParser(
     text: String,
