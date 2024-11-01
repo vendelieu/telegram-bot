@@ -323,7 +323,6 @@ class TelegramUpdateHandlerTest : BotTestContext() {
 
     @Test
     suspend fun `update flow test`() {
-        doMockHttp(MockUpdate.TEXT_LIST("test1", "test2", "test3", "4test"))
         val collectedUpdates = mutableListOf<ProcessedUpdate>()
 
         @Suppress("OPT_IN_USAGE")
@@ -334,9 +333,8 @@ class TelegramUpdateHandlerTest : BotTestContext() {
                 }.take(10)
                 .toList(collectedUpdates)
         }
-
+        doMockHttp(MockUpdate.TEXT_LIST("test1", "test2", "test3", "4test"))
         bot.handleUpdates { bot.update.stopListener() }
-        delay(200)
 
         collectedUpdates.map { it.text } shouldBe listOf("test1", "test2", "test3")
     }
