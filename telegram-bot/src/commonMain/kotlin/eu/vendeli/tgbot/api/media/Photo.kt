@@ -49,6 +49,7 @@ class SendPhotoAction(
  * @param hasSpoiler Pass True if the photo needs to be covered with a spoiler animation
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving
+ * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
  * @param messageEffectId Unique identifier of the message effect to be added to the message; for private chats only
  * @param replyParameters Description of the message to reply to
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user

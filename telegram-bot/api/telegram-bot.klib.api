@@ -787,6 +787,12 @@ abstract interface eu.vendeli.tgbot.interfaces.marker/Keyboard { // eu.vendeli.t
 
 abstract interface eu.vendeli.tgbot.interfaces.marker/MultipleResponse // eu.vendeli.tgbot.interfaces.marker/MultipleResponse|null[0]
 
+abstract interface eu.vendeli.tgbot.types.internal.options/ForumProps { // eu.vendeli.tgbot.types.internal.options/ForumProps|null[0]
+    abstract var messageThreadId // eu.vendeli.tgbot.types.internal.options/ForumProps.messageThreadId|{}messageThreadId[0]
+        abstract fun <get-messageThreadId>(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/ForumProps.messageThreadId.<get-messageThreadId>|<get-messageThreadId>(){}[0]
+        abstract fun <set-messageThreadId>(kotlin/Int?) // eu.vendeli.tgbot.types.internal.options/ForumProps.messageThreadId.<set-messageThreadId>|<set-messageThreadId>(kotlin.Int?){}[0]
+}
+
 abstract interface eu.vendeli.tgbot.types.internal.options/LinkPreviewProp { // eu.vendeli.tgbot.types.internal.options/LinkPreviewProp|null[0]
     abstract var linkPreviewOptions // eu.vendeli.tgbot.types.internal.options/LinkPreviewProp.linkPreviewOptions|{}linkPreviewOptions[0]
         abstract fun <get-linkPreviewOptions>(): eu.vendeli.tgbot.types/LinkPreviewOptions? // eu.vendeli.tgbot.types.internal.options/LinkPreviewProp.linkPreviewOptions.<get-linkPreviewOptions>|<get-linkPreviewOptions>(){}[0]
@@ -877,12 +883,12 @@ sealed interface eu.vendeli.tgbot.types.internal.options/Options { // eu.vendeli
 }
 
 sealed interface eu.vendeli.tgbot.types.internal.options/OptionsCommon : eu.vendeli.tgbot.types.internal.options/Options { // eu.vendeli.tgbot.types.internal.options/OptionsCommon|null[0]
+    abstract var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/OptionsCommon.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        abstract fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/OptionsCommon.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        abstract fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/OptionsCommon.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     abstract var disableNotification // eu.vendeli.tgbot.types.internal.options/OptionsCommon.disableNotification|{}disableNotification[0]
         abstract fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/OptionsCommon.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         abstract fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/OptionsCommon.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
-    abstract var messageThreadId // eu.vendeli.tgbot.types.internal.options/OptionsCommon.messageThreadId|{}messageThreadId[0]
-        abstract fun <get-messageThreadId>(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/OptionsCommon.messageThreadId.<get-messageThreadId>|<get-messageThreadId>(){}[0]
-        abstract fun <set-messageThreadId>(kotlin/Int?) // eu.vendeli.tgbot.types.internal.options/OptionsCommon.messageThreadId.<set-messageThreadId>|<set-messageThreadId>(kotlin.Int?){}[0]
     abstract var protectContent // eu.vendeli.tgbot.types.internal.options/OptionsCommon.protectContent|{}protectContent[0]
         abstract fun <get-protectContent>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/OptionsCommon.protectContent.<get-protectContent>|<get-protectContent>(){}[0]
         abstract fun <set-protectContent>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/OptionsCommon.protectContent.<set-protectContent>|<set-protectContent>(kotlin.Boolean?){}[0]
@@ -1347,7 +1353,7 @@ final class eu.vendeli.tgbot.api.media/SendMediaGroupAction : eu.vendeli.tgbot.i
     constructor <init>(kotlin.collections/List<eu.vendeli.tgbot.types.media/InputMedia>) // eu.vendeli.tgbot.api.media/SendMediaGroupAction.<init>|<init>(kotlin.collections.List<eu.vendeli.tgbot.types.media.InputMedia>){}[0]
 }
 
-final class eu.vendeli.tgbot.api.media/SendPaidMediaAction : eu.vendeli.tgbot.interfaces.action/BusinessActionExt<eu.vendeli.tgbot.types.msg/Message>, eu.vendeli.tgbot.interfaces.action/MediaAction<eu.vendeli.tgbot.types.msg/Message>, eu.vendeli.tgbot.interfaces.features/CaptionFeature<eu.vendeli.tgbot.api.media/SendPaidMediaAction>, eu.vendeli.tgbot.interfaces.features/EntitiesFeature<eu.vendeli.tgbot.api.media/SendPaidMediaAction>, eu.vendeli.tgbot.interfaces.features/MarkupFeature<eu.vendeli.tgbot.api.media/SendPaidMediaAction>, eu.vendeli.tgbot.interfaces.features/OptionsFeature<eu.vendeli.tgbot.api.media/SendPaidMediaAction, eu.vendeli.tgbot.types.internal.options/PaidMediaOptions> { // eu.vendeli.tgbot.api.media/SendPaidMediaAction|null[0]
+final class eu.vendeli.tgbot.api.media/SendPaidMediaAction : eu.vendeli.tgbot.interfaces.action/BusinessActionExt<eu.vendeli.tgbot.types.msg/Message>, eu.vendeli.tgbot.interfaces.action/MediaAction<eu.vendeli.tgbot.types.msg/Message>, eu.vendeli.tgbot.interfaces.features/CaptionFeature<eu.vendeli.tgbot.api.media/SendPaidMediaAction>, eu.vendeli.tgbot.interfaces.features/MarkupFeature<eu.vendeli.tgbot.api.media/SendPaidMediaAction>, eu.vendeli.tgbot.interfaces.features/OptionsFeature<eu.vendeli.tgbot.api.media/SendPaidMediaAction, eu.vendeli.tgbot.types.internal.options/PaidMediaOptions> { // eu.vendeli.tgbot.api.media/SendPaidMediaAction|null[0]
     constructor <init>(kotlin/Int, kotlin.collections/List<eu.vendeli.tgbot.types.media/InputPaidMedia>) // eu.vendeli.tgbot.api.media/SendPaidMediaAction.<init>|<init>(kotlin.Int;kotlin.collections.List<eu.vendeli.tgbot.types.media.InputPaidMedia>){}[0]
 }
 
@@ -1524,7 +1530,7 @@ final class eu.vendeli.tgbot.api/SendLocationAction : eu.vendeli.tgbot.interface
     constructor <init>(kotlin/Float, kotlin/Float) // eu.vendeli.tgbot.api/SendLocationAction.<init>|<init>(kotlin.Float;kotlin.Float){}[0]
 }
 
-final class eu.vendeli.tgbot.api/SendPollAction : eu.vendeli.tgbot.interfaces.action/Action<eu.vendeli.tgbot.types.msg/Message>, eu.vendeli.tgbot.interfaces.action/BusinessActionExt<eu.vendeli.tgbot.types.msg/Message>, eu.vendeli.tgbot.interfaces.features/EntitiesFeature<eu.vendeli.tgbot.api/SendPollAction>, eu.vendeli.tgbot.interfaces.features/MarkupFeature<eu.vendeli.tgbot.api/SendPollAction>, eu.vendeli.tgbot.interfaces.features/OptionsFeature<eu.vendeli.tgbot.api/SendPollAction, eu.vendeli.tgbot.types.internal.options/PollOptions> { // eu.vendeli.tgbot.api/SendPollAction|null[0]
+final class eu.vendeli.tgbot.api/SendPollAction : eu.vendeli.tgbot.interfaces.action/Action<eu.vendeli.tgbot.types.msg/Message>, eu.vendeli.tgbot.interfaces.action/BusinessActionExt<eu.vendeli.tgbot.types.msg/Message>, eu.vendeli.tgbot.interfaces.features/MarkupFeature<eu.vendeli.tgbot.api/SendPollAction>, eu.vendeli.tgbot.interfaces.features/OptionsFeature<eu.vendeli.tgbot.api/SendPollAction, eu.vendeli.tgbot.types.internal.options/PollOptions> { // eu.vendeli.tgbot.api/SendPollAction|null[0]
     constructor <init>(kotlin/String, kotlin.collections/List<eu.vendeli.tgbot.types.poll/InputPollOption>) // eu.vendeli.tgbot.api/SendPollAction.<init>|<init>(kotlin.String;kotlin.collections.List<eu.vendeli.tgbot.types.poll.InputPollOption>){}[0]
 }
 
@@ -1555,11 +1561,11 @@ final class eu.vendeli.tgbot.api/StopPollAction : eu.vendeli.tgbot.interfaces.ac
 }
 
 final class eu.vendeli.tgbot.core/FunctionalHandlingDsl { // eu.vendeli.tgbot.core/FunctionalHandlingDsl|null[0]
-    final fun (eu.vendeli.tgbot.types.internal/SingleInputChain).andThen(eu.vendeli.tgbot.types.internal.configuration/RateLimits = ..., eu.vendeli.tgbot.interfaces.helper/Guard = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>): eu.vendeli.tgbot.types.internal/SingleInputChain // eu.vendeli.tgbot.core/FunctionalHandlingDsl.andThen|andThen@eu.vendeli.tgbot.types.internal.SingleInputChain(eu.vendeli.tgbot.types.internal.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>){}[0]
-    final fun (eu.vendeli.tgbot.types.internal/SingleInputChain).breakIf(kotlin/Function1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Boolean>, kotlin/Boolean = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>? = ...): eu.vendeli.tgbot.types.internal/SingleInputChain // eu.vendeli.tgbot.core/FunctionalHandlingDsl.breakIf|breakIf@eu.vendeli.tgbot.types.internal.SingleInputChain(kotlin.Function1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Boolean>;kotlin.Boolean;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>?){}[0]
+    final fun (eu.vendeli.tgbot.types.internal.chain/SingleInputChain).andThen(eu.vendeli.tgbot.types.internal.configuration/RateLimits = ..., eu.vendeli.tgbot.interfaces.helper/Guard = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>): eu.vendeli.tgbot.types.internal.chain/SingleInputChain // eu.vendeli.tgbot.core/FunctionalHandlingDsl.andThen|andThen@eu.vendeli.tgbot.types.internal.chain.SingleInputChain(eu.vendeli.tgbot.types.internal.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>){}[0]
+    final fun (eu.vendeli.tgbot.types.internal.chain/SingleInputChain).breakIf(kotlin/Function1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Boolean>, kotlin/Boolean = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>? = ...): eu.vendeli.tgbot.types.internal.chain/SingleInputChain // eu.vendeli.tgbot.core/FunctionalHandlingDsl.breakIf|breakIf@eu.vendeli.tgbot.types.internal.chain.SingleInputChain(kotlin.Function1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Boolean>;kotlin.Boolean;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>?){}[0]
     final fun common(kotlin.text/Regex, kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Filter> = ..., kotlin.collections/Set<eu.vendeli.tgbot.types.internal/UpdateType> = ..., eu.vendeli.tgbot.types.internal.configuration/RateLimits = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/CommandContext<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.common|common(kotlin.text.Regex;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Filter>;kotlin.collections.Set<eu.vendeli.tgbot.types.internal.UpdateType>;eu.vendeli.tgbot.types.internal.configuration.RateLimits;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.ArgumentParser>;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.CommandContext<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>){}[0]
     final fun common(kotlin/String, kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Filter> = ..., kotlin.collections/Set<eu.vendeli.tgbot.types.internal/UpdateType> = ..., eu.vendeli.tgbot.types.internal.configuration/RateLimits = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/CommandContext<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.common|common(kotlin.String;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Filter>;kotlin.collections.Set<eu.vendeli.tgbot.types.internal.UpdateType>;eu.vendeli.tgbot.types.internal.configuration.RateLimits;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.ArgumentParser>;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.CommandContext<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>){}[0]
-    final fun inputChain(kotlin/String, eu.vendeli.tgbot.types.internal.configuration/RateLimits = ..., eu.vendeli.tgbot.interfaces.helper/Guard = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>): eu.vendeli.tgbot.types.internal/SingleInputChain // eu.vendeli.tgbot.core/FunctionalHandlingDsl.inputChain|inputChain(kotlin.String;eu.vendeli.tgbot.types.internal.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>){}[0]
+    final fun inputChain(kotlin/String, eu.vendeli.tgbot.types.internal.configuration/RateLimits = ..., eu.vendeli.tgbot.interfaces.helper/Guard = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>): eu.vendeli.tgbot.types.internal.chain/SingleInputChain // eu.vendeli.tgbot.core/FunctionalHandlingDsl.inputChain|inputChain(kotlin.String;eu.vendeli.tgbot.types.internal.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>){}[0]
     final fun onCommand(kotlin/String, kotlin.collections/Set<eu.vendeli.tgbot.types.internal/UpdateType> = ..., eu.vendeli.tgbot.types.internal.configuration/RateLimits = ..., eu.vendeli.tgbot.interfaces.helper/Guard = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/CommandContext<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.onCommand|onCommand(kotlin.String;kotlin.collections.Set<eu.vendeli.tgbot.types.internal.UpdateType>;eu.vendeli.tgbot.types.internal.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.ArgumentParser>;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.CommandContext<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>){}[0]
     final fun onInput(kotlin/String, eu.vendeli.tgbot.types.internal.configuration/RateLimits = ..., eu.vendeli.tgbot.interfaces.helper/Guard = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.onInput|onInput(kotlin.String;eu.vendeli.tgbot.types.internal.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>){}[0]
     final fun whenNotHandled(kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ProcessedUpdate, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.whenNotHandled|whenNotHandled(kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ProcessedUpdate,kotlin.Unit>){}[0]
@@ -3236,6 +3242,15 @@ final class eu.vendeli.tgbot.types.inline/SwitchInlineQueryChosenChat { // eu.ve
     }
 }
 
+final class eu.vendeli.tgbot.types.internal.chain/SingleInputChain { // eu.vendeli.tgbot.types.internal.chain/SingleInputChain|null[0]
+    constructor <init>(kotlin/String, kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>, eu.vendeli.tgbot.types.internal.configuration/RateLimits, eu.vendeli.tgbot.interfaces.helper/Guard, kotlin/Int = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.internal/InputBreakPoint? = ...) // eu.vendeli.tgbot.types.internal.chain/SingleInputChain.<init>|<init>(kotlin.String;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>;eu.vendeli.tgbot.types.internal.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.Int;kotlin.String?;eu.vendeli.tgbot.types.internal.InputBreakPoint?){}[0]
+
+    final fun copy(kotlin/String = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit> = ..., eu.vendeli.tgbot.types.internal.configuration/RateLimits = ..., eu.vendeli.tgbot.interfaces.helper/Guard = ..., kotlin/Int = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.internal/InputBreakPoint? = ...): eu.vendeli.tgbot.types.internal.chain/SingleInputChain // eu.vendeli.tgbot.types.internal.chain/SingleInputChain.copy|copy(kotlin.String;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>;eu.vendeli.tgbot.types.internal.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.Int;kotlin.String?;eu.vendeli.tgbot.types.internal.InputBreakPoint?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.chain/SingleInputChain.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.chain/SingleInputChain.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.chain/SingleInputChain.toString|toString(){}[0]
+}
+
 final class eu.vendeli.tgbot.types.internal.configuration/BotConfiguration { // eu.vendeli.tgbot.types.internal.configuration/BotConfiguration|null[0]
     constructor <init>(kotlin/String = ..., kotlin/String = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.interfaces.ctx/InputListener = ..., eu.vendeli.tgbot.interfaces.ctx/ClassManager = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.types.internal/ExceptionHandlingStrategy = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.types.internal.configuration/RateLimiterConfiguration = ..., eu.vendeli.tgbot.types.internal.configuration/HttpConfiguration = ..., eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration = ..., eu.vendeli.tgbot.types.internal.configuration/UpdatesListenerConfiguration = ..., eu.vendeli.tgbot.types.internal.configuration/CommandParsingConfiguration = ...) // eu.vendeli.tgbot.types.internal.configuration/BotConfiguration.<init>|<init>(kotlin.String;kotlin.String;kotlin.Boolean;eu.vendeli.tgbot.interfaces.ctx.InputListener;eu.vendeli.tgbot.interfaces.ctx.ClassManager;kotlin.Boolean;eu.vendeli.tgbot.types.internal.ExceptionHandlingStrategy;kotlin.Boolean;eu.vendeli.tgbot.types.internal.configuration.RateLimiterConfiguration;eu.vendeli.tgbot.types.internal.configuration.HttpConfiguration;eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration;eu.vendeli.tgbot.types.internal.configuration.UpdatesListenerConfiguration;eu.vendeli.tgbot.types.internal.configuration.CommandParsingConfiguration){}[0]
 
@@ -3545,9 +3560,12 @@ final class eu.vendeli.tgbot.types.internal.configuration/UpdatesListenerConfigu
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/AnimationOptions : eu.vendeli.tgbot.types.internal.options/MediaSpoiler, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ShowCaptionAboveMediaProp, eu.vendeli.tgbot.types.internal.options/ThumbnailProp { // eu.vendeli.tgbot.types.internal.options/AnimationOptions|null[0]
-    constructor <init>(kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/AnimationOptions.<init>|<init>(kotlin.Int?;kotlin.Int?;kotlin.Int?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/AnimationOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MediaSpoiler, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ShowCaptionAboveMediaProp, eu.vendeli.tgbot.types.internal.options/ThumbnailProp { // eu.vendeli.tgbot.types.internal.options/AnimationOptions|null[0]
+    constructor <init>(kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/AnimationOptions.<init>|<init>(kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/AnimationOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/AnimationOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/AnimationOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/AnimationOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -3586,18 +3604,19 @@ final class eu.vendeli.tgbot.types.internal.options/AnimationOptions : eu.vendel
         final fun <set-width>(kotlin/Int?) // eu.vendeli.tgbot.types.internal.options/AnimationOptions.width.<set-width>|<set-width>(kotlin.Int?){}[0]
 
     final fun component1(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component1|component1(){}[0]
-    final fun component10(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component10|component10(){}[0]
-    final fun component11(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component11|component11(){}[0]
-    final fun component12(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component12|component12(){}[0]
+    final fun component10(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component10|component10(){}[0]
+    final fun component11(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component11|component11(){}[0]
+    final fun component12(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component12|component12(){}[0]
+    final fun component13(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component13|component13(){}[0]
     final fun component2(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component2|component2(){}[0]
     final fun component3(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component3|component3(){}[0]
-    final fun component4(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component4|component4(){}[0]
-    final fun component5(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component5|component5(){}[0]
-    final fun component6(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component6|component6(){}[0]
-    final fun component7(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component7|component7(){}[0]
-    final fun component8(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component8|component8(){}[0]
-    final fun component9(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component9|component9(){}[0]
-    final fun copy(kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/AnimationOptions // eu.vendeli.tgbot.types.internal.options/AnimationOptions.copy|copy(kotlin.Int?;kotlin.Int?;kotlin.Int?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?){}[0]
+    final fun component4(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component4|component4(){}[0]
+    final fun component5(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component5|component5(){}[0]
+    final fun component6(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component6|component6(){}[0]
+    final fun component7(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component7|component7(){}[0]
+    final fun component8(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component8|component8(){}[0]
+    final fun component9(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/AnimationOptions.component9|component9(){}[0]
+    final fun copy(kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/AnimationOptions // eu.vendeli.tgbot.types.internal.options/AnimationOptions.copy|copy(kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/AnimationOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/AnimationOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/AnimationOptions.toString|toString(){}[0]
@@ -3698,9 +3717,12 @@ final class eu.vendeli.tgbot.types.internal.options/AnswerInlineQueryOptions : e
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/AudioOptions : eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ThumbnailProp { // eu.vendeli.tgbot.types.internal.options/AudioOptions|null[0]
-    constructor <init>(eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/AudioOptions.<init>|<init>(eu.vendeli.tgbot.types.ParseMode?;kotlin.Int?;kotlin.String?;kotlin.String?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/AudioOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ThumbnailProp { // eu.vendeli.tgbot.types.internal.options/AudioOptions|null[0]
+    constructor <init>(eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/AudioOptions.<init>|<init>(eu.vendeli.tgbot.types.ParseMode?;kotlin.Int?;kotlin.String?;kotlin.String?;kotlin.Boolean?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/AudioOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AudioOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/AudioOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/AudioOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AudioOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/AudioOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -3733,16 +3755,17 @@ final class eu.vendeli.tgbot.types.internal.options/AudioOptions : eu.vendeli.tg
         final fun <set-title>(kotlin/String?) // eu.vendeli.tgbot.types.internal.options/AudioOptions.title.<set-title>|<set-title>(kotlin.String?){}[0]
 
     final fun component1(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component1|component1(){}[0]
-    final fun component10(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component10|component10(){}[0]
+    final fun component10(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component10|component10(){}[0]
+    final fun component11(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component11|component11(){}[0]
     final fun component2(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component2|component2(){}[0]
     final fun component3(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component3|component3(){}[0]
     final fun component4(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component4|component4(){}[0]
-    final fun component5(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component5|component5(){}[0]
-    final fun component6(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component6|component6(){}[0]
+    final fun component5(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component5|component5(){}[0]
+    final fun component6(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component6|component6(){}[0]
     final fun component7(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component7|component7(){}[0]
-    final fun component8(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component8|component8(){}[0]
-    final fun component9(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component9|component9(){}[0]
-    final fun copy(eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/AudioOptions // eu.vendeli.tgbot.types.internal.options/AudioOptions.copy|copy(eu.vendeli.tgbot.types.ParseMode?;kotlin.Int?;kotlin.String?;kotlin.String?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
+    final fun component8(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component8|component8(){}[0]
+    final fun component9(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/AudioOptions.component9|component9(){}[0]
+    final fun copy(eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/AudioOptions // eu.vendeli.tgbot.types.internal.options/AudioOptions.copy|copy(eu.vendeli.tgbot.types.ParseMode?;kotlin.Int?;kotlin.String?;kotlin.String?;kotlin.Boolean?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/AudioOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/AudioOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/AudioOptions.toString|toString(){}[0]
@@ -3802,9 +3825,12 @@ final class eu.vendeli.tgbot.types.internal.options/ChatInviteLinkOptions : eu.v
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/ContactOptions : eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/ContactOptions|null[0]
-    constructor <init>(kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/ContactOptions.<init>|<init>(kotlin.String?;kotlin.String?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/ContactOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/ContactOptions|null[0]
+    constructor <init>(kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/ContactOptions.<init>|<init>(kotlin.String?;kotlin.String?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/ContactOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ContactOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/ContactOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/ContactOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ContactOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/ContactOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -3830,11 +3856,12 @@ final class eu.vendeli.tgbot.types.internal.options/ContactOptions : eu.vendeli.
     final fun component1(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/ContactOptions.component1|component1(){}[0]
     final fun component2(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/ContactOptions.component2|component2(){}[0]
     final fun component3(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ContactOptions.component3|component3(){}[0]
-    final fun component4(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/ContactOptions.component4|component4(){}[0]
-    final fun component5(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ContactOptions.component5|component5(){}[0]
-    final fun component6(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/ContactOptions.component6|component6(){}[0]
-    final fun component7(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/ContactOptions.component7|component7(){}[0]
-    final fun copy(kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/ContactOptions // eu.vendeli.tgbot.types.internal.options/ContactOptions.copy|copy(kotlin.String?;kotlin.String?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
+    final fun component4(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ContactOptions.component4|component4(){}[0]
+    final fun component5(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/ContactOptions.component5|component5(){}[0]
+    final fun component6(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ContactOptions.component6|component6(){}[0]
+    final fun component7(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/ContactOptions.component7|component7(){}[0]
+    final fun component8(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/ContactOptions.component8|component8(){}[0]
+    final fun copy(kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/ContactOptions // eu.vendeli.tgbot.types.internal.options/ContactOptions.copy|copy(kotlin.String?;kotlin.String?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/ContactOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/ContactOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/ContactOptions.toString|toString(){}[0]
@@ -3853,9 +3880,12 @@ final class eu.vendeli.tgbot.types.internal.options/ContactOptions : eu.vendeli.
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/CopyMessageOptions : eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ShowCaptionAboveMediaProp { // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions|null[0]
-    constructor <init>(kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ...) // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.<init>|<init>(kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/CopyMessageOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ShowCaptionAboveMediaProp { // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions|null[0]
+    constructor <init>(kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.<init>|<init>(kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.Boolean?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -3881,7 +3911,8 @@ final class eu.vendeli.tgbot.types.internal.options/CopyMessageOptions : eu.vend
     final fun component4(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component4|component4(){}[0]
     final fun component5(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component5|component5(){}[0]
     final fun component6(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component6|component6(){}[0]
-    final fun copy(kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ...): eu.vendeli.tgbot.types.internal.options/CopyMessageOptions // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.copy|copy(kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?){}[0]
+    final fun component7(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component7|component7(){}[0]
+    final fun copy(kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/CopyMessageOptions // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.copy|copy(kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.toString|toString(){}[0]
@@ -4055,9 +4086,12 @@ final class eu.vendeli.tgbot.types.internal.options/CreateNewStickerSetOptions :
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/DiceOptions : eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/DiceOptions|null[0]
-    constructor <init>(kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/DiceOptions.<init>|<init>(kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/DiceOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/DiceOptions|null[0]
+    constructor <init>(kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/DiceOptions.<init>|<init>(kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/DiceOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/DiceOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/DiceOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/DiceOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/DiceOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/DiceOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -4079,7 +4113,8 @@ final class eu.vendeli.tgbot.types.internal.options/DiceOptions : eu.vendeli.tgb
     final fun component3(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/DiceOptions.component3|component3(){}[0]
     final fun component4(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/DiceOptions.component4|component4(){}[0]
     final fun component5(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/DiceOptions.component5|component5(){}[0]
-    final fun copy(kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/DiceOptions // eu.vendeli.tgbot.types.internal.options/DiceOptions.copy|copy(kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
+    final fun component6(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/DiceOptions.component6|component6(){}[0]
+    final fun copy(kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/DiceOptions // eu.vendeli.tgbot.types.internal.options/DiceOptions.copy|copy(kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/DiceOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/DiceOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/DiceOptions.toString|toString(){}[0]
@@ -4098,9 +4133,12 @@ final class eu.vendeli.tgbot.types.internal.options/DiceOptions : eu.vendeli.tgb
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/DocumentOptions : eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ThumbnailProp { // eu.vendeli.tgbot.types.internal.options/DocumentOptions|null[0]
-    constructor <init>(eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/DocumentOptions.<init>|<init>(eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/DocumentOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ThumbnailProp { // eu.vendeli.tgbot.types.internal.options/DocumentOptions|null[0]
+    constructor <init>(eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/DocumentOptions.<init>|<init>(eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/DocumentOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/DocumentOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/DocumentOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableContentTypeDetection // eu.vendeli.tgbot.types.internal.options/DocumentOptions.disableContentTypeDetection|{}disableContentTypeDetection[0]
         final fun <get-disableContentTypeDetection>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/DocumentOptions.disableContentTypeDetection.<get-disableContentTypeDetection>|<get-disableContentTypeDetection>(){}[0]
         final fun <set-disableContentTypeDetection>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/DocumentOptions.disableContentTypeDetection.<set-disableContentTypeDetection>|<set-disableContentTypeDetection>(kotlin.Boolean?){}[0]
@@ -4134,7 +4172,8 @@ final class eu.vendeli.tgbot.types.internal.options/DocumentOptions : eu.vendeli
     final fun component6(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/DocumentOptions.component6|component6(){}[0]
     final fun component7(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/DocumentOptions.component7|component7(){}[0]
     final fun component8(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/DocumentOptions.component8|component8(){}[0]
-    final fun copy(eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/DocumentOptions // eu.vendeli.tgbot.types.internal.options/DocumentOptions.copy|copy(eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
+    final fun component9(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/DocumentOptions.component9|component9(){}[0]
+    final fun copy(eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/DocumentOptions // eu.vendeli.tgbot.types.internal.options/DocumentOptions.copy|copy(eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/DocumentOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/DocumentOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/DocumentOptions.toString|toString(){}[0]
@@ -4288,9 +4327,12 @@ final class eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions : eu.v
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/GameOptions : eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/GameOptions|null[0]
-    constructor <init>(kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/GameOptions.<init>|<init>(kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/GameOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/GameOptions|null[0]
+    constructor <init>(kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/GameOptions.<init>|<init>(kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/GameOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/GameOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/GameOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/GameOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/GameOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/GameOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -4312,7 +4354,8 @@ final class eu.vendeli.tgbot.types.internal.options/GameOptions : eu.vendeli.tgb
     final fun component3(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/GameOptions.component3|component3(){}[0]
     final fun component4(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/GameOptions.component4|component4(){}[0]
     final fun component5(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/GameOptions.component5|component5(){}[0]
-    final fun copy(kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/GameOptions // eu.vendeli.tgbot.types.internal.options/GameOptions.copy|copy(kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
+    final fun component6(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/GameOptions.component6|component6(){}[0]
+    final fun copy(kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/GameOptions // eu.vendeli.tgbot.types.internal.options/GameOptions.copy|copy(kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/GameOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/GameOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/GameOptions.toString|toString(){}[0]
@@ -4372,9 +4415,12 @@ final class eu.vendeli.tgbot.types.internal.options/GetUpdatesOptions : eu.vende
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/InvoiceOptions : eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/InvoiceOptions|null[0]
-    constructor <init>(kotlin/String? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Long? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin.collections/List<kotlin/Int>? = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.<init>|<init>(kotlin.String?;kotlin.Int?;kotlin.Int?;kotlin.Long?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.String?;kotlin.collections.List<kotlin.Int>?;kotlin.String?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/InvoiceOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/InvoiceOptions|null[0]
+    constructor <init>(kotlin/String? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Long? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin.collections/List<kotlin/Int>? = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.<init>|<init>(kotlin.String?;kotlin.Int?;kotlin.Int?;kotlin.Long?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.String?;kotlin.collections.List<kotlin.Int>?;kotlin.String?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -4445,10 +4491,11 @@ final class eu.vendeli.tgbot.types.internal.options/InvoiceOptions : eu.vendeli.
     final fun component15(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component15|component15(){}[0]
     final fun component16(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component16|component16(){}[0]
     final fun component17(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component17|component17(){}[0]
-    final fun component18(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component18|component18(){}[0]
-    final fun component19(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component19|component19(){}[0]
+    final fun component18(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component18|component18(){}[0]
+    final fun component19(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component19|component19(){}[0]
     final fun component2(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component2|component2(){}[0]
-    final fun component20(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component20|component20(){}[0]
+    final fun component20(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component20|component20(){}[0]
+    final fun component21(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component21|component21(){}[0]
     final fun component3(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component3|component3(){}[0]
     final fun component4(): kotlin/Long? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component4|component4(){}[0]
     final fun component5(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component5|component5(){}[0]
@@ -4456,7 +4503,7 @@ final class eu.vendeli.tgbot.types.internal.options/InvoiceOptions : eu.vendeli.
     final fun component7(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component7|component7(){}[0]
     final fun component8(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component8|component8(){}[0]
     final fun component9(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.component9|component9(){}[0]
-    final fun copy(kotlin/String? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Long? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin.collections/List<kotlin/Int>? = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/InvoiceOptions // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.copy|copy(kotlin.String?;kotlin.Int?;kotlin.Int?;kotlin.Long?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.String?;kotlin.collections.List<kotlin.Int>?;kotlin.String?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
+    final fun copy(kotlin/String? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Long? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin.collections/List<kotlin/Int>? = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/InvoiceOptions // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.copy|copy(kotlin.String?;kotlin.Int?;kotlin.Int?;kotlin.Long?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.String?;kotlin.collections.List<kotlin.Int>?;kotlin.String?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/InvoiceOptions.toString|toString(){}[0]
@@ -4477,9 +4524,12 @@ final class eu.vendeli.tgbot.types.internal.options/InvoiceOptions : eu.vendeli.
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/LocationOptions : eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/LocationOptions|null[0]
-    constructor <init>(kotlin/Float? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/LocationOptions.<init>|<init>(kotlin.Float?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/LocationOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/LocationOptions|null[0]
+    constructor <init>(kotlin/Float? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/LocationOptions.<init>|<init>(kotlin.Float?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/LocationOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/LocationOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/LocationOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/LocationOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/LocationOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/LocationOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -4509,6 +4559,7 @@ final class eu.vendeli.tgbot.types.internal.options/LocationOptions : eu.vendeli
         final fun <set-replyParameters>(eu.vendeli.tgbot.types/ReplyParameters?) // eu.vendeli.tgbot.types.internal.options/LocationOptions.replyParameters.<set-replyParameters>|<set-replyParameters>(eu.vendeli.tgbot.types.ReplyParameters?){}[0]
 
     final fun component1(): kotlin/Float? // eu.vendeli.tgbot.types.internal.options/LocationOptions.component1|component1(){}[0]
+    final fun component10(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/LocationOptions.component10|component10(){}[0]
     final fun component2(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/LocationOptions.component2|component2(){}[0]
     final fun component3(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/LocationOptions.component3|component3(){}[0]
     final fun component4(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/LocationOptions.component4|component4(){}[0]
@@ -4517,7 +4568,7 @@ final class eu.vendeli.tgbot.types.internal.options/LocationOptions : eu.vendeli
     final fun component7(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/LocationOptions.component7|component7(){}[0]
     final fun component8(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/LocationOptions.component8|component8(){}[0]
     final fun component9(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/LocationOptions.component9|component9(){}[0]
-    final fun copy(kotlin/Float? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/LocationOptions // eu.vendeli.tgbot.types.internal.options/LocationOptions.copy|copy(kotlin.Float?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
+    final fun copy(kotlin/Float? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/LocationOptions // eu.vendeli.tgbot.types.internal.options/LocationOptions.copy|copy(kotlin.Float?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/LocationOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/LocationOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/LocationOptions.toString|toString(){}[0]
@@ -4536,9 +4587,12 @@ final class eu.vendeli.tgbot.types.internal.options/LocationOptions : eu.vendeli
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/MediaGroupOptions : eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions|null[0]
-    constructor <init>(kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.<init>|<init>(kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/MediaGroupOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions|null[0]
+    constructor <init>(kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.<init>|<init>(kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -4560,7 +4614,8 @@ final class eu.vendeli.tgbot.types.internal.options/MediaGroupOptions : eu.vende
     final fun component3(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.component3|component3(){}[0]
     final fun component4(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.component4|component4(){}[0]
     final fun component5(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.component5|component5(){}[0]
-    final fun copy(kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/MediaGroupOptions // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.copy|copy(kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
+    final fun component6(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.component6|component6(){}[0]
+    final fun copy(kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/MediaGroupOptions // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.copy|copy(kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/MediaGroupOptions.toString|toString(){}[0]
@@ -4579,9 +4634,12 @@ final class eu.vendeli.tgbot.types.internal.options/MediaGroupOptions : eu.vende
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/MessageOptions : eu.vendeli.tgbot.types.internal.options/LinkPreviewProp, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode { // eu.vendeli.tgbot.types.internal.options/MessageOptions|null[0]
-    constructor <init>(eu.vendeli.tgbot.types/LinkPreviewOptions? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/MessageOptions.<init>|<init>(eu.vendeli.tgbot.types.LinkPreviewOptions?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/MessageOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/LinkPreviewProp, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode { // eu.vendeli.tgbot.types.internal.options/MessageOptions|null[0]
+    constructor <init>(eu.vendeli.tgbot.types/LinkPreviewOptions? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/MessageOptions.<init>|<init>(eu.vendeli.tgbot.types.LinkPreviewOptions?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/MessageOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/MessageOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/MessageOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/MessageOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/MessageOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/MessageOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -4611,7 +4669,8 @@ final class eu.vendeli.tgbot.types.internal.options/MessageOptions : eu.vendeli.
     final fun component5(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/MessageOptions.component5|component5(){}[0]
     final fun component6(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/MessageOptions.component6|component6(){}[0]
     final fun component7(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/MessageOptions.component7|component7(){}[0]
-    final fun copy(eu.vendeli.tgbot.types/LinkPreviewOptions? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/MessageOptions // eu.vendeli.tgbot.types.internal.options/MessageOptions.copy|copy(eu.vendeli.tgbot.types.LinkPreviewOptions?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
+    final fun component8(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/MessageOptions.component8|component8(){}[0]
+    final fun copy(eu.vendeli.tgbot.types/LinkPreviewOptions? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/MessageOptions // eu.vendeli.tgbot.types.internal.options/MessageOptions.copy|copy(eu.vendeli.tgbot.types.LinkPreviewOptions?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/MessageOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/MessageOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/MessageOptions.toString|toString(){}[0]
@@ -4633,14 +4692,14 @@ final class eu.vendeli.tgbot.types.internal.options/MessageOptions : eu.vendeli.
 }
 
 final class eu.vendeli.tgbot.types.internal.options/PaidMediaOptions : eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ShowCaptionAboveMediaProp { // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions|null[0]
-    constructor <init>(kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.<init>|<init>(kotlin.String?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?){}[0]
+    constructor <init>(kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.<init>|<init>(kotlin.String?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;kotlin.Boolean?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
-    final var messageThreadId // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.messageThreadId|{}messageThreadId[0]
-        final fun <get-messageThreadId>(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.messageThreadId.<get-messageThreadId>|<get-messageThreadId>(){}[0]
-        final fun <set-messageThreadId>(kotlin/Int?) // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.messageThreadId.<set-messageThreadId>|<set-messageThreadId>(kotlin.Int?){}[0]
     final var parseMode // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.parseMode|{}parseMode[0]
         final fun <get-parseMode>(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.parseMode.<get-parseMode>|<get-parseMode>(){}[0]
         final fun <set-parseMode>(eu.vendeli.tgbot.types/ParseMode?) // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.parseMode.<set-parseMode>|<set-parseMode>(eu.vendeli.tgbot.types.ParseMode?){}[0]
@@ -4661,10 +4720,10 @@ final class eu.vendeli.tgbot.types.internal.options/PaidMediaOptions : eu.vendel
     final fun component2(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.component2|component2(){}[0]
     final fun component3(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.component3|component3(){}[0]
     final fun component4(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.component4|component4(){}[0]
-    final fun component5(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.component5|component5(){}[0]
-    final fun component6(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.component6|component6(){}[0]
+    final fun component5(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.component5|component5(){}[0]
+    final fun component6(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.component6|component6(){}[0]
     final fun component7(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.component7|component7(){}[0]
-    final fun copy(kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/PaidMediaOptions // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.copy|copy(kotlin.String?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?){}[0]
+    final fun copy(kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/PaidMediaOptions // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.copy|copy(kotlin.String?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/PaidMediaOptions.toString|toString(){}[0]
@@ -4685,9 +4744,12 @@ final class eu.vendeli.tgbot.types.internal.options/PaidMediaOptions : eu.vendel
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/PhotoOptions : eu.vendeli.tgbot.types.internal.options/MediaSpoiler, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ShowCaptionAboveMediaProp { // eu.vendeli.tgbot.types.internal.options/PhotoOptions|null[0]
-    constructor <init>(kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/PhotoOptions.<init>|<init>(kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/PhotoOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MediaSpoiler, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ShowCaptionAboveMediaProp { // eu.vendeli.tgbot.types.internal.options/PhotoOptions|null[0]
+    constructor <init>(kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/PhotoOptions.<init>|<init>(kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?;kotlin.Boolean?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/PhotoOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PhotoOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/PhotoOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/PhotoOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PhotoOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/PhotoOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -4721,7 +4783,8 @@ final class eu.vendeli.tgbot.types.internal.options/PhotoOptions : eu.vendeli.tg
     final fun component6(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/PhotoOptions.component6|component6(){}[0]
     final fun component7(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PhotoOptions.component7|component7(){}[0]
     final fun component8(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/PhotoOptions.component8|component8(){}[0]
-    final fun copy(kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/PhotoOptions // eu.vendeli.tgbot.types.internal.options/PhotoOptions.copy|copy(kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?){}[0]
+    final fun component9(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PhotoOptions.component9|component9(){}[0]
+    final fun copy(kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/PhotoOptions // eu.vendeli.tgbot.types.internal.options/PhotoOptions.copy|copy(kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/PhotoOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/PhotoOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/PhotoOptions.toString|toString(){}[0]
@@ -4742,9 +4805,12 @@ final class eu.vendeli.tgbot.types.internal.options/PhotoOptions : eu.vendeli.tg
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/PollOptions : eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/PollOptions|null[0]
-    constructor <init>(kotlin/Boolean? = ..., eu.vendeli.tgbot.types.poll/PollType? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin.time/Duration? = ..., kotlinx.datetime/Instant? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/PollOptions.<init>|<init>(kotlin.Boolean?;eu.vendeli.tgbot.types.poll.PollType?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.time.Duration?;kotlinx.datetime.Instant?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/PollOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/PollOptions|null[0]
+    constructor <init>(kotlin/Boolean? = ..., eu.vendeli.tgbot.types.poll/PollType? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin.time/Duration? = ..., kotlinx.datetime/Instant? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/PollOptions.<init>|<init>(kotlin.Boolean?;eu.vendeli.tgbot.types.poll.PollType?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.time.Duration?;kotlinx.datetime.Instant?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/PollOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PollOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/PollOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var allowsMultipleAnswers // eu.vendeli.tgbot.types.internal.options/PollOptions.allowsMultipleAnswers|{}allowsMultipleAnswers[0]
         final fun <get-allowsMultipleAnswers>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PollOptions.allowsMultipleAnswers.<get-allowsMultipleAnswers>|<get-allowsMultipleAnswers>(){}[0]
         final fun <set-allowsMultipleAnswers>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/PollOptions.allowsMultipleAnswers.<set-allowsMultipleAnswers>|<set-allowsMultipleAnswers>(kotlin.Boolean?){}[0]
@@ -4806,6 +4872,7 @@ final class eu.vendeli.tgbot.types.internal.options/PollOptions : eu.vendeli.tgb
     final fun component15(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PollOptions.component15|component15(){}[0]
     final fun component16(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/PollOptions.component16|component16(){}[0]
     final fun component17(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/PollOptions.component17|component17(){}[0]
+    final fun component18(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PollOptions.component18|component18(){}[0]
     final fun component2(): eu.vendeli.tgbot.types.poll/PollType? // eu.vendeli.tgbot.types.internal.options/PollOptions.component2|component2(){}[0]
     final fun component3(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/PollOptions.component3|component3(){}[0]
     final fun component4(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/PollOptions.component4|component4(){}[0]
@@ -4814,7 +4881,7 @@ final class eu.vendeli.tgbot.types.internal.options/PollOptions : eu.vendeli.tgb
     final fun component7(): kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? // eu.vendeli.tgbot.types.internal.options/PollOptions.component7|component7(){}[0]
     final fun component8(): kotlin.time/Duration? // eu.vendeli.tgbot.types.internal.options/PollOptions.component8|component8(){}[0]
     final fun component9(): kotlinx.datetime/Instant? // eu.vendeli.tgbot.types.internal.options/PollOptions.component9|component9(){}[0]
-    final fun copy(kotlin/Boolean? = ..., eu.vendeli.tgbot.types.poll/PollType? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin.time/Duration? = ..., kotlinx.datetime/Instant? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/PollOptions // eu.vendeli.tgbot.types.internal.options/PollOptions.copy|copy(kotlin.Boolean?;eu.vendeli.tgbot.types.poll.PollType?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.time.Duration?;kotlinx.datetime.Instant?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
+    final fun copy(kotlin/Boolean? = ..., eu.vendeli.tgbot.types.poll/PollType? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin.time/Duration? = ..., kotlinx.datetime/Instant? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/PollOptions // eu.vendeli.tgbot.types.internal.options/PollOptions.copy|copy(kotlin.Boolean?;eu.vendeli.tgbot.types.poll.PollType?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.time.Duration?;kotlinx.datetime.Instant?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/PollOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/PollOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/PollOptions.toString|toString(){}[0]
@@ -5039,12 +5106,15 @@ final class eu.vendeli.tgbot.types.internal.options/SetWebhookOptions : eu.vende
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/StickerOptions : eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/StickerOptions|null[0]
-    constructor <init>(kotlin/String? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/StickerOptions.<init>|<init>(kotlin.String?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/StickerOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/StickerOptions|null[0]
+    constructor <init>(kotlin/String? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/StickerOptions.<init>|<init>(kotlin.String?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
 
     final val emoji // eu.vendeli.tgbot.types.internal.options/StickerOptions.emoji|{}emoji[0]
         final fun <get-emoji>(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/StickerOptions.emoji.<get-emoji>|<get-emoji>(){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/StickerOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/StickerOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/StickerOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/StickerOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/StickerOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/StickerOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -5067,7 +5137,8 @@ final class eu.vendeli.tgbot.types.internal.options/StickerOptions : eu.vendeli.
     final fun component4(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/StickerOptions.component4|component4(){}[0]
     final fun component5(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/StickerOptions.component5|component5(){}[0]
     final fun component6(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/StickerOptions.component6|component6(){}[0]
-    final fun copy(kotlin/String? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/StickerOptions // eu.vendeli.tgbot.types.internal.options/StickerOptions.copy|copy(kotlin.String?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
+    final fun component7(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/StickerOptions.component7|component7(){}[0]
+    final fun copy(kotlin/String? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/StickerOptions // eu.vendeli.tgbot.types.internal.options/StickerOptions.copy|copy(kotlin.String?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/StickerOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/StickerOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/StickerOptions.toString|toString(){}[0]
@@ -5086,9 +5157,12 @@ final class eu.vendeli.tgbot.types.internal.options/StickerOptions : eu.vendeli.
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/VenueOptions : eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/VenueOptions|null[0]
-    constructor <init>(kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/VenueOptions.<init>|<init>(kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/VenueOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon { // eu.vendeli.tgbot.types.internal.options/VenueOptions|null[0]
+    constructor <init>(kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/VenueOptions.<init>|<init>(kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/VenueOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VenueOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/VenueOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/VenueOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VenueOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/VenueOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -5118,6 +5192,7 @@ final class eu.vendeli.tgbot.types.internal.options/VenueOptions : eu.vendeli.tg
         final fun <set-replyParameters>(eu.vendeli.tgbot.types/ReplyParameters?) // eu.vendeli.tgbot.types.internal.options/VenueOptions.replyParameters.<set-replyParameters>|<set-replyParameters>(eu.vendeli.tgbot.types.ReplyParameters?){}[0]
 
     final fun component1(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/VenueOptions.component1|component1(){}[0]
+    final fun component10(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VenueOptions.component10|component10(){}[0]
     final fun component2(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/VenueOptions.component2|component2(){}[0]
     final fun component3(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/VenueOptions.component3|component3(){}[0]
     final fun component4(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/VenueOptions.component4|component4(){}[0]
@@ -5126,7 +5201,7 @@ final class eu.vendeli.tgbot.types.internal.options/VenueOptions : eu.vendeli.tg
     final fun component7(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VenueOptions.component7|component7(){}[0]
     final fun component8(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/VenueOptions.component8|component8(){}[0]
     final fun component9(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/VenueOptions.component9|component9(){}[0]
-    final fun copy(kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/VenueOptions // eu.vendeli.tgbot.types.internal.options/VenueOptions.copy|copy(kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
+    final fun copy(kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/VenueOptions // eu.vendeli.tgbot.types.internal.options/VenueOptions.copy|copy(kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/VenueOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/VenueOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/VenueOptions.toString|toString(){}[0]
@@ -5145,9 +5220,12 @@ final class eu.vendeli.tgbot.types.internal.options/VenueOptions : eu.vendeli.tg
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/VideoNoteOptions : eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/ThumbnailProp { // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions|null[0]
-    constructor <init>(kotlin/Int? = ..., kotlin/Int? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.<init>|<init>(kotlin.Int?;kotlin.Int?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/VideoNoteOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/ThumbnailProp { // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions|null[0]
+    constructor <init>(kotlin/Int? = ..., kotlin/Int? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.<init>|<init>(kotlin.Int?;kotlin.Int?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -5181,7 +5259,8 @@ final class eu.vendeli.tgbot.types.internal.options/VideoNoteOptions : eu.vendel
     final fun component6(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.component6|component6(){}[0]
     final fun component7(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.component7|component7(){}[0]
     final fun component8(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.component8|component8(){}[0]
-    final fun copy(kotlin/Int? = ..., kotlin/Int? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/VideoNoteOptions // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.copy|copy(kotlin.Int?;kotlin.Int?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?){}[0]
+    final fun component9(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.component9|component9(){}[0]
+    final fun copy(kotlin/Int? = ..., kotlin/Int? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/VideoNoteOptions // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.copy|copy(kotlin.Int?;kotlin.Int?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/VideoNoteOptions.toString|toString(){}[0]
@@ -5200,9 +5279,12 @@ final class eu.vendeli.tgbot.types.internal.options/VideoNoteOptions : eu.vendel
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/VideoOptions : eu.vendeli.tgbot.types.internal.options/MediaSpoiler, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ShowCaptionAboveMediaProp, eu.vendeli.tgbot.types.internal.options/ThumbnailProp { // eu.vendeli.tgbot.types.internal.options/VideoOptions|null[0]
-    constructor <init>(kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/VideoOptions.<init>|<init>(kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/VideoOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MediaSpoiler, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ShowCaptionAboveMediaProp, eu.vendeli.tgbot.types.internal.options/ThumbnailProp { // eu.vendeli.tgbot.types.internal.options/VideoOptions|null[0]
+    constructor <init>(kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/VideoOptions.<init>|<init>(kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?;kotlin.Boolean?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/VideoOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/VideoOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/VideoOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/VideoOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -5248,6 +5330,7 @@ final class eu.vendeli.tgbot.types.internal.options/VideoOptions : eu.vendeli.tg
     final fun component11(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component11|component11(){}[0]
     final fun component12(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component12|component12(){}[0]
     final fun component13(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component13|component13(){}[0]
+    final fun component14(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component14|component14(){}[0]
     final fun component2(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component2|component2(){}[0]
     final fun component3(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component3|component3(){}[0]
     final fun component4(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component4|component4(){}[0]
@@ -5256,7 +5339,7 @@ final class eu.vendeli.tgbot.types.internal.options/VideoOptions : eu.vendeli.tg
     final fun component7(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component7|component7(){}[0]
     final fun component8(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component8|component8(){}[0]
     final fun component9(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component9|component9(){}[0]
-    final fun copy(kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/VideoOptions // eu.vendeli.tgbot.types.internal.options/VideoOptions.copy|copy(kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?){}[0]
+    final fun copy(kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/VideoOptions // eu.vendeli.tgbot.types.internal.options/VideoOptions.copy|copy(kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/VideoOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/VideoOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/VideoOptions.toString|toString(){}[0]
@@ -5277,9 +5360,12 @@ final class eu.vendeli.tgbot.types.internal.options/VideoOptions : eu.vendeli.tg
     }
 }
 
-final class eu.vendeli.tgbot.types.internal.options/VoiceOptions : eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode { // eu.vendeli.tgbot.types.internal.options/VoiceOptions|null[0]
-    constructor <init>(eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.internal.options/VoiceOptions.<init>|<init>(eu.vendeli.tgbot.types.ParseMode?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
+final class eu.vendeli.tgbot.types.internal.options/VoiceOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode { // eu.vendeli.tgbot.types.internal.options/VoiceOptions|null[0]
+    constructor <init>(eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/VoiceOptions.<init>|<init>(eu.vendeli.tgbot.types.ParseMode?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
 
+    final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/VoiceOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
+        final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VoiceOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
+        final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/VoiceOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/VoiceOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VoiceOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/VoiceOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -5309,7 +5395,8 @@ final class eu.vendeli.tgbot.types.internal.options/VoiceOptions : eu.vendeli.tg
     final fun component5(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/VoiceOptions.component5|component5(){}[0]
     final fun component6(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/VoiceOptions.component6|component6(){}[0]
     final fun component7(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/VoiceOptions.component7|component7(){}[0]
-    final fun copy(eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.internal.options/VoiceOptions // eu.vendeli.tgbot.types.internal.options/VoiceOptions.copy|copy(eu.vendeli.tgbot.types.ParseMode?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?){}[0]
+    final fun component8(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VoiceOptions.component8|component8(){}[0]
+    final fun copy(eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/VoiceOptions // eu.vendeli.tgbot.types.internal.options/VoiceOptions.copy|copy(eu.vendeli.tgbot.types.ParseMode?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.String?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/VoiceOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/VoiceOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/VoiceOptions.toString|toString(){}[0]
@@ -5921,13 +6008,30 @@ final class eu.vendeli.tgbot.types.internal/ShippingQueryUpdate : eu.vendeli.tgb
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal/ShippingQueryUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.internal/SingleInputChain { // eu.vendeli.tgbot.types.internal/SingleInputChain|null[0]
-    constructor <init>(kotlin/String, kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>, eu.vendeli.tgbot.types.internal.configuration/RateLimits, eu.vendeli.tgbot.interfaces.helper/Guard, kotlin/Int = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.internal/InputBreakPoint? = ...) // eu.vendeli.tgbot.types.internal/SingleInputChain.<init>|<init>(kotlin.String;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>;eu.vendeli.tgbot.types.internal.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.Int;kotlin.String?;eu.vendeli.tgbot.types.internal.InputBreakPoint?){}[0]
+final class eu.vendeli.tgbot.types.keyboard/CopyTextButton { // eu.vendeli.tgbot.types.keyboard/CopyTextButton|null[0]
+    constructor <init>(kotlin/String) // eu.vendeli.tgbot.types.keyboard/CopyTextButton.<init>|<init>(kotlin.String){}[0]
 
-    final fun copy(kotlin/String = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit> = ..., eu.vendeli.tgbot.types.internal.configuration/RateLimits = ..., eu.vendeli.tgbot.interfaces.helper/Guard = ..., kotlin/Int = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.internal/InputBreakPoint? = ...): eu.vendeli.tgbot.types.internal/SingleInputChain // eu.vendeli.tgbot.types.internal/SingleInputChain.copy|copy(kotlin.String;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>;eu.vendeli.tgbot.types.internal.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.Int;kotlin.String?;eu.vendeli.tgbot.types.internal.InputBreakPoint?){}[0]
-    final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal/SingleInputChain.equals|equals(kotlin.Any?){}[0]
-    final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal/SingleInputChain.hashCode|hashCode(){}[0]
-    final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal/SingleInputChain.toString|toString(){}[0]
+    final val text // eu.vendeli.tgbot.types.keyboard/CopyTextButton.text|{}text[0]
+        final fun <get-text>(): kotlin/String // eu.vendeli.tgbot.types.keyboard/CopyTextButton.text.<get-text>|<get-text>(){}[0]
+
+    final fun component1(): kotlin/String // eu.vendeli.tgbot.types.keyboard/CopyTextButton.component1|component1(){}[0]
+    final fun copy(kotlin/String = ...): eu.vendeli.tgbot.types.keyboard/CopyTextButton // eu.vendeli.tgbot.types.keyboard/CopyTextButton.copy|copy(kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.keyboard/CopyTextButton.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.keyboard/CopyTextButton.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // eu.vendeli.tgbot.types.keyboard/CopyTextButton.toString|toString(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<eu.vendeli.tgbot.types.keyboard/CopyTextButton> { // eu.vendeli.tgbot.types.keyboard/CopyTextButton.$serializer|null[0]
+        final val descriptor // eu.vendeli.tgbot.types.keyboard/CopyTextButton.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // eu.vendeli.tgbot.types.keyboard/CopyTextButton.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // eu.vendeli.tgbot.types.keyboard/CopyTextButton.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): eu.vendeli.tgbot.types.keyboard/CopyTextButton // eu.vendeli.tgbot.types.keyboard/CopyTextButton.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, eu.vendeli.tgbot.types.keyboard/CopyTextButton) // eu.vendeli.tgbot.types.keyboard/CopyTextButton.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;eu.vendeli.tgbot.types.keyboard.CopyTextButton){}[0]
+    }
+
+    final object Companion { // eu.vendeli.tgbot.types.keyboard/CopyTextButton.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<eu.vendeli.tgbot.types.keyboard/CopyTextButton> // eu.vendeli.tgbot.types.keyboard/CopyTextButton.Companion.serializer|serializer(){}[0]
+    }
 }
 
 final class eu.vendeli.tgbot.types.keyboard/ForceReply : eu.vendeli.tgbot.interfaces.marker/Keyboard { // eu.vendeli.tgbot.types.keyboard/ForceReply|null[0]
@@ -5962,12 +6066,14 @@ final class eu.vendeli.tgbot.types.keyboard/ForceReply : eu.vendeli.tgbot.interf
 }
 
 final class eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton : eu.vendeli.tgbot.interfaces.marker/Button { // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton|null[0]
-    constructor <init>(kotlin/String, kotlin/String? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.keyboard/WebAppInfo? = ..., eu.vendeli.tgbot.types.keyboard/LoginUrl? = ..., kotlin/String? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.inline/SwitchInlineQueryChosenChat? = ..., eu.vendeli.tgbot.types.game/CallbackGame? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.<init>|<init>(kotlin.String;kotlin.String?;kotlin.String?;eu.vendeli.tgbot.types.keyboard.WebAppInfo?;eu.vendeli.tgbot.types.keyboard.LoginUrl?;kotlin.String?;kotlin.String?;eu.vendeli.tgbot.types.inline.SwitchInlineQueryChosenChat?;eu.vendeli.tgbot.types.game.CallbackGame?;kotlin.Boolean?){}[0]
+    constructor <init>(kotlin/String, kotlin/String? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.keyboard/WebAppInfo? = ..., eu.vendeli.tgbot.types.keyboard/LoginUrl? = ..., kotlin/String? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.inline/SwitchInlineQueryChosenChat? = ..., eu.vendeli.tgbot.types.keyboard/CopyTextButton? = ..., eu.vendeli.tgbot.types.game/CallbackGame? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.<init>|<init>(kotlin.String;kotlin.String?;kotlin.String?;eu.vendeli.tgbot.types.keyboard.WebAppInfo?;eu.vendeli.tgbot.types.keyboard.LoginUrl?;kotlin.String?;kotlin.String?;eu.vendeli.tgbot.types.inline.SwitchInlineQueryChosenChat?;eu.vendeli.tgbot.types.keyboard.CopyTextButton?;eu.vendeli.tgbot.types.game.CallbackGame?;kotlin.Boolean?){}[0]
 
     final val callbackData // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.callbackData|{}callbackData[0]
         final fun <get-callbackData>(): kotlin/String? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.callbackData.<get-callbackData>|<get-callbackData>(){}[0]
     final val callbackGame // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.callbackGame|{}callbackGame[0]
         final fun <get-callbackGame>(): eu.vendeli.tgbot.types.game/CallbackGame? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.callbackGame.<get-callbackGame>|<get-callbackGame>(){}[0]
+    final val copyText // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.copyText|{}copyText[0]
+        final fun <get-copyText>(): eu.vendeli.tgbot.types.keyboard/CopyTextButton? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.copyText.<get-copyText>|<get-copyText>(){}[0]
     final val loginUrl // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.loginUrl|{}loginUrl[0]
         final fun <get-loginUrl>(): eu.vendeli.tgbot.types.keyboard/LoginUrl? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.loginUrl.<get-loginUrl>|<get-loginUrl>(){}[0]
     final val pay // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.pay|{}pay[0]
@@ -5986,7 +6092,8 @@ final class eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton : eu.vendeli.tg
         final fun <get-webApp>(): eu.vendeli.tgbot.types.keyboard/WebAppInfo? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.webApp.<get-webApp>|<get-webApp>(){}[0]
 
     final fun component1(): kotlin/String // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.component1|component1(){}[0]
-    final fun component10(): kotlin/Boolean? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.component10|component10(){}[0]
+    final fun component10(): eu.vendeli.tgbot.types.game/CallbackGame? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.component10|component10(){}[0]
+    final fun component11(): kotlin/Boolean? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.component11|component11(){}[0]
     final fun component2(): kotlin/String? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.component2|component2(){}[0]
     final fun component3(): kotlin/String? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.component3|component3(){}[0]
     final fun component4(): eu.vendeli.tgbot.types.keyboard/WebAppInfo? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.component4|component4(){}[0]
@@ -5994,8 +6101,8 @@ final class eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton : eu.vendeli.tg
     final fun component6(): kotlin/String? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.component6|component6(){}[0]
     final fun component7(): kotlin/String? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.component7|component7(){}[0]
     final fun component8(): eu.vendeli.tgbot.types.inline/SwitchInlineQueryChosenChat? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.component8|component8(){}[0]
-    final fun component9(): eu.vendeli.tgbot.types.game/CallbackGame? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.component9|component9(){}[0]
-    final fun copy(kotlin/String = ..., kotlin/String? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.keyboard/WebAppInfo? = ..., eu.vendeli.tgbot.types.keyboard/LoginUrl? = ..., kotlin/String? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.inline/SwitchInlineQueryChosenChat? = ..., eu.vendeli.tgbot.types.game/CallbackGame? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.copy|copy(kotlin.String;kotlin.String?;kotlin.String?;eu.vendeli.tgbot.types.keyboard.WebAppInfo?;eu.vendeli.tgbot.types.keyboard.LoginUrl?;kotlin.String?;kotlin.String?;eu.vendeli.tgbot.types.inline.SwitchInlineQueryChosenChat?;eu.vendeli.tgbot.types.game.CallbackGame?;kotlin.Boolean?){}[0]
+    final fun component9(): eu.vendeli.tgbot.types.keyboard/CopyTextButton? // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.component9|component9(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.keyboard/WebAppInfo? = ..., eu.vendeli.tgbot.types.keyboard/LoginUrl? = ..., kotlin/String? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.inline/SwitchInlineQueryChosenChat? = ..., eu.vendeli.tgbot.types.keyboard/CopyTextButton? = ..., eu.vendeli.tgbot.types.game/CallbackGame? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.copy|copy(kotlin.String;kotlin.String?;kotlin.String?;eu.vendeli.tgbot.types.keyboard.WebAppInfo?;eu.vendeli.tgbot.types.keyboard.LoginUrl?;kotlin.String?;kotlin.String?;eu.vendeli.tgbot.types.inline.SwitchInlineQueryChosenChat?;eu.vendeli.tgbot.types.keyboard.CopyTextButton?;eu.vendeli.tgbot.types.game.CallbackGame?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton.toString|toString(){}[0]
@@ -9194,15 +9301,9 @@ final class eu.vendeli.tgbot.utils.builders/EntitiesBuilder { // eu.vendeli.tgbo
 final class eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder : eu.vendeli.tgbot.utils.builders/KeyboardBuilder<eu.vendeli.tgbot.types.keyboard/InlineKeyboardButton> { // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder|null[0]
     constructor <init>() // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.<init>|<init>(){}[0]
 
-    final fun (kotlin/String).callback(kotlin/String): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.callback|callback@kotlin.String(kotlin.String){}[0]
-    final fun (kotlin/String).loginUrl(eu.vendeli.tgbot.types.keyboard/LoginUrl): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.loginUrl|loginUrl@kotlin.String(eu.vendeli.tgbot.types.keyboard.LoginUrl){}[0]
-    final fun (kotlin/String).switchInlineQuery(kotlin/String): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.switchInlineQuery|switchInlineQuery@kotlin.String(kotlin.String){}[0]
-    final fun (kotlin/String).switchInlineQueryChosenChat(eu.vendeli.tgbot.types.inline/SwitchInlineQueryChosenChat): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.switchInlineQueryChosenChat|switchInlineQueryChosenChat@kotlin.String(eu.vendeli.tgbot.types.inline.SwitchInlineQueryChosenChat){}[0]
-    final fun (kotlin/String).switchInlineQueryCurrentChat(kotlin/String): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.switchInlineQueryCurrentChat|switchInlineQueryCurrentChat@kotlin.String(kotlin.String){}[0]
-    final fun (kotlin/String).url(kotlin/String): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.url|url@kotlin.String(kotlin.String){}[0]
-    final fun (kotlin/String).webAppInfo(kotlin/String): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.webAppInfo|webAppInfo@kotlin.String(kotlin.String){}[0]
     final fun callbackData(kotlin/String, kotlin/Function0<kotlin/String>): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.callbackData|callbackData(kotlin.String;kotlin.Function0<kotlin.String>){}[0]
     final fun callbackGame(kotlin/String): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.callbackGame|callbackGame(kotlin.String){}[0]
+    final fun copyText(kotlin/String, kotlin/Function0<kotlin/String>): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.copyText|copyText(kotlin.String;kotlin.Function0<kotlin.String>){}[0]
     final fun loginUrl(kotlin/String, kotlin/Function0<eu.vendeli.tgbot.types.keyboard/LoginUrl>): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.loginUrl|loginUrl(kotlin.String;kotlin.Function0<eu.vendeli.tgbot.types.keyboard.LoginUrl>){}[0]
     final fun pay(kotlin/String): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.pay|pay(kotlin.String){}[0]
     final fun switchInlineQuery(kotlin/String, kotlin/Function0<kotlin/String>): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.switchInlineQuery|switchInlineQuery(kotlin.String;kotlin.Function0<kotlin.String>){}[0]
@@ -9210,6 +9311,15 @@ final class eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder : eu.ven
     final fun switchInlineQueryCurrentChat(kotlin/String, kotlin/Function0<kotlin/String>): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.switchInlineQueryCurrentChat|switchInlineQueryCurrentChat(kotlin.String;kotlin.Function0<kotlin.String>){}[0]
     final fun url(kotlin/String, kotlin/Function0<kotlin/String>): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.url|url(kotlin.String;kotlin.Function0<kotlin.String>){}[0]
     final fun webAppInfo(kotlin/String, kotlin/Function0<kotlin/String>): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.webAppInfo|webAppInfo(kotlin.String;kotlin.Function0<kotlin.String>){}[0]
+    final inline fun (kotlin/String).callback(kotlin/String): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.callback|callback@kotlin.String(kotlin.String){}[0]
+    final inline fun (kotlin/String).copyText(kotlin/String): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.copyText|copyText@kotlin.String(kotlin.String){}[0]
+    final inline fun (kotlin/String).loginUrl(eu.vendeli.tgbot.types.keyboard/LoginUrl): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.loginUrl|loginUrl@kotlin.String(eu.vendeli.tgbot.types.keyboard.LoginUrl){}[0]
+    final inline fun (kotlin/String).pay(): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.pay|pay@kotlin.String(){}[0]
+    final inline fun (kotlin/String).switchInlineQuery(kotlin/String): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.switchInlineQuery|switchInlineQuery@kotlin.String(kotlin.String){}[0]
+    final inline fun (kotlin/String).switchInlineQueryChosenChat(eu.vendeli.tgbot.types.inline/SwitchInlineQueryChosenChat): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.switchInlineQueryChosenChat|switchInlineQueryChosenChat@kotlin.String(eu.vendeli.tgbot.types.inline.SwitchInlineQueryChosenChat){}[0]
+    final inline fun (kotlin/String).switchInlineQueryCurrentChat(kotlin/String): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.switchInlineQueryCurrentChat|switchInlineQueryCurrentChat@kotlin.String(kotlin.String){}[0]
+    final inline fun (kotlin/String).url(kotlin/String): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.url|url@kotlin.String(kotlin.String){}[0]
+    final inline fun (kotlin/String).webAppInfo(kotlin/String): eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder // eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder.webAppInfo|webAppInfo@kotlin.String(kotlin.String){}[0]
 }
 
 final class eu.vendeli.tgbot.utils.builders/PollOptionsBuilder { // eu.vendeli.tgbot.utils.builders/PollOptionsBuilder|null[0]
@@ -12360,6 +12470,32 @@ sealed class eu.vendeli.tgbot.types.stars/TransactionPartner { // eu.vendeli.tgb
             final val $childSerializers // eu.vendeli.tgbot.types.stars/TransactionPartner.Fragment.Companion.$childSerializers|{}$childSerializers[0]
 
             final fun serializer(): kotlinx.serialization/KSerializer<eu.vendeli.tgbot.types.stars/TransactionPartner.Fragment> // eu.vendeli.tgbot.types.stars/TransactionPartner.Fragment.Companion.serializer|serializer(){}[0]
+        }
+    }
+
+    final class TelegramApi : eu.vendeli.tgbot.types.stars/TransactionPartner { // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi|null[0]
+        constructor <init>(kotlin/Int) // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.<init>|<init>(kotlin.Int){}[0]
+
+        final val requestCount // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.requestCount|{}requestCount[0]
+            final fun <get-requestCount>(): kotlin/Int // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.requestCount.<get-requestCount>|<get-requestCount>(){}[0]
+
+        final fun component1(): kotlin/Int // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.component1|component1(){}[0]
+        final fun copy(kotlin/Int = ...): eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.copy|copy(kotlin.Int){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.toString|toString(){}[0]
+
+        final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi> { // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.$serializer|null[0]
+            final val descriptor // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.$serializer.descriptor|{}descriptor[0]
+                final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+            final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.$serializer.childSerializers|childSerializers(){}[0]
+            final fun deserialize(kotlinx.serialization.encoding/Decoder): eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+            final fun serialize(kotlinx.serialization.encoding/Encoder, eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi) // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;eu.vendeli.tgbot.types.stars.TransactionPartner.TelegramApi){}[0]
+        }
+
+        final object Companion { // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.Companion|null[0]
+            final fun serializer(): kotlinx.serialization/KSerializer<eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi> // eu.vendeli.tgbot.types.stars/TransactionPartner.TelegramApi.Companion.serializer|serializer(){}[0]
         }
     }
 

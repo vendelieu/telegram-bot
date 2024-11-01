@@ -153,7 +153,7 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
         parameters.takeIf { it.isNotEmpty() }?.let {
             logger.warn(
                 "Probably redundant parameters for method $methodName: ${parameters.keys.joinToString()}\n" +
-                    "Implemented in $classFullname."
+                    "Implemented in $classFullname.",
             )
         }
         if (!visitedMethods.add(methodName)) logger.warn("Duplicate processing of a method $methodName")

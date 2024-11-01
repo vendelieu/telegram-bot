@@ -11,6 +11,7 @@ import kotlinx.serialization.Serializable
  * - TransactionPartnerUser
  * - TransactionPartnerFragment
  * - TransactionPartnerTelegramAds
+ * - TransactionPartnerTelegramApi
  * - TransactionPartnerOther
  *
  * [Api reference](https://core.telegram.org/bots/api#transactionpartner)
@@ -46,5 +47,7 @@ sealed class TransactionPartner(
 
     @Serializable
     @SerialName("telegram_api")
-    data class TelegramApi(val requestCount: Int) : TransactionPartner("telegram_api")
+    data class TelegramApi(
+        val requestCount: Int,
+    ) : TransactionPartner("telegram_api")
 }
