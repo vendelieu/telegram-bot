@@ -43,4 +43,8 @@ sealed class TransactionPartner(
     @Serializable
     @SerialName("telegram_ads")
     data object TelegramAds : TransactionPartner("telegram_ads")
+
+    @Serializable
+    @SerialName("telegram_api")
+    data class TelegramApi(val requestCount: Int) : TransactionPartner("telegram_api")
 }

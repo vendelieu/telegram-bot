@@ -30,6 +30,7 @@ data class InlineKeyboardButton(
     val switchInlineQuery: String? = null,
     val switchInlineQueryCurrentChat: String? = null,
     val switchInlineQueryChosenChat: SwitchInlineQueryChosenChat? = null,
+    val copyText: CopyTextButton? = null,
     val callbackGame: CallbackGame? = null,
     val pay: Boolean? = null,
 ) : Button

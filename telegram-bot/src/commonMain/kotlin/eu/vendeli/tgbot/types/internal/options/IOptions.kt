@@ -50,6 +50,7 @@ sealed interface OptionsCommon : Options {
     var disableNotification: Boolean?
     var replyParameters: ReplyParameters?
     var protectContent: Boolean?
+    var allowPaidBroadcast: Boolean?
 
     var replyToMessageId: Long?
         get() = replyParameters?.messageId

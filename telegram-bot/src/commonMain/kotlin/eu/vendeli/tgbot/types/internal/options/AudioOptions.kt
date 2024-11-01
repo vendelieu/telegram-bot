@@ -11,6 +11,7 @@ data class AudioOptions(
     var duration: Int? = null,
     var performer: String? = null,
     var title: String? = null,
+    override var allowPaidBroadcast: Boolean? = null,
     override var thumbnail: ImplicitFile? = null,
     override var disableNotification: Boolean? = null,
     override var protectContent: Boolean? = null,

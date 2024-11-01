@@ -20,6 +20,7 @@ data class InvoiceOptions(
     var suggestedTipAmounts: List<Int>? = null,
     var providerData: String? = null,
     var maxTipAmount: Int? = null,
+    override var allowPaidBroadcast: Boolean? = null,
     override var protectContent: Boolean? = null,
     override var disableNotification: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,
