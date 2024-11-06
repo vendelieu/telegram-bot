@@ -21,7 +21,7 @@ build.gradle.kts example:
 plugins {
     // ...
     id("com.google.devtools.ksp") version "2.0.21-1.0.26"
-    id("eu.vendeli.telegram-bot") version "7.4.0"
+    id("eu.vendeli.telegram-bot") version "7.4.1"
 }
 ```
 
@@ -37,8 +37,8 @@ plugins {
 
 dependencies {
     // ...
-    implementation("eu.vendeli:telegram-bot:7.4.0")
-    ksp("eu.vendeli:ksp:7.4.0")
+    implementation("eu.vendeli:telegram-bot:7.4.1")
+    ksp("eu.vendeli:ksp:7.4.1")
 }
 ```
 
