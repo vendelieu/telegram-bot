@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) Changelog
 
+### 7.4.1
+
+* Fixed KSP processor exception that was caused by new `KotlinPoet` version update.
+
 ## 7.4.0
 
 * Supported Telegram API [7.11](https://core.telegram.org/bots/api-changelog#october-31-2024).
