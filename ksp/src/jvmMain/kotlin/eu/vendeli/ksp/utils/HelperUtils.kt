@@ -15,7 +15,6 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeVariableName
-import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.asTypeName
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.implementations.ClassDataImpl
@@ -67,7 +66,7 @@ internal val activitiesType = Map::class.asTypeName().parameterizedBy(
 )
 internal val invocableType = TypeVariableName("Invocable")
 internal val linkQName = Link::class.fqName
-internal val autoWiringClassName = Autowiring::class.asClassName()
+internal val autowiringFQName = Autowiring::class.fqName
 
 internal val intPrimitiveType = TypeVariableName("int")
 internal val longPrimitiveType = TypeVariableName("long")

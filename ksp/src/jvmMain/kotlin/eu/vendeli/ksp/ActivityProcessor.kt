@@ -24,7 +24,7 @@ import eu.vendeli.ksp.dto.CollectorsContext
 import eu.vendeli.ksp.utils.CommonAnnotationHandler
 import eu.vendeli.ksp.utils.FileBuilder
 import eu.vendeli.ksp.utils.activitiesType
-import eu.vendeli.ksp.utils.autoWiringClassName
+import eu.vendeli.ksp.utils.autowiringFQName
 import eu.vendeli.ksp.utils.getAnnotatedClassSymbols
 import eu.vendeli.ksp.utils.getAnnotatedFnSymbols
 import eu.vendeli.tgbot.annotations.CommandHandler
@@ -130,7 +130,9 @@ class ActivityProcessor(
         val injectableTypes = resolver.getAnnotatedClassSymbols(Injectable::class, pkg).associate { c ->
             c
                 .getAllSuperTypes()
-                .first { it.toClassName() == autoWiringClassName }
+                .first {
+                    it.declaration.qualifiedName!!.asString() == autowiringFQName
+                }
                 .arguments
                 .first()
                 .toTypeName() to
