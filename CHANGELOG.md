@@ -1,5 +1,10 @@
 # Telegram-bot (KtGram) Changelog
 
+#### [Unreleased]
+
+* Extend/add annotations for utility handler mechanisms (guard, rateLimits, argParser), add ability to tag a class to
+  affect all methods within it.
+
 ### 7.4.1
 
 * Fixed KSP processor exception that was caused by new `KotlinPoet` version update.
