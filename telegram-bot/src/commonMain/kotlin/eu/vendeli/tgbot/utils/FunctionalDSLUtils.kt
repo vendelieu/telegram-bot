@@ -1,31 +1,32 @@
 package eu.vendeli.tgbot.utils
 
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
-import eu.vendeli.tgbot.types.internal.ActivityCtx
-import eu.vendeli.tgbot.types.internal.BusinessConnectionUpdate
-import eu.vendeli.tgbot.types.internal.BusinessMessageUpdate
-import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
-import eu.vendeli.tgbot.types.internal.ChannelPostUpdate
-import eu.vendeli.tgbot.types.internal.ChatBoostUpdate
-import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
-import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
-import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
-import eu.vendeli.tgbot.types.internal.DeletedBusinessMessagesUpdate
-import eu.vendeli.tgbot.types.internal.EditedBusinessMessageUpdate
-import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
-import eu.vendeli.tgbot.types.internal.EditedMessageUpdate
-import eu.vendeli.tgbot.types.internal.InlineQueryUpdate
-import eu.vendeli.tgbot.types.internal.MessageReactionCountUpdate
-import eu.vendeli.tgbot.types.internal.MessageReactionUpdate
-import eu.vendeli.tgbot.types.internal.MessageUpdate
-import eu.vendeli.tgbot.types.internal.MyChatMemberUpdate
-import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
-import eu.vendeli.tgbot.types.internal.PollUpdate
-import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
-import eu.vendeli.tgbot.types.internal.PurchasedPaidMediaUpdate
-import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
-import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
-import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.`internal`.ActivityCtx
+import eu.vendeli.tgbot.types.`internal`.BusinessConnectionUpdate
+import eu.vendeli.tgbot.types.`internal`.BusinessMessageUpdate
+import eu.vendeli.tgbot.types.`internal`.CallbackQueryUpdate
+import eu.vendeli.tgbot.types.`internal`.ChannelPostUpdate
+import eu.vendeli.tgbot.types.`internal`.ChatBoostUpdate
+import eu.vendeli.tgbot.types.`internal`.ChatJoinRequestUpdate
+import eu.vendeli.tgbot.types.`internal`.ChatMemberUpdate
+import eu.vendeli.tgbot.types.`internal`.ChosenInlineResultUpdate
+import eu.vendeli.tgbot.types.`internal`.DeletedBusinessMessagesUpdate
+import eu.vendeli.tgbot.types.`internal`.EditedBusinessMessageUpdate
+import eu.vendeli.tgbot.types.`internal`.EditedChannelPostUpdate
+import eu.vendeli.tgbot.types.`internal`.EditedMessageUpdate
+import eu.vendeli.tgbot.types.`internal`.InlineQueryUpdate
+import eu.vendeli.tgbot.types.`internal`.MessageReactionCountUpdate
+import eu.vendeli.tgbot.types.`internal`.MessageReactionUpdate
+import eu.vendeli.tgbot.types.`internal`.MessageUpdate
+import eu.vendeli.tgbot.types.`internal`.MyChatMemberUpdate
+import eu.vendeli.tgbot.types.`internal`.PollAnswerUpdate
+import eu.vendeli.tgbot.types.`internal`.PollUpdate
+import eu.vendeli.tgbot.types.`internal`.PreCheckoutQueryUpdate
+import eu.vendeli.tgbot.types.`internal`.PurchasedPaidMediaUpdate
+import eu.vendeli.tgbot.types.`internal`.RemovedChatBoostUpdate
+import eu.vendeli.tgbot.types.`internal`.ShippingQueryUpdate
+import eu.vendeli.tgbot.types.`internal`.UpdateType
+import kotlin.Unit
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.message] in the [eu.vendeli.tgbot.types.Update].

@@ -102,8 +102,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
             if (!isTopLvl && !isObject && function.functionKind != FunctionKind.STATIC) {
                 parametersEnumeration = "inst, "
                 add(
-                    "val inst = classManager.getInstance(%L::class) as %L\n",
-                    funQualifier,
+                    "val inst = classManager.getInstance<%L>()!!\n",
                     funQualifier,
                 )
             }

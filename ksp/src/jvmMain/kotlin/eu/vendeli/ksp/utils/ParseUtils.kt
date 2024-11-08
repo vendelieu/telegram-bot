@@ -131,6 +131,9 @@ internal fun List<KSValueArgument>.parseAsUpdateHandler() = first().value.cast<L
     }.let { UpdateType.valueOf(it) }
 }
 
+internal fun List<KSValueArgument>.parseRateLimitsAnnotation(): RateLimits =
+    ((firstOrNull()?.value?.safeCast<Long>() ?: 0) to (lastOrNull()?.value?.safeCast<Long>() ?: 0)).toRateLimits()
+
 internal fun List<KSValueArgument>.parseRateLimits(): Pair<Long, Long> = firstOrNull {
     it.name?.asString() == "rateLimits"
 }?.value?.safeCast<KSAnnotation>()?.arguments?.let {

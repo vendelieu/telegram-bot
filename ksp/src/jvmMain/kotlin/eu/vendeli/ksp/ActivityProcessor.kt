@@ -132,8 +132,7 @@ class ActivityProcessor(
                 .getAllSuperTypes()
                 .first {
                     it.declaration.qualifiedName!!.asString() == autowiringFQName
-                }
-                .arguments
+                }.arguments
                 .first()
                 .toTypeName() to
                 c.toClassName()

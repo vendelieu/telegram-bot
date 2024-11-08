@@ -1,5 +1,6 @@
 package eu.vendeli.ksp
 
+import com.google.devtools.ksp.closestClassDeclaration
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.squareup.kotlinpoet.CodeBlock
@@ -17,13 +18,19 @@ import eu.vendeli.ksp.utils.addMap
 import eu.vendeli.ksp.utils.buildMeta
 import eu.vendeli.ksp.utils.commonMatcherClass
 import eu.vendeli.ksp.utils.invocableType
+import eu.vendeli.ksp.utils.parseArgParser
 import eu.vendeli.ksp.utils.parseAsCommandHandler
 import eu.vendeli.ksp.utils.parseAsInputHandler
 import eu.vendeli.ksp.utils.parseAsUpdateHandler
+import eu.vendeli.ksp.utils.parseGuard
+import eu.vendeli.ksp.utils.parseRateLimitsAnnotation
 import eu.vendeli.ksp.utils.toRateLimits
+import eu.vendeli.tgbot.annotations.ArgParser
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.CommandHandler.CallbackQuery
+import eu.vendeli.tgbot.annotations.Guard
 import eu.vendeli.tgbot.annotations.InputHandler
+import eu.vendeli.tgbot.annotations.RateLimits
 import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.internal.UpdateType
 
@@ -56,6 +63,46 @@ internal fun collectCommandActivities(
             }.arguments
             .parseAsCommandHandler(isCallbackQAnnotation)
 
+        // priority while looking for util annotations: function > class > handler param
+        val guardAnnotationData = function.annotations
+            .firstOrNull {
+                it.shortName.asString() == Guard::class.simpleName!!
+            }?.arguments
+            ?.parseGuard()
+            ?: function
+                .closestClassDeclaration()
+                ?.annotations
+                ?.firstOrNull {
+                    it.shortName.asString() == Guard::class.simpleName!!
+                }?.arguments
+                ?.parseGuard()
+
+        val rateLimitsAnnotationData = function.annotations
+            .firstOrNull {
+                it.shortName.asString() == RateLimits::class.simpleName!!
+            }?.arguments
+            ?.parseRateLimitsAnnotation()
+            ?: function
+                .closestClassDeclaration()
+                ?.annotations
+                ?.firstOrNull {
+                    it.shortName.asString() == RateLimits::class.simpleName!!
+                }?.arguments
+                ?.parseRateLimitsAnnotation()
+
+        val argParserAnnotationData = function.annotations
+            .firstOrNull {
+                it.shortName.asString() == ArgParser::class.simpleName!!
+            }?.arguments
+            ?.parseArgParser()
+            ?: function
+                .closestClassDeclaration()
+                ?.annotations
+                ?.firstOrNull {
+                    it.shortName.asString() == ArgParser::class.simpleName!!
+                }?.arguments
+                ?.parseArgParser()
+
         annotationData.value.forEach {
             annotationData.scope.forEach { updT ->
                 logger.info("Command: $it UpdateType: ${updT.name} --> ${function.qualifiedName?.asString()}")
@@ -70,9 +117,9 @@ internal fun collectCommandActivities(
                         buildMeta(
                             qualifier = function.qualifiedName!!.getQualifier(),
                             function = function.simpleName.asString(),
-                            rateLimits = annotationData.rateLimits.toRateLimits(),
-                            guardClass = annotationData.guardClass,
-                            argParserClass = annotationData.argParserClass,
+                            rateLimits = rateLimitsAnnotationData ?: annotationData.rateLimits.toRateLimits(),
+                            guardClass = guardAnnotationData ?: annotationData.guardClass,
+                            argParserClass = argParserAnnotationData ?: annotationData.argParserClass,
                         ),
                     ),
                 )
@@ -100,6 +147,34 @@ internal fun collectInputActivities(
                 it.shortName.asString() == InputHandler::class.simpleName!!
             }.arguments
             .parseAsInputHandler()
+
+        // priority while looking for util annotations: function > class > handler param
+        val guardAnnotationData = function.annotations
+            .firstOrNull {
+                it.shortName.asString() == Guard::class.simpleName!!
+            }?.arguments
+            ?.parseGuard()
+            ?: function
+                .closestClassDeclaration()
+                ?.annotations
+                ?.firstOrNull {
+                    it.shortName.asString() == Guard::class.simpleName!!
+                }?.arguments
+                ?.parseGuard()
+
+        val rateLimitsAnnotationData = function.annotations
+            .firstOrNull {
+                it.shortName.asString() == RateLimits::class.simpleName!!
+            }?.arguments
+            ?.parseRateLimitsAnnotation()
+            ?: function
+                .closestClassDeclaration()
+                ?.annotations
+                ?.firstOrNull {
+                    it.shortName.asString() == RateLimits::class.simpleName!!
+                }?.arguments
+                ?.parseRateLimitsAnnotation()
+
         annotationData.first.forEach {
             logger.info("Input: $it --> ${function.qualifiedName?.asString()}")
 
@@ -112,8 +187,8 @@ internal fun collectInputActivities(
                     buildMeta(
                         qualifier = function.qualifiedName!!.getQualifier(),
                         function = function.simpleName.asString(),
-                        rateLimits = annotationData.second.toRateLimits(),
-                        guardClass = annotationData.third,
+                        rateLimits = rateLimitsAnnotationData ?: annotationData.second.toRateLimits(),
+                        guardClass = guardAnnotationData ?: annotationData.third,
                         argParserClass = null,
                     ),
                 ),
@@ -166,19 +241,49 @@ internal fun collectCommonActivities(
                         .builder()
                         .apply {
                             add("mapOf(\n")
-                            data.forEach {
+                            data.forEach { commonAnnotationData ->
+                                // priority while looking for util annotations: function > class > handler param
+                                val rateLimitsAnnotationData = commonAnnotationData.funDeclaration.annotations
+                                    .firstOrNull {
+                                        it.shortName.asString() == RateLimits::class.simpleName!!
+                                    }?.arguments
+                                    ?.parseRateLimitsAnnotation()
+                                    ?: commonAnnotationData.funDeclaration
+                                        .closestClassDeclaration()
+                                        ?.annotations
+                                        ?.firstOrNull {
+                                            it.shortName.asString() == RateLimits::class.simpleName!!
+                                        }?.arguments
+                                        ?.parseRateLimitsAnnotation()
+
+                                val argParserAnnotationData = commonAnnotationData.funDeclaration.annotations
+                                    .firstOrNull {
+                                        it.shortName.asString() == ArgParser::class.simpleName!!
+                                    }?.arguments
+                                    ?.parseArgParser()
+                                    ?: commonAnnotationData.funDeclaration
+                                        .closestClassDeclaration()
+                                        ?.annotations
+                                        ?.firstOrNull {
+                                            it.shortName.asString() == ArgParser::class.simpleName!!
+                                        }?.arguments
+                                        ?.parseArgParser()
+
                                 addStatement(
                                     "%L to %L,",
-                                    it.value.toCommonMatcher(it.filter, it.scope),
+                                    commonAnnotationData.value.toCommonMatcher(
+                                        commonAnnotationData.filter,
+                                        commonAnnotationData.scope,
+                                    ),
                                     activitiesFile.buildInvocationLambdaCodeBlock(
-                                        it.funDeclaration,
+                                        commonAnnotationData.funDeclaration,
                                         injectableTypes,
                                         pkg,
                                         buildMeta(
-                                            qualifier = it.funQualifier,
-                                            function = it.funSimpleName,
-                                            rateLimits = it.rateLimits,
-                                            argParserClass = it.argParser,
+                                            qualifier = commonAnnotationData.funQualifier,
+                                            function = commonAnnotationData.funSimpleName,
+                                            rateLimits = rateLimitsAnnotationData ?: commonAnnotationData.rateLimits,
+                                            argParserClass = argParserAnnotationData ?: commonAnnotationData.argParser,
                                             guardClass = null,
                                         ),
                                     ),
