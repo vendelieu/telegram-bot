@@ -15,6 +15,8 @@ import kotlin.reflect.KClass
 @Retention(AnnotationRetention.SOURCE)
 annotation class InputHandler(
     val value: Array<String>,
+    @Deprecated("The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.")
     val rateLimits: RateLimits = RateLimits(0, 0),
+    @Deprecated("The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.")
     val guard: KClass<out Guard> = DefaultGuard::class,
 )

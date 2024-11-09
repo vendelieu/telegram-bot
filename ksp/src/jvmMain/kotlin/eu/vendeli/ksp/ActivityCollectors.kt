@@ -1,6 +1,5 @@
 package eu.vendeli.ksp
 
-import com.google.devtools.ksp.closestClassDeclaration
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.squareup.kotlinpoet.CodeBlock
@@ -18,19 +17,16 @@ import eu.vendeli.ksp.utils.addMap
 import eu.vendeli.ksp.utils.buildMeta
 import eu.vendeli.ksp.utils.commonMatcherClass
 import eu.vendeli.ksp.utils.invocableType
-import eu.vendeli.ksp.utils.parseArgParser
+import eu.vendeli.ksp.utils.parseAnnotatedArgParser
+import eu.vendeli.ksp.utils.parseAnnotatedGuard
+import eu.vendeli.ksp.utils.parseAnnotatedRateLimits
 import eu.vendeli.ksp.utils.parseAsCommandHandler
 import eu.vendeli.ksp.utils.parseAsInputHandler
 import eu.vendeli.ksp.utils.parseAsUpdateHandler
-import eu.vendeli.ksp.utils.parseGuard
-import eu.vendeli.ksp.utils.parseRateLimitsAnnotation
 import eu.vendeli.ksp.utils.toRateLimits
-import eu.vendeli.tgbot.annotations.ArgParser
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.CommandHandler.CallbackQuery
-import eu.vendeli.tgbot.annotations.Guard
 import eu.vendeli.tgbot.annotations.InputHandler
-import eu.vendeli.tgbot.annotations.RateLimits
 import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.internal.UpdateType
 
@@ -64,44 +60,9 @@ internal fun collectCommandActivities(
             .parseAsCommandHandler(isCallbackQAnnotation)
 
         // priority while looking for util annotations: function > class > handler param
-        val guardAnnotationData = function.annotations
-            .firstOrNull {
-                it.shortName.asString() == Guard::class.simpleName!!
-            }?.arguments
-            ?.parseGuard()
-            ?: function
-                .closestClassDeclaration()
-                ?.annotations
-                ?.firstOrNull {
-                    it.shortName.asString() == Guard::class.simpleName!!
-                }?.arguments
-                ?.parseGuard()
-
-        val rateLimitsAnnotationData = function.annotations
-            .firstOrNull {
-                it.shortName.asString() == RateLimits::class.simpleName!!
-            }?.arguments
-            ?.parseRateLimitsAnnotation()
-            ?: function
-                .closestClassDeclaration()
-                ?.annotations
-                ?.firstOrNull {
-                    it.shortName.asString() == RateLimits::class.simpleName!!
-                }?.arguments
-                ?.parseRateLimitsAnnotation()
-
-        val argParserAnnotationData = function.annotations
-            .firstOrNull {
-                it.shortName.asString() == ArgParser::class.simpleName!!
-            }?.arguments
-            ?.parseArgParser()
-            ?: function
-                .closestClassDeclaration()
-                ?.annotations
-                ?.firstOrNull {
-                    it.shortName.asString() == ArgParser::class.simpleName!!
-                }?.arguments
-                ?.parseArgParser()
+        val guardAnnotationData = function.parseAnnotatedGuard()
+        val rateLimitsAnnotationData = function.parseAnnotatedRateLimits()
+        val argParserAnnotationData = function.parseAnnotatedArgParser()
 
         annotationData.value.forEach {
             annotationData.scope.forEach { updT ->
@@ -149,31 +110,8 @@ internal fun collectInputActivities(
             .parseAsInputHandler()
 
         // priority while looking for util annotations: function > class > handler param
-        val guardAnnotationData = function.annotations
-            .firstOrNull {
-                it.shortName.asString() == Guard::class.simpleName!!
-            }?.arguments
-            ?.parseGuard()
-            ?: function
-                .closestClassDeclaration()
-                ?.annotations
-                ?.firstOrNull {
-                    it.shortName.asString() == Guard::class.simpleName!!
-                }?.arguments
-                ?.parseGuard()
-
-        val rateLimitsAnnotationData = function.annotations
-            .firstOrNull {
-                it.shortName.asString() == RateLimits::class.simpleName!!
-            }?.arguments
-            ?.parseRateLimitsAnnotation()
-            ?: function
-                .closestClassDeclaration()
-                ?.annotations
-                ?.firstOrNull {
-                    it.shortName.asString() == RateLimits::class.simpleName!!
-                }?.arguments
-                ?.parseRateLimitsAnnotation()
+        val guardAnnotationData = function.parseAnnotatedGuard()
+        val rateLimitsAnnotationData = function.parseAnnotatedRateLimits()
 
         annotationData.first.forEach {
             logger.info("Input: $it --> ${function.qualifiedName?.asString()}")
@@ -243,31 +181,10 @@ internal fun collectCommonActivities(
                             add("mapOf(\n")
                             data.forEach { commonAnnotationData ->
                                 // priority while looking for util annotations: function > class > handler param
-                                val rateLimitsAnnotationData = commonAnnotationData.funDeclaration.annotations
-                                    .firstOrNull {
-                                        it.shortName.asString() == RateLimits::class.simpleName!!
-                                    }?.arguments
-                                    ?.parseRateLimitsAnnotation()
-                                    ?: commonAnnotationData.funDeclaration
-                                        .closestClassDeclaration()
-                                        ?.annotations
-                                        ?.firstOrNull {
-                                            it.shortName.asString() == RateLimits::class.simpleName!!
-                                        }?.arguments
-                                        ?.parseRateLimitsAnnotation()
-
-                                val argParserAnnotationData = commonAnnotationData.funDeclaration.annotations
-                                    .firstOrNull {
-                                        it.shortName.asString() == ArgParser::class.simpleName!!
-                                    }?.arguments
-                                    ?.parseArgParser()
-                                    ?: commonAnnotationData.funDeclaration
-                                        .closestClassDeclaration()
-                                        ?.annotations
-                                        ?.firstOrNull {
-                                            it.shortName.asString() == ArgParser::class.simpleName!!
-                                        }?.arguments
-                                        ?.parseArgParser()
+                                val rateLimitsAnnotationData =
+                                    commonAnnotationData.funDeclaration.parseAnnotatedRateLimits()
+                                val argParserAnnotationData =
+                                    commonAnnotationData.funDeclaration.parseAnnotatedArgParser()
 
                                 addStatement(
                                     "%L to %L,",

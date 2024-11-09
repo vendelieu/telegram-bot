@@ -1,5 +1,6 @@
 package eu.vendeli.ksp.utils
 
+import com.google.devtools.ksp.closestClassDeclaration
 import com.google.devtools.ksp.symbol.KSAnnotation
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
@@ -8,6 +9,8 @@ import com.google.devtools.ksp.symbol.KSValueArgument
 import eu.vendeli.ksp.dto.AnnotationData
 import eu.vendeli.ksp.dto.CommonAnnotationData
 import eu.vendeli.ksp.dto.CommonAnnotationValue
+import eu.vendeli.tgbot.annotations.ArgParser
+import eu.vendeli.tgbot.annotations.Guard
 import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.implementations.DefaultGuard
@@ -84,6 +87,42 @@ object CommonAnnotationHandler {
         commonAnnotations = mutableListOf()
     }
 }
+
+internal fun KSFunctionDeclaration.parseAnnotatedGuard(): String? = annotations
+    .firstOrNull {
+        it.shortName.asString() == Guard::class.simpleName!!
+    }?.arguments
+    ?.parseGuard()
+    ?: closestClassDeclaration()
+        ?.annotations
+        ?.firstOrNull {
+            it.shortName.asString() == Guard::class.simpleName!!
+        }?.arguments
+        ?.parseGuard()
+
+internal fun KSFunctionDeclaration.parseAnnotatedRateLimits(): RateLimits? = annotations
+    .firstOrNull {
+        it.shortName.asString() == eu.vendeli.tgbot.annotations.RateLimits::class.simpleName!!
+    }?.arguments
+    ?.parseRateLimitsAnnotation()
+    ?: closestClassDeclaration()
+        ?.annotations
+        ?.firstOrNull {
+            it.shortName.asString() == eu.vendeli.tgbot.annotations.RateLimits::class.simpleName!!
+        }?.arguments
+        ?.parseRateLimitsAnnotation()
+
+internal fun KSFunctionDeclaration.parseAnnotatedArgParser(): String? = annotations
+    .firstOrNull {
+        it.shortName.asString() == ArgParser::class.simpleName!!
+    }?.arguments
+    ?.parseArgParser()
+    ?: closestClassDeclaration()
+        ?.annotations
+        ?.firstOrNull {
+            it.shortName.asString() == ArgParser::class.simpleName!!
+        }?.arguments
+        ?.parseArgParser()
 
 /*
  argument parsers:

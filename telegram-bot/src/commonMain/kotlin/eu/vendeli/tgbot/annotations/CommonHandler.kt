@@ -32,7 +32,9 @@ annotation class CommonHandler {
         val filter: KClass<out Filter> = DefaultFilter::class,
         val priority: Int = 0,
         val scope: Array<UpdateType> = [UpdateType.MESSAGE],
+        @Deprecated("The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.")
         val rateLimits: RateLimits = RateLimits(0, 0),
+        @Deprecated("The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.")
         val argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
     )
 
@@ -55,7 +57,9 @@ annotation class CommonHandler {
         val filter: KClass<out Filter> = DefaultFilter::class,
         val priority: Int = 0,
         val scope: Array<UpdateType> = [UpdateType.MESSAGE],
+        @Deprecated("The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.")
         val rateLimits: RateLimits = RateLimits(0, 0),
+        @Deprecated("The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.")
         val argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
     )
 }
