@@ -32,12 +32,14 @@ annotation class CommandHandler(
      * Shortcut [CommandHandler] annotation with specified scope for [UpdateType.CALLBACK_QUERY].
      *
      * @property value Keywords of the command.
+     * @property autoAnswer Reply to callbackQuery automatically (call `answerCallbackQuery` before handling).
      * @property rateLimits Query limits for this particular command.
      * @property guard Guard condition that will be checked.
      * @property argParser Custom argument parser.
      */
     annotation class CallbackQuery(
         val value: Array<String>,
+        val autoAnswer: Boolean = false,
         @Deprecated("The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.")
         val rateLimits: RateLimits = RateLimits(0, 0),
         @Deprecated("The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.")

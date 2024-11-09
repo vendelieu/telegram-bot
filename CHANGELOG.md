@@ -4,6 +4,7 @@
 
 * Extend/add annotations for utility handler mechanisms (guard, rateLimits, argParser), add ability to tag a class to
   affect all methods within it.
+* Added `autoAnswer` to `@CommandHandler.CallbackQuery`, to answer callback queries automatically before handler.
 
 ### 7.4.1
 

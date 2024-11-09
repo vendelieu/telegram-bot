@@ -8,4 +8,5 @@ internal data class AnnotationData(
     val scope: List<UpdateType>,
     val guardClass: String,
     val argParserClass: String,
+    val isAutoAnswer: Boolean
 )

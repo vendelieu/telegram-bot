@@ -23,6 +23,7 @@ internal fun List<KSValueArgument>.parseAsCommandHandler(isCallbackQ: Boolean) =
     scope = parseScopes() ?: if (isCallbackQ) callbackQueryList else messageList,
     guardClass = parseGuard(),
     argParserClass = parseArgParser(),
+    isAutoAnswer = firstOrNull { it.name?.asString() == "autoAnswer" }?.value?.safeCast<Boolean>() ?: false,
 )
 
 internal fun List<KSValueArgument>.parseAsInputHandler() = Triple(
