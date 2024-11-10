@@ -186,8 +186,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
 
             if (parameters.contains(CommandHandlerParams.CallbackQueryAutoAnswer)) {
                 addImport("eu.vendeli.tgbot.api.answer", "answerCallbackQuery")
-                addImport("eu.vendeli.tgbot.types.internal", "CallbackQueryUpdate")
-                addImport("eu.vendeli.tgbot.types.internal", "getUser")
+                addImport("eu.vendeli.tgbot.types.internal", "CallbackQueryUpdate", "getUser")
                 add("answerCallbackQuery((update as CallbackQueryUpdate).callbackQuery.id).send(update.getUser(), bot)")
             }
 
