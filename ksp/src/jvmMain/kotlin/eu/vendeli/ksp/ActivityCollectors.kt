@@ -11,8 +11,8 @@ import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.buildCodeBlock
-import eu.vendeli.ksp.dto.CallbackQueryParams
 import eu.vendeli.ksp.dto.CollectorsContext
+import eu.vendeli.ksp.dto.CommandHandlerParams.CallbackQueryAutoAnswer
 import eu.vendeli.ksp.dto.CommonAnnotationData
 import eu.vendeli.ksp.utils.addMap
 import eu.vendeli.ksp.utils.buildMeta
@@ -64,7 +64,7 @@ internal fun collectCommandActivities(
         val guardAnnotationData = function.parseAnnotatedGuard()
         val rateLimitsAnnotationData = function.parseAnnotatedRateLimits()
         val argParserAnnotationData = function.parseAnnotatedArgParser()
-        val params = if (annotationData.isAutoAnswer) listOf(CallbackQueryParams.AutoAnswer) else emptyList()
+        val params = if (annotationData.isAutoAnswer) listOf(CallbackQueryAutoAnswer) else emptyList()
 
         annotationData.value.forEach {
             annotationData.scope.forEach { updT ->
@@ -84,7 +84,7 @@ internal fun collectCommandActivities(
                             guardClass = guardAnnotationData ?: annotationData.guardClass,
                             argParserClass = argParserAnnotationData ?: annotationData.argParserClass,
                         ),
-                        params
+                        params,
                     ),
                 )
             }

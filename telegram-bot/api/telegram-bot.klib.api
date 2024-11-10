@@ -26,6 +26,13 @@ open annotation class eu.vendeli.tgbot.annotations.internal/TgAPI : kotlin/Annot
     }
 }
 
+open annotation class eu.vendeli.tgbot.annotations/ArgParser : kotlin/Annotation { // eu.vendeli.tgbot.annotations/ArgParser|null[0]
+    constructor <init>(kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> = ...) // eu.vendeli.tgbot.annotations/ArgParser.<init>|<init>(kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.ArgumentParser>){}[0]
+
+    final val argParser // eu.vendeli.tgbot.annotations/ArgParser.argParser|{}argParser[0]
+        final fun <get-argParser>(): kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> // eu.vendeli.tgbot.annotations/ArgParser.argParser.<get-argParser>|<get-argParser>(){}[0]
+}
+
 open annotation class eu.vendeli.tgbot.annotations/CommandHandler : kotlin/Annotation { // eu.vendeli.tgbot.annotations/CommandHandler|null[0]
     constructor <init>(kotlin/Array<kotlin/String>, eu.vendeli.tgbot.annotations/RateLimits = ..., kotlin/Array<eu.vendeli.tgbot.types.internal/UpdateType> = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Guard> = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> = ...) // eu.vendeli.tgbot.annotations/CommandHandler.<init>|<init>(kotlin.Array<kotlin.String>;eu.vendeli.tgbot.annotations.RateLimits;kotlin.Array<eu.vendeli.tgbot.types.internal.UpdateType>;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Guard>;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.ArgumentParser>){}[0]
 
@@ -41,10 +48,12 @@ open annotation class eu.vendeli.tgbot.annotations/CommandHandler : kotlin/Annot
         final fun <get-value>(): kotlin/Array<kotlin/String> // eu.vendeli.tgbot.annotations/CommandHandler.value.<get-value>|<get-value>(){}[0]
 
     open annotation class CallbackQuery : kotlin/Annotation { // eu.vendeli.tgbot.annotations/CommandHandler.CallbackQuery|null[0]
-        constructor <init>(kotlin/Array<kotlin/String>, eu.vendeli.tgbot.annotations/RateLimits = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Guard> = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> = ...) // eu.vendeli.tgbot.annotations/CommandHandler.CallbackQuery.<init>|<init>(kotlin.Array<kotlin.String>;eu.vendeli.tgbot.annotations.RateLimits;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Guard>;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.ArgumentParser>){}[0]
+        constructor <init>(kotlin/Array<kotlin/String>, kotlin/Boolean = ..., eu.vendeli.tgbot.annotations/RateLimits = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Guard> = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> = ...) // eu.vendeli.tgbot.annotations/CommandHandler.CallbackQuery.<init>|<init>(kotlin.Array<kotlin.String>;kotlin.Boolean;eu.vendeli.tgbot.annotations.RateLimits;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Guard>;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.ArgumentParser>){}[0]
 
         final val argParser // eu.vendeli.tgbot.annotations/CommandHandler.CallbackQuery.argParser|{}argParser[0]
             final fun <get-argParser>(): kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> // eu.vendeli.tgbot.annotations/CommandHandler.CallbackQuery.argParser.<get-argParser>|<get-argParser>(){}[0]
+        final val autoAnswer // eu.vendeli.tgbot.annotations/CommandHandler.CallbackQuery.autoAnswer|{}autoAnswer[0]
+            final fun <get-autoAnswer>(): kotlin/Boolean // eu.vendeli.tgbot.annotations/CommandHandler.CallbackQuery.autoAnswer.<get-autoAnswer>|<get-autoAnswer>(){}[0]
         final val guard // eu.vendeli.tgbot.annotations/CommandHandler.CallbackQuery.guard|{}guard[0]
             final fun <get-guard>(): kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Guard> // eu.vendeli.tgbot.annotations/CommandHandler.CallbackQuery.guard.<get-guard>|<get-guard>(){}[0]
         final val rateLimits // eu.vendeli.tgbot.annotations/CommandHandler.CallbackQuery.rateLimits|{}rateLimits[0]
@@ -96,6 +105,13 @@ open annotation class eu.vendeli.tgbot.annotations/CommonHandler : kotlin/Annota
 
 open annotation class eu.vendeli.tgbot.annotations/CtxProvider : kotlin/Annotation { // eu.vendeli.tgbot.annotations/CtxProvider|null[0]
     constructor <init>() // eu.vendeli.tgbot.annotations/CtxProvider.<init>|<init>(){}[0]
+}
+
+open annotation class eu.vendeli.tgbot.annotations/Guard : kotlin/Annotation { // eu.vendeli.tgbot.annotations/Guard|null[0]
+    constructor <init>(kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Guard> = ...) // eu.vendeli.tgbot.annotations/Guard.<init>|<init>(kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Guard>){}[0]
+
+    final val guard // eu.vendeli.tgbot.annotations/Guard.guard|{}guard[0]
+        final fun <get-guard>(): kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Guard> // eu.vendeli.tgbot.annotations/Guard.guard.<get-guard>|<get-guard>(){}[0]
 }
 
 open annotation class eu.vendeli.tgbot.annotations/Injectable : kotlin/Annotation { // eu.vendeli.tgbot.annotations/Injectable|null[0]
@@ -11179,7 +11195,7 @@ sealed class eu.vendeli.tgbot.types.internal/CommonMatcher { // eu.vendeli.tgbot
     open fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal/CommonMatcher.toString|toString(){}[0]
 
     final class Regex : eu.vendeli.tgbot.types.internal/CommonMatcher { // eu.vendeli.tgbot.types.internal/CommonMatcher.Regex|null[0]
-        constructor <init>(kotlin.text/Regex, kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Filter>, kotlin.collections/Set<eu.vendeli.tgbot.types.internal/UpdateType>) // eu.vendeli.tgbot.types.internal/CommonMatcher.Regex.<init>|<init>(kotlin.text.Regex;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Filter>;kotlin.collections.Set<eu.vendeli.tgbot.types.internal.UpdateType>){}[0]
+        constructor <init>(kotlin.text/Regex, kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Filter> = ..., kotlin.collections/Set<eu.vendeli.tgbot.types.internal/UpdateType> = ...) // eu.vendeli.tgbot.types.internal/CommonMatcher.Regex.<init>|<init>(kotlin.text.Regex;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Filter>;kotlin.collections.Set<eu.vendeli.tgbot.types.internal.UpdateType>){}[0]
 
         final val value // eu.vendeli.tgbot.types.internal/CommonMatcher.Regex.value|{}value[0]
             final fun <get-value>(): kotlin.text/Regex // eu.vendeli.tgbot.types.internal/CommonMatcher.Regex.value.<get-value>|<get-value>(){}[0]
@@ -11188,7 +11204,7 @@ sealed class eu.vendeli.tgbot.types.internal/CommonMatcher { // eu.vendeli.tgbot
     }
 
     final class String : eu.vendeli.tgbot.types.internal/CommonMatcher { // eu.vendeli.tgbot.types.internal/CommonMatcher.String|null[0]
-        constructor <init>(kotlin/String, kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Filter>, kotlin.collections/Set<eu.vendeli.tgbot.types.internal/UpdateType>) // eu.vendeli.tgbot.types.internal/CommonMatcher.String.<init>|<init>(kotlin.String;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Filter>;kotlin.collections.Set<eu.vendeli.tgbot.types.internal.UpdateType>){}[0]
+        constructor <init>(kotlin/String, kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Filter> = ..., kotlin.collections/Set<eu.vendeli.tgbot.types.internal/UpdateType> = ...) // eu.vendeli.tgbot.types.internal/CommonMatcher.String.<init>|<init>(kotlin.String;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Filter>;kotlin.collections.Set<eu.vendeli.tgbot.types.internal.UpdateType>){}[0]
 
         final val value // eu.vendeli.tgbot.types.internal/CommonMatcher.String.value|{}value[0]
             final fun <get-value>(): kotlin/String // eu.vendeli.tgbot.types.internal/CommonMatcher.String.value.<get-value>|<get-value>(){}[0]

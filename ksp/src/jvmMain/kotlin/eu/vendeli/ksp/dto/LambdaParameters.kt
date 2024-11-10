@@ -2,7 +2,7 @@ package eu.vendeli.ksp.dto
 
 sealed class LambdaParameters
 
-sealed class CallbackQueryParams : LambdaParameters() {
-    data object AutoAnswer : CallbackQueryParams()
+sealed class CommandHandlerParams : LambdaParameters() {
+    data object CallbackQueryAutoAnswer : CommandHandlerParams()
 }
 

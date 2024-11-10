@@ -14,7 +14,7 @@ import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toTypeName
-import eu.vendeli.ksp.dto.CallbackQueryParams
+import eu.vendeli.ksp.dto.CommandHandlerParams
 import eu.vendeli.ksp.dto.LambdaParameters
 import eu.vendeli.ksp.utils.FileBuilder
 import eu.vendeli.ksp.utils.botClass
@@ -184,7 +184,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 pkg,
             )
 
-            if (parameters.contains(CallbackQueryParams.AutoAnswer)) {
+            if (parameters.contains(CommandHandlerParams.CallbackQueryAutoAnswer)) {
                 addImport("eu.vendeli.tgbot.api.answer", "answerCallbackQuery")
                 addImport("eu.vendeli.tgbot.types.internal", "CallbackQueryUpdate")
                 addImport("eu.vendeli.tgbot.types.internal", "getUser")

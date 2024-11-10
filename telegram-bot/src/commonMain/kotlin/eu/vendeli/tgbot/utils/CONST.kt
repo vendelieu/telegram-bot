@@ -9,7 +9,7 @@ const val DEFAULT_FILENAME = "file"
 
 val DEFAULT_HANDLING_BEHAVIOUR: HandlingBehaviourBlock = { handle(it) }
 
-internal val DEFAULT_COMMAND_SCOPE = setOf(UpdateType.MESSAGE)
+internal val DEFAULT_SCOPE = setOf(UpdateType.MESSAGE)
 internal expect val PROCESSING_DISPATCHER: CoroutineDispatcher
 internal const val DEFAULT_LOGGING_TAG = "eu.vendeli"
 

@@ -20,12 +20,18 @@ import kotlin.reflect.KClass
 @Retention(AnnotationRetention.SOURCE)
 annotation class CommandHandler(
     val value: Array<String>,
-    @Deprecated("The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.")
+    @Deprecated(
+        "The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.",
+    )
     val rateLimits: RateLimits = RateLimits(0, 0),
     val scope: Array<UpdateType> = [UpdateType.MESSAGE],
-    @Deprecated("The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.")
+    @Deprecated(
+        "The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.",
+    )
     val guard: KClass<out Guard> = DefaultGuard::class,
-    @Deprecated("The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.")
+    @Deprecated(
+        "The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.",
+    )
     val argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
 ) {
     /**
@@ -40,11 +46,17 @@ annotation class CommandHandler(
     annotation class CallbackQuery(
         val value: Array<String>,
         val autoAnswer: Boolean = false,
-        @Deprecated("The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.")
+        @Deprecated(
+            "The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.",
+        )
         val rateLimits: RateLimits = RateLimits(0, 0),
-        @Deprecated("The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.")
+        @Deprecated(
+            "The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.",
+        )
         val guard: KClass<out Guard> = DefaultGuard::class,
-        @Deprecated("The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.")
+        @Deprecated(
+            "The functionality of the parameter is given in a separate annotation, please use it. The parameter will be removed soon.",
+        )
         val argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
     )
 }

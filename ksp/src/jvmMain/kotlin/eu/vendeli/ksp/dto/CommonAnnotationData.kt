@@ -1,8 +1,11 @@
 package eu.vendeli.ksp.dto
 
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
+import eu.vendeli.ksp.utils.messageList
+import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import eu.vendeli.tgbot.utils.fqName
 
 sealed class CommonAnnotationValue {
     abstract val value: Any
@@ -14,12 +17,18 @@ sealed class CommonAnnotationValue {
         override val value: kotlin.text.Regex,
     ) : CommonAnnotationValue()
 
-    internal fun toCommonMatcher(filter: kotlin.String, scope: List<UpdateType>) = when (this) {
-        is String -> "CommonMatcher.String(value = \"$value\", filter = $filter::class, setOf(${scope.joinToString()}))"
-        is Regex ->
-            "CommonMatcher.Regex(value = Regex(\"$value\"${
-                value.options.takeIf { it.isNotEmpty() }?.joinToString(prefix = " ,") { "RegexOption.$it" } ?: ""
-            }), filter = $filter::class, setOf(${scope.joinToString()}))"
+    internal fun toCommonMatcher(filter: kotlin.String, scope: List<UpdateType>): kotlin.String {
+        val parametersString = buildString {
+            if (filter != DefaultFilter::class.fqName) append(", filter = $filter::class")
+            if (scope != messageList) append(", scope = setOf(${scope.joinToString()})")
+        }
+        return when (this) {
+            is String -> "CommonMatcher.String(value = \"$value\"$parametersString)"
+            is Regex ->
+                "CommonMatcher.Regex(value = Regex(\"$value\"${
+                    value.options.takeIf { it.isNotEmpty() }?.joinToString(prefix = " ,") { "RegexOption.$it" } ?: ""
+                })$parametersString)"
+        }
     }
 }
 
