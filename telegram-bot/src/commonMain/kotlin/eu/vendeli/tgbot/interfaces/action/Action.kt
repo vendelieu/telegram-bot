@@ -66,6 +66,12 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> = sendAsync(to.id, via)
 
+    /**
+     * Make a request for action returning its [Response].
+     *
+     * @param to Recipient
+     * @param via Instance of the bot through which the request will be made.
+     */
     suspend inline fun sendReturning(
         to: String,
         via: TelegramBot,
