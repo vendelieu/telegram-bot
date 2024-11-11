@@ -1,6 +1,7 @@
 package eu.vendeli
 
 import BotTestContext
+import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.implementations.TokenBucketLimiterImpl
 import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
@@ -27,8 +28,12 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
 
     @Test
     suspend fun `test limit exceeding`() {
+        var exceeded = false
         val hitsCounter = AtomicInteger(0)
         val loopCounter = AtomicInteger(0)
+        bot.config.rateLimiter.exceededAction = { _: Long, _: TelegramBot ->
+            exceeded = true
+        }
 
         bot.update.setListener {
             if (loopCounter.incrementAndGet() == 10) stopListener()
@@ -40,13 +45,18 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
         }
         hitsCounter.get() shouldBe 5
         loopCounter.get() shouldBe 10
+        exceeded shouldBe true
     }
 
     @Test
     suspend fun `test certain command limit exceeding`() {
+        var exceeded = false
         val messageHitsCounter = AtomicInteger(0)
         val commandHitsCounter = AtomicInteger(0)
         val loopsCounter = AtomicInteger(0)
+        bot.config.rateLimiter.exceededAction = { _: Long, _: TelegramBot ->
+            exceeded = true
+        }
 
         bot.update.setListener {
             if (loopsCounter.incrementAndGet() == 20) stopListener()
@@ -62,5 +72,6 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
         messageHitsCounter.get() shouldBe 5
         commandHitsCounter.get() shouldBe 2
         loopsCounter.get() shouldBe 20
+        exceeded shouldBe true
     }
 }
