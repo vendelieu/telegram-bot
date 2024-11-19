@@ -19,7 +19,6 @@ configuredKotlin {
             implementation(libs.kotlin.serialization)
             implementation(libs.kotlin.reflect)
 
-            implementation(libs.krypto)
             implementation(libs.stately)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.logging)

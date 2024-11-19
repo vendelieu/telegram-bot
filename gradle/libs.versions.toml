@@ -1,7 +1,6 @@
 [versions]
 ktor = "3.0.1"
 redis = "0.1.7"
-logging = "2.0.4"
 logback = "1.5.12"
 
 datetime = "0.6.0"
@@ -19,6 +18,7 @@ kotest = "5.9.1"
 mockk = "1.13.13"
 kover = "0.8.3"
 krypto = "4.0.10"
+urlencoder = "1.6.0"
 sslcontext = "8.3.7"
 spring = "3.3.5"
 
@@ -42,15 +42,15 @@ ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
 ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
 ktor-server-netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor" }
 
-# logging
-logging = { module = "co.touchlab:kermit", version.ref = "logging" }
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 stately = { module = "co.touchlab:stately-concurrent-collections", version.ref = "stately" }
+
 krypto = { module = "com.soywiz.korlibs.krypto:krypto", version.ref = "krypto" }
+urlencoder = { module = "net.thauvin.erik.urlencoder:urlencoder-lib", version.ref = "urlencoder" }
 
 # test
 test-kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }

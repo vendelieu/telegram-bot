@@ -6,6 +6,8 @@ configuredKotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(project(":telegram-bot"))
+            implementation(libs.urlencoder)
+            implementation(libs.krypto)
         }
     }
 }
