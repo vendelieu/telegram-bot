@@ -351,8 +351,6 @@ final enum class eu.vendeli.tgbot.types.internal/LogLvl : kotlin/Enum<eu.vendeli
 
     final val entries // eu.vendeli.tgbot.types.internal/LogLvl.entries|#static{}entries[0]
         final fun <get-entries>(): kotlin.enums/EnumEntries<eu.vendeli.tgbot.types.internal/LogLvl> // eu.vendeli.tgbot.types.internal/LogLvl.entries.<get-entries>|<get-entries>#static(){}[0]
-    final val int // eu.vendeli.tgbot.types.internal/LogLvl.int|{}int[0]
-        final fun <get-int>(): kotlin/Int // eu.vendeli.tgbot.types.internal/LogLvl.int.<get-int>|<get-int>(){}[0]
 
     final fun valueOf(kotlin/String): eu.vendeli.tgbot.types.internal/LogLvl // eu.vendeli.tgbot.types.internal/LogLvl.valueOf|valueOf#static(kotlin.String){}[0]
     final fun values(): kotlin/Array<eu.vendeli.tgbot.types.internal/LogLvl> // eu.vendeli.tgbot.types.internal/LogLvl.values|values#static(){}[0]
@@ -644,10 +642,6 @@ abstract fun interface eu.vendeli.tgbot.interfaces.helper/ExceptionHandler { // 
 
 abstract fun interface eu.vendeli.tgbot.interfaces.helper/Guard { // eu.vendeli.tgbot.interfaces.helper/Guard|null[0]
     abstract suspend fun condition(eu.vendeli.tgbot.types/User?, eu.vendeli.tgbot.types.internal/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot): kotlin/Boolean // eu.vendeli.tgbot.interfaces.helper/Guard.condition|condition(eu.vendeli.tgbot.types.User?;eu.vendeli.tgbot.types.internal.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot){}[0]
-}
-
-abstract fun interface eu.vendeli.tgbot.interfaces.helper/Logger { // eu.vendeli.tgbot.interfaces.helper/Logger|null[0]
-    abstract suspend fun log(eu.vendeli.tgbot.types.internal/LogLvl, kotlin/String?, kotlin/String, kotlin/Throwable?) // eu.vendeli.tgbot.interfaces.helper/Logger.log|log(eu.vendeli.tgbot.types.internal.LogLvl;kotlin.String?;kotlin.String;kotlin.Throwable?){}[0]
 }
 
 abstract fun interface eu.vendeli.tgbot.interfaces.helper/RateLimitMechanism { // eu.vendeli.tgbot.interfaces.helper/RateLimitMechanism|null[0]
@@ -3462,7 +3456,7 @@ final class eu.vendeli.tgbot.types.internal.configuration/HttpConfiguration { //
 }
 
 final class eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration { // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration|null[0]
-    constructor <init>(eu.vendeli.tgbot.interfaces.helper/Logger = ..., eu.vendeli.tgbot.types.internal/LogLvl = ..., eu.vendeli.tgbot.types.internal/HttpLogLevel = ...) // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.<init>|<init>(eu.vendeli.tgbot.interfaces.helper.Logger;eu.vendeli.tgbot.types.internal.LogLvl;eu.vendeli.tgbot.types.internal.HttpLogLevel){}[0]
+    constructor <init>(eu.vendeli.tgbot.types.internal/LogLvl = ..., eu.vendeli.tgbot.types.internal/HttpLogLevel = ...) // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.<init>|<init>(eu.vendeli.tgbot.types.internal.LogLvl;eu.vendeli.tgbot.types.internal.HttpLogLevel){}[0]
 
     final var botLogLevel // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.botLogLevel|{}botLogLevel[0]
         final fun <get-botLogLevel>(): eu.vendeli.tgbot.types.internal/LogLvl // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.botLogLevel.<get-botLogLevel>|<get-botLogLevel>(){}[0]
@@ -3470,14 +3464,10 @@ final class eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration {
     final var httpLogLevel // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.httpLogLevel|{}httpLogLevel[0]
         final fun <get-httpLogLevel>(): eu.vendeli.tgbot.types.internal/HttpLogLevel // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.httpLogLevel.<get-httpLogLevel>|<get-httpLogLevel>(){}[0]
         final fun <set-httpLogLevel>(eu.vendeli.tgbot.types.internal/HttpLogLevel) // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.httpLogLevel.<set-httpLogLevel>|<set-httpLogLevel>(eu.vendeli.tgbot.types.internal.HttpLogLevel){}[0]
-    final var logger // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.logger|{}logger[0]
-        final fun <get-logger>(): eu.vendeli.tgbot.interfaces.helper/Logger // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.logger.<get-logger>|<get-logger>(){}[0]
-        final fun <set-logger>(eu.vendeli.tgbot.interfaces.helper/Logger) // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.logger.<set-logger>|<set-logger>(eu.vendeli.tgbot.interfaces.helper.Logger){}[0]
 
-    final fun component1(): eu.vendeli.tgbot.interfaces.helper/Logger // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.component1|component1(){}[0]
-    final fun component2(): eu.vendeli.tgbot.types.internal/LogLvl // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.component2|component2(){}[0]
-    final fun component3(): eu.vendeli.tgbot.types.internal/HttpLogLevel // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.component3|component3(){}[0]
-    final fun copy(eu.vendeli.tgbot.interfaces.helper/Logger = ..., eu.vendeli.tgbot.types.internal/LogLvl = ..., eu.vendeli.tgbot.types.internal/HttpLogLevel = ...): eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.copy|copy(eu.vendeli.tgbot.interfaces.helper.Logger;eu.vendeli.tgbot.types.internal.LogLvl;eu.vendeli.tgbot.types.internal.HttpLogLevel){}[0]
+    final fun component1(): eu.vendeli.tgbot.types.internal/LogLvl // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.component1|component1(){}[0]
+    final fun component2(): eu.vendeli.tgbot.types.internal/HttpLogLevel // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.component2|component2(){}[0]
+    final fun copy(eu.vendeli.tgbot.types.internal/LogLvl = ..., eu.vendeli.tgbot.types.internal/HttpLogLevel = ...): eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.copy|copy(eu.vendeli.tgbot.types.internal.LogLvl;eu.vendeli.tgbot.types.internal.HttpLogLevel){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration.toString|toString(){}[0]
@@ -9358,16 +9348,6 @@ final class eu.vendeli.tgbot.utils.builders/ReplyKeyboardMarkupBuilder : eu.vend
     final fun options(kotlin/Function1<eu.vendeli.tgbot.types.internal.options/ReplyKeyboardMarkupOptions, kotlin/Unit>) // eu.vendeli.tgbot.utils.builders/ReplyKeyboardMarkupBuilder.options|options(kotlin.Function1<eu.vendeli.tgbot.types.internal.options.ReplyKeyboardMarkupOptions,kotlin.Unit>){}[0]
 }
 
-final class eu.vendeli.tgbot.utils/LoggingWrapper { // eu.vendeli.tgbot.utils/LoggingWrapper|null[0]
-    constructor <init>(eu.vendeli.tgbot.types.internal.configuration/LoggingConfiguration, kotlin/String = ...) // eu.vendeli.tgbot.utils/LoggingWrapper.<init>|<init>(eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration;kotlin.String){}[0]
-
-    final suspend fun debug(kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/LoggingWrapper.debug|debug(kotlin.Function0<kotlin.String>){}[0]
-    final suspend fun error(kotlin/Throwable? = ..., kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/LoggingWrapper.error|error(kotlin.Throwable?;kotlin.Function0<kotlin.String>){}[0]
-    final suspend fun info(kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/LoggingWrapper.info|info(kotlin.Function0<kotlin.String>){}[0]
-    final suspend fun trace(kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/LoggingWrapper.trace|trace(kotlin.Function0<kotlin.String>){}[0]
-    final suspend fun warn(kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/LoggingWrapper.warn|warn(kotlin.Function0<kotlin.String>){}[0]
-}
-
 final class eu.vendeli.tgbot.utils/TgFailureException : eu.vendeli.tgbot.utils/TgException { // eu.vendeli.tgbot.utils/TgFailureException|null[0]
     constructor <init>(kotlin/String) // eu.vendeli.tgbot.utils/TgFailureException.<init>|<init>(kotlin.String){}[0]
 
@@ -13255,7 +13235,6 @@ final fun (eu.vendeli.tgbot.core/FunctionalHandlingDsl).eu.vendeli.tgbot.utils/o
 final fun (eu.vendeli.tgbot/TelegramBot).eu.vendeli.tgbot.utils/defineActivities(kotlin.collections/Map<kotlin/String, kotlin.collections/List<kotlin/Any?>>) // eu.vendeli.tgbot.utils/defineActivities|defineActivities@eu.vendeli.tgbot.TelegramBot(kotlin.collections.Map<kotlin.String,kotlin.collections.List<kotlin.Any?>>){}[0]
 final fun (kotlin/ByteArray).eu.vendeli.tgbot.utils/toImplicitFile(kotlin/String = ..., kotlin/String = ...): eu.vendeli.tgbot.types.internal/ImplicitFile.InpFile // eu.vendeli.tgbot.utils/toImplicitFile|toImplicitFile@kotlin.ByteArray(kotlin.String;kotlin.String){}[0]
 final fun (kotlin/ByteArray).eu.vendeli.tgbot.utils/toInputFile(kotlin/String = ..., kotlin/String = ...): eu.vendeli.tgbot.types.internal/InputFile // eu.vendeli.tgbot.utils/toInputFile|toInputFile@kotlin.ByteArray(kotlin.String;kotlin.String){}[0]
-final fun (kotlin/String).eu.vendeli.tgbot.utils/checkIsInitDataSafe(kotlin/String, kotlin/String): kotlin/Boolean // eu.vendeli.tgbot.utils/checkIsInitDataSafe|checkIsInitDataSafe@kotlin.String(kotlin.String;kotlin.String){}[0]
 final fun <#A: eu.vendeli.tgbot.types.internal.chain/Link<*>> (eu.vendeli.tgbot.interfaces.ctx/InputListener).eu.vendeli.tgbot.utils/setChain(eu.vendeli.tgbot.types/User, #A) // eu.vendeli.tgbot.utils/setChain|setChain@eu.vendeli.tgbot.interfaces.ctx.InputListener(eu.vendeli.tgbot.types.User;0:0){0§<eu.vendeli.tgbot.types.internal.chain.Link<*>>}[0]
 final fun <#A: kotlin/Any?> (eu.vendeli.tgbot.types.internal/Response<#A>).eu.vendeli.tgbot.types.internal/getOrNull(): #A? // eu.vendeli.tgbot.types.internal/getOrNull|getOrNull@eu.vendeli.tgbot.types.internal.Response<0:0>(){0§<kotlin.Any?>}[0]
 final fun <#A: kotlin/Any?> (eu.vendeli.tgbot.types.internal/Response<#A>).eu.vendeli.tgbot.types.internal/isSuccess(): kotlin/Boolean // eu.vendeli.tgbot.types.internal/isSuccess|isSuccess@eu.vendeli.tgbot.types.internal.Response<0:0>(){0§<kotlin.Any?>}[0]
@@ -13525,6 +13504,10 @@ final inline fun eu.vendeli.tgbot.api/stopMessageLiveLocation(kotlin/Long): eu.v
 final inline fun eu.vendeli.tgbot.api/stopPoll(kotlin/Long): eu.vendeli.tgbot.api/StopPollAction // eu.vendeli.tgbot.api/stopPoll|stopPoll(kotlin.Long){}[0]
 final inline fun eu.vendeli.tgbot.api/venue(kotlin/Float, kotlin/Float, kotlin/String, kotlin/String): eu.vendeli.tgbot.api/SendVenueAction // eu.vendeli.tgbot.api/venue|venue(kotlin.Float;kotlin.Float;kotlin.String;kotlin.String){}[0]
 final suspend fun (eu.vendeli.tgbot.core/TgUpdateHandler).eu.vendeli.tgbot.utils/runExceptionHandler(kotlinx.coroutines/CoroutineDispatcher = ..., kotlin/Long = ..., eu.vendeli.tgbot.interfaces.helper/ExceptionHandler): kotlinx.coroutines/Job // eu.vendeli.tgbot.utils/runExceptionHandler|runExceptionHandler@eu.vendeli.tgbot.core.TgUpdateHandler(kotlinx.coroutines.CoroutineDispatcher;kotlin.Long;eu.vendeli.tgbot.interfaces.helper.ExceptionHandler){}[0]
+final suspend inline fun (io.ktor.util.logging/Logger).eu.vendeli.tgbot.utils/debug(kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/debug|debug@io.ktor.util.logging.Logger(kotlin.Function0<kotlin.String>){}[0]
+final suspend inline fun (io.ktor.util.logging/Logger).eu.vendeli.tgbot.utils/error(kotlin/Throwable? = ..., kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/error|error@io.ktor.util.logging.Logger(kotlin.Throwable?;kotlin.Function0<kotlin.String>){}[0]
+final suspend inline fun (io.ktor.util.logging/Logger).eu.vendeli.tgbot.utils/info(kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/info|info@io.ktor.util.logging.Logger(kotlin.Function0<kotlin.String>){}[0]
+final suspend inline fun (io.ktor.util.logging/Logger).eu.vendeli.tgbot.utils/warn(kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/warn|warn@io.ktor.util.logging.Logger(kotlin.Function0<kotlin.String>){}[0]
 final suspend inline fun <#A: kotlin/Any?, #B: kotlin/Any?> (kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>>).eu.vendeli.tgbot.types.internal/foldResponse(kotlin/Function1<eu.vendeli.tgbot.types.internal/Response.Success<#A>, #B>, kotlin/Function1<eu.vendeli.tgbot.types.internal/Response.Failure, #B>): #B // eu.vendeli.tgbot.types.internal/foldResponse|foldResponse@kotlinx.coroutines.Deferred<eu.vendeli.tgbot.types.internal.Response<out|0:0>>(kotlin.Function1<eu.vendeli.tgbot.types.internal.Response.Success<0:0>,0:1>;kotlin.Function1<eu.vendeli.tgbot.types.internal.Response.Failure,0:1>){0§<kotlin.Any?>;1§<kotlin.Any?>}[0]
 final suspend inline fun <#A: kotlin/Any?> (kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>>).eu.vendeli.tgbot.types.internal/getOrNull(): #A? // eu.vendeli.tgbot.types.internal/getOrNull|getOrNull@kotlinx.coroutines.Deferred<eu.vendeli.tgbot.types.internal.Response<out|0:0>>(){0§<kotlin.Any?>}[0]
 final suspend inline fun <#A: kotlin/Any?> (kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>>).eu.vendeli.tgbot.types.internal/onFailure(kotlin/Function1<eu.vendeli.tgbot.types.internal/Response.Failure, kotlin/Unit>): #A? // eu.vendeli.tgbot.types.internal/onFailure|onFailure@kotlinx.coroutines.Deferred<eu.vendeli.tgbot.types.internal.Response<out|0:0>>(kotlin.Function1<eu.vendeli.tgbot.types.internal.Response.Failure,kotlin.Unit>){0§<kotlin.Any?>}[0]

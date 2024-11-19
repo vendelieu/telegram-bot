@@ -36,15 +36,12 @@ configuredKotlin {
             implementation(libs.ktor.client.java)
         }
         jsMain.dependencies {
-            implementation(libs.logging)
             implementation(libs.ktor.client.js)
         }
         named("linuxX64Main").dependencies {
-            implementation(libs.logging)
             implementation(libs.ktor.client.curl)
         }
         named("mingwX64Main").dependencies {
-            implementation(libs.logging)
             implementation(libs.ktor.client.winhttp)
         }
     }
@@ -52,9 +49,7 @@ configuredKotlin {
     targets.all {
         compilations.all {
             compileTaskProvider.configure {
-                compilerOptions {
-                    allWarningsAsErrors = true
-                }
+                compilerOptions.allWarningsAsErrors = true
             }
         }
     }

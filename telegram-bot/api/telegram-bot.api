@@ -2549,10 +2549,6 @@ public final class eu/vendeli/tgbot/interfaces/helper/ImplicitMediaData$DefaultI
 	public static fun setThumbnail (Leu/vendeli/tgbot/interfaces/helper/ImplicitMediaData;Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
 }
 
-public abstract interface class eu/vendeli/tgbot/interfaces/helper/Logger {
-	public abstract fun log (Leu/vendeli/tgbot/types/internal/LogLvl;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
 public abstract interface class eu/vendeli/tgbot/interfaces/helper/RateLimitMechanism {
 	public abstract fun isLimited (Leu/vendeli/tgbot/types/internal/configuration/RateLimits;JLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
@@ -7703,7 +7699,6 @@ public final class eu/vendeli/tgbot/types/internal/LogLvl : java/lang/Enum {
 	public static final field TRACE Leu/vendeli/tgbot/types/internal/LogLvl;
 	public static final field WARN Leu/vendeli/tgbot/types/internal/LogLvl;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public final fun getInt ()I
 	public static fun valueOf (Ljava/lang/String;)Leu/vendeli/tgbot/types/internal/LogLvl;
 	public static fun values ()[Leu/vendeli/tgbot/types/internal/LogLvl;
 }
@@ -8289,21 +8284,18 @@ public final class eu/vendeli/tgbot/types/internal/configuration/HttpConfigurati
 public final class eu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration$Companion;
 	public fun <init> ()V
-	public fun <init> (Leu/vendeli/tgbot/interfaces/helper/Logger;Leu/vendeli/tgbot/types/internal/LogLvl;Leu/vendeli/tgbot/types/internal/HttpLogLevel;)V
-	public synthetic fun <init> (Leu/vendeli/tgbot/interfaces/helper/Logger;Leu/vendeli/tgbot/types/internal/LogLvl;Leu/vendeli/tgbot/types/internal/HttpLogLevel;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Leu/vendeli/tgbot/interfaces/helper/Logger;
-	public final fun component2 ()Leu/vendeli/tgbot/types/internal/LogLvl;
-	public final fun component3 ()Leu/vendeli/tgbot/types/internal/HttpLogLevel;
-	public final fun copy (Leu/vendeli/tgbot/interfaces/helper/Logger;Leu/vendeli/tgbot/types/internal/LogLvl;Leu/vendeli/tgbot/types/internal/HttpLogLevel;)Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;Leu/vendeli/tgbot/interfaces/helper/Logger;Leu/vendeli/tgbot/types/internal/LogLvl;Leu/vendeli/tgbot/types/internal/HttpLogLevel;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;
+	public fun <init> (Leu/vendeli/tgbot/types/internal/LogLvl;Leu/vendeli/tgbot/types/internal/HttpLogLevel;)V
+	public synthetic fun <init> (Leu/vendeli/tgbot/types/internal/LogLvl;Leu/vendeli/tgbot/types/internal/HttpLogLevel;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Leu/vendeli/tgbot/types/internal/LogLvl;
+	public final fun component2 ()Leu/vendeli/tgbot/types/internal/HttpLogLevel;
+	public final fun copy (Leu/vendeli/tgbot/types/internal/LogLvl;Leu/vendeli/tgbot/types/internal/HttpLogLevel;)Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;Leu/vendeli/tgbot/types/internal/LogLvl;Leu/vendeli/tgbot/types/internal/HttpLogLevel;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBotLogLevel ()Leu/vendeli/tgbot/types/internal/LogLvl;
 	public final fun getHttpLogLevel ()Leu/vendeli/tgbot/types/internal/HttpLogLevel;
-	public final fun getLogger ()Leu/vendeli/tgbot/interfaces/helper/Logger;
 	public fun hashCode ()I
 	public final fun setBotLogLevel (Leu/vendeli/tgbot/types/internal/LogLvl;)V
 	public final fun setHttpLogLevel (Leu/vendeli/tgbot/types/internal/HttpLogLevel;)V
-	public final fun setLogger (Leu/vendeli/tgbot/interfaces/helper/Logger;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -13625,7 +13617,6 @@ public final class eu/vendeli/tgbot/utils/CONSTKt {
 }
 
 public final class eu/vendeli/tgbot/utils/CommonExtenstionsKt {
-	public static final fun checkIsInitDataSafe (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z
 	public static final fun runExceptionHandler (Leu/vendeli/tgbot/core/TgUpdateHandler;Lkotlinx/coroutines/CoroutineDispatcher;JLeu/vendeli/tgbot/interfaces/helper/ExceptionHandler;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun runExceptionHandler$default (Leu/vendeli/tgbot/core/TgUpdateHandler;Lkotlinx/coroutines/CoroutineDispatcher;JLeu/vendeli/tgbot/interfaces/helper/ExceptionHandler;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun setChain (Leu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/chain/Link;)V
@@ -13673,15 +13664,12 @@ public final class eu/vendeli/tgbot/utils/FunctionalDSLUtilsKt {
 	public static final fun onShippingQuery (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
 }
 
-public final class eu/vendeli/tgbot/utils/LoggingWrapper {
-	public fun <init> (Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;Ljava/lang/String;)V
-	public synthetic fun <init> (Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun debug (Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun error (Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun error$default (Leu/vendeli/tgbot/utils/LoggingWrapper;Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun info (Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun trace (Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun warn (Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+public final class eu/vendeli/tgbot/utils/LoggingUtilsKt {
+	public static final fun debug (Lorg/slf4j/Logger;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun error (Lorg/slf4j/Logger;Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun error$default (Lorg/slf4j/Logger;Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun info (Lorg/slf4j/Logger;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun warn (Lorg/slf4j/Logger;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public class eu/vendeli/tgbot/utils/TgException : java/lang/RuntimeException {

@@ -4,16 +4,17 @@ import eu.vendeli.tgbot.utils.CommandHandlers
 import eu.vendeli.tgbot.utils.CommonHandlers
 import eu.vendeli.tgbot.utils.InputHandlers
 import eu.vendeli.tgbot.utils.InvocationLambda
-import eu.vendeli.tgbot.utils.LoggingWrapper
 import eu.vendeli.tgbot.utils.UpdateTypeHandlers
 import eu.vendeli.tgbot.utils._OperatingActivities
+import eu.vendeli.tgbot.utils.info
+import io.ktor.util.logging.Logger
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 @Suppress("UNCHECKED_CAST")
 internal class ActivitiesData(
     pkg: String? = null,
-    logger: LoggingWrapper,
+    logger: Logger,
 ) {
     private val activities = when {
         _OperatingActivities.size == 1 -> _OperatingActivities.entries.firstOrNull()?.value

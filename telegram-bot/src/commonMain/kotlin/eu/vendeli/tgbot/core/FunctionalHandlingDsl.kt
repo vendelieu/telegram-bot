@@ -17,10 +17,10 @@ import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.chain.SingleInputChain
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
 import eu.vendeli.tgbot.utils.DEFAULT_SCOPE
-import eu.vendeli.tgbot.utils.LoggingWrapper
 import eu.vendeli.tgbot.utils.OnCommandActivity
 import eu.vendeli.tgbot.utils.OnInputActivity
 import eu.vendeli.tgbot.utils.WhenNotHandledActivity
+import eu.vendeli.tgbot.utils.getLogger
 import kotlin.reflect.KClass
 
 /**
@@ -33,7 +33,7 @@ class FunctionalHandlingDsl internal constructor(
     internal val bot: TelegramBot,
 ) {
     internal val functionalActivities = FunctionalActivities()
-    internal val logger = LoggingWrapper(bot.config.logging, "eu.vendeli.FunctionalHandler")
+    internal val logger = getLogger(bot.config.logging.botLogLevel, "eu.vendeli.FunctionalHandler")
 
     /**
      * The action that is performed when the command is matched.

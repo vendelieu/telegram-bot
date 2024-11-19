@@ -80,7 +80,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
     injectableTypes: Map<TypeName, ClassName>,
     pkg: String? = null,
     meta: Pair<String, Array<Any?>>? = null,
-    parameters: List<LambdaParameters> = emptyList()
+    parameters: List<LambdaParameters> = emptyList(),
 ) = buildCodeBlock {
     val isTopLvl = function.functionKind == FunctionKind.TOP_LEVEL
     val funQualifier = function.qualifiedName!!.getQualifier()
