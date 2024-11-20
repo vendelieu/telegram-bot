@@ -145,11 +145,11 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
     ),
     "eu.vendeli.fixtures.Conversation.Name" to (
         suspendCall {
-                classManager,
-                update,
-                user,
-                bot,
-                parameters,
+            classManager,
+            update,
+            user,
+            bot,
+            parameters,
             ->
             if (user == null) return@suspendCall Unit
             val inst = classManager.getInstance(eu.vendeli.fixtures.Conversation.Name::class) as
@@ -180,11 +180,11 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
     ),
     "eu.vendeli.fixtures.Conversation.Age" to (
         suspendCall {
-                classManager,
-                update,
-                user,
-                bot,
-                parameters,
+            classManager,
+            update,
+            user,
+            bot,
+            parameters,
             ->
             if (user == null) return@suspendCall Unit
             val inst = classManager.getInstance(eu.vendeli.fixtures.Conversation.Age::class) as
@@ -260,11 +260,11 @@ private val __TG_COMMONS0: Map<CommonMatcher, Invocable> = mapOf(
         setOf(),
     ) to (
         suspendCall {
-                classManager,
-                update,
-                user,
-                bot,
-                parameters,
+            classManager,
+            update,
+            user,
+            bot,
+            parameters,
             ->
             val inst = classManager.getInstance(eu.vendeli.fixtures.RegexCommands::class) as
                 eu.vendeli.fixtures.RegexCommands
@@ -300,11 +300,11 @@ private val __TG_UPDATE_TYPES0: Map<UpdateType, InvocationLambda> = mapOf(
 )
 
 private val __TG_UNPROCESSED0: InvocationLambda? = suspendCall {
-        classManager,
-        update,
-        user,
-        bot,
-        parameters,
+    classManager,
+    update,
+    user,
+    bot,
+    parameters,
     ->
     val inst = classManager.getInstance(eu.vendeli.fixtures.TgAnnotationsModel::class) as
         eu.vendeli.fixtures.TgAnnotationsModel

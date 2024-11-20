@@ -4,7 +4,8 @@ import kotlin.js.Json
 
 @Suppress("EnumEntryName")
 enum class BottomButtonType {
-    main, secondary
+    main,
+    secondary,
 }
 
 external class BottomButton {
@@ -52,5 +53,3 @@ fun BottomButton.setParams(block: MainButtonParams.() -> Unit): BottomButton = M
     @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
     this.setParams(it.asDynamic() as Json)
 }
-
-

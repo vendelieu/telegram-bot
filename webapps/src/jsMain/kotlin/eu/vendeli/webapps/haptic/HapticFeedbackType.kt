@@ -5,5 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Suppress("EnumEntryName")
 enum class HapticFeedbackType {
-    error, success, warning
+    error,
+    success,
+    warning,
 }

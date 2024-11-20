@@ -6,7 +6,8 @@ external interface WriteAccessRequestState {
 
 @Suppress("EnumEntryName")
 enum class WriteAccessRequestStatus {
-    allowed, canceled
+    allowed,
+    canceled,
 }
 
 val WriteAccessRequestState.Status: WriteAccessRequestStatus
@@ -18,7 +19,8 @@ external interface ContactRequestState {
 
 @Suppress("EnumEntryName")
 enum class ContactRequestStatus {
-    sent, canceled
+    sent,
+    canceled,
 }
 
 val ContactRequestState.Status: ContactRequestStatus

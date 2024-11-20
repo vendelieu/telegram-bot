@@ -13,9 +13,7 @@ inline fun conditionalAction(
 
 @Suppress("UnusedReceiverParameter")
 @JsName("decodeURLQueryComponent")
-fun String.decodeURLQueryComponent(): String {
-    return js("decodeURIComponent(this)").unsafeCast<String>()
-}
+fun String.decodeURLQueryComponent(): String = js("decodeURIComponent(this)").unsafeCast<String>()
 
 const val BG_COLOR = "bg_color"
 const val SECONDARY_BG_COLOR = "secondary_bg_color"
