@@ -298,8 +298,12 @@ public final class eu/vendeli/tgbot/api/SendLocationAction : eu/vendeli/tgbot/in
 	public fun sendBusinessAsync (JLjava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class eu/vendeli/tgbot/api/SendPollAction : eu/vendeli/tgbot/interfaces/action/Action, eu/vendeli/tgbot/interfaces/action/BusinessActionExt, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
+public final class eu/vendeli/tgbot/api/SendPollAction : eu/vendeli/tgbot/interfaces/action/Action, eu/vendeli/tgbot/interfaces/action/BusinessActionExt, eu/vendeli/tgbot/interfaces/features/EntitiesFeature, eu/vendeli/tgbot/interfaces/features/MarkupFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
 	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
+	public fun entities (Ljava/util/List;)Leu/vendeli/tgbot/api/SendPollAction;
+	public synthetic fun entities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/action/TgAction;
+	public fun entities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/SendPollAction;
+	public synthetic fun entities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/interfaces/action/TgAction;
 	public fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/api/SendPollAction;
 	public synthetic fun forceReply (Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/interfaces/action/TgAction;
 	public synthetic fun getOptions$telegram_bot ()Leu/vendeli/tgbot/types/internal/options/Options;
@@ -9705,18 +9709,17 @@ public final class eu/vendeli/tgbot/types/internal/options/PhotoOptions$Companio
 
 public final class eu/vendeli/tgbot/types/internal/options/PollOptions : eu/vendeli/tgbot/types/internal/options/ForumProps, eu/vendeli/tgbot/types/internal/options/MessageEffectIdProp, eu/vendeli/tgbot/types/internal/options/OptionsCommon {
 	public static final field Companion Leu/vendeli/tgbot/types/internal/options/PollOptions$Companion;
-	public synthetic fun <init> (Ljava/lang/Boolean;Leu/vendeli/tgbot/types/poll/PollType;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Lkotlin/time/Duration;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/Boolean;Leu/vendeli/tgbot/types/poll/PollType;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Lkotlin/time/Duration;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Leu/vendeli/tgbot/types/poll/PollType;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Lkotlin/time/Duration;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Leu/vendeli/tgbot/types/poll/PollType;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Lkotlin/time/Duration;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/Boolean;
 	public final fun component10 ()Ljava/lang/Boolean;
 	public final fun component11 ()Leu/vendeli/tgbot/types/ParseMode;
-	public final fun component12 ()Ljava/util/List;
-	public final fun component13 ()Ljava/lang/Boolean;
-	public final fun component14 ()Leu/vendeli/tgbot/types/ReplyParameters;
-	public final fun component15 ()Ljava/lang/Boolean;
-	public final fun component16 ()Ljava/lang/Integer;
-	public final fun component17 ()Ljava/lang/String;
-	public final fun component18 ()Ljava/lang/Boolean;
+	public final fun component12 ()Ljava/lang/Boolean;
+	public final fun component13 ()Leu/vendeli/tgbot/types/ReplyParameters;
+	public final fun component14 ()Ljava/lang/Boolean;
+	public final fun component15 ()Ljava/lang/Integer;
+	public final fun component16 ()Ljava/lang/String;
+	public final fun component17 ()Ljava/lang/Boolean;
 	public final fun component2 ()Leu/vendeli/tgbot/types/poll/PollType;
 	public final fun component3 ()Ljava/lang/Boolean;
 	public final fun component4 ()Ljava/lang/Integer;
@@ -9725,8 +9728,8 @@ public final class eu/vendeli/tgbot/types/internal/options/PollOptions : eu/vend
 	public final fun component7 ()Ljava/util/List;
 	public final fun component8-FghU774 ()Lkotlin/time/Duration;
 	public final fun component9 ()Lkotlinx/datetime/Instant;
-	public final fun copy-prD4G00 (Ljava/lang/Boolean;Leu/vendeli/tgbot/types/poll/PollType;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Lkotlin/time/Duration;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/types/internal/options/PollOptions;
-	public static synthetic fun copy-prD4G00$default (Leu/vendeli/tgbot/types/internal/options/PollOptions;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/poll/PollType;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Lkotlin/time/Duration;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/options/PollOptions;
+	public final fun copy--jGinlM (Ljava/lang/Boolean;Leu/vendeli/tgbot/types/poll/PollType;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Lkotlin/time/Duration;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;)Leu/vendeli/tgbot/types/internal/options/PollOptions;
+	public static synthetic fun copy--jGinlM$default (Leu/vendeli/tgbot/types/internal/options/PollOptions;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/poll/PollType;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Ljava/util/List;Lkotlin/time/Duration;Lkotlinx/datetime/Instant;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/options/PollOptions;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getAllowPaidBroadcast ()Ljava/lang/Boolean;
 	public final fun getAllowsMultipleAnswers ()Ljava/lang/Boolean;
@@ -9740,7 +9743,6 @@ public final class eu/vendeli/tgbot/types/internal/options/PollOptions : eu/vend
 	public fun getMessageThreadId ()Ljava/lang/Integer;
 	public final fun getOpenPeriod-FghU774 ()Lkotlin/time/Duration;
 	public fun getProtectContent ()Ljava/lang/Boolean;
-	public final fun getQuestionEntities ()Ljava/util/List;
 	public final fun getQuestionParseMode ()Leu/vendeli/tgbot/types/ParseMode;
 	public fun getReplyParameters ()Leu/vendeli/tgbot/types/ReplyParameters;
 	public fun getReplyToMessageId ()Ljava/lang/Long;
@@ -9763,7 +9765,6 @@ public final class eu/vendeli/tgbot/types/internal/options/PollOptions : eu/vend
 	public fun setMessageThreadId (Ljava/lang/Integer;)V
 	public final fun setOpenPeriod-BwNAW2A (Lkotlin/time/Duration;)V
 	public fun setProtectContent (Ljava/lang/Boolean;)V
-	public final fun setQuestionEntities (Ljava/util/List;)V
 	public final fun setQuestionParseMode (Leu/vendeli/tgbot/types/ParseMode;)V
 	public fun setReplyParameters (Leu/vendeli/tgbot/types/ReplyParameters;)V
 	public fun setReplyToMessageId (Ljava/lang/Long;)V
