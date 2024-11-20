@@ -16,6 +16,7 @@ class SendGiftAction(
     textParseMode: ParseMode? = null,
     text: (() -> String)? = null,
 ) : SimpleAction<Boolean>(),
+    @TgAPI.Name("textEntities")
     EntitiesFeature<SendGiftAction> {
     @TgAPI.Name("sendGift")
     override val method = "sendGift"

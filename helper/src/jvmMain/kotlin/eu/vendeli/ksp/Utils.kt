@@ -16,6 +16,9 @@ import java.io.FileFilter
 internal val replyMarkupType = Keyboard::class.asTypeName()
 internal val entitiesType = LIST.parameterizedBy(MessageEntity::class.asTypeName())
 
+@Suppress("UNCHECKED_CAST", "NOTHING_TO_INLINE")
+internal inline fun <R> Any?.safeCast(): R? = this as? R
+
 internal inline fun KSPLogger.invalid(message: () -> String) = exception(IllegalStateException(message()))
 
 internal fun String.beginWithUpperCase(): String = when (this.length) {

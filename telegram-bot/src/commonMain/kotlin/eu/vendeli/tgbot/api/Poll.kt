@@ -5,6 +5,7 @@ package eu.vendeli.tgbot.api
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
+import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.options.PollOptions
@@ -22,6 +23,8 @@ class SendPollAction(
 ) : Action<Message>(),
     BusinessActionExt<Message>,
     OptionsFeature<SendPollAction, PollOptions>,
+    @TgAPI.Name("questionEntities")
+    EntitiesFeature<SendPollAction>,
     MarkupFeature<SendPollAction> {
     @TgAPI.Name("sendPoll")
     override val method = "sendPoll"
