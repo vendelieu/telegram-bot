@@ -28,6 +28,8 @@ import eu.vendeli.tgbot.api.botactions.CloseAction
 import eu.vendeli.tgbot.api.botactions.CreateInvoiceLinkAction
 import eu.vendeli.tgbot.api.botactions.DeleteMyCommandsAction
 import eu.vendeli.tgbot.api.botactions.DeleteWebhookAction
+import eu.vendeli.tgbot.api.botactions.EditUserStarSubscriptionAction
+import eu.vendeli.tgbot.api.botactions.GetAvailableGiftsAction
 import eu.vendeli.tgbot.api.botactions.GetBusinessConnectionAction
 import eu.vendeli.tgbot.api.botactions.GetMeAction
 import eu.vendeli.tgbot.api.botactions.GetMyCommandsAction
@@ -40,11 +42,14 @@ import eu.vendeli.tgbot.api.botactions.GetUpdatesAction
 import eu.vendeli.tgbot.api.botactions.GetWebhookInfoAction
 import eu.vendeli.tgbot.api.botactions.LogOutAction
 import eu.vendeli.tgbot.api.botactions.RefundStarPaymentAction
+import eu.vendeli.tgbot.api.botactions.SavePreparedInlineMessageAction
+import eu.vendeli.tgbot.api.botactions.SendGiftAction
 import eu.vendeli.tgbot.api.botactions.SetMyCommandsAction
 import eu.vendeli.tgbot.api.botactions.SetMyDefaultAdministratorRightsAction
 import eu.vendeli.tgbot.api.botactions.SetMyDescriptionAction
 import eu.vendeli.tgbot.api.botactions.SetMyNameAction
 import eu.vendeli.tgbot.api.botactions.SetMyShortDescriptionAction
+import eu.vendeli.tgbot.api.botactions.SetUserEmojiStatusAction
 import eu.vendeli.tgbot.api.botactions.SetWebhookAction
 import eu.vendeli.tgbot.api.chat.ApproveChatJoinRequestAction
 import eu.vendeli.tgbot.api.chat.BanChatMemberAction
@@ -129,6 +134,7 @@ import eu.vendeli.tgbot.api.stickerset.SetStickerPositionInSetAction
 import eu.vendeli.tgbot.api.stickerset.SetStickerSetThumbnailAction
 import eu.vendeli.tgbot.api.stickerset.SetStickerSetTitleAction
 import eu.vendeli.tgbot.api.stickerset.UploadStickerFileAction
+import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.ReactionType
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.`inline`.InlineQueryResult
@@ -399,26 +405,34 @@ public inline fun TelegramBot.createInvoiceLink(
   title: String,
   description: String,
   payload: String,
-  providerToken: String,
   currency: Currency,
   prices: List<LabeledPrice>,
-): CreateInvoiceLinkAction = eu.vendeli.tgbot.api.botactions.createInvoiceLink(title, description, payload, providerToken, currency, prices)
+): CreateInvoiceLinkAction = eu.vendeli.tgbot.api.botactions.createInvoiceLink(title, description, payload, currency, prices)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.createInvoiceLink(
   title: String,
   description: String,
-  providerToken: String,
   currency: Currency,
   vararg prices: LabeledPrice,
   noinline payload: () -> String,
-): CreateInvoiceLinkAction = eu.vendeli.tgbot.api.botactions.createInvoiceLink(title, description, providerToken, currency, prices = prices, payload)
+): CreateInvoiceLinkAction = eu.vendeli.tgbot.api.botactions.createInvoiceLink(title, description, currency, prices = prices, payload)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.deleteMyCommands(languageCode: String?, scope: BotCommandScope?): DeleteMyCommandsAction = eu.vendeli.tgbot.api.botactions.deleteMyCommands(languageCode, scope)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.deleteWebhook(dropPendingUpdates: Boolean): DeleteWebhookAction = eu.vendeli.tgbot.api.botactions.deleteWebhook(dropPendingUpdates)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.editUserStarSubscription(
+  userId: Long,
+  telegramPaymentChargeId: String,
+  isCanceled: Boolean,
+): EditUserStarSubscriptionAction = eu.vendeli.tgbot.api.botactions.editUserStarSubscription(userId, telegramPaymentChargeId, isCanceled)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.getAvailableGifts(): GetAvailableGiftsAction = eu.vendeli.tgbot.api.botactions.getAvailableGifts()
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.getBusinessConnection(businessConnectionId: String): GetBusinessConnectionAction = eu.vendeli.tgbot.api.botactions.getBusinessConnection(businessConnectionId)
@@ -457,6 +471,17 @@ public inline fun TelegramBot.logOut(): LogOutAction = eu.vendeli.tgbot.api.bota
 public inline fun TelegramBot.refundStarPayment(telegramPaymentChargeId: String, userId: Long): RefundStarPaymentAction = eu.vendeli.tgbot.api.botactions.refundStarPayment(telegramPaymentChargeId, userId)
 
 @Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.savePreparedInlineMessage(userId: Long, result: InlineQueryResult): SavePreparedInlineMessageAction = eu.vendeli.tgbot.api.botactions.savePreparedInlineMessage(userId, result)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.sendGift(
+  userId: Long,
+  giftId: String,
+  textParseMode: ParseMode?,
+  noinline text: (() -> String)?,
+): SendGiftAction = eu.vendeli.tgbot.api.botactions.sendGift(userId, giftId, textParseMode, text)
+
+@Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.setMyCommands(
   languageCode: String?,
   scope: BotCommandScope?,
@@ -488,6 +513,13 @@ public inline fun TelegramBot.setMyName(name: String?, languageCode: String?): S
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.setMyShortDescription(description: String?, languageCode: String?): SetMyShortDescriptionAction = eu.vendeli.tgbot.api.botactions.setMyShortDescription(description, languageCode)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.setUserEmojiStatus(
+  userId: Long,
+  emojiStatusCustomEmojiId: String?,
+  emojiStatusExpirationDate: Instant?,
+): SetUserEmojiStatusAction = eu.vendeli.tgbot.api.botactions.setUserEmojiStatus(userId, emojiStatusCustomEmojiId, emojiStatusExpirationDate)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.setWebhook(url: String): SetWebhookAction = eu.vendeli.tgbot.api.botactions.setWebhook(url)

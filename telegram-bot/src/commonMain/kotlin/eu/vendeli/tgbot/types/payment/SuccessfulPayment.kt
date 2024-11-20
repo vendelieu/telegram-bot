@@ -1,6 +1,8 @@
 package eu.vendeli.tgbot.types.payment
 
 import eu.vendeli.tgbot.types.internal.Currency
+import eu.vendeli.tgbot.utils.serde.InstantSerializer
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
 /**
@@ -25,6 +27,10 @@ data class SuccessfulPayment(
     val invoicePayload: String,
     val shippingOptionId: String? = null,
     val orderInfo: OrderInfo? = null,
+    @Serializable(InstantSerializer::class)
+    val subscriptionExpirationDate: Instant? = null,
+    val isRecurring: Boolean? = null,
+    val isFirstRecurring: Boolean? = null,
     val telegramPaymentChargeId: String,
     val providerPaymentChargeId: String,
 )

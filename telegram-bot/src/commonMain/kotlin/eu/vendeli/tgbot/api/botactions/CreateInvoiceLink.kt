@@ -3,6 +3,7 @@
 package eu.vendeli.tgbot.api.botactions
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.internal.Currency
@@ -17,10 +18,10 @@ class CreateInvoiceLinkAction(
     title: String,
     description: String,
     payload: String,
-    providerToken: String,
     currency: Currency,
     prices: List<LabeledPrice>,
 ) : SimpleAction<String>(),
+    BusinessActionExt<String>,
     OptionsFeature<CreateInvoiceLinkAction, CreateInvoiceLinkOptions> {
     override val options = CreateInvoiceLinkOptions()
 
@@ -32,7 +33,6 @@ class CreateInvoiceLinkAction(
         parameters["title"] = title.toJsonElement()
         parameters["description"] = description.toJsonElement()
         parameters["payload"] = payload.toJsonElement()
-        parameters["provider_token"] = providerToken.toJsonElement()
         parameters["currency"] = currency.name.toJsonElement()
         parameters["prices"] = prices.encodeWith(LabeledPrice.serializer())
     }
@@ -72,17 +72,15 @@ inline fun createInvoiceLink(
     title: String,
     description: String,
     payload: String,
-    providerToken: String,
     currency: Currency,
     prices: List<LabeledPrice>,
-) = CreateInvoiceLinkAction(title, description, payload, providerToken, currency, prices)
+) = CreateInvoiceLinkAction(title, description, payload, currency, prices)
 
 @TgAPI
 inline fun createInvoiceLink(
     title: String,
     description: String,
-    providerToken: String,
     currency: Currency,
     vararg prices: LabeledPrice,
     payload: () -> String,
-) = createInvoiceLink(title, description, payload(), providerToken, currency, prices.asList())
+) = createInvoiceLink(title, description, payload(), currency, prices.asList())
