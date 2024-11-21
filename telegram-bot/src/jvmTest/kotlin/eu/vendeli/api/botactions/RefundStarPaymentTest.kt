@@ -14,7 +14,7 @@ class RefundStarPaymentTest : BotTestContext() {
             DUMB_USER.id,
         ).sendReq()
             .onFailure {
-                it.description shouldContain "USER_ID_INVALID"
+                it.description shouldContain "CHARGE_ID_EMPTY"
             }?.shouldBeFalse()
     }
 }
