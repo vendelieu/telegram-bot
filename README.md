@@ -112,7 +112,8 @@ suspend fun start(user: User, bot: TelegramBot) {
     bot.inputListener[user] = "conversation"
 }
 
-@InputHandler(["conversation"], guard = UserPresentGuard::class)
+@InputHandler(["conversation"])
+@Guard(UserPresentGuard::class)
 suspend fun startConversation(update: ProcessedUpdate, user: User, bot: TelegramBot) {
     message { "Nice to meet you, ${update.text}" }.send(user, bot)
     message { "What is your favorite food?" }.send(user, bot)
