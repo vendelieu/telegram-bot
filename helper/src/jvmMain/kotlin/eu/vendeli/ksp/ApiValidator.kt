@@ -65,10 +65,10 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
             ?.let { parameters.putAll(it) }
 
         // add parameters that represented in features/etc
-        cls.superTypes.forEach {
+        cls.superTypes.forEach { type ->
+            val sType = type.resolve()
             when (
-                it
-                    .resolve()
+                sType
                     .declaration.qualifiedName!!
                     .asString()
             ) {
@@ -77,7 +77,17 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
                     parameters["captionEntities"] = entitiesType
                 }
 
-                EntitiesFeature::class.fqName -> parameters["entities"] = entitiesType
+                EntitiesFeature::class.fqName -> {
+                    val paramName = sType.annotations
+                        .firstOrNull {
+                            it.shortName.getShortName() == "Name"
+                        }?.arguments
+                        ?.first()
+                        ?.value
+                        ?.safeCast<String>() ?: "entities"
+                    parameters[paramName] = entitiesType
+                }
+
                 MarkupFeature::class.fqName -> parameters["replyMarkup"] = replyMarkupType
                 BusinessActionExt::class.fqName -> parameters["businessConnectionId"] = STRING
                 InlineActionExt::class.fqName -> parameters["inlineMessageId"] = STRING

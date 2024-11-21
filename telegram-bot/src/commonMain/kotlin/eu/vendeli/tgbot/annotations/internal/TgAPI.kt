@@ -11,7 +11,7 @@ package eu.vendeli.tgbot.annotations.internal
 )
 annotation class TgAPI {
     @Retention(AnnotationRetention.SOURCE)
-    @Target(AnnotationTarget.PROPERTY, AnnotationTarget.CLASS)
+    @Target(AnnotationTarget.PROPERTY, AnnotationTarget.CLASS, AnnotationTarget.TYPE)
     annotation class Name(
         val value: String,
     )

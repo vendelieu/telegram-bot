@@ -25,7 +25,6 @@ data class PollOptions(
     var closeDate: Instant? = null,
     var isClosed: Boolean? = null,
     var questionParseMode: ParseMode? = null,
-    var questionEntities: List<MessageEntity>? = null,
     override var disableNotification: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,
     override var protectContent: Boolean? = null,

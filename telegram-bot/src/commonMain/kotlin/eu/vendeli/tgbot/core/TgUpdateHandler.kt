@@ -16,16 +16,21 @@ import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.Invocable
 import eu.vendeli.tgbot.utils.InvocationLambda
-import eu.vendeli.tgbot.utils.LoggingWrapper
 import eu.vendeli.tgbot.utils.asyncAction
 import eu.vendeli.tgbot.utils.checkIsGuarded
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.coHandle
+import eu.vendeli.tgbot.utils.debug
+import eu.vendeli.tgbot.utils.error
+import eu.vendeli.tgbot.utils.getLogger
 import eu.vendeli.tgbot.utils.getParameters
 import eu.vendeli.tgbot.utils.handleFailure
+import eu.vendeli.tgbot.utils.info
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.process
 import eu.vendeli.tgbot.utils.serde
+import eu.vendeli.tgbot.utils.warn
+import io.ktor.util.logging.trace
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
@@ -55,7 +60,7 @@ class TgUpdateHandler internal constructor(
         CoroutineScope(SupervisorJob() + dispatcher + CoroutineName("TgBot"))
     }
     internal val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
-    internal val logger = LoggingWrapper(bot.config.logging, "eu.vendeli.core.TgUpdateHandler")
+    internal val logger = getLogger(bot.config.logging.botLogLevel, "eu.vendeli.core.TgUpdateHandler")
 
     /**
      * The channel where errors caught during update processing is stored with update that caused them.

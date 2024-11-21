@@ -9,29 +9,10 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.chain.Link
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
-import io.ktor.http.decodeURLQueryComponent
-import korlibs.crypto.HMAC
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.delay
 import kotlin.reflect.KClass
-
-/**
- * Function to check is web app data is safe.
- *
- * @param botToken bot token.
- * @param hash hash from webapp
- */
-fun String.checkIsInitDataSafe(botToken: String, hash: String): Boolean {
-    val secretKey = HMAC.hmacSHA256(botToken.encodeToByteArray(), "WebAppData".encodeToByteArray())
-    val decodedData = decodeURLQueryComponent()
-        .split("&")
-        .filterNot { it.startsWith("hash=") }
-        .sorted()
-        .joinToString("\n")
-
-    return HMAC.hmacSHA256(secretKey.bytes, decodedData.encodeToByteArray()).hexLower == hash.lowercase()
-}
 
 /**
  * Runs exception handler loop.

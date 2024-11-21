@@ -14,6 +14,8 @@ import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toTypeName
+import eu.vendeli.ksp.dto.CommandHandlerParams
+import eu.vendeli.ksp.dto.LambdaParameters
 import eu.vendeli.ksp.utils.FileBuilder
 import eu.vendeli.ksp.utils.botClass
 import eu.vendeli.ksp.utils.businessConnectionUpdateClass
@@ -78,6 +80,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
     injectableTypes: Map<TypeName, ClassName>,
     pkg: String? = null,
     meta: Pair<String, Array<Any?>>? = null,
+    parameters: List<LambdaParameters> = emptyList(),
 ) = buildCodeBlock {
     val isTopLvl = function.functionKind == FunctionKind.TOP_LEVEL
     val funQualifier = function.qualifiedName!!.getQualifier()
@@ -102,8 +105,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
             if (!isTopLvl && !isObject && function.functionKind != FunctionKind.STATIC) {
                 parametersEnumeration = "inst, "
                 add(
-                    "val inst = classManager.getInstance(%L::class) as %L\n",
-                    funQualifier,
+                    "val inst = classManager.getInstance<%L>()!!\n",
                     funQualifier,
                 )
             }
@@ -181,6 +183,13 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 funQualifier,
                 pkg,
             )
+
+            if (parameters.contains(CommandHandlerParams.CallbackQueryAutoAnswer)) {
+                addImport("eu.vendeli.tgbot.api.answer", "answerCallbackQuery")
+                addImport("eu.vendeli.tgbot.types.internal", "CallbackQueryUpdate", "getUser")
+                add("answerCallbackQuery((update as CallbackQueryUpdate).callbackQuery.id).send(update.getUser(), bot)")
+            }
+
             add("\n%L.invoke(\n\t%L\n)\n", funName, parametersEnumeration)
         }.endControlFlow()
         .build()

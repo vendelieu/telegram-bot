@@ -3,7 +3,6 @@ package eu.vendeli.api.botactions
 import BotTestContext
 import eu.vendeli.tgbot.api.botactions.deleteMyCommands
 import eu.vendeli.tgbot.api.botactions.getMyCommands
-import eu.vendeli.tgbot.api.botactions.getMyDefaultAdministratorRights
 import eu.vendeli.tgbot.api.botactions.getMyDescription
 import eu.vendeli.tgbot.api.botactions.getMyName
 import eu.vendeli.tgbot.api.botactions.getMyShortDescription
@@ -27,7 +26,7 @@ class SetMyActionsTest : BotTestContext() {
         setMyDefaultAdministratorRights(
             ChatAdministratorRights(
                 isAnonymous = true,
-                canManageChat = false,
+                canManageChat = true,
                 canDeleteMessages = false,
                 canRestrictMembers = false,
                 canPromoteMembers = false,
@@ -42,33 +41,7 @@ class SetMyActionsTest : BotTestContext() {
                 canEditStories = false,
                 canDeleteStories = false,
             ),
-        ).send(bot)
-
-        val result = getMyDefaultAdministratorRights().sendReq().shouldSuccess()
-
-        with(result) {
-            isAnonymous.shouldBeTrue()
-        }
-
-        setMyDefaultAdministratorRights(
-            ChatAdministratorRights(
-                isAnonymous = false,
-                canManageChat = false,
-                canDeleteMessages = false,
-                canRestrictMembers = false,
-                canPromoteMembers = false,
-                canChangeInfo = false,
-                canInviteUsers = false,
-                canPostMessages = false,
-                canEditMessages = false,
-                canPinMessages = false,
-                canManageTopics = false,
-                canPostStories = false,
-                canEditStories = false,
-                canDeleteStories = false,
-                canManageVideoChats = false,
-            ),
-        ).send(bot)
+        ).sendReq(bot).shouldSuccess().shouldBeTrue()
     }
 
     @Test

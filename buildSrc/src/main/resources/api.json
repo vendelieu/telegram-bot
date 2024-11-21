@@ -1,7 +1,7 @@
 {
-  "version": "Bot API 7.11",
-  "release_date": "October 31, 2024",
-  "changelog": "https://core.telegram.org/bots/api#october-31-2024",
+  "version": "Bot API 8.0",
+  "release_date": "November 17, 2024",
+  "changelog": "https://core.telegram.org/bots/api#november-17-2024",
   "methods": {
     "getUpdates": {
       "name": "getUpdates",
@@ -2684,6 +2684,42 @@
           ],
           "required": false,
           "description": "Limits the number of photos to be retrieved. Values between 1-100 are accepted. Defaults to 100."
+        }
+      ]
+    },
+    "setUserEmojiStatus": {
+      "name": "setUserEmojiStatus",
+      "href": "https://core.telegram.org/bots/api#setuseremojistatus",
+      "description": [
+        "Changes the emoji status for a given user that previously allowed the bot to manage their emoji status via the Mini App method requestEmojiStatusAccess. Returns True on success."
+      ],
+      "returns": [
+        "Boolean"
+      ],
+      "fields": [
+        {
+          "name": "user_id",
+          "types": [
+            "Integer"
+          ],
+          "required": true,
+          "description": "Unique identifier of the target user"
+        },
+        {
+          "name": "emoji_status_custom_emoji_id",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Custom emoji identifier of the emoji status to set. Pass an empty string to remove the status."
+        },
+        {
+          "name": "emoji_status_expiration_date",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "Expiration date of the emoji status, if any"
         }
       ]
     },
@@ -5715,6 +5751,68 @@
         }
       ]
     },
+    "getAvailableGifts": {
+      "name": "getAvailableGifts",
+      "href": "https://core.telegram.org/bots/api#getavailablegifts",
+      "description": [
+        "Returns the list of gifts that can be sent by the bot to users. Requires no parameters. Returns a Gifts object."
+      ],
+      "returns": [
+        "Gifts"
+      ]
+    },
+    "sendGift": {
+      "name": "sendGift",
+      "href": "https://core.telegram.org/bots/api#sendgift",
+      "description": [
+        "Sends a gift to the given user. The gift can't be converted to Telegram Stars by the user. Returns True on success."
+      ],
+      "returns": [
+        "Boolean"
+      ],
+      "fields": [
+        {
+          "name": "user_id",
+          "types": [
+            "Integer"
+          ],
+          "required": true,
+          "description": "Unique identifier of the target user that will receive the gift"
+        },
+        {
+          "name": "gift_id",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "Identifier of the gift"
+        },
+        {
+          "name": "text",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Text that will be shown along with the gift; 0-255 characters"
+        },
+        {
+          "name": "text_parse_mode",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Mode for parsing entities in the text. See formatting options for more details. Entities other than \"bold\", \"italic\", \"underline\", \"strikethrough\", \"spoiler\", and \"custom_emoji\" are ignored."
+        },
+        {
+          "name": "text_entities",
+          "types": [
+            "Array of MessageEntity"
+          ],
+          "required": false,
+          "description": "A JSON-serialized list of special entities that appear in the gift text. It can be specified instead of text_parse_mode. Entities other than \"bold\", \"italic\", \"underline\", \"strikethrough\", \"spoiler\", and \"custom_emoji\" are ignored."
+        }
+      ]
+    },
     "answerInlineQuery": {
       "name": "answerInlineQuery",
       "href": "https://core.telegram.org/bots/api#answerinlinequery",
@@ -5801,6 +5899,66 @@
           ],
           "required": true,
           "description": "A JSON-serialized object describing the message to be sent"
+        }
+      ]
+    },
+    "savePreparedInlineMessage": {
+      "name": "savePreparedInlineMessage",
+      "href": "https://core.telegram.org/bots/api#savepreparedinlinemessage",
+      "description": [
+        "Stores a message that can be sent by a user of a Mini App. Returns a PreparedInlineMessage object."
+      ],
+      "returns": [
+        "PreparedInlineMessage"
+      ],
+      "fields": [
+        {
+          "name": "user_id",
+          "types": [
+            "Integer"
+          ],
+          "required": true,
+          "description": "Unique identifier of the target user that can use the prepared message"
+        },
+        {
+          "name": "result",
+          "types": [
+            "InlineQueryResult"
+          ],
+          "required": true,
+          "description": "A JSON-serialized object describing the message to be sent"
+        },
+        {
+          "name": "allow_user_chats",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True if the message can be sent to private chats with users"
+        },
+        {
+          "name": "allow_bot_chats",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True if the message can be sent to private chats with bots"
+        },
+        {
+          "name": "allow_group_chats",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True if the message can be sent to group and supergroup chats"
+        },
+        {
+          "name": "allow_channel_chats",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True if the message can be sent to channel chats"
         }
       ]
     },
@@ -6060,6 +6218,14 @@
       ],
       "fields": [
         {
+          "name": "business_connection_id",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Unique identifier of the business connection on behalf of which the link will be created"
+        },
+        {
           "name": "title",
           "types": [
             "String"
@@ -6106,6 +6272,14 @@
           ],
           "required": true,
           "description": "Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.). Must contain exactly one item for payments in Telegram Stars."
+        },
+        {
+          "name": "subscription_period",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "The number of seconds the subscription will be active for before the next payment. The currency must be set to \"XTR\" (Telegram Stars) if the parameter is used. Currently, it must always be 2592000 (30 days) if specified."
         },
         {
           "name": "max_tip_amount",
@@ -6354,6 +6528,42 @@
           ],
           "required": true,
           "description": "Telegram payment identifier"
+        }
+      ]
+    },
+    "editUserStarSubscription": {
+      "name": "editUserStarSubscription",
+      "href": "https://core.telegram.org/bots/api#edituserstarsubscription",
+      "description": [
+        "Allows the bot to cancel or re-enable extension of a subscription paid in Telegram Stars. Returns True on success."
+      ],
+      "returns": [
+        "Boolean"
+      ],
+      "fields": [
+        {
+          "name": "user_id",
+          "types": [
+            "Integer"
+          ],
+          "required": true,
+          "description": "Identifier of the user whose subscription will be edited"
+        },
+        {
+          "name": "telegram_payment_charge_id",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "Telegram payment identifier for the subscription"
+        },
+        {
+          "name": "is_canceled",
+          "types": [
+            "Boolean"
+          ],
+          "required": true,
+          "description": "Pass True to cancel extension of the user subscription; the subscription must be active up to the end of the current subscription period. Pass False to allow the user to re-enable a subscription that was previously canceled by the bot."
         }
       ]
     },
@@ -14512,6 +14722,72 @@
         }
       ]
     },
+    "Gift": {
+      "name": "Gift",
+      "href": "https://core.telegram.org/bots/api#gift",
+      "description": [
+        "This object represents a gift that can be sent by the bot."
+      ],
+      "fields": [
+        {
+          "name": "id",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "Unique identifier of the gift"
+        },
+        {
+          "name": "sticker",
+          "types": [
+            "Sticker"
+          ],
+          "required": true,
+          "description": "The sticker that represents the gift"
+        },
+        {
+          "name": "star_count",
+          "types": [
+            "Integer"
+          ],
+          "required": true,
+          "description": "The number of Telegram Stars that must be paid to send the sticker"
+        },
+        {
+          "name": "total_count",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "Optional. The total number of the gifts of this type that can be sent; for limited gifts only"
+        },
+        {
+          "name": "remaining_count",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "Optional. The number of remaining gifts of this type that can be sent; for limited gifts only"
+        }
+      ]
+    },
+    "Gifts": {
+      "name": "Gifts",
+      "href": "https://core.telegram.org/bots/api#gifts",
+      "description": [
+        "This object represent a list of gifts."
+      ],
+      "fields": [
+        {
+          "name": "gifts",
+          "types": [
+            "Array of Gift"
+          ],
+          "required": true,
+          "description": "The list of gifts"
+        }
+      ]
+    },
     "InlineQuery": {
       "name": "InlineQuery",
       "href": "https://core.telegram.org/bots/api#inlinequery",
@@ -17166,6 +17442,31 @@
         }
       ]
     },
+    "PreparedInlineMessage": {
+      "name": "PreparedInlineMessage",
+      "href": "https://core.telegram.org/bots/api#preparedinlinemessage",
+      "description": [
+        "Describes an inline message to be sent by a user of a Mini App."
+      ],
+      "fields": [
+        {
+          "name": "id",
+          "types": [
+            "String"
+          ],
+          "required": true,
+          "description": "Unique identifier of the prepared message"
+        },
+        {
+          "name": "expiration_date",
+          "types": [
+            "Integer"
+          ],
+          "required": true,
+          "description": "Expiration date of the prepared message, in Unix time. Expired prepared messages can no longer be used"
+        }
+      ]
+    },
     "LabeledPrice": {
       "name": "LabeledPrice",
       "href": "https://core.telegram.org/bots/api#labeledprice",
@@ -17401,6 +17702,30 @@
           ],
           "required": true,
           "description": "Bot-specified invoice payload"
+        },
+        {
+          "name": "subscription_expiration_date",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "Optional. Expiration date of the subscription, in Unix time; for recurring payments only"
+        },
+        {
+          "name": "is_recurring",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Optional. True, if the payment is a recurring payment for a subscription"
+        },
+        {
+          "name": "is_first_recurring",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Optional. True, if the payment is the first payment for a subscription"
         },
         {
           "name": "shipping_option_id",
@@ -17758,6 +18083,14 @@
           "description": "Optional. Bot-specified invoice payload"
         },
         {
+          "name": "subscription_period",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "Optional. The duration of the paid subscription"
+        },
+        {
           "name": "paid_media",
           "types": [
             "Array of PaidMedia"
@@ -17772,6 +18105,14 @@
           ],
           "required": false,
           "description": "Optional. Bot-specified paid media payload"
+        },
+        {
+          "name": "gift",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Optional. The gift sent to the user by the bot"
         }
       ],
       "subtype_of": [

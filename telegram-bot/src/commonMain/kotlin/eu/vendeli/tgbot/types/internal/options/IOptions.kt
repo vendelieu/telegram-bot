@@ -17,7 +17,7 @@ interface MediaSpoiler : Options {
     var hasSpoiler: Boolean?
 }
 
-interface LinkPreviewProp {
+interface LinkPreviewProp : Options {
     var linkPreviewOptions: LinkPreviewOptions?
 
     fun disableWebPagePreview() {
@@ -29,19 +29,19 @@ interface LinkPreviewProp {
     }
 }
 
-interface ThumbnailProp {
+interface ThumbnailProp : Options {
     var thumbnail: ImplicitFile?
 }
 
-interface MessageEffectIdProp {
+interface MessageEffectIdProp : Options {
     var messageEffectId: String?
 }
 
-interface ShowCaptionAboveMediaProp {
+interface ShowCaptionAboveMediaProp : Options {
     var showCaptionAboveMedia: Boolean?
 }
 
-interface ForumProps {
+interface ForumProps : Options {
     var messageThreadId: Int?
 }
 

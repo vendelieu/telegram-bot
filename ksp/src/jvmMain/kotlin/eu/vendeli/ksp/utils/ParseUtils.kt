@@ -1,5 +1,6 @@
 package eu.vendeli.ksp.utils
 
+import com.google.devtools.ksp.closestClassDeclaration
 import com.google.devtools.ksp.symbol.KSAnnotation
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
@@ -8,6 +9,8 @@ import com.google.devtools.ksp.symbol.KSValueArgument
 import eu.vendeli.ksp.dto.AnnotationData
 import eu.vendeli.ksp.dto.CommonAnnotationData
 import eu.vendeli.ksp.dto.CommonAnnotationValue
+import eu.vendeli.tgbot.annotations.ArgParser
+import eu.vendeli.tgbot.annotations.Guard
 import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.implementations.DefaultGuard
@@ -20,6 +23,7 @@ internal fun List<KSValueArgument>.parseAsCommandHandler(isCallbackQ: Boolean) =
     scope = parseScopes() ?: if (isCallbackQ) callbackQueryList else messageList,
     guardClass = parseGuard(),
     argParserClass = parseArgParser(),
+    isAutoAnswer = firstOrNull { it.name?.asString() == "autoAnswer" }?.value?.safeCast<Boolean>() ?: false,
 )
 
 internal fun List<KSValueArgument>.parseAsInputHandler() = Triple(
@@ -85,6 +89,42 @@ object CommonAnnotationHandler {
     }
 }
 
+internal fun KSFunctionDeclaration.parseAnnotatedGuard(): String? = annotations
+    .firstOrNull {
+        it.shortName.asString() == Guard::class.simpleName!!
+    }?.arguments
+    ?.parseGuard()
+    ?: closestClassDeclaration()
+        ?.annotations
+        ?.firstOrNull {
+            it.shortName.asString() == Guard::class.simpleName!!
+        }?.arguments
+        ?.parseGuard()
+
+internal fun KSFunctionDeclaration.parseAnnotatedRateLimits(): RateLimits? = annotations
+    .firstOrNull {
+        it.shortName.asString() == eu.vendeli.tgbot.annotations.RateLimits::class.simpleName!!
+    }?.arguments
+    ?.parseRateLimitsAnnotation()
+    ?: closestClassDeclaration()
+        ?.annotations
+        ?.firstOrNull {
+            it.shortName.asString() == eu.vendeli.tgbot.annotations.RateLimits::class.simpleName!!
+        }?.arguments
+        ?.parseRateLimitsAnnotation()
+
+internal fun KSFunctionDeclaration.parseAnnotatedArgParser(): String? = annotations
+    .firstOrNull {
+        it.shortName.asString() == ArgParser::class.simpleName!!
+    }?.arguments
+    ?.parseArgParser()
+    ?: closestClassDeclaration()
+        ?.annotations
+        ?.firstOrNull {
+            it.shortName.asString() == ArgParser::class.simpleName!!
+        }?.arguments
+        ?.parseArgParser()
+
 /*
  argument parsers:
 */
@@ -130,6 +170,9 @@ internal fun List<KSValueArgument>.parseAsUpdateHandler() = first().value.cast<L
         else -> throw IllegalStateException("Unknown type $i")
     }.let { UpdateType.valueOf(it) }
 }
+
+internal fun List<KSValueArgument>.parseRateLimitsAnnotation(): RateLimits =
+    ((firstOrNull()?.value?.safeCast<Long>() ?: 0) to (lastOrNull()?.value?.safeCast<Long>() ?: 0)).toRateLimits()
 
 internal fun List<KSValueArgument>.parseRateLimits(): Pair<Long, Long> = firstOrNull {
     it.name?.asString() == "rateLimits"

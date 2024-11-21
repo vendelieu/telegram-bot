@@ -1,7 +1,9 @@
 package eu.vendeli.tgbot.types.internal
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.interfaces.helper.Filter
+import eu.vendeli.tgbot.utils.DEFAULT_SCOPE
 import eu.vendeli.tgbot.utils.checkIsFiltered
 import kotlin.reflect.KClass
 
@@ -14,8 +16,8 @@ sealed class CommonMatcher(
 
     class String(
         override val value: kotlin.String,
-        filter: KClass<out Filter>,
-        scope: Set<UpdateType>,
+        filter: KClass<out Filter> = DefaultFilter::class,
+        scope: Set<UpdateType> = DEFAULT_SCOPE,
     ) : CommonMatcher(value, filter, scope) {
         override suspend fun match(text: kotlin.String, update: ProcessedUpdate, bot: TelegramBot): Boolean =
             update.type in scope &&
@@ -25,8 +27,8 @@ sealed class CommonMatcher(
 
     class Regex(
         override val value: kotlin.text.Regex,
-        filter: KClass<out Filter>,
-        scope: Set<UpdateType>,
+        filter: KClass<out Filter> = DefaultFilter::class,
+        scope: Set<UpdateType> = DEFAULT_SCOPE,
     ) : CommonMatcher(value, filter, scope) {
         override suspend fun match(text: kotlin.String, update: ProcessedUpdate, bot: TelegramBot): Boolean =
             update.type in scope &&

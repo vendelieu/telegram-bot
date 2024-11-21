@@ -36,10 +36,23 @@ inline fun <T> Response<T>.onFailure(block: (Response.Failure) -> Unit): T? = wh
     }
 }
 
+/**
+ * Handles request's failure case.
+ * @return a fail-safe response.
+ */
 suspend inline fun <T> Deferred<Response<out T>>.onFailure(block: (Response.Failure) -> Unit): T? =
     await().onFailure(block)
 
+/**
+ * Whether the request completed successfully.
+ */
 fun <T> Response<T>.isSuccess(): Boolean = this is Response.Success
+
+/**
+ * Get response or null on failure.
+ *
+ * @return response payload
+ */
 fun <T> Response<T>.getOrNull(): T? = when (this) {
     is Response.Success<T> -> result
     else -> null
@@ -47,6 +60,9 @@ fun <T> Response<T>.getOrNull(): T? = when (this) {
 
 suspend inline fun <T> Deferred<Response<out T>>.getOrNull(): T? = await().getOrNull()
 
+/**
+ * Handles response success and failure cases.
+ */
 @Suppress("UNCHECKED_CAST")
 suspend inline fun <T, R> Deferred<Response<out T>>.foldResponse(
     success: Response.Success<T>.() -> R,

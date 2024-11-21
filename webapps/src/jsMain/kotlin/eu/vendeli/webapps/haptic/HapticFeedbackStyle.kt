@@ -5,5 +5,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Suppress("EnumEntryName")
 enum class HapticFeedbackStyle {
-    light, medium, heavy, rigid, soft
+    light,
+    medium,
+    heavy,
+    rigid,
+    soft,
 }

@@ -1,6 +1,8 @@
 package eu.vendeli.tgbot.types.internal.options
 
+import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import kotlinx.serialization.Serializable
+import kotlin.time.Duration
 
 /**
  * Create invoice link options
@@ -29,6 +31,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class CreateInvoiceLinkOptions(
+    var providerToken: String? = null,
     var maxTipAmount: Int? = null,
     var suggestedTipAmounts: List<Int>? = null,
     var providerData: String? = null,
@@ -37,6 +40,8 @@ data class CreateInvoiceLinkOptions(
     var photoWidth: Int? = null,
     var photoHeight: Int? = null,
     var needName: Boolean? = null,
+    @Serializable(DurationSerializer::class)
+    var subscriptionPeriod: Duration? = null,
     var needPhoneNumber: Boolean? = null,
     var needEmail: Boolean? = null,
     var needShippingAddress: Boolean? = null,

@@ -15,7 +15,11 @@ external interface PopupButton {
 @Serializable
 @Suppress("EnumEntryName")
 enum class PopupButtonType {
-    default, ok, close, cancel, destructive
+    default,
+    ok,
+    close,
+    cancel,
+    destructive,
 }
 
 fun DefaultPopupButton(

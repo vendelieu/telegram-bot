@@ -10,11 +10,9 @@ import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.Response
-import eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
 import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
-import eu.vendeli.tgbot.utils.LoggingWrapper
 import eu.vendeli.tgbot.utils.defineActivities
 import eu.vendeli.tgbot.utils.serde
 import eu.vendeli.utils.MockUpdate
@@ -27,6 +25,7 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.ktor.client.request.get
 import io.ktor.client.statement.readRawBytes
 import io.ktor.http.isSuccess
+import io.ktor.util.logging.KtorSimpleLogger
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockkStatic
@@ -76,7 +75,7 @@ abstract class BotTestContext(
     protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()
     protected val RAND_INT: Int get() = RANDOM_INST.nextInt()
     protected val DUMB_USER = User(1, false, "Test")
-    protected val logger = LoggingWrapper(LoggingConfiguration())
+    protected val logger = KtorSimpleLogger("test.eu.vendeli.ktgram")
 
     @BeforeAll
     fun prepareTestBot() {
@@ -113,7 +112,7 @@ abstract class BotTestContext(
 
     private fun getRandomPic(): ByteArray? = runBlocking {
         bot.httpClient.get(RandomPicResource.RANDOM_PIC_URL).takeIf { it.status.isSuccess() }?.readRawBytes()?.also {
-            logger.warn { "RANDOM PIC OBTAINING ERROR." }
+            logger.warn("RANDOM PIC OBTAINING ERROR.")
         }
     }
 

@@ -16,11 +16,12 @@ class CreateInvoiceLinkTest : BotTestContext() {
         val result = createInvoiceLink(
             "test",
             "test1",
-            PAYMENT_PROVIDER_TOKEN,
             Currency.AED,
             LabeledPrice("test3", 1000),
         ) {
             "test2"
+        }.options {
+            providerToken = PAYMENT_PROVIDER_TOKEN
         }.sendReq().shouldSuccess()
 
         result.shouldNotBeNull()

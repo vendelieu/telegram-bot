@@ -7,4 +7,3 @@ external interface InvoiceClosedInfo {
 
 val InvoiceClosedInfo.Status: InvoiceStatus
     get() = InvoiceStatus.valueOf(status)
-

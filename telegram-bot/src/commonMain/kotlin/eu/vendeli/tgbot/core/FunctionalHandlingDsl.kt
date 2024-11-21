@@ -16,11 +16,11 @@ import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.chain.SingleInputChain
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import eu.vendeli.tgbot.utils.DEFAULT_COMMAND_SCOPE
-import eu.vendeli.tgbot.utils.LoggingWrapper
+import eu.vendeli.tgbot.utils.DEFAULT_SCOPE
 import eu.vendeli.tgbot.utils.OnCommandActivity
 import eu.vendeli.tgbot.utils.OnInputActivity
 import eu.vendeli.tgbot.utils.WhenNotHandledActivity
+import eu.vendeli.tgbot.utils.getLogger
 import kotlin.reflect.KClass
 
 /**
@@ -33,7 +33,7 @@ class FunctionalHandlingDsl internal constructor(
     internal val bot: TelegramBot,
 ) {
     internal val functionalActivities = FunctionalActivities()
-    internal val logger = LoggingWrapper(bot.config.logging, "eu.vendeli.FunctionalHandler")
+    internal val logger = getLogger(bot.config.logging.botLogLevel, "eu.vendeli.FunctionalHandler")
 
     /**
      * The action that is performed when the command is matched.
@@ -45,7 +45,7 @@ class FunctionalHandlingDsl internal constructor(
      */
     fun onCommand(
         command: String,
-        scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
+        scope: Set<UpdateType> = DEFAULT_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
         guard: Guard = DefaultGuard,
         argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
@@ -92,7 +92,7 @@ class FunctionalHandlingDsl internal constructor(
     fun common(
         value: String,
         filter: KClass<out Filter> = DefaultFilter::class,
-        scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
+        scope: Set<UpdateType> = DEFAULT_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
         argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
         block: OnCommandActivity,
@@ -113,7 +113,7 @@ class FunctionalHandlingDsl internal constructor(
     fun common(
         value: Regex,
         filter: KClass<out Filter> = DefaultFilter::class,
-        scope: Set<UpdateType> = DEFAULT_COMMAND_SCOPE,
+        scope: Set<UpdateType> = DEFAULT_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
         argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
         block: OnCommandActivity,

@@ -7,11 +7,19 @@ import eu.vendeli.webapps.haptic.HapticFeedback
 import eu.vendeli.webapps.invoice.InvoiceClosedInfo
 import eu.vendeli.webapps.popup.PopupParams
 import eu.vendeli.webapps.popup.ScanQrPopupParams
+import eu.vendeli.webapps.sensors.Accelerometer
+import eu.vendeli.webapps.sensors.DeviceOrientation
+import eu.vendeli.webapps.sensors.Gyroscope
+import eu.vendeli.webapps.sensors.LocationManager
+import eu.vendeli.webapps.ui.SafeAreaInset
 import eu.vendeli.webapps.ui.ThemeParams
 import eu.vendeli.webapps.utils.AlertCallback
 import eu.vendeli.webapps.utils.ClipboardTextReceivedCallback
 import eu.vendeli.webapps.utils.ClosePopupCallback
 import eu.vendeli.webapps.utils.ConfirmCallback
+import eu.vendeli.webapps.user_interaction.DownloadFileParams
+import eu.vendeli.webapps.user_interaction.EmojiStatusParams
+import eu.vendeli.webapps.utils.HomeScreenStatusCallback
 import eu.vendeli.webapps.utils.OpenLinkParams
 import eu.vendeli.webapps.utils.QRTextReceivedCallback
 import eu.vendeli.webapps.utils.StoryShareParams
@@ -31,6 +39,11 @@ external class WebApp {
     val viewportStableHeight: Float
     val isClosingConfirmationEnabled: Boolean
     val isVerticalSwipesEnabled: Boolean
+    val isActive: Boolean
+    val isFullscreen: Boolean
+    val isOrientationLocked: Boolean
+    val safeAreaInset: SafeAreaInset
+    val contentSafeAreaInset: SafeAreaInset
 
     fun setHeaderColor(color: String)
     fun setBackgroundColor(color: String)
@@ -66,6 +79,18 @@ external class WebApp {
     @JsName("BiometricManager")
     val biometricManager: BiometricManager
 
+    @JsName("Accelerometer")
+    val accelerometer: Accelerometer
+
+    @JsName("DeviceOrientation")
+    val deviceOrientation: DeviceOrientation
+
+    @JsName("Gyroscope")
+    val gyroscope: Gyroscope
+
+    @JsName("LocationManager")
+    val locationManager: LocationManager
+
     @JsName("SettingsButton")
     val settingsButton: SettingsButton
 
@@ -84,4 +109,28 @@ external class WebApp {
 
     fun requestWriteAccess(callback: ((Boolean) -> Unit)? = definedExternally)
     fun requestContact(callback: ((Boolean) -> Unit)? = definedExternally)
+
+    fun requestFullscreen()
+    fun exitFullscreen()
+    fun lockOrientation()
+    fun unlockOrientation()
+    fun addToHomeScreen()
+    fun checkHomeScreenStatus(callback: HomeScreenStatusCallback = definedExternally)
+
+    @Suppress("LocalVariableName")
+    fun shareMessage(msg_id: Long, callback: (Boolean) -> Unit = definedExternally)
+
+    @Suppress("LocalVariableName")
+    fun setEmojiStatus(
+        custom_emoji_id: Long,
+        params: EmojiStatusParams = definedExternally,
+        callback: (Boolean) -> Unit = definedExternally,
+    )
+
+    fun requestEmojiStatusAccess(callback: (Boolean) -> Unit = definedExternally)
+
+    fun downloadFile(
+        params: DownloadFileParams,
+        callback: (Boolean) -> Unit = definedExternally,
+    )
 }

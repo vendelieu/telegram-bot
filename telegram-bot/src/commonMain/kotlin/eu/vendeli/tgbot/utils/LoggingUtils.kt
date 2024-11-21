@@ -1,22 +1,19 @@
 package eu.vendeli.tgbot.utils
 
-import eu.vendeli.tgbot.interfaces.helper.Logger
 import eu.vendeli.tgbot.types.internal.LogLvl
-import eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration
+import io.ktor.util.logging.Logger
 
-class LoggingWrapper(
-    private val cfg: LoggingConfiguration,
-    private val tag: String = DEFAULT_LOGGING_TAG,
-) {
-    suspend fun info(message: () -> String) = log(LogLvl.INFO, message, null)
-    suspend fun warn(message: () -> String) = log(LogLvl.WARN, message, null)
-    suspend fun debug(message: () -> String) = log(LogLvl.DEBUG, message, null)
-    suspend fun trace(message: () -> String) = log(LogLvl.TRACE, message, null)
-    suspend fun error(throwable: Throwable? = null, message: () -> String) =
-        log(LogLvl.ERROR, message, throwable)
+internal expect inline fun getLogger(lvl: LogLvl, tag: String): Logger
 
-    private suspend inline fun log(logLvl: LogLvl, message: () -> String, throwable: Throwable?) =
-        if (cfg.botLogLevel.int <= logLvl.int) cfg.logger.log(logLvl, tag, message(), throwable) else Unit
-}
+@Suppress("NOTHING_TO_INLINE")
+suspend inline fun Logger.info(message: () -> String) = info(message())
 
-internal expect val DEFAULT_LOGGER: Logger
+@Suppress("NOTHING_TO_INLINE")
+suspend inline fun Logger.warn(message: () -> String) = warn(message())
+
+@Suppress("NOTHING_TO_INLINE")
+suspend inline fun Logger.debug(message: () -> String) = debug(message())
+
+@Suppress("NOTHING_TO_INLINE")
+suspend inline fun Logger.error(throwable: Throwable? = null, message: () -> String) =
+    throwable?.let { error(message(), it) } ?: error(message())

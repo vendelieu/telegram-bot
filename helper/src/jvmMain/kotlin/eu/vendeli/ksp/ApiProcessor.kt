@@ -86,10 +86,12 @@ class ApiProcessor(
         val parameters = declaration.parameters.mapIndexed { _, it ->
             val isFunType = it.type.resolve().isFunctionType
             when {
-                isFunType -> ParameterSpec(it.name!!.getShortName(), it.type.toTypeName(), KModifier.NOINLINE)
-                it.isVararg -> ParameterSpec(it.name!!.getShortName(), it.type.toTypeName(), KModifier.VARARG)
-                else -> ParameterSpec(it.name!!.getShortName(), it.type.toTypeName())
-            }
+                isFunType -> ParameterSpec.builder(it.name!!.getShortName(), it.type.toTypeName(), KModifier.NOINLINE)
+                it.isVararg -> ParameterSpec.builder(it.name!!.getShortName(), it.type.toTypeName(), KModifier.VARARG)
+                else -> ParameterSpec.builder(it.name!!.getShortName(), it.type.toTypeName())
+            }.apply {
+                if (it.type.resolve().isMarkedNullable) defaultValue("null")
+            }.build()
         }
         val parametersInlined = parameters.joinToString {
             (if (KModifier.VARARG in it.modifiers) "${it.name} = " else "") + it.name
