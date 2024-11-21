@@ -1,10 +1,14 @@
 # Telegram-bot (KtGram) Changelog
 
-#### [Unreleased]
+## 7.5.0
 
+* Supported Telegram API [8.0](https://core.telegram.org/bots/api-changelog#november-17-2024).
 * Extend/add annotations for utility handler mechanisms (guard, rateLimits, argParser), add ability to tag a class to
   affect all methods within it.
 * Added `autoAnswer` to `@CommandHandler.CallbackQuery`, to answer callback queries automatically before handler.
+* Logging has been moved to the ktor logging utility (nothing much has changed, just removed some unnecessary
+  dependencies).
+* `WebApp.initData` check `String` extension function moved to `ktgram-utils` module.
 
 ### 7.4.1
 
