@@ -1,12 +1,13 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.types.msg.MaybeInaccessibleMessage
-import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
+import eu.vendeli.tgbot.types.inline.InlineQueryResult
 import eu.vendeli.tgbot.types.keyboard.ForceReply
 import eu.vendeli.tgbot.types.media.Voice
+import eu.vendeli.tgbot.types.msg.MaybeInaccessibleMessage
+import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.serde
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.matchers.shouldBe
@@ -54,5 +55,14 @@ class SerdeIssuesTest : BotTestContext() {
         shouldNotThrowAny {
             serde.decodeFromString(MaybeInaccessibleMessage.serializer(), serializedDateMessage)
         }.shouldBeTypeOf<Message>()
+    }
+
+    @Test
+    fun `InlineQueryResult serde test`() {
+        val json = """{"type":"photo","id":"test","photo_url":"testUrl","thumbnail_url":"url"}"""
+        val result = serde.decodeFromString(InlineQueryResult.serializer(), json)
+
+        result.type shouldBe "photo"
+        result::class shouldBe InlineQueryResult.Photo::class
     }
 }

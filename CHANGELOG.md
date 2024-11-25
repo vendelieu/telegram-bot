@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) Changelog
 
+#### [Unreleased]
+
+* Fixed `InlineQueryResult` cached and usual results serde clashing issue.
+
 ## 7.5.0
 
 * Supported Telegram API [8.0](https://core.telegram.org/bots/api-changelog#november-17-2024).

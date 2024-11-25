@@ -1,3 +1,15 @@
+@file:UseContextualSerialization(
+    forClasses = [
+        InlineQueryResult.CachedAudio::class,
+        InlineQueryResult.CachedDocument::class,
+        InlineQueryResult.CachedGif::class,
+        InlineQueryResult.CachedMpeg4Gif::class,
+        InlineQueryResult.CachedPhoto::class,
+        InlineQueryResult.CachedSticker::class,
+        InlineQueryResult.CachedVideo::class,
+        InlineQueryResult.CachedVoice::class,
+    ]
+)
 package eu.vendeli.tgbot.types.inline
 
 import eu.vendeli.tgbot.types.InputMessageContent
@@ -7,6 +19,7 @@ import eu.vendeli.tgbot.types.msg.MessageEntity
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.UseContextualSerialization
 
 /**
  * This object represents one result of an inline query. Telegram clients currently support results of the following 20 types:
