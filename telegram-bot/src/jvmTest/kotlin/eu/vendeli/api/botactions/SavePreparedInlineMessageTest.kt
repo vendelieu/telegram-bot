@@ -15,9 +15,14 @@ class SavePreparedInlineMessageTest : BotTestContext() {
             InlineQueryResult.Audio("test", LOREM.AUDIO.url, "testTitle")
         }.options {
             allowBotChats = true
-        }.sendAsync(bot).shouldSuccess()
+        }.sendAsync(bot)
+            .shouldSuccess()
 
-        Clock.System.now().toJavaInstant().isBefore(result.expirationDate.toJavaInstant()).shouldBeTrue()
+        Clock.System
+            .now()
+            .toJavaInstant()
+            .isBefore(result.expirationDate.toJavaInstant())
+            .shouldBeTrue()
     }
 
     @Test

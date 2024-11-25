@@ -22,7 +22,8 @@ class CreateInvoiceLinkTest : BotTestContext() {
             "test2"
         }.options {
             providerToken = PAYMENT_PROVIDER_TOKEN
-        }.sendReq().shouldSuccess()
+        }.sendReq()
+            .shouldSuccess()
 
         result.shouldNotBeNull()
         result shouldContain "https://t.me"

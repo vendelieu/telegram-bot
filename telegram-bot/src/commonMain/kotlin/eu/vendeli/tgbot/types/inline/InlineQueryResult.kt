@@ -8,8 +8,9 @@
         InlineQueryResult.CachedSticker::class,
         InlineQueryResult.CachedVideo::class,
         InlineQueryResult.CachedVoice::class,
-    ]
+    ],
 )
+
 package eu.vendeli.tgbot.types.inline
 
 import eu.vendeli.tgbot.types.InputMessageContent

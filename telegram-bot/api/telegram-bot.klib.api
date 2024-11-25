@@ -5082,6 +5082,19 @@ final class eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOpt
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.toString|toString(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions> { // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.$serializer|null[0]
+        final val descriptor // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions) // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;eu.vendeli.tgbot.types.internal.options.SavePreparedInlineMessageOptions){}[0]
+    }
+
+    final object Companion { // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions> // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.Companion.serializer|serializer(){}[0]
+    }
 }
 
 final class eu.vendeli.tgbot.types.internal.options/SetGameScoreOptions : eu.vendeli.tgbot.types.internal.options/Options { // eu.vendeli.tgbot.types.internal.options/SetGameScoreOptions|null[0]
@@ -13450,6 +13463,7 @@ final inline fun eu.vendeli.tgbot.api.botactions/getWebhookInfo(): eu.vendeli.tg
 final inline fun eu.vendeli.tgbot.api.botactions/logOut(): eu.vendeli.tgbot.api.botactions/LogOutAction // eu.vendeli.tgbot.api.botactions/logOut|logOut(){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/refundStarPayment(kotlin/String, kotlin/Long): eu.vendeli.tgbot.api.botactions/RefundStarPaymentAction // eu.vendeli.tgbot.api.botactions/refundStarPayment|refundStarPayment(kotlin.String;kotlin.Long){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/savePreparedInlineMessage(kotlin/Long, eu.vendeli.tgbot.types.inline/InlineQueryResult): eu.vendeli.tgbot.api.botactions/SavePreparedInlineMessageAction // eu.vendeli.tgbot.api.botactions/savePreparedInlineMessage|savePreparedInlineMessage(kotlin.Long;eu.vendeli.tgbot.types.inline.InlineQueryResult){}[0]
+final inline fun eu.vendeli.tgbot.api.botactions/savePreparedInlineMessage(kotlin/Long, kotlin/Function0<eu.vendeli.tgbot.types.inline/InlineQueryResult>): eu.vendeli.tgbot.api.botactions/SavePreparedInlineMessageAction // eu.vendeli.tgbot.api.botactions/savePreparedInlineMessage|savePreparedInlineMessage(kotlin.Long;kotlin.Function0<eu.vendeli.tgbot.types.inline.InlineQueryResult>){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/sendGift(kotlin/Long, kotlin/String, eu.vendeli.tgbot.types/ParseMode? = ..., noinline kotlin/Function0<kotlin/String>? = ...): eu.vendeli.tgbot.api.botactions/SendGiftAction // eu.vendeli.tgbot.api.botactions/sendGift|sendGift(kotlin.Long;kotlin.String;eu.vendeli.tgbot.types.ParseMode?;kotlin.Function0<kotlin.String>?){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/setMyCommands(kotlin/String? = ..., eu.vendeli.tgbot.types.bot/BotCommandScope? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.bot/BotCommand>): eu.vendeli.tgbot.api.botactions/SetMyCommandsAction // eu.vendeli.tgbot.api.botactions/setMyCommands|setMyCommands(kotlin.String?;eu.vendeli.tgbot.types.bot.BotCommandScope?;kotlin.collections.List<eu.vendeli.tgbot.types.bot.BotCommand>){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/setMyCommands(kotlin/String? = ..., eu.vendeli.tgbot.types.bot/BotCommandScope? = ..., kotlin/Array<out eu.vendeli.tgbot.types.bot/BotCommand>...): eu.vendeli.tgbot.api.botactions/SetMyCommandsAction // eu.vendeli.tgbot.api.botactions/setMyCommands|setMyCommands(kotlin.String?;eu.vendeli.tgbot.types.bot.BotCommandScope?;kotlin.Array<out|eu.vendeli.tgbot.types.bot.BotCommand>...){}[0]

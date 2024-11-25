@@ -474,6 +474,9 @@ public inline fun TelegramBot.refundStarPayment(telegramPaymentChargeId: String,
 public inline fun TelegramBot.savePreparedInlineMessage(userId: Long, result: InlineQueryResult): SavePreparedInlineMessageAction = eu.vendeli.tgbot.api.botactions.savePreparedInlineMessage(userId, result)
 
 @Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.savePreparedInlineMessage(userId: Long, noinline result: () -> InlineQueryResult): SavePreparedInlineMessageAction = eu.vendeli.tgbot.api.botactions.savePreparedInlineMessage(userId, result)
+
+@Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.sendGift(
   userId: Long,
   giftId: String,

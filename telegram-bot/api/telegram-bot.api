@@ -680,6 +680,7 @@ public final class eu/vendeli/tgbot/api/botactions/SavePreparedInlineMessageActi
 
 public final class eu/vendeli/tgbot/api/botactions/SavePreparedInlineMessageKt {
 	public static final fun savePreparedInlineMessage (JLeu/vendeli/tgbot/types/inline/InlineQueryResult;)Leu/vendeli/tgbot/api/botactions/SavePreparedInlineMessageAction;
+	public static final fun savePreparedInlineMessage (JLkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/botactions/SavePreparedInlineMessageAction;
 }
 
 public final class eu/vendeli/tgbot/api/botactions/SendGiftAction : eu/vendeli/tgbot/interfaces/action/SimpleAction, eu/vendeli/tgbot/interfaces/features/EntitiesFeature {
@@ -9902,6 +9903,7 @@ public final class eu/vendeli/tgbot/types/internal/options/ReplyKeyboardMarkupOp
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/SavePreparedInlineMessageOptions : eu/vendeli/tgbot/types/internal/options/Options {
+	public static final field Companion Leu/vendeli/tgbot/types/internal/options/SavePreparedInlineMessageOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
 	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -9922,6 +9924,21 @@ public final class eu/vendeli/tgbot/types/internal/options/SavePreparedInlineMes
 	public final fun setAllowGroupChats (Ljava/lang/Boolean;)V
 	public final fun setAllowUserChats (Ljava/lang/Boolean;)V
 	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class eu/vendeli/tgbot/types/internal/options/SavePreparedInlineMessageOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/internal/options/SavePreparedInlineMessageOptions$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/internal/options/SavePreparedInlineMessageOptions;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/SavePreparedInlineMessageOptions;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/internal/options/SavePreparedInlineMessageOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/SetGameScoreOptions : eu/vendeli/tgbot/types/internal/options/Options {
