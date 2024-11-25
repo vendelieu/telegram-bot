@@ -3,6 +3,7 @@
 #### [Unreleased]
 
 * Fixed `InlineQueryResult` cached and usual results serde clashing issue.
+* Fixed `savePreparedInlineMessage` options serde issue.
 
 ## 7.5.0
 

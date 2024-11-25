@@ -48,3 +48,10 @@ inline fun savePreparedInlineMessage(
     userId: Long,
     result: InlineQueryResult,
 ) = SavePreparedInlineMessageAction(userId, result)
+
+@Suppress("NOTHING_TO_INLINE")
+@TgAPI
+inline fun savePreparedInlineMessage(
+    userId: Long,
+    result: () -> InlineQueryResult,
+) = SavePreparedInlineMessageAction(userId, result())
