@@ -29,5 +29,5 @@ abstract class SimpleAction<ReturnType> : TgAction<ReturnType>() {
         to: TelegramBot,
     ): Deferred<Response<out ReturnType>> = doRequestReturning(to)
 
-    suspend fun sendReturning(to: TelegramBot): Deferred<Response<out ReturnType>> = doRequestReturning(to)
+    suspend inline fun sendReturning(to: TelegramBot): Deferred<Response<out ReturnType>> = doRequestReturning(to)
 }

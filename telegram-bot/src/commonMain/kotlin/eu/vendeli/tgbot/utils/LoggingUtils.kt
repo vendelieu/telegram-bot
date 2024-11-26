@@ -6,14 +6,14 @@ import io.ktor.util.logging.Logger
 internal expect inline fun getLogger(lvl: LogLvl, tag: String): Logger
 
 @Suppress("NOTHING_TO_INLINE")
-suspend inline fun Logger.info(message: () -> String) = info(message())
+inline fun Logger.info(message: () -> String) = info(message())
 
 @Suppress("NOTHING_TO_INLINE")
-suspend inline fun Logger.warn(message: () -> String) = warn(message())
+inline fun Logger.warn(message: () -> String) = warn(message())
 
 @Suppress("NOTHING_TO_INLINE")
-suspend inline fun Logger.debug(message: () -> String) = debug(message())
+inline fun Logger.debug(message: () -> String) = debug(message())
 
 @Suppress("NOTHING_TO_INLINE")
-suspend inline fun Logger.error(throwable: Throwable? = null, message: () -> String) =
+inline fun Logger.error(throwable: Throwable? = null, message: () -> String) =
     throwable?.let { error(message(), it) } ?: error(message())
