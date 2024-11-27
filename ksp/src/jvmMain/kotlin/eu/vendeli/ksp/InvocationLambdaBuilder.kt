@@ -14,6 +14,7 @@ import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toTypeName
+import eu.vendeli.ksp.dto.CollectorsContext
 import eu.vendeli.ksp.dto.CommandHandlerParams
 import eu.vendeli.ksp.dto.LambdaParameters
 import eu.vendeli.ksp.utils.FileBuilder
@@ -78,7 +79,7 @@ import kotlin.reflect.KClass
 internal fun FileBuilder.buildInvocationLambdaCodeBlock(
     function: KSFunctionDeclaration,
     injectableTypes: Map<TypeName, ClassName>,
-    pkg: String? = null,
+    ctx: CollectorsContext? = null,
     meta: Pair<String, Array<Any?>>? = null,
     parameters: List<LambdaParameters> = emptyList(),
 ) = buildCodeBlock {
@@ -176,12 +177,12 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 if (index < function.parameters.lastIndex) parametersEnumeration += ", "
             }
 
-            if (pkg != null) add(
+            if (ctx?.autoCleanClassData == true && ctx.pkg != null) add(
                 "\nif (\n\t" +
                     (if (isUserNullable) "user != null\n && " else "") +
                     "bot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",
                 funQualifier,
-                pkg,
+                ctx.pkg,
             )
 
             if (parameters.contains(CommandHandlerParams.CallbackQueryAutoAnswer)) {

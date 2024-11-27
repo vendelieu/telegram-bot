@@ -4,6 +4,7 @@
 
 * Fixed `InlineQueryResult` cached and usual results serde clashing issue.
 * Fixed `savePreparedInlineMessage` options serde issue.
+* Added option to disable automatically cleaning class data through plugin's `autoCleanClassData` parameter.
 
 ## 7.5.0
 

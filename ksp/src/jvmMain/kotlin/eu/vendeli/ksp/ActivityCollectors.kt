@@ -76,7 +76,7 @@ internal fun collectCommandActivities(
                     activitiesFile.buildInvocationLambdaCodeBlock(
                         function,
                         injectableTypes,
-                        pkg,
+                        ctx,
                         buildMeta(
                             qualifier = function.qualifiedName!!.getQualifier(),
                             function = function.simpleName.asString(),
@@ -124,7 +124,7 @@ internal fun collectInputActivities(
                 activitiesFile.buildInvocationLambdaCodeBlock(
                     function,
                     injectableTypes,
-                    pkg,
+                    ctx,
                     buildMeta(
                         qualifier = function.qualifiedName!!.getQualifier(),
                         function = function.simpleName.asString(),
@@ -198,7 +198,7 @@ internal fun collectCommonActivities(
                                     activitiesFile.buildInvocationLambdaCodeBlock(
                                         commonAnnotationData.funDeclaration,
                                         injectableTypes,
-                                        pkg,
+                                        ctx,
                                         buildMeta(
                                             qualifier = commonAnnotationData.funQualifier,
                                             function = commonAnnotationData.funSimpleName,
