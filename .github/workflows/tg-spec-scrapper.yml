@@ -1,0 +1,30 @@
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 12 * * *' # Every day at 12:00 (noon).
+
+name: Scrape Telegram bot API
+jobs:
+  build:
+    name: Scrape
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: >
+          pip install requests==2.32.3 beautifulsoup4==4.12.3 html5lib==1.1
+
+      - name: Scrape API
+        run: python buildSrc/src/main/resources/scrape.py
+
+      - name: Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update Bot API spec.
+          branch: dev
