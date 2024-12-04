@@ -9,6 +9,8 @@
 [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=blue&logo=telegram)](https://t.me/venny_tgbot)
 [![Chat in Telegram](https://img.shields.io/static/v1?label=Telegram&message=Channel&color=blue&logo=telegram)](https://t.me/kotlingram)
 
+[![Validate Gradle Wrapper](https://github.com/vendelieu/telegram-bot/actions/workflows/gradle-wrapper-validation.yml/badge.svg)](https://github.com/vendelieu/telegram-bot/actions/workflows/gradle-wrapper-validation.yml)
+
 Telegram Bot Api wrapper with a user-friendly interface.
 
 # Installation

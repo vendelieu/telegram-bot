@@ -1,5 +1,12 @@
 # Telegram-bot (KtGram) Changelog
 
+## 7.6.0
+
+* Supported Telegram API [8.1](https://core.telegram.org/bots/api-changelog#december-4-2024).
+* Fixed `InlineQueryResult` cached and usual results serde clashing issue.
+* Fixed `savePreparedInlineMessage` options serde issue.
+* Added option to disable automatically cleaning class data through plugin's `autoCleanClassData` parameter.
+
 ## 7.5.0
 
 * Supported Telegram API [8.0](https://core.telegram.org/bots/api-changelog#november-17-2024).

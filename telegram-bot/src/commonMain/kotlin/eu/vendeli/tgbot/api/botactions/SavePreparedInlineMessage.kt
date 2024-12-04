@@ -10,6 +10,7 @@ import eu.vendeli.tgbot.types.internal.options.SavePreparedInlineMessageOptions
 import eu.vendeli.tgbot.types.msg.PreparedInlineMessage
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 
 @TgAPI
@@ -25,7 +26,7 @@ class SavePreparedInlineMessageAction(
 
     init {
         parameters["user_id"] = userId.toJsonElement()
-        parameters["result"] = result.encodeWith(InlineQueryResult.serializer())
+        parameters["result"] = result.encodeWith(DynamicLookupSerializer)
     }
 }
 
@@ -47,3 +48,10 @@ inline fun savePreparedInlineMessage(
     userId: Long,
     result: InlineQueryResult,
 ) = SavePreparedInlineMessageAction(userId, result)
+
+@Suppress("NOTHING_TO_INLINE")
+@TgAPI
+inline fun savePreparedInlineMessage(
+    userId: Long,
+    result: () -> InlineQueryResult,
+) = SavePreparedInlineMessageAction(userId, result())

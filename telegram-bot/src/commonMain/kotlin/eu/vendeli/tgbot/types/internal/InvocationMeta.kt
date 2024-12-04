@@ -16,7 +16,8 @@ data class InvocationMeta(
     val argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
 ) {
     override fun toString(): String = buildString {
-        append("$qualifier::$function $rateLimits")
+        append("$qualifier::$function")
+        if (rateLimits.rate > 0 || rateLimits.period > 0) append(" $rateLimits")
         if (guard.fqName != DefaultGuard::class.fqName) append(" | \uD83D\uDEE1\uFE0F ${guard.simpleName}")
         if (argParser.fqName != DefaultArgParser::class.fqName) append(" | \uD83D\uDEE0 ${argParser.simpleName}")
     }

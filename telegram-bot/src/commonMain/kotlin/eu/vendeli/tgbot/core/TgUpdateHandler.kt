@@ -164,7 +164,7 @@ class TgUpdateHandler internal constructor(
             .runCatching { decodeFromString(ProcessedUpdate.serializer(), update) }
             .onFailure {
                 logger.error(it) { "error during the update parsing process." }
-            }.onSuccess { logger.info { "Successfully parsed update to $it" } }
+            }.onSuccess { logger.debug { "Successfully parsed update to $it" } }
             .getOrNull()
     }
 

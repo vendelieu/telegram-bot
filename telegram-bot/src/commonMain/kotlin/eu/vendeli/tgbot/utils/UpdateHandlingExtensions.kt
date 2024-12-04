@@ -136,11 +136,11 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
                 foundChain.inputActivity.invoke(inputContext)
                 // invoke chain if break condition is false
             } else {
-                prevChain?.breakPoint?.activity?.invoke(inputContext)
+                prevChain.breakPoint?.activity?.invoke(inputContext)
                 // invoke break point activity when it's a break case
             }
 
-            if (isBreakCase && prevChain?.breakPoint?.repeat == true) {
+            if (isBreakCase && prevChain.breakPoint?.repeat == true) {
                 // and if we need to repeat, do set listener again
                 bot.inputListener.set(user.id, foundChain.id)
                 return true

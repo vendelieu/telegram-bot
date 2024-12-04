@@ -980,7 +980,7 @@ abstract class <#A: kotlin/Any?> eu.vendeli.tgbot.interfaces.action/MediaAction 
 abstract class <#A: kotlin/Any?> eu.vendeli.tgbot.interfaces.action/SimpleAction : eu.vendeli.tgbot.interfaces.action/TgAction<#A> { // eu.vendeli.tgbot.interfaces.action/SimpleAction|null[0]
     constructor <init>() // eu.vendeli.tgbot.interfaces.action/SimpleAction.<init>|<init>(){}[0]
 
-    final suspend fun sendReturning(eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/SimpleAction.sendReturning|sendReturning(eu.vendeli.tgbot.TelegramBot){}[0]
+    final suspend inline fun sendReturning(eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/SimpleAction.sendReturning|sendReturning(eu.vendeli.tgbot.TelegramBot){}[0]
     open suspend fun send(eu.vendeli.tgbot/TelegramBot) // eu.vendeli.tgbot.interfaces.action/SimpleAction.send|send(eu.vendeli.tgbot.TelegramBot){}[0]
     open suspend fun sendAsync(eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/SimpleAction.sendAsync|sendAsync(eu.vendeli.tgbot.TelegramBot){}[0]
 }
@@ -5082,6 +5082,19 @@ final class eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOpt
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.toString|toString(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions> { // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.$serializer|null[0]
+        final val descriptor // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions) // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;eu.vendeli.tgbot.types.internal.options.SavePreparedInlineMessageOptions){}[0]
+    }
+
+    final object Companion { // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions> // eu.vendeli.tgbot.types.internal.options/SavePreparedInlineMessageOptions.Companion.serializer|serializer(){}[0]
+    }
 }
 
 final class eu.vendeli.tgbot.types.internal.options/SetGameScoreOptions : eu.vendeli.tgbot.types.internal.options/Options { // eu.vendeli.tgbot.types.internal.options/SetGameScoreOptions|null[0]
@@ -8370,8 +8383,46 @@ final class eu.vendeli.tgbot.types.poll/PollOption { // eu.vendeli.tgbot.types.p
     }
 }
 
+final class eu.vendeli.tgbot.types.stars/AffiliateInfo { // eu.vendeli.tgbot.types.stars/AffiliateInfo|null[0]
+    constructor <init>(eu.vendeli.tgbot.types/User? = ..., eu.vendeli.tgbot.types.chat/Chat? = ..., kotlin/Int, kotlin/Int, kotlin/Int? = ...) // eu.vendeli.tgbot.types.stars/AffiliateInfo.<init>|<init>(eu.vendeli.tgbot.types.User?;eu.vendeli.tgbot.types.chat.Chat?;kotlin.Int;kotlin.Int;kotlin.Int?){}[0]
+
+    final val affiliateChat // eu.vendeli.tgbot.types.stars/AffiliateInfo.affiliateChat|{}affiliateChat[0]
+        final fun <get-affiliateChat>(): eu.vendeli.tgbot.types.chat/Chat? // eu.vendeli.tgbot.types.stars/AffiliateInfo.affiliateChat.<get-affiliateChat>|<get-affiliateChat>(){}[0]
+    final val affiliateUser // eu.vendeli.tgbot.types.stars/AffiliateInfo.affiliateUser|{}affiliateUser[0]
+        final fun <get-affiliateUser>(): eu.vendeli.tgbot.types/User? // eu.vendeli.tgbot.types.stars/AffiliateInfo.affiliateUser.<get-affiliateUser>|<get-affiliateUser>(){}[0]
+    final val amount // eu.vendeli.tgbot.types.stars/AffiliateInfo.amount|{}amount[0]
+        final fun <get-amount>(): kotlin/Int // eu.vendeli.tgbot.types.stars/AffiliateInfo.amount.<get-amount>|<get-amount>(){}[0]
+    final val commissionPerMille // eu.vendeli.tgbot.types.stars/AffiliateInfo.commissionPerMille|{}commissionPerMille[0]
+        final fun <get-commissionPerMille>(): kotlin/Int // eu.vendeli.tgbot.types.stars/AffiliateInfo.commissionPerMille.<get-commissionPerMille>|<get-commissionPerMille>(){}[0]
+    final val nanostarAmount // eu.vendeli.tgbot.types.stars/AffiliateInfo.nanostarAmount|{}nanostarAmount[0]
+        final fun <get-nanostarAmount>(): kotlin/Int? // eu.vendeli.tgbot.types.stars/AffiliateInfo.nanostarAmount.<get-nanostarAmount>|<get-nanostarAmount>(){}[0]
+
+    final fun component1(): eu.vendeli.tgbot.types/User? // eu.vendeli.tgbot.types.stars/AffiliateInfo.component1|component1(){}[0]
+    final fun component2(): eu.vendeli.tgbot.types.chat/Chat? // eu.vendeli.tgbot.types.stars/AffiliateInfo.component2|component2(){}[0]
+    final fun component3(): kotlin/Int // eu.vendeli.tgbot.types.stars/AffiliateInfo.component3|component3(){}[0]
+    final fun component4(): kotlin/Int // eu.vendeli.tgbot.types.stars/AffiliateInfo.component4|component4(){}[0]
+    final fun component5(): kotlin/Int? // eu.vendeli.tgbot.types.stars/AffiliateInfo.component5|component5(){}[0]
+    final fun copy(eu.vendeli.tgbot.types/User? = ..., eu.vendeli.tgbot.types.chat/Chat? = ..., kotlin/Int = ..., kotlin/Int = ..., kotlin/Int? = ...): eu.vendeli.tgbot.types.stars/AffiliateInfo // eu.vendeli.tgbot.types.stars/AffiliateInfo.copy|copy(eu.vendeli.tgbot.types.User?;eu.vendeli.tgbot.types.chat.Chat?;kotlin.Int;kotlin.Int;kotlin.Int?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.stars/AffiliateInfo.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.stars/AffiliateInfo.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // eu.vendeli.tgbot.types.stars/AffiliateInfo.toString|toString(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<eu.vendeli.tgbot.types.stars/AffiliateInfo> { // eu.vendeli.tgbot.types.stars/AffiliateInfo.$serializer|null[0]
+        final val descriptor // eu.vendeli.tgbot.types.stars/AffiliateInfo.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // eu.vendeli.tgbot.types.stars/AffiliateInfo.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // eu.vendeli.tgbot.types.stars/AffiliateInfo.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): eu.vendeli.tgbot.types.stars/AffiliateInfo // eu.vendeli.tgbot.types.stars/AffiliateInfo.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, eu.vendeli.tgbot.types.stars/AffiliateInfo) // eu.vendeli.tgbot.types.stars/AffiliateInfo.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;eu.vendeli.tgbot.types.stars.AffiliateInfo){}[0]
+    }
+
+    final object Companion { // eu.vendeli.tgbot.types.stars/AffiliateInfo.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<eu.vendeli.tgbot.types.stars/AffiliateInfo> // eu.vendeli.tgbot.types.stars/AffiliateInfo.Companion.serializer|serializer(){}[0]
+    }
+}
+
 final class eu.vendeli.tgbot.types.stars/StarTransaction { // eu.vendeli.tgbot.types.stars/StarTransaction|null[0]
-    constructor <init>(kotlin/String, kotlin/Int, kotlinx.datetime/Instant, eu.vendeli.tgbot.types.stars/TransactionPartner? = ..., eu.vendeli.tgbot.types.stars/TransactionPartner? = ...) // eu.vendeli.tgbot.types.stars/StarTransaction.<init>|<init>(kotlin.String;kotlin.Int;kotlinx.datetime.Instant;eu.vendeli.tgbot.types.stars.TransactionPartner?;eu.vendeli.tgbot.types.stars.TransactionPartner?){}[0]
+    constructor <init>(kotlin/String, kotlin/Int, kotlin/Int? = ..., kotlinx.datetime/Instant, eu.vendeli.tgbot.types.stars/TransactionPartner? = ..., eu.vendeli.tgbot.types.stars/TransactionPartner? = ...) // eu.vendeli.tgbot.types.stars/StarTransaction.<init>|<init>(kotlin.String;kotlin.Int;kotlin.Int?;kotlinx.datetime.Instant;eu.vendeli.tgbot.types.stars.TransactionPartner?;eu.vendeli.tgbot.types.stars.TransactionPartner?){}[0]
 
     final val amount // eu.vendeli.tgbot.types.stars/StarTransaction.amount|{}amount[0]
         final fun <get-amount>(): kotlin/Int // eu.vendeli.tgbot.types.stars/StarTransaction.amount.<get-amount>|<get-amount>(){}[0]
@@ -8379,6 +8430,8 @@ final class eu.vendeli.tgbot.types.stars/StarTransaction { // eu.vendeli.tgbot.t
         final fun <get-date>(): kotlinx.datetime/Instant // eu.vendeli.tgbot.types.stars/StarTransaction.date.<get-date>|<get-date>(){}[0]
     final val id // eu.vendeli.tgbot.types.stars/StarTransaction.id|{}id[0]
         final fun <get-id>(): kotlin/String // eu.vendeli.tgbot.types.stars/StarTransaction.id.<get-id>|<get-id>(){}[0]
+    final val nanostarAmount // eu.vendeli.tgbot.types.stars/StarTransaction.nanostarAmount|{}nanostarAmount[0]
+        final fun <get-nanostarAmount>(): kotlin/Int? // eu.vendeli.tgbot.types.stars/StarTransaction.nanostarAmount.<get-nanostarAmount>|<get-nanostarAmount>(){}[0]
     final val receiver // eu.vendeli.tgbot.types.stars/StarTransaction.receiver|{}receiver[0]
         final fun <get-receiver>(): eu.vendeli.tgbot.types.stars/TransactionPartner? // eu.vendeli.tgbot.types.stars/StarTransaction.receiver.<get-receiver>|<get-receiver>(){}[0]
     final val source // eu.vendeli.tgbot.types.stars/StarTransaction.source|{}source[0]
@@ -8386,10 +8439,11 @@ final class eu.vendeli.tgbot.types.stars/StarTransaction { // eu.vendeli.tgbot.t
 
     final fun component1(): kotlin/String // eu.vendeli.tgbot.types.stars/StarTransaction.component1|component1(){}[0]
     final fun component2(): kotlin/Int // eu.vendeli.tgbot.types.stars/StarTransaction.component2|component2(){}[0]
-    final fun component3(): kotlinx.datetime/Instant // eu.vendeli.tgbot.types.stars/StarTransaction.component3|component3(){}[0]
-    final fun component4(): eu.vendeli.tgbot.types.stars/TransactionPartner? // eu.vendeli.tgbot.types.stars/StarTransaction.component4|component4(){}[0]
+    final fun component3(): kotlin/Int? // eu.vendeli.tgbot.types.stars/StarTransaction.component3|component3(){}[0]
+    final fun component4(): kotlinx.datetime/Instant // eu.vendeli.tgbot.types.stars/StarTransaction.component4|component4(){}[0]
     final fun component5(): eu.vendeli.tgbot.types.stars/TransactionPartner? // eu.vendeli.tgbot.types.stars/StarTransaction.component5|component5(){}[0]
-    final fun copy(kotlin/String = ..., kotlin/Int = ..., kotlinx.datetime/Instant = ..., eu.vendeli.tgbot.types.stars/TransactionPartner? = ..., eu.vendeli.tgbot.types.stars/TransactionPartner? = ...): eu.vendeli.tgbot.types.stars/StarTransaction // eu.vendeli.tgbot.types.stars/StarTransaction.copy|copy(kotlin.String;kotlin.Int;kotlinx.datetime.Instant;eu.vendeli.tgbot.types.stars.TransactionPartner?;eu.vendeli.tgbot.types.stars.TransactionPartner?){}[0]
+    final fun component6(): eu.vendeli.tgbot.types.stars/TransactionPartner? // eu.vendeli.tgbot.types.stars/StarTransaction.component6|component6(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/Int = ..., kotlin/Int? = ..., kotlinx.datetime/Instant = ..., eu.vendeli.tgbot.types.stars/TransactionPartner? = ..., eu.vendeli.tgbot.types.stars/TransactionPartner? = ...): eu.vendeli.tgbot.types.stars/StarTransaction // eu.vendeli.tgbot.types.stars/StarTransaction.copy|copy(kotlin.String;kotlin.Int;kotlin.Int?;kotlinx.datetime.Instant;eu.vendeli.tgbot.types.stars.TransactionPartner?;eu.vendeli.tgbot.types.stars.TransactionPartner?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.stars/StarTransaction.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.stars/StarTransaction.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.stars/StarTransaction.toString|toString(){}[0]
@@ -12597,6 +12651,35 @@ sealed class eu.vendeli.tgbot.types.stars/TransactionPartner { // eu.vendeli.tgb
     final val type // eu.vendeli.tgbot.types.stars/TransactionPartner.type|{}type[0]
         final fun <get-type>(): kotlin/String // eu.vendeli.tgbot.types.stars/TransactionPartner.type.<get-type>|<get-type>(){}[0]
 
+    final class AffiliateProgram : eu.vendeli.tgbot.types.stars/TransactionPartner { // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram|null[0]
+        constructor <init>(eu.vendeli.tgbot.types/User? = ..., kotlin/Int) // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.<init>|<init>(eu.vendeli.tgbot.types.User?;kotlin.Int){}[0]
+
+        final val commissionPerMille // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.commissionPerMille|{}commissionPerMille[0]
+            final fun <get-commissionPerMille>(): kotlin/Int // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.commissionPerMille.<get-commissionPerMille>|<get-commissionPerMille>(){}[0]
+        final val sponsorUser // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.sponsorUser|{}sponsorUser[0]
+            final fun <get-sponsorUser>(): eu.vendeli.tgbot.types/User? // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.sponsorUser.<get-sponsorUser>|<get-sponsorUser>(){}[0]
+
+        final fun component1(): eu.vendeli.tgbot.types/User? // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.component1|component1(){}[0]
+        final fun component2(): kotlin/Int // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.component2|component2(){}[0]
+        final fun copy(eu.vendeli.tgbot.types/User? = ..., kotlin/Int = ...): eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.copy|copy(eu.vendeli.tgbot.types.User?;kotlin.Int){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.toString|toString(){}[0]
+
+        final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram> { // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.$serializer|null[0]
+            final val descriptor // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.$serializer.descriptor|{}descriptor[0]
+                final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+            final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.$serializer.childSerializers|childSerializers(){}[0]
+            final fun deserialize(kotlinx.serialization.encoding/Decoder): eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+            final fun serialize(kotlinx.serialization.encoding/Encoder, eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram) // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;eu.vendeli.tgbot.types.stars.TransactionPartner.AffiliateProgram){}[0]
+        }
+
+        final object Companion { // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.Companion|null[0]
+            final fun serializer(): kotlinx.serialization/KSerializer<eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram> // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.Companion.serializer|serializer(){}[0]
+        }
+    }
+
     final class Fragment : eu.vendeli.tgbot.types.stars/TransactionPartner { // eu.vendeli.tgbot.types.stars/TransactionPartner.Fragment|null[0]
         constructor <init>(eu.vendeli.tgbot.types.stars/RevenueWithdrawalState? = ...) // eu.vendeli.tgbot.types.stars/TransactionPartner.Fragment.<init>|<init>(eu.vendeli.tgbot.types.stars.RevenueWithdrawalState?){}[0]
 
@@ -12652,8 +12735,10 @@ sealed class eu.vendeli.tgbot.types.stars/TransactionPartner { // eu.vendeli.tgb
     }
 
     final class UserPartner : eu.vendeli.tgbot.types.stars/TransactionPartner { // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner|null[0]
-        constructor <init>(eu.vendeli.tgbot.types/User, kotlin/String? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.media/PaidMedia>? = ..., kotlin/String? = ..., kotlin.time/Duration? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.<init>|<init>(eu.vendeli.tgbot.types.User;kotlin.String?;kotlin.collections.List<eu.vendeli.tgbot.types.media.PaidMedia>?;kotlin.String?;kotlin.time.Duration?;kotlin.String?){}[0]
+        constructor <init>(eu.vendeli.tgbot.types/User, eu.vendeli.tgbot.types.stars/AffiliateInfo? = ..., kotlin/String? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.media/PaidMedia>? = ..., kotlin/String? = ..., kotlin.time/Duration? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.<init>|<init>(eu.vendeli.tgbot.types.User;eu.vendeli.tgbot.types.stars.AffiliateInfo?;kotlin.String?;kotlin.collections.List<eu.vendeli.tgbot.types.media.PaidMedia>?;kotlin.String?;kotlin.time.Duration?;kotlin.String?){}[0]
 
+        final val affiliate // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.affiliate|{}affiliate[0]
+            final fun <get-affiliate>(): eu.vendeli.tgbot.types.stars/AffiliateInfo? // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.affiliate.<get-affiliate>|<get-affiliate>(){}[0]
         final val gift // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.gift|{}gift[0]
             final fun <get-gift>(): kotlin/String? // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.gift.<get-gift>|<get-gift>(){}[0]
         final val invoicePayload // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.invoicePayload|{}invoicePayload[0]
@@ -12668,12 +12753,13 @@ sealed class eu.vendeli.tgbot.types.stars/TransactionPartner { // eu.vendeli.tgb
             final fun <get-user>(): eu.vendeli.tgbot.types/User // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.user.<get-user>|<get-user>(){}[0]
 
         final fun component1(): eu.vendeli.tgbot.types/User // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.component1|component1(){}[0]
-        final fun component2(): kotlin/String? // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.component2|component2(){}[0]
-        final fun component3(): kotlin.collections/List<eu.vendeli.tgbot.types.media/PaidMedia>? // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.component3|component3(){}[0]
-        final fun component4(): kotlin/String? // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.component4|component4(){}[0]
-        final fun component5(): kotlin.time/Duration? // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.component5|component5(){}[0]
-        final fun component6(): kotlin/String? // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.component6|component6(){}[0]
-        final fun copy(eu.vendeli.tgbot.types/User = ..., kotlin/String? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.media/PaidMedia>? = ..., kotlin/String? = ..., kotlin.time/Duration? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.copy|copy(eu.vendeli.tgbot.types.User;kotlin.String?;kotlin.collections.List<eu.vendeli.tgbot.types.media.PaidMedia>?;kotlin.String?;kotlin.time.Duration?;kotlin.String?){}[0]
+        final fun component2(): eu.vendeli.tgbot.types.stars/AffiliateInfo? // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.component2|component2(){}[0]
+        final fun component3(): kotlin/String? // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.component3|component3(){}[0]
+        final fun component4(): kotlin.collections/List<eu.vendeli.tgbot.types.media/PaidMedia>? // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.component4|component4(){}[0]
+        final fun component5(): kotlin/String? // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.component5|component5(){}[0]
+        final fun component6(): kotlin.time/Duration? // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.component6|component6(){}[0]
+        final fun component7(): kotlin/String? // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.component7|component7(){}[0]
+        final fun copy(eu.vendeli.tgbot.types/User = ..., eu.vendeli.tgbot.types.stars/AffiliateInfo? = ..., kotlin/String? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.media/PaidMedia>? = ..., kotlin/String? = ..., kotlin.time/Duration? = ..., kotlin/String? = ...): eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.copy|copy(eu.vendeli.tgbot.types.User;eu.vendeli.tgbot.types.stars.AffiliateInfo?;kotlin.String?;kotlin.collections.List<eu.vendeli.tgbot.types.media.PaidMedia>?;kotlin.String?;kotlin.time.Duration?;kotlin.String?){}[0]
         final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.equals|equals(kotlin.Any?){}[0]
         final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.hashCode|hashCode(){}[0]
         final fun toString(): kotlin/String // eu.vendeli.tgbot.types.stars/TransactionPartner.UserPartner.toString|toString(){}[0]
@@ -13420,6 +13506,10 @@ final fun eu.vendeli.tgbot.utils.builders/inlineKeyboardMarkup(kotlin/Function1<
 final fun eu.vendeli.tgbot.utils.builders/replyKeyboardMarkup(kotlin/Function1<eu.vendeli.tgbot.utils.builders/ReplyKeyboardMarkupBuilder, kotlin/Unit>): eu.vendeli.tgbot.types.keyboard/ReplyKeyboardMarkup // eu.vendeli.tgbot.utils.builders/replyKeyboardMarkup|replyKeyboardMarkup(kotlin.Function1<eu.vendeli.tgbot.utils.builders.ReplyKeyboardMarkupBuilder,kotlin.Unit>){}[0]
 final inline fun (eu.vendeli.tgbot.types.internal/InputFile).eu.vendeli.tgbot.utils/toImplicitFile(): eu.vendeli.tgbot.types.internal/ImplicitFile.InpFile // eu.vendeli.tgbot.utils/toImplicitFile|toImplicitFile@eu.vendeli.tgbot.types.internal.InputFile(){}[0]
 final inline fun (eu.vendeli.tgbot.types.internal/ProcessedUpdate).eu.vendeli.tgbot.types.internal/getUser(): eu.vendeli.tgbot.types/User // eu.vendeli.tgbot.types.internal/getUser|getUser@eu.vendeli.tgbot.types.internal.ProcessedUpdate(){}[0]
+final inline fun (io.ktor.util.logging/Logger).eu.vendeli.tgbot.utils/debug(kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/debug|debug@io.ktor.util.logging.Logger(kotlin.Function0<kotlin.String>){}[0]
+final inline fun (io.ktor.util.logging/Logger).eu.vendeli.tgbot.utils/error(kotlin/Throwable? = ..., kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/error|error@io.ktor.util.logging.Logger(kotlin.Throwable?;kotlin.Function0<kotlin.String>){}[0]
+final inline fun (io.ktor.util.logging/Logger).eu.vendeli.tgbot.utils/info(kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/info|info@io.ktor.util.logging.Logger(kotlin.Function0<kotlin.String>){}[0]
+final inline fun (io.ktor.util.logging/Logger).eu.vendeli.tgbot.utils/warn(kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/warn|warn@io.ktor.util.logging.Logger(kotlin.Function0<kotlin.String>){}[0]
 final inline fun (kotlin/String).eu.vendeli.tgbot.utils/toImplicitFile(): eu.vendeli.tgbot.types.internal/ImplicitFile.Str // eu.vendeli.tgbot.utils/toImplicitFile|toImplicitFile@kotlin.String(){}[0]
 final inline fun <#A: kotlin/Any?> (eu.vendeli.tgbot.types.internal/Response<#A>).eu.vendeli.tgbot.types.internal/onFailure(kotlin/Function1<eu.vendeli.tgbot.types.internal/Response.Failure, kotlin/Unit>): #A? // eu.vendeli.tgbot.types.internal/onFailure|onFailure@eu.vendeli.tgbot.types.internal.Response<0:0>(kotlin.Function1<eu.vendeli.tgbot.types.internal.Response.Failure,kotlin.Unit>){0§<kotlin.Any?>}[0]
 final inline fun <#A: reified kotlin/Any> (eu.vendeli.tgbot.interfaces.ctx/ClassManager).eu.vendeli.tgbot.utils/getInstance(kotlin/Array<out kotlin/Any?>...): #A? // eu.vendeli.tgbot.utils/getInstance|getInstance@eu.vendeli.tgbot.interfaces.ctx.ClassManager(kotlin.Array<out|kotlin.Any?>...){0§<kotlin.Any>}[0]
@@ -13450,6 +13540,7 @@ final inline fun eu.vendeli.tgbot.api.botactions/getWebhookInfo(): eu.vendeli.tg
 final inline fun eu.vendeli.tgbot.api.botactions/logOut(): eu.vendeli.tgbot.api.botactions/LogOutAction // eu.vendeli.tgbot.api.botactions/logOut|logOut(){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/refundStarPayment(kotlin/String, kotlin/Long): eu.vendeli.tgbot.api.botactions/RefundStarPaymentAction // eu.vendeli.tgbot.api.botactions/refundStarPayment|refundStarPayment(kotlin.String;kotlin.Long){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/savePreparedInlineMessage(kotlin/Long, eu.vendeli.tgbot.types.inline/InlineQueryResult): eu.vendeli.tgbot.api.botactions/SavePreparedInlineMessageAction // eu.vendeli.tgbot.api.botactions/savePreparedInlineMessage|savePreparedInlineMessage(kotlin.Long;eu.vendeli.tgbot.types.inline.InlineQueryResult){}[0]
+final inline fun eu.vendeli.tgbot.api.botactions/savePreparedInlineMessage(kotlin/Long, kotlin/Function0<eu.vendeli.tgbot.types.inline/InlineQueryResult>): eu.vendeli.tgbot.api.botactions/SavePreparedInlineMessageAction // eu.vendeli.tgbot.api.botactions/savePreparedInlineMessage|savePreparedInlineMessage(kotlin.Long;kotlin.Function0<eu.vendeli.tgbot.types.inline.InlineQueryResult>){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/sendGift(kotlin/Long, kotlin/String, eu.vendeli.tgbot.types/ParseMode? = ..., noinline kotlin/Function0<kotlin/String>? = ...): eu.vendeli.tgbot.api.botactions/SendGiftAction // eu.vendeli.tgbot.api.botactions/sendGift|sendGift(kotlin.Long;kotlin.String;eu.vendeli.tgbot.types.ParseMode?;kotlin.Function0<kotlin.String>?){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/setMyCommands(kotlin/String? = ..., eu.vendeli.tgbot.types.bot/BotCommandScope? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.bot/BotCommand>): eu.vendeli.tgbot.api.botactions/SetMyCommandsAction // eu.vendeli.tgbot.api.botactions/setMyCommands|setMyCommands(kotlin.String?;eu.vendeli.tgbot.types.bot.BotCommandScope?;kotlin.collections.List<eu.vendeli.tgbot.types.bot.BotCommand>){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/setMyCommands(kotlin/String? = ..., eu.vendeli.tgbot.types.bot/BotCommandScope? = ..., kotlin/Array<out eu.vendeli.tgbot.types.bot/BotCommand>...): eu.vendeli.tgbot.api.botactions/SetMyCommandsAction // eu.vendeli.tgbot.api.botactions/setMyCommands|setMyCommands(kotlin.String?;eu.vendeli.tgbot.types.bot.BotCommandScope?;kotlin.Array<out|eu.vendeli.tgbot.types.bot.BotCommand>...){}[0]
@@ -13671,10 +13762,6 @@ final inline fun eu.vendeli.tgbot.api/stopMessageLiveLocation(kotlin/Long): eu.v
 final inline fun eu.vendeli.tgbot.api/stopPoll(kotlin/Long): eu.vendeli.tgbot.api/StopPollAction // eu.vendeli.tgbot.api/stopPoll|stopPoll(kotlin.Long){}[0]
 final inline fun eu.vendeli.tgbot.api/venue(kotlin/Float, kotlin/Float, kotlin/String, kotlin/String): eu.vendeli.tgbot.api/SendVenueAction // eu.vendeli.tgbot.api/venue|venue(kotlin.Float;kotlin.Float;kotlin.String;kotlin.String){}[0]
 final suspend fun (eu.vendeli.tgbot.core/TgUpdateHandler).eu.vendeli.tgbot.utils/runExceptionHandler(kotlinx.coroutines/CoroutineDispatcher = ..., kotlin/Long = ..., eu.vendeli.tgbot.interfaces.helper/ExceptionHandler): kotlinx.coroutines/Job // eu.vendeli.tgbot.utils/runExceptionHandler|runExceptionHandler@eu.vendeli.tgbot.core.TgUpdateHandler(kotlinx.coroutines.CoroutineDispatcher;kotlin.Long;eu.vendeli.tgbot.interfaces.helper.ExceptionHandler){}[0]
-final suspend inline fun (io.ktor.util.logging/Logger).eu.vendeli.tgbot.utils/debug(kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/debug|debug@io.ktor.util.logging.Logger(kotlin.Function0<kotlin.String>){}[0]
-final suspend inline fun (io.ktor.util.logging/Logger).eu.vendeli.tgbot.utils/error(kotlin/Throwable? = ..., kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/error|error@io.ktor.util.logging.Logger(kotlin.Throwable?;kotlin.Function0<kotlin.String>){}[0]
-final suspend inline fun (io.ktor.util.logging/Logger).eu.vendeli.tgbot.utils/info(kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/info|info@io.ktor.util.logging.Logger(kotlin.Function0<kotlin.String>){}[0]
-final suspend inline fun (io.ktor.util.logging/Logger).eu.vendeli.tgbot.utils/warn(kotlin/Function0<kotlin/String>) // eu.vendeli.tgbot.utils/warn|warn@io.ktor.util.logging.Logger(kotlin.Function0<kotlin.String>){}[0]
 final suspend inline fun <#A: kotlin/Any?, #B: kotlin/Any?> (kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>>).eu.vendeli.tgbot.types.internal/foldResponse(kotlin/Function1<eu.vendeli.tgbot.types.internal/Response.Success<#A>, #B>, kotlin/Function1<eu.vendeli.tgbot.types.internal/Response.Failure, #B>): #B // eu.vendeli.tgbot.types.internal/foldResponse|foldResponse@kotlinx.coroutines.Deferred<eu.vendeli.tgbot.types.internal.Response<out|0:0>>(kotlin.Function1<eu.vendeli.tgbot.types.internal.Response.Success<0:0>,0:1>;kotlin.Function1<eu.vendeli.tgbot.types.internal.Response.Failure,0:1>){0§<kotlin.Any?>;1§<kotlin.Any?>}[0]
 final suspend inline fun <#A: kotlin/Any?> (kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>>).eu.vendeli.tgbot.types.internal/getOrNull(): #A? // eu.vendeli.tgbot.types.internal/getOrNull|getOrNull@kotlinx.coroutines.Deferred<eu.vendeli.tgbot.types.internal.Response<out|0:0>>(){0§<kotlin.Any?>}[0]
 final suspend inline fun <#A: kotlin/Any?> (kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>>).eu.vendeli.tgbot.types.internal/onFailure(kotlin/Function1<eu.vendeli.tgbot.types.internal/Response.Failure, kotlin/Unit>): #A? // eu.vendeli.tgbot.types.internal/onFailure|onFailure@kotlinx.coroutines.Deferred<eu.vendeli.tgbot.types.internal.Response<out|0:0>>(kotlin.Function1<eu.vendeli.tgbot.types.internal.Response.Failure,kotlin.Unit>){0§<kotlin.Any?>}[0]

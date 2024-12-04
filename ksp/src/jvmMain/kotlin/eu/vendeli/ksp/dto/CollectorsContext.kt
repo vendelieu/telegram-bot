@@ -12,4 +12,5 @@ data class CollectorsContext(
     val logger: KSPLogger,
     val idxPostfix: String,
     val pkg: String? = null,
+    val autoCleanClassData: Boolean = true,
 )

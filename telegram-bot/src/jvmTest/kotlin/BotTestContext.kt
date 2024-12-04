@@ -1,4 +1,3 @@
-
 import eu.vendeli.fixtures.__ACTIVITIES
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.action.Action
@@ -20,8 +19,11 @@ import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.common.ExperimentalKotest
 import io.kotest.common.runBlocking
 import io.kotest.core.spec.style.AnnotationSpec
+import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.string.shouldContain
 import io.ktor.client.request.get
 import io.ktor.client.statement.readRawBytes
 import io.ktor.http.isSuccess
@@ -142,6 +144,20 @@ abstract class BotTestContext(
         isSuccess().shouldBeTrue()
         getOrNull().shouldNotBeNull()
     }
+
+    protected suspend inline fun <T> Deferred<Response<out T>>.shouldFailure() = await().shouldFailure()
+
+    @Suppress("NOTHING_TO_INLINE")
+    protected inline fun <T> Response<T>.shouldFailure(): Response.Failure = with(this) {
+        ok.shouldBeFalse()
+        isSuccess().shouldBeFalse()
+        getOrNull().shouldBeNull()
+        this as Response.Failure
+    }
+
+    @Suppress("NOTHING_TO_INLINE")
+    protected inline infix fun Response.Failure.shouldContainInDescription(text: String) =
+        description.shouldContain(text)
 
     internal inline fun <reified T> JsonElement.isSerializableTo(): T = shouldNotThrowAny {
         serde.decodeFromJsonElement(

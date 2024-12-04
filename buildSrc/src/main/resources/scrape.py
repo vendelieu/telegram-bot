@@ -143,9 +143,9 @@ def get_fields(curr_name: str, curr_type: str, x: Tag, items: dict, url: str):
 
 def get_method_return_type(curr_name: str, curr_type: str, description_items: list[str], items: dict):
     description = "\n".join(description_items)
-    ret_search = re.search("(?:on success,)([^.]*)", description, re.IGNORECASE)
-    ret_search2 = re.search("(?:returns)([^.]*)(?:on success)?", description, re.IGNORECASE)
-    ret_search3 = re.search("([^.]*)(?:is returned)", description, re.IGNORECASE)
+    ret_search = re.search(".*(?:on success,)([^.]*)", description, re.IGNORECASE)
+    ret_search2 = re.search(".*(?:returns)([^.]*)(?:on success)?", description, re.IGNORECASE)
+    ret_search3 = re.search(".*([^.]*)(?:is returned)", description, re.IGNORECASE)
     if ret_search:
         extract_return_type(curr_type, curr_name, ret_search.group(1).strip(), items)
     elif ret_search2:

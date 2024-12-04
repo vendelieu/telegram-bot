@@ -32,7 +32,7 @@ internal fun collectInputChains(
                 }.arguments
                 .firstOrNull()
                 ?.value
-                ?.cast<Boolean>() ?: false
+                ?.cast<Boolean>() == true
 
             val links = chain.declarations
                 .filter { i ->

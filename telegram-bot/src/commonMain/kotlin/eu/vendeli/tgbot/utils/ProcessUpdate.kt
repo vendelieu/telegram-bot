@@ -53,5 +53,5 @@ fun Update.processUpdate(): ProcessedUpdate = when {
     editedBusinessMessage != null -> EditedBusinessMessageUpdate(updateId, this, editedBusinessMessage)
     deletedBusinessMessages != null -> DeletedBusinessMessagesUpdate(updateId, this, deletedBusinessMessages)
     purchasedPaidMedia != null -> PurchasedPaidMediaUpdate(updateId, this, purchasedPaidMedia)
-    else -> throw IllegalArgumentException("Unknown type of update.")
+    else -> throw TgException("Unknown type of update.")
 }

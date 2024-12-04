@@ -42,6 +42,7 @@ class ActivityProcessor(
     private val codeGenerator: CodeGenerator,
 ) : SymbolProcessor {
     private val targetPackage = options["package"]?.split(';')
+    private val autoCleanClassData = options["autoCleanClassData"]?.toBooleanStrictOrNull() != false
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
         val fileSpec = FileSpec.builder("eu.vendeli.tgbot.generated", "ActivitiesData").apply {
@@ -144,6 +145,7 @@ class ActivityProcessor(
             logger = logger,
             idxPostfix = idxPostfix,
             pkg = filePkg,
+            autoCleanClassData = autoCleanClassData
         )
 
         collectCommandActivities(commandHandlerSymbols, context)

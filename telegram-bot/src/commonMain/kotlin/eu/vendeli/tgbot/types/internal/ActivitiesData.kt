@@ -32,10 +32,10 @@ internal class ActivitiesData(
         @Suppress("OPT_IN_USAGE")
         GlobalScope.launch {
             logger.info {
-                "\nCommandHandlers:\n${commandHandlers.logString}\n" +
-                    "InputHandlers:\n${inputHandlers.logString}\n" +
-                    "CommonHandlers:\n${commonHandlers.logString}\n" +
-                    "UpdateTypeHandlers:\n${updateTypeHandlers.logString}\n" +
+                "\nCommandHandlers:\n${commandHandlers.logString}\n\n" +
+                    "InputHandlers:\n${inputHandlers.logString}\n\n" +
+                    "CommonHandlers:\n${commonHandlers.logString}\n\n" +
+                    "UpdateTypeHandlers:\n${updateTypeHandlers.logString}\n\n" +
                     "UnprocessedHandler:\n${unprocessedHandler ?: "None"}"
             }
         }

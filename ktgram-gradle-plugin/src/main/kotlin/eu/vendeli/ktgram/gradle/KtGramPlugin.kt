@@ -55,6 +55,9 @@ abstract class KtGramPlugin : Plugin<Project> {
                 pluginExtension.packages.orNull?.takeIf { it.isNotEmpty() }?.joinToString(";")?.let {
                     arg("package", it)
                 }
+                pluginExtension.autoCleanClassData.getOrElse(true).takeIf { !it }?.let {
+                    arg("autoCleanClassData", "false")
+                }
             }
 
             if (!kspPluginPresent) log.error(

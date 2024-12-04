@@ -11,6 +11,7 @@ import kotlin.time.Duration
 /**
  * This object describes the source of a transaction, or its recipient for outgoing transactions. Currently, it can be one of
  * - TransactionPartnerUser
+ * - TransactionPartnerAffiliateProgram
  * - TransactionPartnerFragment
  * - TransactionPartnerTelegramAds
  * - TransactionPartnerTelegramApi
@@ -34,6 +35,7 @@ sealed class TransactionPartner(
     @TgAPI.Name("TransactionPartnerUser")
     data class UserPartner(
         val user: User,
+        val affiliate: AffiliateInfo? = null,
         val invoicePayload: String? = null,
         val paidMedia: List<PaidMedia>? = null,
         val paidMediaPayload: String? = null,
@@ -55,4 +57,11 @@ sealed class TransactionPartner(
     data class TelegramApi(
         val requestCount: Int,
     ) : TransactionPartner("telegram_api")
+
+    @Serializable
+    @SerialName("affiliate_program")
+    data class AffiliateProgram(
+        val sponsorUser: User? = null,
+        val commissionPerMille: Int,
+    ) : TransactionPartner("affiliate_program")
 }
