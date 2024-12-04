@@ -7,7 +7,6 @@ import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.MultiPartFormDataContent
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
-import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
 import io.ktor.client.statement.request
 import io.ktor.http.ContentType
@@ -55,18 +54,6 @@ private fun HttpRequestBuilder.formReqBody(
     }
 }
 
-private suspend fun <T> HttpResponse.toResult(
-    type: KSerializer<T>,
-    bot: TelegramBot,
-) = bodyAsText().let {
-    if (status.isSuccess()) serde.decodeFromString(Response.Success.serializer(type), it)
-    else serde.decodeFromString(Response.Failure.serializer(), it).also { f ->
-        val stringFailure = f.toString()
-        bot.logger.error { "Request - ${call.request.content} received failure response: $stringFailure" }
-        if (bot.config.throwExOnActionsFailure) throw TgFailureException(stringFailure)
-    }
-}
-
 internal suspend inline fun <T> TelegramBot.makeRequestReturning(
     method: String,
     data: Map<String, JsonElement>,
@@ -77,7 +64,16 @@ internal suspend inline fun <T> TelegramBot.makeRequestReturning(
         formReqBody(data, multipartData)
     }
 
-    return@coroutineScope async { response.toResult(returnType, this@makeRequestReturning) }
+    return@coroutineScope async {
+        response.bodyAsText().let {
+            if (response.status.isSuccess()) serde.decodeFromString(Response.Success.serializer(returnType), it)
+            else serde.decodeFromString(Response.Failure.serializer(), it).also { f ->
+                val stringFailure = f.toString()
+                logger.error { "Request - ${response.call.request.content} received failure response: $stringFailure" }
+                if (config.throwExOnActionsFailure) throw TgFailureException(stringFailure)
+            }
+        }
+    }
 }
 
 internal suspend inline fun TelegramBot.makeSilentRequest(

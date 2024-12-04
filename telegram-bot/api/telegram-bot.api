@@ -13505,6 +13505,42 @@ public final class eu/vendeli/tgbot/types/poll/PollType$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class eu/vendeli/tgbot/types/stars/AffiliateInfo {
+	public static final field Companion Leu/vendeli/tgbot/types/stars/AffiliateInfo$Companion;
+	public fun <init> (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/chat/Chat;IILjava/lang/Integer;)V
+	public synthetic fun <init> (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/chat/Chat;IILjava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Leu/vendeli/tgbot/types/User;
+	public final fun component2 ()Leu/vendeli/tgbot/types/chat/Chat;
+	public final fun component3 ()I
+	public final fun component4 ()I
+	public final fun component5 ()Ljava/lang/Integer;
+	public final fun copy (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/chat/Chat;IILjava/lang/Integer;)Leu/vendeli/tgbot/types/stars/AffiliateInfo;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/stars/AffiliateInfo;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/chat/Chat;IILjava/lang/Integer;ILjava/lang/Object;)Leu/vendeli/tgbot/types/stars/AffiliateInfo;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAffiliateChat ()Leu/vendeli/tgbot/types/chat/Chat;
+	public final fun getAffiliateUser ()Leu/vendeli/tgbot/types/User;
+	public final fun getAmount ()I
+	public final fun getCommissionPerMille ()I
+	public final fun getNanostarAmount ()Ljava/lang/Integer;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class eu/vendeli/tgbot/types/stars/AffiliateInfo$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/stars/AffiliateInfo$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/stars/AffiliateInfo;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/stars/AffiliateInfo;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/stars/AffiliateInfo$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public abstract class eu/vendeli/tgbot/types/stars/RevenueWithdrawalState {
 	public static final field Companion Leu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -13564,19 +13600,21 @@ public final class eu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Succeeded
 
 public final class eu/vendeli/tgbot/types/stars/StarTransaction {
 	public static final field Companion Leu/vendeli/tgbot/types/stars/StarTransaction$Companion;
-	public fun <init> (Ljava/lang/String;ILkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;)V
-	public synthetic fun <init> (Ljava/lang/String;ILkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/Integer;Lkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;)V
+	public synthetic fun <init> (Ljava/lang/String;ILjava/lang/Integer;Lkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()I
-	public final fun component3 ()Lkotlinx/datetime/Instant;
-	public final fun component4 ()Leu/vendeli/tgbot/types/stars/TransactionPartner;
+	public final fun component3 ()Ljava/lang/Integer;
+	public final fun component4 ()Lkotlinx/datetime/Instant;
 	public final fun component5 ()Leu/vendeli/tgbot/types/stars/TransactionPartner;
-	public final fun copy (Ljava/lang/String;ILkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;)Leu/vendeli/tgbot/types/stars/StarTransaction;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/stars/StarTransaction;Ljava/lang/String;ILkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;ILjava/lang/Object;)Leu/vendeli/tgbot/types/stars/StarTransaction;
+	public final fun component6 ()Leu/vendeli/tgbot/types/stars/TransactionPartner;
+	public final fun copy (Ljava/lang/String;ILjava/lang/Integer;Lkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;)Leu/vendeli/tgbot/types/stars/StarTransaction;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/stars/StarTransaction;Ljava/lang/String;ILjava/lang/Integer;Lkotlinx/datetime/Instant;Leu/vendeli/tgbot/types/stars/TransactionPartner;Leu/vendeli/tgbot/types/stars/TransactionPartner;ILjava/lang/Object;)Leu/vendeli/tgbot/types/stars/StarTransaction;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAmount ()I
 	public final fun getDate ()Lkotlinx/datetime/Instant;
 	public final fun getId ()Ljava/lang/String;
+	public final fun getNanostarAmount ()Ljava/lang/Integer;
 	public final fun getReceiver ()Leu/vendeli/tgbot/types/stars/TransactionPartner;
 	public final fun getSource ()Leu/vendeli/tgbot/types/stars/TransactionPartner;
 	public fun hashCode ()I
@@ -13631,6 +13669,36 @@ public abstract class eu/vendeli/tgbot/types/stars/TransactionPartner {
 	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getType ()Ljava/lang/String;
 	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/stars/TransactionPartner;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class eu/vendeli/tgbot/types/stars/TransactionPartner$AffiliateProgram : eu/vendeli/tgbot/types/stars/TransactionPartner {
+	public static final field Companion Leu/vendeli/tgbot/types/stars/TransactionPartner$AffiliateProgram$Companion;
+	public fun <init> (Leu/vendeli/tgbot/types/User;I)V
+	public synthetic fun <init> (Leu/vendeli/tgbot/types/User;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Leu/vendeli/tgbot/types/User;
+	public final fun component2 ()I
+	public final fun copy (Leu/vendeli/tgbot/types/User;I)Leu/vendeli/tgbot/types/stars/TransactionPartner$AffiliateProgram;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/stars/TransactionPartner$AffiliateProgram;Leu/vendeli/tgbot/types/User;IILjava/lang/Object;)Leu/vendeli/tgbot/types/stars/TransactionPartner$AffiliateProgram;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCommissionPerMille ()I
+	public final fun getSponsorUser ()Leu/vendeli/tgbot/types/User;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class eu/vendeli/tgbot/types/stars/TransactionPartner$AffiliateProgram$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/stars/TransactionPartner$AffiliateProgram$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/stars/TransactionPartner$AffiliateProgram;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/stars/TransactionPartner$AffiliateProgram;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/stars/TransactionPartner$AffiliateProgram$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/stars/TransactionPartner$Companion {
@@ -13711,17 +13779,19 @@ public final class eu/vendeli/tgbot/types/stars/TransactionPartner$TelegramApi$C
 
 public final class eu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner : eu/vendeli/tgbot/types/stars/TransactionPartner {
 	public static final field Companion Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner$Companion;
-	public synthetic fun <init> (Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlin/time/Duration;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun <init> (Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlin/time/Duration;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/stars/AffiliateInfo;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlin/time/Duration;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/stars/AffiliateInfo;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlin/time/Duration;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Leu/vendeli/tgbot/types/User;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/util/List;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5-FghU774 ()Lkotlin/time/Duration;
-	public final fun component6 ()Ljava/lang/String;
-	public final fun copy-yV_PMig (Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlin/time/Duration;Ljava/lang/String;)Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner;
-	public static synthetic fun copy-yV_PMig$default (Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner;Leu/vendeli/tgbot/types/User;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlin/time/Duration;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner;
+	public final fun component2 ()Leu/vendeli/tgbot/types/stars/AffiliateInfo;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/util/List;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6-FghU774 ()Lkotlin/time/Duration;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun copy-7Yrd8eY (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/stars/AffiliateInfo;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlin/time/Duration;Ljava/lang/String;)Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner;
+	public static synthetic fun copy-7Yrd8eY$default (Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/stars/AffiliateInfo;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlin/time/Duration;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAffiliate ()Leu/vendeli/tgbot/types/stars/AffiliateInfo;
 	public final fun getGift ()Ljava/lang/String;
 	public final fun getInvoicePayload ()Ljava/lang/String;
 	public final fun getPaidMedia ()Ljava/util/List;
