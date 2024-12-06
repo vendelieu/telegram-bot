@@ -7,13 +7,15 @@ import kotlinx.datetime.Instant
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonClassDiscriminator
 
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
 @JsonClassDiscriminator("status")
 sealed class ChatMember(
-    val status: String,
+    @Transient
+    val status: String = "default",
 ) : MultipleResponse {
     abstract val user: User
 

@@ -2,6 +2,7 @@ package eu.vendeli
 
 import BotTestContext
 import eu.vendeli.tgbot.types.chat.Chat
+import eu.vendeli.tgbot.types.chat.ChatMember
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.inline.InlineQueryResult
 import eu.vendeli.tgbot.types.keyboard.ForceReply
@@ -10,6 +11,7 @@ import eu.vendeli.tgbot.types.msg.MaybeInaccessibleMessage
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.serde
 import io.kotest.assertions.throwables.shouldNotThrowAny
+import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.string.shouldContain
@@ -24,8 +26,8 @@ class SerdeIssuesTest : BotTestContext() {
         val testData = """{"file_id": "test", "file_unique_id": "test1", "duration": 1, "mime_type": "audio/ogg"}"""
         val voice = serde.runCatching { decodeFromString(Voice.serializer(), testData) }
 
-        voice.isSuccess shouldBe true
         voice.getOrNull() shouldNotBe null
+        voice.isSuccess shouldBe true
 
         voice.getOrNull()?.run {
             fileId shouldBe "test"
@@ -62,7 +64,16 @@ class SerdeIssuesTest : BotTestContext() {
         val json = """{"type":"photo","id":"test","photo_url":"testUrl","thumbnail_url":"url"}"""
         val result = serde.decodeFromString(InlineQueryResult.serializer(), json)
 
-        result.type shouldBe "photo"
         result::class shouldBe InlineQueryResult.Photo::class
+        result.type shouldBe "photo"
+    }
+
+    @Test
+    fun `ChatMember serde test`() {
+        val member = ChatMember.Member(DUMB_USER)
+        val result = serde.runCatching { encodeToString(member) }
+
+        result.getOrNull().shouldNotBeNull() shouldContain "1"
+        result.getOrNull().shouldNotBeNull() shouldContain "member"
     }
 }
