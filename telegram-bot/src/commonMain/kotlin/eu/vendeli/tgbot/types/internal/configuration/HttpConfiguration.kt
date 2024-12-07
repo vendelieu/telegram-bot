@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
+import eu.vendeli.tgbot.annotations.dsl.ConfigurationDSL
 import eu.vendeli.tgbot.utils.RetryStrategy
 import io.ktor.client.engine.ProxyConfig
 import io.ktor.client.statement.HttpResponse
@@ -25,6 +26,7 @@ import kotlinx.serialization.Transient
  * @property additionalHeaders Headers that will be applied to every request.
  */
 @Serializable
+@ConfigurationDSL
 data class HttpConfiguration(
     var requestTimeoutMillis: Long? = null,
     var connectTimeoutMillis: Long? = null,

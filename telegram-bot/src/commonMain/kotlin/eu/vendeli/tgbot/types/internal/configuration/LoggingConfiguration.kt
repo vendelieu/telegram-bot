@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
+import eu.vendeli.tgbot.annotations.dsl.ConfigurationDSL
 import eu.vendeli.tgbot.types.internal.HttpLogLevel
 import eu.vendeli.tgbot.types.internal.LogLvl
 import kotlinx.serialization.Serializable
@@ -11,6 +12,7 @@ import kotlinx.serialization.Serializable
  * @property httpLogLevel The level of http request logs.
  */
 @Serializable
+@ConfigurationDSL
 data class LoggingConfiguration(
     var botLogLevel: LogLvl = LogLvl.INFO,
     var httpLogLevel: HttpLogLevel = HttpLogLevel.NONE,

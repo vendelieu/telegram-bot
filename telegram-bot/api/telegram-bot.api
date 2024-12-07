@@ -97,6 +97,12 @@ public abstract interface annotation class eu/vendeli/tgbot/annotations/UpdateHa
 	public abstract fun type ()[Leu/vendeli/tgbot/types/internal/UpdateType;
 }
 
+public abstract interface annotation class eu/vendeli/tgbot/annotations/dsl/ConfigurationDSL : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class eu/vendeli/tgbot/annotations/dsl/FunctionalDSL : java/lang/annotation/Annotation {
+}
+
 public abstract interface annotation class eu/vendeli/tgbot/annotations/internal/ExperimentalFeature : java/lang/annotation/Annotation {
 }
 
@@ -4205,8 +4211,7 @@ public final class eu/vendeli/tgbot/types/boost/ChatBoostRemoved$Companion {
 
 public abstract class eu/vendeli/tgbot/types/boost/ChatBoostSource {
 	public static final field Companion Leu/vendeli/tgbot/types/boost/ChatBoostSource$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public final fun getSource ()Ljava/lang/String;
 	public abstract fun getUser ()Leu/vendeli/tgbot/types/User;
 	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/boost/ChatBoostSource;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -5211,8 +5216,7 @@ public final class eu/vendeli/tgbot/types/chat/ChatLocation$Companion {
 
 public abstract class eu/vendeli/tgbot/types/chat/ChatMember : eu/vendeli/tgbot/interfaces/marker/MultipleResponse {
 	public static final field Companion Leu/vendeli/tgbot/types/chat/ChatMember$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public final fun getStatus ()Ljava/lang/String;
 	public abstract fun getUser ()Leu/vendeli/tgbot/types/User;
 	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/chat/ChatMember;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -12728,8 +12732,7 @@ public final class eu/vendeli/tgbot/types/passport/PassportData$Companion {
 
 public abstract class eu/vendeli/tgbot/types/passport/PassportElementError {
 	public static final field Companion Leu/vendeli/tgbot/types/passport/PassportElementError$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public final fun getSource ()Ljava/lang/String;
 	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/passport/PassportElementError;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }

@@ -207,13 +207,14 @@ internal suspend fun FunctionalHandlingDsl.process(update: ProcessedUpdate) = wi
     logger.info { "Handling update #${update.updateId}" }
     var affectedActivities = 0
     if (bot.update.checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id)) return@with
+    val activityCtx = ActivityCtx(this)
 
     checkMessageForActivities(this).ifAffected { affectedActivities += 1 }
     functionalActivities.onUpdateActivities[type]
-        ?.invokeActivity(this@process, type, ActivityCtx(this))
+        ?.invokeActivity(this@process, type, activityCtx)
         .ifAffected { affectedActivities += 1 }
 
-    if (affectedActivities == 0) functionalActivities.whenNotHandled?.invoke(update)?.also {
+    if (affectedActivities == 0) functionalActivities.whenNotHandled?.invoke(activityCtx)?.also {
         logger.info { "Update #${update.updateId} processed in functional mode with whenNotHandled activity." }
         affectedActivities += 1
     }

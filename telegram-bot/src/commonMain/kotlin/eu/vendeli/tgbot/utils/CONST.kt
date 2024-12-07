@@ -1,6 +1,5 @@
 package eu.vendeli.tgbot.utils
 
-import eu.vendeli.tgbot.api.botactions.getUpdates
 import eu.vendeli.tgbot.types.internal.UpdateType
 import kotlinx.coroutines.CoroutineDispatcher
 
@@ -11,5 +10,3 @@ val DEFAULT_HANDLING_BEHAVIOUR: HandlingBehaviourBlock = { handle(it) }
 
 internal val DEFAULT_SCOPE = setOf(UpdateType.MESSAGE)
 internal expect val PROCESSING_DISPATCHER: CoroutineDispatcher
-
-internal val GET_UPDATES_ACTION = getUpdates()

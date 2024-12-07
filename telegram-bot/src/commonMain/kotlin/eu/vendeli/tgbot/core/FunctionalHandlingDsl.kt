@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.dsl.FunctionalDSL
 import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.implementations.DefaultGuard
@@ -20,6 +21,7 @@ import eu.vendeli.tgbot.utils.DEFAULT_SCOPE
 import eu.vendeli.tgbot.utils.OnCommandActivity
 import eu.vendeli.tgbot.utils.OnInputActivity
 import eu.vendeli.tgbot.utils.WhenNotHandledActivity
+import eu.vendeli.tgbot.utils.fqName
 import eu.vendeli.tgbot.utils.getLogger
 import kotlin.reflect.KClass
 
@@ -29,11 +31,12 @@ import kotlin.reflect.KClass
  * @property bot
  */
 @Suppress("unused", "MemberVisibilityCanBePrivate", "TooManyFunctions")
+@FunctionalDSL
 class FunctionalHandlingDsl internal constructor(
     internal val bot: TelegramBot,
 ) {
     internal val functionalActivities = FunctionalActivities()
-    internal val logger = getLogger(bot.config.logging.botLogLevel, "eu.vendeli.FunctionalHandler")
+    internal val logger = getLogger(bot.config.logging.botLogLevel, this::class.fqName)
 
     /**
      * The action that is performed when the command is matched.
