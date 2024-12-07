@@ -9,9 +9,11 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("source")
 @OptIn(ExperimentalSerializationApi::class)
-sealed class PassportElementError(
-    val source: String,
-) {
+sealed class PassportElementError {
+    val source: String by lazy {
+        serializer().descriptor.serialName
+    }
+    
     @Serializable
     @SerialName("data")
     data class DataField(
@@ -19,7 +21,7 @@ sealed class PassportElementError(
         val fieldName: String,
         val dataHash: String,
         val message: String,
-    ) : PassportElementError("data")
+    ) : PassportElementError()
 
     @Serializable
     @SerialName("front_side")
@@ -27,7 +29,7 @@ sealed class PassportElementError(
         val type: EncryptedPassportElementType,
         val fileHash: String,
         val message: String,
-    ) : PassportElementError("front_side")
+    ) : PassportElementError()
 
     @Serializable
     @SerialName("reverse_side")
@@ -35,7 +37,7 @@ sealed class PassportElementError(
         val type: EncryptedPassportElementType,
         val fileHash: String,
         val message: String,
-    ) : PassportElementError("reverse_side")
+    ) : PassportElementError()
 
     @Serializable
     @SerialName("selfie")
@@ -43,7 +45,7 @@ sealed class PassportElementError(
         val type: EncryptedPassportElementType,
         val fileHash: String,
         val message: String,
-    ) : PassportElementError("selfie")
+    ) : PassportElementError()
 
     @Serializable
     @SerialName("file")
@@ -52,7 +54,7 @@ sealed class PassportElementError(
         val type: EncryptedPassportElementType,
         val fileHash: String,
         val message: String,
-    ) : PassportElementError("file")
+    ) : PassportElementError()
 
     @Serializable
     @SerialName("files")
@@ -60,7 +62,7 @@ sealed class PassportElementError(
         val type: EncryptedPassportElementType,
         val fileHashes: List<String>,
         val message: String,
-    ) : PassportElementError("files")
+    ) : PassportElementError()
 
     @Serializable
     @SerialName("translation_file")
@@ -68,7 +70,7 @@ sealed class PassportElementError(
         val type: EncryptedPassportElementType,
         val fileHash: String,
         val message: String,
-    ) : PassportElementError("translation_file")
+    ) : PassportElementError()
 
     @Serializable
     @SerialName("translation_files")
@@ -76,7 +78,7 @@ sealed class PassportElementError(
         val type: EncryptedPassportElementType,
         val fileHashes: List<String>,
         val message: String,
-    ) : PassportElementError("translation_files")
+    ) : PassportElementError()
 
     @Serializable
     @SerialName("unspecified")
@@ -84,5 +86,5 @@ sealed class PassportElementError(
         val type: EncryptedPassportElementType,
         val elementHash: String,
         val message: String,
-    ) : PassportElementError("unspecified")
+    ) : PassportElementError()
 }

@@ -7,17 +7,16 @@ import kotlinx.datetime.Instant
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonClassDiscriminator
 
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
 @JsonClassDiscriminator("status")
-sealed class ChatMember(
-    @Transient
-    val status: String = "default",
-) : MultipleResponse {
+sealed class ChatMember : MultipleResponse {
     abstract val user: User
+    val status: String by lazy {
+        serializer().descriptor.serialName
+    }
 
     @Serializable
     @SerialName("creator")
@@ -25,7 +24,7 @@ sealed class ChatMember(
         override val user: User,
         val isAnonymous: Boolean,
         val customTitle: String? = null,
-    ) : ChatMember("creator")
+    ) : ChatMember()
 
     @Serializable
     @SerialName("administrator")
@@ -48,7 +47,7 @@ sealed class ChatMember(
         val canEditStories: Boolean,
         val canDeleteStories: Boolean,
         val customTitle: String? = null,
-    ) : ChatMember("administrator")
+    ) : ChatMember()
 
     @Serializable
     @SerialName("member")
@@ -56,7 +55,7 @@ sealed class ChatMember(
         override val user: User,
         @Serializable(InstantSerializer::class)
         val untilDate: Instant? = null,
-    ) : ChatMember("member")
+    ) : ChatMember()
 
     @Serializable
     @SerialName("restricted")
@@ -79,13 +78,13 @@ sealed class ChatMember(
         val canManageTopics: Boolean,
         @Serializable(InstantSerializer::class)
         val untilDate: Instant,
-    ) : ChatMember("restricted")
+    ) : ChatMember()
 
     @Serializable
     @SerialName("left")
     data class Left(
         override val user: User,
-    ) : ChatMember("left")
+    ) : ChatMember()
 
     @Serializable
     @SerialName("kicked")
@@ -93,5 +92,5 @@ sealed class ChatMember(
         override val user: User,
         @Serializable(InstantSerializer::class)
         val untilDate: Instant,
-    ) : ChatMember("kicked")
+    ) : ChatMember()
 }
