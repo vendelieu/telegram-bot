@@ -8,7 +8,6 @@ import eu.vendeli.tgbot.types.passport.PassportElementError
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.serialization.builtins.ListSerializer
 
@@ -23,7 +22,7 @@ class SetPassportDataErrorsAction(
 
     init {
         parameters["user_id"] = userId.toJsonElement()
-        parameters["errors"] = errors.encodeWith(ListSerializer(DynamicLookupSerializer))
+        parameters["errors"] = errors.encodeWith(ListSerializer(PassportElementError.serializer()))
     }
 }
 
