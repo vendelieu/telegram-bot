@@ -3,7 +3,6 @@ package eu.vendeli.tgbot.core
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
-import eu.vendeli.tgbot.api.botactions.getUpdates
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivitiesData
 import eu.vendeli.tgbot.types.internal.FailedUpdate
@@ -13,6 +12,7 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.userOrNull
 import eu.vendeli.tgbot.utils.DEFAULT_HANDLING_BEHAVIOUR
 import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
+import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.Invocable
 import eu.vendeli.tgbot.utils.InvocationLambda
@@ -86,7 +86,7 @@ class TgUpdateHandler internal constructor(
             var lastUpdateId = 0
             while (isActive) {
                 logger.debug { "Running listener with offset - $lastUpdateId" }
-                getUpdates()
+                GET_UPDATES_ACTION
                     .options {
                         offset = lastUpdateId
                         allowedUpdates = types
