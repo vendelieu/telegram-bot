@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
+import eu.vendeli.tgbot.annotations.dsl.ConfigurationDSL
 import eu.vendeli.tgbot.implementations.ClassManagerImpl
 import eu.vendeli.tgbot.implementations.InputListenerMapImpl
 import eu.vendeli.tgbot.interfaces.ctx.ClassManager
@@ -21,6 +22,7 @@ import kotlinx.serialization.Transient
  * @property throwExOnActionsFailure Throw exception when the action (any bot request) ends with failure.
  */
 @Serializable
+@ConfigurationDSL
 data class BotConfiguration(
     var identifier: String = "KtGram",
     var apiHost: String = "https://api.telegram.org",

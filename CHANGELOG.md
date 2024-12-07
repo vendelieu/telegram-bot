@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) Changelog
 
+### 7.6.1
+
+* Fixed `ChatMemberUpdated` serde issue.
+
 ## 7.6.0
 
 * Supported Telegram API [8.1](https://core.telegram.org/bots/api-changelog#december-4-2024).

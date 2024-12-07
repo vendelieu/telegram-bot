@@ -22,6 +22,7 @@ import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.coHandle
 import eu.vendeli.tgbot.utils.debug
 import eu.vendeli.tgbot.utils.error
+import eu.vendeli.tgbot.utils.fqName
 import eu.vendeli.tgbot.utils.getLogger
 import eu.vendeli.tgbot.utils.getParameters
 import eu.vendeli.tgbot.utils.handleFailure
@@ -60,7 +61,7 @@ class TgUpdateHandler internal constructor(
         CoroutineScope(SupervisorJob() + dispatcher + CoroutineName("TgBot"))
     }
     internal val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
-    internal val logger = getLogger(bot.config.logging.botLogLevel, "eu.vendeli.core.TgUpdateHandler")
+    internal val logger = getLogger(bot.config.logging.botLogLevel, this::class.fqName)
 
     /**
      * The channel where errors caught during update processing is stored with update that caused them.

@@ -7,6 +7,14 @@
 // - Show declarations: true
 
 // Library unique name: <eu.vendeli:telegram-bot>
+open annotation class eu.vendeli.tgbot.annotations.dsl/ConfigurationDSL : kotlin/Annotation { // eu.vendeli.tgbot.annotations.dsl/ConfigurationDSL|null[0]
+    constructor <init>() // eu.vendeli.tgbot.annotations.dsl/ConfigurationDSL.<init>|<init>(){}[0]
+}
+
+open annotation class eu.vendeli.tgbot.annotations.dsl/FunctionalDSL : kotlin/Annotation { // eu.vendeli.tgbot.annotations.dsl/FunctionalDSL|null[0]
+    constructor <init>() // eu.vendeli.tgbot.annotations.dsl/FunctionalDSL.<init>|<init>(){}[0]
+}
+
 open annotation class eu.vendeli.tgbot.annotations.internal/ExperimentalFeature : kotlin/Annotation { // eu.vendeli.tgbot.annotations.internal/ExperimentalFeature|null[0]
     constructor <init>() // eu.vendeli.tgbot.annotations.internal/ExperimentalFeature.<init>|<init>(){}[0]
 }
@@ -1598,7 +1606,7 @@ final class eu.vendeli.tgbot.core/FunctionalHandlingDsl { // eu.vendeli.tgbot.co
     final fun inputChain(kotlin/String, eu.vendeli.tgbot.types.internal.configuration/RateLimits = ..., eu.vendeli.tgbot.interfaces.helper/Guard = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>): eu.vendeli.tgbot.types.internal.chain/SingleInputChain // eu.vendeli.tgbot.core/FunctionalHandlingDsl.inputChain|inputChain(kotlin.String;eu.vendeli.tgbot.types.internal.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>){}[0]
     final fun onCommand(kotlin/String, kotlin.collections/Set<eu.vendeli.tgbot.types.internal/UpdateType> = ..., eu.vendeli.tgbot.types.internal.configuration/RateLimits = ..., eu.vendeli.tgbot.interfaces.helper/Guard = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/CommandContext<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.onCommand|onCommand(kotlin.String;kotlin.collections.Set<eu.vendeli.tgbot.types.internal.UpdateType>;eu.vendeli.tgbot.types.internal.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.ArgumentParser>;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.CommandContext<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>){}[0]
     final fun onInput(kotlin/String, eu.vendeli.tgbot.types.internal.configuration/RateLimits = ..., eu.vendeli.tgbot.interfaces.helper/Guard = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.onInput|onInput(kotlin.String;eu.vendeli.tgbot.types.internal.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>){}[0]
-    final fun whenNotHandled(kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ProcessedUpdate, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.whenNotHandled|whenNotHandled(kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ProcessedUpdate,kotlin.Unit>){}[0]
+    final fun whenNotHandled(kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.internal/ActivityCtx<eu.vendeli.tgbot.types.internal/ProcessedUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.whenNotHandled|whenNotHandled(kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.internal.ActivityCtx<eu.vendeli.tgbot.types.internal.ProcessedUpdate>,kotlin.Unit>){}[0]
 }
 
 final class eu.vendeli.tgbot.core/TgUpdateHandler { // eu.vendeli.tgbot.core/TgUpdateHandler|null[0]

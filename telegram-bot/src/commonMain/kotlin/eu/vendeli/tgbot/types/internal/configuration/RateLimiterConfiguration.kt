@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.dsl.ConfigurationDSL
 import eu.vendeli.tgbot.api.message.message
 import eu.vendeli.tgbot.implementations.TokenBucketLimiterImpl
 import eu.vendeli.tgbot.interfaces.helper.RateLimitMechanism
@@ -13,6 +14,7 @@ import eu.vendeli.tgbot.interfaces.helper.RateLimitMechanism
  * Default is [TokenBucket](https://en.wikipedia.org/wiki/Token_bucket) algorithm.
  * @property exceededAction Action that will be applied when the limit is exceeded.
  */
+@ConfigurationDSL
 data class RateLimiterConfiguration(
     var limits: RateLimits = RateLimits(),
     var mechanism: RateLimitMechanism = TokenBucketLimiterImpl(),
