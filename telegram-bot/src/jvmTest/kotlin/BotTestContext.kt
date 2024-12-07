@@ -1,5 +1,6 @@
 import eu.vendeli.fixtures.__ACTIVITIES
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.api.botactions.getUpdates
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
@@ -11,7 +12,6 @@ import eu.vendeli.tgbot.types.internal.LogLvl
 import eu.vendeli.tgbot.types.internal.Response
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.isSuccess
-import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.defineActivities
 import eu.vendeli.tgbot.utils.serde
 import eu.vendeli.utils.MockUpdate
@@ -30,7 +30,6 @@ import io.ktor.http.isSuccess
 import io.ktor.util.logging.KtorSimpleLogger
 import io.mockk.coEvery
 import io.mockk.every
-import io.mockk.mockkStatic
 import io.mockk.spyk
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.delay
@@ -58,7 +57,7 @@ abstract class BotTestContext(
     private val INT_ITERATOR = (1..Int.MAX_VALUE).iterator()
     private val RANDOM_INST: Random get() = Random(CUR_INSTANT.epochSeconds)
     internal lateinit var bot: TelegramBot
-    private val updatesAction = spyk(GET_UPDATES_ACTION)
+    private val updatesAction = spyk(getUpdates())
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
     protected val TG_ID by lazy { System.getenv("TELEGRAM_ID").toLong() }
@@ -104,8 +103,7 @@ abstract class BotTestContext(
     }
 
     fun doMockHttp(mockUpdates: MockUpdate = MockUpdate.SINGLE()) {
-        mockkStatic(::GET_UPDATES_ACTION)
-        every { ::GET_UPDATES_ACTION.invoke() } returns updatesAction
+        every { ::getUpdates.invoke() } returns updatesAction
         coEvery { updatesAction.sendAsync(any()).await() } returns Response.Success(mockUpdates.updates)
     }
 

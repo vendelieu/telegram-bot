@@ -74,9 +74,9 @@ class SerdeIssuesTest : BotTestContext() {
     @Test
     fun `ChatMember serde test`() {
         val member = ChatMember.Member(DUMB_USER)
-        val result = serde.runCatching { encodeToString(member) }.getOrNull().shouldNotBeNull()
+        val result = serde.runCatching { encodeToString(ChatMember.serializer(), member) }.getOrNull().shouldNotBeNull()
 
-        result shouldContain "\"user\":{\"id\":1,\"is_bot\":false,\"first_name\":\"\"}}"
+        result shouldContain "\"id\":1,\"is_bot\":false,\"first_name\":\"Test\""
         result shouldContain "\"status\":\"member\""
 
         val json = "{\"status\":\"member\",\"user\":{\"id\":1,\"is_bot\":false,\"first_name\":\"\"}}"
@@ -126,7 +126,7 @@ class SerdeIssuesTest : BotTestContext() {
 
         serde.decodeFromString(
             MessageOrigin.serializer(),
-            "{\"type\":\"user\",\"date\":1733529723,\"sender_user\":{\"id\":1,\"is_bot\":false,\"first_name\":\"Test\"}}"
+            "{\"type\":\"user\",\"date\":1733529723,\"sender_user\":{\"id\":1,\"is_bot\":false,\"first_name\":\"Test\"}}",
         ).type shouldBe "user"
     }
 }
