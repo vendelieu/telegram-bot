@@ -9,22 +9,23 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("source")
 @OptIn(ExperimentalSerializationApi::class)
-sealed class ChatBoostSource(
-    val source: String,
-) {
+sealed class ChatBoostSource {
     abstract val user: User?
+    val source: String by lazy {
+        serializer().descriptor.serialName
+    }
 
     @Serializable
     @SerialName("premium")
     data class Premium(
         override val user: User,
-    ) : ChatBoostSource("premium")
+    ) : ChatBoostSource()
 
     @Serializable
     @SerialName("gift_code")
     data class GiftCode(
         override val user: User,
-    ) : ChatBoostSource("gift_code")
+    ) : ChatBoostSource()
 
     @Serializable
     @SerialName("giveaway")
@@ -33,5 +34,5 @@ sealed class ChatBoostSource(
         override val user: User? = null,
         val isUnclaimed: Boolean? = null,
         val prizeStarCount: Int? = null,
-    ) : ChatBoostSource("giveaway")
+    ) : ChatBoostSource()
 }

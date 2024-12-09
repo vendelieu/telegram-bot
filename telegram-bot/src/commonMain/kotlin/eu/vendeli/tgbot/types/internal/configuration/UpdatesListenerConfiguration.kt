@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
+import eu.vendeli.tgbot.annotations.dsl.ConfigurationDSL
 import eu.vendeli.tgbot.utils.PROCESSING_DISPATCHER
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +17,7 @@ import kotlinx.serialization.Transient
  * @property updatesPollingTimeout timeout option in getUpdates request for a long-polling mechanism.
  */
 @Serializable
+@ConfigurationDSL
 data class UpdatesListenerConfiguration(
     @Transient
     var dispatcher: CoroutineDispatcher = Dispatchers.Default,

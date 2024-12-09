@@ -8,6 +8,7 @@ import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.BotConfigurator
 import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
+import eu.vendeli.tgbot.utils.fqName
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
 import eu.vendeli.tgbot.utils.getLogger
 import io.ktor.client.HttpClient
@@ -48,7 +49,7 @@ class TelegramBot(
     }
 
     internal val config = BotConfiguration().apply(botConfiguration)
-    internal val logger = getLogger(config.logging.botLogLevel, "eu.vendeli.TelegramBot")
+    internal val logger = getLogger(config.logging.botLogLevel, this::class.fqName)
 
     internal val baseUrl by lazy { "${config.apiHost}/bot$token" + if (config.isTestEnv) "/test/" else "/" }
 

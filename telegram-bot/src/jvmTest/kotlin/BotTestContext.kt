@@ -76,7 +76,8 @@ abstract class BotTestContext(
     protected val CUR_INSTANT: Instant get() = Clock.System.now()
     protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()
     protected val RAND_INT: Int get() = RANDOM_INST.nextInt()
-    protected val DUMB_USER = User(1, false, "Test")
+    protected val DUMB_USER = User(id = 1, isBot = false, firstName = "Test")
+    protected val DUMB_CHAT = Chat(id = -1, type = ChatType.Group, title = "test")
     protected val logger = KtorSimpleLogger("test.eu.vendeli.ktgram")
 
     @BeforeAll

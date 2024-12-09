@@ -18,9 +18,9 @@ import io.ktor.client.plugins.HttpRetryShouldRetryContext
 import io.ktor.client.request.HttpRequest
 import io.ktor.client.statement.HttpResponse
 
-typealias WhenNotHandledActivity = suspend ProcessedUpdate.() -> Unit
 typealias OnCommandActivity = suspend CommandContext<ProcessedUpdate>.() -> Unit
 typealias OnInputActivity = suspend ActivityCtx<ProcessedUpdate>.() -> Unit
+typealias WhenNotHandledActivity = suspend ActivityCtx<ProcessedUpdate>.() -> Unit
 
 internal typealias OnUpdateActivities = MutableMap<UpdateType, suspend ActivityCtx<ProcessedUpdate>.() -> Unit>
 internal typealias InputActivities = MutableMap<String, SingleInputChain>

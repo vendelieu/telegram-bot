@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.internal.configuration
 
+import eu.vendeli.tgbot.annotations.dsl.ConfigurationDSL
 import kotlinx.serialization.Serializable
 
 /**
@@ -15,6 +16,7 @@ import kotlinx.serialization.Serializable
  * By default, it's just omitted.
  */
 @Serializable
+@ConfigurationDSL
 data class CommandParsingConfiguration(
     var commandDelimiter: Char = '?',
     var parametersDelimiter: Char = '&',
