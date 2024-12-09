@@ -7,7 +7,7 @@ import kotlin.reflect.KClass
 
 @Configuration
 open class SpringClassManager(
-    private val applicationContext: ApplicationContext
+    private val applicationContext: ApplicationContext,
 ) : ClassManager {
     override fun getInstance(kClass: KClass<*>, vararg initParams: Any?): Any =
         applicationContext.getBean(kClass.java, *initParams)

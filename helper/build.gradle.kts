@@ -21,4 +21,3 @@ detekt {
     allRules = false
     config.from(files("$rootDir/detekt.yml"))
 }
-

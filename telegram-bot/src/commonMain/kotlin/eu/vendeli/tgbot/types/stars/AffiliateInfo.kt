@@ -4,7 +4,6 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import kotlinx.serialization.Serializable
 
-
 /**
  * Contains information about the affiliate that received a commission via this transaction.
  *

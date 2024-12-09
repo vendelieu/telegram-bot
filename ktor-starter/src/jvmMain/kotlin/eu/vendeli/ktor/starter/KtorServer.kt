@@ -18,7 +18,6 @@ import java.io.File
 import java.security.KeyStore
 import java.security.PrivateKey
 
-
 suspend fun serveWebhook(
     wait: Boolean = true,
     serverBuilder: suspend ServerBuilder.() -> Unit = {},
@@ -84,4 +83,3 @@ suspend fun serveWebhook(
         }
     }.start(wait)
 }
-

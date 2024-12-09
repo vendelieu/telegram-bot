@@ -13,7 +13,7 @@ sealed class PassportElementError {
     val source: String by lazy {
         serializer().descriptor.serialName
     }
-    
+
     @Serializable
     @SerialName("data")
     data class DataField(

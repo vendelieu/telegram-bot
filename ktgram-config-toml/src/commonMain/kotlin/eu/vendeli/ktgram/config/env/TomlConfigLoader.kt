@@ -6,7 +6,9 @@ import eu.vendeli.tgbot.types.internal.configuration.CompleteConfig
 import kotlinx.serialization.serializer
 import net.peanuuutz.tomlkt.Toml
 
-open class TomlConfigLoader(input: String) : ConfigLoader {
+open class TomlConfigLoader(
+    input: String,
+) : ConfigLoader {
     private val toml = Toml.decodeFromString(serializer<CompleteConfig>(), input)
     override val token: String = toml.token
     override val commandsPackage: String? = toml.pckg

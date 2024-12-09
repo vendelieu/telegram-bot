@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 private val jvmTargetVer = JvmTarget.JVM_17
 private val optIns: Array<String> = arrayOf(
     "-opt-in=eu.vendeli.tgbot.annotations.internal.KtGramInternal",
-    "-opt-in=eu.vendeli.tgbot.annotations.internal.ExperimentalFeature"
+    "-opt-in=eu.vendeli.tgbot.annotations.internal.ExperimentalFeature",
 )
 
 private fun KotlinMultiplatformExtension.configureJvm() {

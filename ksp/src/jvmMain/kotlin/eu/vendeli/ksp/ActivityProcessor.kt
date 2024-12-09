@@ -145,7 +145,7 @@ class ActivityProcessor(
             logger = logger,
             idxPostfix = idxPostfix,
             pkg = filePkg,
-            autoCleanClassData = autoCleanClassData
+            autoCleanClassData = autoCleanClassData,
         )
 
         collectCommandActivities(commandHandlerSymbols, context)

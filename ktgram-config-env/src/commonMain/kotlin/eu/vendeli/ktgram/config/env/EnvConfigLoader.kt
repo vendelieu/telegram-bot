@@ -36,14 +36,23 @@ object EnvConfigLoader : ConfigLoader {
         )
 
         val httpConfiguration = HttpConfiguration(
-            requestTimeoutMillis = EnvVar.get(DEFAULT_ENV_PREFIX + "HTTP_REQUEST_TIMEOUT_MILLIS") { Int.MAX_VALUE.toString() }
+            requestTimeoutMillis = EnvVar
+                .get(
+                    DEFAULT_ENV_PREFIX + "HTTP_REQUEST_TIMEOUT_MILLIS",
+                ) { Int.MAX_VALUE.toString() }
                 .toLong(),
-            connectTimeoutMillis = EnvVar.get(DEFAULT_ENV_PREFIX + "HTTP_CONNECT_TIMEOUT_MILLIS") { Int.MAX_VALUE.toString() }
+            connectTimeoutMillis = EnvVar
+                .get(
+                    DEFAULT_ENV_PREFIX + "HTTP_CONNECT_TIMEOUT_MILLIS",
+                ) { Int.MAX_VALUE.toString() }
                 .toLong(),
-            socketTimeoutMillis = EnvVar.get(DEFAULT_ENV_PREFIX + "HTTP_SOCKET_TIMEOUT_MILLIS") { Int.MAX_VALUE.toString() }
+            socketTimeoutMillis = EnvVar
+                .get(
+                    DEFAULT_ENV_PREFIX + "HTTP_SOCKET_TIMEOUT_MILLIS",
+                ) { Int.MAX_VALUE.toString() }
                 .toLong(),
             maxRequestRetry = EnvVar.get(DEFAULT_ENV_PREFIX + "HTTP_MAX_REQUEST_RETRY") { "3" }.toInt(),
-            retryDelay = EnvVar.get(DEFAULT_ENV_PREFIX + "HTTP_RETRY_DELAY") { "3000" }.toLong()
+            retryDelay = EnvVar.get(DEFAULT_ENV_PREFIX + "HTTP_RETRY_DELAY") { "3000" }.toLong(),
         )
 
         val loggingConfiguration = LoggingConfiguration(
@@ -60,9 +69,13 @@ object EnvConfigLoader : ConfigLoader {
             commandDelimiter = EnvVar.get(DEFAULT_ENV_PREFIX + "COMMAND_DELIMITER") { "?" }[0],
             parametersDelimiter = EnvVar.get(DEFAULT_ENV_PREFIX + "PARAMETERS_DELIMITER") { "&" }[0],
             parameterValueDelimiter = EnvVar.get(DEFAULT_ENV_PREFIX + "PARAMETER_VALUE_DELIMITER") { "=" }[0],
-            restrictSpacesInCommands = EnvVar.get(DEFAULT_ENV_PREFIX + "RESTRICT_SPACES_IN_COMMANDS") { "false" }
+            restrictSpacesInCommands = EnvVar
+                .get(DEFAULT_ENV_PREFIX + "RESTRICT_SPACES_IN_COMMANDS") { "false" }
                 .toBoolean(),
-            useIdentifierInGroupCommands = EnvVar.get(DEFAULT_ENV_PREFIX + "USE_IDENTIFIER_IN_GROUP_COMMANDS") { "false" }
+            useIdentifierInGroupCommands = EnvVar
+                .get(
+                    DEFAULT_ENV_PREFIX + "USE_IDENTIFIER_IN_GROUP_COMMANDS",
+                ) { "false" }
                 .toBoolean(),
         )
 
@@ -76,7 +89,7 @@ object EnvConfigLoader : ConfigLoader {
             logging = loggingConfiguration,
             updatesListener = updatesListenerConfiguration,
             commandParsing = commandParsingConfiguration,
-            throwExOnActionsFailure = throwExOnActionsFailure
+            throwExOnActionsFailure = throwExOnActionsFailure,
         )
     }
 }

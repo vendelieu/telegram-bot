@@ -124,9 +124,10 @@ class SerdeIssuesTest : BotTestContext() {
 
         serde.encodeToString(MessageOrigin.UserOrigin(instant, DUMB_USER)) shouldContain "\"type\":\"user\""
 
-        serde.decodeFromString(
-            MessageOrigin.serializer(),
-            "{\"type\":\"user\",\"date\":1733529723,\"sender_user\":{\"id\":1,\"is_bot\":false,\"first_name\":\"Test\"}}",
-        ).type shouldBe "user"
+        serde
+            .decodeFromString(
+                MessageOrigin.serializer(),
+                "{\"type\":\"user\",\"date\":1733529723,\"sender_user\":{\"id\":1,\"is_bot\":false,\"first_name\":\"Test\"}}",
+            ).type shouldBe "user"
     }
 }
