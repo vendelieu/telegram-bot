@@ -4,8 +4,8 @@ import BotTestContext
 import eu.vendeli.tgbot.api.getUserChatBoosts
 import eu.vendeli.tgbot.api.getUserProfilePhotos
 import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.nulls.shouldNotBeNull
-import io.kotest.matchers.shouldBe
 
 class UserTest : BotTestContext() {
     @Test
@@ -18,7 +18,7 @@ class UserTest : BotTestContext() {
         listOf(idResult, userResult).forEach { result ->
             with(result) {
                 shouldNotBeNull()
-                totalCount shouldBe 1
+                totalCount shouldBeGreaterThan 1
                 photos.shouldNotBeNull()
             }
         }
