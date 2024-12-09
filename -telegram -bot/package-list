@@ -1,5 +1,8 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
+$dokka.location:eu.vendeli.tgbot.annotations.dsl////PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations.dsl/index.html
+$dokka.location:eu.vendeli.tgbot.annotations.dsl/ConfigurationDSL///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations.dsl/-configuration-d-s-l/index.html
+$dokka.location:eu.vendeli.tgbot.annotations.dsl/FunctionalDSL///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations.dsl/-functional-d-s-l/index.html
 $dokka.location:eu.vendeli.tgbot.annotations.internal////PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations.internal/index.html
 $dokka.location:eu.vendeli.tgbot.annotations.internal/ExperimentalFeature///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations.internal/-experimental-feature/index.html
 $dokka.location:eu.vendeli.tgbot.annotations.internal/KtGramInternal///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.annotations.internal/-kt-gram-internal/index.html
@@ -617,7 +620,7 @@ $dokka.location:eu.vendeli.tgbot.core/FunctionalHandlingDsl/common/#kotlin.text.
 $dokka.location:eu.vendeli.tgbot.core/FunctionalHandlingDsl/inputChain/#kotlin.String#eu.vendeli.tgbot.types.internal.configuration.RateLimits#eu.vendeli.tgbot.interfaces.helper.Guard#kotlin.coroutines.SuspendFunction1[eu.vendeli.tgbot.types.internal.ActivityCtx[eu.vendeli.tgbot.types.internal.ProcessedUpdate],kotlin.Unit]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-functional-handling-dsl/input-chain.html
 $dokka.location:eu.vendeli.tgbot.core/FunctionalHandlingDsl/onCommand/#kotlin.String#kotlin.collections.Set[eu.vendeli.tgbot.types.internal.UpdateType]#eu.vendeli.tgbot.types.internal.configuration.RateLimits#eu.vendeli.tgbot.interfaces.helper.Guard#kotlin.reflect.KClass[eu.vendeli.tgbot.interfaces.helper.ArgumentParser]#kotlin.coroutines.SuspendFunction1[eu.vendeli.tgbot.types.internal.CommandContext[eu.vendeli.tgbot.types.internal.ProcessedUpdate],kotlin.Unit]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-functional-handling-dsl/on-command.html
 $dokka.location:eu.vendeli.tgbot.core/FunctionalHandlingDsl/onInput/#kotlin.String#eu.vendeli.tgbot.types.internal.configuration.RateLimits#eu.vendeli.tgbot.interfaces.helper.Guard#kotlin.coroutines.SuspendFunction1[eu.vendeli.tgbot.types.internal.ActivityCtx[eu.vendeli.tgbot.types.internal.ProcessedUpdate],kotlin.Unit]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-functional-handling-dsl/on-input.html
-$dokka.location:eu.vendeli.tgbot.core/FunctionalHandlingDsl/whenNotHandled/#kotlin.coroutines.SuspendFunction1[eu.vendeli.tgbot.types.internal.ProcessedUpdate,kotlin.Unit]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-functional-handling-dsl/when-not-handled.html
+$dokka.location:eu.vendeli.tgbot.core/FunctionalHandlingDsl/whenNotHandled/#kotlin.coroutines.SuspendFunction1[eu.vendeli.tgbot.types.internal.ActivityCtx[eu.vendeli.tgbot.types.internal.ProcessedUpdate],kotlin.Unit]/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-functional-handling-dsl/when-not-handled.html
 $dokka.location:eu.vendeli.tgbot.core/TgUpdateHandler.Companion///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-tg-update-handler/-companion/index.html
 $dokka.location:eu.vendeli.tgbot.core/TgUpdateHandler///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-tg-update-handler/index.html
 $dokka.location:eu.vendeli.tgbot.core/TgUpdateHandler/caughtExceptions/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.core/-tg-update-handler/caught-exceptions.html
@@ -3646,6 +3649,7 @@ $dokka.location:eu.vendeli.tgbot/TelegramBot/inputListener/#/PointingToDeclarati
 $dokka.location:eu.vendeli.tgbot/TelegramBot/update/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot/-telegram-bot/update.html
 eu.vendeli.tgbot
 eu.vendeli.tgbot.annotations
+eu.vendeli.tgbot.annotations.dsl
 eu.vendeli.tgbot.annotations.internal
 eu.vendeli.tgbot.api
 eu.vendeli.tgbot.api.answer
