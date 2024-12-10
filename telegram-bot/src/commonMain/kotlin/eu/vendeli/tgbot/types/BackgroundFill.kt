@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types
 
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -13,14 +14,17 @@ import kotlinx.serialization.Serializable
  *
  */
 @Serializable
-sealed class BackgroundFill(
-    val type: String,
-) {
+sealed class BackgroundFill {
+    @OptIn(ExperimentalSerializationApi::class)
+    val type: String by lazy {
+        serializer().descriptor.serialName
+    }
+
     @Serializable
     @SerialName("solid")
     data class Solid(
         val color: Int,
-    ) : BackgroundFill("solid")
+    ) : BackgroundFill()
 
     @Serializable
     @SerialName("gradient")
@@ -28,11 +32,11 @@ sealed class BackgroundFill(
         val topColor: Int,
         val bottomColor: Int,
         val rotationAngle: Int,
-    ) : BackgroundFill("gradient")
+    ) : BackgroundFill()
 
     @Serializable
     @SerialName("freeform_gradient")
     data class FreeformGradient(
         val colors: List<Int>,
-    ) : BackgroundFill("freeform_gradient")
+    ) : BackgroundFill()
 }
