@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types.internal
 
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.chat.Chat
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
@@ -52,6 +53,7 @@ sealed class Identifier {
         fun from(recipient: kotlin.String) = String(recipient)
 
         fun from(recipient: User) = Long(recipient.id)
+        fun from(recipient: Chat) = Long(recipient.id)
     }
 
     internal object Serde : JsonContentPolymorphicSerializer<Identifier>(Identifier::class) {

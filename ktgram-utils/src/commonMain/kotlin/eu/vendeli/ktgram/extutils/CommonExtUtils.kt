@@ -28,7 +28,7 @@ suspend fun <R> Action<R>.sendAnd(to: String, bot: TelegramBot, block: suspend R
     sendAnd(Identifier.from(to), bot, block)
 
 suspend fun <R> Action<R>.sendAnd(to: Chat, bot: TelegramBot, block: suspend R.() -> Unit) =
-    sendAnd(Identifier.from(to.id), bot, block)
+    sendAnd(Identifier.from(to), bot, block)
 
 suspend fun <R> Action<R>.sendAnd(to: User, bot: TelegramBot, block: suspend R.() -> Unit) =
     sendAnd(Identifier.from(to), bot, block)
