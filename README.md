@@ -91,8 +91,7 @@ from [packages](https://github.com/vendelieu?tab=packages&repo_name=telegram-bot
   with Ktor.
 - [Spring Boot usage](https://github.com/vendelieu/telegram-bot_template/tree/spring-bot) - An example of using the bot
   organically in the Spring ecosystem, using its built-in DI.
-- [Heroku ready example](https://github.com/vendelieu/telegram-bot_template/tree/heroku) - An example of a bot working
-  via Heroku.
+- [GatekeeperBot](https://github.com/ktgram/gatekeeper) - Gatekeeper bot.
 - [Native example](https://github.com/ktgram/native-example) - An example of using a bot with Kotlin Native target.
 - [Web app](https://github.com/ktgram/webapp) - Example of a bot using Telegram Webapps.
 

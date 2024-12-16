@@ -58,7 +58,7 @@ internal suspend inline fun TgUpdateHandler.handleFailure(
     is ExceptionHandlingStrategy.Throw ->
         throw TgException(message = "Caught exception while processing $update", cause = throwable)
 
-    is ExceptionHandlingStrategy.Handle -> strategy.handler.handle(throwable, update)
+    is ExceptionHandlingStrategy.Handle -> strategy.handler.handle(throwable, update, bot)
 }
 
 internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T): Deferred<T> = coroutineScope {

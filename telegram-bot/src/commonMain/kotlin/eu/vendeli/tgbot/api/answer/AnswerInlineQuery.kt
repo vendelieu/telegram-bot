@@ -10,7 +10,6 @@ import eu.vendeli.tgbot.types.internal.options.AnswerInlineQueryOptions
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.serialization.builtins.ListSerializer
 
@@ -27,7 +26,7 @@ class AnswerInlineQueryAction(
 
     init {
         parameters["inline_query_id"] = inlineQueryId.toJsonElement()
-        parameters["results"] = results.encodeWith(ListSerializer(DynamicLookupSerializer))
+        parameters["results"] = results.encodeWith(ListSerializer(InlineQueryResult.serializer()))
     }
 }
 

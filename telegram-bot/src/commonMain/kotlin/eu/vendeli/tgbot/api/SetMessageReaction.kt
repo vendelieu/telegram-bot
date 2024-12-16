@@ -8,7 +8,6 @@ import eu.vendeli.tgbot.types.ReactionType
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 import kotlinx.serialization.builtins.ListSerializer
 
@@ -24,7 +23,7 @@ class SetMessageReactionAction(
 
     init {
         parameters["message_id"] = messageId.toJsonElement()
-        if (reaction != null) parameters["reaction"] = reaction.encodeWith(ListSerializer(DynamicLookupSerializer))
+        if (reaction != null) parameters["reaction"] = reaction.encodeWith(ListSerializer(ReactionType.serializer()))
         if (isBig != null) parameters["is_big"] = messageId.toJsonElement()
     }
 }

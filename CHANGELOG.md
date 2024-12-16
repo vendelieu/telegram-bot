@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) Changelog
 
+### 7.6.2
+
+* Move all sealed structure serialization to unified approach.
+
 ### 7.6.1
 
 * Fixed `ChatMemberUpdated` serde issue.

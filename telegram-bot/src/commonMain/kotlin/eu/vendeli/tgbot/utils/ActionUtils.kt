@@ -34,20 +34,21 @@ internal inline fun <R : Any> TgAction<R>.handleImplicitFile(input: ImplicitFile
     parameters[fieldName] = input.transform(multipartData).file.toJsonElement()
 }
 
-@Suppress("DEPRECATION_ERROR", "NOTHING_TO_INLINE")
-internal inline fun <T : ImplicitMediaData, R : Any> MediaAction<R>.handleImplicitFileGroup(
+@Suppress("DEPRECATION_ERROR", "NOTHING_TO_INLINE", "UNCHECKED_CAST")
+internal inline fun <T : ImplicitMediaData, R : Any, S : KSerializer<T>> MediaAction<R>.handleImplicitFileGroup(
     input: List<T>,
     fieldName: String = "media",
+    serializer: S = DynamicLookupSerializer as S,
 ) {
     parameters[fieldName] = buildList {
         input.forEach {
             if (it.media is ImplicitFile.Str && it.thumbnail is ImplicitFile.Str) {
-                add(it.encodeWith(DynamicLookupSerializer))
+                add(it.encodeWith(serializer as KSerializer<T>))
                 return@forEach
             }
             it.media = it.media.transform(multipartData)
             it.thumbnail = it.thumbnail?.transform(multipartData)
-            add(it.encodeWith(DynamicLookupSerializer))
+            add(it.encodeWith(serializer as KSerializer<T>))
         }
     }.encodeWith(JsonElement.serializer())
 }

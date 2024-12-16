@@ -5,8 +5,11 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import kotlinx.datetime.Instant
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.serializer
 
 /**
  * This object describes the origin of a message. It can be one of
@@ -19,9 +22,12 @@ import kotlinx.serialization.Serializable
  *
  */
 @Serializable
-sealed class MessageOrigin(
-    val type: String,
-) {
+sealed class MessageOrigin {
+    @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
+    val type: String by lazy {
+        this::class.serializer().descriptor.serialName
+    }
+
     @Serializable(InstantSerializer::class)
     abstract val date: Instant
     open val from: User?
@@ -42,7 +48,7 @@ sealed class MessageOrigin(
         @Serializable(InstantSerializer::class)
         override val date: Instant,
         val senderUser: User,
-    ) : MessageOrigin("user") {
+    ) : MessageOrigin() {
         override val from: User
             get() = senderUser
     }
@@ -53,7 +59,7 @@ sealed class MessageOrigin(
         @Serializable(InstantSerializer::class)
         override val date: Instant,
         val senderUserName: String,
-    ) : MessageOrigin("hidden_user") {
+    ) : MessageOrigin() {
         override val senderName: String
             get() = senderUserName
     }
@@ -66,7 +72,7 @@ sealed class MessageOrigin(
         override val date: Instant,
         val senderChat: Chat,
         val authorSignature: String? = null,
-    ) : MessageOrigin("chat") {
+    ) : MessageOrigin() {
         override val fromChat: Chat
             get() = senderChat
         override val signature: String?
@@ -81,7 +87,7 @@ sealed class MessageOrigin(
         val chat: Chat,
         val messageId: Long,
         val authorSignature: String? = null,
-    ) : MessageOrigin("channel") {
+    ) : MessageOrigin() {
         override val fromChat: Chat
             get() = chat
         override val fromMessageId: Long

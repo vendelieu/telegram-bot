@@ -122,11 +122,15 @@ class SerdeIssuesTest : BotTestContext() {
     fun `MessageOriginUserOrigin serde test`() {
         val instant = CUR_INSTANT
 
-        serde.encodeToString(MessageOrigin.UserOrigin(instant, DUMB_USER)) shouldContain "\"type\":\"user\""
-
-        serde.decodeFromString(
+        serde.encodeToString(
             MessageOrigin.serializer(),
-            "{\"type\":\"user\",\"date\":1733529723,\"sender_user\":{\"id\":1,\"is_bot\":false,\"first_name\":\"Test\"}}",
-        ).type shouldBe "user"
+            MessageOrigin.UserOrigin(instant, DUMB_USER),
+        ) shouldContain "\"type\":\"user\""
+
+        serde
+            .decodeFromString(
+                MessageOrigin.serializer(),
+                "{\"type\":\"user\",\"date\":1733529723,\"sender_user\":{\"id\":1,\"is_bot\":false,\"first_name\":\"Test\"}}",
+            ).type shouldBe "user"
     }
 }

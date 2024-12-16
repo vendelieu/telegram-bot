@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.interfaces.helper
 
+import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 
 /**
@@ -13,5 +14,5 @@ fun interface ExceptionHandler {
      * @param exception Exception itself.
      * @param update Update that caused it.
      */
-    suspend fun handle(exception: Throwable, update: ProcessedUpdate)
+    suspend fun handle(exception: Throwable, update: ProcessedUpdate, bot: TelegramBot)
 }

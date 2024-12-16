@@ -5,6 +5,9 @@ import java.nio.charset.Charset
 fun TelegramBot.fromToml(fileName: String = "bot.toml") =
     TelegramBot(
         TomlConfigLoader(
-            javaClass.classLoader.getResourceAsStream(fileName)!!.readAllBytes().toString(Charset.defaultCharset()),
+            javaClass.classLoader
+                .getResourceAsStream(fileName)!!
+                .readAllBytes()
+                .toString(Charset.defaultCharset()),
         ),
     )

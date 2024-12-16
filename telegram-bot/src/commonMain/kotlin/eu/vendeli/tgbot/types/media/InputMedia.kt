@@ -6,8 +6,11 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.utils.toImplicitFile
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.serializer
 
 /**
  * This object represents the content of a media message to be sent. It should be one of
@@ -22,9 +25,12 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 @Suppress("OVERRIDE_DEPRECATION")
-sealed class InputMedia(
-    val type: String,
-) : ImplicitMediaData {
+sealed class InputMedia : ImplicitMediaData {
+    @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
+    val type: String by lazy {
+        this::class.serializer().descriptor.serialName
+    }
+
     @Serializable
     @SerialName("audio")
     data class Audio(
@@ -36,7 +42,7 @@ sealed class InputMedia(
         val duration: Int? = null,
         val performer: String? = null,
         val title: String? = null,
-    ) : InputMedia(type = "audio") {
+    ) : InputMedia() {
         constructor(
             media: String,
             thumbnail: ImplicitFile? = null,
@@ -69,7 +75,7 @@ sealed class InputMedia(
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val disableContentTypeDetection: Boolean? = null,
-    ) : InputMedia(type = "document") {
+    ) : InputMedia() {
         constructor(
             media: String,
             thumbnail: ImplicitFile? = null,
@@ -98,7 +104,7 @@ sealed class InputMedia(
         val captionEntities: List<MessageEntity>? = null,
         val hasSpoiler: Boolean? = null,
         val showCaptionAboveMedia: Boolean? = null,
-    ) : InputMedia(type = "photo") {
+    ) : InputMedia() {
         constructor(
             media: String,
             caption: String? = null,
@@ -132,7 +138,7 @@ sealed class InputMedia(
         val supportsStreaming: Boolean? = null,
         val hasSpoiler: Boolean? = null,
         val showCaptionAboveMedia: Boolean? = null,
-    ) : InputMedia(type = "video") {
+    ) : InputMedia() {
         constructor(
             media: String,
             thumbnail: ImplicitFile? = null,
@@ -199,7 +205,7 @@ sealed class InputMedia(
         val duration: Int? = null,
         val hasSpoiler: Boolean? = null,
         val showCaptionAboveMedia: Boolean? = null,
-    ) : InputMedia(type = "animation") {
+    ) : InputMedia() {
         constructor(
             media: String,
             thumbnail: ImplicitFile? = null,

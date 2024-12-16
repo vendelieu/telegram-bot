@@ -96,7 +96,8 @@ tasks {
     withType<Test> { useJUnitPlatform() }
     named("build") { dependsOn("kspCommonMainKotlinMetadata") }
     dokkaHtml.configure {
-        outputDirectory = layout.buildDirectory.asFile.orNull?.resolve("dokka")
+        outputDirectory = layout.buildDirectory.asFile.orNull
+            ?.resolve("dokka")
         dokkaSourceSets {
             named("commonMain") { sourceRoots.setFrom(project.projectDir.resolve("src/commonMain/kotlin")) }
             named("jvmMain") { sourceRoots.setFrom(project.projectDir.resolve("src/jvmMain/kotlin")) }
@@ -137,4 +138,3 @@ kover.reports.filters.excludes {
         "eu.vendeli.tgbot.implementations.EnvConfigLoader*",
     )
 }
-

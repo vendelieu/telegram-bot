@@ -27,7 +27,7 @@ suspend fun TgUpdateHandler.runExceptionHandler(
     block: ExceptionHandler,
 ) = coHandle(dispatcher) {
     caughtExceptions.consumeEach { fUpd ->
-        block.handle(fUpd.exception, fUpd.update)
+        block.handle(fUpd.exception, fUpd.update, bot)
         delay.takeIf { it > 0 }?.let { delay(it) }
     }
 }

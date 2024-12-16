@@ -30,7 +30,7 @@ class SendPaidMediaAction(
 
     init {
         parameters["star_count"] = starCount.toJsonElement()
-        handleImplicitFileGroup(media)
+        handleImplicitFileGroup(media, serializer = InputPaidMedia.serializer())
     }
 }
 

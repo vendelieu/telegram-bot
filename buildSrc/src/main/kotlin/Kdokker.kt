@@ -41,9 +41,12 @@ abstract class Kdokker : DefaultTask() {
     private val kdocRegex = Regex("\\n/\\*\\*.*\\*/", RegexOption.DOT_MATCHES_ALL)
     private val NEWLINE = "\n"
     private val apiFiles = project.layout.projectDirectory
-        .dir("src/commonMain/kotlin/eu/vendeli/tgbot/api").asFileTree.files
+        .dir("src/commonMain/kotlin/eu/vendeli/tgbot/api")
+        .asFileTree.files
     private val typeFiles = project.layout.projectDirectory
-        .dir("src/commonMain/kotlin/eu/vendeli/tgbot/types").asFileTree.files.filter {
+        .dir("src/commonMain/kotlin/eu/vendeli/tgbot/types")
+        .asFileTree.files
+        .filter {
             !it.path.contains("internal")
         }
     private fun File.isKotlinFile() = isFile && extension == "kt"
@@ -54,10 +57,11 @@ abstract class Kdokker : DefaultTask() {
         else -> this[0].uppercase() + this.substring(1)
     }
 
-    private fun String.snakeToCamelCase() = split('_').mapIndexed { i, it ->
-        if (i == 0) return@mapIndexed it
-        it.beginWithUpperCase()
-    }.joinToString("")
+    private fun String.snakeToCamelCase() = split('_')
+        .mapIndexed { i, it ->
+            if (i == 0) return@mapIndexed it
+            it.beginWithUpperCase()
+        }.joinToString("")
 
     @TaskAction
     fun updateKDoc() {

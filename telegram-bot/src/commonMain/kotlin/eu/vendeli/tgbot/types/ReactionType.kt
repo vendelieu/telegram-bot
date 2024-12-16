@@ -1,7 +1,10 @@
 package eu.vendeli.tgbot.types
 
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.serializer
 
 @Serializable
 enum class EmojiType(
@@ -237,14 +240,17 @@ enum class EmojiType(
  *
  */
 @Serializable
-sealed class ReactionType(
-    val type: String,
-) {
+sealed class ReactionType {
+    @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
+    val type: String by lazy {
+        this::class.serializer().descriptor.serialName
+    }
+
     @Serializable
     @SerialName("emoji")
     data class Emoji(
         val emoji: EmojiType,
-    ) : ReactionType("emoji") {
+    ) : ReactionType() {
         @Suppress("unused")
         constructor(emoji: String) : this(EmojiType.entries.first { it.literal == emoji })
     }
@@ -253,9 +259,9 @@ sealed class ReactionType(
     @SerialName("custom_emoji")
     data class CustomEmoji(
         val customEmojiId: String,
-    ) : ReactionType("custom_emoji")
+    ) : ReactionType()
 
     @Serializable
     @SerialName("paid")
-    class Paid : ReactionType("paid")
+    class Paid : ReactionType()
 }

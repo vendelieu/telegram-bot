@@ -7,7 +7,6 @@ import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.keyboard.MenuButton
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 
 @TgAPI
 class SetChatMenuButtonAction(
@@ -18,7 +17,7 @@ class SetChatMenuButtonAction(
     override val returnType = getReturnType()
 
     init {
-        parameters["menu_button"] = menuButton.encodeWith(DynamicLookupSerializer)
+        parameters["menu_button"] = menuButton.encodeWith(MenuButton.serializer())
     }
 }
 

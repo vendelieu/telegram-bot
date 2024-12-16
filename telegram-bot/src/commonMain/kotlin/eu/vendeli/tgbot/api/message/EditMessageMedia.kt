@@ -9,7 +9,6 @@ import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.transform
 
@@ -25,13 +24,13 @@ class EditMessageMediaAction :
 
     constructor(media: InputMedia) {
         media.media = media.media.transform(multipartData)
-        parameters["media"] = media.encodeWith(DynamicLookupSerializer)
+        parameters["media"] = media.encodeWith(InputMedia.serializer())
     }
 
     constructor(messageId: Long, media: InputMedia) {
         media.media = media.media.transform(multipartData)
         parameters["message_id"] = messageId.toJsonElement()
-        parameters["media"] = media.encodeWith(DynamicLookupSerializer)
+        parameters["media"] = media.encodeWith(InputMedia.serializer())
     }
 }
 

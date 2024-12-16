@@ -10,6 +10,7 @@ import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.toImplicitFile
 import io.kotest.matchers.nulls.shouldNotBeNull
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.assertThrows
 import utils.RandomPicResource
@@ -44,8 +45,9 @@ class MediaRequestTesting : BotTestContext() {
         photoFile.shouldNotBeNull()
     }
 
-    @Test
-    suspend fun `media group requests testing via action`() {
+    @org.junit.jupiter.api.Test
+    fun `media group requests testing via action`(): Unit = runBlocking {
+        prepareTestBot()
         val image = classloader.getResource("image.png")?.toURI()
         image.shouldNotBeNull()
 

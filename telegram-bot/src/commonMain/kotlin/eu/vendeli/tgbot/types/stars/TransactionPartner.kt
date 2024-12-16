@@ -4,8 +4,11 @@ import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.media.PaidMedia
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.serializer
 import kotlin.time.Duration
 
 /**
@@ -21,14 +24,17 @@ import kotlin.time.Duration
  *
  */
 @Serializable
-sealed class TransactionPartner(
-    val type: String,
-) {
+sealed class TransactionPartner {
+    @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
+    val type: String by lazy {
+        this::class.serializer().descriptor.serialName
+    }
+
     @Serializable
     @SerialName("fragment")
     data class Fragment(
         val withdrawalState: RevenueWithdrawalState? = null,
-    ) : TransactionPartner("fragment")
+    ) : TransactionPartner()
 
     @Serializable
     @SerialName("user")
@@ -42,26 +48,26 @@ sealed class TransactionPartner(
         @Serializable(DurationSerializer::class)
         val subscriptionPeriod: Duration? = null,
         val gift: String? = null,
-    ) : TransactionPartner("user")
+    ) : TransactionPartner()
 
     @Serializable
     @SerialName("other")
-    data object Other : TransactionPartner("other")
+    data object Other : TransactionPartner()
 
     @Serializable
     @SerialName("telegram_ads")
-    data object TelegramAds : TransactionPartner("telegram_ads")
+    data object TelegramAds : TransactionPartner()
 
     @Serializable
     @SerialName("telegram_api")
     data class TelegramApi(
         val requestCount: Int,
-    ) : TransactionPartner("telegram_api")
+    ) : TransactionPartner()
 
     @Serializable
     @SerialName("affiliate_program")
     data class AffiliateProgram(
         val sponsorUser: User? = null,
         val commissionPerMille: Int,
-    ) : TransactionPartner("affiliate_program")
+    ) : TransactionPartner()
 }
