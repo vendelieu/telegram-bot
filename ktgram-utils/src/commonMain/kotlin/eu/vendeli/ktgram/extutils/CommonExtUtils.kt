@@ -8,7 +8,14 @@ import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.utils.TgException
 
-private suspend inline fun <R> Action<R>.sendAnd(to: Identifier, bot: TelegramBot, block: suspend R.() -> Unit) {
+private val DEFAULT_FAILURE_ACTION: suspend () -> Nothing = { throw TgException("Failed to process response") }
+
+private suspend fun <R> Action<R>.sendAnd(
+    to: Identifier,
+    bot: TelegramBot,
+    onFailure: suspend () -> Nothing = DEFAULT_FAILURE_ACTION,
+    block: suspend R.() -> Unit,
+) {
     val result = when (to) {
         is Identifier.String -> {
             sendReturning(to.get, bot).getOrNull()
@@ -17,18 +24,34 @@ private suspend inline fun <R> Action<R>.sendAnd(to: Identifier, bot: TelegramBo
         is Identifier.Long -> {
             sendReturning(to.get, bot).getOrNull()
         }
-    } ?: throw TgException("Failed to process response")
+    } ?: onFailure()
     block(result)
 }
 
-suspend fun <R> Action<R>.sendAnd(to: Long, bot: TelegramBot, block: suspend R.() -> Unit) =
-    sendAnd(Identifier.from(to), bot, block)
+suspend fun <R> Action<R>.sendAnd(
+    to: Long,
+    bot: TelegramBot,
+    onFailure: suspend () -> Nothing = DEFAULT_FAILURE_ACTION,
+    block: suspend R.() -> Unit,
+) = sendAnd(Identifier.from(to), bot, onFailure, block)
 
-suspend fun <R> Action<R>.sendAnd(to: String, bot: TelegramBot, block: suspend R.() -> Unit) =
-    sendAnd(Identifier.from(to), bot, block)
+suspend fun <R> Action<R>.sendAnd(
+    to: String,
+    bot: TelegramBot,
+    onFailure: suspend () -> Nothing = DEFAULT_FAILURE_ACTION,
+    block: suspend R.() -> Unit,
+) = sendAnd(Identifier.from(to), bot, onFailure, block)
 
-suspend fun <R> Action<R>.sendAnd(to: Chat, bot: TelegramBot, block: suspend R.() -> Unit) =
-    sendAnd(Identifier.from(to), bot, block)
+suspend fun <R> Action<R>.sendAnd(
+    to: Chat,
+    bot: TelegramBot,
+    onFailure: suspend () -> Nothing = DEFAULT_FAILURE_ACTION,
+    block: suspend R.() -> Unit,
+) = sendAnd(Identifier.from(to), bot, onFailure, block)
 
-suspend fun <R> Action<R>.sendAnd(to: User, bot: TelegramBot, block: suspend R.() -> Unit) =
-    sendAnd(Identifier.from(to), bot, block)
+suspend fun <R> Action<R>.sendAnd(
+    to: User,
+    bot: TelegramBot,
+    onFailure: suspend () -> Nothing = DEFAULT_FAILURE_ACTION,
+    block: suspend R.() -> Unit,
+) = sendAnd(Identifier.from(to), bot, onFailure, block)
