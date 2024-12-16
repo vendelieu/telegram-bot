@@ -7,8 +7,10 @@ import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.utils.toImplicitFile
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.serializer
 
 /**
  * This object represents the content of a media message to be sent. It should be one of
@@ -24,9 +26,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Suppress("OVERRIDE_DEPRECATION")
 sealed class InputMedia : ImplicitMediaData {
-    @OptIn(ExperimentalSerializationApi::class)
+    @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
     val type: String by lazy {
-        serializer().descriptor.serialName
+        this::class.serializer().descriptor.serialName
     }
 
     @Serializable

@@ -17,12 +17,13 @@ import eu.vendeli.tgbot.types.InputMessageContent
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.types.msg.MessageEntity
-import eu.vendeli.tgbot.types.stars.TransactionPartner
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseContextualSerialization
+import kotlinx.serialization.serializer
 
 /**
  * This object represents one result of an inline query. Telegram clients currently support results of the following 20 types:
@@ -53,11 +54,9 @@ import kotlinx.serialization.UseContextualSerialization
  */
 @Serializable
 sealed class InlineQueryResult {
-    @OptIn(ExperimentalSerializationApi::class)
+    @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
     val type: String by lazy {
-        TransactionPartner.Companion
-            .serializer()
-            .descriptor.serialName
+        this::class.serializer().descriptor.serialName
     }
 
     @Serializable

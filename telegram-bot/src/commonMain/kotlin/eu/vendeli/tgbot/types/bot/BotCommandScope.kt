@@ -2,8 +2,10 @@ package eu.vendeli.tgbot.types.bot
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.serializer
 
 /**
  * This object represents the scope to which bot commands are applied. Currently, the following 7 scopes are supported:
@@ -20,9 +22,9 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 sealed class BotCommandScope {
-    @OptIn(ExperimentalSerializationApi::class)
+    @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
     val type: String by lazy {
-        serializer().descriptor.serialName
+        this::class.serializer().descriptor.serialName
     }
 
     @Serializable

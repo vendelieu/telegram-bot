@@ -2,17 +2,21 @@ package eu.vendeli.tgbot.types.boost
 
 import eu.vendeli.tgbot.types.User
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
+import kotlinx.serialization.serializer
 
 @Serializable
 @JsonClassDiscriminator("source")
 @OptIn(ExperimentalSerializationApi::class)
 sealed class ChatBoostSource {
     abstract val user: User?
+
+    @OptIn(InternalSerializationApi::class)
     val source: String by lazy {
-        serializer().descriptor.serialName
+        this::class.serializer().descriptor.serialName
     }
 
     @Serializable

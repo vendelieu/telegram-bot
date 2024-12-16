@@ -8,7 +8,6 @@ import eu.vendeli.tgbot.types.SentWebAppMessage
 import eu.vendeli.tgbot.types.inline.InlineQueryResult
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import eu.vendeli.tgbot.utils.toJsonElement
 
 @TgAPI
@@ -22,7 +21,7 @@ class AnswerWebAppQueryAction(
 
     init {
         parameters["web_app_query_id"] = webAppQueryId.toJsonElement()
-        parameters["result"] = result.encodeWith(DynamicLookupSerializer)
+        parameters["result"] = result.encodeWith(InlineQueryResult.serializer())
     }
 }
 

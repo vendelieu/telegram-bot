@@ -30,7 +30,7 @@ class SendMediaGroupAction(
             "All elements must be of the same specific type and animation is not supported by telegram api"
         }
 
-        handleImplicitFileGroup(media)
+        handleImplicitFileGroup(media, serializer = InputMedia.serializer())
     }
 }
 

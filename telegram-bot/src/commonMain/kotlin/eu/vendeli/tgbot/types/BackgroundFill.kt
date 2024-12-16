@@ -1,8 +1,10 @@
 package eu.vendeli.tgbot.types
 
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.serializer
 
 /**
  * This object describes the way a background is filled based on the selected colors. Currently, it can be one of
@@ -15,9 +17,9 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 sealed class BackgroundFill {
-    @OptIn(ExperimentalSerializationApi::class)
+    @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
     val type: String by lazy {
-        serializer().descriptor.serialName
+        this::class.serializer().descriptor.serialName
     }
 
     @Serializable

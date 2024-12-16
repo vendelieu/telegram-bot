@@ -1,8 +1,10 @@
 package eu.vendeli.tgbot.types
 
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.serializer
 
 @Serializable
 enum class EmojiType(
@@ -239,9 +241,9 @@ enum class EmojiType(
  */
 @Serializable
 sealed class ReactionType {
-    @OptIn(ExperimentalSerializationApi::class)
+    @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
     val type: String by lazy {
-        serializer().descriptor.serialName
+        this::class.serializer().descriptor.serialName
     }
 
     @Serializable

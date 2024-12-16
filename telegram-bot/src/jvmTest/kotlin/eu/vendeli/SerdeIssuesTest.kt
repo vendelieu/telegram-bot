@@ -122,7 +122,10 @@ class SerdeIssuesTest : BotTestContext() {
     fun `MessageOriginUserOrigin serde test`() {
         val instant = CUR_INSTANT
 
-        serde.encodeToString(MessageOrigin.UserOrigin(instant, DUMB_USER)) shouldContain "\"type\":\"user\""
+        serde.encodeToString(
+            MessageOrigin.serializer(),
+            MessageOrigin.UserOrigin(instant, DUMB_USER),
+        ) shouldContain "\"type\":\"user\""
 
         serde
             .decodeFromString(

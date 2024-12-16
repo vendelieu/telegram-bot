@@ -5,14 +5,16 @@ import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.serializer
 
 @Serializable
 @Suppress("OVERRIDE_DEPRECATION")
 sealed class InputPaidMedia : ImplicitMediaData {
-    @OptIn(ExperimentalSerializationApi::class)
+    @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
     val type: String by lazy {
-        serializer().descriptor.serialName
+        this::class.serializer().descriptor.serialName
     }
 
     @Serializable

@@ -5,8 +5,10 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.media.PaidMedia
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.serializer
 import kotlin.time.Duration
 
 /**
@@ -23,9 +25,9 @@ import kotlin.time.Duration
  */
 @Serializable
 sealed class TransactionPartner {
-    @OptIn(ExperimentalSerializationApi::class)
+    @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
     val type: String by lazy {
-        serializer().descriptor.serialName
+        this::class.serializer().descriptor.serialName
     }
 
     @Serializable

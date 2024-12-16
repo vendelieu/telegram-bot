@@ -5,17 +5,21 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import kotlinx.datetime.Instant
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
+import kotlinx.serialization.serializer
 
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
 @JsonClassDiscriminator("status")
 sealed class ChatMember : MultipleResponse {
     abstract val user: User
+
+    @OptIn(InternalSerializationApi::class)
     val status: String by lazy {
-        serializer().descriptor.serialName
+        this::class.serializer().descriptor.serialName
     }
 
     @Serializable

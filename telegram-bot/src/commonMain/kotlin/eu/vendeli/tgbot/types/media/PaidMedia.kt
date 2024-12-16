@@ -1,8 +1,10 @@
 package eu.vendeli.tgbot.types.media
 
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.serializer
 
 /**
  * This object describes paid media. Currently, it can be one of
@@ -15,9 +17,9 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 sealed class PaidMedia {
-    @OptIn(ExperimentalSerializationApi::class)
+    @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
     val type: String by lazy {
-        serializer().descriptor.serialName
+        this::class.serializer().descriptor.serialName
     }
 
     @Serializable
