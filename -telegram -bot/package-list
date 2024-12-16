@@ -763,7 +763,7 @@ $dokka.location:eu.vendeli.tgbot.interfaces.helper/ConfigLoader/commandsPackage/
 $dokka.location:eu.vendeli.tgbot.interfaces.helper/ConfigLoader/load/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces.helper/-config-loader/load.html
 $dokka.location:eu.vendeli.tgbot.interfaces.helper/ConfigLoader/token/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces.helper/-config-loader/token.html
 $dokka.location:eu.vendeli.tgbot.interfaces.helper/ExceptionHandler///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces.helper/-exception-handler/index.html
-$dokka.location:eu.vendeli.tgbot.interfaces.helper/ExceptionHandler/handle/#kotlin.Throwable#eu.vendeli.tgbot.types.internal.ProcessedUpdate/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces.helper/-exception-handler/handle.html
+$dokka.location:eu.vendeli.tgbot.interfaces.helper/ExceptionHandler/handle/#kotlin.Throwable#eu.vendeli.tgbot.types.internal.ProcessedUpdate#eu.vendeli.tgbot.TelegramBot/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces.helper/-exception-handler/handle.html
 $dokka.location:eu.vendeli.tgbot.interfaces.helper/Filter///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces.helper/-filter/index.html
 $dokka.location:eu.vendeli.tgbot.interfaces.helper/Filter/match/#eu.vendeli.tgbot.types.User?#eu.vendeli.tgbot.types.internal.ProcessedUpdate#eu.vendeli.tgbot.TelegramBot/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces.helper/-filter/match.html
 $dokka.location:eu.vendeli.tgbot.interfaces.helper/Guard///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.interfaces.helper/-guard/index.html
@@ -2159,6 +2159,7 @@ $dokka.location:eu.vendeli.tgbot.types.internal/IdLong///PointingToDeclaration/
 $dokka.location:eu.vendeli.tgbot.types.internal/IdLong/id/#/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-id-long/id.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Identifier.Companion///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-identifier/-companion/index.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Identifier.Companion/from/#eu.vendeli.tgbot.types.User/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-identifier/-companion/from.html
+$dokka.location:eu.vendeli.tgbot.types.internal/Identifier.Companion/from/#eu.vendeli.tgbot.types.chat.Chat/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-identifier/-companion/from.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Identifier.Companion/from/#kotlin.Long/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-identifier/-companion/from.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Identifier.Companion/from/#kotlin.String/PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-identifier/-companion/from.html
 $dokka.location:eu.vendeli.tgbot.types.internal/Identifier.Long///PointingToDeclaration/-telegram -bot/eu.vendeli.tgbot.types.internal/-identifier/-long/index.html
