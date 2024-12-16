@@ -25,9 +25,9 @@ class SendPaidMediaTest : BotTestContext() {
 
         request.run {
             paidMedia.shouldNotBeNull()
-            paidMedia!!.starCount shouldBe 1
-            paidMedia!!.paidMedia.size shouldBe 2
-            paidMedia!!.paidMedia.all { it.type == "photo" } shouldBe true
+            paidMedia.starCount shouldBe 1
+            paidMedia.paidMedia.size shouldBe 2
+            paidMedia.paidMedia.all { it.type == "photo" } shouldBe true
         }
     }
 }

@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.types.internal.InputFile
 import eu.vendeli.tgbot.utils.toImplicitFile
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.serializer
 
@@ -18,6 +19,7 @@ sealed class InputPaidMedia : ImplicitMediaData {
     }
 
     @Serializable
+    @SerialName("photo")
     data class Photo(
         override var media: ImplicitFile,
     ) : InputPaidMedia() {
@@ -26,6 +28,7 @@ sealed class InputPaidMedia : ImplicitMediaData {
     }
 
     @Serializable
+    @SerialName("video")
     data class Video(
         override var media: ImplicitFile,
         override var thumbnail: ImplicitFile? = null,
