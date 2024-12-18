@@ -1,5 +1,6 @@
 plugins {
-    id("publish")
+    dokka
+    publish
 }
 
 configuredKotlin {

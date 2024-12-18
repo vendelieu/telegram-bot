@@ -5,6 +5,7 @@ rootProject.name = "ktgram"
 
 include(":telegram-bot")
 include(":helper")
+include(":docs")
 include(":ksp")
 include(":webapps")
 include(":ktgram-utils")

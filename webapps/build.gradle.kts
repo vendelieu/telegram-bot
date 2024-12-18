@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.js.plain.objects)
-    id("publish")
+    publish
+    dokka
 }
 
 libraryData {

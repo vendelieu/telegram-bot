@@ -1,3 +1,4 @@
+import CommonResources.REPO_URL
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinJvm
 import com.vanniktech.maven.publish.KotlinMultiplatform
@@ -18,8 +19,7 @@ mavenPublishing {
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, true)
     if (releaseMode) signAllPublications()
 
-    val javaDoc = if (project.name == "telegram-bot" && releaseMode) JavadocJar.Dokka("dokkaHtml")
-    else JavadocJar.Empty()
+    val javaDoc = JavadocJar.Empty()
 
     val platformArtifact = if (isMultiplatform) KotlinMultiplatform(javaDoc, true)
     else KotlinJvm(JavadocJar.None(), true)
@@ -30,7 +30,7 @@ mavenPublishing {
         name = libraryData.name
         description = libraryData.description
         inceptionYear = "2022"
-        url = "https://github.com/vendelieu/telegram-bot"
+        url = REPO_URL
 
         licenses {
             license {
@@ -48,12 +48,12 @@ mavenPublishing {
         }
         scm {
             connection = "scm:git:github.com/vendelieu/telegram-bot.git"
-            developerConnection = "scm:git:ssh://github.com/vendelieu/telegram-bot.git"
-            url = "https://github.com/vendelieu/telegram-bot.git"
+            developerConnection = "scm:git:${REPO_URL.replace("https", "ssh")}.git"
+            url = "$REPO_URL.git"
         }
         issueManagement {
             system = "Github"
-            url = "https://github.com/vendelieu/telegram-bot/issues"
+            url = "$REPO_URL/issues"
         }
     }
 }

@@ -57,7 +57,7 @@ test-kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = 
 test-kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
+dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 
 ksp = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 poet = { module = "com.squareup:kotlinpoet", version.ref = "poet" }
@@ -79,7 +79,6 @@ kotlin-js-plain-objects = { id = "org.jetbrains.kotlin.plugin.js-plain-objects",
 kotlin-compatability-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binvalid" }
 gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-publish"}
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ktlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
 deteKT = { id = "io.gitlab.arturbosch.detekt", version.ref = "deteKT" }

@@ -1,16 +1,12 @@
-import org.jetbrains.dokka.base.DokkaBase
-import org.jetbrains.dokka.base.DokkaBaseConfiguration
-import java.time.LocalDate
-
 plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.compatability.validator)
     alias(libs.plugins.ktlinter)
     alias(libs.plugins.deteKT)
     alias(libs.plugins.kover)
-    alias(libs.plugins.dokka)
     alias(libs.plugins.ksp)
-    id("publish")
+    publish
+    dokka
 }
 
 configuredKotlin {
@@ -66,12 +62,6 @@ detekt {
     config.from(files("$rootDir/detekt.yml"))
 }
 
-buildscript {
-    dependencies {
-        classpath(libs.dokka.base)
-    }
-}
-
 dependencies {
     add("kspCommonMainMetadata", project(":helper"))
 }
@@ -95,24 +85,6 @@ tasks {
     register<Kdokker>("kdocUpdate")
     withType<Test> { useJUnitPlatform() }
     named("build") { dependsOn("kspCommonMainKotlinMetadata") }
-    dokkaHtml.configure {
-        outputDirectory = layout.buildDirectory.asFile.orNull
-            ?.resolve("dokka")
-        dokkaSourceSets {
-            named("commonMain") { sourceRoots.setFrom(project.projectDir.resolve("src/commonMain/kotlin")) }
-            named("jvmMain") { sourceRoots.setFrom(project.projectDir.resolve("src/jvmMain/kotlin")) }
-            named("jsMain") { sourceRoots.setFrom(project.projectDir.resolve("src/jsMain/kotlin")) }
-            if ("nativeMain" in names) named("nativeMain") {
-                sourceRoots.setFrom(project.projectDir.resolve("src/nativeMain/kotlin"))
-            }
-            collectionSchema.elements.forEach { _ -> moduleName = "Telegram Bot" }
-        }
-        pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
-            customAssets = listOf(rootDir.resolve("assets/logo-icon.svg"))
-            footerMessage = "© ${LocalDate.now().year} Vendelieu"
-            homepageLink = "https://github.com/vendelieu/telegram-bot"
-        }
-    }
 }
 
 apiValidation {

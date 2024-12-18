@@ -21,6 +21,41 @@ jobs:
         run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
         shell: bash
 
+  documentation:
+    name: Publish documentation
+    needs: version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Setup gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: current
+
+      - name: Cache konan dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/libs.versions.toml')}}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Generate docs
+        run: ./gradlew :docs:dokkaGenerate -PlibVersion=${{ needs.version.outputs.version }} --no-parallel
+
+      - name: Publish documentation
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          BRANCH: gh-pages
+          FOLDER: telegram-bot/docs/build/dokka
+
   publish:
     needs: version
     runs-on: ubuntu-latest
@@ -57,12 +92,6 @@ jobs:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{secrets.SONATYPE_USERNAME}}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{secrets.SONATYPE_PASSWORD}}
         run: ./gradlew publishAllPublicationsToMavenCentralRepository -Psigning.secretKeyRingFile=/home/runner/work/secret.gpg -Psigning.keyId=${{secrets.SIGNING_KEYID}} -Psigning.password=${{secrets.SIGNING_PASSWORD}} -PlibVersion=${{ needs.version.outputs.version }} --no-parallel
-
-      - name: Publish documentation
-        uses: JamesIves/github-pages-deploy-action@releases/v4
-        with:
-          BRANCH: gh-pages
-          FOLDER: telegram-bot/build/dokka
 
       - name: Publish plugin
         run: ./gradlew publishPlugins -PlibVersion=${{ needs.version.outputs.version }}
