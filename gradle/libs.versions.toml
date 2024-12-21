@@ -1,7 +1,7 @@
 [versions]
 ktor = "3.0.3"
 redis = "0.1.7"
-logback = "1.5.14"
+logback = "1.5.15"
 
 datetime = "0.6.0"
 serialization = "1.7.3"
