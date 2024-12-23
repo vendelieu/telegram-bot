@@ -30,7 +30,7 @@ expect val _OperatingActivities: Map<String, List<Any?>>
 internal inline fun TgUpdateHandler.coHandle(
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
     crossinline block: suspend CoroutineScope.() -> Unit,
-) = (handlerScope + Job(handlerScope.coroutineContext[Job])).launch(dispatcher) { block() }
+) = (handlerScope + Job(rootJob)).launch(dispatcher) { block() }
 
 internal suspend inline fun TgUpdateHandler.checkIsLimited(
     limits: RateLimits,

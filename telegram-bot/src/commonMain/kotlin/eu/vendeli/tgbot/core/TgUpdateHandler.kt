@@ -16,10 +16,8 @@ import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.Invocable
 import eu.vendeli.tgbot.utils.InvocationLambda
-import eu.vendeli.tgbot.utils.asyncAction
 import eu.vendeli.tgbot.utils.checkIsGuarded
 import eu.vendeli.tgbot.utils.checkIsLimited
-import eu.vendeli.tgbot.utils.coHandle
 import eu.vendeli.tgbot.utils.debug
 import eu.vendeli.tgbot.utils.error
 import eu.vendeli.tgbot.utils.fqName
@@ -30,12 +28,15 @@ import eu.vendeli.tgbot.utils.info
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.process
 import eu.vendeli.tgbot.utils.serde
+import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.warn
 import io.ktor.util.logging.trace
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
@@ -57,8 +58,9 @@ class TgUpdateHandler internal constructor(
     private var handlingBehaviour: HandlingBehaviourBlock = DEFAULT_HANDLING_BEHAVIOUR
     private val updatesFlow = MutableSharedFlow<ProcessedUpdate>(extraBufferCapacity = 10)
 
+    internal val rootJob = SupervisorJob()
     internal val handlerScope = bot.config.updatesListener.run {
-        CoroutineScope(SupervisorJob() + dispatcher + CoroutineName("TgBot"))
+        CoroutineScope(rootJob + dispatcher + CoroutineName("TgBot"))
     }
     internal val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
     internal val logger = getLogger(bot.config.logging.botLogLevel, this::class.fqName)
@@ -80,17 +82,20 @@ class TgUpdateHandler internal constructor(
     @KtGramInternal
     val userClassSteps = mutableMapOf<Long, String>()
 
-    private suspend fun collectUpdates(types: List<UpdateType>?) = bot.config.updatesListener.run {
+    private fun collectUpdates(types: List<UpdateType>?) = bot.config.updatesListener.run {
         logger.debug { "Starting updates collector." }
-        coHandle {
+        handlerScope.launch {
             var lastUpdateId = 0
+            val getUpdatesAction = GET_UPDATES_ACTION.options {
+                allowedUpdates = types
+                timeout = updatesPollingTimeout
+            }
+
             while (isActive) {
-                logger.debug { "Running listener with offset - $lastUpdateId" }
-                GET_UPDATES_ACTION
-                    .options {
-                        offset = lastUpdateId
-                        allowedUpdates = types
-                        timeout = updatesPollingTimeout
+                logger.trace { "Running listener with offset - $lastUpdateId" }
+                getUpdatesAction
+                    .apply {
+                        parameters["offset"] = lastUpdateId.toJsonElement()
                     }.sendAsync(bot)
                     .getOrNull()
                     ?.forEach {
@@ -102,13 +107,12 @@ class TgUpdateHandler internal constructor(
         }
     }
 
-    private suspend fun processUpdates() = bot.config.updatesListener.run {
-        logger.info { "Starting long-polling listener." }
-        coHandle {
-            updatesFlow.collect { update ->
-                launch(processingDispatcher) { handlingBehaviour(this@TgUpdateHandler, update) }
+    private fun processUpdates() = handlerScope.launch {
+        updatesFlow.collect { update ->
+            launch(bot.config.updatesListener.processingDispatcher) {
+                handlingBehaviour(this@TgUpdateHandler, update)
             }
-        }.join()
+        }
     }
 
     /**
@@ -122,14 +126,15 @@ class TgUpdateHandler internal constructor(
         logger.debug { "The listener is set." }
         handlingBehaviour = block
         collectUpdates(allowedUpdates)
-        processUpdates()
+        logger.info { "Starting long-polling listener." }
+        processUpdates().join()
     }
 
     /**
      * Stops listening of new updates.
      *
      */
-    suspend fun stopListener() {
+    fun stopListener() {
         handlerScope.coroutineContext.cancelChildren()
         logger.debug { "The listener is stopped." }
     }
@@ -137,7 +142,7 @@ class TgUpdateHandler internal constructor(
     /**
      * A function for defining the behavior to handle updates.
      */
-    suspend fun setBehaviour(block: HandlingBehaviourBlock) {
+    fun setBehaviour(block: HandlingBehaviourBlock) {
         logger.debug { "Handling behaviour is set." }
         stopListener()
         handlingBehaviour = block
@@ -147,21 +152,20 @@ class TgUpdateHandler internal constructor(
      * A method for handling updates from a string.
      * Define processing behavior before calling, see [setBehaviour].
      */
-    suspend fun parseAndHandle(update: String) = parse(update)
-        .await()
-        ?.let {
-            logger.debug { "Processing update with preset behaviour." }
-            coHandle(
-                bot.config.updatesListener.processingDispatcher,
-            ) { handlingBehaviour(this@TgUpdateHandler, it) }
+    fun parseAndHandle(update: String): Job? = parse(update).let {
+        logger.debug { "Processing update with preset behaviour." }
+        handlerScope.launch(bot.config.updatesListener.processingDispatcher) {
+            handlingBehaviour(this@TgUpdateHandler, it.await() ?: return@launch)
         }
+    }
 
     /**
      * A method to parse update from string.
      */
-    suspend fun parse(update: String): Deferred<ProcessedUpdate?> = asyncAction {
-        logger.debug { "Trying to parse update from string - $update" }
-        return@asyncAction serde
+    fun parse(update: String): Deferred<ProcessedUpdate?> = handlerScope.async {
+        logger.trace { "Trying to parse update from string - $update" }
+
+        serde
             .runCatching { decodeFromString(ProcessedUpdate.serializer(), update) }
             .onFailure {
                 logger.error(it) { "error during the update parsing process." }
@@ -218,8 +222,10 @@ class TgUpdateHandler internal constructor(
 
         val params = getParameters(invocation?.second?.argParser, request)
 
-        logger.debug { "Result of parsing text: ${request.command} with parameters $params" }
-        logger.debug { "Result of finding action - ${invocation?.second}" }
+        logger.debug {
+            "Result of parsing text: ${request.command} with parameters $params" +
+                "\nResult of finding action - ${invocation?.second}"
+        }
 
         // invoke update type handler if there's
         activities.updateTypeHandlers[type]?.invokeCatching(this, params, true)

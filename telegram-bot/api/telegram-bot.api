@@ -2296,12 +2296,12 @@ public final class eu/vendeli/tgbot/core/TgUpdateHandler {
 	public final fun getCaughtExceptions ()Lkotlinx/coroutines/channels/Channel;
 	public final fun handle (Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun handle (Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun parse (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun parseAndHandle (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun setBehaviour (Lkotlin/jvm/functions/Function3;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun parse (Ljava/lang/String;)Lkotlinx/coroutines/Deferred;
+	public final fun parseAndHandle (Ljava/lang/String;)Lkotlinx/coroutines/Job;
+	public final fun setBehaviour (Lkotlin/jvm/functions/Function3;)V
 	public final fun setListener (Ljava/util/List;Lkotlin/jvm/functions/Function3;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun setListener$default (Leu/vendeli/tgbot/core/TgUpdateHandler;Ljava/util/List;Lkotlin/jvm/functions/Function3;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun stopListener (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun stopListener ()V
 }
 
 public final class eu/vendeli/tgbot/core/TgUpdateHandler$Companion {
@@ -2590,7 +2590,7 @@ public final class eu/vendeli/tgbot/interfaces/helper/ConfigLoader$DefaultImpls 
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/helper/ExceptionHandler {
-	public abstract fun handle (Ljava/lang/Throwable;Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun handle (Ljava/lang/Throwable;Leu/vendeli/tgbot/types/internal/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/helper/Filter {
@@ -2637,8 +2637,7 @@ public abstract interface class eu/vendeli/tgbot/interfaces/marker/MultipleRespo
 
 public abstract class eu/vendeli/tgbot/types/BackgroundFill {
 	public static final field Companion Leu/vendeli/tgbot/types/BackgroundFill$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public final fun getType ()Ljava/lang/String;
 	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/BackgroundFill;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
@@ -2734,8 +2733,7 @@ public final class eu/vendeli/tgbot/types/BackgroundFill$Solid$Companion {
 
 public abstract class eu/vendeli/tgbot/types/BackgroundType {
 	public static final field Companion Leu/vendeli/tgbot/types/BackgroundType$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public final fun getType ()Ljava/lang/String;
 	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/BackgroundType;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
@@ -3553,8 +3551,7 @@ public final class eu/vendeli/tgbot/types/ReactionCount$Companion {
 
 public abstract class eu/vendeli/tgbot/types/ReactionType {
 	public static final field Companion Leu/vendeli/tgbot/types/ReactionType$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public final fun getType ()Ljava/lang/String;
 	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/ReactionType;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
@@ -4396,8 +4393,7 @@ public final class eu/vendeli/tgbot/types/bot/BotCommand$Companion {
 
 public abstract class eu/vendeli/tgbot/types/bot/BotCommandScope {
 	public static final field Companion Leu/vendeli/tgbot/types/bot/BotCommandScope$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public final fun getType ()Ljava/lang/String;
 	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/bot/BotCommandScope;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
@@ -6146,8 +6142,7 @@ public final class eu/vendeli/tgbot/types/inline/InlineQuery$Companion {
 
 public abstract class eu/vendeli/tgbot/types/inline/InlineQueryResult {
 	public static final field Companion Leu/vendeli/tgbot/types/inline/InlineQueryResult$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public final fun getType ()Ljava/lang/String;
 	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/inline/InlineQueryResult;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
@@ -7589,6 +7584,7 @@ public abstract class eu/vendeli/tgbot/types/internal/Identifier {
 public final class eu/vendeli/tgbot/types/internal/Identifier$Companion {
 	public final fun from (J)Leu/vendeli/tgbot/types/internal/Identifier$Long;
 	public final fun from (Leu/vendeli/tgbot/types/User;)Leu/vendeli/tgbot/types/internal/Identifier$Long;
+	public final fun from (Leu/vendeli/tgbot/types/chat/Chat;)Leu/vendeli/tgbot/types/internal/Identifier$Long;
 	public final fun from (Ljava/lang/String;)Leu/vendeli/tgbot/types/internal/Identifier$String;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
@@ -10651,9 +10647,8 @@ public final class eu/vendeli/tgbot/types/keyboard/LoginUrl$Companion {
 
 public abstract class eu/vendeli/tgbot/types/keyboard/MenuButton {
 	public static final field Companion Leu/vendeli/tgbot/types/keyboard/MenuButton$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public fun getType ()Ljava/lang/String;
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun getType ()Ljava/lang/String;
 	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/keyboard/MenuButton;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
@@ -11011,8 +11006,7 @@ public final class eu/vendeli/tgbot/types/media/File$Companion {
 
 public abstract class eu/vendeli/tgbot/types/media/InputMedia : eu/vendeli/tgbot/interfaces/helper/ImplicitMediaData {
 	public static final field Companion Leu/vendeli/tgbot/types/media/InputMedia$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public final fun getType ()Ljava/lang/String;
 	public fun setThumbnail (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
@@ -11266,8 +11260,7 @@ public final class eu/vendeli/tgbot/types/media/InputMedia$Video$Companion {
 
 public abstract class eu/vendeli/tgbot/types/media/InputPaidMedia : eu/vendeli/tgbot/interfaces/helper/ImplicitMediaData {
 	public static final field Companion Leu/vendeli/tgbot/types/media/InputPaidMedia$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public fun getThumbnail ()Leu/vendeli/tgbot/types/internal/ImplicitFile;
 	public final fun getType ()Ljava/lang/String;
 	public fun setThumbnail (Leu/vendeli/tgbot/types/internal/ImplicitFile;)V
@@ -11443,8 +11436,7 @@ public final class eu/vendeli/tgbot/types/media/MaskPosition$Companion {
 
 public abstract class eu/vendeli/tgbot/types/media/PaidMedia {
 	public static final field Companion Leu/vendeli/tgbot/types/media/PaidMedia$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public final fun getType ()Ljava/lang/String;
 	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/media/PaidMedia;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
@@ -12347,8 +12339,7 @@ public final class eu/vendeli/tgbot/types/msg/MessageId$Companion {
 
 public abstract class eu/vendeli/tgbot/types/msg/MessageOrigin {
 	public static final field Companion Leu/vendeli/tgbot/types/msg/MessageOrigin$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public final fun asChannel ()Leu/vendeli/tgbot/types/msg/MessageOrigin$Channel;
 	public final fun asChatOrigin ()Leu/vendeli/tgbot/types/msg/MessageOrigin$ChatOrigin;
 	public final fun asHiddenUser ()Leu/vendeli/tgbot/types/msg/MessageOrigin$HiddenUser;
@@ -13546,8 +13537,7 @@ public final class eu/vendeli/tgbot/types/stars/AffiliateInfo$Companion {
 
 public abstract class eu/vendeli/tgbot/types/stars/RevenueWithdrawalState {
 	public static final field Companion Leu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public final fun getType ()Ljava/lang/String;
 	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/stars/RevenueWithdrawalState;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
@@ -13668,8 +13658,7 @@ public final class eu/vendeli/tgbot/types/stars/StarTransactions$Companion {
 
 public abstract class eu/vendeli/tgbot/types/stars/TransactionPartner {
 	public static final field Companion Leu/vendeli/tgbot/types/stars/TransactionPartner$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public final fun getType ()Ljava/lang/String;
 	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/stars/TransactionPartner;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
@@ -14143,9 +14132,5 @@ public final class eu/vendeli/tgbot/utils/builders/ReplyKeyboardMarkupBuilder : 
 
 public final class eu/vendeli/tgbot/utils/builders/ReplyKeyboardMarkupBuilderKt {
 	public static final fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/types/keyboard/ReplyKeyboardMarkup;
-}
-
-public final class eu/vendeli/tgbot/utils/serde/SerdeHelpersKt {
-	public static final fun getPrimitiveOrNull (Lkotlinx/serialization/json/JsonElement;)Lkotlinx/serialization/json/JsonPrimitive;
 }
 

@@ -12,4 +12,6 @@ abstract class BotConfiguration {
     abstract fun applyCfg(): BotConfigurator
 
     open suspend fun onInit(bot: TelegramBot) {}
+
+    open suspend fun onHandlerException(exception: Throwable, bot: TelegramBot) {}
 }

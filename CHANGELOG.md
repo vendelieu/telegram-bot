@@ -1,5 +1,10 @@
 # Telegram-bot (KtGram) Changelog
 
+#### [unreleased]
+
+* Added `ktorJvmEngine` parameter to plugin with option to choose ktor engine.
+* Added `onHandlerException` for spring starter bot configuration, to cover exceptions thrown by update handler.
+
 ### 7.6.2
 
 * Move all sealed structure serialization to unified approach.
