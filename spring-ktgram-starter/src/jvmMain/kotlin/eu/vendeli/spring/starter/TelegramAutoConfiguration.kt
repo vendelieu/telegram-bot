@@ -37,14 +37,19 @@ open class TelegramAutoConfiguration(
         if (botCfg?.autostartLongPolling != false && config.autoStartPolling) {
             GlobalScope.launch {
                 botCfg?.onInit(botInstance)
-                launch {
-                    botInstance.runCatching { handleUpdates(botCfg?.allowedUpdates) }.onFailure {
-                        botCfg?.onHandlerException(it, botInstance)
-                    }
-                }
+                launch { botInstance.handleUpdatesCatching(botCfg) }
             }
         }
 
         return@map botInstance
+    }
+
+    private suspend fun TelegramBot.handleUpdatesCatching(
+        botConfiguration: BotConfiguration? = null,
+    ): Unit = try {
+        handleUpdates(botConfiguration?.allowedUpdates)
+    } catch (e: Throwable) {
+        botConfiguration?.onHandlerException(e)
+        handleUpdatesCatching(botConfiguration)
     }
 }

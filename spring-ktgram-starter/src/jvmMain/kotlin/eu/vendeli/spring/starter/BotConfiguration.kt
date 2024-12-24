@@ -13,5 +13,5 @@ abstract class BotConfiguration {
 
     open suspend fun onInit(bot: TelegramBot) {}
 
-    open suspend fun onHandlerException(exception: Throwable, bot: TelegramBot) {}
+    open suspend fun onHandlerException(exception: Throwable) {}
 }
