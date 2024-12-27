@@ -1,7 +1,7 @@
 package eu.vendeli.ktgram.gradle
 
 enum class KtorJvmEngine(
-    val artifact: String,
+    internal val artifact: String,
 ) {
     NONE("none"),
 
