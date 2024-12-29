@@ -12,7 +12,7 @@ plugins {
     alias(libs.plugins.deteKT) apply false
 }
 
-tasks.create("prepareRelease") {
+tasks.register("prepareRelease") {
     dependsOn("telegram-bot:clean")
     dependsOn("telegram-bot:kspCommonMainKotlinMetadata")
     dependsOn("telegram-bot:apiCheck")
