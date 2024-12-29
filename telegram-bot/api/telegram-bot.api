@@ -13888,8 +13888,6 @@ public final class eu/vendeli/tgbot/utils/CommonExtenstionsKt {
 	public static final fun escapeHTML (Ljava/lang/String;)Ljava/lang/String;
 	public static final fun escapeMarkdown (Ljava/lang/String;)Ljava/lang/String;
 	public static final fun escapeMarkdownV2 (Ljava/lang/String;)Ljava/lang/String;
-	public static final fun runExceptionHandler (Leu/vendeli/tgbot/core/TgUpdateHandler;Lkotlinx/coroutines/CoroutineDispatcher;JLeu/vendeli/tgbot/interfaces/helper/ExceptionHandler;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun runExceptionHandler$default (Leu/vendeli/tgbot/core/TgUpdateHandler;Lkotlinx/coroutines/CoroutineDispatcher;JLeu/vendeli/tgbot/interfaces/helper/ExceptionHandler;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun setChain (Leu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/chain/Link;)V
 }
 

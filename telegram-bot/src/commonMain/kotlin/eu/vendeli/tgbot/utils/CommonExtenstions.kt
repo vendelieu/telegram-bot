@@ -13,6 +13,7 @@ import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.reflect.KClass
 
 /**
@@ -22,11 +23,12 @@ import kotlin.reflect.KClass
  * @param delay Delay after each handling iteration.
  * @param block Handling action.
  */
-suspend fun TgUpdateHandler.runExceptionHandler(
+@ExperimentalFeature
+fun TgUpdateHandler.runExceptionHandler(
     dispatcher: CoroutineDispatcher = PROCESSING_DISPATCHER,
     delay: Long = 100,
     block: ExceptionHandler,
-) = coHandle(dispatcher) {
+) = handlerScope.launch(dispatcher) {
     caughtExceptions.consumeEach { fUpd ->
         block.handle(fUpd.exception, fUpd.update, bot)
         delay.takeIf { it > 0 }?.let { delay(it) }

@@ -9,15 +9,9 @@ import eu.vendeli.tgbot.types.internal.ExceptionHandlingStrategy
 import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.plus
 import kotlin.reflect.KClass
 
 inline fun <reified T : Any> ClassManager.getInstance(vararg initParams: Any?): T? =
@@ -28,11 +22,6 @@ inline fun <reified T : Any> ClassManager.getInstance(vararg initParams: Any?): 
 expect val _OperatingActivities: Map<String, List<Any?>>
 
 expect val KClass<*>.fqName: String
-
-internal inline fun TgUpdateHandler.coHandle(
-    dispatcher: CoroutineDispatcher = Dispatchers.Default,
-    crossinline block: suspend CoroutineScope.() -> Unit,
-) = (handlerScope + Job(rootJob)).launch(dispatcher) { block() }
 
 internal suspend inline fun TgUpdateHandler.checkIsLimited(
     limits: RateLimits,
