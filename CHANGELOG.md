@@ -4,6 +4,8 @@
 
 * Added `ktorJvmEngine` parameter to plugin with option to choose ktor engine.
 * Added `onHandlerException` for spring starter bot configuration, to cover exceptions thrown by update handler.
+* Added extenstion for `String` for escaping formatting, `escapeFormatting(parseMode)`, `escapeMarkdown`,
+  `escapeMarkdownV2`, `escapeHTML`.
 
 ### 7.6.2
 

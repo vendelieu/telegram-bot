@@ -27,6 +27,8 @@ inline fun <reified T : Any> ClassManager.getInstance(vararg initParams: Any?): 
 @Suppress("ObjectPropertyName", "ktlint:standard:backing-property-naming")
 expect val _OperatingActivities: Map<String, List<Any?>>
 
+expect val KClass<*>.fqName: String
+
 internal inline fun TgUpdateHandler.coHandle(
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
     crossinline block: suspend CoroutineScope.() -> Unit,
@@ -70,5 +72,3 @@ internal inline fun <T> Any?.cast() = this as T
 
 @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
 internal inline fun <T> Any?.safeCast() = this as? T
-
-expect val KClass<*>.fqName: String

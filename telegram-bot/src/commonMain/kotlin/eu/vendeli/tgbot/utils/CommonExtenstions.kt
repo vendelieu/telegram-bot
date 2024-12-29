@@ -5,6 +5,7 @@ import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.interfaces.ctx.InputListener
 import eu.vendeli.tgbot.interfaces.helper.ExceptionHandler
+import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.chain.Link
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
@@ -129,5 +130,59 @@ fun <T> Collection<T>.joinToInlineKeyboard(
     }
     if (elWindowEdge.last < size) callbackData(">>") {
         paginationCallbackPattern.replace("%P", "${currentPage + 1}")
+    }
+}
+
+@Suppress("NOTHING_TO_INLINE")
+inline fun String.escapeFormatting(mode: ParseMode): String = when (mode) {
+    ParseMode.Markdown -> escapeMarkdown()
+    ParseMode.MarkdownV2 -> escapeMarkdownV2()
+    ParseMode.HTML -> escapeHTML()
+}
+
+private val markdownV1EscapeList = setOf('_', '*', '`', '[')
+
+fun String.escapeMarkdown() = buildString {
+    forEach {
+        if (it in markdownV1EscapeList) append("\\$it") else append(it)
+    }
+}
+
+private val markdownV2EscapeList = setOf(
+    '_',
+    '*',
+    '[',
+    ']',
+    '(',
+    ')',
+    '~',
+    '`',
+    '>',
+    '#',
+    '+',
+    '-',
+    '=',
+    '|',
+    '{',
+    '}',
+    '.',
+    '!',
+)
+
+fun String.escapeMarkdownV2() = buildString {
+    forEach {
+        if (it in markdownV2EscapeList) append("\\$it") else append(it)
+    }
+}
+
+private val HTMLEscapeMap = mapOf(
+    '&' to "&amp;",
+    '<' to "&lt;",
+    '>' to "&gt;",
+)
+
+fun String.escapeHTML() = buildString {
+    forEach { ch ->
+        HTMLEscapeMap[ch]?.let { append(it) } ?: append(ch)
     }
 }

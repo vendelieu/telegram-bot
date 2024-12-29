@@ -22,11 +22,6 @@ typealias OnCommandActivity = suspend CommandContext<ProcessedUpdate>.() -> Unit
 typealias OnInputActivity = suspend ActivityCtx<ProcessedUpdate>.() -> Unit
 typealias WhenNotHandledActivity = suspend ActivityCtx<ProcessedUpdate>.() -> Unit
 
-internal typealias OnUpdateActivities = MutableMap<UpdateType, suspend ActivityCtx<ProcessedUpdate>.() -> Unit>
-internal typealias InputActivities = MutableMap<String, SingleInputChain>
-internal typealias CommandActivities = MutableMap<Pair<String, UpdateType>, FunctionalInvocation>
-internal typealias CommonActivities = MutableMap<CommonMatcher, FunctionalInvocation>
-
 typealias HandlingBehaviourBlock = suspend TgUpdateHandler.(ProcessedUpdate) -> Unit
 typealias FunctionalHandlingBlock = suspend FunctionalHandlingDsl.() -> Unit
 typealias BotConfigurator = BotConfiguration.() -> Unit
@@ -34,6 +29,11 @@ typealias RetryStrategy = HttpRetryShouldRetryContext.(HttpRequest, HttpResponse
 
 typealias InvocationLambda = suspend (ClassManager, ProcessedUpdate, User?, TelegramBot, Map<String, String>) -> Any?
 typealias Invocable = Pair<InvocationLambda, InvocationMeta>
+
+internal typealias OnUpdateActivities = MutableMap<UpdateType, suspend ActivityCtx<ProcessedUpdate>.() -> Unit>
+internal typealias InputActivities = MutableMap<String, SingleInputChain>
+internal typealias CommandActivities = MutableMap<Pair<String, UpdateType>, FunctionalInvocation>
+internal typealias CommonActivities = MutableMap<CommonMatcher, FunctionalInvocation>
 
 internal typealias CommandHandlers = Map<Pair<String, UpdateType>, Invocable>
 internal typealias InputHandlers = Map<String, Invocable>
