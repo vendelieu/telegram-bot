@@ -18,6 +18,13 @@ import java.io.File
 import java.security.KeyStore
 import java.security.PrivateKey
 
+/**
+ * Creates and starts a Ktor server for webhook endpoints.
+ *
+ * @param wait whether the function should wait for the server to start
+ * @param serverBuilder a lambda to configure the server
+ * @return the configured server instance.
+ */
 suspend fun serveWebhook(
     wait: Boolean = true,
     serverBuilder: suspend ServerBuilder.() -> Unit = {},

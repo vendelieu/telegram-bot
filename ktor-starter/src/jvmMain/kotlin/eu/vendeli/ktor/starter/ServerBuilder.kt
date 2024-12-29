@@ -9,20 +9,45 @@ import io.ktor.server.application.Application
 import io.ktor.server.netty.NettyApplicationEngine
 import kotlinx.coroutines.runBlocking
 
+/**
+ * Configuration class for the server.
+ *
+ * @property WEBHOOK_PREFIX the prefix for webhook routes
+ * @property shareHttpClient if the shared http client should be used.
+ */
 class ServerBuilder internal constructor() {
+    /**
+     * The declared bot instances.
+     */
     internal val botInstances = mutableMapOf<String, TelegramBot>()
+
+    /**
+     * The ktor modules to be applied to the server.
+     */
     internal val ktorModules = mutableListOf<Application.() -> Unit>()
     internal var server: Configuration? = null
     internal var engineCfg: NettyApplicationEngine.Configuration.() -> Unit = {}
     private var httpClient: HttpClient? = null
     var shareHttpClient: Boolean = false
+
+    @Suppress("ktlint:standard:property-naming")
     var WEBHOOK_PREFIX = "/"
 
+    /**
+     * Set the configuration for the server.
+     *
+     * @param configurator a lambda to configure the server
+     */
     fun server(configurator: ManualConfiguration.() -> Unit) {
         server = ManualConfiguration().apply(configurator)
     }
 
-    suspend fun declareBot(block: BotConfiguration.() -> Unit) = BotConfiguration().apply(block).also { cfg ->
+    /**
+     * Declare a bot.
+     *
+     * @param block a lambda to configure the bot
+     */
+    fun declareBot(block: BotConfiguration.() -> Unit) = BotConfiguration().apply(block).also { cfg ->
         val client = if (shareHttpClient) httpClient ?: getConfiguredHttpClient(
             HttpConfiguration(),
             LoggingConfiguration(),
@@ -41,10 +66,20 @@ class ServerBuilder internal constructor() {
         }
     }
 
+    /**
+     * Set the configuration for the engine.
+     *
+     * @param serverConfigurator a lambda to configure the engine
+     */
     fun engine(serverConfigurator: NettyApplicationEngine.Configuration.() -> Unit) {
         engineCfg = serverConfigurator
     }
 
+    /**
+     * Add a ktor module to the server.
+     *
+     * @param module a lambda to configure the module
+     */
     fun ktorModule(module: Application.() -> Unit) {
         ktorModules.add(module)
     }

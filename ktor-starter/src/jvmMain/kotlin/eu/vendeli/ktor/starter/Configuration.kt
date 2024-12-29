@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:property-naming")
+
 package eu.vendeli.ktor.starter
 
 import io.ktor.server.config.ApplicationConfigurationException
