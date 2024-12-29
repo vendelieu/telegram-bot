@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Import
 @Import(SpringClassManager::class)
 @EnableConfigurationProperties(TgConfigProperties::class)
 open class TelegramAutoConfiguration(
-    private val config: TgConfigProperties,
+    protected val config: TgConfigProperties,
     private val springClassManager: SpringClassManager,
 ) {
     @Autowired(required = false)
