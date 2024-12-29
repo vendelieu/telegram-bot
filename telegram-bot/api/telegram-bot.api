@@ -13884,6 +13884,10 @@ public final class eu/vendeli/tgbot/utils/CONSTKt {
 }
 
 public final class eu/vendeli/tgbot/utils/CommonExtenstionsKt {
+	public static final fun escapeFormatting (Ljava/lang/String;Leu/vendeli/tgbot/types/ParseMode;)Ljava/lang/String;
+	public static final fun escapeHTML (Ljava/lang/String;)Ljava/lang/String;
+	public static final fun escapeMarkdown (Ljava/lang/String;)Ljava/lang/String;
+	public static final fun escapeMarkdownV2 (Ljava/lang/String;)Ljava/lang/String;
 	public static final fun runExceptionHandler (Leu/vendeli/tgbot/core/TgUpdateHandler;Lkotlinx/coroutines/CoroutineDispatcher;JLeu/vendeli/tgbot/interfaces/helper/ExceptionHandler;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun runExceptionHandler$default (Leu/vendeli/tgbot/core/TgUpdateHandler;Lkotlinx/coroutines/CoroutineDispatcher;JLeu/vendeli/tgbot/interfaces/helper/ExceptionHandler;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun setChain (Leu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/internal/chain/Link;)V
@@ -13929,14 +13933,6 @@ public final class eu/vendeli/tgbot/utils/FunctionalDSLUtilsKt {
 	public static final fun onPurchasedPaidMedia (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onRemovedChatBoost (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
 	public static final fun onShippingQuery (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
-}
-
-public final class eu/vendeli/tgbot/utils/LoggingUtilsKt {
-	public static final fun debug (Lorg/slf4j/Logger;Lkotlin/jvm/functions/Function0;)V
-	public static final fun error (Lorg/slf4j/Logger;Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;)V
-	public static synthetic fun error$default (Lorg/slf4j/Logger;Ljava/lang/Throwable;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
-	public static final fun info (Lorg/slf4j/Logger;Lkotlin/jvm/functions/Function0;)V
-	public static final fun warn (Lorg/slf4j/Logger;Lkotlin/jvm/functions/Function0;)V
 }
 
 public class eu/vendeli/tgbot/utils/TgException : java/lang/RuntimeException {
