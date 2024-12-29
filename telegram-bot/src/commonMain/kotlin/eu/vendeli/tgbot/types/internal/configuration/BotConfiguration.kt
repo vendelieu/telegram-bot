@@ -18,7 +18,7 @@ import kotlinx.serialization.Transient
  * @property inputListener Input handling class instance.
  * @property classManager The manager that will be used to get classes.
  * @property inputAutoRemoval A flag that regulates the auto-deletion of the input point during processing.
- * @property exceptionHandlingStrategy Exception handling strategy.
+ * @property exceptionHandlingStrategy Exception handling strategy. See [ExceptionHandlingStrategy].
  * @property throwExOnActionsFailure Throw exception when the action (any bot request) ends with failure.
  */
 @Serializable
@@ -87,6 +87,11 @@ data class BotConfiguration(
         rateLimiter = new.rateLimiter
         updatesListener = new.updatesListener
         commandParsing = new.commandParsing
+        identifier = new.identifier
+        isTestEnv = new.isTestEnv
+        inputAutoRemoval = new.inputAutoRemoval
+        exceptionHandlingStrategy = new.exceptionHandlingStrategy
+        throwExOnActionsFailure = new.throwExOnActionsFailure
 
         return this
     }
