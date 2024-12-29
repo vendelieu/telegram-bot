@@ -22,7 +22,7 @@ import java.security.PrivateKey
  * Creates and starts a Ktor server for webhook endpoints.
  *
  * @param wait whether the function should wait for the server to start
- * @param serverBuilder a lambda to configure the server
+ * @param serverBuilder a lambda to configure the server, if not provided, env configuration will be used.
  * @return the configured server instance.
  */
 suspend fun serveWebhook(
