@@ -5,6 +5,15 @@ import org.gradle.kotlin.dsl.listProperty
 import org.gradle.kotlin.dsl.property
 import javax.inject.Inject
 
+/**
+ * Extension for [KtGramPlugin] that can be used to configure the KtGram DSL.
+ *
+ * @property packages list of packages to scan for KtGram annotations.
+ * @property addSnapshotRepo set to true to add the snapshot repository to the repositories list.
+ * @property forceVersion set to a version string to force library specific version.
+ * @property autoCleanClassData set to false to prevent the KSP processor from cleaning the class data automatically.
+ * @property ktorJvmEngine the Ktor JVM engine to use, defaults to [KtorJvmEngine.JAVA].
+ */
 abstract class KtGramExt
     @Inject
     constructor(
