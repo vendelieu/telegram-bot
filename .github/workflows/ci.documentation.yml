@@ -5,6 +5,11 @@ permissions:
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish'
+        required: true
+        type: string
   push:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+"
@@ -12,7 +17,6 @@ on:
 jobs:
   documentation:
     name: Publish documentation
-    needs: version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,8 +40,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: Determine version
+        id: vars
+        run: |
+          if [ "${{ github.event_name }}" == "push" ]; then
+            echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          fi
+        shell: bash
+
       - name: Generate docs
-        run: ./gradlew :docs:dokkaGenerate -PlibVersion=${{ needs.version.outputs.version }} --no-parallel
+        run: ./gradlew :docs:dokkaGenerate -PlibVersion=${{ steps.vars.outputs.version }} --no-parallel
 
       - name: Publish documentation
         uses: JamesIves/github-pages-deploy-action@releases/v4
