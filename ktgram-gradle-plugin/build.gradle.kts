@@ -4,6 +4,7 @@ plugins {
     `java-gradle-plugin`
     alias(libs.plugins.ktlinter)
     alias(libs.plugins.gradle.publish)
+    dokka
 }
 
 gradlePlugin {
