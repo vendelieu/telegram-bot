@@ -57,4 +57,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           BRANCH: gh-pages
-          FOLDER: docs/build/dokka
+          FOLDER: docs/build/dokka/html
