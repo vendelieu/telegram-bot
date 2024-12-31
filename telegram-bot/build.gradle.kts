@@ -28,8 +28,9 @@ configuredKotlin {
             implementation(libs.mockk)
         }
         jvmMain.dependencies {
-            implementation(libs.logback)
             implementation(libs.ktor.client.java)
+            implementation(libs.slf4j.api)
+            compileOnly(libs.logback)
         }
         jsMain.dependencies {
             implementation(libs.ktor.client.js)

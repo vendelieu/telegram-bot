@@ -8,6 +8,7 @@ import org.springframework.boot.context.properties.bind.ConstructorBinding
  *
  * @property autoStartPolling Start long polling automatically after the bot is created.
  * @property shareHttpClient Share the same HTTP client instance between all bots.
+ * @property maxHandlingRetries The maximum number of retries for handling updates.
  * @property bot The list of bot configurations.
  */
 @ConfigurationProperties(prefix = "ktgram")
@@ -16,6 +17,7 @@ data class TgConfigProperties
     constructor(
         val autoStartPolling: Boolean = true,
         val shareHttpClient: Boolean = false,
+        val maxHandlingRetries: Int = 5,
         val bot: List<BotProperties>,
     ) {
         /**

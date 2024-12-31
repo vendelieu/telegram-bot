@@ -1,7 +1,9 @@
 package eu.vendeli.spring.starter
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.utils.fqName
 import io.ktor.client.HttpClient
+import io.ktor.util.logging.KtorSimpleLogger
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -18,6 +20,8 @@ open class TelegramAutoConfiguration(
     protected val config: TgConfigProperties,
     private val springClassManager: SpringClassManager,
 ) {
+    private val logger = KtorSimpleLogger(this::class.fqName)
+
     @Autowired(required = false)
     private var cfg: List<BotConfiguration>? = null
 
@@ -39,6 +43,8 @@ open class TelegramAutoConfiguration(
                 botCfg?.onInit(botInstance)
                 launch { botInstance.handleUpdatesCatching(botCfg) }
             }
+        } else {
+            logger.warn("Bot ${bot.identifier} is not started automatically, make sure you handle this manually")
         }
 
         return@map botInstance
@@ -46,10 +52,21 @@ open class TelegramAutoConfiguration(
 
     private suspend fun TelegramBot.handleUpdatesCatching(
         botConfiguration: BotConfiguration? = null,
-    ): Unit = try {
-        handleUpdates(botConfiguration?.allowedUpdates)
-    } catch (e: Throwable) {
-        botConfiguration?.onHandlerException(e)
-        handleUpdatesCatching(botConfiguration)
+        currentTry: Int = 1,
+    ) {
+        try {
+            if (currentTry >= config.maxHandlingRetries) {
+                logger.error("Max handling retries reached")
+                return
+            }
+
+            if (currentTry > 1) logger.warn("Retrying to handle updates, attempt $currentTry")
+
+            handleUpdates(botConfiguration?.allowedUpdates)
+        } catch (e: Throwable) {
+            logger.error("An error occurred while handling updates", e)
+            botConfiguration?.onHandlerException(e)
+            handleUpdatesCatching(botConfiguration, currentTry + 1)
+        }
     }
 }

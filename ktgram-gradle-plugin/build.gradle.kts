@@ -4,6 +4,7 @@ plugins {
     `java-gradle-plugin`
     alias(libs.plugins.ktlinter)
     alias(libs.plugins.gradle.publish)
+    dokka
 }
 
 gradlePlugin {
@@ -26,8 +27,15 @@ tasks.processResources {
     val ktorVersion = libs.versions.ktor.get()
     inputs.property("ktor", ktorVersion)
 
+    val logbackVersion = libs.versions.logback.get()
+    inputs.property("logback", logbackVersion)
+
     filesMatching("ktgram.properties") {
-        expand("ktgramVer" to projectVersion, "ktorVer" to ktorVersion)
+        expand(
+            "ktgramVer" to projectVersion,
+            "ktorVer" to ktorVersion,
+            "logbackVer" to logbackVersion,
+        )
     }
 }
 

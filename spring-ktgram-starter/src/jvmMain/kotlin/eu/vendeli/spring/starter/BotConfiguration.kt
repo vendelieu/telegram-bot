@@ -3,6 +3,7 @@ package eu.vendeli.spring.starter
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.utils.BotConfigurator
+import kotlinx.coroutines.delay
 
 /**
  * Base configuration for a Telegram bot.
@@ -31,6 +32,9 @@ abstract class BotConfiguration {
     /**
      * Called when an exception is thrown by a handler.
      * Handler is automatically restarts by default after this hook is called.
+     * Default behavior is to delay for 3 seconds.
      */
-    open suspend fun onHandlerException(exception: Throwable) {}
+    open suspend fun onHandlerException(exception: Throwable) {
+        delay(3000L)
+    }
 }

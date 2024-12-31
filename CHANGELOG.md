@@ -1,5 +1,11 @@
 # Telegram-bot (KtGram) Changelog
 
+## 7.7.1
+
+* Added max handling retries to spring starter configuration.
+* Fixed wrong name of `UpdateType.EDIT_MESSAGE` to `EDITED_MESSAGE` (thanks @KillWolfVlad) #319.
+* Fixed a bug when using a provider other than logback.
+
 ## 7.7.0
 
 * Added `ktorJvmEngine` parameter to plugin with option to choose ktor engine.

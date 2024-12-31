@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    rootProject.subprojects.filter { it.name !in listOf("helper", "ksp", "ktgram-gradle-plugin", "docs") }.forEach {
+    rootProject.subprojects.filter { it.name !in listOf("helper", "ksp", "docs") }.forEach {
         dokka(project(":" + it.name))
     }
 }
