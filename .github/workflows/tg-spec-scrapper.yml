@@ -1,7 +1,5 @@
 on:
   workflow_dispatch:
-  schedule:
-    - cron:  '0 12 * * *' # Every day at 12:00 (noon).
 
 name: Scrape Telegram bot API
 jobs:
