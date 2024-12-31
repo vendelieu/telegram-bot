@@ -8036,7 +8036,7 @@ public final class eu/vendeli/tgbot/types/internal/UpdateType : java/lang/Enum {
 	public static final field DELETED_BUSINESS_MESSAGES Leu/vendeli/tgbot/types/internal/UpdateType;
 	public static final field EDITED_BUSINESS_MESSAGE Leu/vendeli/tgbot/types/internal/UpdateType;
 	public static final field EDITED_CHANNEL_POST Leu/vendeli/tgbot/types/internal/UpdateType;
-	public static final field EDIT_MESSAGE Leu/vendeli/tgbot/types/internal/UpdateType;
+	public static final field EDITED_MESSAGE Leu/vendeli/tgbot/types/internal/UpdateType;
 	public static final field INLINE_QUERY Leu/vendeli/tgbot/types/internal/UpdateType;
 	public static final field MESSAGE Leu/vendeli/tgbot/types/internal/UpdateType;
 	public static final field MESSAGE_REACTION Leu/vendeli/tgbot/types/internal/UpdateType;

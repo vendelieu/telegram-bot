@@ -39,7 +39,7 @@ public fun FunctionalHandlingDsl.onMessage(block: suspend ActivityCtx<MessageUpd
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.Update.editedMessage] in the [eu.vendeli.tgbot.types.Update].
  */
 public fun FunctionalHandlingDsl.onEditedMessage(block: suspend ActivityCtx<EditedMessageUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.EDIT_MESSAGE] = block.cast()
+  functionalActivities.onUpdateActivities[UpdateType.EDITED_MESSAGE] = block.cast()
 }
 
 /**

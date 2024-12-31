@@ -63,7 +63,7 @@ data class EditedMessageUpdate(
     override val updateId: Int,
     override val origin: Update,
     val editedMessage: Message,
-) : ProcessedUpdate(updateId, origin, UpdateType.EDIT_MESSAGE),
+) : ProcessedUpdate(updateId, origin, UpdateType.EDITED_MESSAGE),
     UserReference {
     override val user = editedMessage.from!!
     override val text = editedMessage.text.orEmpty()

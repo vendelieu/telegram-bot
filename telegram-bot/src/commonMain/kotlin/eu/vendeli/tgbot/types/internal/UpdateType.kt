@@ -8,8 +8,8 @@ enum class UpdateType {
     @SerialName("message")
     MESSAGE,
 
-    @SerialName("edit_message")
-    EDIT_MESSAGE,
+    @SerialName("edited_message")
+    EDITED_MESSAGE,
 
     @SerialName("channel_post")
     CHANNEL_POST,

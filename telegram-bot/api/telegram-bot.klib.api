@@ -376,7 +376,7 @@ final enum class eu.vendeli.tgbot.types.internal/UpdateType : kotlin/Enum<eu.ven
     enum entry DELETED_BUSINESS_MESSAGES // eu.vendeli.tgbot.types.internal/UpdateType.DELETED_BUSINESS_MESSAGES|null[0]
     enum entry EDITED_BUSINESS_MESSAGE // eu.vendeli.tgbot.types.internal/UpdateType.EDITED_BUSINESS_MESSAGE|null[0]
     enum entry EDITED_CHANNEL_POST // eu.vendeli.tgbot.types.internal/UpdateType.EDITED_CHANNEL_POST|null[0]
-    enum entry EDIT_MESSAGE // eu.vendeli.tgbot.types.internal/UpdateType.EDIT_MESSAGE|null[0]
+    enum entry EDITED_MESSAGE // eu.vendeli.tgbot.types.internal/UpdateType.EDITED_MESSAGE|null[0]
     enum entry INLINE_QUERY // eu.vendeli.tgbot.types.internal/UpdateType.INLINE_QUERY|null[0]
     enum entry MESSAGE // eu.vendeli.tgbot.types.internal/UpdateType.MESSAGE|null[0]
     enum entry MESSAGE_REACTION // eu.vendeli.tgbot.types.internal/UpdateType.MESSAGE_REACTION|null[0]
