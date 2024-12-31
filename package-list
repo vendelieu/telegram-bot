@@ -11,6 +11,8 @@ module:ktgram-config-env
 eu.vendeli.ktgram.config.env
 module:ktgram-config-toml
 eu.vendeli.ktgram.config.env
+module:ktgram-gradle-plugin
+eu.vendeli.ktgram.gradle
 module:ktgram-utils
 eu.vendeli.ktgram.extutils
 module:ktor-starter
