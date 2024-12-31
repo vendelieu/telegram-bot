@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) Changelog
 
+## [Unreleased]
+
+* Added max handling retries to spring starter configuration.
+
 ## 7.7.0
 
 * Added `ktorJvmEngine` parameter to plugin with option to choose ktor engine.
