@@ -29,6 +29,7 @@ configuredKotlin {
         }
         jvmMain.dependencies {
             implementation(libs.logback)
+            implementation(libs.ktor.client.java)
         }
         jsMain.dependencies {
             implementation(libs.ktor.client.js)

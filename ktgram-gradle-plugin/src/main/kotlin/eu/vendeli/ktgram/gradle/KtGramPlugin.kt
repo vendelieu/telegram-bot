@@ -53,7 +53,10 @@ abstract class KtGramPlugin : Plugin<Project> {
             }
 
             val ktorEngine = pluginExtension.ktorJvmEngine.getOrElse(KtorJvmEngine.JAVA)
-            if (ktorEngine != KtorJvmEngine.NONE) {
+            if (ktorEngine != KtorJvmEngine.NONE && ktorEngine != KtorJvmEngine.JAVA) {
+                configurations.configureEach {
+                    dependencies.removeIf { it.group == "io.ktor" && it.name == "ktor-client-java-jvm" }
+                }
                 dependencies.add("implementation", "io.ktor:ktor-client-${ktorEngine.artifact}-jvm:$ktorVer")
             }
 
