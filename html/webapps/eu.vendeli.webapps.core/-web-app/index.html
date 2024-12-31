@@ -1,0 +1,1768 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>WebApp</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
+<link href="../../../images/logo-icon.svg"></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    KtGram
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">7.7.0
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":webapps/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":webapps/jsMain" data-filter=":webapps/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+                <a class="navigation-controls--btn navigation-controls--btn_homepage" id="homepage-link" href="https://github.com/vendelieu/telegram-bot"></a>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    KtGram
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="webapps::eu.vendeli.webapps.core/WebApp///PointingToDeclaration//-237291807">
+  <div class="breadcrumbs"><a href="../../index.html">webapps</a><span class="delimiter">/</span><a href="../index.html">eu.vendeli.webapps.core</a><span class="delimiter">/</span><span class="current">WebApp</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Web</span><wbr><span><span>App</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">class </span><a href="index.html">WebApp</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/vendelieu/telegram-bot/blob/master/webapps/src/jsMain/kotlin/eu/vendeli/webapps/core/WebApp.kt#L27">source</a>)</span></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="1208715975%2FConstructors%2F-237291807" anchor-label="WebApp" id="1208715975%2FConstructors%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-web-app.html"><span>Web</span><wbr><span><span>App</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1208715975%2FConstructors%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-111307337%2FProperties%2F-237291807" anchor-label="accelerometer" id="-111307337%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="accelerometer.html"><span><span>accelerometer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-111307337%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="accelerometer.html">accelerometer</a><span class="token operator">: </span><a href="../../eu.vendeli.webapps.sensors/-accelerometer/index.html">Accelerometer</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1193372645%2FProperties%2F-237291807" anchor-label="backButton" id="-1193372645%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="back-button.html"><span>back</span><wbr><span><span>Button</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1193372645%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="back-button.html">backButton</a><span class="token operator">: </span><a href="../../eu.vendeli.webapps.button/-back-button/index.html">BackButton</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1853269071%2FProperties%2F-237291807" anchor-label="backgroundColor" id="-1853269071%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="background-color.html"><span>background</span><wbr><span><span>Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1853269071%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="background-color.html">backgroundColor</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1830080129%2FProperties%2F-237291807" anchor-label="biometricManager" id="-1830080129%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="biometric-manager.html"><span>biometric</span><wbr><span><span>Manager</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1830080129%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="biometric-manager.html">biometricManager</a><span class="token operator">: </span><a href="../-biometric-manager/index.html">BiometricManager</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2083264647%2FProperties%2F-237291807" anchor-label="bottomBarColor" id="-2083264647%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bottom-bar-color.html"><span>bottom</span><wbr><span>Bar</span><wbr><span><span>Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2083264647%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="bottom-bar-color.html">bottomBarColor</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="53924718%2FProperties%2F-237291807" anchor-label="cloudStorage" id="53924718%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cloud-storage.html"><span>cloud</span><wbr><span><span>Storage</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="53924718%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="cloud-storage.html">cloudStorage</a><span class="token operator">: </span><a href="../-cloud-storage/index.html">CloudStorage</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1143738516%2FProperties%2F-237291807" anchor-label="ColorScheme" id="1143738516%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/-color-scheme.html"><span>Color</span><wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1143738516%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/-color-scheme.html">ColorScheme</a><span class="token operator">: </span><a href="../../eu.vendeli.webapps.ui/-color-scheme/index.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-42795138%2FProperties%2F-237291807" anchor-label="colorScheme" id="-42795138%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-scheme.html"><span>color</span><wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-42795138%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="color-scheme.html">colorScheme</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1863313430%2FProperties%2F-237291807" anchor-label="contentSafeAreaInset" id="-1863313430%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="content-safe-area-inset.html"><span>content</span><wbr><span>Safe</span><wbr><span>Area</span><wbr><span><span>Inset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1863313430%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="content-safe-area-inset.html">contentSafeAreaInset</a><span class="token operator">: </span><a href="../../eu.vendeli.webapps.ui/-safe-area-inset/index.html">SafeAreaInset</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-613542324%2FProperties%2F-237291807" anchor-label="deviceOrientation" id="-613542324%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="device-orientation.html"><span>device</span><wbr><span><span>Orientation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-613542324%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="device-orientation.html">deviceOrientation</a><span class="token operator">: </span><a href="../../eu.vendeli.webapps.sensors/-device-orientation/index.html">DeviceOrientation</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1632144961%2FProperties%2F-237291807" anchor-label="gyroscope" id="1632144961%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="gyroscope.html"><span><span>gyroscope</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1632144961%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="gyroscope.html">gyroscope</a><span class="token operator">: </span><a href="../../eu.vendeli.webapps.sensors/-gyroscope/index.html">Gyroscope</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1137994312%2FProperties%2F-237291807" anchor-label="hapticFeedback" id="-1137994312%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="haptic-feedback.html"><span>haptic</span><wbr><span><span>Feedback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1137994312%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="haptic-feedback.html">hapticFeedback</a><span class="token operator">: </span><a href="../../eu.vendeli.webapps.haptic/-haptic-feedback/index.html">HapticFeedback</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-11635376%2FProperties%2F-237291807" anchor-label="headerColor" id="-11635376%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="header-color.html"><span>header</span><wbr><span><span>Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-11635376%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="header-color.html">headerColor</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1483240218%2FProperties%2F-237291807" anchor-label="initData" id="1483240218%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="init-data.html"><span>init</span><wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1483240218%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="init-data.html">initData</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="680713812%2FProperties%2F-237291807" anchor-label="initDataUnsafe" id="680713812%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="init-data-unsafe.html"><span>init</span><wbr><span>Data</span><wbr><span><span>Unsafe</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="680713812%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="init-data-unsafe.html">initDataUnsafe</a><span class="token operator">: </span><a href="../-web-app-init-data/index.html">WebAppInitData</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1896711140%2FProperties%2F-237291807" anchor-label="isActive" id="1896711140%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-active.html"><span>is</span><wbr><span><span>Active</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1896711140%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-active.html">isActive</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1992612147%2FProperties%2F-237291807" anchor-label="isClosingConfirmationEnabled" id="1992612147%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-closing-confirmation-enabled.html"><span>is</span><wbr><span>Closing</span><wbr><span>Confirmation</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1992612147%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-closing-confirmation-enabled.html">isClosingConfirmationEnabled</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1609674321%2FProperties%2F-237291807" anchor-label="isExpanded" id="1609674321%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-expanded.html"><span>is</span><wbr><span><span>Expanded</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1609674321%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-expanded.html">isExpanded</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1377644977%2FProperties%2F-237291807" anchor-label="isFullscreen" id="-1377644977%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-fullscreen.html"><span>is</span><wbr><span><span>Fullscreen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1377644977%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-fullscreen.html">isFullscreen</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-272976522%2FProperties%2F-237291807" anchor-label="isOrientationLocked" id="-272976522%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-orientation-locked.html"><span>is</span><wbr><span>Orientation</span><wbr><span><span>Locked</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-272976522%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-orientation-locked.html">isOrientationLocked</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="719000382%2FProperties%2F-237291807" anchor-label="isVerticalSwipesEnabled" id="719000382%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-vertical-swipes-enabled.html"><span>is</span><wbr><span>Vertical</span><wbr><span>Swipes</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="719000382%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-vertical-swipes-enabled.html">isVerticalSwipesEnabled</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="659879342%2FProperties%2F-237291807" anchor-label="locationManager" id="659879342%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="location-manager.html"><span>location</span><wbr><span><span>Manager</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="659879342%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="location-manager.html">locationManager</a><span class="token operator">: </span><a href="../../eu.vendeli.webapps.sensors/-location-manager/index.html">LocationManager</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1345455863%2FProperties%2F-237291807" anchor-label="mainButton" id="-1345455863%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="main-button.html"><span>main</span><wbr><span><span>Button</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1345455863%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="main-button.html">mainButton</a><span class="token operator">: </span><a href="../../eu.vendeli.webapps.button/-bottom-button/index.html">BottomButton</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1564498337%2FProperties%2F-237291807" anchor-label="platform" id="1564498337%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="platform.html"><span><span>platform</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1564498337%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="platform.html">platform</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1055803107%2FProperties%2F-237291807" anchor-label="requireClosingConfirmation" id="1055803107%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/require-closing-confirmation.html"><span>require</span><wbr><span>Closing</span><wbr><span><span>Confirmation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1055803107%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">var </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/require-closing-confirmation.html">requireClosingConfirmation</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2056025853%2FProperties%2F-237291807" anchor-label="safeAreaInset" id="-2056025853%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="safe-area-inset.html"><span>safe</span><wbr><span>Area</span><wbr><span><span>Inset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2056025853%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="safe-area-inset.html">safeAreaInset</a><span class="token operator">: </span><a href="../../eu.vendeli.webapps.ui/-safe-area-inset/index.html">SafeAreaInset</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="207205856%2FProperties%2F-237291807" anchor-label="secondaryButton" id="207205856%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="secondary-button.html"><span>secondary</span><wbr><span><span>Button</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="207205856%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="secondary-button.html">secondaryButton</a><span class="token operator">: </span><a href="../../eu.vendeli.webapps.button/-bottom-button/index.html">BottomButton</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="722371039%2FProperties%2F-237291807" anchor-label="settingsButton" id="722371039%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="settings-button.html"><span>settings</span><wbr><span><span>Button</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="722371039%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="settings-button.html">settingsButton</a><span class="token operator">: </span><a href="../../eu.vendeli.webapps.button/-settings-button/index.html">SettingsButton</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="123803543%2FProperties%2F-237291807" anchor-label="themeParams" id="123803543%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="theme-params.html"><span>theme</span><wbr><span><span>Params</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="123803543%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="theme-params.html">themeParams</a><span class="token operator">: </span><a href="../../eu.vendeli.webapps.ui/-theme-params/index.html">ThemeParams</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-659085298%2FProperties%2F-237291807" anchor-label="version" id="-659085298%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="version.html"><span><span>version</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-659085298%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="version.html">version</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="709146791%2FProperties%2F-237291807" anchor-label="viewportHeight" id="709146791%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="viewport-height.html"><span>viewport</span><wbr><span><span>Height</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="709146791%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="viewport-height.html">viewportHeight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="310891820%2FProperties%2F-237291807" anchor-label="viewportStableHeight" id="310891820%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="viewport-stable-height.html"><span>viewport</span><wbr><span>Stable</span><wbr><span><span>Height</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="310891820%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="viewport-stable-height.html">viewportStableHeight</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1871722369%2FFunctions%2F-237291807" anchor-label="addToHomeScreen" id="-1871722369%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-to-home-screen.html"><span>add</span><wbr><span>To</span><wbr><span>Home</span><wbr><span><span>Screen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1871722369%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="add-to-home-screen.html"><span class="token function">addToHomeScreen</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1459448430%2FFunctions%2F-237291807" anchor-label="checkHomeScreenStatus" id="1459448430%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="check-home-screen-status.html"><span>check</span><wbr><span>Home</span><wbr><span>Screen</span><wbr><span><span>Status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1459448430%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="check-home-screen-status.html"><span class="token function">checkHomeScreenStatus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-home-screen-status-callback/index.html">HomeScreenStatusCallback</a><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1717083858%2FFunctions%2F-237291807" anchor-label="close" id="-1717083858%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="close.html"><span><span>close</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1717083858%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="close.html"><span class="token function">close</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1538088002%2FFunctions%2F-237291807" anchor-label="closeScanQrPopup" id="-1538088002%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="close-scan-qr-popup.html"><span>close</span><wbr><span>Scan</span><wbr><span>Qr</span><wbr><span><span>Popup</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1538088002%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="close-scan-qr-popup.html"><span class="token function">closeScanQrPopup</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-831254606%2FFunctions%2F-237291807" anchor-label="disableClosingConfirmation" id="-831254606%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="disable-closing-confirmation.html"><span>disable</span><wbr><span>Closing</span><wbr><span><span>Confirmation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-831254606%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="disable-closing-confirmation.html"><span class="token function">disableClosingConfirmation</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1215436433%2FFunctions%2F-237291807" anchor-label="disableVerticalSwipes" id="-1215436433%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="disable-vertical-swipes.html"><span>disable</span><wbr><span>Vertical</span><wbr><span><span>Swipes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1215436433%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="disable-vertical-swipes.html"><span class="token function">disableVerticalSwipes</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-365591836%2FFunctions%2F-237291807" anchor-label="downloadFile" id="-365591836%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="download-file.html"><span>download</span><wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-365591836%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="download-file.html"><span class="token function">downloadFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">params<span class="token operator">: </span><a href="../../eu.vendeli.webapps.user_interaction/-download-file-params/index.html">DownloadFileParams</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="506160255%2FFunctions%2F-237291807" anchor-label="enableClosingConfirmation" id="506160255%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="enable-closing-confirmation.html"><span>enable</span><wbr><span>Closing</span><wbr><span><span>Confirmation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="506160255%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="enable-closing-confirmation.html"><span class="token function">enableClosingConfirmation</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="75368578%2FFunctions%2F-237291807" anchor-label="enableVerticalSwipes" id="75368578%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="enable-vertical-swipes.html"><span>enable</span><wbr><span>Vertical</span><wbr><span><span>Swipes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="75368578%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="enable-vertical-swipes.html"><span class="token function">enableVerticalSwipes</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="778959899%2FFunctions%2F-237291807" anchor-label="exitFullscreen" id="778959899%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="exit-fullscreen.html"><span>exit</span><wbr><span><span>Fullscreen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="778959899%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="exit-fullscreen.html"><span class="token function">exitFullscreen</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1296342810%2FFunctions%2F-237291807" anchor-label="expand" id="1296342810%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="expand.html"><span><span>expand</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1296342810%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="expand.html"><span class="token function">expand</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1660548504%2FFunctions%2F-237291807" anchor-label="isVersionAtLeast" id="1660548504%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-version-at-least.html"><span>is</span><wbr><span>Version</span><wbr><span>At</span><wbr><span><span>Least</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1660548504%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-version-at-least.html"><span class="token function">isVersionAtLeast</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">version<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="471489761%2FFunctions%2F-237291807" anchor-label="lockOrientation" id="471489761%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="lock-orientation.html"><span>lock</span><wbr><span><span>Orientation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="471489761%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="lock-orientation.html"><span class="token function">lockOrientation</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1638394912%2FFunctions%2F-237291807" anchor-label="onAccelerometerChanged" id="-1638394912%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-accelerometer-changed.html"><span>on</span><wbr><span>Accelerometer</span><wbr><span><span>Changed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1638394912%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-accelerometer-changed.html"><span class="token function">onAccelerometerChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1549520799%2FFunctions%2F-237291807" anchor-label="onAccelerometerFailed" id="1549520799%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-accelerometer-failed.html"><span>on</span><wbr><span>Accelerometer</span><wbr><span><span>Failed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1549520799%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-accelerometer-failed.html"><span class="token function">onAccelerometerFailed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-accelerometer-failed-event-handler/index.html">AccelerometerFailedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1736532749%2FFunctions%2F-237291807" anchor-label="onAccelerometerStarted" id="-1736532749%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-accelerometer-started.html"><span>on</span><wbr><span>Accelerometer</span><wbr><span><span>Started</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1736532749%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-accelerometer-started.html"><span class="token function">onAccelerometerStarted</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-122888153%2FFunctions%2F-237291807" anchor-label="onAccelerometerStopped" id="-122888153%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-accelerometer-stopped.html"><span>on</span><wbr><span>Accelerometer</span><wbr><span><span>Stopped</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-122888153%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-accelerometer-stopped.html"><span class="token function">onAccelerometerStopped</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1270272698%2FFunctions%2F-237291807" anchor-label="onActivated" id="-1270272698%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-activated.html"><span>on</span><wbr><span><span>Activated</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1270272698%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-activated.html"><span class="token function">onActivated</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1076450313%2FFunctions%2F-237291807" anchor-label="onBackButtonClicked" id="1076450313%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-back-button-clicked.html"><span>on</span><wbr><span>Back</span><wbr><span>Button</span><wbr><span><span>Clicked</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1076450313%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-back-button-clicked.html"><span class="token function">onBackButtonClicked</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="492595332%2FFunctions%2F-237291807" anchor-label="onClipboardTextReceived" id="492595332%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-clipboard-text-received.html"><span>on</span><wbr><span>Clipboard</span><wbr><span>Text</span><wbr><span><span>Received</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="492595332%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-clipboard-text-received.html"><span class="token function">onClipboardTextReceived</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-clipboard-text-received-event-handler/index.html">ClipboardTextReceivedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-396273770%2FFunctions%2F-237291807" anchor-label="onContactRequested" id="-396273770%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-contact-requested.html"><span>on</span><wbr><span>Contact</span><wbr><span><span>Requested</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-396273770%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-contact-requested.html"><span class="token function">onContactRequested</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-contact-requested-handler/index.html">ContactRequestedHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-929630684%2FFunctions%2F-237291807" anchor-label="onContentSafeAreaChanged" id="-929630684%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-content-safe-area-changed.html"><span>on</span><wbr><span>Content</span><wbr><span>Safe</span><wbr><span>Area</span><wbr><span><span>Changed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-929630684%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-content-safe-area-changed.html"><span class="token function">onContentSafeAreaChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1194999815%2FFunctions%2F-237291807" anchor-label="onDeactivated" id="1194999815%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-deactivated.html"><span>on</span><wbr><span><span>Deactivated</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1194999815%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-deactivated.html"><span class="token function">onDeactivated</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1155365355%2FFunctions%2F-237291807" anchor-label="onDeviceOrientationChanged" id="1155365355%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-device-orientation-changed.html"><span>on</span><wbr><span>Device</span><wbr><span>Orientation</span><wbr><span><span>Changed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1155365355%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-device-orientation-changed.html"><span class="token function">onDeviceOrientationChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1854226495%2FFunctions%2F-237291807" anchor-label="onDeviceOrientationFailed" id="1854226495%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-device-orientation-failed.html"><span>on</span><wbr><span>Device</span><wbr><span>Orientation</span><wbr><span><span>Failed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1854226495%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-device-orientation-failed.html"><span class="token function">onDeviceOrientationFailed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-device-orientation-failed-event-handler/index.html">DeviceOrientationFailedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1057227518%2FFunctions%2F-237291807" anchor-label="onDeviceOrientationStarted" id="1057227518%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-device-orientation-started.html"><span>on</span><wbr><span>Device</span><wbr><span>Orientation</span><wbr><span><span>Started</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1057227518%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-device-orientation-started.html"><span class="token function">onDeviceOrientationStarted</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1624095182%2FFunctions%2F-237291807" anchor-label="onDeviceOrientationStopped" id="-1624095182%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-device-orientation-stopped.html"><span>on</span><wbr><span>Device</span><wbr><span>Orientation</span><wbr><span><span>Stopped</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1624095182%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-device-orientation-stopped.html"><span class="token function">onDeviceOrientationStopped</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="962571045%2FFunctions%2F-237291807" anchor-label="onEmojiStatusAccessRequested" id="962571045%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-emoji-status-access-requested.html"><span>on</span><wbr><span>Emoji</span><wbr><span>Status</span><wbr><span>Access</span><wbr><span><span>Requested</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="962571045%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-emoji-status-access-requested.html"><span class="token function">onEmojiStatusAccessRequested</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-emoji-status-access-requested-event-handler/index.html">EmojiStatusAccessRequestedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="920947327%2FFunctions%2F-237291807" anchor-label="onEmojiStatusFailed" id="920947327%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-emoji-status-failed.html"><span>on</span><wbr><span>Emoji</span><wbr><span>Status</span><wbr><span><span>Failed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="920947327%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-emoji-status-failed.html"><span class="token function">onEmojiStatusFailed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-emoji-status-failed-event-handler/index.html">EmojiStatusFailedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-705433861%2FFunctions%2F-237291807" anchor-label="onEmojiStatusSet" id="-705433861%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-emoji-status-set.html"><span>on</span><wbr><span>Emoji</span><wbr><span>Status</span><wbr><span><span>Set</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-705433861%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-emoji-status-set.html"><span class="token function">onEmojiStatusSet</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2053042145%2FFunctions%2F-237291807" anchor-label="onFileDownloadRequested" id="-2053042145%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-file-download-requested.html"><span>on</span><wbr><span>File</span><wbr><span>Download</span><wbr><span><span>Requested</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2053042145%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-file-download-requested.html"><span class="token function">onFileDownloadRequested</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-file-download-requested-event-handler/index.html">FileDownloadRequestedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2035468642%2FFunctions%2F-237291807" anchor-label="onFullscreenChanged" id="-2035468642%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-fullscreen-changed.html"><span>on</span><wbr><span>Fullscreen</span><wbr><span><span>Changed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2035468642%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-fullscreen-changed.html"><span class="token function">onFullscreenChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-311644367%2FFunctions%2F-237291807" anchor-label="onFullscreenFailed" id="-311644367%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-fullscreen-failed.html"><span>on</span><wbr><span>Fullscreen</span><wbr><span><span>Failed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-311644367%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-fullscreen-failed.html"><span class="token function">onFullscreenFailed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-fullscreen-failed-event-handler/index.html">FullscreenFailedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1277129578%2FFunctions%2F-237291807" anchor-label="onGyroscopeChanged" id="-1277129578%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-gyroscope-changed.html"><span>on</span><wbr><span>Gyroscope</span><wbr><span><span>Changed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1277129578%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-gyroscope-changed.html"><span class="token function">onGyroscopeChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="490460767%2FFunctions%2F-237291807" anchor-label="onGyroscopeFailed" id="490460767%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-gyroscope-failed.html"><span>on</span><wbr><span>Gyroscope</span><wbr><span><span>Failed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="490460767%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-gyroscope-failed.html"><span class="token function">onGyroscopeFailed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-gyroscope-failed-event-handler/index.html">GyroscopeFailedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1375267415%2FFunctions%2F-237291807" anchor-label="onGyroscopeStarted" id="-1375267415%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-gyroscope-started.html"><span>on</span><wbr><span>Gyroscope</span><wbr><span><span>Started</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1375267415%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-gyroscope-started.html"><span class="token function">onGyroscopeStarted</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="238377181%2FFunctions%2F-237291807" anchor-label="onGyroscopeStopped" id="238377181%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-gyroscope-stopped.html"><span>on</span><wbr><span>Gyroscope</span><wbr><span><span>Stopped</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="238377181%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-gyroscope-stopped.html"><span class="token function">onGyroscopeStopped</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1679051842%2FFunctions%2F-237291807" anchor-label="onHomeScreenAdded" id="1679051842%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-home-screen-added.html"><span>on</span><wbr><span>Home</span><wbr><span>Screen</span><wbr><span><span>Added</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1679051842%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-home-screen-added.html"><span class="token function">onHomeScreenAdded</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1662844639%2FFunctions%2F-237291807" anchor-label="onHomeScreenChecked" id="1662844639%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-home-screen-checked.html"><span>on</span><wbr><span>Home</span><wbr><span>Screen</span><wbr><span><span>Checked</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1662844639%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-home-screen-checked.html"><span class="token function">onHomeScreenChecked</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-home-screen-checked-event-handler/index.html">HomeScreenCheckedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1906492208%2FFunctions%2F-237291807" anchor-label="onInvoiceClosed" id="-1906492208%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-invoice-closed.html"><span>on</span><wbr><span>Invoice</span><wbr><span><span>Closed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1906492208%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-invoice-closed.html"><span class="token function">onInvoiceClosed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-invoice-closed-event-handler/index.html">InvoiceClosedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="340690274%2FFunctions%2F-237291807" anchor-label="onLocationManagerUpdated" id="340690274%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-location-manager-updated.html"><span>on</span><wbr><span>Location</span><wbr><span>Manager</span><wbr><span><span>Updated</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="340690274%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-location-manager-updated.html"><span class="token function">onLocationManagerUpdated</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="348077084%2FFunctions%2F-237291807" anchor-label="onLocationRequested" id="348077084%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-location-requested.html"><span>on</span><wbr><span>Location</span><wbr><span><span>Requested</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="348077084%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-location-requested.html"><span class="token function">onLocationRequested</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-location-requested-event-handler/index.html">LocationRequestedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1026607909%2FFunctions%2F-237291807" anchor-label="onMainButtonClicked" id="-1026607909%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-main-button-clicked.html"><span>on</span><wbr><span>Main</span><wbr><span>Button</span><wbr><span><span>Clicked</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1026607909%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-main-button-clicked.html"><span class="token function">onMainButtonClicked</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1190716063%2FFunctions%2F-237291807" anchor-label="onPopupClosed" id="-1190716063%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-popup-closed.html"><span>on</span><wbr><span>Popup</span><wbr><span><span>Closed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1190716063%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-popup-closed.html"><span class="token function">onPopupClosed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-popup-closed-event-handler/index.html">PopupClosedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1577821325%2FFunctions%2F-237291807" anchor-label="onQRTextReceived" id="1577821325%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-q-r-text-received.html"><span>on</span><wbr><span>QRText</span><wbr><span><span>Received</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1577821325%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-q-r-text-received.html"><span class="token function">onQRTextReceived</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-q-r-text-received-event-handler/index.html">QRTextReceivedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="762187293%2FFunctions%2F-237291807" anchor-label="onSafeAreaChanged" id="762187293%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-safe-area-changed.html"><span>on</span><wbr><span>Safe</span><wbr><span>Area</span><wbr><span><span>Changed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="762187293%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-safe-area-changed.html"><span class="token function">onSafeAreaChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-418476387%2FFunctions%2F-237291807" anchor-label="onScanQrPopupClosed" id="-418476387%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-scan-qr-popup-closed.html"><span>on</span><wbr><span>Scan</span><wbr><span>Qr</span><wbr><span>Popup</span><wbr><span><span>Closed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-418476387%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-scan-qr-popup-closed.html"><span class="token function">onScanQrPopupClosed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1892750468%2FFunctions%2F-237291807" anchor-label="onSecondaryButtonClicked" id="1892750468%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-secondary-button-clicked.html"><span>on</span><wbr><span>Secondary</span><wbr><span>Button</span><wbr><span><span>Clicked</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1892750468%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-secondary-button-clicked.html"><span class="token function">onSecondaryButtonClicked</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1238480581%2FFunctions%2F-237291807" anchor-label="onSettingsButtonClicked" id="1238480581%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-settings-button-clicked.html"><span>on</span><wbr><span>Settings</span><wbr><span>Button</span><wbr><span><span>Clicked</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1238480581%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-settings-button-clicked.html"><span class="token function">onSettingsButtonClicked</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1285530613%2FFunctions%2F-237291807" anchor-label="onShareMessageFailed" id="-1285530613%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-share-message-failed.html"><span>on</span><wbr><span>Share</span><wbr><span>Message</span><wbr><span><span>Failed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1285530613%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-share-message-failed.html"><span class="token function">onShareMessageFailed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-share-message-failed-event-handler/index.html">ShareMessageFailedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1943848965%2FFunctions%2F-237291807" anchor-label="onShareMessageSent" id="1943848965%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-share-message-sent.html"><span>on</span><wbr><span>Share</span><wbr><span>Message</span><wbr><span><span>Sent</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1943848965%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-share-message-sent.html"><span class="token function">onShareMessageSent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-591866918%2FFunctions%2F-237291807" anchor-label="onThemeChanged" id="-591866918%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-theme-changed.html"><span>on</span><wbr><span>Theme</span><wbr><span><span>Changed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-591866918%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-theme-changed.html"><span class="token function">onThemeChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-no-params-event-handler/index.html">NoParamsEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-166557103%2FFunctions%2F-237291807" anchor-label="onViewportChanged" id="-166557103%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-viewport-changed.html"><span>on</span><wbr><span>Viewport</span><wbr><span><span>Changed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-166557103%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-viewport-changed.html"><span class="token function">onViewportChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-viewport-changed-event-handler/index.html">ViewportChangedEventHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1626084470%2FFunctions%2F-237291807" anchor-label="onWriteAccessRequested" id="1626084470%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/on-write-access-requested.html"><span>on</span><wbr><span>Write</span><wbr><span>Access</span><wbr><span><span>Requested</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1626084470%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/on-write-access-requested.html"><span class="token function">onWriteAccessRequested</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventHandler<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-write-access-requested-handler/index.html">WriteAccessRequestedHandler</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-683777724%2FFunctions%2F-237291807" anchor-label="openInvoice" id="-683777724%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="open-invoice.html"><span>open</span><wbr><span><span>Invoice</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-683777724%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="open-invoice.html"><span class="token function">openInvoice</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span><a href="../../eu.vendeli.webapps.invoice/-invoice-closed-info/index.html">InvoiceClosedInfo</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="629434425%2FFunctions%2F-237291807" anchor-label="openLink" id="629434425%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="open-link.html"><span>open</span><wbr><span><span>Link</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="629434425%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="open-link.html"><span class="token function">openLink</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">params<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-open-link-params/index.html">OpenLinkParams</a><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1231354347%2FFunctions%2F-237291807" anchor-label="openTelegramLink" id="-1231354347%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="open-telegram-link.html"><span>open</span><wbr><span>Telegram</span><wbr><span><span>Link</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1231354347%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="open-telegram-link.html"><span class="token function">openTelegramLink</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="657915911%2FFunctions%2F-237291807" anchor-label="readTextFromClipboard" id="657915911%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="read-text-from-clipboard.html"><span>read</span><wbr><span>Text</span><wbr><span>From</span><wbr><span><span>Clipboard</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="657915911%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="read-text-from-clipboard.html"><span class="token function">readTextFromClipboard</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-clipboard-text-received-callback/index.html">ClipboardTextReceivedCallback</a><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="543312867%2FFunctions%2F-237291807" anchor-label="ready" id="543312867%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ready.html"><span><span>ready</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="543312867%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="ready.html"><span class="token function">ready</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-26818162%2FFunctions%2F-237291807" anchor-label="requestContact" id="-26818162%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="request-contact.html"><span>request</span><wbr><span><span>Contact</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-26818162%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="request-contact.html"><span class="token function">requestContact</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="364977849%2FFunctions%2F-237291807" anchor-label="requestEmojiStatusAccess" id="364977849%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="request-emoji-status-access.html"><span>request</span><wbr><span>Emoji</span><wbr><span>Status</span><wbr><span><span>Access</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="364977849%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="request-emoji-status-access.html"><span class="token function">requestEmojiStatusAccess</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-930696644%2FFunctions%2F-237291807" anchor-label="requestFullscreen" id="-930696644%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="request-fullscreen.html"><span>request</span><wbr><span><span>Fullscreen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-930696644%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="request-fullscreen.html"><span class="token function">requestFullscreen</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="151017553%2FFunctions%2F-237291807" anchor-label="requestWriteAccess" id="151017553%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="request-write-access.html"><span>request</span><wbr><span>Write</span><wbr><span><span>Access</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="151017553%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="request-write-access.html"><span class="token function">requestWriteAccess</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="56151202%2FFunctions%2F-237291807" anchor-label="sendData" id="56151202%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="send-data.html"><span>send</span><wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="56151202%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="send-data.html"><span class="token function">sendData</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-934430877%2FFunctions%2F-237291807" anchor-label="setBackgroundColor" id="-934430877%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-background-color.html"><span>set</span><wbr><span>Background</span><wbr><span><span>Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-934430877%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-background-color.html"><span class="token function">setBackgroundColor</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">color<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="668732859%2FFunctions%2F-237291807" anchor-label="setBottomBarColor" id="668732859%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-bottom-bar-color.html"><span>set</span><wbr><span>Bottom</span><wbr><span>Bar</span><wbr><span><span>Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="668732859%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-bottom-bar-color.html"><span class="token function">setBottomBarColor</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">color<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1588549912%2FFunctions%2F-237291807" anchor-label="setEmojiStatus" id="1588549912%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-emoji-status.html"><span>set</span><wbr><span>Emoji</span><wbr><span><span>Status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1588549912%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-emoji-status.html"><span class="token function">setEmojiStatus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">custom_emoji_id<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">params<span class="token operator">: </span><a href="../../eu.vendeli.webapps.user_interaction/-emoji-status-params/index.html">EmojiStatusParams</a><span class="token operator"> = </span>definedExternally<span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-906481628%2FFunctions%2F-237291807" anchor-label="setHeaderColor" id="-906481628%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-header-color.html"><span>set</span><wbr><span>Header</span><wbr><span><span>Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-906481628%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-header-color.html"><span class="token function">setHeaderColor</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">color<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1536321820%2FFunctions%2F-237291807" anchor-label="shareMessage" id="-1536321820%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="share-message.html"><span>share</span><wbr><span><span>Message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1536321820%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="share-message.html"><span class="token function">shareMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">msg_id<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1066043065%2FFunctions%2F-237291807" anchor-label="shareToStory" id="1066043065%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="share-to-story.html"><span>share</span><wbr><span>To</span><wbr><span><span>Story</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1066043065%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="share-to-story.html"><span class="token function">shareToStory</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">mediaUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">params<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-story-share-params/index.html">StoryShareParams</a><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1318326847%2FFunctions%2F-237291807" anchor-label="showAlert" id="1318326847%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="show-alert.html"><span>show</span><wbr><span><span>Alert</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1318326847%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="show-alert.html"><span class="token function">showAlert</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">message<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-alert-callback/index.html">AlertCallback</a><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1045524211%2FFunctions%2F-237291807" anchor-label="showConfirm" id="1045524211%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="show-confirm.html"><span>show</span><wbr><span><span>Confirm</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1045524211%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="show-confirm.html"><span class="token function">showConfirm</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">message<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-confirm-callback/index.html">ConfirmCallback</a><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1044300693%2FFunctions%2F-237291807" anchor-label="showPopup" id="-1044300693%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="show-popup.html"><span>show</span><wbr><span><span>Popup</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1044300693%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="show-popup.html"><span class="token function">showPopup</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">params<span class="token operator">: </span><a href="../../eu.vendeli.webapps.popup/-popup-params/index.html">PopupParams</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-close-popup-callback/index.html">ClosePopupCallback</a><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="700834868%2FFunctions%2F-237291807" anchor-label="showPopup" id="700834868%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.webapps.utils/show-popup.html"><span>show</span><wbr><span><span>Popup</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="700834868%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/show-popup.html"><span class="token function">showPopup</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">message<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">title<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">buttons<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.webapps.popup/-popup-button/index.html">PopupButton</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-close-popup-callback/index.html">ClosePopupCallback</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">WebApp</a><span class="token punctuation">.</span><a href="../../eu.vendeli.webapps.utils/show-popup.html"><span class="token function">showPopup</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">message<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">title<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">firstButton<span class="token operator">: </span><a href="../../eu.vendeli.webapps.popup/-popup-button/index.html">PopupButton</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>otherButtons<span class="token operator">: </span><a href="../../eu.vendeli.webapps.popup/-popup-button/index.html">PopupButton</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-close-popup-callback/index.html">ClosePopupCallback</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-809744893%2FFunctions%2F-237291807" anchor-label="showScanQrPopup" id="-809744893%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="show-scan-qr-popup.html"><span>show</span><wbr><span>Scan</span><wbr><span>Qr</span><wbr><span><span>Popup</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-809744893%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="show-scan-qr-popup.html"><span class="token function">showScanQrPopup</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">params<span class="token operator">: </span><a href="../../eu.vendeli.webapps.popup/-scan-qr-popup-params/index.html">ScanQrPopupParams</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><a href="../../eu.vendeli.webapps.utils/-q-r-text-received-callback/index.html">QRTextReceivedCallback</a><span class="token operator">?</span><span class="token operator"> = </span>definedExternally</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="261191738%2FFunctions%2F-237291807" anchor-label="unlockOrientation" id="261191738%2FFunctions%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="unlock-orientation.html"><span>unlock</span><wbr><span><span>Orientation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="261191738%2FFunctions%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="unlock-orientation.html"><span class="token function">unlockOrientation</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2024 Vendelieu</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

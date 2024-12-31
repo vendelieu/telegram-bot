@@ -1,0 +1,575 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>FunctionalHandlingDsl</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
+<link href="../../../images/logo-icon.svg"></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    KtGram
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">7.7.0
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":telegram-bot/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":telegram-bot/commonMain" data-filter=":telegram-bot/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+                <a class="navigation-controls--btn navigation-controls--btn_homepage" id="homepage-link" href="https://github.com/vendelieu/telegram-bot"></a>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    KtGram
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="telegram-bot::eu.vendeli.tgbot.core/FunctionalHandlingDsl///PointingToDeclaration//1596435014">
+  <div class="breadcrumbs"><a href="../../index.html">telegram-bot</a><span class="delimiter">/</span><a href="../index.html">eu.vendeli.tgbot.core</a><span class="delimiter">/</span><span class="current">FunctionalHandlingDsl</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Functional</span><wbr><span>Handling</span><wbr><span><span>Dsl</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">FunctionalHandlingDsl</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/vendelieu/telegram-bot/blob/master/telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/core/FunctionalHandlingDsl.kt#L35">source</a>)</span></span></div><p class="paragraph">DSL for functional update management.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-416636411%2FFunctions%2F1596435014" anchor-label="andThen" id="-416636411%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="and-then.html"><span>and</span><wbr><span><span>Then</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-416636411%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="../../eu.vendeli.tgbot.types.internal.chain/-single-input-chain/index.html">SingleInputChain</a><span class="token punctuation">.</span><a href="and-then.html"><span class="token function">andThen</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">guard<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.interfaces.helper/-guard/index.html">Guard</a><span class="token operator"> = </span>DefaultGuard<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-input-activity/index.html">OnInputActivity</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.chain/-single-input-chain/index.html">SingleInputChain</a></div><div class="brief "><p class="paragraph">Adding a chain to the input data processing</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1278779084%2FFunctions%2F1596435014" anchor-label="breakIf" id="1278779084%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="break-if.html"><span>break</span><wbr><span><span>If</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1278779084%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="../../eu.vendeli.tgbot.types.internal.chain/-single-input-chain/index.html">SingleInputChain</a><span class="token punctuation">.</span><a href="break-if.html"><span class="token function">breakIf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">condition<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-processed-update/index.html">ProcessedUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">repeat<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span><span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-input-activity/index.html">OnInputActivity</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.chain/-single-input-chain/index.html">SingleInputChain</a></div><div class="brief "><p class="paragraph">Condition, which will cause the chain to be interrupted if it matches.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1068395555%2FFunctions%2F1596435014" anchor-label="common" id="1068395555%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="common.html"><span><span>common</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1068395555%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="common.html"><span class="token function">common</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">filter<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="../../eu.vendeli.tgbot.interfaces.helper/-filter/index.html">Filter</a><span class="token operator">&gt;</span><span class="token operator"> = </span>DefaultFilter::class<span class="token punctuation">, </span></span><span class="parameter ">scope<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-set/index.html">Set</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-update-type/index.html">UpdateType</a><span class="token operator">&gt;</span><span class="token operator"> = </span>DEFAULT_SCOPE<span class="token punctuation">, </span></span><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">argParser<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="../../eu.vendeli.tgbot.interfaces.helper/-argument-parser/index.html">ArgumentParser</a><span class="token operator">&gt;</span><span class="token operator"> = </span>DefaultArgParser::class<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-command-activity/index.html">OnCommandActivity</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="common.html"><span class="token function">common</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.text/-regex/index.html">Regex</a><span class="token punctuation">, </span></span><span class="parameter ">filter<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="../../eu.vendeli.tgbot.interfaces.helper/-filter/index.html">Filter</a><span class="token operator">&gt;</span><span class="token operator"> = </span>DefaultFilter::class<span class="token punctuation">, </span></span><span class="parameter ">scope<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-set/index.html">Set</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-update-type/index.html">UpdateType</a><span class="token operator">&gt;</span><span class="token operator"> = </span>DEFAULT_SCOPE<span class="token punctuation">, </span></span><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">argParser<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="../../eu.vendeli.tgbot.interfaces.helper/-argument-parser/index.html">ArgumentParser</a><span class="token operator">&gt;</span><span class="token operator"> = </span>DefaultArgParser::class<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-command-activity/index.html">OnCommandActivity</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Common action that will be checked after other activities.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="841523580%2FFunctions%2F1596435014" anchor-label="inputChain" id="841523580%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="input-chain.html"><span>input</span><wbr><span><span>Chain</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="841523580%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="input-chain.html"><span class="token function">inputChain</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">identifier<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">guard<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.interfaces.helper/-guard/index.html">Guard</a><span class="token operator"> = </span>DefaultGuard<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-input-activity/index.html">OnInputActivity</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.chain/-single-input-chain/index.html">SingleInputChain</a></div><div class="brief "><p class="paragraph">Dsl for creating a chain of input processing</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1537136460%2FFunctions%2F1596435014" anchor-label="onBusinessConnection" id="1537136460%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-business-connection.html"><span>on</span><wbr><span>Business</span><wbr><span><span>Connection</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1537136460%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-business-connection.html"><span class="token function">onBusinessConnection</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-business-connection-update/index.html">BusinessConnectionUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/business-connection.html">eu.vendeli.tgbot.types.Update.businessConnection</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1119124772%2FFunctions%2F1596435014" anchor-label="onBusinessMessage" id="1119124772%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-business-message.html"><span>on</span><wbr><span>Business</span><wbr><span><span>Message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1119124772%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-business-message.html"><span class="token function">onBusinessMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-business-message-update/index.html">BusinessMessageUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/business-message.html">eu.vendeli.tgbot.types.Update.businessMessage</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="490467172%2FFunctions%2F1596435014" anchor-label="onCallbackQuery" id="490467172%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-callback-query.html"><span>on</span><wbr><span>Callback</span><wbr><span><span>Query</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="490467172%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-callback-query.html"><span class="token function">onCallbackQuery</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-callback-query-update/index.html">CallbackQueryUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/callback-query.html">eu.vendeli.tgbot.types.Update.callbackQuery</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="907761700%2FFunctions%2F1596435014" anchor-label="onChannelPost" id="907761700%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-channel-post.html"><span>on</span><wbr><span>Channel</span><wbr><span><span>Post</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="907761700%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-channel-post.html"><span class="token function">onChannelPost</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-channel-post-update/index.html">ChannelPostUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/channel-post.html">eu.vendeli.tgbot.types.Update.channelPost</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-724461596%2FFunctions%2F1596435014" anchor-label="onChatBoost" id="-724461596%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-chat-boost.html"><span>on</span><wbr><span>Chat</span><wbr><span><span>Boost</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-724461596%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-chat-boost.html"><span class="token function">onChatBoost</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-chat-boost-update/index.html">ChatBoostUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/chat-boost.html">eu.vendeli.tgbot.types.Update.chatBoost</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="488593636%2FFunctions%2F1596435014" anchor-label="onChatJoinRequest" id="488593636%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-chat-join-request.html"><span>on</span><wbr><span>Chat</span><wbr><span>Join</span><wbr><span><span>Request</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="488593636%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-chat-join-request.html"><span class="token function">onChatJoinRequest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-chat-join-request-update/index.html">ChatJoinRequestUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/chat-join-request.html">eu.vendeli.tgbot.types.Update.chatJoinRequest</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="669259940%2FFunctions%2F1596435014" anchor-label="onChatMember" id="669259940%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-chat-member.html"><span>on</span><wbr><span>Chat</span><wbr><span><span>Member</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="669259940%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-chat-member.html"><span class="token function">onChatMember</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-chat-member-update/index.html">ChatMemberUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/chat-member.html">eu.vendeli.tgbot.types.Update.chatMember</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1109553272%2FFunctions%2F1596435014" anchor-label="onChosenInlineResult" id="1109553272%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-chosen-inline-result.html"><span>on</span><wbr><span>Chosen</span><wbr><span>Inline</span><wbr><span><span>Result</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1109553272%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-chosen-inline-result.html"><span class="token function">onChosenInlineResult</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-chosen-inline-result-update/index.html">ChosenInlineResultUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/chosen-inline-result.html">eu.vendeli.tgbot.types.Update.chosenInlineResult</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1770020709%2FFunctions%2F1596435014" anchor-label="onCommand" id="-1770020709%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-command.html"><span>on</span><wbr><span><span>Command</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1770020709%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="on-command.html"><span class="token function">onCommand</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">command<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">scope<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-set/index.html">Set</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-update-type/index.html">UpdateType</a><span class="token operator">&gt;</span><span class="token operator"> = </span>DEFAULT_SCOPE<span class="token punctuation">, </span></span><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">guard<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.interfaces.helper/-guard/index.html">Guard</a><span class="token operator"> = </span>DefaultGuard<span class="token punctuation">, </span></span><span class="parameter ">argParser<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="../../eu.vendeli.tgbot.interfaces.helper/-argument-parser/index.html">ArgumentParser</a><span class="token operator">&gt;</span><span class="token operator"> = </span>DefaultArgParser::class<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-command-activity/index.html">OnCommandActivity</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The action that is performed when the command is matched.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="925846244%2FFunctions%2F1596435014" anchor-label="onDeletedBusinessMessages" id="925846244%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-deleted-business-messages.html"><span>on</span><wbr><span>Deleted</span><wbr><span>Business</span><wbr><span><span>Messages</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="925846244%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-deleted-business-messages.html"><span class="token function">onDeletedBusinessMessages</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-deleted-business-messages-update/index.html">DeletedBusinessMessagesUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/deleted-business-messages.html">eu.vendeli.tgbot.types.Update.deletedBusinessMessages</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1413748484%2FFunctions%2F1596435014" anchor-label="onEditedBusinessMessage" id="1413748484%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-edited-business-message.html"><span>on</span><wbr><span>Edited</span><wbr><span>Business</span><wbr><span><span>Message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1413748484%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-edited-business-message.html"><span class="token function">onEditedBusinessMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-edited-business-message-update/index.html">EditedBusinessMessageUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/edited-business-message.html">eu.vendeli.tgbot.types.Update.editedBusinessMessage</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="621363332%2FFunctions%2F1596435014" anchor-label="onEditedChannelPost" id="621363332%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-edited-channel-post.html"><span>on</span><wbr><span>Edited</span><wbr><span>Channel</span><wbr><span><span>Post</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="621363332%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-edited-channel-post.html"><span class="token function">onEditedChannelPost</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-edited-channel-post-update/index.html">EditedChannelPostUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/edited-channel-post.html">eu.vendeli.tgbot.types.Update.editedChannelPost</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="728918276%2FFunctions%2F1596435014" anchor-label="onEditedMessage" id="728918276%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-edited-message.html"><span>on</span><wbr><span>Edited</span><wbr><span><span>Message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="728918276%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-edited-message.html"><span class="token function">onEditedMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-edited-message-update/index.html">EditedMessageUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/edited-message.html">eu.vendeli.tgbot.types.Update.editedMessage</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="25790884%2FFunctions%2F1596435014" anchor-label="onInlineQuery" id="25790884%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-inline-query.html"><span>on</span><wbr><span>Inline</span><wbr><span><span>Query</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="25790884%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-inline-query.html"><span class="token function">onInlineQuery</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-inline-query-update/index.html">InlineQueryUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/inline-query.html">eu.vendeli.tgbot.types.Update.inlineQuery</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1578885110%2FFunctions%2F1596435014" anchor-label="onInput" id="-1578885110%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-input.html"><span>on</span><wbr><span><span>Input</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1578885110%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="on-input.html"><span class="token function">onInput</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">identifier<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">rateLimits<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.internal.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter ">guard<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.interfaces.helper/-guard/index.html">Guard</a><span class="token operator"> = </span>DefaultGuard<span class="token punctuation">, </span></span><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-on-input-activity/index.html">OnInputActivity</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The action that is performed when the input is matched.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-60698588%2FFunctions%2F1596435014" anchor-label="onMessage" id="-60698588%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-message.html"><span>on</span><wbr><span><span>Message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-60698588%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-message.html"><span class="token function">onMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-message-update/index.html">MessageUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/message.html">eu.vendeli.tgbot.types.Update.message</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1983778620%2FFunctions%2F1596435014" anchor-label="onMessageReaction" id="-1983778620%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-message-reaction.html"><span>on</span><wbr><span>Message</span><wbr><span><span>Reaction</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1983778620%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-message-reaction.html"><span class="token function">onMessageReaction</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-message-reaction-update/index.html">MessageReactionUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/message-reaction.html">eu.vendeli.tgbot.types.Update.messageReaction</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1206574902%2FFunctions%2F1596435014" anchor-label="onMessageReactionCount" id="-1206574902%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-message-reaction-count.html"><span>on</span><wbr><span>Message</span><wbr><span>Reaction</span><wbr><span><span>Count</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1206574902%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-message-reaction-count.html"><span class="token function">onMessageReactionCount</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-message-reaction-count-update/index.html">MessageReactionCountUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/message-reaction-count.html">eu.vendeli.tgbot.types.Update.messageReactionCount</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1610055564%2FFunctions%2F1596435014" anchor-label="onMyChatMember" id="1610055564%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-my-chat-member.html"><span>on</span><wbr><span>My</span><wbr><span>Chat</span><wbr><span><span>Member</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1610055564%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-my-chat-member.html"><span class="token function">onMyChatMember</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-my-chat-member-update/index.html">MyChatMemberUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/my-chat-member.html">eu.vendeli.tgbot.types.Update.myChatMember</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-789304694%2FFunctions%2F1596435014" anchor-label="onPoll" id="-789304694%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-poll.html"><span>on</span><wbr><span><span>Poll</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-789304694%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-poll.html"><span class="token function">onPoll</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-poll-update/index.html">PollUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/poll.html">eu.vendeli.tgbot.types.Update.poll</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1729732238%2FFunctions%2F1596435014" anchor-label="onPollAnswer" id="1729732238%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-poll-answer.html"><span>on</span><wbr><span>Poll</span><wbr><span><span>Answer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1729732238%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-poll-answer.html"><span class="token function">onPollAnswer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-poll-answer-update/index.html">PollAnswerUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/poll-answer.html">eu.vendeli.tgbot.types.Update.pollAnswer</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-512452598%2FFunctions%2F1596435014" anchor-label="onPreCheckoutQuery" id="-512452598%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-pre-checkout-query.html"><span>on</span><wbr><span>Pre</span><wbr><span>Checkout</span><wbr><span><span>Query</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-512452598%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-pre-checkout-query.html"><span class="token function">onPreCheckoutQuery</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-pre-checkout-query-update/index.html">PreCheckoutQueryUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/pre-checkout-query.html">eu.vendeli.tgbot.types.Update.preCheckoutQuery</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1297607646%2FFunctions%2F1596435014" anchor-label="onPurchasedPaidMedia" id="1297607646%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-purchased-paid-media.html"><span>on</span><wbr><span>Purchased</span><wbr><span>Paid</span><wbr><span><span>Media</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1297607646%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-purchased-paid-media.html"><span class="token function">onPurchasedPaidMedia</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-purchased-paid-media-update/index.html">PurchasedPaidMediaUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/purchased-paid-media.html">eu.vendeli.tgbot.types.Update.purchasedPaidMedia</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="506497074%2FFunctions%2F1596435014" anchor-label="onRemovedChatBoost" id="506497074%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-removed-chat-boost.html"><span>on</span><wbr><span>Removed</span><wbr><span>Chat</span><wbr><span><span>Boost</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="506497074%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-removed-chat-boost.html"><span class="token function">onRemovedChatBoost</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-removed-chat-boost-update/index.html">RemovedChatBoostUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/removed-chat-boost.html">eu.vendeli.tgbot.types.Update.removedChatBoost</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1140053628%2FFunctions%2F1596435014" anchor-label="onShippingQuery" id="-1140053628%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.utils/on-shipping-query.html"><span>on</span><wbr><span>Shipping</span><wbr><span><span>Query</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1140053628%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">FunctionalHandlingDsl</a><span class="token punctuation">.</span><a href="../../eu.vendeli.tgbot.utils/on-shipping-query.html"><span class="token function">onShippingQuery</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token keyword">suspend </span><a href="../../eu.vendeli.tgbot.types.internal/-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.internal/-shipping-query-update/index.html">ShippingQueryUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that is performed on the presence of <a href="../../eu.vendeli.tgbot.types/-update/shipping-query.html">eu.vendeli.tgbot.types.Update.shippingQuery</a> in the <a href="../../eu.vendeli.tgbot.types/-update/index.html">eu.vendeli.tgbot.types.Update</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1544239624%2FFunctions%2F1596435014" anchor-label="whenNotHandled" id="1544239624%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="when-not-handled.html"><span>when</span><wbr><span>Not</span><wbr><span><span>Handled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1544239624%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="when-not-handled.html"><span class="token function">whenNotHandled</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.utils/-when-not-handled-activity/index.html">WhenNotHandledActivity</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Action that will be applied when none of the other handlers process the data</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2024 Vendelieu</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

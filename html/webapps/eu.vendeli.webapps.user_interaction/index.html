@@ -1,0 +1,473 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>eu.vendeli.webapps.user_interaction</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
+<link href="../../images/logo-icon.svg"></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../index.html">
+                    KtGram
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">7.7.0
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":webapps/jsMain">js</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option js-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":webapps/jsMain" data-filter=":webapps/jsMain">
+                                <span class="checkbox--icon"></span>
+                                js
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+                <a class="navigation-controls--btn navigation-controls--btn_homepage" id="homepage-link" href="https://github.com/vendelieu/telegram-bot"></a>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    KtGram
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="webapps::eu.vendeli.webapps.user_interaction////PointingToDeclaration//-237291807">
+  <div class="breadcrumbs"><a href="../index.html">webapps</a><span class="delimiter">/</span><span class="current">eu.vendeli.webapps.user_interaction</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="PROPERTY,EXTENSION_PROPERTY">Properties</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="1606759262%2FClasslikes%2F-237291807" anchor-label="AccelerometerError" id="1606759262%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-accelerometer-error/index.html"><span>Accelerometer</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1606759262%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-accelerometer-error/index.html">AccelerometerError</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-accelerometer-error/index.html">AccelerometerError</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1936979185%2FClasslikes%2F-237291807" anchor-label="AccelerometerFailedInfo" id="1936979185%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-accelerometer-failed-info/index.html"><span>Accelerometer</span><wbr><span>Failed</span><wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1936979185%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-accelerometer-failed-info/index.html">AccelerometerFailedInfo</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-703838103%2FClasslikes%2F-237291807" anchor-label="DeviceOrientationError" id="-703838103%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-device-orientation-error/index.html"><span>Device</span><wbr><span>Orientation</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-703838103%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-device-orientation-error/index.html">DeviceOrientationError</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-device-orientation-error/index.html">DeviceOrientationError</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1172877626%2FClasslikes%2F-237291807" anchor-label="DeviceOrientationFailedInfo" id="-1172877626%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-device-orientation-failed-info/index.html"><span>Device</span><wbr><span>Orientation</span><wbr><span>Failed</span><wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1172877626%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-device-orientation-failed-info/index.html">DeviceOrientationFailedInfo</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="759190189%2FClasslikes%2F-237291807" anchor-label="DownloadFileParams" id="759190189%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-download-file-params/index.html"><span>Download</span><wbr><span>File</span><wbr><span><span>Params</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="759190189%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-download-file-params/index.html">DownloadFileParams</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1765646223%2FClasslikes%2F-237291807" anchor-label="EmojiStatusAccess" id="1765646223%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-emoji-status-access/index.html"><span>Emoji</span><wbr><span>Status</span><wbr><span><span>Access</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1765646223%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-emoji-status-access/index.html">EmojiStatusAccess</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-emoji-status-access/index.html">EmojiStatusAccess</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-373050377%2FClasslikes%2F-237291807" anchor-label="EmojiStatusAccessRequestedInfo" id="-373050377%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-emoji-status-access-requested-info/index.html"><span>Emoji</span><wbr><span>Status</span><wbr><span>Access</span><wbr><span>Requested</span><wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-373050377%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-emoji-status-access-requested-info/index.html">EmojiStatusAccessRequestedInfo</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1330075993%2FClasslikes%2F-237291807" anchor-label="EmojiStatusError" id="-1330075993%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-emoji-status-error/index.html"><span>Emoji</span><wbr><span>Status</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1330075993%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-emoji-status-error/index.html">EmojiStatusError</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-emoji-status-error/index.html">EmojiStatusError</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2084710216%2FClasslikes%2F-237291807" anchor-label="EmojiStatusFailedInfo" id="2084710216%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-emoji-status-failed-info/index.html"><span>Emoji</span><wbr><span>Status</span><wbr><span>Failed</span><wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2084710216%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-emoji-status-failed-info/index.html">EmojiStatusFailedInfo</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-234101331%2FClasslikes%2F-237291807" anchor-label="EmojiStatusParams" id="-234101331%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-emoji-status-params/index.html"><span>Emoji</span><wbr><span>Status</span><wbr><span><span>Params</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-234101331%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-emoji-status-params/index.html">EmojiStatusParams</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1916272371%2FClasslikes%2F-237291807" anchor-label="FileDownloadRequestedInfo" id="1916272371%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-download-requested-info/index.html"><span>File</span><wbr><span>Download</span><wbr><span>Requested</span><wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1916272371%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-file-download-requested-info/index.html">FileDownloadRequestedInfo</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2096174529%2FClasslikes%2F-237291807" anchor-label="FileDownloadStatus" id="2096174529%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-download-status/index.html"><span>File</span><wbr><span>Download</span><wbr><span><span>Status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2096174529%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-file-download-status/index.html">FileDownloadStatus</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-file-download-status/index.html">FileDownloadStatus</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="788515710%2FClasslikes%2F-237291807" anchor-label="FullscreenError" id="788515710%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-fullscreen-error/index.html"><span>Fullscreen</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="788515710%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-fullscreen-error/index.html">FullscreenError</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-fullscreen-error/index.html">FullscreenError</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1347194671%2FClasslikes%2F-237291807" anchor-label="FullscreenFailedInfo" id="-1347194671%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-fullscreen-failed-info/index.html"><span>Fullscreen</span><wbr><span>Failed</span><wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1347194671%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-fullscreen-failed-info/index.html">FullscreenFailedInfo</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2010661012%2FClasslikes%2F-237291807" anchor-label="GyroscopeError" id="2010661012%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-gyroscope-error/index.html"><span>Gyroscope</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2010661012%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-gyroscope-error/index.html">GyroscopeError</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-gyroscope-error/index.html">GyroscopeError</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-93931141%2FClasslikes%2F-237291807" anchor-label="GyroscopeFailedInfo" id="-93931141%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-gyroscope-failed-info/index.html"><span>Gyroscope</span><wbr><span>Failed</span><wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-93931141%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-gyroscope-failed-info/index.html">GyroscopeFailedInfo</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1817981983%2FClasslikes%2F-237291807" anchor-label="HomeScreenCheckedInfo" id="-1817981983%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-home-screen-checked-info/index.html"><span>Home</span><wbr><span>Screen</span><wbr><span>Checked</span><wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1817981983%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-home-screen-checked-info/index.html">HomeScreenCheckedInfo</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="759383642%2FClasslikes%2F-237291807" anchor-label="HomeScreenStatus" id="759383642%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-home-screen-status/index.html"><span>Home</span><wbr><span>Screen</span><wbr><span><span>Status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="759383642%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-home-screen-status/index.html">HomeScreenStatus</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-home-screen-status/index.html">HomeScreenStatus</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1816113348%2FClasslikes%2F-237291807" anchor-label="LocationRequestedInfo" id="1816113348%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-location-requested-info/index.html"><span>Location</span><wbr><span>Requested</span><wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1816113348%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-location-requested-info/index.html">LocationRequestedInfo</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="768265131%2FClasslikes%2F-237291807" anchor-label="ShareMessageError" id="768265131%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-share-message-error/index.html"><span>Share</span><wbr><span>Message</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="768265131%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-share-message-error/index.html">ShareMessageError</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-share-message-error/index.html">ShareMessageError</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2070772540%2FClasslikes%2F-237291807" anchor-label="ShareMessageFailedInfo" id="-2070772540%2FClasslikes%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-share-message-failed-info/index.html"><span>Share</span><wbr><span>Message</span><wbr><span>Failed</span><wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2070772540%2FClasslikes%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">external </span><span class="token keyword">interface </span><a href="-share-message-failed-info/index.html">ShareMessageFailedInfo</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="174025189%2FProperties%2F-237291807" anchor-label="Error" id="174025189%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-error.html"><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="174025189%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="-accelerometer-failed-info/index.html">AccelerometerFailedInfo</a><span class="token punctuation">.</span><a href="-error.html">Error</a><span class="token operator">: </span><a href="-accelerometer-error/index.html">AccelerometerError</a></div><div class="symbol monospace"><span class="token keyword">val </span><a href="-device-orientation-failed-info/index.html">DeviceOrientationFailedInfo</a><span class="token punctuation">.</span><a href="-error.html">Error</a><span class="token operator">: </span><a href="-device-orientation-error/index.html">DeviceOrientationError</a></div><div class="symbol monospace"><span class="token keyword">val </span><a href="-emoji-status-failed-info/index.html">EmojiStatusFailedInfo</a><span class="token punctuation">.</span><a href="-error.html">Error</a><span class="token operator">: </span><a href="-emoji-status-error/index.html">EmojiStatusError</a></div><div class="symbol monospace"><span class="token keyword">val </span><a href="-fullscreen-failed-info/index.html">FullscreenFailedInfo</a><span class="token punctuation">.</span><a href="-error.html">Error</a><span class="token operator">: </span><a href="-fullscreen-error/index.html">FullscreenError</a></div><div class="symbol monospace"><span class="token keyword">val </span><a href="-gyroscope-failed-info/index.html">GyroscopeFailedInfo</a><span class="token punctuation">.</span><a href="-error.html">Error</a><span class="token operator">: </span><a href="-gyroscope-error/index.html">GyroscopeError</a></div><div class="symbol monospace"><span class="token keyword">val </span><a href="-share-message-failed-info/index.html">ShareMessageFailedInfo</a><span class="token punctuation">.</span><a href="-error.html">Error</a><span class="token operator">: </span><a href="-share-message-error/index.html">ShareMessageError</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="997991329%2FProperties%2F-237291807" anchor-label="Status" id="997991329%2FProperties%2F-237291807" data-filterable-set=":webapps/jsMain"></a>
+          <div class="table-row" data-filterable-current=":webapps/jsMain" data-filterable-set=":webapps/jsMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-status.html"><span><span>Status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="997991329%2FProperties%2F-237291807"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":webapps/jsMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="-emoji-status-access-requested-info/index.html">EmojiStatusAccessRequestedInfo</a><span class="token punctuation">.</span><a href="-status.html">Status</a><span class="token operator">: </span><a href="-emoji-status-access/index.html">EmojiStatusAccess</a></div><div class="symbol monospace"><span class="token keyword">val </span><a href="-file-download-requested-info/index.html">FileDownloadRequestedInfo</a><span class="token punctuation">.</span><a href="-status.html">Status</a><span class="token operator">: </span><a href="-file-download-status/index.html">FileDownloadStatus</a></div><div class="symbol monospace"><span class="token keyword">val </span><a href="-home-screen-checked-info/index.html">HomeScreenCheckedInfo</a><span class="token punctuation">.</span><a href="-status.html">Status</a><span class="token operator">: </span><a href="-home-screen-status/index.html">HomeScreenStatus</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2024 Vendelieu</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
