@@ -6,6 +6,7 @@ plugins {
 dependencies {
     implementation(libs.kotlin.serialization)
     implementation(libs.kotlin.gradlePlugin)
+    implementation(libs.dokka)
     implementation(libs.publisher)
 }
 

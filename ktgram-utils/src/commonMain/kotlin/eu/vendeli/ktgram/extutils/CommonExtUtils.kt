@@ -10,6 +10,15 @@ import eu.vendeli.tgbot.utils.TgException
 
 private val DEFAULT_FAILURE_ACTION: suspend () -> Nothing = { throw TgException("Failed to process response") }
 
+/**
+ * Sends action to the specified [to] and executes [block] on result of the action.
+ * If the action fails, [onFailure] is called.
+ *
+ * @param to identifier of the target.
+ * @param bot Telegram bot to send the action.
+ * @param onFailure Function to call if the action fails, by default throws [TgException].
+ * @param block Function to execute on result of the action.
+ */
 private suspend fun <R> Action<R>.sendAnd(
     to: Identifier,
     bot: TelegramBot,

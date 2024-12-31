@@ -3,7 +3,6 @@ package eu.vendeli.spring.starter
 import eu.vendeli.tgbot.TelegramBot
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,7 +15,7 @@ import org.springframework.context.annotation.Import
 @Import(SpringClassManager::class)
 @EnableConfigurationProperties(TgConfigProperties::class)
 open class TelegramAutoConfiguration(
-    private val config: TgConfigProperties,
+    protected val config: TgConfigProperties,
     private val springClassManager: SpringClassManager,
 ) {
     @Autowired(required = false)
@@ -36,14 +35,21 @@ open class TelegramAutoConfiguration(
         }
 
         if (botCfg?.autostartLongPolling != false && config.autoStartPolling) {
-            GlobalScope.launch(Dispatchers.IO) {
+            GlobalScope.launch {
                 botCfg?.onInit(botInstance)
-                launch(Dispatchers.IO) {
-                    botInstance.handleUpdates(botCfg?.allowedUpdates)
-                }
+                launch { botInstance.handleUpdatesCatching(botCfg) }
             }
         }
 
         return@map botInstance
+    }
+
+    private suspend fun TelegramBot.handleUpdatesCatching(
+        botConfiguration: BotConfiguration? = null,
+    ): Unit = try {
+        handleUpdates(botConfiguration?.allowedUpdates)
+    } catch (e: Throwable) {
+        botConfiguration?.onHandlerException(e)
+        handleUpdatesCatching(botConfiguration)
     }
 }

@@ -70,6 +70,10 @@ class TelegramBot(
 
     internal var httpClient = getConfiguredHttpClient(config.httpClient, config.logging)
 
+    init {
+        logger.debug("[$identifier] Ktor using engine: ${httpClient.engine::class.simpleName}")
+    }
+
     /**
      * Get direct url from [File] if [File.filePath] is present
      *

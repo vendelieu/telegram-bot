@@ -40,6 +40,10 @@ data class HttpConfiguration(
     @Transient
     var additionalHeaders: Map<String, Any?>? = null,
 ) {
+    /**
+     * Defines a retry strategy that triggers a retry when the server responds with a "Too Many Requests" status.
+     *
+     */
     fun retryOnTooManyRequests(): RetryStrategy = { _, response ->
         response.status == HttpStatusCode.TooManyRequests
     }

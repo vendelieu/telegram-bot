@@ -6,13 +6,6 @@ abstract class RandomPicSource {
     abstract fun getPicUrl(): String
 }
 
-class UnsplashRandomPic : RandomPicSource() {
-    override fun getPicUrl(height: Int, width: Int): String =
-        "https://source.unsplash.com/random/${height}x$width?sig=incrementingIdentifier"
-
-    override fun getPicUrl(): String = "https://source.unsplash.com/random/10x10?sig=incrementingIdentifier"
-}
-
 class LoremPicsumPic : RandomPicSource() {
     override fun getPicUrl(height: Int, width: Int): String =
         "https://picsum.photos/$height/$width"
@@ -21,6 +14,6 @@ class LoremPicsumPic : RandomPicSource() {
 }
 
 object RandomPicResource :
-    ResourcePicker<RandomPicSource>(listOf(UnsplashRandomPic(), LoremPicsumPic())) {
+    ResourcePicker<RandomPicSource>(listOf(LoremPicsumPic())) {
     val RANDOM_PIC_URL get() = current.getPicUrl()
 }

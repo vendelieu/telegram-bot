@@ -106,7 +106,7 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
         }
         // check for limit exceed
         if (bot.update.checkIsLimited(rateLimits, user?.id, parsedText.command)) return false
-        logger.info { "Invoking command $id" }
+        logger.debug { "Invoking command $id" }
         val cmdCtx = CommandContext(update, bot.update.getParameters(argParser, parsedText))
         invocation.invoke(cmdCtx)
         return true
@@ -163,7 +163,7 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
             logger.debug { "Matched common handler $this for text $text" }
             // check for limit exceed
             if (bot.update.checkIsLimited(rateLimits, user?.id, parsedText.command)) return false
-            logger.info { "Invoking command $id" }
+            logger.debug { "Invoking command $id" }
             val cmdCtx = CommandContext(update, bot.update.getParameters(argParser, parsedText))
             invocation.invoke(cmdCtx)
             return true
@@ -215,9 +215,9 @@ internal suspend fun FunctionalHandlingDsl.process(update: ProcessedUpdate) = wi
         .ifAffected { affectedActivities += 1 }
 
     if (affectedActivities == 0) functionalActivities.whenNotHandled?.invoke(activityCtx)?.also {
-        logger.info { "Update #${update.updateId} processed in functional mode with whenNotHandled activity." }
+        logger.debug { "Update #${update.updateId} processed in functional mode with whenNotHandled activity." }
         affectedActivities += 1
     }
 
-    logger.info { "Number of affected functional activities - $affectedActivities." }
+    logger.debug { "Number of affected functional activities - $affectedActivities." }
 }

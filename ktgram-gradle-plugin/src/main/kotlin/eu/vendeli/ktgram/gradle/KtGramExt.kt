@@ -14,4 +14,5 @@ abstract class KtGramExt
         val addSnapshotRepo = factory.property<Boolean>()
         val forceVersion = factory.property<String>()
         val autoCleanClassData = factory.property<Boolean>()
+        val ktorJvmEngine = factory.property<KtorJvmEngine>()
     }

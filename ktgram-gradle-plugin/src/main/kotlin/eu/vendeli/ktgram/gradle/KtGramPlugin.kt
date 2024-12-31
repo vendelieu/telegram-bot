@@ -14,6 +14,7 @@ import org.jetbrains.kotlin.gradle.utils.loadPropertyFromResources
 abstract class KtGramPlugin : Plugin<Project> {
     private val log = Logging.getLogger(KtGramPlugin::class.java)
     private val libVer = loadPropertyFromResources("ktgram.properties", "ktgram.version")
+    private val ktorVer = loadPropertyFromResources("ktgram.properties", "ktgram.ktor")
 
     final override fun apply(project: Project) {
         val pluginExtension = project.extensions.create("ktGram", KtGramExt::class.java)
@@ -49,6 +50,14 @@ abstract class KtGramPlugin : Plugin<Project> {
                             add(this@cfg.name, "eu.vendeli:ksp:$targetVer")
                         }
                     }
+            }
+
+            val ktorEngine = pluginExtension.ktorJvmEngine.getOrElse(KtorJvmEngine.JAVA)
+            if (ktorEngine != KtorJvmEngine.NONE && ktorEngine != KtorJvmEngine.JAVA) {
+                configurations.configureEach {
+                    dependencies.removeIf { it.group == "io.ktor" && it.name == "ktor-client-java-jvm" }
+                }
+                dependencies.add("implementation", "io.ktor:ktor-client-${ktorEngine.artifact}-jvm:$ktorVer")
             }
 
             project.extensions.configure<KspExtension> {

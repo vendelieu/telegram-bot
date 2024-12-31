@@ -9,15 +9,9 @@ import eu.vendeli.tgbot.types.internal.ExceptionHandlingStrategy
 import eu.vendeli.tgbot.types.internal.FailedUpdate
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
 import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.plus
 import kotlin.reflect.KClass
 
 inline fun <reified T : Any> ClassManager.getInstance(vararg initParams: Any?): T? =
@@ -27,10 +21,7 @@ inline fun <reified T : Any> ClassManager.getInstance(vararg initParams: Any?): 
 @Suppress("ObjectPropertyName", "ktlint:standard:backing-property-naming")
 expect val _OperatingActivities: Map<String, List<Any?>>
 
-internal inline fun TgUpdateHandler.coHandle(
-    dispatcher: CoroutineDispatcher = Dispatchers.Default,
-    crossinline block: suspend CoroutineScope.() -> Unit,
-) = (handlerScope + Job(handlerScope.coroutineContext[Job])).launch(dispatcher) { block() }
+expect val KClass<*>.fqName: String
 
 internal suspend inline fun TgUpdateHandler.checkIsLimited(
     limits: RateLimits,
@@ -70,5 +61,3 @@ internal inline fun <T> Any?.cast() = this as T
 
 @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
 internal inline fun <T> Any?.safeCast() = this as? T
-
-expect val KClass<*>.fqName: String

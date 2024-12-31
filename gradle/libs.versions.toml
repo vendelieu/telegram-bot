@@ -1,31 +1,31 @@
 [versions]
-ktor = "3.0.2"
+ktor = "3.0.3"
 redis = "0.1.7"
-logback = "1.5.12"
+logback = "1.5.15"
 
 datetime = "0.6.0"
 serialization = "1.7.3"
 stately = "2.1.0"
 
 kotlin = "2.1.0"
-coroutines = "1.9.0"
-dokka = "1.9.20"
+coroutines = "1.10.1"
+dokka = "2.0.0"
 kotlinter = "5.0.1"
 deteKT = "1.23.7"
 toml = "0.4.0"
 
 kotest = "5.9.1"
-mockk = "1.13.13"
-kover = "0.8.3"
+mockk = "1.13.14"
+kover = "0.9.0"
 krypto = "4.0.10"
 urlencoder = "1.6.0"
 sslcontext = "8.3.7"
-spring = "3.4.0"
+spring = "3.4.1"
 
 ksp = "2.1.0-1.0.29"
 poet = "2.0.0"
 
-binvalid = "0.16.3"
+binvalid = "0.17.0"
 publisher = "0.30.0"
 gradle-publish = "1.3.0"
 env = "1.0.4"
@@ -57,7 +57,7 @@ test-kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = 
 test-kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" }
+dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 
 ksp = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 poet = { module = "com.squareup:kotlinpoet", version.ref = "poet" }
@@ -79,7 +79,6 @@ kotlin-js-plain-objects = { id = "org.jetbrains.kotlin.plugin.js-plain-objects",
 kotlin-compatability-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binvalid" }
 gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-publish"}
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ktlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
 deteKT = { id = "io.gitlab.arturbosch.detekt", version.ref = "deteKT" }
