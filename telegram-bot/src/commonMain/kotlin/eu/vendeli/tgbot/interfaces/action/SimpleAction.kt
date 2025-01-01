@@ -16,7 +16,7 @@ abstract class SimpleAction<ReturnType> : TgAction<ReturnType>() {
      *
      * @param to recipient.
      */
-    open suspend fun send(to: TelegramBot) {
+    suspend fun send(to: TelegramBot) {
         doRequest(to)
     }
 
@@ -25,7 +25,8 @@ abstract class SimpleAction<ReturnType> : TgAction<ReturnType>() {
      *
      * @param to recipient.
      */
-    open suspend fun sendAsync(
+    @Deprecated("Use sendReturning instead", ReplaceWith("sendReturning(to)"))
+    suspend fun sendAsync(
         to: TelegramBot,
     ): Deferred<Response<out ReturnType>> = doRequestReturning(to)
 

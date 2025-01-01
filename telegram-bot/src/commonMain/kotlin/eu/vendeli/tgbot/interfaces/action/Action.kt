@@ -40,7 +40,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
      * @param to Recipient
      * @param via Instance of the bot through which the request will be made.
      */
-    suspend fun sendAsync(
+    suspend fun sendReturning(
         to: String,
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
@@ -48,7 +48,7 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         return doRequestReturning(via)
     }
 
-    suspend fun sendAsync(
+    suspend fun sendReturning(
         to: Long,
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
@@ -56,15 +56,15 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         return doRequestReturning(via)
     }
 
-    suspend inline fun sendAsync(
+    suspend inline fun sendReturning(
         to: User,
         via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = sendAsync(to.id, via)
+    ): Deferred<Response<out ReturnType>> = sendReturning(to.id, via)
 
-    suspend inline fun sendAsync(
+    suspend inline fun sendReturning(
         to: Chat,
         via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = sendAsync(to.id, via)
+    ): Deferred<Response<out ReturnType>> = sendReturning(to.id, via)
 
     /**
      * Make a request for action returning its [Response].
@@ -72,23 +72,27 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
      * @param to Recipient
      * @param via Instance of the bot through which the request will be made.
      */
-    suspend inline fun sendReturning(
+    @Deprecated("Use sendReturning instead", ReplaceWith("sendReturning(to, via)"))
+    suspend fun sendAsync(
         to: String,
         via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = sendAsync(to, via)
+    ): Deferred<Response<out ReturnType>> = sendReturning(to, via)
 
-    suspend inline fun sendReturning(
+    @Deprecated("Use sendReturning instead", ReplaceWith("sendReturning(to, via)"))
+    suspend fun sendAsync(
         to: Long,
         via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = sendAsync(to, via)
+    ): Deferred<Response<out ReturnType>> = sendReturning(to, via)
 
-    suspend inline fun sendReturning(
+    @Deprecated("Use sendReturning instead", ReplaceWith("sendReturning(to, via)"))
+    suspend inline fun sendAsync(
         to: User,
         via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = sendAsync(to.id, via)
+    ): Deferred<Response<out ReturnType>> = sendReturning(to.id, via)
 
-    suspend inline fun sendReturning(
+    @Deprecated("Use sendReturning instead", ReplaceWith("sendReturning(to, via)"))
+    suspend inline fun sendAsync(
         to: Chat,
         via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = sendAsync(to.id, via)
+    ): Deferred<Response<out ReturnType>> = sendReturning(to.id, via)
 }

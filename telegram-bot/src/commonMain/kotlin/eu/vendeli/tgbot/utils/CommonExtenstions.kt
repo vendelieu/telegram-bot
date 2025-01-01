@@ -80,7 +80,7 @@ fun <T : Any> TelegramBot.getInstance(kClass: KClass<T>, vararg initParams: Any?
  *                 { "selector?id=$id" },
  *                 "/start?page=%P",
  *             )
- *         ).sendAsync(user, bot).getOrNull()?.also {
+ *         ).sendReturning(user, bot).getOrNull()?.also {
  *             bot.userData[user, "startPage"] = it.messageId
  *         }
  *     }
