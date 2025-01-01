@@ -15,7 +15,7 @@ class SavePreparedInlineMessageTest : BotTestContext() {
             InlineQueryResult.Audio("test", LOREM.AUDIO.url, "testTitle")
         }.options {
             allowBotChats = true
-        }.sendAsync(bot)
+        }.sendReturning(bot)
             .shouldSuccess()
 
         Clock.System
@@ -29,7 +29,7 @@ class SavePreparedInlineMessageTest : BotTestContext() {
     suspend fun `save prepared inline message without allowing options test`() {
         val result = savePreparedInlineMessage(TG_ID) {
             InlineQueryResult.Audio("test", LOREM.AUDIO.url, "testTitle")
-        }.sendAsync(bot)
+        }.sendReturning(bot)
             .shouldFailure() shouldContainInDescription "Bad Request: at least one chat type must be allowed"
     }
 }

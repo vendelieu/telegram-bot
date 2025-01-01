@@ -25,6 +25,7 @@ configuredKotlin {
         jvmTest.dependencies {
             implementation(libs.test.kotest.junit5)
             implementation(libs.test.kotest.assertions)
+            implementation(libs.logback)
             implementation(libs.mockk)
         }
         jvmMain.dependencies {

@@ -971,14 +971,14 @@ abstract class <#A: kotlin/Any?> eu.vendeli.tgbot.interfaces.action/Action : eu.
     final suspend fun send(kotlin/String, eu.vendeli.tgbot/TelegramBot) // eu.vendeli.tgbot.interfaces.action/Action.send|send(kotlin.String;eu.vendeli.tgbot.TelegramBot){}[0]
     final suspend fun sendAsync(kotlin/Long, eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/Action.sendAsync|sendAsync(kotlin.Long;eu.vendeli.tgbot.TelegramBot){}[0]
     final suspend fun sendAsync(kotlin/String, eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/Action.sendAsync|sendAsync(kotlin.String;eu.vendeli.tgbot.TelegramBot){}[0]
+    final suspend fun sendReturning(kotlin/Long, eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/Action.sendReturning|sendReturning(kotlin.Long;eu.vendeli.tgbot.TelegramBot){}[0]
+    final suspend fun sendReturning(kotlin/String, eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/Action.sendReturning|sendReturning(kotlin.String;eu.vendeli.tgbot.TelegramBot){}[0]
     final suspend inline fun send(eu.vendeli.tgbot.types.chat/Chat, eu.vendeli.tgbot/TelegramBot) // eu.vendeli.tgbot.interfaces.action/Action.send|send(eu.vendeli.tgbot.types.chat.Chat;eu.vendeli.tgbot.TelegramBot){}[0]
     final suspend inline fun send(eu.vendeli.tgbot.types/User, eu.vendeli.tgbot/TelegramBot) // eu.vendeli.tgbot.interfaces.action/Action.send|send(eu.vendeli.tgbot.types.User;eu.vendeli.tgbot.TelegramBot){}[0]
     final suspend inline fun sendAsync(eu.vendeli.tgbot.types.chat/Chat, eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/Action.sendAsync|sendAsync(eu.vendeli.tgbot.types.chat.Chat;eu.vendeli.tgbot.TelegramBot){}[0]
     final suspend inline fun sendAsync(eu.vendeli.tgbot.types/User, eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/Action.sendAsync|sendAsync(eu.vendeli.tgbot.types.User;eu.vendeli.tgbot.TelegramBot){}[0]
     final suspend inline fun sendReturning(eu.vendeli.tgbot.types.chat/Chat, eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/Action.sendReturning|sendReturning(eu.vendeli.tgbot.types.chat.Chat;eu.vendeli.tgbot.TelegramBot){}[0]
     final suspend inline fun sendReturning(eu.vendeli.tgbot.types/User, eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/Action.sendReturning|sendReturning(eu.vendeli.tgbot.types.User;eu.vendeli.tgbot.TelegramBot){}[0]
-    final suspend inline fun sendReturning(kotlin/Long, eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/Action.sendReturning|sendReturning(kotlin.Long;eu.vendeli.tgbot.TelegramBot){}[0]
-    final suspend inline fun sendReturning(kotlin/String, eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/Action.sendReturning|sendReturning(kotlin.String;eu.vendeli.tgbot.TelegramBot){}[0]
 }
 
 abstract class <#A: kotlin/Any?> eu.vendeli.tgbot.interfaces.action/MediaAction : eu.vendeli.tgbot.interfaces.action/Action<#A> { // eu.vendeli.tgbot.interfaces.action/MediaAction|null[0]
@@ -988,9 +988,9 @@ abstract class <#A: kotlin/Any?> eu.vendeli.tgbot.interfaces.action/MediaAction 
 abstract class <#A: kotlin/Any?> eu.vendeli.tgbot.interfaces.action/SimpleAction : eu.vendeli.tgbot.interfaces.action/TgAction<#A> { // eu.vendeli.tgbot.interfaces.action/SimpleAction|null[0]
     constructor <init>() // eu.vendeli.tgbot.interfaces.action/SimpleAction.<init>|<init>(){}[0]
 
+    final suspend fun send(eu.vendeli.tgbot/TelegramBot) // eu.vendeli.tgbot.interfaces.action/SimpleAction.send|send(eu.vendeli.tgbot.TelegramBot){}[0]
+    final suspend fun sendAsync(eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/SimpleAction.sendAsync|sendAsync(eu.vendeli.tgbot.TelegramBot){}[0]
     final suspend inline fun sendReturning(eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/SimpleAction.sendReturning|sendReturning(eu.vendeli.tgbot.TelegramBot){}[0]
-    open suspend fun send(eu.vendeli.tgbot/TelegramBot) // eu.vendeli.tgbot.interfaces.action/SimpleAction.send|send(eu.vendeli.tgbot.TelegramBot){}[0]
-    open suspend fun sendAsync(eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/SimpleAction.sendAsync|sendAsync(eu.vendeli.tgbot.TelegramBot){}[0]
 }
 
 abstract class <#A: kotlin/Any?> eu.vendeli.tgbot.interfaces.action/TgAction : eu.vendeli.tgbot.interfaces.action/Request<#A> { // eu.vendeli.tgbot.interfaces.action/TgAction|null[0]
@@ -1160,7 +1160,7 @@ final class eu.vendeli.tgbot.api.botactions/SavePreparedInlineMessageAction : eu
 }
 
 final class eu.vendeli.tgbot.api.botactions/SendGiftAction : eu.vendeli.tgbot.interfaces.action/SimpleAction<kotlin/Boolean>, eu.vendeli.tgbot.interfaces.features/EntitiesFeature<eu.vendeli.tgbot.api.botactions/SendGiftAction> { // eu.vendeli.tgbot.api.botactions/SendGiftAction|null[0]
-    constructor <init>(kotlin/Long, kotlin/String, eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Function0<kotlin/String>? = ...) // eu.vendeli.tgbot.api.botactions/SendGiftAction.<init>|<init>(kotlin.Long;kotlin.String;eu.vendeli.tgbot.types.ParseMode?;kotlin.Function0<kotlin.String>?){}[0]
+    constructor <init>(kotlin/Long, kotlin/String, kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.api.botactions/SendGiftAction.<init>|<init>(kotlin.Long;kotlin.String;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.String?){}[0]
 }
 
 final class eu.vendeli.tgbot.api.botactions/SetMyCommandsAction : eu.vendeli.tgbot.interfaces.action/SimpleAction<kotlin/Boolean> { // eu.vendeli.tgbot.api.botactions/SetMyCommandsAction|null[0]
@@ -1526,6 +1526,22 @@ final class eu.vendeli.tgbot.api.stickerset/SetStickerSetTitleAction : eu.vendel
 
 final class eu.vendeli.tgbot.api.stickerset/UploadStickerFileAction : eu.vendeli.tgbot.interfaces.action/SimpleAction<eu.vendeli.tgbot.types.media/File> { // eu.vendeli.tgbot.api.stickerset/UploadStickerFileAction|null[0]
     constructor <init>(kotlin/Long, eu.vendeli.tgbot.types.internal/InputFile, eu.vendeli.tgbot.types.media/StickerFormat) // eu.vendeli.tgbot.api.stickerset/UploadStickerFileAction.<init>|<init>(kotlin.Long;eu.vendeli.tgbot.types.internal.InputFile;eu.vendeli.tgbot.types.media.StickerFormat){}[0]
+}
+
+final class eu.vendeli.tgbot.api.verification/RemoveChatVerificationAction : eu.vendeli.tgbot.interfaces.action/SimpleAction<kotlin/Boolean> { // eu.vendeli.tgbot.api.verification/RemoveChatVerificationAction|null[0]
+    constructor <init>(kotlin/Long) // eu.vendeli.tgbot.api.verification/RemoveChatVerificationAction.<init>|<init>(kotlin.Long){}[0]
+}
+
+final class eu.vendeli.tgbot.api.verification/RemoveUserVerificationAction : eu.vendeli.tgbot.interfaces.action/SimpleAction<kotlin/Boolean> { // eu.vendeli.tgbot.api.verification/RemoveUserVerificationAction|null[0]
+    constructor <init>(kotlin/Long) // eu.vendeli.tgbot.api.verification/RemoveUserVerificationAction.<init>|<init>(kotlin.Long){}[0]
+}
+
+final class eu.vendeli.tgbot.api.verification/VerifyChatAction : eu.vendeli.tgbot.interfaces.action/SimpleAction<kotlin/Boolean> { // eu.vendeli.tgbot.api.verification/VerifyChatAction|null[0]
+    constructor <init>(kotlin/Long, kotlin/String? = ...) // eu.vendeli.tgbot.api.verification/VerifyChatAction.<init>|<init>(kotlin.Long;kotlin.String?){}[0]
+}
+
+final class eu.vendeli.tgbot.api.verification/VerifyUserAction : eu.vendeli.tgbot.interfaces.action/SimpleAction<kotlin/Boolean> { // eu.vendeli.tgbot.api.verification/VerifyUserAction|null[0]
+    constructor <init>(kotlin/Long, kotlin/String? = ...) // eu.vendeli.tgbot.api.verification/VerifyUserAction.<init>|<init>(kotlin.Long;kotlin.String?){}[0]
 }
 
 final class eu.vendeli.tgbot.api/GetFileAction : eu.vendeli.tgbot.interfaces.action/SimpleAction<eu.vendeli.tgbot.types.media/File> { // eu.vendeli.tgbot.api/GetFileAction|null[0]
@@ -8501,7 +8517,7 @@ final class eu.vendeli.tgbot.types.stars/StarTransactions { // eu.vendeli.tgbot.
 }
 
 final class eu.vendeli.tgbot.types.user/Gift { // eu.vendeli.tgbot.types.user/Gift|null[0]
-    constructor <init>(kotlin/String, eu.vendeli.tgbot.types.media/Sticker, kotlin/Int, kotlin/Int? = ..., kotlin/Int? = ...) // eu.vendeli.tgbot.types.user/Gift.<init>|<init>(kotlin.String;eu.vendeli.tgbot.types.media.Sticker;kotlin.Int;kotlin.Int?;kotlin.Int?){}[0]
+    constructor <init>(kotlin/String, eu.vendeli.tgbot.types.media/Sticker, kotlin/Int, kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ...) // eu.vendeli.tgbot.types.user/Gift.<init>|<init>(kotlin.String;eu.vendeli.tgbot.types.media.Sticker;kotlin.Int;kotlin.Int?;kotlin.Int?;kotlin.Int?){}[0]
 
     final val id // eu.vendeli.tgbot.types.user/Gift.id|{}id[0]
         final fun <get-id>(): kotlin/String // eu.vendeli.tgbot.types.user/Gift.id.<get-id>|<get-id>(){}[0]
@@ -8513,13 +8529,16 @@ final class eu.vendeli.tgbot.types.user/Gift { // eu.vendeli.tgbot.types.user/Gi
         final fun <get-sticker>(): eu.vendeli.tgbot.types.media/Sticker // eu.vendeli.tgbot.types.user/Gift.sticker.<get-sticker>|<get-sticker>(){}[0]
     final val totalCount // eu.vendeli.tgbot.types.user/Gift.totalCount|{}totalCount[0]
         final fun <get-totalCount>(): kotlin/Int? // eu.vendeli.tgbot.types.user/Gift.totalCount.<get-totalCount>|<get-totalCount>(){}[0]
+    final val upgradeStarCount // eu.vendeli.tgbot.types.user/Gift.upgradeStarCount|{}upgradeStarCount[0]
+        final fun <get-upgradeStarCount>(): kotlin/Int? // eu.vendeli.tgbot.types.user/Gift.upgradeStarCount.<get-upgradeStarCount>|<get-upgradeStarCount>(){}[0]
 
     final fun component1(): kotlin/String // eu.vendeli.tgbot.types.user/Gift.component1|component1(){}[0]
     final fun component2(): eu.vendeli.tgbot.types.media/Sticker // eu.vendeli.tgbot.types.user/Gift.component2|component2(){}[0]
     final fun component3(): kotlin/Int // eu.vendeli.tgbot.types.user/Gift.component3|component3(){}[0]
     final fun component4(): kotlin/Int? // eu.vendeli.tgbot.types.user/Gift.component4|component4(){}[0]
     final fun component5(): kotlin/Int? // eu.vendeli.tgbot.types.user/Gift.component5|component5(){}[0]
-    final fun copy(kotlin/String = ..., eu.vendeli.tgbot.types.media/Sticker = ..., kotlin/Int = ..., kotlin/Int? = ..., kotlin/Int? = ...): eu.vendeli.tgbot.types.user/Gift // eu.vendeli.tgbot.types.user/Gift.copy|copy(kotlin.String;eu.vendeli.tgbot.types.media.Sticker;kotlin.Int;kotlin.Int?;kotlin.Int?){}[0]
+    final fun component6(): kotlin/Int? // eu.vendeli.tgbot.types.user/Gift.component6|component6(){}[0]
+    final fun copy(kotlin/String = ..., eu.vendeli.tgbot.types.media/Sticker = ..., kotlin/Int = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ...): eu.vendeli.tgbot.types.user/Gift // eu.vendeli.tgbot.types.user/Gift.copy|copy(kotlin.String;eu.vendeli.tgbot.types.media.Sticker;kotlin.Int;kotlin.Int?;kotlin.Int?;kotlin.Int?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.user/Gift.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.user/Gift.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.user/Gift.toString|toString(){}[0]
@@ -13548,7 +13567,7 @@ final inline fun eu.vendeli.tgbot.api.botactions/logOut(): eu.vendeli.tgbot.api.
 final inline fun eu.vendeli.tgbot.api.botactions/refundStarPayment(kotlin/String, kotlin/Long): eu.vendeli.tgbot.api.botactions/RefundStarPaymentAction // eu.vendeli.tgbot.api.botactions/refundStarPayment|refundStarPayment(kotlin.String;kotlin.Long){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/savePreparedInlineMessage(kotlin/Long, eu.vendeli.tgbot.types.inline/InlineQueryResult): eu.vendeli.tgbot.api.botactions/SavePreparedInlineMessageAction // eu.vendeli.tgbot.api.botactions/savePreparedInlineMessage|savePreparedInlineMessage(kotlin.Long;eu.vendeli.tgbot.types.inline.InlineQueryResult){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/savePreparedInlineMessage(kotlin/Long, kotlin/Function0<eu.vendeli.tgbot.types.inline/InlineQueryResult>): eu.vendeli.tgbot.api.botactions/SavePreparedInlineMessageAction // eu.vendeli.tgbot.api.botactions/savePreparedInlineMessage|savePreparedInlineMessage(kotlin.Long;kotlin.Function0<eu.vendeli.tgbot.types.inline.InlineQueryResult>){}[0]
-final inline fun eu.vendeli.tgbot.api.botactions/sendGift(kotlin/Long, kotlin/String, eu.vendeli.tgbot.types/ParseMode? = ..., noinline kotlin/Function0<kotlin/String>? = ...): eu.vendeli.tgbot.api.botactions/SendGiftAction // eu.vendeli.tgbot.api.botactions/sendGift|sendGift(kotlin.Long;kotlin.String;eu.vendeli.tgbot.types.ParseMode?;kotlin.Function0<kotlin.String>?){}[0]
+final inline fun eu.vendeli.tgbot.api.botactions/sendGift(kotlin/Long, kotlin/String, kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Function0<kotlin/String?> = ...): eu.vendeli.tgbot.api.botactions/SendGiftAction // eu.vendeli.tgbot.api.botactions/sendGift|sendGift(kotlin.Long;kotlin.String;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Function0<kotlin.String?>){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/setMyCommands(kotlin/String? = ..., eu.vendeli.tgbot.types.bot/BotCommandScope? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.bot/BotCommand>): eu.vendeli.tgbot.api.botactions/SetMyCommandsAction // eu.vendeli.tgbot.api.botactions/setMyCommands|setMyCommands(kotlin.String?;eu.vendeli.tgbot.types.bot.BotCommandScope?;kotlin.collections.List<eu.vendeli.tgbot.types.bot.BotCommand>){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/setMyCommands(kotlin/String? = ..., eu.vendeli.tgbot.types.bot/BotCommandScope? = ..., kotlin/Array<out eu.vendeli.tgbot.types.bot/BotCommand>...): eu.vendeli.tgbot.api.botactions/SetMyCommandsAction // eu.vendeli.tgbot.api.botactions/setMyCommands|setMyCommands(kotlin.String?;eu.vendeli.tgbot.types.bot.BotCommandScope?;kotlin.Array<out|eu.vendeli.tgbot.types.bot.BotCommand>...){}[0]
 final inline fun eu.vendeli.tgbot.api.botactions/setMyDefaultAdministratorRights(eu.vendeli.tgbot.types.chat/ChatAdministratorRights? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.api.botactions/SetMyDefaultAdministratorRightsAction // eu.vendeli.tgbot.api.botactions/setMyDefaultAdministratorRights|setMyDefaultAdministratorRights(eu.vendeli.tgbot.types.chat.ChatAdministratorRights?;kotlin.Boolean?){}[0]
@@ -13733,6 +13752,16 @@ final inline fun eu.vendeli.tgbot.api.stickerset/setStickerPositionInSet(kotlin/
 final inline fun eu.vendeli.tgbot.api.stickerset/setStickerSetThumbnail(kotlin/String, kotlin/Long, eu.vendeli.tgbot.types.media/StickerFormat, eu.vendeli.tgbot.types.internal/ImplicitFile? = ...): eu.vendeli.tgbot.api.stickerset/SetStickerSetThumbnailAction // eu.vendeli.tgbot.api.stickerset/setStickerSetThumbnail|setStickerSetThumbnail(kotlin.String;kotlin.Long;eu.vendeli.tgbot.types.media.StickerFormat;eu.vendeli.tgbot.types.internal.ImplicitFile?){}[0]
 final inline fun eu.vendeli.tgbot.api.stickerset/setStickerSetTitle(kotlin/String, kotlin/String): eu.vendeli.tgbot.api.stickerset/SetStickerSetTitleAction // eu.vendeli.tgbot.api.stickerset/setStickerSetTitle|setStickerSetTitle(kotlin.String;kotlin.String){}[0]
 final inline fun eu.vendeli.tgbot.api.stickerset/uploadStickerFile(kotlin/Long, eu.vendeli.tgbot.types.internal/InputFile, eu.vendeli.tgbot.types.media/StickerFormat): eu.vendeli.tgbot.api.stickerset/UploadStickerFileAction // eu.vendeli.tgbot.api.stickerset/uploadStickerFile|uploadStickerFile(kotlin.Long;eu.vendeli.tgbot.types.internal.InputFile;eu.vendeli.tgbot.types.media.StickerFormat){}[0]
+final inline fun eu.vendeli.tgbot.api.verification/removeChatVerification(eu.vendeli.tgbot.types.chat/Chat): eu.vendeli.tgbot.api.verification/RemoveChatVerificationAction // eu.vendeli.tgbot.api.verification/removeChatVerification|removeChatVerification(eu.vendeli.tgbot.types.chat.Chat){}[0]
+final inline fun eu.vendeli.tgbot.api.verification/removeChatVerification(kotlin/Long): eu.vendeli.tgbot.api.verification/RemoveChatVerificationAction // eu.vendeli.tgbot.api.verification/removeChatVerification|removeChatVerification(kotlin.Long){}[0]
+final inline fun eu.vendeli.tgbot.api.verification/removeUserVerification(eu.vendeli.tgbot.types/User): eu.vendeli.tgbot.api.verification/RemoveUserVerificationAction // eu.vendeli.tgbot.api.verification/removeUserVerification|removeUserVerification(eu.vendeli.tgbot.types.User){}[0]
+final inline fun eu.vendeli.tgbot.api.verification/removeUserVerification(kotlin/Long): eu.vendeli.tgbot.api.verification/RemoveUserVerificationAction // eu.vendeli.tgbot.api.verification/removeUserVerification|removeUserVerification(kotlin.Long){}[0]
+final inline fun eu.vendeli.tgbot.api.verification/verifyChat(eu.vendeli.tgbot.types.chat/Chat, kotlin/Function0<kotlin/String?> = ...): eu.vendeli.tgbot.api.verification/VerifyChatAction // eu.vendeli.tgbot.api.verification/verifyChat|verifyChat(eu.vendeli.tgbot.types.chat.Chat;kotlin.Function0<kotlin.String?>){}[0]
+final inline fun eu.vendeli.tgbot.api.verification/verifyChat(kotlin/Long, kotlin/Function0<kotlin/String?> = ...): eu.vendeli.tgbot.api.verification/VerifyChatAction // eu.vendeli.tgbot.api.verification/verifyChat|verifyChat(kotlin.Long;kotlin.Function0<kotlin.String?>){}[0]
+final inline fun eu.vendeli.tgbot.api.verification/verifyChat(kotlin/Long, kotlin/String? = ...): eu.vendeli.tgbot.api.verification/VerifyChatAction // eu.vendeli.tgbot.api.verification/verifyChat|verifyChat(kotlin.Long;kotlin.String?){}[0]
+final inline fun eu.vendeli.tgbot.api.verification/verifyUser(eu.vendeli.tgbot.types/User, kotlin/Function0<kotlin/String?> = ...): eu.vendeli.tgbot.api.verification/VerifyUserAction // eu.vendeli.tgbot.api.verification/verifyUser|verifyUser(eu.vendeli.tgbot.types.User;kotlin.Function0<kotlin.String?>){}[0]
+final inline fun eu.vendeli.tgbot.api.verification/verifyUser(kotlin/Long, kotlin/Function0<kotlin/String?> = ...): eu.vendeli.tgbot.api.verification/VerifyUserAction // eu.vendeli.tgbot.api.verification/verifyUser|verifyUser(kotlin.Long;kotlin.Function0<kotlin.String?>){}[0]
+final inline fun eu.vendeli.tgbot.api.verification/verifyUser(kotlin/Long, kotlin/String? = ...): eu.vendeli.tgbot.api.verification/VerifyUserAction // eu.vendeli.tgbot.api.verification/verifyUser|verifyUser(kotlin.Long;kotlin.String?){}[0]
 final inline fun eu.vendeli.tgbot.api/contact(kotlin/String, kotlin/String): eu.vendeli.tgbot.api/SendContactAction // eu.vendeli.tgbot.api/contact|contact(kotlin.String;kotlin.String){}[0]
 final inline fun eu.vendeli.tgbot.api/dice(kotlin/String? = ...): eu.vendeli.tgbot.api/SendDiceAction // eu.vendeli.tgbot.api/dice|dice(kotlin.String?){}[0]
 final inline fun eu.vendeli.tgbot.api/game(kotlin/String): eu.vendeli.tgbot.api/SendGameAction // eu.vendeli.tgbot.api/game|game(kotlin.String){}[0]

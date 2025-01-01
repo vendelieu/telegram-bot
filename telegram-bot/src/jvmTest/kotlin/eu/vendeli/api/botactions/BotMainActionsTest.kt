@@ -30,7 +30,7 @@ class BotMainActionsTest : BotTestContext() {
     suspend fun `set webhook info method testing`() {
         setWebhook("https://vendeli.eu").send(bot)
         setWebhook("https://vendeli.eu/1")
-            .sendAsync(bot)
+            .sendReturning(bot)
             .foldResponse({ println(result) }, { println(errorCode) })
         val result = getWebhookInfo().sendReq().shouldSuccess()
 

@@ -690,8 +690,8 @@ public final class eu/vendeli/tgbot/api/botactions/SavePreparedInlineMessageKt {
 }
 
 public final class eu/vendeli/tgbot/api/botactions/SendGiftAction : eu/vendeli/tgbot/interfaces/action/SimpleAction, eu/vendeli/tgbot/interfaces/features/EntitiesFeature {
-	public fun <init> (JLjava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Lkotlin/jvm/functions/Function0;)V
-	public synthetic fun <init> (JLjava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/String;)V
+	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun entities (Ljava/util/List;)Leu/vendeli/tgbot/api/botactions/SendGiftAction;
 	public synthetic fun entities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/action/TgAction;
 	public fun entities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/botactions/SendGiftAction;
@@ -699,8 +699,8 @@ public final class eu/vendeli/tgbot/api/botactions/SendGiftAction : eu/vendeli/t
 }
 
 public final class eu/vendeli/tgbot/api/botactions/SendGiftKt {
-	public static final fun sendGift (JLjava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/botactions/SendGiftAction;
-	public static synthetic fun sendGift$default (JLjava/lang/String;Leu/vendeli/tgbot/types/ParseMode;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Leu/vendeli/tgbot/api/botactions/SendGiftAction;
+	public static final fun sendGift (JLjava/lang/String;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/botactions/SendGiftAction;
+	public static synthetic fun sendGift$default (JLjava/lang/String;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Leu/vendeli/tgbot/api/botactions/SendGiftAction;
 }
 
 public final class eu/vendeli/tgbot/api/botactions/SetMyCommandsAction : eu/vendeli/tgbot/interfaces/action/SimpleAction {
@@ -2273,6 +2273,52 @@ public final class eu/vendeli/tgbot/api/stickerset/UploadStickerFileKt {
 	public static final fun uploadStickerFile (JLeu/vendeli/tgbot/types/internal/InputFile;Leu/vendeli/tgbot/types/media/StickerFormat;)Leu/vendeli/tgbot/api/stickerset/UploadStickerFileAction;
 }
 
+public final class eu/vendeli/tgbot/api/verification/RemoveChatVerificationAction : eu/vendeli/tgbot/interfaces/action/SimpleAction {
+	public fun <init> (J)V
+}
+
+public final class eu/vendeli/tgbot/api/verification/RemoveChatVerificationKt {
+	public static final fun removeChatVerification (J)Leu/vendeli/tgbot/api/verification/RemoveChatVerificationAction;
+	public static final fun removeChatVerification (Leu/vendeli/tgbot/types/chat/Chat;)Leu/vendeli/tgbot/api/verification/RemoveChatVerificationAction;
+}
+
+public final class eu/vendeli/tgbot/api/verification/RemoveUserVerificationAction : eu/vendeli/tgbot/interfaces/action/SimpleAction {
+	public fun <init> (J)V
+}
+
+public final class eu/vendeli/tgbot/api/verification/RemoveUserVerificationKt {
+	public static final fun removeUserVerification (J)Leu/vendeli/tgbot/api/verification/RemoveUserVerificationAction;
+	public static final fun removeUserVerification (Leu/vendeli/tgbot/types/User;)Leu/vendeli/tgbot/api/verification/RemoveUserVerificationAction;
+}
+
+public final class eu/vendeli/tgbot/api/verification/VerifyChatAction : eu/vendeli/tgbot/interfaces/action/SimpleAction {
+	public fun <init> (JLjava/lang/String;)V
+	public synthetic fun <init> (JLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class eu/vendeli/tgbot/api/verification/VerifyChatKt {
+	public static final fun verifyChat (JLjava/lang/String;)Leu/vendeli/tgbot/api/verification/VerifyChatAction;
+	public static final fun verifyChat (JLkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/verification/VerifyChatAction;
+	public static final fun verifyChat (Leu/vendeli/tgbot/types/chat/Chat;Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/verification/VerifyChatAction;
+	public static synthetic fun verifyChat$default (JLjava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/api/verification/VerifyChatAction;
+	public static synthetic fun verifyChat$default (JLkotlin/jvm/functions/Function0;ILjava/lang/Object;)Leu/vendeli/tgbot/api/verification/VerifyChatAction;
+	public static synthetic fun verifyChat$default (Leu/vendeli/tgbot/types/chat/Chat;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Leu/vendeli/tgbot/api/verification/VerifyChatAction;
+}
+
+public final class eu/vendeli/tgbot/api/verification/VerifyUserAction : eu/vendeli/tgbot/interfaces/action/SimpleAction {
+	public fun <init> (JLjava/lang/String;)V
+	public synthetic fun <init> (JLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class eu/vendeli/tgbot/api/verification/VerifyUserKt {
+	public static final fun verifyUser (JLjava/lang/String;)Leu/vendeli/tgbot/api/verification/VerifyUserAction;
+	public static final fun verifyUser (JLkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/verification/VerifyUserAction;
+	public static final fun verifyUser (Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/verification/VerifyUserAction;
+	public static synthetic fun verifyUser$default (JLjava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/api/verification/VerifyUserAction;
+	public static synthetic fun verifyUser$default (JLkotlin/jvm/functions/Function0;ILjava/lang/Object;)Leu/vendeli/tgbot/api/verification/VerifyUserAction;
+	public static synthetic fun verifyUser$default (Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Leu/vendeli/tgbot/api/verification/VerifyUserAction;
+}
+
 public final class eu/vendeli/tgbot/core/FunctionalHandlingDsl {
 	public final fun andThen (Leu/vendeli/tgbot/types/internal/chain/SingleInputChain;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Leu/vendeli/tgbot/interfaces/helper/Guard;Lkotlin/jvm/functions/Function2;)Leu/vendeli/tgbot/types/internal/chain/SingleInputChain;
 	public static synthetic fun andThen$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Leu/vendeli/tgbot/types/internal/chain/SingleInputChain;Leu/vendeli/tgbot/types/internal/configuration/RateLimits;Leu/vendeli/tgbot/interfaces/helper/Guard;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Leu/vendeli/tgbot/types/internal/chain/SingleInputChain;
@@ -2418,8 +2464,8 @@ public abstract interface class eu/vendeli/tgbot/interfaces/action/Request {
 
 public abstract class eu/vendeli/tgbot/interfaces/action/SimpleAction : eu/vendeli/tgbot/interfaces/action/TgAction {
 	public fun <init> ()V
-	public fun send (Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun sendAsync (Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun send (Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendAsync (Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun sendReturning (Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
@@ -13811,21 +13857,23 @@ public final class eu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner$C
 
 public final class eu/vendeli/tgbot/types/user/Gift {
 	public static final field Companion Leu/vendeli/tgbot/types/user/Gift$Companion;
-	public fun <init> (Ljava/lang/String;Leu/vendeli/tgbot/types/media/Sticker;ILjava/lang/Integer;Ljava/lang/Integer;)V
-	public synthetic fun <init> (Ljava/lang/String;Leu/vendeli/tgbot/types/media/Sticker;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Leu/vendeli/tgbot/types/media/Sticker;ILjava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/String;Leu/vendeli/tgbot/types/media/Sticker;ILjava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Leu/vendeli/tgbot/types/media/Sticker;
 	public final fun component3 ()I
 	public final fun component4 ()Ljava/lang/Integer;
 	public final fun component5 ()Ljava/lang/Integer;
-	public final fun copy (Ljava/lang/String;Leu/vendeli/tgbot/types/media/Sticker;ILjava/lang/Integer;Ljava/lang/Integer;)Leu/vendeli/tgbot/types/user/Gift;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/user/Gift;Ljava/lang/String;Leu/vendeli/tgbot/types/media/Sticker;ILjava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Leu/vendeli/tgbot/types/user/Gift;
+	public final fun component6 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/String;Leu/vendeli/tgbot/types/media/Sticker;ILjava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)Leu/vendeli/tgbot/types/user/Gift;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/user/Gift;Ljava/lang/String;Leu/vendeli/tgbot/types/media/Sticker;ILjava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Leu/vendeli/tgbot/types/user/Gift;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getId ()Ljava/lang/String;
 	public final fun getRemainingCount ()Ljava/lang/Integer;
 	public final fun getStarCount ()I
 	public final fun getSticker ()Leu/vendeli/tgbot/types/media/Sticker;
 	public final fun getTotalCount ()Ljava/lang/Integer;
+	public final fun getUpgradeStarCount ()Ljava/lang/Integer;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }

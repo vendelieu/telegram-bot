@@ -134,6 +134,10 @@ import eu.vendeli.tgbot.api.stickerset.SetStickerPositionInSetAction
 import eu.vendeli.tgbot.api.stickerset.SetStickerSetThumbnailAction
 import eu.vendeli.tgbot.api.stickerset.SetStickerSetTitleAction
 import eu.vendeli.tgbot.api.stickerset.UploadStickerFileAction
+import eu.vendeli.tgbot.api.verification.RemoveChatVerificationAction
+import eu.vendeli.tgbot.api.verification.RemoveUserVerificationAction
+import eu.vendeli.tgbot.api.verification.VerifyChatAction
+import eu.vendeli.tgbot.api.verification.VerifyUserAction
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.ReactionType
 import eu.vendeli.tgbot.types.User
@@ -480,9 +484,10 @@ public inline fun TelegramBot.savePreparedInlineMessage(userId: Long, noinline r
 public inline fun TelegramBot.sendGift(
   userId: Long,
   giftId: String,
+  payForUpgrade: Boolean? = null,
   textParseMode: ParseMode? = null,
-  noinline text: (() -> String)? = null,
-): SendGiftAction = eu.vendeli.tgbot.api.botactions.sendGift(userId, giftId, textParseMode, text)
+  noinline text: () -> String?,
+): SendGiftAction = eu.vendeli.tgbot.api.botactions.sendGift(userId, giftId, payForUpgrade, textParseMode, text)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.setMyCommands(
@@ -1152,3 +1157,33 @@ public inline fun TelegramBot.uploadStickerFile(
   sticker: InputFile,
   stickerFormat: StickerFormat,
 ): UploadStickerFileAction = eu.vendeli.tgbot.api.stickerset.uploadStickerFile(userId, sticker, stickerFormat)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.removeChatVerification(chatId: Long): RemoveChatVerificationAction = eu.vendeli.tgbot.api.verification.removeChatVerification(chatId)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.removeChatVerification(chat: Chat): RemoveChatVerificationAction = eu.vendeli.tgbot.api.verification.removeChatVerification(chat)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.removeUserVerification(userId: Long): RemoveUserVerificationAction = eu.vendeli.tgbot.api.verification.removeUserVerification(userId)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.removeUserVerification(user: User): RemoveUserVerificationAction = eu.vendeli.tgbot.api.verification.removeUserVerification(user)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.verifyChat(chatId: Long, customDescription: String? = null): VerifyChatAction = eu.vendeli.tgbot.api.verification.verifyChat(chatId, customDescription)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.verifyChat(chatId: Long, noinline customDescription: () -> String?): VerifyChatAction = eu.vendeli.tgbot.api.verification.verifyChat(chatId, customDescription)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.verifyChat(chat: Chat, noinline customDescription: () -> String?): VerifyChatAction = eu.vendeli.tgbot.api.verification.verifyChat(chat, customDescription)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.verifyUser(userId: Long, customDescription: String? = null): VerifyUserAction = eu.vendeli.tgbot.api.verification.verifyUser(userId, customDescription)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.verifyUser(userId: Long, noinline customDescription: () -> String?): VerifyUserAction = eu.vendeli.tgbot.api.verification.verifyUser(userId, customDescription)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.verifyUser(user: User, noinline customDescription: () -> String?): VerifyUserAction = eu.vendeli.tgbot.api.verification.verifyUser(user, customDescription)

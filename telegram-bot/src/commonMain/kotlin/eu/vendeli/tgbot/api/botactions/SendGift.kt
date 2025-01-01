@@ -13,8 +13,9 @@ import eu.vendeli.tgbot.utils.toJsonElement
 class SendGiftAction(
     userId: Long,
     giftId: String,
+    payForUpgrade: Boolean? = null,
     textParseMode: ParseMode? = null,
-    text: (() -> String)? = null,
+    text: String? = null,
 ) : SimpleAction<Boolean>(),
     @TgAPI.Name("textEntities")
     EntitiesFeature<SendGiftAction> {
@@ -26,8 +27,9 @@ class SendGiftAction(
     init {
         parameters["user_id"] = userId.toJsonElement()
         parameters["gift_id"] = giftId.toJsonElement()
+        payForUpgrade?.let { parameters["pay_for_upgrade"] = it.toJsonElement() }
         textParseMode?.let { parameters["text_parse_mode"] = it.name.toJsonElement() }
-        text?.let { parameters["text"] = it().toJsonElement() }
+        text?.let { parameters["text"] = it.toJsonElement() }
     }
 }
 
@@ -37,6 +39,7 @@ class SendGiftAction(
  * [Api reference](https://core.telegram.org/bots/api#sendgift)
  * @param userId Unique identifier of the target user that will receive the gift
  * @param giftId Identifier of the gift
+ * @param payForUpgrade Pass True to pay for the gift upgrade from the bot's balance, thereby making the upgrade free for the receiver
  * @param text Text that will be shown along with the gift; 0-255 characters
  * @param textParseMode Mode for parsing entities in the text. See formatting options for more details. Entities other than "bold", "italic", "underline", "strikethrough", "spoiler", and "custom_emoji" are ignored.
  * @param textEntities A JSON-serialized list of special entities that appear in the gift text. It can be specified instead of text_parse_mode. Entities other than "bold", "italic", "underline", "strikethrough", "spoiler", and "custom_emoji" are ignored.
@@ -47,6 +50,7 @@ class SendGiftAction(
 inline fun sendGift(
     userId: Long,
     giftId: String,
+    payForUpgrade: Boolean? = null,
     textParseMode: ParseMode? = null,
-    noinline text: (() -> String)? = null,
-) = SendGiftAction(userId, giftId, textParseMode, text)
+    text: () -> String? = { null },
+) = SendGiftAction(userId, giftId, payForUpgrade, textParseMode, text())
