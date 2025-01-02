@@ -15,4 +15,8 @@ annotation class TgAPI {
     annotation class Name(
         val value: String,
     )
+
+    @Retention(AnnotationRetention.SOURCE)
+    @Target(AnnotationTarget.PROPERTY, AnnotationTarget.CLASS, AnnotationTarget.TYPE)
+    annotation class Ignore
 }

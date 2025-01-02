@@ -8,6 +8,7 @@ import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
@@ -80,7 +81,7 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
                 EntitiesFeature::class.fqName -> {
                     val paramName = sType.annotations
                         .firstOrNull {
-                            it.shortName.getShortName() == "Name"
+                            it.shortName.getShortName() == TgAPI.Name::class.simpleName!!
                         }?.arguments
                         ?.first()
                         ?.value
@@ -129,9 +130,9 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
             }
 
             if (returns.find { (it as? JsonPrimitive)?.content == apiReturnMatchType } == null)
-                logger.warn(
-                    "Possibly return type of $classFullname ($apiReturnMatchType) is wrong, should be one of $returns",
-                )
+                logger.invalid {
+                    "Possibly return type of $classFullname ($apiReturnMatchType) is wrong, should be one of $returns"
+                }
         }
 
         // check all fields presence
@@ -145,10 +146,10 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
 
             // exclude chatId since it covered in send* methods
             if (camelParamName != "chatId" && targetParam == null) {
-                logger.warn(
+                logger.invalid {
                     "Api parameter `$origParameterName`($camelParamName) " +
-                        "is probably not present in class $classFullname (method: `$methodName`)\n$apiRefLink",
-                )
+                        "is probably not present in class $classFullname (method: `$methodName`)\n$apiRefLink"
+                }
                 return@params
             }
 
@@ -161,15 +162,19 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
         // check is there anything left after checking
         parameters.remove("block") // remove EntitiesCtxBuilder constructor parameter
         parameters.takeIf { it.isNotEmpty() }?.let {
-            logger.warn(
+            logger.invalid {
                 "Probably redundant parameters for method $methodName: ${parameters.keys.joinToString()}\n" +
-                    "Implemented in $classFullname.",
-            )
+                    "Implemented in $classFullname."
+            }
         }
-        if (!visitedMethods.add(methodName)) logger.warn("Duplicate processing of a method $methodName")
+        if (!visitedMethods.add(methodName)) logger.invalid {
+            "Duplicate processing of a method $methodName"
+        }
     }
     val leftMethods = allMethods.keys - visitedMethods
-    if (leftMethods.isNotEmpty()) logger.warn("Not all methods have been processed; remaining are:: $leftMethods")
+    if (leftMethods.isNotEmpty()) logger.invalid {
+        "Not all methods have been processed; remaining are:: $leftMethods"
+    }
 }
 
 private fun String.returnTypeCorrection() = when (this) {
