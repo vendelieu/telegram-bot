@@ -32,6 +32,7 @@ eu.vendeli.tgbot.api.forum
 eu.vendeli.tgbot.api.media
 eu.vendeli.tgbot.api.message
 eu.vendeli.tgbot.api.stickerset
+eu.vendeli.tgbot.api.verification
 eu.vendeli.tgbot.core
 eu.vendeli.tgbot.implementations
 eu.vendeli.tgbot.interfaces.action
