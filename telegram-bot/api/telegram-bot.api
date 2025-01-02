@@ -112,6 +112,9 @@ public abstract interface annotation class eu/vendeli/tgbot/annotations/internal
 public abstract interface annotation class eu/vendeli/tgbot/annotations/internal/TgAPI : java/lang/annotation/Annotation {
 }
 
+public abstract interface annotation class eu/vendeli/tgbot/annotations/internal/TgAPI$Ignore : java/lang/annotation/Annotation {
+}
+
 public abstract interface annotation class eu/vendeli/tgbot/annotations/internal/TgAPI$Name : java/lang/annotation/Annotation {
 	public abstract fun value ()Ljava/lang/String;
 }
@@ -3193,20 +3196,18 @@ public final class eu/vendeli/tgbot/types/InputMessageContent$Companion {
 
 public final class eu/vendeli/tgbot/types/InputMessageContent$ContactContent : eu/vendeli/tgbot/types/InputMessageContent {
 	public static final field Companion Leu/vendeli/tgbot/types/InputMessageContent$ContactContent$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/Long;
-	public final fun component5 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;)Leu/vendeli/tgbot/types/InputMessageContent$ContactContent;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/InputMessageContent$ContactContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/InputMessageContent$ContactContent;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/InputMessageContent$ContactContent;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/InputMessageContent$ContactContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/InputMessageContent$ContactContent;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getFirstName ()Ljava/lang/String;
 	public final fun getLastName ()Ljava/lang/String;
 	public final fun getPhoneNumber ()Ljava/lang/String;
-	public final fun getUserId ()Ljava/lang/Long;
 	public final fun getVcard ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -6195,23 +6196,21 @@ public abstract class eu/vendeli/tgbot/types/inline/InlineQueryResult {
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Article : eu/vendeli/tgbot/types/inline/InlineQueryResult {
 	public static final field Companion Leu/vendeli/tgbot/types/inline/InlineQueryResult$Article$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/InputMessageContent;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/InputMessageContent;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/InputMessageContent;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/InputMessageContent;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component10 ()Ljava/lang/Integer;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Leu/vendeli/tgbot/types/InputMessageContent;
 	public final fun component4 ()Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;
 	public final fun component5 ()Ljava/lang/String;
-	public final fun component6 ()Ljava/lang/Boolean;
+	public final fun component6 ()Ljava/lang/String;
 	public final fun component7 ()Ljava/lang/String;
-	public final fun component8 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/Integer;
 	public final fun component9 ()Ljava/lang/Integer;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/InputMessageContent;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)Leu/vendeli/tgbot/types/inline/InlineQueryResult$Article;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/inline/InlineQueryResult$Article;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/InputMessageContent;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Leu/vendeli/tgbot/types/inline/InlineQueryResult$Article;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/InputMessageContent;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)Leu/vendeli/tgbot/types/inline/InlineQueryResult$Article;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/inline/InlineQueryResult$Article;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/InputMessageContent;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Leu/vendeli/tgbot/types/inline/InlineQueryResult$Article;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDescription ()Ljava/lang/String;
-	public final fun getHideUrl ()Ljava/lang/Boolean;
 	public final fun getId ()Ljava/lang/String;
 	public final fun getInputMessageContent ()Leu/vendeli/tgbot/types/InputMessageContent;
 	public final fun getReplyMarkup ()Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;
@@ -6631,22 +6630,20 @@ public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Companion {
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Contact : eu/vendeli/tgbot/types/inline/InlineQueryResult {
 	public static final field Companion Leu/vendeli/tgbot/types/inline/InlineQueryResult$Contact$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Leu/vendeli/tgbot/types/InputMessageContent;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Leu/vendeli/tgbot/types/InputMessageContent;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Leu/vendeli/tgbot/types/InputMessageContent;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Leu/vendeli/tgbot/types/InputMessageContent;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component10 ()Ljava/lang/String;
-	public final fun component11 ()Ljava/lang/Integer;
-	public final fun component12 ()Ljava/lang/Integer;
+	public final fun component10 ()Ljava/lang/Integer;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()Ljava/lang/String;
 	public final fun component5 ()Ljava/lang/String;
-	public final fun component6 ()Ljava/lang/Long;
-	public final fun component7 ()Ljava/lang/String;
-	public final fun component8 ()Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;
-	public final fun component9 ()Leu/vendeli/tgbot/types/InputMessageContent;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Leu/vendeli/tgbot/types/InputMessageContent;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)Leu/vendeli/tgbot/types/inline/InlineQueryResult$Contact;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/inline/InlineQueryResult$Contact;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Leu/vendeli/tgbot/types/InputMessageContent;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Leu/vendeli/tgbot/types/inline/InlineQueryResult$Contact;
+	public final fun component6 ()Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;
+	public final fun component7 ()Leu/vendeli/tgbot/types/InputMessageContent;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Leu/vendeli/tgbot/types/InputMessageContent;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)Leu/vendeli/tgbot/types/inline/InlineQueryResult$Contact;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/inline/InlineQueryResult$Contact;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;Leu/vendeli/tgbot/types/InputMessageContent;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Leu/vendeli/tgbot/types/inline/InlineQueryResult$Contact;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getFirstName ()Ljava/lang/String;
 	public final fun getId ()Ljava/lang/String;
@@ -6657,8 +6654,6 @@ public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Contact : eu/
 	public final fun getThumbnailHeight ()Ljava/lang/Integer;
 	public final fun getThumbnailUrl ()Ljava/lang/String;
 	public final fun getThumbnailWidth ()Ljava/lang/Integer;
-	public final fun getTitle ()Ljava/lang/String;
-	public final fun getUserId ()Ljava/lang/Long;
 	public final fun getVcard ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;

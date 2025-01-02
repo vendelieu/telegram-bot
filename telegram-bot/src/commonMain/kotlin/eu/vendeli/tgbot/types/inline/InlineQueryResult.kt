@@ -67,7 +67,6 @@ sealed class InlineQueryResult {
         val inputMessageContent: @Contextual InputMessageContent,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val url: String? = null,
-        val hideUrl: Boolean? = null,
         val description: String? = null,
         val thumbnailUrl: String? = null,
         val thumbnailWidth: Int? = null,
@@ -238,11 +237,9 @@ sealed class InlineQueryResult {
     @SerialName("contact")
     data class Contact(
         val id: String,
-        val title: String,
         val phoneNumber: String,
         val firstName: String,
         val lastName: String? = null,
-        val userId: Long? = null,
         val vcard: String? = null,
         val replyMarkup: InlineKeyboardMarkup? = null,
         val inputMessageContent: @Contextual InputMessageContent? = null,
