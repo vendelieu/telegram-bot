@@ -2472,7 +2472,7 @@ public abstract class eu/vendeli/tgbot/interfaces/action/SimpleAction : eu/vende
 public abstract class eu/vendeli/tgbot/interfaces/action/TgAction : eu/vendeli/tgbot/interfaces/action/Request {
 	public fun <init> ()V
 	protected fun getBeforeReq ()Lkotlin/jvm/functions/Function0;
-	protected fun getReturnType ()Lkotlinx/serialization/KSerializer;
+	protected abstract fun getReturnType ()Lkotlinx/serialization/KSerializer;
 	public final fun toWebhookResponse ()Ljava/lang/String;
 }
 

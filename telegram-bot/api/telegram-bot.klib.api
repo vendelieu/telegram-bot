@@ -996,10 +996,10 @@ abstract class <#A: kotlin/Any?> eu.vendeli.tgbot.interfaces.action/SimpleAction
 abstract class <#A: kotlin/Any?> eu.vendeli.tgbot.interfaces.action/TgAction : eu.vendeli.tgbot.interfaces.action/Request<#A> { // eu.vendeli.tgbot.interfaces.action/TgAction|null[0]
     constructor <init>() // eu.vendeli.tgbot.interfaces.action/TgAction.<init>|<init>(){}[0]
 
+    abstract val returnType // eu.vendeli.tgbot.interfaces.action/TgAction.returnType|{}returnType[0]
+        abstract fun <get-returnType>(): kotlinx.serialization/KSerializer<#A> // eu.vendeli.tgbot.interfaces.action/TgAction.returnType.<get-returnType>|<get-returnType>(){}[0]
     open val beforeReq // eu.vendeli.tgbot.interfaces.action/TgAction.beforeReq|{}beforeReq[0]
         open fun <get-beforeReq>(): kotlin/Function0<kotlin/Unit> // eu.vendeli.tgbot.interfaces.action/TgAction.beforeReq.<get-beforeReq>|<get-beforeReq>(){}[0]
-    open val returnType // eu.vendeli.tgbot.interfaces.action/TgAction.returnType|{}returnType[0]
-        open fun <get-returnType>(): kotlinx.serialization/KSerializer<#A> // eu.vendeli.tgbot.interfaces.action/TgAction.returnType.<get-returnType>|<get-returnType>(){}[0]
 
     final fun toWebhookResponse(): kotlin/String // eu.vendeli.tgbot.interfaces.action/TgAction.toWebhookResponse|toWebhookResponse(){}[0]
 }
