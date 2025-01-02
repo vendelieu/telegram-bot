@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.utils.serde
 
+import eu.vendeli.tgbot.utils.TgException
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
@@ -14,5 +15,5 @@ internal abstract class ToStringSerializer<T>(
         encoder.encodeString(selector.invoke(value))
     }
 
-    override fun deserialize(decoder: Decoder): T = error("Not implemented")
+    override fun deserialize(decoder: Decoder): T = throw TgException("Not implemented")
 }

@@ -5,6 +5,7 @@ import eu.vendeli.tgbot.types.keyboard.ForceReply
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardMarkup
 import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardRemove
+import eu.vendeli.tgbot.utils.TgException
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
@@ -18,7 +19,7 @@ internal object KeyboardSerializer : JsonContentPolymorphicSerializer<Keyboard>(
             content.contains("keyboard") -> ReplyKeyboardMarkup.serializer()
             content.contains("remove_keyboard") -> ReplyKeyboardRemove.serializer()
             content.contains("force_reply") -> ForceReply.serializer()
-            else -> error("Unsupported keyboard - $content")
+            else -> throw TgException("Unsupported keyboard - $content")
         }
     }
 }

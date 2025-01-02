@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.implementations
 
 import eu.vendeli.tgbot.interfaces.ctx.ClassManager
+import eu.vendeli.tgbot.utils.TgException
 import kotlin.reflect.KClass
 import kotlin.reflect.createInstance
 
@@ -26,7 +27,7 @@ actual class ClassManagerImpl : ClassManager {
         if (initParams.isEmpty()) {
             kClass.createInstance()
         } else {
-            error("Passing class init params not supported.")
+            throw TgException("Passing class init params not supported.")
         }.also { instances[kClass.js.name] = it }
     }
 }

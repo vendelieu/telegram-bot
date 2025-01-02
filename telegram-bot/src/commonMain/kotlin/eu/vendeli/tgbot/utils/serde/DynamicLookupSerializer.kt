@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.utils.serde
 
+import eu.vendeli.tgbot.utils.TgException
 import kotlinx.serialization.ContextualSerializer
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
@@ -19,7 +20,5 @@ internal object DynamicLookupSerializer : KSerializer<Any> {
         encoder.encodeSerializableValue(actualSerializer as KSerializer<Any>, value)
     }
 
-    override fun deserialize(decoder: Decoder): Any {
-        error("Unsupported")
-    }
+    override fun deserialize(decoder: Decoder): Any = throw TgException("Unsupported")
 }

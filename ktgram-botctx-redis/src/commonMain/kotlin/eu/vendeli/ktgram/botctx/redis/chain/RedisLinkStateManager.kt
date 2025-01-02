@@ -6,11 +6,11 @@ import eu.vendeli.tgbot.types.internal.IdLong
 import eu.vendeli.tgbot.types.internal.chain.KeySelector
 import eu.vendeli.tgbot.types.internal.chain.LinkStateManager
 import eu.vendeli.tgbot.types.internal.chain.StatefulLink
+import eu.vendeli.tgbot.utils.TgException
 import eu.vendeli.tgbot.utils.fqName
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializerOrNull
-import kotlin.collections.set
 import kotlin.reflect.KClass
 
 abstract class RedisLinkStateManager<L, T>(
@@ -28,7 +28,7 @@ abstract class RedisLinkStateManager<L, T>(
 
     @OptIn(InternalSerializationApi::class)
     private val storageTypeSerializer =
-        storageType.serializerOrNull() ?: error("Serializer for $storageType is not found")
+        storageType.serializerOrNull() ?: throw TgException("Serializer for $storageType is not found")
 
     override suspend fun get(key: IdLong): T? = redisMap[key.id.toString()]?.let {
         serializer.decodeFromString(storageTypeSerializer, it)
