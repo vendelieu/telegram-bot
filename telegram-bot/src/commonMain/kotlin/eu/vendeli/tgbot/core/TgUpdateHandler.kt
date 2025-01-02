@@ -72,6 +72,7 @@ class TgUpdateHandler internal constructor(
 
     /**
      * Update flow being processed by the handler.
+     * @since 7.4.0
      */
     @ExperimentalFeature
     val flow: Flow<ProcessedUpdate> get() = updatesFlow
