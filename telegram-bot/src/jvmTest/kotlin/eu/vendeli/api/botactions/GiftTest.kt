@@ -8,16 +8,16 @@ import io.kotest.matchers.collections.shouldHaveAtLeastSize
 class GiftTest : BotTestContext() {
     @Test
     suspend fun `get available gifts test`() {
-        val result = getAvailableGifts().sendAsync(bot).shouldSuccess()
+        val result = getAvailableGifts().sendReturning(bot).shouldSuccess()
 
         result.gifts shouldHaveAtLeastSize 1
     }
 
     @Test
     suspend fun `send gift test`() {
-        val available = getAvailableGifts().sendAsync(bot).shouldSuccess()
+        val available = getAvailableGifts().sendReturning(bot).shouldSuccess()
         val result = sendGift(TG_ID, available.gifts.first().id) {
             "test"
-        }.sendAsync(bot).shouldFailure() shouldContainInDescription "BALANCE_TOO_LOW"
+        }.sendReturning(bot).shouldFailure() shouldContainInDescription "BALANCE_TOO_LOW"
     }
 }

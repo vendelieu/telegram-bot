@@ -80,7 +80,7 @@ fun <T : Any> TelegramBot.getInstance(kClass: KClass<T>, vararg initParams: Any?
  *                 { "selector?id=$id" },
  *                 "/start?page=%P",
  *             )
- *         ).sendAsync(user, bot).getOrNull()?.also {
+ *         ).sendReturning(user, bot).getOrNull()?.also {
  *             bot.userData[user, "startPage"] = it.messageId
  *         }
  *     }
@@ -135,6 +135,13 @@ fun <T> Collection<T>.joinToInlineKeyboard(
     }
 }
 
+/**
+ * Escape text for given parse mode.
+ *
+ * See [escapeHTML], [escapeMarkdown], [escapeMarkdownV2].
+ *
+ * @since 7.7.0
+ */
 @Suppress("NOTHING_TO_INLINE")
 inline fun String.escapeFormatting(mode: ParseMode): String = when (mode) {
     ParseMode.Markdown -> escapeMarkdown()
@@ -144,6 +151,13 @@ inline fun String.escapeFormatting(mode: ParseMode): String = when (mode) {
 
 private val markdownV1EscapeList = setOf('_', '*', '`', '[')
 
+/**
+ * Escapes text for markdown v1.
+ *
+ * [MarkdownV1 escape rules](https://core.telegram.org/bots/api#markdownv2-style)
+ *
+ * @since 7.7.0
+ */
 fun String.escapeMarkdown() = buildString {
     forEach {
         if (it in markdownV1EscapeList) append("\\$it") else append(it)
@@ -171,6 +185,12 @@ private val markdownV2EscapeList = setOf(
     '!',
 )
 
+/**
+ * Escapes text for markdown v2.
+ *
+ * [MarkdownV2 escape rules](https://core.telegram.org/bots/api#markdownv2-style)
+ * @since 7.7.0
+ */
 fun String.escapeMarkdownV2() = buildString {
     forEach {
         if (it in markdownV2EscapeList) append("\\$it") else append(it)
@@ -183,6 +203,12 @@ private val HTMLEscapeMap = mapOf(
     '>' to "&gt;",
 )
 
+/**
+ * Escapes text for html.
+ *
+ * [HTML escape rules](https://core.telegram.org/bots/api#html-style)
+ * @since 7.7.0
+ */
 fun String.escapeHTML() = buildString {
     forEach { ch ->
         HTMLEscapeMap[ch]?.let { append(it) } ?: append(ch)

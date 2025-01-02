@@ -10,6 +10,7 @@ import kotlinx.serialization.Serializable
  * @property id Unique identifier of the gift
  * @property sticker The sticker that represents the gift
  * @property starCount The number of Telegram Stars that must be paid to send the sticker
+ * @property upgradeStarCount Optional. The number of Telegram Stars that must be paid to upgrade the gift to a unique one
  * @property totalCount Optional. The total number of the gifts of this type that can be sent; for limited gifts only
  * @property remainingCount Optional. The number of remaining gifts of this type that can be sent; for limited gifts only
  */
@@ -20,4 +21,5 @@ data class Gift(
     val starCount: Int,
     val totalCount: Int? = null,
     val remainingCount: Int? = null,
+    val upgradeStarCount: Int? = null,
 )

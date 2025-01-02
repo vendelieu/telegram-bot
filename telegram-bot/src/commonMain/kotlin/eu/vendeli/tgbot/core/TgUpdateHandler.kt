@@ -96,7 +96,7 @@ class TgUpdateHandler internal constructor(
                 getUpdatesAction
                     .apply {
                         parameters["offset"] = lastUpdateId.toJsonElement()
-                    }.sendAsync(bot)
+                    }.sendReturning(bot)
                     .getOrNull()
                     ?.forEach {
                         updatesFlow.emit(it)

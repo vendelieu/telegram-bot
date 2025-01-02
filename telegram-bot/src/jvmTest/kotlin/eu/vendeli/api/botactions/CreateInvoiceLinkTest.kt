@@ -1,14 +1,17 @@
 package eu.vendeli.api.botactions
 
 import BotTestContext
+import PaymentProviderTestingOnlyCondition
 import eu.vendeli.tgbot.api.botactions.createInvoiceLink
 import eu.vendeli.tgbot.types.internal.Currency
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 import io.kotest.assertions.retry
+import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.string.shouldContain
 import kotlin.time.Duration.Companion.minutes
 
+@EnabledIf(PaymentProviderTestingOnlyCondition::class)
 class CreateInvoiceLinkTest : BotTestContext() {
     @Test
     suspend fun `create invoice link method testing`() = retry(2, 1.minutes) {

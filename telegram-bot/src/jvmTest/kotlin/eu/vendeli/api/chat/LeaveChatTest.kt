@@ -10,7 +10,7 @@ import io.kotest.matchers.types.shouldBeInstanceOf
 class LeaveChatTest : BotTestContext() {
     @Test
     suspend fun `leave chat test`() {
-        val result = leaveChat().sendAsync(1, bot).await()
+        val result = leaveChat().sendReturning(1, bot).await()
 
         result.ok.shouldBeFalse()
         result.shouldBeInstanceOf<Response.Failure>()

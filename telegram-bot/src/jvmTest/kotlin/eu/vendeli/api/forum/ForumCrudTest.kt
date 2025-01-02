@@ -48,7 +48,7 @@ class ForumCrudTest : BotTestContext() {
         val result = editForumTopic(
             topic.messageThreadId,
             "testTopic2",
-        ).sendAsync(CHAT_ID, bot).shouldSuccess()
+        ).sendReturning(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
         deleteForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
@@ -59,7 +59,7 @@ class ForumCrudTest : BotTestContext() {
         val topic = createForumTopic("testTopic")
             .sendReq(CHAT_ID)
             .shouldSuccess()
-        val result = deleteForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
+        val result = deleteForumTopic(topic.messageThreadId).sendReturning(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
     }
@@ -69,7 +69,7 @@ class ForumCrudTest : BotTestContext() {
         val topic = createForumTopic("testTopic")
             .sendReq(CHAT_ID)
             .shouldSuccess()
-        val result = closeForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
+        val result = closeForumTopic(topic.messageThreadId).sendReturning(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
         deleteForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
@@ -81,7 +81,7 @@ class ForumCrudTest : BotTestContext() {
             .sendReq(CHAT_ID)
             .shouldSuccess()
         closeForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
-        val result = reopenForumTopic(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
+        val result = reopenForumTopic(topic.messageThreadId).sendReturning(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
         deleteForumTopic(topic.messageThreadId).send(CHAT_ID, bot)
@@ -92,7 +92,7 @@ class ForumCrudTest : BotTestContext() {
         val topic = createForumTopic("testTopic")
             .sendReq(CHAT_ID)
             .shouldSuccess()
-        val result = unpinAllForumTopicMessages(topic.messageThreadId).sendAsync(CHAT_ID, bot).shouldSuccess()
+        val result = unpinAllForumTopicMessages(topic.messageThreadId).sendReturning(CHAT_ID, bot).shouldSuccess()
 
         result.shouldBeTrue()
         deleteForumTopic(topic.messageThreadId).send(CHAT_ID, bot)

@@ -106,7 +106,7 @@ class TelegramBotTest : BotTestContext() {
 
     @Test
     suspend fun `fold response handling`() {
-        val req = getMe().sendAsync(bot)
+        val req = getMe().sendReturning(bot)
 
         var isFailure: Boolean? = null
         req.foldResponse(

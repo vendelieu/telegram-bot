@@ -11,3 +11,8 @@ class ChannelTestingOnlyCondition : EnabledCondition {
     override fun enabled(kclass: KClass<out Spec>): Boolean =
         System.getenv("CHANNEL_ID") != null
 }
+
+class PaymentProviderTestingOnlyCondition : EnabledCondition {
+    override fun enabled(kclass: KClass<out Spec>): Boolean =
+        System.getenv("PAYMENT_PROVIDER_TOKEN") != null
+}

@@ -7,7 +7,7 @@ class EmojiStatusTest : BotTestContext() {
     @Test
     suspend fun `set emoji status test`() {
         setUserEmojiStatus(TG_ID)
-            .sendAsync(bot)
+            .sendReturning(bot)
             .shouldFailure() shouldContainInDescription "not enough rights to change the user's emoji status"
     }
 }

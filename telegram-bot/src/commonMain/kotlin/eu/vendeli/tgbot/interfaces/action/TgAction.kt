@@ -24,7 +24,7 @@ abstract class TgAction<ReturnType> : Request<ReturnType> {
      * [there](https://core.telegram.org/bots/faq#how-can-i-make-requests-in-response-to-updates).
      */
     fun toWebhookResponse(): String {
-        require(multipartData.isEmpty()) { "Multipart files is not supported for webhook response flow." }
+        require(multipartData.isEmpty()) { "Multipart files is not supported for webhook response." }
         parameters["method"] = method.toJsonElement()
         return serde.encodeToString(parameters)
     }
@@ -32,17 +32,17 @@ abstract class TgAction<ReturnType> : Request<ReturnType> {
     /**
      * A method that is implemented in Action.
      */
-    internal open val method: String = ""
-
-    /**
-     * The parameter that stores the options.
-     */
-    internal open val options by Delegates.notNull<Options>()
+    internal abstract val method: String
 
     /**
      * Type of action result.
      */
-    protected open val returnType by Delegates.notNull<KSerializer<ReturnType>>()
+    protected abstract val returnType: KSerializer<ReturnType>
+
+    /**
+     * The parameter that stores the options.
+     */
+    internal open val options: Options by Delegates.notNull()
 
     /**
      * Field where entities should be stored.

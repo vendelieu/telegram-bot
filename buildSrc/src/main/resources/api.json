@@ -1,7 +1,7 @@
 {
-  "version": "Bot API 8.1",
-  "release_date": "December 4, 2024",
-  "changelog": "https://core.telegram.org/bots/api#december-4-2024",
+  "version": "Bot API 8.2",
+  "release_date": "January 1, 2025",
+  "changelog": "https://core.telegram.org/bots/api#january-1-2025",
   "methods": {
     "getUpdates": {
       "name": "getUpdates",
@@ -51,7 +51,7 @@
       "name": "setWebhook",
       "href": "https://core.telegram.org/bots/api#setwebhook",
       "description": [
-        "Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts. Returns True on success.",
+        "Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update. In case of an unsuccessful request (a request with response HTTP status code different from 2XY), we will repeat the request and give up after a reasonable amount of attempts. Returns True on success.",
         "If you'd like to make sure that the webhook was set by you, you can specify secret data in the parameter secret_token. If specified, the request will contain a header \"X-Telegram-Bot-Api-Secret-Token\" with the secret token as content."
       ],
       "returns": [
@@ -5691,7 +5691,7 @@
             "String"
           ],
           "required": false,
-          "description": "A .WEBP or .PNG image with the thumbnail, must be up to 128 kilobytes in size and have a width and height of exactly 100px, or a .TGS animation with a thumbnail up to 32 kilobytes in size (see https://core.telegram.org/stickers#animation-requirements for animated sticker technical requirements), or a WEBM video with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#video-requirements for video sticker technical requirements. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files: https://core.telegram.org/bots/api#sending-files. Animated and video sticker set thumbnails can't be uploaded via HTTP URL. If omitted, then the thumbnail is dropped and the first sticker is used as the thumbnail."
+          "description": "A .WEBP or .PNG image with the thumbnail, must be up to 128 kilobytes in size and have a width and height of exactly 100px, or a .TGS animation with a thumbnail up to 32 kilobytes in size (see https://core.telegram.org/stickers#animation-requirements for animated sticker technical requirements), or a .WEBM video with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#video-requirements for video sticker technical requirements. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files: https://core.telegram.org/bots/api#sending-files. Animated and video sticker set thumbnails can't be uploaded via HTTP URL. If omitted, then the thumbnail is dropped and the first sticker is used as the thumbnail."
         },
         {
           "name": "format",
@@ -5699,7 +5699,7 @@
             "String"
           ],
           "required": true,
-          "description": "Format of the thumbnail, must be one of \"static\" for a .WEBP or .PNG image, \"animated\" for a .TGS animation, or \"video\" for a WEBM video"
+          "description": "Format of the thumbnail, must be one of \"static\" for a .WEBP or .PNG image, \"animated\" for a .TGS animation, or \"video\" for a .WEBM video"
         }
       ]
     },
@@ -5788,6 +5788,14 @@
           "description": "Identifier of the gift"
         },
         {
+          "name": "pay_for_upgrade",
+          "types": [
+            "Boolean"
+          ],
+          "required": false,
+          "description": "Pass True to pay for the gift upgrade from the bot's balance, thereby making the upgrade free for the receiver"
+        },
+        {
           "name": "text",
           "types": [
             "String"
@@ -5810,6 +5818,104 @@
           ],
           "required": false,
           "description": "A JSON-serialized list of special entities that appear in the gift text. It can be specified instead of text_parse_mode. Entities other than \"bold\", \"italic\", \"underline\", \"strikethrough\", \"spoiler\", and \"custom_emoji\" are ignored."
+        }
+      ]
+    },
+    "verifyUser": {
+      "name": "verifyUser",
+      "href": "https://core.telegram.org/bots/api#verifyuser",
+      "description": [
+        "Verifies a user on behalf of the organization which is represented by the bot. Returns True on success."
+      ],
+      "returns": [
+        "Boolean"
+      ],
+      "fields": [
+        {
+          "name": "user_id",
+          "types": [
+            "Integer"
+          ],
+          "required": true,
+          "description": "Unique identifier of the target user"
+        },
+        {
+          "name": "custom_description",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Custom description for the verification; 0-70 characters. Must be empty if the organization isn't allowed to provide a custom verification description."
+        }
+      ]
+    },
+    "verifyChat": {
+      "name": "verifyChat",
+      "href": "https://core.telegram.org/bots/api#verifychat",
+      "description": [
+        "Verifies a chat on behalf of the organization which is represented by the bot. Returns True on success."
+      ],
+      "returns": [
+        "Boolean"
+      ],
+      "fields": [
+        {
+          "name": "chat_id",
+          "types": [
+            "Integer",
+            "String"
+          ],
+          "required": true,
+          "description": "Unique identifier for the target chat or username of the target channel (in the format @channelusername)"
+        },
+        {
+          "name": "custom_description",
+          "types": [
+            "String"
+          ],
+          "required": false,
+          "description": "Custom description for the verification; 0-70 characters. Must be empty if the organization isn't allowed to provide a custom verification description."
+        }
+      ]
+    },
+    "removeUserVerification": {
+      "name": "removeUserVerification",
+      "href": "https://core.telegram.org/bots/api#removeuserverification",
+      "description": [
+        "Removes verification from a user who is currently verified on behalf of the organization represented by the bot. Returns True on success."
+      ],
+      "returns": [
+        "Boolean"
+      ],
+      "fields": [
+        {
+          "name": "user_id",
+          "types": [
+            "Integer"
+          ],
+          "required": true,
+          "description": "Unique identifier of the target user"
+        }
+      ]
+    },
+    "removeChatVerification": {
+      "name": "removeChatVerification",
+      "href": "https://core.telegram.org/bots/api#removechatverification",
+      "description": [
+        "Removes verification from a chat that is currently verified on behalf of the organization represented by the bot. Returns True on success."
+      ],
+      "returns": [
+        "Boolean"
+      ],
+      "fields": [
+        {
+          "name": "chat_id",
+          "types": [
+            "Integer",
+            "String"
+          ],
+          "required": true,
+          "description": "Unique identifier for the target chat or username of the target channel (in the format @channelusername)"
         }
       ]
     },
@@ -10301,7 +10407,7 @@
       "name": "BackgroundTypePattern",
       "href": "https://core.telegram.org/bots/api#backgroundtypepattern",
       "description": [
-        "The background is a PNG or TGV (gzipped subset of SVG with MIME type \"application/x-tgwallpattern\") pattern to be combined with the background fill chosen by the user."
+        "The background is a .PNG or .TGV (gzipped subset of SVG with MIME type \"application/x-tgwallpattern\") pattern to be combined with the background fill chosen by the user."
       ],
       "fields": [
         {
@@ -14694,7 +14800,7 @@
             "String"
           ],
           "required": true,
-          "description": "Format of the added sticker, must be one of \"static\" for a .WEBP or .PNG image, \"animated\" for a .TGS animation, \"video\" for a WEBM video"
+          "description": "Format of the added sticker, must be one of \"static\" for a .WEBP or .PNG image, \"animated\" for a .TGS animation, \"video\" for a .WEBM video"
         },
         {
           "name": "emoji_list",
@@ -14752,6 +14858,14 @@
           ],
           "required": true,
           "description": "The number of Telegram Stars that must be paid to send the sticker"
+        },
+        {
+          "name": "upgrade_star_count",
+          "types": [
+            "Integer"
+          ],
+          "required": false,
+          "description": "Optional. The number of Telegram Stars that must be paid to upgrade the gift to a unique one"
         },
         {
           "name": "total_count",
@@ -14984,14 +15098,6 @@
           "description": "Optional. URL of the result"
         },
         {
-          "name": "hide_url",
-          "types": [
-            "Boolean"
-          ],
-          "required": false,
-          "description": "Optional. Pass True if you don't want the URL to be shown in the message"
-        },
-        {
           "name": "description",
           "types": [
             "String"
@@ -15181,7 +15287,7 @@
             "String"
           ],
           "required": true,
-          "description": "A valid URL for the GIF file. File size must not exceed 1MB"
+          "description": "A valid URL for the GIF file"
         },
         {
           "name": "gif_width",
@@ -15313,7 +15419,7 @@
             "String"
           ],
           "required": true,
-          "description": "A valid URL for the MPEG4 file. File size must not exceed 1MB"
+          "description": "A valid URL for the MPEG4 file"
         },
         {
           "name": "mpeg4_width",
