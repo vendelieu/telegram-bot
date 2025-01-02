@@ -20,6 +20,11 @@ use [Github Flow](https://guides.github.com/introduction/flow/index.html)). We a
 5. Specify `dev` as target branch.
 6. Issue that pull request!
 
+Helpful gradle tasks are:
+
+* `./gradlew apiDump` - generates api dump
+* `./gradlew prepareRelease` - formats code, does api validation, updates kdocs, runs api violations check.
+
 ### Environment
 
 Environment parameters that are required for testing:

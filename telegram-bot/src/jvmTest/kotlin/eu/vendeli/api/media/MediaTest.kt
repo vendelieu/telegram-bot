@@ -63,13 +63,13 @@ class MediaTest : BotTestContext() {
                 caption.shouldNotBeNull() shouldBe "test"
                 text.shouldBeNull()
                 audio.shouldNotBeNull()
-                audio!!.fileName.shouldNotBeNull().shouldNotBeBlank()
-                audio!!.duration shouldBe 121
-                audio!!.thumbnail.shouldNotBeNull()
-                audio!!.thumbnail!!.width shouldBe 1
-                audio!!.thumbnail!!.height shouldBe 1
+                audio.fileName.shouldNotBeNull().shouldNotBeBlank()
+                audio.duration shouldBe 121
+                audio.thumbnail.shouldNotBeNull()
+                audio.thumbnail.width shouldBe 1
+                audio.thumbnail.height shouldBe 1
                 captionEntities.shouldNotBeNull()
-                captionEntities!!.first().let {
+                captionEntities.first().let {
                     it.offset shouldBe 0
                     it.length shouldBe 4
                     it.type shouldBe EntityType.Bold

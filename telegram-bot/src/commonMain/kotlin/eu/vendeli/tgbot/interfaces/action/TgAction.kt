@@ -13,6 +13,7 @@ import kotlinx.coroutines.Deferred
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.JsonElement
+import kotlin.properties.Delegates
 
 /**
  * Tg action, see [Actions article](https://github.com/vendelieu/telegram-bot/wiki/Actions)
@@ -41,7 +42,7 @@ abstract class TgAction<ReturnType> : Request<ReturnType> {
     /**
      * The parameter that stores the options.
      */
-    internal open val options: Options = TODO("Options is not set")
+    internal open val options: Options by Delegates.notNull()
 
     /**
      * Field where entities should be stored.
