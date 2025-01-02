@@ -4,7 +4,6 @@
 
 * Supported Telegram API [8.2](https://core.telegram.org/bots/api-changelog#january-1-2025).
 * Deprecated `sendAsync` methods in favor of `sendReturning` (they are the same).
-* 
 
 ## 7.7.1
 
