@@ -29,11 +29,15 @@ interface InlineActionExt<ReturnType> : Request<ReturnType> {
      * @param inlineMessageId Identifier of the inline message
      * @param via Instance of the bot through which the request will be made.
      */
-    suspend fun sendInlineAsync(
+    suspend fun sendInlineReturning(
         inlineMessageId: String,
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> {
         parameters["inline_message_id"] = inlineMessageId.toJsonElement()
         return doRequestReturning(via)
     }
+
+    @Deprecated("Use sendInlineReturning instead", ReplaceWith("sendInlineReturning(inlineMessageId, via)"))
+    suspend fun sendInlineAsync(inlineMessageId: String, via: TelegramBot): Deferred<Response<out ReturnType>> =
+        sendInlineReturning(inlineMessageId, via)
 }

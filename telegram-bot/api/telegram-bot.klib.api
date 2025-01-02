@@ -712,11 +712,13 @@ abstract interface <#A: kotlin/Any?, #B: kotlin/Any?> eu.vendeli.tgbot.types.int
 abstract interface <#A: kotlin/Any?> eu.vendeli.tgbot.interfaces.action/BusinessActionExt : eu.vendeli.tgbot.interfaces.action/Request<#A> { // eu.vendeli.tgbot.interfaces.action/BusinessActionExt|null[0]
     open suspend fun sendBusiness(kotlin/Long, kotlin/String, eu.vendeli.tgbot/TelegramBot) // eu.vendeli.tgbot.interfaces.action/BusinessActionExt.sendBusiness|sendBusiness(kotlin.Long;kotlin.String;eu.vendeli.tgbot.TelegramBot){}[0]
     open suspend fun sendBusinessAsync(kotlin/Long, kotlin/String, eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/BusinessActionExt.sendBusinessAsync|sendBusinessAsync(kotlin.Long;kotlin.String;eu.vendeli.tgbot.TelegramBot){}[0]
+    open suspend fun sendBusinessReturning(kotlin/Long, kotlin/String, eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/BusinessActionExt.sendBusinessReturning|sendBusinessReturning(kotlin.Long;kotlin.String;eu.vendeli.tgbot.TelegramBot){}[0]
 }
 
 abstract interface <#A: kotlin/Any?> eu.vendeli.tgbot.interfaces.action/InlineActionExt : eu.vendeli.tgbot.interfaces.action/Request<#A> { // eu.vendeli.tgbot.interfaces.action/InlineActionExt|null[0]
     open suspend fun sendInline(kotlin/String, eu.vendeli.tgbot/TelegramBot) // eu.vendeli.tgbot.interfaces.action/InlineActionExt.sendInline|sendInline(kotlin.String;eu.vendeli.tgbot.TelegramBot){}[0]
     open suspend fun sendInlineAsync(kotlin/String, eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/InlineActionExt.sendInlineAsync|sendInlineAsync(kotlin.String;eu.vendeli.tgbot.TelegramBot){}[0]
+    open suspend fun sendInlineReturning(kotlin/String, eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/InlineActionExt.sendInlineReturning|sendInlineReturning(kotlin.String;eu.vendeli.tgbot.TelegramBot){}[0]
 }
 
 abstract interface <#A: kotlin/Any?> eu.vendeli.tgbot.interfaces.action/Request // eu.vendeli.tgbot.interfaces.action/Request|null[0]
@@ -993,7 +995,7 @@ abstract class <#A: kotlin/Any?> eu.vendeli.tgbot.interfaces.action/SimpleAction
     constructor <init>() // eu.vendeli.tgbot.interfaces.action/SimpleAction.<init>|<init>(){}[0]
 
     final suspend fun send(eu.vendeli.tgbot/TelegramBot) // eu.vendeli.tgbot.interfaces.action/SimpleAction.send|send(eu.vendeli.tgbot.TelegramBot){}[0]
-    final suspend fun sendAsync(eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/SimpleAction.sendAsync|sendAsync(eu.vendeli.tgbot.TelegramBot){}[0]
+    final suspend inline fun sendAsync(eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/SimpleAction.sendAsync|sendAsync(eu.vendeli.tgbot.TelegramBot){}[0]
     final suspend inline fun sendReturning(eu.vendeli.tgbot/TelegramBot): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.internal/Response<out #A>> // eu.vendeli.tgbot.interfaces.action/SimpleAction.sendReturning|sendReturning(eu.vendeli.tgbot.TelegramBot){}[0]
 }
 

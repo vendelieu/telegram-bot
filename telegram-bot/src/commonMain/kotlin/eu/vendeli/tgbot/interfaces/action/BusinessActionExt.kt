@@ -30,7 +30,7 @@ interface BusinessActionExt<ReturnType> : Request<ReturnType> {
      * @param businessConnectionId Identifier of the inline message
      * @param via Instance of the bot through which the request will be made.
      */
-    suspend fun sendBusinessAsync(
+    suspend fun sendBusinessReturning(
         chatId: Long,
         businessConnectionId: String,
         via: TelegramBot,
@@ -39,4 +39,14 @@ interface BusinessActionExt<ReturnType> : Request<ReturnType> {
         parameters["business_connection_id"] = businessConnectionId.toJsonElement()
         return doRequestReturning(via)
     }
+
+    @Deprecated(
+        "Use sendBusinessReturning instead",
+        ReplaceWith("sendBusinessReturning(chatId, businessConnectionId, via)"),
+    )
+    suspend fun sendBusinessAsync(
+        chatId: Long,
+        businessConnectionId: String,
+        via: TelegramBot,
+    ) = sendBusinessReturning(chatId, businessConnectionId, via)
 }
