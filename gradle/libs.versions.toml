@@ -5,7 +5,7 @@ logback = "1.5.16"
 slf4j = "2.0.16"
 
 datetime = "0.6.0"
-serialization = "1.7.3"
+serialization = "1.8.0"
 stately = "2.1.0"
 
 kotlin = "2.1.0"
