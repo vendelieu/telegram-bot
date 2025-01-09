@@ -181,8 +181,7 @@ class TgUpdateHandler internal constructor(
      * @param update
      */
     suspend fun handle(update: ProcessedUpdate): Unit = update.run {
-        logger.debug { "Handling update: ${update.toJsonString()}" }
-        logger.trace { "Processed into: $update" }
+        logger.trace { "Handling update: ${update.toJsonString()}\nProcessed into: $update" }
         val user = userOrNull
         // check general user limits
         if (checkIsLimited(bot.config.rateLimiter.limits, user?.id))
