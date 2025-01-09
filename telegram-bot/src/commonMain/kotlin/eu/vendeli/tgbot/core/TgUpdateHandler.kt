@@ -3,10 +3,11 @@ package eu.vendeli.tgbot.core
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
-import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivitiesData
 import eu.vendeli.tgbot.types.internal.FailedUpdate
+import eu.vendeli.tgbot.types.internal.InvocationMeta
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.TgInvocationKind
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.userOrNull
@@ -23,7 +24,6 @@ import eu.vendeli.tgbot.utils.error
 import eu.vendeli.tgbot.utils.fqName
 import eu.vendeli.tgbot.utils.getLogger
 import eu.vendeli.tgbot.utils.getParameters
-import eu.vendeli.tgbot.utils.handleFailure
 import eu.vendeli.tgbot.utils.info
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.process
@@ -79,6 +79,7 @@ class TgUpdateHandler internal constructor(
 
     /**
      * Previous invoked function qualified path (i.e., full class path).
+     * @since 7.0.0
      */
     @KtGramInternal
     val userClassSteps = mutableMapOf<Long, String>()
@@ -229,54 +230,48 @@ class TgUpdateHandler internal constructor(
         }
 
         // invoke update type handler if there's
-        activities.updateTypeHandlers[type]?.invokeCatching(this, params, true)
+        activities.updateTypeHandlers[type]?.invokeCatching(this, params, TgInvocationKind.TYPE)
 
         when {
-            invocation != null -> invocation.invokeCatching(this, user, params)
+            invocation != null -> invocation.first.invokeCatching(
+                this,
+                params,
+                TgInvocationKind.ACTIVITY,
+                invocation.second,
+            )
 
             activities.unprocessedHandler != null ->
                 activities.unprocessedHandler!!
-                    .invokeCatching(this, params)
+                    .invokeCatching(this, params, TgInvocationKind.UNPROCESSED)
 
             else -> logger.warn { "update: $update not handled." }
         }
     }
 
-    private suspend fun Invocable.invokeCatching(update: ProcessedUpdate, user: User?, params: Map<String, String>) {
-        first
-            .runCatching {
-                invoke(bot.config.classManager, update, user, bot, params)
-            }.onFailure {
-                logger.error(
-                    it,
-                ) {
-                    "Method ${second.qualifier}:${second.function} invocation error at handling update: ${update.toJsonString()}"
-                }
-                handleFailure(update, it)
-            }.onSuccess {
-                logger.info {
-                    "Handled update#${update.updateId} to method ${second.qualifier + "::" + second.function}"
-                }
-            }
-        user?.also { userClassSteps[it.id] = second.qualifier }
-    }
-
     private suspend fun InvocationLambda.invokeCatching(
         update: ProcessedUpdate,
-        params: Map<String, String>,
-        isTypeUpdate: Boolean = false,
-    ) = runCatching {
-        invoke(bot.config.classManager, update, update.userOrNull, bot, params)
-    }.onFailure {
-        logger.error(it) {
-            (if (isTypeUpdate) "UpdateTypeHandler(${update.type})" else "UnprocessedHandler") +
-                " invocation error at handling update: ${update.toJsonString()}"
+        parameters: Map<String, String>,
+        kind: TgInvocationKind,
+        meta: InvocationMeta? = null,
+    ) {
+        val user = update.userOrNull
+        val target = when (kind) {
+            TgInvocationKind.ACTIVITY -> "Method ${meta?.qualifier}:${meta?.function}"
+            TgInvocationKind.TYPE -> "UpdateTypeHandler(${update.type})"
+            TgInvocationKind.UNPROCESSED -> "UnprocessedHandler"
         }
-        handleFailure(update, it)
-    }.onSuccess {
-        logger.info {
-            "Handled update#${update.updateId} to " +
-                if (isTypeUpdate) "UpdateTypeHandler(${update.type})" else "UnprocessedHandler"
+
+        runCatching {
+            invoke(bot.config.classManager, update, user, bot, parameters)
+        }.onFailure {
+            logger.error(it) {
+                "Invocation error at update handling in $target with update: ${update.toJsonString()}"
+            }
+        }.onSuccess {
+            logger.info { "Handled update#${update.updateId} to $target" }
+        }
+        if (meta != null && user != null) {
+            userClassSteps[user.id] = meta.qualifier
         }
     }
 
