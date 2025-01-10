@@ -7,6 +7,8 @@ import kotlin.reflect.KClass
 /**
  * The annotation used to set a guarding mechanism that handlers will pick.
  *
+ * Supported by [CommandHandler], [CommandHandler.CallbackQuery], [InputHandler].
+ *
  * @property guard Guard condition that will be checked.
  */
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION)
