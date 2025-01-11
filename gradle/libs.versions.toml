@@ -16,7 +16,7 @@ deteKT = "1.23.7"
 toml = "0.4.0"
 
 kotest = "5.9.1"
-mockk = "1.13.14"
+mockk = "1.13.16"
 kover = "0.9.1"
 krypto = "4.0.10"
 urlencoder = "1.6.0"
