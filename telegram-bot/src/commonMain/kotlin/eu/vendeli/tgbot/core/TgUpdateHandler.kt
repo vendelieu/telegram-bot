@@ -24,6 +24,7 @@ import eu.vendeli.tgbot.utils.error
 import eu.vendeli.tgbot.utils.fqName
 import eu.vendeli.tgbot.utils.getLogger
 import eu.vendeli.tgbot.utils.getParameters
+import eu.vendeli.tgbot.utils.handleFailure
 import eu.vendeli.tgbot.utils.info
 import eu.vendeli.tgbot.utils.parseCommand
 import eu.vendeli.tgbot.utils.process
@@ -266,6 +267,7 @@ class TgUpdateHandler internal constructor(
             logger.error(it) {
                 "Invocation error at update handling in $target with update: ${update.toJsonString()}"
             }
+            handleFailure(update, it)
         }.onSuccess {
             logger.info { "Handled update#${update.updateId} to $target" }
         }
