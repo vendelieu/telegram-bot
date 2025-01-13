@@ -2755,7 +2755,6 @@ public synthetic class eu/vendeli/tgbot/types/BackgroundFill$FreeformGradient$$s
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/BackgroundFill$FreeformGradient;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/BackgroundFill$FreeformGradient$Companion {
@@ -2786,7 +2785,6 @@ public synthetic class eu/vendeli/tgbot/types/BackgroundFill$Gradient$$serialize
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/BackgroundFill$Gradient;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/BackgroundFill$Gradient$Companion {
@@ -2813,7 +2811,6 @@ public synthetic class eu/vendeli/tgbot/types/BackgroundFill$Solid$$serializer :
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/BackgroundFill$Solid;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/BackgroundFill$Solid$Companion {
@@ -2847,7 +2844,6 @@ public synthetic class eu/vendeli/tgbot/types/BackgroundType$ChatTheme$$serializ
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/BackgroundType$ChatTheme;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/BackgroundType$ChatTheme$Companion {
@@ -2880,7 +2876,6 @@ public synthetic class eu/vendeli/tgbot/types/BackgroundType$Fill$$serializer : 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/BackgroundType$Fill;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/BackgroundType$Fill$Companion {
@@ -2916,7 +2911,6 @@ public synthetic class eu/vendeli/tgbot/types/BackgroundType$Pattern$$serializer
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/BackgroundType$Pattern;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/BackgroundType$Pattern$Companion {
@@ -2950,7 +2944,6 @@ public synthetic class eu/vendeli/tgbot/types/BackgroundType$Wallpaper$$serializ
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/BackgroundType$Wallpaper;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/BackgroundType$Wallpaper$Companion {
@@ -2982,7 +2975,6 @@ public synthetic class eu/vendeli/tgbot/types/Birthdate$$serializer : kotlinx/se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/Birthdate;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/Birthdate$Companion {
@@ -3022,7 +3014,6 @@ public synthetic class eu/vendeli/tgbot/types/CallbackQuery$$serializer : kotlin
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/CallbackQuery;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/CallbackQuery$Companion {
@@ -3058,7 +3049,6 @@ public synthetic class eu/vendeli/tgbot/types/Contact$$serializer : kotlinx/seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/Contact;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/Contact$Companion {
@@ -3217,7 +3207,6 @@ public synthetic class eu/vendeli/tgbot/types/ExternalReplyInfo$$serializer : ko
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/ExternalReplyInfo;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/ExternalReplyInfo$Companion {
@@ -3261,7 +3250,6 @@ public synthetic class eu/vendeli/tgbot/types/InputMessageContent$ContactContent
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/InputMessageContent$ContactContent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/InputMessageContent$ContactContent$Companion {
@@ -3327,7 +3315,6 @@ public synthetic class eu/vendeli/tgbot/types/InputMessageContent$InvoiceContent
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/InputMessageContent$InvoiceContent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/InputMessageContent$InvoiceContent$Companion {
@@ -3365,7 +3352,6 @@ public synthetic class eu/vendeli/tgbot/types/InputMessageContent$LocationConten
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/InputMessageContent$LocationContent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/InputMessageContent$LocationContent$Companion {
@@ -3399,7 +3385,6 @@ public synthetic class eu/vendeli/tgbot/types/InputMessageContent$Text$$serializ
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/InputMessageContent$Text;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/InputMessageContent$Text$Companion {
@@ -3441,7 +3426,6 @@ public synthetic class eu/vendeli/tgbot/types/InputMessageContent$VenueContent$$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/InputMessageContent$VenueContent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/InputMessageContent$VenueContent$Companion {
@@ -3483,7 +3467,6 @@ public synthetic class eu/vendeli/tgbot/types/LinkPreviewOptions$$serializer : k
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/LinkPreviewOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/LinkPreviewOptions$Companion {
@@ -3521,7 +3504,6 @@ public synthetic class eu/vendeli/tgbot/types/Location$$serializer : kotlinx/ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/Location;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/Location$Companion {
@@ -3569,7 +3551,6 @@ public synthetic class eu/vendeli/tgbot/types/PollAnswer$$serializer : kotlinx/s
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/PollAnswer;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/PollAnswer$Companion {
@@ -3600,7 +3581,6 @@ public synthetic class eu/vendeli/tgbot/types/ProximityAlertTriggered$$serialize
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/ProximityAlertTriggered;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/ProximityAlertTriggered$Companion {
@@ -3629,7 +3609,6 @@ public synthetic class eu/vendeli/tgbot/types/ReactionCount$$serializer : kotlin
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/ReactionCount;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/ReactionCount$Companion {
@@ -3667,7 +3646,6 @@ public synthetic class eu/vendeli/tgbot/types/ReactionType$CustomEmoji$$serializ
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/ReactionType$CustomEmoji;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/ReactionType$CustomEmoji$Companion {
@@ -3695,7 +3673,6 @@ public synthetic class eu/vendeli/tgbot/types/ReactionType$Emoji$$serializer : k
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/ReactionType$Emoji;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/ReactionType$Emoji$Companion {
@@ -3715,7 +3692,6 @@ public synthetic class eu/vendeli/tgbot/types/ReactionType$Paid$$serializer : ko
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/ReactionType$Paid;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/ReactionType$Paid$Companion {
@@ -3762,7 +3738,6 @@ public synthetic class eu/vendeli/tgbot/types/ReplyParameters$$serializer : kotl
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/ReplyParameters;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/ReplyParameters$Companion {
@@ -3793,7 +3768,6 @@ public synthetic class eu/vendeli/tgbot/types/ResponseParameters$$serializer : k
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/ResponseParameters;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/ResponseParameters$Companion {
@@ -3822,7 +3796,6 @@ public synthetic class eu/vendeli/tgbot/types/SentWebAppMessage$$serializer : ko
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/SentWebAppMessage;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/SentWebAppMessage$Companion {
@@ -3858,7 +3831,6 @@ public synthetic class eu/vendeli/tgbot/types/SharedUser$$serializer : kotlinx/s
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/SharedUser;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/SharedUser$Companion {
@@ -3892,7 +3864,6 @@ public synthetic class eu/vendeli/tgbot/types/TextQuote$$serializer : kotlinx/se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/TextQuote;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/TextQuote$Companion {
@@ -3966,7 +3937,6 @@ public synthetic class eu/vendeli/tgbot/types/Update$$serializer : kotlinx/seria
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/Update;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/Update$Companion {
@@ -4018,7 +3988,6 @@ public synthetic class eu/vendeli/tgbot/types/User$$serializer : kotlinx/seriali
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/User;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/User$Companion {
@@ -4047,7 +4016,6 @@ public synthetic class eu/vendeli/tgbot/types/UserProfilePhotos$$serializer : ko
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/UserProfilePhotos;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/UserProfilePhotos$Companion {
@@ -4076,7 +4044,6 @@ public synthetic class eu/vendeli/tgbot/types/UsersShared$$serializer : kotlinx/
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/UsersShared;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/UsersShared$Companion {
@@ -4116,7 +4083,6 @@ public synthetic class eu/vendeli/tgbot/types/Venue$$serializer : kotlinx/serial
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/Venue;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/Venue$Companion {
@@ -4160,7 +4126,6 @@ public synthetic class eu/vendeli/tgbot/types/WebhookInfo$$serializer : kotlinx/
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/WebhookInfo;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/WebhookInfo$Companion {
@@ -4193,7 +4158,6 @@ public synthetic class eu/vendeli/tgbot/types/WriteAccessAllowed$$serializer : k
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/WriteAccessAllowed;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/WriteAccessAllowed$Companion {
@@ -4226,7 +4190,6 @@ public synthetic class eu/vendeli/tgbot/types/boost/ChatBoost$$serializer : kotl
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/boost/ChatBoost;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/boost/ChatBoost$Companion {
@@ -4253,7 +4216,6 @@ public synthetic class eu/vendeli/tgbot/types/boost/ChatBoostAdded$$serializer :
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/boost/ChatBoostAdded;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/boost/ChatBoostAdded$Companion {
@@ -4286,7 +4248,6 @@ public synthetic class eu/vendeli/tgbot/types/boost/ChatBoostRemoved$$serializer
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/boost/ChatBoostRemoved;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/boost/ChatBoostRemoved$Companion {
@@ -4325,7 +4286,6 @@ public synthetic class eu/vendeli/tgbot/types/boost/ChatBoostSource$GiftCode$$se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/boost/ChatBoostSource$GiftCode;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/boost/ChatBoostSource$GiftCode$Companion {
@@ -4359,7 +4319,6 @@ public synthetic class eu/vendeli/tgbot/types/boost/ChatBoostSource$Giveaway$$se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/boost/ChatBoostSource$Giveaway;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/boost/ChatBoostSource$Giveaway$Companion {
@@ -4386,7 +4345,6 @@ public synthetic class eu/vendeli/tgbot/types/boost/ChatBoostSource$Premium$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/boost/ChatBoostSource$Premium;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/boost/ChatBoostSource$Premium$Companion {
@@ -4415,7 +4373,6 @@ public synthetic class eu/vendeli/tgbot/types/boost/ChatBoostUpdated$$serializer
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/boost/ChatBoostUpdated;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/boost/ChatBoostUpdated$Companion {
@@ -4442,7 +4399,6 @@ public synthetic class eu/vendeli/tgbot/types/boost/UserChatBoosts$$serializer :
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/boost/UserChatBoosts;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/boost/UserChatBoosts$Companion {
@@ -4471,7 +4427,6 @@ public synthetic class eu/vendeli/tgbot/types/bot/BotCommand$$serializer : kotli
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/bot/BotCommand;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/bot/BotCommand$Companion {
@@ -4498,7 +4453,6 @@ public synthetic class eu/vendeli/tgbot/types/bot/BotCommandScope$AllChatAdminis
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/bot/BotCommandScope$AllChatAdministrators;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/bot/BotCommandScope$AllChatAdministrators$Companion {
@@ -4518,7 +4472,6 @@ public synthetic class eu/vendeli/tgbot/types/bot/BotCommandScope$AllGroupChats$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/bot/BotCommandScope$AllGroupChats;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/bot/BotCommandScope$AllGroupChats$Companion {
@@ -4538,7 +4491,6 @@ public synthetic class eu/vendeli/tgbot/types/bot/BotCommandScope$AllPrivateChat
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/bot/BotCommandScope$AllPrivateChats;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/bot/BotCommandScope$AllPrivateChats$Companion {
@@ -4565,7 +4517,6 @@ public synthetic class eu/vendeli/tgbot/types/bot/BotCommandScope$ChatAdministra
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/bot/BotCommandScope$ChatAdministrators;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/bot/BotCommandScope$ChatAdministrators$Companion {
@@ -4594,7 +4545,6 @@ public synthetic class eu/vendeli/tgbot/types/bot/BotCommandScope$ChatMember$$se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/bot/BotCommandScope$ChatMember;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/bot/BotCommandScope$ChatMember$Companion {
@@ -4621,7 +4571,6 @@ public synthetic class eu/vendeli/tgbot/types/bot/BotCommandScope$ChatScope$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/bot/BotCommandScope$ChatScope;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/bot/BotCommandScope$ChatScope$Companion {
@@ -4645,7 +4594,6 @@ public synthetic class eu/vendeli/tgbot/types/bot/BotCommandScope$Default$$seria
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/bot/BotCommandScope$Default;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/bot/BotCommandScope$Default$Companion {
@@ -4672,7 +4620,6 @@ public synthetic class eu/vendeli/tgbot/types/bot/BotDescription$$serializer : k
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/bot/BotDescription;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/bot/BotDescription$Companion {
@@ -4699,7 +4646,6 @@ public synthetic class eu/vendeli/tgbot/types/bot/BotName$$serializer : kotlinx/
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/bot/BotName;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/bot/BotName$Companion {
@@ -4726,7 +4672,6 @@ public synthetic class eu/vendeli/tgbot/types/bot/BotShortDescription$$serialize
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/bot/BotShortDescription;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/bot/BotShortDescription$Companion {
@@ -4763,7 +4708,6 @@ public synthetic class eu/vendeli/tgbot/types/business/BusinessConnection$$seria
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/business/BusinessConnection;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/business/BusinessConnection$Companion {
@@ -4796,7 +4740,6 @@ public synthetic class eu/vendeli/tgbot/types/business/BusinessIntro$$serializer
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/business/BusinessIntro;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/business/BusinessIntro$Companion {
@@ -4826,7 +4769,6 @@ public synthetic class eu/vendeli/tgbot/types/business/BusinessLocation$$seriali
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/business/BusinessLocation;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/business/BusinessLocation$Companion {
@@ -4857,7 +4799,6 @@ public synthetic class eu/vendeli/tgbot/types/business/BusinessMessagesDeleted$$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/business/BusinessMessagesDeleted;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/business/BusinessMessagesDeleted$Companion {
@@ -4886,7 +4827,6 @@ public synthetic class eu/vendeli/tgbot/types/business/BusinessOpeningHours$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/business/BusinessOpeningHours;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/business/BusinessOpeningHours$Companion {
@@ -4915,7 +4855,6 @@ public synthetic class eu/vendeli/tgbot/types/business/BusinessOpeningHoursInter
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/business/BusinessOpeningHoursInterval;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/business/BusinessOpeningHoursInterval$Companion {
@@ -4956,7 +4895,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/Chat$$serializer : kotlinx/se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/Chat;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/Chat$Companion {
@@ -5034,7 +4972,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatAdministratorRights$$seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatAdministratorRights;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatAdministratorRights$Companion {
@@ -5061,7 +4998,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatBackground$$serializer : 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatBackground;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatBackground$Companion {
@@ -5175,7 +5111,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatFullInfo$$serializer : ko
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatFullInfo;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatFullInfo$Companion {
@@ -5223,7 +5158,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatInviteLink$$serializer : 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatInviteLink;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatInviteLink$Companion {
@@ -5261,7 +5195,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatJoinRequest$$serializer :
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatJoinRequest;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatJoinRequest$Companion {
@@ -5290,7 +5223,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatLocation$$serializer : ko
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatLocation;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatLocation$Companion {
@@ -5360,7 +5292,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatMember$Administrator$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatMember$Administrator;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatMember$Administrator$Companion {
@@ -5389,7 +5320,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatMember$Banned$$serializer
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatMember$Banned;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatMember$Banned$Companion {
@@ -5420,7 +5350,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatMember$Left$$serializer :
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatMember$Left;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatMember$Left$Companion {
@@ -5450,7 +5379,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatMember$Member$$serializer
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatMember$Member;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatMember$Member$Companion {
@@ -5482,7 +5410,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatMember$Owner$$serializer 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatMember$Owner;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatMember$Owner$Companion {
@@ -5541,7 +5468,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatMember$Restricted$$serial
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatMember$Restricted;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatMember$Restricted$Companion {
@@ -5583,7 +5509,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatMemberUpdated$$serializer
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatMemberUpdated;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatMemberUpdated$Companion {
@@ -5652,7 +5577,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatPermissions$$serializer :
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatPermissions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatPermissions$Companion {
@@ -5685,7 +5609,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatPhoto$$serializer : kotli
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatPhoto;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatPhoto$Companion {
@@ -5721,7 +5644,6 @@ public synthetic class eu/vendeli/tgbot/types/chat/ChatShared$$serializer : kotl
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/chat/ChatShared;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/chat/ChatShared$Companion {
@@ -5771,7 +5693,6 @@ public synthetic class eu/vendeli/tgbot/types/forum/ForumTopic$$serializer : kot
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/forum/ForumTopic;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/forum/ForumTopic$Companion {
@@ -5811,7 +5732,6 @@ public synthetic class eu/vendeli/tgbot/types/forum/ForumTopicCreated$$serialize
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/forum/ForumTopicCreated;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/forum/ForumTopicCreated$Companion {
@@ -5842,7 +5762,6 @@ public synthetic class eu/vendeli/tgbot/types/forum/ForumTopicEdited$$serializer
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/forum/ForumTopicEdited;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/forum/ForumTopicEdited$Companion {
@@ -5920,7 +5839,6 @@ public synthetic class eu/vendeli/tgbot/types/game/Dice$$serializer : kotlinx/se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/game/Dice;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/game/Dice$Companion {
@@ -5958,7 +5876,6 @@ public synthetic class eu/vendeli/tgbot/types/game/Game$$serializer : kotlinx/se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/game/Game;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/game/Game$Companion {
@@ -5989,7 +5906,6 @@ public synthetic class eu/vendeli/tgbot/types/game/GameHighScore$$serializer : k
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/game/GameHighScore;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/game/GameHighScore$Companion {
@@ -6033,7 +5949,6 @@ public synthetic class eu/vendeli/tgbot/types/giveaway/Giveaway$$serializer : ko
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/giveaway/Giveaway;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/giveaway/Giveaway$Companion {
@@ -6067,7 +5982,6 @@ public synthetic class eu/vendeli/tgbot/types/giveaway/GiveawayCompleted$$serial
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/giveaway/GiveawayCompleted;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/giveaway/GiveawayCompleted$Companion {
@@ -6096,7 +6010,6 @@ public synthetic class eu/vendeli/tgbot/types/giveaway/GiveawayCreated$$serializ
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/giveaway/GiveawayCreated;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/giveaway/GiveawayCreated$Companion {
@@ -6146,7 +6059,6 @@ public synthetic class eu/vendeli/tgbot/types/giveaway/GiveawayWinners$$serializ
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/giveaway/GiveawayWinners;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/giveaway/GiveawayWinners$Companion {
@@ -6182,7 +6094,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/ChosenInlineResult$$seriali
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/ChosenInlineResult;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/ChosenInlineResult$Companion {
@@ -6220,7 +6131,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQuery$$serializer : k
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQuery;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQuery$Companion {
@@ -6271,7 +6181,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$Article$$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$Article;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Article$Companion {
@@ -6317,7 +6226,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$Audio$$se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$Audio;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Audio$Companion {
@@ -6357,7 +6265,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedAud
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$CachedAudio;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedAudio$Companion {
@@ -6401,7 +6308,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedDoc
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$CachedDocument;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedDocument$Companion {
@@ -6445,7 +6351,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedGif
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$CachedGif;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedGif$Companion {
@@ -6489,7 +6394,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedMpe
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$CachedMpeg4Gif;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedMpeg4Gif$Companion {
@@ -6535,7 +6439,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedPho
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$CachedPhoto;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedPhoto$Companion {
@@ -6569,7 +6472,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedSti
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$CachedSticker;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedSticker$Companion {
@@ -6615,7 +6517,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedVid
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$CachedVideo;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedVideo$Companion {
@@ -6657,7 +6558,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedVoi
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$CachedVoice;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$CachedVoice$Companion {
@@ -6707,7 +6607,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$Contact$$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$Contact;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Contact$Companion {
@@ -6759,7 +6658,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$Document$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$Document;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Document$Companion {
@@ -6791,7 +6689,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$Game$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$Game;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Game$Companion {
@@ -6845,7 +6742,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$Gif$$seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$Gif;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Gif$Companion {
@@ -6897,7 +6793,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$Location$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$Location;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Location$Companion {
@@ -6951,7 +6846,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$Mpeg4Gif$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$Mpeg4Gif;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Mpeg4Gif$Companion {
@@ -7003,7 +6897,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$Photo$$se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$Photo;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Photo$Companion {
@@ -7057,7 +6950,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$Venue$$se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$Venue;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Venue$Companion {
@@ -7113,7 +7005,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$Video$$se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$Video;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Video$Companion {
@@ -7157,7 +7048,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResult$Voice$$se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResult$Voice;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResult$Voice$Companion {
@@ -7189,7 +7079,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/InlineQueryResultsButton$$s
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/InlineQueryResultsButton;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/InlineQueryResultsButton$Companion {
@@ -7226,7 +7115,6 @@ public synthetic class eu/vendeli/tgbot/types/inline/SwitchInlineQueryChosenChat
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/inline/SwitchInlineQueryChosenChat;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/inline/SwitchInlineQueryChosenChat$Companion {
@@ -7715,7 +7603,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/ImplicitFile$InpFile$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/ImplicitFile$InpFile;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/ImplicitFile$InpFile$Companion {
@@ -7737,7 +7624,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/ImplicitFile$Str$$seriali
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/ImplicitFile$Str;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/ImplicitFile$Str$Companion {
@@ -7802,7 +7688,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/InputFile$$serializer : k
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/InputFile;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/InputFile$Companion {
@@ -8036,7 +7921,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/Response$Failure$$seriali
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/Response$Failure;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/Response$Failure$Companion {
@@ -8286,7 +8170,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/configuration/BotConfigur
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/configuration/BotConfiguration;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/configuration/BotConfiguration$Companion {
@@ -8328,7 +8211,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/configuration/CommandPars
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/configuration/CommandParsingConfiguration;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/configuration/CommandParsingConfiguration$Companion {
@@ -8360,7 +8242,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/configuration/CompleteCon
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/configuration/CompleteConfig;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/configuration/CompleteConfig$Companion {
@@ -8413,7 +8294,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/configuration/HttpConfigu
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/configuration/HttpConfiguration;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/configuration/HttpConfiguration$Companion {
@@ -8446,7 +8326,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/configuration/LoggingConf
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/configuration/LoggingConfiguration$Companion {
@@ -8521,7 +8400,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/configuration/UpdatesList
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/configuration/UpdatesListenerConfiguration;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/configuration/UpdatesListenerConfiguration$Companion {
@@ -8590,7 +8468,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/AnimationOptions$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/AnimationOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/AnimationOptions$Companion {
@@ -8629,7 +8506,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/AnswerCallbackQue
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/AnswerCallbackQueryOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/AnswerCallbackQueryOptions$Companion {
@@ -8670,7 +8546,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/AnswerInlineQuery
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/AnswerInlineQueryOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/AnswerInlineQueryOptions$Companion {
@@ -8733,7 +8608,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/AudioOptions$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/AudioOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/AudioOptions$Companion {
@@ -8772,7 +8646,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/ChatInviteLinkOpt
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/ChatInviteLinkOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/ChatInviteLinkOptions$Companion {
@@ -8826,7 +8699,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/ContactOptions$$s
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/ContactOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/ContactOptions$Companion {
@@ -8877,7 +8749,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/CopyMessageOption
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/CopyMessageOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/CopyMessageOptions$Companion {
@@ -8916,7 +8787,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/CopyMessagesOptio
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/CopyMessagesOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/CopyMessagesOptions$Companion {
@@ -8990,7 +8860,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/CreateInvoiceLink
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/CreateInvoiceLinkOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/CreateInvoiceLinkOptions$Companion {
@@ -9023,7 +8892,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/CreateNewStickerS
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/CreateNewStickerSetOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/CreateNewStickerSetOptions$Companion {
@@ -9071,7 +8939,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/DiceOptions$$seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/DiceOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/DiceOptions$Companion {
@@ -9128,7 +8995,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/DocumentOptions$$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/DocumentOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/DocumentOptions$Companion {
@@ -9161,7 +9027,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/EditCaptionOption
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/EditCaptionOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/EditCaptionOptions$Companion {
@@ -9200,7 +9065,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/EditMessageLiveLo
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/EditMessageLiveLocationOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/EditMessageLiveLocationOptions$Companion {
@@ -9228,7 +9092,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/EditMessageOption
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/EditMessageOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/EditMessageOptions$Companion {
@@ -9269,7 +9132,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/ForwardMessageOpt
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/ForwardMessageOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/ForwardMessageOptions$Companion {
@@ -9317,7 +9179,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/GameOptions$$seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/GameOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/GameOptions$Companion {
@@ -9356,7 +9217,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/GetUpdatesOptions
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/GetUpdatesOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/GetUpdatesOptions$Companion {
@@ -9449,7 +9309,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/InvoiceOptions$$s
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/InvoiceOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/InvoiceOptions$Companion {
@@ -9521,7 +9380,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/LocationOptions$$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/LocationOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/LocationOptions$Companion {
@@ -9569,7 +9427,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/MediaGroupOptions
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/MediaGroupOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/MediaGroupOptions$Companion {
@@ -9635,7 +9492,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/MessageOptions$$s
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/MessageOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/MessageOptions$Companion {
@@ -9725,7 +9581,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/PaidMediaOptions$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/PaidMediaOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/PaidMediaOptions$Companion {
@@ -9782,7 +9637,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/PhotoOptions$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/PhotoOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/PhotoOptions$Companion {
@@ -9862,7 +9716,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/PollOptions$$seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/PollOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/PollOptions$Companion {
@@ -9934,7 +9787,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/PromoteChatMember
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/PromoteChatMemberOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/PromoteChatMemberOptions$Companion {
@@ -9976,7 +9828,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/ReplyKeyboardMark
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/ReplyKeyboardMarkupOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/ReplyKeyboardMarkupOptions$Companion {
@@ -10015,7 +9866,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/SavePreparedInlin
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/SavePreparedInlineMessageOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/SavePreparedInlineMessageOptions$Companion {
@@ -10048,7 +9898,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/SetGameScoreOptio
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/SetGameScoreOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/SetGameScoreOptions$Companion {
@@ -10093,7 +9942,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/SetWebhookOptions
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/SetWebhookOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/SetWebhookOptions$Companion {
@@ -10149,7 +9997,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/StickerOptions$$s
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/StickerOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/StickerOptions$Companion {
@@ -10214,7 +10061,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/VenueOptions$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/VenueOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/VenueOptions$Companion {
@@ -10271,7 +10117,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/VideoNoteOptions$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/VideoNoteOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/VideoNoteOptions$Companion {
@@ -10343,7 +10188,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/VideoOptions$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/VideoOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/VideoOptions$Companion {
@@ -10397,7 +10241,6 @@ public synthetic class eu/vendeli/tgbot/types/internal/options/VoiceOptions$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/internal/options/VoiceOptions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/internal/options/VoiceOptions$Companion {
@@ -10424,7 +10267,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/CopyTextButton$$serialize
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/CopyTextButton;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/CopyTextButton$Companion {
@@ -10456,7 +10298,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/ForceReply$$serializer : 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/ForceReply;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/ForceReply$Companion {
@@ -10504,7 +10345,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/InlineKeyboardButton$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardButton;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/InlineKeyboardButton$Companion {
@@ -10528,7 +10368,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/InlineKeyboardMarkup$Companion {
@@ -10568,7 +10407,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/KeyboardButton$$serialize
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/KeyboardButton;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/KeyboardButton$Companion {
@@ -10597,7 +10435,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/KeyboardButtonPollType$$s
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/KeyboardButtonPollType;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/KeyboardButtonPollType$Companion {
@@ -10645,7 +10482,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/KeyboardButtonRequestChat
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/KeyboardButtonRequestChat;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/KeyboardButtonRequestChat$Companion {
@@ -10685,7 +10521,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/KeyboardButtonRequestUser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/KeyboardButtonRequestUsers;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/KeyboardButtonRequestUsers$Companion {
@@ -10719,7 +10554,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/LoginUrl$$serializer : ko
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/LoginUrl;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/LoginUrl$Companion {
@@ -10746,7 +10580,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/MenuButton$Commands$$seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/MenuButton$Commands;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/MenuButton$Commands$Companion {
@@ -10770,7 +10603,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/MenuButton$Default$$seria
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/MenuButton$Default;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/MenuButton$Default$Companion {
@@ -10799,7 +10631,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/MenuButton$WebApp$$serial
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/MenuButton$WebApp;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/MenuButton$WebApp$Companion {
@@ -10832,7 +10663,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/ReplyKeyboardMarkup$$seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/ReplyKeyboardMarkup;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/ReplyKeyboardMarkup$Companion {
@@ -10862,7 +10692,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/ReplyKeyboardRemove$$seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/ReplyKeyboardRemove;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/ReplyKeyboardRemove$Companion {
@@ -10891,7 +10720,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/WebAppData$$serializer : 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/WebAppData;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/WebAppData$Companion {
@@ -10918,7 +10746,6 @@ public synthetic class eu/vendeli/tgbot/types/keyboard/WebAppInfo$$serializer : 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/keyboard/WebAppInfo;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/keyboard/WebAppInfo$Companion {
@@ -10962,7 +10789,6 @@ public synthetic class eu/vendeli/tgbot/types/media/Animation$$serializer : kotl
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/Animation;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/Animation$Companion {
@@ -11006,7 +10832,6 @@ public synthetic class eu/vendeli/tgbot/types/media/Audio$$serializer : kotlinx/
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/Audio;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/Audio$Companion {
@@ -11044,7 +10869,6 @@ public synthetic class eu/vendeli/tgbot/types/media/Document$$serializer : kotli
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/Document;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/Document$Companion {
@@ -11078,7 +10902,6 @@ public synthetic class eu/vendeli/tgbot/types/media/File$$serializer : kotlinx/s
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/File;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/File$Companion {
@@ -11139,7 +10962,6 @@ public synthetic class eu/vendeli/tgbot/types/media/InputMedia$Animation$$serial
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/InputMedia$Animation;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/InputMedia$Animation$Companion {
@@ -11187,7 +11009,6 @@ public synthetic class eu/vendeli/tgbot/types/media/InputMedia$Audio$$serializer
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/InputMedia$Audio;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/InputMedia$Audio$Companion {
@@ -11235,7 +11056,6 @@ public synthetic class eu/vendeli/tgbot/types/media/InputMedia$Document$$seriali
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/InputMedia$Document;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/InputMedia$Document$Companion {
@@ -11278,7 +11098,6 @@ public synthetic class eu/vendeli/tgbot/types/media/InputMedia$Photo$$serializer
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/InputMedia$Photo;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/InputMedia$Photo$Companion {
@@ -11332,7 +11151,6 @@ public synthetic class eu/vendeli/tgbot/types/media/InputMedia$Video$$serializer
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/InputMedia$Video;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/InputMedia$Video$Companion {
@@ -11375,7 +11193,6 @@ public synthetic class eu/vendeli/tgbot/types/media/InputPaidMedia$Photo$$serial
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/InputPaidMedia$Photo;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/InputPaidMedia$Photo$Companion {
@@ -11419,7 +11236,6 @@ public synthetic class eu/vendeli/tgbot/types/media/InputPaidMedia$Video$$serial
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/InputPaidMedia$Video;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/InputPaidMedia$Video$Companion {
@@ -11460,7 +11276,6 @@ public synthetic class eu/vendeli/tgbot/types/media/InputSticker$$serializer : k
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/InputSticker;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/InputSticker$Companion {
@@ -11508,7 +11323,6 @@ public synthetic class eu/vendeli/tgbot/types/media/MaskPosition$$serializer : k
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/MaskPosition;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/MaskPosition$Companion {
@@ -11546,7 +11360,6 @@ public synthetic class eu/vendeli/tgbot/types/media/PaidMedia$Photo$$serializer 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/PaidMedia$Photo;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/PaidMedia$Photo$Companion {
@@ -11577,7 +11390,6 @@ public synthetic class eu/vendeli/tgbot/types/media/PaidMedia$Preview$$serialize
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/PaidMedia$Preview;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/PaidMedia$Preview$Companion {
@@ -11604,7 +11416,6 @@ public synthetic class eu/vendeli/tgbot/types/media/PaidMedia$Video$$serializer 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/PaidMedia$Video;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/PaidMedia$Video$Companion {
@@ -11633,7 +11444,6 @@ public synthetic class eu/vendeli/tgbot/types/media/PaidMediaInfo$$serializer : 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/PaidMediaInfo;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/PaidMediaInfo$Companion {
@@ -11662,7 +11472,6 @@ public synthetic class eu/vendeli/tgbot/types/media/PaidMediaPurchased$$serializ
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/PaidMediaPurchased;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/PaidMediaPurchased$Companion {
@@ -11698,7 +11507,6 @@ public synthetic class eu/vendeli/tgbot/types/media/PhotoSize$$serializer : kotl
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/PhotoSize;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/PhotoSize$Companion {
@@ -11754,7 +11562,6 @@ public synthetic class eu/vendeli/tgbot/types/media/Sticker$$serializer : kotlin
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/Sticker;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/Sticker$Companion {
@@ -11804,7 +11611,6 @@ public synthetic class eu/vendeli/tgbot/types/media/StickerSet$$serializer : kot
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/StickerSet;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/StickerSet$Companion {
@@ -11847,7 +11653,6 @@ public synthetic class eu/vendeli/tgbot/types/media/Story$$serializer : kotlinx/
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/Story;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/Story$Companion {
@@ -11891,7 +11696,6 @@ public synthetic class eu/vendeli/tgbot/types/media/Video$$serializer : kotlinx/
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/Video;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/Video$Companion {
@@ -11918,7 +11722,6 @@ public synthetic class eu/vendeli/tgbot/types/media/VideoChatEnded$$serializer :
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/VideoChatEnded;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/VideoChatEnded$Companion {
@@ -11945,7 +11748,6 @@ public synthetic class eu/vendeli/tgbot/types/media/VideoChatParticipantsInvited
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/VideoChatParticipantsInvited;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/VideoChatParticipantsInvited$Companion {
@@ -11972,7 +11774,6 @@ public synthetic class eu/vendeli/tgbot/types/media/VideoChatScheduled$$serializ
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/VideoChatScheduled;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/VideoChatScheduled$Companion {
@@ -12018,7 +11819,6 @@ public synthetic class eu/vendeli/tgbot/types/media/VideoNote$$serializer : kotl
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/VideoNote;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/VideoNote$Companion {
@@ -12054,7 +11854,6 @@ public synthetic class eu/vendeli/tgbot/types/media/Voice$$serializer : kotlinx/
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/media/Voice;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/media/Voice$Companion {
@@ -12092,9 +11891,11 @@ public final class eu/vendeli/tgbot/types/msg/EntityType$Companion {
 }
 
 public abstract class eu/vendeli/tgbot/types/msg/MaybeInaccessibleMessage {
+	public final fun accessibleOrNull ()Leu/vendeli/tgbot/types/msg/Message;
 	public abstract fun getChat ()Leu/vendeli/tgbot/types/chat/Chat;
 	public abstract fun getDate ()Lkotlinx/datetime/Instant;
 	public abstract fun getMessageId ()J
+	public final fun isAccessible ()Z
 }
 
 public final class eu/vendeli/tgbot/types/msg/MaybeInaccessibleMessage$InaccessibleMessage : eu/vendeli/tgbot/types/msg/MaybeInaccessibleMessage {
@@ -12121,7 +11922,6 @@ public synthetic class eu/vendeli/tgbot/types/msg/MaybeInaccessibleMessage$Inacc
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/msg/MaybeInaccessibleMessage$InaccessibleMessage;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/msg/MaybeInaccessibleMessage$InaccessibleMessage$Companion {
@@ -12317,7 +12117,6 @@ public synthetic class eu/vendeli/tgbot/types/msg/Message$$serializer : kotlinx/
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/msg/Message;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/msg/Message$Companion {
@@ -12344,7 +12143,6 @@ public synthetic class eu/vendeli/tgbot/types/msg/MessageAutoDeleteTimerChanged$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/msg/MessageAutoDeleteTimerChanged;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/msg/MessageAutoDeleteTimerChanged$Companion {
@@ -12384,7 +12182,6 @@ public synthetic class eu/vendeli/tgbot/types/msg/MessageEntity$$serializer : ko
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/msg/MessageEntity;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/msg/MessageEntity$Companion {
@@ -12411,7 +12208,6 @@ public synthetic class eu/vendeli/tgbot/types/msg/MessageId$$serializer : kotlin
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/msg/MessageId;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/msg/MessageId$Companion {
@@ -12465,7 +12261,6 @@ public synthetic class eu/vendeli/tgbot/types/msg/MessageOrigin$Channel$$seriali
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/msg/MessageOrigin$Channel;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/msg/MessageOrigin$Channel$Companion {
@@ -12499,7 +12294,6 @@ public synthetic class eu/vendeli/tgbot/types/msg/MessageOrigin$ChatOrigin$$seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/msg/MessageOrigin$ChatOrigin;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/msg/MessageOrigin$ChatOrigin$Companion {
@@ -12533,7 +12327,6 @@ public synthetic class eu/vendeli/tgbot/types/msg/MessageOrigin$HiddenUser$$seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/msg/MessageOrigin$HiddenUser;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/msg/MessageOrigin$HiddenUser$Companion {
@@ -12563,7 +12356,6 @@ public synthetic class eu/vendeli/tgbot/types/msg/MessageOrigin$UserOrigin$$seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/msg/MessageOrigin$UserOrigin;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/msg/MessageOrigin$UserOrigin$Companion {
@@ -12596,7 +12388,6 @@ public synthetic class eu/vendeli/tgbot/types/msg/MessageReactionCountUpdated$$s
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/msg/MessageReactionCountUpdated;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/msg/MessageReactionCountUpdated$Companion {
@@ -12636,7 +12427,6 @@ public synthetic class eu/vendeli/tgbot/types/msg/MessageReactionUpdated$$serial
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/msg/MessageReactionUpdated;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/msg/MessageReactionUpdated$Companion {
@@ -12665,7 +12455,6 @@ public synthetic class eu/vendeli/tgbot/types/msg/PreparedInlineMessage$$seriali
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/msg/PreparedInlineMessage;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/msg/PreparedInlineMessage$Companion {
@@ -12696,7 +12485,6 @@ public synthetic class eu/vendeli/tgbot/types/passport/EncryptedCredentials$$ser
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/passport/EncryptedCredentials;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/passport/EncryptedCredentials$Companion {
@@ -12742,7 +12530,6 @@ public synthetic class eu/vendeli/tgbot/types/passport/EncryptedPassportElement$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/passport/EncryptedPassportElement;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/passport/EncryptedPassportElement$Companion {
@@ -12795,7 +12582,6 @@ public synthetic class eu/vendeli/tgbot/types/passport/PassportData$$serializer 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/passport/PassportData;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/passport/PassportData$Companion {
@@ -12839,7 +12625,6 @@ public synthetic class eu/vendeli/tgbot/types/passport/PassportElementError$Data
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/passport/PassportElementError$DataField;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/passport/PassportElementError$DataField$Companion {
@@ -12870,7 +12655,6 @@ public synthetic class eu/vendeli/tgbot/types/passport/PassportElementError$File
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/passport/PassportElementError$FileElement;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/passport/PassportElementError$FileElement$Companion {
@@ -12901,7 +12685,6 @@ public synthetic class eu/vendeli/tgbot/types/passport/PassportElementError$File
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/passport/PassportElementError$Files;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/passport/PassportElementError$Files$Companion {
@@ -12932,7 +12715,6 @@ public synthetic class eu/vendeli/tgbot/types/passport/PassportElementError$Fron
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/passport/PassportElementError$FrontSide;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/passport/PassportElementError$FrontSide$Companion {
@@ -12963,7 +12745,6 @@ public synthetic class eu/vendeli/tgbot/types/passport/PassportElementError$Reve
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/passport/PassportElementError$ReverseSide;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/passport/PassportElementError$ReverseSide$Companion {
@@ -12994,7 +12775,6 @@ public synthetic class eu/vendeli/tgbot/types/passport/PassportElementError$Self
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/passport/PassportElementError$Selfie;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/passport/PassportElementError$Selfie$Companion {
@@ -13025,7 +12805,6 @@ public synthetic class eu/vendeli/tgbot/types/passport/PassportElementError$Tran
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/passport/PassportElementError$TranslationFile;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/passport/PassportElementError$TranslationFile$Companion {
@@ -13056,7 +12835,6 @@ public synthetic class eu/vendeli/tgbot/types/passport/PassportElementError$Tran
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/passport/PassportElementError$TranslationFiles;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/passport/PassportElementError$TranslationFiles$Companion {
@@ -13087,7 +12865,6 @@ public synthetic class eu/vendeli/tgbot/types/passport/PassportElementError$Unsp
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/passport/PassportElementError$Unspecified;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/passport/PassportElementError$Unspecified$Companion {
@@ -13120,7 +12897,6 @@ public synthetic class eu/vendeli/tgbot/types/passport/PassportFile$$serializer 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/passport/PassportFile;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/passport/PassportFile$Companion {
@@ -13155,7 +12931,6 @@ public synthetic class eu/vendeli/tgbot/types/payment/Invoice$$serializer : kotl
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/payment/Invoice;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/payment/Invoice$Companion {
@@ -13184,7 +12959,6 @@ public synthetic class eu/vendeli/tgbot/types/payment/LabeledPrice$$serializer :
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/payment/LabeledPrice;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/payment/LabeledPrice$Companion {
@@ -13219,7 +12993,6 @@ public synthetic class eu/vendeli/tgbot/types/payment/OrderInfo$$serializer : ko
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/payment/OrderInfo;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/payment/OrderInfo$Companion {
@@ -13259,7 +13032,6 @@ public synthetic class eu/vendeli/tgbot/types/payment/PreCheckoutQuery$$serializ
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/payment/PreCheckoutQuery;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/payment/PreCheckoutQuery$Companion {
@@ -13295,7 +13067,6 @@ public synthetic class eu/vendeli/tgbot/types/payment/RefundedPayment$$serialize
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/payment/RefundedPayment;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/payment/RefundedPayment$Companion {
@@ -13332,7 +13103,6 @@ public synthetic class eu/vendeli/tgbot/types/payment/ShippingAddress$$serialize
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/payment/ShippingAddress;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/payment/ShippingAddress$Companion {
@@ -13363,7 +13133,6 @@ public synthetic class eu/vendeli/tgbot/types/payment/ShippingOption$$serializer
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/payment/ShippingOption;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/payment/ShippingOption$Companion {
@@ -13396,7 +13165,6 @@ public synthetic class eu/vendeli/tgbot/types/payment/ShippingQuery$$serializer 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/payment/ShippingQuery;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/payment/ShippingQuery$Companion {
@@ -13442,7 +13210,6 @@ public synthetic class eu/vendeli/tgbot/types/payment/SuccessfulPayment$$seriali
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/payment/SuccessfulPayment;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/payment/SuccessfulPayment$Companion {
@@ -13474,7 +13241,6 @@ public synthetic class eu/vendeli/tgbot/types/poll/InputPollOption$$serializer :
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/poll/InputPollOption;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/poll/InputPollOption$Companion {
@@ -13528,7 +13294,6 @@ public synthetic class eu/vendeli/tgbot/types/poll/Poll$$serializer : kotlinx/se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/poll/Poll;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/poll/Poll$Companion {
@@ -13560,7 +13325,6 @@ public synthetic class eu/vendeli/tgbot/types/poll/PollOption$$serializer : kotl
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/poll/PollOption;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/poll/PollOption$Companion {
@@ -13609,7 +13373,6 @@ public synthetic class eu/vendeli/tgbot/types/stars/AffiliateInfo$$serializer : 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/stars/AffiliateInfo;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/stars/AffiliateInfo$Companion {
@@ -13665,7 +13428,6 @@ public synthetic class eu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Succe
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Succeeded;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/stars/RevenueWithdrawalState$Succeeded$Companion {
@@ -13703,7 +13465,6 @@ public synthetic class eu/vendeli/tgbot/types/stars/StarTransaction$$serializer 
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/stars/StarTransaction;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/stars/StarTransaction$Companion {
@@ -13730,7 +13491,6 @@ public synthetic class eu/vendeli/tgbot/types/stars/StarTransactions$$serializer
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/stars/StarTransactions;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/stars/StarTransactions$Companion {
@@ -13767,7 +13527,6 @@ public synthetic class eu/vendeli/tgbot/types/stars/TransactionPartner$Affiliate
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/stars/TransactionPartner$AffiliateProgram;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/stars/TransactionPartner$AffiliateProgram$Companion {
@@ -13800,7 +13559,6 @@ public synthetic class eu/vendeli/tgbot/types/stars/TransactionPartner$Fragment$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/stars/TransactionPartner$Fragment;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/stars/TransactionPartner$Fragment$Companion {
@@ -13843,7 +13601,6 @@ public synthetic class eu/vendeli/tgbot/types/stars/TransactionPartner$TelegramA
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/stars/TransactionPartner$TelegramApi;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/stars/TransactionPartner$TelegramApi$Companion {
@@ -13883,7 +13640,6 @@ public synthetic class eu/vendeli/tgbot/types/stars/TransactionPartner$UserPartn
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/stars/TransactionPartner$UserPartner$Companion {
@@ -13921,7 +13677,6 @@ public synthetic class eu/vendeli/tgbot/types/user/Gift$$serializer : kotlinx/se
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/user/Gift;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/user/Gift$Companion {
@@ -13948,7 +13703,6 @@ public synthetic class eu/vendeli/tgbot/types/user/Gifts$$serializer : kotlinx/s
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/user/Gifts;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/user/Gifts$Companion {

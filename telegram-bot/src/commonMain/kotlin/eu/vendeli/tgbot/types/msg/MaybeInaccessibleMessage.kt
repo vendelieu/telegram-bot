@@ -27,6 +27,12 @@ sealed class MaybeInaccessibleMessage {
     @Serializable(InstantSerializer::class)
     abstract val date: Instant
 
+    @TgAPI.Ignore
+    val isAccessible: Boolean get() = this !is InaccessibleMessage
+
+    @Suppress("NOTHING_TO_INLINE")
+    inline fun accessibleOrNull() = this as? Message
+
     @Serializable
     @TgAPI.Name("InaccessibleMessage")
     data class InaccessibleMessage(

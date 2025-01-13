@@ -12098,6 +12098,10 @@ sealed class eu.vendeli.tgbot.types.msg/MaybeInaccessibleMessage { // eu.vendeli
         abstract fun <get-date>(): kotlinx.datetime/Instant // eu.vendeli.tgbot.types.msg/MaybeInaccessibleMessage.date.<get-date>|<get-date>(){}[0]
     abstract val messageId // eu.vendeli.tgbot.types.msg/MaybeInaccessibleMessage.messageId|{}messageId[0]
         abstract fun <get-messageId>(): kotlin/Long // eu.vendeli.tgbot.types.msg/MaybeInaccessibleMessage.messageId.<get-messageId>|<get-messageId>(){}[0]
+    final val isAccessible // eu.vendeli.tgbot.types.msg/MaybeInaccessibleMessage.isAccessible|{}isAccessible[0]
+        final fun <get-isAccessible>(): kotlin/Boolean // eu.vendeli.tgbot.types.msg/MaybeInaccessibleMessage.isAccessible.<get-isAccessible>|<get-isAccessible>(){}[0]
+
+    final inline fun accessibleOrNull(): eu.vendeli.tgbot.types.msg/Message? // eu.vendeli.tgbot.types.msg/MaybeInaccessibleMessage.accessibleOrNull|accessibleOrNull(){}[0]
 
     final class InaccessibleMessage : eu.vendeli.tgbot.types.msg/MaybeInaccessibleMessage { // eu.vendeli.tgbot.types.msg/MaybeInaccessibleMessage.InaccessibleMessage|null[0]
         constructor <init>(eu.vendeli.tgbot.types.chat/Chat, kotlin/Long, kotlinx.datetime/Instant) // eu.vendeli.tgbot.types.msg/MaybeInaccessibleMessage.InaccessibleMessage.<init>|<init>(eu.vendeli.tgbot.types.chat.Chat;kotlin.Long;kotlinx.datetime.Instant){}[0]
