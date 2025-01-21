@@ -17,6 +17,7 @@ import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.Invocable
 import eu.vendeli.tgbot.utils.InvocationLambda
+import eu.vendeli.tgbot.utils.TgException
 import eu.vendeli.tgbot.utils.checkIsGuarded
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.debug
@@ -31,12 +32,12 @@ import eu.vendeli.tgbot.utils.process
 import eu.vendeli.tgbot.utils.serde
 import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.warn
+import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.util.logging.trace
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
@@ -45,6 +46,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * An update processing class.
@@ -59,9 +61,9 @@ class TgUpdateHandler internal constructor(
     private var handlingBehaviour: HandlingBehaviourBlock = DEFAULT_HANDLING_BEHAVIOUR
     private val updatesFlow = MutableSharedFlow<ProcessedUpdate>(extraBufferCapacity = 10)
 
-    internal val rootJob = SupervisorJob()
+    internal val handlerJob = Job(bot.rootJob)
     internal val handlerScope = bot.config.updatesListener.run {
-        CoroutineScope(rootJob + dispatcher + CoroutineName("TgBot"))
+        CoroutineScope(handlerJob + dispatcher + CoroutineName("TgBot"))
     }
     internal val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
     internal val logger = getLogger(bot.config.logging.botLogLevel, this::class.fqName)
@@ -85,9 +87,9 @@ class TgUpdateHandler internal constructor(
     @KtGramInternal
     val userClassSteps = mutableMapOf<Long, String>()
 
-    private fun collectUpdates(types: List<UpdateType>?) = bot.config.updatesListener.run {
+    private suspend fun collectUpdates(types: List<UpdateType>?) = bot.config.updatesListener.run {
         logger.debug { "Starting updates collector." }
-        handlerScope.launch {
+        withContext(handlerJob + processingDispatcher) {
             var lastUpdateId = 0
             val getUpdatesAction = GET_UPDATES_ACTION.options {
                 allowedUpdates = types
@@ -96,16 +98,20 @@ class TgUpdateHandler internal constructor(
 
             while (isActive) {
                 logger.trace { "Running listener with offset - $lastUpdateId" }
-                getUpdatesAction
-                    .apply {
-                        parameters["offset"] = lastUpdateId.toJsonElement()
-                    }.sendReturning(bot)
-                    .getOrNull()
-                    ?.forEach {
-                        updatesFlow.emit(it)
-                        lastUpdateId = it.updateId + 1
-                    }
-                pullingDelay.takeIf { it > 0 }?.let { delay(it) }
+                try {
+                    getUpdatesAction
+                        .apply {
+                            parameters["offset"] = lastUpdateId.toJsonElement()
+                        }.sendReturning(bot)
+                        .getOrNull()
+                        ?.forEach {
+                            updatesFlow.emit(it)
+                            lastUpdateId = it.updateId + 1
+                        }
+                    pullingDelay.takeIf { it > 0 }?.let { delay(it) }
+                } catch (e: HttpRequestTimeoutException) {
+                    throw TgException("Connection timeout", e)
+                }
             }
         }
     }

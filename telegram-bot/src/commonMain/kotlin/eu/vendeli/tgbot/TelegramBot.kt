@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.BotConfigurator
+import eu.vendeli.tgbot.utils.DEFAULT_HANDLING_BEHAVIOUR
 import eu.vendeli.tgbot.utils.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.fqName
 import eu.vendeli.tgbot.utils.getConfiguredHttpClient
@@ -14,6 +15,7 @@ import eu.vendeli.tgbot.utils.getLogger
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.readRawBytes
+import kotlinx.coroutines.SupervisorJob
 
 /**
  * Telegram bot main instance
@@ -48,6 +50,7 @@ class TelegramBot(
         this.httpClient = httpClient ?: getConfiguredHttpClient(config.httpClient, config.logging)
     }
 
+    internal val rootJob = SupervisorJob()
     internal val config = BotConfiguration().apply(botConfiguration)
     internal val logger = getLogger(config.logging.botLogLevel, this::class.fqName)
 
@@ -97,9 +100,7 @@ class TelegramBot(
      * Note that when using this method, other processing will be interrupted and reassigned.
      */
     suspend fun handleUpdates(allowedUpdates: List<UpdateType>? = null) {
-        update.setListener(allowedUpdates) {
-            handle(it)
-        }
+        update.setListener(allowedUpdates, DEFAULT_HANDLING_BEHAVIOUR)
     }
 
     /**
