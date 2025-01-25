@@ -47,6 +47,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * An update processing class.
@@ -90,7 +91,8 @@ class TgUpdateHandler internal constructor(
     private suspend fun collectUpdates(types: List<UpdateType>?) = coroutineScope {
         val cfg = bot.config.updatesListener
         logger.debug { "Starting updates collector." }
-        launch(Job(handlerJob) + cfg.processingDispatcher) {
+
+        withContext(Job(handlerJob)) {
             var lastUpdateId = 0
             val getUpdatesAction = GET_UPDATES_ACTION.options {
                 allowedUpdates = types
