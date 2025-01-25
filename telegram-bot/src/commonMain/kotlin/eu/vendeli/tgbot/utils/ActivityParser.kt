@@ -5,18 +5,14 @@ import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.types.internal.ParsedText
 import io.ktor.utils.io.readText
 import kotlinx.io.Buffer
-import kotlinx.io.bytestring.encodeToByteString
-import kotlinx.io.snapshot
-
-private val startCommandBA = "/start".encodeToByteString()
 
 @Suppress("CyclomaticComplexMethod", "NestedBlockDepth")
 internal fun TgUpdateHandler.parseCommand(
     text: String,
 ): ParsedText = with(bot.config.commandParsing) {
     var state = CommandParserState.READING_COMMAND
-    val commandBuffer = Buffer()
-    val atTailBuffer = Buffer()
+    var command = ""
+    var commandAt = ""
 
     var parsedIndex = 0
     for ((idx, i) in text.withIndex()) {
@@ -24,13 +20,9 @@ internal fun TgUpdateHandler.parseCommand(
         when (state) {
             CommandParserState.READING_COMMAND -> {
                 when {
-                    commandDelimiter != ' ' &&
-                        !restrictSpacesInCommands &&
-                        commandBuffer.size == 6L &&
-                        commandBuffer.snapshot() == startCommandBA &&
-                        i == ' ' -> {
+                    commandDelimiter != ' ' && !restrictSpacesInCommands && command == "/start" -> {
                         // deeplink case
-                        break
+                        if (i == ' ') break
                     }
 
                     i == commandDelimiter || restrictSpacesInCommands && i == ' ' -> {
@@ -41,23 +33,25 @@ internal fun TgUpdateHandler.parseCommand(
                         state = CommandParserState.MATCHING_IDENTIFIER
                     }
 
-                    else -> commandBuffer.writeByte(i.code.toByte())
+                    else -> {
+                        command += i
+                    }
                 }
             }
 
             CommandParserState.MATCHING_IDENTIFIER -> {
                 if (i == commandDelimiter || (restrictSpacesInCommands && i == ' ')) {
-                    if (useIdentifierInGroupCommands && bot.config.identifier != atTailBuffer.readText())
+                    if (useIdentifierInGroupCommands && bot.config.identifier != commandAt)
                         return@with ParsedText(text, "")
                     break
                 } else {
-                    atTailBuffer.writeByte(i.code.toByte())
+                    commandAt += i
                 }
             }
         }
     }
 
-    return ParsedText(commandBuffer.readText(), text.drop(parsedIndex + 1))
+    return ParsedText(command, text.drop(parsedIndex + 1))
 }
 
 @KtGramInternal
