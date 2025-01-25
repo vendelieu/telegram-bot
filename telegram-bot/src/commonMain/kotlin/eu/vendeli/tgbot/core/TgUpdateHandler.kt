@@ -41,12 +41,12 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /**
  * An update processing class.
@@ -87,13 +87,14 @@ class TgUpdateHandler internal constructor(
     @KtGramInternal
     val userClassSteps = mutableMapOf<Long, String>()
 
-    private suspend fun collectUpdates(types: List<UpdateType>?) = bot.config.updatesListener.run {
+    private suspend fun collectUpdates(types: List<UpdateType>?) = coroutineScope {
+        val cfg = bot.config.updatesListener
         logger.debug { "Starting updates collector." }
-        withContext(handlerJob + processingDispatcher) {
+        launch(Job(handlerJob) + cfg.processingDispatcher) {
             var lastUpdateId = 0
             val getUpdatesAction = GET_UPDATES_ACTION.options {
                 allowedUpdates = types
-                timeout = updatesPollingTimeout
+                timeout = cfg.updatesPollingTimeout
             }
 
             while (isActive) {
@@ -108,7 +109,7 @@ class TgUpdateHandler internal constructor(
                             updatesFlow.emit(it)
                             lastUpdateId = it.updateId + 1
                         }
-                    pullingDelay.takeIf { it > 0 }?.let { delay(it) }
+                    cfg.pullingDelay.takeIf { it > 0 }?.let { delay(it) }
                 } catch (e: HttpRequestTimeoutException) {
                     throw TgException("Connection timeout", e)
                 }
@@ -144,7 +145,7 @@ class TgUpdateHandler internal constructor(
      *
      */
     fun stopListener() {
-        handlerScope.coroutineContext.cancelChildren()
+        handlerJob.cancelChildren()
         logger.debug { "The listener is stopped." }
     }
 
