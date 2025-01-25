@@ -3,8 +3,6 @@ package eu.vendeli.tgbot.utils
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.types.internal.ParsedText
-import io.ktor.utils.io.readText
-import kotlinx.io.Buffer
 
 @Suppress("CyclomaticComplexMethod", "NestedBlockDepth")
 internal fun TgUpdateHandler.parseCommand(
@@ -65,8 +63,8 @@ fun defaultArgParser(
     var state = ParameterParserState.READING_PARAM_NAME
     val params = mutableMapOf<String, String>()
 
-    val paramNameBuffer = Buffer()
-    var paramValBuffer = Buffer()
+    var paramNameBuffer = ""
+    var paramValBuffer = ""
 
     text.forEach { i ->
         when (state) {
@@ -77,28 +75,31 @@ fun defaultArgParser(
                     }
 
                     parameterDelimiter -> {
-                        params["param_${params.size + 1}"] = paramNameBuffer.readText()
+                        params["param_${params.size + 1}"] = paramNameBuffer
+                        paramNameBuffer = ""
                     }
 
-                    else -> paramNameBuffer.writeByte(i.code.toByte())
+                    else -> paramNameBuffer += i
                 }
             }
 
             ParameterParserState.READING_PARAM_VALUE -> {
                 if (i == parameterDelimiter) {
-                    params[paramNameBuffer.readText()] = paramValBuffer.readText()
+                    params[paramNameBuffer] = paramValBuffer
+                    paramNameBuffer = ""
+                    paramValBuffer = ""
                     state = ParameterParserState.READING_PARAM_NAME
                 } else {
-                    paramValBuffer.writeByte(i.code.toByte())
+                    paramValBuffer += i
                 }
             }
         }
     }
 
     if (state == ParameterParserState.READING_PARAM_VALUE) {
-        params[paramNameBuffer.readText()] = paramValBuffer.readText()
+        params[paramNameBuffer] = paramValBuffer
     } else if (state == ParameterParserState.READING_PARAM_NAME) {
-        params["param_${params.size + 1}"] = paramNameBuffer.readText()
+        params["param_${params.size + 1}"] = paramNameBuffer
     }
 
     return params

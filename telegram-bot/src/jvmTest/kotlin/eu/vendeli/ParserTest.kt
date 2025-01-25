@@ -7,11 +7,10 @@ import eu.vendeli.tgbot.utils.getParameters
 import eu.vendeli.tgbot.utils.parseCommand
 import io.kotest.matchers.maps.shouldContainExactly
 import io.kotest.matchers.shouldBe
-import kotlin.time.measureTime
 
 class ParserTest : BotTestContext() {
     @Test
-    fun `group command test`() = measureTime {
+    fun `group command test`() {
         val text = "/test@KtGram?param1"
         bot.config.commandParsing.useIdentifierInGroupCommands = true
 
@@ -30,14 +29,10 @@ class ParserTest : BotTestContext() {
             command shouldBe "/test"
             tail shouldBe "param1"
         }
-    }.also {
-        println("--------")
-        println(it)
-        println("--------")
     }
 
     @Test
-    fun `valid command parsing`() = measureTime {
+    fun `valid command parsing`() {
         val commandParseWithNoParams = bot.update.parseCommand("/command")
         val commandParseWithNoParamsParams = bot.update.getParameters(DefaultArgParser::class, commandParseWithNoParams)
         commandParseWithNoParams.command shouldBe "/command"
@@ -108,9 +103,5 @@ class ParserTest : BotTestContext() {
         val defaultDeeplinkCheckParams = bot.update.getParameters(DefaultArgParser::class, defaultDeeplinkCheck)
         defaultDeeplinkCheck.command shouldBe "/start"
         defaultDeeplinkCheckParams shouldContainExactly (mapOf("param_1" to "default"))
-    }.also {
-        println("--------")
-        println(it)
-        println("--------")
     }
 }
