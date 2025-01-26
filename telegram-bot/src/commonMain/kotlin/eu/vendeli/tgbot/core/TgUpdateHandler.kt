@@ -41,13 +41,11 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /**
  * An update processing class.
@@ -88,33 +86,33 @@ class TgUpdateHandler internal constructor(
     @KtGramInternal
     val userClassSteps = mutableMapOf<Long, String>()
 
-    private suspend fun collectUpdates(types: List<UpdateType>?) = coroutineScope {
+    private var processingEx: TgException? = null
+    private fun collectUpdates(types: List<UpdateType>?) = handlerScope.launch(Job(handlerJob)) {
         val cfg = bot.config.updatesListener
         logger.debug { "Starting updates collector." }
 
-        withContext(Job(handlerJob)) {
-            var lastUpdateId = 0
-            val getUpdatesAction = GET_UPDATES_ACTION.options {
-                allowedUpdates = types
-                timeout = cfg.updatesPollingTimeout
-            }
+        var lastUpdateId = 0
+        val getUpdatesAction = GET_UPDATES_ACTION.options {
+            allowedUpdates = types
+            timeout = cfg.updatesPollingTimeout
+        }
 
-            while (isActive) {
-                logger.trace { "Running listener with offset - $lastUpdateId" }
-                try {
-                    getUpdatesAction
-                        .apply {
-                            parameters["offset"] = lastUpdateId.toJsonElement()
-                        }.sendReturning(bot)
-                        .getOrNull()
-                        ?.forEach {
-                            updatesFlow.emit(it)
-                            lastUpdateId = it.updateId + 1
-                        }
-                    cfg.pullingDelay.takeIf { it > 0 }?.let { delay(it) }
-                } catch (e: HttpRequestTimeoutException) {
-                    throw TgException("Connection timeout", e)
-                }
+        while (isActive) {
+            logger.trace { "Running listener with offset - $lastUpdateId" }
+            try {
+                getUpdatesAction
+                    .apply {
+                        parameters["offset"] = lastUpdateId.toJsonElement()
+                    }.sendReturning(bot)
+                    .getOrNull()
+                    ?.forEach {
+                        updatesFlow.emit(it)
+                        lastUpdateId = it.updateId + 1
+                    }
+                cfg.pullingDelay.takeIf { it > 0 }?.let { delay(it) }
+            } catch (e: HttpRequestTimeoutException) {
+                stopListener()
+                processingEx = TgException("Connection timeout", e)
             }
         }
     }
@@ -140,6 +138,7 @@ class TgUpdateHandler internal constructor(
         collectUpdates(allowedUpdates)
         logger.info { "Starting long-polling listener." }
         processUpdates().join()
+        processingEx?.also { throw it }
     }
 
     /**
