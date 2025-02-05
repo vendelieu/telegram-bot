@@ -120,7 +120,7 @@ internal fun collectInputActivities(
         val guardAnnotationData = function.parseAnnotatedGuard()
         val rateLimitsAnnotationData = function.parseAnnotatedRateLimits()
         if (function.isThereAnnotation(ArgParser::class.simpleName!!)) {
-            logger.warn("@ArgParser is not supported for input handlers")
+            logger.warn("Be aware that @ArgParser is not supported for input handlers")
         }
 
         annotationData.first.forEach {
@@ -162,13 +162,13 @@ internal fun collectUpdateTypeActivities(
             .parseAsUpdateHandler()
 
         if (function.isThereAnnotation(Guard::class.simpleName!!)) {
-            logger.warn("@Guard is not supported for UpdateType handlers")
+            logger.warn("Be aware that @Guard is not supported for UpdateType handlers")
         }
         if (function.isThereAnnotation(ArgParser::class.simpleName!!)) {
-            logger.warn("@ArgParser is not supported for UpdateType handlers")
+            logger.warn("Be aware that @ArgParser is not supported for UpdateType handlers")
         }
         if (function.isThereAnnotation(RateLimits::class.simpleName!!)) {
-            logger.warn("@RateLimits is not supported for UpdateType handlers")
+            logger.warn("Be aware that @RateLimits is not supported for UpdateType handlers")
         }
 
         annotationData.forEach {
@@ -208,7 +208,7 @@ internal fun collectCommonActivities(
 
                                 if (commonAnnotationData.funDeclaration.isThereAnnotation(Guard::class.simpleName!!)) {
                                     logger.warn(
-                                        "@Guard is not supported for common handlers, please use filter instead",
+                                        "Be aware that @Guard is not supported for common handlers, please use filter instead",
                                     )
                                 }
 
@@ -243,6 +243,17 @@ internal fun collectUnprocessed(
     unprocessedHandlerSymbols: KSFunctionDeclaration?,
     ctx: CollectorsContext,
 ) = ctx.run {
+    if (unprocessedHandlerSymbols?.isThereAnnotation(
+            Guard::class.simpleName!!,
+            ArgParser::class.simpleName!!,
+            RateLimits::class.simpleName!!,
+        ) == true
+    ) {
+        logger.warn(
+            "Be aware that @Guard, @RateLimits and @ArgParser is not supported for unprocessed handler",
+        )
+    }
+
     activitiesFile.addProperty(
         PropertySpec
             .builder(
