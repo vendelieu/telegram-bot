@@ -3,7 +3,9 @@ package eu.vendeli.tgbot.types.media
 import eu.vendeli.tgbot.interfaces.helper.ImplicitMediaData
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
+import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import eu.vendeli.tgbot.utils.toImplicitFile
+import kotlinx.datetime.Instant
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
@@ -32,27 +34,12 @@ sealed class InputPaidMedia : ImplicitMediaData {
     data class Video(
         override var media: ImplicitFile,
         override var thumbnail: ImplicitFile? = null,
+        val cover: ImplicitFile? = null,
+        @Serializable(InstantSerializer::class)
+        val startTimestamp: Instant? = null,
         val width: Int? = null,
         val height: Int? = null,
         val duration: Int? = null,
         val supportsStreaming: Boolean? = null,
-    ) : InputPaidMedia() {
-        constructor(
-            media: String,
-            thumbnail: ImplicitFile? = null,
-            width: Int? = null,
-            height: Int? = null,
-            duration: Int? = null,
-            supportsStreaming: Boolean? = null,
-        ) : this(media.toImplicitFile(), thumbnail, width, height, duration, supportsStreaming)
-
-        constructor(
-            media: InputFile,
-            thumbnail: ImplicitFile? = null,
-            width: Int? = null,
-            height: Int? = null,
-            duration: Int? = null,
-            supportsStreaming: Boolean? = null,
-        ) : this(media.toImplicitFile(), thumbnail, width, height, duration, supportsStreaming)
-    }
+    ) : InputPaidMedia()
 }

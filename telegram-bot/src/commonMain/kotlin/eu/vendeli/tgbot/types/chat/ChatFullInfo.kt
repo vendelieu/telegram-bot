@@ -91,6 +91,7 @@ data class ChatFullInfo(
     val pinnedMessage: Message? = null,
     val permissions: ChatPermissions? = null,
     val canSendPaidMedia: Boolean? = null,
+    val canSendGift: Boolean? = null,
     val slowModeDelay: Int? = null,
     val unrestrictBoostCount: Int? = null,
     val messageAutoDeleteTime: Int? = null,

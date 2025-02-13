@@ -1,5 +1,8 @@
 package eu.vendeli.tgbot.types.media
 
+import eu.vendeli.tgbot.types.internal.ImplicitFile
+import eu.vendeli.tgbot.utils.serde.InstantSerializer
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
 /**
@@ -24,6 +27,9 @@ data class Video(
     val height: Int,
     val duration: Int,
     val thumbnail: PhotoSize? = null,
+    val cover: ImplicitFile? = null,
+    @Serializable(InstantSerializer::class)
+    val startTimestamp: Instant? = null,
     val fileName: String? = null,
     val mimeType: String? = null,
     val fileSize: Long? = null,

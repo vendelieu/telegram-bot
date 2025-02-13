@@ -2288,7 +2288,7 @@ final class eu.vendeli.tgbot.types.chat/ChatBackground { // eu.vendeli.tgbot.typ
 }
 
 final class eu.vendeli.tgbot.types.chat/ChatFullInfo { // eu.vendeli.tgbot.types.chat/ChatFullInfo|null[0]
-    constructor <init>(kotlin/Long, eu.vendeli.tgbot.types.chat/ChatType, kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Int, kotlin/Int, eu.vendeli.tgbot.types.chat/ChatPhoto? = ..., kotlin.collections/List<kotlin/String>? = ..., eu.vendeli.tgbot.types/Birthdate? = ..., eu.vendeli.tgbot.types.business/BusinessIntro? = ..., eu.vendeli.tgbot.types.business/BusinessLocation? = ..., eu.vendeli.tgbot.types.business/BusinessOpeningHours? = ..., eu.vendeli.tgbot.types.chat/Chat? = ..., kotlin.collections/List<eu.vendeli.tgbot.types/ReactionType>? = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.msg/Message? = ..., eu.vendeli.tgbot.types.chat/ChatPermissions? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Long? = ..., eu.vendeli.tgbot.types.chat/ChatLocation? = ...) // eu.vendeli.tgbot.types.chat/ChatFullInfo.<init>|<init>(kotlin.Long;eu.vendeli.tgbot.types.chat.ChatType;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.Boolean?;kotlin.Int;kotlin.Int;eu.vendeli.tgbot.types.chat.ChatPhoto?;kotlin.collections.List<kotlin.String>?;eu.vendeli.tgbot.types.Birthdate?;eu.vendeli.tgbot.types.business.BusinessIntro?;eu.vendeli.tgbot.types.business.BusinessLocation?;eu.vendeli.tgbot.types.business.BusinessOpeningHours?;eu.vendeli.tgbot.types.chat.Chat?;kotlin.collections.List<eu.vendeli.tgbot.types.ReactionType>?;kotlin.String?;kotlin.Int?;kotlin.String?;kotlin.String?;kotlin.Int?;kotlin.String?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.String?;kotlin.String?;eu.vendeli.tgbot.types.msg.Message?;eu.vendeli.tgbot.types.chat.ChatPermissions?;kotlin.Boolean?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.String?;kotlin.Boolean?;kotlin.String?;kotlin.Long?;eu.vendeli.tgbot.types.chat.ChatLocation?){}[0]
+    constructor <init>(kotlin/Long, eu.vendeli.tgbot.types.chat/ChatType, kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Int, kotlin/Int, eu.vendeli.tgbot.types.chat/ChatPhoto? = ..., kotlin.collections/List<kotlin/String>? = ..., eu.vendeli.tgbot.types/Birthdate? = ..., eu.vendeli.tgbot.types.business/BusinessIntro? = ..., eu.vendeli.tgbot.types.business/BusinessLocation? = ..., eu.vendeli.tgbot.types.business/BusinessOpeningHours? = ..., eu.vendeli.tgbot.types.chat/Chat? = ..., kotlin.collections/List<eu.vendeli.tgbot.types/ReactionType>? = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.msg/Message? = ..., eu.vendeli.tgbot.types.chat/ChatPermissions? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Long? = ..., eu.vendeli.tgbot.types.chat/ChatLocation? = ...) // eu.vendeli.tgbot.types.chat/ChatFullInfo.<init>|<init>(kotlin.Long;eu.vendeli.tgbot.types.chat.ChatType;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.Boolean?;kotlin.Int;kotlin.Int;eu.vendeli.tgbot.types.chat.ChatPhoto?;kotlin.collections.List<kotlin.String>?;eu.vendeli.tgbot.types.Birthdate?;eu.vendeli.tgbot.types.business.BusinessIntro?;eu.vendeli.tgbot.types.business.BusinessLocation?;eu.vendeli.tgbot.types.business.BusinessOpeningHours?;eu.vendeli.tgbot.types.chat.Chat?;kotlin.collections.List<eu.vendeli.tgbot.types.ReactionType>?;kotlin.String?;kotlin.Int?;kotlin.String?;kotlin.String?;kotlin.Int?;kotlin.String?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.String?;kotlin.String?;eu.vendeli.tgbot.types.msg.Message?;eu.vendeli.tgbot.types.chat.ChatPermissions?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.String?;kotlin.Boolean?;kotlin.String?;kotlin.Long?;eu.vendeli.tgbot.types.chat.ChatLocation?){}[0]
 
     final val accentColorId // eu.vendeli.tgbot.types.chat/ChatFullInfo.accentColorId|{}accentColorId[0]
         final fun <get-accentColorId>(): kotlin/Int // eu.vendeli.tgbot.types.chat/ChatFullInfo.accentColorId.<get-accentColorId>|<get-accentColorId>(){}[0]
@@ -2308,6 +2308,8 @@ final class eu.vendeli.tgbot.types.chat/ChatFullInfo { // eu.vendeli.tgbot.types
         final fun <get-businessLocation>(): eu.vendeli.tgbot.types.business/BusinessLocation? // eu.vendeli.tgbot.types.chat/ChatFullInfo.businessLocation.<get-businessLocation>|<get-businessLocation>(){}[0]
     final val businessOpeningHours // eu.vendeli.tgbot.types.chat/ChatFullInfo.businessOpeningHours|{}businessOpeningHours[0]
         final fun <get-businessOpeningHours>(): eu.vendeli.tgbot.types.business/BusinessOpeningHours? // eu.vendeli.tgbot.types.chat/ChatFullInfo.businessOpeningHours.<get-businessOpeningHours>|<get-businessOpeningHours>(){}[0]
+    final val canSendGift // eu.vendeli.tgbot.types.chat/ChatFullInfo.canSendGift|{}canSendGift[0]
+        final fun <get-canSendGift>(): kotlin/Boolean? // eu.vendeli.tgbot.types.chat/ChatFullInfo.canSendGift.<get-canSendGift>|<get-canSendGift>(){}[0]
     final val canSendPaidMedia // eu.vendeli.tgbot.types.chat/ChatFullInfo.canSendPaidMedia|{}canSendPaidMedia[0]
         final fun <get-canSendPaidMedia>(): kotlin/Boolean? // eu.vendeli.tgbot.types.chat/ChatFullInfo.canSendPaidMedia.<get-canSendPaidMedia>|<get-canSendPaidMedia>(){}[0]
     final val canSetStickerSet // eu.vendeli.tgbot.types.chat/ChatFullInfo.canSetStickerSet|{}canSetStickerSet[0]
@@ -2405,25 +2407,26 @@ final class eu.vendeli.tgbot.types.chat/ChatFullInfo { // eu.vendeli.tgbot.types
     final fun component30(): eu.vendeli.tgbot.types.msg/Message? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component30|component30(){}[0]
     final fun component31(): eu.vendeli.tgbot.types.chat/ChatPermissions? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component31|component31(){}[0]
     final fun component32(): kotlin/Boolean? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component32|component32(){}[0]
-    final fun component33(): kotlin/Int? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component33|component33(){}[0]
+    final fun component33(): kotlin/Boolean? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component33|component33(){}[0]
     final fun component34(): kotlin/Int? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component34|component34(){}[0]
     final fun component35(): kotlin/Int? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component35|component35(){}[0]
-    final fun component36(): kotlin/Boolean? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component36|component36(){}[0]
+    final fun component36(): kotlin/Int? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component36|component36(){}[0]
     final fun component37(): kotlin/Boolean? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component37|component37(){}[0]
     final fun component38(): kotlin/Boolean? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component38|component38(){}[0]
     final fun component39(): kotlin/Boolean? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component39|component39(){}[0]
     final fun component4(): kotlin/String? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component4|component4(){}[0]
-    final fun component40(): kotlin/String? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component40|component40(){}[0]
-    final fun component41(): kotlin/Boolean? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component41|component41(){}[0]
-    final fun component42(): kotlin/String? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component42|component42(){}[0]
-    final fun component43(): kotlin/Long? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component43|component43(){}[0]
-    final fun component44(): eu.vendeli.tgbot.types.chat/ChatLocation? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component44|component44(){}[0]
+    final fun component40(): kotlin/Boolean? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component40|component40(){}[0]
+    final fun component41(): kotlin/String? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component41|component41(){}[0]
+    final fun component42(): kotlin/Boolean? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component42|component42(){}[0]
+    final fun component43(): kotlin/String? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component43|component43(){}[0]
+    final fun component44(): kotlin/Long? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component44|component44(){}[0]
+    final fun component45(): eu.vendeli.tgbot.types.chat/ChatLocation? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component45|component45(){}[0]
     final fun component5(): kotlin/String? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component5|component5(){}[0]
     final fun component6(): kotlin/String? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component6|component6(){}[0]
     final fun component7(): kotlin/Boolean? // eu.vendeli.tgbot.types.chat/ChatFullInfo.component7|component7(){}[0]
     final fun component8(): kotlin/Int // eu.vendeli.tgbot.types.chat/ChatFullInfo.component8|component8(){}[0]
     final fun component9(): kotlin/Int // eu.vendeli.tgbot.types.chat/ChatFullInfo.component9|component9(){}[0]
-    final fun copy(kotlin/Long = ..., eu.vendeli.tgbot.types.chat/ChatType = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Int = ..., kotlin/Int = ..., eu.vendeli.tgbot.types.chat/ChatPhoto? = ..., kotlin.collections/List<kotlin/String>? = ..., eu.vendeli.tgbot.types/Birthdate? = ..., eu.vendeli.tgbot.types.business/BusinessIntro? = ..., eu.vendeli.tgbot.types.business/BusinessLocation? = ..., eu.vendeli.tgbot.types.business/BusinessOpeningHours? = ..., eu.vendeli.tgbot.types.chat/Chat? = ..., kotlin.collections/List<eu.vendeli.tgbot.types/ReactionType>? = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.msg/Message? = ..., eu.vendeli.tgbot.types.chat/ChatPermissions? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Long? = ..., eu.vendeli.tgbot.types.chat/ChatLocation? = ...): eu.vendeli.tgbot.types.chat/ChatFullInfo // eu.vendeli.tgbot.types.chat/ChatFullInfo.copy|copy(kotlin.Long;eu.vendeli.tgbot.types.chat.ChatType;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.Boolean?;kotlin.Int;kotlin.Int;eu.vendeli.tgbot.types.chat.ChatPhoto?;kotlin.collections.List<kotlin.String>?;eu.vendeli.tgbot.types.Birthdate?;eu.vendeli.tgbot.types.business.BusinessIntro?;eu.vendeli.tgbot.types.business.BusinessLocation?;eu.vendeli.tgbot.types.business.BusinessOpeningHours?;eu.vendeli.tgbot.types.chat.Chat?;kotlin.collections.List<eu.vendeli.tgbot.types.ReactionType>?;kotlin.String?;kotlin.Int?;kotlin.String?;kotlin.String?;kotlin.Int?;kotlin.String?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.String?;kotlin.String?;eu.vendeli.tgbot.types.msg.Message?;eu.vendeli.tgbot.types.chat.ChatPermissions?;kotlin.Boolean?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.String?;kotlin.Boolean?;kotlin.String?;kotlin.Long?;eu.vendeli.tgbot.types.chat.ChatLocation?){}[0]
+    final fun copy(kotlin/Long = ..., eu.vendeli.tgbot.types.chat/ChatType = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Int = ..., kotlin/Int = ..., eu.vendeli.tgbot.types.chat/ChatPhoto? = ..., kotlin.collections/List<kotlin/String>? = ..., eu.vendeli.tgbot.types/Birthdate? = ..., eu.vendeli.tgbot.types.business/BusinessIntro? = ..., eu.vendeli.tgbot.types.business/BusinessLocation? = ..., eu.vendeli.tgbot.types.business/BusinessOpeningHours? = ..., eu.vendeli.tgbot.types.chat/Chat? = ..., kotlin.collections/List<eu.vendeli.tgbot.types/ReactionType>? = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.msg/Message? = ..., eu.vendeli.tgbot.types.chat/ChatPermissions? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Long? = ..., eu.vendeli.tgbot.types.chat/ChatLocation? = ...): eu.vendeli.tgbot.types.chat/ChatFullInfo // eu.vendeli.tgbot.types.chat/ChatFullInfo.copy|copy(kotlin.Long;eu.vendeli.tgbot.types.chat.ChatType;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.Boolean?;kotlin.Int;kotlin.Int;eu.vendeli.tgbot.types.chat.ChatPhoto?;kotlin.collections.List<kotlin.String>?;eu.vendeli.tgbot.types.Birthdate?;eu.vendeli.tgbot.types.business.BusinessIntro?;eu.vendeli.tgbot.types.business.BusinessLocation?;eu.vendeli.tgbot.types.business.BusinessOpeningHours?;eu.vendeli.tgbot.types.chat.Chat?;kotlin.collections.List<eu.vendeli.tgbot.types.ReactionType>?;kotlin.String?;kotlin.Int?;kotlin.String?;kotlin.String?;kotlin.Int?;kotlin.String?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.String?;kotlin.String?;eu.vendeli.tgbot.types.msg.Message?;eu.vendeli.tgbot.types.chat.ChatPermissions?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;kotlin.String?;kotlin.Boolean?;kotlin.String?;kotlin.Long?;eu.vendeli.tgbot.types.chat.ChatLocation?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.chat/ChatFullInfo.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.chat/ChatFullInfo.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.chat/ChatFullInfo.toString|toString(){}[0]
@@ -3937,7 +3940,7 @@ final class eu.vendeli.tgbot.types.internal.options/ContactOptions : eu.vendeli.
 }
 
 final class eu.vendeli.tgbot.types.internal.options/CopyMessageOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ShowCaptionAboveMediaProp { // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions|null[0]
-    constructor <init>(kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.<init>|<init>(kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.Boolean?){}[0]
+    constructor <init>(kotlinx.datetime/Instant? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.<init>|<init>(kotlinx.datetime.Instant?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.Boolean?){}[0]
 
     final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
         final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
@@ -3960,15 +3963,19 @@ final class eu.vendeli.tgbot.types.internal.options/CopyMessageOptions : eu.vend
     final var showCaptionAboveMedia // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.showCaptionAboveMedia|{}showCaptionAboveMedia[0]
         final fun <get-showCaptionAboveMedia>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.showCaptionAboveMedia.<get-showCaptionAboveMedia>|<get-showCaptionAboveMedia>(){}[0]
         final fun <set-showCaptionAboveMedia>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.showCaptionAboveMedia.<set-showCaptionAboveMedia>|<set-showCaptionAboveMedia>(kotlin.Boolean?){}[0]
+    final var videoStartTimestamp // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.videoStartTimestamp|{}videoStartTimestamp[0]
+        final fun <get-videoStartTimestamp>(): kotlinx.datetime/Instant? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.videoStartTimestamp.<get-videoStartTimestamp>|<get-videoStartTimestamp>(){}[0]
+        final fun <set-videoStartTimestamp>(kotlinx.datetime/Instant?) // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.videoStartTimestamp.<set-videoStartTimestamp>|<set-videoStartTimestamp>(kotlinx.datetime.Instant?){}[0]
 
-    final fun component1(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component1|component1(){}[0]
+    final fun component1(): kotlinx.datetime/Instant? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component1|component1(){}[0]
     final fun component2(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component2|component2(){}[0]
     final fun component3(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component3|component3(){}[0]
-    final fun component4(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component4|component4(){}[0]
-    final fun component5(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component5|component5(){}[0]
-    final fun component6(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component6|component6(){}[0]
-    final fun component7(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component7|component7(){}[0]
-    final fun copy(kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/CopyMessageOptions // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.copy|copy(kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.Boolean?){}[0]
+    final fun component4(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component4|component4(){}[0]
+    final fun component5(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component5|component5(){}[0]
+    final fun component6(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component6|component6(){}[0]
+    final fun component7(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component7|component7(){}[0]
+    final fun component8(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.component8|component8(){}[0]
+    final fun copy(kotlinx.datetime/Instant? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Int? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/CopyMessageOptions // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.copy|copy(kotlinx.datetime.Instant?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Int?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/CopyMessageOptions.toString|toString(){}[0]
@@ -4357,7 +4364,7 @@ final class eu.vendeli.tgbot.types.internal.options/EditMessageOptions : eu.vend
 }
 
 final class eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions : eu.vendeli.tgbot.types.internal.options/Options { // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions|null[0]
-    constructor <init>(kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Int? = ...) // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.<init>|<init>(kotlin.Boolean?;kotlin.Boolean?;kotlin.Int?){}[0]
+    constructor <init>(kotlinx.datetime/Instant? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Int? = ...) // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.<init>|<init>(kotlinx.datetime.Instant?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Int?){}[0]
 
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
@@ -4368,11 +4375,15 @@ final class eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions : eu.v
     final var protectContent // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.protectContent|{}protectContent[0]
         final fun <get-protectContent>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.protectContent.<get-protectContent>|<get-protectContent>(){}[0]
         final fun <set-protectContent>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.protectContent.<set-protectContent>|<set-protectContent>(kotlin.Boolean?){}[0]
+    final var videoStartTimestamp // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.videoStartTimestamp|{}videoStartTimestamp[0]
+        final fun <get-videoStartTimestamp>(): kotlinx.datetime/Instant? // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.videoStartTimestamp.<get-videoStartTimestamp>|<get-videoStartTimestamp>(){}[0]
+        final fun <set-videoStartTimestamp>(kotlinx.datetime/Instant?) // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.videoStartTimestamp.<set-videoStartTimestamp>|<set-videoStartTimestamp>(kotlinx.datetime.Instant?){}[0]
 
-    final fun component1(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.component1|component1(){}[0]
+    final fun component1(): kotlinx.datetime/Instant? // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.component1|component1(){}[0]
     final fun component2(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.component2|component2(){}[0]
-    final fun component3(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.component3|component3(){}[0]
-    final fun copy(kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Int? = ...): eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.copy|copy(kotlin.Boolean?;kotlin.Boolean?;kotlin.Int?){}[0]
+    final fun component3(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.component3|component3(){}[0]
+    final fun component4(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.component4|component4(){}[0]
+    final fun copy(kotlinx.datetime/Instant? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Int? = ...): eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.copy|copy(kotlinx.datetime.Instant?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Int?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.toString|toString(){}[0]
@@ -4388,6 +4399,41 @@ final class eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions : eu.v
 
     final object Companion { // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.Companion|null[0]
         final fun serializer(): kotlinx.serialization/KSerializer<eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions> // eu.vendeli.tgbot.types.internal.options/ForwardMessageOptions.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions : eu.vendeli.tgbot.types.internal.options/Options { // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions|null[0]
+    constructor <init>(kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Int? = ...) // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.<init>|<init>(kotlin.Boolean?;kotlin.Boolean?;kotlin.Int?){}[0]
+
+    final var disableNotification // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.disableNotification|{}disableNotification[0]
+        final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
+        final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
+    final var messageThreadId // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.messageThreadId|{}messageThreadId[0]
+        final fun <get-messageThreadId>(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.messageThreadId.<get-messageThreadId>|<get-messageThreadId>(){}[0]
+        final fun <set-messageThreadId>(kotlin/Int?) // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.messageThreadId.<set-messageThreadId>|<set-messageThreadId>(kotlin.Int?){}[0]
+    final var protectContent // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.protectContent|{}protectContent[0]
+        final fun <get-protectContent>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.protectContent.<get-protectContent>|<get-protectContent>(){}[0]
+        final fun <set-protectContent>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.protectContent.<set-protectContent>|<set-protectContent>(kotlin.Boolean?){}[0]
+
+    final fun component1(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.component1|component1(){}[0]
+    final fun component2(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.component2|component2(){}[0]
+    final fun component3(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.component3|component3(){}[0]
+    final fun copy(kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Int? = ...): eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.copy|copy(kotlin.Boolean?;kotlin.Boolean?;kotlin.Int?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.toString|toString(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions> { // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.$serializer|null[0]
+        final val descriptor // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions) // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;eu.vendeli.tgbot.types.internal.options.ForwardMessagesOptions){}[0]
+    }
+
+    final object Companion { // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions> // eu.vendeli.tgbot.types.internal.options/ForwardMessagesOptions.Companion.serializer|serializer(){}[0]
     }
 }
 
@@ -5381,11 +5427,14 @@ final class eu.vendeli.tgbot.types.internal.options/VideoNoteOptions : eu.vendel
 }
 
 final class eu.vendeli.tgbot.types.internal.options/VideoOptions : eu.vendeli.tgbot.types.internal.options/ForumProps, eu.vendeli.tgbot.types.internal.options/MediaSpoiler, eu.vendeli.tgbot.types.internal.options/MessageEffectIdProp, eu.vendeli.tgbot.types.internal.options/OptionsCommon, eu.vendeli.tgbot.types.internal.options/OptionsParseMode, eu.vendeli.tgbot.types.internal.options/ShowCaptionAboveMediaProp, eu.vendeli.tgbot.types.internal.options/ThumbnailProp { // eu.vendeli.tgbot.types.internal.options/VideoOptions|null[0]
-    constructor <init>(kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/VideoOptions.<init>|<init>(kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?;kotlin.Boolean?){}[0]
+    constructor <init>(kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlinx.datetime/Instant? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.internal.options/VideoOptions.<init>|<init>(kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlinx.datetime.Instant?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?;kotlin.Boolean?){}[0]
 
     final var allowPaidBroadcast // eu.vendeli.tgbot.types.internal.options/VideoOptions.allowPaidBroadcast|{}allowPaidBroadcast[0]
         final fun <get-allowPaidBroadcast>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.allowPaidBroadcast.<get-allowPaidBroadcast>|<get-allowPaidBroadcast>(){}[0]
         final fun <set-allowPaidBroadcast>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/VideoOptions.allowPaidBroadcast.<set-allowPaidBroadcast>|<set-allowPaidBroadcast>(kotlin.Boolean?){}[0]
+    final var cover // eu.vendeli.tgbot.types.internal.options/VideoOptions.cover|{}cover[0]
+        final fun <get-cover>(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.internal.options/VideoOptions.cover.<get-cover>|<get-cover>(){}[0]
+        final fun <set-cover>(eu.vendeli.tgbot.types.internal/ImplicitFile?) // eu.vendeli.tgbot.types.internal.options/VideoOptions.cover.<set-cover>|<set-cover>(eu.vendeli.tgbot.types.internal.ImplicitFile?){}[0]
     final var disableNotification // eu.vendeli.tgbot.types.internal.options/VideoOptions.disableNotification|{}disableNotification[0]
         final fun <get-disableNotification>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.disableNotification.<get-disableNotification>|<get-disableNotification>(){}[0]
         final fun <set-disableNotification>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/VideoOptions.disableNotification.<set-disableNotification>|<set-disableNotification>(kotlin.Boolean?){}[0]
@@ -5416,6 +5465,9 @@ final class eu.vendeli.tgbot.types.internal.options/VideoOptions : eu.vendeli.tg
     final var showCaptionAboveMedia // eu.vendeli.tgbot.types.internal.options/VideoOptions.showCaptionAboveMedia|{}showCaptionAboveMedia[0]
         final fun <get-showCaptionAboveMedia>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.showCaptionAboveMedia.<get-showCaptionAboveMedia>|<get-showCaptionAboveMedia>(){}[0]
         final fun <set-showCaptionAboveMedia>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/VideoOptions.showCaptionAboveMedia.<set-showCaptionAboveMedia>|<set-showCaptionAboveMedia>(kotlin.Boolean?){}[0]
+    final var startTimestamp // eu.vendeli.tgbot.types.internal.options/VideoOptions.startTimestamp|{}startTimestamp[0]
+        final fun <get-startTimestamp>(): kotlinx.datetime/Instant? // eu.vendeli.tgbot.types.internal.options/VideoOptions.startTimestamp.<get-startTimestamp>|<get-startTimestamp>(){}[0]
+        final fun <set-startTimestamp>(kotlinx.datetime/Instant?) // eu.vendeli.tgbot.types.internal.options/VideoOptions.startTimestamp.<set-startTimestamp>|<set-startTimestamp>(kotlinx.datetime.Instant?){}[0]
     final var supportsStreaming // eu.vendeli.tgbot.types.internal.options/VideoOptions.supportsStreaming|{}supportsStreaming[0]
         final fun <get-supportsStreaming>(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.supportsStreaming.<get-supportsStreaming>|<get-supportsStreaming>(){}[0]
         final fun <set-supportsStreaming>(kotlin/Boolean?) // eu.vendeli.tgbot.types.internal.options/VideoOptions.supportsStreaming.<set-supportsStreaming>|<set-supportsStreaming>(kotlin.Boolean?){}[0]
@@ -5428,19 +5480,21 @@ final class eu.vendeli.tgbot.types.internal.options/VideoOptions : eu.vendeli.tg
 
     final fun component1(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component1|component1(){}[0]
     final fun component10(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component10|component10(){}[0]
-    final fun component11(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component11|component11(){}[0]
+    final fun component11(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component11|component11(){}[0]
     final fun component12(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component12|component12(){}[0]
-    final fun component13(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component13|component13(){}[0]
+    final fun component13(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component13|component13(){}[0]
     final fun component14(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component14|component14(){}[0]
+    final fun component15(): kotlin/String? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component15|component15(){}[0]
+    final fun component16(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component16|component16(){}[0]
     final fun component2(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component2|component2(){}[0]
     final fun component3(): kotlin/Int? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component3|component3(){}[0]
     final fun component4(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component4|component4(){}[0]
     final fun component5(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component5|component5(){}[0]
-    final fun component6(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component6|component6(){}[0]
-    final fun component7(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component7|component7(){}[0]
+    final fun component6(): kotlinx.datetime/Instant? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component6|component6(){}[0]
+    final fun component7(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component7|component7(){}[0]
     final fun component8(): kotlin/Boolean? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component8|component8(){}[0]
-    final fun component9(): eu.vendeli.tgbot.types/ReplyParameters? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component9|component9(){}[0]
-    final fun copy(kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/VideoOptions // eu.vendeli.tgbot.types.internal.options/VideoOptions.copy|copy(kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?;kotlin.Boolean?){}[0]
+    final fun component9(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.internal.options/VideoOptions.component9|component9(){}[0]
+    final fun copy(kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlinx.datetime/Instant? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin/Boolean? = ..., eu.vendeli.tgbot.types/ReplyParameters? = ..., kotlin/Boolean? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.internal.options/VideoOptions // eu.vendeli.tgbot.types.internal.options/VideoOptions.copy|copy(kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlinx.datetime.Instant?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Boolean?;eu.vendeli.tgbot.types.ParseMode?;kotlin.Boolean?;eu.vendeli.tgbot.types.ReplyParameters?;kotlin.Boolean?;kotlin.Int?;kotlin.Boolean?;kotlin.String?;kotlin.Boolean?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.internal.options/VideoOptions.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.internal.options/VideoOptions.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.internal.options/VideoOptions.toString|toString(){}[0]
@@ -7072,8 +7126,10 @@ final class eu.vendeli.tgbot.types.media/Story { // eu.vendeli.tgbot.types.media
 }
 
 final class eu.vendeli.tgbot.types.media/Video { // eu.vendeli.tgbot.types.media/Video|null[0]
-    constructor <init>(kotlin/String, kotlin/String, kotlin/Int, kotlin/Int, kotlin/Int, eu.vendeli.tgbot.types.media/PhotoSize? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Long? = ...) // eu.vendeli.tgbot.types.media/Video.<init>|<init>(kotlin.String;kotlin.String;kotlin.Int;kotlin.Int;kotlin.Int;eu.vendeli.tgbot.types.media.PhotoSize?;kotlin.String?;kotlin.String?;kotlin.Long?){}[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/Int, kotlin/Int, kotlin/Int, eu.vendeli.tgbot.types.media/PhotoSize? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlinx.datetime/Instant? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Long? = ...) // eu.vendeli.tgbot.types.media/Video.<init>|<init>(kotlin.String;kotlin.String;kotlin.Int;kotlin.Int;kotlin.Int;eu.vendeli.tgbot.types.media.PhotoSize?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlinx.datetime.Instant?;kotlin.String?;kotlin.String?;kotlin.Long?){}[0]
 
+    final val cover // eu.vendeli.tgbot.types.media/Video.cover|{}cover[0]
+        final fun <get-cover>(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.media/Video.cover.<get-cover>|<get-cover>(){}[0]
     final val duration // eu.vendeli.tgbot.types.media/Video.duration|{}duration[0]
         final fun <get-duration>(): kotlin/Int // eu.vendeli.tgbot.types.media/Video.duration.<get-duration>|<get-duration>(){}[0]
     final val fileId // eu.vendeli.tgbot.types.media/Video.fileId|{}fileId[0]
@@ -7088,21 +7144,25 @@ final class eu.vendeli.tgbot.types.media/Video { // eu.vendeli.tgbot.types.media
         final fun <get-height>(): kotlin/Int // eu.vendeli.tgbot.types.media/Video.height.<get-height>|<get-height>(){}[0]
     final val mimeType // eu.vendeli.tgbot.types.media/Video.mimeType|{}mimeType[0]
         final fun <get-mimeType>(): kotlin/String? // eu.vendeli.tgbot.types.media/Video.mimeType.<get-mimeType>|<get-mimeType>(){}[0]
+    final val startTimestamp // eu.vendeli.tgbot.types.media/Video.startTimestamp|{}startTimestamp[0]
+        final fun <get-startTimestamp>(): kotlinx.datetime/Instant? // eu.vendeli.tgbot.types.media/Video.startTimestamp.<get-startTimestamp>|<get-startTimestamp>(){}[0]
     final val thumbnail // eu.vendeli.tgbot.types.media/Video.thumbnail|{}thumbnail[0]
         final fun <get-thumbnail>(): eu.vendeli.tgbot.types.media/PhotoSize? // eu.vendeli.tgbot.types.media/Video.thumbnail.<get-thumbnail>|<get-thumbnail>(){}[0]
     final val width // eu.vendeli.tgbot.types.media/Video.width|{}width[0]
         final fun <get-width>(): kotlin/Int // eu.vendeli.tgbot.types.media/Video.width.<get-width>|<get-width>(){}[0]
 
     final fun component1(): kotlin/String // eu.vendeli.tgbot.types.media/Video.component1|component1(){}[0]
+    final fun component10(): kotlin/String? // eu.vendeli.tgbot.types.media/Video.component10|component10(){}[0]
+    final fun component11(): kotlin/Long? // eu.vendeli.tgbot.types.media/Video.component11|component11(){}[0]
     final fun component2(): kotlin/String // eu.vendeli.tgbot.types.media/Video.component2|component2(){}[0]
     final fun component3(): kotlin/Int // eu.vendeli.tgbot.types.media/Video.component3|component3(){}[0]
     final fun component4(): kotlin/Int // eu.vendeli.tgbot.types.media/Video.component4|component4(){}[0]
     final fun component5(): kotlin/Int // eu.vendeli.tgbot.types.media/Video.component5|component5(){}[0]
     final fun component6(): eu.vendeli.tgbot.types.media/PhotoSize? // eu.vendeli.tgbot.types.media/Video.component6|component6(){}[0]
-    final fun component7(): kotlin/String? // eu.vendeli.tgbot.types.media/Video.component7|component7(){}[0]
-    final fun component8(): kotlin/String? // eu.vendeli.tgbot.types.media/Video.component8|component8(){}[0]
-    final fun component9(): kotlin/Long? // eu.vendeli.tgbot.types.media/Video.component9|component9(){}[0]
-    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ..., eu.vendeli.tgbot.types.media/PhotoSize? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Long? = ...): eu.vendeli.tgbot.types.media/Video // eu.vendeli.tgbot.types.media/Video.copy|copy(kotlin.String;kotlin.String;kotlin.Int;kotlin.Int;kotlin.Int;eu.vendeli.tgbot.types.media.PhotoSize?;kotlin.String?;kotlin.String?;kotlin.Long?){}[0]
+    final fun component7(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.media/Video.component7|component7(){}[0]
+    final fun component8(): kotlinx.datetime/Instant? // eu.vendeli.tgbot.types.media/Video.component8|component8(){}[0]
+    final fun component9(): kotlin/String? // eu.vendeli.tgbot.types.media/Video.component9|component9(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ..., eu.vendeli.tgbot.types.media/PhotoSize? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlinx.datetime/Instant? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Long? = ...): eu.vendeli.tgbot.types.media/Video // eu.vendeli.tgbot.types.media/Video.copy|copy(kotlin.String;kotlin.String;kotlin.Int;kotlin.Int;kotlin.Int;eu.vendeli.tgbot.types.media.PhotoSize?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlinx.datetime.Instant?;kotlin.String?;kotlin.String?;kotlin.Long?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.media/Video.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.media/Video.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.media/Video.toString|toString(){}[0]
@@ -11634,8 +11694,6 @@ sealed class eu.vendeli.tgbot.types.media/InputMedia : eu.vendeli.tgbot.interfac
 
     final class Animation : eu.vendeli.tgbot.types.media/InputMedia { // eu.vendeli.tgbot.types.media/InputMedia.Animation|null[0]
         constructor <init>(eu.vendeli.tgbot.types.internal/ImplicitFile, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Animation.<init>|<init>(eu.vendeli.tgbot.types.internal.ImplicitFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?){}[0]
-        constructor <init>(eu.vendeli.tgbot.types.internal/InputFile, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Animation.<init>|<init>(eu.vendeli.tgbot.types.internal.InputFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?){}[0]
-        constructor <init>(kotlin/String, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Animation.<init>|<init>(kotlin.String;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?){}[0]
 
         final val caption // eu.vendeli.tgbot.types.media/InputMedia.Animation.caption|{}caption[0]
             final fun <get-caption>(): kotlin/String? // eu.vendeli.tgbot.types.media/InputMedia.Animation.caption.<get-caption>|<get-caption>(){}[0]
@@ -11694,8 +11752,6 @@ sealed class eu.vendeli.tgbot.types.media/InputMedia : eu.vendeli.tgbot.interfac
 
     final class Audio : eu.vendeli.tgbot.types.media/InputMedia { // eu.vendeli.tgbot.types.media/InputMedia.Audio|null[0]
         constructor <init>(eu.vendeli.tgbot.types.internal/ImplicitFile, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Audio.<init>|<init>(eu.vendeli.tgbot.types.internal.ImplicitFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Int?;kotlin.String?;kotlin.String?){}[0]
-        constructor <init>(eu.vendeli.tgbot.types.internal/InputFile, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Audio.<init>|<init>(eu.vendeli.tgbot.types.internal.InputFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Int?;kotlin.String?;kotlin.String?){}[0]
-        constructor <init>(kotlin/String, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/String? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Audio.<init>|<init>(kotlin.String;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Int?;kotlin.String?;kotlin.String?){}[0]
 
         final val caption // eu.vendeli.tgbot.types.media/InputMedia.Audio.caption|{}caption[0]
             final fun <get-caption>(): kotlin/String? // eu.vendeli.tgbot.types.media/InputMedia.Audio.caption.<get-caption>|<get-caption>(){}[0]
@@ -11748,8 +11804,6 @@ sealed class eu.vendeli.tgbot.types.media/InputMedia : eu.vendeli.tgbot.interfac
 
     final class Document : eu.vendeli.tgbot.types.media/InputMedia { // eu.vendeli.tgbot.types.media/InputMedia.Document|null[0]
         constructor <init>(eu.vendeli.tgbot.types.internal/ImplicitFile, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Document.<init>|<init>(eu.vendeli.tgbot.types.internal.ImplicitFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Boolean?){}[0]
-        constructor <init>(eu.vendeli.tgbot.types.internal/InputFile, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Document.<init>|<init>(eu.vendeli.tgbot.types.internal.InputFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Boolean?){}[0]
-        constructor <init>(kotlin/String, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Document.<init>|<init>(kotlin.String;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Boolean?){}[0]
 
         final val caption // eu.vendeli.tgbot.types.media/InputMedia.Document.caption|{}caption[0]
             final fun <get-caption>(): kotlin/String? // eu.vendeli.tgbot.types.media/InputMedia.Document.caption.<get-caption>|<get-caption>(){}[0]
@@ -11796,8 +11850,6 @@ sealed class eu.vendeli.tgbot.types.media/InputMedia : eu.vendeli.tgbot.interfac
 
     final class Photo : eu.vendeli.tgbot.types.media/InputMedia { // eu.vendeli.tgbot.types.media/InputMedia.Photo|null[0]
         constructor <init>(eu.vendeli.tgbot.types.internal/ImplicitFile, kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Photo.<init>|<init>(eu.vendeli.tgbot.types.internal.ImplicitFile;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Boolean?;kotlin.Boolean?){}[0]
-        constructor <init>(eu.vendeli.tgbot.types.internal/InputFile, kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Photo.<init>|<init>(eu.vendeli.tgbot.types.internal.InputFile;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Boolean?;kotlin.Boolean?){}[0]
-        constructor <init>(kotlin/String, kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Photo.<init>|<init>(kotlin.String;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Boolean?;kotlin.Boolean?){}[0]
 
         final val caption // eu.vendeli.tgbot.types.media/InputMedia.Photo.caption|{}caption[0]
             final fun <get-caption>(): kotlin/String? // eu.vendeli.tgbot.types.media/InputMedia.Photo.caption.<get-caption>|<get-caption>(){}[0]
@@ -11842,14 +11894,14 @@ sealed class eu.vendeli.tgbot.types.media/InputMedia : eu.vendeli.tgbot.interfac
     }
 
     final class Video : eu.vendeli.tgbot.types.media/InputMedia { // eu.vendeli.tgbot.types.media/InputMedia.Video|null[0]
-        constructor <init>(eu.vendeli.tgbot.types.internal/ImplicitFile, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Video.<init>|<init>(eu.vendeli.tgbot.types.internal.ImplicitFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?){}[0]
-        constructor <init>(eu.vendeli.tgbot.types.internal/InputFile, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Video.<init>|<init>(eu.vendeli.tgbot.types.internal.InputFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?){}[0]
-        constructor <init>(kotlin/String, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Video.<init>|<init>(kotlin.String;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?){}[0]
+        constructor <init>(eu.vendeli.tgbot.types.internal/ImplicitFile, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlinx.datetime/Instant? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputMedia.Video.<init>|<init>(eu.vendeli.tgbot.types.internal.ImplicitFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlinx.datetime.Instant?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?){}[0]
 
         final val caption // eu.vendeli.tgbot.types.media/InputMedia.Video.caption|{}caption[0]
             final fun <get-caption>(): kotlin/String? // eu.vendeli.tgbot.types.media/InputMedia.Video.caption.<get-caption>|<get-caption>(){}[0]
         final val captionEntities // eu.vendeli.tgbot.types.media/InputMedia.Video.captionEntities|{}captionEntities[0]
             final fun <get-captionEntities>(): kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? // eu.vendeli.tgbot.types.media/InputMedia.Video.captionEntities.<get-captionEntities>|<get-captionEntities>(){}[0]
+        final val cover // eu.vendeli.tgbot.types.media/InputMedia.Video.cover|{}cover[0]
+            final fun <get-cover>(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.media/InputMedia.Video.cover.<get-cover>|<get-cover>(){}[0]
         final val duration // eu.vendeli.tgbot.types.media/InputMedia.Video.duration|{}duration[0]
             final fun <get-duration>(): kotlin/Int? // eu.vendeli.tgbot.types.media/InputMedia.Video.duration.<get-duration>|<get-duration>(){}[0]
         final val hasSpoiler // eu.vendeli.tgbot.types.media/InputMedia.Video.hasSpoiler|{}hasSpoiler[0]
@@ -11860,6 +11912,8 @@ sealed class eu.vendeli.tgbot.types.media/InputMedia : eu.vendeli.tgbot.interfac
             final fun <get-parseMode>(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.media/InputMedia.Video.parseMode.<get-parseMode>|<get-parseMode>(){}[0]
         final val showCaptionAboveMedia // eu.vendeli.tgbot.types.media/InputMedia.Video.showCaptionAboveMedia|{}showCaptionAboveMedia[0]
             final fun <get-showCaptionAboveMedia>(): kotlin/Boolean? // eu.vendeli.tgbot.types.media/InputMedia.Video.showCaptionAboveMedia.<get-showCaptionAboveMedia>|<get-showCaptionAboveMedia>(){}[0]
+        final val startTimestamp // eu.vendeli.tgbot.types.media/InputMedia.Video.startTimestamp|{}startTimestamp[0]
+            final fun <get-startTimestamp>(): kotlinx.datetime/Instant? // eu.vendeli.tgbot.types.media/InputMedia.Video.startTimestamp.<get-startTimestamp>|<get-startTimestamp>(){}[0]
         final val supportsStreaming // eu.vendeli.tgbot.types.media/InputMedia.Video.supportsStreaming|{}supportsStreaming[0]
             final fun <get-supportsStreaming>(): kotlin/Boolean? // eu.vendeli.tgbot.types.media/InputMedia.Video.supportsStreaming.<get-supportsStreaming>|<get-supportsStreaming>(){}[0]
         final val width // eu.vendeli.tgbot.types.media/InputMedia.Video.width|{}width[0]
@@ -11873,17 +11927,19 @@ sealed class eu.vendeli.tgbot.types.media/InputMedia : eu.vendeli.tgbot.interfac
             final fun <set-thumbnail>(eu.vendeli.tgbot.types.internal/ImplicitFile?) // eu.vendeli.tgbot.types.media/InputMedia.Video.thumbnail.<set-thumbnail>|<set-thumbnail>(eu.vendeli.tgbot.types.internal.ImplicitFile?){}[0]
 
         final fun component1(): eu.vendeli.tgbot.types.internal/ImplicitFile // eu.vendeli.tgbot.types.media/InputMedia.Video.component1|component1(){}[0]
-        final fun component10(): kotlin/Boolean? // eu.vendeli.tgbot.types.media/InputMedia.Video.component10|component10(){}[0]
+        final fun component10(): kotlin/Int? // eu.vendeli.tgbot.types.media/InputMedia.Video.component10|component10(){}[0]
         final fun component11(): kotlin/Boolean? // eu.vendeli.tgbot.types.media/InputMedia.Video.component11|component11(){}[0]
+        final fun component12(): kotlin/Boolean? // eu.vendeli.tgbot.types.media/InputMedia.Video.component12|component12(){}[0]
+        final fun component13(): kotlin/Boolean? // eu.vendeli.tgbot.types.media/InputMedia.Video.component13|component13(){}[0]
         final fun component2(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.media/InputMedia.Video.component2|component2(){}[0]
-        final fun component3(): kotlin/String? // eu.vendeli.tgbot.types.media/InputMedia.Video.component3|component3(){}[0]
-        final fun component4(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.media/InputMedia.Video.component4|component4(){}[0]
-        final fun component5(): kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? // eu.vendeli.tgbot.types.media/InputMedia.Video.component5|component5(){}[0]
-        final fun component6(): kotlin/Int? // eu.vendeli.tgbot.types.media/InputMedia.Video.component6|component6(){}[0]
-        final fun component7(): kotlin/Int? // eu.vendeli.tgbot.types.media/InputMedia.Video.component7|component7(){}[0]
+        final fun component3(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.media/InputMedia.Video.component3|component3(){}[0]
+        final fun component4(): kotlinx.datetime/Instant? // eu.vendeli.tgbot.types.media/InputMedia.Video.component4|component4(){}[0]
+        final fun component5(): kotlin/String? // eu.vendeli.tgbot.types.media/InputMedia.Video.component5|component5(){}[0]
+        final fun component6(): eu.vendeli.tgbot.types/ParseMode? // eu.vendeli.tgbot.types.media/InputMedia.Video.component6|component6(){}[0]
+        final fun component7(): kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? // eu.vendeli.tgbot.types.media/InputMedia.Video.component7|component7(){}[0]
         final fun component8(): kotlin/Int? // eu.vendeli.tgbot.types.media/InputMedia.Video.component8|component8(){}[0]
-        final fun component9(): kotlin/Boolean? // eu.vendeli.tgbot.types.media/InputMedia.Video.component9|component9(){}[0]
-        final fun copy(eu.vendeli.tgbot.types.internal/ImplicitFile = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.media/InputMedia.Video // eu.vendeli.tgbot.types.media/InputMedia.Video.copy|copy(eu.vendeli.tgbot.types.internal.ImplicitFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?){}[0]
+        final fun component9(): kotlin/Int? // eu.vendeli.tgbot.types.media/InputMedia.Video.component9|component9(){}[0]
+        final fun copy(eu.vendeli.tgbot.types.internal/ImplicitFile = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlinx.datetime/Instant? = ..., kotlin/String? = ..., eu.vendeli.tgbot.types/ParseMode? = ..., kotlin.collections/List<eu.vendeli.tgbot.types.msg/MessageEntity>? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.media/InputMedia.Video // eu.vendeli.tgbot.types.media/InputMedia.Video.copy|copy(eu.vendeli.tgbot.types.internal.ImplicitFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlinx.datetime.Instant?;kotlin.String?;eu.vendeli.tgbot.types.ParseMode?;kotlin.collections.List<eu.vendeli.tgbot.types.msg.MessageEntity>?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?;kotlin.Boolean?;kotlin.Boolean?){}[0]
         final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.media/InputMedia.Video.equals|equals(kotlin.Any?){}[0]
         final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.media/InputMedia.Video.hashCode|hashCode(){}[0]
         final fun toString(): kotlin/String // eu.vendeli.tgbot.types.media/InputMedia.Video.toString|toString(){}[0]
@@ -11944,14 +12000,16 @@ sealed class eu.vendeli.tgbot.types.media/InputPaidMedia : eu.vendeli.tgbot.inte
     }
 
     final class Video : eu.vendeli.tgbot.types.media/InputPaidMedia { // eu.vendeli.tgbot.types.media/InputPaidMedia.Video|null[0]
-        constructor <init>(eu.vendeli.tgbot.types.internal/ImplicitFile, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.<init>|<init>(eu.vendeli.tgbot.types.internal.ImplicitFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?){}[0]
-        constructor <init>(eu.vendeli.tgbot.types.internal/InputFile, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.<init>|<init>(eu.vendeli.tgbot.types.internal.InputFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?){}[0]
-        constructor <init>(kotlin/String, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.<init>|<init>(kotlin.String;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?){}[0]
+        constructor <init>(eu.vendeli.tgbot.types.internal/ImplicitFile, eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlinx.datetime/Instant? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.<init>|<init>(eu.vendeli.tgbot.types.internal.ImplicitFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlinx.datetime.Instant?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?){}[0]
 
+        final val cover // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.cover|{}cover[0]
+            final fun <get-cover>(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.cover.<get-cover>|<get-cover>(){}[0]
         final val duration // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.duration|{}duration[0]
             final fun <get-duration>(): kotlin/Int? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.duration.<get-duration>|<get-duration>(){}[0]
         final val height // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.height|{}height[0]
             final fun <get-height>(): kotlin/Int? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.height.<get-height>|<get-height>(){}[0]
+        final val startTimestamp // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.startTimestamp|{}startTimestamp[0]
+            final fun <get-startTimestamp>(): kotlinx.datetime/Instant? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.startTimestamp.<get-startTimestamp>|<get-startTimestamp>(){}[0]
         final val supportsStreaming // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.supportsStreaming|{}supportsStreaming[0]
             final fun <get-supportsStreaming>(): kotlin/Boolean? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.supportsStreaming.<get-supportsStreaming>|<get-supportsStreaming>(){}[0]
         final val width // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.width|{}width[0]
@@ -11966,11 +12024,13 @@ sealed class eu.vendeli.tgbot.types.media/InputPaidMedia : eu.vendeli.tgbot.inte
 
         final fun component1(): eu.vendeli.tgbot.types.internal/ImplicitFile // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.component1|component1(){}[0]
         final fun component2(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.component2|component2(){}[0]
-        final fun component3(): kotlin/Int? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.component3|component3(){}[0]
-        final fun component4(): kotlin/Int? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.component4|component4(){}[0]
+        final fun component3(): eu.vendeli.tgbot.types.internal/ImplicitFile? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.component3|component3(){}[0]
+        final fun component4(): kotlinx.datetime/Instant? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.component4|component4(){}[0]
         final fun component5(): kotlin/Int? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.component5|component5(){}[0]
-        final fun component6(): kotlin/Boolean? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.component6|component6(){}[0]
-        final fun copy(eu.vendeli.tgbot.types.internal/ImplicitFile = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.media/InputPaidMedia.Video // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.copy|copy(eu.vendeli.tgbot.types.internal.ImplicitFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?){}[0]
+        final fun component6(): kotlin/Int? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.component6|component6(){}[0]
+        final fun component7(): kotlin/Int? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.component7|component7(){}[0]
+        final fun component8(): kotlin/Boolean? // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.component8|component8(){}[0]
+        final fun copy(eu.vendeli.tgbot.types.internal/ImplicitFile = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., eu.vendeli.tgbot.types.internal/ImplicitFile? = ..., kotlinx.datetime/Instant? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Int? = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.media/InputPaidMedia.Video // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.copy|copy(eu.vendeli.tgbot.types.internal.ImplicitFile;eu.vendeli.tgbot.types.internal.ImplicitFile?;eu.vendeli.tgbot.types.internal.ImplicitFile?;kotlinx.datetime.Instant?;kotlin.Int?;kotlin.Int?;kotlin.Int?;kotlin.Boolean?){}[0]
         final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.equals|equals(kotlin.Any?){}[0]
         final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.hashCode|hashCode(){}[0]
         final fun toString(): kotlin/String // eu.vendeli.tgbot.types.media/InputPaidMedia.Video.toString|toString(){}[0]
@@ -12706,6 +12766,35 @@ sealed class eu.vendeli.tgbot.types.stars/TransactionPartner { // eu.vendeli.tgb
 
         final object Companion { // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.Companion|null[0]
             final fun serializer(): kotlinx.serialization/KSerializer<eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram> // eu.vendeli.tgbot.types.stars/TransactionPartner.AffiliateProgram.Companion.serializer|serializer(){}[0]
+        }
+    }
+
+    final class ChatPartner : eu.vendeli.tgbot.types.stars/TransactionPartner { // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner|null[0]
+        constructor <init>(eu.vendeli.tgbot.types.chat/Chat, eu.vendeli.tgbot.types.user/Gift? = ...) // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.<init>|<init>(eu.vendeli.tgbot.types.chat.Chat;eu.vendeli.tgbot.types.user.Gift?){}[0]
+
+        final val chat // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.chat|{}chat[0]
+            final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.chat.<get-chat>|<get-chat>(){}[0]
+        final val gift // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.gift|{}gift[0]
+            final fun <get-gift>(): eu.vendeli.tgbot.types.user/Gift? // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.gift.<get-gift>|<get-gift>(){}[0]
+
+        final fun component1(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.component1|component1(){}[0]
+        final fun component2(): eu.vendeli.tgbot.types.user/Gift? // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.component2|component2(){}[0]
+        final fun copy(eu.vendeli.tgbot.types.chat/Chat = ..., eu.vendeli.tgbot.types.user/Gift? = ...): eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.copy|copy(eu.vendeli.tgbot.types.chat.Chat;eu.vendeli.tgbot.types.user.Gift?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.toString|toString(){}[0]
+
+        final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner> { // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.$serializer|null[0]
+            final val descriptor // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.$serializer.descriptor|{}descriptor[0]
+                final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+            final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.$serializer.childSerializers|childSerializers(){}[0]
+            final fun deserialize(kotlinx.serialization.encoding/Decoder): eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+            final fun serialize(kotlinx.serialization.encoding/Encoder, eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner) // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;eu.vendeli.tgbot.types.stars.TransactionPartner.ChatPartner){}[0]
+        }
+
+        final object Companion { // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.Companion|null[0]
+            final fun serializer(): kotlinx.serialization/KSerializer<eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner> // eu.vendeli.tgbot.types.stars/TransactionPartner.ChatPartner.Companion.serializer|serializer(){}[0]
         }
     }
 

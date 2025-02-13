@@ -29,9 +29,7 @@ class SendAudioAction(
     override val returnType = getReturnType()
     override val options = AudioOptions()
     override val beforeReq: () -> Unit = {
-        options.thumbnail?.let {
-            handleImplicitFile(it, "thumbnail")
-        }
+        handleImplicitFile(options::thumbnail)
     }
 
     init {

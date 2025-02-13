@@ -2,7 +2,9 @@ package eu.vendeli.tgbot.types.stars
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.media.PaidMedia
+import eu.vendeli.tgbot.types.user.Gift
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
@@ -69,5 +71,13 @@ sealed class TransactionPartner {
     data class AffiliateProgram(
         val sponsorUser: User? = null,
         val commissionPerMille: Int,
+    ) : TransactionPartner()
+
+    @Serializable
+    @SerialName("chat")
+    @TgAPI.Name("TransactionPartnerChat")
+    data class ChatPartner(
+        val chat: Chat,
+        val gift: Gift? = null,
     ) : TransactionPartner()
 }

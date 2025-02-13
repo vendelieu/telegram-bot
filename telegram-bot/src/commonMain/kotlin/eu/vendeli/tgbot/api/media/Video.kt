@@ -29,9 +29,8 @@ class SendVideoAction(
     override val returnType = getReturnType()
     override val options = VideoOptions()
     override val beforeReq: () -> Unit = {
-        options.thumbnail?.let {
-            handleImplicitFile(it, "thumbnail")
-        }
+        handleImplicitFile(options::thumbnail)
+        handleImplicitFile(options::cover)
     }
 
     init {
