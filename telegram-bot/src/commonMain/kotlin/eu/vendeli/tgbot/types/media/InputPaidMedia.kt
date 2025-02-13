@@ -3,14 +3,14 @@ package eu.vendeli.tgbot.types.media
 import eu.vendeli.tgbot.interfaces.helper.ImplicitMediaData
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.internal.InputFile
-import eu.vendeli.tgbot.utils.serde.InstantSerializer
+import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import eu.vendeli.tgbot.utils.toImplicitFile
-import kotlinx.datetime.Instant
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.serializer
+import kotlin.time.Duration
 
 @Serializable
 @Suppress("OVERRIDE_DEPRECATION")
@@ -35,8 +35,8 @@ sealed class InputPaidMedia : ImplicitMediaData {
         override var media: ImplicitFile,
         override var thumbnail: ImplicitFile? = null,
         val cover: ImplicitFile? = null,
-        @Serializable(InstantSerializer::class)
-        val startTimestamp: Instant? = null,
+        @Serializable(DurationSerializer::class)
+        val startTimestamp: Duration? = null,
         val width: Int? = null,
         val height: Int? = null,
         val duration: Int? = null,

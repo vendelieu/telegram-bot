@@ -3,9 +3,9 @@ package eu.vendeli.tgbot.types.internal.options
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.ReplyParameters
 import eu.vendeli.tgbot.types.internal.ImplicitFile
-import eu.vendeli.tgbot.utils.serde.InstantSerializer
-import kotlinx.datetime.Instant
+import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import kotlinx.serialization.Serializable
+import kotlin.time.Duration
 
 @Serializable
 data class VideoOptions(
@@ -14,8 +14,8 @@ data class VideoOptions(
     var width: Int? = null,
     var supportsStreaming: Boolean? = null,
     var cover: ImplicitFile? = null,
-    @Serializable(InstantSerializer::class)
-    var startTimestamp: Instant? = null,
+    @Serializable(DurationSerializer::class)
+    var startTimestamp: Duration? = null,
     override var thumbnail: ImplicitFile? = null,
     override var showCaptionAboveMedia: Boolean? = null,
     override var parseMode: ParseMode? = null,

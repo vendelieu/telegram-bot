@@ -4,13 +4,13 @@ import eu.vendeli.tgbot.interfaces.helper.ImplicitMediaData
 import eu.vendeli.tgbot.types.ParseMode
 import eu.vendeli.tgbot.types.internal.ImplicitFile
 import eu.vendeli.tgbot.types.msg.MessageEntity
-import eu.vendeli.tgbot.utils.serde.InstantSerializer
-import kotlinx.datetime.Instant
+import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.serializer
+import kotlin.time.Duration
 
 /**
  * This object represents the content of a media message to be sent. It should be one of
@@ -72,8 +72,8 @@ sealed class InputMedia : ImplicitMediaData {
         override var media: ImplicitFile,
         override var thumbnail: ImplicitFile? = null,
         val cover: ImplicitFile? = null,
-        @Serializable(InstantSerializer::class)
-        val startTimestamp: Instant? = null,
+        @Serializable(DurationSerializer::class)
+        val startTimestamp: Duration? = null,
         val caption: String? = null,
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,

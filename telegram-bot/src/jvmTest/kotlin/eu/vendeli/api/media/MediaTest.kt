@@ -95,7 +95,7 @@ class MediaTest : BotTestContext() {
                 shouldNotBeNull()
                 text.shouldBeNull()
                 animation.shouldNotBeNull()
-                animation?.fileName.shouldNotBeNull().shouldNotBeBlank()
+                animation.fileName.shouldNotBeNull().shouldNotBeBlank()
             }
         }
     }
@@ -113,7 +113,7 @@ class MediaTest : BotTestContext() {
                 shouldNotBeNull()
                 text.shouldBeNull()
                 document.shouldNotBeNull()
-                document!!.fileName.shouldNotBeNull().shouldNotBeBlank()
+                document.fileName.shouldNotBeNull().shouldNotBeBlank()
             }
         }
     }
@@ -131,7 +131,7 @@ class MediaTest : BotTestContext() {
                 shouldNotBeNull()
                 text.shouldBeNull()
                 video.shouldNotBeNull()
-                video?.fileName.shouldNotBeNull().shouldNotBeBlank()
+                video.fileName.shouldNotBeNull().shouldNotBeBlank()
             }
         }
     }
