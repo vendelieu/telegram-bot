@@ -16,7 +16,7 @@ class GiftTest : BotTestContext() {
     @Test
     suspend fun `send gift test`() {
         val available = getAvailableGifts().sendReturning(bot).shouldSuccess()
-        val result = sendGift(TG_ID, available.gifts.first().id) {
+        sendGift(available.gifts.first().id, TG_ID) {
             "test"
         }.sendReturning(bot).shouldFailure() shouldContainInDescription "BALANCE_TOO_LOW"
     }

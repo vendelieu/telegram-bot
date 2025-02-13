@@ -125,6 +125,10 @@ internal fun KSFunctionDeclaration.parseAnnotatedArgParser(): String? = annotati
         }?.arguments
         ?.parseArgParser()
 
+internal fun KSFunctionDeclaration.isThereAnnotation(vararg annotation: String): Boolean = annotations.any {
+    it.shortName.asString() in annotation
+}
+
 /*
  argument parsers:
 */

@@ -2,6 +2,7 @@ package eu.vendeli.tgbot.types.internal
 
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
+import eu.vendeli.tgbot.utils.TgException
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
@@ -62,7 +63,7 @@ sealed class Identifier {
             return when {
                 content.toLongOrNull() != null -> Long.serializer()
                 content.isNotBlank() -> String.serializer()
-                else -> error("Unsupported identifier - $content")
+                else -> throw TgException("Unsupported identifier - $content")
             }
         }
     }

@@ -58,7 +58,7 @@ abstract class BotTestContext(
     private val INT_ITERATOR = (1..Int.MAX_VALUE).iterator()
     private val RANDOM_INST: Random get() = Random(CUR_INSTANT.epochSeconds)
     internal lateinit var bot: TelegramBot
-    private val updatesAction = spyk(GET_UPDATES_ACTION)
+    internal val updatesAction = spyk(GET_UPDATES_ACTION)
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
     protected val TG_ID by lazy { System.getenv("TELEGRAM_ID").toLong() }

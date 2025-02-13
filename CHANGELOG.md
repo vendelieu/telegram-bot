@@ -1,5 +1,12 @@
 # Telegram-bot (KtGram) Changelog
 
+## 7.9.0
+
+* Supported Telegram API [8.3](https://core.telegram.org/bots/api-changelog#february-12-2025).
+* Added `isAccessible` and `accessibleOrNull()` to `MaybeInaccessibleMessage` to make easier handling.
+* Added `handleLoggingProvider` parameter to plugin, to give option to disable handling of logging provider.
+* Added warnings when helper annotations used for inappropriate handlers.
+
 ## 7.8.0
 
 * Supported Telegram API [8.2](https://core.telegram.org/bots/api-changelog#january-1-2025).

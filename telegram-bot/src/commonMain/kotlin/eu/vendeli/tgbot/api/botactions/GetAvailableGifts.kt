@@ -15,7 +15,7 @@ class GetAvailableGiftsAction : SimpleAction<Gifts>() {
 }
 
 /**
- * Returns the list of gifts that can be sent by the bot to users. Requires no parameters. Returns a Gifts object.
+ * Returns the list of gifts that can be sent by the bot to users and channel chats. Requires no parameters. Returns a Gifts object.
  *
  * [Api reference](https://core.telegram.org/bots/api#getavailablegifts)
  *

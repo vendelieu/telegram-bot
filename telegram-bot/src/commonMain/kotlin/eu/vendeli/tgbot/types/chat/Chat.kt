@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.chat
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.internal.IdLong
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -44,5 +45,6 @@ data class Chat(
     val lastName: String? = null,
     val isForum: Boolean? = null,
 ) : IdLong {
+    @TgAPI.Ignore
     val fullName = (firstName?.plus(" ") ?: "") + (lastName ?: "")
 }

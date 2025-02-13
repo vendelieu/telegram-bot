@@ -482,12 +482,12 @@ public inline fun TelegramBot.savePreparedInlineMessage(userId: Long, noinline r
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.sendGift(
-  userId: Long,
   giftId: String,
+  userId: Long? = null,
   payForUpgrade: Boolean? = null,
   textParseMode: ParseMode? = null,
   noinline text: () -> String?,
-): SendGiftAction = eu.vendeli.tgbot.api.botactions.sendGift(userId, giftId, payForUpgrade, textParseMode, text)
+): SendGiftAction = eu.vendeli.tgbot.api.botactions.sendGift(giftId, userId, payForUpgrade, textParseMode, text)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.setMyCommands(

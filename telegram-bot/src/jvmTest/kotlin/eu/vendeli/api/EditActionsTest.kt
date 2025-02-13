@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardButton
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
+import eu.vendeli.tgbot.utils.toImplicitFile
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -59,13 +60,13 @@ class EditActionsTest : BotTestContext() {
 
         val result = editMessageMedia(
             msg.messageId,
-            InputMedia.Photo(RandomPicResource.RANDOM_PIC_URL),
+            InputMedia.Photo(RandomPicResource.RANDOM_PIC_URL.toImplicitFile()),
         ).sendReq().shouldSuccess()
 
         with(result) {
             text.shouldBeNull()
             photo.shouldNotBeNull()
-            photo?.first()?.fileUniqueId shouldNotBe msg.photo?.first()?.fileUniqueId
+            photo.first().fileUniqueId shouldNotBe msg.photo?.first()?.fileUniqueId
         }
     }
 

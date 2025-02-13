@@ -21,7 +21,6 @@ import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.types.shouldBeTypeOf
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import kotlinx.serialization.encodeToString
 
 class SerdeIssuesTest : BotTestContext() {
     @Test
@@ -132,5 +131,25 @@ class SerdeIssuesTest : BotTestContext() {
                 MessageOrigin.serializer(),
                 "{\"type\":\"user\",\"date\":1733529723,\"sender_user\":{\"id\":1,\"is_bot\":false,\"first_name\":\"Test\"}}",
             ).type shouldBe "user"
+
+        val messageWithOrigin =
+            Message(-1, chat = DUMB_CHAT, date = instant, forwardOrigin = MessageOrigin.UserOrigin(instant, DUMB_USER))
+        serde.encodeToString(messageWithOrigin) shouldContain "\"type\":\"user\""
+
+        serde
+            .decodeFromString<Message>(
+                """
+            {"message_id":-1,
+            "date":1,
+            "chat":{"id":-1,"type":"group","title":"test","full_name":""},
+            "forward_origin":{
+                "type":"user","date":1,
+                "sender_user":{"id":1,"is_bot":false,"first_name":"Test"}
+              }
+            }
+                """.trimIndent(),
+            ).forwardOrigin
+            .shouldNotBeNull()
+            .type shouldBe "user"
     }
 }

@@ -3,10 +3,11 @@ package eu.vendeli.tgbot.core
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
-import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.internal.ActivitiesData
 import eu.vendeli.tgbot.types.internal.FailedUpdate
+import eu.vendeli.tgbot.types.internal.InvocationMeta
 import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.internal.TgInvocationKind
 import eu.vendeli.tgbot.types.internal.UpdateType
 import eu.vendeli.tgbot.types.internal.getOrNull
 import eu.vendeli.tgbot.types.internal.userOrNull
@@ -16,6 +17,7 @@ import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.Invocable
 import eu.vendeli.tgbot.utils.InvocationLambda
+import eu.vendeli.tgbot.utils.TgException
 import eu.vendeli.tgbot.utils.checkIsGuarded
 import eu.vendeli.tgbot.utils.checkIsLimited
 import eu.vendeli.tgbot.utils.debug
@@ -30,12 +32,12 @@ import eu.vendeli.tgbot.utils.process
 import eu.vendeli.tgbot.utils.serde
 import eu.vendeli.tgbot.utils.toJsonElement
 import eu.vendeli.tgbot.utils.warn
+import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.util.logging.trace
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.channels.Channel
@@ -58,9 +60,9 @@ class TgUpdateHandler internal constructor(
     private var handlingBehaviour: HandlingBehaviourBlock = DEFAULT_HANDLING_BEHAVIOUR
     private val updatesFlow = MutableSharedFlow<ProcessedUpdate>(extraBufferCapacity = 10)
 
-    internal val rootJob = SupervisorJob()
+    internal val handlerJob = Job(bot.rootJob)
     internal val handlerScope = bot.config.updatesListener.run {
-        CoroutineScope(rootJob + dispatcher + CoroutineName("TgBot"))
+        CoroutineScope(handlerJob + dispatcher + CoroutineName("TgBot"))
     }
     internal val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
     internal val logger = getLogger(bot.config.logging.botLogLevel, this::class.fqName)
@@ -72,27 +74,32 @@ class TgUpdateHandler internal constructor(
 
     /**
      * Update flow being processed by the handler.
+     * @since 7.4.0
      */
     @ExperimentalFeature
     val flow: Flow<ProcessedUpdate> get() = updatesFlow
 
     /**
      * Previous invoked function qualified path (i.e., full class path).
+     * @since 7.0.0
      */
     @KtGramInternal
     val userClassSteps = mutableMapOf<Long, String>()
 
-    private fun collectUpdates(types: List<UpdateType>?) = bot.config.updatesListener.run {
+    private var processingEx: TgException? = null
+    private fun collectUpdates(types: List<UpdateType>?) = handlerScope.launch(Job(handlerJob)) {
+        val cfg = bot.config.updatesListener
         logger.debug { "Starting updates collector." }
-        handlerScope.launch {
-            var lastUpdateId = 0
-            val getUpdatesAction = GET_UPDATES_ACTION.options {
-                allowedUpdates = types
-                timeout = updatesPollingTimeout
-            }
 
-            while (isActive) {
-                logger.trace { "Running listener with offset - $lastUpdateId" }
+        var lastUpdateId = 0
+        val getUpdatesAction = GET_UPDATES_ACTION.options {
+            allowedUpdates = types
+            timeout = cfg.updatesPollingTimeout
+        }
+
+        while (isActive) {
+            logger.trace { "Running listener with offset - $lastUpdateId" }
+            try {
                 getUpdatesAction
                     .apply {
                         parameters["offset"] = lastUpdateId.toJsonElement()
@@ -102,7 +109,10 @@ class TgUpdateHandler internal constructor(
                         updatesFlow.emit(it)
                         lastUpdateId = it.updateId + 1
                     }
-                pullingDelay.takeIf { it > 0 }?.let { delay(it) }
+                cfg.pullingDelay.takeIf { it > 0 }?.let { delay(it) }
+            } catch (e: HttpRequestTimeoutException) {
+                stopListener()
+                processingEx = TgException("Connection timeout", e)
             }
         }
     }
@@ -128,6 +138,7 @@ class TgUpdateHandler internal constructor(
         collectUpdates(allowedUpdates)
         logger.info { "Starting long-polling listener." }
         processUpdates().join()
+        processingEx?.also { throw it }
     }
 
     /**
@@ -135,7 +146,7 @@ class TgUpdateHandler internal constructor(
      *
      */
     fun stopListener() {
-        handlerScope.coroutineContext.cancelChildren()
+        handlerJob.cancelChildren()
         logger.debug { "The listener is stopped." }
     }
 
@@ -179,8 +190,7 @@ class TgUpdateHandler internal constructor(
      * @param update
      */
     suspend fun handle(update: ProcessedUpdate): Unit = update.run {
-        logger.debug { "Handling update: ${update.toJsonString()}" }
-        logger.trace { "Processed into: $update" }
+        logger.trace { "Handling update: ${update.toJsonString()}\nProcessed into: $update" }
         val user = userOrNull
         // check general user limits
         if (checkIsLimited(bot.config.rateLimiter.limits, user?.id))
@@ -228,54 +238,49 @@ class TgUpdateHandler internal constructor(
         }
 
         // invoke update type handler if there's
-        activities.updateTypeHandlers[type]?.invokeCatching(this, params, true)
+        activities.updateTypeHandlers[type]?.invokeCatching(this, params, TgInvocationKind.TYPE)
 
         when {
-            invocation != null -> invocation.invokeCatching(this, user, params)
+            invocation != null -> invocation.first.invokeCatching(
+                this,
+                params,
+                TgInvocationKind.ACTIVITY,
+                invocation.second,
+            )
 
             activities.unprocessedHandler != null ->
                 activities.unprocessedHandler!!
-                    .invokeCatching(this, params)
+                    .invokeCatching(this, params, TgInvocationKind.UNPROCESSED)
 
             else -> logger.warn { "update: $update not handled." }
         }
     }
 
-    private suspend fun Invocable.invokeCatching(update: ProcessedUpdate, user: User?, params: Map<String, String>) {
-        first
-            .runCatching {
-                invoke(bot.config.classManager, update, user, bot, params)
-            }.onFailure {
-                logger.error(
-                    it,
-                ) {
-                    "Method ${second.qualifier}:${second.function} invocation error at handling update: ${update.toJsonString()}"
-                }
-                handleFailure(update, it)
-            }.onSuccess {
-                logger.info {
-                    "Handled update#${update.updateId} to method ${second.qualifier + "::" + second.function}"
-                }
-            }
-        user?.also { userClassSteps[it.id] = second.qualifier }
-    }
-
     private suspend fun InvocationLambda.invokeCatching(
         update: ProcessedUpdate,
-        params: Map<String, String>,
-        isTypeUpdate: Boolean = false,
-    ) = runCatching {
-        invoke(bot.config.classManager, update, update.userOrNull, bot, params)
-    }.onFailure {
-        logger.error(it) {
-            (if (isTypeUpdate) "UpdateTypeHandler(${update.type})" else "UnprocessedHandler") +
-                " invocation error at handling update: ${update.toJsonString()}"
+        parameters: Map<String, String>,
+        kind: TgInvocationKind,
+        meta: InvocationMeta? = null,
+    ) {
+        val user = update.userOrNull
+        val target = when (kind) {
+            TgInvocationKind.ACTIVITY -> "Method ${meta?.qualifier}:${meta?.function}"
+            TgInvocationKind.TYPE -> "UpdateTypeHandler(${update.type})"
+            TgInvocationKind.UNPROCESSED -> "UnprocessedHandler"
         }
-        handleFailure(update, it)
-    }.onSuccess {
-        logger.info {
-            "Handled update#${update.updateId} to " +
-                if (isTypeUpdate) "UpdateTypeHandler(${update.type})" else "UnprocessedHandler"
+
+        runCatching {
+            invoke(bot.config.classManager, update, user, bot, parameters)
+        }.onFailure {
+            logger.error(it) {
+                "Invocation error at update handling in $target with update: ${update.toJsonString()}"
+            }
+            handleFailure(update, it)
+        }.onSuccess {
+            logger.info { "Handled update#${update.updateId} to $target" }
+        }
+        if (meta != null && user != null) {
+            userClassSteps[user.id] = meta.qualifier
         }
     }
 

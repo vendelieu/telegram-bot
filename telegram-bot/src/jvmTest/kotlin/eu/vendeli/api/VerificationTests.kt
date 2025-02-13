@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:function-naming")
+
 package eu.vendeli.api
 
 import BotTestContext

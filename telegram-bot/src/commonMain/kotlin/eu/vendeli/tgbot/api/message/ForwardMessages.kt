@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.internal.Identifier
 import eu.vendeli.tgbot.types.internal.options.ForwardMessageOptions
+import eu.vendeli.tgbot.types.internal.options.ForwardMessagesOptions
 import eu.vendeli.tgbot.types.msg.MessageId
 import eu.vendeli.tgbot.utils.encodeWith
 import eu.vendeli.tgbot.utils.getReturnType
@@ -24,7 +25,7 @@ class ForwardMessagesAction(
     @TgAPI.Name("forwardMessages")
     override val method = "forwardMessages"
     override val returnType = getReturnType()
-    override val options = ForwardMessageOptions()
+    override val options = ForwardMessagesOptions()
 
     init {
         parameters["from_chat_id"] = fromChatId.encodeWith(DynamicLookupSerializer)

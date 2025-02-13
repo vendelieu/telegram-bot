@@ -2,6 +2,7 @@ package eu.vendeli.tgbot.implementations
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.ctx.ClassManager
+import eu.vendeli.tgbot.utils.TgException
 import kotlin.reflect.KClass
 
 /**
@@ -14,7 +15,7 @@ actual class ClassManagerImpl : ClassManager {
     @Suppress("PropertyName", "ktlint:standard:backing-property-naming")
     val _INSTANCES: MutableMap<KClass<*>, Any> = mutableMapOf()
     override fun getInstance(kClass: KClass<*>, vararg initParams: Any?): Any = _INSTANCES[kClass]
-        ?: error("Class $kClass not found.")
+        ?: throw TgException("Class $kClass not found.")
 }
 
 fun TelegramBot.addInstances(block: MutableMap<KClass<*>, Any>.() -> Unit) {

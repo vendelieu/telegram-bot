@@ -59,9 +59,11 @@ class ApiProcessor(
         resolver
             .resolveSymbolsFromDir("$tgBaseDir/api")
             .filter { i ->
-                i.annotations.firstOrNull { it.shortName.getShortName() == "TgAPI" } == null
+                i.annotations.firstOrNull { it.shortName.getShortName() == TgAPI::class.simpleName!! } == null
             }.forEach {
-                logger.warn("${it.qualifiedName!!.asString()} not marked as Api.")
+                logger.invalid {
+                    "${it.qualifiedName!!.asString()} not marked with @TgApi."
+                }
             }
 
         val apiJson = Json.parseToJsonElement(File(apiFile).readText())

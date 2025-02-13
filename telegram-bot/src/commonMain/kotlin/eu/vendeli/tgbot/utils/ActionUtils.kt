@@ -18,6 +18,7 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.serializer
 import kotlin.jvm.JvmName
+import kotlin.reflect.KMutableProperty0
 
 @OptIn(InternalSerializationApi::class)
 @Suppress("UnusedReceiverParameter")
@@ -32,6 +33,13 @@ internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getRe
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun <R : Any> TgAction<R>.handleImplicitFile(input: ImplicitFile, fieldName: String) {
     parameters[fieldName] = input.transform(multipartData).file.toJsonElement()
+}
+
+@Suppress("NOTHING_TO_INLINE")
+internal inline fun <R : Any> TgAction<R>.handleImplicitFile(parameter: KMutableProperty0<ImplicitFile?>) {
+    parameter.get()?.let {
+        parameters[parameter.name] = it.transform(multipartData).file.toJsonElement()
+    }
 }
 
 @Suppress("DEPRECATION_ERROR", "NOTHING_TO_INLINE", "UNCHECKED_CAST")

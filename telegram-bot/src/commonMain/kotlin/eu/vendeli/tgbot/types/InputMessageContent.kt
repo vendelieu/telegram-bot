@@ -58,7 +58,6 @@ sealed class InputMessageContent {
         val phoneNumber: String,
         val firstName: String,
         val lastName: String? = null,
-        val userId: Long? = null,
         val vcard: String? = null,
     ) : InputMessageContent()
 

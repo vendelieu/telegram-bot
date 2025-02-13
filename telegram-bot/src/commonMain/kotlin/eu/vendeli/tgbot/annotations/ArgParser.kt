@@ -7,6 +7,8 @@ import kotlin.reflect.KClass
 /**
  * The annotation used to set an argument parsing mechanism that handlers will pick.
  *
+ * Supported by [CommandHandler], [CommandHandler.CallbackQuery], [CommonHandler].
+ *
  * @property argParser Custom argument parser.
  */
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION)

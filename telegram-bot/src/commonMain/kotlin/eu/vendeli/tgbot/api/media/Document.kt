@@ -29,9 +29,7 @@ class SendDocumentAction(
     override val returnType = getReturnType()
     override val options = DocumentOptions()
     override val beforeReq: () -> Unit = {
-        options.thumbnail?.let {
-            handleImplicitFile(it, "thumbnail")
-        }
+        handleImplicitFile(options::thumbnail)
     }
 
     init {

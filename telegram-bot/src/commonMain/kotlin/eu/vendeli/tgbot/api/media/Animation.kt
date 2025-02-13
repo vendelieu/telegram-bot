@@ -29,9 +29,7 @@ class SendAnimationAction(
     override val returnType = getReturnType()
     override val options = AnimationOptions()
     override val beforeReq: () -> Unit = {
-        options.thumbnail?.let {
-            handleImplicitFile(it, "thumbnail")
-        }
+        handleImplicitFile(options::thumbnail)
     }
 
     init {

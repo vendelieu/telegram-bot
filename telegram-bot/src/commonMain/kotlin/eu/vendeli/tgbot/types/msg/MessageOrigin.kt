@@ -30,14 +30,24 @@ sealed class MessageOrigin {
 
     @Serializable(InstantSerializer::class)
     abstract val date: Instant
+
+    @TgAPI.Ignore
     open val from: User?
         get() = null
+
+    @TgAPI.Ignore
     open val fromChat: Chat?
         get() = null
+
+    @TgAPI.Ignore
     open val fromMessageId: Long?
         get() = null
+
+    @TgAPI.Ignore
     open val signature: String?
         get() = null
+
+    @TgAPI.Ignore
     open val senderName: String?
         get() = null
 

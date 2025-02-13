@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.utils.CommandHandlers
 import eu.vendeli.tgbot.utils.CommonHandlers
 import eu.vendeli.tgbot.utils.InputHandlers
 import eu.vendeli.tgbot.utils.InvocationLambda
+import eu.vendeli.tgbot.utils.TgException
 import eu.vendeli.tgbot.utils.UpdateTypeHandlers
 import eu.vendeli.tgbot.utils._OperatingActivities
 import eu.vendeli.tgbot.utils.info
@@ -42,8 +43,9 @@ internal class ActivitiesData(
     }
 
     @Suppress("NOTHING_TO_INLINE")
-    private inline fun generatedActivitiesNotFound(): Nothing =
-        error("Generated activities not found, check if ksp plugin and ksp processor is connected correctly.")
+    private inline fun generatedActivitiesNotFound(): Nothing = throw TgException(
+        "Generated activities not found, check if ksp plugin and ksp processor is connected correctly.",
+    )
 
     private inline val <K, V : Any> Map<K, V>.logString: String
         get() = takeIf { isNotEmpty() }?.entries?.joinToString(",\n") {

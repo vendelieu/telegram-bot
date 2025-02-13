@@ -18,6 +18,7 @@ import eu.vendeli.ksp.utils.addMap
 import eu.vendeli.ksp.utils.buildMeta
 import eu.vendeli.ksp.utils.commonMatcherClass
 import eu.vendeli.ksp.utils.invocableType
+import eu.vendeli.ksp.utils.isThereAnnotation
 import eu.vendeli.ksp.utils.parseAnnotatedArgParser
 import eu.vendeli.ksp.utils.parseAnnotatedGuard
 import eu.vendeli.ksp.utils.parseAnnotatedRateLimits
@@ -25,9 +26,12 @@ import eu.vendeli.ksp.utils.parseAsCommandHandler
 import eu.vendeli.ksp.utils.parseAsInputHandler
 import eu.vendeli.ksp.utils.parseAsUpdateHandler
 import eu.vendeli.ksp.utils.toRateLimits
+import eu.vendeli.tgbot.annotations.ArgParser
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.CommandHandler.CallbackQuery
+import eu.vendeli.tgbot.annotations.Guard
 import eu.vendeli.tgbot.annotations.InputHandler
+import eu.vendeli.tgbot.annotations.RateLimits
 import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.internal.UpdateType
 
@@ -115,6 +119,9 @@ internal fun collectInputActivities(
         // priority while looking for util annotations: function > class > handler param
         val guardAnnotationData = function.parseAnnotatedGuard()
         val rateLimitsAnnotationData = function.parseAnnotatedRateLimits()
+        if (function.isThereAnnotation(ArgParser::class.simpleName!!)) {
+            logger.warn("Be aware that @ArgParser is not supported for input handlers")
+        }
 
         annotationData.first.forEach {
             logger.info("Input: $it --> ${function.qualifiedName?.asString()}")
@@ -154,6 +161,16 @@ internal fun collectUpdateTypeActivities(
             }.arguments
             .parseAsUpdateHandler()
 
+        if (function.isThereAnnotation(Guard::class.simpleName!!)) {
+            logger.warn("Be aware that @Guard is not supported for UpdateType handlers")
+        }
+        if (function.isThereAnnotation(ArgParser::class.simpleName!!)) {
+            logger.warn("Be aware that @ArgParser is not supported for UpdateType handlers")
+        }
+        if (function.isThereAnnotation(RateLimits::class.simpleName!!)) {
+            logger.warn("Be aware that @RateLimits is not supported for UpdateType handlers")
+        }
+
         annotationData.forEach {
             logger.info("UpdateType: ${it.name} --> ${function.qualifiedName?.asString()}")
             addStatement(
@@ -189,6 +206,12 @@ internal fun collectCommonActivities(
                                 val argParserAnnotationData =
                                     commonAnnotationData.funDeclaration.parseAnnotatedArgParser()
 
+                                if (commonAnnotationData.funDeclaration.isThereAnnotation(Guard::class.simpleName!!)) {
+                                    logger.warn(
+                                        "Be aware that @Guard is not supported for common handlers, please use filter instead",
+                                    )
+                                }
+
                                 addStatement(
                                     "%L to %L,",
                                     commonAnnotationData.value.toCommonMatcher(
@@ -220,6 +243,17 @@ internal fun collectUnprocessed(
     unprocessedHandlerSymbols: KSFunctionDeclaration?,
     ctx: CollectorsContext,
 ) = ctx.run {
+    if (unprocessedHandlerSymbols?.isThereAnnotation(
+            Guard::class.simpleName!!,
+            ArgParser::class.simpleName!!,
+            RateLimits::class.simpleName!!,
+        ) == true
+    ) {
+        logger.warn(
+            "Be aware that @Guard, @RateLimits and @ArgParser is not supported for unprocessed handler",
+        )
+    }
+
     activitiesFile.addProperty(
         PropertySpec
             .builder(

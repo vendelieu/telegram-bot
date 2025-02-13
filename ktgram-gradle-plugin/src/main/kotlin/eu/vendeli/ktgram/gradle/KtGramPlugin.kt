@@ -65,7 +65,8 @@ abstract class KtGramPlugin : Plugin<Project> {
                 val ktorEngine = pluginExtension.ktorJvmEngine.getOrElse(KtorJvmEngine.JAVA)
                 handleKtorEngine(ktorEngine)
 
-                handleLoggingProvider()
+                val handleLoggingProvider = pluginExtension.handleLoggingProvider.getOrElse(true)
+                if (handleLoggingProvider) handleLoggingProvider()
             }
 
             project.extensions.configure<KspExtension> {
