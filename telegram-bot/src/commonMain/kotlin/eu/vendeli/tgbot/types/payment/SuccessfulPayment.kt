@@ -6,7 +6,7 @@ import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
 /**
- * This object contains basic information about a successful payment.
+ * This object contains basic information about a successful payment. Note that if the buyer initiates a chargeback with the relevant payment provider following this transaction, the funds may be debited from your balance. This is outside of Telegram's control.
  *
  * [Api reference](https://core.telegram.org/bots/api#successfulpayment)
  * @property currency Three-letter ISO 4217 currency code, or "XTR" for payments in Telegram Stars
