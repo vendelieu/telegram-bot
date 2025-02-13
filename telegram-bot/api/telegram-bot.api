@@ -705,8 +705,8 @@ public final class eu/vendeli/tgbot/api/botactions/SavePreparedInlineMessageKt {
 }
 
 public final class eu/vendeli/tgbot/api/botactions/SendGiftAction : eu/vendeli/tgbot/interfaces/action/SimpleAction, eu/vendeli/tgbot/interfaces/features/EntitiesFeature {
-	public fun <init> (JLjava/lang/String;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/String;)V
-	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun entities (Ljava/util/List;)Leu/vendeli/tgbot/api/botactions/SendGiftAction;
 	public synthetic fun entities (Ljava/util/List;)Leu/vendeli/tgbot/interfaces/action/TgAction;
 	public fun entities (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/botactions/SendGiftAction;
@@ -714,8 +714,8 @@ public final class eu/vendeli/tgbot/api/botactions/SendGiftAction : eu/vendeli/t
 }
 
 public final class eu/vendeli/tgbot/api/botactions/SendGiftKt {
-	public static final fun sendGift (JLjava/lang/String;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/botactions/SendGiftAction;
-	public static synthetic fun sendGift$default (JLjava/lang/String;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Leu/vendeli/tgbot/api/botactions/SendGiftAction;
+	public static final fun sendGift (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/api/botactions/SendGiftAction;
+	public static synthetic fun sendGift$default (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/ParseMode;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Leu/vendeli/tgbot/api/botactions/SendGiftAction;
 }
 
 public final class eu/vendeli/tgbot/api/botactions/SetMyCommandsAction : eu/vendeli/tgbot/interfaces/action/SimpleAction {
