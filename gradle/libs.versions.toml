@@ -23,7 +23,7 @@ urlencoder = "1.6.0"
 sslcontext = "9.0.0"
 spring = "3.4.2"
 
-ksp = "2.1.10-1.0.29"
+ksp = "2.1.10-1.0.30"
 poet = "2.0.0"
 
 binvalid = "0.17.0"
