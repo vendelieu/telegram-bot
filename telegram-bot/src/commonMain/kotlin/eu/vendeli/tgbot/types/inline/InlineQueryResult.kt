@@ -13,8 +13,8 @@
 
 package eu.vendeli.tgbot.types.inline
 
-import eu.vendeli.tgbot.types.InputMessageContent
-import eu.vendeli.tgbot.types.ParseMode
+import eu.vendeli.tgbot.types.common.InputMessageContent
+import eu.vendeli.tgbot.types.component.ParseMode
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import kotlinx.serialization.Contextual

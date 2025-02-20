@@ -6,11 +6,11 @@ import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.internal.options.MediaGroupOptions
+import eu.vendeli.tgbot.types.options.MediaGroupOptions
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.types.msg.Message
-import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.handleImplicitFileGroup
+import eu.vendeli.tgbot.utils.internal.getReturnType
+import eu.vendeli.tgbot.utils.internal.handleImplicitFileGroup
 
 @TgAPI
 class SendMediaGroupAction(

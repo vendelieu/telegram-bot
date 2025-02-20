@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.chat
 
-import eu.vendeli.tgbot.types.BackgroundType
+import eu.vendeli.tgbot.types.webapp.BackgroundType
 import kotlinx.serialization.Serializable
 
 /**

@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.msg
 
-import eu.vendeli.tgbot.types.ReactionType
+import eu.vendeli.tgbot.types.common.ReactionType
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.utils.serde.InstantSerializer

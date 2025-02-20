@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.annotations.CommonHandler
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
-import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.component.UpdateType
 
 class TgAnnotationsModel {
     @CommandHandler(["test"])

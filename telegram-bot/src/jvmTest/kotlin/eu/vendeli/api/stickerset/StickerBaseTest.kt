@@ -16,13 +16,13 @@ import eu.vendeli.tgbot.api.stickerset.setStickerPositionInSet
 import eu.vendeli.tgbot.api.stickerset.setStickerSetThumbnail
 import eu.vendeli.tgbot.api.stickerset.setStickerSetTitle
 import eu.vendeli.tgbot.api.stickerset.uploadStickerFile
-import eu.vendeli.tgbot.types.internal.onFailure
+import eu.vendeli.tgbot.types.component.onFailure
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.types.media.MaskPoint
 import eu.vendeli.tgbot.types.media.MaskPosition
 import eu.vendeli.tgbot.types.media.StickerFormat
 import eu.vendeli.tgbot.types.media.StickerType
-import eu.vendeli.tgbot.utils.toImplicitFile
+import eu.vendeli.tgbot.utils.common.toImplicitFile
 import eu.vendeli.utils.LOREM
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.comparables.shouldBeGreaterThan

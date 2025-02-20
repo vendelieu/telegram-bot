@@ -33,7 +33,7 @@ import eu.vendeli.tgbot.annotations.Guard
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.RateLimits
 import eu.vendeli.tgbot.annotations.UpdateHandler
-import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.component.UpdateType
 
 internal fun collectCommandActivities(
     symbols: Sequence<KSFunctionDeclaration>,

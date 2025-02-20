@@ -13,8 +13,8 @@ import eu.vendeli.tgbot.api.chat.setChatPermissions
 import eu.vendeli.tgbot.api.chat.setChatPhoto
 import eu.vendeli.tgbot.api.chat.setChatStickerSet
 import eu.vendeli.tgbot.api.chat.setChatTitle
-import eu.vendeli.tgbot.types.internal.getOrNull
-import eu.vendeli.tgbot.types.internal.onFailure
+import eu.vendeli.tgbot.types.component.getOrNull
+import eu.vendeli.tgbot.types.component.onFailure
 import eu.vendeli.tgbot.types.keyboard.MenuButton
 import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeTrue

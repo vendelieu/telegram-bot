@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.poll
 
 import eu.vendeli.tgbot.types.msg.MessageEntity
-import eu.vendeli.tgbot.types.ParseMode
+import eu.vendeli.tgbot.types.component.ParseMode
 import kotlinx.serialization.Serializable
 
 /**

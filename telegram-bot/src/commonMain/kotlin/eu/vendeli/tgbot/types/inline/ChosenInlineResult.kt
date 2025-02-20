@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.inline
 
-import eu.vendeli.tgbot.types.Location
+import eu.vendeli.tgbot.types.common.Location
 import eu.vendeli.tgbot.types.User
 import kotlinx.serialization.Serializable
 

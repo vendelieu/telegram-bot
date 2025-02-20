@@ -4,7 +4,7 @@ import BotTestContext
 import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.interfaces.helper.Guard
-import eu.vendeli.tgbot.utils.fqName
+import eu.vendeli.tgbot.utils.common.fqName
 import eu.vendeli.utils.MockUpdate
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe

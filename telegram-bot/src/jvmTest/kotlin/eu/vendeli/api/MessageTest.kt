@@ -2,8 +2,8 @@ package eu.vendeli.api
 
 import BotTestContext
 import eu.vendeli.tgbot.api.message.message
-import eu.vendeli.tgbot.types.LinkPreviewOptions
-import eu.vendeli.tgbot.types.ParseMode
+import eu.vendeli.tgbot.types.common.LinkPreviewOptions
+import eu.vendeli.tgbot.types.component.ParseMode
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.json.boolean
 import kotlinx.serialization.json.jsonObject

@@ -4,7 +4,7 @@ package eu.vendeli.tgbot.api.botactions
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
-import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.internal.getReturnType
 
 @TgAPI
 class LogOutAction : SimpleAction<Boolean>() {

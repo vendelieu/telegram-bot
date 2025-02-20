@@ -2,7 +2,7 @@ package eu.vendeli.tgbot.interfaces.action
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
-import eu.vendeli.tgbot.types.internal.Response
+import eu.vendeli.tgbot.types.component.Response
 import kotlinx.coroutines.Deferred
 import kotlinx.serialization.json.JsonElement
 

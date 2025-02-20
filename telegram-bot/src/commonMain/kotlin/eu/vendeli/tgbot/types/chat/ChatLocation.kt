@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.chat
 
-import eu.vendeli.tgbot.types.Location
+import eu.vendeli.tgbot.types.common.Location
 import kotlinx.serialization.Serializable
 
 /**

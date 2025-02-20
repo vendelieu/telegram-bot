@@ -14,8 +14,8 @@ import eu.vendeli.tgbot.annotations.Guard
 import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.implementations.DefaultGuard
-import eu.vendeli.tgbot.types.internal.UpdateType
-import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import eu.vendeli.tgbot.types.component.UpdateType
+import eu.vendeli.tgbot.types.configuration.RateLimits
 
 internal fun List<KSValueArgument>.parseAsCommandHandler(isCallbackQ: Boolean) = AnnotationData(
     value = parseValueList(),

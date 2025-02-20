@@ -6,9 +6,9 @@ import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.ChatPermissions
-import eu.vendeli.tgbot.utils.encodeWith
-import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.internal.encodeWith
+import eu.vendeli.tgbot.utils.internal.getReturnType
+import eu.vendeli.tgbot.utils.internal.toJsonElement
 import kotlinx.datetime.Instant
 
 @TgAPI

@@ -3,7 +3,7 @@ package eu.vendeli.tgbot.interfaces.features
 import eu.vendeli.tgbot.interfaces.action.TgAction
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.utils.builders.EntitiesBuilder
-import eu.vendeli.tgbot.utils.encodeWith
+import eu.vendeli.tgbot.utils.internal.encodeWith
 
 /**
  * Entities feature, see [Features article](https://github.com/vendelieu/telegram-bot/wiki/Features)

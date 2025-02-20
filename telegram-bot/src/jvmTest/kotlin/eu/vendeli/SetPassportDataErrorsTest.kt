@@ -1,7 +1,7 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.api.setPassportDataErrors
+import eu.vendeli.tgbot.api.passport.setPassportDataErrors
 import eu.vendeli.tgbot.types.passport.EncryptedPassportElementType
 import eu.vendeli.tgbot.types.passport.PassportElementError.Selfie
 import io.kotest.matchers.booleans.shouldBeTrue

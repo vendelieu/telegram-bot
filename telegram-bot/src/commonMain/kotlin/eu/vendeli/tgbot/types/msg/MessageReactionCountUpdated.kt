@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types.msg
 
-import eu.vendeli.tgbot.types.ReactionCount
+import eu.vendeli.tgbot.types.common.ReactionCount
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import kotlinx.datetime.Instant

@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.interfaces.helper
 
-import eu.vendeli.tgbot.types.internal.configuration.RateLimits
+import eu.vendeli.tgbot.types.configuration.RateLimits
 
 /**
  * Interface to implement features for request limits.

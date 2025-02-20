@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.utils.serde
 
-import eu.vendeli.tgbot.utils.TgException
+import eu.vendeli.tgbot.utils.common.TgException
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor

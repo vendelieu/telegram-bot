@@ -4,13 +4,13 @@ package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
-import eu.vendeli.tgbot.types.internal.InputFile
+import eu.vendeli.tgbot.types.component.InputFile
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.types.media.StickerFormat
-import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.handleImplicitFile
-import eu.vendeli.tgbot.utils.toImplicitFile
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.internal.getReturnType
+import eu.vendeli.tgbot.utils.internal.handleImplicitFile
+import eu.vendeli.tgbot.utils.common.toImplicitFile
+import eu.vendeli.tgbot.utils.internal.toJsonElement
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.JsonUnquotedLiteral
 

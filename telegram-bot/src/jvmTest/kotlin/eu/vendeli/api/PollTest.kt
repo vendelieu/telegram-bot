@@ -1,16 +1,16 @@
 package eu.vendeli.api
 
 import BotTestContext
-import eu.vendeli.tgbot.api.poll
-import eu.vendeli.tgbot.api.stopPoll
+import eu.vendeli.tgbot.api.common.poll
+import eu.vendeli.tgbot.api.common.stopPoll
 import eu.vendeli.tgbot.types.msg.EntityType
 import eu.vendeli.tgbot.types.msg.MessageEntity
-import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.types.component.getOrNull
 import eu.vendeli.tgbot.types.poll.InputPollOption
 import eu.vendeli.tgbot.types.poll.PollOption
 import eu.vendeli.tgbot.types.poll.PollType
-import eu.vendeli.tgbot.utils.serde
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.common.serde
+import eu.vendeli.tgbot.utils.internal.toJsonElement
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.maps.shouldHaveSize

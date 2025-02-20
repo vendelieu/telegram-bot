@@ -23,9 +23,9 @@ import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
-import eu.vendeli.tgbot.types.internal.ActivityCtx
-import eu.vendeli.tgbot.types.internal.UpdateType
-import eu.vendeli.tgbot.utils.fqName
+import eu.vendeli.tgbot.types.component.ActivityCtx
+import eu.vendeli.tgbot.types.component.UpdateType
+import eu.vendeli.tgbot.utils.common.fqName
 import kotlinx.serialization.json.Json
 import java.io.File
 
@@ -114,24 +114,23 @@ class ApiProcessor(
 
     private fun addUpdateEvent2FDSL() {
         FileSpec
-            .builder("eu.vendeli.tgbot.utils", "FunctionalDSLUtils")
+            .builder("eu.vendeli.tgbot.utils.common", "FunctionalDSLUtils")
             .apply {
                 val fdslType = FunctionalHandlingDsl::class.asTypeName()
                 val blockType = ActivityCtx::class.asTypeName()
-                addImport("eu.vendeli.tgbot.types.internal", "UpdateType")
+                addImport("eu.vendeli.tgbot.types.component", "UpdateType")
 
                 UpdateType.entries.forEach { type ->
                     val nameRef = type.name
                         .lowercase()
                         .snakeToCamelCase()
-                        .replace("editMessage", "editedMessage")
                     val funName = nameRef
                         .beginWithUpperCase()
 
                     val pUpdateType = funName + "Update"
-                    addImport("eu.vendeli.tgbot.types.internal", pUpdateType)
+                    addImport("eu.vendeli.tgbot.types.component", pUpdateType)
 
-                    val pUpdateTypeClass = ClassName("eu.vendeli.tgbot.types.internal", pUpdateType)
+                    val pUpdateTypeClass = ClassName("eu.vendeli.tgbot.types.component", pUpdateType)
                     val activityCtxType = blockType.parameterizedBy(pUpdateTypeClass)
                     val blockTypeRef = LambdaTypeName.get(activityCtxType, returnType = UNIT).copy(suspending = true)
 
@@ -141,7 +140,7 @@ class ApiProcessor(
                             .receiver(fdslType)
                             .addKdoc(
                                 "Action that is performed on the presence of " +
-                                    "[eu.vendeli.tgbot.types.Update.$nameRef] in the [eu.vendeli.tgbot.types.Update].",
+                                    "[eu.vendeli.tgbot.types.common.Update.$nameRef] in the [eu.vendeli.tgbot.types.common.Update].",
                             ).addParameter(ParameterSpec.builder("block", blockTypeRef).build())
                             .addCode("functionalActivities.onUpdateActivities[$type] = block.cast()")
                             .build(),

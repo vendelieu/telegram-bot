@@ -5,7 +5,7 @@ import eu.vendeli.tgbot.api.botactions.deleteWebhook
 import eu.vendeli.tgbot.api.botactions.getUpdates
 import eu.vendeli.tgbot.api.botactions.getWebhookInfo
 import eu.vendeli.tgbot.api.botactions.setWebhook
-import eu.vendeli.tgbot.types.internal.foldResponse
+import eu.vendeli.tgbot.types.component.foldResponse
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.string.shouldBeEmpty
 import io.kotest.matchers.string.shouldStartWith

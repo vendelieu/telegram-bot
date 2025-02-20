@@ -1,7 +1,7 @@
 package eu.vendeli.api.botactions
 
 import BotTestContext
-import eu.vendeli.tgbot.api.botactions.getStarTransactions
+import eu.vendeli.tgbot.api.payments.getStarTransactions
 import io.kotest.matchers.shouldBe
 
 class GetStarTransactionsTest : BotTestContext() {

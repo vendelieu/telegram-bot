@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.api.forum.hideGeneralForumTopic
 import eu.vendeli.tgbot.api.forum.reopenGeneralForumTopic
 import eu.vendeli.tgbot.api.forum.unhideGeneralForumTopic
 import eu.vendeli.tgbot.api.forum.unpinAllGeneralForumTopicMessages
-import eu.vendeli.tgbot.types.internal.onFailure
+import eu.vendeli.tgbot.types.component.onFailure
 import eu.vendeli.tgbot.types.media.StickerType
 import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeTrue

@@ -1,7 +1,7 @@
 package eu.vendeli.spring.starter
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.utils.fqName
+import eu.vendeli.tgbot.utils.common.fqName
 import io.ktor.client.HttpClient
 import io.ktor.util.logging.KtorSimpleLogger
 import kotlinx.coroutines.DelicateCoroutinesApi

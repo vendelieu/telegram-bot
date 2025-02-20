@@ -2,7 +2,7 @@ package eu.vendeli.api.media
 
 import BotTestContext
 import eu.vendeli.tgbot.api.media.video
-import eu.vendeli.tgbot.utils.toImplicitFile
+import eu.vendeli.tgbot.utils.common.toImplicitFile
 import eu.vendeli.utils.LOREM
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldBeNull

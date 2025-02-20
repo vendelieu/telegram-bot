@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.utils.builders
 
-import eu.vendeli.tgbot.types.internal.options.ReplyKeyboardMarkupOptions
+import eu.vendeli.tgbot.types.options.ReplyKeyboardMarkupOptions
 import eu.vendeli.tgbot.types.keyboard.KeyboardButton
 import eu.vendeli.tgbot.types.keyboard.KeyboardButtonPollType
 import eu.vendeli.tgbot.types.keyboard.KeyboardButtonRequestChat

@@ -4,7 +4,7 @@ import BotTestContext
 import ChannelTestingOnlyCondition
 import eu.vendeli.tgbot.api.media.sendPaidMedia
 import eu.vendeli.tgbot.types.media.InputPaidMedia
-import eu.vendeli.tgbot.utils.toImplicitFile
+import eu.vendeli.tgbot.utils.common.toImplicitFile
 import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe

@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.types
 
-import eu.vendeli.tgbot.types.internal.IdLong
+import eu.vendeli.tgbot.types.component.IdLong
 import kotlinx.serialization.Serializable
 
 /**

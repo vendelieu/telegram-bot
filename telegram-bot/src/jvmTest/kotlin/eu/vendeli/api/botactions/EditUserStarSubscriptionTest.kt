@@ -3,7 +3,7 @@
 package eu.vendeli.api.botactions
 
 import BotTestContext
-import eu.vendeli.tgbot.api.botactions.editUserStarSubscription
+import eu.vendeli.tgbot.api.payments.editUserStarSubscription
 
 class EditUserStarSubscriptionTest : BotTestContext() {
     @Test

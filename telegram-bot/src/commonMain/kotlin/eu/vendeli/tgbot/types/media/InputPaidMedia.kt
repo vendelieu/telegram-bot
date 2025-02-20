@@ -1,10 +1,10 @@
 package eu.vendeli.tgbot.types.media
 
 import eu.vendeli.tgbot.interfaces.helper.ImplicitMediaData
-import eu.vendeli.tgbot.types.internal.ImplicitFile
-import eu.vendeli.tgbot.types.internal.InputFile
+import eu.vendeli.tgbot.types.component.ImplicitFile
+import eu.vendeli.tgbot.types.component.InputFile
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
-import eu.vendeli.tgbot.utils.toImplicitFile
+import eu.vendeli.tgbot.utils.common.toImplicitFile
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName

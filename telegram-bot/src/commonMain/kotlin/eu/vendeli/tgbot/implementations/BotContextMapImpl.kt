@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.implementations
 
 import eu.vendeli.tgbot.interfaces.ctx.BotContext
-import eu.vendeli.tgbot.utils.asyncAction
+import eu.vendeli.tgbot.utils.common.asyncAction
 import io.ktor.util.collections.ConcurrentMap
 import kotlinx.coroutines.Deferred
 

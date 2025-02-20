@@ -4,9 +4,9 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
-import eu.vendeli.tgbot.types.internal.Identifier
-import eu.vendeli.tgbot.types.internal.getOrNull
-import eu.vendeli.tgbot.utils.TgException
+import eu.vendeli.tgbot.types.component.Identifier
+import eu.vendeli.tgbot.types.component.getOrNull
+import eu.vendeli.tgbot.utils.common.TgException
 
 private val DEFAULT_FAILURE_ACTION: suspend () -> Nothing = { throw TgException("Failed to process response") }
 

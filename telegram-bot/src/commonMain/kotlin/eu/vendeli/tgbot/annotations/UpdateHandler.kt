@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.annotations
 
-import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.component.UpdateType
 
 /**
  * An annotation used to indicate the function that is used to handle the specified type of incoming update.

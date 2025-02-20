@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.implementations
 
 import eu.vendeli.tgbot.interfaces.ctx.ClassManager
-import eu.vendeli.tgbot.utils.TgException
+import eu.vendeli.tgbot.utils.common.TgException
 import kotlin.reflect.KClass
 import kotlin.reflect.createInstance
 

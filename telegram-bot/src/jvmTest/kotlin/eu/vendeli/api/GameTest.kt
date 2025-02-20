@@ -1,10 +1,10 @@
 package eu.vendeli.api
 
 import BotTestContext
-import eu.vendeli.tgbot.api.game
-import eu.vendeli.tgbot.api.getGameHighScores
-import eu.vendeli.tgbot.api.setGameScore
-import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.api.game.game
+import eu.vendeli.tgbot.api.game.getGameHighScores
+import eu.vendeli.tgbot.api.game.setGameScore
+import eu.vendeli.tgbot.types.component.getOrNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import kotlin.random.Random

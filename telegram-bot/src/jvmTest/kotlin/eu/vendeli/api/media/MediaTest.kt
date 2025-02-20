@@ -15,10 +15,10 @@ import eu.vendeli.tgbot.api.media.sticker
 import eu.vendeli.tgbot.api.media.video
 import eu.vendeli.tgbot.api.media.videoNote
 import eu.vendeli.tgbot.api.media.voice
-import eu.vendeli.tgbot.types.ParseMode
-import eu.vendeli.tgbot.types.internal.options.AudioOptions
+import eu.vendeli.tgbot.types.component.ParseMode
+import eu.vendeli.tgbot.types.options.AudioOptions
 import eu.vendeli.tgbot.types.msg.EntityType
-import eu.vendeli.tgbot.utils.toImplicitFile
+import eu.vendeli.tgbot.utils.common.toImplicitFile
 import eu.vendeli.utils.LOREM
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull

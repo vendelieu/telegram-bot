@@ -4,8 +4,8 @@ package eu.vendeli.tgbot.api.message
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
-import eu.vendeli.tgbot.utils.encodeWith
-import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.internal.encodeWith
+import eu.vendeli.tgbot.utils.internal.getReturnType
 import kotlinx.serialization.builtins.serializer
 
 @TgAPI

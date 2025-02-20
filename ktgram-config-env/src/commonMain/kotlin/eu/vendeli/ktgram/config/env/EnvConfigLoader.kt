@@ -2,15 +2,15 @@ package eu.vendeli.ktgram.config.env
 
 import dev.scottpierce.envvar.EnvVar
 import eu.vendeli.tgbot.interfaces.helper.ConfigLoader
-import eu.vendeli.tgbot.types.internal.HttpLogLevel
-import eu.vendeli.tgbot.types.internal.LogLvl
-import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
-import eu.vendeli.tgbot.types.internal.configuration.CommandParsingConfiguration
-import eu.vendeli.tgbot.types.internal.configuration.HttpConfiguration
-import eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration
-import eu.vendeli.tgbot.types.internal.configuration.RateLimiterConfiguration
-import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import eu.vendeli.tgbot.types.internal.configuration.UpdatesListenerConfiguration
+import eu.vendeli.tgbot.types.component.HttpLogLevel
+import eu.vendeli.tgbot.types.component.LogLvl
+import eu.vendeli.tgbot.types.configuration.BotConfiguration
+import eu.vendeli.tgbot.types.configuration.CommandParsingConfiguration
+import eu.vendeli.tgbot.types.configuration.HttpConfiguration
+import eu.vendeli.tgbot.types.configuration.LoggingConfiguration
+import eu.vendeli.tgbot.types.configuration.RateLimiterConfiguration
+import eu.vendeli.tgbot.types.configuration.RateLimits
+import eu.vendeli.tgbot.types.configuration.UpdatesListenerConfiguration
 
 const val DEFAULT_ENV_PREFIX = "KTGRAM_"
 

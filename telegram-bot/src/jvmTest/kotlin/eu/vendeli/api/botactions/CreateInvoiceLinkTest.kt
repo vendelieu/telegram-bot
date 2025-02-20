@@ -2,8 +2,8 @@ package eu.vendeli.api.botactions
 
 import BotTestContext
 import PaymentProviderTestingOnlyCondition
-import eu.vendeli.tgbot.api.botactions.createInvoiceLink
-import eu.vendeli.tgbot.types.internal.Currency
+import eu.vendeli.tgbot.api.payments.createInvoiceLink
+import eu.vendeli.tgbot.types.component.Currency
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 import io.kotest.assertions.retry
 import io.kotest.core.annotation.EnabledIf

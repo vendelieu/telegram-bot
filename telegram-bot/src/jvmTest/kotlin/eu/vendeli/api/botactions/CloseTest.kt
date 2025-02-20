@@ -2,9 +2,9 @@ package eu.vendeli.api.botactions
 
 import BotTestContext
 import eu.vendeli.tgbot.api.botactions.close
-import eu.vendeli.tgbot.types.internal.getOrNull
-import eu.vendeli.tgbot.types.internal.isSuccess
-import eu.vendeli.tgbot.types.internal.onFailure
+import eu.vendeli.tgbot.types.component.getOrNull
+import eu.vendeli.tgbot.types.component.isSuccess
+import eu.vendeli.tgbot.types.component.onFailure
 import io.kotest.core.annotation.Ignored
 import io.kotest.core.spec.Order
 import io.kotest.matchers.booleans.shouldBeFalse

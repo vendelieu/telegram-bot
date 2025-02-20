@@ -5,7 +5,7 @@ import eu.vendeli.tgbot.types.keyboard.ForceReply
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardMarkup
 import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardRemove
-import eu.vendeli.tgbot.utils.TgException
+import eu.vendeli.tgbot.utils.common.TgException
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement

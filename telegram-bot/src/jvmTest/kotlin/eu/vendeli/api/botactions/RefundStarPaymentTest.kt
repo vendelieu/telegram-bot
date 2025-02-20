@@ -1,8 +1,8 @@
 package eu.vendeli.api.botactions
 
 import BotTestContext
-import eu.vendeli.tgbot.api.botactions.refundStarPayment
-import eu.vendeli.tgbot.types.internal.onFailure
+import eu.vendeli.tgbot.api.payments.refundStarPayment
+import eu.vendeli.tgbot.types.component.onFailure
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.string.shouldContain
 

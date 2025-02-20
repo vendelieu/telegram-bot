@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.interfaces.helper
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.component.ProcessedUpdate
 
 /**
  * Interface which defines an exception handling process.

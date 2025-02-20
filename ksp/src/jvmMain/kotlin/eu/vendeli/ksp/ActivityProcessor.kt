@@ -49,13 +49,13 @@ class ActivityProcessor(
             addSuppressions()
             addOptIn()
 
-            addImport("eu.vendeli.tgbot.utils", "InvocationLambda", "Invocable")
-            addImport("eu.vendeli.tgbot.types.internal", "InvocationMeta")
-            addImport("eu.vendeli.tgbot.types.internal.configuration", "RateLimits")
+            addImport("eu.vendeli.tgbot.utils.common", "InvocationLambda", "Invocable")
+            addImport("eu.vendeli.tgbot.types.component", "InvocationMeta")
+            addImport("eu.vendeli.tgbot.types.configuration", "RateLimits")
 
             addSuspendCallFun()
             addSuspendCallFun(true)
-            addImport("eu.vendeli.tgbot.utils", "getInstance")
+            addImport("eu.vendeli.tgbot.utils.common", "getInstance")
         }
 
         targetPackage?.forEachIndexed { idx, pkg ->

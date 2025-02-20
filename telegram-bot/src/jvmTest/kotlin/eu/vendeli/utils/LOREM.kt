@@ -2,7 +2,7 @@
 
 package eu.vendeli.utils
 
-import eu.vendeli.tgbot.types.internal.InputFile
+import eu.vendeli.tgbot.types.component.InputFile
 import io.kotest.common.runBlocking
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get

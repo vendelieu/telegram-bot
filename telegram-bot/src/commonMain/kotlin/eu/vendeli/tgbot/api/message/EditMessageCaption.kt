@@ -9,10 +9,10 @@ import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.internal.options.EditCaptionOptions
+import eu.vendeli.tgbot.types.options.EditCaptionOptions
 import eu.vendeli.tgbot.types.msg.Message
-import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.internal.getReturnType
+import eu.vendeli.tgbot.utils.internal.toJsonElement
 
 @TgAPI
 class EditMessageCaptionAction() :

@@ -14,7 +14,7 @@ import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
-import eu.vendeli.tgbot.utils.fqName
+import eu.vendeli.tgbot.utils.common.fqName
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.boolean

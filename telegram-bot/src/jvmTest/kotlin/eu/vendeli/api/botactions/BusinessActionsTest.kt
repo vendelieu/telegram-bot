@@ -2,7 +2,7 @@ package eu.vendeli.api.botactions
 
 import BotTestContext
 import eu.vendeli.tgbot.api.botactions.getBusinessConnection
-import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.types.component.getOrNull
 import io.kotest.matchers.shouldBe
 
 class BusinessActionsTest : BotTestContext() {

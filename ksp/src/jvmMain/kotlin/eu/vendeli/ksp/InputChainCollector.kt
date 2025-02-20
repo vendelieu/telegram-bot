@@ -14,7 +14,7 @@ import eu.vendeli.ksp.utils.cast
 import eu.vendeli.ksp.utils.linkQName
 import eu.vendeli.ksp.utils.toRateLimits
 import eu.vendeli.tgbot.annotations.InputChain
-import eu.vendeli.tgbot.types.internal.chain.StatefulLink
+import eu.vendeli.tgbot.types.chain.StatefulLink
 
 internal fun collectInputChains(
     symbols: Sequence<KSClassDeclaration>,
@@ -89,12 +89,12 @@ internal fun collectInputChains(
                         add("val inst = classManager.getInstance<$reference>()!!\n")
                         add("inst.beforeAction?.invoke(user, update, bot)\n")
 
-                        add("val breakPoint = inst.breakCondition?.invoke(user, update, bot) ?: false\n")
+                        add("val breakPoint = inst.breakCondition?.invoke(user, update, bot) == true\n")
                         add(
-                            "if (breakPoint && inst.retryAfterBreak){\nbot.inputListener[user] = \"%L\"\n}\n",
+                            "if (breakPoint && inst.retryAfterBreak){\n\tbot.inputListener[user] = \"%L\"\n}\n",
                             curLinkId,
                         )
-                        add("if (breakPoint) {\ninst.breakAction(user, update, bot)\nreturn@suspendCall Unit\n}\n")
+                        add("if (breakPoint) {\n\tinst.breakAction(user, update, bot)\n\treturn@suspendCall Unit\n}\n")
                         if (pkg != null) add(
                             "if (\n\tbot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",
                             qualifier,

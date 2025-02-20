@@ -1,10 +1,10 @@
 package eu.vendeli.tgbot.interfaces.features
 
 import eu.vendeli.tgbot.interfaces.action.TgAction
-import eu.vendeli.tgbot.types.internal.options.Options
-import eu.vendeli.tgbot.utils.cast
-import eu.vendeli.tgbot.utils.safeCast
-import eu.vendeli.tgbot.utils.serde
+import eu.vendeli.tgbot.types.options.Options
+import eu.vendeli.tgbot.utils.common.cast
+import eu.vendeli.tgbot.utils.common.safeCast
+import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import kotlinx.serialization.json.jsonObject
 

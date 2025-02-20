@@ -11,7 +11,7 @@ import eu.vendeli.tgbot.types.media.Voice
 import eu.vendeli.tgbot.types.msg.MaybeInaccessibleMessage
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.msg.MessageOrigin
-import eu.vendeli.tgbot.utils.serde
+import eu.vendeli.tgbot.utils.common.serde
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.matchers.equality.shouldBeEqualUsingFields
 import io.kotest.matchers.nulls.shouldNotBeNull

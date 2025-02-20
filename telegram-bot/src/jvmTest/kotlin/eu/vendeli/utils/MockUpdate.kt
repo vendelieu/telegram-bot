@@ -1,16 +1,15 @@
 package eu.vendeli.utils
 
-import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.common.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
-import eu.vendeli.tgbot.types.internal.ProcessedUpdate
-import eu.vendeli.tgbot.types.internal.Response.Success
+import eu.vendeli.tgbot.types.component.ProcessedUpdate
+import eu.vendeli.tgbot.types.component.Response.Success
 import eu.vendeli.tgbot.types.msg.Message
-import eu.vendeli.tgbot.utils.processUpdate
-import eu.vendeli.tgbot.utils.serde
+import eu.vendeli.tgbot.utils.common.processUpdate
+import eu.vendeli.tgbot.utils.common.serde
 import kotlinx.datetime.Instant
-import kotlinx.serialization.encodeToString
 import kotlin.random.Random
 
 @Suppress("ClassName")

@@ -23,7 +23,7 @@ import eu.vendeli.tgbot.types.msg.EntityType.Underline
 import eu.vendeli.tgbot.types.msg.EntityType.Url
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.utils.encodeWith
+import eu.vendeli.tgbot.utils.internal.encodeWith
 import kotlinx.serialization.json.JsonArray
 
 @Suppress("TooManyFunctions")

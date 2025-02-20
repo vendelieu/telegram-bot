@@ -5,9 +5,9 @@ package eu.vendeli.tgbot.api.botactions
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.internal.ProcessedUpdate
-import eu.vendeli.tgbot.types.internal.options.GetUpdatesOptions
-import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.types.component.ProcessedUpdate
+import eu.vendeli.tgbot.types.options.GetUpdatesOptions
+import eu.vendeli.tgbot.utils.internal.getReturnType
 
 @TgAPI
 class GetUpdatesAction :

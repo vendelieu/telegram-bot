@@ -1,8 +1,8 @@
 package eu.vendeli.ktgram.config.env
 
 import eu.vendeli.tgbot.interfaces.helper.ConfigLoader
-import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
-import eu.vendeli.tgbot.types.internal.configuration.CompleteConfig
+import eu.vendeli.tgbot.types.configuration.BotConfiguration
+import eu.vendeli.tgbot.types.configuration.CompleteConfig
 import kotlinx.serialization.serializer
 import net.peanuuutz.tomlkt.Toml
 

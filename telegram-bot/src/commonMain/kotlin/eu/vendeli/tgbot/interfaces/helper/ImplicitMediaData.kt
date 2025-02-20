@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.interfaces.helper
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
-import eu.vendeli.tgbot.types.internal.ImplicitFile
+import eu.vendeli.tgbot.types.component.ImplicitFile
 
 interface ImplicitMediaData {
     var media: ImplicitFile

@@ -1,11 +1,11 @@
 package eu.vendeli.api
 
 import BotTestContext
-import eu.vendeli.tgbot.api.location
+import eu.vendeli.tgbot.api.common.location
 import eu.vendeli.tgbot.api.message.editMessageLiveLocation
-import eu.vendeli.tgbot.api.stopMessageLiveLocation
-import eu.vendeli.tgbot.api.venue
-import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.api.message.stopMessageLiveLocation
+import eu.vendeli.tgbot.api.common.venue
+import eu.vendeli.tgbot.types.component.getOrNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 

@@ -9,13 +9,13 @@ import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
-import eu.vendeli.tgbot.types.internal.Identifier
-import eu.vendeli.tgbot.types.internal.options.CopyMessageOptions
+import eu.vendeli.tgbot.types.component.Identifier
+import eu.vendeli.tgbot.types.options.CopyMessageOptions
 import eu.vendeli.tgbot.types.msg.MessageId
-import eu.vendeli.tgbot.utils.encodeWith
-import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.internal.encodeWith
+import eu.vendeli.tgbot.utils.internal.getReturnType
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.internal.toJsonElement
 
 @TgAPI
 class CopyMessageAction(

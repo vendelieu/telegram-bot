@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.payment
 
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.internal.Currency
+import eu.vendeli.tgbot.types.component.Currency
 import kotlinx.serialization.Serializable
 
 /**

@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.chat
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
-import eu.vendeli.tgbot.types.internal.IdLong
+import eu.vendeli.tgbot.types.component.IdLong
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

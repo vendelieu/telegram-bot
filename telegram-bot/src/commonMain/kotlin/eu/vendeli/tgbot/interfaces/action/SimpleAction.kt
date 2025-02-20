@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.interfaces.action
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.types.internal.Response
+import eu.vendeli.tgbot.types.component.Response
 import kotlinx.coroutines.Deferred
 
 /**

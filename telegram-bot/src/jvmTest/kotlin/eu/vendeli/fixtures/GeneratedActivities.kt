@@ -15,12 +15,12 @@
 package eu.vendeli.fixtures
 
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
-import eu.vendeli.tgbot.types.internal.CommonMatcher
-import eu.vendeli.tgbot.types.internal.InvocationMeta
-import eu.vendeli.tgbot.types.internal.UpdateType
-import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import eu.vendeli.tgbot.utils.Invocable
-import eu.vendeli.tgbot.utils.InvocationLambda
+import eu.vendeli.tgbot.types.component.CommonMatcher
+import eu.vendeli.tgbot.types.component.InvocationMeta
+import eu.vendeli.tgbot.types.component.UpdateType
+import eu.vendeli.tgbot.types.configuration.RateLimits
+import eu.vendeli.tgbot.utils.common.Invocable
+import eu.vendeli.tgbot.utils.common.InvocationLambda
 
 private inline fun suspendCall(noinline block: InvocationLambda): InvocationLambda = block
 

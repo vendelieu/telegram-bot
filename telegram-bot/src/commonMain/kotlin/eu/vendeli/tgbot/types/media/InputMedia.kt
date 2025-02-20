@@ -1,8 +1,8 @@
 package eu.vendeli.tgbot.types.media
 
 import eu.vendeli.tgbot.interfaces.helper.ImplicitMediaData
-import eu.vendeli.tgbot.types.ParseMode
-import eu.vendeli.tgbot.types.internal.ImplicitFile
+import eu.vendeli.tgbot.types.component.ParseMode
+import eu.vendeli.tgbot.types.component.ImplicitFile
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import kotlinx.serialization.ExperimentalSerializationApi

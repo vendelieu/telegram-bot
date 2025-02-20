@@ -1,7 +1,7 @@
 package eu.vendeli.api
 
 import BotTestContext
-import eu.vendeli.tgbot.api.contact
+import eu.vendeli.tgbot.api.common.contact
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 

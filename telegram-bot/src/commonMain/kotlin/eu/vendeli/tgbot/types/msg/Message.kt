@@ -2,16 +2,15 @@ package eu.vendeli.tgbot.types.msg
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
-import eu.vendeli.tgbot.types.Contact
-import eu.vendeli.tgbot.types.ExternalReplyInfo
-import eu.vendeli.tgbot.types.LinkPreviewOptions
-import eu.vendeli.tgbot.types.Location
-import eu.vendeli.tgbot.types.ProximityAlertTriggered
-import eu.vendeli.tgbot.types.TextQuote
+import eu.vendeli.tgbot.types.common.Contact
+import eu.vendeli.tgbot.types.common.ExternalReplyInfo
+import eu.vendeli.tgbot.types.common.LinkPreviewOptions
+import eu.vendeli.tgbot.types.common.Location
+import eu.vendeli.tgbot.types.common.TextQuote
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.UsersShared
-import eu.vendeli.tgbot.types.Venue
-import eu.vendeli.tgbot.types.WriteAccessAllowed
+import eu.vendeli.tgbot.types.user.UsersShared
+import eu.vendeli.tgbot.types.common.Venue
+import eu.vendeli.tgbot.types.webapp.WriteAccessAllowed
 import eu.vendeli.tgbot.types.boost.ChatBoostAdded
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatBackground

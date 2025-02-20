@@ -3,9 +3,9 @@ package eu.vendeli
 import BotTestContext
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.implementations.TokenBucketLimiterImpl
-import eu.vendeli.tgbot.types.internal.LogLvl
-import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import eu.vendeli.tgbot.utils.onMessage
+import eu.vendeli.tgbot.types.component.LogLvl
+import eu.vendeli.tgbot.types.configuration.RateLimits
+import eu.vendeli.tgbot.utils.common.onMessage
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.shouldBe
 import java.util.concurrent.atomic.AtomicInteger

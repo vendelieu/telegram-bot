@@ -4,7 +4,7 @@ import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.interfaces.helper.ArgumentParser
 import eu.vendeli.tgbot.interfaces.helper.Filter
-import eu.vendeli.tgbot.types.internal.UpdateType
+import eu.vendeli.tgbot.types.component.UpdateType
 import kotlin.reflect.KClass
 
 /**

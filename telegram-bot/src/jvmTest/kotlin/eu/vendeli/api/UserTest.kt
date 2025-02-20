@@ -1,8 +1,8 @@
 package eu.vendeli.api
 
 import BotTestContext
-import eu.vendeli.tgbot.api.getUserChatBoosts
-import eu.vendeli.tgbot.api.getUserProfilePhotos
+import eu.vendeli.tgbot.api.chat.getUserChatBoosts
+import eu.vendeli.tgbot.api.media.getUserProfilePhotos
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.comparables.shouldBeGreaterThan
 import io.kotest.matchers.nulls.shouldNotBeNull

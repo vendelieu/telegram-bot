@@ -2,7 +2,7 @@ package eu.vendeli.tgbot.utils.builders
 
 import eu.vendeli.tgbot.types.msg.EntityType
 import eu.vendeli.tgbot.types.msg.MessageEntity
-import eu.vendeli.tgbot.types.ParseMode
+import eu.vendeli.tgbot.types.component.ParseMode
 import eu.vendeli.tgbot.types.poll.InputPollOption
 
 class PollOptionsBuilder {

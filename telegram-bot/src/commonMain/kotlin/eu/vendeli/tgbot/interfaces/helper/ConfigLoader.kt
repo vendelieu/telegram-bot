@@ -1,6 +1,6 @@
 package eu.vendeli.tgbot.interfaces.helper
 
-import eu.vendeli.tgbot.types.internal.configuration.BotConfiguration
+import eu.vendeli.tgbot.types.configuration.BotConfiguration
 
 /**
  * An interface for configuring the bot.

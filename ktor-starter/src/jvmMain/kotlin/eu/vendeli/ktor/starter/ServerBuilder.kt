@@ -1,9 +1,9 @@
 package eu.vendeli.ktor.starter
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.types.internal.configuration.HttpConfiguration
-import eu.vendeli.tgbot.types.internal.configuration.LoggingConfiguration
-import eu.vendeli.tgbot.utils.getConfiguredHttpClient
+import eu.vendeli.tgbot.types.configuration.HttpConfiguration
+import eu.vendeli.tgbot.types.configuration.LoggingConfiguration
+import eu.vendeli.tgbot.utils.common.getConfiguredHttpClient
 import io.ktor.client.HttpClient
 import io.ktor.server.application.Application
 import io.ktor.server.netty.NettyApplicationEngine

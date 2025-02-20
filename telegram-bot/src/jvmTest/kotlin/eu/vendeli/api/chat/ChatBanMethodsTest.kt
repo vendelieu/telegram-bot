@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.api.chat.banChatMember
 import eu.vendeli.tgbot.api.chat.banChatSenderChat
 import eu.vendeli.tgbot.api.chat.unbanChatMember
 import eu.vendeli.tgbot.api.chat.unbanChatSenderChat
-import eu.vendeli.tgbot.types.internal.onFailure
+import eu.vendeli.tgbot.types.component.onFailure
 import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull

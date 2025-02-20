@@ -33,6 +33,13 @@ internal fun String.snakeToCamelCase() = split('_')
         it.beginWithUpperCase()
     }.joinToString("")
 
+private val omittedDirectories = setOf(
+    "component",
+    "options",
+    "configuration",
+    "chain",
+)
+
 @Suppress("UNCHECKED_CAST")
 @OptIn(KspExperimental::class)
 internal fun Resolver.resolveSymbolsFromDir(
@@ -41,7 +48,7 @@ internal fun Resolver.resolveSymbolsFromDir(
 ): List<KSDeclaration> {
     val basePkg = path.substringAfter("commonMain/kotlin/").replace('/', '.')
     val packages = mutableListOf(basePkg)
-    File(path).listFiles(FileFilter { it.isDirectory && it.name != "internal" })?.map {
+    File(path).listFiles(FileFilter { it.isDirectory && it.name !in omittedDirectories })?.map {
         packages.add("$basePkg.${it.name}")
     }
 

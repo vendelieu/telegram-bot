@@ -1,8 +1,8 @@
 package eu.vendeli.spring.starter
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.types.internal.UpdateType
-import eu.vendeli.tgbot.utils.BotConfigurator
+import eu.vendeli.tgbot.types.component.UpdateType
+import eu.vendeli.tgbot.utils.common.BotConfigurator
 import kotlinx.coroutines.delay
 
 /**

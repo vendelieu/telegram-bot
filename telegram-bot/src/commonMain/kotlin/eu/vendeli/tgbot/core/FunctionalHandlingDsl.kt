@@ -8,21 +8,21 @@ import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.interfaces.helper.ArgumentParser
 import eu.vendeli.tgbot.interfaces.helper.Filter
 import eu.vendeli.tgbot.interfaces.helper.Guard
-import eu.vendeli.tgbot.types.internal.ActivityCtx
-import eu.vendeli.tgbot.types.internal.CommonMatcher
-import eu.vendeli.tgbot.types.internal.FunctionalActivities
-import eu.vendeli.tgbot.types.internal.FunctionalInvocation
-import eu.vendeli.tgbot.types.internal.InputBreakPoint
-import eu.vendeli.tgbot.types.internal.ProcessedUpdate
-import eu.vendeli.tgbot.types.internal.UpdateType
-import eu.vendeli.tgbot.types.internal.chain.SingleInputChain
-import eu.vendeli.tgbot.types.internal.configuration.RateLimits
-import eu.vendeli.tgbot.utils.DEFAULT_SCOPE
-import eu.vendeli.tgbot.utils.OnCommandActivity
-import eu.vendeli.tgbot.utils.OnInputActivity
-import eu.vendeli.tgbot.utils.WhenNotHandledActivity
-import eu.vendeli.tgbot.utils.fqName
-import eu.vendeli.tgbot.utils.getLogger
+import eu.vendeli.tgbot.types.component.ActivityCtx
+import eu.vendeli.tgbot.types.component.CommonMatcher
+import eu.vendeli.tgbot.types.component.FunctionalActivities
+import eu.vendeli.tgbot.types.component.FunctionalInvocation
+import eu.vendeli.tgbot.types.component.InputBreakPoint
+import eu.vendeli.tgbot.types.component.ProcessedUpdate
+import eu.vendeli.tgbot.types.component.UpdateType
+import eu.vendeli.tgbot.types.chain.SingleInputChain
+import eu.vendeli.tgbot.types.configuration.RateLimits
+import eu.vendeli.tgbot.utils.common.DEFAULT_SCOPE
+import eu.vendeli.tgbot.utils.common.OnCommandActivity
+import eu.vendeli.tgbot.utils.common.OnInputActivity
+import eu.vendeli.tgbot.utils.common.WhenNotHandledActivity
+import eu.vendeli.tgbot.utils.common.fqName
+import eu.vendeli.tgbot.utils.internal.getLogger
 import kotlin.reflect.KClass
 
 /**

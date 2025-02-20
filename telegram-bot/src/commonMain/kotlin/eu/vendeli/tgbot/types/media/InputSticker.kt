@@ -1,8 +1,8 @@
 package eu.vendeli.tgbot.types.media
 
-import eu.vendeli.tgbot.types.internal.ImplicitFile
-import eu.vendeli.tgbot.types.internal.InputFile
-import eu.vendeli.tgbot.utils.toImplicitFile
+import eu.vendeli.tgbot.types.component.ImplicitFile
+import eu.vendeli.tgbot.types.component.InputFile
+import eu.vendeli.tgbot.utils.common.toImplicitFile
 import kotlinx.serialization.Serializable
 
 /**

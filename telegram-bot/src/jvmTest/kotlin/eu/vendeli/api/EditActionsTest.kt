@@ -7,11 +7,11 @@ import eu.vendeli.tgbot.api.message.editMessageMedia
 import eu.vendeli.tgbot.api.message.editMessageReplyMarkup
 import eu.vendeli.tgbot.api.message.editMessageText
 import eu.vendeli.tgbot.api.message.message
-import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.types.component.getOrNull
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardButton
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
-import eu.vendeli.tgbot.utils.toImplicitFile
+import eu.vendeli.tgbot.utils.common.toImplicitFile
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe

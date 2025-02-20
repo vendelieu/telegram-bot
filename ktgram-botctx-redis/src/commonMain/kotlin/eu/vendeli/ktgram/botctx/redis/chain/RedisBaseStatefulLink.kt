@@ -1,9 +1,9 @@
 package eu.vendeli.ktgram.botctx.redis.chain
 
-import eu.vendeli.tgbot.types.internal.IdLong
-import eu.vendeli.tgbot.types.internal.chain.LinkStateManager
-import eu.vendeli.tgbot.types.internal.chain.StatefulLink
-import eu.vendeli.tgbot.types.internal.userOrNull
+import eu.vendeli.tgbot.types.component.IdLong
+import eu.vendeli.tgbot.types.chain.LinkStateManager
+import eu.vendeli.tgbot.types.chain.StatefulLink
+import eu.vendeli.tgbot.types.component.userOrNull
 import kotlinx.serialization.json.Json
 import kotlin.reflect.KClass
 

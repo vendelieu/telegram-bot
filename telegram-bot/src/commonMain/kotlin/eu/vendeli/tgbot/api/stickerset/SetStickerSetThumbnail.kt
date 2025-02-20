@@ -4,12 +4,12 @@ package eu.vendeli.tgbot.api.stickerset
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
-import eu.vendeli.tgbot.types.internal.ImplicitFile
+import eu.vendeli.tgbot.types.component.ImplicitFile
 import eu.vendeli.tgbot.types.media.StickerFormat
-import eu.vendeli.tgbot.utils.encodeWith
-import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.handleImplicitFile
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.internal.encodeWith
+import eu.vendeli.tgbot.utils.internal.getReturnType
+import eu.vendeli.tgbot.utils.internal.handleImplicitFile
+import eu.vendeli.tgbot.utils.internal.toJsonElement
 
 @TgAPI
 class SetStickerSetThumbnailAction(

@@ -11,7 +11,7 @@ import eu.vendeli.tgbot.api.chat.unpinAllChatMessages
 import eu.vendeli.tgbot.api.chat.unpinChatMessage
 import eu.vendeli.tgbot.api.message.message
 import eu.vendeli.tgbot.types.chat.ChatAction
-import eu.vendeli.tgbot.types.internal.onFailure
+import eu.vendeli.tgbot.types.component.onFailure
 import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull

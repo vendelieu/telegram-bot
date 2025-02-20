@@ -2,16 +2,15 @@ package eu.vendeli.tgbot.interfaces.action
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
-import eu.vendeli.tgbot.types.internal.Response
-import eu.vendeli.tgbot.types.internal.options.Options
-import eu.vendeli.tgbot.utils.makeRequestReturning
-import eu.vendeli.tgbot.utils.makeSilentRequest
-import eu.vendeli.tgbot.utils.serde
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.types.component.Response
+import eu.vendeli.tgbot.types.options.Options
+import eu.vendeli.tgbot.utils.internal.makeRequestReturning
+import eu.vendeli.tgbot.utils.internal.makeSilentRequest
+import eu.vendeli.tgbot.utils.common.serde
+import eu.vendeli.tgbot.utils.internal.toJsonElement
 import io.ktor.http.content.PartData
 import kotlinx.coroutines.Deferred
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.JsonElement
 import kotlin.properties.Delegates
 

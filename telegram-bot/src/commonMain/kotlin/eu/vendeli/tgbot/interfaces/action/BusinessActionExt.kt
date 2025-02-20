@@ -1,8 +1,8 @@
 package eu.vendeli.tgbot.interfaces.action
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.types.internal.Response
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.types.component.Response
+import eu.vendeli.tgbot.utils.internal.toJsonElement
 import kotlinx.coroutines.Deferred
 
 /**

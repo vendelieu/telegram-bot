@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.api.chat.editChatInviteLink
 import eu.vendeli.tgbot.api.chat.editChatSubscriptionInviteLink
 import eu.vendeli.tgbot.api.chat.exportChatInviteLink
 import eu.vendeli.tgbot.api.chat.revokeChatInviteLink
-import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.types.component.getOrNull
 import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue

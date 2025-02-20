@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.interfaces.marker
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.types.internal.ProcessedUpdate
+import eu.vendeli.tgbot.types.component.ProcessedUpdate
 
 /**
  * Interface for implementing the dynamic acquisition of a magic object

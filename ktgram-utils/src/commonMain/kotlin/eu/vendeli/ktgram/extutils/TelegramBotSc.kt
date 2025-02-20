@@ -3,32 +3,14 @@
 package eu.vendeli.ktgram.extutils
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.api.GetFileAction
-import eu.vendeli.tgbot.api.GetGameHighScoresAction
-import eu.vendeli.tgbot.api.GetUserChatBoostsAction
-import eu.vendeli.tgbot.api.GetUserProfilePhotosAction
-import eu.vendeli.tgbot.api.SendContactAction
-import eu.vendeli.tgbot.api.SendDiceAction
-import eu.vendeli.tgbot.api.SendGameAction
-import eu.vendeli.tgbot.api.SendInvoiceAction
-import eu.vendeli.tgbot.api.SendLocationAction
-import eu.vendeli.tgbot.api.SendPollAction
-import eu.vendeli.tgbot.api.SendVenueAction
-import eu.vendeli.tgbot.api.SetGameScoreAction
-import eu.vendeli.tgbot.api.SetMessageReactionAction
-import eu.vendeli.tgbot.api.SetPassportDataErrorsAction
-import eu.vendeli.tgbot.api.StopMessageLiveLocationAction
-import eu.vendeli.tgbot.api.StopPollAction
 import eu.vendeli.tgbot.api.answer.AnswerCallbackQueryAction
 import eu.vendeli.tgbot.api.answer.AnswerInlineQueryAction
 import eu.vendeli.tgbot.api.answer.AnswerPreCheckoutQueryAction
 import eu.vendeli.tgbot.api.answer.AnswerShippingQueryAction
 import eu.vendeli.tgbot.api.answer.AnswerWebAppQueryAction
 import eu.vendeli.tgbot.api.botactions.CloseAction
-import eu.vendeli.tgbot.api.botactions.CreateInvoiceLinkAction
 import eu.vendeli.tgbot.api.botactions.DeleteMyCommandsAction
 import eu.vendeli.tgbot.api.botactions.DeleteWebhookAction
-import eu.vendeli.tgbot.api.botactions.EditUserStarSubscriptionAction
 import eu.vendeli.tgbot.api.botactions.GetAvailableGiftsAction
 import eu.vendeli.tgbot.api.botactions.GetBusinessConnectionAction
 import eu.vendeli.tgbot.api.botactions.GetMeAction
@@ -37,11 +19,9 @@ import eu.vendeli.tgbot.api.botactions.GetMyDefaultAdministratorRightsAction
 import eu.vendeli.tgbot.api.botactions.GetMyDescriptionAction
 import eu.vendeli.tgbot.api.botactions.GetMyNameAction
 import eu.vendeli.tgbot.api.botactions.GetMyShortDescriptionAction
-import eu.vendeli.tgbot.api.botactions.GetStarTransactionsAction
 import eu.vendeli.tgbot.api.botactions.GetUpdatesAction
 import eu.vendeli.tgbot.api.botactions.GetWebhookInfoAction
 import eu.vendeli.tgbot.api.botactions.LogOutAction
-import eu.vendeli.tgbot.api.botactions.RefundStarPaymentAction
 import eu.vendeli.tgbot.api.botactions.SavePreparedInlineMessageAction
 import eu.vendeli.tgbot.api.botactions.SendGiftAction
 import eu.vendeli.tgbot.api.botactions.SetMyCommandsAction
@@ -67,6 +47,7 @@ import eu.vendeli.tgbot.api.chat.GetChatAdministratorsAction
 import eu.vendeli.tgbot.api.chat.GetChatMemberAction
 import eu.vendeli.tgbot.api.chat.GetChatMemberCountAction
 import eu.vendeli.tgbot.api.chat.GetChatMenuButtonAction
+import eu.vendeli.tgbot.api.chat.GetUserChatBoostsAction
 import eu.vendeli.tgbot.api.chat.LeaveChatAction
 import eu.vendeli.tgbot.api.chat.PinChatMessageAction
 import eu.vendeli.tgbot.api.chat.PromoteChatMemberAction
@@ -84,6 +65,12 @@ import eu.vendeli.tgbot.api.chat.UnbanChatMemberAction
 import eu.vendeli.tgbot.api.chat.UnbanChatSenderChatAction
 import eu.vendeli.tgbot.api.chat.UnpinAllChatMessagesAction
 import eu.vendeli.tgbot.api.chat.UnpinChatMessageAction
+import eu.vendeli.tgbot.api.common.SendContactAction
+import eu.vendeli.tgbot.api.common.SendDiceAction
+import eu.vendeli.tgbot.api.common.SendLocationAction
+import eu.vendeli.tgbot.api.common.SendPollAction
+import eu.vendeli.tgbot.api.common.SendVenueAction
+import eu.vendeli.tgbot.api.common.StopPollAction
 import eu.vendeli.tgbot.api.forum.CloseForumTopicAction
 import eu.vendeli.tgbot.api.forum.CloseGeneralForumTopicAction
 import eu.vendeli.tgbot.api.forum.CreateForumTopicAction
@@ -97,6 +84,11 @@ import eu.vendeli.tgbot.api.forum.ReopenGeneralForumTopicAction
 import eu.vendeli.tgbot.api.forum.UnhideGeneralForumTopicAction
 import eu.vendeli.tgbot.api.forum.UnpinAllForumTopicMessagesAction
 import eu.vendeli.tgbot.api.forum.UnpinAllGeneralForumTopicMessagesAction
+import eu.vendeli.tgbot.api.game.GetGameHighScoresAction
+import eu.vendeli.tgbot.api.game.SendGameAction
+import eu.vendeli.tgbot.api.game.SetGameScoreAction
+import eu.vendeli.tgbot.api.media.GetFileAction
+import eu.vendeli.tgbot.api.media.GetUserProfilePhotosAction
 import eu.vendeli.tgbot.api.media.SendAnimationAction
 import eu.vendeli.tgbot.api.media.SendAudioAction
 import eu.vendeli.tgbot.api.media.SendDocumentAction
@@ -119,6 +111,14 @@ import eu.vendeli.tgbot.api.message.EditMessageTextAction
 import eu.vendeli.tgbot.api.message.ForwardMessageAction
 import eu.vendeli.tgbot.api.message.ForwardMessagesAction
 import eu.vendeli.tgbot.api.message.SendMessageAction
+import eu.vendeli.tgbot.api.message.SetMessageReactionAction
+import eu.vendeli.tgbot.api.message.StopMessageLiveLocationAction
+import eu.vendeli.tgbot.api.passport.SetPassportDataErrorsAction
+import eu.vendeli.tgbot.api.payments.CreateInvoiceLinkAction
+import eu.vendeli.tgbot.api.payments.EditUserStarSubscriptionAction
+import eu.vendeli.tgbot.api.payments.GetStarTransactionsAction
+import eu.vendeli.tgbot.api.payments.RefundStarPaymentAction
+import eu.vendeli.tgbot.api.payments.SendInvoiceAction
 import eu.vendeli.tgbot.api.stickerset.AddStickerToSetAction
 import eu.vendeli.tgbot.api.stickerset.CreateNewStickerSetAction
 import eu.vendeli.tgbot.api.stickerset.DeleteStickerFromSetAction
@@ -138,20 +138,21 @@ import eu.vendeli.tgbot.api.verification.RemoveChatVerificationAction
 import eu.vendeli.tgbot.api.verification.RemoveUserVerificationAction
 import eu.vendeli.tgbot.api.verification.VerifyChatAction
 import eu.vendeli.tgbot.api.verification.VerifyUserAction
-import eu.vendeli.tgbot.types.ParseMode
-import eu.vendeli.tgbot.types.ReactionType
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.`inline`.InlineQueryResult
-import eu.vendeli.tgbot.types.`internal`.Currency
-import eu.vendeli.tgbot.types.`internal`.Identifier
-import eu.vendeli.tgbot.types.`internal`.ImplicitFile
-import eu.vendeli.tgbot.types.`internal`.InputFile
 import eu.vendeli.tgbot.types.bot.BotCommand
 import eu.vendeli.tgbot.types.bot.BotCommandScope
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatAction
 import eu.vendeli.tgbot.types.chat.ChatAdministratorRights
 import eu.vendeli.tgbot.types.chat.ChatPermissions
+import eu.vendeli.tgbot.types.common.ReactionType
+import eu.vendeli.tgbot.types.component.Currency
+import eu.vendeli.tgbot.types.component.DiceEmoji
+import eu.vendeli.tgbot.types.component.Identifier
+import eu.vendeli.tgbot.types.component.ImplicitFile
+import eu.vendeli.tgbot.types.component.InputFile
+import eu.vendeli.tgbot.types.component.ParseMode
 import eu.vendeli.tgbot.types.forum.IconColor
 import eu.vendeli.tgbot.types.keyboard.MenuButton
 import eu.vendeli.tgbot.types.media.InputMedia
@@ -178,182 +179,6 @@ import kotlin.Unit
 import kotlin.collections.List
 import kotlin.time.Duration
 import kotlinx.datetime.Instant
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.contact(firstName: String, phoneNumber: String): SendContactAction = eu.vendeli.tgbot.api.contact(firstName, phoneNumber)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendContact(firstName: String, phoneNumber: String): SendContactAction = eu.vendeli.tgbot.api.sendContact(firstName, phoneNumber)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendDice(emoji: String? = null): SendDiceAction = eu.vendeli.tgbot.api.sendDice(emoji)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.dice(emoji: String? = null): SendDiceAction = eu.vendeli.tgbot.api.dice(emoji)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendGame(gameShortName: String): SendGameAction = eu.vendeli.tgbot.api.sendGame(gameShortName)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.game(gameShortName: String): SendGameAction = eu.vendeli.tgbot.api.game(gameShortName)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getFile(fileId: String): GetFileAction = eu.vendeli.tgbot.api.getFile(fileId)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getGameHighScores(userId: Long, messageId: Long): GetGameHighScoresAction = eu.vendeli.tgbot.api.getGameHighScores(userId, messageId)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getGameHighScores(userId: Long): GetGameHighScoresAction = eu.vendeli.tgbot.api.getGameHighScores(userId)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getGameHighScores(user: User, messageId: Long): GetGameHighScoresAction = eu.vendeli.tgbot.api.getGameHighScores(user, messageId)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getGameHighScores(user: User): GetGameHighScoresAction = eu.vendeli.tgbot.api.getGameHighScores(user)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getUserChatBoosts(userId: Long): GetUserChatBoostsAction = eu.vendeli.tgbot.api.getUserChatBoosts(userId)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getUserChatBoosts(user: User): GetUserChatBoostsAction = eu.vendeli.tgbot.api.getUserChatBoosts(user)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getUserProfilePhotos(
-  userId: Long,
-  offset: Int? = null,
-  limit: Int? = null,
-): GetUserProfilePhotosAction = eu.vendeli.tgbot.api.getUserProfilePhotos(userId, offset, limit)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getUserProfilePhotos(
-  user: User,
-  offset: Int? = null,
-  limit: Int? = null,
-): GetUserProfilePhotosAction = eu.vendeli.tgbot.api.getUserProfilePhotos(user, offset, limit)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.invoice(
-  title: String,
-  description: String,
-  payload: String,
-  providerToken: String? = null,
-  currency: Currency,
-  prices: List<LabeledPrice>,
-): SendInvoiceAction = eu.vendeli.tgbot.api.invoice(title, description, payload, providerToken, currency, prices)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.invoice(
-  title: String,
-  description: String,
-  providerToken: String? = null,
-  currency: Currency,
-  vararg prices: LabeledPrice,
-  noinline payload: () -> String,
-): SendInvoiceAction = eu.vendeli.tgbot.api.invoice(title, description, providerToken, currency, prices = prices, payload)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendInvoice(
-  title: String,
-  description: String,
-  payload: String,
-  providerToken: String? = null,
-  currency: Currency,
-  prices: List<LabeledPrice>,
-): SendInvoiceAction = eu.vendeli.tgbot.api.sendInvoice(title, description, payload, providerToken, currency, prices)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendLocation(latitude: Float, longitude: Float): SendLocationAction = eu.vendeli.tgbot.api.sendLocation(latitude, longitude)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.location(latitude: Float, longitude: Float): SendLocationAction = eu.vendeli.tgbot.api.location(latitude, longitude)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.poll(question: String, options: List<InputPollOption>): SendPollAction = eu.vendeli.tgbot.api.poll(question, options)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.poll(question: String, noinline options: PollOptionsBuilder.() -> Unit): SendPollAction = eu.vendeli.tgbot.api.poll(question, options)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.poll(question: String, vararg options: InputPollOption): SendPollAction = eu.vendeli.tgbot.api.poll(question, options = options)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendPoll(question: String, noinline options: PollOptionsBuilder.() -> Unit): SendPollAction = eu.vendeli.tgbot.api.sendPoll(question, options)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setGameScore(
-  userId: Long,
-  messageId: Long,
-  score: Long,
-): SetGameScoreAction = eu.vendeli.tgbot.api.setGameScore(userId, messageId, score)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setGameScore(userId: Long, score: Long): SetGameScoreAction = eu.vendeli.tgbot.api.setGameScore(userId, score)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setGameScore(user: User, score: Long): SetGameScoreAction = eu.vendeli.tgbot.api.setGameScore(user, score)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setGameScore(
-  user: User,
-  messageId: Long,
-  score: Long,
-): SetGameScoreAction = eu.vendeli.tgbot.api.setGameScore(user, messageId, score)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setMessageReaction(
-  messageId: Long,
-  reaction: List<ReactionType>? = null,
-  isBig: Boolean? = null,
-): SetMessageReactionAction = eu.vendeli.tgbot.api.setMessageReaction(messageId, reaction, isBig)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setMessageReaction(
-  messageId: Long,
-  vararg reaction: ReactionType,
-  isBig: Boolean? = null,
-): SetMessageReactionAction = eu.vendeli.tgbot.api.setMessageReaction(messageId, reaction = reaction, isBig)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setMessageReaction(
-  messageId: Long,
-  isBig: Boolean? = null,
-  noinline reaction: ListingBuilder<ReactionType>.() -> Unit,
-): SetMessageReactionAction = eu.vendeli.tgbot.api.setMessageReaction(messageId, isBig, reaction)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setPassportDataErrors(userId: Long, errors: List<PassportElementError>): SetPassportDataErrorsAction = eu.vendeli.tgbot.api.setPassportDataErrors(userId, errors)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setPassportDataErrors(userId: Long, noinline errors: ListingBuilder<PassportElementError>.() -> Unit): SetPassportDataErrorsAction = eu.vendeli.tgbot.api.setPassportDataErrors(userId, errors)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setPassportDataError(userId: Long, vararg error: PassportElementError): SetPassportDataErrorsAction = eu.vendeli.tgbot.api.setPassportDataError(userId, error = error)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.stopMessageLiveLocation(messageId: Long): StopMessageLiveLocationAction = eu.vendeli.tgbot.api.stopMessageLiveLocation(messageId)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.stopMessageLiveLocation(): StopMessageLiveLocationAction = eu.vendeli.tgbot.api.stopMessageLiveLocation()
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.stopPoll(messageId: Long): StopPollAction = eu.vendeli.tgbot.api.stopPoll(messageId)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.venue(
-  latitude: Float,
-  longitude: Float,
-  title: String,
-  address: String,
-): SendVenueAction = eu.vendeli.tgbot.api.venue(latitude, longitude, title, address)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendVenue(
-  latitude: Float,
-  longitude: Float,
-  title: String,
-  address: String,
-): SendVenueAction = eu.vendeli.tgbot.api.sendVenue(latitude, longitude, title, address)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.answerCallbackQuery(callbackQueryId: String): AnswerCallbackQueryAction = eu.vendeli.tgbot.api.answer.answerCallbackQuery(callbackQueryId)
@@ -405,35 +230,10 @@ public inline fun TelegramBot.answerWebAppQuery(webAppQueryId: String, result: I
 public inline fun TelegramBot.close(): CloseAction = eu.vendeli.tgbot.api.botactions.close()
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.createInvoiceLink(
-  title: String,
-  description: String,
-  payload: String,
-  currency: Currency,
-  prices: List<LabeledPrice>,
-): CreateInvoiceLinkAction = eu.vendeli.tgbot.api.botactions.createInvoiceLink(title, description, payload, currency, prices)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.createInvoiceLink(
-  title: String,
-  description: String,
-  currency: Currency,
-  vararg prices: LabeledPrice,
-  noinline payload: () -> String,
-): CreateInvoiceLinkAction = eu.vendeli.tgbot.api.botactions.createInvoiceLink(title, description, currency, prices = prices, payload)
-
-@Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.deleteMyCommands(languageCode: String? = null, scope: BotCommandScope? = null): DeleteMyCommandsAction = eu.vendeli.tgbot.api.botactions.deleteMyCommands(languageCode, scope)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.deleteWebhook(dropPendingUpdates: Boolean): DeleteWebhookAction = eu.vendeli.tgbot.api.botactions.deleteWebhook(dropPendingUpdates)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editUserStarSubscription(
-  userId: Long,
-  telegramPaymentChargeId: String,
-  isCanceled: Boolean,
-): EditUserStarSubscriptionAction = eu.vendeli.tgbot.api.botactions.editUserStarSubscription(userId, telegramPaymentChargeId, isCanceled)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.getAvailableGifts(): GetAvailableGiftsAction = eu.vendeli.tgbot.api.botactions.getAvailableGifts()
@@ -460,9 +260,6 @@ public inline fun TelegramBot.getMyName(languageCode: String? = null): GetMyName
 public inline fun TelegramBot.getMyShortDescription(languageCode: String? = null): GetMyShortDescriptionAction = eu.vendeli.tgbot.api.botactions.getMyShortDescription(languageCode)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getStarTransactions(offset: Int? = null, limit: Int? = null): GetStarTransactionsAction = eu.vendeli.tgbot.api.botactions.getStarTransactions(offset, limit)
-
-@Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.getUpdates(): GetUpdatesAction = eu.vendeli.tgbot.api.botactions.getUpdates()
 
 @Suppress("NOTHING_TO_INLINE")
@@ -470,9 +267,6 @@ public inline fun TelegramBot.getWebhookInfo(): GetWebhookInfoAction = eu.vendel
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.logOut(): LogOutAction = eu.vendeli.tgbot.api.botactions.logOut()
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.refundStarPayment(telegramPaymentChargeId: String, userId: Long): RefundStarPaymentAction = eu.vendeli.tgbot.api.botactions.refundStarPayment(telegramPaymentChargeId, userId)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.savePreparedInlineMessage(userId: Long, result: InlineQueryResult): SavePreparedInlineMessageAction = eu.vendeli.tgbot.api.botactions.savePreparedInlineMessage(userId, result)
@@ -623,6 +417,12 @@ public inline fun TelegramBot.getChatMemberCount(): GetChatMemberCountAction = e
 public inline fun TelegramBot.getChatMenuButton(): GetChatMenuButtonAction = eu.vendeli.tgbot.api.chat.getChatMenuButton()
 
 @Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.getUserChatBoosts(userId: Long): GetUserChatBoostsAction = eu.vendeli.tgbot.api.chat.getUserChatBoosts(userId)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.getUserChatBoosts(user: User): GetUserChatBoostsAction = eu.vendeli.tgbot.api.chat.getUserChatBoosts(user)
+
+@Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.leaveChat(): LeaveChatAction = eu.vendeli.tgbot.api.chat.leaveChat()
 
 @Suppress("NOTHING_TO_INLINE")
@@ -724,6 +524,58 @@ public inline fun TelegramBot.unpinAllChatMessages(): UnpinAllChatMessagesAction
 public inline fun TelegramBot.unpinChatMessage(messageId: Long): UnpinChatMessageAction = eu.vendeli.tgbot.api.chat.unpinChatMessage(messageId)
 
 @Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.contact(firstName: String, phoneNumber: String): SendContactAction = eu.vendeli.tgbot.api.common.contact(firstName, phoneNumber)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.sendContact(firstName: String, phoneNumber: String): SendContactAction = eu.vendeli.tgbot.api.common.sendContact(firstName, phoneNumber)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.sendDice(emoji: String? = null): SendDiceAction = eu.vendeli.tgbot.api.common.sendDice(emoji)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.dice(emoji: String? = null): SendDiceAction = eu.vendeli.tgbot.api.common.dice(emoji)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.dice(noinline block: () -> DiceEmoji): SendDiceAction = eu.vendeli.tgbot.api.common.dice(block)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.sendLocation(latitude: Float, longitude: Float): SendLocationAction = eu.vendeli.tgbot.api.common.sendLocation(latitude, longitude)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.location(latitude: Float, longitude: Float): SendLocationAction = eu.vendeli.tgbot.api.common.location(latitude, longitude)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.poll(question: String, options: List<InputPollOption>): SendPollAction = eu.vendeli.tgbot.api.common.poll(question, options)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.poll(question: String, noinline options: PollOptionsBuilder.() -> Unit): SendPollAction = eu.vendeli.tgbot.api.common.poll(question, options)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.poll(question: String, vararg options: InputPollOption): SendPollAction = eu.vendeli.tgbot.api.common.poll(question, options = options)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.sendPoll(question: String, noinline options: PollOptionsBuilder.() -> Unit): SendPollAction = eu.vendeli.tgbot.api.common.sendPoll(question, options)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.stopPoll(messageId: Long): StopPollAction = eu.vendeli.tgbot.api.common.stopPoll(messageId)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.venue(
+  latitude: Float,
+  longitude: Float,
+  title: String,
+  address: String,
+): SendVenueAction = eu.vendeli.tgbot.api.common.venue(latitude, longitude, title, address)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.sendVenue(
+  latitude: Float,
+  longitude: Float,
+  title: String,
+  address: String,
+): SendVenueAction = eu.vendeli.tgbot.api.common.sendVenue(latitude, longitude, title, address)
+
+@Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.closeForumTopic(messageThreadId: Int): CloseForumTopicAction = eu.vendeli.tgbot.api.forum.closeForumTopic(messageThreadId)
 
 @Suppress("NOTHING_TO_INLINE")
@@ -769,6 +621,44 @@ public inline fun TelegramBot.unpinAllForumTopicMessages(messageThreadId: Int): 
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.unpinAllGeneralForumTopicMessages(): UnpinAllGeneralForumTopicMessagesAction = eu.vendeli.tgbot.api.forum.unpinAllGeneralForumTopicMessages()
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.sendGame(gameShortName: String): SendGameAction = eu.vendeli.tgbot.api.game.sendGame(gameShortName)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.game(gameShortName: String): SendGameAction = eu.vendeli.tgbot.api.game.game(gameShortName)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.getGameHighScores(userId: Long, messageId: Long): GetGameHighScoresAction = eu.vendeli.tgbot.api.game.getGameHighScores(userId, messageId)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.getGameHighScores(userId: Long): GetGameHighScoresAction = eu.vendeli.tgbot.api.game.getGameHighScores(userId)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.getGameHighScores(user: User, messageId: Long): GetGameHighScoresAction = eu.vendeli.tgbot.api.game.getGameHighScores(user, messageId)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.getGameHighScores(user: User): GetGameHighScoresAction = eu.vendeli.tgbot.api.game.getGameHighScores(user)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.setGameScore(
+  userId: Long,
+  messageId: Long,
+  score: Long,
+): SetGameScoreAction = eu.vendeli.tgbot.api.game.setGameScore(userId, messageId, score)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.setGameScore(userId: Long, score: Long): SetGameScoreAction = eu.vendeli.tgbot.api.game.setGameScore(userId, score)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.setGameScore(user: User, score: Long): SetGameScoreAction = eu.vendeli.tgbot.api.game.setGameScore(user, score)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.setGameScore(
+  user: User,
+  messageId: Long,
+  score: Long,
+): SetGameScoreAction = eu.vendeli.tgbot.api.game.setGameScore(user, messageId, score)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.animation(`file`: ImplicitFile): SendAnimationAction = eu.vendeli.tgbot.api.media.animation(file)
@@ -823,6 +713,23 @@ public inline fun TelegramBot.sendDocument(noinline block: () -> String): SendDo
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.sendDocument(`file`: ImplicitFile): SendDocumentAction = eu.vendeli.tgbot.api.media.sendDocument(file)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.getFile(fileId: String): GetFileAction = eu.vendeli.tgbot.api.media.getFile(fileId)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.getUserProfilePhotos(
+  userId: Long,
+  offset: Int? = null,
+  limit: Int? = null,
+): GetUserProfilePhotosAction = eu.vendeli.tgbot.api.media.getUserProfilePhotos(userId, offset, limit)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.getUserProfilePhotos(
+  user: User,
+  offset: Int? = null,
+  limit: Int? = null,
+): GetUserProfilePhotosAction = eu.vendeli.tgbot.api.media.getUserProfilePhotos(user, offset, limit)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.sendMediaGroup(media: List<InputMedia>): SendMediaGroupAction = eu.vendeli.tgbot.api.media.sendMediaGroup(media)
@@ -1079,6 +986,103 @@ public inline fun TelegramBot.sendMessage(text: String): SendMessageAction = eu.
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.sendMessage(noinline block: EntitiesCtxBuilder<SendMessageAction>.() -> String): SendMessageAction = eu.vendeli.tgbot.api.message.sendMessage(block)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.setMessageReaction(
+  messageId: Long,
+  reaction: List<ReactionType>? = null,
+  isBig: Boolean? = null,
+): SetMessageReactionAction = eu.vendeli.tgbot.api.message.setMessageReaction(messageId, reaction, isBig)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.setMessageReaction(
+  messageId: Long,
+  vararg reaction: ReactionType,
+  isBig: Boolean? = null,
+): SetMessageReactionAction = eu.vendeli.tgbot.api.message.setMessageReaction(messageId, reaction = reaction, isBig)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.setMessageReaction(
+  messageId: Long,
+  isBig: Boolean? = null,
+  noinline reaction: ListingBuilder<ReactionType>.() -> Unit,
+): SetMessageReactionAction = eu.vendeli.tgbot.api.message.setMessageReaction(messageId, isBig, reaction)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.stopMessageLiveLocation(messageId: Long): StopMessageLiveLocationAction = eu.vendeli.tgbot.api.message.stopMessageLiveLocation(messageId)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.stopMessageLiveLocation(): StopMessageLiveLocationAction = eu.vendeli.tgbot.api.message.stopMessageLiveLocation()
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.setPassportDataErrors(userId: Long, errors: List<PassportElementError>): SetPassportDataErrorsAction = eu.vendeli.tgbot.api.passport.setPassportDataErrors(userId, errors)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.setPassportDataErrors(userId: Long, noinline errors: ListingBuilder<PassportElementError>.() -> Unit): SetPassportDataErrorsAction = eu.vendeli.tgbot.api.passport.setPassportDataErrors(userId, errors)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.setPassportDataError(userId: Long, vararg error: PassportElementError): SetPassportDataErrorsAction = eu.vendeli.tgbot.api.passport.setPassportDataError(userId, error = error)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.createInvoiceLink(
+  title: String,
+  description: String,
+  payload: String,
+  currency: Currency,
+  prices: List<LabeledPrice>,
+): CreateInvoiceLinkAction = eu.vendeli.tgbot.api.payments.createInvoiceLink(title, description, payload, currency, prices)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.createInvoiceLink(
+  title: String,
+  description: String,
+  currency: Currency,
+  vararg prices: LabeledPrice,
+  noinline payload: () -> String,
+): CreateInvoiceLinkAction = eu.vendeli.tgbot.api.payments.createInvoiceLink(title, description, currency, prices = prices, payload)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.editUserStarSubscription(
+  userId: Long,
+  telegramPaymentChargeId: String,
+  isCanceled: Boolean,
+): EditUserStarSubscriptionAction = eu.vendeli.tgbot.api.payments.editUserStarSubscription(userId, telegramPaymentChargeId, isCanceled)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.getStarTransactions(offset: Int? = null, limit: Int? = null): GetStarTransactionsAction = eu.vendeli.tgbot.api.payments.getStarTransactions(offset, limit)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.invoice(
+  title: String,
+  description: String,
+  payload: String,
+  providerToken: String? = null,
+  currency: Currency,
+  prices: List<LabeledPrice>,
+): SendInvoiceAction = eu.vendeli.tgbot.api.payments.invoice(title, description, payload, providerToken, currency, prices)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.invoice(
+  title: String,
+  description: String,
+  providerToken: String? = null,
+  currency: Currency,
+  vararg prices: LabeledPrice,
+  noinline payload: () -> String,
+): SendInvoiceAction = eu.vendeli.tgbot.api.payments.invoice(title, description, providerToken, currency, prices = prices, payload)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.sendInvoice(
+  title: String,
+  description: String,
+  payload: String,
+  providerToken: String? = null,
+  currency: Currency,
+  prices: List<LabeledPrice>,
+): SendInvoiceAction = eu.vendeli.tgbot.api.payments.sendInvoice(title, description, payload, providerToken, currency, prices)
+
+@Suppress("NOTHING_TO_INLINE")
+public inline fun TelegramBot.refundStarPayment(telegramPaymentChargeId: String, userId: Long): RefundStarPaymentAction = eu.vendeli.tgbot.api.payments.refundStarPayment(telegramPaymentChargeId, userId)
 
 @Suppress("NOTHING_TO_INLINE")
 public inline fun TelegramBot.addStickerToSet(

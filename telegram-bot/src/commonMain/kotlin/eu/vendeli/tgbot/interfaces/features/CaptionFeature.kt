@@ -4,8 +4,8 @@ import eu.vendeli.tgbot.interfaces.action.TgAction
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.utils.builders.EntitiesBuilder
 import eu.vendeli.tgbot.utils.builders.EntitiesCtxBuilder
-import eu.vendeli.tgbot.utils.encodeWith
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.internal.encodeWith
+import eu.vendeli.tgbot.utils.internal.toJsonElement
 
 /**
  * Caption feature, see [Features article](https://github.com/vendelieu/telegram-bot/wiki/Features)

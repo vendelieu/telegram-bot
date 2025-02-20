@@ -49,30 +49,30 @@ import eu.vendeli.ksp.utils.shippingQueryUpdateClass
 import eu.vendeli.ksp.utils.shortPrimitiveType
 import eu.vendeli.ksp.utils.updateClass
 import eu.vendeli.ksp.utils.userClass
-import eu.vendeli.tgbot.types.internal.BusinessConnectionUpdate
-import eu.vendeli.tgbot.types.internal.BusinessMessageUpdate
-import eu.vendeli.tgbot.types.internal.CallbackQueryUpdate
-import eu.vendeli.tgbot.types.internal.ChannelPostUpdate
-import eu.vendeli.tgbot.types.internal.ChatBoostUpdate
-import eu.vendeli.tgbot.types.internal.ChatJoinRequestUpdate
-import eu.vendeli.tgbot.types.internal.ChatMemberUpdate
-import eu.vendeli.tgbot.types.internal.ChosenInlineResultUpdate
-import eu.vendeli.tgbot.types.internal.DeletedBusinessMessagesUpdate
-import eu.vendeli.tgbot.types.internal.EditedBusinessMessageUpdate
-import eu.vendeli.tgbot.types.internal.EditedChannelPostUpdate
-import eu.vendeli.tgbot.types.internal.EditedMessageUpdate
-import eu.vendeli.tgbot.types.internal.InlineQueryUpdate
-import eu.vendeli.tgbot.types.internal.MessageReactionCountUpdate
-import eu.vendeli.tgbot.types.internal.MessageReactionUpdate
-import eu.vendeli.tgbot.types.internal.MessageUpdate
-import eu.vendeli.tgbot.types.internal.MyChatMemberUpdate
-import eu.vendeli.tgbot.types.internal.PollAnswerUpdate
-import eu.vendeli.tgbot.types.internal.PollUpdate
-import eu.vendeli.tgbot.types.internal.PreCheckoutQueryUpdate
-import eu.vendeli.tgbot.types.internal.ProcessedUpdate
-import eu.vendeli.tgbot.types.internal.PurchasedPaidMediaUpdate
-import eu.vendeli.tgbot.types.internal.RemovedChatBoostUpdate
-import eu.vendeli.tgbot.types.internal.ShippingQueryUpdate
+import eu.vendeli.tgbot.types.component.BusinessConnectionUpdate
+import eu.vendeli.tgbot.types.component.BusinessMessageUpdate
+import eu.vendeli.tgbot.types.component.CallbackQueryUpdate
+import eu.vendeli.tgbot.types.component.ChannelPostUpdate
+import eu.vendeli.tgbot.types.component.ChatBoostUpdate
+import eu.vendeli.tgbot.types.component.ChatJoinRequestUpdate
+import eu.vendeli.tgbot.types.component.ChatMemberUpdate
+import eu.vendeli.tgbot.types.component.ChosenInlineResultUpdate
+import eu.vendeli.tgbot.types.component.DeletedBusinessMessagesUpdate
+import eu.vendeli.tgbot.types.component.EditedBusinessMessageUpdate
+import eu.vendeli.tgbot.types.component.EditedChannelPostUpdate
+import eu.vendeli.tgbot.types.component.EditedMessageUpdate
+import eu.vendeli.tgbot.types.component.InlineQueryUpdate
+import eu.vendeli.tgbot.types.component.MessageReactionCountUpdate
+import eu.vendeli.tgbot.types.component.MessageReactionUpdate
+import eu.vendeli.tgbot.types.component.MessageUpdate
+import eu.vendeli.tgbot.types.component.MyChatMemberUpdate
+import eu.vendeli.tgbot.types.component.PollAnswerUpdate
+import eu.vendeli.tgbot.types.component.PollUpdate
+import eu.vendeli.tgbot.types.component.PreCheckoutQueryUpdate
+import eu.vendeli.tgbot.types.component.ProcessedUpdate
+import eu.vendeli.tgbot.types.component.PurchasedPaidMediaUpdate
+import eu.vendeli.tgbot.types.component.RemovedChatBoostUpdate
+import eu.vendeli.tgbot.types.component.ShippingQueryUpdate
 import kotlin.reflect.KClass
 
 @Suppress("LongMethod", "CyclomaticComplexMethod")
@@ -187,7 +187,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
 
             if (parameters.contains(CommandHandlerParams.CallbackQueryAutoAnswer)) {
                 addImport("eu.vendeli.tgbot.api.answer", "answerCallbackQuery")
-                addImport("eu.vendeli.tgbot.types.internal", "CallbackQueryUpdate", "getUser")
+                addImport("eu.vendeli.tgbot.types.component", "CallbackQueryUpdate", "getUser")
                 add("answerCallbackQuery((update as CallbackQueryUpdate).callbackQuery.id).send(update.getUser(), bot)")
             }
 
@@ -200,6 +200,6 @@ private fun <T : ProcessedUpdate> FileBuilder.addUpdate(
     kClass: KClass<T>,
     nullabilityMark: String,
 ): String {
-    addImport("eu.vendeli.tgbot.types.internal", kClass.simpleName!!)
+    addImport("eu.vendeli.tgbot.types.component", kClass.simpleName!!)
     return "(update as? ${kClass.simpleName})$nullabilityMark"
 }

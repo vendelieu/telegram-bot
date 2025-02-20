@@ -6,9 +6,9 @@ import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.bot.BotCommand
 import eu.vendeli.tgbot.types.bot.BotCommandScope
-import eu.vendeli.tgbot.utils.encodeWith
-import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.internal.encodeWith
+import eu.vendeli.tgbot.utils.internal.getReturnType
+import eu.vendeli.tgbot.utils.internal.toJsonElement
 
 @TgAPI
 class GetMyCommandsAction(

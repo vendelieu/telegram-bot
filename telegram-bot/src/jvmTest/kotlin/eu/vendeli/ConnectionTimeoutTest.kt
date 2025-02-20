@@ -1,8 +1,8 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.utils.GET_UPDATES_ACTION
-import eu.vendeli.tgbot.utils.TgException
+import eu.vendeli.tgbot.utils.common.GET_UPDATES_ACTION
+import eu.vendeli.tgbot.utils.common.TgException
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe

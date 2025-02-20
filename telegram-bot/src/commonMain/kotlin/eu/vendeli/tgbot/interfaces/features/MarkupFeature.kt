@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.types.keyboard.ForceReply
 import eu.vendeli.tgbot.types.keyboard.ReplyKeyboardRemove
 import eu.vendeli.tgbot.utils.builders.InlineKeyboardMarkupBuilder
 import eu.vendeli.tgbot.utils.builders.ReplyKeyboardMarkupBuilder
-import eu.vendeli.tgbot.utils.encodeWith
+import eu.vendeli.tgbot.utils.internal.encodeWith
 import eu.vendeli.tgbot.utils.serde.KeyboardSerializer
 
 /**

@@ -5,7 +5,7 @@ package eu.vendeli.tgbot.api.forum
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.media.Sticker
-import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.internal.getReturnType
 
 @TgAPI
 class GetForumTopicIconStickersAction : Action<List<Sticker>>() {

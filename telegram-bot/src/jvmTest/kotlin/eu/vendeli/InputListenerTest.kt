@@ -3,7 +3,7 @@ package eu.vendeli
 import BotTestContext
 import eu.vendeli.fixtures.Conversation
 import eu.vendeli.tgbot.implementations.InputListenerMapImpl
-import eu.vendeli.tgbot.utils.setChain
+import eu.vendeli.tgbot.utils.common.setChain
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe

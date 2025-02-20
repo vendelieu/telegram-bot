@@ -7,7 +7,7 @@ import eu.vendeli.tgbot.api.answer.answerPreCheckoutQuery
 import eu.vendeli.tgbot.api.answer.answerShippingQuery
 import eu.vendeli.tgbot.api.answer.answerWebAppQuery
 import eu.vendeli.tgbot.types.inline.InlineQueryResult
-import eu.vendeli.tgbot.types.internal.Response
+import eu.vendeli.tgbot.types.component.Response
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 import eu.vendeli.tgbot.types.payment.ShippingOption
 import io.kotest.matchers.booleans.shouldBeFalse

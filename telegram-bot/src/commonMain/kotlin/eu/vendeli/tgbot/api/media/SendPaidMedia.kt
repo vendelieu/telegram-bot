@@ -6,13 +6,13 @@ import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.internal.options.PaidMediaOptions
+import eu.vendeli.tgbot.types.options.PaidMediaOptions
 import eu.vendeli.tgbot.types.media.InputPaidMedia
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
-import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.handleImplicitFileGroup
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.internal.getReturnType
+import eu.vendeli.tgbot.utils.internal.handleImplicitFileGroup
+import eu.vendeli.tgbot.utils.internal.toJsonElement
 
 @TgAPI
 class SendPaidMediaAction(

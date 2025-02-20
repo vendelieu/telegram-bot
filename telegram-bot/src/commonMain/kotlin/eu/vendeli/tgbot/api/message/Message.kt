@@ -8,11 +8,11 @@ import eu.vendeli.tgbot.interfaces.action.BusinessActionExt
 import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.internal.options.MessageOptions
+import eu.vendeli.tgbot.types.options.MessageOptions
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.builders.EntitiesCtxBuilder
-import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.internal.getReturnType
+import eu.vendeli.tgbot.utils.internal.toJsonElement
 
 @TgAPI
 class SendMessageAction private constructor() :

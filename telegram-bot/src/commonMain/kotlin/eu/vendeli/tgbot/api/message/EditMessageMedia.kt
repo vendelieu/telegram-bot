@@ -7,10 +7,10 @@ import eu.vendeli.tgbot.interfaces.action.InlineActionExt
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.types.msg.Message
-import eu.vendeli.tgbot.utils.encodeWith
-import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
-import eu.vendeli.tgbot.utils.transform
+import eu.vendeli.tgbot.utils.internal.encodeWith
+import eu.vendeli.tgbot.utils.internal.getReturnType
+import eu.vendeli.tgbot.utils.internal.toJsonElement
+import eu.vendeli.tgbot.utils.internal.transform
 
 @TgAPI
 class EditMessageMediaAction :

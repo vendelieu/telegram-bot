@@ -2,12 +2,12 @@ package eu.vendeli.ktgram.botctx.redis.chain
 
 import eu.vendeli.rethis.ReThis
 import eu.vendeli.rethis.wrappers.Hash
-import eu.vendeli.tgbot.types.internal.IdLong
-import eu.vendeli.tgbot.types.internal.chain.KeySelector
-import eu.vendeli.tgbot.types.internal.chain.LinkStateManager
-import eu.vendeli.tgbot.types.internal.chain.StatefulLink
-import eu.vendeli.tgbot.utils.TgException
-import eu.vendeli.tgbot.utils.fqName
+import eu.vendeli.tgbot.types.component.IdLong
+import eu.vendeli.tgbot.types.chain.KeySelector
+import eu.vendeli.tgbot.types.chain.LinkStateManager
+import eu.vendeli.tgbot.types.chain.StatefulLink
+import eu.vendeli.tgbot.utils.common.TgException
+import eu.vendeli.tgbot.utils.common.fqName
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializerOrNull

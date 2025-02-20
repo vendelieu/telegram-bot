@@ -8,10 +8,10 @@ import eu.vendeli.tgbot.api.message.deleteMessages
 import eu.vendeli.tgbot.api.message.forwardMessage
 import eu.vendeli.tgbot.api.message.forwardMessages
 import eu.vendeli.tgbot.api.message.message
-import eu.vendeli.tgbot.api.setMessageReaction
-import eu.vendeli.tgbot.types.EmojiType
-import eu.vendeli.tgbot.types.ReactionType
-import eu.vendeli.tgbot.types.internal.getOrNull
+import eu.vendeli.tgbot.api.message.setMessageReaction
+import eu.vendeli.tgbot.types.common.EmojiType
+import eu.vendeli.tgbot.types.common.ReactionType
+import eu.vendeli.tgbot.types.component.getOrNull
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.longs.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe

@@ -1,17 +1,17 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.types.Update
+import eu.vendeli.tgbot.types.common.Update
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
-import eu.vendeli.tgbot.types.internal.MessageUpdate
-import eu.vendeli.tgbot.types.internal.ProcessedUpdate
-import eu.vendeli.tgbot.types.internal.Response
+import eu.vendeli.tgbot.types.component.MessageUpdate
+import eu.vendeli.tgbot.types.component.ProcessedUpdate
+import eu.vendeli.tgbot.types.component.Response
 import eu.vendeli.tgbot.types.media.Document
 import eu.vendeli.tgbot.types.msg.Message
-import eu.vendeli.tgbot.utils.onMessage
-import eu.vendeli.tgbot.utils.processUpdate
-import eu.vendeli.tgbot.utils.serde
+import eu.vendeli.tgbot.utils.common.onMessage
+import eu.vendeli.tgbot.utils.common.processUpdate
+import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.common.ExperimentalKotest

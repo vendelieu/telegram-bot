@@ -1,8 +1,8 @@
 package eu.vendeli.ktor.starter
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.utils.BotConfigurator
-import eu.vendeli.tgbot.utils.HandlingBehaviourBlock
+import eu.vendeli.tgbot.utils.common.BotConfigurator
+import eu.vendeli.tgbot.utils.common.HandlingBehaviourBlock
 import kotlin.properties.Delegates
 
 /**

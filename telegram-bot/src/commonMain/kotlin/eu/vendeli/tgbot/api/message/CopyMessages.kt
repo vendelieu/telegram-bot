@@ -7,11 +7,11 @@ import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
-import eu.vendeli.tgbot.types.internal.Identifier
-import eu.vendeli.tgbot.types.internal.options.CopyMessagesOptions
+import eu.vendeli.tgbot.types.component.Identifier
+import eu.vendeli.tgbot.types.options.CopyMessagesOptions
 import eu.vendeli.tgbot.types.msg.MessageId
-import eu.vendeli.tgbot.utils.encodeWith
-import eu.vendeli.tgbot.utils.getReturnType
+import eu.vendeli.tgbot.utils.internal.encodeWith
+import eu.vendeli.tgbot.utils.internal.getReturnType
 import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 import kotlinx.serialization.builtins.serializer
 

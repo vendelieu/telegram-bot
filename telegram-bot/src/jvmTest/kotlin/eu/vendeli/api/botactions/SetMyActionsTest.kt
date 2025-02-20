@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.api.botactions.setMyName
 import eu.vendeli.tgbot.api.botactions.setMyShortDescription
 import eu.vendeli.tgbot.types.bot.BotCommand
 import eu.vendeli.tgbot.types.chat.ChatAdministratorRights
-import eu.vendeli.tgbot.types.internal.onFailure
+import eu.vendeli.tgbot.types.component.onFailure
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldNotBeEmpty

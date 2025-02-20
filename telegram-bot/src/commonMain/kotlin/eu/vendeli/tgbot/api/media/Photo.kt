@@ -8,13 +8,13 @@ import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.features.CaptionFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
-import eu.vendeli.tgbot.types.internal.ImplicitFile
-import eu.vendeli.tgbot.types.internal.InputFile
-import eu.vendeli.tgbot.types.internal.options.PhotoOptions
+import eu.vendeli.tgbot.types.component.ImplicitFile
+import eu.vendeli.tgbot.types.component.InputFile
+import eu.vendeli.tgbot.types.options.PhotoOptions
 import eu.vendeli.tgbot.types.msg.Message
-import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.handleImplicitFile
-import eu.vendeli.tgbot.utils.toImplicitFile
+import eu.vendeli.tgbot.utils.internal.getReturnType
+import eu.vendeli.tgbot.utils.internal.handleImplicitFile
+import eu.vendeli.tgbot.utils.common.toImplicitFile
 
 @TgAPI
 class SendPhotoAction(

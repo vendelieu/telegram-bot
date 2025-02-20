@@ -2,9 +2,9 @@ package eu.vendeli
 
 import BotTestContext
 import eu.vendeli.tgbot.implementations.DefaultArgParser
-import eu.vendeli.tgbot.types.internal.configuration.CommandParsingConfiguration
-import eu.vendeli.tgbot.utils.getParameters
-import eu.vendeli.tgbot.utils.parseCommand
+import eu.vendeli.tgbot.types.configuration.CommandParsingConfiguration
+import eu.vendeli.tgbot.utils.internal.getParameters
+import eu.vendeli.tgbot.utils.common.parseCommand
 import io.kotest.matchers.maps.shouldContainExactly
 import io.kotest.matchers.shouldBe
 

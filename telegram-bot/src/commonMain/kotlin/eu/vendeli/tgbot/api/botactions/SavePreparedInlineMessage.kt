@@ -6,11 +6,11 @@ import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.inline.InlineQueryResult
-import eu.vendeli.tgbot.types.internal.options.SavePreparedInlineMessageOptions
+import eu.vendeli.tgbot.types.options.SavePreparedInlineMessageOptions
 import eu.vendeli.tgbot.types.msg.PreparedInlineMessage
-import eu.vendeli.tgbot.utils.encodeWith
-import eu.vendeli.tgbot.utils.getReturnType
-import eu.vendeli.tgbot.utils.toJsonElement
+import eu.vendeli.tgbot.utils.internal.encodeWith
+import eu.vendeli.tgbot.utils.internal.getReturnType
+import eu.vendeli.tgbot.utils.internal.toJsonElement
 
 @TgAPI
 class SavePreparedInlineMessageAction(
