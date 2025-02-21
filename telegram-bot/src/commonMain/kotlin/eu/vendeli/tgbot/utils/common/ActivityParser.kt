@@ -107,8 +107,6 @@ fun defaultArgParser(
     return params
 }
 
-private fun StringBuilder.clear() = setLength(0)
-
 private enum class CommandParserState {
     READING_COMMAND,
     MATCHING_IDENTIFIER,
