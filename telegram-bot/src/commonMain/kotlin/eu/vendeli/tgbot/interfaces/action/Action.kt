@@ -65,34 +65,4 @@ abstract class Action<ReturnType> : TgAction<ReturnType>() {
         to: Chat,
         via: TelegramBot,
     ): Deferred<Response<out ReturnType>> = sendReturning(to.id, via)
-
-    /**
-     * Make a request for action returning its [Response].
-     *
-     * @param to Recipient
-     * @param via Instance of the bot through which the request will be made.
-     */
-    @Deprecated("Use sendReturning instead", ReplaceWith("sendReturning(to, via)"))
-    suspend fun sendAsync(
-        to: String,
-        via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = sendReturning(to, via)
-
-    @Deprecated("Use sendReturning instead", ReplaceWith("sendReturning(to, via)"))
-    suspend fun sendAsync(
-        to: Long,
-        via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = sendReturning(to, via)
-
-    @Deprecated("Use sendReturning instead", ReplaceWith("sendReturning(to, via)"))
-    suspend inline fun sendAsync(
-        to: User,
-        via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = sendReturning(to.id, via)
-
-    @Deprecated("Use sendReturning instead", ReplaceWith("sendReturning(to, via)"))
-    suspend inline fun sendAsync(
-        to: Chat,
-        via: TelegramBot,
-    ): Deferred<Response<out ReturnType>> = sendReturning(to.id, via)
 }
