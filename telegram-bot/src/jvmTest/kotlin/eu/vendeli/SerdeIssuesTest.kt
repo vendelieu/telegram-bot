@@ -90,7 +90,7 @@ class SerdeIssuesTest : BotTestContext() {
         val newChatMember = ChatMember.Banned(DUMB_USER, instant)
         val member = ChatMemberUpdated(DUMB_CHAT, DUMB_USER, instant, oldChatMember, newChatMember)
 
-        val result = serde.run { encodeToString(member) }.shouldNotBeNull()
+        val result = serde.runCatching { encodeToString(member) }.getOrNull().shouldNotBeNull()
 
         result shouldContain "{\"id\":1,\"is_bot\":false,\"first_name\":\"Test\"}" // DUMB_USER
         result shouldContain "{\"id\":-1,\"type\":\"group\",\"title\":\"test\",\"full_name\":\"\"}" // DUMB_CHAT

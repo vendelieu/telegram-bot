@@ -3,20 +3,13 @@ package eu.vendeli.tgbot.utils.common
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.types.component.ParsedText
-import io.ktor.utils.io.readText
-import kotlinx.io.Buffer
-import kotlinx.io.bytestring.encodeToByteString
-import kotlinx.io.snapshot
 
-private val startCommandBA = "/start".encodeToByteString()
-
-@Suppress("CyclomaticComplexMethod", "NestedBlockDepth")
 internal fun TgUpdateHandler.parseCommand(
     text: String,
 ): ParsedText = with(bot.config.commandParsing) {
     var state = CommandParserState.READING_COMMAND
-    val commandBuffer = Buffer()
-    val atTailBuffer = Buffer()
+    val commandBuilder = StringBuilder()
+    val atTailBuilder = StringBuilder()
 
     var parsedIndex = 0
     for ((idx, i) in text.withIndex()) {
@@ -26,14 +19,14 @@ internal fun TgUpdateHandler.parseCommand(
                 when {
                     commandDelimiter != ' ' &&
                         !restrictSpacesInCommands &&
-                        commandBuffer.size == 6L &&
-                        commandBuffer.snapshot() == startCommandBA &&
+                        commandBuilder.length == 6 &&
+                        commandBuilder.toString() == "/start" &&
                         i == ' ' -> {
                         // deeplink case
                         break
                     }
 
-                    i == commandDelimiter || restrictSpacesInCommands && i == ' ' -> {
+                    i == commandDelimiter || (restrictSpacesInCommands && i == ' ') -> {
                         break
                     }
 
@@ -41,23 +34,23 @@ internal fun TgUpdateHandler.parseCommand(
                         state = CommandParserState.MATCHING_IDENTIFIER
                     }
 
-                    else -> commandBuffer.writeByte(i.code.toByte())
+                    else -> commandBuilder.append(i)
                 }
             }
 
             CommandParserState.MATCHING_IDENTIFIER -> {
                 if (i == commandDelimiter || (restrictSpacesInCommands && i == ' ')) {
-                    if (useIdentifierInGroupCommands && bot.config.identifier != atTailBuffer.readText())
+                    if (useIdentifierInGroupCommands && bot.config.identifier != atTailBuilder.toString())
                         return@with ParsedText(text, "")
                     break
                 } else {
-                    atTailBuffer.writeByte(i.code.toByte())
+                    atTailBuilder.append(i)
                 }
             }
         }
     }
 
-    return ParsedText(commandBuffer.readText(), text.drop(parsedIndex + 1))
+    return ParsedText(commandBuilder.toString(), text.drop(parsedIndex + 1))
 }
 
 @KtGramInternal
@@ -71,8 +64,8 @@ fun defaultArgParser(
     var state = ParameterParserState.READING_PARAM_NAME
     val params = mutableMapOf<String, String>()
 
-    val paramNameBuffer = Buffer()
-    val paramValBuffer = Buffer()
+    val paramNameBuilder = StringBuilder()
+    val paramValBuilder = StringBuilder()
 
     text.forEach { i ->
         when (state) {
@@ -83,32 +76,38 @@ fun defaultArgParser(
                     }
 
                     parameterDelimiter -> {
-                        params["param_${params.size + 1}"] = paramNameBuffer.readText()
+                        params["param_${params.size + 1}"] = paramNameBuilder.toString()
+                        paramNameBuilder.clear()
                     }
 
-                    else -> paramNameBuffer.writeByte(i.code.toByte())
+                    else -> paramNameBuilder.append(i)
                 }
             }
 
             ParameterParserState.READING_PARAM_VALUE -> {
                 if (i == parameterDelimiter) {
-                    params[paramNameBuffer.readText()] = paramValBuffer.readText()
+                    params[paramNameBuilder.toString()] = paramValBuilder.toString()
+                    paramNameBuilder.clear()
+                    paramValBuilder.clear()
                     state = ParameterParserState.READING_PARAM_NAME
                 } else {
-                    paramValBuffer.writeByte(i.code.toByte())
+                    paramValBuilder.append(i)
                 }
             }
         }
     }
 
+    // Handle remaining buffers
     if (state == ParameterParserState.READING_PARAM_VALUE) {
-        params[paramNameBuffer.readText()] = paramValBuffer.readText()
-    } else if (state == ParameterParserState.READING_PARAM_NAME) {
-        params["param_${params.size + 1}"] = paramNameBuffer.readText()
+        params[paramNameBuilder.toString()] = paramValBuilder.toString()
+    } else if (state == ParameterParserState.READING_PARAM_NAME && paramNameBuilder.isNotEmpty()) {
+        params["param_${params.size + 1}"] = paramNameBuilder.toString()
     }
 
     return params
 }
+
+private fun StringBuilder.clear() = setLength(0)
 
 private enum class CommandParserState {
     READING_COMMAND,

@@ -3,8 +3,9 @@ package eu.vendeli
 import BotTestContext
 import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.types.configuration.CommandParsingConfiguration
-import eu.vendeli.tgbot.utils.internal.getParameters
+import eu.vendeli.tgbot.utils.common.defaultArgParser
 import eu.vendeli.tgbot.utils.common.parseCommand
+import eu.vendeli.tgbot.utils.internal.getParameters
 import io.kotest.matchers.maps.shouldContainExactly
 import io.kotest.matchers.shouldBe
 
@@ -103,5 +104,11 @@ class ParserTest : BotTestContext() {
         val defaultDeeplinkCheckParams = bot.update.getParameters(DefaultArgParser::class, defaultDeeplinkCheck)
         defaultDeeplinkCheck.command shouldBe "/start"
         defaultDeeplinkCheckParams shouldContainExactly (mapOf("param_1" to "default"))
+    }
+
+    @Test
+    fun `check non-latin values correct parsing`() {
+        bot.update.parseCommand("Қазақша").command shouldBe "Қазақша"
+        defaultArgParser("Қазақша", ' ', ' ') shouldContainExactly mapOf("param_1" to "Қазақша")
     }
 }
