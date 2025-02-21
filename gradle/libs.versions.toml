@@ -12,7 +12,7 @@ kotlin = "2.1.10"
 coroutines = "1.10.1"
 dokka = "2.0.0"
 kotlinter = "5.0.1"
-deteKT = "1.23.7"
+deteKT = "1.23.8"
 toml = "0.4.0"
 
 kotest = "5.9.1"
