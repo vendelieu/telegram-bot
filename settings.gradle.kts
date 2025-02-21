@@ -4,7 +4,7 @@ plugins {
 rootProject.name = "ktgram"
 
 include(":telegram-bot")
-include(":helper")
+include(":api-sentinel")
 include(":docs")
 include(":ksp")
 include(":webapps")
