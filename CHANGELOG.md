@@ -1,5 +1,13 @@
 # Telegram-bot (KtGram) Changelog
 
+# 8.0.0
+
+* Reorganized project structure (imports may be broken).
+* Removed deprecated methods, send*Async > send*Returning.
+* Removed deprecated annotation parameters (rateLimits, guard, etc.) use separate annotations.
+* Added `dice` method with `DiceEmoji` parameter.
+* Fix non-latin text parsing #346.
+
 ## 7.9.0
 
 * Supported Telegram API [8.3](https://core.telegram.org/bots/api-changelog#february-12-2025).
