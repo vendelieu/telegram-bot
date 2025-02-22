@@ -86,13 +86,14 @@ class ApiProcessor(
     private fun FileSpec.Builder.addShortcut(declaration: KSFunctionDeclaration) {
         val name = declaration.simpleName.getShortName()
         val parameters = declaration.parameters.mapIndexed { _, it ->
-            val isFunType = it.type.resolve().isFunctionType
+            val resolvedType = it.type.resolve()
+            val isFunType = resolvedType.isFunctionType
             when {
                 isFunType -> ParameterSpec.builder(it.name!!.getShortName(), it.type.toTypeName(), KModifier.NOINLINE)
                 it.isVararg -> ParameterSpec.builder(it.name!!.getShortName(), it.type.toTypeName(), KModifier.VARARG)
                 else -> ParameterSpec.builder(it.name!!.getShortName(), it.type.toTypeName())
             }.apply {
-                if (it.type.resolve().isMarkedNullable) defaultValue("null")
+                if (resolvedType.isMarkedNullable) defaultValue("null")
             }.build()
         }
         val parametersInlined = parameters.joinToString {
