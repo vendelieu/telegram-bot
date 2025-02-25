@@ -2,7 +2,7 @@
 ktor = "3.1.1"
 redis = "0.2.4"
 logback = "1.5.16"
-slf4j = "2.0.16"
+slf4j = "2.0.17"
 
 datetime = "0.6.2"
 serialization = "1.8.0"
