@@ -12,6 +12,7 @@ import javax.inject.Inject
  * @property addSnapshotRepo set to true to add the snapshot repository to the repositories list.
  * @property forceVersion set to a version string to force library specific version.
  * @property autoCleanClassData set to false to prevent the KSP processor from cleaning the class data automatically.
+ * @property autoAnswerCallback set to true to automatically respond to callbacks unless otherwise specified in the annotation.
  * @property ktorJvmEngine the Ktor JVM engine to use, defaults to [KtorJvmEngine.JAVA].
  * @property handleLoggingProvider set to false to disable the logging provider handling.
  */
@@ -24,6 +25,7 @@ abstract class KtGramExt
         val addSnapshotRepo = factory.property<Boolean>()
         val forceVersion = factory.property<String>()
         val autoCleanClassData = factory.property<Boolean>()
+        val autoAnswerCallback = factory.property<Boolean>()
         val ktorJvmEngine = factory.property<KtorJvmEngine>()
         val handleLoggingProvider = factory.property<Boolean>()
     }

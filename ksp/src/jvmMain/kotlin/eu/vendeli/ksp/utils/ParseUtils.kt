@@ -1,6 +1,8 @@
 package eu.vendeli.ksp.utils
 
 import com.google.devtools.ksp.closestClassDeclaration
+import com.google.devtools.ksp.isDefault
+import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.symbol.KSAnnotation
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
@@ -23,7 +25,9 @@ internal fun List<KSValueArgument>.parseAsCommandHandler(isCallbackQ: Boolean) =
     scope = parseScopes() ?: if (isCallbackQ) callbackQueryList else messageList,
     guardClass = parseGuard(),
     argParserClass = parseArgParser(),
-    isAutoAnswer = firstOrNull { it.name?.asString() == "autoAnswer" }?.value?.safeCast<Boolean>() == true,
+    isAutoAnswer = firstOrNull {
+        it.name?.asString() == "autoAnswer"
+    }?.takeIf { !it.isDefault() }?.value?.safeCast<Boolean>(),
 )
 
 internal fun List<KSValueArgument>.parseAsInputHandler() = Triple(
@@ -125,8 +129,21 @@ internal fun KSFunctionDeclaration.parseAnnotatedArgParser(): String? = annotati
         }?.arguments
         ?.parseArgParser()
 
-internal fun KSFunctionDeclaration.isThereAnnotation(vararg annotation: String): Boolean = annotations.any {
-    it.shortName.asString() in annotation
+internal fun KSFunctionDeclaration.checkForInapplicableAnnotations(
+    targetAnnotationName: String,
+    logger: KSPLogger,
+    vararg annotation: String,
+) {
+    val warningMessage = StringBuilder()
+    annotations
+        .filter {
+            it.shortName.asString() in annotation
+        }.forEach {
+            warningMessage.appendLine(
+                "Be aware that @${it.shortName.asString()} is not supported for $targetAnnotationName",
+            )
+        }
+    if (warningMessage.isNotEmpty()) logger.warn(warningMessage.toString())
 }
 
 /*

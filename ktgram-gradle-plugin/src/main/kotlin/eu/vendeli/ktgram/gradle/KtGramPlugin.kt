@@ -76,6 +76,9 @@ abstract class KtGramPlugin : Plugin<Project> {
                 pluginExtension.autoCleanClassData.getOrElse(true).takeIf { !it }?.let {
                     arg("autoCleanClassData", "false")
                 }
+                pluginExtension.autoAnswerCallback.getOrElse(false).takeIf { it }?.let {
+                    arg("autoAnswerCallback", "true")
+                }
             }
 
             if (!kspPluginPresent) log.error(

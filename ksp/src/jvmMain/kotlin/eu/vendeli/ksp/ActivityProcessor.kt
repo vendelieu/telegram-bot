@@ -43,6 +43,7 @@ class ActivityProcessor(
 ) : SymbolProcessor {
     private val targetPackage = options["package"]?.split(';')
     private val autoCleanClassData = options["autoCleanClassData"]?.toBooleanStrictOrNull() != false
+    private val autoAnswerCallback = options["autoAnswerCallback"]?.toBooleanStrictOrNull() == true
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
         val fileSpec = FileSpec.builder("eu.vendeli.tgbot.generated", "ActivitiesData").apply {
@@ -146,6 +147,7 @@ class ActivityProcessor(
             idxPostfix = idxPostfix,
             pkg = filePkg,
             autoCleanClassData = autoCleanClassData,
+            autoAnswerCallback = autoAnswerCallback,
         )
 
         collectCommandActivities(commandHandlerSymbols, context)
