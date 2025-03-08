@@ -18,18 +18,18 @@ import eu.vendeli.tgbot.utils.common.HandlingBehaviourBlock
 import eu.vendeli.tgbot.utils.common.Invocable
 import eu.vendeli.tgbot.utils.common.InvocationLambda
 import eu.vendeli.tgbot.utils.common.TgException
-import eu.vendeli.tgbot.utils.internal.checkIsGuarded
 import eu.vendeli.tgbot.utils.common.checkIsLimited
+import eu.vendeli.tgbot.utils.common.fqName
+import eu.vendeli.tgbot.utils.common.handleFailure
+import eu.vendeli.tgbot.utils.common.parseCommand
+import eu.vendeli.tgbot.utils.common.serde
+import eu.vendeli.tgbot.utils.internal.checkIsGuarded
 import eu.vendeli.tgbot.utils.internal.debug
 import eu.vendeli.tgbot.utils.internal.error
-import eu.vendeli.tgbot.utils.common.fqName
 import eu.vendeli.tgbot.utils.internal.getLogger
 import eu.vendeli.tgbot.utils.internal.getParameters
-import eu.vendeli.tgbot.utils.common.handleFailure
 import eu.vendeli.tgbot.utils.internal.info
-import eu.vendeli.tgbot.utils.common.parseCommand
 import eu.vendeli.tgbot.utils.internal.process
-import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.tgbot.utils.internal.toJsonElement
 import eu.vendeli.tgbot.utils.internal.warn
 import io.ktor.client.plugins.HttpRequestTimeoutException
@@ -252,7 +252,7 @@ class TgUpdateHandler internal constructor(
                 activities.unprocessedHandler!!
                     .invokeCatching(this, params, TgInvocationKind.UNPROCESSED)
 
-            else -> logger.warn { "update: $update not handled." }
+            else -> logger.warn { "update: ${update.toJsonString()} not handled." }
         }
     }
 

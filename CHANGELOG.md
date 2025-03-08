@@ -7,7 +7,8 @@
 * Removed deprecated annotation parameters (rateLimits, guard, etc.) use separate annotations.
 * Added `dice` method with `DiceEmoji` parameter.
 * Fixed non-latin text parsing #346.
-* Added new plugin parameter `autoAnswerCallbackQueries` to control auto-answering of callback queries by default.
+* Added new plugin parameter `autoAnswerCallback` to control auto-answering of callback queries by default.
+* Added compiler plugin that helps to autocomplete with `send()` actions from function context parameters.
 
 ## 7.9.0
 

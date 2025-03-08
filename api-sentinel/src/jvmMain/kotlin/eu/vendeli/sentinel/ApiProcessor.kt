@@ -1,6 +1,6 @@
 @file:Suppress("UnnecessaryVariable")
 
-package eu.vendeli.ksp
+package eu.vendeli.sentinel
 
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver

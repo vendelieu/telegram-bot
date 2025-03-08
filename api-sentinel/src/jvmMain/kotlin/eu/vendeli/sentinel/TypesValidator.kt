@@ -1,4 +1,4 @@
-package eu.vendeli.ksp
+package eu.vendeli.sentinel
 
 import com.google.devtools.ksp.getDeclaredProperties
 import com.google.devtools.ksp.symbol.KSClassDeclaration
@@ -9,6 +9,7 @@ import kotlinx.serialization.json.boolean
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
+import kotlin.collections.get
 
 internal fun ApiProcessor.validateTypes(classes: Sequence<KSClassDeclaration>, apiFile: JsonElement) {
     val types = apiFile.jsonObject["types"]!!.jsonObject.toMap()

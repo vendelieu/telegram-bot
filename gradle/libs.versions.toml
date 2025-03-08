@@ -25,6 +25,8 @@ spring = "3.4.3"
 
 ksp = "2.1.10-1.0.31"
 poet = "2.1.0"
+autoservice-annotations = "1.1.1"
+autoservice-ksp = "1.2.0"
 
 binvalid = "0.17.0"
 publisher = "0.30.0"
@@ -76,11 +78,17 @@ redis = { module = "eu.vendeli:re.this", version.ref = "redis" }
 env = { module = "dev.scottpierce:kotlin-env-var", version.ref = "env" }
 toml = { module = "net.peanuuutz.tomlkt:tomlkt", version.ref = "toml" }
 
+# plugin dependencies
+autoService-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "autoservice-annotations" }
+autoService-ksp = { module = "dev.zacsweers.autoservice:auto-service-ksp", version.ref = "autoservice-ksp" }
+kotlin-embeddable = { module = "org.jetbrains.kotlin:kotlin-compiler-embeddable", version.ref = "kotlin" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+
 [plugins]
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-js-plain-objects = { id = "org.jetbrains.kotlin.plugin.js-plain-objects", version.ref = "kotlin" }
 kotlin-compatability-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binvalid" }
-gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-publish"}
+gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-publish" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ktlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }

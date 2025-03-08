@@ -1,4 +1,4 @@
-package eu.vendeli.ksp
+package eu.vendeli.sentinel
 
 import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.getConstructors
