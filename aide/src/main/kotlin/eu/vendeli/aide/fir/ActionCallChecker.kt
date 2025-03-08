@@ -64,9 +64,6 @@ class ActionCallChecker(
             param.hasTypeOf(botClassId, false)
         }
 
-        var doWarnAboutUser = false
-        val doWarnAboutBot = doAutoSend && !hasBotParam
-
         if (tracker.unhandledActions.isEmpty() && tracker.variableMapping.isEmpty()) return
 
         // Report unhandled action calls using their source positions
@@ -94,9 +91,6 @@ class ActionCallChecker(
                             ) {
                                 reporter.reportOn(source, AideFirErrors.SEND_CALL_MISSING, context)
                             }
-                            if (doAutoSend && !isSimpleAction && !hasUserParam) {
-                                doWarnAboutUser = true
-                            }
                         }
                         element.acceptChildren(this, null)
                     }
@@ -119,13 +113,6 @@ class ActionCallChecker(
                 },
                 null,
             )
-        }
-
-        if (doWarnAboutUser) {
-            reporter.reportOn(declaration.source, AideFirErrors.USER_PARAMETER_MISSING, context)
-        }
-        if (doWarnAboutBot) {
-            reporter.reportOn(declaration.source, AideFirErrors.BOT_PARAMETER_MISSING, context)
         }
     }
 
