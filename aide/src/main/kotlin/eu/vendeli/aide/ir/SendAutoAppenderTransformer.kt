@@ -7,6 +7,7 @@ import eu.vendeli.aide.utils.SIMPLE_ACTION_CLASS
 import eu.vendeli.aide.utils.isActionType
 import eu.vendeli.aide.utils.seekSendFunction
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
+import org.jetbrains.kotlin.backend.jvm.ir.hasContinuation
 import org.jetbrains.kotlin.com.intellij.openapi.diagnostic.Logger
 import org.jetbrains.kotlin.ir.IrStatement
 import org.jetbrains.kotlin.ir.ObsoleteDescriptorBasedAPI
@@ -17,6 +18,7 @@ import org.jetbrains.kotlin.ir.expressions.IrExpression
 import org.jetbrains.kotlin.ir.expressions.impl.IrGetValueImpl
 import org.jetbrains.kotlin.ir.symbols.UnsafeDuringIrConstructionAPI
 import org.jetbrains.kotlin.ir.util.irCall
+import org.jetbrains.kotlin.ir.util.isAnonymousObject
 import org.jetbrains.kotlin.ir.visitors.IrElementTransformerVoid
 import org.jetbrains.kotlin.name.CallableId
 import org.jetbrains.kotlin.name.FqName
@@ -53,16 +55,20 @@ class SendAutoAppenderTransformer(
         return result
     }
 
-    @OptIn(ObsoleteDescriptorBasedAPI::class)
-    private fun shouldWrapCall(call: IrCall): Boolean {
-        // Only wrap calls that:
-        // 1. Are action calls, Are not already a send call.
-        // 2. Is not in parameter.
-        // 2. Aren't nested within another send call.
-        if (callStack.any { !it.type.isActionType(context) || isSendCall(it) }) return false
-        if (skipTransformation) return false
-        if (isSendCall(call)) return false
-        return true
+    // Only wrap calls that:
+    // 1. Are action calls, Are not already a send call.
+    // 2. Is not in parameter.
+    // 3. Aren't nested within another send call.
+    // 4. Are not in anonymous objects
+    // 5. Have continuation
+    @OptIn(ObsoleteDescriptorBasedAPI::class, UnsafeDuringIrConstructionAPI::class)
+    private fun shouldWrapCall(call: IrCall): Boolean = when {
+        callStack.any { !it.type.isActionType(context) || isSendCall(it) } -> false
+        skipTransformation -> false
+        isSendCall(call) -> false
+        call.symbol.owner.isAnonymousObject -> false
+        !call.symbol.owner.hasContinuation() -> false
+        else -> true
     }
 
     @OptIn(UnsafeDuringIrConstructionAPI::class)

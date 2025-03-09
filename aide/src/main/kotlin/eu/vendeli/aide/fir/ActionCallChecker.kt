@@ -46,10 +46,6 @@ import org.jetbrains.kotlin.fir.visitors.FirVisitorVoid
 import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.FqName
 
-/**
- * Checker to detect unhandled Action-returning calls.
- *
- */
 class ActionCallChecker(
     private val doAutoSend: Boolean,
 ) : FirFunctionChecker(MppCheckerKind.Platform) {
@@ -119,34 +115,12 @@ class ActionCallChecker(
     private inner class ActionCallTracker(
         private val session: FirSession,
     ) : FirVisitorVoid() {
-        /**
-         * A set of offsets of unhandled action calls.
-         */
         val unhandledActions = mutableMapOf<SourceKey, ActionMeta>()
-
-        /**
-         * A mapping of source keys to the variables that use them.
-         */
         val variableMapping = mutableMapOf<SourceKey, FirVariableSymbol<*>>()
-
-        /**
-         * A stack of receiver keys.
-         */
         private val receiverStack = ArrayDeque<SourceKey>()
-
-        /**
-         * A set of names of scope functions.
-         */
         private val scopeFunctionNames = setOf("run", "let", "apply", "also", "with")
 
-        /**
-         * The type of Action.
-         */
         private val actionTypeLT = FqName(ACTION_FQ_NAME).resolveActionType(session)?.lookupTag
-
-        /**
-         * The type of SimpleAction.
-         */
         private val simpleActionTypeLT = FqName(SIMPLE_ACTION_FQ_NAME).resolveActionType(session)?.lookupTag
 
         override fun visitElement(element: FirElement) {
@@ -161,15 +135,9 @@ class ActionCallChecker(
                 isSendCall(call) -> handleSendCall(call)
                 isScopeFunctionCall(call) -> handleScopeFunctionCall(call)
                 isActionExpr(call) -> handleActionCall(call)
-                else -> {}
             }
         }
 
-        /**
-         * Handles a send() call.
-         *
-         * @param call The call to handle.
-         */
         private fun handleSendCall(call: FirFunctionCall) {
             val receiver = call.dispatchReceiver?.unwrapReceiver()
 
@@ -197,11 +165,6 @@ class ActionCallChecker(
             }
         }
 
-        /**
-         * Handles a scope function call.
-         *
-         * @param call The call to handle.
-         */
         private fun handleScopeFunctionCall(call: FirFunctionCall) {
             val receiver = call.explicitReceiver ?: call.dispatchReceiver
             receiver?.let { receiver ->
@@ -209,25 +172,18 @@ class ActionCallChecker(
                     receiver.source.toSourceKey()?.let { key ->
                         receiverStack.add(key)
                         unhandledActions.entries
-                            .find {
-                                it.key.isIntersecting(key)
-                            }?.value
+                            .find { it.key.isIntersecting(key) }
+                            ?.value
                             ?.statementType = ActionStatementType.LAMBDA
                     }
                 }
             }
 
-            // Process lambda arguments explicitly
+            // Explicitly check lambda arguments for send()
             call.arguments.forEach { arg ->
                 when (arg) {
-                    is FirBlock -> arg.statements.forEach {
-                        it.accept(this, null)
-                    }
-
-                    is FirAnonymousFunctionExpression -> {
-                        arg.anonymousFunction.acceptChildren(this, null)
-                    }
-
+                    is FirBlock -> arg.statements.forEach { it.accept(this, null) }
+                    is FirAnonymousFunctionExpression -> arg.anonymousFunction.acceptChildren(this, null)
                     else -> arg.accept(this, null)
                 }
             }
@@ -237,22 +193,15 @@ class ActionCallChecker(
             }
         }
 
-        /**
-         * Handles an action call.
-         *
-         * @param call The call to handle.
-         */
         private fun handleActionCall(call: FirFunctionCall) {
             call.source.toSourceKey()?.let { key ->
                 val actionType = call.resolvedType
                     .toClassSymbol(session)
                     ?.isSubclassOf(simpleActionTypeLT!!, session, false, true)
-                    ?.let {
-                        ActionType.ACTION
-                    } ?: ActionType.SIMPLE_ACTION
+                    ?.let { ActionType.ACTION } ?: ActionType.SIMPLE_ACTION
 
                 val statementType = when {
-                    variableMapping.keys.find { it.isIntersecting(key) } != null -> ActionStatementType.VARIABLE
+                    variableMapping.keys.any { it.isIntersecting(key) } -> ActionStatementType.VARIABLE
                     receiverStack.isEmpty() -> ActionStatementType.PLAIN_CALL
                     else -> ActionStatementType.LAMBDA
                 }
@@ -272,12 +221,6 @@ class ActionCallChecker(
             }
         }
 
-        /**
-         * Unwraps a receiver.
-         *
-         * @param receiver The receiver to unwrap.
-         * @return The unwrapped receiver.
-         */
         private fun FirExpression.unwrapReceiver(): FirExpression {
             var current: FirExpression = this
             while (current is FirQualifiedAccessExpression && current.explicitReceiver != null) {
@@ -286,22 +229,10 @@ class ActionCallChecker(
             return current
         }
 
-        /**
-         * Converts a [KtSourceElement] to a source key.
-         *
-         * @param source The source element to convert.
-         * @return The source key.
-         */
         private fun KtSourceElement?.toSourceKey(): SourceKey? = this?.let {
             SourceKey(startOffset, endOffset)
         }
 
-        /**
-         * Checks whether the given call is a send() call.
-         *
-         * @param call The call to check.
-         * @return Whether the call is a send() call.
-         */
         private fun isSendCall(call: FirFunctionCall): Boolean =
             (call.calleeReference.resolved?.symbol as? FirNamedFunctionSymbol)
                 ?.callableId
@@ -309,12 +240,6 @@ class ActionCallChecker(
                 ?.asString()
                 ?.let { it.startsWith(API_PACKAGE) && it.endsWith(SEND_FUN_NAME) } == true
 
-        /**
-         * Checks whether the given expression produces an Action.
-         *
-         * @param expr The expression to check.
-         * @return Whether the expression produces an Action.
-         */
         private fun isActionExpr(expr: FirExpression): Boolean = expr.resolvedType.toClassSymbol(session)?.let {
             actionTypeLT != null &&
                 simpleActionTypeLT != null &&
@@ -324,20 +249,9 @@ class ActionCallChecker(
                 )
         } == true
 
-        /**
-         * Checks whether the given call is a scope function call.
-         *
-         * @param call The call to check.
-         * @return Whether the call is a scope function call.
-         */
         private fun isScopeFunctionCall(call: FirFunctionCall): Boolean =
             call.calleeReference.name.asString() in scopeFunctionNames
 
-        /**
-         * Removes intersecting source keys from the set.
-         *
-         * @param key The key to remove intersecting keys from.
-         */
         private fun MutableMap<SourceKey, *>.removeIntersecting(key: SourceKey?) {
             if (key == null) return
             entries.removeIf { it.key.isIntersecting(key) }

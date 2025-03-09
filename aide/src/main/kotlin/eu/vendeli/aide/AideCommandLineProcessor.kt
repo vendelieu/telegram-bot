@@ -10,7 +10,7 @@ import org.jetbrains.kotlin.config.CompilerConfigurationKey
 
 @AutoService(CommandLineProcessor::class)
 @OptIn(ExperimentalCompilerApi::class)
-class AideArgumentCommandLineProcessor : CommandLineProcessor {
+class AideCommandLineProcessor : CommandLineProcessor {
     override val pluginId: String = "eu.vendeli.aide"
     override val pluginOptions: Collection<AbstractCliOption> = listOf(
         AUTO_SEND_OPTION,

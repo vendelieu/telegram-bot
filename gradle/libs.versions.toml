@@ -27,6 +27,7 @@ ksp = "2.1.10-1.0.31"
 poet = "2.1.0"
 autoservice-annotations = "1.1.1"
 autoservice-ksp = "1.2.0"
+kotlinCompileTesting = "0.7.0"
 
 binvalid = "0.17.0"
 publisher = "0.31.0"
@@ -60,6 +61,7 @@ urlencoder = { module = "net.thauvin.erik.urlencoder:urlencoder-lib", version.re
 # test
 test-kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 test-kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+test-compile = { module = "dev.zacsweers.kctfork:core", version.ref = "kotlinCompileTesting" }
 
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }

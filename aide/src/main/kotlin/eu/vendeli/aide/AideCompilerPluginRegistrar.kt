@@ -12,7 +12,7 @@ import org.jetbrains.kotlin.fir.extensions.FirExtensionRegistrarAdapter
 @AutoService(CompilerPluginRegistrar::class)
 class AideCompilerPluginRegistrar : CompilerPluginRegistrar() {
     override fun ExtensionStorage.registerExtensions(configuration: CompilerConfiguration) {
-        val doAutoSend = checkNotNull(configuration[AideArgumentCommandLineProcessor.AUTO_SEND_OPTION_KEY]).toBoolean()
+        val doAutoSend = checkNotNull(configuration[AideCommandLineProcessor.AUTO_SEND_OPTION_KEY]).toBoolean()
 
         FirExtensionRegistrarAdapter.registerExtension(AideFirExtensionRegistrar(doAutoSend))
         IrGenerationExtension.registerExtension(SendAutoAppenderExtension(doAutoSend))
