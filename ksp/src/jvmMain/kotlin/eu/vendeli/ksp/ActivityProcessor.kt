@@ -35,6 +35,7 @@ import eu.vendeli.tgbot.annotations.InputChain
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
+import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 
 class ActivityProcessor(
     options: Map<String, String>,
@@ -186,12 +187,13 @@ class ActivityProcessor(
     }
 
     private fun FileBuilder.addOptIn() {
-        addImport("eu.vendeli.tgbot.annotations.internal", "KtGramInternal")
+        val internalAnnoName = KtGramInternal::class.simpleName!!
+        addImport("eu.vendeli.tgbot.annotations.internal", internalAnnoName)
         addAnnotation(
             AnnotationSpec
                 .builder(ClassName("kotlin", "OptIn"))
                 .useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
-                .addMember("KtGramInternal::class")
+                .addMember("$internalAnnoName::class")
                 .build(),
         )
     }
