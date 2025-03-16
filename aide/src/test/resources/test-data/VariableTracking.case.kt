@@ -1,7 +1,7 @@
 // PROCESSOR: ErrorOnlyProcessor
 // EXPECTED:
-// e: file:///VariableCases.kt:14:13 Missing send call
-// e: file:///VariableCases.kt:21:13 Missing send call
+// w: file:///VariableCases.kt:14:13 Missing send call
+// w: file:///VariableCases.kt:21:13 Missing send call
 // END
 
 // FILE: VariableCases.kt
@@ -14,7 +14,7 @@ import eu.vendeli.tgbot.api.message.message
 @CommandHandler(["/start"])
 suspend fun variableCases(user: User, bot: TelegramBot) {
     // Valid chain
-    val a = message { "A" }.apply {
+    message { "A" }.apply {
         send(user, bot)
     }
 

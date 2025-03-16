@@ -17,4 +17,7 @@ class ActionCallCheckerTest : AbstractCompilerTest() {
 
     @Test
     fun interfaceImplementation() = runTest("test-data/InterfaceImplementation.case.kt", useK2 = true)
+
+    @Test
+    fun lambda() = runTest("test-data/Lambda.case.kt", useK2 = true)
 }

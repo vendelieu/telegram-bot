@@ -4,47 +4,18 @@ import eu.vendeli.aide.dto.ActionMeta
 import eu.vendeli.aide.dto.ActionStatementType
 import eu.vendeli.aide.dto.ActionType
 import eu.vendeli.aide.dto.SourceKey
-import eu.vendeli.aide.utils.ACTION_FQ_NAME
-import eu.vendeli.aide.utils.API_PACKAGE
 import eu.vendeli.aide.utils.AideFirErrors
-import eu.vendeli.aide.utils.SEND_FUN_NAME
-import eu.vendeli.aide.utils.SIMPLE_ACTION_FQ_NAME
 import eu.vendeli.aide.utils.botClassId
 import eu.vendeli.aide.utils.userClassId
-import org.jetbrains.kotlin.KtSourceElement
-import org.jetbrains.kotlin.backend.common.pop
 import org.jetbrains.kotlin.diagnostics.DiagnosticReporter
 import org.jetbrains.kotlin.diagnostics.reportOn
 import org.jetbrains.kotlin.fir.FirElement
-import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.analysis.checkers.MppCheckerKind
 import org.jetbrains.kotlin.fir.analysis.checkers.context.CheckerContext
 import org.jetbrains.kotlin.fir.analysis.checkers.declaration.FirFunctionChecker
 import org.jetbrains.kotlin.fir.declarations.FirFunction
-import org.jetbrains.kotlin.fir.declarations.FirProperty
-import org.jetbrains.kotlin.fir.expressions.FirAnonymousFunctionExpression
-import org.jetbrains.kotlin.fir.expressions.FirBlock
-import org.jetbrains.kotlin.fir.expressions.FirExpression
-import org.jetbrains.kotlin.fir.expressions.FirFunctionCall
-import org.jetbrains.kotlin.fir.expressions.FirQualifiedAccessExpression
-import org.jetbrains.kotlin.fir.expressions.arguments
-import org.jetbrains.kotlin.fir.references.resolved
-import org.jetbrains.kotlin.fir.references.symbol
-import org.jetbrains.kotlin.fir.resolve.defaultType
-import org.jetbrains.kotlin.fir.resolve.isSubclassOf
-import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
-import org.jetbrains.kotlin.fir.resolve.toClassSymbol
 import org.jetbrains.kotlin.fir.scopes.impl.hasTypeOf
-import org.jetbrains.kotlin.fir.symbols.SymbolInternals
-import org.jetbrains.kotlin.fir.symbols.impl.FirNamedFunctionSymbol
-import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
-import org.jetbrains.kotlin.fir.symbols.impl.FirVariableSymbol
-import org.jetbrains.kotlin.fir.types.ConeClassLikeType
-import org.jetbrains.kotlin.fir.types.lowerBoundIfFlexible
-import org.jetbrains.kotlin.fir.types.resolvedType
 import org.jetbrains.kotlin.fir.visitors.FirVisitorVoid
-import org.jetbrains.kotlin.name.ClassId
-import org.jetbrains.kotlin.name.FqName
 
 class ActionCallChecker(
     private val doAutoSend: Boolean,
@@ -60,211 +31,64 @@ class ActionCallChecker(
             param.hasTypeOf(botClassId, false)
         }
 
-        if (tracker.unhandledActions.isEmpty() && tracker.variableMapping.isEmpty()) return
+        if (tracker.unhandledActions.isEmpty() && tracker.actionVariables.isEmpty()) return
 
         // Report unhandled action calls using their source positions
-        tracker.unhandledActions.forEach {
-            declaration.accept(
-                object : FirVisitorVoid() {
-                    override fun visitElement(element: FirElement) {
-                        element.source?.let { source ->
-                            val isPlainCall = it.value.statementType == ActionStatementType.PLAIN_CALL
-                            val isSimpleAction = it.value.type == ActionType.SIMPLE_ACTION
-                            val irPassCondition = doAutoSend &&
-                                isPlainCall &&
-                                (
-                                    isSimpleAction &&
-                                        hasBotParam ||
-                                        !isSimpleAction &&
-                                        hasBotParam &&
-                                        hasUserParam
-                                )
-
-                            if (
-                                source.startOffset == it.key.startOffset &&
-                                source.endOffset == it.key.endOffset &&
-                                !irPassCondition
-                            ) {
-                                reporter.reportOn(source, AideFirErrors.SEND_CALL_MISSING, context)
-                            }
-                        }
-                        element.acceptChildren(this, null)
+        declaration.accept(
+            object : FirVisitorVoid() {
+                override fun visitElement(element: FirElement) {
+                    tracker.unhandledActions.forEach {
+                        it.proceedUnhandled(element, hasBotParam, hasUserParam, reporter, context)
                     }
-                },
-                null,
-            )
-        }
-
-        tracker.variableMapping.keys.forEach {
-            declaration.accept(
-                object : FirVisitorVoid() {
-                    override fun visitElement(element: FirElement) {
-                        element.source?.let { source ->
-                            if (source.startOffset == it.startOffset && source.endOffset == it.endOffset) {
-                                reporter.reportOn(source, AideFirErrors.SEND_CALL_MISSING, context)
-                            }
-                        }
-                        element.acceptChildren(this, null)
+                    tracker.actionVariables.forEach {
+                        it.proceedVariables(element, reporter, context)
                     }
-                },
-                null,
-            )
+                    element.acceptChildren(this)
+                }
+            },
+            null,
+        )
+    }
+
+    private fun Map.Entry<SourceKey, ActionMeta>.proceedUnhandled(
+        element: FirElement,
+        hasBotParam: Boolean,
+        hasUserParam: Boolean,
+        reporter: DiagnosticReporter,
+        context: CheckerContext,
+    ) {
+        element.source?.let { source ->
+            val isPlainCall = value.statementType == ActionStatementType.PLAIN_CALL
+            val isSimpleAction = value.type == ActionType.SIMPLE_ACTION
+            val irPassCondition = doAutoSend &&
+                isPlainCall &&
+                (
+                    isSimpleAction &&
+                        hasBotParam ||
+                        !isSimpleAction &&
+                        hasBotParam &&
+                        hasUserParam
+                )
+
+            if (
+                source.startOffset == key.startOffset &&
+                source.endOffset == key.endOffset &&
+                !irPassCondition
+            ) {
+                reporter.reportOn(source, AideFirErrors.SEND_CALL_MISSING, context)
+            }
         }
     }
 
-    private inner class ActionCallTracker(
-        private val session: FirSession,
-    ) : FirVisitorVoid() {
-        val unhandledActions = mutableMapOf<SourceKey, ActionMeta>()
-        val variableMapping = mutableMapOf<SourceKey, FirVariableSymbol<*>>()
-        private val receiverStack = ArrayDeque<SourceKey>()
-        private val scopeFunctionNames = setOf("run", "let", "apply", "also", "with")
-
-        private val actionTypeLT = FqName(ACTION_FQ_NAME).resolveActionType(session)?.lookupTag
-        private val simpleActionTypeLT = FqName(SIMPLE_ACTION_FQ_NAME).resolveActionType(session)?.lookupTag
-
-        override fun visitElement(element: FirElement) {
-            element.acceptChildren(this, null)
-        }
-
-        override fun visitFunctionCall(call: FirFunctionCall) {
-            // Visit children FIRST to ensure actions are tracked before send() is processed
-            call.acceptChildren(this, null)
-
-            when {
-                isSendCall(call) -> handleSendCall(call)
-                isScopeFunctionCall(call) -> handleScopeFunctionCall(call)
-                isActionExpr(call) -> handleActionCall(call)
+    private fun SourceKey.proceedVariables(
+        element: FirElement,
+        reporter: DiagnosticReporter,
+        context: CheckerContext,
+    ) {
+        element.source?.let { source ->
+            if (source.startOffset == startOffset && source.endOffset == endOffset) {
+                reporter.reportOn(source, AideFirErrors.SEND_CALL_MISSING, context)
             }
         }
-
-        private fun handleSendCall(call: FirFunctionCall) {
-            val receiver = call.dispatchReceiver?.unwrapReceiver()
-
-            when {
-                // Case 1: Scope function receiver `message { ... }.run { send() }`
-                receiverStack.isNotEmpty() && isActionExpr(receiver!!) -> {
-                    unhandledActions.removeIntersecting(receiverStack.pop())
-                }
-
-                // Case 2: Direct chaining `message { ... }.send()`
-                receiver is FirFunctionCall && isActionExpr(receiver) -> {
-                    receiver.source.toSourceKey()?.let { key ->
-                        unhandledActions.removeIntersecting(key)
-                    }
-                }
-                // Case 3: Variable usage `a.send()`
-                receiver is FirQualifiedAccessExpression -> {
-                    (receiver.calleeReference.symbol as? FirVariableSymbol<*>)?.let { symbol ->
-                        val key = symbol.source.toSourceKey()
-
-                        variableMapping.removeIntersecting(key)
-                        unhandledActions.removeIntersecting(key)
-                    }
-                }
-            }
-        }
-
-        private fun handleScopeFunctionCall(call: FirFunctionCall) {
-            val receiver = call.explicitReceiver ?: call.dispatchReceiver
-            receiver?.let { receiver ->
-                if (isActionExpr(receiver)) {
-                    receiver.source.toSourceKey()?.let { key ->
-                        receiverStack.add(key)
-                        unhandledActions.entries
-                            .find { it.key.isIntersecting(key) }
-                            ?.value
-                            ?.statementType = ActionStatementType.LAMBDA
-                    }
-                }
-            }
-
-            // Explicitly check lambda arguments for send()
-            call.arguments.forEach { arg ->
-                when (arg) {
-                    is FirBlock -> arg.statements.forEach { it.accept(this, null) }
-                    is FirAnonymousFunctionExpression -> arg.anonymousFunction.acceptChildren(this, null)
-                    else -> arg.accept(this, null)
-                }
-            }
-
-            if (receiver != null && isActionExpr(receiver)) {
-                receiverStack.removeLastOrNull()
-            }
-        }
-
-        private fun handleActionCall(call: FirFunctionCall) {
-            call.source.toSourceKey()?.let { key ->
-                val actionType = call.resolvedType
-                    .toClassSymbol(session)
-                    ?.isSubclassOf(simpleActionTypeLT!!, session, false, true)
-                    ?.let { ActionType.ACTION } ?: ActionType.SIMPLE_ACTION
-
-                val statementType = when {
-                    variableMapping.keys.any { it.isIntersecting(key) } -> ActionStatementType.VARIABLE
-                    receiverStack.isEmpty() -> ActionStatementType.PLAIN_CALL
-                    else -> ActionStatementType.LAMBDA
-                }
-
-                unhandledActions[key] = ActionMeta(actionType, statementType)
-            }
-        }
-
-        override fun visitProperty(property: FirProperty) {
-            property.initializer?.accept(this, null)
-            property.initializer?.let { init ->
-                if (init is FirFunctionCall && isActionExpr(init)) {
-                    init.source.toSourceKey()?.let { key ->
-                        variableMapping[key] = property.symbol
-                    }
-                }
-            }
-        }
-
-        private fun FirExpression.unwrapReceiver(): FirExpression {
-            var current: FirExpression = this
-            while (current is FirQualifiedAccessExpression && current.explicitReceiver != null) {
-                current = current.explicitReceiver!!
-            }
-            return current
-        }
-
-        private fun KtSourceElement?.toSourceKey(): SourceKey? = this?.let {
-            SourceKey(startOffset, endOffset)
-        }
-
-        private fun isSendCall(call: FirFunctionCall): Boolean =
-            (call.calleeReference.resolved?.symbol as? FirNamedFunctionSymbol)
-                ?.callableId
-                ?.asSingleFqName()
-                ?.asString()
-                ?.let { it.startsWith(API_PACKAGE) && it.endsWith(SEND_FUN_NAME) } == true
-
-        private fun isActionExpr(expr: FirExpression): Boolean = expr.resolvedType.toClassSymbol(session)?.let {
-            actionTypeLT != null &&
-                simpleActionTypeLT != null &&
-                (
-                    it.isSubclassOf(actionTypeLT, session, false, true) ||
-                        it.isSubclassOf(simpleActionTypeLT, session, false, true)
-                )
-        } == true
-
-        private fun isScopeFunctionCall(call: FirFunctionCall): Boolean =
-            call.calleeReference.name.asString() in scopeFunctionNames
-
-        private fun MutableMap<SourceKey, *>.removeIntersecting(key: SourceKey?) {
-            if (key == null) return
-            entries.removeIf { it.key.isIntersecting(key) }
-        }
-
-        private fun SourceKey.isIntersecting(other: SourceKey): Boolean =
-            startOffset >= other.startOffset && endOffset <= other.endOffset
-
-        @OptIn(SymbolInternals::class)
-        private fun FqName.resolveActionType(session: FirSession): ConeClassLikeType? =
-            (session.symbolProvider.getClassLikeSymbolByClassId(ClassId.topLevel(this)) as? FirRegularClassSymbol)
-                ?.fir
-                ?.defaultType()
-                ?.lowerBoundIfFlexible() as? ConeClassLikeType
     }
 }
