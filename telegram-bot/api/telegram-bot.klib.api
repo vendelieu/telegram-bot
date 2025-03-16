@@ -658,12 +658,12 @@ abstract fun interface eu.vendeli.tgbot.interfaces.helper/RateLimitMechanism { /
     abstract suspend fun isLimited(eu.vendeli.tgbot.types.configuration/RateLimits, kotlin/Long, kotlin/String?): kotlin/Boolean // eu.vendeli.tgbot.interfaces.helper/RateLimitMechanism.isLimited|isLimited(eu.vendeli.tgbot.types.configuration.RateLimits;kotlin.Long;kotlin.String?){}[0]
 }
 
-abstract fun interface eu.vendeli.tgbot.types.chain/Action { // eu.vendeli.tgbot.types.chain/Action|null[0]
-    abstract suspend fun invoke(eu.vendeli.tgbot.types/User, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot) // eu.vendeli.tgbot.types.chain/Action.invoke|invoke(eu.vendeli.tgbot.types.User;eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot){}[0]
-}
-
 abstract fun interface eu.vendeli.tgbot.types.chain/BreakCondition { // eu.vendeli.tgbot.types.chain/BreakCondition|null[0]
     abstract suspend fun invoke(eu.vendeli.tgbot.types/User, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot): kotlin/Boolean // eu.vendeli.tgbot.types.chain/BreakCondition.invoke|invoke(eu.vendeli.tgbot.types.User;eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot){}[0]
+}
+
+abstract fun interface eu.vendeli.tgbot.types.chain/ChainAction { // eu.vendeli.tgbot.types.chain/ChainAction|null[0]
+    abstract suspend fun invoke(eu.vendeli.tgbot.types/User, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot) // eu.vendeli.tgbot.types.chain/ChainAction.invoke|invoke(eu.vendeli.tgbot.types.User;eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot){}[0]
 }
 
 abstract interface <#A: eu.vendeli.tgbot.interfaces.action/TgAction<*> & eu.vendeli.tgbot.interfaces.features/CaptionFeature<#A>> eu.vendeli.tgbot.interfaces.features/CaptionFeature : eu.vendeli.tgbot.interfaces.features/Feature, eu.vendeli.tgbot.utils.builders/EntitiesCtxBuilder<#A> { // eu.vendeli.tgbot.interfaces.features/CaptionFeature|null[0]
@@ -738,9 +738,9 @@ abstract interface <#A: kotlin/Any?> eu.vendeli.tgbot.interfaces.ctx/UserData : 
 
 abstract interface <#A: kotlin/Any?> eu.vendeli.tgbot.types.chain/Link { // eu.vendeli.tgbot.types.chain/Link|null[0]
     abstract val afterAction // eu.vendeli.tgbot.types.chain/Link.afterAction|{}afterAction[0]
-        abstract fun <get-afterAction>(): eu.vendeli.tgbot.types.chain/Action? // eu.vendeli.tgbot.types.chain/Link.afterAction.<get-afterAction>|<get-afterAction>(){}[0]
+        abstract fun <get-afterAction>(): eu.vendeli.tgbot.types.chain/ChainAction? // eu.vendeli.tgbot.types.chain/Link.afterAction.<get-afterAction>|<get-afterAction>(){}[0]
     abstract val beforeAction // eu.vendeli.tgbot.types.chain/Link.beforeAction|{}beforeAction[0]
-        abstract fun <get-beforeAction>(): eu.vendeli.tgbot.types.chain/Action? // eu.vendeli.tgbot.types.chain/Link.beforeAction.<get-beforeAction>|<get-beforeAction>(){}[0]
+        abstract fun <get-beforeAction>(): eu.vendeli.tgbot.types.chain/ChainAction? // eu.vendeli.tgbot.types.chain/Link.beforeAction.<get-beforeAction>|<get-beforeAction>(){}[0]
     abstract val breakCondition // eu.vendeli.tgbot.types.chain/Link.breakCondition|{}breakCondition[0]
         abstract fun <get-breakCondition>(): eu.vendeli.tgbot.types.chain/BreakCondition? // eu.vendeli.tgbot.types.chain/Link.breakCondition.<get-breakCondition>|<get-breakCondition>(){}[0]
     abstract val retryAfterBreak // eu.vendeli.tgbot.types.chain/Link.retryAfterBreak|{}retryAfterBreak[0]
@@ -943,9 +943,9 @@ abstract class <#A: kotlin/Any?, #B: kotlin/Any?> eu.vendeli.tgbot.types.chain/S
     abstract val state // eu.vendeli.tgbot.types.chain/StatefulLink.state|{}state[0]
         abstract fun <get-state>(): eu.vendeli.tgbot.types.chain/LinkStateManager<#A, #B> // eu.vendeli.tgbot.types.chain/StatefulLink.state.<get-state>|<get-state>(){}[0]
     open val afterAction // eu.vendeli.tgbot.types.chain/StatefulLink.afterAction|{}afterAction[0]
-        open fun <get-afterAction>(): eu.vendeli.tgbot.types.chain/Action? // eu.vendeli.tgbot.types.chain/StatefulLink.afterAction.<get-afterAction>|<get-afterAction>(){}[0]
+        open fun <get-afterAction>(): eu.vendeli.tgbot.types.chain/ChainAction? // eu.vendeli.tgbot.types.chain/StatefulLink.afterAction.<get-afterAction>|<get-afterAction>(){}[0]
     open val beforeAction // eu.vendeli.tgbot.types.chain/StatefulLink.beforeAction|{}beforeAction[0]
-        open fun <get-beforeAction>(): eu.vendeli.tgbot.types.chain/Action? // eu.vendeli.tgbot.types.chain/StatefulLink.beforeAction.<get-beforeAction>|<get-beforeAction>(){}[0]
+        open fun <get-beforeAction>(): eu.vendeli.tgbot.types.chain/ChainAction? // eu.vendeli.tgbot.types.chain/StatefulLink.beforeAction.<get-beforeAction>|<get-beforeAction>(){}[0]
     open val breakCondition // eu.vendeli.tgbot.types.chain/StatefulLink.breakCondition|{}breakCondition[0]
         open fun <get-breakCondition>(): eu.vendeli.tgbot.types.chain/BreakCondition? // eu.vendeli.tgbot.types.chain/StatefulLink.breakCondition.<get-breakCondition>|<get-breakCondition>(){}[0]
     open val retryAfterBreak // eu.vendeli.tgbot.types.chain/StatefulLink.retryAfterBreak|{}retryAfterBreak[0]
@@ -1012,9 +1012,9 @@ abstract class eu.vendeli.tgbot.types.chain/ChainLink : eu.vendeli.tgbot.types.c
     constructor <init>() // eu.vendeli.tgbot.types.chain/ChainLink.<init>|<init>(){}[0]
 
     open val afterAction // eu.vendeli.tgbot.types.chain/ChainLink.afterAction|{}afterAction[0]
-        open fun <get-afterAction>(): eu.vendeli.tgbot.types.chain/Action? // eu.vendeli.tgbot.types.chain/ChainLink.afterAction.<get-afterAction>|<get-afterAction>(){}[0]
+        open fun <get-afterAction>(): eu.vendeli.tgbot.types.chain/ChainAction? // eu.vendeli.tgbot.types.chain/ChainLink.afterAction.<get-afterAction>|<get-afterAction>(){}[0]
     open val beforeAction // eu.vendeli.tgbot.types.chain/ChainLink.beforeAction|{}beforeAction[0]
-        open fun <get-beforeAction>(): eu.vendeli.tgbot.types.chain/Action? // eu.vendeli.tgbot.types.chain/ChainLink.beforeAction.<get-beforeAction>|<get-beforeAction>(){}[0]
+        open fun <get-beforeAction>(): eu.vendeli.tgbot.types.chain/ChainAction? // eu.vendeli.tgbot.types.chain/ChainLink.beforeAction.<get-beforeAction>|<get-beforeAction>(){}[0]
     open val breakCondition // eu.vendeli.tgbot.types.chain/ChainLink.breakCondition|{}breakCondition[0]
         open fun <get-breakCondition>(): eu.vendeli.tgbot.types.chain/BreakCondition? // eu.vendeli.tgbot.types.chain/ChainLink.breakCondition.<get-breakCondition>|<get-breakCondition>(){}[0]
     open val retryAfterBreak // eu.vendeli.tgbot.types.chain/ChainLink.retryAfterBreak|{}retryAfterBreak[0]

@@ -7,8 +7,8 @@ import eu.vendeli.tgbot.types.component.ProcessedUpdate
 interface Link<T> {
     val retryAfterBreak: Boolean
     val breakCondition: BreakCondition?
-    val beforeAction: Action?
-    val afterAction: Action?
+    val beforeAction: ChainAction?
+    val afterAction: ChainAction?
     val chainingStrategy: ChainingStrategy
         get() = ChainingStrategy.Default
 

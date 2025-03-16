@@ -9,6 +9,7 @@
 * Fixed non-latin text parsing #346.
 * Added new plugin parameter `autoAnswerCallback` to control auto-answering of callback queries by default.
 * Added compiler plugin that helps to autocomplete with `send()` actions from function context parameters.
+* Changed `Action` interface from chains to `ChainAction` to distinguish between `ChainAction` and `Action`.
 
 ## 7.9.0
 

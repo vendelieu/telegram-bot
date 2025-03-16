@@ -3459,10 +3459,6 @@ public final class eu/vendeli/tgbot/types/business/BusinessOpeningHoursInterval$
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public abstract interface class eu/vendeli/tgbot/types/chain/Action {
-	public abstract fun invoke (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
 public class eu/vendeli/tgbot/types/chain/BaseLinkStateManager : eu/vendeli/tgbot/types/chain/LinkStateManager {
 	public fun <init> ()V
 	public fun <init> (Leu/vendeli/tgbot/types/chain/KeySelector;)V
@@ -3486,11 +3482,15 @@ public abstract interface class eu/vendeli/tgbot/types/chain/BreakCondition {
 	public abstract fun invoke (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public abstract interface class eu/vendeli/tgbot/types/chain/ChainAction {
+	public abstract fun invoke (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
 public abstract class eu/vendeli/tgbot/types/chain/ChainLink : eu/vendeli/tgbot/types/chain/Link {
 	public fun <init> ()V
 	public fun breakAction (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getAfterAction ()Leu/vendeli/tgbot/types/chain/Action;
-	public fun getBeforeAction ()Leu/vendeli/tgbot/types/chain/Action;
+	public fun getAfterAction ()Leu/vendeli/tgbot/types/chain/ChainAction;
+	public fun getBeforeAction ()Leu/vendeli/tgbot/types/chain/ChainAction;
 	public fun getBreakCondition ()Leu/vendeli/tgbot/types/chain/BreakCondition;
 	public fun getChainingStrategy ()Leu/vendeli/tgbot/types/chain/ChainingStrategy;
 	public fun getRetryAfterBreak ()Z
@@ -3531,8 +3531,8 @@ public abstract interface class eu/vendeli/tgbot/types/chain/KeySelector {
 public abstract interface class eu/vendeli/tgbot/types/chain/Link {
 	public abstract fun action (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun breakAction (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun getAfterAction ()Leu/vendeli/tgbot/types/chain/Action;
-	public abstract fun getBeforeAction ()Leu/vendeli/tgbot/types/chain/Action;
+	public abstract fun getAfterAction ()Leu/vendeli/tgbot/types/chain/ChainAction;
+	public abstract fun getBeforeAction ()Leu/vendeli/tgbot/types/chain/ChainAction;
 	public abstract fun getBreakCondition ()Leu/vendeli/tgbot/types/chain/BreakCondition;
 	public abstract fun getChainingStrategy ()Leu/vendeli/tgbot/types/chain/ChainingStrategy;
 	public abstract fun getRetryAfterBreak ()Z
@@ -3563,8 +3563,8 @@ public final class eu/vendeli/tgbot/types/chain/SingleInputChain {
 public abstract class eu/vendeli/tgbot/types/chain/StatefulLink : eu/vendeli/tgbot/types/chain/Link {
 	public fun <init> ()V
 	public fun breakAction (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getAfterAction ()Leu/vendeli/tgbot/types/chain/Action;
-	public fun getBeforeAction ()Leu/vendeli/tgbot/types/chain/Action;
+	public fun getAfterAction ()Leu/vendeli/tgbot/types/chain/ChainAction;
+	public fun getBeforeAction ()Leu/vendeli/tgbot/types/chain/ChainAction;
 	public fun getBreakCondition ()Leu/vendeli/tgbot/types/chain/BreakCondition;
 	public fun getChainingStrategy ()Leu/vendeli/tgbot/types/chain/ChainingStrategy;
 	public fun getRetryAfterBreak ()Z
