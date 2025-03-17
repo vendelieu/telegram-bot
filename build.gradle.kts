@@ -20,7 +20,8 @@ tasks.register("prepareRelease") {
     dependsOn("telegram-bot:kdocUpdate")
     dependsOn("telegram-bot:formatKotlin")
     dependsOn("ktgram-gradle-plugin:formatKotlin")
-    dependsOn("helper:formatKotlin")
+    dependsOn("api-sentinel:formatKotlin")
+    dependsOn("aide:formatKotlin")
 
     dependsOn("ksp:detekt")
     dependsOn("telegram-bot:detekt")
