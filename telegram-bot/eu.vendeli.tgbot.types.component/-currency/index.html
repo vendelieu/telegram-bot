@@ -1,0 +1,1483 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Currency</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
+<link href="../../../images/logo-icon.svg"></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../index.html">
+                    KtGram
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.0.0
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":telegram-bot/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":telegram-bot/commonMain" data-filter=":telegram-bot/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+                <a class="navigation-controls--btn navigation-controls--btn_homepage" id="homepage-link" href="https://github.com/vendelieu/telegram-bot"></a>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    KtGram
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="telegram-bot::eu.vendeli.tgbot.types.component/Currency///PointingToDeclaration//1596435014">
+  <div class="breadcrumbs"><a href="../../index.html">telegram-bot</a><span class="delimiter">/</span><a href="../index.html">eu.vendeli.tgbot.types.component</a><span class="delimiter">/</span><span class="current">Currency</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Currency</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">enum </span><a href="index.html">Currency</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="index.html">Currency</a><span class="token operator">&gt; </span><span class="clearfix"><span class="floating-right">(<a href="https://github.com/vendelieu/telegram-bot/blob/master/telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/types/component/Currency.kt#L6">source</a>)</span></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="ENTRY">Entries</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="ENTRY">
+        <h2 class="">Entries</h2>
+        <div class="table"><a data-name="1184142727%2FClasslikes%2F1596435014" anchor-label="AED" id="1184142727%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-e-d/index.html">AED</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1184142727%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-a-e-d/index.html">AED</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1280771088%2FClasslikes%2F1596435014" anchor-label="AFN" id="-1280771088%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-f-n/index.html">AFN</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1280771088%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-a-f-n/index.html">AFN</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1694386856%2FClasslikes%2F1596435014" anchor-label="ALL" id="1694386856%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-l-l/index.html">ALL</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1694386856%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-a-l-l/index.html">ALL</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1154943873%2FClasslikes%2F1596435014" anchor-label="AMD" id="-1154943873%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-m-d/index.html">AMD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1154943873%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-a-m-d/index.html">AMD</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="566785961%2FClasslikes%2F1596435014" anchor-label="ARS" id="566785961%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-r-s/index.html">ARS</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="566785961%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-a-r-s/index.html">ARS</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="800936823%2FClasslikes%2F1596435014" anchor-label="AUD" id="800936823%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-u-d/index.html">AUD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="800936823%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-a-u-d/index.html">AUD</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1461447004%2FClasslikes%2F1596435014" anchor-label="AZN" id="1461447004%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-z-n/index.html">AZN</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1461447004%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-a-z-n/index.html">AZN</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2071868501%2FClasslikes%2F1596435014" anchor-label="BAM" id="2071868501%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-a-m/index.html">BAM</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2071868501%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-b-a-m/index.html">BAM</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1821425081%2FClasslikes%2F1596435014" anchor-label="BDT" id="1821425081%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-d-t/index.html">BDT</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1821425081%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-b-d-t/index.html">BDT</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2047182896%2FClasslikes%2F1596435014" anchor-label="BGN" id="-2047182896%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-g-n/index.html">BGN</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2047182896%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-b-g-n/index.html">BGN</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1921355681%2FClasslikes%2F1596435014" anchor-label="BND" id="-1921355681%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-n-d/index.html">BND</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1921355681%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-b-n-d/index.html">BND</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1779235908%2FClasslikes%2F1596435014" anchor-label="BOB" id="-1779235908%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-o-b/index.html">BOB</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1779235908%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-b-o-b/index.html">BOB</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-533954077%2FClasslikes%2F1596435014" anchor-label="BRL" id="-533954077%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-r-l/index.html">BRL</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-533954077%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-b-r-l/index.html">BRL</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1405634061%2FClasslikes%2F1596435014" anchor-label="CAD" id="1405634061%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-a-d/index.html">CAD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1405634061%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-c-a-d/index.html">CAD</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1075572312%2FClasslikes%2F1596435014" anchor-label="CHF" id="-1075572312%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-h-f/index.html">CHF</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1075572312%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-c-h-f/index.html">CHF</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-122676306%2FClasslikes%2F1596435014" anchor-label="CLP" id="-122676306%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-l-p/index.html">CLP</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-122676306%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-c-l-p/index.html">CLP</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-515239499%2FClasslikes%2F1596435014" anchor-label="CNY" id="-515239499%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-n-y/index.html">CNY</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-515239499%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-c-n-y/index.html">CNY</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-999833781%2FClasslikes%2F1596435014" anchor-label="COP" id="-999833781%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-o-p/index.html">COP</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-999833781%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-c-o-p/index.html">COP</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1200188517%2FClasslikes%2F1596435014" anchor-label="CRC" id="-1200188517%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-r-c/index.html">CRC</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1200188517%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-c-r-c/index.html">CRC</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-982330213%2FClasslikes%2F1596435014" anchor-label="CZK" id="-982330213%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-c-z-k/index.html">CZK</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-982330213%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-c-z-k/index.html">CZK</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1365536117%2FClasslikes%2F1596435014" anchor-label="DKK" id="-1365536117%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-d-k-k/index.html">DKK</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1365536117%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-d-k-k/index.html">DKK</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1473859764%2FClasslikes%2F1596435014" anchor-label="DOP" id="-1473859764%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-d-o-p/index.html">DOP</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1473859764%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-d-o-p/index.html">DOP</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2083070251%2FClasslikes%2F1596435014" anchor-label="DZD" id="-2083070251%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-d-z-d/index.html">DZD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2083070251%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-d-z-d/index.html">DZD</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="391200853%2FClasslikes%2F1596435014" anchor-label="EGP" id="391200853%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-g-p/index.html">EGP</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="391200853%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-e-g-p/index.html">EGP</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="158261001%2FClasslikes%2F1596435014" anchor-label="EUR" id="158261001%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-u-r/index.html">EUR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="158261001%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-e-u-r/index.html">EUR</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="905078012%2FClasslikes%2F1596435014" anchor-label="GBP" id="905078012%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-g-b-p/index.html">GBP</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="905078012%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-g-b-p/index.html">GBP</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="896931733%2FClasslikes%2F1596435014" anchor-label="GEL" id="896931733%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-g-e-l/index.html">GEL</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="896931733%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-g-e-l/index.html">GEL</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1867331307%2FClasslikes%2F1596435014" anchor-label="GTQ" id="1867331307%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-g-t-q/index.html">GTQ</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1867331307%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-g-t-q/index.html">GTQ</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="406613192%2FClasslikes%2F1596435014" anchor-label="HKD" id="406613192%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-h-k-d/index.html">HKD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="406613192%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-h-k-d/index.html">HKD</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2086400621%2FClasslikes%2F1596435014" anchor-label="HNL" id="2086400621%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-h-n-l/index.html">HNL</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2086400621%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-h-n-l/index.html">HNL</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1013373528%2FClasslikes%2F1596435014" anchor-label="HRK" id="-1013373528%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-h-r-k/index.html">HRK</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1013373528%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-h-r-k/index.html">HRK</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1343216640%2FClasslikes%2F1596435014" anchor-label="HUF" id="1343216640%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-h-u-f/index.html">HUF</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1343216640%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-h-u-f/index.html">HUF</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1062251202%2FClasslikes%2F1596435014" anchor-label="IDR" id="-1062251202%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-d-r/index.html">IDR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1062251202%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-i-d-r/index.html">IDR</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1471106953%2FClasslikes%2F1596435014" anchor-label="ILS" id="-1471106953%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-l-s/index.html">ILS</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1471106953%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-i-l-s/index.html">ILS</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="308857844%2FClasslikes%2F1596435014" anchor-label="INR" id="308857844%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-n-r/index.html">INR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="308857844%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-i-n-r/index.html">INR</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1779785336%2FClasslikes%2F1596435014" anchor-label="ISK" id="-1779785336%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-s-k/index.html">ISK</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1779785336%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-i-s-k/index.html">ISK</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1126210424%2FClasslikes%2F1596435014" anchor-label="JMD" id="-1126210424%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-j-m-d/index.html">JMD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1126210424%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-j-m-d/index.html">JMD</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-123225734%2FClasslikes%2F1596435014" anchor-label="JPY" id="-123225734%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-j-p-y/index.html">JPY</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-123225734%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-j-p-y/index.html">JPY</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-372458144%2FClasslikes%2F1596435014" anchor-label="KES" id="-372458144%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-k-e-s/index.html">KES</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-372458144%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-k-e-s/index.html">KES</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-957229794%2FClasslikes%2F1596435014" anchor-label="KGS" id="-957229794%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-k-g-s/index.html">KGS</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-957229794%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-k-g-s/index.html">KGS</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-747517769%2FClasslikes%2F1596435014" anchor-label="KRW" id="-747517769%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-k-r-w/index.html">KRW</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-747517769%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-k-r-w/index.html">KRW</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-287362324%2FClasslikes%2F1596435014" anchor-label="KZT" id="-287362324%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-k-z-t/index.html">KZT</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-287362324%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-k-z-t/index.html">KZT</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1465051903%2FClasslikes%2F1596435014" anchor-label="LBP" id="-1465051903%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-l-b-p/index.html">LBP</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1465051903%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-l-b-p/index.html">LBP</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-236062630%2FClasslikes%2F1596435014" anchor-label="LKR" id="-236062630%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-l-k-r/index.html">LKR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-236062630%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-l-k-r/index.html">LKR</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="960341527%2FClasslikes%2F1596435014" anchor-label="MAD" id="960341527%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-m-a-d/index.html">MAD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="960341527%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-m-a-d/index.html">MAD</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1654838340%2FClasslikes%2F1596435014" anchor-label="MDL" id="-1654838340%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-m-d-l/index.html">MDL</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1654838340%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-m-d-l/index.html">MDL</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2021751686%2FClasslikes%2F1596435014" anchor-label="MNT" id="-2021751686%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-m-n-t/index.html">MNT</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2021751686%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-m-n-t/index.html">MNT</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="661020433%2FClasslikes%2F1596435014" anchor-label="MUR" id="661020433%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-m-u-r/index.html">MUR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="661020433%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-m-u-r/index.html">MUR</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="368634608%2FClasslikes%2F1596435014" anchor-label="MVR" id="368634608%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-m-v-r/index.html">MVR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="368634608%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-m-v-r/index.html">MVR</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="652874154%2FClasslikes%2F1596435014" anchor-label="MXN" id="652874154%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-m-x-n/index.html">MXN</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="652874154%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-m-x-n/index.html">MXN</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-508522867%2FClasslikes%2F1596435014" anchor-label="MYR" id="-508522867%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-m-y-r/index.html">MYR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-508522867%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-m-y-r/index.html">MYR</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="68102504%2FClasslikes%2F1596435014" anchor-label="MZN" id="68102504%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-m-z-n/index.html">MZN</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="68102504%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-m-z-n/index.html">MZN</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="854439900%2FClasslikes%2F1596435014" anchor-label="NGN" id="854439900%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-g-n/index.html">NGN</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="854439900%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-n-g-n/index.html">NGN</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2095068197%2FClasslikes%2F1596435014" anchor-label="NIO" id="-2095068197%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-i-o/index.html">NIO</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2095068197%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-n-i-o/index.html">NIO</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1314595345%2FClasslikes%2F1596435014" anchor-label="NOK" id="1314595345%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-o-k/index.html">NOK</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1314595345%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-n-o-k/index.html">NOK</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1648923575%2FClasslikes%2F1596435014" anchor-label="NPR" id="1648923575%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-p-r/index.html">NPR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1648923575%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-n-p-r/index.html">NPR</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1766604511%2FClasslikes%2F1596435014" anchor-label="NZD" id="1766604511%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-z-d/index.html">NZD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1766604511%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-n-z-d/index.html">NZD</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-27230824%2FClasslikes%2F1596435014" anchor-label="PAB" id="-27230824%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-a-b/index.html">PAB</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-27230824%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-p-a-b/index.html">PAB</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="491159584%2FClasslikes%2F1596435014" anchor-label="PEN" id="491159584%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-e-n/index.html">PEN</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="491159584%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-p-e-n/index.html">PEN</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-820503489%2FClasslikes%2F1596435014" anchor-label="PHP" id="-820503489%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-h-p/index.html">PHP</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-820503489%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-p-h-p/index.html">PHP</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2132166562%2FClasslikes%2F1596435014" anchor-label="PKR" id="-2132166562%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-k-r/index.html">PKR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2132166562%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-p-k-r/index.html">PKR</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1555541191%2FClasslikes%2F1596435014" anchor-label="PLN" id="-1555541191%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-l-n/index.html">PLN</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1555541191%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-p-l-n/index.html">PLN</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1688303675%2FClasslikes%2F1596435014" anchor-label="PYG" id="-1688303675%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-y-g/index.html">PYG</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1688303675%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-p-y-g/index.html">PYG</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="317665705%2FClasslikes%2F1596435014" anchor-label="QAR" id="317665705%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-q-a-r/index.html">QAR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="317665705%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-q-a-r/index.html">QAR</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="914216664%2FClasslikes%2F1596435014" anchor-label="RON" id="914216664%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-r-o-n/index.html">RON</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="914216664%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-r-o-n/index.html">RON</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1917201354%2FClasslikes%2F1596435014" anchor-label="RSD" id="1917201354%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-r-s-d/index.html">RSD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1917201354%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-r-s-d/index.html">RSD</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1766935302%2FClasslikes%2F1596435014" anchor-label="RUB" id="1766935302%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-r-u-b/index.html">RUB</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1766935302%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-r-u-b/index.html">RUB</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-630386261%2FClasslikes%2F1596435014" anchor-label="SAR" id="-630386261%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-s-a-r/index.html">SAR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-630386261%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-s-a-r/index.html">SAR</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1868323680%2FClasslikes%2F1596435014" anchor-label="SEK" id="1868323680%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-s-e-k/index.html">SEK</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1868323680%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-s-e-k/index.html">SEK</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="656837975%2FClasslikes%2F1596435014" anchor-label="SGD" id="656837975%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-s-g-d/index.html">SGD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="656837975%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-s-g-d/index.html">SGD</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="324931765%2FClasslikes%2F1596435014" anchor-label="THB" id="324931765%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-h-b/index.html">THB</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="324931765%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-t-h-b/index.html">THB</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1805653820%2FClasslikes%2F1596435014" anchor-label="TJS" id="-1805653820%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-j-s/index.html">TJS</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1805653820%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-t-j-s/index.html">TJS</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1153289918%2FClasslikes%2F1596435014" anchor-label="TRY" id="-1153289918%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-r-y/index.html">TRY</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1153289918%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-t-r-y/index.html">TRY</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="676763563%2FClasslikes%2F1596435014" anchor-label="TTD" id="676763563%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-t-d/index.html">TTD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="676763563%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-t-t-d/index.html">TTD</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-200393912%2FClasslikes%2F1596435014" anchor-label="TWD" id="-200393912%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-w-d/index.html">TWD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-200393912%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-t-w-d/index.html">TWD</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2106107572%2FClasslikes%2F1596435014" anchor-label="TZS" id="2106107572%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-z-s/index.html">TZS</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2106107572%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-t-z-s/index.html">TZS</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="594089763%2FClasslikes%2F1596435014" anchor-label="UAH" id="594089763%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-u-a-h/index.html">UAH</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="594089763%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-u-a-h/index.html">UAH</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-341302675%2FClasslikes%2F1596435014" anchor-label="UGX" id="-341302675%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-u-g-x/index.html">UGX</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-341302675%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-u-g-x/index.html">UGX</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="495123405%2FClasslikes%2F1596435014" anchor-label="USD" id="495123405%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-u-s-d/index.html">USD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="495123405%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-u-s-d/index.html">USD</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1489961816%2FClasslikes%2F1596435014" anchor-label="UYU" id="1489961816%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-u-y-u/index.html">UYU</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1489961816%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-u-y-u/index.html">UYU</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1632081589%2FClasslikes%2F1596435014" anchor-label="UZS" id="1632081589%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-u-z-s/index.html">UZS</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1632081589%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-u-z-s/index.html">UZS</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1483026547%2FClasslikes%2F1596435014" anchor-label="VND" id="1483026547%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-v-n-d/index.html">VND</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1483026547%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-v-n-d/index.html">VND</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-349118163%2FClasslikes%2F1596435014" anchor-label="YER" id="-349118163%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-y-e-r/index.html">YER</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-349118163%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-y-e-r/index.html">YER</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="346399154%2FClasslikes%2F1596435014" anchor-label="ZAR" id="346399154%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-z-a-r/index.html">ZAR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="346399154%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-z-a-r/index.html">ZAR</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="34087741%2FClasslikes%2F1596435014" anchor-label="XTR" id="34087741%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-x-t-r/index.html">XTR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="34087741%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><a href="-x-t-r/index.html">XTR</a></div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-51523205%2FProperties%2F1596435014" anchor-label="entries" id="-51523205%2FProperties%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="entries.html"><span><span>entries</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-51523205%2FProperties%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="entries.html">entries</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.enums/-enum-entries/index.html">EnumEntries</a><span class="token operator">&lt;</span><a href="index.html">Currency</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns a representation of an immutable list of all enum entries, in the order they're declared.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-372974862%2FProperties%2F1596435014" anchor-label="name" id="-372974862%2FProperties%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.types.poll/-poll-type/-quiz/index.html#-372974862%2FProperties%2F1596435014"><span><span>name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-372974862%2FProperties%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../eu.vendeli.tgbot.types.poll/-poll-type/-quiz/index.html#-372974862%2FProperties%2F1596435014">name</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-739389684%2FProperties%2F1596435014" anchor-label="ordinal" id="-739389684%2FProperties%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../eu.vendeli.tgbot.types.poll/-poll-type/-quiz/index.html#-739389684%2FProperties%2F1596435014"><span><span>ordinal</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-739389684%2FProperties%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../eu.vendeli.tgbot.types.poll/-poll-type/-quiz/index.html#-739389684%2FProperties%2F1596435014">ordinal</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1054241791%2FFunctions%2F1596435014" anchor-label="valueOf" id="-1054241791%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="value-of.html"><span>value</span><wbr><span><span>Of</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1054241791%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="value-of.html"><span class="token function">valueOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Currency</a></div><div class="brief "><p class="paragraph">Returns the enum constant of this type with the specified name. The string must match exactly an identifier used to declare an enum constant in this type. (Extraneous whitespace characters are not permitted.)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-770310451%2FFunctions%2F1596435014" anchor-label="values" id="-770310451%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="values.html"><span><span>values</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-770310451%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="values.html"><span class="token function">values</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="index.html">Currency</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns an array containing the constants of this enum type, in the order they're declared.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Vendelieu</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

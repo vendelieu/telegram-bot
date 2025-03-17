@@ -3,7 +3,12 @@ $dokka.linkExtension:html
 $dokka.location:////PointingToDeclaration/ktgram-config-toml/[root]/index.html
 $dokka.location://fromToml/eu.vendeli.tgbot.TelegramBot#kotlin.String/PointingToDeclaration/ktgram-config-toml/[root]/from-toml.html
 $dokka.location:eu.vendeli.tgbot.implementations/ClassManagerImpl/getInstance/#kotlin.reflect.KClass[*]#kotlin.Array[kotlin.Any?]/PointingToDeclaration/telegram-bot/eu.vendeli.tgbot.implementations/-class-manager-impl/[native]get-instance.html
-$dokka.location:eu.vendeli.tgbot.utils//defineActivities/eu.vendeli.tgbot.TelegramBot#kotlin.collections.Map[kotlin.String,kotlin.collections.List[kotlin.Any?]]/PointingToDeclaration/telegram-bot/eu.vendeli.tgbot.utils/[native]define-activities.html
+$dokka.location:eu.vendeli.tgbot.utils.common//defineActivities/eu.vendeli.tgbot.TelegramBot#kotlin.collections.Map[kotlin.String,kotlin.collections.List[kotlin.Any?]]/PointingToDeclaration/telegram-bot/eu.vendeli.tgbot.utils.common/[native]define-activities.html
+module:aide
+eu.vendeli.aide
+eu.vendeli.aide.fir
+eu.vendeli.aide.ir
+eu.vendeli.aide.utils
 module:ktgram-botctx-redis
 eu.vendeli.ktgram.botctx.redis.chain
 eu.vendeli.ktgram.botctx.redis.ctx
@@ -24,13 +29,16 @@ eu.vendeli.tgbot
 eu.vendeli.tgbot.annotations
 eu.vendeli.tgbot.annotations.dsl
 eu.vendeli.tgbot.annotations.internal
-eu.vendeli.tgbot.api
 eu.vendeli.tgbot.api.answer
 eu.vendeli.tgbot.api.botactions
 eu.vendeli.tgbot.api.chat
+eu.vendeli.tgbot.api.common
 eu.vendeli.tgbot.api.forum
+eu.vendeli.tgbot.api.game
 eu.vendeli.tgbot.api.media
 eu.vendeli.tgbot.api.message
+eu.vendeli.tgbot.api.passport
+eu.vendeli.tgbot.api.payments
 eu.vendeli.tgbot.api.stickerset
 eu.vendeli.tgbot.api.verification
 eu.vendeli.tgbot.core
@@ -44,25 +52,27 @@ eu.vendeli.tgbot.types
 eu.vendeli.tgbot.types.boost
 eu.vendeli.tgbot.types.bot
 eu.vendeli.tgbot.types.business
+eu.vendeli.tgbot.types.chain
 eu.vendeli.tgbot.types.chat
+eu.vendeli.tgbot.types.common
+eu.vendeli.tgbot.types.component
+eu.vendeli.tgbot.types.configuration
 eu.vendeli.tgbot.types.forum
 eu.vendeli.tgbot.types.game
 eu.vendeli.tgbot.types.giveaway
 eu.vendeli.tgbot.types.inline
-eu.vendeli.tgbot.types.internal
-eu.vendeli.tgbot.types.internal.chain
-eu.vendeli.tgbot.types.internal.configuration
-eu.vendeli.tgbot.types.internal.options
 eu.vendeli.tgbot.types.keyboard
 eu.vendeli.tgbot.types.media
 eu.vendeli.tgbot.types.msg
+eu.vendeli.tgbot.types.options
 eu.vendeli.tgbot.types.passport
 eu.vendeli.tgbot.types.payment
 eu.vendeli.tgbot.types.poll
 eu.vendeli.tgbot.types.stars
 eu.vendeli.tgbot.types.user
-eu.vendeli.tgbot.utils
+eu.vendeli.tgbot.types.webapp
 eu.vendeli.tgbot.utils.builders
+eu.vendeli.tgbot.utils.common
 module:webapps
 eu.vendeli.webapps.biometric
 eu.vendeli.webapps.button

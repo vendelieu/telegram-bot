@@ -1,0 +1,882 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>eu.vendeli.tgbot.types.component</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
+<link href="../../images/logo-icon.svg"></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../index.html">
+                    KtGram
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.0.0
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":telegram-bot/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":telegram-bot/commonMain" data-filter=":telegram-bot/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+                <a class="navigation-controls--btn navigation-controls--btn_homepage" id="homepage-link" href="https://github.com/vendelieu/telegram-bot"></a>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    KtGram
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="telegram-bot::eu.vendeli.tgbot.types.component////PointingToDeclaration//1596435014">
+  <div class="breadcrumbs"><a href="../index.html">telegram-bot</a><span class="delimiter">/</span><span class="current">eu.vendeli.tgbot.types.component</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button><button class="section-tab" data-togglable="PROPERTY,EXTENSION_PROPERTY">Properties</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-1128511351%2FClasslikes%2F1596435014" anchor-label="ActivityCtx" id="-1128511351%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-activity-ctx/index.html"><span>Activity</span><wbr><span><span>Ctx</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1128511351%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="-activity-ctx/index.html">T</a><span class="token operator"> : </span><a href="-processed-update/index.html">ProcessedUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>update<span class="token operator">: </span><a href="-activity-ctx/index.html">T</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2058691334%2FClasslikes%2F1596435014" anchor-label="BusinessConnectionUpdate" id="-2058691334%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-business-connection-update/index.html"><span>Business</span><wbr><span>Connection</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2058691334%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-business-connection-update/-companion/index.html">BusinessConnectionUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-business-connection-update/index.html">BusinessConnectionUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>businessConnection<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.business/-business-connection/index.html">BusinessConnection</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1396435025%2FClasslikes%2F1596435014" anchor-label="BusinessMessageUpdate" id="1396435025%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-business-message-update/index.html"><span>Business</span><wbr><span>Message</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1396435025%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-business-message-update/-companion/index.html">BusinessMessageUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-business-message-update/index.html">BusinessMessageUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>businessMessage<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.msg/-message/index.html">Message</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2126441845%2FClasslikes%2F1596435014" anchor-label="CallbackQueryUpdate" id="2126441845%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-callback-query-update/index.html"><span>Callback</span><wbr><span>Query</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2126441845%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-callback-query-update/-companion/index.html">CallbackQueryUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-callback-query-update/index.html">CallbackQueryUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>callbackQuery<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-callback-query/index.html">CallbackQuery</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1955245237%2FClasslikes%2F1596435014" anchor-label="ChannelPostUpdate" id="1955245237%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-channel-post-update/index.html"><span>Channel</span><wbr><span>Post</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1955245237%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-channel-post-update/-companion/index.html">ChannelPostUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-channel-post-update/index.html">ChannelPostUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>channelPost<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.msg/-message/index.html">Message</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1095146291%2FClasslikes%2F1596435014" anchor-label="ChatBoostUpdate" id="-1095146291%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-chat-boost-update/index.html"><span>Chat</span><wbr><span>Boost</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1095146291%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-chat-boost-update/-companion/index.html">ChatBoostUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-chat-boost-update/index.html">ChatBoostUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>chatBoost<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.boost/-chat-boost-updated/index.html">ChatBoostUpdated</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="416261163%2FClasslikes%2F1596435014" anchor-label="ChatJoinRequestUpdate" id="416261163%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-chat-join-request-update/index.html"><span>Chat</span><wbr><span>Join</span><wbr><span>Request</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="416261163%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-chat-join-request-update/-companion/index.html">ChatJoinRequestUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-chat-join-request-update/index.html">ChatJoinRequestUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>chatJoinRequest<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.chat/-chat-join-request/index.html">ChatJoinRequest</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1144358182%2FClasslikes%2F1596435014" anchor-label="ChatMemberUpdate" id="1144358182%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-chat-member-update/index.html"><span>Chat</span><wbr><span>Member</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1144358182%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-chat-member-update/-companion/index.html">ChatMemberUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-chat-member-update/index.html">ChatMemberUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>chatMember<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.chat/-chat-member-updated/index.html">ChatMemberUpdated</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1469320656%2FClasslikes%2F1596435014" anchor-label="ChosenInlineResultUpdate" id="1469320656%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-chosen-inline-result-update/index.html"><span>Chosen</span><wbr><span>Inline</span><wbr><span>Result</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1469320656%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-chosen-inline-result-update/-companion/index.html">ChosenInlineResultUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-chosen-inline-result-update/index.html">ChosenInlineResultUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>chosenInlineResult<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.inline/-chosen-inline-result/index.html">ChosenInlineResult</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="281060573%2FClasslikes%2F1596435014" anchor-label="CommandContext" id="281060573%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-command-context/index.html"><span>Command</span><wbr><span><span>Context</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="281060573%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-command-context/index.html">CommandContext</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="-command-context/index.html">T</a><span class="token operator"> : </span><a href="-processed-update/index.html">ProcessedUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>update<span class="token operator">: </span><a href="-command-context/index.html">T</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>parameters<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1171345210%2FClasslikes%2F1596435014" anchor-label="CommonMatcher" id="1171345210%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-common-matcher/index.html"><span>Common</span><wbr><span><span>Matcher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1171345210%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-common-matcher/index.html">CommonMatcher</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1920085680%2FClasslikes%2F1596435014" anchor-label="Currency" id="-1920085680%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-currency/index.html"><span><span>Currency</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1920085680%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">enum </span><a href="-currency/index.html">Currency</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-currency/index.html">Currency</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1974359725%2FClasslikes%2F1596435014" anchor-label="DeletedBusinessMessagesUpdate" id="-1974359725%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-deleted-business-messages-update/index.html"><span>Deleted</span><wbr><span>Business</span><wbr><span>Messages</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1974359725%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-deleted-business-messages-update/-companion/index.html">DeletedBusinessMessagesUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-deleted-business-messages-update/index.html">DeletedBusinessMessagesUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>deletedBusinessMessages<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.business/-business-messages-deleted/index.html">BusinessMessagesDeleted</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="140338722%2FClasslikes%2F1596435014" anchor-label="DiceEmoji" id="140338722%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dice-emoji/index.html"><span>Dice</span><wbr><span><span>Emoji</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="140338722%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">enum </span><a href="-dice-emoji/index.html">DiceEmoji</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-dice-emoji/index.html">DiceEmoji</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1276919590%2FClasslikes%2F1596435014" anchor-label="EditedBusinessMessageUpdate" id="-1276919590%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-edited-business-message-update/index.html"><span>Edited</span><wbr><span>Business</span><wbr><span>Message</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1276919590%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-edited-business-message-update/-companion/index.html">EditedBusinessMessageUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-edited-business-message-update/index.html">EditedBusinessMessageUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>editedBusinessMessage<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.msg/-message/index.html">Message</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1946038718%2FClasslikes%2F1596435014" anchor-label="EditedChannelPostUpdate" id="1946038718%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-edited-channel-post-update/index.html"><span>Edited</span><wbr><span>Channel</span><wbr><span>Post</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1946038718%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-edited-channel-post-update/-companion/index.html">EditedChannelPostUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-edited-channel-post-update/index.html">EditedChannelPostUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>editedChannelPost<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.msg/-message/index.html">Message</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="850193914%2FClasslikes%2F1596435014" anchor-label="EditedMessageUpdate" id="850193914%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-edited-message-update/index.html"><span>Edited</span><wbr><span>Message</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="850193914%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-edited-message-update/-companion/index.html">EditedMessageUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-edited-message-update/index.html">EditedMessageUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>editedMessage<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.msg/-message/index.html">Message</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1909713434%2FClasslikes%2F1596435014" anchor-label="ExceptionHandlingStrategy" id="1909713434%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-exception-handling-strategy/index.html"><span>Exception</span><wbr><span>Handling</span><wbr><span><span>Strategy</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1909713434%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-exception-handling-strategy/index.html">ExceptionHandlingStrategy</a></div><div class="brief "><p class="paragraph">Strategies to do with exceptions and updates that caused them.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2112478107%2FClasslikes%2F1596435014" anchor-label="FailedUpdate" id="2112478107%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-failed-update/index.html"><span>Failed</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2112478107%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-failed-update/index.html">FailedUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>exception<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-throwable/index.html">Throwable</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>update<span class="token operator">: </span><a href="-processed-update/index.html">ProcessedUpdate</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="829955577%2FClasslikes%2F1596435014" anchor-label="HttpLogLevel" id="829955577%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-http-log-level/index.html"><span>Http</span><wbr><span>Log</span><wbr><span><span>Level</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="829955577%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-http-log-level/index.html">HttpLogLevel</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-http-log-level/index.html">HttpLogLevel</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Proxy enum class for Ktor log leveling.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="482651064%2FClasslikes%2F1596435014" anchor-label="Identifier" id="482651064%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-identifier/index.html"><span><span>Identifier</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="482651064%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-identifier/-serde/index.html">Identifier.Serde::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-identifier/index.html">Identifier</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2102155754%2FClasslikes%2F1596435014" anchor-label="IdLong" id="2102155754%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-id-long/index.html"><span>Id</span><wbr><span><span>Long</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2102155754%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-id-long/index.html">IdLong</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-193385888%2FClasslikes%2F1596435014" anchor-label="ImplicitFile" id="-193385888%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-implicit-file/index.html"><span>Implicit</span><wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-193385888%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-implicit-file/-companion/index.html">ImplicitFile.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-implicit-file/index.html">ImplicitFile</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="544477641%2FClasslikes%2F1596435014" anchor-label="InlineQueryUpdate" id="544477641%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-inline-query-update/index.html"><span>Inline</span><wbr><span>Query</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="544477641%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-inline-query-update/-companion/index.html">InlineQueryUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-inline-query-update/index.html">InlineQueryUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>inlineQuery<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.inline/-inline-query/index.html">InlineQuery</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1751626566%2FClasslikes%2F1596435014" anchor-label="InputBreakPoint" id="1751626566%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-input-break-point/index.html"><span>Input</span><wbr><span>Break</span><wbr><span><span>Point</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1751626566%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-input-break-point/index.html">InputBreakPoint</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>condition<span class="token operator">: </span><a href="-activity-ctx/index.html">ActivityCtx</a><span class="token operator">&lt;</span><a href="-processed-update/index.html">ProcessedUpdate</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>activity<span class="token operator">: </span><a href="../eu.vendeli.tgbot.utils.common/-on-input-activity/index.html">OnInputActivity</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>repeat<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2096036741%2FClasslikes%2F1596435014" anchor-label="InputFile" id="-2096036741%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-input-file/index.html"><span>Input</span><wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2096036741%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-input-file/index.html">InputFile</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>data<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-byte-array/index.html">ByteArray</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fileName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span>DEFAULT_FILENAME<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>contentType<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span>DEFAULT_CONTENT_TYPE</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1929460524%2FClasslikes%2F1596435014" anchor-label="InvocationMeta" id="1929460524%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-invocation-meta/index.html"><span>Invocation</span><wbr><span><span>Meta</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1929460524%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-invocation-meta/index.html">InvocationMeta</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>qualifier<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>function<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>rateLimits<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.configuration/-rate-limits/index.html">RateLimits</a><span class="token operator"> = </span>RateLimits.NOT_LIMITED<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>guard<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="../eu.vendeli.tgbot.interfaces.helper/-guard/index.html">Guard</a><span class="token operator">&gt;</span><span class="token operator"> = </span>DefaultGuard::class<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>argParser<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="../eu.vendeli.tgbot.interfaces.helper/-argument-parser/index.html">ArgumentParser</a><span class="token operator">&gt;</span><span class="token operator"> = </span>DefaultArgParser::class</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="101863363%2FClasslikes%2F1596435014" anchor-label="LogLvl" id="101863363%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-log-lvl/index.html"><span>Log</span><wbr><span><span>Lvl</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="101863363%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-log-lvl/index.html">LogLvl</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-log-lvl/index.html">LogLvl</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Proxy enum for Bot logger leveling.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1844640761%2FClasslikes%2F1596435014" anchor-label="MessageReactionCountUpdate" id="1844640761%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-message-reaction-count-update/index.html"><span>Message</span><wbr><span>Reaction</span><wbr><span>Count</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1844640761%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-message-reaction-count-update/-companion/index.html">MessageReactionCountUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-message-reaction-count-update/index.html">MessageReactionCountUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>messageReactionCount<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.msg/-message-reaction-count-updated/index.html">MessageReactionCountUpdated</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="934124552%2FClasslikes%2F1596435014" anchor-label="MessageReactionUpdate" id="934124552%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-message-reaction-update/index.html"><span>Message</span><wbr><span>Reaction</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="934124552%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-message-reaction-update/-companion/index.html">MessageReactionUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-message-reaction-update/index.html">MessageReactionUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>messageReaction<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.msg/-message-reaction-updated/index.html">MessageReactionUpdated</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1185119345%2FClasslikes%2F1596435014" anchor-label="MessageUpdate" id="1185119345%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-message-update/index.html"><span>Message</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1185119345%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-message-update/-companion/index.html">MessageUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-message-update/index.html">MessageUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>message<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.msg/-message/index.html">Message</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1908071206%2FClasslikes%2F1596435014" anchor-label="MyChatMemberUpdate" id="-1908071206%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-my-chat-member-update/index.html"><span>My</span><wbr><span>Chat</span><wbr><span>Member</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1908071206%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-my-chat-member-update/-companion/index.html">MyChatMemberUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-my-chat-member-update/index.html">MyChatMemberUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>myChatMember<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.chat/-chat-member-updated/index.html">ChatMemberUpdated</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1560765461%2FClasslikes%2F1596435014" anchor-label="ParseMode" id="-1560765461%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-parse-mode/index.html"><span>Parse</span><wbr><span><span>Mode</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1560765461%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">enum </span><a href="-parse-mode/index.html">ParseMode</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-parse-mode/index.html">ParseMode</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-106321029%2FClasslikes%2F1596435014" anchor-label="PollAnswerUpdate" id="-106321029%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-poll-answer-update/index.html"><span>Poll</span><wbr><span>Answer</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-106321029%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-poll-answer-update/-companion/index.html">PollAnswerUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-poll-answer-update/index.html">PollAnswerUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>pollAnswer<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-poll-answer/index.html">PollAnswer</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-726914087%2FClasslikes%2F1596435014" anchor-label="PollUpdate" id="-726914087%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-poll-update/index.html"><span>Poll</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-726914087%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-poll-update/-companion/index.html">PollUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-poll-update/index.html">PollUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>poll<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.poll/-poll/index.html">Poll</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1059333721%2FClasslikes%2F1596435014" anchor-label="PreCheckoutQueryUpdate" id="1059333721%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-pre-checkout-query-update/index.html"><span>Pre</span><wbr><span>Checkout</span><wbr><span>Query</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1059333721%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-pre-checkout-query-update/-companion/index.html">PreCheckoutQueryUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-pre-checkout-query-update/index.html">PreCheckoutQueryUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>preCheckoutQuery<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.payment/-pre-checkout-query/index.html">PreCheckoutQuery</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="425610314%2FClasslikes%2F1596435014" anchor-label="ProcessedUpdate" id="425610314%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-processed-update/index.html"><span>Processed</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="425610314%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-processed-update/-companion/index.html">ProcessedUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-processed-update/index.html">ProcessedUpdate</a> : <a href="-text-reference/index.html">TextReference</a>, <a href="../eu.vendeli.tgbot.interfaces.marker/-multiple-response/index.html">MultipleResponse</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-285469533%2FClasslikes%2F1596435014" anchor-label="PurchasedPaidMediaUpdate" id="-285469533%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-purchased-paid-media-update/index.html"><span>Purchased</span><wbr><span>Paid</span><wbr><span>Media</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-285469533%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-purchased-paid-media-update/-companion/index.html">PurchasedPaidMediaUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-purchased-paid-media-update/index.html">PurchasedPaidMediaUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>purchasedPaidMedia<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.media/-paid-media-purchased/index.html">PaidMediaPurchased</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1947558765%2FClasslikes%2F1596435014" anchor-label="RemovedChatBoostUpdate" id="1947558765%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-removed-chat-boost-update/index.html"><span>Removed</span><wbr><span>Chat</span><wbr><span>Boost</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1947558765%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-removed-chat-boost-update/-companion/index.html">RemovedChatBoostUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-removed-chat-boost-update/index.html">RemovedChatBoostUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>removedChatBoost<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.boost/-chat-boost-removed/index.html">ChatBoostRemoved</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1963801824%2FClasslikes%2F1596435014" anchor-label="Response" id="-1963801824%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-response/index.html"><span><span>Response</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1963801824%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-response/index.html">Response</a><span class="token operator">&lt;</span><a href="-response/index.html">T</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-96933282%2FClasslikes%2F1596435014" anchor-label="ShippingQueryUpdate" id="-96933282%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-shipping-query-update/index.html"><span>Shipping</span><wbr><span>Query</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-96933282%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="../../telegram-bot/eu.vendeli.tgbot.types.component/-shipping-query-update/-companion/index.html">ShippingQueryUpdate.Companion::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-shipping-query-update/index.html">ShippingQueryUpdate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>updateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>origin<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.common/-update/index.html">Update</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>shippingQuery<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.payment/-shipping-query/index.html">ShippingQuery</a></span></span><span class="token punctuation">)</span> : <a href="-processed-update/index.html">ProcessedUpdate</a>, <a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2031086403%2FClasslikes%2F1596435014" anchor-label="TextReference" id="2031086403%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-text-reference/index.html"><span>Text</span><wbr><span><span>Reference</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2031086403%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-text-reference/index.html">TextReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-447605250%2FClasslikes%2F1596435014" anchor-label="UpdateType" id="-447605250%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-update-type/index.html"><span>Update</span><wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-447605250%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">enum </span><a href="-update-type/index.html">UpdateType</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-update-type/index.html">UpdateType</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2133682785%2FClasslikes%2F1596435014" anchor-label="UserReference" id="2133682785%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-user-reference/index.html"><span>User</span><wbr><span><span>Reference</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2133682785%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-user-reference/index.html">UserReference</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-1717334831%2FProperties%2F1596435014" anchor-label="userOrNull" id="-1717334831%2FProperties%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="user-or-null.html"><span>user</span><wbr><span>Or</span><wbr><span><span>Null</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1717334831%2FProperties%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="-processed-update/index.html">ProcessedUpdate</a><span class="token punctuation">.</span><a href="user-or-null.html">userOrNull</a><span class="token operator">: </span><a href="../eu.vendeli.tgbot.types/-user/index.html">User</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="13238669%2FFunctions%2F1596435014" anchor-label="foldResponse" id="13238669%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fold-response.html"><span>fold</span><wbr><span><span>Response</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="13238669%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="fold-response.html">T</a><span class="token punctuation">, </span><a href="fold-response.html">R</a><span class="token operator">&gt; </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><a href="-response/index.html">Response</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="fold-response.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="fold-response.html"><span class="token function">foldResponse</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">success<span class="token operator">: </span><a href="-response/-success/index.html">Response.Success</a><span class="token operator">&lt;</span><a href="fold-response.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="fold-response.html">R</a><span class="token punctuation">, </span></span><span class="parameter ">failure<span class="token operator">: </span><a href="-response/-failure/index.html">Response.Failure</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="fold-response.html">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="fold-response.html">R</a></div><div class="brief "><p class="paragraph">Handles response success and failure cases.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1351958245%2FFunctions%2F1596435014" anchor-label="getOrNull" id="1351958245%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-or-null.html"><span>get</span><wbr><span>Or</span><wbr><span><span>Null</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1351958245%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="get-or-null.html">T</a><span class="token operator">&gt; </span><a href="-response/index.html">Response</a><span class="token operator">&lt;</span><a href="get-or-null.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="get-or-null.html"><span class="token function">getOrNull</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="get-or-null.html">T</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Get response or null on failure.</p></div><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="get-or-null.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><a href="-response/index.html">Response</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="get-or-null.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="get-or-null.html"><span class="token function">getOrNull</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="get-or-null.html">T</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1759828195%2FFunctions%2F1596435014" anchor-label="getUser" id="1759828195%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-user.html"><span>get</span><wbr><span><span>User</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1759828195%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="-processed-update/index.html">ProcessedUpdate</a><span class="token punctuation">.</span><a href="get-user.html"><span class="token function">getUser</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../eu.vendeli.tgbot.types/-user/index.html">User</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1242193657%2FFunctions%2F1596435014" anchor-label="isSuccess" id="-1242193657%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-success.html"><span>is</span><wbr><span><span>Success</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1242193657%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="is-success.html">T</a><span class="token operator">&gt; </span><a href="-response/index.html">Response</a><span class="token operator">&lt;</span><a href="is-success.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="is-success.html"><span class="token function">isSuccess</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Whether the request completed successfully.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2139272873%2FFunctions%2F1596435014" anchor-label="onFailure" id="2139272873%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-failure.html"><span>on</span><wbr><span><span>Failure</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2139272873%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="on-failure.html">T</a><span class="token operator">&gt; </span><a href="-response/index.html">Response</a><span class="token operator">&lt;</span><a href="on-failure.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="on-failure.html"><span class="token function">onFailure</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><a href="-response/-failure/index.html">Response.Failure</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="on-failure.html">T</a><span class="token operator">?</span></div><br><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="on-failure.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><a href="-response/index.html">Response</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="on-failure.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="on-failure.html"><span class="token function">onFailure</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><a href="-response/-failure/index.html">Response.Failure</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="on-failure.html">T</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Handles request's failure case.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Vendelieu</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
