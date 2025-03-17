@@ -19,6 +19,10 @@ dependencies {
     testImplementation(libs.test.kotest.assertions)
 }
 
+tasks {
+    withType<Test> { useJUnitPlatform() }
+}
+
 libraryData {
     name = "Aide"
     description = "Compiler plugin for Telegram-bot to help with coding."

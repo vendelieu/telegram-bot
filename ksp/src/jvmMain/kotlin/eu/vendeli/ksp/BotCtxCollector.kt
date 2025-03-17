@@ -14,6 +14,7 @@ import eu.vendeli.ksp.utils.botClass
 import eu.vendeli.ksp.utils.classDataCtx
 import eu.vendeli.ksp.utils.classDataCtxDef
 import eu.vendeli.ksp.utils.getAnnotatedClassSymbols
+import eu.vendeli.ksp.utils.toKSPClassName
 import eu.vendeli.ksp.utils.userClass
 import eu.vendeli.ksp.utils.userDataCtx
 import eu.vendeli.ksp.utils.userDataCtxDef
@@ -30,7 +31,7 @@ internal fun processCtxProviders(
 
     val userDataCtxClass = providers
         .firstOrNull { c ->
-            c.getAllSuperTypes().firstOrNull { it.toClassName() == userDataCtx }?.also {
+            c.getAllSuperTypes().firstOrNull { it.toKSPClassName() == userDataCtx }?.also {
                 userDataType = it.arguments
                     .first()
                     .type
@@ -43,7 +44,7 @@ internal fun processCtxProviders(
 
     val classDataCtxClass = providers
         .firstOrNull { c ->
-            c.getAllSuperTypes().any { it.toClassName() == classDataCtx }
+            c.getAllSuperTypes().any { it.toKSPClassName() == classDataCtx }
         }?.takeIf {
             it.classKind == ClassKind.CLASS
         }?.toClassName() ?: classDataCtxDef
