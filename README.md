@@ -22,8 +22,8 @@ build.gradle.kts example:
 ```gradle
 plugins {
     // ...
-    id("com.google.devtools.ksp") version "2.1.10-1.0.29"
-    id("eu.vendeli.telegram-bot") version "7.9.0"
+    id("com.google.devtools.ksp") version "2.1.10-1.0.31"
+    id("eu.vendeli.telegram-bot") version "8.0.0"
 }
 ```
 
@@ -34,13 +34,13 @@ To set up the project without using the plugin, you need to add a dependency and
 ```gradle
 plugins {
     // ...
-    id("com.google.devtools.ksp") version "2.1.10-1.0.29"
+    id("com.google.devtools.ksp") version "2.1.10-1.0.31"
 }
 
 dependencies {
     // ...
-    implementation("eu.vendeli:telegram-bot:7.9.0")
-    ksp("eu.vendeli:ksp:7.9.0")
+    implementation("eu.vendeli:telegram-bot:8.0.0")
+    ksp("eu.vendeli:ksp:8.0.0")
 }
 ```
 
@@ -109,15 +109,15 @@ suspend fun main() {
 
 @CommandHandler(["/start"])
 suspend fun start(user: User, bot: TelegramBot) {
-    message { "Hello, what's your name?" }.send(user, bot)
+    sendMessage { "Hello, what's your name?" }
     bot.inputListener[user] = "conversation"
 }
 
 @InputHandler(["conversation"])
 @Guard(UserPresentGuard::class)
 suspend fun startConversation(update: ProcessedUpdate, user: User, bot: TelegramBot) {
-    message { "Nice to meet you, ${update.text}" }.send(user, bot)
-    message { "What is your favorite food?" }.send(user, bot)
+    sendMessage { "Nice to meet you, ${update.text}" } // it automatically takes user and bot from function parameters
+    sendMessage { "What is your favorite food?" }.send(user, bot) // but you can pass them explicitly if you want.
     bot.inputListener.set(user) { "conversation-2step" } // another way to set input
 }
 

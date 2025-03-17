@@ -85,7 +85,7 @@ jobs:
       - name: Extract KSP version
         id: extract_version
         run: |
-          VERSION=$(grep 'ksp = "' gradle/libs.versions.toml | sed -E 's/.*ksp = "([^"]+)".*/\1/')
+          VERSION=$(grep '^[[:space:]]*ksp = "' gradle/libs.versions.toml | sed -E 's/.*ksp = "([^"]+)".*/\1/')
           echo "KSP_VERSION=$VERSION" >> "$GITHUB_ENV"
 
       - name: Replace ksp plugin version
