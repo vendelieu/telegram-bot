@@ -120,6 +120,7 @@ suspend fun startConversation(update: ProcessedUpdate, user: User, bot: Telegram
     sendMessage { "Nice to meet you, ${update.text}" }
     // but you can pass them explicitly if you want.
     sendMessage { "What is your favorite food?" }.send(user, bot) 
+  
     bot.inputListener.set(user) { "conversation-2step" } // another way to set input
 }
 
@@ -178,7 +179,7 @@ of [
 method,
 which
 returns [
-`Response`](https://vendelieu.github.io/telegram-bot/telegram-bot/eu.vendeli.tgbot.types.internal/-response/index.html):
+`Response`](https://vendelieu.github.io/telegram-bot/telegram-bot/eu.vendeli.tgbot.types.component/-response/index.html):
 
 ```kotlin
 message { "test" }.sendReturning(user, bot).onFailure {
@@ -188,7 +189,7 @@ message { "test" }.sendReturning(user, bot).onFailure {
 
 All `sendReturning` methods returns
 a [
-`Response`](https://vendelieu.github.io/telegram-bot/telegram-bot/eu.vendeli.tgbot.types.internal/-response/index.html)
+`Response`](https://vendelieu.github.io/telegram-bot/telegram-bot/eu.vendeli.tgbot.types.component/-response/index.html)
 on which you can also use
 methods [
 `getOrNull()`](https://vendelieu.github.io/telegram-bot/telegram-bot/eu.vendeli.tgbot.types.internal/get-or-null.html)
