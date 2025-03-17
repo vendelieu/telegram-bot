@@ -116,8 +116,10 @@ suspend fun start(user: User, bot: TelegramBot) {
 @InputHandler(["conversation"])
 @Guard(UserPresentGuard::class)
 suspend fun startConversation(update: ProcessedUpdate, user: User, bot: TelegramBot) {
-    sendMessage { "Nice to meet you, ${update.text}" } // it automatically takes user and bot from function parameters
-    sendMessage { "What is your favorite food?" }.send(user, bot) // but you can pass them explicitly if you want.
+    // it automatically takes user and bot from function parameters
+    sendMessage { "Nice to meet you, ${update.text}" }
+    // but you can pass them explicitly if you want.
+    sendMessage { "What is your favorite food?" }.send(user, bot) 
     bot.inputListener.set(user) { "conversation-2step" } // another way to set input
 }
 
@@ -157,9 +159,13 @@ fun main() = runBlocking {
 
 ### Configuration
 
-The library has very flexible customization options, and there are different options to configure through external sources.
+The library has very flexible customization options, and there are different options to configure through external
+sources.
 
 You can read more in a [Bot configuration](https://github.com/vendelieu/telegram-bot/wiki/Bot-configuration) article.
+
+Also, you can check plugin
+configuration [options](https://vendelieu.github.io/telegram-bot/ktgram-gradle-plugin/eu.vendeli.ktgram.gradle/-kt-gram-ext/index.html).
 
 ### Processing responses
 

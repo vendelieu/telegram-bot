@@ -33,9 +33,7 @@ dependencies {
     ksp(libs.autoService.ksp)
 }
 
-tasks {
-    withType<Test> { useJUnitPlatform() }
-}
+tasks.withType<Test> { useJUnitPlatform() }
 
 detekt {
     buildUponDefaultConfig = true

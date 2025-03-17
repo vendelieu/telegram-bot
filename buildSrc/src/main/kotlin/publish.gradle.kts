@@ -22,7 +22,7 @@ mavenPublishing {
     val javaDoc = JavadocJar.Empty()
 
     val platformArtifact = if (isMultiplatform) KotlinMultiplatform(javaDoc, true)
-    else KotlinJvm(JavadocJar.None(), true)
+    else KotlinJvm(javaDoc, true)
 
     configure(platformArtifact)
 
