@@ -14,7 +14,7 @@ dependencies {
     implementation(libs.autoService.annotations)
 
     testImplementation(project(":telegram-bot"))
-    testImplementation(libs.test.compile)
+    testImplementation(libs.test.compile.core)
     testImplementation(libs.test.kotest.junit5)
     testImplementation(libs.test.kotest.assertions)
 }

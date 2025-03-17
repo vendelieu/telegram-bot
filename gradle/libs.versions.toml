@@ -61,7 +61,8 @@ urlencoder = { module = "net.thauvin.erik.urlencoder:urlencoder-lib", version.re
 # test
 test-kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 test-kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
-test-compile = { module = "dev.zacsweers.kctfork:core", version.ref = "kotlinCompileTesting" }
+test-compile-core = { module = "dev.zacsweers.kctfork:core", version.ref = "kotlinCompileTesting" }
+test-compile-ksp = { module = "dev.zacsweers.kctfork:ksp", version.ref = "kotlinCompileTesting" }
 
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
