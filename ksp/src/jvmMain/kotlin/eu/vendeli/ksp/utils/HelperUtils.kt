@@ -5,6 +5,7 @@ package eu.vendeli.ksp.utils
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
+import com.google.devtools.ksp.symbol.KSType
 import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
@@ -16,6 +17,8 @@ import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asTypeName
+import com.squareup.kotlinpoet.ksp.toClassName
+import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.implementations.ClassDataImpl
 import eu.vendeli.tgbot.implementations.DefaultArgParser
@@ -25,6 +28,8 @@ import eu.vendeli.tgbot.interfaces.ctx.ClassData
 import eu.vendeli.tgbot.interfaces.ctx.UserData
 import eu.vendeli.tgbot.interfaces.marker.Autowiring
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.chain.ChainingStrategy
+import eu.vendeli.tgbot.types.chain.Link
 import eu.vendeli.tgbot.types.component.BusinessConnectionUpdate
 import eu.vendeli.tgbot.types.component.BusinessMessageUpdate
 import eu.vendeli.tgbot.types.component.CallbackQueryUpdate
@@ -52,8 +57,6 @@ import eu.vendeli.tgbot.types.component.PurchasedPaidMediaUpdate
 import eu.vendeli.tgbot.types.component.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.component.ShippingQueryUpdate
 import eu.vendeli.tgbot.types.component.UpdateType
-import eu.vendeli.tgbot.types.chain.ChainingStrategy
-import eu.vendeli.tgbot.types.chain.Link
 import eu.vendeli.tgbot.types.configuration.RateLimits
 import eu.vendeli.tgbot.utils.common.fqName
 import kotlin.reflect.KClass
@@ -123,6 +126,10 @@ internal inline fun <R> Any?.cast(): R = this as R
 internal inline fun <R> Any?.safeCast(): R? = this as? R
 
 internal fun Pair<Long, Long>.toRateLimits(): RateLimits = RateLimits(first, second)
+
+fun KSType.toKSPClassName() = starProjection().let {
+    if (arguments.isEmpty()) it.toClassName() else it.toTypeName()
+}
 
 @Suppress("NOTHING_TO_INLINE")
 internal inline fun buildMeta(

@@ -1,8 +1,8 @@
 [versions]
-ktor = "3.1.0"
+ktor = "3.1.1"
 redis = "0.2.4"
-logback = "1.5.16"
-slf4j = "2.0.16"
+logback = "1.5.17"
+slf4j = "2.0.17"
 
 datetime = "0.6.2"
 serialization = "1.8.0"
@@ -12,22 +12,25 @@ kotlin = "2.1.10"
 coroutines = "1.10.1"
 dokka = "2.0.0"
 kotlinter = "5.0.1"
-deteKT = "1.23.7"
+deteKT = "1.23.8"
 toml = "0.4.0"
 
 kotest = "5.9.1"
-mockk = "1.13.16"
+mockk = "1.13.17"
 kover = "0.9.1"
 krypto = "4.0.10"
 urlencoder = "1.6.0"
-sslcontext = "9.0.0"
-spring = "3.4.2"
+sslcontext = "9.1.0"
+spring = "3.4.3"
 
-ksp = "2.1.10-1.0.29"
-poet = "2.0.0"
+ksp = "2.1.10-1.0.31"
+poet = "2.1.0"
+autoservice-annotations = "1.1.1"
+autoservice-ksp = "1.2.0"
+kotlinCompileTesting = "0.7.0"
 
 binvalid = "0.17.0"
-publisher = "0.30.0"
+publisher = "0.31.0"
 gradle-publish = "1.3.1"
 env = "1.0.5"
 
@@ -58,6 +61,8 @@ urlencoder = { module = "net.thauvin.erik.urlencoder:urlencoder-lib", version.re
 # test
 test-kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 test-kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+test-compile-core = { module = "dev.zacsweers.kctfork:core", version.ref = "kotlinCompileTesting" }
+test-compile-ksp = { module = "dev.zacsweers.kctfork:ksp", version.ref = "kotlinCompileTesting" }
 
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
@@ -76,11 +81,17 @@ redis = { module = "eu.vendeli:re.this", version.ref = "redis" }
 env = { module = "dev.scottpierce:kotlin-env-var", version.ref = "env" }
 toml = { module = "net.peanuuutz.tomlkt:tomlkt", version.ref = "toml" }
 
+# plugin dependencies
+autoService-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "autoservice-annotations" }
+autoService-ksp = { module = "dev.zacsweers.autoservice:auto-service-ksp", version.ref = "autoservice-ksp" }
+kotlin-embeddable = { module = "org.jetbrains.kotlin:kotlin-compiler-embeddable", version.ref = "kotlin" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+
 [plugins]
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-js-plain-objects = { id = "org.jetbrains.kotlin.plugin.js-plain-objects", version.ref = "kotlin" }
 kotlin-compatability-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binvalid" }
-gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-publish"}
+gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-publish" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ktlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }

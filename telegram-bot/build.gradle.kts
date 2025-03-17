@@ -65,7 +65,7 @@ detekt {
 }
 
 dependencies {
-    add("kspCommonMainMetadata", project(":helper"))
+    add("kspCommonMainMetadata", project(":api-sentinel"))
 }
 
 ksp {

@@ -1,54 +1,58 @@
 package eu.vendeli.ktgram.gradle
 
 import com.google.devtools.ksp.gradle.KspExtension
-import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.logging.Logging
+import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.get
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
+import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
+import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
+import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.targets
 import org.jetbrains.kotlin.gradle.utils.loadPropertyFromResources
 
-abstract class KtGramPlugin : Plugin<Project> {
+abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
     private val log = Logging.getLogger(KtGramPlugin::class.java)
     private val libVer = loadPropertyFromResources("ktgram.properties", "ktgram.version")
     private val ktorVer = loadPropertyFromResources("ktgram.properties", "ktgram.ktor")
     private val logbackVer = loadPropertyFromResources("ktgram.properties", "ktgram.logback")
 
-    final override fun apply(project: Project) {
-        val pluginExtension = project.extensions.create("ktGram", KtGramExt::class.java)
-        val kspPluginPresent = project.plugins.hasPlugin("com.google.devtools.ksp")
+    final override fun apply(target: Project) {
+        val pluginExtension = target.extensions.create("ktGram", KtGramExt::class.java)
+        val kspPluginPresent = target.plugins.hasPlugin("com.google.devtools.ksp")
         var kspProcessorApplied = false
-        val isMultiplatform = project.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")
+        val isMultiplatform = target.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")
 
         @Suppress("DEPRECATION")
-        val isJvm = project.kotlinExtension.targets.any {
+        val isJvm = target.kotlinExtension.targets.any {
             it.platformType == KotlinPlatformType.jvm || it.platformType == KotlinPlatformType.androidJvm
         }
 
-        project.configurations.configureEach {
+        target.configurations.configureEach {
             if (name.startsWith("ksp")) dependencies.whenObjectAdded {
                 if (group == "eu.vendeli" && name == "ksp") kspProcessorApplied = true
             }
         }
-        project.applyDependencies(libVer, isMultiplatform, kspProcessorApplied)
+        target.applyDependencies(libVer, isMultiplatform, kspProcessorApplied)
 
-        project.afterEvaluate {
+        target.afterEvaluate {
             val targetVer = pluginExtension.forceVersion.getOrElse(libVer)
             if (pluginExtension.addSnapshotRepo.getOrElse(false)) {
-                project.repositories.maven {
+                target.repositories.maven {
                     name = "KtGramSnapRepo"
                     setUrl("https://mvn.vendeli.eu/telegram-bot")
                 }
             }
 
             // correct version by forced one
-            if (pluginExtension.forceVersion.isPresent) project.configurations.configureEach cfg@{
+            if (pluginExtension.forceVersion.isPresent) target.configurations.configureEach cfg@{
                 dependencies
                     .removeIf {
                         it.group == "eu.vendeli" && (it.name == "telegram-bot" || it.name == "ksp")
@@ -69,12 +73,15 @@ abstract class KtGramPlugin : Plugin<Project> {
                 if (handleLoggingProvider) handleLoggingProvider()
             }
 
-            project.extensions.configure<KspExtension> {
+            target.extensions.configure<KspExtension> {
                 pluginExtension.packages.orNull?.takeIf { it.isNotEmpty() }?.joinToString(";")?.let {
                     arg("package", it)
                 }
                 pluginExtension.autoCleanClassData.getOrElse(true).takeIf { !it }?.let {
                     arg("autoCleanClassData", "false")
+                }
+                pluginExtension.autoAnswerCallback.getOrElse(false).takeIf { it }?.let {
+                    arg("autoAnswerCallback", "true")
                 }
             }
 
@@ -180,6 +187,40 @@ abstract class KtGramPlugin : Plugin<Project> {
                 dependencies {
                     add("ksp", "eu.vendeli:ksp:$depVersion")
                 }
+            }
+        }
+    }
+
+    override fun getPluginArtifact(): SubpluginArtifact = SubpluginArtifact(
+        groupId = "eu.vendeli",
+        artifactId = "aide",
+        version = libVer,
+    )
+
+    override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean =
+        kotlinCompilation.target.project.extensions
+            .getByType(KtGramExt::class.java)
+            .aideEnabled
+            .getOrElse(true)
+
+    override fun getCompilerPluginId(): String = "eu.vendeli.aide"
+
+    override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {
+        kotlinCompilation.dependencies {
+            compileOnly("eu.vendeli:aide:$libVer")
+        }
+        return kotlinCompilation.target.project.run {
+            providers.provider {
+                listOf(
+                    SubpluginOption(
+                        key = "autoSend",
+                        value = extensions
+                            .getByType(KtGramExt::class.java)
+                            .aideAutoSend
+                            .getOrElse(true)
+                            .toString(),
+                    ),
+                )
             }
         }
     }

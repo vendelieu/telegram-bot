@@ -35,6 +35,7 @@ import eu.vendeli.tgbot.annotations.InputChain
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
+import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 
 class ActivityProcessor(
     options: Map<String, String>,
@@ -43,6 +44,7 @@ class ActivityProcessor(
 ) : SymbolProcessor {
     private val targetPackage = options["package"]?.split(';')
     private val autoCleanClassData = options["autoCleanClassData"]?.toBooleanStrictOrNull() != false
+    private val autoAnswerCallback = options["autoAnswerCallback"]?.toBooleanStrictOrNull() == true
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
         val fileSpec = FileSpec.builder("eu.vendeli.tgbot.generated", "ActivitiesData").apply {
@@ -146,6 +148,7 @@ class ActivityProcessor(
             idxPostfix = idxPostfix,
             pkg = filePkg,
             autoCleanClassData = autoCleanClassData,
+            autoAnswerCallback = autoAnswerCallback,
         )
 
         collectCommandActivities(commandHandlerSymbols, context)
@@ -184,12 +187,13 @@ class ActivityProcessor(
     }
 
     private fun FileBuilder.addOptIn() {
-        addImport("eu.vendeli.tgbot.annotations.internal", "KtGramInternal")
+        val internalAnnoName = KtGramInternal::class.simpleName!!
+        addImport("eu.vendeli.tgbot.annotations.internal", internalAnnoName)
         addAnnotation(
             AnnotationSpec
                 .builder(ClassName("kotlin", "OptIn"))
                 .useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
-                .addMember("KtGramInternal::class")
+                .addMember("$internalAnnoName::class")
                 .build(),
         )
     }

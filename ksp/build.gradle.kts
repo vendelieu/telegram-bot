@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.ktlinter)
     alias(libs.plugins.deteKT)
+    alias(libs.plugins.ksp)
     id("publish")
 }
 
@@ -16,8 +17,24 @@ onlyJvmConfiguredKotlin {
             implementation(libs.poet)
             implementation(libs.poet.ksp)
             implementation(project(":telegram-bot"))
+            implementation(libs.autoService.annotations)
+        }
+
+        jvmTest.dependencies {
+            implementation(project(":telegram-bot"))
+            implementation(libs.test.compile.ksp)
+            implementation(libs.test.kotest.junit5)
+            implementation(libs.test.kotest.assertions)
         }
     }
+}
+
+dependencies {
+    ksp(libs.autoService.ksp)
+}
+
+tasks {
+    withType<Test> { useJUnitPlatform() }
 }
 
 detekt {

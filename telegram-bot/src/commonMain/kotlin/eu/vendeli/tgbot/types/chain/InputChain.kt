@@ -4,7 +4,7 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.component.ProcessedUpdate
 
-fun interface Action {
+fun interface ChainAction {
     suspend fun invoke(user: User, update: ProcessedUpdate, bot: TelegramBot)
 }
 
@@ -15,6 +15,6 @@ fun interface BreakCondition {
 abstract class ChainLink : Link<Unit> {
     override val retryAfterBreak = true
     override val breakCondition: BreakCondition? = null
-    override val beforeAction: Action? = null
-    override val afterAction: Action? = null
+    override val beforeAction: ChainAction? = null
+    override val afterAction: ChainAction? = null
 }

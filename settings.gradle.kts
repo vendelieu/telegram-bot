@@ -4,7 +4,7 @@ plugins {
 rootProject.name = "ktgram"
 
 include(":telegram-bot")
-include(":helper")
+include(":api-sentinel")
 include(":docs")
 include(":ksp")
 include(":webapps")
@@ -15,3 +15,4 @@ include(":ktgram-config-toml")
 include(":ktgram-gradle-plugin")
 include(":ktor-starter")
 include(":spring-ktgram-starter")
+include(":aide")

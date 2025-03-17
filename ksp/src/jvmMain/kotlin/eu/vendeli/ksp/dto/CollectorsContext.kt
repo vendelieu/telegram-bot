@@ -13,4 +13,5 @@ data class CollectorsContext(
     val idxPostfix: String,
     val pkg: String? = null,
     val autoCleanClassData: Boolean = true,
+    val autoAnswerCallback: Boolean = false,
 )

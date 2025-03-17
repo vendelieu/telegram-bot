@@ -39,14 +39,4 @@ interface BusinessActionExt<ReturnType> : Request<ReturnType> {
         parameters["business_connection_id"] = businessConnectionId.toJsonElement()
         return doRequestReturning(via)
     }
-
-    @Deprecated(
-        "Use sendBusinessReturning instead",
-        ReplaceWith("sendBusinessReturning(chatId, businessConnectionId, via)"),
-    )
-    suspend fun sendBusinessAsync(
-        chatId: Long,
-        businessConnectionId: String,
-        via: TelegramBot,
-    ) = sendBusinessReturning(chatId, businessConnectionId, via)
 }
