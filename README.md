@@ -192,11 +192,11 @@ a [
 `Response`](https://vendelieu.github.io/telegram-bot/telegram-bot/eu.vendeli.tgbot.types.component/-response/index.html)
 on which you can also use
 methods [
-`getOrNull()`](https://vendelieu.github.io/telegram-bot/telegram-bot/eu.vendeli.tgbot.types.internal/get-or-null.html)
+`getOrNull()`](https://vendelieu.github.io/telegram-bot/telegram-bot/eu.vendeli.tgbot.types.component/get-or-null.html)
 , [
-`isSuccess()`](https://vendelieu.github.io/telegram-bot/telegram-bot/eu.vendeli.tgbot.types.internal/is-success.html)
+`isSuccess()`](https://vendelieu.github.io/telegram-bot/telegram-bot/eu.vendeli.tgbot.types.component/is-success.html)
 , [
-`onFailure()`](https://vendelieu.github.io/telegram-bot/telegram-bot/eu.vendeli.tgbot.types.internal/on-failure.html)
+`onFailure()`](https://vendelieu.github.io/telegram-bot/telegram-bot/eu.vendeli.tgbot.types.component/on-failure.html)
 
 ### Additional resources
 
