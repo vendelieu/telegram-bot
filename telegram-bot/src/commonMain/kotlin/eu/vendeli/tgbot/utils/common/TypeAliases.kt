@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.interfaces.ctx.ClassManager
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chain.SingleInputChain
 import eu.vendeli.tgbot.types.component.ActivityCtx
 import eu.vendeli.tgbot.types.component.CommandContext
@@ -13,14 +14,15 @@ import eu.vendeli.tgbot.types.component.InvocationMeta
 import eu.vendeli.tgbot.types.component.ProcessedUpdate
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.configuration.BotConfiguration
-import eu.vendeli.tgbot.types.User
 import io.ktor.client.plugins.HttpRetryShouldRetryContext
 import io.ktor.client.request.HttpRequest
 import io.ktor.client.statement.HttpResponse
 
+private typealias DefaultActivityCtx = suspend ActivityCtx<ProcessedUpdate>.() -> Unit
+
 typealias OnCommandActivity = suspend CommandContext<ProcessedUpdate>.() -> Unit
-typealias OnInputActivity = suspend ActivityCtx<ProcessedUpdate>.() -> Unit
-typealias WhenNotHandledActivity = suspend ActivityCtx<ProcessedUpdate>.() -> Unit
+typealias OnInputActivity = DefaultActivityCtx
+typealias WhenNotHandledActivity = DefaultActivityCtx
 
 typealias HandlingBehaviourBlock = suspend TgUpdateHandler.(ProcessedUpdate) -> Unit
 typealias FunctionalHandlingBlock = suspend FunctionalHandlingDsl.() -> Unit
@@ -30,7 +32,7 @@ typealias RetryStrategy = HttpRetryShouldRetryContext.(HttpRequest, HttpResponse
 typealias InvocationLambda = suspend (ClassManager, ProcessedUpdate, User?, TelegramBot, Map<String, String>) -> Any?
 typealias Invocable = Pair<InvocationLambda, InvocationMeta>
 
-internal typealias OnUpdateActivities = MutableMap<UpdateType, suspend ActivityCtx<ProcessedUpdate>.() -> Unit>
+internal typealias OnUpdateActivities = MutableMap<UpdateType, DefaultActivityCtx>
 internal typealias InputActivities = MutableMap<String, SingleInputChain>
 internal typealias CommandActivities = MutableMap<Pair<String, UpdateType>, FunctionalInvocation>
 internal typealias CommonActivities = MutableMap<CommonMatcher, FunctionalInvocation>
