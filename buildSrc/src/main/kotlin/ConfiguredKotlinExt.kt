@@ -13,7 +13,6 @@ private val optIns: Array<String> = arrayOf(
 
 private fun KotlinMultiplatformExtension.configureJvm() {
     jvm {
-        withJava()
         compilations.all {
             compileTaskProvider.configure {
                 compilerOptions {

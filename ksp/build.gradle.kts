@@ -30,7 +30,7 @@ onlyJvmConfiguredKotlin {
 }
 
 dependencies {
-    ksp(libs.autoService.ksp)
+    add("kspJvm", libs.autoService.ksp)
 }
 
 tasks.withType<Test> { useJUnitPlatform() }
