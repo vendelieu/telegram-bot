@@ -14,7 +14,6 @@ import org.jetbrains.kotlin.fir.resolve.defaultType
 import org.jetbrains.kotlin.fir.resolve.isSubclassOf
 import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
 import org.jetbrains.kotlin.fir.resolve.toClassSymbol
-import org.jetbrains.kotlin.fir.symbols.SymbolInternals
 import org.jetbrains.kotlin.fir.symbols.impl.FirNamedFunctionSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
 import org.jetbrains.kotlin.fir.types.ConeClassLikeType
@@ -87,10 +86,8 @@ internal fun KtSourceElement?.checkParents(checkBlock: KtSourceElement.() -> Boo
 internal fun SourceKey.isIntersecting(other: SourceKey): Boolean =
     startOffset <= other.endOffset && endOffset >= other.startOffset
 
-@OptIn(SymbolInternals::class)
 internal fun FqName.resolveActionType(session: FirSession): ConeClassLikeType? =
     (session.symbolProvider.getClassLikeSymbolByClassId(ClassId.topLevel(this)) as? FirRegularClassSymbol)
-        ?.fir
         ?.defaultType()
         ?.lowerBoundIfFlexible() as? ConeClassLikeType
 
