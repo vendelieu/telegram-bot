@@ -1,10 +1,11 @@
 package eu.vendeli.aide.utils
 
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
+import org.jetbrains.kotlin.ir.symbols.FqNameEqualityChecker
 import org.jetbrains.kotlin.ir.symbols.IrSimpleFunctionSymbol
 import org.jetbrains.kotlin.ir.symbols.UnsafeDuringIrConstructionAPI
 import org.jetbrains.kotlin.ir.types.IrType
-import org.jetbrains.kotlin.ir.util.isSubtypeOfClass
+import org.jetbrains.kotlin.ir.types.classifierOrFail
 import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.FqName
 
@@ -40,7 +41,8 @@ internal fun IrType.isTelegramBotType(context: IrPluginContext): Boolean =
 
 internal fun IrType.isType(context: IrPluginContext, classId: ClassId): Boolean {
     val classSymbol = context.referenceClass(classId) ?: return false
-    return isSubtypeOfClass(classSymbol)
+//    return isSubtypeOfClass(classSymbol)
+    return FqNameEqualityChecker.areEqual(this.classifierOrFail, classSymbol)
 }
 
 @OptIn(UnsafeDuringIrConstructionAPI::class)

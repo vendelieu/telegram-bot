@@ -10,13 +10,13 @@ import org.jetbrains.kotlin.fir.expressions.FirQualifiedAccessExpression
 import org.jetbrains.kotlin.fir.packageFqName
 import org.jetbrains.kotlin.fir.references.resolved
 import org.jetbrains.kotlin.fir.references.symbol
-import org.jetbrains.kotlin.fir.resolve.defaultType
 import org.jetbrains.kotlin.fir.resolve.isSubclassOf
 import org.jetbrains.kotlin.fir.resolve.providers.symbolProvider
 import org.jetbrains.kotlin.fir.resolve.toClassSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirNamedFunctionSymbol
 import org.jetbrains.kotlin.fir.symbols.impl.FirRegularClassSymbol
 import org.jetbrains.kotlin.fir.types.ConeClassLikeType
+import org.jetbrains.kotlin.fir.types.constructStarProjectedType
 import org.jetbrains.kotlin.fir.types.lowerBoundIfFlexible
 import org.jetbrains.kotlin.fir.types.resolvedType
 import org.jetbrains.kotlin.name.ClassId
@@ -88,7 +88,7 @@ internal fun SourceKey.isIntersecting(other: SourceKey): Boolean =
 
 internal fun FqName.resolveActionType(session: FirSession): ConeClassLikeType? =
     (session.symbolProvider.getClassLikeSymbolByClassId(ClassId.topLevel(this)) as? FirRegularClassSymbol)
-        ?.defaultType()
+        ?.constructStarProjectedType()
         ?.lowerBoundIfFlexible() as? ConeClassLikeType
 
 private val scopeFunctionNames = setOf("run", "let", "apply", "also", "with")
