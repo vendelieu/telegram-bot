@@ -41,7 +41,17 @@ internal fun FirFunctionCall.isSendCall(): Boolean =
         ?.callableId
         ?.asSingleFqName()
         ?.asString()
-        ?.let { it.startsWith(API_PACKAGE) && it.endsWith(SEND_FUN_NAME) } == true
+        ?.let {
+            it.startsWith(API_PACKAGE) &&
+                (
+                    it.endsWith(SEND_FUN_NAME) ||
+                        it.endsWith(SEND_RETURNING_FUN_NAME) ||
+                        it.endsWith(SEND_INLINE_FUN_NAME) ||
+                        it.endsWith(
+                            SEND_BUSINESS_FUN_NAME,
+                        )
+                )
+        } == true
 
 internal fun ActionCallTracker.isAction(
     call: FirExpression?,

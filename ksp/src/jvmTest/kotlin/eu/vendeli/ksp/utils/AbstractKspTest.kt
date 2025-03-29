@@ -10,6 +10,7 @@ import com.tschuchort.compiletesting.symbolProcessorProviders
 import eu.vendeli.ksp.ActivityProcessorProvider
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.collections.shouldNotBeEmpty
+import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi
 
@@ -58,6 +59,9 @@ abstract class AbstractKspTest : AnnotationSpec() {
         // Verify generated sources if needed
         val generatedFiles = compilation.kspSourcesDir.walkTopDown().toList()
         generatedFiles.shouldNotBeEmpty()
+
+        generatedFiles.find { it.name.endsWith("ActivitiesData.kt") }.shouldNotBeNull()
+        generatedFiles.find { it.name.endsWith("BotCtx.kt") }.shouldNotBeNull()
     }
 
     @OptIn(ExperimentalCompilerApi::class)
