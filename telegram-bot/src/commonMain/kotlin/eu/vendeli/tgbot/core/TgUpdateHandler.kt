@@ -196,7 +196,7 @@ class TgUpdateHandler internal constructor(
         if (checkIsLimited(bot.config.rateLimiter.limits, user?.id))
             return@run
 
-        val request = parseCommand(text)
+        var request = parseCommand(text)
         var activityId = request.command
 
         // check parsed command existence
@@ -205,7 +205,8 @@ class TgUpdateHandler internal constructor(
         // if there's no command > check input point
         if (invocation == null && user != null)
             invocation = bot.inputListener.getAsync(user.id).await()?.let {
-                activityId = it
+                request = parseCommand(it)
+                activityId = request.command
                 activities.inputHandlers[it]
             }
 
