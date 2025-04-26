@@ -73,6 +73,7 @@ import eu.vendeli.tgbot.types.component.ProcessedUpdate
 import eu.vendeli.tgbot.types.component.PurchasedPaidMediaUpdate
 import eu.vendeli.tgbot.types.component.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.component.ShippingQueryUpdate
+import eu.vendeli.tgbot.types.component.UpdateType
 import kotlin.reflect.KClass
 
 @Suppress("LongMethod", "CyclomaticComplexMethod")
@@ -82,6 +83,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
     ctx: CollectorsContext? = null,
     meta: Pair<String, Array<Any?>>? = null,
     parameters: List<LambdaParameters> = emptyList(),
+    updateType: UpdateType? = null,
 ) = buildCodeBlock {
     val isTopLvl = function.functionKind == FunctionKind.TOP_LEVEL
     val funQualifier = function.qualifiedName!!.getQualifier()
@@ -185,7 +187,9 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 ctx.pkg,
             )
 
-            if (parameters.contains(CommandHandlerParams.CallbackQueryAutoAnswer)) {
+            if (updateType == UpdateType.CALLBACK_QUERY &&
+                parameters.contains(CommandHandlerParams.CallbackQueryAutoAnswer)
+            ) {
                 addImport("eu.vendeli.tgbot.api.answer", "answerCallbackQuery")
                 addImport("eu.vendeli.tgbot.types.component", "CallbackQueryUpdate", "getUser")
                 add("answerCallbackQuery((update as CallbackQueryUpdate).callbackQuery.id).send(update.getUser(), bot)")
