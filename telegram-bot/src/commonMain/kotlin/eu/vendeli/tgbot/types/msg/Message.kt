@@ -2,19 +2,17 @@ package eu.vendeli.tgbot.types.msg
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
+import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.boost.ChatBoostAdded
+import eu.vendeli.tgbot.types.chat.Chat
+import eu.vendeli.tgbot.types.chat.ChatBackground
+import eu.vendeli.tgbot.types.chat.ChatShared
 import eu.vendeli.tgbot.types.common.Contact
 import eu.vendeli.tgbot.types.common.ExternalReplyInfo
 import eu.vendeli.tgbot.types.common.LinkPreviewOptions
 import eu.vendeli.tgbot.types.common.Location
 import eu.vendeli.tgbot.types.common.TextQuote
-import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.user.UsersShared
 import eu.vendeli.tgbot.types.common.Venue
-import eu.vendeli.tgbot.types.webapp.WriteAccessAllowed
-import eu.vendeli.tgbot.types.boost.ChatBoostAdded
-import eu.vendeli.tgbot.types.chat.Chat
-import eu.vendeli.tgbot.types.chat.ChatBackground
-import eu.vendeli.tgbot.types.chat.ChatShared
 import eu.vendeli.tgbot.types.forum.ForumTopicClosed
 import eu.vendeli.tgbot.types.forum.ForumTopicCreated
 import eu.vendeli.tgbot.types.forum.ForumTopicEdited
@@ -23,6 +21,8 @@ import eu.vendeli.tgbot.types.forum.GeneralForumTopicHidden
 import eu.vendeli.tgbot.types.forum.GeneralForumTopicUnhidden
 import eu.vendeli.tgbot.types.game.Dice
 import eu.vendeli.tgbot.types.game.Game
+import eu.vendeli.tgbot.types.gift.GiftInfo
+import eu.vendeli.tgbot.types.gift.UniqueGift
 import eu.vendeli.tgbot.types.giveaway.Giveaway
 import eu.vendeli.tgbot.types.giveaway.GiveawayCompleted
 import eu.vendeli.tgbot.types.giveaway.GiveawayCreated
@@ -48,6 +48,8 @@ import eu.vendeli.tgbot.types.payment.Invoice
 import eu.vendeli.tgbot.types.payment.RefundedPayment
 import eu.vendeli.tgbot.types.payment.SuccessfulPayment
 import eu.vendeli.tgbot.types.poll.Poll
+import eu.vendeli.tgbot.types.user.UsersShared
+import eu.vendeli.tgbot.types.webapp.WriteAccessAllowed
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
@@ -168,6 +170,7 @@ data class Message(
     val hasProtectedContent: Boolean? = null,
     val isFromOffline: Boolean? = null,
     val mediaGroupId: String? = null,
+    val paidStarCount: Int? = null,
     val authorSignature: String? = null,
     val text: String? = null,
     val entities: List<MessageEntity>? = null,
@@ -209,6 +212,8 @@ data class Message(
     val refundedPayment: RefundedPayment? = null,
     val usersShared: UsersShared? = null,
     val chatShared: ChatShared? = null,
+    val gift: GiftInfo? = null,
+    val uniqueGift: UniqueGift? = null,
     val connectedWebsite: String? = null,
     val writeAccessAllowed: WriteAccessAllowed? = null,
     val passportData: PassportData? = null,
@@ -225,6 +230,7 @@ data class Message(
     val giveaway: Giveaway? = null,
     val giveawayWinners: GiveawayWinners? = null,
     val giveawayCompleted: GiveawayCompleted? = null,
+    val paidMessagePriceChanged: PaidMessagePriceChanged? = null,
     val videoChatScheduled: VideoChatScheduled? = null,
     val videoChatStarted: VideoChatStarted? = null,
     val videoChatEnded: VideoChatEnded? = null,

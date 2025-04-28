@@ -43,6 +43,7 @@ sealed class TransactionPartner {
     @SerialName("user")
     @TgAPI.Name("TransactionPartnerUser")
     data class UserPartner(
+        val transactionType: TransactionType,
         val user: User,
         val affiliate: AffiliateInfo? = null,
         val invoicePayload: String? = null,
@@ -51,6 +52,7 @@ sealed class TransactionPartner {
         @Serializable(DurationSerializer::class)
         val subscriptionPeriod: Duration? = null,
         val gift: String? = null,
+        val premiumSubscriptionDuration: Int? = null,
     ) : TransactionPartner()
 
     @Serializable

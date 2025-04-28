@@ -40,7 +40,7 @@ class SendPaidMediaAction(
  * [Api reference](https://core.telegram.org/bots/api#sendpaidmedia)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername). If the chat is a channel, all Telegram Star proceeds from this media will be credited to the chat's balance. Otherwise, they will be credited to the bot's balance.
- * @param starCount The number of Telegram Stars that must be paid to buy access to the media; 1-2500
+ * @param starCount The number of Telegram Stars that must be paid to buy access to the media; 1-10000
  * @param media A JSON-serialized array describing the media to be sent; up to 10 items
  * @param payload Bot-defined paid media payload, 0-128 bytes. This will not be displayed to the user, use it for your internal processes.
  * @param caption Media caption, 0-1024 characters after entities parsing
