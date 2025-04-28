@@ -17,7 +17,7 @@ private fun KotlinMultiplatformExtension.configureJvm() {
             compileTaskProvider.configure {
                 compilerOptions {
                     jvmTarget.set(jvmTargetVer)
-                    freeCompilerArgs = listOf("-Xjsr305=strict", *optIns)
+                    freeCompilerArgs = listOf("-Xjsr305=strict", "-Xjvm-default=all-compatibility", *optIns)
                 }
             }
         }
