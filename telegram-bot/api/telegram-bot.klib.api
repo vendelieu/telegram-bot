@@ -13298,16 +13298,18 @@ sealed class eu.vendeli.tgbot.types.media/InputProfilePhoto { // eu.vendeli.tgbo
         final fun <get-type>(): kotlin/String // eu.vendeli.tgbot.types.media/InputProfilePhoto.type.<get-type>|<get-type>(){}[0]
 
     final class Animated : eu.vendeli.tgbot.types.media/InputProfilePhoto { // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated|null[0]
-        constructor <init>(eu.vendeli.tgbot.types.component/ImplicitFile.InpFile, kotlin/Double = ...) // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.<init>|<init>(eu.vendeli.tgbot.types.component.ImplicitFile.InpFile;kotlin.Double){}[0]
+        constructor <init>(eu.vendeli.tgbot.types.component/ImplicitFile, kotlin/Double = ...) // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.<init>|<init>(eu.vendeli.tgbot.types.component.ImplicitFile;kotlin.Double){}[0]
 
-        final val animation // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.animation|{}animation[0]
-            final fun <get-animation>(): eu.vendeli.tgbot.types.component/ImplicitFile.InpFile // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.animation.<get-animation>|<get-animation>(){}[0]
         final val mainFrameTimestamp // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.mainFrameTimestamp|{}mainFrameTimestamp[0]
             final fun <get-mainFrameTimestamp>(): kotlin/Double // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.mainFrameTimestamp.<get-mainFrameTimestamp>|<get-mainFrameTimestamp>(){}[0]
 
-        final fun component1(): eu.vendeli.tgbot.types.component/ImplicitFile.InpFile // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.component1|component1(){}[0]
+        final var animation // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.animation|{}animation[0]
+            final fun <get-animation>(): eu.vendeli.tgbot.types.component/ImplicitFile // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.animation.<get-animation>|<get-animation>(){}[0]
+            final fun <set-animation>(eu.vendeli.tgbot.types.component/ImplicitFile) // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.animation.<set-animation>|<set-animation>(eu.vendeli.tgbot.types.component.ImplicitFile){}[0]
+
+        final fun component1(): eu.vendeli.tgbot.types.component/ImplicitFile // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.component1|component1(){}[0]
         final fun component2(): kotlin/Double // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.component2|component2(){}[0]
-        final fun copy(eu.vendeli.tgbot.types.component/ImplicitFile.InpFile = ..., kotlin/Double = ...): eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.copy|copy(eu.vendeli.tgbot.types.component.ImplicitFile.InpFile;kotlin.Double){}[0]
+        final fun copy(eu.vendeli.tgbot.types.component/ImplicitFile = ..., kotlin/Double = ...): eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.copy|copy(eu.vendeli.tgbot.types.component.ImplicitFile;kotlin.Double){}[0]
         final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.equals|equals(kotlin.Any?){}[0]
         final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.hashCode|hashCode(){}[0]
         final fun toString(): kotlin/String // eu.vendeli.tgbot.types.media/InputProfilePhoto.Animated.toString|toString(){}[0]
@@ -13327,13 +13329,14 @@ sealed class eu.vendeli.tgbot.types.media/InputProfilePhoto { // eu.vendeli.tgbo
     }
 
     final class Static : eu.vendeli.tgbot.types.media/InputProfilePhoto { // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static|null[0]
-        constructor <init>(eu.vendeli.tgbot.types.component/ImplicitFile.InpFile) // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static.<init>|<init>(eu.vendeli.tgbot.types.component.ImplicitFile.InpFile){}[0]
+        constructor <init>(eu.vendeli.tgbot.types.component/ImplicitFile) // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static.<init>|<init>(eu.vendeli.tgbot.types.component.ImplicitFile){}[0]
 
-        final val photo // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static.photo|{}photo[0]
-            final fun <get-photo>(): eu.vendeli.tgbot.types.component/ImplicitFile.InpFile // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static.photo.<get-photo>|<get-photo>(){}[0]
+        final var photo // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static.photo|{}photo[0]
+            final fun <get-photo>(): eu.vendeli.tgbot.types.component/ImplicitFile // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static.photo.<get-photo>|<get-photo>(){}[0]
+            final fun <set-photo>(eu.vendeli.tgbot.types.component/ImplicitFile) // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static.photo.<set-photo>|<set-photo>(eu.vendeli.tgbot.types.component.ImplicitFile){}[0]
 
-        final fun component1(): eu.vendeli.tgbot.types.component/ImplicitFile.InpFile // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static.component1|component1(){}[0]
-        final fun copy(eu.vendeli.tgbot.types.component/ImplicitFile.InpFile = ...): eu.vendeli.tgbot.types.media/InputProfilePhoto.Static // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static.copy|copy(eu.vendeli.tgbot.types.component.ImplicitFile.InpFile){}[0]
+        final fun component1(): eu.vendeli.tgbot.types.component/ImplicitFile // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static.component1|component1(){}[0]
+        final fun copy(eu.vendeli.tgbot.types.component/ImplicitFile = ...): eu.vendeli.tgbot.types.media/InputProfilePhoto.Static // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static.copy|copy(eu.vendeli.tgbot.types.component.ImplicitFile){}[0]
         final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static.equals|equals(kotlin.Any?){}[0]
         final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static.hashCode|hashCode(){}[0]
         final fun toString(): kotlin/String // eu.vendeli.tgbot.types.media/InputProfilePhoto.Static.toString|toString(){}[0]
@@ -14234,13 +14237,14 @@ sealed class eu.vendeli.tgbot.types.story/InputStoryContent { // eu.vendeli.tgbo
         final fun <get-type>(): kotlin/String // eu.vendeli.tgbot.types.story/InputStoryContent.type.<get-type>|<get-type>(){}[0]
 
     final class Photo : eu.vendeli.tgbot.types.story/InputStoryContent { // eu.vendeli.tgbot.types.story/InputStoryContent.Photo|null[0]
-        constructor <init>(kotlin/String) // eu.vendeli.tgbot.types.story/InputStoryContent.Photo.<init>|<init>(kotlin.String){}[0]
+        constructor <init>(eu.vendeli.tgbot.types.component/ImplicitFile) // eu.vendeli.tgbot.types.story/InputStoryContent.Photo.<init>|<init>(eu.vendeli.tgbot.types.component.ImplicitFile){}[0]
 
-        final val photo // eu.vendeli.tgbot.types.story/InputStoryContent.Photo.photo|{}photo[0]
-            final fun <get-photo>(): kotlin/String // eu.vendeli.tgbot.types.story/InputStoryContent.Photo.photo.<get-photo>|<get-photo>(){}[0]
+        final var photo // eu.vendeli.tgbot.types.story/InputStoryContent.Photo.photo|{}photo[0]
+            final fun <get-photo>(): eu.vendeli.tgbot.types.component/ImplicitFile // eu.vendeli.tgbot.types.story/InputStoryContent.Photo.photo.<get-photo>|<get-photo>(){}[0]
+            final fun <set-photo>(eu.vendeli.tgbot.types.component/ImplicitFile) // eu.vendeli.tgbot.types.story/InputStoryContent.Photo.photo.<set-photo>|<set-photo>(eu.vendeli.tgbot.types.component.ImplicitFile){}[0]
 
-        final fun component1(): kotlin/String // eu.vendeli.tgbot.types.story/InputStoryContent.Photo.component1|component1(){}[0]
-        final fun copy(kotlin/String = ...): eu.vendeli.tgbot.types.story/InputStoryContent.Photo // eu.vendeli.tgbot.types.story/InputStoryContent.Photo.copy|copy(kotlin.String){}[0]
+        final fun component1(): eu.vendeli.tgbot.types.component/ImplicitFile // eu.vendeli.tgbot.types.story/InputStoryContent.Photo.component1|component1(){}[0]
+        final fun copy(eu.vendeli.tgbot.types.component/ImplicitFile = ...): eu.vendeli.tgbot.types.story/InputStoryContent.Photo // eu.vendeli.tgbot.types.story/InputStoryContent.Photo.copy|copy(eu.vendeli.tgbot.types.component.ImplicitFile){}[0]
         final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.story/InputStoryContent.Photo.equals|equals(kotlin.Any?){}[0]
         final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.story/InputStoryContent.Photo.hashCode|hashCode(){}[0]
         final fun toString(): kotlin/String // eu.vendeli.tgbot.types.story/InputStoryContent.Photo.toString|toString(){}[0]
@@ -14260,7 +14264,7 @@ sealed class eu.vendeli.tgbot.types.story/InputStoryContent { // eu.vendeli.tgbo
     }
 
     final class Video : eu.vendeli.tgbot.types.story/InputStoryContent { // eu.vendeli.tgbot.types.story/InputStoryContent.Video|null[0]
-        constructor <init>(kotlin/String, kotlin.time/Duration? = ..., kotlin/Double = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.story/InputStoryContent.Video.<init>|<init>(kotlin.String;kotlin.time.Duration?;kotlin.Double;kotlin.Boolean?){}[0]
+        constructor <init>(eu.vendeli.tgbot.types.component/ImplicitFile, kotlin.time/Duration? = ..., kotlin/Double = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.story/InputStoryContent.Video.<init>|<init>(eu.vendeli.tgbot.types.component.ImplicitFile;kotlin.time.Duration?;kotlin.Double;kotlin.Boolean?){}[0]
 
         final val coverFrameTimestamp // eu.vendeli.tgbot.types.story/InputStoryContent.Video.coverFrameTimestamp|{}coverFrameTimestamp[0]
             final fun <get-coverFrameTimestamp>(): kotlin/Double // eu.vendeli.tgbot.types.story/InputStoryContent.Video.coverFrameTimestamp.<get-coverFrameTimestamp>|<get-coverFrameTimestamp>(){}[0]
@@ -14268,14 +14272,16 @@ sealed class eu.vendeli.tgbot.types.story/InputStoryContent { // eu.vendeli.tgbo
             final fun <get-duration>(): kotlin.time/Duration? // eu.vendeli.tgbot.types.story/InputStoryContent.Video.duration.<get-duration>|<get-duration>(){}[0]
         final val isAnimation // eu.vendeli.tgbot.types.story/InputStoryContent.Video.isAnimation|{}isAnimation[0]
             final fun <get-isAnimation>(): kotlin/Boolean? // eu.vendeli.tgbot.types.story/InputStoryContent.Video.isAnimation.<get-isAnimation>|<get-isAnimation>(){}[0]
-        final val video // eu.vendeli.tgbot.types.story/InputStoryContent.Video.video|{}video[0]
-            final fun <get-video>(): kotlin/String // eu.vendeli.tgbot.types.story/InputStoryContent.Video.video.<get-video>|<get-video>(){}[0]
 
-        final fun component1(): kotlin/String // eu.vendeli.tgbot.types.story/InputStoryContent.Video.component1|component1(){}[0]
+        final var video // eu.vendeli.tgbot.types.story/InputStoryContent.Video.video|{}video[0]
+            final fun <get-video>(): eu.vendeli.tgbot.types.component/ImplicitFile // eu.vendeli.tgbot.types.story/InputStoryContent.Video.video.<get-video>|<get-video>(){}[0]
+            final fun <set-video>(eu.vendeli.tgbot.types.component/ImplicitFile) // eu.vendeli.tgbot.types.story/InputStoryContent.Video.video.<set-video>|<set-video>(eu.vendeli.tgbot.types.component.ImplicitFile){}[0]
+
+        final fun component1(): eu.vendeli.tgbot.types.component/ImplicitFile // eu.vendeli.tgbot.types.story/InputStoryContent.Video.component1|component1(){}[0]
         final fun component2(): kotlin.time/Duration? // eu.vendeli.tgbot.types.story/InputStoryContent.Video.component2|component2(){}[0]
         final fun component3(): kotlin/Double // eu.vendeli.tgbot.types.story/InputStoryContent.Video.component3|component3(){}[0]
         final fun component4(): kotlin/Boolean? // eu.vendeli.tgbot.types.story/InputStoryContent.Video.component4|component4(){}[0]
-        final fun copy(kotlin/String = ..., kotlin.time/Duration? = ..., kotlin/Double = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.story/InputStoryContent.Video // eu.vendeli.tgbot.types.story/InputStoryContent.Video.copy|copy(kotlin.String;kotlin.time.Duration?;kotlin.Double;kotlin.Boolean?){}[0]
+        final fun copy(eu.vendeli.tgbot.types.component/ImplicitFile = ..., kotlin.time/Duration? = ..., kotlin/Double = ..., kotlin/Boolean? = ...): eu.vendeli.tgbot.types.story/InputStoryContent.Video // eu.vendeli.tgbot.types.story/InputStoryContent.Video.copy|copy(eu.vendeli.tgbot.types.component.ImplicitFile;kotlin.time.Duration?;kotlin.Double;kotlin.Boolean?){}[0]
         final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.story/InputStoryContent.Video.equals|equals(kotlin.Any?){}[0]
         final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.story/InputStoryContent.Video.hashCode|hashCode(){}[0]
         final fun toString(): kotlin/String // eu.vendeli.tgbot.types.story/InputStoryContent.Video.toString|toString(){}[0]

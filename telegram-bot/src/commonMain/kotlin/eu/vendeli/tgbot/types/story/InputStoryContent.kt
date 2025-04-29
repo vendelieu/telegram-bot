@@ -28,24 +28,19 @@ sealed class InputStoryContent {
     }
 
     @TgAPI.Ignore
-    internal abstract val field: String
-
-    @TgAPI.Ignore
     internal abstract var file: ImplicitFile
 
     @Serializable
     @SerialName("photo")
     data class Photo(
+        @Serializable(ImplicitFile.Companion::class)
         var photo: ImplicitFile,
     ) : InputStoryContent() {
         init {
             require(photo is ImplicitFile.InpFile) {
-                "Photo must be ImplicitFile.InpFile"
+                "photo must be ImplicitFile.InpFile"
             }
         }
-
-        @Transient
-        override val field: String = "photo"
 
         @Transient
         override var file: ImplicitFile = photo.cast()
@@ -57,6 +52,7 @@ sealed class InputStoryContent {
     @Serializable
     @SerialName("video")
     data class Video(
+        @Serializable(ImplicitFile.Companion::class)
         var video: ImplicitFile,
         @Serializable(with = DurationSerializer::class)
         val duration: Duration? = null,
@@ -65,12 +61,9 @@ sealed class InputStoryContent {
     ) : InputStoryContent() {
         init {
             require(video is ImplicitFile.InpFile) {
-                "Video must be ImplicitFile.InpFile"
+                "video must be ImplicitFile.InpFile"
             }
         }
-
-        @Transient
-        override val field: String = "video"
 
         @Transient
         override var file: ImplicitFile = video.cast()

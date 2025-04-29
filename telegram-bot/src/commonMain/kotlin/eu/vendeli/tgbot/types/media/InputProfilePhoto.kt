@@ -26,9 +26,6 @@ sealed class InputProfilePhoto {
     }
 
     @TgAPI.Ignore
-    internal abstract val field: String
-
-    @TgAPI.Ignore
     internal abstract var file: ImplicitFile
 
     @Serializable
@@ -38,12 +35,9 @@ sealed class InputProfilePhoto {
     ) : InputProfilePhoto() {
         init {
             require(photo is ImplicitFile.InpFile) {
-                "Photo must be ImplicitFile.InpFile"
+                "photo must be ImplicitFile.InpFile"
             }
         }
-
-        @Transient
-        override val field: String = "photo"
 
         @Transient
         override var file: ImplicitFile = photo.cast()
@@ -63,9 +57,6 @@ sealed class InputProfilePhoto {
                 "animation must be ImplicitFile.InpFile"
             }
         }
-
-        @Transient
-        override val field: String = "animation"
 
         @Transient
         override var file: ImplicitFile = animation.cast()
