@@ -5,9 +5,11 @@ package eu.vendeli.tgbot.api.business
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.types.media.InputProfilePhoto
+import eu.vendeli.tgbot.utils.common.toImplicitFile
+import eu.vendeli.tgbot.utils.internal.encodeWith
 import eu.vendeli.tgbot.utils.internal.getReturnType
-import eu.vendeli.tgbot.utils.internal.handleImplicitFile
 import eu.vendeli.tgbot.utils.internal.toJsonElement
+import eu.vendeli.tgbot.utils.internal.transform
 
 @TgAPI
 class SetBusinessAccountProfilePhotoAction(
@@ -19,7 +21,9 @@ class SetBusinessAccountProfilePhotoAction(
     override val method = "setBusinessAccountProfilePhoto"
     override val returnType = getReturnType()
     override val beforeReq: () -> Unit = {
-        handleImplicitFile(photo.file, photo.field)
+        val attachedContent = photo.file.transform(multipartData).file
+        photo.file = attachedContent.toImplicitFile()
+        parameters["photo"] = photo.encodeWith(InputProfilePhoto.serializer())
     }
 
     init {

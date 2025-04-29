@@ -2,10 +2,12 @@ package eu.vendeli.tgbot.types.media
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.component.ImplicitFile
+import eu.vendeli.tgbot.utils.common.cast
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import kotlinx.serialization.serializer
 
 /**
@@ -27,24 +29,48 @@ sealed class InputProfilePhoto {
     internal abstract val field: String
 
     @TgAPI.Ignore
-    internal abstract val file: ImplicitFile.InpFile
+    internal abstract var file: ImplicitFile
 
     @Serializable
     @SerialName("static")
     data class Static(
-        val photo: ImplicitFile.InpFile,
+        var photo: ImplicitFile,
     ) : InputProfilePhoto() {
-        override val field get() = "photo"
-        override val file get() = photo
+        init {
+            require(photo is ImplicitFile.InpFile) {
+                "Photo must be ImplicitFile.InpFile"
+            }
+        }
+
+        @Transient
+        override val field: String = "photo"
+
+        @Transient
+        override var file: ImplicitFile = photo.cast()
+            set(value) {
+                photo = value
+            }
     }
 
     @Serializable
     @SerialName("animated")
     data class Animated(
-        val animation: ImplicitFile.InpFile,
+        var animation: ImplicitFile,
         val mainFrameTimestamp: Double = 0.0,
     ) : InputProfilePhoto() {
-        override val field get() = "animation"
-        override val file get() = animation
+        init {
+            require(animation is ImplicitFile.InpFile) {
+                "animation must be ImplicitFile.InpFile"
+            }
+        }
+
+        @Transient
+        override val field: String = "animation"
+
+        @Transient
+        override var file: ImplicitFile = animation.cast()
+            set(value) {
+                animation = value
+            }
     }
 }

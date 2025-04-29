@@ -9,9 +9,11 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.media.Story
 import eu.vendeli.tgbot.types.options.EditStoryOptions
 import eu.vendeli.tgbot.types.story.InputStoryContent
+import eu.vendeli.tgbot.utils.common.toImplicitFile
 import eu.vendeli.tgbot.utils.internal.encodeWith
 import eu.vendeli.tgbot.utils.internal.getReturnType
 import eu.vendeli.tgbot.utils.internal.toJsonElement
+import eu.vendeli.tgbot.utils.internal.transform
 
 @TgAPI
 class EditStoryAction(
@@ -26,10 +28,15 @@ class EditStoryAction(
     override val returnType = getReturnType()
     override val options = EditStoryOptions()
 
+    override val beforeReq: () -> Unit = {
+        val attachedContent = content.file.transform(multipartData).file
+        content.file = attachedContent.toImplicitFile()
+        parameters["content"] = content.encodeWith(InputStoryContent.serializer())
+    }
+
     init {
         parameters["business_connection_id"] = businessConnectionId.toJsonElement()
         parameters["story_id"] = storyId.toJsonElement()
-        parameters["content"] = content.encodeWith(InputStoryContent.serializer())
     }
 }
 

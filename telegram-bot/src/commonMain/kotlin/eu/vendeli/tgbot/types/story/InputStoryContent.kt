@@ -1,10 +1,14 @@
 package eu.vendeli.tgbot.types.story
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
+import eu.vendeli.tgbot.types.component.ImplicitFile
+import eu.vendeli.tgbot.utils.common.cast
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import kotlinx.serialization.serializer
 import kotlin.time.Duration
 
@@ -23,19 +27,55 @@ sealed class InputStoryContent {
         this::class.serializer().descriptor.serialName
     }
 
+    @TgAPI.Ignore
+    internal abstract val field: String
+
+    @TgAPI.Ignore
+    internal abstract var file: ImplicitFile
+
     @Serializable
     @SerialName("photo")
     data class Photo(
-        val photo: String,
-    ) : InputStoryContent()
+        var photo: ImplicitFile,
+    ) : InputStoryContent() {
+        init {
+            require(photo is ImplicitFile.InpFile) {
+                "Photo must be ImplicitFile.InpFile"
+            }
+        }
+
+        @Transient
+        override val field: String = "photo"
+
+        @Transient
+        override var file: ImplicitFile = photo.cast()
+            set(value) {
+                photo = value
+            }
+    }
 
     @Serializable
     @SerialName("video")
     data class Video(
-        val video: String,
+        var video: ImplicitFile,
         @Serializable(with = DurationSerializer::class)
         val duration: Duration? = null,
         val coverFrameTimestamp: Double = 0.0,
         val isAnimation: Boolean? = null,
-    ) : InputStoryContent()
+    ) : InputStoryContent() {
+        init {
+            require(video is ImplicitFile.InpFile) {
+                "Video must be ImplicitFile.InpFile"
+            }
+        }
+
+        @Transient
+        override val field: String = "video"
+
+        @Transient
+        override var file: ImplicitFile = video.cast()
+            set(value) {
+                video = value
+            }
+    }
 }

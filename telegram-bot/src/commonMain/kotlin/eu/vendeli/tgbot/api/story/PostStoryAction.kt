@@ -9,9 +9,11 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.media.Story
 import eu.vendeli.tgbot.types.options.PostStoryOptions
 import eu.vendeli.tgbot.types.story.InputStoryContent
+import eu.vendeli.tgbot.utils.common.toImplicitFile
 import eu.vendeli.tgbot.utils.internal.encodeWith
 import eu.vendeli.tgbot.utils.internal.getReturnType
 import eu.vendeli.tgbot.utils.internal.toJsonElement
+import eu.vendeli.tgbot.utils.internal.transform
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import kotlin.time.Duration
 
@@ -28,9 +30,14 @@ class PostStoryAction(
     override val returnType = getReturnType()
     override val options = PostStoryOptions()
 
+    override val beforeReq: () -> Unit = {
+        val attachedContent = content.file.transform(multipartData).file
+        content.file = attachedContent.toImplicitFile()
+        parameters["content"] = content.encodeWith(InputStoryContent.serializer())
+    }
+
     init {
         parameters["business_connection_id"] = businessConnectionId.toJsonElement()
-        parameters["content"] = content.encodeWith(InputStoryContent.serializer())
         parameters["active_period"] = activePeriod.encodeWith(DurationSerializer)
     }
 }
