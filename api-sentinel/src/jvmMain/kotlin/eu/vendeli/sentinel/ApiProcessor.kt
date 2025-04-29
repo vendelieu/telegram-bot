@@ -2,6 +2,7 @@
 
 package eu.vendeli.sentinel
 
+import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
@@ -85,30 +86,59 @@ class ApiProcessor(
     private val tgBotType = TelegramBot::class.asTypeName()
     private fun FileSpec.Builder.addShortcut(declaration: KSFunctionDeclaration) {
         val name = declaration.simpleName.getShortName()
-        val parameters = declaration.parameters.mapIndexed { _, it ->
-            val resolvedType = it.type.resolve()
-            val isFunType = resolvedType.isFunctionType
-            when {
-                isFunType -> ParameterSpec.builder(it.name!!.getShortName(), it.type.toTypeName(), KModifier.NOINLINE)
-                it.isVararg -> ParameterSpec.builder(it.name!!.getShortName(), it.type.toTypeName(), KModifier.VARARG)
-                else -> ParameterSpec.builder(it.name!!.getShortName(), it.type.toTypeName())
-            }.apply {
-                if (resolvedType.isMarkedNullable) defaultValue("null")
-            }.build()
-        }
-        val parametersInlined = parameters.joinToString {
+        val isSimple = declaration.returnType
+            ?.resolve()
+            ?.declaration
+            ?.safeCast<KSClassDeclaration>()
+            ?.getAllSuperTypes()
+            ?.any {
+                it.declaration.qualifiedName?.asString() == simpleActionType
+            } ?: false
+
+        val parameters = declaration.parameters
+            .mapIndexed { _, it ->
+                val resolvedType = it.type.resolve()
+                val isFunType = resolvedType.isFunctionType
+                when {
+                    isFunType -> ParameterSpec.builder(
+                        it.name!!.getShortName(),
+                        it.type.toTypeName(),
+                        KModifier.NOINLINE,
+                    )
+
+                    it.isVararg -> ParameterSpec.builder(
+                        it.name!!.getShortName(),
+                        it.type.toTypeName(),
+                        KModifier.VARARG,
+                    )
+
+                    else -> ParameterSpec.builder(it.name!!.getShortName(), it.type.toTypeName())
+                }.apply {
+                    if (resolvedType.isMarkedNullable) defaultValue("null")
+                }.build()
+            }.toMutableSet()
+
+        if (!isSimple) parameters.add(ParameterSpec.builder("chatId", Long::class.asTypeName()).build())
+
+        val parametersInlined = parameters.filterNot { !isSimple && it.name == "chatId" }.joinToString {
             (if (KModifier.VARARG in it.modifiers) "${it.name} = " else "") + it.name
+        }
+
+        val sendTail = if (isSimple) {
+            ".send(this)"
+        } else {
+            ".send(chatId, this)"
         }
 
         addFunction(
             FunSpec
                 .builder(name)
                 .receiver(tgBotType)
-                .addModifiers(KModifier.INLINE)
+                .addModifiers(KModifier.INLINE, KModifier.SUSPEND)
                 .addAnnotation(AnnotationSpec.builder(Suppress::class).addMember("\"NOTHING_TO_INLINE\"").build())
                 .addParameters(parameters)
-                .returns(declaration.returnType!!.toTypeName())
-                .addCode("return ${declaration.qualifiedName!!.asString()}($parametersInlined)")
+                .returns(UNIT)
+                .addCode("return ${declaration.qualifiedName!!.asString()}($parametersInlined)" + sendTail)
                 .build(),
         )
     }
