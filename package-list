@@ -31,15 +31,18 @@ eu.vendeli.tgbot.annotations.dsl
 eu.vendeli.tgbot.annotations.internal
 eu.vendeli.tgbot.api.answer
 eu.vendeli.tgbot.api.botactions
+eu.vendeli.tgbot.api.business
 eu.vendeli.tgbot.api.chat
 eu.vendeli.tgbot.api.common
 eu.vendeli.tgbot.api.forum
 eu.vendeli.tgbot.api.game
+eu.vendeli.tgbot.api.gift
 eu.vendeli.tgbot.api.media
 eu.vendeli.tgbot.api.message
 eu.vendeli.tgbot.api.passport
 eu.vendeli.tgbot.api.payments
 eu.vendeli.tgbot.api.stickerset
+eu.vendeli.tgbot.api.story
 eu.vendeli.tgbot.api.verification
 eu.vendeli.tgbot.core
 eu.vendeli.tgbot.implementations
@@ -59,6 +62,7 @@ eu.vendeli.tgbot.types.component
 eu.vendeli.tgbot.types.configuration
 eu.vendeli.tgbot.types.forum
 eu.vendeli.tgbot.types.game
+eu.vendeli.tgbot.types.gift
 eu.vendeli.tgbot.types.giveaway
 eu.vendeli.tgbot.types.inline
 eu.vendeli.tgbot.types.keyboard
@@ -69,6 +73,7 @@ eu.vendeli.tgbot.types.passport
 eu.vendeli.tgbot.types.payment
 eu.vendeli.tgbot.types.poll
 eu.vendeli.tgbot.types.stars
+eu.vendeli.tgbot.types.story
 eu.vendeli.tgbot.types.user
 eu.vendeli.tgbot.types.webapp
 eu.vendeli.tgbot.utils.builders

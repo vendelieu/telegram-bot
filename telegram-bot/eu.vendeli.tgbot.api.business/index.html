@@ -1,0 +1,458 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>eu.vendeli.tgbot.api.business</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
+<link href="../../images/logo-icon.svg"></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../index.html">
+                    KtGram
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">8.1.0
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":telegram-bot/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":telegram-bot/commonMain" data-filter=":telegram-bot/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+                <a class="navigation-controls--btn navigation-controls--btn_homepage" id="homepage-link" href="https://github.com/vendelieu/telegram-bot"></a>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    KtGram
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="telegram-bot::eu.vendeli.tgbot.api.business////PointingToDeclaration//1596435014">
+  <div class="breadcrumbs"><a href="../index.html">telegram-bot</a><span class="delimiter">/</span><span class="current">eu.vendeli.tgbot.api.business</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-1175240174%2FClasslikes%2F1596435014" anchor-label="DeleteBusinessMessagesAction" id="-1175240174%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-delete-business-messages-action/index.html"><span>Delete</span><wbr><span>Business</span><wbr><span>Messages</span><wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1175240174%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-delete-business-messages-action/index.html">DeleteBusinessMessagesAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">messageIds<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces.action/-simple-action/index.html">SimpleAction</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-600667103%2FClasslikes%2F1596435014" anchor-label="GetBusinessAccountGiftsAction" id="-600667103%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-get-business-account-gifts-action/index.html"><span>Get</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Gifts</span><wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-600667103%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-get-business-account-gifts-action/index.html">GetBusinessAccountGiftsAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces.action/-simple-action/index.html">SimpleAction</a><span class="token operator">&lt;</span><a href="../eu.vendeli.tgbot.types.gift/-owned-gifts/index.html">OwnedGifts</a><span class="token operator">&gt; </span>, <a href="../eu.vendeli.tgbot.interfaces.features/-options-feature/index.html">OptionsFeature</a><span class="token operator">&lt;</span><a href="-get-business-account-gifts-action/index.html">GetBusinessAccountGiftsAction</a><span class="token punctuation">, </span><a href="../eu.vendeli.tgbot.types.options/-get-business-account-gifts-options/index.html">GetBusinessAccountGiftsOptions</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-439563878%2FClasslikes%2F1596435014" anchor-label="GetBusinessAccountStarBalanceAction" id="-439563878%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-get-business-account-star-balance-action/index.html"><span>Get</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Star</span><wbr><span>Balance</span><wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-439563878%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-get-business-account-star-balance-action/index.html">GetBusinessAccountStarBalanceAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces.action/-simple-action/index.html">SimpleAction</a><span class="token operator">&lt;</span><a href="../eu.vendeli.tgbot.types.gift/-star-amount/index.html">StarAmount</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="141014076%2FClasslikes%2F1596435014" anchor-label="ReadBusinessMessageAction" id="141014076%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-read-business-message-action/index.html"><span>Read</span><wbr><span>Business</span><wbr><span>Message</span><wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="141014076%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-read-business-message-action/index.html">ReadBusinessMessageAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces.action/-action/index.html">Action</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1359284859%2FClasslikes%2F1596435014" anchor-label="RemoveBusinessAccountProfilePhotoAction" id="1359284859%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-remove-business-account-profile-photo-action/index.html"><span>Remove</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Profile</span><wbr><span>Photo</span><wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1359284859%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-remove-business-account-profile-photo-action/index.html">RemoveBusinessAccountProfilePhotoAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">isPublic<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces.action/-simple-action/index.html">SimpleAction</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="294946416%2FClasslikes%2F1596435014" anchor-label="SetBusinessAccountBioAction" id="294946416%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-set-business-account-bio-action/index.html"><span>Set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Bio</span><wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="294946416%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-set-business-account-bio-action/index.html">SetBusinessAccountBioAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">bio<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces.action/-simple-action/index.html">SimpleAction</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1204957813%2FClasslikes%2F1596435014" anchor-label="SetBusinessAccountGiftSettingsAction" id="-1204957813%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-set-business-account-gift-settings-action/index.html"><span>Set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Gift</span><wbr><span>Settings</span><wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1204957813%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-set-business-account-gift-settings-action/index.html">SetBusinessAccountGiftSettingsAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">showGiftButton<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">acceptedGiftTypes<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.gift/-accepted-gift-types/index.html">AcceptedGiftTypes</a></span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces.action/-simple-action/index.html">SimpleAction</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1348207501%2FClasslikes%2F1596435014" anchor-label="SetBusinessAccountNameAction" id="-1348207501%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-set-business-account-name-action/index.html"><span>Set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Name</span><wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1348207501%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-set-business-account-name-action/index.html">SetBusinessAccountNameAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">firstName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">lastName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces.action/-simple-action/index.html">SimpleAction</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1054822859%2FClasslikes%2F1596435014" anchor-label="SetBusinessAccountProfilePhotoAction" id="-1054822859%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-set-business-account-profile-photo-action/index.html"><span>Set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Profile</span><wbr><span>Photo</span><wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1054822859%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-set-business-account-profile-photo-action/index.html">SetBusinessAccountProfilePhotoAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">photo<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.media/-input-profile-photo/index.html">InputProfilePhoto</a><span class="token punctuation">, </span></span><span class="parameter ">isPublic<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces.action/-simple-action/index.html">SimpleAction</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1429949256%2FClasslikes%2F1596435014" anchor-label="SetBusinessAccountUsernameAction" id="1429949256%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-set-business-account-username-action/index.html"><span>Set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Username</span><wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1429949256%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-set-business-account-username-action/index.html">SetBusinessAccountUsernameAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">username<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces.action/-simple-action/index.html">SimpleAction</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="231340266%2FClasslikes%2F1596435014" anchor-label="TransferBusinessAccountStarsAction" id="231340266%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-transfer-business-account-stars-action/index.html"><span>Transfer</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Stars</span><wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="231340266%2FClasslikes%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-transfer-business-account-stars-action/index.html">TransferBusinessAccountStarsAction</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">starCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span> : <a href="../eu.vendeli.tgbot.interfaces.action/-simple-action/index.html">SimpleAction</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt; </span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1004320999%2FFunctions%2F1596435014" anchor-label="deleteBusinessMessages" id="-1004320999%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-business-messages.html"><span>delete</span><wbr><span>Business</span><wbr><span><span>Messages</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1004320999%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="delete-business-messages.html"><span class="token function">deleteBusinessMessages</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">messageIds<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-delete-business-messages-action/index.html">DeleteBusinessMessagesAction</a></div><div class="brief "><p class="paragraph">Delete messages on behalf of a business account. Requires the can_delete_sent_messages business bot right to delete messages sent by the bot itself, or the can_delete_all_messages business bot right to delete any message. Returns True on success.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="528680790%2FFunctions%2F1596435014" anchor-label="getBusinessAccountGifts" id="528680790%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-business-account-gifts.html"><span>get</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span><span>Gifts</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="528680790%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="get-business-account-gifts.html"><span class="token function">getBusinessAccountGifts</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-get-business-account-gifts-action/index.html">GetBusinessAccountGiftsAction</a></div><div class="brief "><p class="paragraph">Returns the gifts received and owned by a managed business account. Requires the can_view_gifts_and_stars business bot right. Returns OwnedGifts on success.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1224139773%2FFunctions%2F1596435014" anchor-label="getBusinessAccountStarBalance" id="1224139773%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-business-account-star-balance.html"><span>get</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Star</span><wbr><span><span>Balance</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1224139773%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="get-business-account-star-balance.html"><span class="token function">getBusinessAccountStarBalance</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-get-business-account-star-balance-action/index.html">GetBusinessAccountStarBalanceAction</a></div><div class="brief "><p class="paragraph">Returns the amount of Telegram Stars owned by a managed business account. Requires the can_view_gifts_and_stars business bot right. Returns StarAmount on success.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="797342773%2FFunctions%2F1596435014" anchor-label="readBusinessMessage" id="797342773%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="read-business-message.html"><span>read</span><wbr><span>Business</span><wbr><span><span>Message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="797342773%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="read-business-message.html"><span class="token function">readBusinessMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-read-business-message-action/index.html">ReadBusinessMessageAction</a></div><div class="brief "><p class="paragraph">Marks incoming message as read on behalf of a business account. Requires the can_read_messages business bot right. Returns True on success.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1276104027%2FFunctions%2F1596435014" anchor-label="removeBusinessAccountProfilePhoto" id="1276104027%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="remove-business-account-profile-photo.html"><span>remove</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Profile</span><wbr><span><span>Photo</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1276104027%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="remove-business-account-profile-photo.html"><span class="token function">removeBusinessAccountProfilePhoto</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">isPublic<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-remove-business-account-profile-photo-action/index.html">RemoveBusinessAccountProfilePhotoAction</a></div><div class="brief "><p class="paragraph">Removes the current profile photo of a managed business account. Requires the can_edit_profile_photo business bot right. Returns True on success.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1569863593%2FFunctions%2F1596435014" anchor-label="setBusinessAccountBio" id="-1569863593%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-business-account-bio.html"><span>set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span><span>Bio</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1569863593%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="set-business-account-bio.html"><span class="token function">setBusinessAccountBio</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">bio<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-set-business-account-bio-action/index.html">SetBusinessAccountBioAction</a></div><div class="brief "><p class="paragraph">Changes the bio of a managed business account. Requires the can_change_bio business bot right. Returns True on success.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1566163101%2FFunctions%2F1596435014" anchor-label="setBusinessAccountGiftSettings" id="-1566163101%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-business-account-gift-settings.html"><span>set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Gift</span><wbr><span><span>Settings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1566163101%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="set-business-account-gift-settings.html"><span class="token function">setBusinessAccountGiftSettings</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">showGiftButton<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">acceptedGiftTypes<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.gift/-accepted-gift-types/index.html">AcceptedGiftTypes</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-set-business-account-gift-settings-action/index.html">SetBusinessAccountGiftSettingsAction</a></div><div class="brief "><p class="paragraph">Changes the privacy settings pertaining to incoming gifts in a managed business account. Requires the can_change_gift_settings business bot right. Returns True on success.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-915887201%2FFunctions%2F1596435014" anchor-label="setBusinessAccountName" id="-915887201%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-business-account-name.html"><span>set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-915887201%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="set-business-account-name.html"><span class="token function">setBusinessAccountName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">firstName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">lastName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-set-business-account-name-action/index.html">SetBusinessAccountNameAction</a></div><div class="brief "><p class="paragraph">Changes the first and last name of a managed business account. Requires the can_change_name business bot right. Returns True on success.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="68946107%2FFunctions%2F1596435014" anchor-label="setBusinessAccountProfilePhoto" id="68946107%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-business-account-profile-photo.html"><span>set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Profile</span><wbr><span><span>Photo</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="68946107%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="set-business-account-profile-photo.html"><span class="token function">setBusinessAccountProfilePhoto</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">photo<span class="token operator">: </span><a href="../eu.vendeli.tgbot.types.media/-input-profile-photo/index.html">InputProfilePhoto</a><span class="token punctuation">, </span></span><span class="parameter ">isPublic<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-set-business-account-profile-photo-action/index.html">SetBusinessAccountProfilePhotoAction</a></div><div class="brief "><p class="paragraph">Changes the profile photo of a managed business account. Requires the can_edit_profile_photo business bot right. Returns True on success.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-640719815%2FFunctions%2F1596435014" anchor-label="setBusinessAccountUsername" id="-640719815%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-business-account-username.html"><span>set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span><span>Username</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-640719815%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="set-business-account-username.html"><span class="token function">setBusinessAccountUsername</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">username<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-set-business-account-username-action/index.html">SetBusinessAccountUsernameAction</a></div><div class="brief "><p class="paragraph">Changes the username of a managed business account. Requires the can_change_username business bot right. Returns True on success.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-476629926%2FFunctions%2F1596435014" anchor-label="transferBusinessAccountStars" id="-476629926%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="transfer-business-account-stars.html"><span>transfer</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span><span>Stars</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-476629926%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="transfer-business-account-stars.html"><span class="token function">transferBusinessAccountStars</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">businessConnectionId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">starCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-transfer-business-account-stars-action/index.html">TransferBusinessAccountStarsAction</a></div><div class="brief "><p class="paragraph">Transfers Telegram Stars from the business account balance to the bot's balance. Requires the can_transfer_stars business bot right. Returns True on success.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Vendelieu</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
