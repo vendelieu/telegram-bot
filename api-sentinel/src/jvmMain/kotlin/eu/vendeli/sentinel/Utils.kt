@@ -8,13 +8,16 @@ import com.google.devtools.ksp.symbol.KSDeclaration
 import com.squareup.kotlinpoet.LIST
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.asTypeName
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.marker.Keyboard
 import eu.vendeli.tgbot.types.msg.MessageEntity
+import eu.vendeli.tgbot.utils.common.fqName
 import java.io.File
 import java.io.FileFilter
 
 internal val replyMarkupType = Keyboard::class.asTypeName()
 internal val entitiesType = LIST.parameterizedBy(MessageEntity::class.asTypeName())
+internal val simpleActionType = SimpleAction::class.fqName
 
 @Suppress("UNCHECKED_CAST", "NOTHING_TO_INLINE")
 internal inline fun <R> Any?.safeCast(): R? = this as? R

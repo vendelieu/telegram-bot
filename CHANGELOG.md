@@ -1,5 +1,14 @@
 # Telegram-bot (KtGram) Changelog
 
+## 8.1.0
+
+* Supported Telegram API [9.0](https://core.telegram.org/bots/api-changelog#april-11-2025).
+* Improve Aide checks.
+* Fix callback query auto answer through plugin options.
+* Improved method extensions from `ktgram-utils` module for `TelegramBot`, automatically chain send calls.
+* Added parameters parsing to `@InputHandler` to make it fit the general approach.
+* Fix Context picking through `@CtxProvider`.
+
 # 8.0.0
 
 * Reorganized project structure (imports may be broken).

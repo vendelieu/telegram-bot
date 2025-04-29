@@ -13,6 +13,7 @@ import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterizedTypeName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.STAR
 import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeVariableName
@@ -108,9 +109,9 @@ internal val deletedBusinessMessagesClass = DeletedBusinessMessagesUpdate::class
 internal val purchasedPaidMediaUpdateClass = PurchasedPaidMediaUpdate::class.asTypeName()
 
 internal val commonMatcherClass = CommonMatcher::class.asTypeName()
-internal val userDataCtx = UserData::class.asTypeName()
+internal val userDataCtx = UserData::class.asTypeName().parameterizedBy(STAR)
 internal val userDataCtxDef = UserDataMapImpl::class.asTypeName()
-internal val classDataCtx = ClassData::class.asTypeName()
+internal val classDataCtx = ClassData::class.asTypeName().parameterizedBy(STAR)
 internal val classDataCtxDef = ClassDataImpl::class.asTypeName()
 
 internal val callbackQueryList = listOf(UpdateType.CALLBACK_QUERY)

@@ -1,9 +1,10 @@
 package eu.vendeli.tgbot.types.options
 
 import eu.vendeli.tgbot.types.common.LinkPreviewOptions
-import eu.vendeli.tgbot.types.component.ParseMode
 import eu.vendeli.tgbot.types.common.ReplyParameters
 import eu.vendeli.tgbot.types.component.ImplicitFile
+import eu.vendeli.tgbot.types.component.ParseMode
+import eu.vendeli.tgbot.types.story.StoryArea
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -45,11 +46,21 @@ interface ForumProps : Options {
     var messageThreadId: Int?
 }
 
+interface ProtectContentProp : Options {
+    var protectContent: Boolean?
+}
+
+interface AreasProp : Options {
+    var areas: List<StoryArea>?
+}
+
 @Serializable
-sealed interface OptionsCommon : Options {
+sealed interface OptionsCommon :
+    Options,
+    ProtectContentProp {
     var disableNotification: Boolean?
     var replyParameters: ReplyParameters?
-    var protectContent: Boolean?
+    override var protectContent: Boolean?
     var allowPaidBroadcast: Boolean?
 
     var replyToMessageId: Long?

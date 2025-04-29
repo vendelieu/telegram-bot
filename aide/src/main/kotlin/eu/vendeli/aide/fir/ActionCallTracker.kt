@@ -41,13 +41,13 @@ internal class ActionCallTracker(
         element.acceptChildren(this)
     }
 
-    override fun visitFunctionCall(call: FirFunctionCall) {
-        call.acceptChildren(this)
+    override fun visitFunctionCall(functionCall: FirFunctionCall) {
+        functionCall.acceptChildren(this)
 
         when {
-            call.isSendCall() -> handleSendCall(call)
-            call.isScopeFunctionCall() -> handleScopeFunctionCall(call)
-            isAction(call) -> handleActionCall(call)
+            functionCall.isSendCall() -> handleSendCall(functionCall)
+            functionCall.isScopeFunctionCall() -> handleScopeFunctionCall(functionCall)
+            isAction(functionCall) -> handleActionCall(functionCall)
         }
     }
 

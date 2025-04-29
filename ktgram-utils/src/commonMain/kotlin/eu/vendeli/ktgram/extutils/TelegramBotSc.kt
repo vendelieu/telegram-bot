@@ -3,143 +3,9 @@
 package eu.vendeli.ktgram.extutils
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.api.answer.AnswerCallbackQueryAction
-import eu.vendeli.tgbot.api.answer.AnswerInlineQueryAction
-import eu.vendeli.tgbot.api.answer.AnswerPreCheckoutQueryAction
-import eu.vendeli.tgbot.api.answer.AnswerShippingQueryAction
-import eu.vendeli.tgbot.api.answer.AnswerWebAppQueryAction
-import eu.vendeli.tgbot.api.botactions.CloseAction
-import eu.vendeli.tgbot.api.botactions.DeleteMyCommandsAction
-import eu.vendeli.tgbot.api.botactions.DeleteWebhookAction
-import eu.vendeli.tgbot.api.botactions.GetAvailableGiftsAction
-import eu.vendeli.tgbot.api.botactions.GetBusinessConnectionAction
-import eu.vendeli.tgbot.api.botactions.GetMeAction
-import eu.vendeli.tgbot.api.botactions.GetMyCommandsAction
-import eu.vendeli.tgbot.api.botactions.GetMyDefaultAdministratorRightsAction
-import eu.vendeli.tgbot.api.botactions.GetMyDescriptionAction
-import eu.vendeli.tgbot.api.botactions.GetMyNameAction
-import eu.vendeli.tgbot.api.botactions.GetMyShortDescriptionAction
-import eu.vendeli.tgbot.api.botactions.GetUpdatesAction
-import eu.vendeli.tgbot.api.botactions.GetWebhookInfoAction
-import eu.vendeli.tgbot.api.botactions.LogOutAction
-import eu.vendeli.tgbot.api.botactions.SavePreparedInlineMessageAction
-import eu.vendeli.tgbot.api.botactions.SendGiftAction
-import eu.vendeli.tgbot.api.botactions.SetMyCommandsAction
-import eu.vendeli.tgbot.api.botactions.SetMyDefaultAdministratorRightsAction
-import eu.vendeli.tgbot.api.botactions.SetMyDescriptionAction
-import eu.vendeli.tgbot.api.botactions.SetMyNameAction
-import eu.vendeli.tgbot.api.botactions.SetMyShortDescriptionAction
-import eu.vendeli.tgbot.api.botactions.SetUserEmojiStatusAction
-import eu.vendeli.tgbot.api.botactions.SetWebhookAction
-import eu.vendeli.tgbot.api.chat.ApproveChatJoinRequestAction
-import eu.vendeli.tgbot.api.chat.BanChatMemberAction
-import eu.vendeli.tgbot.api.chat.BanChatSenderChatAction
-import eu.vendeli.tgbot.api.chat.CreateChatInviteLinkAction
-import eu.vendeli.tgbot.api.chat.CreateChatSubscriptionInviteLinkAction
-import eu.vendeli.tgbot.api.chat.DeclineChatJoinRequestAction
-import eu.vendeli.tgbot.api.chat.DeleteChatPhotoAction
-import eu.vendeli.tgbot.api.chat.DeleteChatStickerSetAction
-import eu.vendeli.tgbot.api.chat.EditChatInviteLinkAction
-import eu.vendeli.tgbot.api.chat.EditChatSubscriptionInviteLinkAction
-import eu.vendeli.tgbot.api.chat.ExportChatInviteLinkAction
-import eu.vendeli.tgbot.api.chat.GetChatAction
-import eu.vendeli.tgbot.api.chat.GetChatAdministratorsAction
-import eu.vendeli.tgbot.api.chat.GetChatMemberAction
-import eu.vendeli.tgbot.api.chat.GetChatMemberCountAction
-import eu.vendeli.tgbot.api.chat.GetChatMenuButtonAction
-import eu.vendeli.tgbot.api.chat.GetUserChatBoostsAction
-import eu.vendeli.tgbot.api.chat.LeaveChatAction
-import eu.vendeli.tgbot.api.chat.PinChatMessageAction
-import eu.vendeli.tgbot.api.chat.PromoteChatMemberAction
-import eu.vendeli.tgbot.api.chat.RestrictChatMemberAction
-import eu.vendeli.tgbot.api.chat.RevokeChatInviteLinkAction
-import eu.vendeli.tgbot.api.chat.SendChatActionAction
-import eu.vendeli.tgbot.api.chat.SetChatAdministratorCustomTitleAction
-import eu.vendeli.tgbot.api.chat.SetChatDescriptionAction
-import eu.vendeli.tgbot.api.chat.SetChatMenuButtonAction
-import eu.vendeli.tgbot.api.chat.SetChatPermissionsAction
-import eu.vendeli.tgbot.api.chat.SetChatPhotoAction
-import eu.vendeli.tgbot.api.chat.SetChatStickerSetAction
-import eu.vendeli.tgbot.api.chat.SetChatTitleAction
-import eu.vendeli.tgbot.api.chat.UnbanChatMemberAction
-import eu.vendeli.tgbot.api.chat.UnbanChatSenderChatAction
-import eu.vendeli.tgbot.api.chat.UnpinAllChatMessagesAction
-import eu.vendeli.tgbot.api.chat.UnpinChatMessageAction
-import eu.vendeli.tgbot.api.common.SendContactAction
-import eu.vendeli.tgbot.api.common.SendDiceAction
-import eu.vendeli.tgbot.api.common.SendLocationAction
-import eu.vendeli.tgbot.api.common.SendPollAction
-import eu.vendeli.tgbot.api.common.SendVenueAction
-import eu.vendeli.tgbot.api.common.StopPollAction
-import eu.vendeli.tgbot.api.forum.CloseForumTopicAction
-import eu.vendeli.tgbot.api.forum.CloseGeneralForumTopicAction
-import eu.vendeli.tgbot.api.forum.CreateForumTopicAction
-import eu.vendeli.tgbot.api.forum.DeleteForumTopicAction
-import eu.vendeli.tgbot.api.forum.EditForumTopicAction
-import eu.vendeli.tgbot.api.forum.EditGeneralForumTopicAction
-import eu.vendeli.tgbot.api.forum.GetForumTopicIconStickersAction
-import eu.vendeli.tgbot.api.forum.HideGeneralForumTopicAction
-import eu.vendeli.tgbot.api.forum.ReopenForumTopicAction
-import eu.vendeli.tgbot.api.forum.ReopenGeneralForumTopicAction
-import eu.vendeli.tgbot.api.forum.UnhideGeneralForumTopicAction
-import eu.vendeli.tgbot.api.forum.UnpinAllForumTopicMessagesAction
-import eu.vendeli.tgbot.api.forum.UnpinAllGeneralForumTopicMessagesAction
-import eu.vendeli.tgbot.api.game.GetGameHighScoresAction
-import eu.vendeli.tgbot.api.game.SendGameAction
-import eu.vendeli.tgbot.api.game.SetGameScoreAction
-import eu.vendeli.tgbot.api.media.GetFileAction
-import eu.vendeli.tgbot.api.media.GetUserProfilePhotosAction
-import eu.vendeli.tgbot.api.media.SendAnimationAction
-import eu.vendeli.tgbot.api.media.SendAudioAction
-import eu.vendeli.tgbot.api.media.SendDocumentAction
-import eu.vendeli.tgbot.api.media.SendMediaGroupAction
-import eu.vendeli.tgbot.api.media.SendPaidMediaAction
-import eu.vendeli.tgbot.api.media.SendPhotoAction
-import eu.vendeli.tgbot.api.media.SendStickerAction
-import eu.vendeli.tgbot.api.media.SendVideoAction
-import eu.vendeli.tgbot.api.media.SendVideoNoteAction
-import eu.vendeli.tgbot.api.media.SendVoiceAction
-import eu.vendeli.tgbot.api.message.CopyMessageAction
-import eu.vendeli.tgbot.api.message.CopyMessagesAction
-import eu.vendeli.tgbot.api.message.DeleteMessageAction
-import eu.vendeli.tgbot.api.message.DeleteMessagesAction
-import eu.vendeli.tgbot.api.message.EditMessageCaptionAction
-import eu.vendeli.tgbot.api.message.EditMessageLiveLocationAction
-import eu.vendeli.tgbot.api.message.EditMessageMediaAction
-import eu.vendeli.tgbot.api.message.EditMessageReplyMarkupAction
 import eu.vendeli.tgbot.api.message.EditMessageTextAction
-import eu.vendeli.tgbot.api.message.ForwardMessageAction
-import eu.vendeli.tgbot.api.message.ForwardMessagesAction
 import eu.vendeli.tgbot.api.message.SendMessageAction
-import eu.vendeli.tgbot.api.message.SetMessageReactionAction
-import eu.vendeli.tgbot.api.message.StopMessageLiveLocationAction
-import eu.vendeli.tgbot.api.passport.SetPassportDataErrorsAction
-import eu.vendeli.tgbot.api.payments.CreateInvoiceLinkAction
-import eu.vendeli.tgbot.api.payments.EditUserStarSubscriptionAction
-import eu.vendeli.tgbot.api.payments.GetStarTransactionsAction
-import eu.vendeli.tgbot.api.payments.RefundStarPaymentAction
-import eu.vendeli.tgbot.api.payments.SendInvoiceAction
-import eu.vendeli.tgbot.api.stickerset.AddStickerToSetAction
-import eu.vendeli.tgbot.api.stickerset.CreateNewStickerSetAction
-import eu.vendeli.tgbot.api.stickerset.DeleteStickerFromSetAction
-import eu.vendeli.tgbot.api.stickerset.DeleteStickerSetAction
-import eu.vendeli.tgbot.api.stickerset.GetCustomEmojiStickersAction
-import eu.vendeli.tgbot.api.stickerset.GetStickerSetAction
-import eu.vendeli.tgbot.api.stickerset.ReplaceStickerInSetAction
-import eu.vendeli.tgbot.api.stickerset.SetCustomEmojiStickerSetThumbnailAction
-import eu.vendeli.tgbot.api.stickerset.SetStickerEmojiListAction
-import eu.vendeli.tgbot.api.stickerset.SetStickerKeywordsAction
-import eu.vendeli.tgbot.api.stickerset.SetStickerMaskPositionAction
-import eu.vendeli.tgbot.api.stickerset.SetStickerPositionInSetAction
-import eu.vendeli.tgbot.api.stickerset.SetStickerSetThumbnailAction
-import eu.vendeli.tgbot.api.stickerset.SetStickerSetTitleAction
-import eu.vendeli.tgbot.api.stickerset.UploadStickerFileAction
-import eu.vendeli.tgbot.api.verification.RemoveChatVerificationAction
-import eu.vendeli.tgbot.api.verification.RemoveUserVerificationAction
-import eu.vendeli.tgbot.api.verification.VerifyChatAction
-import eu.vendeli.tgbot.api.verification.VerifyUserAction
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.`inline`.InlineQueryResult
 import eu.vendeli.tgbot.types.bot.BotCommand
 import eu.vendeli.tgbot.types.bot.BotCommandScope
 import eu.vendeli.tgbot.types.chat.Chat
@@ -154,9 +20,12 @@ import eu.vendeli.tgbot.types.component.ImplicitFile
 import eu.vendeli.tgbot.types.component.InputFile
 import eu.vendeli.tgbot.types.component.ParseMode
 import eu.vendeli.tgbot.types.forum.IconColor
+import eu.vendeli.tgbot.types.gift.AcceptedGiftTypes
+import eu.vendeli.tgbot.types.inline.InlineQueryResult
 import eu.vendeli.tgbot.types.keyboard.MenuButton
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.types.media.InputPaidMedia
+import eu.vendeli.tgbot.types.media.InputProfilePhoto
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.types.media.MaskPosition
 import eu.vendeli.tgbot.types.media.StickerFormat
@@ -164,1030 +33,2164 @@ import eu.vendeli.tgbot.types.passport.PassportElementError
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 import eu.vendeli.tgbot.types.payment.ShippingOption
 import eu.vendeli.tgbot.types.poll.InputPollOption
+import eu.vendeli.tgbot.types.story.InputStoryContent
 import eu.vendeli.tgbot.utils.builders.BotCommandsBuilder
 import eu.vendeli.tgbot.utils.builders.EntitiesCtxBuilder
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.builders.PollOptionsBuilder
-import kotlin.Boolean
-import kotlin.ByteArray
-import kotlin.Float
-import kotlin.Int
-import kotlin.Long
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
-import kotlin.collections.List
-import kotlin.time.Duration
 import kotlinx.datetime.Instant
+import kotlin.time.Duration
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.answerCallbackQuery(callbackQueryId: String): AnswerCallbackQueryAction = eu.vendeli.tgbot.api.answer.answerCallbackQuery(callbackQueryId)
+public suspend inline fun TelegramBot.getBusinessAccountGifts(businessConnectionId: String): Unit =
+    eu.vendeli.tgbot.api.business
+        .getBusinessAccountGifts(businessConnectionId)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.answerInlineQuery(inlineQueryId: String, results: List<InlineQueryResult>): AnswerInlineQueryAction = eu.vendeli.tgbot.api.answer.answerInlineQuery(inlineQueryId, results)
+public suspend inline fun TelegramBot.setBusinessAccountUsername(
+    businessConnectionId: String,
+    username: String? = null,
+): Unit = eu.vendeli.tgbot.api.business
+    .setBusinessAccountUsername(businessConnectionId, username)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.answerInlineQuery(inlineQueryId: String, noinline results: ListingBuilder<InlineQueryResult>.() -> Unit): AnswerInlineQueryAction = eu.vendeli.tgbot.api.answer.answerInlineQuery(inlineQueryId, results)
+public suspend inline fun TelegramBot.deleteBusinessMessages(
+    businessConnectionId: String,
+    messageIds: List<Long>,
+): Unit = eu.vendeli.tgbot.api.business
+    .deleteBusinessMessages(businessConnectionId, messageIds)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.answerInlineQuery(inlineQueryId: String, vararg result: InlineQueryResult): AnswerInlineQueryAction = eu.vendeli.tgbot.api.answer.answerInlineQuery(inlineQueryId, result = result)
+public suspend inline fun TelegramBot.removeBusinessAccountProfilePhoto(
+    businessConnectionId: String,
+    isPublic: Boolean? = null,
+): Unit = eu.vendeli.tgbot.api.business
+    .removeBusinessAccountProfilePhoto(businessConnectionId, isPublic)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.answerPreCheckoutQuery(
-  preCheckoutQueryId: String,
-  ok: Boolean,
-  errorMessage: String? = null,
-): AnswerPreCheckoutQueryAction = eu.vendeli.tgbot.api.answer.answerPreCheckoutQuery(preCheckoutQueryId, ok, errorMessage)
+public suspend inline fun TelegramBot.setBusinessAccountProfilePhoto(
+    businessConnectionId: String,
+    photo: InputProfilePhoto,
+    isPublic: Boolean? = null,
+): Unit = eu.vendeli.tgbot.api.business
+    .setBusinessAccountProfilePhoto(businessConnectionId, photo, isPublic)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.answerShippingQuery(
-  shippingQueryId: String,
-  ok: Boolean,
-  shippingOptions: List<ShippingOption>? = null,
-  errorMessage: String? = null,
-): AnswerShippingQueryAction = eu.vendeli.tgbot.api.answer.answerShippingQuery(shippingQueryId, ok, shippingOptions, errorMessage)
+public suspend inline fun TelegramBot.setBusinessAccountGiftSettings(
+    businessConnectionId: String,
+    showGiftButton: Boolean,
+    acceptedGiftTypes: AcceptedGiftTypes,
+): Unit = eu.vendeli.tgbot.api.business
+    .setBusinessAccountGiftSettings(
+        businessConnectionId,
+        showGiftButton,
+        acceptedGiftTypes,
+    ).send(this)
 
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.answerShippingQuery(
-  shippingQueryId: String,
-  ok: Boolean,
-  errorMessage: String? = null,
-  noinline shippingOptions: ListingBuilder<ShippingOption>.() -> Unit,
-): AnswerShippingQueryAction = eu.vendeli.tgbot.api.answer.answerShippingQuery(shippingQueryId, ok, errorMessage, shippingOptions)
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.answerShippingQuery(
-  shippingQueryId: String,
-  ok: Boolean,
-  errorMessage: String? = null,
-  vararg shippingOption: ShippingOption,
-): AnswerShippingQueryAction = eu.vendeli.tgbot.api.answer.answerShippingQuery(shippingQueryId, ok, errorMessage, shippingOption = shippingOption)
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.setBusinessAccountBio(businessConnectionId: String, bio: String? = null): Unit =
+    eu.vendeli.tgbot.api.business
+        .setBusinessAccountBio(businessConnectionId, bio)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.answerWebAppQuery(webAppQueryId: String, result: InlineQueryResult): AnswerWebAppQueryAction = eu.vendeli.tgbot.api.answer.answerWebAppQuery(webAppQueryId, result)
+public suspend inline fun TelegramBot.setBusinessAccountName(
+    businessConnectionId: String,
+    firstName: String,
+    lastName: String? = null,
+): Unit = eu.vendeli.tgbot.api.business
+    .setBusinessAccountName(businessConnectionId, firstName, lastName)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.close(): CloseAction = eu.vendeli.tgbot.api.botactions.close()
+public suspend inline fun TelegramBot.transferBusinessAccountStars(businessConnectionId: String, starCount: Int): Unit =
+    eu.vendeli.tgbot.api.business
+        .transferBusinessAccountStars(businessConnectionId, starCount)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.deleteMyCommands(languageCode: String? = null, scope: BotCommandScope? = null): DeleteMyCommandsAction = eu.vendeli.tgbot.api.botactions.deleteMyCommands(languageCode, scope)
+public suspend inline fun TelegramBot.readBusinessMessage(
+    businessConnectionId: String,
+    messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.business
+    .readBusinessMessage(businessConnectionId, messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.deleteWebhook(dropPendingUpdates: Boolean): DeleteWebhookAction = eu.vendeli.tgbot.api.botactions.deleteWebhook(dropPendingUpdates)
+public suspend inline fun TelegramBot.getBusinessAccountStarBalance(businessConnectionId: String): Unit =
+    eu.vendeli.tgbot.api.business
+        .getBusinessAccountStarBalance(businessConnectionId)
+        .send(this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.sendDice(emoji: String? = null, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.common
+        .sendDice(emoji)
+        .send(chatId, this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.dice(emoji: String? = null, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.common
+        .dice(emoji)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getAvailableGifts(): GetAvailableGiftsAction = eu.vendeli.tgbot.api.botactions.getAvailableGifts()
-
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getBusinessConnection(businessConnectionId: String): GetBusinessConnectionAction = eu.vendeli.tgbot.api.botactions.getBusinessConnection(businessConnectionId)
-
+public suspend inline fun TelegramBot.dice(noinline block: () -> DiceEmoji, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.common
+        .dice(block)
+        .send(chatId, this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.poll(
+    question: String,
+    options: List<InputPollOption>,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.common
+    .poll(question, options)
+    .send(chatId, this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.poll(
+    question: String,
+    noinline options: PollOptionsBuilder.() -> Unit,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.common
+    .poll(question, options)
+    .send(chatId, this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.poll(
+    question: String,
+    vararg options: InputPollOption,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.common
+    .poll(question, options = options)
+    .send(chatId, this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.sendPoll(
+    question: String,
+    noinline options: PollOptionsBuilder.() -> Unit,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.common
+    .sendPoll(question, options)
+    .send(chatId, this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.venue(
+    latitude: Float,
+    longitude: Float,
+    title: String,
+    address: String,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.common
+    .venue(latitude, longitude, title, address)
+    .send(chatId, this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.sendVenue(
+    latitude: Float,
+    longitude: Float,
+    title: String,
+    address: String,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.common
+    .sendVenue(latitude, longitude, title, address)
+    .send(chatId, this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.stopPoll(messageId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.common
+        .stopPoll(messageId)
+        .send(chatId, this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.sendLocation(
+    latitude: Float,
+    longitude: Float,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.common
+    .sendLocation(latitude, longitude)
+    .send(chatId, this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.location(
+    latitude: Float,
+    longitude: Float,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.common
+    .location(latitude, longitude)
+    .send(chatId, this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.contact(
+    firstName: String,
+    phoneNumber: String,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.common
+    .contact(firstName, phoneNumber)
+    .send(chatId, this)
+
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getMe(): GetMeAction = eu.vendeli.tgbot.api.botactions.getMe()
+public suspend inline fun TelegramBot.sendContact(
+    firstName: String,
+    phoneNumber: String,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.common
+    .sendContact(firstName, phoneNumber)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getMyCommands(languageCode: String? = null, scope: BotCommandScope? = null): GetMyCommandsAction = eu.vendeli.tgbot.api.botactions.getMyCommands(languageCode, scope)
+public suspend inline fun TelegramBot.answerCallbackQuery(callbackQueryId: String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.answer
+        .answerCallbackQuery(callbackQueryId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getMyDefaultAdministratorRights(forChannel: Boolean? = null): GetMyDefaultAdministratorRightsAction = eu.vendeli.tgbot.api.botactions.getMyDefaultAdministratorRights(forChannel)
+public suspend inline fun TelegramBot.answerWebAppQuery(webAppQueryId: String, result: InlineQueryResult): Unit =
+    eu.vendeli.tgbot.api.answer
+        .answerWebAppQuery(webAppQueryId, result)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getMyDescription(languageCode: String? = null): GetMyDescriptionAction = eu.vendeli.tgbot.api.botactions.getMyDescription(languageCode)
+public suspend inline fun TelegramBot.answerPreCheckoutQuery(
+    preCheckoutQueryId: String,
+    ok: Boolean,
+    errorMessage: String? = null,
+): Unit = eu.vendeli.tgbot.api.answer
+    .answerPreCheckoutQuery(preCheckoutQueryId, ok, errorMessage)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getMyName(languageCode: String? = null): GetMyNameAction = eu.vendeli.tgbot.api.botactions.getMyName(languageCode)
+public suspend inline fun TelegramBot.answerShippingQuery(
+    shippingQueryId: String,
+    ok: Boolean,
+    shippingOptions: List<ShippingOption>? = null,
+    errorMessage: String? = null,
+): Unit = eu.vendeli.tgbot.api.answer
+    .answerShippingQuery(shippingQueryId, ok, shippingOptions, errorMessage)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getMyShortDescription(languageCode: String? = null): GetMyShortDescriptionAction = eu.vendeli.tgbot.api.botactions.getMyShortDescription(languageCode)
+public suspend inline fun TelegramBot.answerShippingQuery(
+    shippingQueryId: String,
+    ok: Boolean,
+    errorMessage: String? = null,
+    noinline shippingOptions: ListingBuilder<ShippingOption>.() -> Unit,
+): Unit = eu.vendeli.tgbot.api.answer
+    .answerShippingQuery(shippingQueryId, ok, errorMessage, shippingOptions)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getUpdates(): GetUpdatesAction = eu.vendeli.tgbot.api.botactions.getUpdates()
+public suspend inline fun TelegramBot.answerShippingQuery(
+    shippingQueryId: String,
+    ok: Boolean,
+    errorMessage: String? = null,
+    vararg shippingOption: ShippingOption,
+): Unit =
+    eu.vendeli.tgbot.api.answer
+        .answerShippingQuery(shippingQueryId, ok, errorMessage, shippingOption = shippingOption)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getWebhookInfo(): GetWebhookInfoAction = eu.vendeli.tgbot.api.botactions.getWebhookInfo()
+public suspend inline fun TelegramBot.answerInlineQuery(inlineQueryId: String, results: List<InlineQueryResult>): Unit =
+    eu.vendeli.tgbot.api.answer
+        .answerInlineQuery(inlineQueryId, results)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.logOut(): LogOutAction = eu.vendeli.tgbot.api.botactions.logOut()
+public suspend inline fun TelegramBot.answerInlineQuery(
+    inlineQueryId: String,
+    noinline results: ListingBuilder<InlineQueryResult>.() -> Unit,
+): Unit = eu.vendeli.tgbot.api.answer
+    .answerInlineQuery(inlineQueryId, results)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.savePreparedInlineMessage(userId: Long, result: InlineQueryResult): SavePreparedInlineMessageAction = eu.vendeli.tgbot.api.botactions.savePreparedInlineMessage(userId, result)
+public suspend inline fun TelegramBot.answerInlineQuery(inlineQueryId: String, vararg result: InlineQueryResult): Unit =
+    eu.vendeli.tgbot.api.answer
+        .answerInlineQuery(inlineQueryId, result = result)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.savePreparedInlineMessage(userId: Long, noinline result: () -> InlineQueryResult): SavePreparedInlineMessageAction = eu.vendeli.tgbot.api.botactions.savePreparedInlineMessage(userId, result)
+public suspend inline fun TelegramBot.removeChatVerification(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.verification
+        .removeChatVerification(chatId)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendGift(
-  giftId: String,
-  userId: Long? = null,
-  payForUpgrade: Boolean? = null,
-  textParseMode: ParseMode? = null,
-  noinline text: () -> String?,
-): SendGiftAction = eu.vendeli.tgbot.api.botactions.sendGift(giftId, userId, payForUpgrade, textParseMode, text)
+public suspend inline fun TelegramBot.removeChatVerification(chat: Chat): Unit =
+    eu.vendeli.tgbot.api.verification
+        .removeChatVerification(chat)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setMyCommands(
-  languageCode: String? = null,
-  scope: BotCommandScope? = null,
-  command: List<BotCommand>,
-): SetMyCommandsAction = eu.vendeli.tgbot.api.botactions.setMyCommands(languageCode, scope, command)
+public suspend inline fun TelegramBot.removeUserVerification(userId: Long): Unit =
+    eu.vendeli.tgbot.api.verification
+        .removeUserVerification(userId)
+        .send(this)
 
-@Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setMyCommands(
-  languageCode: String? = null,
-  scope: BotCommandScope? = null,
-  vararg command: BotCommand,
-): SetMyCommandsAction = eu.vendeli.tgbot.api.botactions.setMyCommands(languageCode, scope, command = command)
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.removeUserVerification(user: User): Unit =
+    eu.vendeli.tgbot.api.verification
+        .removeUserVerification(user)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setMyCommands(
-  languageCode: String? = null,
-  scope: BotCommandScope? = null,
-  noinline block: BotCommandsBuilder.() -> Unit,
-): SetMyCommandsAction = eu.vendeli.tgbot.api.botactions.setMyCommands(languageCode, scope, block)
+public suspend inline fun TelegramBot.verifyChat(chatId: Long, customDescription: String? = null): Unit =
+    eu.vendeli.tgbot.api.verification
+        .verifyChat(chatId, customDescription)
+        .send(this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.verifyChat(chatId: Long, noinline customDescription: () -> String?): Unit =
+    eu.vendeli.tgbot.api.verification
+        .verifyChat(chatId, customDescription)
+        .send(this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.verifyChat(chat: Chat, noinline customDescription: () -> String?): Unit =
+    eu.vendeli.tgbot.api.verification
+        .verifyChat(chat, customDescription)
+        .send(this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.verifyUser(userId: Long, customDescription: String? = null): Unit =
+    eu.vendeli.tgbot.api.verification
+        .verifyUser(userId, customDescription)
+        .send(this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.verifyUser(userId: Long, noinline customDescription: () -> String?): Unit =
+    eu.vendeli.tgbot.api.verification
+        .verifyUser(userId, customDescription)
+        .send(this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.verifyUser(user: User, noinline customDescription: () -> String?): Unit =
+    eu.vendeli.tgbot.api.verification
+        .verifyUser(user, customDescription)
+        .send(this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.getStarTransactions(offset: Int? = null, limit: Int? = null): Unit =
+    eu.vendeli.tgbot.api.payments
+        .getStarTransactions(offset, limit)
+        .send(this)
 
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.refundStarPayment(telegramPaymentChargeId: String, userId: Long): Unit =
+    eu.vendeli.tgbot.api.payments
+        .refundStarPayment(telegramPaymentChargeId, userId)
+        .send(this)
+
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setMyDefaultAdministratorRights(rights: ChatAdministratorRights? = null, forChannel: Boolean? = null): SetMyDefaultAdministratorRightsAction = eu.vendeli.tgbot.api.botactions.setMyDefaultAdministratorRights(rights, forChannel)
+public suspend inline fun TelegramBot.createInvoiceLink(
+    title: String,
+    description: String,
+    payload: String,
+    currency: Currency,
+    prices: List<LabeledPrice>,
+): Unit = eu.vendeli.tgbot.api.payments
+    .createInvoiceLink(title, description, payload, currency, prices)
+    .send(this)
+
+@Suppress("NOTHING_TO_INLINE")
+public suspend inline fun TelegramBot.createInvoiceLink(
+    title: String,
+    description: String,
+    currency: Currency,
+    vararg prices: LabeledPrice,
+    noinline payload: () -> String,
+): Unit =
+    eu.vendeli.tgbot.api.payments
+        .createInvoiceLink(title, description, currency, prices = prices, payload)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setMyDescription(description: String? = null, languageCode: String? = null): SetMyDescriptionAction = eu.vendeli.tgbot.api.botactions.setMyDescription(description, languageCode)
+public suspend inline fun TelegramBot.invoice(
+    title: String,
+    description: String,
+    payload: String,
+    providerToken: String? = null,
+    currency: Currency,
+    prices: List<LabeledPrice>,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.payments
+    .invoice(title, description, payload, providerToken, currency, prices)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setMyName(name: String? = null, languageCode: String? = null): SetMyNameAction = eu.vendeli.tgbot.api.botactions.setMyName(name, languageCode)
+public suspend inline fun TelegramBot.invoice(
+    title: String,
+    description: String,
+    providerToken: String? = null,
+    currency: Currency,
+    vararg prices: LabeledPrice,
+    noinline payload: () -> String,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.payments
+    .invoice(title, description, providerToken, currency, prices = prices, payload)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setMyShortDescription(description: String? = null, languageCode: String? = null): SetMyShortDescriptionAction = eu.vendeli.tgbot.api.botactions.setMyShortDescription(description, languageCode)
+public suspend inline fun TelegramBot.sendInvoice(
+    title: String,
+    description: String,
+    payload: String,
+    providerToken: String? = null,
+    currency: Currency,
+    prices: List<LabeledPrice>,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.payments
+    .sendInvoice(title, description, payload, providerToken, currency, prices)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setUserEmojiStatus(
-  userId: Long,
-  emojiStatusCustomEmojiId: String? = null,
-  emojiStatusExpirationDate: Instant? = null,
-): SetUserEmojiStatusAction = eu.vendeli.tgbot.api.botactions.setUserEmojiStatus(userId, emojiStatusCustomEmojiId, emojiStatusExpirationDate)
+public suspend inline fun TelegramBot.editUserStarSubscription(
+    userId: Long,
+    telegramPaymentChargeId: String,
+    isCanceled: Boolean,
+): Unit = eu.vendeli.tgbot.api.payments
+    .editUserStarSubscription(userId, telegramPaymentChargeId, isCanceled)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setWebhook(url: String): SetWebhookAction = eu.vendeli.tgbot.api.botactions.setWebhook(url)
+public suspend inline fun TelegramBot.setPassportDataErrors(userId: Long, errors: List<PassportElementError>): Unit =
+    eu.vendeli.tgbot.api.passport
+        .setPassportDataErrors(userId, errors)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.approveChatJoinRequest(userId: Long): ApproveChatJoinRequestAction = eu.vendeli.tgbot.api.chat.approveChatJoinRequest(userId)
+public suspend inline fun TelegramBot.setPassportDataErrors(
+    userId: Long,
+    noinline errors: ListingBuilder<PassportElementError>.() -> Unit,
+): Unit = eu.vendeli.tgbot.api.passport
+    .setPassportDataErrors(userId, errors)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.approveChatJoinRequest(user: User): ApproveChatJoinRequestAction = eu.vendeli.tgbot.api.chat.approveChatJoinRequest(user)
+public suspend inline fun TelegramBot.setPassportDataError(userId: Long, vararg error: PassportElementError): Unit =
+    eu.vendeli.tgbot.api.passport
+        .setPassportDataError(userId, error = error)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.banChatMember(
-  userId: Long,
-  untilDate: Instant? = null,
-  revokeMessages: Boolean? = null,
-): BanChatMemberAction = eu.vendeli.tgbot.api.chat.banChatMember(userId, untilDate, revokeMessages)
+public suspend inline fun TelegramBot.setMyDefaultAdministratorRights(
+    rights: ChatAdministratorRights? = null,
+    forChannel: Boolean? = null,
+): Unit = eu.vendeli.tgbot.api.botactions
+    .setMyDefaultAdministratorRights(rights, forChannel)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.banChatMember(
-  user: User,
-  untilDate: Instant? = null,
-  revokeMessages: Boolean? = null,
-): BanChatMemberAction = eu.vendeli.tgbot.api.chat.banChatMember(user, untilDate, revokeMessages)
+public suspend inline fun TelegramBot.savePreparedInlineMessage(userId: Long, result: InlineQueryResult): Unit =
+    eu.vendeli.tgbot.api.botactions
+        .savePreparedInlineMessage(userId, result)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.banChatSenderChat(senderChatId: Long): BanChatSenderChatAction = eu.vendeli.tgbot.api.chat.banChatSenderChat(senderChatId)
+public suspend inline fun TelegramBot.savePreparedInlineMessage(
+    userId: Long,
+    noinline result: () -> InlineQueryResult,
+): Unit = eu.vendeli.tgbot.api.botactions
+    .savePreparedInlineMessage(userId, result)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.banChatSenderChat(senderChatId: Chat): BanChatSenderChatAction = eu.vendeli.tgbot.api.chat.banChatSenderChat(senderChatId)
+public suspend inline fun TelegramBot.getMe(): Unit = eu.vendeli.tgbot.api.botactions
+    .getMe()
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.banChatSenderChat(senderChatId: User): BanChatSenderChatAction = eu.vendeli.tgbot.api.chat.banChatSenderChat(senderChatId)
+public suspend inline fun TelegramBot.setUserEmojiStatus(
+    userId: Long,
+    emojiStatusCustomEmojiId: String? = null,
+    emojiStatusExpirationDate: Instant? = null,
+): Unit =
+    eu.vendeli.tgbot.api.botactions
+        .setUserEmojiStatus(userId, emojiStatusCustomEmojiId, emojiStatusExpirationDate)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.chatAction(action: ChatAction, messageThreadId: Int? = null): SendChatActionAction = eu.vendeli.tgbot.api.chat.chatAction(action, messageThreadId)
+public suspend inline fun TelegramBot.setMyName(name: String? = null, languageCode: String? = null): Unit =
+    eu.vendeli.tgbot.api.botactions
+        .setMyName(name, languageCode)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.chatAction(messageThreadId: Int? = null, noinline block: () -> ChatAction): SendChatActionAction = eu.vendeli.tgbot.api.chat.chatAction(messageThreadId, block)
+public suspend inline fun TelegramBot.logOut(): Unit = eu.vendeli.tgbot.api.botactions
+    .logOut()
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendChatAction(messageThreadId: Int? = null, noinline block: () -> ChatAction): SendChatActionAction = eu.vendeli.tgbot.api.chat.sendChatAction(messageThreadId, block)
+public suspend inline fun TelegramBot.sendGift(
+    giftId: String,
+    userId: Long? = null,
+    payForUpgrade: Boolean? = null,
+    textParseMode: ParseMode? = null,
+    noinline text: () -> String?,
+): Unit = eu.vendeli.tgbot.api.botactions
+    .sendGift(giftId, userId, payForUpgrade, textParseMode, text)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendChatAction(action: ChatAction, messageThreadId: Int? = null): SendChatActionAction = eu.vendeli.tgbot.api.chat.sendChatAction(action, messageThreadId)
+public suspend inline fun TelegramBot.getBusinessConnection(businessConnectionId: String): Unit =
+    eu.vendeli.tgbot.api.botactions
+        .getBusinessConnection(businessConnectionId)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.createChatInviteLink(): CreateChatInviteLinkAction = eu.vendeli.tgbot.api.chat.createChatInviteLink()
+public suspend inline fun TelegramBot.setMyShortDescription(
+    description: String? = null,
+    languageCode: String? = null,
+): Unit = eu.vendeli.tgbot.api.botactions
+    .setMyShortDescription(description, languageCode)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.createChatSubscriptionInviteLink(
-  subscriptionPrice: Int,
-  name: String? = null,
-  subscriptionPeriod: Duration,
-): CreateChatSubscriptionInviteLinkAction = eu.vendeli.tgbot.api.chat.createChatSubscriptionInviteLink(subscriptionPrice, name, subscriptionPeriod)
+public suspend inline fun TelegramBot.getMyDescription(languageCode: String? = null): Unit =
+    eu.vendeli.tgbot.api.botactions
+        .getMyDescription(languageCode)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.declineChatJoinRequest(userId: Long): DeclineChatJoinRequestAction = eu.vendeli.tgbot.api.chat.declineChatJoinRequest(userId)
+public suspend inline fun TelegramBot.getMyDefaultAdministratorRights(forChannel: Boolean? = null): Unit =
+    eu.vendeli.tgbot.api.botactions
+        .getMyDefaultAdministratorRights(forChannel)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.declineChatJoinRequest(user: User): DeclineChatJoinRequestAction = eu.vendeli.tgbot.api.chat.declineChatJoinRequest(user)
+public suspend inline fun TelegramBot.getMyCommands(
+    languageCode: String? = null,
+    scope: BotCommandScope? = null,
+): Unit = eu.vendeli.tgbot.api.botactions
+    .getMyCommands(languageCode, scope)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.deleteChatPhoto(): DeleteChatPhotoAction = eu.vendeli.tgbot.api.chat.deleteChatPhoto()
+public suspend inline fun TelegramBot.getUpdates(): Unit = eu.vendeli.tgbot.api.botactions
+    .getUpdates()
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.deleteChatStickerSet(): DeleteChatStickerSetAction = eu.vendeli.tgbot.api.chat.deleteChatStickerSet()
+public suspend inline fun TelegramBot.deleteMyCommands(
+    languageCode: String? = null,
+    scope: BotCommandScope? = null,
+): Unit = eu.vendeli.tgbot.api.botactions
+    .deleteMyCommands(languageCode, scope)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editChatInviteLink(inviteLink: String): EditChatInviteLinkAction = eu.vendeli.tgbot.api.chat.editChatInviteLink(inviteLink)
+public suspend inline fun TelegramBot.deleteWebhook(dropPendingUpdates: Boolean): Unit =
+    eu.vendeli.tgbot.api.botactions
+        .deleteWebhook(dropPendingUpdates)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editChatSubscriptionInviteLink(inviteLink: String, name: String? = null): EditChatSubscriptionInviteLinkAction = eu.vendeli.tgbot.api.chat.editChatSubscriptionInviteLink(inviteLink, name)
+public suspend inline fun TelegramBot.getWebhookInfo(): Unit =
+    eu.vendeli.tgbot.api.botactions
+        .getWebhookInfo()
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.exportChatInviteLink(): ExportChatInviteLinkAction = eu.vendeli.tgbot.api.chat.exportChatInviteLink()
+public suspend inline fun TelegramBot.getMyName(languageCode: String? = null): Unit =
+    eu.vendeli.tgbot.api.botactions
+        .getMyName(languageCode)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getChat(): GetChatAction = eu.vendeli.tgbot.api.chat.getChat()
+public suspend inline fun TelegramBot.close(): Unit = eu.vendeli.tgbot.api.botactions
+    .close()
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getChatAdministrators(): GetChatAdministratorsAction = eu.vendeli.tgbot.api.chat.getChatAdministrators()
+public suspend inline fun TelegramBot.setWebhook(url: String): Unit =
+    eu.vendeli.tgbot.api.botactions
+        .setWebhook(url)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getChatMember(userId: Long): GetChatMemberAction = eu.vendeli.tgbot.api.chat.getChatMember(userId)
+public suspend inline fun TelegramBot.getAvailableGifts(): Unit =
+    eu.vendeli.tgbot.api.botactions
+        .getAvailableGifts()
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getChatMember(user: User): GetChatMemberAction = eu.vendeli.tgbot.api.chat.getChatMember(user)
+public suspend inline fun TelegramBot.setMyDescription(
+    description: String? = null,
+    languageCode: String? = null,
+): Unit = eu.vendeli.tgbot.api.botactions
+    .setMyDescription(description, languageCode)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getChatMemberCount(): GetChatMemberCountAction = eu.vendeli.tgbot.api.chat.getChatMemberCount()
+public suspend inline fun TelegramBot.getMyShortDescription(languageCode: String? = null): Unit =
+    eu.vendeli.tgbot.api.botactions
+        .getMyShortDescription(languageCode)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getChatMenuButton(): GetChatMenuButtonAction = eu.vendeli.tgbot.api.chat.getChatMenuButton()
+public suspend inline fun TelegramBot.setMyCommands(
+    languageCode: String? = null,
+    scope: BotCommandScope? = null,
+    command: List<BotCommand>,
+): Unit = eu.vendeli.tgbot.api.botactions
+    .setMyCommands(languageCode, scope, command)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getUserChatBoosts(userId: Long): GetUserChatBoostsAction = eu.vendeli.tgbot.api.chat.getUserChatBoosts(userId)
+public suspend inline fun TelegramBot.setMyCommands(
+    languageCode: String? = null,
+    scope: BotCommandScope? = null,
+    vararg command: BotCommand,
+): Unit = eu.vendeli.tgbot.api.botactions
+    .setMyCommands(languageCode, scope, command = command)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getUserChatBoosts(user: User): GetUserChatBoostsAction = eu.vendeli.tgbot.api.chat.getUserChatBoosts(user)
+public suspend inline fun TelegramBot.setMyCommands(
+    languageCode: String? = null,
+    scope: BotCommandScope? = null,
+    noinline block: BotCommandsBuilder.() -> Unit,
+): Unit = eu.vendeli.tgbot.api.botactions
+    .setMyCommands(languageCode, scope, block)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.leaveChat(): LeaveChatAction = eu.vendeli.tgbot.api.chat.leaveChat()
+public suspend inline fun TelegramBot.photo(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .photo(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.pinChatMessage(messageId: Long, disableNotification: Boolean? = null): PinChatMessageAction = eu.vendeli.tgbot.api.chat.pinChatMessage(messageId, disableNotification)
+public suspend inline fun TelegramBot.photo(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .photo(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.promoteChatMember(userId: Long): PromoteChatMemberAction = eu.vendeli.tgbot.api.chat.promoteChatMember(userId)
+public suspend inline fun TelegramBot.photo(ba: ByteArray, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .photo(ba)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.promoteChatMember(user: User): PromoteChatMemberAction = eu.vendeli.tgbot.api.chat.promoteChatMember(user)
+public suspend inline fun TelegramBot.photo(`file`: InputFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .photo(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.restrictChatMember(
-  userId: Long,
-  untilDate: Instant? = null,
-  useIndependentChatPermissions: Boolean? = null,
-  noinline chatPermissions: ChatPermissions.() -> Unit,
-): RestrictChatMemberAction = eu.vendeli.tgbot.api.chat.restrictChatMember(userId, untilDate, useIndependentChatPermissions, chatPermissions)
+public suspend inline fun TelegramBot.sendPhoto(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendPhoto(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.restrictChatMember(
-  userId: Long,
-  chatPermissions: ChatPermissions,
-  untilDate: Instant? = null,
-  useIndependentChatPermissions: Boolean? = null,
-): RestrictChatMemberAction = eu.vendeli.tgbot.api.chat.restrictChatMember(userId, chatPermissions, untilDate, useIndependentChatPermissions)
+public suspend inline fun TelegramBot.sendPhoto(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendPhoto(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.restrictChatMember(
-  user: User,
-  untilDate: Instant? = null,
-  useIndependentChatPermissions: Boolean? = null,
-  noinline chatPermissions: ChatPermissions.() -> Unit,
-): RestrictChatMemberAction = eu.vendeli.tgbot.api.chat.restrictChatMember(user, untilDate, useIndependentChatPermissions, chatPermissions)
+public suspend inline fun TelegramBot.sendPaidMedia(
+    starCount: Int,
+    media: List<InputPaidMedia>,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.media
+    .sendPaidMedia(starCount, media)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.restrictChatMember(
-  user: User,
-  chatPermissions: ChatPermissions,
-  untilDate: Instant? = null,
-  useIndependentChatPermissions: Boolean? = null,
-): RestrictChatMemberAction = eu.vendeli.tgbot.api.chat.restrictChatMember(user, chatPermissions, untilDate, useIndependentChatPermissions)
+public suspend inline fun TelegramBot.sendPaidMedia(
+    starCount: Int,
+    noinline media: ListingBuilder<InputPaidMedia>.() -> Unit,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.media
+    .sendPaidMedia(starCount, media)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.revokeChatInviteLink(inviteLink: String): RevokeChatInviteLinkAction = eu.vendeli.tgbot.api.chat.revokeChatInviteLink(inviteLink)
+public suspend inline fun TelegramBot.sendPaidMedia(
+    starCount: Int,
+    vararg media: InputPaidMedia,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.media
+    .sendPaidMedia(starCount, media = media)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setChatAdministratorCustomTitle(userId: Long, customTitle: String): SetChatAdministratorCustomTitleAction = eu.vendeli.tgbot.api.chat.setChatAdministratorCustomTitle(userId, customTitle)
+public suspend inline fun TelegramBot.voice(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .voice(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setChatAdministratorCustomTitle(user: User, customTitle: String): SetChatAdministratorCustomTitleAction = eu.vendeli.tgbot.api.chat.setChatAdministratorCustomTitle(user, customTitle)
+public suspend inline fun TelegramBot.voice(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .voice(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setChatDescription(title: String? = null): SetChatDescriptionAction = eu.vendeli.tgbot.api.chat.setChatDescription(title)
+public suspend inline fun TelegramBot.voice(`file`: InputFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .voice(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setChatMenuButton(menuButton: MenuButton): SetChatMenuButtonAction = eu.vendeli.tgbot.api.chat.setChatMenuButton(menuButton)
+public suspend inline fun TelegramBot.voice(ba: ByteArray, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .voice(ba)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setChatPermissions(permissions: ChatPermissions, useIndependentChatPermissions: Boolean? = null): SetChatPermissionsAction = eu.vendeli.tgbot.api.chat.setChatPermissions(permissions, useIndependentChatPermissions)
+public suspend inline fun TelegramBot.sendVoice(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendVoice(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setChatPermissions(useIndependentChatPermissions: Boolean? = null, noinline permissions: ChatPermissions.() -> Unit): SetChatPermissionsAction = eu.vendeli.tgbot.api.chat.setChatPermissions(useIndependentChatPermissions, permissions)
+public suspend inline fun TelegramBot.sendVoice(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendVoice(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setChatPhoto(`file`: ImplicitFile): SetChatPhotoAction = eu.vendeli.tgbot.api.chat.setChatPhoto(file)
+public suspend inline fun TelegramBot.getUserProfilePhotos(
+    userId: Long,
+    offset: Int? = null,
+    limit: Int? = null,
+): Unit = eu.vendeli.tgbot.api.media
+    .getUserProfilePhotos(userId, offset, limit)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setChatPhoto(noinline block: () -> String): SetChatPhotoAction = eu.vendeli.tgbot.api.chat.setChatPhoto(block)
+public suspend inline fun TelegramBot.getUserProfilePhotos(
+    user: User,
+    offset: Int? = null,
+    limit: Int? = null,
+): Unit = eu.vendeli.tgbot.api.media
+    .getUserProfilePhotos(user, offset, limit)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setChatPhoto(`file`: InputFile): SetChatPhotoAction = eu.vendeli.tgbot.api.chat.setChatPhoto(file)
+public suspend inline fun TelegramBot.document(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .document(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setChatStickerSet(stickerSetName: String): SetChatStickerSetAction = eu.vendeli.tgbot.api.chat.setChatStickerSet(stickerSetName)
+public suspend inline fun TelegramBot.document(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .document(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setChatTitle(title: String): SetChatTitleAction = eu.vendeli.tgbot.api.chat.setChatTitle(title)
+public suspend inline fun TelegramBot.document(ba: ByteArray, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .document(ba)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.unbanChatMember(userId: Long, onlyIfBanned: Boolean? = null): UnbanChatMemberAction = eu.vendeli.tgbot.api.chat.unbanChatMember(userId, onlyIfBanned)
+public suspend inline fun TelegramBot.document(`file`: InputFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .document(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.unbanChatMember(user: User, onlyIfBanned: Boolean? = null): UnbanChatMemberAction = eu.vendeli.tgbot.api.chat.unbanChatMember(user, onlyIfBanned)
+public suspend inline fun TelegramBot.sendDocument(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendDocument(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.unbanChatSenderChat(senderChatId: Long): UnbanChatSenderChatAction = eu.vendeli.tgbot.api.chat.unbanChatSenderChat(senderChatId)
+public suspend inline fun TelegramBot.sendDocument(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendDocument(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.unbanChatSenderChat(senderChatId: Chat): UnbanChatSenderChatAction = eu.vendeli.tgbot.api.chat.unbanChatSenderChat(senderChatId)
+public suspend inline fun TelegramBot.video(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .video(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.unbanChatSenderChat(senderChatId: User): UnbanChatSenderChatAction = eu.vendeli.tgbot.api.chat.unbanChatSenderChat(senderChatId)
+public suspend inline fun TelegramBot.video(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .video(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.unpinAllChatMessages(): UnpinAllChatMessagesAction = eu.vendeli.tgbot.api.chat.unpinAllChatMessages()
+public suspend inline fun TelegramBot.video(ba: ByteArray, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .video(ba)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.unpinChatMessage(messageId: Long): UnpinChatMessageAction = eu.vendeli.tgbot.api.chat.unpinChatMessage(messageId)
+public suspend inline fun TelegramBot.video(`file`: InputFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .video(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.contact(firstName: String, phoneNumber: String): SendContactAction = eu.vendeli.tgbot.api.common.contact(firstName, phoneNumber)
+public suspend inline fun TelegramBot.sendVideo(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendVideo(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendContact(firstName: String, phoneNumber: String): SendContactAction = eu.vendeli.tgbot.api.common.sendContact(firstName, phoneNumber)
+public suspend inline fun TelegramBot.sendVideo(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendVideo(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendDice(emoji: String? = null): SendDiceAction = eu.vendeli.tgbot.api.common.sendDice(emoji)
+public suspend inline fun TelegramBot.sticker(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sticker(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.dice(emoji: String? = null): SendDiceAction = eu.vendeli.tgbot.api.common.dice(emoji)
+public suspend inline fun TelegramBot.sticker(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sticker(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.dice(noinline block: () -> DiceEmoji): SendDiceAction = eu.vendeli.tgbot.api.common.dice(block)
+public suspend inline fun TelegramBot.sticker(ba: ByteArray, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sticker(ba)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendLocation(latitude: Float, longitude: Float): SendLocationAction = eu.vendeli.tgbot.api.common.sendLocation(latitude, longitude)
+public suspend inline fun TelegramBot.sticker(`file`: InputFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sticker(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.location(latitude: Float, longitude: Float): SendLocationAction = eu.vendeli.tgbot.api.common.location(latitude, longitude)
+public suspend inline fun TelegramBot.sendSticker(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendSticker(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.poll(question: String, options: List<InputPollOption>): SendPollAction = eu.vendeli.tgbot.api.common.poll(question, options)
+public suspend inline fun TelegramBot.sendSticker(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendSticker(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.poll(question: String, noinline options: PollOptionsBuilder.() -> Unit): SendPollAction = eu.vendeli.tgbot.api.common.poll(question, options)
+public suspend inline fun TelegramBot.sendMediaGroup(media: List<InputMedia>, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendMediaGroup(media)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.poll(question: String, vararg options: InputPollOption): SendPollAction = eu.vendeli.tgbot.api.common.poll(question, options = options)
+public suspend inline fun TelegramBot.sendMediaGroup(vararg media: InputMedia, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendMediaGroup(media = media)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendPoll(question: String, noinline options: PollOptionsBuilder.() -> Unit): SendPollAction = eu.vendeli.tgbot.api.common.sendPoll(question, options)
+public suspend inline fun TelegramBot.mediaGroup(vararg media: InputMedia.Audio, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .mediaGroup(media = media)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.stopPoll(messageId: Long): StopPollAction = eu.vendeli.tgbot.api.common.stopPoll(messageId)
+public suspend inline fun TelegramBot.mediaGroup(vararg media: InputMedia.Document, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .mediaGroup(media = media)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.venue(
-  latitude: Float,
-  longitude: Float,
-  title: String,
-  address: String,
-): SendVenueAction = eu.vendeli.tgbot.api.common.venue(latitude, longitude, title, address)
+public suspend inline fun TelegramBot.mediaGroup(vararg media: InputMedia.Photo, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .mediaGroup(media = media)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendVenue(
-  latitude: Float,
-  longitude: Float,
-  title: String,
-  address: String,
-): SendVenueAction = eu.vendeli.tgbot.api.common.sendVenue(latitude, longitude, title, address)
+public suspend inline fun TelegramBot.mediaGroup(vararg media: InputMedia.Video, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .mediaGroup(media = media)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.closeForumTopic(messageThreadId: Int): CloseForumTopicAction = eu.vendeli.tgbot.api.forum.closeForumTopic(messageThreadId)
+public suspend inline fun TelegramBot.videoNote(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .videoNote(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.closeGeneralForumTopic(): CloseGeneralForumTopicAction = eu.vendeli.tgbot.api.forum.closeGeneralForumTopic()
+public suspend inline fun TelegramBot.videoNote(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .videoNote(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.createForumTopic(
-  name: String,
-  iconColor: IconColor? = null,
-  iconCustomEmojiId: String? = null,
-): CreateForumTopicAction = eu.vendeli.tgbot.api.forum.createForumTopic(name, iconColor, iconCustomEmojiId)
+public suspend inline fun TelegramBot.videoNote(ba: ByteArray, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .videoNote(ba)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.deleteForumTopic(messageThreadId: Int): DeleteForumTopicAction = eu.vendeli.tgbot.api.forum.deleteForumTopic(messageThreadId)
+public suspend inline fun TelegramBot.videoNote(input: InputFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .videoNote(input)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editForumTopic(
-  messageThreadId: Int,
-  name: String? = null,
-  iconCustomEmojiId: String? = null,
-): EditForumTopicAction = eu.vendeli.tgbot.api.forum.editForumTopic(messageThreadId, name, iconCustomEmojiId)
+public suspend inline fun TelegramBot.sendVideoNote(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendVideoNote(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editGeneralForumTopic(name: String): EditGeneralForumTopicAction = eu.vendeli.tgbot.api.forum.editGeneralForumTopic(name)
+public suspend inline fun TelegramBot.sendVideoNote(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendVideoNote(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getForumTopicIconStickers(): GetForumTopicIconStickersAction = eu.vendeli.tgbot.api.forum.getForumTopicIconStickers()
+public suspend inline fun TelegramBot.audio(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .audio(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.hideGeneralForumTopic(): HideGeneralForumTopicAction = eu.vendeli.tgbot.api.forum.hideGeneralForumTopic()
+public suspend inline fun TelegramBot.audio(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .audio(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.reopenForumTopic(messageThreadId: Int): ReopenForumTopicAction = eu.vendeli.tgbot.api.forum.reopenForumTopic(messageThreadId)
+public suspend inline fun TelegramBot.audio(ba: ByteArray, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .audio(ba)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.reopenGeneralForumTopic(): ReopenGeneralForumTopicAction = eu.vendeli.tgbot.api.forum.reopenGeneralForumTopic()
+public suspend inline fun TelegramBot.audio(`file`: InputFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .audio(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.unhideGeneralForumTopic(): UnhideGeneralForumTopicAction = eu.vendeli.tgbot.api.forum.unhideGeneralForumTopic()
+public suspend inline fun TelegramBot.sendAudio(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendAudio(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.unpinAllForumTopicMessages(messageThreadId: Int): UnpinAllForumTopicMessagesAction = eu.vendeli.tgbot.api.forum.unpinAllForumTopicMessages(messageThreadId)
+public suspend inline fun TelegramBot.sendAudio(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendAudio(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.unpinAllGeneralForumTopicMessages(): UnpinAllGeneralForumTopicMessagesAction = eu.vendeli.tgbot.api.forum.unpinAllGeneralForumTopicMessages()
+public suspend inline fun TelegramBot.animation(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .animation(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendGame(gameShortName: String): SendGameAction = eu.vendeli.tgbot.api.game.sendGame(gameShortName)
+public suspend inline fun TelegramBot.animation(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .animation(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.game(gameShortName: String): SendGameAction = eu.vendeli.tgbot.api.game.game(gameShortName)
+public suspend inline fun TelegramBot.animation(ba: ByteArray, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .animation(ba)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getGameHighScores(userId: Long, messageId: Long): GetGameHighScoresAction = eu.vendeli.tgbot.api.game.getGameHighScores(userId, messageId)
+public suspend inline fun TelegramBot.animation(`file`: InputFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .animation(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getGameHighScores(userId: Long): GetGameHighScoresAction = eu.vendeli.tgbot.api.game.getGameHighScores(userId)
+public suspend inline fun TelegramBot.sendAnimation(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendAnimation(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getGameHighScores(user: User, messageId: Long): GetGameHighScoresAction = eu.vendeli.tgbot.api.game.getGameHighScores(user, messageId)
+public suspend inline fun TelegramBot.sendAnimation(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.media
+        .sendAnimation(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getGameHighScores(user: User): GetGameHighScoresAction = eu.vendeli.tgbot.api.game.getGameHighScores(user)
+public suspend inline fun TelegramBot.getFile(fileId: String): Unit =
+    eu.vendeli.tgbot.api.media
+        .getFile(fileId)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setGameScore(
-  userId: Long,
-  messageId: Long,
-  score: Long,
-): SetGameScoreAction = eu.vendeli.tgbot.api.game.setGameScore(userId, messageId, score)
+public suspend inline fun TelegramBot.getChatMemberCount(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .getChatMemberCount()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setGameScore(userId: Long, score: Long): SetGameScoreAction = eu.vendeli.tgbot.api.game.setGameScore(userId, score)
+public suspend inline fun TelegramBot.setChatMenuButton(menuButton: MenuButton, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .setChatMenuButton(menuButton)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setGameScore(user: User, score: Long): SetGameScoreAction = eu.vendeli.tgbot.api.game.setGameScore(user, score)
+public suspend inline fun TelegramBot.unpinAllChatMessages(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .unpinAllChatMessages()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setGameScore(
-  user: User,
-  messageId: Long,
-  score: Long,
-): SetGameScoreAction = eu.vendeli.tgbot.api.game.setGameScore(user, messageId, score)
+public suspend inline fun TelegramBot.getUserChatBoosts(userId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .getUserChatBoosts(userId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.animation(`file`: ImplicitFile): SendAnimationAction = eu.vendeli.tgbot.api.media.animation(file)
+public suspend inline fun TelegramBot.getUserChatBoosts(user: User, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .getUserChatBoosts(user)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.animation(noinline block: () -> String): SendAnimationAction = eu.vendeli.tgbot.api.media.animation(block)
+public suspend inline fun TelegramBot.unpinChatMessage(messageId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .unpinChatMessage(messageId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.animation(ba: ByteArray): SendAnimationAction = eu.vendeli.tgbot.api.media.animation(ba)
+public suspend inline fun TelegramBot.deleteChatStickerSet(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .deleteChatStickerSet()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.animation(`file`: InputFile): SendAnimationAction = eu.vendeli.tgbot.api.media.animation(file)
+public suspend inline fun TelegramBot.unbanChatSenderChat(senderChatId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .unbanChatSenderChat(senderChatId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendAnimation(noinline block: () -> String): SendAnimationAction = eu.vendeli.tgbot.api.media.sendAnimation(block)
+public suspend inline fun TelegramBot.unbanChatSenderChat(senderChatId: Chat, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .unbanChatSenderChat(senderChatId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendAnimation(`file`: ImplicitFile): SendAnimationAction = eu.vendeli.tgbot.api.media.sendAnimation(file)
+public suspend inline fun TelegramBot.unbanChatSenderChat(senderChatId: User, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .unbanChatSenderChat(senderChatId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.audio(`file`: ImplicitFile): SendAudioAction = eu.vendeli.tgbot.api.media.audio(file)
+public suspend inline fun TelegramBot.getChatMenuButton(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .getChatMenuButton()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.audio(noinline block: () -> String): SendAudioAction = eu.vendeli.tgbot.api.media.audio(block)
+public suspend inline fun TelegramBot.banChatSenderChat(senderChatId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .banChatSenderChat(senderChatId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.audio(ba: ByteArray): SendAudioAction = eu.vendeli.tgbot.api.media.audio(ba)
+public suspend inline fun TelegramBot.banChatSenderChat(senderChatId: Chat, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .banChatSenderChat(senderChatId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.audio(`file`: InputFile): SendAudioAction = eu.vendeli.tgbot.api.media.audio(file)
+public suspend inline fun TelegramBot.banChatSenderChat(senderChatId: User, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .banChatSenderChat(senderChatId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendAudio(noinline block: () -> String): SendAudioAction = eu.vendeli.tgbot.api.media.sendAudio(block)
+public suspend inline fun TelegramBot.setChatStickerSet(stickerSetName: String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .setChatStickerSet(stickerSetName)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendAudio(`file`: ImplicitFile): SendAudioAction = eu.vendeli.tgbot.api.media.sendAudio(file)
+public suspend inline fun TelegramBot.getChat(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .getChat()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.document(`file`: ImplicitFile): SendDocumentAction = eu.vendeli.tgbot.api.media.document(file)
+public suspend inline fun TelegramBot.setChatAdministratorCustomTitle(
+    userId: Long,
+    customTitle: String,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .setChatAdministratorCustomTitle(userId, customTitle)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.document(noinline block: () -> String): SendDocumentAction = eu.vendeli.tgbot.api.media.document(block)
+public suspend inline fun TelegramBot.setChatAdministratorCustomTitle(
+    user: User,
+    customTitle: String,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .setChatAdministratorCustomTitle(user, customTitle)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.document(ba: ByteArray): SendDocumentAction = eu.vendeli.tgbot.api.media.document(ba)
+public suspend inline fun TelegramBot.editChatInviteLink(inviteLink: String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .editChatInviteLink(inviteLink)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.document(`file`: InputFile): SendDocumentAction = eu.vendeli.tgbot.api.media.document(file)
+public suspend inline fun TelegramBot.leaveChat(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .leaveChat()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendDocument(noinline block: () -> String): SendDocumentAction = eu.vendeli.tgbot.api.media.sendDocument(block)
+public suspend inline fun TelegramBot.setChatDescription(title: String? = null, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .setChatDescription(title)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendDocument(`file`: ImplicitFile): SendDocumentAction = eu.vendeli.tgbot.api.media.sendDocument(file)
+public suspend inline fun TelegramBot.getChatAdministrators(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .getChatAdministrators()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getFile(fileId: String): GetFileAction = eu.vendeli.tgbot.api.media.getFile(fileId)
+public suspend inline fun TelegramBot.deleteChatPhoto(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .deleteChatPhoto()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getUserProfilePhotos(
-  userId: Long,
-  offset: Int? = null,
-  limit: Int? = null,
-): GetUserProfilePhotosAction = eu.vendeli.tgbot.api.media.getUserProfilePhotos(userId, offset, limit)
+public suspend inline fun TelegramBot.approveChatJoinRequest(userId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .approveChatJoinRequest(userId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getUserProfilePhotos(
-  user: User,
-  offset: Int? = null,
-  limit: Int? = null,
-): GetUserProfilePhotosAction = eu.vendeli.tgbot.api.media.getUserProfilePhotos(user, offset, limit)
+public suspend inline fun TelegramBot.approveChatJoinRequest(user: User, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .approveChatJoinRequest(user)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendMediaGroup(media: List<InputMedia>): SendMediaGroupAction = eu.vendeli.tgbot.api.media.sendMediaGroup(media)
+public suspend inline fun TelegramBot.editChatSubscriptionInviteLink(
+    inviteLink: String,
+    name: String? = null,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .editChatSubscriptionInviteLink(inviteLink, name)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendMediaGroup(vararg media: InputMedia): SendMediaGroupAction = eu.vendeli.tgbot.api.media.sendMediaGroup(media = media)
+public suspend inline fun TelegramBot.setChatPhoto(`file`: ImplicitFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .setChatPhoto(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.mediaGroup(vararg media: InputMedia.Audio): SendMediaGroupAction = eu.vendeli.tgbot.api.media.mediaGroup(media = media)
+public suspend inline fun TelegramBot.setChatPhoto(noinline block: () -> String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .setChatPhoto(block)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.mediaGroup(vararg media: InputMedia.Document): SendMediaGroupAction = eu.vendeli.tgbot.api.media.mediaGroup(media = media)
+public suspend inline fun TelegramBot.setChatPhoto(`file`: InputFile, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .setChatPhoto(file)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.mediaGroup(vararg media: InputMedia.Photo): SendMediaGroupAction = eu.vendeli.tgbot.api.media.mediaGroup(media = media)
+public suspend inline fun TelegramBot.setChatPermissions(
+    permissions: ChatPermissions,
+    useIndependentChatPermissions: Boolean? = null,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .setChatPermissions(permissions, useIndependentChatPermissions)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.mediaGroup(vararg media: InputMedia.Video): SendMediaGroupAction = eu.vendeli.tgbot.api.media.mediaGroup(media = media)
+public suspend inline fun TelegramBot.setChatPermissions(
+    useIndependentChatPermissions: Boolean? = null,
+    noinline permissions: ChatPermissions.() -> Unit,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .setChatPermissions(useIndependentChatPermissions, permissions)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.photo(`file`: ImplicitFile): SendPhotoAction = eu.vendeli.tgbot.api.media.photo(file)
+public suspend inline fun TelegramBot.createChatSubscriptionInviteLink(
+    subscriptionPrice: Int,
+    name: String? = null,
+    subscriptionPeriod: Duration,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .createChatSubscriptionInviteLink(subscriptionPrice, name, subscriptionPeriod)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.photo(noinline block: () -> String): SendPhotoAction = eu.vendeli.tgbot.api.media.photo(block)
+public suspend inline fun TelegramBot.exportChatInviteLink(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .exportChatInviteLink()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.photo(ba: ByteArray): SendPhotoAction = eu.vendeli.tgbot.api.media.photo(ba)
+public suspend inline fun TelegramBot.pinChatMessage(
+    messageId: Long,
+    disableNotification: Boolean? = null,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .pinChatMessage(messageId, disableNotification)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.photo(`file`: InputFile): SendPhotoAction = eu.vendeli.tgbot.api.media.photo(file)
+public suspend inline fun TelegramBot.getChatMember(userId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .getChatMember(userId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendPhoto(noinline block: () -> String): SendPhotoAction = eu.vendeli.tgbot.api.media.sendPhoto(block)
+public suspend inline fun TelegramBot.getChatMember(user: User, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .getChatMember(user)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendPhoto(`file`: ImplicitFile): SendPhotoAction = eu.vendeli.tgbot.api.media.sendPhoto(file)
+public suspend inline fun TelegramBot.unbanChatMember(
+    userId: Long,
+    onlyIfBanned: Boolean? = null,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .unbanChatMember(userId, onlyIfBanned)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendPaidMedia(starCount: Int, media: List<InputPaidMedia>): SendPaidMediaAction = eu.vendeli.tgbot.api.media.sendPaidMedia(starCount, media)
+public suspend inline fun TelegramBot.unbanChatMember(
+    user: User,
+    onlyIfBanned: Boolean? = null,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .unbanChatMember(user, onlyIfBanned)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendPaidMedia(starCount: Int, noinline media: ListingBuilder<InputPaidMedia>.() -> Unit): SendPaidMediaAction = eu.vendeli.tgbot.api.media.sendPaidMedia(starCount, media)
+public suspend inline fun TelegramBot.promoteChatMember(userId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .promoteChatMember(userId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendPaidMedia(starCount: Int, vararg media: InputPaidMedia): SendPaidMediaAction = eu.vendeli.tgbot.api.media.sendPaidMedia(starCount, media = media)
+public suspend inline fun TelegramBot.promoteChatMember(user: User, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .promoteChatMember(user)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sticker(`file`: ImplicitFile): SendStickerAction = eu.vendeli.tgbot.api.media.sticker(file)
+public suspend inline fun TelegramBot.chatAction(
+    action: ChatAction,
+    messageThreadId: Int? = null,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .chatAction(action, messageThreadId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sticker(noinline block: () -> String): SendStickerAction = eu.vendeli.tgbot.api.media.sticker(block)
+public suspend inline fun TelegramBot.chatAction(
+    messageThreadId: Int? = null,
+    noinline block: () -> ChatAction,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .chatAction(messageThreadId, block)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sticker(ba: ByteArray): SendStickerAction = eu.vendeli.tgbot.api.media.sticker(ba)
+public suspend inline fun TelegramBot.sendChatAction(
+    messageThreadId: Int? = null,
+    noinline block: () -> ChatAction,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .sendChatAction(messageThreadId, block)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sticker(`file`: InputFile): SendStickerAction = eu.vendeli.tgbot.api.media.sticker(file)
+public suspend inline fun TelegramBot.sendChatAction(
+    action: ChatAction,
+    messageThreadId: Int? = null,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .sendChatAction(action, messageThreadId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendSticker(noinline block: () -> String): SendStickerAction = eu.vendeli.tgbot.api.media.sendSticker(block)
+public suspend inline fun TelegramBot.banChatMember(
+    userId: Long,
+    untilDate: Instant? = null,
+    revokeMessages: Boolean? = null,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .banChatMember(userId, untilDate, revokeMessages)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendSticker(`file`: ImplicitFile): SendStickerAction = eu.vendeli.tgbot.api.media.sendSticker(file)
+public suspend inline fun TelegramBot.banChatMember(
+    user: User,
+    untilDate: Instant? = null,
+    revokeMessages: Boolean? = null,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .banChatMember(user, untilDate, revokeMessages)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.video(`file`: ImplicitFile): SendVideoAction = eu.vendeli.tgbot.api.media.video(file)
+public suspend inline fun TelegramBot.restrictChatMember(
+    userId: Long,
+    untilDate: Instant? = null,
+    useIndependentChatPermissions: Boolean? = null,
+    noinline chatPermissions: ChatPermissions.() -> Unit,
+    chatId: Long,
+): Unit =
+    eu.vendeli.tgbot.api.chat
+        .restrictChatMember(userId, untilDate, useIndependentChatPermissions, chatPermissions)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.video(noinline block: () -> String): SendVideoAction = eu.vendeli.tgbot.api.media.video(block)
+public suspend inline fun TelegramBot.restrictChatMember(
+    userId: Long,
+    chatPermissions: ChatPermissions,
+    untilDate: Instant? = null,
+    useIndependentChatPermissions: Boolean? = null,
+    chatId: Long,
+): Unit =
+    eu.vendeli.tgbot.api.chat
+        .restrictChatMember(userId, chatPermissions, untilDate, useIndependentChatPermissions)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.video(ba: ByteArray): SendVideoAction = eu.vendeli.tgbot.api.media.video(ba)
+public suspend inline fun TelegramBot.restrictChatMember(
+    user: User,
+    untilDate: Instant? = null,
+    useIndependentChatPermissions: Boolean? = null,
+    noinline chatPermissions: ChatPermissions.() -> Unit,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .restrictChatMember(user, untilDate, useIndependentChatPermissions, chatPermissions)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.video(`file`: InputFile): SendVideoAction = eu.vendeli.tgbot.api.media.video(file)
+public suspend inline fun TelegramBot.restrictChatMember(
+    user: User,
+    chatPermissions: ChatPermissions,
+    untilDate: Instant? = null,
+    useIndependentChatPermissions: Boolean? = null,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat
+    .restrictChatMember(user, chatPermissions, untilDate, useIndependentChatPermissions)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendVideo(noinline block: () -> String): SendVideoAction = eu.vendeli.tgbot.api.media.sendVideo(block)
+public suspend inline fun TelegramBot.revokeChatInviteLink(inviteLink: String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .revokeChatInviteLink(inviteLink)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendVideo(`file`: ImplicitFile): SendVideoAction = eu.vendeli.tgbot.api.media.sendVideo(file)
+public suspend inline fun TelegramBot.declineChatJoinRequest(userId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .declineChatJoinRequest(userId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.videoNote(`file`: ImplicitFile): SendVideoNoteAction = eu.vendeli.tgbot.api.media.videoNote(file)
+public suspend inline fun TelegramBot.declineChatJoinRequest(user: User, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .declineChatJoinRequest(user)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.videoNote(noinline block: () -> String): SendVideoNoteAction = eu.vendeli.tgbot.api.media.videoNote(block)
+public suspend inline fun TelegramBot.setChatTitle(title: String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .setChatTitle(title)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.videoNote(ba: ByteArray): SendVideoNoteAction = eu.vendeli.tgbot.api.media.videoNote(ba)
+public suspend inline fun TelegramBot.createChatInviteLink(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.chat
+        .createChatInviteLink()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.videoNote(input: InputFile): SendVideoNoteAction = eu.vendeli.tgbot.api.media.videoNote(input)
+public suspend inline fun TelegramBot.editStory(
+    businessConnectionId: String,
+    storyId: String,
+    content: InputStoryContent,
+): Unit = eu.vendeli.tgbot.api.story
+    .editStory(businessConnectionId, storyId, content)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendVideoNote(`file`: ImplicitFile): SendVideoNoteAction = eu.vendeli.tgbot.api.media.sendVideoNote(file)
+public suspend inline fun TelegramBot.deleteStory(businessConnectionId: String, storyId: String): Unit =
+    eu.vendeli.tgbot.api.story
+        .deleteStory(businessConnectionId, storyId)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendVideoNote(noinline block: () -> String): SendVideoNoteAction = eu.vendeli.tgbot.api.media.sendVideoNote(block)
+public suspend inline fun TelegramBot.postStory(
+    businessConnectionId: String,
+    content: InputStoryContent,
+    activePeriod: Duration,
+): Unit = eu.vendeli.tgbot.api.story
+    .postStory(businessConnectionId, content, activePeriod)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.voice(`file`: ImplicitFile): SendVoiceAction = eu.vendeli.tgbot.api.media.voice(file)
+public suspend inline fun TelegramBot.editMessageCaption(messageId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .editMessageCaption(messageId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.voice(noinline block: () -> String): SendVoiceAction = eu.vendeli.tgbot.api.media.voice(block)
+public suspend inline fun TelegramBot.editMessageCaption(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .editMessageCaption()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.voice(`file`: InputFile): SendVoiceAction = eu.vendeli.tgbot.api.media.voice(file)
+public suspend inline fun TelegramBot.editCaption(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .editCaption()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.voice(ba: ByteArray): SendVoiceAction = eu.vendeli.tgbot.api.media.voice(ba)
+public suspend inline fun TelegramBot.editCaption(messageId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .editCaption(messageId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendVoice(noinline block: () -> String): SendVoiceAction = eu.vendeli.tgbot.api.media.sendVoice(block)
+public suspend inline fun TelegramBot.editMessageReplyMarkup(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .editMessageReplyMarkup()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendVoice(`file`: ImplicitFile): SendVoiceAction = eu.vendeli.tgbot.api.media.sendVoice(file)
+public suspend inline fun TelegramBot.editMarkup(messageId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .editMarkup(messageId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.copyMessage(fromChatId: Identifier, messageId: Long): CopyMessageAction = eu.vendeli.tgbot.api.message.copyMessage(fromChatId, messageId)
+public suspend inline fun TelegramBot.editMarkup(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .editMarkup()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.copyMessage(fromChatId: Long, messageId: Long): CopyMessageAction = eu.vendeli.tgbot.api.message.copyMessage(fromChatId, messageId)
+public suspend inline fun TelegramBot.editMessageReplyMarkup(messageId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .editMessageReplyMarkup(messageId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.copyMessage(fromChatId: String, messageId: Long): CopyMessageAction = eu.vendeli.tgbot.api.message.copyMessage(fromChatId, messageId)
+public suspend inline fun TelegramBot.editMessageMedia(
+    messageId: Long,
+    inputMedia: InputMedia,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .editMessageMedia(messageId, inputMedia)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.copyMessage(fromChatId: User, messageId: Long): CopyMessageAction = eu.vendeli.tgbot.api.message.copyMessage(fromChatId, messageId)
+public suspend inline fun TelegramBot.editMessageMedia(inputMedia: InputMedia, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .editMessageMedia(inputMedia)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.copyMessage(fromChatId: Chat, messageId: Long): CopyMessageAction = eu.vendeli.tgbot.api.message.copyMessage(fromChatId, messageId)
+public suspend inline fun TelegramBot.editMedia(
+    messageId: Long,
+    inputMedia: InputMedia,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .editMedia(messageId, inputMedia)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.copyMessages(fromChatId: Identifier, messageIds: List<Long>): CopyMessagesAction = eu.vendeli.tgbot.api.message.copyMessages(fromChatId, messageIds)
+public suspend inline fun TelegramBot.editMedia(inputMedia: InputMedia, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .editMedia(inputMedia)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.copyMessages(fromChatId: Long, vararg messageId: Long): CopyMessagesAction = eu.vendeli.tgbot.api.message.copyMessages(fromChatId, messageId = messageId)
+public suspend inline fun TelegramBot.editMessageLiveLocation(
+    messageId: Long,
+    latitude: Float,
+    longitude: Float,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .editMessageLiveLocation(messageId, latitude, longitude)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.copyMessages(fromChatId: String, vararg messageId: Long): CopyMessagesAction = eu.vendeli.tgbot.api.message.copyMessages(fromChatId, messageId = messageId)
+public suspend inline fun TelegramBot.editMessageLiveLocation(
+    latitude: Float,
+    longitude: Float,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .editMessageLiveLocation(latitude, longitude)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.copyMessages(fromChatId: User, vararg messageId: Long): CopyMessagesAction = eu.vendeli.tgbot.api.message.copyMessages(fromChatId, messageId = messageId)
+public suspend inline fun TelegramBot.copyMessage(
+    fromChatId: Identifier,
+    messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .copyMessage(fromChatId, messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.copyMessages(fromChatId: Chat, vararg messageId: Long): CopyMessagesAction = eu.vendeli.tgbot.api.message.copyMessages(fromChatId, messageId = messageId)
+public suspend inline fun TelegramBot.copyMessage(
+    fromChatId: Long,
+    messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .copyMessage(fromChatId, messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.deleteMessage(messageId: Long): DeleteMessageAction = eu.vendeli.tgbot.api.message.deleteMessage(messageId)
+public suspend inline fun TelegramBot.copyMessage(
+    fromChatId: String,
+    messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .copyMessage(fromChatId, messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.deleteMessages(messageIds: List<Long>): DeleteMessagesAction = eu.vendeli.tgbot.api.message.deleteMessages(messageIds)
+public suspend inline fun TelegramBot.copyMessage(
+    fromChatId: User,
+    messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .copyMessage(fromChatId, messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.deleteMessages(vararg messageId: Long): DeleteMessagesAction = eu.vendeli.tgbot.api.message.deleteMessages(messageId = messageId)
+public suspend inline fun TelegramBot.copyMessage(
+    fromChatId: Chat,
+    messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .copyMessage(fromChatId, messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editMessageCaption(messageId: Long): EditMessageCaptionAction = eu.vendeli.tgbot.api.message.editMessageCaption(messageId)
+public suspend inline fun TelegramBot.copyMessages(
+    fromChatId: Identifier,
+    messageIds: List<Long>,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .copyMessages(fromChatId, messageIds)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editMessageCaption(): EditMessageCaptionAction = eu.vendeli.tgbot.api.message.editMessageCaption()
+public suspend inline fun TelegramBot.copyMessages(
+    fromChatId: Long,
+    vararg messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .copyMessages(fromChatId, messageId = messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editCaption(): EditMessageCaptionAction = eu.vendeli.tgbot.api.message.editCaption()
+public suspend inline fun TelegramBot.copyMessages(
+    fromChatId: String,
+    vararg messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .copyMessages(fromChatId, messageId = messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editCaption(messageId: Long): EditMessageCaptionAction = eu.vendeli.tgbot.api.message.editCaption(messageId)
+public suspend inline fun TelegramBot.copyMessages(
+    fromChatId: User,
+    vararg messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .copyMessages(fromChatId, messageId = messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editMessageLiveLocation(
-  messageId: Long,
-  latitude: Float,
-  longitude: Float,
-): EditMessageLiveLocationAction = eu.vendeli.tgbot.api.message.editMessageLiveLocation(messageId, latitude, longitude)
+public suspend inline fun TelegramBot.copyMessages(
+    fromChatId: Chat,
+    vararg messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .copyMessages(fromChatId, messageId = messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editMessageLiveLocation(latitude: Float, longitude: Float): EditMessageLiveLocationAction = eu.vendeli.tgbot.api.message.editMessageLiveLocation(latitude, longitude)
+public suspend inline fun TelegramBot.stopMessageLiveLocation(messageId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .stopMessageLiveLocation(messageId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editMessageMedia(messageId: Long, inputMedia: InputMedia): EditMessageMediaAction = eu.vendeli.tgbot.api.message.editMessageMedia(messageId, inputMedia)
+public suspend inline fun TelegramBot.stopMessageLiveLocation(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .stopMessageLiveLocation()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editMessageMedia(inputMedia: InputMedia): EditMessageMediaAction = eu.vendeli.tgbot.api.message.editMessageMedia(inputMedia)
+public suspend inline fun TelegramBot.setMessageReaction(
+    messageId: Long,
+    reaction: List<ReactionType>? = null,
+    isBig: Boolean? = null,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .setMessageReaction(messageId, reaction, isBig)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editMedia(messageId: Long, inputMedia: InputMedia): EditMessageMediaAction = eu.vendeli.tgbot.api.message.editMedia(messageId, inputMedia)
+public suspend inline fun TelegramBot.setMessageReaction(
+    messageId: Long,
+    vararg reaction: ReactionType,
+    isBig: Boolean? = null,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .setMessageReaction(messageId, reaction = reaction, isBig)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editMedia(inputMedia: InputMedia): EditMessageMediaAction = eu.vendeli.tgbot.api.message.editMedia(inputMedia)
+public suspend inline fun TelegramBot.setMessageReaction(
+    messageId: Long,
+    isBig: Boolean? = null,
+    noinline reaction: ListingBuilder<ReactionType>.() -> Unit,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .setMessageReaction(messageId, isBig, reaction)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editMessageReplyMarkup(): EditMessageReplyMarkupAction = eu.vendeli.tgbot.api.message.editMessageReplyMarkup()
+public suspend inline fun TelegramBot.forwardMessages(
+    fromChatId: Identifier,
+    messageIds: List<Long>,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .forwardMessages(fromChatId, messageIds)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editMarkup(messageId: Long): EditMessageReplyMarkupAction = eu.vendeli.tgbot.api.message.editMarkup(messageId)
+public suspend inline fun TelegramBot.forwardMessages(
+    fromChatId: Long,
+    vararg messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .forwardMessages(fromChatId, messageId = messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editMarkup(): EditMessageReplyMarkupAction = eu.vendeli.tgbot.api.message.editMarkup()
+public suspend inline fun TelegramBot.forwardMessages(
+    fromChatId: String,
+    vararg messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .forwardMessages(fromChatId, messageId = messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editMessageReplyMarkup(messageId: Long): EditMessageReplyMarkupAction = eu.vendeli.tgbot.api.message.editMessageReplyMarkup(messageId)
+public suspend inline fun TelegramBot.forwardMessages(
+    fromChatId: User,
+    vararg messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .forwardMessages(fromChatId, messageId = messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editMessageText(messageId: Long, noinline block: () -> String): EditMessageTextAction = eu.vendeli.tgbot.api.message.editMessageText(messageId, block)
+public suspend inline fun TelegramBot.forwardMessages(
+    fromChatId: Chat,
+    vararg messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .forwardMessages(fromChatId, messageId = messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editMessageText(noinline block: EntitiesCtxBuilder<EditMessageTextAction>.() -> String): EditMessageTextAction = eu.vendeli.tgbot.api.message.editMessageText(block)
+public suspend inline fun TelegramBot.deleteMessages(messageIds: List<Long>, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .deleteMessages(messageIds)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editText(messageId: Long, noinline block: () -> String): EditMessageTextAction = eu.vendeli.tgbot.api.message.editText(messageId, block)
+public suspend inline fun TelegramBot.deleteMessages(vararg messageId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .deleteMessages(messageId = messageId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editText(noinline block: EntitiesCtxBuilder<EditMessageTextAction>.() -> String): EditMessageTextAction = eu.vendeli.tgbot.api.message.editText(block)
+public suspend inline fun TelegramBot.message(text: String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .message(text)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.forwardMessage(fromChatId: Identifier, messageId: Long): ForwardMessageAction = eu.vendeli.tgbot.api.message.forwardMessage(fromChatId, messageId)
+public suspend inline fun TelegramBot.message(
+    noinline block: EntitiesCtxBuilder<SendMessageAction>.() -> String,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .message(block)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.forwardMessage(fromChatId: Long, messageId: Long): ForwardMessageAction = eu.vendeli.tgbot.api.message.forwardMessage(fromChatId, messageId)
+public suspend inline fun TelegramBot.sendMessage(text: String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .sendMessage(text)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.forwardMessage(fromChatId: String, messageId: Long): ForwardMessageAction = eu.vendeli.tgbot.api.message.forwardMessage(fromChatId, messageId)
+public suspend inline fun TelegramBot.sendMessage(
+    noinline block: EntitiesCtxBuilder<SendMessageAction>.() -> String,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .sendMessage(block)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.forwardMessage(fromChatId: User, messageId: Long): ForwardMessageAction = eu.vendeli.tgbot.api.message.forwardMessage(fromChatId, messageId)
+public suspend inline fun TelegramBot.editMessageText(
+    messageId: Long,
+    noinline block: () -> String,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .editMessageText(messageId, block)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.forwardMessage(fromChatId: Chat, messageId: Long): ForwardMessageAction = eu.vendeli.tgbot.api.message.forwardMessage(fromChatId, messageId)
+public suspend inline fun TelegramBot.editMessageText(
+    noinline block: EntitiesCtxBuilder<EditMessageTextAction>.() -> String,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .editMessageText(block)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.forwardMessages(fromChatId: Identifier, messageIds: List<Long>): ForwardMessagesAction = eu.vendeli.tgbot.api.message.forwardMessages(fromChatId, messageIds)
+public suspend inline fun TelegramBot.editText(
+    messageId: Long,
+    noinline block: () -> String,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .editText(messageId, block)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.forwardMessages(fromChatId: Long, vararg messageId: Long): ForwardMessagesAction = eu.vendeli.tgbot.api.message.forwardMessages(fromChatId, messageId = messageId)
+public suspend inline fun TelegramBot.editText(
+    noinline block: EntitiesCtxBuilder<EditMessageTextAction>.() -> String,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .editText(block)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.forwardMessages(fromChatId: String, vararg messageId: Long): ForwardMessagesAction = eu.vendeli.tgbot.api.message.forwardMessages(fromChatId, messageId = messageId)
+public suspend inline fun TelegramBot.deleteMessage(messageId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.message
+        .deleteMessage(messageId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.forwardMessages(fromChatId: User, vararg messageId: Long): ForwardMessagesAction = eu.vendeli.tgbot.api.message.forwardMessages(fromChatId, messageId = messageId)
+public suspend inline fun TelegramBot.forwardMessage(
+    fromChatId: Identifier,
+    messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .forwardMessage(fromChatId, messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.forwardMessages(fromChatId: Chat, vararg messageId: Long): ForwardMessagesAction = eu.vendeli.tgbot.api.message.forwardMessages(fromChatId, messageId = messageId)
+public suspend inline fun TelegramBot.forwardMessage(
+    fromChatId: Long,
+    messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .forwardMessage(fromChatId, messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.message(text: String): SendMessageAction = eu.vendeli.tgbot.api.message.message(text)
+public suspend inline fun TelegramBot.forwardMessage(
+    fromChatId: String,
+    messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .forwardMessage(fromChatId, messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.message(noinline block: EntitiesCtxBuilder<SendMessageAction>.() -> String): SendMessageAction = eu.vendeli.tgbot.api.message.message(block)
+public suspend inline fun TelegramBot.forwardMessage(
+    fromChatId: User,
+    messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .forwardMessage(fromChatId, messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendMessage(text: String): SendMessageAction = eu.vendeli.tgbot.api.message.sendMessage(text)
+public suspend inline fun TelegramBot.forwardMessage(
+    fromChatId: Chat,
+    messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message
+    .forwardMessage(fromChatId, messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendMessage(noinline block: EntitiesCtxBuilder<SendMessageAction>.() -> String): SendMessageAction = eu.vendeli.tgbot.api.message.sendMessage(block)
+public suspend inline fun TelegramBot.createForumTopic(
+    name: String,
+    iconColor: IconColor? = null,
+    iconCustomEmojiId: String? = null,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.forum
+    .createForumTopic(name, iconColor, iconCustomEmojiId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setMessageReaction(
-  messageId: Long,
-  reaction: List<ReactionType>? = null,
-  isBig: Boolean? = null,
-): SetMessageReactionAction = eu.vendeli.tgbot.api.message.setMessageReaction(messageId, reaction, isBig)
+public suspend inline fun TelegramBot.closeGeneralForumTopic(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.forum
+        .closeGeneralForumTopic()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setMessageReaction(
-  messageId: Long,
-  vararg reaction: ReactionType,
-  isBig: Boolean? = null,
-): SetMessageReactionAction = eu.vendeli.tgbot.api.message.setMessageReaction(messageId, reaction = reaction, isBig)
+public suspend inline fun TelegramBot.closeForumTopic(messageThreadId: Int, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.forum
+        .closeForumTopic(messageThreadId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setMessageReaction(
-  messageId: Long,
-  isBig: Boolean? = null,
-  noinline reaction: ListingBuilder<ReactionType>.() -> Unit,
-): SetMessageReactionAction = eu.vendeli.tgbot.api.message.setMessageReaction(messageId, isBig, reaction)
+public suspend inline fun TelegramBot.reopenForumTopic(messageThreadId: Int, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.forum
+        .reopenForumTopic(messageThreadId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.stopMessageLiveLocation(messageId: Long): StopMessageLiveLocationAction = eu.vendeli.tgbot.api.message.stopMessageLiveLocation(messageId)
+public suspend inline fun TelegramBot.unhideGeneralForumTopic(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.forum
+        .unhideGeneralForumTopic()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.stopMessageLiveLocation(): StopMessageLiveLocationAction = eu.vendeli.tgbot.api.message.stopMessageLiveLocation()
+public suspend inline fun TelegramBot.unpinAllForumTopicMessages(messageThreadId: Int, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.forum
+        .unpinAllForumTopicMessages(messageThreadId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setPassportDataErrors(userId: Long, errors: List<PassportElementError>): SetPassportDataErrorsAction = eu.vendeli.tgbot.api.passport.setPassportDataErrors(userId, errors)
+public suspend inline fun TelegramBot.deleteForumTopic(messageThreadId: Int, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.forum
+        .deleteForumTopic(messageThreadId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setPassportDataErrors(userId: Long, noinline errors: ListingBuilder<PassportElementError>.() -> Unit): SetPassportDataErrorsAction = eu.vendeli.tgbot.api.passport.setPassportDataErrors(userId, errors)
+public suspend inline fun TelegramBot.unpinAllGeneralForumTopicMessages(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.forum
+        .unpinAllGeneralForumTopicMessages()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setPassportDataError(userId: Long, vararg error: PassportElementError): SetPassportDataErrorsAction = eu.vendeli.tgbot.api.passport.setPassportDataError(userId, error = error)
+public suspend inline fun TelegramBot.hideGeneralForumTopic(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.forum
+        .hideGeneralForumTopic()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.createInvoiceLink(
-  title: String,
-  description: String,
-  payload: String,
-  currency: Currency,
-  prices: List<LabeledPrice>,
-): CreateInvoiceLinkAction = eu.vendeli.tgbot.api.payments.createInvoiceLink(title, description, payload, currency, prices)
+public suspend inline fun TelegramBot.reopenGeneralForumTopic(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.forum
+        .reopenGeneralForumTopic()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.createInvoiceLink(
-  title: String,
-  description: String,
-  currency: Currency,
-  vararg prices: LabeledPrice,
-  noinline payload: () -> String,
-): CreateInvoiceLinkAction = eu.vendeli.tgbot.api.payments.createInvoiceLink(title, description, currency, prices = prices, payload)
+public suspend inline fun TelegramBot.editForumTopic(
+    messageThreadId: Int,
+    name: String? = null,
+    iconCustomEmojiId: String? = null,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.forum
+    .editForumTopic(messageThreadId, name, iconCustomEmojiId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.editUserStarSubscription(
-  userId: Long,
-  telegramPaymentChargeId: String,
-  isCanceled: Boolean,
-): EditUserStarSubscriptionAction = eu.vendeli.tgbot.api.payments.editUserStarSubscription(userId, telegramPaymentChargeId, isCanceled)
+public suspend inline fun TelegramBot.getForumTopicIconStickers(chatId: Long): Unit =
+    eu.vendeli.tgbot.api.forum
+        .getForumTopicIconStickers()
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getStarTransactions(offset: Int? = null, limit: Int? = null): GetStarTransactionsAction = eu.vendeli.tgbot.api.payments.getStarTransactions(offset, limit)
+public suspend inline fun TelegramBot.editGeneralForumTopic(name: String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.forum
+        .editGeneralForumTopic(name)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.invoice(
-  title: String,
-  description: String,
-  payload: String,
-  providerToken: String? = null,
-  currency: Currency,
-  prices: List<LabeledPrice>,
-): SendInvoiceAction = eu.vendeli.tgbot.api.payments.invoice(title, description, payload, providerToken, currency, prices)
+public suspend inline fun TelegramBot.setGameScore(
+    userId: Long,
+    messageId: Long,
+    score: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.game
+    .setGameScore(userId, messageId, score)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.invoice(
-  title: String,
-  description: String,
-  providerToken: String? = null,
-  currency: Currency,
-  vararg prices: LabeledPrice,
-  noinline payload: () -> String,
-): SendInvoiceAction = eu.vendeli.tgbot.api.payments.invoice(title, description, providerToken, currency, prices = prices, payload)
+public suspend inline fun TelegramBot.setGameScore(
+    userId: Long,
+    score: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.game
+    .setGameScore(userId, score)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.sendInvoice(
-  title: String,
-  description: String,
-  payload: String,
-  providerToken: String? = null,
-  currency: Currency,
-  prices: List<LabeledPrice>,
-): SendInvoiceAction = eu.vendeli.tgbot.api.payments.sendInvoice(title, description, payload, providerToken, currency, prices)
+public suspend inline fun TelegramBot.setGameScore(
+    user: User,
+    score: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.game
+    .setGameScore(user, score)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.refundStarPayment(telegramPaymentChargeId: String, userId: Long): RefundStarPaymentAction = eu.vendeli.tgbot.api.payments.refundStarPayment(telegramPaymentChargeId, userId)
+public suspend inline fun TelegramBot.setGameScore(
+    user: User,
+    messageId: Long,
+    score: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.game
+    .setGameScore(user, messageId, score)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.addStickerToSet(
-  userId: Long,
-  name: String,
-  input: InputSticker,
-): AddStickerToSetAction = eu.vendeli.tgbot.api.stickerset.addStickerToSet(userId, name, input)
+public suspend inline fun TelegramBot.sendGame(gameShortName: String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.game
+        .sendGame(gameShortName)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.addStickerToSet(
-  userId: Long,
-  name: String,
-  noinline input: () -> InputSticker,
-): AddStickerToSetAction = eu.vendeli.tgbot.api.stickerset.addStickerToSet(userId, name, input)
+public suspend inline fun TelegramBot.game(gameShortName: String, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.game
+        .game(gameShortName)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.createNewStickerSet(
-  userId: Long,
-  name: String,
-  title: String,
-  stickers: List<InputSticker>,
-): CreateNewStickerSetAction = eu.vendeli.tgbot.api.stickerset.createNewStickerSet(userId, name, title, stickers)
+public suspend inline fun TelegramBot.getGameHighScores(
+    userId: Long,
+    messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.game
+    .getGameHighScores(userId, messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.deleteStickerFromSet(sticker: String): DeleteStickerFromSetAction = eu.vendeli.tgbot.api.stickerset.deleteStickerFromSet(sticker)
+public suspend inline fun TelegramBot.getGameHighScores(userId: Long, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.game
+        .getGameHighScores(userId)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.deleteStickerSet(name: String): DeleteStickerSetAction = eu.vendeli.tgbot.api.stickerset.deleteStickerSet(name)
+public suspend inline fun TelegramBot.getGameHighScores(
+    user: User,
+    messageId: Long,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.game
+    .getGameHighScores(user, messageId)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getCustomEmojiStickers(customEmojiIds: List<String>): GetCustomEmojiStickersAction = eu.vendeli.tgbot.api.stickerset.getCustomEmojiStickers(customEmojiIds)
+public suspend inline fun TelegramBot.getGameHighScores(user: User, chatId: Long): Unit =
+    eu.vendeli.tgbot.api.game
+        .getGameHighScores(user)
+        .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getCustomEmojiStickers(vararg customEmojiId: String): GetCustomEmojiStickersAction = eu.vendeli.tgbot.api.stickerset.getCustomEmojiStickers(customEmojiId = customEmojiId)
+public suspend inline fun TelegramBot.transferGift(
+    businessConnectionId: String,
+    ownedGiftId: String,
+    newOwnerChatId: Long,
+    starCount: Int? = null,
+): Unit =
+    eu.vendeli.tgbot.api.gift
+        .transferGift(businessConnectionId, ownedGiftId, newOwnerChatId, starCount)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.getStickerSet(name: String): GetStickerSetAction = eu.vendeli.tgbot.api.stickerset.getStickerSet(name)
+public suspend inline fun TelegramBot.upgradeGift(
+    businessConnectionId: String,
+    ownedGiftId: String,
+    keepOriginalDetails: Boolean? = null,
+    starCount: Int? = null,
+): Unit =
+    eu.vendeli.tgbot.api.gift
+        .upgradeGift(businessConnectionId, ownedGiftId, keepOriginalDetails, starCount)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.replaceStickerInSet(
-  userId: Long,
-  name: String,
-  oldSticker: String,
-  sticker: InputSticker,
-): ReplaceStickerInSetAction = eu.vendeli.tgbot.api.stickerset.replaceStickerInSet(userId, name, oldSticker, sticker)
+public suspend inline fun TelegramBot.convertGiftToStars(businessConnectionId: String, ownedGiftId: String): Unit =
+    eu.vendeli.tgbot.api.gift
+        .convertGiftToStars(businessConnectionId, ownedGiftId)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setCustomEmojiStickerSetThumbnail(name: String, customEmojiId: String? = null): SetCustomEmojiStickerSetThumbnailAction = eu.vendeli.tgbot.api.stickerset.setCustomEmojiStickerSetThumbnail(name, customEmojiId)
+public suspend inline fun TelegramBot.giftPremiumSubscription(
+    userId: Long,
+    monthCount: Int,
+    starCount: Int,
+    textParseMode: ParseMode? = null,
+    noinline text: (() -> String)? = null,
+): Unit =
+    eu.vendeli.tgbot.api.gift
+        .giftPremiumSubscription(userId, monthCount, starCount, textParseMode, text)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setStickerEmojiList(sticker: String, emojiList: List<String>): SetStickerEmojiListAction = eu.vendeli.tgbot.api.stickerset.setStickerEmojiList(sticker, emojiList)
+public suspend inline fun TelegramBot.deleteStickerFromSet(sticker: String): Unit =
+    eu.vendeli.tgbot.api.stickerset
+        .deleteStickerFromSet(sticker)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setStickerKeywords(sticker: String, keywords: List<String>? = null): SetStickerKeywordsAction = eu.vendeli.tgbot.api.stickerset.setStickerKeywords(sticker, keywords)
+public suspend inline fun TelegramBot.setStickerMaskPosition(
+    sticker: String,
+    maskPosition: MaskPosition? = null,
+): Unit = eu.vendeli.tgbot.api.stickerset
+    .setStickerMaskPosition(sticker, maskPosition)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setStickerMaskPosition(sticker: String, maskPosition: MaskPosition? = null): SetStickerMaskPositionAction = eu.vendeli.tgbot.api.stickerset.setStickerMaskPosition(sticker, maskPosition)
+public suspend inline fun TelegramBot.setStickerEmojiList(sticker: String, emojiList: List<String>): Unit =
+    eu.vendeli.tgbot.api.stickerset
+        .setStickerEmojiList(sticker, emojiList)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setStickerPositionInSet(sticker: String, position: Int): SetStickerPositionInSetAction = eu.vendeli.tgbot.api.stickerset.setStickerPositionInSet(sticker, position)
+public suspend inline fun TelegramBot.uploadStickerFile(
+    userId: Long,
+    sticker: InputFile,
+    stickerFormat: StickerFormat,
+): Unit = eu.vendeli.tgbot.api.stickerset
+    .uploadStickerFile(userId, sticker, stickerFormat)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setStickerSetThumbnail(
-  name: String,
-  userId: Long,
-  format: StickerFormat,
-  thumbnail: ImplicitFile? = null,
-): SetStickerSetThumbnailAction = eu.vendeli.tgbot.api.stickerset.setStickerSetThumbnail(name, userId, format, thumbnail)
+public suspend inline fun TelegramBot.createNewStickerSet(
+    userId: Long,
+    name: String,
+    title: String,
+    stickers: List<InputSticker>,
+): Unit = eu.vendeli.tgbot.api.stickerset
+    .createNewStickerSet(userId, name, title, stickers)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.setStickerSetTitle(name: String, title: String): SetStickerSetTitleAction = eu.vendeli.tgbot.api.stickerset.setStickerSetTitle(name, title)
+public suspend inline fun TelegramBot.setStickerPositionInSet(sticker: String, position: Int): Unit =
+    eu.vendeli.tgbot.api.stickerset
+        .setStickerPositionInSet(sticker, position)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.uploadStickerFile(
-  userId: Long,
-  sticker: InputFile,
-  stickerFormat: StickerFormat,
-): UploadStickerFileAction = eu.vendeli.tgbot.api.stickerset.uploadStickerFile(userId, sticker, stickerFormat)
+public suspend inline fun TelegramBot.replaceStickerInSet(
+    userId: Long,
+    name: String,
+    oldSticker: String,
+    sticker: InputSticker,
+    chatId: Long,
+): Unit = eu.vendeli.tgbot.api.stickerset
+    .replaceStickerInSet(userId, name, oldSticker, sticker)
+    .send(chatId, this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.removeChatVerification(chatId: Long): RemoveChatVerificationAction = eu.vendeli.tgbot.api.verification.removeChatVerification(chatId)
+public suspend inline fun TelegramBot.setStickerSetTitle(name: String, title: String): Unit =
+    eu.vendeli.tgbot.api.stickerset
+        .setStickerSetTitle(name, title)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.removeChatVerification(chat: Chat): RemoveChatVerificationAction = eu.vendeli.tgbot.api.verification.removeChatVerification(chat)
+public suspend inline fun TelegramBot.addStickerToSet(
+    userId: Long,
+    name: String,
+    input: InputSticker,
+): Unit = eu.vendeli.tgbot.api.stickerset
+    .addStickerToSet(userId, name, input)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.removeUserVerification(userId: Long): RemoveUserVerificationAction = eu.vendeli.tgbot.api.verification.removeUserVerification(userId)
+public suspend inline fun TelegramBot.addStickerToSet(
+    userId: Long,
+    name: String,
+    noinline input: () -> InputSticker,
+): Unit = eu.vendeli.tgbot.api.stickerset
+    .addStickerToSet(userId, name, input)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.removeUserVerification(user: User): RemoveUserVerificationAction = eu.vendeli.tgbot.api.verification.removeUserVerification(user)
+public suspend inline fun TelegramBot.setStickerSetThumbnail(
+    name: String,
+    userId: Long,
+    format: StickerFormat,
+    thumbnail: ImplicitFile? = null,
+): Unit = eu.vendeli.tgbot.api.stickerset
+    .setStickerSetThumbnail(name, userId, format, thumbnail)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.verifyChat(chatId: Long, customDescription: String? = null): VerifyChatAction = eu.vendeli.tgbot.api.verification.verifyChat(chatId, customDescription)
+public suspend inline fun TelegramBot.setStickerKeywords(sticker: String, keywords: List<String>? = null): Unit =
+    eu.vendeli.tgbot.api.stickerset
+        .setStickerKeywords(sticker, keywords)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.verifyChat(chatId: Long, noinline customDescription: () -> String?): VerifyChatAction = eu.vendeli.tgbot.api.verification.verifyChat(chatId, customDescription)
+public suspend inline fun TelegramBot.getStickerSet(name: String): Unit =
+    eu.vendeli.tgbot.api.stickerset
+        .getStickerSet(name)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.verifyChat(chat: Chat, noinline customDescription: () -> String?): VerifyChatAction = eu.vendeli.tgbot.api.verification.verifyChat(chat, customDescription)
+public suspend inline fun TelegramBot.setCustomEmojiStickerSetThumbnail(
+    name: String,
+    customEmojiId: String? = null,
+): Unit = eu.vendeli.tgbot.api.stickerset
+    .setCustomEmojiStickerSetThumbnail(name, customEmojiId)
+    .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.verifyUser(userId: Long, customDescription: String? = null): VerifyUserAction = eu.vendeli.tgbot.api.verification.verifyUser(userId, customDescription)
+public suspend inline fun TelegramBot.deleteStickerSet(name: String): Unit =
+    eu.vendeli.tgbot.api.stickerset
+        .deleteStickerSet(name)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.verifyUser(userId: Long, noinline customDescription: () -> String?): VerifyUserAction = eu.vendeli.tgbot.api.verification.verifyUser(userId, customDescription)
+public suspend inline fun TelegramBot.getCustomEmojiStickers(customEmojiIds: List<String>): Unit =
+    eu.vendeli.tgbot.api.stickerset
+        .getCustomEmojiStickers(customEmojiIds)
+        .send(this)
 
 @Suppress("NOTHING_TO_INLINE")
-public inline fun TelegramBot.verifyUser(user: User, noinline customDescription: () -> String?): VerifyUserAction = eu.vendeli.tgbot.api.verification.verifyUser(user, customDescription)
+public suspend inline fun TelegramBot.getCustomEmojiStickers(vararg customEmojiId: String): Unit =
+    eu.vendeli.tgbot.api.stickerset
+        .getCustomEmojiStickers(customEmojiId = customEmojiId)
+        .send(this)

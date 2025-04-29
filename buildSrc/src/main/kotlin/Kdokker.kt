@@ -39,7 +39,7 @@ abstract class Kdokker : DefaultTask() {
         "(@\\w+(\\([^\\)]*\\))?\\s*)*\\b(inline\\s+)?fun\\s+(\\w+)",
     )
     private val kdocRegex = Regex("\\n/\\*\\*.*\\*/", RegexOption.DOT_MATCHES_ALL)
-    private val NEWLINE = "\n"
+    private val newline = "\n"
     private val apiFiles = project.layout.projectDirectory
         .dir("src/commonMain/kotlin/eu/vendeli/tgbot/api")
         .asFileTree.files
@@ -47,8 +47,9 @@ abstract class Kdokker : DefaultTask() {
         .dir("src/commonMain/kotlin/eu/vendeli/tgbot/types")
         .asFileTree.files
         .filter {
-            !it.path.contains("internal")
+            !it.path.contains("component") && !it.path.contains("options") && !it.path.contains("configuration")
         }
+
     private fun File.isKotlinFile() = isFile && extension == "kt"
 
     private fun String.beginWithUpperCase(): String = when (this.length) {
@@ -76,17 +77,17 @@ abstract class Kdokker : DefaultTask() {
             val methodMeta = jsonRes.methods[methodName]
                 ?: jsonRes.methods["send" + methodName.beginWithUpperCase()]
                 ?: return@forEach
-            var kdoc = "/**$NEWLINE"
-            kdoc += methodMeta.description?.joinToString("$NEWLINE * ", " * ") ?: ""
-            kdoc += "$NEWLINE *$NEWLINE * [Api reference](${methodMeta.href})"
-            kdoc += "$NEWLINE *"
+            var kdoc = "/**$newline"
+            kdoc += methodMeta.description?.joinToString("$newline * ", " * ") ?: ""
+            kdoc += "$newline *$newline * [Api reference](${methodMeta.href})"
+            kdoc += "$newline *"
 
-            kdoc += methodMeta.fields.takeIf { it.isNotEmpty() }?.joinToString("$NEWLINE * ", prefix = " ") {
+            kdoc += methodMeta.fields.takeIf { it.isNotEmpty() }?.joinToString("$newline * ", prefix = " ") {
                 "@param " + it.name.snakeToCamelCase() + " " + it.description
             } ?: ""
 
-            kdoc += NEWLINE + methodMeta.returns.joinToString("|", " * @returns ") { "[$it]" }
-            kdoc += "$NEWLINE */$NEWLINE"
+            kdoc += newline + methodMeta.returns.joinToString("|", " * @returns ") { "[$it]" }
+            kdoc += "$newline */$newline"
 
             modifiedContent = modifiedContent.replaceFirst(method.value, kdoc + method.value)
 
@@ -105,14 +106,14 @@ abstract class Kdokker : DefaultTask() {
                 return@forEach
             }
 
-            var kdoc = "/**$NEWLINE"
-            kdoc += classMeta.description?.joinToString("$NEWLINE * ", " * ") ?: ""
-            kdoc += "$NEWLINE *$NEWLINE * [Api reference](${classMeta.href})"
-            kdoc += "$NEWLINE *"
-            kdoc += classMeta.fields.takeIf { it.isNotEmpty() }?.joinToString("$NEWLINE * ", prefix = " ") {
+            var kdoc = "/**$newline"
+            kdoc += classMeta.description?.joinToString("$newline * ", " * ") ?: ""
+            kdoc += "$newline *$newline * [Api reference](${classMeta.href})"
+            kdoc += "$newline *"
+            kdoc += classMeta.fields.takeIf { it.isNotEmpty() }?.joinToString("$newline * ", prefix = " ") {
                 "@property " + it.name.snakeToCamelCase() + " " + it.description
             } ?: ""
-            kdoc += "$NEWLINE */$NEWLINE"
+            kdoc += "$newline */$newline"
             modifiedContent = modifiedContent.replace(clazz.value, kdoc + clazz.value)
 
             file.writeText(modifiedContent)

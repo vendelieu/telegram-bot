@@ -15,5 +15,8 @@ const val ACTION_FQ_NAME = "$ACTION_PACKAGE.$ACTION_CLASS"
 const val SIMPLE_ACTION_FQ_NAME = "$ACTION_PACKAGE.$SIMPLE_ACTION_CLASS"
 
 const val SEND_FUN_NAME = "send"
+const val SEND_INLINE_FUN_NAME = "sendInline"
+const val SEND_BUSINESS_FUN_NAME = "sendBusiness"
+const val SEND_RETURNING_FUN_NAME = "sendReturning"
 
 const val ANNOTATIONS_PKG = "eu.vendeli.tgbot.annotations"

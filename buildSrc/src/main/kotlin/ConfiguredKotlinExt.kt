@@ -13,12 +13,11 @@ private val optIns: Array<String> = arrayOf(
 
 private fun KotlinMultiplatformExtension.configureJvm() {
     jvm {
-        withJava()
         compilations.all {
             compileTaskProvider.configure {
                 compilerOptions {
                     jvmTarget.set(jvmTargetVer)
-                    freeCompilerArgs = listOf("-Xjsr305=strict", *optIns)
+                    freeCompilerArgs = listOf("-Xjsr305=strict", "-Xjvm-default=all-compatibility", *optIns)
                 }
             }
         }

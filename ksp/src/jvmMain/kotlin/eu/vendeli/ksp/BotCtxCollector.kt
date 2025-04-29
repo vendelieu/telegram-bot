@@ -31,13 +31,17 @@ internal fun processCtxProviders(
 
     val userDataCtxClass = providers
         .firstOrNull { c ->
-            c.getAllSuperTypes().firstOrNull { it.toKSPClassName() == userDataCtx }?.also {
-                userDataType = it.arguments
-                    .first()
-                    .type
-                    ?.resolve()
-                    ?.toClassName() ?: STRING
-            } != null
+            c
+                .getAllSuperTypes()
+                .firstOrNull {
+                    it.toKSPClassName() == userDataCtx
+                }?.also {
+                    userDataType = it.arguments
+                        .first()
+                        .type
+                        ?.resolve()
+                        ?.toClassName() ?: STRING
+                } != null
         }?.takeIf {
             it.classKind == ClassKind.CLASS
         }?.toClassName() ?: userDataCtxDef

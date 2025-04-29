@@ -1,11 +1,12 @@
 package eu.vendeli.tgbot.types.chat
 
-import eu.vendeli.tgbot.types.user.Birthdate
-import eu.vendeli.tgbot.types.common.ReactionType
 import eu.vendeli.tgbot.types.business.BusinessIntro
 import eu.vendeli.tgbot.types.business.BusinessLocation
 import eu.vendeli.tgbot.types.business.BusinessOpeningHours
+import eu.vendeli.tgbot.types.common.ReactionType
+import eu.vendeli.tgbot.types.gift.AcceptedGiftTypes
 import eu.vendeli.tgbot.types.msg.Message
+import eu.vendeli.tgbot.types.user.Birthdate
 import kotlinx.serialization.Serializable
 
 /**
@@ -43,7 +44,7 @@ import kotlinx.serialization.Serializable
  * @property inviteLink Optional. Primary invite link, for groups, supergroups and channel chats
  * @property pinnedMessage Optional. The most recent pinned message (by sending date)
  * @property permissions Optional. Default chat member permissions, for groups and supergroups
- * @property canSendGift Optional. True, if gifts can be sent to the chat
+ * @property acceptedGiftTypes Information about types of gifts that are accepted by the chat or by the corresponding user for private chats
  * @property canSendPaidMedia Optional. True, if paid media messages can be sent or forwarded to the channel chat. The field is available only for channel chats.
  * @property slowModeDelay Optional. For supergroups, the minimum allowed delay between consecutive messages sent by each unprivileged user; in seconds
  * @property unrestrictBoostCount Optional. For supergroups, the minimum number of boosts that a non-administrator user needs to add in order to ignore slow mode and chat permissions
@@ -91,8 +92,8 @@ data class ChatFullInfo(
     val inviteLink: String? = null,
     val pinnedMessage: Message? = null,
     val permissions: ChatPermissions? = null,
+    val acceptedGiftTypes: AcceptedGiftTypes,
     val canSendPaidMedia: Boolean? = null,
-    val canSendGift: Boolean? = null,
     val slowModeDelay: Int? = null,
     val unrestrictBoostCount: Int? = null,
     val messageAutoDeleteTime: Int? = null,

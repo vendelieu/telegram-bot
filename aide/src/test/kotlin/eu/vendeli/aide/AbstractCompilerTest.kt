@@ -63,7 +63,7 @@ abstract class AbstractCompilerTest : AnnotationSpec() {
             verbose = false
             commandLineProcessors = listOf(processor)
             inheritClassPath = true
-            languageVersion = if (useK2) "2.0" else "1.9"
+            languageVersion = if (useK2) "2.1" else "1.9"
             supportsK2 = useK2
         }
 }
