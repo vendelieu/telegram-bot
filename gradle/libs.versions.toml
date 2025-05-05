@@ -27,7 +27,7 @@ ksp = "2.1.20-2.0.1"
 poet = "2.1.0"
 autoservice-annotations = "1.1.1"
 autoservice-ksp = "1.2.0"
-kotlinCompileTesting = "0.7.0"
+kotlinCompileTesting = "0.7.1"
 
 binvalid = "0.17.0"
 publisher = "0.31.0"
