@@ -24,7 +24,7 @@ sslcontext = "9.1.0"
 spring = "3.4.5"
 
 ksp = "2.1.21-2.0.1"
-poet = "2.1.0"
+poet = "2.2.0"
 autoservice-annotations = "1.1.1"
 autoservice-ksp = "1.2.0"
 kotlinCompileTesting = "0.7.1"
