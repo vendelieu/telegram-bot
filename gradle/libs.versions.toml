@@ -11,7 +11,7 @@ stately = "2.1.0"
 kotlin = "2.1.21"
 coroutines = "1.10.2"
 dokka = "2.0.0"
-kotlinter = "5.1.0"
+kotlinter = "5.1.1"
 deteKT = "1.23.8"
 toml = "0.4.0"
 
