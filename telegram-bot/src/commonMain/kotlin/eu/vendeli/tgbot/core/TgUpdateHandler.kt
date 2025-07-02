@@ -207,7 +207,7 @@ class TgUpdateHandler internal constructor(
             invocation = bot.inputListener.getAsync(user.id).await()?.let {
                 request = parseCommand(it)
                 activityId = request.command
-                activities.inputHandlers[it]
+                activities.inputHandlers[activityId]
             }
 
         // remove input listener point
