@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) Changelog
 
+### 8.1.1
+
+* Fixed parameter parsing for `@InputHandler`.
+
 ## 8.1.0
 
 * Supported Telegram API [9.0](https://core.telegram.org/bots/api-changelog#april-11-2025).
