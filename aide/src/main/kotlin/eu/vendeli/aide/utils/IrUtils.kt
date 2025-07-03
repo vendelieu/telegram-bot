@@ -1,6 +1,8 @@
 package eu.vendeli.aide.utils
 
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
+import org.jetbrains.kotlin.ir.declarations.IrFunction
+import org.jetbrains.kotlin.ir.declarations.IrParameterKind
 import org.jetbrains.kotlin.ir.symbols.FqNameEqualityChecker
 import org.jetbrains.kotlin.ir.symbols.IrSimpleFunctionSymbol
 import org.jetbrains.kotlin.ir.symbols.UnsafeDuringIrConstructionAPI
@@ -45,6 +47,12 @@ internal fun IrType.isType(context: IrPluginContext, classId: ClassId): Boolean 
     return FqNameEqualityChecker.areEqual(this.classifierOrFail, classSymbol)
 }
 
+internal val IrFunction.vParameters
+    get() = parameters.filter {
+        it.kind == IrParameterKind.Regular ||
+            it.kind == IrParameterKind.Context
+    }
+
 @OptIn(UnsafeDuringIrConstructionAPI::class)
 internal fun Collection<IrSimpleFunctionSymbol>.seekSendFunction(
     context: IrPluginContext,
@@ -53,18 +61,18 @@ internal fun Collection<IrSimpleFunctionSymbol>.seekSendFunction(
     // make sure it's fire&forget variant of send
     it.owner.returnType == context.irBuiltIns.unitType &&
         if (!isSimpleAction) {
-            it.owner.valueParameters.size == 2 &&
-                it.owner.valueParameters
+            it.owner.vParameters.size == 2 &&
+                it.owner.vParameters
                     .first()
                     .type
                     .isUserType(context) &&
-                it.owner.valueParameters
+                it.owner.vParameters
                     .last()
                     .type
                     .isTelegramBotType(context)
         } else {
-            it.owner.valueParameters.size == 1 &&
-                it.owner.valueParameters
+            it.owner.vParameters.size == 1 &&
+                it.owner.vParameters
                     .first()
                     .type
                     .isTelegramBotType(context)
