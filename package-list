@@ -6,7 +6,6 @@ $dokka.location:eu.vendeli.tgbot.implementations/ClassManagerImpl/getInstance/#k
 $dokka.location:eu.vendeli.tgbot.utils.common//defineActivities/eu.vendeli.tgbot.TelegramBot#kotlin.collections.Map[kotlin.String,kotlin.collections.List[kotlin.Any?]]/PointingToDeclaration/telegram-bot/eu.vendeli.tgbot.utils.common/[native]define-activities.html
 module:aide
 eu.vendeli.aide
-eu.vendeli.aide.fir
 eu.vendeli.aide.ir
 eu.vendeli.aide.utils
 module:ktgram-botctx-redis
