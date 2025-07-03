@@ -4,6 +4,8 @@
 
 * Fixed `NoSuchMethodError` from `IrBody` in Kotlin `2.2.0`.
 * Bumped versions.
+* Fir plugin (additional warnings) is removed in favor of KT-71188 (Unused return value checker)
+* Aide is disabled by default
 
 
 ### 8.1.1
