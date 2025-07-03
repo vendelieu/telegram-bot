@@ -6,16 +6,16 @@ import org.gradle.api.logging.Logging
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.get
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
 import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
-import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.targets
 import org.jetbrains.kotlin.gradle.utils.loadPropertyFromResources
 
 abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
@@ -30,10 +30,11 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
         var kspProcessorApplied = false
         val isMultiplatform = target.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")
 
-        @Suppress("DEPRECATION")
-        val isJvm = target.kotlinExtension.targets.any {
-            it.platformType == KotlinPlatformType.jvm || it.platformType == KotlinPlatformType.androidJvm
-        }
+        val isJvm = target.project.extensions.let { ext ->
+            ext.findByType<KotlinMultiplatformExtension>()?.targets?.any {
+                it.platformType == KotlinPlatformType.jvm
+            } ?: ext.findByType<KotlinJvmExtension>()
+        } != null
 
         target.configurations.configureEach {
             if (name.startsWith("ksp")) dependencies.whenObjectAdded {
@@ -178,11 +179,7 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
         version = libVer,
     )
 
-    override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean =
-        kotlinCompilation.target.project.extensions
-            .getByType(KtGramExt::class.java)
-            .aideEnabled
-            .getOrElse(true)
+    override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean = true
 
     override fun getCompilerPluginId(): String = "eu.vendeli.aide"
 
@@ -197,8 +194,8 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
                         key = "autoSend",
                         value = extensions
                             .getByType(KtGramExt::class.java)
-                            .aideAutoSend
-                            .getOrElse(true)
+                            .aideEnabled
+                            .getOrElse(false)
                             .toString(),
                     ),
                 )

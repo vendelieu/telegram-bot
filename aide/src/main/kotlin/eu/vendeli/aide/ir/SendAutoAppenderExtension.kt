@@ -3,6 +3,7 @@ package eu.vendeli.aide.ir
 import eu.vendeli.aide.utils.ANNOTATIONS_PKG
 import eu.vendeli.aide.utils.isTelegramBotType
 import eu.vendeli.aide.utils.isUserType
+import eu.vendeli.aide.utils.vParameters
 import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.ir.IrStatement
@@ -47,10 +48,10 @@ class SendAutoAppenderExtension(
         func: IrFunction,
         pluginContext: IrPluginContext,
     ): Pair<IrValueParameter?, IrValueParameter?> {
-        val userParam = func.valueParameters.firstOrNull {
+        val userParam = func.vParameters.firstOrNull {
             it.type.isUserType(pluginContext)
         }
-        val botParam = func.valueParameters.firstOrNull {
+        val botParam = func.vParameters.firstOrNull {
             it.type.isTelegramBotType(pluginContext)
         }
         return userParam to botParam

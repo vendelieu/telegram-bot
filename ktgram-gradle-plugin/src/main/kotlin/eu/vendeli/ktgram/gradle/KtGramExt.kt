@@ -15,8 +15,7 @@ import javax.inject.Inject
  * @property autoAnswerCallback set to true to automatically respond to callbacks unless otherwise specified in the annotation.
  * @property ktorJvmEngine the Ktor JVM engine to use, defaults to [KtorJvmEngine.JAVA].
  * @property handleLoggingProvider set to false to disable the logging provider handling.
- * @property aideEnabled set to true to enable compilation Aide.
- * @property aideAutoSend set to true to automatically send actions.
+ * @property aideEnabled set to true to enable compilation Aide for automatically send actions.
  */
 abstract class KtGramExt
     @Inject
@@ -31,5 +30,4 @@ abstract class KtGramExt
         val ktorJvmEngine = factory.property<KtorJvmEngine>()
         val handleLoggingProvider = factory.property<Boolean>()
         val aideEnabled = factory.property<Boolean>()
-        val aideAutoSend = factory.property<Boolean>()
     }

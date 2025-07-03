@@ -102,13 +102,13 @@ class SendAutoAppenderTransformer(
                     logger.error("Bot param is not present which is required for send call")
                 }
 
-                putValueArgument(0, irGet(userParam!!, original.startOffset, original.endOffset))
-                putValueArgument(1, irGet(botParam!!, original.startOffset, original.endOffset))
+                arguments[0] = irGet(userParam!!, original.startOffset, original.endOffset)
+                arguments[1] = irGet(botParam!!, original.startOffset, original.endOffset)
             } else {
                 if (botParam == null) {
                     logger.error("Bot param is not present which is required for send call")
                 }
-                putValueArgument(0, irGet(botParam!!, original.startOffset, original.endOffset))
+                arguments[0] = irGet(botParam!!, original.startOffset, original.endOffset)
             }
 
             dispatchReceiver = original

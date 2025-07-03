@@ -1,5 +1,11 @@
 # Telegram-bot (KtGram) Changelog
 
+### 8.1.2
+
+* Fixed `NoSuchMethodError` from `IrBody` in Kotlin `2.2.0`.
+* Bumped versions.
+
+
 ### 8.1.1
 
 * Fixed parameter parsing for `@InputHandler`.
