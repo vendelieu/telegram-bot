@@ -179,11 +179,7 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
         version = libVer,
     )
 
-    override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean =
-        kotlinCompilation.target.project.extensions
-            .getByType(KtGramExt::class.java)
-            .aideEnabled
-            .getOrElse(true)
+    override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean = true
 
     override fun getCompilerPluginId(): String = "eu.vendeli.aide"
 
@@ -198,8 +194,8 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
                         key = "autoSend",
                         value = extensions
                             .getByType(KtGramExt::class.java)
-                            .aideAutoSend
-                            .getOrElse(true)
+                            .aideEnabled
+                            .getOrElse(false)
                             .toString(),
                     ),
                 )
