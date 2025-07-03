@@ -4,7 +4,7 @@ redis = "0.2.4"
 logback = "1.5.18"
 slf4j = "2.0.17"
 
-datetime = "0.6.2"
+datetime = "0.7.0-0.6.x-compat"
 serialization = "1.8.1"
 stately = "2.1.0"
 
