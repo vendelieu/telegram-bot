@@ -21,7 +21,7 @@ kover = "0.9.1"
 krypto = "4.0.10"
 urlencoder = "1.6.0"
 sslcontext = "9.1.0"
-spring = "3.5.0"
+spring = "3.5.3"
 
 ksp = "2.2.0-2.0.2"
 poet = "2.2.0"
