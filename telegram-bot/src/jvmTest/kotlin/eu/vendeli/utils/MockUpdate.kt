@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.types.component.Response.Success
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.utils.common.processUpdate
 import eu.vendeli.tgbot.utils.common.serde
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import kotlin.random.Random
 
 @Suppress("ClassName")

@@ -3,7 +3,7 @@ package eu.vendeli.tgbot.types.chat
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import kotlinx.serialization.Serializable
 import kotlin.time.Duration
 

@@ -1,3 +1,4 @@
+
 import eu.vendeli.fixtures.__ACTIVITIES
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.action.Action
@@ -34,15 +35,15 @@ import io.mockk.mockkStatic
 import io.mockk.spyk
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.delay
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.serializer
 import utils.BotResource
 import utils.RandomPicResource
 import kotlin.properties.Delegates
 import kotlin.random.Random
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.seconds
+import kotlin.time.Instant
 
 @Suppress("VariableNaming", "PropertyName", "PrivatePropertyName", "SpellCheckingInspection")
 abstract class BotTestContext(

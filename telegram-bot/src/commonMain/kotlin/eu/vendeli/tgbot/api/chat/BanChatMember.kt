@@ -7,7 +7,7 @@ import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.utils.internal.getReturnType
 import eu.vendeli.tgbot.utils.internal.toJsonElement
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 @TgAPI
 class BanChatMemberAction(

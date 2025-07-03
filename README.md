@@ -109,18 +109,16 @@ suspend fun main() {
 
 @CommandHandler(["/start"])
 suspend fun start(user: User, bot: TelegramBot) {
-    sendMessage { "Hello, what's your name?" }
+    sendMessage { "Hello, what's your name?" }.send(user, bot)
     bot.inputListener[user] = "conversation"
 }
 
 @InputHandler(["conversation"])
 @Guard(UserPresentGuard::class)
 suspend fun startConversation(update: ProcessedUpdate, user: User, bot: TelegramBot) {
-    // it automatically takes user and bot from function parameters
-    sendMessage { "Nice to meet you, ${update.text}" }
-    // but you can pass them explicitly if you want.
-    sendMessage { "What is your favorite food?" }.send(user, bot) 
-  
+    sendMessage { "Nice to meet you, ${update.text}" }.send(user, bot)
+    sendMessage { "What is your favorite food?" }.send(user, bot)
+
     bot.inputListener.set(user) { "conversation-2step" } // another way to set input
 }
 

@@ -20,7 +20,6 @@ configuredKotlin {
             implementation(libs.ktor.client.logging)
 
             api(libs.coroutines.core)
-            api(libs.kotlin.datetime)
         }
         jvmTest.dependencies {
             implementation(libs.test.kotest.junit5)

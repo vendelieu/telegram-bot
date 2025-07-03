@@ -4,7 +4,6 @@ redis = "0.2.4"
 logback = "1.5.18"
 slf4j = "2.0.17"
 
-datetime = "0.6.2"
 serialization = "1.8.1"
 stately = "2.1.0"
 
@@ -51,7 +50,6 @@ slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 
 
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
-kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 stately = { module = "co.touchlab:stately-concurrent-collections", version.ref = "stately" }
 

@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.types.chat.ChatPermissions
 import eu.vendeli.tgbot.utils.internal.encodeWith
 import eu.vendeli.tgbot.utils.internal.getReturnType
 import eu.vendeli.tgbot.utils.internal.toJsonElement
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 @TgAPI
 class RestrictChatMemberAction(

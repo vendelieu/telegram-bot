@@ -5,7 +5,7 @@ import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.story.StoryAreaType
 import eu.vendeli.tgbot.types.user.Gift
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName

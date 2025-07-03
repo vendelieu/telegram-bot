@@ -1,7 +1,7 @@
 package eu.vendeli.tgbot.types.stars
 
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import kotlinx.serialization.Serializable
 
 /**

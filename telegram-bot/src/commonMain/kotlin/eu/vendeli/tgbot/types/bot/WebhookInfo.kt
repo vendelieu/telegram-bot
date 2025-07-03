@@ -2,7 +2,7 @@ package eu.vendeli.tgbot.types.bot
 
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import kotlinx.serialization.Serializable
 
 /**

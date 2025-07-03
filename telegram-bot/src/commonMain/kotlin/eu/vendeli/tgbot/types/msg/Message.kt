@@ -51,7 +51,7 @@ import eu.vendeli.tgbot.types.poll.Poll
 import eu.vendeli.tgbot.types.user.UsersShared
 import eu.vendeli.tgbot.types.webapp.WriteAccessAllowed
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import kotlinx.serialization.Serializable
 
 /**
