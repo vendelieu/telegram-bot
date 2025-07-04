@@ -22,7 +22,7 @@ jobs:
         run: python buildSrc/src/main/resources/scrape.py
 
       - name: Push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: Update Bot API spec.
           branch: dev

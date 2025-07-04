@@ -93,7 +93,7 @@ jobs:
           sed -i -E "s/id\(\"com\.google\.devtools\.ksp\"\)\s*version\s*\"[^\"]+\"/id(\"com.google.devtools.ksp\") version \"$KSP_VERSION\"/g" README.md
 
       - name: Push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: Bump library version.
           branch: master
