@@ -35,12 +35,10 @@ class GetUserProfilePhotosAction(
  * @param limit Limits the number of photos to be retrieved. Values between 1-100 are accepted. Defaults to 100.
  * @returns [UserProfilePhotos]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getUserProfilePhotos(userId: Long, offset: Int? = null, limit: Int? = null) =
     GetUserProfilePhotosAction(userId, offset, limit)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getUserProfilePhotos(user: User, offset: Int? = null, limit: Int? = null) =
     getUserProfilePhotos(user.id, offset, limit)

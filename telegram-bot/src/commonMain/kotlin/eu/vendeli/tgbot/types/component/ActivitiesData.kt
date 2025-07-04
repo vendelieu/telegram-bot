@@ -42,7 +42,6 @@ internal class ActivitiesData(
         }
     }
 
-    @Suppress("NOTHING_TO_INLINE")
     private inline fun generatedActivitiesNotFound(): Nothing = throw TgException(
         "Generated activities not found, check if ksp plugin and ksp processor is connected correctly.",
     )

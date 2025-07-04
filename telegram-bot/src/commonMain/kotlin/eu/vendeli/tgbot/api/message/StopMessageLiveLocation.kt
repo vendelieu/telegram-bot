@@ -37,10 +37,8 @@ class StopMessageLiveLocationAction() :
  * @param replyMarkup A JSON-serialized object for a new inline keyboard.
  * @returns [Message]|[Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun stopMessageLiveLocation(messageId: Long) = StopMessageLiveLocationAction(messageId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun stopMessageLiveLocation() = StopMessageLiveLocationAction()

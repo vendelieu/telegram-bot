@@ -63,10 +63,8 @@ internal object EnvConfiguration : Configuration() {
     private const val PREFIX = "KTGRAM_"
     private val env = System.getenv().filter { it.key.startsWith(PREFIX) }
 
-    @Suppress("NOTHING_TO_INLINE")
     private inline fun getEnv(name: String): String? = env[PREFIX + name]
 
-    @Suppress("NOTHING_TO_INLINE")
     private inline fun getRequired(name: String, missingExCause: () -> String): String =
         env[name] ?: missingExCause().also { throw ApplicationConfigurationException(it) }
 

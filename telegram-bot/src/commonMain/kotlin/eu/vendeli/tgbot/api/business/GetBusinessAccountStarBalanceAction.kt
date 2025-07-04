@@ -28,7 +28,6 @@ class GetBusinessAccountStarBalanceAction(
  * @returns [StarAmount]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun getBusinessAccountStarBalance(
     businessConnectionId: String,
 ) = GetBusinessAccountStarBalanceAction(businessConnectionId)

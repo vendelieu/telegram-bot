@@ -30,7 +30,6 @@ sealed class MaybeInaccessibleMessage {
     @TgAPI.Ignore
     val isAccessible: Boolean get() = this !is InaccessibleMessage
 
-    @Suppress("NOTHING_TO_INLINE")
     inline fun accessibleOrNull() = this as? Message
 
     @Serializable

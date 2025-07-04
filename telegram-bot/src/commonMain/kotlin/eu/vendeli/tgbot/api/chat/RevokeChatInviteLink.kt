@@ -29,6 +29,5 @@ class RevokeChatInviteLinkAction(
  * @param inviteLink The invite link to revoke
  * @returns [ChatInviteLink]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun revokeChatInviteLink(inviteLink: String) = RevokeChatInviteLinkAction(inviteLink)

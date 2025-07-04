@@ -34,7 +34,6 @@ class AnswerPreCheckoutQueryAction(
  * @param errorMessage Required if ok is False. Error message in human readable form that explains the reason for failure to proceed with the checkout (e.g. "Sorry, somebody just bought the last of our amazing black T-shirts while you were busy filling out your payment details. Please choose a different color or garment!"). Telegram will display this message to the user.
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun answerPreCheckoutQuery(preCheckoutQueryId: String, ok: Boolean = true, errorMessage: String? = null) =
     AnswerPreCheckoutQueryAction(preCheckoutQueryId, ok, errorMessage)

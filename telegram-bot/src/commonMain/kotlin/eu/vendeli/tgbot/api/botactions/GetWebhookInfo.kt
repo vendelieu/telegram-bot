@@ -21,6 +21,5 @@ class GetWebhookInfoAction : SimpleAction<WebhookInfo>() {
  *
  * @returns [WebhookInfo]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getWebhookInfo() = GetWebhookInfoAction()

@@ -27,6 +27,5 @@ class DeleteWebhookAction(
  * @param dropPendingUpdates Pass True to drop all pending updates
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun deleteWebhook(dropPendingUpdates: Boolean = false) = DeleteWebhookAction(dropPendingUpdates)

@@ -54,7 +54,6 @@ class EditStoryAction(
  * @returns [Story]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun editStory(
     businessConnectionId: String,
     storyId: String,

@@ -75,7 +75,6 @@ class SendInvoiceAction(
  * @param replyMarkup A JSON-serialized object for an inline keyboard. If empty, one 'Pay total price' button will be shown. If not empty, the first button must be a Pay button.
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun invoice(
     title: String,
@@ -96,7 +95,6 @@ inline fun invoice(
     payload: () -> String,
 ) = invoice(title, description, payload(), providerToken, currency, prices.asList())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendInvoice(
     title: String,

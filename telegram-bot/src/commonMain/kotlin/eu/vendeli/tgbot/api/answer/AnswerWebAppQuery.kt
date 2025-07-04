@@ -33,7 +33,6 @@ class AnswerWebAppQueryAction(
  * @param result A JSON-serialized object describing the message to be sent
  * @returns [SentWebAppMessage]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun answerWebAppQuery(
     webAppQueryId: String,

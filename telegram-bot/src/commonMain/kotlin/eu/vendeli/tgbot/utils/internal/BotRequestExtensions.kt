@@ -26,7 +26,6 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonUnquotedLiteral
 
-@Suppress("NOTHING_TO_INLINE")
 private inline fun buildHeadersForItem(name: String) = HeadersBuilder()
     .apply {
         append(HttpHeaders.ContentType, ContentType.Application.Json)

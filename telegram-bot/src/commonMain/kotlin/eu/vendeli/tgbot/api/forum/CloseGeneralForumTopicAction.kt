@@ -20,6 +20,5 @@ class CloseGeneralForumTopicAction : Action<Boolean>() {
  * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun closeGeneralForumTopic() = CloseGeneralForumTopicAction()

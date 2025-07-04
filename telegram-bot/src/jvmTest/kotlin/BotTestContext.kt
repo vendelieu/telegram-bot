@@ -140,7 +140,6 @@ abstract class BotTestContext(
 
     protected suspend inline fun <T> Deferred<Response<out T>>.shouldSuccess() = await().shouldSuccess()
 
-    @Suppress("NOTHING_TO_INLINE")
     protected inline fun <T> Response<T>.shouldSuccess() = with(this) {
         ok.shouldBeTrue()
         isSuccess().shouldBeTrue()
@@ -149,7 +148,6 @@ abstract class BotTestContext(
 
     protected suspend inline fun <T> Deferred<Response<out T>>.shouldFailure() = await().shouldFailure()
 
-    @Suppress("NOTHING_TO_INLINE")
     protected inline fun <T> Response<T>.shouldFailure(): Response.Failure = with(this) {
         ok.shouldBeFalse()
         isSuccess().shouldBeFalse()
@@ -157,7 +155,6 @@ abstract class BotTestContext(
         this as Response.Failure
     }
 
-    @Suppress("NOTHING_TO_INLINE")
     protected inline infix fun Response.Failure.shouldContainInDescription(text: String) =
         description.shouldContain(text)
 

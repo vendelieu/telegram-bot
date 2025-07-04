@@ -41,7 +41,6 @@ class UploadStickerFileAction(
  * @param stickerFormat Format of the sticker, must be one of "static", "animated", "video"
  * @returns [File]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun uploadStickerFile(userId: Long, sticker: InputFile, stickerFormat: StickerFormat) =
     UploadStickerFileAction(userId, sticker, stickerFormat)

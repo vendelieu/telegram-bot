@@ -32,7 +32,6 @@ class SetMyDefaultAdministratorRightsAction(
  * @param forChannels Pass True to change the default administrator rights of the bot in channels. Otherwise, the default administrator rights of the bot for groups and supergroups will be changed.
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setMyDefaultAdministratorRights(rights: ChatAdministratorRights? = null, forChannel: Boolean? = null) =
     SetMyDefaultAdministratorRightsAction(rights, forChannel)

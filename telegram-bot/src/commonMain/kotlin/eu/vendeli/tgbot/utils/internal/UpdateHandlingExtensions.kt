@@ -70,7 +70,6 @@ internal suspend inline fun Filter.checkIsFiltered(
     bot: TelegramBot,
 ): Boolean = match(user, update, bot)
 
-@Suppress("NOTHING_TO_INLINE")
 internal fun TgUpdateHandler.getParameters(
     parser: KClass<out ArgumentParser>?,
     request: ParsedText,

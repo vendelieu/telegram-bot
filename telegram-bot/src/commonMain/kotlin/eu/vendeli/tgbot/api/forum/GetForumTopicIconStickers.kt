@@ -21,6 +21,5 @@ class GetForumTopicIconStickersAction : Action<List<Sticker>>() {
  *
  * @returns [Array of Sticker]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getForumTopicIconStickers() = GetForumTopicIconStickersAction()

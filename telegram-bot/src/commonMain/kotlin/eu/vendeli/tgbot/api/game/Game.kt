@@ -45,10 +45,8 @@ class SendGameAction(
  * @param replyMarkup A JSON-serialized object for an inline keyboard. If empty, one 'Play game_title' button will be shown. If not empty, the first button must launch the game.
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendGame(gameShortName: String) = game(gameShortName)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun game(gameShortName: String) = SendGameAction(gameShortName)

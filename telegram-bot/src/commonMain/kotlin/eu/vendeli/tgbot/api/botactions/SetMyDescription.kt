@@ -30,7 +30,6 @@ class SetMyDescriptionAction(
  * @param languageCode A two-letter ISO 639-1 language code. If empty, the description will be applied to all users for whose language there is no dedicated description.
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setMyDescription(
     description: String? = null,

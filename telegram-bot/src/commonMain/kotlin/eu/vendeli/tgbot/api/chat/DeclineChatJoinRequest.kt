@@ -29,10 +29,8 @@ class DeclineChatJoinRequestAction(
  * @param userId Unique identifier of the target user
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun declineChatJoinRequest(userId: Long) = DeclineChatJoinRequestAction(userId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun declineChatJoinRequest(user: User) = declineChatJoinRequest(user.id)

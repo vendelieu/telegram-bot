@@ -20,6 +20,5 @@ class LeaveChatAction : Action<Boolean>() {
  * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun leaveChat() = LeaveChatAction()

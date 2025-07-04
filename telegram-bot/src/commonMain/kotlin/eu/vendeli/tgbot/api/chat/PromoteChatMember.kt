@@ -48,10 +48,8 @@ class PromoteChatMemberAction(
  * @param canManageTopics Pass True if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun promoteChatMember(userId: Long) = PromoteChatMemberAction(userId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun promoteChatMember(user: User) = promoteChatMember(user.id)

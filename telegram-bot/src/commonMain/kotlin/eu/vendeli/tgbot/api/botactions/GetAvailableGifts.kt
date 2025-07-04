@@ -21,6 +21,5 @@ class GetAvailableGiftsAction : SimpleAction<Gifts>() {
  *
  * @returns [Gifts]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getAvailableGifts() = GetAvailableGiftsAction()

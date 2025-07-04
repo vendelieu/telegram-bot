@@ -2416,6 +2416,7 @@ public final class eu/vendeli/tgbot/api/stickerset/SetStickerKeywordsAction : eu
 
 public final class eu/vendeli/tgbot/api/stickerset/SetStickerKeywordsKt {
 	public static final fun setStickerKeywords (Ljava/lang/String;Ljava/util/List;)Leu/vendeli/tgbot/api/stickerset/SetStickerKeywordsAction;
+	public static final fun setStickerKeywords (Ljava/lang/String;[Ljava/lang/String;)Leu/vendeli/tgbot/api/stickerset/SetStickerKeywordsAction;
 	public static synthetic fun setStickerKeywords$default (Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Leu/vendeli/tgbot/api/stickerset/SetStickerKeywordsAction;
 }
 

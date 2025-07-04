@@ -55,24 +55,20 @@ class SendPhotoAction(
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun photo(file: ImplicitFile) = SendPhotoAction(file)
 
 @TgAPI
 inline fun photo(block: () -> String) = photo(block().toImplicitFile())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun photo(ba: ByteArray) = photo(ba.toImplicitFile("photo.jpg"))
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun photo(file: InputFile) = photo(file.toImplicitFile())
 
 @TgAPI
 inline fun sendPhoto(block: () -> String) = photo(block)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendPhoto(file: ImplicitFile) = photo(file)

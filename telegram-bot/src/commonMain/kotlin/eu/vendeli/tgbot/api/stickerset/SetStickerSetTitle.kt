@@ -30,6 +30,5 @@ class SetStickerSetTitleAction(
  * @param title Sticker set title, 1-64 characters
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setStickerSetTitle(name: String, title: String) = SetStickerSetTitleAction(name, title)

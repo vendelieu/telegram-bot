@@ -36,7 +36,6 @@ class UpgradeGiftAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun upgradeGift(
     businessConnectionId: String,
     ownedGiftId: String,

@@ -34,7 +34,6 @@ class EditForumTopicAction(
  * @param iconCustomEmojiId New unique identifier of the custom emoji shown as the topic icon. Use getForumTopicIconStickers to get all allowed custom emoji identifiers. Pass an empty string to remove the icon. If not specified, the current icon will be kept
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun editForumTopic(messageThreadId: Int, name: String? = null, iconCustomEmojiId: String? = null) =
     EditForumTopicAction(messageThreadId, name, iconCustomEmojiId)

@@ -61,24 +61,20 @@ class SendAudioAction(
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun audio(file: ImplicitFile) = SendAudioAction(file)
 
 @TgAPI
 inline fun audio(block: () -> String) = audio(block().toImplicitFile())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun audio(ba: ByteArray) = audio(ba.toImplicitFile("audio.mp3"))
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun audio(file: InputFile) = audio(file.toImplicitFile())
 
 @TgAPI
 inline fun sendAudio(block: () -> String) = audio(block)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendAudio(file: ImplicitFile) = audio(file)

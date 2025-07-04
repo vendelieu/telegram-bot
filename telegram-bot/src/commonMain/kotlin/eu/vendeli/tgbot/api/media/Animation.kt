@@ -62,24 +62,20 @@ class SendAnimationAction(
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun animation(file: ImplicitFile) = SendAnimationAction(file)
 
 @TgAPI
 inline fun animation(block: () -> String) = animation(block().toImplicitFile())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun animation(ba: ByteArray) = animation(ba.toImplicitFile("image.gif"))
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun animation(file: InputFile) = animation(file.toImplicitFile())
 
 @TgAPI
 inline fun sendAnimation(block: () -> String) = animation(block)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendAnimation(file: ImplicitFile) = animation(file)

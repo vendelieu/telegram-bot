@@ -58,8 +58,8 @@ internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T):
     async { block() }
 }
 
-@Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
+@Suppress("UNCHECKED_CAST")
 internal inline fun <T> Any?.cast() = this as T
 
-@Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
+@Suppress("UNCHECKED_CAST")
 internal inline fun <T> Any?.safeCast() = this as? T

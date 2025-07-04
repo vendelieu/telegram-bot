@@ -30,6 +30,5 @@ class SetMyNameAction(
  * @param languageCode A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose language there is no dedicated name.
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setMyName(name: String? = null, languageCode: String? = null) = SetMyNameAction(name, languageCode)

@@ -37,7 +37,6 @@ class SendChatActionAction(
  * @param action Type of action to broadcast. Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, record_video or upload_video for videos, record_voice or upload_voice for voice notes, upload_document for general files, choose_sticker for stickers, find_location for location data, record_video_note or upload_video_note for video notes.
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun chatAction(action: ChatAction, messageThreadId: Int? = null) = SendChatActionAction(action, messageThreadId)
 
@@ -47,6 +46,5 @@ inline fun chatAction(messageThreadId: Int? = null, block: () -> ChatAction) = c
 @TgAPI
 inline fun sendChatAction(messageThreadId: Int? = null, block: () -> ChatAction) = chatAction(block(), messageThreadId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendChatAction(action: ChatAction, messageThreadId: Int? = null) = chatAction(action, messageThreadId)

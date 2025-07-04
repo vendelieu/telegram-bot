@@ -67,7 +67,6 @@ class SendPollAction(
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun poll(question: String, options: List<InputPollOption>) = SendPollAction(question, options)
 
@@ -77,7 +76,6 @@ fun poll(
     options: PollOptionsBuilder.() -> Unit,
 ) = poll(question, PollOptionsBuilder.build(options))
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun poll(question: String, vararg options: InputPollOption) = poll(question, options.toList())
 

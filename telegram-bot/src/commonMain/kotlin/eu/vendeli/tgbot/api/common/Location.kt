@@ -52,10 +52,8 @@ class SendLocationAction(
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendLocation(latitude: Float, longitude: Float) = location(latitude, longitude)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun location(latitude: Float, longitude: Float) = SendLocationAction(latitude, longitude)

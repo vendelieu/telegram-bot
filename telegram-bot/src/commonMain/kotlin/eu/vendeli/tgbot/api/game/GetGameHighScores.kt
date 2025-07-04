@@ -41,19 +41,15 @@ class GetGameHighScoresAction :
  * @param inlineMessageId Required if chat_id and message_id are not specified. Identifier of the inline message
  * @returns [Array of GameHighScore]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getGameHighScores(userId: Long, messageId: Long) =
     GetGameHighScoresAction(Identifier.from(userId), messageId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getGameHighScores(userId: Long) = GetGameHighScoresAction(Identifier.from(userId))
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getGameHighScores(user: User, messageId: Long) = getGameHighScores(user.id, messageId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getGameHighScores(user: User) = getGameHighScores(user.id)

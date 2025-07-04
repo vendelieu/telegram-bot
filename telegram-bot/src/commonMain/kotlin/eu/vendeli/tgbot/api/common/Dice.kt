@@ -46,14 +46,11 @@ class SendDiceAction(
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendDice(emoji: String? = null) = dice(emoji)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun dice(emoji: String? = null) = SendDiceAction(emoji)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun dice(block: () -> DiceEmoji) = SendDiceAction(block().emoji)

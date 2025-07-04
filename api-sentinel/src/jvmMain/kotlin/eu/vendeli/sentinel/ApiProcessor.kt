@@ -86,14 +86,25 @@ class ApiProcessor(
     private val tgBotType = TelegramBot::class.asTypeName()
     private fun FileSpec.Builder.addShortcut(declaration: KSFunctionDeclaration) {
         val name = declaration.simpleName.getShortName()
-        val isSimple = declaration.returnType
-            ?.resolve()
+        val rType = declaration.returnType?.resolve()
+        val superTypes = rType
             ?.declaration
             ?.safeCast<KSClassDeclaration>()
             ?.getAllSuperTypes()
-            ?.any {
-                it.declaration.qualifiedName?.asString() == simpleActionType
-            } ?: false
+
+        val actionType = superTypes
+            ?.firstOrNull {
+                it.declaration.qualifiedName?.asString() == actionFQ ||
+                    it.declaration.qualifiedName?.asString() == mediaActionFQ ||
+                    it.declaration.qualifiedName?.asString() == simpleActionFQ
+            }
+
+        val actionTypeFQ = actionType
+            ?.declaration
+            ?.qualifiedName
+            ?.asString()
+
+        val isSimple = actionTypeFQ == simpleActionFQ
 
         val parameters = declaration.parameters
             .mapIndexed { _, it ->
@@ -118,27 +129,32 @@ class ApiProcessor(
                 }.build()
             }.toMutableSet()
 
-        if (!isSimple) parameters.add(ParameterSpec.builder("chatId", Long::class.asTypeName()).build())
+        if (!isSimple && actionType != null) parameters.add(
+            ParameterSpec.builder("chatId", Long::class.asTypeName()).build(),
+        )
 
         val parametersInlined = parameters.filterNot { !isSimple && it.name == "chatId" }.joinToString {
             (if (KModifier.VARARG in it.modifiers) "${it.name} = " else "") + it.name
         }
 
-        val sendTail = if (isSimple) {
-            ".send(this)"
-        } else {
-            ".send(chatId, this)"
+        val tailCall = when (actionTypeFQ) {
+            actionFQ, mediaActionFQ -> ".send(chatId, this)"
+            simpleActionFQ -> ".send(this)"
+            else -> ""
         }
+
+        val returnType = if (tailCall.isNotBlank())
+            UNIT
+        else rType?.toTypeName() ?: UNIT
 
         addFunction(
             FunSpec
                 .builder(name)
                 .receiver(tgBotType)
                 .addModifiers(KModifier.INLINE, KModifier.SUSPEND)
-                .addAnnotation(AnnotationSpec.builder(Suppress::class).addMember("\"NOTHING_TO_INLINE\"").build())
                 .addParameters(parameters)
-                .returns(UNIT)
-                .addCode("return ${declaration.qualifiedName!!.asString()}($parametersInlined)" + sendTail)
+                .returns(returnType)
+                .addCode("return ${declaration.qualifiedName!!.asString()}($parametersInlined)" + tailCall)
                 .build(),
         )
     }

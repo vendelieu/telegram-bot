@@ -32,7 +32,6 @@ class SetStickerKeywordsAction(
  * @param keywords A JSON-serialized list of 0-20 search keywords for the sticker with total length of up to 64 characters
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setStickerKeywords(sticker: String, keywords: List<String>? = null) =
     SetStickerKeywordsAction(sticker, keywords)

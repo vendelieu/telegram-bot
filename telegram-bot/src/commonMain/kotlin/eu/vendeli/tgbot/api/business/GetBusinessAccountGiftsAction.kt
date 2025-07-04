@@ -41,7 +41,6 @@ class GetBusinessAccountGiftsAction(
  * @returns [OwnedGifts]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun getBusinessAccountGifts(
     businessConnectionId: String,
 ) = GetBusinessAccountGiftsAction(businessConnectionId)

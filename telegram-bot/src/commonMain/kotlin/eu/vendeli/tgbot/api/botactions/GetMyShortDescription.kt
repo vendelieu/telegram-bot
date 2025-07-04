@@ -28,6 +28,5 @@ class GetMyShortDescriptionAction(
  * @param languageCode A two-letter ISO 639-1 language code or an empty string
  * @returns [BotShortDescription]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getMyShortDescription(languageCode: String? = null) = GetMyShortDescriptionAction(languageCode)

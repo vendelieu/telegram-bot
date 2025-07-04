@@ -32,7 +32,6 @@ class EditChatSubscriptionInviteLinkAction(
  * @param name Invite link name; 0-32 characters
  * @returns [ChatInviteLink]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun editChatSubscriptionInviteLink(
     inviteLink: String,

@@ -28,6 +28,5 @@ class CloseForumTopicAction(
  * @param messageThreadId Unique identifier for the target message thread of the forum topic
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun closeForumTopic(messageThreadId: Int) = CloseForumTopicAction(messageThreadId)

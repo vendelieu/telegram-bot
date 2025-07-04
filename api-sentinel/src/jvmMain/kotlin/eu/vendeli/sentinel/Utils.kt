@@ -8,6 +8,8 @@ import com.google.devtools.ksp.symbol.KSDeclaration
 import com.squareup.kotlinpoet.LIST
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.asTypeName
+import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.marker.Keyboard
 import eu.vendeli.tgbot.types.msg.MessageEntity
@@ -17,9 +19,11 @@ import java.io.FileFilter
 
 internal val replyMarkupType = Keyboard::class.asTypeName()
 internal val entitiesType = LIST.parameterizedBy(MessageEntity::class.asTypeName())
-internal val simpleActionType = SimpleAction::class.fqName
+internal val simpleActionFQ = SimpleAction::class.fqName
+internal val actionFQ = Action::class.fqName
+internal val mediaActionFQ = MediaAction::class.fqName
 
-@Suppress("UNCHECKED_CAST", "NOTHING_TO_INLINE")
+@Suppress("UNCHECKED_CAST")
 internal inline fun <R> Any?.safeCast(): R? = this as? R
 
 internal inline fun KSPLogger.invalid(message: () -> String) = exception(IllegalStateException(message()))

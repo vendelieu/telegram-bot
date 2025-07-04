@@ -35,7 +35,6 @@ class SetPassportDataErrorsAction(
  * @param errors A JSON-serialized array describing the errors
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setPassportDataErrors(userId: Long, errors: List<PassportElementError>) =
     SetPassportDataErrorsAction(userId, errors)
@@ -44,7 +43,6 @@ inline fun setPassportDataErrors(userId: Long, errors: List<PassportElementError
 fun setPassportDataErrors(userId: Long, errors: ListingBuilder<PassportElementError>.() -> Unit) =
     setPassportDataErrors(userId, ListingBuilder.build(errors))
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setPassportDataError(userId: Long, vararg error: PassportElementError) =
     setPassportDataErrors(userId, error.asList())

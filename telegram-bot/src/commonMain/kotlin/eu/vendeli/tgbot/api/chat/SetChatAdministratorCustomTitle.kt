@@ -32,12 +32,10 @@ class SetChatAdministratorCustomTitleAction(
  * @param customTitle New custom title for the administrator; 0-16 characters, emoji are not allowed
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setChatAdministratorCustomTitle(userId: Long, customTitle: String) =
     SetChatAdministratorCustomTitleAction(userId, customTitle)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setChatAdministratorCustomTitle(user: User, customTitle: String) =
     setChatAdministratorCustomTitle(user.id, customTitle)

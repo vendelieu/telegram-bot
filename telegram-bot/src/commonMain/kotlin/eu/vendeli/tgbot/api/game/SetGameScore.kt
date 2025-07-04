@@ -47,18 +47,14 @@ class SetGameScoreAction :
  * @param inlineMessageId Required if chat_id and message_id are not specified. Identifier of the inline message
  * @returns [Message]|[Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setGameScore(userId: Long, messageId: Long, score: Long) = SetGameScoreAction(userId, messageId, score)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setGameScore(userId: Long, score: Long) = SetGameScoreAction(userId, score)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setGameScore(user: User, score: Long) = setGameScore(user.id, score)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setGameScore(user: User, messageId: Long, score: Long) = setGameScore(user.id, messageId, score)

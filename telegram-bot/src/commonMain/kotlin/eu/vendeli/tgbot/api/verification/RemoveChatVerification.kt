@@ -29,11 +29,9 @@ class RemoveChatVerificationAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun removeChatVerification(chatId: Long): RemoveChatVerificationAction =
     RemoveChatVerificationAction(chatId)
 
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun removeChatVerification(chat: Chat): RemoveChatVerificationAction =
     removeChatVerification(chat.id)

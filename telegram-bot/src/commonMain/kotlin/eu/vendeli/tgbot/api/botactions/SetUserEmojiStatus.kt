@@ -36,7 +36,6 @@ class SetUserEmojiStatusAction(
  * @param emojiStatusExpirationDate Expiration date of the emoji status, if any
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setUserEmojiStatus(
     userId: Long,

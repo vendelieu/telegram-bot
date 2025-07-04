@@ -37,7 +37,6 @@ class CreateForumTopicAction(
  * @param iconCustomEmojiId Unique identifier of the custom emoji shown as the topic icon. Use getForumTopicIconStickers to get all allowed custom emoji identifiers.
  * @returns [ForumTopic]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun createForumTopic(name: String, iconColor: IconColor? = null, iconCustomEmojiId: String? = null) =
     CreateForumTopicAction(name, iconColor, iconCustomEmojiId)

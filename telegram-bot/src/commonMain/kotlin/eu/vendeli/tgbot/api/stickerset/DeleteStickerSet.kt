@@ -27,6 +27,5 @@ class DeleteStickerSetAction(
  * @param name Sticker set name
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun deleteStickerSet(name: String) = DeleteStickerSetAction(name)

@@ -31,7 +31,6 @@ class SetBusinessAccountUsernameAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun setBusinessAccountUsername(
     businessConnectionId: String,
     username: String? = null,

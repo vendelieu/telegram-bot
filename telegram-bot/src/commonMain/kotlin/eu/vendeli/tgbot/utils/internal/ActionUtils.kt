@@ -31,19 +31,17 @@ internal inline fun <reified Type : Any> TgAction<Type>.getReturnType(): KSerial
 internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getReturnType(): KSerializer<List<Type>> =
     ListSerializer(Type::class.serializer())
 
-@Suppress("NOTHING_TO_INLINE")
 internal inline fun <R : Any> TgAction<R>.handleImplicitFile(input: ImplicitFile, fieldName: String) {
     parameters[fieldName] = input.transform(multipartData).file.toJsonElement()
 }
 
-@Suppress("NOTHING_TO_INLINE")
 internal inline fun <R : Any> TgAction<R>.handleImplicitFile(parameter: KMutableProperty0<ImplicitFile?>) {
     parameter.get()?.let {
         parameters[parameter.name] = it.transform(multipartData).file.toJsonElement()
     }
 }
 
-@Suppress("DEPRECATION_ERROR", "NOTHING_TO_INLINE", "UNCHECKED_CAST")
+@Suppress("DEPRECATION_ERROR", "UNCHECKED_CAST")
 internal inline fun <T : ImplicitMediaData, R : Any, S : KSerializer<T>> MediaAction<R>.handleImplicitFileGroup(
     input: List<T>,
     fieldName: String = "media",
@@ -62,7 +60,6 @@ internal inline fun <T : ImplicitMediaData, R : Any, S : KSerializer<T>> MediaAc
     }.encodeWith(JsonElement.serializer())
 }
 
-@Suppress("NOTHING_TO_INLINE")
 internal inline fun ImplicitFile.transform(multiParts: MutableList<PartData.BinaryItem>): ImplicitFile.Str {
     if (this is ImplicitFile.Str) return file.toImplicitFile()
     val media = file as InputFile

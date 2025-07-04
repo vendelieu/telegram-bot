@@ -24,7 +24,7 @@ class ServerBuilder internal constructor() {
     /**
      * The ktor modules to be applied to the server.
      */
-    internal val ktorModules = mutableListOf<Application.() -> Unit>()
+    internal val ktorModules = mutableListOf<suspend Application.() -> Unit>()
     internal var server: Configuration? = null
     internal var engineCfg: NettyApplicationEngine.Configuration.() -> Unit = {}
     private var httpClient: HttpClient? = null
@@ -80,7 +80,7 @@ class ServerBuilder internal constructor() {
      *
      * @param module a lambda to configure the module
      */
-    fun ktorModule(module: Application.() -> Unit) {
+    fun ktorModule(module: suspend Application.() -> Unit) {
         ktorModules.add(module)
     }
 }

@@ -36,7 +36,6 @@ class TransferGiftAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun transferGift(
     businessConnectionId: String,
     ownedGiftId: String,

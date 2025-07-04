@@ -40,7 +40,6 @@ class AnswerShippingQueryAction(
  * @param errorMessage Required if ok is False. Error message in human readable form that explains why it is impossible to complete the order (e.g. "Sorry, delivery to your desired address is unavailable"). Telegram will display this message to the user.
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun answerShippingQuery(
     shippingQueryId: String,
@@ -57,7 +56,6 @@ fun answerShippingQuery(
     shippingOptions: ListingBuilder<ShippingOption>.() -> Unit,
 ) = answerShippingQuery(shippingQueryId, ok, ListingBuilder.build(shippingOptions), errorMessage)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun answerShippingQuery(
     shippingQueryId: String,

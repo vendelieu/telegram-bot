@@ -54,22 +54,18 @@ class SendVideoNoteAction(
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun videoNote(file: ImplicitFile) = SendVideoNoteAction(file)
 
 @TgAPI
 inline fun videoNote(block: () -> String) = videoNote(block().toImplicitFile())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun videoNote(ba: ByteArray) = videoNote(ba.toImplicitFile("note.mp4"))
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun videoNote(input: InputFile) = videoNote(input.toImplicitFile())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendVideoNote(file: ImplicitFile) = videoNote(file)
 

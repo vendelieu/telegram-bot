@@ -21,6 +21,5 @@ class GetMeAction : SimpleAction<User>() {
  *
  * @returns [User]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getMe() = GetMeAction()

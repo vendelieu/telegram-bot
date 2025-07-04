@@ -66,7 +66,6 @@ class CreateInvoiceLinkAction(
  * @param isFlexible Pass True if the final price depends on the shipping method. Ignored for payments in Telegram Stars.
  * @returns [String]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun createInvoiceLink(
     title: String,

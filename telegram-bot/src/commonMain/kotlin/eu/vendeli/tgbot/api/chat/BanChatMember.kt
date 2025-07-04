@@ -36,12 +36,10 @@ class BanChatMemberAction(
  * @param revokeMessages Pass True to delete all messages from the chat for the user that is being removed. If False, the user will be able to see messages in the group that were sent before the user was removed. Always True for supergroups and channels.
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun banChatMember(userId: Long, untilDate: Instant? = null, revokeMessages: Boolean? = null) =
     BanChatMemberAction(userId, untilDate, revokeMessages)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun banChatMember(user: User, untilDate: Instant? = null, revokeMessages: Boolean? = null) =
     banChatMember(user.id, untilDate, revokeMessages)
