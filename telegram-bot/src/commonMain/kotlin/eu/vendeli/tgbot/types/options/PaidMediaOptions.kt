@@ -15,4 +15,5 @@ data class PaidMediaOptions(
     override var allowPaidBroadcast: Boolean? = null,
 ) : OptionsCommon,
     OptionsParseMode,
-    ShowCaptionAboveMediaProp
+    ShowCaptionAboveMediaProp,
+    AllowPaidBroadcastProp

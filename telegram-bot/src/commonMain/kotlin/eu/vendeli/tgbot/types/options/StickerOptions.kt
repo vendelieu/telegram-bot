@@ -14,4 +14,5 @@ data class StickerOptions(
     override var allowPaidBroadcast: Boolean? = null,
 ) : OptionsCommon,
     ForumProps,
-    MessageEffectIdProp
+    MessageEffectIdProp,
+    AllowPaidBroadcastProp

@@ -36,3 +36,7 @@ class SetStickerKeywordsAction(
 @TgAPI
 inline fun setStickerKeywords(sticker: String, keywords: List<String>? = null) =
     SetStickerKeywordsAction(sticker, keywords)
+
+@TgAPI
+inline fun setStickerKeywords(sticker: String, vararg keywords: String) =
+    SetStickerKeywordsAction(sticker, keywords.toList())

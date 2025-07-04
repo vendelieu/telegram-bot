@@ -32,4 +32,5 @@ data class VideoOptions(
     MediaSpoiler,
     MessageEffectIdProp,
     ThumbnailProp,
-    ShowCaptionAboveMediaProp
+    ShowCaptionAboveMediaProp,
+    AllowPaidBroadcastProp

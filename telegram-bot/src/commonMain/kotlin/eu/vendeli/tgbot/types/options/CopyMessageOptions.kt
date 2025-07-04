@@ -20,4 +20,5 @@ data class CopyMessageOptions(
 ) : OptionsParseMode,
     ForumProps,
     OptionsCommon,
-    ShowCaptionAboveMediaProp
+    ShowCaptionAboveMediaProp,
+    AllowPaidBroadcastProp

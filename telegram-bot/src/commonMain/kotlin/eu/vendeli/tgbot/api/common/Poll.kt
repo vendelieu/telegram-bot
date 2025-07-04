@@ -48,7 +48,7 @@ class SendPollAction(
  * @param question Poll question, 1-300 characters
  * @param questionParseMode Mode for parsing entities in the question. See formatting options for more details. Currently, only custom emoji entities are allowed
  * @param questionEntities A JSON-serialized list of special entities that appear in the poll question. It can be specified instead of question_parse_mode
- * @param options A JSON-serialized list of 2-10 answer options
+ * @param options A JSON-serialized list of 2-12 answer options
  * @param isAnonymous True, if the poll needs to be anonymous, defaults to True
  * @param type Poll type, "quiz" or "regular", defaults to "regular"
  * @param allowsMultipleAnswers True, if the poll allows multiple answers, ignored for polls in quiz mode, defaults to False

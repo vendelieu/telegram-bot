@@ -33,4 +33,5 @@ data class PollOptions(
     override var allowPaidBroadcast: Boolean? = null,
 ) : OptionsCommon,
     ForumProps,
-    MessageEffectIdProp
+    MessageEffectIdProp,
+    AllowPaidBroadcastProp

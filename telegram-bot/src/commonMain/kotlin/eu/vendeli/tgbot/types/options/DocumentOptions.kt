@@ -20,4 +20,5 @@ data class DocumentOptions(
     ForumProps,
     OptionsParseMode,
     ThumbnailProp,
-    MessageEffectIdProp
+    MessageEffectIdProp,
+    AllowPaidBroadcastProp

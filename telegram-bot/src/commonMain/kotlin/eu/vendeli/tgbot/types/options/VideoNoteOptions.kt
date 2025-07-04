@@ -18,4 +18,5 @@ data class VideoNoteOptions(
 ) : OptionsCommon,
     ForumProps,
     ThumbnailProp,
-    MessageEffectIdProp
+    MessageEffectIdProp,
+    AllowPaidBroadcastProp

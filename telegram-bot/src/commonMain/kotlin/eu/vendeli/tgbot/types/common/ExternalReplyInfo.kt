@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types.common
 
 import eu.vendeli.tgbot.types.chat.Chat
+import eu.vendeli.tgbot.types.checklist.Checklist
 import eu.vendeli.tgbot.types.game.Dice
 import eu.vendeli.tgbot.types.game.Game
 import eu.vendeli.tgbot.types.giveaway.Giveaway
@@ -39,6 +40,7 @@ import kotlinx.serialization.Serializable
  * @property videoNote Optional. Message is a video note, information about the video message
  * @property voice Optional. Message is a voice message, information about the file
  * @property hasMediaSpoiler Optional. True, if the message media is covered by a spoiler animation
+ * @property checklist Optional. Message is a checklist
  * @property contact Optional. Message is a shared contact, information about the contact
  * @property dice Optional. Message is a dice with random value
  * @property game Optional. Message is a game, information about the game. More about games: https://core.telegram.org/bots/api#games
@@ -66,6 +68,7 @@ data class ExternalReplyInfo(
     val videoNote: VideoNote? = null,
     val voice: Voice? = null,
     val hasMediaSpoiler: Boolean? = null,
+    val checklist: Checklist? = null,
     val contact: Contact? = null,
     val dice: Dice? = null,
     val game: Game? = null,

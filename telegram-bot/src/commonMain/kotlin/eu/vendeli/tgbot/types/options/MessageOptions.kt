@@ -19,4 +19,5 @@ data class MessageOptions(
     ForumProps,
     OptionsParseMode,
     LinkPreviewProp,
-    MessageEffectIdProp
+    MessageEffectIdProp,
+    AllowPaidBroadcastProp

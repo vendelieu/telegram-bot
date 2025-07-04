@@ -54,6 +54,10 @@ interface AreasProp : Options {
     var areas: List<StoryArea>?
 }
 
+interface AllowPaidBroadcastProp : Options {
+    var allowPaidBroadcast: Boolean?
+}
+
 @Serializable
 sealed interface OptionsCommon :
     Options,
@@ -61,7 +65,6 @@ sealed interface OptionsCommon :
     var disableNotification: Boolean?
     var replyParameters: ReplyParameters?
     override var protectContent: Boolean?
-    var allowPaidBroadcast: Boolean?
 
     var replyToMessageId: Long?
         get() = replyParameters?.messageId

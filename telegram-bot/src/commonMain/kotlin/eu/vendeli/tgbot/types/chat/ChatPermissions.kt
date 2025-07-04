@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
  * @property canSendVideos Optional. True, if the user is allowed to send videos
  * @property canSendVideoNotes Optional. True, if the user is allowed to send video notes
  * @property canSendVoiceNotes Optional. True, if the user is allowed to send voice notes
- * @property canSendPolls Optional. True, if the user is allowed to send polls
+ * @property canSendPolls Optional. True, if the user is allowed to send polls and checklists
  * @property canSendOtherMessages Optional. True, if the user is allowed to send animations, games, stickers and use inline bots
  * @property canAddWebPagePreviews Optional. True, if the user is allowed to add web page previews to their messages
  * @property canChangeInfo Optional. True, if the user is allowed to change the chat title, photo and other settings. Ignored in public supergroups

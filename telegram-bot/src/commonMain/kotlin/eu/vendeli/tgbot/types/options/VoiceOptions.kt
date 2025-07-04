@@ -17,4 +17,5 @@ data class VoiceOptions(
 ) : OptionsCommon,
     ForumProps,
     OptionsParseMode,
-    MessageEffectIdProp
+    MessageEffectIdProp,
+    AllowPaidBroadcastProp

@@ -13,4 +13,5 @@ data class MediaGroupOptions(
     override var allowPaidBroadcast: Boolean? = null,
 ) : OptionsCommon,
     ForumProps,
-    MessageEffectIdProp
+    MessageEffectIdProp,
+    AllowPaidBroadcastProp

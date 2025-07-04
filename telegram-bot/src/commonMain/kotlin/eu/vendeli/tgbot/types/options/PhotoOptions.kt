@@ -20,4 +20,5 @@ data class PhotoOptions(
     OptionsParseMode,
     MediaSpoiler,
     MessageEffectIdProp,
-    ShowCaptionAboveMediaProp
+    ShowCaptionAboveMediaProp,
+    AllowPaidBroadcastProp

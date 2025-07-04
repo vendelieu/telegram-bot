@@ -7,6 +7,9 @@ import eu.vendeli.tgbot.types.boost.ChatBoostAdded
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatBackground
 import eu.vendeli.tgbot.types.chat.ChatShared
+import eu.vendeli.tgbot.types.checklist.Checklist
+import eu.vendeli.tgbot.types.checklist.ChecklistTasksAdded
+import eu.vendeli.tgbot.types.checklist.ChecklistTasksDone
 import eu.vendeli.tgbot.types.common.Contact
 import eu.vendeli.tgbot.types.common.ExternalReplyInfo
 import eu.vendeli.tgbot.types.common.LinkPreviewOptions
@@ -51,8 +54,8 @@ import eu.vendeli.tgbot.types.poll.Poll
 import eu.vendeli.tgbot.types.user.UsersShared
 import eu.vendeli.tgbot.types.webapp.WriteAccessAllowed
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
-import kotlin.time.Instant
 import kotlinx.serialization.Serializable
+import kotlin.time.Instant
 
 /**
  * This object represents a message.
@@ -189,6 +192,7 @@ data class Message(
     val caption: String? = null,
     val captionEntities: List<MessageEntity>? = null,
     val showCaptionAboveMedia: Boolean? = null,
+    val checklist: Checklist? = null,
     val contact: Contact? = null,
     val dice: Dice? = null,
     val game: Game? = null,
@@ -227,6 +231,9 @@ data class Message(
     val generalForumTopicUnhidden: GeneralForumTopicUnhidden? = null,
     val giveawayCreated: GiveawayCreated? = null,
     val chatBackgroundSet: ChatBackground? = null,
+    val checklistTasksDone: ChecklistTasksDone? = null,
+    val checklistTasksAdded: ChecklistTasksAdded? = null,
+    val directMessagePriceChanged: DirectMessagePriceChanged? = null,
     val giveaway: Giveaway? = null,
     val giveawayWinners: GiveawayWinners? = null,
     val giveawayCompleted: GiveawayCompleted? = null,

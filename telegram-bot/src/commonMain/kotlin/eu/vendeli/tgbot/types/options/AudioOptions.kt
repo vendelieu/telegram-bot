@@ -22,4 +22,5 @@ data class AudioOptions(
     ForumProps,
     OptionsParseMode,
     ThumbnailProp,
-    MessageEffectIdProp
+    MessageEffectIdProp,
+    AllowPaidBroadcastProp

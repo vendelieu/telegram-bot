@@ -44,7 +44,7 @@ class GiftApiTest : BotTestContext() {
             monthCount = 3,
             starCount = 1000,
             textParseMode = null,
-            text = { "Enjoy!" }
+            text = { "Enjoy!" },
         ).sendReq()
             .shouldFailure()
             .description

@@ -1,16 +1,20 @@
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.assign
 import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinCommonCompilerOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 private val jvmTargetVer = JvmTarget.JVM_17
-private val optIns: Array<String> = arrayOf(
-    "-opt-in=eu.vendeli.tgbot.annotations.internal.KtGramInternal",
-    "-opt-in=eu.vendeli.tgbot.annotations.internal.ExperimentalFeature",
-    "-opt-in=kotlin.time.ExperimentalTime",
-)
+
+private fun KotlinCommonCompilerOptions.configureCompilerOptions() {
+    freeCompilerArgs.addAll(
+        "-opt-in=eu.vendeli.tgbot.annotations.internal.KtGramInternal",
+        "-opt-in=eu.vendeli.tgbot.annotations.internal.ExperimentalFeature",
+        "-opt-in=kotlin.time.ExperimentalTime",
+        "-Xwarning-level=NOTHING_TO_INLINE:disabled",
+    )
+}
 
 private fun KotlinMultiplatformExtension.configureJvm() {
     jvm {
@@ -18,7 +22,10 @@ private fun KotlinMultiplatformExtension.configureJvm() {
             compileTaskProvider.configure {
                 compilerOptions {
                     jvmTarget.set(jvmTargetVer)
-                    freeCompilerArgs = listOf("-Xjsr305=strict", "-Xjvm-default=all-compatibility", *optIns)
+                    freeCompilerArgs.addAll(
+                        "-Xjsr305=strict",
+                        "-Xjvm-default=all-compatibility",
+                    )
                 }
             }
         }
@@ -30,6 +37,7 @@ fun Project.onlyJvmConfiguredKotlin(block: KotlinMultiplatformExtension.() -> Un
     plugins.apply("kotlin-multiplatform")
 
     configure<KotlinMultiplatformExtension> {
+        compilerOptions { configureCompilerOptions() }
         configureJvm()
         block()
     }
@@ -40,9 +48,7 @@ fun Project.configuredKotlin(block: KotlinMultiplatformExtension.() -> Unit) {
 
     configure<KotlinMultiplatformExtension> {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            freeCompilerArgs = optIns.toList()
-        }
+        compilerOptions { configureCompilerOptions() }
 
         configureJvm()
         js { nodejs() }
