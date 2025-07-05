@@ -32,6 +32,7 @@ eu.vendeli.tgbot.api.answer
 eu.vendeli.tgbot.api.botactions
 eu.vendeli.tgbot.api.business
 eu.vendeli.tgbot.api.chat
+eu.vendeli.tgbot.api.checklist
 eu.vendeli.tgbot.api.common
 eu.vendeli.tgbot.api.forum
 eu.vendeli.tgbot.api.game
@@ -56,6 +57,7 @@ eu.vendeli.tgbot.types.bot
 eu.vendeli.tgbot.types.business
 eu.vendeli.tgbot.types.chain
 eu.vendeli.tgbot.types.chat
+eu.vendeli.tgbot.types.checklist
 eu.vendeli.tgbot.types.common
 eu.vendeli.tgbot.types.component
 eu.vendeli.tgbot.types.configuration
