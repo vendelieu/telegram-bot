@@ -32,10 +32,8 @@ class UnbanChatMemberAction(
  * @param onlyIfBanned Do nothing if the user is not banned
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun unbanChatMember(userId: Long, onlyIfBanned: Boolean? = null) = UnbanChatMemberAction(userId, onlyIfBanned)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun unbanChatMember(user: User, onlyIfBanned: Boolean? = null) = unbanChatMember(user.id, onlyIfBanned)

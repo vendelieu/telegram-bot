@@ -58,12 +58,10 @@ class SendVenueAction(
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun venue(latitude: Float, longitude: Float, title: String, address: String) =
     SendVenueAction(latitude, longitude, title, address)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendVenue(latitude: Float, longitude: Float, title: String, address: String) =
     venue(latitude, longitude, title, address)

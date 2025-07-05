@@ -29,6 +29,5 @@ class GetFileAction(
  * @param fileId File identifier to get information about
  * @returns [File]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getFile(fileId: String) = GetFileAction(fileId)

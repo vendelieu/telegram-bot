@@ -47,7 +47,6 @@ class GiftPremiumSubscriptionAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 fun giftPremiumSubscription(
     userId: Long,
     monthCount: Int,

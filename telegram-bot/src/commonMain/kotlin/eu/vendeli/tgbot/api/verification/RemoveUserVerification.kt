@@ -29,11 +29,9 @@ class RemoveUserVerificationAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun removeUserVerification(userId: Long): RemoveUserVerificationAction =
     RemoveUserVerificationAction(userId)
 
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun removeUserVerification(user: User): RemoveUserVerificationAction =
     removeUserVerification(user.id)

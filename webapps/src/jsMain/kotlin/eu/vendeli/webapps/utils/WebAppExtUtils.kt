@@ -1,5 +1,3 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package eu.vendeli.webapps.utils
 
 import eu.vendeli.webapps.core.EventType

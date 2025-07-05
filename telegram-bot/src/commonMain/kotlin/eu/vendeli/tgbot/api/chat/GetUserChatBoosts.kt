@@ -30,10 +30,8 @@ class GetUserChatBoostsAction(
  * @param userId Unique identifier of the target user
  * @returns [UserChatBoosts]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getUserChatBoosts(userId: Long) = GetUserChatBoostsAction(userId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getUserChatBoosts(user: User) = getUserChatBoosts(user.id)

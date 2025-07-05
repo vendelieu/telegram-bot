@@ -4,7 +4,7 @@ import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
@@ -106,15 +106,11 @@ sealed class MessageOrigin {
             get() = authorSignature
     }
 
-    @Suppress("NOTHING_TO_INLINE")
     inline fun asUserOrigin() = this as? UserOrigin
 
-    @Suppress("NOTHING_TO_INLINE")
     inline fun asHiddenUser() = this as? HiddenUser
 
-    @Suppress("NOTHING_TO_INLINE")
     inline fun asChatOrigin() = this as? ChatOrigin
 
-    @Suppress("NOTHING_TO_INLINE")
     inline fun asChannel() = this as? Channel
 }

@@ -58,7 +58,6 @@ class PostStoryAction(
  * @returns [Story]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun postStory(
     businessConnectionId: String,
     content: InputStoryContent,

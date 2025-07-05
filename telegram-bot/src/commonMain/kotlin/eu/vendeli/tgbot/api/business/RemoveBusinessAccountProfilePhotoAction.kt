@@ -30,7 +30,6 @@ class RemoveBusinessAccountProfilePhotoAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun removeBusinessAccountProfilePhoto(
     businessConnectionId: String,
     isPublic: Boolean? = null,

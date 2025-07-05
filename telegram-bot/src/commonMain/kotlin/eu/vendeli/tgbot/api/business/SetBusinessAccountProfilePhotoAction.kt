@@ -42,7 +42,6 @@ class SetBusinessAccountProfilePhotoAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun setBusinessAccountProfilePhoto(
     businessConnectionId: String,
     photo: InputProfilePhoto,

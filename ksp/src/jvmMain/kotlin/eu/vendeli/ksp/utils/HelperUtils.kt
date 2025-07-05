@@ -120,10 +120,10 @@ internal val notLimitedRateLimits = 0L to 0L
 
 internal val ChainingStrategyDefault: TypeName = ChainingStrategy.Default::class.asTypeName()
 
-@Suppress("UNCHECKED_CAST", "NOTHING_TO_INLINE")
+@Suppress("UNCHECKED_CAST")
 internal inline fun <R> Any?.cast(): R = this as R
 
-@Suppress("UNCHECKED_CAST", "NOTHING_TO_INLINE")
+@Suppress("UNCHECKED_CAST")
 internal inline fun <R> Any?.safeCast(): R? = this as? R
 
 internal fun Pair<Long, Long>.toRateLimits(): RateLimits = RateLimits(first, second)
@@ -132,7 +132,6 @@ fun KSType.toKSPClassName() = starProjection().let {
     if (arguments.isEmpty()) it.toClassName() else it.toTypeName()
 }
 
-@Suppress("NOTHING_TO_INLINE")
 internal inline fun buildMeta(
     qualifier: String,
     function: String,

@@ -28,7 +28,6 @@ class GetMyDefaultAdministratorRightsAction(
  * @param forChannels Pass True to get default administrator rights of the bot in channels. Otherwise, default administrator rights of the bot for groups and supergroups will be returned.
  * @returns [ChatAdministratorRights]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getMyDefaultAdministratorRights(forChannel: Boolean? = null) =
     GetMyDefaultAdministratorRightsAction(forChannel)

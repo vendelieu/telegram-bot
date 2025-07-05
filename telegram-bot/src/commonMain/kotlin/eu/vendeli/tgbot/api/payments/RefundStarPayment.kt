@@ -28,7 +28,6 @@ class RefundStarPaymentAction(
  * @param telegramPaymentChargeId Telegram payment identifier
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun refundStarPayment(telegramPaymentChargeId: String, userId: Long) =
     RefundStarPaymentAction(telegramPaymentChargeId, userId)

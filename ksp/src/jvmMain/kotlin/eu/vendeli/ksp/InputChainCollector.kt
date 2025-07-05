@@ -95,7 +95,7 @@ internal fun collectInputChains(
                             curLinkId,
                         )
                         add("if (breakPoint) {\n\tinst.breakAction(user, update, bot)\n\treturn@suspendCall Unit\n}\n")
-                        if (pkg != null) add(
+                        if (ctx.autoCleanClassData && ctx.pkg != null) add(
                             "if (\n\tbot.update.userClassSteps[user.id] != %S\n) %L.____clearClassData(user.id)\n",
                             qualifier,
                             pkg,

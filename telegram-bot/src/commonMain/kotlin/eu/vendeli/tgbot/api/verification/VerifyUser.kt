@@ -32,16 +32,13 @@ class VerifyUserAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun verifyUser(userId: Long, customDescription: String? = null): VerifyUserAction =
     VerifyUserAction(userId, customDescription)
 
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun verifyUser(userId: Long, customDescription: () -> String? = { null }): VerifyUserAction =
     verifyUser(userId, customDescription())
 
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun verifyUser(user: User, customDescription: () -> String? = { null }): VerifyUserAction =
     verifyUser(user.id, customDescription())

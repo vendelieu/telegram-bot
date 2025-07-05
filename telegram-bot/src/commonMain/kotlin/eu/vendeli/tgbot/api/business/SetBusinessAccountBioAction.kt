@@ -31,7 +31,6 @@ class SetBusinessAccountBioAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun setBusinessAccountBio(
     businessConnectionId: String,
     bio: String? = null,

@@ -17,4 +17,5 @@ data class LocationOptions(
     override var allowPaidBroadcast: Boolean? = null,
 ) : OptionsCommon,
     ForumProps,
-    MessageEffectIdProp
+    MessageEffectIdProp,
+    AllowPaidBroadcastProp

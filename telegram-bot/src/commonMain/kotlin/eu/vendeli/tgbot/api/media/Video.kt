@@ -66,24 +66,20 @@ class SendVideoAction(
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun video(file: ImplicitFile) = SendVideoAction(file)
 
 @TgAPI
 inline fun video(block: () -> String) = video(block().toImplicitFile())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun video(ba: ByteArray) = video(ba.toImplicitFile("video.mp4"))
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun video(file: InputFile) = video(file.toImplicitFile())
 
 @TgAPI
 inline fun sendVideo(block: () -> String) = video(block)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendVideo(file: ImplicitFile) = video(file)

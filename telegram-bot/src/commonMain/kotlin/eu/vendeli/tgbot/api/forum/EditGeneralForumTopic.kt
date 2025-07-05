@@ -28,6 +28,5 @@ class EditGeneralForumTopicAction(
  * @param name New topic name, 1-128 characters
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun editGeneralForumTopic(name: String) = EditGeneralForumTopicAction(name)

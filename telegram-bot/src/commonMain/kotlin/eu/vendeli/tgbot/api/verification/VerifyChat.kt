@@ -32,16 +32,13 @@ class VerifyChatAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun verifyChat(chatId: Long, customDescription: String? = null): VerifyChatAction =
     VerifyChatAction(chatId, customDescription)
 
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun verifyChat(chatId: Long, customDescription: () -> String? = { null }): VerifyChatAction =
     verifyChat(chatId, customDescription())
 
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun verifyChat(chat: Chat, customDescription: () -> String? = { null }): VerifyChatAction =
     verifyChat(chat.id, customDescription())

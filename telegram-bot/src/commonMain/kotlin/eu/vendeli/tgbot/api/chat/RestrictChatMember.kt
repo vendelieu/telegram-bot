@@ -9,7 +9,7 @@ import eu.vendeli.tgbot.types.chat.ChatPermissions
 import eu.vendeli.tgbot.utils.internal.encodeWith
 import eu.vendeli.tgbot.utils.internal.getReturnType
 import eu.vendeli.tgbot.utils.internal.toJsonElement
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 @TgAPI
 class RestrictChatMemberAction(
@@ -50,7 +50,6 @@ inline fun restrictChatMember(
     chatPermissions: ChatPermissions.() -> Unit,
 ) = RestrictChatMemberAction(userId, ChatPermissions().apply(chatPermissions), untilDate, useIndependentChatPermissions)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun restrictChatMember(
     userId: Long,
@@ -67,7 +66,6 @@ inline fun restrictChatMember(
     chatPermissions: ChatPermissions.() -> Unit,
 ) = restrictChatMember(user.id, untilDate, useIndependentChatPermissions, chatPermissions)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun restrictChatMember(
     user: User,

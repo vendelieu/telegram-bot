@@ -4,7 +4,6 @@ import eu.vendeli.tgbot.types.component.InputFile
 import java.io.File
 import java.net.URLConnection
 
-@Suppress("NOTHING_TO_INLINE")
 internal actual inline fun ByteArray.getContentType() =
     URLConnection.guessContentTypeFromStream(inputStream()) ?: DEFAULT_CONTENT_TYPE
 

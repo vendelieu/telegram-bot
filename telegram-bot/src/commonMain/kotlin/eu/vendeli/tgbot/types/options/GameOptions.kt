@@ -13,4 +13,5 @@ data class GameOptions(
     override var allowPaidBroadcast: Boolean? = null,
 ) : OptionsCommon,
     ForumProps,
-    MessageEffectIdProp
+    MessageEffectIdProp,
+    AllowPaidBroadcastProp

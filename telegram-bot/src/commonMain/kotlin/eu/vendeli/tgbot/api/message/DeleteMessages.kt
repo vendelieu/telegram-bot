@@ -29,10 +29,8 @@ class DeleteMessagesAction(
  * @param messageIds A JSON-serialized list of 1-100 identifiers of messages to delete. See deleteMessage for limitations on which messages can be deleted
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun deleteMessages(messageIds: List<Long>) = DeleteMessagesAction(messageIds)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun deleteMessages(vararg messageId: Long) = deleteMessages(messageId.asList())

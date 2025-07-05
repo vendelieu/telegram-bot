@@ -28,6 +28,5 @@ class SetChatDescriptionAction(
  * @param description New chat description, 0-255 characters
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setChatDescription(title: String? = null) = SetChatDescriptionAction(title)

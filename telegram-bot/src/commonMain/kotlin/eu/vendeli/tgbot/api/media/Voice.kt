@@ -54,24 +54,20 @@ class SendVoiceAction(
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun voice(file: ImplicitFile) = SendVoiceAction(file)
 
 @TgAPI
 inline fun voice(block: () -> String) = voice(block().toImplicitFile())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun voice(file: InputFile) = voice(file.toImplicitFile())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun voice(ba: ByteArray) = voice(ba.toImplicitFile("voice.ogg"))
 
 @TgAPI
 inline fun sendVoice(block: () -> String) = voice(block)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendVoice(file: ImplicitFile) = voice(file)

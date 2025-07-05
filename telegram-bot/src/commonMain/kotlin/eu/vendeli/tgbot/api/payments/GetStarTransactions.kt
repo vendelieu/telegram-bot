@@ -31,6 +31,5 @@ class GetStarTransactionsAction(
  * @param limit The maximum number of transactions to be retrieved. Values between 1-100 are accepted. Defaults to 100.
  * @returns [StarTransactions]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getStarTransactions(offset: Int? = null, limit: Int? = null) = GetStarTransactionsAction(offset, limit)

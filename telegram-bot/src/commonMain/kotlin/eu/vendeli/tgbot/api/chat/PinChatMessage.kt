@@ -34,7 +34,6 @@ class PinChatMessageAction(
  * @param disableNotification Pass True if it is not necessary to send a notification to all chat members about the new pinned message. Notifications are always disabled in channels and private chats.
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun pinChatMessage(messageId: Long, disableNotification: Boolean? = null) =
     PinChatMessageAction(messageId, disableNotification)

@@ -34,7 +34,6 @@ class DeleteBusinessMessagesAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun deleteBusinessMessages(
     businessConnectionId: String,
     messageIds: List<Long>,

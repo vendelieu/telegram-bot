@@ -20,6 +20,5 @@ class CloseAction : SimpleAction<Boolean>() {
  *
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun close() = CloseAction()

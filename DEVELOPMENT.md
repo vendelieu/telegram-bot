@@ -10,3 +10,8 @@
    to [lambda builder](ksp/src/jvmMain/kotlin/eu/vendeli/ksp/InvocationLambdaBuilder.kt)
 6. Run helper ksp to add a new section
    for [FunctionalDSLUtils](telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/utils/common/FunctionalDSLUtils.kt)
+
+# Preparing release
+
+1. If there's some api changes hit gradle `apiDump` task.
+2. Run gradle's `prepareRelease` task.

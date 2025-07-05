@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.utils.internal.getReturnType
 import eu.vendeli.tgbot.utils.internal.toJsonElement
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 @TgAPI
 class SetUserEmojiStatusAction(
@@ -36,7 +36,6 @@ class SetUserEmojiStatusAction(
  * @param emojiStatusExpirationDate Expiration date of the emoji status, if any
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setUserEmojiStatus(
     userId: Long,

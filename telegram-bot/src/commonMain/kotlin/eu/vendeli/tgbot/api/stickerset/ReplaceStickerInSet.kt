@@ -42,7 +42,6 @@ class ReplaceStickerInSetAction(
  * @param sticker A JSON-serialized object with information about the added sticker. If exactly the same sticker had already been added to the set, then the set remains unchanged.
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun replaceStickerInSet(
     userId: Long,

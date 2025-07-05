@@ -38,7 +38,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
 import kotlinx.coroutines.Deferred
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.serializer
 

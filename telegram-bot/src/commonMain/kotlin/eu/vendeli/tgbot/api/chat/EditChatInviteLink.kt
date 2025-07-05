@@ -37,6 +37,5 @@ class EditChatInviteLinkAction(
  * @param createsJoinRequest True, if users joining the chat via the link need to be approved by chat administrators. If True, member_limit can't be specified
  * @returns [ChatInviteLink]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun editChatInviteLink(inviteLink: String) = EditChatInviteLinkAction(inviteLink)

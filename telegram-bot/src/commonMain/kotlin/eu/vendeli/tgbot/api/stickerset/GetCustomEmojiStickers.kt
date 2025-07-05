@@ -30,11 +30,9 @@ class GetCustomEmojiStickersAction(
  * @param customEmojiIds A JSON-serialized list of custom emoji identifiers. At most 200 custom emoji identifiers can be specified.
  * @returns [Array of Sticker]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getCustomEmojiStickers(customEmojiIds: List<String>) = GetCustomEmojiStickersAction(customEmojiIds)
 
-@Suppress("NOTHING_TO_INLINE")
 @JvmName("getCustomEmojiStickersWithVararg")
 @TgAPI
 inline fun getCustomEmojiStickers(vararg customEmojiId: String) = getCustomEmojiStickers(customEmojiId.asList())

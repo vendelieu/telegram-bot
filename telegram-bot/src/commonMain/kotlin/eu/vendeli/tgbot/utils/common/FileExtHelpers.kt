@@ -13,10 +13,8 @@ fun ByteArray.toImplicitFile(
     contentType: String = getContentType(),
 ) = toInputFile(fileName, contentType).toImplicitFile()
 
-@Suppress("NOTHING_TO_INLINE")
 inline fun InputFile.toImplicitFile() = ImplicitFile.InpFile(this)
 
-@Suppress("NOTHING_TO_INLINE")
 inline fun String.toImplicitFile() = ImplicitFile.Str(this)
 
 internal expect inline fun ByteArray.getContentType(): String

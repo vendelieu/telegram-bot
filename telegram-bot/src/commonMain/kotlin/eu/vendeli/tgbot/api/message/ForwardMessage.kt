@@ -45,22 +45,17 @@ class ForwardMessageAction(
  * @param messageId Message identifier in the chat specified in from_chat_id
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun forwardMessage(fromChatId: Identifier, messageId: Long) = ForwardMessageAction(fromChatId, messageId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun forwardMessage(fromChatId: Long, messageId: Long) = forwardMessage(Identifier.from(fromChatId), messageId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun forwardMessage(fromChatId: String, messageId: Long) = forwardMessage(Identifier.from(fromChatId), messageId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun forwardMessage(fromChatId: User, messageId: Long) = forwardMessage(Identifier.from(fromChatId), messageId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun forwardMessage(fromChatId: Chat, messageId: Long) = forwardMessage(Identifier.from(fromChatId.id), messageId)

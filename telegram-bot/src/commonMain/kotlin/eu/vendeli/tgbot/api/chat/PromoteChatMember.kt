@@ -32,7 +32,7 @@ class PromoteChatMemberAction(
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param userId Unique identifier of the target user
  * @param isAnonymous Pass True if the administrator's presence in the chat is hidden
- * @param canManageChat Pass True if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report spam messages and ignore slow mode. Implied by any other administrator privilege.
+ * @param canManageChat Pass True if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report spam messages, ignore slow mode, and send messages to the chat without paying Telegram Stars. Implied by any other administrator privilege.
  * @param canDeleteMessages Pass True if the administrator can delete messages of other users
  * @param canManageVideoChats Pass True if the administrator can manage video chats
  * @param canRestrictMembers Pass True if the administrator can restrict, ban or unban chat members, or access supergroup statistics
@@ -42,16 +42,14 @@ class PromoteChatMemberAction(
  * @param canPostStories Pass True if the administrator can post stories to the chat
  * @param canEditStories Pass True if the administrator can edit stories posted by other users, post stories to the chat page, pin chat stories, and access the chat's story archive
  * @param canDeleteStories Pass True if the administrator can delete stories posted by other users
- * @param canPostMessages Pass True if the administrator can post messages in the channel, or access channel statistics; for channels only
+ * @param canPostMessages Pass True if the administrator can post messages in the channel, approve suggested posts, or access channel statistics; for channels only
  * @param canEditMessages Pass True if the administrator can edit messages of other users and can pin messages; for channels only
  * @param canPinMessages Pass True if the administrator can pin messages; for supergroups only
  * @param canManageTopics Pass True if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun promoteChatMember(userId: Long) = PromoteChatMemberAction(userId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun promoteChatMember(user: User) = promoteChatMember(user.id)

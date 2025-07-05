@@ -49,24 +49,20 @@ class SendStickerAction(
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sticker(file: ImplicitFile) = SendStickerAction(file)
 
 @TgAPI
 inline fun sticker(block: () -> String) = sticker(block().toImplicitFile())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sticker(ba: ByteArray) = sticker(ba.toImplicitFile("sticker.webp"))
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sticker(file: InputFile) = sticker(file.toImplicitFile())
 
 @TgAPI
 inline fun sendSticker(block: () -> String) = sticker(block)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendSticker(file: ImplicitFile) = sticker(file)

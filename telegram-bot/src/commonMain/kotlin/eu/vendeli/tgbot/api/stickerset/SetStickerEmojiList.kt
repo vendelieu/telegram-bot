@@ -32,7 +32,6 @@ class SetStickerEmojiListAction(
  * @param emojiList A JSON-serialized list of 1-20 emoji associated with the sticker
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setStickerEmojiList(sticker: String, emojiList: List<String>) =
     SetStickerEmojiListAction(sticker, emojiList)

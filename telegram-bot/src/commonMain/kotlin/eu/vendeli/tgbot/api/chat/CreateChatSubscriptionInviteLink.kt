@@ -39,7 +39,6 @@ class CreateChatSubscriptionInviteLinkAction(
  * @param subscriptionPrice The amount of Telegram Stars a user must pay initially and after each subsequent subscription period to be a member of the chat; 1-10000
  * @returns [ChatInviteLink]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun createChatSubscriptionInviteLink(
     subscriptionPrice: Int,

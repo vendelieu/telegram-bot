@@ -1,6 +1,6 @@
 package eu.vendeli.webapps.core
 
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 external interface WebAppInitData {
     @JsName("query_id")

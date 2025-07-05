@@ -40,7 +40,6 @@ class SetStickerSetThumbnailAction(
  * @param format Format of the thumbnail, must be one of "static" for a .WEBP or .PNG image, "animated" for a .TGS animation, or "video" for a .WEBM video
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setStickerSetThumbnail(name: String, userId: Long, format: StickerFormat, thumbnail: ImplicitFile? = null) =
     SetStickerSetThumbnailAction(name, userId, format, thumbnail)

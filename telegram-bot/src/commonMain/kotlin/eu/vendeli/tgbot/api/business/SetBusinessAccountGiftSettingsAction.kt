@@ -36,7 +36,6 @@ class SetBusinessAccountGiftSettingsAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun setBusinessAccountGiftSettings(
     businessConnectionId: String,
     showGiftButton: Boolean,

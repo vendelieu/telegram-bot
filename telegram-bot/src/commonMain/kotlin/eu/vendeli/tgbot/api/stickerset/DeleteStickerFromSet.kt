@@ -27,6 +27,5 @@ class DeleteStickerFromSetAction(
  * @param sticker File identifier of the sticker
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun deleteStickerFromSet(sticker: String) = DeleteStickerFromSetAction(sticker)

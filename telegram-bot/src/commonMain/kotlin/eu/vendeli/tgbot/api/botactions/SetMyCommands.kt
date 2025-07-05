@@ -37,12 +37,10 @@ class SetMyCommandsAction(
  * @param languageCode A two-letter ISO 639-1 language code. If empty, commands will be applied to all users from the given scope, for whose language there are no dedicated commands
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setMyCommands(languageCode: String? = null, scope: BotCommandScope? = null, command: List<BotCommand>) =
     SetMyCommandsAction(languageCode, scope, command)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setMyCommands(languageCode: String? = null, scope: BotCommandScope? = null, vararg command: BotCommand) =
     setMyCommands(languageCode, scope, command.asList())

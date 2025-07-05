@@ -325,5 +325,4 @@ inline val ProcessedUpdate.userOrNull: User? get() = (this as? UserReference)?.u
 /**
  * @throws NullPointerException when user not found.
  */
-@Suppress("NOTHING_TO_INLINE")
 inline fun ProcessedUpdate.getUser(): User = userOrNull ?: throw NullPointerException("User not found.")

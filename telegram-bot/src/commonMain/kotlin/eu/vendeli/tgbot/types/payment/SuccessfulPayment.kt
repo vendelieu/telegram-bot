@@ -2,7 +2,7 @@ package eu.vendeli.tgbot.types.payment
 
 import eu.vendeli.tgbot.types.component.Currency
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import kotlinx.serialization.Serializable
 
 /**

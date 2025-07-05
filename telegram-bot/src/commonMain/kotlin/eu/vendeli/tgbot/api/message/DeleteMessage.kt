@@ -37,6 +37,5 @@ class DeleteMessageAction(
  * @param messageId Identifier of the message to delete
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun deleteMessage(messageId: Long) = DeleteMessageAction(messageId)

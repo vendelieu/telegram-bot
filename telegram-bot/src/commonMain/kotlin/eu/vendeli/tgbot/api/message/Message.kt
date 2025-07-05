@@ -55,14 +55,12 @@ class SendMessageAction private constructor() :
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun message(text: String) = SendMessageAction(text)
 
 @TgAPI
 fun message(block: EntitiesCtxBuilder<SendMessageAction>.() -> String) = SendMessageAction(block)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendMessage(text: String) = message(text)
 

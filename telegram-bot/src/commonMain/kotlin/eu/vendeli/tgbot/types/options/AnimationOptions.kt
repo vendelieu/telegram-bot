@@ -26,4 +26,5 @@ data class AnimationOptions(
     MediaSpoiler,
     MessageEffectIdProp,
     ThumbnailProp,
-    ShowCaptionAboveMediaProp
+    ShowCaptionAboveMediaProp,
+    AllowPaidBroadcastProp

@@ -105,7 +105,7 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
         }
         // check return type correctness
         method.jsonObject["returns"]!!.jsonArray.let { returns ->
-            val actionVariants = listOf("Action", "SimpleAction", "MediaAction")
+            val actionVariants = listOf("Action", "SimpleAction", "MediaAction", "TgAction")
             val methodActionRet = cls
                 .getAllSuperTypes()
                 .find {

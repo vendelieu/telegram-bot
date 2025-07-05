@@ -54,15 +54,12 @@ class SendPaidMediaAction(
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendPaidMedia(starCount: Int, media: List<InputPaidMedia>) = SendPaidMediaAction(starCount, media)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 fun sendPaidMedia(starCount: Int, media: ListingBuilder<InputPaidMedia>.() -> Unit) =
     sendPaidMedia(starCount, ListingBuilder.build(media))
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendPaidMedia(starCount: Int, vararg media: InputPaidMedia) = sendPaidMedia(starCount, media.asList())

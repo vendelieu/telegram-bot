@@ -30,7 +30,6 @@ class SetMyShortDescriptionAction(
  * @param languageCode A two-letter ISO 639-1 language code. If empty, the short description will be applied to all users for whose language there is no dedicated short description.
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setMyShortDescription(
     description: String? = null,

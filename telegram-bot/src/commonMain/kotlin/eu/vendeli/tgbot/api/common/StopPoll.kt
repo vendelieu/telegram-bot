@@ -35,6 +35,5 @@ class StopPollAction(
  * @param replyMarkup A JSON-serialized object for a new message inline keyboard.
  * @returns [Poll]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun stopPoll(messageId: Long) = StopPollAction(messageId)

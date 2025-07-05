@@ -29,6 +29,5 @@ class SetChatMenuButtonAction(
  * @param menuButton A JSON-serialized object for the bot's new menu button. Defaults to MenuButtonDefault
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setChatMenuButton(menuButton: MenuButton) = SetChatMenuButtonAction(menuButton)

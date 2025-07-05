@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.poll.PollType
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import kotlinx.serialization.Serializable
 import kotlin.time.Duration
 
@@ -33,4 +33,5 @@ data class PollOptions(
     override var allowPaidBroadcast: Boolean? = null,
 ) : OptionsCommon,
     ForumProps,
-    MessageEffectIdProp
+    MessageEffectIdProp,
+    AllowPaidBroadcastProp

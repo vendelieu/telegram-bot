@@ -29,10 +29,8 @@ class ApproveChatJoinRequestAction(
  * @param userId Unique identifier of the target user
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun approveChatJoinRequest(userId: Long) = ApproveChatJoinRequestAction(userId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun approveChatJoinRequest(user: User) = approveChatJoinRequest(user.id)

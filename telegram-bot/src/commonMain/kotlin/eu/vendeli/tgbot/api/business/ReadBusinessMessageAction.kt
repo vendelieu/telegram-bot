@@ -32,7 +32,6 @@ class ReadBusinessMessageAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun readBusinessMessage(
     businessConnectionId: String,
     messageId: Long,

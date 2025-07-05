@@ -28,6 +28,5 @@ class GetStickerSetAction(
  * @param name Name of the sticker set
  * @returns [StickerSet]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getStickerSet(name: String) = GetStickerSetAction(name)

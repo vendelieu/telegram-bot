@@ -28,6 +28,5 @@ class GetBusinessConnectionAction(
  * @param businessConnectionId Unique identifier of the business connection
  * @returns [BusinessConnection]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getBusinessConnection(businessConnectionId: String) = GetBusinessConnectionAction(businessConnectionId)

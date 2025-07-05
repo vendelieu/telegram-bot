@@ -30,10 +30,8 @@ class GetChatMemberAction(
  * @param userId Unique identifier of the target user
  * @returns [ChatMember]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getChatMember(userId: Long) = GetChatMemberAction(userId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getChatMember(user: User) = getChatMember(user.id)

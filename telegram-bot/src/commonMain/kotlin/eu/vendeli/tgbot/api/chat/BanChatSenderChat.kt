@@ -30,14 +30,11 @@ class BanChatSenderChatAction(
  * @param senderChatId Unique identifier of the target sender chat
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun banChatSenderChat(senderChatId: Long) = BanChatSenderChatAction(senderChatId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun banChatSenderChat(senderChatId: Chat) = banChatSenderChat(senderChatId.id)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun banChatSenderChat(senderChatId: User) = banChatSenderChat(senderChatId.id)

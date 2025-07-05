@@ -31,13 +31,11 @@ class SetChatPhotoAction(
  * @param photo New chat photo, uploaded using multipart/form-data
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setChatPhoto(file: ImplicitFile) = SetChatPhotoAction(file)
 
 @TgAPI
 inline fun setChatPhoto(block: () -> String) = setChatPhoto(block().toImplicitFile())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setChatPhoto(file: InputFile) = setChatPhoto(file.toImplicitFile())

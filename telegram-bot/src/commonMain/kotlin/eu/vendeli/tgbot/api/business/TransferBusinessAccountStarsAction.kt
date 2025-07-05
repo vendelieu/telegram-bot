@@ -30,7 +30,6 @@ class TransferBusinessAccountStarsAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun transferBusinessAccountStars(
     businessConnectionId: String,
     starCount: Int,

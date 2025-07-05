@@ -41,14 +41,12 @@ class SavePreparedInlineMessageAction(
  * @param allowChannelChats Pass True if the message can be sent to channel chats
  * @returns [PreparedInlineMessage]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun savePreparedInlineMessage(
     userId: Long,
     result: InlineQueryResult,
 ) = SavePreparedInlineMessageAction(userId, result)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun savePreparedInlineMessage(
     userId: Long,

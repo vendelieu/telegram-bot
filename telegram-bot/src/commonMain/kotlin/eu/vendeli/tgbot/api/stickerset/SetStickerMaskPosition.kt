@@ -32,7 +32,6 @@ class SetStickerMaskPositionAction(
  * @param maskPosition A JSON-serialized object with the position where the mask should be placed on faces. Omit the parameter to remove the mask position.
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setStickerMaskPosition(sticker: String, maskPosition: MaskPosition? = null) =
     SetStickerMaskPositionAction(sticker, maskPosition)

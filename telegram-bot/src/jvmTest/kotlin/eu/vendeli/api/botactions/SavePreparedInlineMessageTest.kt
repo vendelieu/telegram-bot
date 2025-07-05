@@ -5,8 +5,8 @@ import eu.vendeli.tgbot.api.botactions.savePreparedInlineMessage
 import eu.vendeli.tgbot.types.inline.InlineQueryResult
 import eu.vendeli.utils.LOREM
 import io.kotest.matchers.booleans.shouldBeTrue
-import kotlinx.datetime.Clock
-import kotlinx.datetime.toJavaInstant
+import kotlin.time.Clock
+import kotlin.time.toJavaInstant
 
 class SavePreparedInlineMessageTest : BotTestContext() {
     @Test

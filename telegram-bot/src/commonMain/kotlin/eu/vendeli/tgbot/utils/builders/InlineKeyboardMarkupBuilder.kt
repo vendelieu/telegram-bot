@@ -103,57 +103,57 @@ class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
     /**
      * Callback button infix method
      */
-    @Suppress("NOTHING_TO_INLINE")
+
     inline infix fun String.callback(value: String) = callbackData(this) { value }
 
     /**
      * Url button infix method
      */
-    @Suppress("NOTHING_TO_INLINE")
+
     inline infix fun String.url(value: String) = url(this) { value }
 
     /**
      * Web app info button infix method
      */
-    @Suppress("NOTHING_TO_INLINE")
+
     inline infix fun String.webAppInfo(value: String) = webAppInfo(this) { value }
 
     /**
      * Login url button infix method
      */
-    @Suppress("NOTHING_TO_INLINE")
+
     inline infix fun String.loginUrl(value: LoginUrl) = loginUrl(this) { value }
 
     /**
      * Switch inline query button infix method
      */
-    @Suppress("NOTHING_TO_INLINE")
+
     inline infix fun String.switchInlineQuery(value: String) = switchInlineQuery(this) { value }
 
     /**
      * Switch inline query for current chat button infix method
      */
-    @Suppress("NOTHING_TO_INLINE")
+
     inline infix fun String.switchInlineQueryCurrentChat(value: String) = switchInlineQueryCurrentChat(this) { value }
 
     /**
      * Switch inline query for chosen chat button infix method
      */
-    @Suppress("NOTHING_TO_INLINE")
+
     inline infix fun String.switchInlineQueryChosenChat(value: SwitchInlineQueryChosenChat) =
         switchInlineQueryChosenChat(this) { value }
 
     /**
      * Pay button infix method
      */
-    @Suppress("NOTHING_TO_INLINE")
+
     @JvmName("stringPay")
     inline fun String.pay() = pay(this)
 
     /**
      * CopyText button infix method
      */
-    @Suppress("NOTHING_TO_INLINE")
+
     inline infix fun String.copyText(value: String) = copyText(this) { value }
 }
 

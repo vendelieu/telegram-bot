@@ -21,6 +21,5 @@ class GetChatMenuButtonAction : Action<MenuButton>() {
  * @param chatId Unique identifier for the target private chat. If not specified, default bot's menu button will be returned
  * @returns [MenuButton]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getChatMenuButton() = GetChatMenuButtonAction()

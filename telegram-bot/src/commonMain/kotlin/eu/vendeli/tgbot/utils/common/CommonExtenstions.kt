@@ -142,7 +142,6 @@ fun <T> Collection<T>.joinToInlineKeyboard(
  *
  * @since 7.7.0
  */
-@Suppress("NOTHING_TO_INLINE")
 inline fun String.escapeFormatting(mode: ParseMode): String = when (mode) {
     ParseMode.Markdown -> escapeMarkdown()
     ParseMode.MarkdownV2 -> escapeMarkdownV2()

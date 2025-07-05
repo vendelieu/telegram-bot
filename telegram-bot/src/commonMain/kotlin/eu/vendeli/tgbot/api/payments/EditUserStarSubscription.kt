@@ -33,7 +33,6 @@ class EditUserStarSubscriptionAction(
  * @param isCanceled Pass True to cancel extension of the user subscription; the subscription must be active up to the end of the current subscription period. Pass False to allow the user to re-enable a subscription that was previously canceled by the bot.
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun editUserStarSubscription(
     userId: Long,

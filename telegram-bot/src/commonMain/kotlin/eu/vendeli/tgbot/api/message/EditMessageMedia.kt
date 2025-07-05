@@ -46,11 +46,9 @@ class EditMessageMediaAction :
  * @param replyMarkup A JSON-serialized object for a new inline keyboard.
  * @returns [Message]|[Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun editMessageMedia(messageId: Long, inputMedia: InputMedia) = editMedia(messageId, inputMedia)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun editMessageMedia(inputMedia: InputMedia) = editMedia(inputMedia)
 

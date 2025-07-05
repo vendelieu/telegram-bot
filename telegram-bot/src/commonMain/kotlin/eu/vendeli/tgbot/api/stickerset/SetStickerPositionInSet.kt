@@ -30,6 +30,5 @@ class SetStickerPositionInSetAction(
  * @param position New sticker position in the set, zero-based
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setStickerPositionInSet(sticker: String, position: Int) = SetStickerPositionInSetAction(sticker, position)

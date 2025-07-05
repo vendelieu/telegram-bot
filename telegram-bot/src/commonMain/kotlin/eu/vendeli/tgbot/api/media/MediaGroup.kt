@@ -49,26 +49,20 @@ class SendMediaGroupAction(
  * @param replyParameters Description of the message to reply to
  * @returns [Array of Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendMediaGroup(media: List<InputMedia>) = SendMediaGroupAction(media)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendMediaGroup(vararg media: InputMedia) = sendMediaGroup(media.asList())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun mediaGroup(vararg media: InputMedia.Audio) = sendMediaGroup(media.asList())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun mediaGroup(vararg media: InputMedia.Document) = sendMediaGroup(media.asList())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun mediaGroup(vararg media: InputMedia.Photo) = sendMediaGroup(media.asList())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun mediaGroup(vararg media: InputMedia.Video) = sendMediaGroup(media.asList())

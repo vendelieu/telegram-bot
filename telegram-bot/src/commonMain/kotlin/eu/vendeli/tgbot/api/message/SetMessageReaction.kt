@@ -38,12 +38,10 @@ class SetMessageReactionAction(
  * @param isBig Pass True to set the reaction with a big animation
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setMessageReaction(messageId: Long, reaction: List<ReactionType>? = null, isBig: Boolean? = null) =
     SetMessageReactionAction(messageId, reaction, isBig)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setMessageReaction(messageId: Long, vararg reaction: ReactionType, isBig: Boolean? = null) =
     setMessageReaction(messageId, reaction.asList(), isBig)

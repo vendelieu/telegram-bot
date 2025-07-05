@@ -5,12 +5,12 @@ import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.story.StoryAreaType
 import eu.vendeli.tgbot.types.user.Gift
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
-import kotlinx.datetime.Instant
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.serializer
+import kotlin.time.Instant
 
 /**
  * This object describes a gift received and owned by a user or a chat. Currently, it can be one of
@@ -56,5 +56,7 @@ sealed class OwnedGift {
         val isSaved: Boolean? = null,
         val canBeTransferred: Boolean? = null,
         val transferStarCount: Int? = null,
+        @Serializable(InstantSerializer::class)
+        val nextTransferDate: Instant? = null,
     ) : OwnedGift()
 }

@@ -21,6 +21,5 @@ class GetChatAdministratorsAction : Action<List<ChatMember>>() {
  * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
  * @returns [Array of ChatMember]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun getChatAdministrators() = GetChatAdministratorsAction()

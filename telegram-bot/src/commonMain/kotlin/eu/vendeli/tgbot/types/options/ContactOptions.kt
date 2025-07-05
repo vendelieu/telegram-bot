@@ -15,4 +15,5 @@ data class ContactOptions(
     override var messageEffectId: String? = null,
 ) : OptionsCommon,
     ForumProps,
-    MessageEffectIdProp
+    MessageEffectIdProp,
+    AllowPaidBroadcastProp

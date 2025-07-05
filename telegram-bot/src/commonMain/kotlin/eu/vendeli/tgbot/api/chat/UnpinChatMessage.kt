@@ -31,6 +31,5 @@ class UnpinChatMessageAction(
  * @param messageId Identifier of the message to unpin. Required if business_connection_id is specified. If not specified, the most recent pinned message (by sending date) will be unpinned.
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun unpinChatMessage(messageId: Long) = UnpinChatMessageAction(messageId)

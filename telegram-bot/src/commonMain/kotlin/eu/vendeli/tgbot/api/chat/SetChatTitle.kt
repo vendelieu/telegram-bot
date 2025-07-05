@@ -28,6 +28,5 @@ class SetChatTitleAction(
  * @param title New chat title, 1-128 characters
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setChatTitle(title: String) = SetChatTitleAction(title)

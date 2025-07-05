@@ -58,24 +58,20 @@ class SendDocumentAction(
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [Message]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun document(file: ImplicitFile) = SendDocumentAction(file)
 
 @TgAPI
 inline fun document(block: () -> String) = document(block().toImplicitFile())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun document(ba: ByteArray) = document(ba.toImplicitFile())
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun document(file: InputFile) = document(file.toImplicitFile())
 
 @TgAPI
 inline fun sendDocument(block: () -> String) = document(block)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun sendDocument(file: ImplicitFile) = document(file)

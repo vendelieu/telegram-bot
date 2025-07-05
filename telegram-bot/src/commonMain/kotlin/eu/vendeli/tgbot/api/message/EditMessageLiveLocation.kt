@@ -54,12 +54,10 @@ class EditMessageLiveLocationAction :
  * @param replyMarkup A JSON-serialized object for a new inline keyboard.
  * @returns [Message]|[Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun editMessageLiveLocation(messageId: Long, latitude: Float, longitude: Float) =
     EditMessageLiveLocationAction(messageId, latitude, longitude)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun editMessageLiveLocation(
     latitude: Float,

@@ -43,7 +43,6 @@ class AnswerInlineQueryAction(
  * @param button A JSON-serialized object describing a button to be shown above inline query results
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun answerInlineQuery(inlineQueryId: String, results: List<InlineQueryResult>) =
     AnswerInlineQueryAction(inlineQueryId, results)
@@ -52,7 +51,6 @@ inline fun answerInlineQuery(inlineQueryId: String, results: List<InlineQueryRes
 fun answerInlineQuery(inlineQueryId: String, results: ListingBuilder<InlineQueryResult>.() -> Unit) =
     answerInlineQuery(inlineQueryId, ListingBuilder.build(results))
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun answerInlineQuery(inlineQueryId: String, vararg result: InlineQueryResult) =
     answerInlineQuery(inlineQueryId, result.asList())

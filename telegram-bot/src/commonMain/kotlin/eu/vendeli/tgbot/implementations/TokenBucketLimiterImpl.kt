@@ -6,13 +6,11 @@ import eu.vendeli.tgbot.interfaces.helper.RateLimitMechanism
 import eu.vendeli.tgbot.types.configuration.RateLimits
 import io.ktor.util.collections.ConcurrentMap
 import kotlinx.coroutines.delay
-import kotlinx.datetime.Clock
-import kotlinx.datetime.DateTimeUnit
-import kotlinx.datetime.Instant
-import kotlinx.datetime.until
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Instant
 
 /**
  * Default implementation of query limitation via [Token bucket](https://en.wikipedia.org/wiki/Token_bucket) algorithm.
@@ -67,7 +65,8 @@ class TokenBucketLimiterImpl : RateLimitMechanism {
                 BucketState(limits.rate - 1, instant)
             } else {
                 val now = instant
-                val tokensToAdd = current.lastUpdated.until(now, DateTimeUnit.MILLISECOND) / limits.period
+                val passedMillis = current.lastUpdated.toEpochMilliseconds() - now.toEpochMilliseconds()
+                val tokensToAdd = passedMillis / limits.period
                 val totalTokens = min(limits.rate, current.remainingTokens + tokensToAdd)
                 val lastUpdated = if (tokensToAdd > 0) now else current.lastUpdated
                 hasTokens = totalTokens > 0

@@ -1,11 +1,10 @@
 [versions]
-ktor = "3.1.3"
+ktor = "3.2.1"
 redis = "0.2.4"
 logback = "1.5.18"
 slf4j = "2.0.17"
 
-datetime = "0.6.2"
-serialization = "1.8.1"
+serialization = "1.9.0"
 stately = "2.1.0"
 
 kotlin = "2.2.0"
@@ -27,9 +26,9 @@ ksp = "2.2.0-2.0.2"
 poet = "2.2.0"
 autoservice-annotations = "1.1.1"
 autoservice-ksp = "1.2.0"
-kotlinCompileTesting = "0.7.1"
+kotlinCompileTesting = "0.8.0"
 
-binvalid = "0.17.0"
+binvalid = "0.18.0"
 publisher = "0.33.0"
 gradle-publish = "1.3.1"
 env = "1.0.6"
@@ -51,7 +50,6 @@ slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 
 
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
-kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 stately = { module = "co.touchlab:stately-concurrent-collections", version.ref = "stately" }
 

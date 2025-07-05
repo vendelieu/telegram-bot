@@ -57,22 +57,17 @@ class CopyMessageAction(
  * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
  * @returns [MessageId]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun copyMessage(fromChatId: Identifier, messageId: Long) = CopyMessageAction(fromChatId, messageId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun copyMessage(fromChatId: Long, messageId: Long) = copyMessage(Identifier.from(fromChatId), messageId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun copyMessage(fromChatId: String, messageId: Long) = copyMessage(Identifier.from(fromChatId), messageId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun copyMessage(fromChatId: User, messageId: Long) = copyMessage(Identifier.from(fromChatId), messageId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun copyMessage(fromChatId: Chat, messageId: Long) = copyMessage(Identifier.from(fromChatId.id), messageId)

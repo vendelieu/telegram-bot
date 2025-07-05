@@ -30,7 +30,6 @@ class DeleteStoryAction(
  * @returns [Boolean]
  */
 @TgAPI
-@Suppress("NOTHING_TO_INLINE")
 inline fun deleteStory(
     businessConnectionId: String,
     storyId: String,

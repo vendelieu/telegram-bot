@@ -23,5 +23,4 @@ class LoopedIterator<T>(
     override fun hasNext(): Boolean = true
 }
 
-@Suppress("NOTHING_TO_INLINE")
 inline fun <T> List<T>.iterateLooping() = LoopedIterator(this)

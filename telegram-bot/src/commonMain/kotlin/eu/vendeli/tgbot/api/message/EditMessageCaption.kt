@@ -48,11 +48,9 @@ class EditMessageCaptionAction() :
  * @param replyMarkup A JSON-serialized object for an inline keyboard.
  * @returns [Message]|[Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun editMessageCaption(messageId: Long) = EditMessageCaptionAction(messageId)
 
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun editMessageCaption() = EditMessageCaptionAction()
 

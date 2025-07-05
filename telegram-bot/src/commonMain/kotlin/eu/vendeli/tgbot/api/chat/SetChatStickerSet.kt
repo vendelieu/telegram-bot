@@ -28,6 +28,5 @@ class SetChatStickerSetAction(
  * @param stickerSetName Name of the sticker set to be set as the group sticker set
  * @returns [Boolean]
  */
-@Suppress("NOTHING_TO_INLINE")
 @TgAPI
 inline fun setChatStickerSet(stickerSetName: String) = SetChatStickerSetAction(stickerSetName)
