@@ -1,5 +1,10 @@
 # Telegram-bot (KtGram) Changelog
 
+## 8.2.0
+
+* Supported Telegram API [9.0](https://core.telegram.org/bots/api-changelog#april-11-2025).
+* Removed `kotlinx-datetime` from dependencies since required parts of it moved to stdlib.
+
 ### 8.1.2
 
 * Fixed `NoSuchMethodError` from `IrBody` in Kotlin `2.2.0`.
