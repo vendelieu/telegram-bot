@@ -2,7 +2,7 @@
 
 ## 8.2.0
 
-* Supported Telegram API [9.0](https://core.telegram.org/bots/api-changelog#april-11-2025).
+* Supported Telegram API [9.1](https://core.telegram.org/bots/api-changelog#july-3-2025).
 * Removed `kotlinx-datetime` from dependencies since required parts of it moved to stdlib.
 
 ### 8.1.2
