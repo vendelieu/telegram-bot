@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.component.IdLong
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 @Serializable
 enum class ChatType {
@@ -47,6 +48,7 @@ data class Chat(
     val isForum: Boolean? = null,
     val isDirectMessages: Boolean? = null,
 ) : IdLong {
+    @Transient
     @TgAPI.Ignore
-    val fullName = listOf(firstName, lastName).joinToString(" ")
+    val fullName = listOf(firstName, lastName).takeIf { it.any { it != null } }?.joinToString(" ")
 }
