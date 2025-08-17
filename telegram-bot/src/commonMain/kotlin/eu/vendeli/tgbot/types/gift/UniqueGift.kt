@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.gift
 
+import eu.vendeli.tgbot.types.chat.Chat
 import kotlinx.serialization.Serializable
 
 /**
@@ -12,6 +13,7 @@ import kotlinx.serialization.Serializable
  * @property model Model of the gift
  * @property symbol Symbol of the gift
  * @property backdrop Backdrop of the gift
+ * @property publisherChat Optional. Information about the chat that published the gift
  */
 @Serializable
 data class UniqueGift(
@@ -21,4 +23,5 @@ data class UniqueGift(
     val model: UniqueGiftModel,
     val symbol: UniqueGiftSymbol,
     val backdrop: UniqueGiftBackdrop,
+    val publisherChat: Chat? = null,
 )

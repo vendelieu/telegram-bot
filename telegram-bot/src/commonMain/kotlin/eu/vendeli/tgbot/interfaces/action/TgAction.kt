@@ -75,4 +75,7 @@ abstract class TgAction<ReturnType> : Request<ReturnType> {
     @KtGramInternal
     override val Request<ReturnType>.parameters: MutableMap<String, JsonElement>
         get() = this@TgAction.parameters
+
+    @KtGramInternal
+    val Request<ReturnType>.methodName: String get() = method
 }

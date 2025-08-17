@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.types.common.LinkPreviewOptions
 import eu.vendeli.tgbot.types.common.ReplyParameters
 import eu.vendeli.tgbot.types.component.ImplicitFile
 import eu.vendeli.tgbot.types.component.ParseMode
+import eu.vendeli.tgbot.types.msg.SuggestedPostParameters
 import eu.vendeli.tgbot.types.story.StoryArea
 import kotlinx.serialization.Serializable
 
@@ -56,6 +57,14 @@ interface AreasProp : Options {
 
 interface AllowPaidBroadcastProp : Options {
     var allowPaidBroadcast: Boolean?
+}
+
+interface DirectMessagesTopicProp : Options {
+    var directMessagesTopicId: Int?
+}
+
+interface SuggestedPostParametersProp : Options {
+    var suggestedPostParameters: SuggestedPostParameters?
 }
 
 @Serializable

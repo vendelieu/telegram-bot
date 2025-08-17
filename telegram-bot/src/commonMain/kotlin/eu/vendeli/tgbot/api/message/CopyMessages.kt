@@ -38,6 +38,7 @@ class CopyMessagesAction(
  * [Api reference](https://core.telegram.org/bots/api#copymessages)
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+ * @param directMessagesTopicId Identifier of the direct messages topic to which the messages will be sent; required if the messages are sent to a direct messages chat
  * @param fromChatId Unique identifier for the chat where the original messages were sent (or channel username in the format @channelusername)
  * @param messageIds A JSON-serialized list of 1-100 identifiers of messages in the chat from_chat_id to copy. The identifiers must be specified in a strictly increasing order.
  * @param disableNotification Sends the messages silently. Users will receive a notification with no sound.

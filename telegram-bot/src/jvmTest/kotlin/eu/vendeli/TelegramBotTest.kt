@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.api.botactions.getMe
 import eu.vendeli.tgbot.api.media.getFile
 import eu.vendeli.tgbot.api.media.photo
 import eu.vendeli.tgbot.api.message.editMessageText
+import eu.vendeli.tgbot.api.message.message
 import eu.vendeli.tgbot.interfaces.ctx.InputListener
 import eu.vendeli.tgbot.types.common.Update
 import eu.vendeli.tgbot.types.User
@@ -200,6 +201,14 @@ class TelegramBotTest : BotTestContext() {
         shouldThrow<TgFailureException> {
             editMessageText { "test" }.sendInline("test", bot)
         }.message shouldContain "\"error_code\":400"
+    }
+
+    @Test
+    suspend fun `check methodName correctness`() {
+        val action = message { "" }
+        action.apply {
+            methodName shouldBe "sendMessage"
+        }
     }
 
     internal companion object {

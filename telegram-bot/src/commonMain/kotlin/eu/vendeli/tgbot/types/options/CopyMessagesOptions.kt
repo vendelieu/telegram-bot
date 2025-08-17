@@ -8,4 +8,6 @@ data class CopyMessagesOptions(
     var disableNotification: Boolean? = null,
     var protectContent: Boolean? = null,
     var removeCaption: Boolean? = null,
-) : Options
+    override var directMessagesTopicId: Int? = null,
+) : Options,
+    DirectMessagesTopicProp

@@ -21,6 +21,7 @@ import kotlinx.serialization.Serializable
  * @property canEditMessages Optional. True, if the administrator can edit messages of other users and can pin messages; for channels only
  * @property canPinMessages Optional. True, if the user is allowed to pin messages; for groups and supergroups only
  * @property canManageTopics Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only
+ * @property canManageDirectMessages Optional. True, if the administrator can manage direct messages of the channel and decline suggested posts; for channels only
  */
 @Serializable
 data class ChatAdministratorRights(
@@ -39,4 +40,5 @@ data class ChatAdministratorRights(
     val canPostStories: Boolean,
     val canEditStories: Boolean,
     val canDeleteStories: Boolean,
+    val canManageDirectMessages: Boolean? = null,
 )

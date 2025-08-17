@@ -34,6 +34,7 @@ enum class ChatType {
  * @property firstName Optional. First name of the other party in a private chat
  * @property lastName Optional. Last name of the other party in a private chat
  * @property isForum Optional. True, if the supergroup chat is a forum (has topics enabled)
+ * @property isDirectMessages Optional. True, if the chat is the direct messages chat of a channel
  */
 @Serializable
 data class Chat(
@@ -44,7 +45,8 @@ data class Chat(
     val firstName: String? = null,
     val lastName: String? = null,
     val isForum: Boolean? = null,
+    val isDirectMessages: Boolean? = null,
 ) : IdLong {
     @TgAPI.Ignore
-    val fullName = (firstName?.plus(" ") ?: "") + (lastName ?: "")
+    val fullName = listOf(firstName, lastName).joinToString(" ")
 }

@@ -23,7 +23,7 @@ class UnpinChatMessageAction(
 }
 
 /**
- * Use this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.
+ * Use this method to remove a message from the list of pinned messages in a chat. In private chats and channel direct messages chats, all messages can be unpinned. Conversely, the bot must be an administrator with the 'can_pin_messages' right or the 'can_edit_messages' right to unpin messages in groups and channels respectively. Returns True on success.
  *
  * [Api reference](https://core.telegram.org/bots/api#unpinchatmessage)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be unpinned

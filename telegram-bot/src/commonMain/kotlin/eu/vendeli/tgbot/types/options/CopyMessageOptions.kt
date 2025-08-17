@@ -2,6 +2,7 @@ package eu.vendeli.tgbot.types.options
 
 import eu.vendeli.tgbot.types.component.ParseMode
 import eu.vendeli.tgbot.types.common.ReplyParameters
+import eu.vendeli.tgbot.types.msg.SuggestedPostParameters
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import kotlinx.serialization.Serializable
 import kotlin.time.Duration
@@ -17,8 +18,12 @@ data class CopyMessageOptions(
     override var replyParameters: ReplyParameters? = null,
     override var messageThreadId: Int? = null,
     override var allowPaidBroadcast: Boolean? = null,
+    override var directMessagesTopicId: Int? = null,
+    override var suggestedPostParameters: SuggestedPostParameters? = null,
 ) : OptionsParseMode,
     ForumProps,
     OptionsCommon,
     ShowCaptionAboveMediaProp,
-    AllowPaidBroadcastProp
+    AllowPaidBroadcastProp,
+    DirectMessagesTopicProp,
+    SuggestedPostParametersProp

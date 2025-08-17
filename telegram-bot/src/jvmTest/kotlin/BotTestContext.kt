@@ -66,7 +66,7 @@ abstract class BotTestContext(
     protected var BOT_ID by Delegates.notNull<Long>()
     protected val CHAT_ID by lazy { System.getenv("CHAT_ID").toLong() }
     protected val CHANNEL_ID by lazy { System.getenv("CHANNEL_ID").toLong() }
-    protected val PAYMENT_PROVIDER_TOKEN by lazy { System.getenv("PAYMENT_PROVIDER_TOKEN")?.toString() }
+    protected val PAYMENT_PROVIDER_TOKEN: String? by lazy { System.getenv("PAYMENT_PROVIDER_TOKEN") }
 
     protected val RANDOM_PIC: ByteArray?
         get() = getRandomPic() ?: run {

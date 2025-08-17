@@ -1,5 +1,10 @@
 # Telegram-bot (KtGram) Changelog
 
+## 8.3.0
+
+* Supported Telegram API [9.2](https://core.telegram.org/bots/api-changelog#august-15-2025).
+* Added general `methodName` parameter to `TgAction`.
+
 ## 8.2.0
 
 * Supported Telegram API [9.1](https://core.telegram.org/bots/api-changelog#july-3-2025).
@@ -11,7 +16,6 @@
 * Bumped versions.
 * Fir plugin (additional warnings) is removed in favor of KT-71188 (Unused return value checker)
 * Aide is disabled by default
-
 
 ### 8.1.1
 

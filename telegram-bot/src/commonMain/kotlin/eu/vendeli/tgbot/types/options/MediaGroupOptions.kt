@@ -11,7 +11,9 @@ data class MediaGroupOptions(
     override var messageThreadId: Int? = null,
     override var messageEffectId: String? = null,
     override var allowPaidBroadcast: Boolean? = null,
+    override var directMessagesTopicId: Int? = null,
 ) : OptionsCommon,
     ForumProps,
     MessageEffectIdProp,
-    AllowPaidBroadcastProp
+    AllowPaidBroadcastProp,
+    DirectMessagesTopicProp
