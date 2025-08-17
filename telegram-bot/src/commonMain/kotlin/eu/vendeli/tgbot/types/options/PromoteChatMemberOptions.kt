@@ -19,4 +19,5 @@ data class PromoteChatMemberOptions(
     var canPostStories: Boolean? = null,
     var canEditStories: Boolean? = null,
     var canDeleteStories: Boolean? = null,
+    var canManageDirectMessages: Boolean? = null,
 ) : Options

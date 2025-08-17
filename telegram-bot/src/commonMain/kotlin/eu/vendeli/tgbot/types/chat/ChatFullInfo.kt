@@ -20,6 +20,7 @@ import kotlinx.serialization.Serializable
  * @property firstName Optional. First name of the other party in a private chat
  * @property lastName Optional. Last name of the other party in a private chat
  * @property isForum Optional. True, if the supergroup chat is a forum (has topics enabled)
+ * @property isDirectMessages Optional. True, if the chat is the direct messages chat of a channel
  * @property accentColorId Identifier of the accent color for the chat name and backgrounds of the chat photo, reply header, and link preview. See accent colors for more details.
  * @property maxReactionCount The maximum number of reactions that can be set on a message in the chat
  * @property photo Optional. Chat photo
@@ -29,6 +30,7 @@ import kotlinx.serialization.Serializable
  * @property businessLocation Optional. For private chats with business accounts, the location of the business
  * @property businessOpeningHours Optional. For private chats with business accounts, the opening hours of the business
  * @property personalChat Optional. For private chats, the personal channel of the user
+ * @property parentChat Optional. Information about the corresponding channel chat; for direct messages chats only
  * @property availableReactions Optional. List of available reactions allowed in the chat. If omitted, then all emoji reactions are allowed.
  * @property backgroundCustomEmojiId Optional. Custom emoji identifier of the emoji chosen by the chat for the reply header and link preview background
  * @property profileAccentColorId Optional. Identifier of the accent color for the chat's profile background. See profile accent colors for more details.
@@ -68,6 +70,7 @@ data class ChatFullInfo(
     val firstName: String? = null,
     val lastName: String? = null,
     val isForum: Boolean? = null,
+    val isDirectMessages: Boolean? = null,
     val accentColorId: Int,
     val maxReactionCount: Int,
     val photo: ChatPhoto? = null,
@@ -77,6 +80,7 @@ data class ChatFullInfo(
     val businessLocation: BusinessLocation? = null,
     val businessOpeningHours: BusinessOpeningHours? = null,
     val personalChat: Chat? = null,
+    val parentChat: Chat? = null,
     val availableReactions: List<ReactionType>? = null,
     val backgroundCustomEmojiId: String? = null,
     val profileAccentColorId: Int? = null,

@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.component.IdLong
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 @Serializable
 enum class ChatType {
@@ -34,6 +35,7 @@ enum class ChatType {
  * @property firstName Optional. First name of the other party in a private chat
  * @property lastName Optional. Last name of the other party in a private chat
  * @property isForum Optional. True, if the supergroup chat is a forum (has topics enabled)
+ * @property isDirectMessages Optional. True, if the chat is the direct messages chat of a channel
  */
 @Serializable
 data class Chat(
@@ -44,7 +46,9 @@ data class Chat(
     val firstName: String? = null,
     val lastName: String? = null,
     val isForum: Boolean? = null,
+    val isDirectMessages: Boolean? = null,
 ) : IdLong {
+    @Transient
     @TgAPI.Ignore
-    val fullName = (firstName?.plus(" ") ?: "") + (lastName ?: "")
+    val fullName = listOf(firstName, lastName).takeIf { it.any { it != null } }?.joinToString(" ")
 }

@@ -29,19 +29,19 @@ sealed class BotCommandScope {
 
     @Serializable
     @SerialName("default")
-    class Default : BotCommandScope()
+    data object Default : BotCommandScope()
 
     @Serializable
     @SerialName("all_private_chats")
-    class AllPrivateChats : BotCommandScope()
+    data object AllPrivateChats : BotCommandScope()
 
     @Serializable
     @SerialName("all_group_chats")
-    class AllGroupChats : BotCommandScope()
+    data object AllGroupChats : BotCommandScope()
 
     @Serializable
     @SerialName("all_chat_administrators")
-    class AllChatAdministrators : BotCommandScope()
+    data object AllChatAdministrators : BotCommandScope()
 
     @Serializable
     @SerialName("chat")

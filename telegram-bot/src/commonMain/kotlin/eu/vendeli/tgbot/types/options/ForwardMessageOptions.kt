@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.options
 
+import eu.vendeli.tgbot.types.msg.SuggestedPostParameters
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import kotlinx.serialization.Serializable
 import kotlin.time.Duration
@@ -11,4 +12,8 @@ data class ForwardMessageOptions(
     var disableNotification: Boolean? = null,
     var protectContent: Boolean? = null,
     var messageThreadId: Int? = null,
-) : Options
+    override var directMessagesTopicId: Int? = null,
+    override var suggestedPostParameters: SuggestedPostParameters? = null,
+) : Options,
+    DirectMessagesTopicProp,
+    SuggestedPostParametersProp

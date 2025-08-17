@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.user
 
+import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.media.Sticker
 import kotlinx.serialization.Serializable
 
@@ -13,6 +14,7 @@ import kotlinx.serialization.Serializable
  * @property upgradeStarCount Optional. The number of Telegram Stars that must be paid to upgrade the gift to a unique one
  * @property totalCount Optional. The total number of the gifts of this type that can be sent; for limited gifts only
  * @property remainingCount Optional. The number of remaining gifts of this type that can be sent; for limited gifts only
+ * @property publisherChat Optional. Information about the chat that published the gift
  */
 @Serializable
 data class Gift(
@@ -22,4 +24,5 @@ data class Gift(
     val totalCount: Int? = null,
     val remainingCount: Int? = null,
     val upgradeStarCount: Int? = null,
+    val publisherChat: Chat? = null,
 )

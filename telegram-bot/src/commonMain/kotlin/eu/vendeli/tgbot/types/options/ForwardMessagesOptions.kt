@@ -7,4 +7,6 @@ data class ForwardMessagesOptions(
     var disableNotification: Boolean? = null,
     var protectContent: Boolean? = null,
     var messageThreadId: Int? = null,
-) : Options
+    override var directMessagesTopicId: Int? = null,
+) : Options,
+    DirectMessagesTopicProp

@@ -51,6 +51,7 @@ sealed class ChatMember : MultipleResponse {
         val canEditStories: Boolean,
         val canDeleteStories: Boolean,
         val customTitle: String? = null,
+        val canManageDirectMessages: Boolean? = null,
     ) : ChatMember()
 
     @Serializable

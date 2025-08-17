@@ -3,6 +3,7 @@ package eu.vendeli.tgbot.types.options
 import eu.vendeli.tgbot.types.component.ParseMode
 import eu.vendeli.tgbot.types.common.ReplyParameters
 import eu.vendeli.tgbot.types.component.ImplicitFile
+import eu.vendeli.tgbot.types.msg.SuggestedPostParameters
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
 import kotlinx.serialization.Serializable
 import kotlin.time.Duration
@@ -26,6 +27,8 @@ data class VideoOptions(
     override var hasSpoiler: Boolean? = null,
     override var messageEffectId: String? = null,
     override var allowPaidBroadcast: Boolean? = null,
+    override var directMessagesTopicId: Int? = null,
+    override var suggestedPostParameters: SuggestedPostParameters? = null,
 ) : OptionsCommon,
     ForumProps,
     OptionsParseMode,
@@ -33,4 +36,6 @@ data class VideoOptions(
     MessageEffectIdProp,
     ThumbnailProp,
     ShowCaptionAboveMediaProp,
-    AllowPaidBroadcastProp
+    AllowPaidBroadcastProp,
+    DirectMessagesTopicProp,
+    SuggestedPostParametersProp

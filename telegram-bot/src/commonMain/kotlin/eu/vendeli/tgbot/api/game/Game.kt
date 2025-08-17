@@ -34,7 +34,7 @@ class SendGameAction(
  *
  * [Api reference](https://core.telegram.org/bots/api#sendgame)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
- * @param chatId Unique identifier for the target chat
+ * @param chatId Unique identifier for the target chat. Games can't be sent to channel direct messages chats and channel chats.
  * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
  * @param gameShortName Short name of the game, serves as the unique identifier for the game. Set up your games via @BotFather.
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
