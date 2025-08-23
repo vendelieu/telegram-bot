@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) Changelog
 
+### 8.3.1
+
+* Try to fix broken release.
+
 ## 8.3.0
 
 * Supported Telegram API [9.2](https://core.telegram.org/bots/api-changelog#august-15-2025).

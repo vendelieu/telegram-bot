@@ -6,6 +6,7 @@ plugins {
 }
 
 dokka {
+    // for correct displaying of dokka project name
     moduleName = if (project.name != "docs") project.name else "KtGram"
     dokkaSourceSets.configureEach {
         sourceRoots.setFrom(project.projectDir.resolve("src/$name/kotlin"))
