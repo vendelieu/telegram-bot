@@ -2,10 +2,11 @@
 
 ### 8.4.0
 
-* Fix `classData` clearing in not only user related changes.
+* Fixed `classData` clearing in not only user-related changes.
+* Fixed the Regex options-related bug.
 * Added `Chat` as resolvable type similar to `User`.
 * Added experimentally processing context, where can be accessed some processing related information. \
-    Scope of context can be change through config parameter `processingCtxTargets`.
+    Scope of context can be changed through config parameter `processingCtxTargets`.
 * Added support of middlewares, you can extend `Middleware` and add it through config `middlewares` parameter.
 
 ### 8.3.1
