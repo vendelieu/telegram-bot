@@ -19,7 +19,7 @@ mockk = "1.14.4"
 kover = "0.9.1"
 krypto = "4.0.10"
 urlencoder = "1.6.0"
-sslcontext = "9.1.0"
+ayza = "10.0.0"
 spring = "3.5.3"
 
 ksp = "2.2.0-2.0.2"
@@ -71,7 +71,7 @@ poet-ksp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "poet" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 ksp-plugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 
-ssl-utils = { module = "io.github.hakky54:sslcontext-kickstart-for-pem", version.ref = "sslcontext" }
+ayza = { module = "io.github.hakky54:ayza-for-pem", version.ref = "ayza" }
 spring-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "spring" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 publisher = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "publisher" }
