@@ -24,6 +24,7 @@ import eu.vendeli.ksp.utils.businessMessageUpdateClass
 import eu.vendeli.ksp.utils.callbackQueryUpdateClass
 import eu.vendeli.ksp.utils.channelPostUpdateClass
 import eu.vendeli.ksp.utils.chatBoostUpdateClass
+import eu.vendeli.ksp.utils.chatClass
 import eu.vendeli.ksp.utils.chatJoinRequestUpdateClass
 import eu.vendeli.ksp.utils.chatMemberUpdateClass
 import eu.vendeli.ksp.utils.chosenInlineResultUpdateClass
@@ -132,6 +133,12 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 val value = when (typeName) {
                     userClass -> "user$nullabilityMark".also {
                         if (!parameterTypeName.isNullable) isUserNullable = false
+                    }
+                    chatClass -> {
+                        ctx?.activitiesFile?.addImport(
+                            "eu.vendeli.tgbot.types.component", "chatOrNull"
+                        )
+                        "update.chatOrNull$nullabilityMark"
                     }
 
                     botClass -> "bot"

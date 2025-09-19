@@ -1,16 +1,17 @@
 package eu.vendeli.tgbot.types.component
 
 import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
-import eu.vendeli.tgbot.types.common.CallbackQuery
-import eu.vendeli.tgbot.types.common.PollAnswer
-import eu.vendeli.tgbot.types.common.Update
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.boost.ChatBoostRemoved
 import eu.vendeli.tgbot.types.boost.ChatBoostUpdated
 import eu.vendeli.tgbot.types.business.BusinessConnection
 import eu.vendeli.tgbot.types.business.BusinessMessagesDeleted
+import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatJoinRequest
 import eu.vendeli.tgbot.types.chat.ChatMemberUpdated
+import eu.vendeli.tgbot.types.common.CallbackQuery
+import eu.vendeli.tgbot.types.common.PollAnswer
+import eu.vendeli.tgbot.types.common.Update
 import eu.vendeli.tgbot.types.inline.ChosenInlineResult
 import eu.vendeli.tgbot.types.inline.InlineQuery
 import eu.vendeli.tgbot.types.media.PaidMediaPurchased
@@ -26,6 +27,10 @@ import kotlinx.serialization.Serializable
 
 interface UserReference {
     val user: User?
+}
+
+interface ChatReference {
+    val chat: Chat?
 }
 
 interface TextReference {
@@ -51,9 +56,10 @@ data class MessageUpdate(
     override val origin: Update,
     val message: Message,
 ) : ProcessedUpdate(updateId, origin, UpdateType.MESSAGE),
-    UserReference {
+    UserReference, ChatReference {
     override val user = message.from!!
     override val text = message.text.orEmpty()
+    override val chat = message.chat
 
     internal companion object : UpdateSerializer<MessageUpdate>()
 }
@@ -64,9 +70,10 @@ data class EditedMessageUpdate(
     override val origin: Update,
     val editedMessage: Message,
 ) : ProcessedUpdate(updateId, origin, UpdateType.EDITED_MESSAGE),
-    UserReference {
+    UserReference, ChatReference {
     override val user = editedMessage.from!!
     override val text = editedMessage.text.orEmpty()
+    override val chat = editedMessage.chat
 
     internal companion object : UpdateSerializer<EditedMessageUpdate>()
 }
@@ -77,9 +84,10 @@ data class ChannelPostUpdate(
     override val origin: Update,
     val channelPost: Message,
 ) : ProcessedUpdate(updateId, origin, UpdateType.CHANNEL_POST),
-    UserReference {
+    UserReference, ChatReference {
     override val user = channelPost.from
     override val text = channelPost.text.orEmpty()
+    override val chat = channelPost.chat
 
     internal companion object : UpdateSerializer<ChannelPostUpdate>()
 }
@@ -90,9 +98,10 @@ data class EditedChannelPostUpdate(
     override val origin: Update,
     val editedChannelPost: Message,
 ) : ProcessedUpdate(updateId, origin, UpdateType.EDITED_CHANNEL_POST),
-    UserReference {
+    UserReference, ChatReference {
     override val user = editedChannelPost.from
     override val text = editedChannelPost.text.orEmpty()
+    override val chat = editedChannelPost.chat
 
     internal companion object : UpdateSerializer<EditedChannelPostUpdate>()
 }
@@ -115,9 +124,10 @@ data class BusinessMessageUpdate(
     override val origin: Update,
     val businessMessage: Message,
 ) : ProcessedUpdate(updateId, origin, UpdateType.BUSINESS_MESSAGE),
-    UserReference {
+    UserReference, ChatReference {
     override val user = businessMessage.from
     override val text = businessMessage.text.orEmpty()
+    override val chat = businessMessage.chat
 
     internal companion object : UpdateSerializer<BusinessMessageUpdate>()
 }
@@ -128,9 +138,10 @@ data class EditedBusinessMessageUpdate(
     override val origin: Update,
     val editedBusinessMessage: Message,
 ) : ProcessedUpdate(updateId, origin, UpdateType.EDITED_BUSINESS_MESSAGE),
-    UserReference {
+    UserReference, ChatReference {
     override val user = editedBusinessMessage.from
     override val text = editedBusinessMessage.text.orEmpty()
+    override val chat = editedBusinessMessage.chat
 
     internal companion object : UpdateSerializer<EditedBusinessMessageUpdate>()
 }
@@ -140,7 +151,9 @@ data class DeletedBusinessMessagesUpdate(
     override val updateId: Int,
     override val origin: Update,
     val deletedBusinessMessages: BusinessMessagesDeleted,
-) : ProcessedUpdate(updateId, origin, UpdateType.DELETED_BUSINESS_MESSAGES) {
+) : ProcessedUpdate(updateId, origin, UpdateType.DELETED_BUSINESS_MESSAGES), ChatReference {
+    override val chat = deletedBusinessMessages.chat
+
     internal companion object : UpdateSerializer<DeletedBusinessMessagesUpdate>()
 }
 
@@ -150,8 +163,9 @@ data class MessageReactionUpdate(
     override val origin: Update,
     val messageReaction: MessageReactionUpdated,
 ) : ProcessedUpdate(updateId, origin, UpdateType.MESSAGE_REACTION),
-    UserReference {
+    UserReference, ChatReference {
     override val user = messageReaction.user
+    override val chat = messageReaction.chat
 
     internal companion object : UpdateSerializer<MessageReactionUpdate>()
 }
@@ -161,7 +175,9 @@ data class MessageReactionCountUpdate(
     override val updateId: Int,
     override val origin: Update,
     val messageReactionCount: MessageReactionCountUpdated,
-) : ProcessedUpdate(updateId, origin, UpdateType.MESSAGE_REACTION_COUNT) {
+) : ProcessedUpdate(updateId, origin, UpdateType.MESSAGE_REACTION_COUNT), ChatReference {
+    override val chat = messageReactionCount.chat
+
     internal companion object : UpdateSerializer<MessageReactionCountUpdate>()
 }
 
@@ -197,9 +213,10 @@ data class CallbackQueryUpdate(
     override val origin: Update,
     val callbackQuery: CallbackQuery,
 ) : ProcessedUpdate(updateId, origin, UpdateType.CALLBACK_QUERY),
-    UserReference {
+    UserReference, ChatReference {
     override val user: User = callbackQuery.from
     override val text = callbackQuery.data.orEmpty()
+    override val chat = callbackQuery.message?.chat
 
     internal companion object : UpdateSerializer<CallbackQueryUpdate>()
 }
@@ -259,8 +276,9 @@ data class MyChatMemberUpdate(
     override val origin: Update,
     val myChatMember: ChatMemberUpdated,
 ) : ProcessedUpdate(updateId, origin, UpdateType.MY_CHAT_MEMBER),
-    UserReference {
+    UserReference, ChatReference {
     override val user: User = myChatMember.from
+    override val chat: Chat = myChatMember.chat
 
     internal companion object : UpdateSerializer<MyChatMemberUpdate>()
 }
@@ -271,8 +289,9 @@ data class ChatMemberUpdate(
     override val origin: Update,
     val chatMember: ChatMemberUpdated,
 ) : ProcessedUpdate(updateId, origin, UpdateType.CHAT_MEMBER),
-    UserReference {
+    UserReference, ChatReference {
     override val user: User = chatMember.from
+    override val chat: Chat = chatMember.chat
 
     internal companion object : UpdateSerializer<ChatMemberUpdate>()
 }
@@ -283,8 +302,9 @@ data class ChatJoinRequestUpdate(
     override val origin: Update,
     val chatJoinRequest: ChatJoinRequest,
 ) : ProcessedUpdate(updateId, origin, UpdateType.CHAT_JOIN_REQUEST),
-    UserReference {
+    UserReference, ChatReference {
     override val user: User = chatJoinRequest.from
+    override val chat: Chat = chatJoinRequest.chat
 
     internal companion object : UpdateSerializer<ChatJoinRequestUpdate>()
 }
@@ -294,7 +314,9 @@ data class ChatBoostUpdate(
     override val updateId: Int,
     override val origin: Update,
     val chatBoost: ChatBoostUpdated,
-) : ProcessedUpdate(updateId, origin, UpdateType.CHAT_BOOST) {
+) : ProcessedUpdate(updateId, origin, UpdateType.CHAT_BOOST), ChatReference {
+    override val chat: Chat = chatBoost.chat
+
     internal companion object : UpdateSerializer<ChatBoostUpdate>()
 }
 
@@ -303,7 +325,9 @@ data class RemovedChatBoostUpdate(
     override val updateId: Int,
     override val origin: Update,
     val removedChatBoost: ChatBoostRemoved,
-) : ProcessedUpdate(updateId, origin, UpdateType.REMOVED_CHAT_BOOST) {
+) : ProcessedUpdate(updateId, origin, UpdateType.REMOVED_CHAT_BOOST), ChatReference {
+    override val chat: Chat = removedChatBoost.chat
+
     internal companion object : UpdateSerializer<RemovedChatBoostUpdate>()
 }
 
@@ -321,8 +345,14 @@ data class PurchasedPaidMediaUpdate(
 }
 
 inline val ProcessedUpdate.userOrNull: User? get() = (this as? UserReference)?.user
+inline val ProcessedUpdate.chatOrNull: Chat? get() = (this as? ChatReference)?.chat
 
 /**
  * @throws NullPointerException when user not found.
  */
 inline fun ProcessedUpdate.getUser(): User = userOrNull ?: throw NullPointerException("User not found.")
+
+/**
+ * @throws NullPointerException when chat not found.
+ */
+inline fun ProcessedUpdate.getChat(): Chat = chatOrNull ?: throw NullPointerException("Chat not found.")

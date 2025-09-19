@@ -31,6 +31,7 @@ import eu.vendeli.tgbot.interfaces.marker.Autowiring
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chain.ChainingStrategy
 import eu.vendeli.tgbot.types.chain.Link
+import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.component.BusinessConnectionUpdate
 import eu.vendeli.tgbot.types.component.BusinessMessageUpdate
 import eu.vendeli.tgbot.types.component.CallbackQueryUpdate
@@ -79,6 +80,7 @@ internal val floatPrimitiveType = TypeVariableName("float")
 internal val doublePrimitiveType = TypeVariableName("double")
 
 internal val userClass = User::class.asTypeName()
+internal val chatClass = Chat::class.asTypeName()
 internal val botClass = TelegramBot::class.asTypeName()
 internal val idLongClass = IdLong::class.asTypeName()
 
