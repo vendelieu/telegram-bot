@@ -280,7 +280,7 @@ class TgUpdateHandler internal constructor(
         }.onSuccess {
             logger.info { "Handled update#${update.updateId} to $target" }
         }
-        if (meta != null && user != null) {
+        if (meta != null && user != null && kind == TgInvocationKind.ACTIVITY) {
             userClassSteps[user.id] = meta.qualifier
         }
     }
