@@ -40,6 +40,7 @@ data class BotConfiguration(
     var exceptionHandlingStrategy: ExceptionHandlingStrategy = ExceptionHandlingStrategy.CollectToChannel,
     var throwExOnActionsFailure: Boolean = false,
     val processingCtxTargets: MutableSet<ProcessingCtxKey> = mutableSetOf(ProcessingCtxKey.REGEX_MATCH),
+    @Transient
     val middlewares: MutableList<Middleware> = mutableListOf(),
     @Transient
     internal var rateLimiter: RateLimiterConfiguration = RateLimiterConfiguration(),
