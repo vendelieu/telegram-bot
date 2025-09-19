@@ -38,7 +38,7 @@ class TelegramBot(
         configLoader.token,
         configLoader.commandsPackage,
     ) {
-        config.apply(configLoader.load())
+        config.rewriteWith(configLoader.load())
     }
 
     constructor(

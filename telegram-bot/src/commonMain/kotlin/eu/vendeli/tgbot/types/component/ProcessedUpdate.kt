@@ -21,6 +21,7 @@ import eu.vendeli.tgbot.types.msg.MessageReactionUpdated
 import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
 import eu.vendeli.tgbot.types.payment.ShippingQuery
 import eu.vendeli.tgbot.types.poll.Poll
+import eu.vendeli.tgbot.utils.common.ProcessingCtxKey
 import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.tgbot.utils.serde.UpdateSerializer
 import kotlinx.serialization.Serializable
@@ -47,6 +48,7 @@ sealed class ProcessedUpdate(
     MultipleResponse {
     internal companion object : UpdateSerializer<ProcessedUpdate>()
 
+    internal val processingCtx by lazy { mutableMapOf<ProcessingCtxKey, Any?>() }
     internal fun toJsonString() = "[$type]" + serde.encodeToString(ProcessedUpdate, this)
 }
 

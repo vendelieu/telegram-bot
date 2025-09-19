@@ -17,6 +17,7 @@ import eu.vendeli.tgbot.types.component.ProcessedUpdate
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.component.userOrNull
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.utils.common.ProcessingCtxKey
 import eu.vendeli.tgbot.utils.common.cast
 import eu.vendeli.tgbot.utils.common.checkIsLimited
 import eu.vendeli.tgbot.utils.common.defaultArgParser
@@ -33,6 +34,12 @@ private inline val SingleInputChain.prevChainId: String?
     } else {
         null
     }
+
+
+internal fun TelegramBot.enrichUpdateWithCtx(update: ProcessedUpdate, key: ProcessingCtxKey, value: Any?) {
+    if (!config.processingCtxTargets.contains(key)) return
+    update.processingCtx[key] = value
+}
 
 internal suspend inline fun KClass<out Guard>.checkIsGuarded(
     user: User?,

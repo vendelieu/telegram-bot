@@ -15,6 +15,7 @@ import eu.vendeli.tgbot.utils.common.DEFAULT_HANDLING_BEHAVIOUR
 import eu.vendeli.tgbot.utils.common.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.common.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.common.HandlingBehaviourBlock
+import eu.vendeli.tgbot.utils.common.ProcessingCtxKey
 import eu.vendeli.tgbot.utils.common.Invocable
 import eu.vendeli.tgbot.utils.common.InvocationLambda
 import eu.vendeli.tgbot.utils.common.TgException
@@ -25,6 +26,7 @@ import eu.vendeli.tgbot.utils.common.parseCommand
 import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.tgbot.utils.internal.checkIsGuarded
 import eu.vendeli.tgbot.utils.internal.debug
+import eu.vendeli.tgbot.utils.internal.enrichUpdateWithCtx
 import eu.vendeli.tgbot.utils.internal.error
 import eu.vendeli.tgbot.utils.internal.getLogger
 import eu.vendeli.tgbot.utils.internal.getParameters
@@ -270,6 +272,7 @@ class TgUpdateHandler internal constructor(
             TgInvocationKind.UNPROCESSED -> "UnprocessedHandler"
         }
 
+        bot.enrichUpdateWithCtx(update, ProcessingCtxKey.PARSED_PARAMETERS, parameters)
         runCatching {
             invoke(bot.config.classManager, update, user, bot, parameters)
         }.onFailure {
