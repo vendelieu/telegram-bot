@@ -31,6 +31,9 @@ import eu.vendeli.tgbot.utils.internal.error
 import eu.vendeli.tgbot.utils.internal.getLogger
 import eu.vendeli.tgbot.utils.internal.getParameters
 import eu.vendeli.tgbot.utils.internal.info
+import eu.vendeli.tgbot.utils.internal.middlewarePostInvokeShot
+import eu.vendeli.tgbot.utils.internal.middlewarePreHandleShot
+import eu.vendeli.tgbot.utils.internal.middlewarePreInvokeShot
 import eu.vendeli.tgbot.utils.internal.process
 import eu.vendeli.tgbot.utils.internal.toJsonElement
 import eu.vendeli.tgbot.utils.internal.warn
@@ -192,6 +195,7 @@ class TgUpdateHandler internal constructor(
      * @param update
      */
     suspend fun handle(update: ProcessedUpdate): Unit = update.run {
+        middlewarePreHandleShot(update)
         logger.trace { "Handling update: ${update.toJsonString()}\nProcessed into: $update" }
         val user = userOrNull
         // check general user limits
@@ -240,6 +244,7 @@ class TgUpdateHandler internal constructor(
                 "\nResult of finding action - ${invocation?.second}"
         }
 
+        middlewarePreInvokeShot(update)
         // invoke update type handler if there's
         activities.updateTypeHandlers[type]?.invokeCatching(this, params, TgInvocationKind.TYPE)
 
@@ -257,6 +262,7 @@ class TgUpdateHandler internal constructor(
 
             else -> logger.warn { "update: ${update.toJsonString()} not handled." }
         }
+        middlewarePostInvokeShot(update)
     }
 
     private suspend fun InvocationLambda.invokeCatching(

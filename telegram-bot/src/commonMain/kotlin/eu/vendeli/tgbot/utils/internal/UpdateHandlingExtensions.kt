@@ -41,6 +41,21 @@ internal fun TelegramBot.enrichUpdateWithCtx(update: ProcessedUpdate, key: Proce
     update.processingCtx[key] = value
 }
 
+internal suspend fun TgUpdateHandler.middlewarePreHandleShot(update: ProcessedUpdate) {
+    if (bot.config.middlewares.isEmpty()) return
+    bot.config.middlewares.forEach { it.preHandle(update, bot) }
+}
+
+internal suspend fun TgUpdateHandler.middlewarePreInvokeShot(update: ProcessedUpdate) {
+    if (bot.config.middlewares.isEmpty()) return
+    bot.config.middlewares.forEach { it.preInvoke(update, bot) }
+}
+
+internal suspend fun TgUpdateHandler.middlewarePostInvokeShot(update: ProcessedUpdate) {
+    if (bot.config.middlewares.isEmpty()) return
+    bot.config.middlewares.forEach { it.postInvoke(update, bot) }
+}
+
 internal suspend inline fun KClass<out Guard>.checkIsGuarded(
     user: User?,
     update: ProcessedUpdate,
