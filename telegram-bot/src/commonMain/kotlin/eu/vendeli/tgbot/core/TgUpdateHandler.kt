@@ -15,6 +15,7 @@ import eu.vendeli.tgbot.utils.common.DEFAULT_HANDLING_BEHAVIOUR
 import eu.vendeli.tgbot.utils.common.FunctionalHandlingBlock
 import eu.vendeli.tgbot.utils.common.GET_UPDATES_ACTION
 import eu.vendeli.tgbot.utils.common.HandlingBehaviourBlock
+import eu.vendeli.tgbot.utils.common.ProcessingCtxKey
 import eu.vendeli.tgbot.utils.common.Invocable
 import eu.vendeli.tgbot.utils.common.InvocationLambda
 import eu.vendeli.tgbot.utils.common.TgException
@@ -25,10 +26,14 @@ import eu.vendeli.tgbot.utils.common.parseCommand
 import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.tgbot.utils.internal.checkIsGuarded
 import eu.vendeli.tgbot.utils.internal.debug
+import eu.vendeli.tgbot.utils.internal.enrichUpdateWithCtx
 import eu.vendeli.tgbot.utils.internal.error
 import eu.vendeli.tgbot.utils.internal.getLogger
 import eu.vendeli.tgbot.utils.internal.getParameters
 import eu.vendeli.tgbot.utils.internal.info
+import eu.vendeli.tgbot.utils.internal.middlewarePostInvokeShot
+import eu.vendeli.tgbot.utils.internal.middlewarePreHandleShot
+import eu.vendeli.tgbot.utils.internal.middlewarePreInvokeShot
 import eu.vendeli.tgbot.utils.internal.process
 import eu.vendeli.tgbot.utils.internal.toJsonElement
 import eu.vendeli.tgbot.utils.internal.warn
@@ -190,6 +195,7 @@ class TgUpdateHandler internal constructor(
      * @param update
      */
     suspend fun handle(update: ProcessedUpdate): Unit = update.run {
+        middlewarePreHandleShot(update)
         logger.trace { "Handling update: ${update.toJsonString()}\nProcessed into: $update" }
         val user = userOrNull
         // check general user limits
@@ -238,6 +244,7 @@ class TgUpdateHandler internal constructor(
                 "\nResult of finding action - ${invocation?.second}"
         }
 
+        middlewarePreInvokeShot(update)
         // invoke update type handler if there's
         activities.updateTypeHandlers[type]?.invokeCatching(this, params, TgInvocationKind.TYPE)
 
@@ -255,6 +262,7 @@ class TgUpdateHandler internal constructor(
 
             else -> logger.warn { "update: ${update.toJsonString()} not handled." }
         }
+        middlewarePostInvokeShot(update)
     }
 
     private suspend fun InvocationLambda.invokeCatching(
@@ -270,6 +278,7 @@ class TgUpdateHandler internal constructor(
             TgInvocationKind.UNPROCESSED -> "UnprocessedHandler"
         }
 
+        bot.enrichUpdateWithCtx(update, ProcessingCtxKey.PARSED_PARAMETERS, parameters)
         runCatching {
             invoke(bot.config.classManager, update, user, bot, parameters)
         }.onFailure {
@@ -280,7 +289,7 @@ class TgUpdateHandler internal constructor(
         }.onSuccess {
             logger.info { "Handled update#${update.updateId} to $target" }
         }
-        if (meta != null && user != null) {
+        if (meta != null && user != null && kind == TgInvocationKind.ACTIVITY) {
             userClassSteps[user.id] = meta.qualifier
         }
     }

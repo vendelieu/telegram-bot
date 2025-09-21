@@ -4,7 +4,9 @@ import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.interfaces.helper.Filter
 import eu.vendeli.tgbot.utils.common.DEFAULT_SCOPE
-import eu.vendeli.tgbot.utils.internal.checkIsFiltered
+import eu.vendeli.tgbot.utils.common.ProcessingCtxKey
+import eu.vendeli.tgbot.utils.internal.checkIsNotFiltered
+import eu.vendeli.tgbot.utils.internal.enrichUpdateWithCtx
 import kotlin.reflect.KClass
 
 sealed class CommonMatcher(
@@ -21,7 +23,7 @@ sealed class CommonMatcher(
     ) : CommonMatcher(value, filter, scope) {
         override suspend fun match(text: kotlin.String, update: ProcessedUpdate, bot: TelegramBot): Boolean =
             update.type in scope &&
-                filter.checkIsFiltered(update.userOrNull, update, bot) &&
+                filter.checkIsNotFiltered(update.userOrNull, update, bot) &&
                 text == value
     }
 
@@ -32,8 +34,10 @@ sealed class CommonMatcher(
     ) : CommonMatcher(value, filter, scope) {
         override suspend fun match(text: kotlin.String, update: ProcessedUpdate, bot: TelegramBot): Boolean =
             update.type in scope &&
-                filter.checkIsFiltered(update.userOrNull, update, bot) &&
-                value.matchEntire(text) != null
+                filter.checkIsNotFiltered(update.userOrNull, update, bot) &&
+                value.matchEntire(text)?.also {
+                    bot.enrichUpdateWithCtx(update, ProcessingCtxKey.REGEX_MATCH, it)
+                } != null
     }
 
     override fun toString(): kotlin.String =

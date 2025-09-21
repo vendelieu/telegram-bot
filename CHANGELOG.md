@@ -1,5 +1,14 @@
 # Telegram-bot (KtGram) Changelog
 
+### 8.4.0
+
+* Fixed `classData` clearing in not only user-related changes.
+* Fixed the Regex options-related bug.
+* Added `Chat` as resolvable type similar to `User`.
+* Added experimentally processing context, where can be accessed some processing related information. \
+    Scope of context can be changed through config parameter `processingCtxTargets`.
+* Added support of middlewares, you can extend `Middleware` and add it through config `middlewares` parameter.
+
 ### 8.3.1
 
 * Try to fix broken release.

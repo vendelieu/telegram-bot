@@ -17,6 +17,7 @@ import eu.vendeli.tgbot.types.component.ProcessedUpdate
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.component.userOrNull
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.utils.common.ProcessingCtxKey
 import eu.vendeli.tgbot.utils.common.cast
 import eu.vendeli.tgbot.utils.common.checkIsLimited
 import eu.vendeli.tgbot.utils.common.defaultArgParser
@@ -33,6 +34,27 @@ private inline val SingleInputChain.prevChainId: String?
     } else {
         null
     }
+
+
+internal fun TelegramBot.enrichUpdateWithCtx(update: ProcessedUpdate, key: ProcessingCtxKey, value: Any?) {
+    if (!config.processingCtxTargets.contains(key)) return
+    update.processingCtx[key] = value
+}
+
+internal suspend fun TgUpdateHandler.middlewarePreHandleShot(update: ProcessedUpdate) {
+    if (bot.config.middlewares.isEmpty()) return
+    bot.config.middlewares.forEach { it.preHandle(update, bot) }
+}
+
+internal suspend fun TgUpdateHandler.middlewarePreInvokeShot(update: ProcessedUpdate) {
+    if (bot.config.middlewares.isEmpty()) return
+    bot.config.middlewares.forEach { it.preInvoke(update, bot) }
+}
+
+internal suspend fun TgUpdateHandler.middlewarePostInvokeShot(update: ProcessedUpdate) {
+    if (bot.config.middlewares.isEmpty()) return
+    bot.config.middlewares.forEach { it.postInvoke(update, bot) }
+}
 
 internal suspend inline fun KClass<out Guard>.checkIsGuarded(
     user: User?,
@@ -52,7 +74,7 @@ internal suspend inline fun Guard.checkIsGuarded(
     bot: TelegramBot,
 ): Boolean = if (this::class.fqName == DefaultGuard::class.fqName) true else condition(user, update, bot)
 
-internal suspend inline fun KClass<out Filter>.checkIsFiltered(
+internal suspend inline fun KClass<out Filter>.checkIsNotFiltered(
     user: User?,
     update: ProcessedUpdate,
     bot: TelegramBot,
@@ -61,10 +83,10 @@ internal suspend inline fun KClass<out Filter>.checkIsFiltered(
     return bot.config.classManager
         .getInstance(this)
         .cast<Filter>()
-        .checkIsFiltered(user, update, bot)
+        .checkIsNotFiltered(user, update, bot)
 }
 
-internal suspend inline fun Filter.checkIsFiltered(
+internal suspend inline fun Filter.checkIsNotFiltered(
     user: User?,
     update: ProcessedUpdate,
     bot: TelegramBot,
