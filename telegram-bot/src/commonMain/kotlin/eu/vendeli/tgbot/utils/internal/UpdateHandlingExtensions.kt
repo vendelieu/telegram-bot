@@ -9,21 +9,10 @@ import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.interfaces.helper.ArgumentParser
 import eu.vendeli.tgbot.interfaces.helper.Filter
 import eu.vendeli.tgbot.interfaces.helper.Guard
-import eu.vendeli.tgbot.types.chain.SingleInputChain
-import eu.vendeli.tgbot.types.component.ActivityCtx
-import eu.vendeli.tgbot.types.component.CommandContext
-import eu.vendeli.tgbot.types.component.ParsedText
-import eu.vendeli.tgbot.types.component.ProcessedUpdate
-import eu.vendeli.tgbot.types.component.UpdateType
-import eu.vendeli.tgbot.types.component.userOrNull
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.utils.common.ProcessingCtxKey
-import eu.vendeli.tgbot.utils.common.cast
-import eu.vendeli.tgbot.utils.common.checkIsLimited
-import eu.vendeli.tgbot.utils.common.defaultArgParser
-import eu.vendeli.tgbot.utils.common.fqName
-import eu.vendeli.tgbot.utils.common.handleFailure
-import eu.vendeli.tgbot.utils.common.parseCommand
+import eu.vendeli.tgbot.types.chain.SingleInputChain
+import eu.vendeli.tgbot.types.component.*
+import eu.vendeli.tgbot.utils.common.*
 import kotlin.reflect.KClass
 
 private inline val SingleInputChain.prevChainId: String?
@@ -41,19 +30,25 @@ internal fun TelegramBot.enrichUpdateWithCtx(update: ProcessedUpdate, key: Proce
     update.processingCtx[key] = value
 }
 
-internal suspend fun TgUpdateHandler.middlewarePreHandleShot(update: ProcessedUpdate) {
-    if (bot.config.middlewares.isEmpty()) return
-    bot.config.middlewares.forEach { it.preHandle(update, bot) }
+internal suspend fun TgUpdateHandler.middlewarePreHandleShot(update: ProcessedUpdate): Boolean {
+    if (bot.config.middlewares.isEmpty()) return true
+    bot.config.sortedMiddlewares.forEachIndexed { _, it ->
+        if (!it.preHandle(update, bot)) return false
+    }
+    return true
 }
 
-internal suspend fun TgUpdateHandler.middlewarePreInvokeShot(update: ProcessedUpdate) {
-    if (bot.config.middlewares.isEmpty()) return
-    bot.config.middlewares.forEach { it.preInvoke(update, bot) }
+internal suspend fun TgUpdateHandler.middlewarePreInvokeShot(update: ProcessedUpdate): Boolean {
+    if (bot.config.middlewares.isEmpty()) return true
+    bot.config.sortedMiddlewares.forEachIndexed { _, it ->
+        if (!it.preInvoke(update, bot)) return false
+    }
+    return true
 }
 
 internal suspend fun TgUpdateHandler.middlewarePostInvokeShot(update: ProcessedUpdate) {
     if (bot.config.middlewares.isEmpty()) return
-    bot.config.middlewares.forEach { it.postInvoke(update, bot) }
+    bot.config.sortedMiddlewares.forEach { it.postInvoke(update, bot) }
 }
 
 internal suspend inline fun KClass<out Guard>.checkIsGuarded(
