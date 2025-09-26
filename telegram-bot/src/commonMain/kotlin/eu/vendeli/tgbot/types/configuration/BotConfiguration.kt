@@ -84,6 +84,8 @@ data class BotConfiguration(
         commandParsing.block()
     }
 
+    internal val sortedMiddlewares by lazy { middlewares.sortedBy { it.order } }
+
     internal fun rewriteWith(new: BotConfiguration): BotConfiguration {
         identifier = new.identifier
         apiHost = new.apiHost

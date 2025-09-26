@@ -1,6 +1,10 @@
 # Telegram-bot (KtGram) Changelog
 
-### 8.4.0
+### 8.4.1
+
+* Fixed `Middleware` interface and corrected behaviour.
+
+## 8.4.0
 
 * Fixed `classData` clearing in not only user-related changes.
 * Fixed the Regex options-related bug.

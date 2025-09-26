@@ -195,7 +195,7 @@ class TgUpdateHandler internal constructor(
      * @param update
      */
     suspend fun handle(update: ProcessedUpdate): Unit = update.run {
-        middlewarePreHandleShot(update)
+        if(!middlewarePreHandleShot(update)) return@run
         logger.trace { "Handling update: ${update.toJsonString()}\nProcessed into: $update" }
         val user = userOrNull
         // check general user limits
@@ -244,7 +244,7 @@ class TgUpdateHandler internal constructor(
                 "\nResult of finding action - ${invocation?.second}"
         }
 
-        middlewarePreInvokeShot(update)
+        if(!middlewarePreInvokeShot(update)) return@run
         // invoke update type handler if there's
         activities.updateTypeHandlers[type]?.invokeCatching(this, params, TgInvocationKind.TYPE)
 

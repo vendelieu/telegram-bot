@@ -15,7 +15,7 @@ if (isMultiplatform) apply(plugin = "org.jetbrains.kotlin.multiplatform")
 
 mavenPublishing {
     coordinates("eu.vendeli", project.name, project.version.toString())
-    publishToMavenCentral()
+    publishToMavenCentral(true)
     if (releaseMode) signAllPublications()
 
     val javaDoc = JavadocJar.Empty()

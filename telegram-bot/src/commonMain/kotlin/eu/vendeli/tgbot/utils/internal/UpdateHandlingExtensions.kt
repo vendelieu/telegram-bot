@@ -9,21 +9,11 @@ import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.interfaces.helper.ArgumentParser
 import eu.vendeli.tgbot.interfaces.helper.Filter
 import eu.vendeli.tgbot.interfaces.helper.Guard
-import eu.vendeli.tgbot.types.chain.SingleInputChain
-import eu.vendeli.tgbot.types.component.ActivityCtx
-import eu.vendeli.tgbot.types.component.CommandContext
-import eu.vendeli.tgbot.types.component.ParsedText
-import eu.vendeli.tgbot.types.component.ProcessedUpdate
-import eu.vendeli.tgbot.types.component.UpdateType
-import eu.vendeli.tgbot.types.component.userOrNull
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.utils.common.ProcessingCtxKey
-import eu.vendeli.tgbot.utils.common.cast
-import eu.vendeli.tgbot.utils.common.checkIsLimited
-import eu.vendeli.tgbot.utils.common.defaultArgParser
-import eu.vendeli.tgbot.utils.common.fqName
-import eu.vendeli.tgbot.utils.common.handleFailure
-import eu.vendeli.tgbot.utils.common.parseCommand
+import eu.vendeli.tgbot.types.chain.SingleInputChain
+import eu.vendeli.tgbot.types.component.*
+import eu.vendeli.tgbot.utils.common.*
+import io.ktor.util.logging.trace
 import kotlin.reflect.KClass
 
 private inline val SingleInputChain.prevChainId: String?
@@ -41,19 +31,36 @@ internal fun TelegramBot.enrichUpdateWithCtx(update: ProcessedUpdate, key: Proce
     update.processingCtx[key] = value
 }
 
-internal suspend fun TgUpdateHandler.middlewarePreHandleShot(update: ProcessedUpdate) {
-    if (bot.config.middlewares.isEmpty()) return
-    bot.config.middlewares.forEach { it.preHandle(update, bot) }
+internal suspend fun TgUpdateHandler.middlewarePreHandleShot(update: ProcessedUpdate): Boolean {
+    if (bot.config.middlewares.isEmpty()) return true
+    bot.config.sortedMiddlewares.forEachIndexed { _, it ->
+        logger.trace { "Executed PreHandle middleware: $it" }
+        if (!it.preHandle(update, bot)) {
+            logger.debug { "PreHandle stopped by middleware: $it" }
+            return false
+        }
+    }
+    return true
 }
 
-internal suspend fun TgUpdateHandler.middlewarePreInvokeShot(update: ProcessedUpdate) {
-    if (bot.config.middlewares.isEmpty()) return
-    bot.config.middlewares.forEach { it.preInvoke(update, bot) }
+internal suspend fun TgUpdateHandler.middlewarePreInvokeShot(update: ProcessedUpdate): Boolean {
+    if (bot.config.middlewares.isEmpty()) return true
+    bot.config.sortedMiddlewares.forEachIndexed { _, it ->
+        logger.trace { "Executed PreInvoke middleware: $it" }
+        if (!it.preInvoke(update, bot)) {
+            logger.debug { "Invocation stopped by middleware: $it" }
+            return false
+        }
+    }
+    return true
 }
 
 internal suspend fun TgUpdateHandler.middlewarePostInvokeShot(update: ProcessedUpdate) {
     if (bot.config.middlewares.isEmpty()) return
-    bot.config.middlewares.forEach { it.postInvoke(update, bot) }
+    bot.config.sortedMiddlewares.forEach {
+        logger.trace { "Executed PostInvoke middleware: $it" }
+        it.postInvoke(update, bot)
+    }
 }
 
 internal suspend inline fun KClass<out Guard>.checkIsGuarded(
@@ -233,18 +240,26 @@ private inline fun Boolean?.ifAffected(block: () -> Unit) {
 internal suspend fun FunctionalHandlingDsl.process(update: ProcessedUpdate) = with(update) {
     logger.info { "Handling update #${update.updateId}" }
     var affectedActivities = 0
+
+    if (!bot.update.middlewarePreHandleShot(update)) return@with
+
     if (bot.update.checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id)) return@with
     val activityCtx = ActivityCtx(this)
 
-    checkMessageForActivities(this).ifAffected { affectedActivities += 1 }
+    if (!bot.update.middlewarePreInvokeShot(update)) return@with
+
     functionalActivities.onUpdateActivities[type]
         ?.invokeActivity(this@process, type, activityCtx)
         .ifAffected { affectedActivities += 1 }
+
+    checkMessageForActivities(this).ifAffected { affectedActivities += 1 }
 
     if (affectedActivities == 0) functionalActivities.whenNotHandled?.invoke(activityCtx)?.also {
         logger.debug { "Update #${update.updateId} processed in functional mode with whenNotHandled activity." }
         affectedActivities += 1
     }
+
+    bot.update.middlewarePostInvokeShot(update)
 
     logger.debug { "Number of affected functional activities - $affectedActivities." }
 }
