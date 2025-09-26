@@ -9,6 +9,7 @@ import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ksp.dto.CollectorsContext
 import eu.vendeli.ksp.utils.ChainingStrategyDefault
+import eu.vendeli.ksp.utils.INVOCATION_LAMBDA_PARAMS
 import eu.vendeli.ksp.utils.buildMeta
 import eu.vendeli.ksp.utils.cast
 import eu.vendeli.ksp.utils.linkQName
@@ -82,7 +83,7 @@ internal fun collectInputChains(
                 val block = buildCodeBlock {
                     indent()
                     beginControlFlow(
-                        "suspendCall(\n\t${meta.first}\n) { classManager, update, user, bot, parameters ->",
+                        "suspendCall(\n\t${meta.first}\n) { $INVOCATION_LAMBDA_PARAMS ->",
                         *meta.second,
                     ).apply {
                         add("if(user == null) return@suspendCall Unit\n")

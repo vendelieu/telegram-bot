@@ -4,77 +4,13 @@ import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.FunctionKind
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.DOUBLE
-import com.squareup.kotlinpoet.FLOAT
-import com.squareup.kotlinpoet.INT
-import com.squareup.kotlinpoet.LONG
-import com.squareup.kotlinpoet.SHORT
-import com.squareup.kotlinpoet.STRING
-import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.buildCodeBlock
+import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ksp.dto.CollectorsContext
 import eu.vendeli.ksp.dto.CommandHandlerParams
 import eu.vendeli.ksp.dto.LambdaParameters
-import eu.vendeli.ksp.utils.FileBuilder
-import eu.vendeli.ksp.utils.botClass
-import eu.vendeli.ksp.utils.businessConnectionUpdateClass
-import eu.vendeli.ksp.utils.businessMessageUpdateClass
-import eu.vendeli.ksp.utils.callbackQueryUpdateClass
-import eu.vendeli.ksp.utils.channelPostUpdateClass
-import eu.vendeli.ksp.utils.chatBoostUpdateClass
-import eu.vendeli.ksp.utils.chatClass
-import eu.vendeli.ksp.utils.chatJoinRequestUpdateClass
-import eu.vendeli.ksp.utils.chatMemberUpdateClass
-import eu.vendeli.ksp.utils.chosenInlineResultUpdateClass
-import eu.vendeli.ksp.utils.deletedBusinessMessagesClass
-import eu.vendeli.ksp.utils.doublePrimitiveType
-import eu.vendeli.ksp.utils.editedBusinessMessageClass
-import eu.vendeli.ksp.utils.editedChannelPostUpdateClass
-import eu.vendeli.ksp.utils.editedMessageUpdateClass
-import eu.vendeli.ksp.utils.floatPrimitiveType
-import eu.vendeli.ksp.utils.inlineQueryUpdateClass
-import eu.vendeli.ksp.utils.intPrimitiveType
-import eu.vendeli.ksp.utils.longPrimitiveType
-import eu.vendeli.ksp.utils.messageReactionCountUpdateClass
-import eu.vendeli.ksp.utils.messageReactionUpdateClass
-import eu.vendeli.ksp.utils.messageUpdClass
-import eu.vendeli.ksp.utils.myChatMemberUpdateClass
-import eu.vendeli.ksp.utils.pollAnswerUpdateClass
-import eu.vendeli.ksp.utils.pollUpdateClass
-import eu.vendeli.ksp.utils.preCheckoutQueryUpdateClass
-import eu.vendeli.ksp.utils.purchasedPaidMediaUpdateClass
-import eu.vendeli.ksp.utils.removedChatBoostUpdateClass
-import eu.vendeli.ksp.utils.shippingQueryUpdateClass
-import eu.vendeli.ksp.utils.shortPrimitiveType
-import eu.vendeli.ksp.utils.updateClass
-import eu.vendeli.ksp.utils.userClass
-import eu.vendeli.tgbot.types.component.BusinessConnectionUpdate
-import eu.vendeli.tgbot.types.component.BusinessMessageUpdate
-import eu.vendeli.tgbot.types.component.CallbackQueryUpdate
-import eu.vendeli.tgbot.types.component.ChannelPostUpdate
-import eu.vendeli.tgbot.types.component.ChatBoostUpdate
-import eu.vendeli.tgbot.types.component.ChatJoinRequestUpdate
-import eu.vendeli.tgbot.types.component.ChatMemberUpdate
-import eu.vendeli.tgbot.types.component.ChosenInlineResultUpdate
-import eu.vendeli.tgbot.types.component.DeletedBusinessMessagesUpdate
-import eu.vendeli.tgbot.types.component.EditedBusinessMessageUpdate
-import eu.vendeli.tgbot.types.component.EditedChannelPostUpdate
-import eu.vendeli.tgbot.types.component.EditedMessageUpdate
-import eu.vendeli.tgbot.types.component.InlineQueryUpdate
-import eu.vendeli.tgbot.types.component.MessageReactionCountUpdate
-import eu.vendeli.tgbot.types.component.MessageReactionUpdate
-import eu.vendeli.tgbot.types.component.MessageUpdate
-import eu.vendeli.tgbot.types.component.MyChatMemberUpdate
-import eu.vendeli.tgbot.types.component.PollAnswerUpdate
-import eu.vendeli.tgbot.types.component.PollUpdate
-import eu.vendeli.tgbot.types.component.PreCheckoutQueryUpdate
-import eu.vendeli.tgbot.types.component.ProcessedUpdate
-import eu.vendeli.tgbot.types.component.PurchasedPaidMediaUpdate
-import eu.vendeli.tgbot.types.component.RemovedChatBoostUpdate
-import eu.vendeli.tgbot.types.component.ShippingQueryUpdate
-import eu.vendeli.tgbot.types.component.UpdateType
+import eu.vendeli.ksp.utils.*
+import eu.vendeli.tgbot.types.component.*
 import kotlin.reflect.KClass
 
 @Suppress("LongMethod", "CyclomaticComplexMethod")
@@ -98,10 +34,10 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
 
     val lambda = meta?.let {
         beginControlFlow(
-            "suspendCall(\n\t${it.first}\n) { classManager, update, user, bot, parameters ->",
+            "suspendCall(\n\t${it.first}\n) { $INVOCATION_LAMBDA_PARAMS ->",
             *it.second,
         )
-    } ?: beginControlFlow("suspendCall { classManager, update, user, bot, parameters ->")
+    } ?: beginControlFlow("suspendCall { $INVOCATION_LAMBDA_PARAMS ->")
 
     lambda
         .apply {
@@ -109,10 +45,13 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
             if (!isTopLvl && !isObject && function.functionKind != FunctionKind.STATIC) {
                 parametersEnumeration = "inst, "
                 add(
-                    "val inst = classManager.getInstance<%L>()!!\n",
+                    "val inst = bot.getInstance(%L::class)!!\n",
                     funQualifier,
                 )
             }
+            addImport("eu.vendeli.tgbot.types.component", "userOrNull")
+            add("val user = update.userOrNull\n")
+
             var isUserNullable = true
             function.parameters.forEachIndexed { index, parameter ->
                 if (parameter.name == null) return@forEachIndexed
@@ -123,23 +62,27 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                         }?.let { i ->
                             i.arguments.first { a -> a.name?.asString() == "name" }.value as? String
                         } ?: parameter.name!!.getShortName()
-                ).let {
-                    "parameters[\"$it\"]"
-                }
+                    ).let {
+                        "parameters[\"$it\"]"
+                    }
                 val parameterTypeName = parameter.type.toTypeName()
                 val typeName = parameterTypeName.copy(false)
                 val nullabilityMark = if (parameterTypeName.isNullable) "" else "!!"
 
                 val value = when (typeName) {
-                    userClass -> "user$nullabilityMark".also {
+                    userClass -> {
                         if (!parameterTypeName.isNullable) isUserNullable = false
+                        "user$nullabilityMark"
                     }
+
                     chatClass -> {
                         ctx?.activitiesFile?.addImport(
-                            "eu.vendeli.tgbot.types.component", "chatOrNull"
+                            "eu.vendeli.tgbot.types.component", "chatOrNull",
                         )
                         "update.chatOrNull$nullabilityMark"
                     }
+
+                    processingCtx -> "ctx"
 
                     botClass -> "bot"
                     STRING -> "$paramCall$nullabilityMark"
@@ -176,7 +119,7 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
 
                     in injectableTypes.keys -> {
                         val type = injectableTypes[typeName]!!
-                        "classManager.getInstance<${type.canonicalName}>()!!.get(update, bot)"
+                        "bot.getInstance(${type.canonicalName}::class)!!.get(update, bot)"
                     }
 
                     else -> "null"

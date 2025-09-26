@@ -55,6 +55,7 @@ import eu.vendeli.tgbot.types.component.PollAnswerUpdate
 import eu.vendeli.tgbot.types.component.PollUpdate
 import eu.vendeli.tgbot.types.component.PreCheckoutQueryUpdate
 import eu.vendeli.tgbot.types.component.ProcessedUpdate
+import eu.vendeli.tgbot.types.component.ProcessingCtx
 import eu.vendeli.tgbot.types.component.PurchasedPaidMediaUpdate
 import eu.vendeli.tgbot.types.component.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.component.ShippingQueryUpdate
@@ -64,6 +65,8 @@ import eu.vendeli.tgbot.utils.common.fqName
 import kotlin.reflect.KClass
 
 internal typealias FileBuilder = FileSpec.Builder
+
+internal const val INVOCATION_LAMBDA_PARAMS = "bot, update, params, ctx"
 
 internal val activitiesType = Map::class.asTypeName().parameterizedBy(
     STRING,
@@ -82,6 +85,7 @@ internal val doublePrimitiveType = TypeVariableName("double")
 internal val userClass = User::class.asTypeName()
 internal val chatClass = Chat::class.asTypeName()
 internal val botClass = TelegramBot::class.asTypeName()
+internal val processingCtx = ProcessingCtx::class.asTypeName()
 internal val idLongClass = IdLong::class.asTypeName()
 
 internal val updateClass = ProcessedUpdate::class.asTypeName()

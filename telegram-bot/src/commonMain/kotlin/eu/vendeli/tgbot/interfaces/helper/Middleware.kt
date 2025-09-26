@@ -2,6 +2,7 @@ package eu.vendeli.tgbot.interfaces.helper
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.component.ProcessedUpdate
+import eu.vendeli.tgbot.types.component.ProcessingCtx
 
 /**
  * Represents a middleware interface for handling updates in a structured way.
@@ -30,13 +31,23 @@ abstract class Middleware {
      *
      * @param update The current update being processed, encapsulated within a [ProcessedUpdate] object.
      * @param bot The instance of [TelegramBot] associated with the current operation.
+     * @param ctx The context of the current processing.
      */
-    open suspend fun preInvoke(update: ProcessedUpdate, bot: TelegramBot): Boolean = true
+    open suspend fun preInvoke(
+        update: ProcessedUpdate,
+        bot: TelegramBot,
+        ctx: ProcessingCtx
+    ): Boolean = true
     /**
      * Invoked after the handling process is executed for an update.
      *
      * @param update Represents the processed update instance.
      * @param bot Instance of the Telegram bot processing the update.
+     * @param ctx Context of the current processing.
      */
-    open suspend fun postInvoke(update: ProcessedUpdate, bot: TelegramBot) {}
+    open suspend fun postInvoke(
+        update: ProcessedUpdate,
+        bot: TelegramBot,
+        ctx: ProcessingCtx,
+    ) {}
 }

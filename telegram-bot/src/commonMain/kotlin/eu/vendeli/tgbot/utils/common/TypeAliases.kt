@@ -12,6 +12,7 @@ import eu.vendeli.tgbot.types.component.CommonMatcher
 import eu.vendeli.tgbot.types.component.FunctionalInvocation
 import eu.vendeli.tgbot.types.component.InvocationMeta
 import eu.vendeli.tgbot.types.component.ProcessedUpdate
+import eu.vendeli.tgbot.types.component.ProcessingCtx
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.configuration.BotConfiguration
 import io.ktor.client.plugins.HttpRetryShouldRetryContext
@@ -29,7 +30,7 @@ typealias FunctionalHandlingBlock = suspend FunctionalHandlingDsl.() -> Unit
 typealias BotConfigurator = BotConfiguration.() -> Unit
 typealias RetryStrategy = HttpRetryShouldRetryContext.(HttpRequest, HttpResponse) -> Boolean
 
-typealias InvocationLambda = suspend (ClassManager, ProcessedUpdate, User?, TelegramBot, Map<String, String>) -> Any?
+typealias InvocationLambda = suspend (TelegramBot, ProcessedUpdate, Map<String, String>, ProcessingCtx) -> Any?
 typealias Invocable = Pair<InvocationLambda, InvocationMeta>
 
 internal typealias OnUpdateActivities = MutableMap<UpdateType, DefaultActivityCtx>

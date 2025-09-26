@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chain.SingleInputChain
 import eu.vendeli.tgbot.types.component.*
 import eu.vendeli.tgbot.utils.common.*
-import io.ktor.util.logging.trace
+import io.ktor.util.logging.*
 import kotlin.reflect.KClass
 
 private inline val SingleInputChain.prevChainId: String?
@@ -24,12 +24,6 @@ private inline val SingleInputChain.prevChainId: String?
     } else {
         null
     }
-
-
-internal fun TelegramBot.enrichUpdateWithCtx(update: ProcessedUpdate, key: ProcessingCtxKey, value: Any?) {
-    if (!config.processingCtxTargets.contains(key)) return
-    update.processingCtx[key] = value
-}
 
 internal suspend fun TgUpdateHandler.middlewarePreHandleShot(update: ProcessedUpdate): Boolean {
     if (bot.config.middlewares.isEmpty()) return true
@@ -43,11 +37,14 @@ internal suspend fun TgUpdateHandler.middlewarePreHandleShot(update: ProcessedUp
     return true
 }
 
-internal suspend fun TgUpdateHandler.middlewarePreInvokeShot(update: ProcessedUpdate): Boolean {
+internal suspend fun TgUpdateHandler.middlewarePreInvokeShot(
+    update: ProcessedUpdate,
+    ctx: ProcessingCtx,
+): Boolean {
     if (bot.config.middlewares.isEmpty()) return true
     bot.config.sortedMiddlewares.forEachIndexed { _, it ->
         logger.trace { "Executed PreInvoke middleware: $it" }
-        if (!it.preInvoke(update, bot)) {
+        if (!it.preInvoke(update, bot, ctx)) {
             logger.debug { "Invocation stopped by middleware: $it" }
             return false
         }
@@ -55,11 +52,14 @@ internal suspend fun TgUpdateHandler.middlewarePreInvokeShot(update: ProcessedUp
     return true
 }
 
-internal suspend fun TgUpdateHandler.middlewarePostInvokeShot(update: ProcessedUpdate) {
+internal suspend fun TgUpdateHandler.middlewarePostInvokeShot(
+    update: ProcessedUpdate,
+    ctx: ProcessingCtx,
+) {
     if (bot.config.middlewares.isEmpty()) return
     bot.config.sortedMiddlewares.forEach {
         logger.trace { "Executed PostInvoke middleware: $it" }
-        it.postInvoke(update, bot)
+        it.postInvoke(update, bot, ctx)
     }
 }
 
@@ -145,6 +145,7 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
         invocation.invoke(cmdCtx)
         return true
     }
+
     // if there's no command -> then try process input
     if (user != null) bot.inputListener.get(user.id)?.also {
         logger.info { "Found inputListener point $it for ${user.id}" }
@@ -191,7 +192,7 @@ private suspend fun FunctionalHandlingDsl.checkMessageForActivities(update: Proc
     // if there's no command and input > check common handlers
     functionalActivities.commonActivities.entries
         .firstOrNull { i ->
-            i.key.match(parsedText.command, update, bot)
+            i.key.match(parsedText.command, update, bot, ProcessingCtx.EMPTY)
         }?.value
         ?.run {
             logger.debug { "Matched common handler $this for text $text" }
@@ -211,19 +212,20 @@ private suspend fun ((suspend ActivityCtx<ProcessedUpdate>.() -> Unit)?).invokeA
     updateType: UpdateType,
     activityCtx: ActivityCtx<ProcessedUpdate>,
 ): Boolean {
-    this
-        ?.runCatching { invoke(activityCtx) }
-        ?.onFailure {
-            functionalHandler.logger.error(it) {
-                "An error occurred while functionally processing update: ${activityCtx.update} to UpdateType($updateType)."
-            }
-            functionalHandler.bot.update.handleFailure(activityCtx.update, it)
-        }?.onSuccess {
-            functionalHandler.logger.info {
-                "Update #${activityCtx.update.updateId} processed in functional mode with UpdateType($updateType) activity."
-            }
-            return true
+    if (this == null) return false
+    runCatching {
+        invoke(activityCtx)
+    }.onFailure {
+        functionalHandler.logger.error(it) {
+            "An error occurred while functionally processing update: ${activityCtx.update} to UpdateType($updateType)."
         }
+        functionalHandler.bot.update.handleFailure(activityCtx.update, it)
+    }.onSuccess {
+        functionalHandler.logger.info {
+            "Update #${activityCtx.update.updateId} processed in functional mode with UpdateType($updateType) activity."
+        }
+        return true
+    }
     return false
 }
 
@@ -246,7 +248,7 @@ internal suspend fun FunctionalHandlingDsl.process(update: ProcessedUpdate) = wi
     if (bot.update.checkIsLimited(bot.config.rateLimiter.limits, userOrNull?.id)) return@with
     val activityCtx = ActivityCtx(this)
 
-    if (!bot.update.middlewarePreInvokeShot(update)) return@with
+    if (!bot.update.middlewarePreInvokeShot(update, ProcessingCtx.EMPTY)) return@with
 
     functionalActivities.onUpdateActivities[type]
         ?.invokeActivity(this@process, type, activityCtx)
@@ -259,7 +261,7 @@ internal suspend fun FunctionalHandlingDsl.process(update: ProcessedUpdate) = wi
         affectedActivities += 1
     }
 
-    bot.update.middlewarePostInvokeShot(update)
+    bot.update.middlewarePostInvokeShot(update, ProcessingCtx.EMPTY)
 
     logger.debug { "Number of affected functional activities - $affectedActivities." }
 }

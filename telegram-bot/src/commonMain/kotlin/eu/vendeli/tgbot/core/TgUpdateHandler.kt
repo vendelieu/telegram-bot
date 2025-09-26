@@ -3,54 +3,16 @@ package eu.vendeli.tgbot.core
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
-import eu.vendeli.tgbot.types.component.ActivitiesData
-import eu.vendeli.tgbot.types.component.FailedUpdate
-import eu.vendeli.tgbot.types.component.InvocationMeta
-import eu.vendeli.tgbot.types.component.ProcessedUpdate
-import eu.vendeli.tgbot.types.component.TgInvocationKind
-import eu.vendeli.tgbot.types.component.UpdateType
-import eu.vendeli.tgbot.types.component.getOrNull
-import eu.vendeli.tgbot.types.component.userOrNull
-import eu.vendeli.tgbot.utils.common.DEFAULT_HANDLING_BEHAVIOUR
-import eu.vendeli.tgbot.utils.common.FunctionalHandlingBlock
-import eu.vendeli.tgbot.utils.common.GET_UPDATES_ACTION
-import eu.vendeli.tgbot.utils.common.HandlingBehaviourBlock
-import eu.vendeli.tgbot.utils.common.ProcessingCtxKey
-import eu.vendeli.tgbot.utils.common.Invocable
-import eu.vendeli.tgbot.utils.common.InvocationLambda
-import eu.vendeli.tgbot.utils.common.TgException
-import eu.vendeli.tgbot.utils.common.checkIsLimited
-import eu.vendeli.tgbot.utils.common.fqName
-import eu.vendeli.tgbot.utils.common.handleFailure
-import eu.vendeli.tgbot.utils.common.parseCommand
-import eu.vendeli.tgbot.utils.common.serde
-import eu.vendeli.tgbot.utils.internal.checkIsGuarded
+import eu.vendeli.tgbot.types.component.*
+import eu.vendeli.tgbot.utils.common.*
+import eu.vendeli.tgbot.utils.internal.*
 import eu.vendeli.tgbot.utils.internal.debug
-import eu.vendeli.tgbot.utils.internal.enrichUpdateWithCtx
-import eu.vendeli.tgbot.utils.internal.error
-import eu.vendeli.tgbot.utils.internal.getLogger
-import eu.vendeli.tgbot.utils.internal.getParameters
-import eu.vendeli.tgbot.utils.internal.info
-import eu.vendeli.tgbot.utils.internal.middlewarePostInvokeShot
-import eu.vendeli.tgbot.utils.internal.middlewarePreHandleShot
-import eu.vendeli.tgbot.utils.internal.middlewarePreInvokeShot
-import eu.vendeli.tgbot.utils.internal.process
-import eu.vendeli.tgbot.utils.internal.toJsonElement
-import eu.vendeli.tgbot.utils.internal.warn
-import io.ktor.client.plugins.HttpRequestTimeoutException
+import io.ktor.client.plugins.*
 import io.ktor.util.logging.trace
-import kotlinx.coroutines.CoroutineName
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.async
-import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
 
 /**
  * An update processing class.
@@ -195,7 +157,7 @@ class TgUpdateHandler internal constructor(
      * @param update
      */
     suspend fun handle(update: ProcessedUpdate): Unit = update.run {
-        if(!middlewarePreHandleShot(update)) return@run
+        if (!middlewarePreHandleShot(update)) return@run
         logger.trace { "Handling update: ${update.toJsonString()}\nProcessed into: $update" }
         val user = userOrNull
         // check general user limits
@@ -219,10 +181,14 @@ class TgUpdateHandler internal constructor(
         // remove input listener point
         if (user != null && bot.config.inputAutoRemoval) bot.inputListener.del(user.id)
 
+        val processingCtx = if (bot.config.processingCtxTargets.isNotEmpty()) {
+            ProcessingCtx()
+        } else ProcessingCtx.EMPTY
+
         // if there's no command and input > check common handlers
         if (invocation == null) invocation = activities.commonHandlers.entries
             .firstOrNull {
-                it.key.match(request.command, this, bot)
+                it.key.match(request.command, this, bot, processingCtx)
             }?.also {
                 activityId = it.key.value.toString()
             }?.value
@@ -234,8 +200,9 @@ class TgUpdateHandler internal constructor(
         }
 
         // if we found any action > check for its limits
-        if (invocation != null && checkIsLimited(invocation.second.rateLimits, user?.id, activityId))
-            return@run
+        if (invocation != null
+            && checkIsLimited(invocation.second.rateLimits, user?.id, activityId)
+        ) return@run
 
         val params = getParameters(invocation?.second?.argParser, request)
 
@@ -244,31 +211,43 @@ class TgUpdateHandler internal constructor(
                 "\nResult of finding action - ${invocation?.second}"
         }
 
-        if(!middlewarePreInvokeShot(update)) return@run
+        if (!middlewarePreInvokeShot(update, processingCtx)) return@run
         // invoke update type handler if there's
-        activities.updateTypeHandlers[type]?.invokeCatching(this, params, TgInvocationKind.TYPE)
+        activities.updateTypeHandlers[type]?.invokeCatching(
+            update = this,
+            parameters = params,
+            kind = TgInvocationKind.TYPE,
+            processingCtx = processingCtx,
+        )
 
         when {
             invocation != null -> invocation.first.invokeCatching(
-                this,
-                params,
-                TgInvocationKind.ACTIVITY,
-                invocation.second,
+                update = this,
+                parameters = params,
+                kind = TgInvocationKind.ACTIVITY,
+                processingCtx = processingCtx,
+                meta = invocation.second,
             )
 
             activities.unprocessedHandler != null ->
                 activities.unprocessedHandler!!
-                    .invokeCatching(this, params, TgInvocationKind.UNPROCESSED)
+                    .invokeCatching(
+                        update = this,
+                        parameters = params,
+                        kind = TgInvocationKind.UNPROCESSED,
+                        processingCtx = processingCtx,
+                    )
 
             else -> logger.warn { "update: ${update.toJsonString()} not handled." }
         }
-        middlewarePostInvokeShot(update)
+        middlewarePostInvokeShot(update, processingCtx)
     }
 
     private suspend fun InvocationLambda.invokeCatching(
         update: ProcessedUpdate,
         parameters: Map<String, String>,
         kind: TgInvocationKind,
+        processingCtx: ProcessingCtx,
         meta: InvocationMeta? = null,
     ) {
         val user = update.userOrNull
@@ -278,9 +257,13 @@ class TgUpdateHandler internal constructor(
             TgInvocationKind.UNPROCESSED -> "UnprocessedHandler"
         }
 
-        bot.enrichUpdateWithCtx(update, ProcessingCtxKey.PARSED_PARAMETERS, parameters)
+        with(bot) {
+            processingCtx.enrich(ProcessingCtxKey.INVOCATION_META, meta)
+            processingCtx.enrich(ProcessingCtxKey.PARSED_PARAMETERS, parameters)
+            processingCtx.enrich(ProcessingCtxKey.INVOCATION_KIND, kind)
+        }
         runCatching {
-            invoke(bot.config.classManager, update, user, bot, parameters)
+            invoke(bot, update, parameters, processingCtx)
         }.onFailure {
             logger.error(it) {
                 "Invocation error at update handling in $target with update: ${update.toJsonString()}"

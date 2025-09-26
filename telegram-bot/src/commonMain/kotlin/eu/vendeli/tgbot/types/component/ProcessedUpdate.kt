@@ -48,7 +48,6 @@ sealed class ProcessedUpdate(
     MultipleResponse {
     internal companion object : UpdateSerializer<ProcessedUpdate>()
 
-    internal val processingCtx by lazy { mutableMapOf<ProcessingCtxKey, Any?>() }
     internal fun toJsonString() = "[$type]" + serde.encodeToString(ProcessedUpdate, this)
 }
 

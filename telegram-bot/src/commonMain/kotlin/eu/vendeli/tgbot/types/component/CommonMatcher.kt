@@ -6,7 +6,6 @@ import eu.vendeli.tgbot.interfaces.helper.Filter
 import eu.vendeli.tgbot.utils.common.DEFAULT_SCOPE
 import eu.vendeli.tgbot.utils.common.ProcessingCtxKey
 import eu.vendeli.tgbot.utils.internal.checkIsNotFiltered
-import eu.vendeli.tgbot.utils.internal.enrichUpdateWithCtx
 import kotlin.reflect.KClass
 
 sealed class CommonMatcher(
@@ -14,14 +13,24 @@ sealed class CommonMatcher(
     val filter: KClass<out Filter>,
     val scope: Set<UpdateType>,
 ) {
-    abstract suspend fun match(text: kotlin.String, update: ProcessedUpdate, bot: TelegramBot): Boolean
+    abstract suspend fun match(
+        text: kotlin.String,
+        update: ProcessedUpdate,
+        bot: TelegramBot,
+        ctx: ProcessingCtx,
+    ): Boolean
 
     class String(
         override val value: kotlin.String,
         filter: KClass<out Filter> = DefaultFilter::class,
         scope: Set<UpdateType> = DEFAULT_SCOPE,
     ) : CommonMatcher(value, filter, scope) {
-        override suspend fun match(text: kotlin.String, update: ProcessedUpdate, bot: TelegramBot): Boolean =
+        override suspend fun match(
+            text: kotlin.String,
+            update: ProcessedUpdate,
+            bot: TelegramBot,
+            ctx: ProcessingCtx,
+        ): Boolean =
             update.type in scope &&
                 filter.checkIsNotFiltered(update.userOrNull, update, bot) &&
                 text == value
@@ -32,11 +41,16 @@ sealed class CommonMatcher(
         filter: KClass<out Filter> = DefaultFilter::class,
         scope: Set<UpdateType> = DEFAULT_SCOPE,
     ) : CommonMatcher(value, filter, scope) {
-        override suspend fun match(text: kotlin.String, update: ProcessedUpdate, bot: TelegramBot): Boolean =
+        override suspend fun match(
+            text: kotlin.String,
+            update: ProcessedUpdate,
+            bot: TelegramBot,
+            ctx: ProcessingCtx,
+        ): Boolean =
             update.type in scope &&
                 filter.checkIsNotFiltered(update.userOrNull, update, bot) &&
                 value.matchEntire(text)?.also {
-                    bot.enrichUpdateWithCtx(update, ProcessingCtxKey.REGEX_MATCH, it)
+                    with(bot) { ctx.enrich(ProcessingCtxKey.REGEX_MATCH, it) }
                 } != null
     }
 
