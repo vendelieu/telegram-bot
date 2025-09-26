@@ -78,7 +78,7 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
                 pluginExtension.packages.orNull?.takeIf { it.isNotEmpty() }?.joinToString(";")?.let {
                     arg("package", it)
                 }
-                pluginExtension.autoCleanClassData.getOrElse(true).takeIf { !it }?.let {
+                pluginExtension.autoCleanClassData.getOrElse(false).takeIf { !it }?.let {
                     arg("autoCleanClassData", "false")
                 }
                 pluginExtension.autoAnswerCallback.getOrElse(false).takeIf { it }?.let {
