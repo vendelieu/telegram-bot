@@ -66,7 +66,7 @@ import kotlin.reflect.KClass
 
 internal typealias FileBuilder = FileSpec.Builder
 
-internal const val INVOCATION_LAMBDA_PARAMS = "bot, update, params, ctx"
+internal const val INVOCATION_LAMBDA_PARAMS = "bot, update, parameters, ctx"
 
 internal val activitiesType = Map::class.asTypeName().parameterizedBy(
     STRING,
