@@ -122,7 +122,10 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                         "bot.getInstance(${type.canonicalName}::class)!!.get(update, bot)"
                     }
 
-                    else -> "null"
+                    else -> {
+                        "throw IllegalArgumentException(\"Can't acquire `$typeName` type" +
+                            " since it's not in resolvable/autowiring types\")"
+                    }
                 }
                 add("val param%L = %L\n", index, value)
                 parametersEnumeration += "param$index"
