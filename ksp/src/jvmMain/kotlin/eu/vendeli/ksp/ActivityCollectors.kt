@@ -74,9 +74,9 @@ internal fun collectCommandActivities(
         val argParserAnnotationData = function.parseAnnotatedArgParser()
 
         val params = if (
-            // if annotation have autoAnswer == true
+        // if annotation have autoAnswer == true
             annotationData.isAutoAnswer == true || autoAnswerCallback && annotationData.isAutoAnswer != false
-            // or autoAnswerCallback == true in plugin options and annotation have autoAnswer == null/true
+        // or autoAnswerCallback == true in plugin options and annotation have autoAnswer == null/true
         ) listOf(
             CallbackQueryAutoAnswer,
         ) else emptyList()
