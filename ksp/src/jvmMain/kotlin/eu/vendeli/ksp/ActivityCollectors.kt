@@ -18,6 +18,7 @@ import eu.vendeli.ksp.utils.addMap
 import eu.vendeli.ksp.utils.buildMeta
 import eu.vendeli.ksp.utils.checkForInapplicableAnnotations
 import eu.vendeli.ksp.utils.commonMatcherClass
+import eu.vendeli.ksp.utils.findAnnotationRecursively
 import eu.vendeli.ksp.utils.invocableType
 import eu.vendeli.ksp.utils.parseAnnotatedArgParser
 import eu.vendeli.ksp.utils.parseAnnotatedGuard
@@ -29,11 +30,14 @@ import eu.vendeli.ksp.utils.toRateLimits
 import eu.vendeli.tgbot.annotations.ArgParser
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.CommandHandler.CallbackQuery
+import eu.vendeli.tgbot.annotations.CommonHandler
 import eu.vendeli.tgbot.annotations.Guard
 import eu.vendeli.tgbot.annotations.InputHandler
 import eu.vendeli.tgbot.annotations.RateLimits
+import eu.vendeli.tgbot.annotations.UnprocessedHandler
 import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.types.component.UpdateType
+import eu.vendeli.tgbot.utils.common.InvocationLambda
 
 internal fun collectCommandActivities(
     symbols: Sequence<KSFunctionDeclaration>,
@@ -49,18 +53,18 @@ internal fun collectCommandActivities(
         symbols,
     ) { function ->
         var isCallbackQAnnotation = false
-        val annotationData = function.annotations
-            .first {
-                val shortName = it.shortName.asString()
-                when (shortName) {
-                    CallbackQuery::class.simpleName -> {
-                        isCallbackQAnnotation = true
-                        true
-                    }
-
-                    CommandHandler::class.simpleName -> true
-                    else -> false
+        val annotationData = function
+            .annotations.let {
+                var targetAnnotation = it.findAnnotationRecursively(CallbackQuery::class)
+                if (targetAnnotation != null) {
+                    isCallbackQAnnotation = true
+                } else {
+                    targetAnnotation = it.findAnnotationRecursively(CommandHandler::class)
                 }
+
+                if (targetAnnotation == null) throw IllegalStateException("No annotation found for $function")
+
+                return@let targetAnnotation
             }.arguments
             .parseAsCommandHandler(isCallbackQAnnotation)
 
@@ -91,9 +95,9 @@ internal fun collectCommandActivities(
                         buildMeta(
                             qualifier = function.qualifiedName!!.getQualifier(),
                             function = function.simpleName.asString(),
-                            rateLimits = rateLimitsAnnotationData ?: annotationData.rateLimits.toRateLimits(),
-                            guardClass = guardAnnotationData ?: annotationData.guardClass,
-                            argParserClass = argParserAnnotationData ?: annotationData.argParserClass,
+                            rateLimits = rateLimitsAnnotationData,
+                            guardClass = guardAnnotationData,
+                            argParserClass = argParserAnnotationData,
                         ),
                         params,
                         updateType = updT,
@@ -119,9 +123,8 @@ internal fun collectInputActivities(
         tailBlock,
     ) { function ->
         val annotationData = function.annotations
-            .first {
-                it.shortName.asString() == InputHandler::class.simpleName!!
-            }.arguments
+            .findAnnotationRecursively(InputHandler::class)!!
+            .arguments
             .parseAsInputHandler()
 
         // priority while looking for util annotations: function > class > handler param
@@ -129,12 +132,12 @@ internal fun collectInputActivities(
         val rateLimitsAnnotationData = function.parseAnnotatedRateLimits()
 
         function.checkForInapplicableAnnotations(
-            "InputHandler",
+            InputHandler::class.simpleName!!,
             logger,
             ArgParser::class.simpleName!!,
         )
 
-        annotationData.first.forEach {
+        annotationData.forEach {
             logger.info("Input: $it --> ${function.qualifiedName?.asString()}")
 
             addStatement(
@@ -146,8 +149,8 @@ internal fun collectInputActivities(
                     buildMeta(
                         qualifier = function.qualifiedName!!.getQualifier(),
                         function = function.simpleName.asString(),
-                        rateLimits = rateLimitsAnnotationData ?: annotationData.second.toRateLimits(),
-                        guardClass = guardAnnotationData ?: annotationData.third,
+                        rateLimits = rateLimitsAnnotationData,
+                        guardClass = guardAnnotationData,
                         argParserClass = null,
                     ),
                 ),
@@ -167,13 +170,12 @@ internal fun collectUpdateTypeActivities(
         symbols,
     ) { function ->
         val annotationData = function.annotations
-            .first {
-                it.shortName.asString() == UpdateHandler::class.simpleName!!
-            }.arguments
+            .findAnnotationRecursively(UpdateHandler::class)!!
+            .arguments
             .parseAsUpdateHandler()
 
         function.checkForInapplicableAnnotations(
-            "UpdateHandler",
+            UpdateHandler::class.simpleName!!,
             logger,
             Guard::class.simpleName!!,
             ArgParser::class.simpleName!!,
@@ -211,7 +213,7 @@ internal fun collectCommonActivities(
                             data.forEach { commonAnnotationData ->
                                 // priority while looking for util annotations: function > class > handler param
                                 commonAnnotationData.funDeclaration.checkForInapplicableAnnotations(
-                                    "CommonHandler",
+                                    CommonHandler::class.simpleName!!,
                                     logger,
                                     Guard::class.simpleName!!,
                                 )
@@ -233,8 +235,8 @@ internal fun collectCommonActivities(
                                         buildMeta(
                                             qualifier = commonAnnotationData.funQualifier,
                                             function = commonAnnotationData.funSimpleName,
-                                            rateLimits = rateLimitsAnnotationData ?: commonAnnotationData.rateLimits,
-                                            argParserClass = argParserAnnotationData ?: commonAnnotationData.argParser,
+                                            rateLimits = rateLimitsAnnotationData,
+                                            argParserClass = argParserAnnotationData,
                                             guardClass = null,
                                         ),
                                     ),
@@ -252,7 +254,7 @@ internal fun collectUnprocessed(
     ctx: CollectorsContext,
 ) = ctx.run {
     unprocessedHandlerSymbols?.checkForInapplicableAnnotations(
-        "UnprocessedHandler",
+        UnprocessedHandler::class.simpleName!!,
         logger,
         Guard::class.simpleName!!,
         RateLimits::class.simpleName!!,

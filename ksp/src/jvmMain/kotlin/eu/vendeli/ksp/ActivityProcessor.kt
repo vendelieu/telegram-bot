@@ -3,38 +3,16 @@
 package eu.vendeli.ksp
 
 import com.google.devtools.ksp.getAllSuperTypes
-import com.google.devtools.ksp.processing.CodeGenerator
-import com.google.devtools.ksp.processing.Dependencies
-import com.google.devtools.ksp.processing.KSPLogger
-import com.google.devtools.ksp.processing.Resolver
-import com.google.devtools.ksp.processing.SymbolProcessor
+import com.google.devtools.ksp.processing.*
 import com.google.devtools.ksp.symbol.KSAnnotated
-import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.ParameterSpec
-import com.squareup.kotlinpoet.PropertySpec
-import com.squareup.kotlinpoet.TypeVariableName
+import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
 import eu.vendeli.ksp.dto.CollectorsContext
-import eu.vendeli.ksp.utils.CommonAnnotationHandler
-import eu.vendeli.ksp.utils.FileBuilder
-import eu.vendeli.ksp.utils.activitiesType
-import eu.vendeli.ksp.utils.autowiringFQName
-import eu.vendeli.ksp.utils.getAnnotatedClassSymbols
-import eu.vendeli.ksp.utils.getAnnotatedFnSymbols
-import eu.vendeli.tgbot.annotations.CommandHandler
+import eu.vendeli.ksp.utils.*
+import eu.vendeli.tgbot.annotations.*
 import eu.vendeli.tgbot.annotations.CommandHandler.CallbackQuery
-import eu.vendeli.tgbot.annotations.CommonHandler
-import eu.vendeli.tgbot.annotations.Injectable
-import eu.vendeli.tgbot.annotations.InputChain
-import eu.vendeli.tgbot.annotations.InputHandler
-import eu.vendeli.tgbot.annotations.UnprocessedHandler
-import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 
@@ -113,20 +91,25 @@ class ActivityProcessor(
             .getAnnotatedFnSymbols(pkg, UnprocessedHandler::class)
             .firstOrNull()
 
+        val targetNames = setOf(
+            CommonHandler.Text::class.qualifiedName!!,
+            CommonHandler.Regex::class.qualifiedName!!,
+        )
+
         resolver
             .getAnnotatedFnSymbols(
                 pkg,
                 CommonHandler.Text::class,
                 CommonHandler.Regex::class,
-            ).forEach { function ->
+            )
+            .forEach { function ->
                 function.annotations
-                    .filter {
-                        it.shortName.asString() == CommonHandler.Text::class.simpleName!! ||
-                            it.shortName.asString() == CommonHandler.Regex::class.simpleName!!
-                    }.forEach {
-                        CommonAnnotationHandler.parse(function, it.arguments)
+                    .flatMap { it.expandToBaseAnnotations(targetNames) }
+                    .forEach { baseAnno ->
+                        CommonAnnotationHandler.parse(function, baseAnno.arguments)
                     }
             }
+
         val commonHandlerData = CommonAnnotationHandler.collect()
 
         val inputChainSymbols = resolver.getAnnotatedClassSymbols(InputChain::class, pkg)

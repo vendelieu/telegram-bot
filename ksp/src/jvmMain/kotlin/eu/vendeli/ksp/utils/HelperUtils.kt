@@ -3,21 +3,13 @@
 package eu.vendeli.ksp.utils
 
 import com.google.devtools.ksp.processing.Resolver
+import com.google.devtools.ksp.symbol.ClassKind
+import com.google.devtools.ksp.symbol.KSAnnotation
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSType
-import com.squareup.kotlinpoet.ANY
-import com.squareup.kotlinpoet.CodeBlock
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.ParameterizedTypeName
+import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import com.squareup.kotlinpoet.PropertySpec
-import com.squareup.kotlinpoet.STAR
-import com.squareup.kotlinpoet.STRING
-import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.TypeVariableName
-import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.tgbot.TelegramBot
@@ -32,34 +24,7 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chain.ChainingStrategy
 import eu.vendeli.tgbot.types.chain.Link
 import eu.vendeli.tgbot.types.chat.Chat
-import eu.vendeli.tgbot.types.component.BusinessConnectionUpdate
-import eu.vendeli.tgbot.types.component.BusinessMessageUpdate
-import eu.vendeli.tgbot.types.component.CallbackQueryUpdate
-import eu.vendeli.tgbot.types.component.ChannelPostUpdate
-import eu.vendeli.tgbot.types.component.ChatBoostUpdate
-import eu.vendeli.tgbot.types.component.ChatJoinRequestUpdate
-import eu.vendeli.tgbot.types.component.ChatMemberUpdate
-import eu.vendeli.tgbot.types.component.ChosenInlineResultUpdate
-import eu.vendeli.tgbot.types.component.CommonMatcher
-import eu.vendeli.tgbot.types.component.DeletedBusinessMessagesUpdate
-import eu.vendeli.tgbot.types.component.EditedBusinessMessageUpdate
-import eu.vendeli.tgbot.types.component.EditedChannelPostUpdate
-import eu.vendeli.tgbot.types.component.EditedMessageUpdate
-import eu.vendeli.tgbot.types.component.IdLong
-import eu.vendeli.tgbot.types.component.InlineQueryUpdate
-import eu.vendeli.tgbot.types.component.MessageReactionCountUpdate
-import eu.vendeli.tgbot.types.component.MessageReactionUpdate
-import eu.vendeli.tgbot.types.component.MessageUpdate
-import eu.vendeli.tgbot.types.component.MyChatMemberUpdate
-import eu.vendeli.tgbot.types.component.PollAnswerUpdate
-import eu.vendeli.tgbot.types.component.PollUpdate
-import eu.vendeli.tgbot.types.component.PreCheckoutQueryUpdate
-import eu.vendeli.tgbot.types.component.ProcessedUpdate
-import eu.vendeli.tgbot.types.component.ProcessingCtx
-import eu.vendeli.tgbot.types.component.PurchasedPaidMediaUpdate
-import eu.vendeli.tgbot.types.component.RemovedChatBoostUpdate
-import eu.vendeli.tgbot.types.component.ShippingQueryUpdate
-import eu.vendeli.tgbot.types.component.UpdateType
+import eu.vendeli.tgbot.types.component.*
 import eu.vendeli.tgbot.types.configuration.RateLimits
 import eu.vendeli.tgbot.utils.common.fqName
 import kotlin.reflect.KClass
@@ -172,24 +137,133 @@ internal inline fun buildMeta(
 internal fun <T : Annotation> Resolver.getAnnotatedFnSymbols(
     targetPackage: String? = null,
     vararg kClasses: KClass<out T>,
-): Sequence<KSFunctionDeclaration> = kClasses
-    .map {
-        getSymbolsWithAnnotation(it.qualifiedName!!)
-    }.asSequence()
-    .flatten()
-    .let {
-        if (targetPackage != null) {
-            it
-                .filter { f ->
-                    f is KSFunctionDeclaration && f.packageName.asString().startsWith(targetPackage)
-                }.cast()
-        } else {
-            it.filterIsInstance<KSFunctionDeclaration>()
+): Sequence<KSFunctionDeclaration> {
+    val targetAnnoNames = kClasses.mapNotNull { it.qualifiedName }.toSet()
+
+    // step 1: find meta-annotations (annotations that carry our target ones)
+    val metaAnnotations = getAllFiles()
+        .flatMap { it.declarations }
+        .filterIsInstance<KSClassDeclaration>()
+        .filter { it.classKind == ClassKind.ANNOTATION_CLASS }
+        .filter { annoDecl ->
+            annoDecl.annotations.any { ann ->
+                val fqName = ann.annotationType.resolve().declaration.qualifiedName?.asString()
+                fqName in targetAnnoNames
+            }
         }
+        .mapNotNull { it.qualifiedName?.asString() }
+        .toSet()
+
+    val allTargetNames = targetAnnoNames + metaAnnotations
+
+    // step 2: gather functions annotated with either direct or meta annotation
+    val candidates = allTargetNames
+        .asSequence()
+        .flatMap { annoName -> getSymbolsWithAnnotation(annoName) }
+        .filterIsInstance<KSFunctionDeclaration>()
+
+    return if (targetPackage != null) {
+        candidates.filter { f -> f.packageName.asString().startsWith(targetPackage) }
+    } else {
+        candidates
+    }
+}
+
+
+/**
+ * Checks if this sequence of annotations contains [target],
+ * either directly or via meta-annotations (recursively).
+ */
+internal fun Sequence<KSAnnotation>.hasAnnotationRecursively(
+    target: KClass<out Annotation>
+): Boolean {
+    val targetFqName = target.qualifiedName ?: return false
+
+    fun KSAnnotation.matchesOrMetaVisited(visited: MutableSet<String>): Boolean {
+        val fqName = annotationType.resolve().declaration.qualifiedName?.asString() ?: return false
+        if (fqName == targetFqName) return true
+        if (!visited.add(fqName)) return false // already checked -> avoid cycles
+
+        val annoDecl = annotationType.resolve().declaration as? KSClassDeclaration
+            ?: return false
+
+        // recurse into the annotations on this annotation class
+        return annoDecl.annotations.any { it.matchesOrMetaVisited(visited) }
     }
 
+    val visited = mutableSetOf<String>()
+    return any { it.matchesOrMetaVisited(visited) }
+}
+
+/**
+ * Finds the first annotation matching [target], directly or via meta-annotations (recursively).
+ *
+ * @return the matching KSAnnotation, or null if not found.
+ */
+internal fun Sequence<KSAnnotation>.findAnnotationRecursively(
+    target: KClass<out Annotation>
+): KSAnnotation? {
+    val targetFqName = target.qualifiedName ?: return null
+
+    fun KSAnnotation.findRecursive(visited: MutableSet<String>): KSAnnotation? {
+        val fqName = annotationType.resolve().declaration.qualifiedName?.asString() ?: return null
+        if (fqName == targetFqName) return this
+        if (!visited.add(fqName)) return null // already visited → avoid cycles
+
+        val annoDecl = annotationType.resolve().declaration as? KSClassDeclaration
+            ?: return null
+
+        // Recurse into the annotations present on this annotation class
+        for (nested in annoDecl.annotations) {
+            val found = nested.findRecursive(visited)
+            if (found != null) return found
+        }
+        return null
+    }
+
+    val visited = mutableSetOf<String>()
+    for (anno in this) {
+        val found = anno.findRecursive(visited)
+        if (found != null) return found
+    }
+    return null
+}
+
+/**
+ * Filters this sequence of annotations by the given annotation classes,
+ * supporting meta-annotations as well.
+ */
+internal fun <T : Annotation> Sequence<KSAnnotation>.filterByAnnotations(
+    resolver: Resolver,
+    vararg kClasses: KClass<out T>,
+): Sequence<KSAnnotation> {
+    val targetAnnoNames = kClasses.mapNotNull { it.qualifiedName }.toSet()
+
+    // Step 1: find meta-annotations
+    val metaAnnotations = resolver.getAllFiles()
+        .flatMap { it.declarations }
+        .filterIsInstance<KSClassDeclaration>()
+        .filter { it.classKind == ClassKind.ANNOTATION_CLASS }
+        .filter { annoDecl ->
+            annoDecl.annotations.any { ann ->
+                ann.annotationType.resolve().declaration.qualifiedName?.asString() in targetAnnoNames
+            }
+        }
+        .mapNotNull { it.qualifiedName?.asString() }
+        .toSet()
+
+    val allTargetNames = targetAnnoNames + metaAnnotations
+
+    // Step 2: filter actual annotations
+    return filter { ann ->
+        ann.annotationType.resolve().declaration.qualifiedName?.asString() in allTargetNames
+    }
+}
+
+
 internal fun <T : Annotation> Resolver.getAnnotatedClassSymbols(clazz: KClass<T>, targetPackage: String? = null) =
-    if (targetPackage == null) getSymbolsWithAnnotation(clazz.qualifiedName!!).filterIsInstance<KSClassDeclaration>()
+    if (targetPackage == null) getSymbolsWithAnnotation(clazz.qualifiedName!!)
+        .filterIsInstance<KSClassDeclaration>()
     else getSymbolsWithAnnotation(clazz.qualifiedName!!)
         .filter {
             it is KSClassDeclaration && it.packageName.asString().startsWith(targetPackage)

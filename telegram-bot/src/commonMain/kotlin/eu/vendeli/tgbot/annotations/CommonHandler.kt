@@ -10,7 +10,7 @@ import kotlin.reflect.KClass
  *
  * Have lower priority than `@CommandHandler`/`@InputHandler`.
  */
-@Target(AnnotationTarget.FUNCTION)
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.SOURCE)
 annotation class CommonHandler {
     /**
@@ -21,7 +21,7 @@ annotation class CommonHandler {
      * @property priority priority of activity. (0 is highest)
      * @property scope scope `UpdateType` in which the command will be checked.
      */
-    @Target(AnnotationTarget.FUNCTION)
+    @Target(AnnotationTarget.FUNCTION, AnnotationTarget.ANNOTATION_CLASS)
     @Retention(AnnotationRetention.SOURCE)
     annotation class Text(
         val value: Array<String>,
@@ -39,7 +39,7 @@ annotation class CommonHandler {
      * @property priority priority of activity. (0 is highest)
      * @property scope scope `UpdateType` in which the command will be checked.
      */
-    @Target(AnnotationTarget.FUNCTION)
+    @Target(AnnotationTarget.FUNCTION, AnnotationTarget.ANNOTATION_CLASS)
     @Retention(AnnotationRetention.SOURCE)
     annotation class Regex(
         val value: String,

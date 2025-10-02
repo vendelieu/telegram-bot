@@ -6,7 +6,7 @@ package eu.vendeli.tgbot.annotations
  *
  * @property name Parameter name representation in the callback.
  */
-@Target(AnnotationTarget.VALUE_PARAMETER)
+@Target(AnnotationTarget.VALUE_PARAMETER, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.SOURCE)
 annotation class ParamMapping(
     val name: String,

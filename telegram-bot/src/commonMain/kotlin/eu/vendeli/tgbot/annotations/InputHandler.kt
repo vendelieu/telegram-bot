@@ -5,7 +5,7 @@ package eu.vendeli.tgbot.annotations
  *
  * @property value Keywords of the input.
  */
-@Target(AnnotationTarget.FUNCTION)
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.SOURCE)
 annotation class InputHandler(
     val value: Array<String>,

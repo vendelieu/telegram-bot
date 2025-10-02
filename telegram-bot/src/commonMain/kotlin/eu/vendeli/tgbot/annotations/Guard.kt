@@ -11,7 +11,7 @@ import kotlin.reflect.KClass
  *
  * @property guard Guard condition that will be checked.
  */
-@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION)
+@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION, AnnotationTarget.ANNOTATION_CLASS)
 annotation class Guard(
     val guard: KClass<out Guard> = DefaultGuard::class,
 )

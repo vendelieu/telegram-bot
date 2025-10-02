@@ -12,6 +12,7 @@ import eu.vendeli.ksp.dto.AnnotationData
 import eu.vendeli.ksp.dto.CommonAnnotationData
 import eu.vendeli.ksp.dto.CommonAnnotationValue
 import eu.vendeli.tgbot.annotations.ArgParser
+import eu.vendeli.tgbot.annotations.CommonHandler
 import eu.vendeli.tgbot.annotations.Guard
 import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultFilter
@@ -21,20 +22,32 @@ import eu.vendeli.tgbot.types.configuration.RateLimits
 
 internal fun List<KSValueArgument>.parseAsCommandHandler(isCallbackQ: Boolean) = AnnotationData(
     value = parseValueList(),
-    rateLimits = parseRateLimits(),
     scope = parseScopes() ?: if (isCallbackQ) callbackQueryList else messageList,
-    guardClass = parseGuard(),
-    argParserClass = parseArgParser(),
     isAutoAnswer = firstOrNull {
         it.name?.asString() == "autoAnswer"
     }?.takeIf { !it.isDefault() }?.value?.safeCast<Boolean>(),
 )
 
-internal fun List<KSValueArgument>.parseAsInputHandler() = Triple(
-    parseValueList(),
-    parseRateLimits(),
-    parseGuard(),
-)
+internal fun List<KSValueArgument>.parseAsInputHandler() = parseValueList()
+
+/**
+ * Expands this annotation recursively into all base annotations that match [targets].
+ */
+internal fun KSAnnotation.expandToBaseAnnotations(
+    targets: Set<String>,
+    visited: MutableSet<String> = mutableSetOf()
+): Sequence<KSAnnotation> {
+    val fqName = annotationType.resolve().declaration.qualifiedName?.asString() ?: return emptySequence()
+    if (!visited.add(fqName)) return emptySequence()
+
+    // If this annotation is itself one of the targets → yield it
+    if (fqName in targets) return sequenceOf(this)
+
+    // Otherwise recurse into annotations on its annotation class
+    val annoDecl = annotationType.resolve().declaration as? KSClassDeclaration ?: return emptySequence()
+    return annoDecl.annotations.flatMap { it.expandToBaseAnnotations(targets, visited) }
+}
+
 
 object CommonAnnotationHandler {
     private var commonAnnotations = mutableListOf<CommonAnnotationData>()
@@ -43,14 +56,19 @@ object CommonAnnotationHandler {
         val qualifier = function.qualifiedName!!.getQualifier()
         val simpleName = function.simpleName.asString()
 
-        val value = arguments.first { it.name?.asString() == "value" }.value
-        val filter = arguments.firstOrNull { it.name?.asString() == "filter" }?.value?.safeCast<KSType>()?.let {
+        val value = arguments.first { it.name?.asString() == CommonHandler.Text::value.name }.value
+        val filter = arguments.firstOrNull {
+            it.name?.asString() == CommonHandler.Text::filter.name
+        }?.value?.safeCast<KSType>()?.let {
             it.declaration.qualifiedName!!.asString()
         } ?: DefaultFilter::class.qualifiedName!!
-        val priority = arguments.firstOrNull { it.name?.asString() == "priority" }?.value?.safeCast<Int>() ?: 0
-        val rateLimits = arguments.parseRateLimits()
+        val priority = arguments.firstOrNull {
+            it.name?.asString() == CommonHandler.Text::priority.name
+        }?.value?.safeCast<Int>() ?: 0
+
+        val rateLimits = function.parseAnnotatedRateLimits()
         val scope = arguments.parseScopes() ?: messageList
-        val argParser = arguments.parseArgParser()
+        val argParser = function.parseAnnotatedArgParser()
 
         if (value is List<*>) {
             value.forEach {
@@ -62,7 +80,7 @@ object CommonAnnotationHandler {
                         filter = filter,
                         argParser = argParser,
                         priority = priority,
-                        rateLimits = RateLimits(rateLimits.first, rateLimits.second),
+                        rateLimits = rateLimits,
                         scope = scope,
                         funDeclaration = function,
                     ),
@@ -80,7 +98,7 @@ object CommonAnnotationHandler {
                     filter = filter,
                     argParser = argParser,
                     priority = priority,
-                    rateLimits = RateLimits(rateLimits.first, rateLimits.second),
+                    rateLimits = rateLimits,
                     scope = scope,
                     funDeclaration = function,
                 ),
@@ -94,40 +112,34 @@ object CommonAnnotationHandler {
 }
 
 internal fun KSFunctionDeclaration.parseAnnotatedGuard(): String? = annotations
-    .firstOrNull {
-        it.shortName.asString() == Guard::class.simpleName!!
-    }?.arguments
+    .findAnnotationRecursively(Guard::class)
+    ?.arguments
     ?.parseGuard()
     ?: closestClassDeclaration()
         ?.annotations
-        ?.firstOrNull {
-            it.shortName.asString() == Guard::class.simpleName!!
-        }?.arguments
+        ?.findAnnotationRecursively(Guard::class)
+        ?.arguments
         ?.parseGuard()
 
-internal fun KSFunctionDeclaration.parseAnnotatedRateLimits(): RateLimits? = annotations
-    .firstOrNull {
-        it.shortName.asString() == eu.vendeli.tgbot.annotations.RateLimits::class.simpleName!!
-    }?.arguments
+internal fun KSFunctionDeclaration.parseAnnotatedRateLimits(): RateLimits = annotations
+    .findAnnotationRecursively(eu.vendeli.tgbot.annotations.RateLimits::class)
+    ?.arguments
     ?.parseRateLimitsAnnotation()
     ?: closestClassDeclaration()
         ?.annotations
-        ?.firstOrNull {
-            it.shortName.asString() == eu.vendeli.tgbot.annotations.RateLimits::class.simpleName!!
-        }?.arguments
-        ?.parseRateLimitsAnnotation()
+        ?.findAnnotationRecursively(eu.vendeli.tgbot.annotations.RateLimits::class)
+        ?.arguments
+        ?.parseRateLimitsAnnotation() ?: RateLimits(0, 0)
 
-internal fun KSFunctionDeclaration.parseAnnotatedArgParser(): String? = annotations
-    .firstOrNull {
-        it.shortName.asString() == ArgParser::class.simpleName!!
-    }?.arguments
+internal fun KSFunctionDeclaration.parseAnnotatedArgParser(): String = annotations
+    .findAnnotationRecursively(ArgParser::class)
+    ?.arguments
     ?.parseArgParser()
     ?: closestClassDeclaration()
         ?.annotations
-        ?.firstOrNull {
-            it.shortName.asString() == ArgParser::class.simpleName!!
-        }?.arguments
-        ?.parseArgParser()
+        ?.findAnnotationRecursively(ArgParser::class)
+        ?.arguments
+        ?.parseArgParser() ?: DefaultArgParser::class.qualifiedName!!
 
 internal fun KSFunctionDeclaration.checkForInapplicableAnnotations(
     targetAnnotationName: String,
@@ -162,7 +174,7 @@ internal fun List<KSValueArgument>.parseScopes(): List<UpdateType>? = firstOrNul
 }
 
 internal fun List<KSValueArgument>.parseRegexOptions(): List<RegexOption> =
-    firstOrNull { it.name?.asString() == "options" }?.value?.safeCast<List<*>>()?.map { i ->
+    firstOrNull { it.name?.asString() == CommonHandler.Regex::options.name }?.value?.safeCast<List<*>>()?.map { i ->
         when (i) {
             is KSType -> i.declaration.toString()
             is KSClassDeclaration -> i.simpleName.getShortName()
@@ -175,12 +187,12 @@ internal fun List<KSValueArgument>.parseValueList(): List<String> = first {
 }.value.cast()
 
 internal fun List<KSValueArgument>.parseGuard(): String =
-    firstOrNull { it.name?.asString() == "guard" }?.value?.safeCast<KSType>()?.let {
+    firstOrNull { it.name?.asString() == Guard::guard.name }?.value?.safeCast<KSType>()?.let {
         it.declaration.qualifiedName!!.asString()
     } ?: DefaultGuard::class.qualifiedName!!
 
 internal fun List<KSValueArgument>.parseArgParser(): String =
-    firstOrNull { it.name?.asString() == "argParser" }?.value?.safeCast<KSType>()?.let {
+    firstOrNull { it.name?.asString() == ArgParser::argParser.name }?.value?.safeCast<KSType>()?.let {
         it.declaration.qualifiedName!!.asString()
     } ?: DefaultArgParser::class.qualifiedName!!
 
@@ -194,9 +206,3 @@ internal fun List<KSValueArgument>.parseAsUpdateHandler() = first().value.cast<L
 
 internal fun List<KSValueArgument>.parseRateLimitsAnnotation(): RateLimits =
     ((firstOrNull()?.value?.safeCast<Long>() ?: 0) to (lastOrNull()?.value?.safeCast<Long>() ?: 0)).toRateLimits()
-
-internal fun List<KSValueArgument>.parseRateLimits(): Pair<Long, Long> = firstOrNull {
-    it.name?.asString() == "rateLimits"
-}?.value?.safeCast<KSAnnotation>()?.arguments?.let {
-    (it.firstOrNull()?.value?.safeCast<Long>() ?: 0) to (it.lastOrNull()?.value?.safeCast() ?: 0)
-} ?: notLimitedRateLimits

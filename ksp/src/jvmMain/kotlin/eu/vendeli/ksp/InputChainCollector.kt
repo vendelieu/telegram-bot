@@ -12,6 +12,7 @@ import eu.vendeli.ksp.utils.ChainingStrategyDefault
 import eu.vendeli.ksp.utils.INVOCATION_LAMBDA_PARAMS
 import eu.vendeli.ksp.utils.buildMeta
 import eu.vendeli.ksp.utils.cast
+import eu.vendeli.ksp.utils.findAnnotationRecursively
 import eu.vendeli.ksp.utils.linkQName
 import eu.vendeli.ksp.utils.toRateLimits
 import eu.vendeli.tgbot.annotations.InputChain
@@ -28,10 +29,9 @@ internal fun collectInputChains(
         }
         symbols.forEach { chain ->
             val isAutoCleanChain = chain.annotations
-                .first {
-                    it.shortName.asString() == InputChain::class.simpleName
-                }.arguments
-                .firstOrNull()
+                .findAnnotationRecursively(InputChain::class)
+                ?.arguments
+                ?.firstOrNull()
                 ?.value
                 ?.cast<Boolean>() == true
 

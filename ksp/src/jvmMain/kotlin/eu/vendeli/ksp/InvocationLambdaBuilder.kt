@@ -10,6 +10,7 @@ import eu.vendeli.ksp.dto.CollectorsContext
 import eu.vendeli.ksp.dto.CommandHandlerParams
 import eu.vendeli.ksp.dto.LambdaParameters
 import eu.vendeli.ksp.utils.*
+import eu.vendeli.tgbot.annotations.ParamMapping
 import eu.vendeli.tgbot.types.component.*
 import kotlin.reflect.KClass
 
@@ -57,10 +58,9 @@ internal fun FileBuilder.buildInvocationLambdaCodeBlock(
                 if (parameter.name == null) return@forEachIndexed
                 val paramCall = (
                     parameter.annotations
-                        .firstOrNull { i ->
-                            i.shortName.asString() == "ParamMapping"
-                        }?.let { i ->
-                            i.arguments.first { a -> a.name?.asString() == "name" }.value as? String
+                        .findAnnotationRecursively(ParamMapping::class)
+                        ?.let { i ->
+                            i.arguments.first { a -> a.name?.asString() == ParamMapping::name.name }.value as? String
                         } ?: parameter.name!!.getShortName()
                     ).let {
                         "parameters[\"$it\"]"

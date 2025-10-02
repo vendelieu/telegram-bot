@@ -14,6 +14,8 @@ import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ksp.utils.FileBuilder
 import eu.vendeli.ksp.utils.idLongClass
+import eu.vendeli.tgbot.types.chain.Link
+import eu.vendeli.tgbot.types.chain.StatefulLink
 
 fun buildChainStateBindings(
     botCtxBuilder: FileBuilder,
@@ -41,7 +43,7 @@ fun buildChainStateBindings(
         val linkType = l
             .getDeclaredFunctions()
             .first {
-                it.simpleName.getShortName() == "action"
+                it.simpleName.getShortName() == Link<Any>::action.name
             }.returnType!!
             .toTypeName()
             .copy(true)
@@ -49,7 +51,7 @@ fun buildChainStateBindings(
         val stateKeyType = l
             .getAllProperties()
             .first {
-                it.simpleName.getShortName() == "state"
+                it.simpleName.getShortName() == StatefulLink<*, *>::state.name
             }.type
             .resolve()
             .arguments

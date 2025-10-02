@@ -11,7 +11,7 @@ import kotlin.reflect.KClass
  *
  * @property argParser Custom argument parser.
  */
-@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION)
+@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION, AnnotationTarget.ANNOTATION_CLASS)
 annotation class ArgParser(
     val argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
 )
