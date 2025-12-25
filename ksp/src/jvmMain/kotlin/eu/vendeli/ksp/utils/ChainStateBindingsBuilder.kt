@@ -1,19 +1,13 @@
-package eu.vendeli.ksp
+package eu.vendeli.ksp.utils
 
 import com.google.devtools.ksp.getDeclaredFunctions
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSClassDeclaration
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.PropertySpec
-import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
-import eu.vendeli.ksp.utils.FileBuilder
-import eu.vendeli.ksp.utils.idLongClass
+import eu.vendeli.ksp.utils.TypeConstants.idLongClass
 import eu.vendeli.tgbot.types.chain.Link
 import eu.vendeli.tgbot.types.chain.StatefulLink
 

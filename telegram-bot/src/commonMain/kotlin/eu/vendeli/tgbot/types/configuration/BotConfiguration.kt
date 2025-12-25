@@ -2,10 +2,11 @@ package eu.vendeli.tgbot.types.configuration
 
 import eu.vendeli.tgbot.annotations.dsl.ConfigurationDSL
 import eu.vendeli.tgbot.implementations.ClassManagerImpl
+import eu.vendeli.tgbot.implementations.DefaultLoggerFactory
 import eu.vendeli.tgbot.implementations.InputListenerMapImpl
 import eu.vendeli.tgbot.interfaces.ctx.ClassManager
 import eu.vendeli.tgbot.interfaces.ctx.InputListener
-import eu.vendeli.tgbot.interfaces.helper.Middleware
+import eu.vendeli.tgbot.interfaces.helper.LoggerFactory
 import eu.vendeli.tgbot.types.component.ExceptionHandlingStrategy
 import eu.vendeli.tgbot.utils.common.ProcessingCtxKey
 import kotlinx.serialization.Serializable
@@ -22,8 +23,7 @@ import kotlinx.serialization.Transient
  * @property inputAutoRemoval A flag that regulates the auto-deletion of the input point during processing.
  * @property exceptionHandlingStrategy Exception handling strategy. See [ExceptionHandlingStrategy].
  * @property throwExOnActionsFailure Throw exception when the action (any bot request) ends with failure.
- * @property processingCtxTargets List of targets for which the context will be automatically tracked.
- * @property middlewares List of middlewares that will be applied to all requests.
+ * @property loggerFactory Logger factory. See [LoggerFactory].
  */
 @Serializable
 @ConfigurationDSL
@@ -39,28 +39,18 @@ data class BotConfiguration(
     @Transient
     var exceptionHandlingStrategy: ExceptionHandlingStrategy = ExceptionHandlingStrategy.CollectToChannel,
     var throwExOnActionsFailure: Boolean = false,
-    val processingCtxTargets: MutableSet<ProcessingCtxKey> = mutableSetOf(ProcessingCtxKey.REGEX_MATCH),
-    @Transient
-    val middlewares: MutableList<Middleware> = mutableListOf(),
     @Transient
     internal var rateLimiter: RateLimiterConfiguration = RateLimiterConfiguration(),
     internal var httpClient: HttpConfiguration = HttpConfiguration(),
-    internal var logging: LoggingConfiguration = LoggingConfiguration(),
     internal var updatesListener: UpdatesListenerConfiguration = UpdatesListenerConfiguration(),
     internal var commandParsing: CommandParsingConfiguration = CommandParsingConfiguration(),
+    internal var loggerFactory: LoggerFactory = DefaultLoggerFactory,
 ) {
     /**
      * Function for configuring the http client. See [HttpConfiguration].
      */
     fun httpClient(block: HttpConfiguration.() -> Unit) {
         httpClient.block()
-    }
-
-    /**
-     * Function for configuring logging. See [LoggingConfiguration].
-     */
-    fun logging(block: LoggingConfiguration.() -> Unit) {
-        logging.block()
     }
 
     /**
@@ -84,8 +74,6 @@ data class BotConfiguration(
         commandParsing.block()
     }
 
-    internal val sortedMiddlewares by lazy { middlewares.sortedBy { it.order } }
-
     internal fun rewriteWith(new: BotConfiguration): BotConfiguration {
         identifier = new.identifier
         apiHost = new.apiHost
@@ -95,11 +83,8 @@ data class BotConfiguration(
         inputAutoRemoval = new.inputAutoRemoval
         exceptionHandlingStrategy = new.exceptionHandlingStrategy
         throwExOnActionsFailure = new.throwExOnActionsFailure
-        processingCtxTargets.addAll(new.processingCtxTargets)
-        middlewares.addAll(new.middlewares)
         rateLimiter = new.rateLimiter
         httpClient = new.httpClient
-        logging = new.logging
         rateLimiter = new.rateLimiter
         updatesListener = new.updatesListener
         commandParsing = new.commandParsing

@@ -1,7 +1,7 @@
 package eu.vendeli.ksp.dto
 
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
-import eu.vendeli.ksp.utils.messageList
+import eu.vendeli.ksp.utils.TypeConstants.messageList
 import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.configuration.RateLimits

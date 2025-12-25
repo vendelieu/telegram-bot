@@ -7,7 +7,6 @@ import eu.vendeli.tgbot.types.component.LogLvl
 import eu.vendeli.tgbot.types.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.configuration.CommandParsingConfiguration
 import eu.vendeli.tgbot.types.configuration.HttpConfiguration
-import eu.vendeli.tgbot.types.configuration.LoggingConfiguration
 import eu.vendeli.tgbot.types.configuration.RateLimiterConfiguration
 import eu.vendeli.tgbot.types.configuration.RateLimits
 import eu.vendeli.tgbot.types.configuration.UpdatesListenerConfiguration
@@ -55,11 +54,6 @@ object EnvConfigLoader : ConfigLoader {
             retryDelay = EnvVar.get(DEFAULT_ENV_PREFIX + "HTTP_RETRY_DELAY") { "3000" }.toLong(),
         )
 
-        val loggingConfiguration = LoggingConfiguration(
-            botLogLevel = LogLvl.valueOf(EnvVar.get(DEFAULT_ENV_PREFIX + "BOT_LOG_LEVEL") { "INFO" }),
-            httpLogLevel = HttpLogLevel.valueOf(EnvVar.get(DEFAULT_ENV_PREFIX + "HTTP_LOG_LEVEL") { "NONE" }),
-        )
-
         val updatesListenerConfiguration = UpdatesListenerConfiguration(
             pullingDelay = EnvVar.get(DEFAULT_ENV_PREFIX + "UPDATES_PULLING_DELAY") { "0" }.toLong(),
             updatesPollingTimeout = EnvVar.get(DEFAULT_ENV_PREFIX + "UPDATES_POLLING_TIMEOUT") { "20" }.toInt(),
@@ -86,7 +80,6 @@ object EnvConfigLoader : ConfigLoader {
             inputAutoRemoval = inputAutoRemoval,
             rateLimiter = rateLimiterConfiguration,
             httpClient = httpConfiguration,
-            logging = loggingConfiguration,
             updatesListener = updatesListenerConfiguration,
             commandParsing = commandParsingConfiguration,
             throwExOnActionsFailure = throwExOnActionsFailure,

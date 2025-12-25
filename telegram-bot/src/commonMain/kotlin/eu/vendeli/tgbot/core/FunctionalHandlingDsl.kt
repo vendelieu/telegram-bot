@@ -22,7 +22,6 @@ import eu.vendeli.tgbot.utils.common.OnCommandActivity
 import eu.vendeli.tgbot.utils.common.OnInputActivity
 import eu.vendeli.tgbot.utils.common.WhenNotHandledActivity
 import eu.vendeli.tgbot.utils.common.fqName
-import eu.vendeli.tgbot.utils.internal.getLogger
 import kotlin.reflect.KClass
 
 /**
@@ -36,7 +35,7 @@ class FunctionalHandlingDsl internal constructor(
     internal val bot: TelegramBot,
 ) {
     internal val functionalActivities = FunctionalActivities()
-    internal val logger = getLogger(bot.config.logging.botLogLevel, this::class.fqName)
+    internal val logger = bot.config.loggerFactory.get(this::class.fqName)
 
     /**
      * The action that is performed when the command is matched.

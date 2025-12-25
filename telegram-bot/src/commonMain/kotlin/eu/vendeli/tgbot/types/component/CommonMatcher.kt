@@ -1,6 +1,5 @@
 package eu.vendeli.tgbot.types.component
 
-import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.interfaces.helper.Filter
 import eu.vendeli.tgbot.utils.common.DEFAULT_SCOPE
@@ -15,9 +14,7 @@ sealed class CommonMatcher(
 ) {
     abstract suspend fun match(
         text: kotlin.String,
-        update: ProcessedUpdate,
-        bot: TelegramBot,
-        ctx: ProcessingCtx,
+        context: ProcessingContext,
     ): Boolean
 
     class String(
@@ -27,13 +24,12 @@ sealed class CommonMatcher(
     ) : CommonMatcher(value, filter, scope) {
         override suspend fun match(
             text: kotlin.String,
-            update: ProcessedUpdate,
-            bot: TelegramBot,
-            ctx: ProcessingCtx,
-        ): Boolean =
+            context: ProcessingContext,
+        ): Boolean = context.run {
             update.type in scope &&
                 filter.checkIsNotFiltered(update.userOrNull, update, bot) &&
                 text == value
+        }
     }
 
     class Regex(
@@ -43,15 +39,14 @@ sealed class CommonMatcher(
     ) : CommonMatcher(value, filter, scope) {
         override suspend fun match(
             text: kotlin.String,
-            update: ProcessedUpdate,
-            bot: TelegramBot,
-            ctx: ProcessingCtx,
-        ): Boolean =
+            context: ProcessingContext,
+        ): Boolean = context.run {
             update.type in scope &&
-                filter.checkIsNotFiltered(update.userOrNull, update, bot) &&
+                filter.checkIsNotFiltered(context.update.userOrNull, update, bot) &&
                 value.matchEntire(text)?.also {
-                    with(bot) { ctx.enrich(ProcessingCtxKey.REGEX_MATCH, it) }
+                    additionalContext.state[ProcessingCtxKey.REGEX_MATCH] = it
                 } != null
+        }
     }
 
     override fun toString(): kotlin.String =

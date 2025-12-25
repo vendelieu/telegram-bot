@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types.configuration
 
 import eu.vendeli.tgbot.annotations.dsl.ConfigurationDSL
+import eu.vendeli.tgbot.types.component.HttpLogLevel
 import eu.vendeli.tgbot.utils.common.RetryStrategy
 import io.ktor.client.engine.ProxyConfig
 import io.ktor.client.statement.HttpResponse
@@ -24,6 +25,7 @@ import kotlinx.serialization.Transient
  * i.e., for the base value [maxRequestRetry] the attempts will be in 3, 6, 9 seconds
  * @property proxy Specifies proxy that will be used for http calls.
  * @property additionalHeaders Headers that will be applied to every request.
+ * @property httpLogLevel Specifies a log level for http client.
  */
 @Serializable
 @ConfigurationDSL
@@ -39,6 +41,7 @@ data class HttpConfiguration(
     var proxy: ProxyConfig? = null,
     @Transient
     var additionalHeaders: Map<String, Any?>? = null,
+    var httpLogLevel: HttpLogLevel = HttpLogLevel.NONE,
 ) {
     /**
      * Defines a retry strategy that triggers a retry when the server responds with a "Too Many Requests" status.

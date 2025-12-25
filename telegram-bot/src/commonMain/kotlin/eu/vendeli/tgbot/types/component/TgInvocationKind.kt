@@ -1,7 +1,9 @@
 package eu.vendeli.tgbot.types.component
 
 enum class TgInvocationKind {
-    ACTIVITY,
+    COMMAND,
+    INPUT,
+    COMMON,
     TYPE,
     UNPROCESSED,
 }

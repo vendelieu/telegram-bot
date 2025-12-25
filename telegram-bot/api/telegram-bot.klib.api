@@ -452,6 +452,20 @@ final enum class eu.vendeli.tgbot.types.component/ParseMode : kotlin/Enum<eu.ven
     }
 }
 
+final enum class eu.vendeli.tgbot.types.component/TgInvocationKind : kotlin/Enum<eu.vendeli.tgbot.types.component/TgInvocationKind> { // eu.vendeli.tgbot.types.component/TgInvocationKind|null[0]
+    enum entry COMMAND // eu.vendeli.tgbot.types.component/TgInvocationKind.COMMAND|null[0]
+    enum entry COMMON // eu.vendeli.tgbot.types.component/TgInvocationKind.COMMON|null[0]
+    enum entry INPUT // eu.vendeli.tgbot.types.component/TgInvocationKind.INPUT|null[0]
+    enum entry TYPE // eu.vendeli.tgbot.types.component/TgInvocationKind.TYPE|null[0]
+    enum entry UNPROCESSED // eu.vendeli.tgbot.types.component/TgInvocationKind.UNPROCESSED|null[0]
+
+    final val entries // eu.vendeli.tgbot.types.component/TgInvocationKind.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<eu.vendeli.tgbot.types.component/TgInvocationKind> // eu.vendeli.tgbot.types.component/TgInvocationKind.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): eu.vendeli.tgbot.types.component/TgInvocationKind // eu.vendeli.tgbot.types.component/TgInvocationKind.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<eu.vendeli.tgbot.types.component/TgInvocationKind> // eu.vendeli.tgbot.types.component/TgInvocationKind.values|values#static(){}[0]
+}
+
 final enum class eu.vendeli.tgbot.types.component/UpdateType : kotlin/Enum<eu.vendeli.tgbot.types.component/UpdateType> { // eu.vendeli.tgbot.types.component/UpdateType|null[0]
     enum entry BUSINESS_CONNECTION // eu.vendeli.tgbot.types.component/UpdateType.BUSINESS_CONNECTION|null[0]
     enum entry BUSINESS_MESSAGE // eu.vendeli.tgbot.types.component/UpdateType.BUSINESS_MESSAGE|null[0]
@@ -678,6 +692,10 @@ abstract fun interface <#A: kotlin/Any?> eu.vendeli.tgbot.types.chain/KeySelecto
     abstract fun select(eu.vendeli.tgbot.types.component/ProcessedUpdate): #A? // eu.vendeli.tgbot.types.chain/KeySelector.select|select(eu.vendeli.tgbot.types.component.ProcessedUpdate){}[0]
 }
 
+abstract fun interface eu.vendeli.tgbot.core/PipelineInterceptor { // eu.vendeli.tgbot.core/PipelineInterceptor|null[0]
+    abstract suspend fun invoke(eu.vendeli.tgbot.types.component/ProcessingContext) // eu.vendeli.tgbot.core/PipelineInterceptor.invoke|invoke(eu.vendeli.tgbot.types.component.ProcessingContext){}[0]
+}
+
 abstract fun interface eu.vendeli.tgbot.interfaces.helper/ArgumentParser { // eu.vendeli.tgbot.interfaces.helper/ArgumentParser|null[0]
     abstract fun parse(kotlin/String): kotlin.collections/Map<kotlin/String, kotlin/String> // eu.vendeli.tgbot.interfaces.helper/ArgumentParser.parse|parse(kotlin.String){}[0]
 }
@@ -688,6 +706,10 @@ abstract fun interface eu.vendeli.tgbot.interfaces.helper/ExceptionHandler { // 
 
 abstract fun interface eu.vendeli.tgbot.interfaces.helper/Guard { // eu.vendeli.tgbot.interfaces.helper/Guard|null[0]
     abstract suspend fun condition(eu.vendeli.tgbot.types/User?, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot): kotlin/Boolean // eu.vendeli.tgbot.interfaces.helper/Guard.condition|condition(eu.vendeli.tgbot.types.User?;eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot){}[0]
+}
+
+abstract fun interface eu.vendeli.tgbot.interfaces.helper/LoggerFactory { // eu.vendeli.tgbot.interfaces.helper/LoggerFactory|null[0]
+    abstract fun get(kotlin/String): io.ktor.util.logging/Logger // eu.vendeli.tgbot.interfaces.helper/LoggerFactory.get|get(kotlin.String){}[0]
 }
 
 abstract fun interface eu.vendeli.tgbot.interfaces.helper/RateLimitMechanism { // eu.vendeli.tgbot.interfaces.helper/RateLimitMechanism|null[0]
@@ -788,6 +810,23 @@ abstract interface <#A: kotlin/Any?> eu.vendeli.tgbot.types.chain/Link { // eu.v
     open suspend fun breakAction(eu.vendeli.tgbot.types/User, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot) // eu.vendeli.tgbot.types.chain/Link.breakAction|breakAction(eu.vendeli.tgbot.types.User;eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot){}[0]
 }
 
+abstract interface eu.vendeli.tgbot.core/Activity { // eu.vendeli.tgbot.core/Activity|null[0]
+    abstract val function // eu.vendeli.tgbot.core/Activity.function|{}function[0]
+        abstract fun <get-function>(): kotlin/String // eu.vendeli.tgbot.core/Activity.function.<get-function>|<get-function>(){}[0]
+    abstract val id // eu.vendeli.tgbot.core/Activity.id|{}id[0]
+        abstract fun <get-id>(): kotlin/Int // eu.vendeli.tgbot.core/Activity.id.<get-id>|<get-id>(){}[0]
+    abstract val qualifier // eu.vendeli.tgbot.core/Activity.qualifier|{}qualifier[0]
+        abstract fun <get-qualifier>(): kotlin/String // eu.vendeli.tgbot.core/Activity.qualifier.<get-qualifier>|<get-qualifier>(){}[0]
+    open val argParser // eu.vendeli.tgbot.core/Activity.argParser|{}argParser[0]
+        open fun <get-argParser>(): kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> // eu.vendeli.tgbot.core/Activity.argParser.<get-argParser>|<get-argParser>(){}[0]
+    open val guardClass // eu.vendeli.tgbot.core/Activity.guardClass|{}guardClass[0]
+        open fun <get-guardClass>(): kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Guard> // eu.vendeli.tgbot.core/Activity.guardClass.<get-guardClass>|<get-guardClass>(){}[0]
+    open val rateLimits // eu.vendeli.tgbot.core/Activity.rateLimits|{}rateLimits[0]
+        open fun <get-rateLimits>(): eu.vendeli.tgbot.types.configuration/RateLimits // eu.vendeli.tgbot.core/Activity.rateLimits.<get-rateLimits>|<get-rateLimits>(){}[0]
+
+    abstract suspend fun invoke(eu.vendeli.tgbot.types.component/ProcessingContext): kotlin/Any? // eu.vendeli.tgbot.core/Activity.invoke|invoke(eu.vendeli.tgbot.types.component.ProcessingContext){}[0]
+}
+
 abstract interface eu.vendeli.tgbot.interfaces.ctx/ClassManager { // eu.vendeli.tgbot.interfaces.ctx/ClassManager|null[0]
     open fun getInstance(kotlin.reflect/KClass<*>, kotlin/Array<out kotlin/Any?>...): kotlin/Any // eu.vendeli.tgbot.interfaces.ctx/ClassManager.getInstance|getInstance(kotlin.reflect.KClass<*>;kotlin.Array<out|kotlin.Any?>...){}[0]
 }
@@ -819,6 +858,13 @@ abstract interface eu.vendeli.tgbot.interfaces.helper/ConfigLoader { // eu.vende
     abstract fun load(): eu.vendeli.tgbot.types.configuration/BotConfiguration // eu.vendeli.tgbot.interfaces.helper/ConfigLoader.load|load(){}[0]
 }
 
+abstract interface eu.vendeli.tgbot.interfaces.helper/ContextLoader { // eu.vendeli.tgbot.interfaces.helper/ContextLoader|null[0]
+    open val pkg // eu.vendeli.tgbot.interfaces.helper/ContextLoader.pkg|{}pkg[0]
+        open fun <get-pkg>(): kotlin/String // eu.vendeli.tgbot.interfaces.helper/ContextLoader.pkg.<get-pkg>|<get-pkg>(){}[0]
+
+    abstract fun load(eu.vendeli.tgbot/TelegramBot) // eu.vendeli.tgbot.interfaces.helper/ContextLoader.load|load(eu.vendeli.tgbot.TelegramBot){}[0]
+}
+
 abstract interface eu.vendeli.tgbot.interfaces.helper/Filter { // eu.vendeli.tgbot.interfaces.helper/Filter|null[0]
     abstract suspend fun match(eu.vendeli.tgbot.types/User?, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot): kotlin/Boolean // eu.vendeli.tgbot.interfaces.helper/Filter.match|match(eu.vendeli.tgbot.types.User?;eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot){}[0]
 }
@@ -842,6 +888,11 @@ abstract interface eu.vendeli.tgbot.interfaces.marker/Keyboard { // eu.vendeli.t
 }
 
 abstract interface eu.vendeli.tgbot.interfaces.marker/MultipleResponse // eu.vendeli.tgbot.interfaces.marker/MultipleResponse|null[0]
+
+abstract interface eu.vendeli.tgbot.types.component/ChatReference { // eu.vendeli.tgbot.types.component/ChatReference|null[0]
+    abstract val chat // eu.vendeli.tgbot.types.component/ChatReference.chat|{}chat[0]
+        abstract fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat? // eu.vendeli.tgbot.types.component/ChatReference.chat.<get-chat>|<get-chat>(){}[0]
+}
 
 abstract interface eu.vendeli.tgbot.types.component/IdLong { // eu.vendeli.tgbot.types.component/IdLong|null[0]
     abstract val id // eu.vendeli.tgbot.types.component/IdLong.id|{}id[0]
@@ -1766,6 +1817,23 @@ final class eu.vendeli.tgbot.api.verification/VerifyUserAction : eu.vendeli.tgbo
     constructor <init>(kotlin/Long, kotlin/String? = ...) // eu.vendeli.tgbot.api.verification/VerifyUserAction.<init>|<init>(kotlin.Long;kotlin.String?){}[0]
 }
 
+final class eu.vendeli.tgbot.core/ActivityRegistry { // eu.vendeli.tgbot.core/ActivityRegistry|null[0]
+    final fun findCommand(kotlin/String, eu.vendeli.tgbot.types.component/ProcessingContext): eu.vendeli.tgbot.core/Activity? // eu.vendeli.tgbot.core/ActivityRegistry.findCommand|findCommand(kotlin.String;eu.vendeli.tgbot.types.component.ProcessingContext){}[0]
+    final fun findInput(kotlin/String): eu.vendeli.tgbot.core/Activity? // eu.vendeli.tgbot.core/ActivityRegistry.findInput|findInput(kotlin.String){}[0]
+    final fun getActivity(kotlin/Int): eu.vendeli.tgbot.core/Activity? // eu.vendeli.tgbot.core/ActivityRegistry.getActivity|getActivity(kotlin.Int){}[0]
+    final fun getAllActivities(): kotlin.collections/Collection<eu.vendeli.tgbot.core/Activity> // eu.vendeli.tgbot.core/ActivityRegistry.getAllActivities|getAllActivities(){}[0]
+    final fun getCommandsForType(eu.vendeli.tgbot.types.component/UpdateType): kotlin.collections/Map<kotlin/String, eu.vendeli.tgbot.core/Activity> // eu.vendeli.tgbot.core/ActivityRegistry.getCommandsForType|getCommandsForType(eu.vendeli.tgbot.types.component.UpdateType){}[0]
+    final fun getUnprocessedHandler(): eu.vendeli.tgbot.core/Activity? // eu.vendeli.tgbot.core/ActivityRegistry.getUnprocessedHandler|getUnprocessedHandler(){}[0]
+    final fun getUpdateTypeHandlers(eu.vendeli.tgbot.types.component/UpdateType): kotlin.collections/List<eu.vendeli.tgbot.core/Activity> // eu.vendeli.tgbot.core/ActivityRegistry.getUpdateTypeHandlers|getUpdateTypeHandlers(eu.vendeli.tgbot.types.component.UpdateType){}[0]
+    final fun registerActivity(eu.vendeli.tgbot.core/Activity) // eu.vendeli.tgbot.core/ActivityRegistry.registerActivity|registerActivity(eu.vendeli.tgbot.core.Activity){}[0]
+    final fun registerCommand(kotlin/String, eu.vendeli.tgbot.types.component/UpdateType, kotlin/Int) // eu.vendeli.tgbot.core/ActivityRegistry.registerCommand|registerCommand(kotlin.String;eu.vendeli.tgbot.types.component.UpdateType;kotlin.Int){}[0]
+    final fun registerInput(kotlin/String, kotlin/Int) // eu.vendeli.tgbot.core/ActivityRegistry.registerInput|registerInput(kotlin.String;kotlin.Int){}[0]
+    final fun registerMatcher(eu.vendeli.tgbot.types.component/CommonMatcher, eu.vendeli.tgbot.types.component/UpdateType, kotlin/Int) // eu.vendeli.tgbot.core/ActivityRegistry.registerMatcher|registerMatcher(eu.vendeli.tgbot.types.component.CommonMatcher;eu.vendeli.tgbot.types.component.UpdateType;kotlin.Int){}[0]
+    final fun registerUnprocessed(kotlin/Int) // eu.vendeli.tgbot.core/ActivityRegistry.registerUnprocessed|registerUnprocessed(kotlin.Int){}[0]
+    final fun registerUpdateTypeHandler(eu.vendeli.tgbot.types.component/UpdateType, kotlin/Int) // eu.vendeli.tgbot.core/ActivityRegistry.registerUpdateTypeHandler|registerUpdateTypeHandler(eu.vendeli.tgbot.types.component.UpdateType;kotlin.Int){}[0]
+    final suspend fun findMatcher(kotlin/String, eu.vendeli.tgbot.types.component/ProcessingContext): eu.vendeli.tgbot.core/Activity? // eu.vendeli.tgbot.core/ActivityRegistry.findMatcher|findMatcher(kotlin.String;eu.vendeli.tgbot.types.component.ProcessingContext){}[0]
+}
+
 final class eu.vendeli.tgbot.core/FunctionalHandlingDsl { // eu.vendeli.tgbot.core/FunctionalHandlingDsl|null[0]
     final fun (eu.vendeli.tgbot.types.chain/SingleInputChain).andThen(eu.vendeli.tgbot.types.configuration/RateLimits = ..., eu.vendeli.tgbot.interfaces.helper/Guard = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit>): eu.vendeli.tgbot.types.chain/SingleInputChain // eu.vendeli.tgbot.core/FunctionalHandlingDsl.andThen|andThen@eu.vendeli.tgbot.types.chain.SingleInputChain(eu.vendeli.tgbot.types.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Unit>){}[0]
     final fun (eu.vendeli.tgbot.types.chain/SingleInputChain).breakIf(kotlin/Function1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Boolean>, kotlin/Boolean = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit>? = ...): eu.vendeli.tgbot.types.chain/SingleInputChain // eu.vendeli.tgbot.core/FunctionalHandlingDsl.breakIf|breakIf@eu.vendeli.tgbot.types.chain.SingleInputChain(kotlin.Function1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Boolean>;kotlin.Boolean;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Unit>?){}[0]
@@ -1777,12 +1845,45 @@ final class eu.vendeli.tgbot.core/FunctionalHandlingDsl { // eu.vendeli.tgbot.co
     final fun whenNotHandled(kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.whenNotHandled|whenNotHandled(kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Unit>){}[0]
 }
 
+final class eu.vendeli.tgbot.core/ProcessingPipePhase { // eu.vendeli.tgbot.core/ProcessingPipePhase|null[0]
+    final val name // eu.vendeli.tgbot.core/ProcessingPipePhase.name|{}name[0]
+        final fun <get-name>(): kotlin/String // eu.vendeli.tgbot.core/ProcessingPipePhase.name.<get-name>|<get-name>(){}[0]
+
+    final fun toString(): kotlin/String // eu.vendeli.tgbot.core/ProcessingPipePhase.toString|toString(){}[0]
+
+    final object Companion { // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion|null[0]
+        final val Invoke // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion.Invoke|{}Invoke[0]
+            final fun <get-Invoke>(): eu.vendeli.tgbot.core/ProcessingPipePhase // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion.Invoke.<get-Invoke>|<get-Invoke>(){}[0]
+        final val Match // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion.Match|{}Match[0]
+            final fun <get-Match>(): eu.vendeli.tgbot.core/ProcessingPipePhase // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion.Match.<get-Match>|<get-Match>(){}[0]
+        final val Parsing // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion.Parsing|{}Parsing[0]
+            final fun <get-Parsing>(): eu.vendeli.tgbot.core/ProcessingPipePhase // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion.Parsing.<get-Parsing>|<get-Parsing>(){}[0]
+        final val PostInvoke // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion.PostInvoke|{}PostInvoke[0]
+            final fun <get-PostInvoke>(): eu.vendeli.tgbot.core/ProcessingPipePhase // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion.PostInvoke.<get-PostInvoke>|<get-PostInvoke>(){}[0]
+        final val PreInvoke // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion.PreInvoke|{}PreInvoke[0]
+            final fun <get-PreInvoke>(): eu.vendeli.tgbot.core/ProcessingPipePhase // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion.PreInvoke.<get-PreInvoke>|<get-PreInvoke>(){}[0]
+        final val Setup // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion.Setup|{}Setup[0]
+            final fun <get-Setup>(): eu.vendeli.tgbot.core/ProcessingPipePhase // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion.Setup.<get-Setup>|<get-Setup>(){}[0]
+        final val Validation // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion.Validation|{}Validation[0]
+            final fun <get-Validation>(): eu.vendeli.tgbot.core/ProcessingPipePhase // eu.vendeli.tgbot.core/ProcessingPipePhase.Companion.Validation.<get-Validation>|<get-Validation>(){}[0]
+    }
+}
+
+final class eu.vendeli.tgbot.core/ProcessingPipeline { // eu.vendeli.tgbot.core/ProcessingPipeline|null[0]
+    final fun intercept(eu.vendeli.tgbot.core/ProcessingPipePhase, eu.vendeli.tgbot.core/PipelineInterceptor) // eu.vendeli.tgbot.core/ProcessingPipeline.intercept|intercept(eu.vendeli.tgbot.core.ProcessingPipePhase;eu.vendeli.tgbot.core.PipelineInterceptor){}[0]
+    final suspend fun execute(eu.vendeli.tgbot.types.component/ProcessingContext) // eu.vendeli.tgbot.core/ProcessingPipeline.execute|execute(eu.vendeli.tgbot.types.component.ProcessingContext){}[0]
+}
+
 final class eu.vendeli.tgbot.core/TgUpdateHandler { // eu.vendeli.tgbot.core/TgUpdateHandler|null[0]
     final val caughtExceptions // eu.vendeli.tgbot.core/TgUpdateHandler.caughtExceptions|{}caughtExceptions[0]
         final fun <get-caughtExceptions>(): kotlinx.coroutines.channels/Channel<eu.vendeli.tgbot.types.component/FailedUpdate> // eu.vendeli.tgbot.core/TgUpdateHandler.caughtExceptions.<get-caughtExceptions>|<get-caughtExceptions>(){}[0]
+    final val pipeline // eu.vendeli.tgbot.core/TgUpdateHandler.pipeline|{}pipeline[0]
+        final fun <get-pipeline>(): eu.vendeli.tgbot.core/ProcessingPipeline // eu.vendeli.tgbot.core/TgUpdateHandler.pipeline.<get-pipeline>|<get-pipeline>(){}[0]
+    final val registry // eu.vendeli.tgbot.core/TgUpdateHandler.registry|{}registry[0]
+        final fun <get-registry>(): eu.vendeli.tgbot.core/ActivityRegistry // eu.vendeli.tgbot.core/TgUpdateHandler.registry.<get-registry>|<get-registry>(){}[0]
 
     final fun parse(kotlin/String): kotlinx.coroutines/Deferred<eu.vendeli.tgbot.types.component/ProcessedUpdate?> // eu.vendeli.tgbot.core/TgUpdateHandler.parse|parse(kotlin.String){}[0]
-    final fun parseAndHandle(kotlin/String): kotlinx.coroutines/Job? // eu.vendeli.tgbot.core/TgUpdateHandler.parseAndHandle|parseAndHandle(kotlin.String){}[0]
+    final fun parseAndHandle(kotlin/String): kotlinx.coroutines/Job // eu.vendeli.tgbot.core/TgUpdateHandler.parseAndHandle|parseAndHandle(kotlin.String){}[0]
     final fun setBehaviour(kotlin.coroutines/SuspendFunction2<eu.vendeli.tgbot.core/TgUpdateHandler, eu.vendeli.tgbot.types.component/ProcessedUpdate, kotlin/Unit>) // eu.vendeli.tgbot.core/TgUpdateHandler.setBehaviour|setBehaviour(kotlin.coroutines.SuspendFunction2<eu.vendeli.tgbot.core.TgUpdateHandler,eu.vendeli.tgbot.types.component.ProcessedUpdate,kotlin.Unit>){}[0]
     final fun stopListener() // eu.vendeli.tgbot.core/TgUpdateHandler.stopListener|stopListener(){}[0]
     final suspend fun handle(eu.vendeli.tgbot.types.component/ProcessedUpdate) // eu.vendeli.tgbot.core/TgUpdateHandler.handle|handle(eu.vendeli.tgbot.types.component.ProcessedUpdate){}[0]
@@ -2421,7 +2522,7 @@ final class eu.vendeli.tgbot.types.chat/Chat : eu.vendeli.tgbot.types.component/
     final val firstName // eu.vendeli.tgbot.types.chat/Chat.firstName|{}firstName[0]
         final fun <get-firstName>(): kotlin/String? // eu.vendeli.tgbot.types.chat/Chat.firstName.<get-firstName>|<get-firstName>(){}[0]
     final val fullName // eu.vendeli.tgbot.types.chat/Chat.fullName|{}fullName[0]
-        final fun <get-fullName>(): kotlin/String // eu.vendeli.tgbot.types.chat/Chat.fullName.<get-fullName>|<get-fullName>(){}[0]
+        final fun <get-fullName>(): kotlin/String? // eu.vendeli.tgbot.types.chat/Chat.fullName.<get-fullName>|<get-fullName>(){}[0]
     final val id // eu.vendeli.tgbot.types.chat/Chat.id|{}id[0]
         final fun <get-id>(): kotlin/Long // eu.vendeli.tgbot.types.chat/Chat.id.<get-id>|<get-id>(){}[0]
     final val isDirectMessages // eu.vendeli.tgbot.types.chat/Chat.isDirectMessages|{}isDirectMessages[0]
@@ -3916,6 +4017,11 @@ final class eu.vendeli.tgbot.types.common/Venue { // eu.vendeli.tgbot.types.comm
     }
 }
 
+final class eu.vendeli.tgbot.types.component/AdditionalContext { // eu.vendeli.tgbot.types.component/AdditionalContext|null[0]
+    final val regexMatch // eu.vendeli.tgbot.types.component/AdditionalContext.regexMatch|{}regexMatch[0]
+        final fun <get-regexMatch>(): kotlin.text/MatchResult? // eu.vendeli.tgbot.types.component/AdditionalContext.regexMatch.<get-regexMatch>|<get-regexMatch>(){}[0]
+}
+
 final class eu.vendeli.tgbot.types.component/BusinessConnectionUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/BusinessConnectionUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.business/BusinessConnection) // eu.vendeli.tgbot.types.component/BusinessConnectionUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.business.BusinessConnection){}[0]
 
@@ -3937,11 +4043,13 @@ final class eu.vendeli.tgbot.types.component/BusinessConnectionUpdate : eu.vende
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/BusinessConnectionUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.component/BusinessMessageUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/BusinessMessageUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/BusinessMessageUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/BusinessMessageUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.msg/Message) // eu.vendeli.tgbot.types.component/BusinessMessageUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.msg.Message){}[0]
 
     final val businessMessage // eu.vendeli.tgbot.types.component/BusinessMessageUpdate.businessMessage|{}businessMessage[0]
         final fun <get-businessMessage>(): eu.vendeli.tgbot.types.msg/Message // eu.vendeli.tgbot.types.component/BusinessMessageUpdate.businessMessage.<get-businessMessage>|<get-businessMessage>(){}[0]
+    final val chat // eu.vendeli.tgbot.types.component/BusinessMessageUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/BusinessMessageUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/BusinessMessageUpdate.origin|{}origin[0]
         final fun <get-origin>(): eu.vendeli.tgbot.types.common/Update // eu.vendeli.tgbot.types.component/BusinessMessageUpdate.origin.<get-origin>|<get-origin>(){}[0]
     final val text // eu.vendeli.tgbot.types.component/BusinessMessageUpdate.text|{}text[0]
@@ -3960,11 +4068,13 @@ final class eu.vendeli.tgbot.types.component/BusinessMessageUpdate : eu.vendeli.
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/BusinessMessageUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.component/CallbackQueryUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/CallbackQueryUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/CallbackQueryUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/CallbackQueryUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.common/CallbackQuery) // eu.vendeli.tgbot.types.component/CallbackQueryUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.common.CallbackQuery){}[0]
 
     final val callbackQuery // eu.vendeli.tgbot.types.component/CallbackQueryUpdate.callbackQuery|{}callbackQuery[0]
         final fun <get-callbackQuery>(): eu.vendeli.tgbot.types.common/CallbackQuery // eu.vendeli.tgbot.types.component/CallbackQueryUpdate.callbackQuery.<get-callbackQuery>|<get-callbackQuery>(){}[0]
+    final val chat // eu.vendeli.tgbot.types.component/CallbackQueryUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat? // eu.vendeli.tgbot.types.component/CallbackQueryUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/CallbackQueryUpdate.origin|{}origin[0]
         final fun <get-origin>(): eu.vendeli.tgbot.types.common/Update // eu.vendeli.tgbot.types.component/CallbackQueryUpdate.origin.<get-origin>|<get-origin>(){}[0]
     final val text // eu.vendeli.tgbot.types.component/CallbackQueryUpdate.text|{}text[0]
@@ -3983,11 +4093,13 @@ final class eu.vendeli.tgbot.types.component/CallbackQueryUpdate : eu.vendeli.tg
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/CallbackQueryUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.component/ChannelPostUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/ChannelPostUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/ChannelPostUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/ChannelPostUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.msg/Message) // eu.vendeli.tgbot.types.component/ChannelPostUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.msg.Message){}[0]
 
     final val channelPost // eu.vendeli.tgbot.types.component/ChannelPostUpdate.channelPost|{}channelPost[0]
         final fun <get-channelPost>(): eu.vendeli.tgbot.types.msg/Message // eu.vendeli.tgbot.types.component/ChannelPostUpdate.channelPost.<get-channelPost>|<get-channelPost>(){}[0]
+    final val chat // eu.vendeli.tgbot.types.component/ChannelPostUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/ChannelPostUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/ChannelPostUpdate.origin|{}origin[0]
         final fun <get-origin>(): eu.vendeli.tgbot.types.common/Update // eu.vendeli.tgbot.types.component/ChannelPostUpdate.origin.<get-origin>|<get-origin>(){}[0]
     final val text // eu.vendeli.tgbot.types.component/ChannelPostUpdate.text|{}text[0]
@@ -4006,9 +4118,11 @@ final class eu.vendeli.tgbot.types.component/ChannelPostUpdate : eu.vendeli.tgbo
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/ChannelPostUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.component/ChatBoostUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate { // eu.vendeli.tgbot.types.component/ChatBoostUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/ChatBoostUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate { // eu.vendeli.tgbot.types.component/ChatBoostUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.boost/ChatBoostUpdated) // eu.vendeli.tgbot.types.component/ChatBoostUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.boost.ChatBoostUpdated){}[0]
 
+    final val chat // eu.vendeli.tgbot.types.component/ChatBoostUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/ChatBoostUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val chatBoost // eu.vendeli.tgbot.types.component/ChatBoostUpdate.chatBoost|{}chatBoost[0]
         final fun <get-chatBoost>(): eu.vendeli.tgbot.types.boost/ChatBoostUpdated // eu.vendeli.tgbot.types.component/ChatBoostUpdate.chatBoost.<get-chatBoost>|<get-chatBoost>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/ChatBoostUpdate.origin|{}origin[0]
@@ -4025,9 +4139,11 @@ final class eu.vendeli.tgbot.types.component/ChatBoostUpdate : eu.vendeli.tgbot.
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/ChatBoostUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.component/ChatJoinRequestUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/ChatJoinRequestUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/ChatJoinRequestUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/ChatJoinRequestUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.chat/ChatJoinRequest) // eu.vendeli.tgbot.types.component/ChatJoinRequestUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.chat.ChatJoinRequest){}[0]
 
+    final val chat // eu.vendeli.tgbot.types.component/ChatJoinRequestUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/ChatJoinRequestUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val chatJoinRequest // eu.vendeli.tgbot.types.component/ChatJoinRequestUpdate.chatJoinRequest|{}chatJoinRequest[0]
         final fun <get-chatJoinRequest>(): eu.vendeli.tgbot.types.chat/ChatJoinRequest // eu.vendeli.tgbot.types.component/ChatJoinRequestUpdate.chatJoinRequest.<get-chatJoinRequest>|<get-chatJoinRequest>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/ChatJoinRequestUpdate.origin|{}origin[0]
@@ -4046,9 +4162,11 @@ final class eu.vendeli.tgbot.types.component/ChatJoinRequestUpdate : eu.vendeli.
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/ChatJoinRequestUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.component/ChatMemberUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/ChatMemberUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/ChatMemberUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/ChatMemberUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.chat/ChatMemberUpdated) // eu.vendeli.tgbot.types.component/ChatMemberUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.chat.ChatMemberUpdated){}[0]
 
+    final val chat // eu.vendeli.tgbot.types.component/ChatMemberUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/ChatMemberUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val chatMember // eu.vendeli.tgbot.types.component/ChatMemberUpdate.chatMember|{}chatMember[0]
         final fun <get-chatMember>(): eu.vendeli.tgbot.types.chat/ChatMemberUpdated // eu.vendeli.tgbot.types.component/ChatMemberUpdate.chatMember.<get-chatMember>|<get-chatMember>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/ChatMemberUpdate.origin|{}origin[0]
@@ -4090,9 +4208,11 @@ final class eu.vendeli.tgbot.types.component/ChosenInlineResultUpdate : eu.vende
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/ChosenInlineResultUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.component/DeletedBusinessMessagesUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate { // eu.vendeli.tgbot.types.component/DeletedBusinessMessagesUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/DeletedBusinessMessagesUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate { // eu.vendeli.tgbot.types.component/DeletedBusinessMessagesUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.business/BusinessMessagesDeleted) // eu.vendeli.tgbot.types.component/DeletedBusinessMessagesUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.business.BusinessMessagesDeleted){}[0]
 
+    final val chat // eu.vendeli.tgbot.types.component/DeletedBusinessMessagesUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/DeletedBusinessMessagesUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val deletedBusinessMessages // eu.vendeli.tgbot.types.component/DeletedBusinessMessagesUpdate.deletedBusinessMessages|{}deletedBusinessMessages[0]
         final fun <get-deletedBusinessMessages>(): eu.vendeli.tgbot.types.business/BusinessMessagesDeleted // eu.vendeli.tgbot.types.component/DeletedBusinessMessagesUpdate.deletedBusinessMessages.<get-deletedBusinessMessages>|<get-deletedBusinessMessages>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/DeletedBusinessMessagesUpdate.origin|{}origin[0]
@@ -4109,9 +4229,11 @@ final class eu.vendeli.tgbot.types.component/DeletedBusinessMessagesUpdate : eu.
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/DeletedBusinessMessagesUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.component/EditedBusinessMessageUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/EditedBusinessMessageUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/EditedBusinessMessageUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/EditedBusinessMessageUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.msg/Message) // eu.vendeli.tgbot.types.component/EditedBusinessMessageUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.msg.Message){}[0]
 
+    final val chat // eu.vendeli.tgbot.types.component/EditedBusinessMessageUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/EditedBusinessMessageUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val editedBusinessMessage // eu.vendeli.tgbot.types.component/EditedBusinessMessageUpdate.editedBusinessMessage|{}editedBusinessMessage[0]
         final fun <get-editedBusinessMessage>(): eu.vendeli.tgbot.types.msg/Message // eu.vendeli.tgbot.types.component/EditedBusinessMessageUpdate.editedBusinessMessage.<get-editedBusinessMessage>|<get-editedBusinessMessage>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/EditedBusinessMessageUpdate.origin|{}origin[0]
@@ -4132,9 +4254,11 @@ final class eu.vendeli.tgbot.types.component/EditedBusinessMessageUpdate : eu.ve
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/EditedBusinessMessageUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.component/EditedChannelPostUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/EditedChannelPostUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/EditedChannelPostUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/EditedChannelPostUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.msg/Message) // eu.vendeli.tgbot.types.component/EditedChannelPostUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.msg.Message){}[0]
 
+    final val chat // eu.vendeli.tgbot.types.component/EditedChannelPostUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/EditedChannelPostUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val editedChannelPost // eu.vendeli.tgbot.types.component/EditedChannelPostUpdate.editedChannelPost|{}editedChannelPost[0]
         final fun <get-editedChannelPost>(): eu.vendeli.tgbot.types.msg/Message // eu.vendeli.tgbot.types.component/EditedChannelPostUpdate.editedChannelPost.<get-editedChannelPost>|<get-editedChannelPost>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/EditedChannelPostUpdate.origin|{}origin[0]
@@ -4155,9 +4279,11 @@ final class eu.vendeli.tgbot.types.component/EditedChannelPostUpdate : eu.vendel
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/EditedChannelPostUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.component/EditedMessageUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/EditedMessageUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/EditedMessageUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/EditedMessageUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.msg/Message) // eu.vendeli.tgbot.types.component/EditedMessageUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.msg.Message){}[0]
 
+    final val chat // eu.vendeli.tgbot.types.component/EditedMessageUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/EditedMessageUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val editedMessage // eu.vendeli.tgbot.types.component/EditedMessageUpdate.editedMessage|{}editedMessage[0]
         final fun <get-editedMessage>(): eu.vendeli.tgbot.types.msg/Message // eu.vendeli.tgbot.types.component/EditedMessageUpdate.editedMessage.<get-editedMessage>|<get-editedMessage>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/EditedMessageUpdate.origin|{}origin[0]
@@ -4268,34 +4394,11 @@ final class eu.vendeli.tgbot.types.component/InputFile { // eu.vendeli.tgbot.typ
     }
 }
 
-final class eu.vendeli.tgbot.types.component/InvocationMeta { // eu.vendeli.tgbot.types.component/InvocationMeta|null[0]
-    constructor <init>(kotlin/String, kotlin/String, eu.vendeli.tgbot.types.configuration/RateLimits = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Guard> = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> = ...) // eu.vendeli.tgbot.types.component/InvocationMeta.<init>|<init>(kotlin.String;kotlin.String;eu.vendeli.tgbot.types.configuration.RateLimits;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Guard>;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.ArgumentParser>){}[0]
-
-    final val argParser // eu.vendeli.tgbot.types.component/InvocationMeta.argParser|{}argParser[0]
-        final fun <get-argParser>(): kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> // eu.vendeli.tgbot.types.component/InvocationMeta.argParser.<get-argParser>|<get-argParser>(){}[0]
-    final val function // eu.vendeli.tgbot.types.component/InvocationMeta.function|{}function[0]
-        final fun <get-function>(): kotlin/String // eu.vendeli.tgbot.types.component/InvocationMeta.function.<get-function>|<get-function>(){}[0]
-    final val guard // eu.vendeli.tgbot.types.component/InvocationMeta.guard|{}guard[0]
-        final fun <get-guard>(): kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Guard> // eu.vendeli.tgbot.types.component/InvocationMeta.guard.<get-guard>|<get-guard>(){}[0]
-    final val qualifier // eu.vendeli.tgbot.types.component/InvocationMeta.qualifier|{}qualifier[0]
-        final fun <get-qualifier>(): kotlin/String // eu.vendeli.tgbot.types.component/InvocationMeta.qualifier.<get-qualifier>|<get-qualifier>(){}[0]
-    final val rateLimits // eu.vendeli.tgbot.types.component/InvocationMeta.rateLimits|{}rateLimits[0]
-        final fun <get-rateLimits>(): eu.vendeli.tgbot.types.configuration/RateLimits // eu.vendeli.tgbot.types.component/InvocationMeta.rateLimits.<get-rateLimits>|<get-rateLimits>(){}[0]
-
-    final fun component1(): kotlin/String // eu.vendeli.tgbot.types.component/InvocationMeta.component1|component1(){}[0]
-    final fun component2(): kotlin/String // eu.vendeli.tgbot.types.component/InvocationMeta.component2|component2(){}[0]
-    final fun component3(): eu.vendeli.tgbot.types.configuration/RateLimits // eu.vendeli.tgbot.types.component/InvocationMeta.component3|component3(){}[0]
-    final fun component4(): kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Guard> // eu.vendeli.tgbot.types.component/InvocationMeta.component4|component4(){}[0]
-    final fun component5(): kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> // eu.vendeli.tgbot.types.component/InvocationMeta.component5|component5(){}[0]
-    final fun copy(kotlin/String = ..., kotlin/String = ..., eu.vendeli.tgbot.types.configuration/RateLimits = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Guard> = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> = ...): eu.vendeli.tgbot.types.component/InvocationMeta // eu.vendeli.tgbot.types.component/InvocationMeta.copy|copy(kotlin.String;kotlin.String;eu.vendeli.tgbot.types.configuration.RateLimits;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Guard>;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.ArgumentParser>){}[0]
-    final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.component/InvocationMeta.equals|equals(kotlin.Any?){}[0]
-    final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.component/InvocationMeta.hashCode|hashCode(){}[0]
-    final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/InvocationMeta.toString|toString(){}[0]
-}
-
-final class eu.vendeli.tgbot.types.component/MessageReactionCountUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate { // eu.vendeli.tgbot.types.component/MessageReactionCountUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/MessageReactionCountUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate { // eu.vendeli.tgbot.types.component/MessageReactionCountUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.msg/MessageReactionCountUpdated) // eu.vendeli.tgbot.types.component/MessageReactionCountUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.msg.MessageReactionCountUpdated){}[0]
 
+    final val chat // eu.vendeli.tgbot.types.component/MessageReactionCountUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/MessageReactionCountUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val messageReactionCount // eu.vendeli.tgbot.types.component/MessageReactionCountUpdate.messageReactionCount|{}messageReactionCount[0]
         final fun <get-messageReactionCount>(): eu.vendeli.tgbot.types.msg/MessageReactionCountUpdated // eu.vendeli.tgbot.types.component/MessageReactionCountUpdate.messageReactionCount.<get-messageReactionCount>|<get-messageReactionCount>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/MessageReactionCountUpdate.origin|{}origin[0]
@@ -4312,9 +4415,11 @@ final class eu.vendeli.tgbot.types.component/MessageReactionCountUpdate : eu.ven
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/MessageReactionCountUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.component/MessageReactionUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/MessageReactionUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/MessageReactionUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/MessageReactionUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.msg/MessageReactionUpdated) // eu.vendeli.tgbot.types.component/MessageReactionUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.msg.MessageReactionUpdated){}[0]
 
+    final val chat // eu.vendeli.tgbot.types.component/MessageReactionUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/MessageReactionUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val messageReaction // eu.vendeli.tgbot.types.component/MessageReactionUpdate.messageReaction|{}messageReaction[0]
         final fun <get-messageReaction>(): eu.vendeli.tgbot.types.msg/MessageReactionUpdated // eu.vendeli.tgbot.types.component/MessageReactionUpdate.messageReaction.<get-messageReaction>|<get-messageReaction>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/MessageReactionUpdate.origin|{}origin[0]
@@ -4333,9 +4438,11 @@ final class eu.vendeli.tgbot.types.component/MessageReactionUpdate : eu.vendeli.
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/MessageReactionUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.component/MessageUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/MessageUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/MessageUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/MessageUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.msg/Message) // eu.vendeli.tgbot.types.component/MessageUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.msg.Message){}[0]
 
+    final val chat // eu.vendeli.tgbot.types.component/MessageUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/MessageUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val message // eu.vendeli.tgbot.types.component/MessageUpdate.message|{}message[0]
         final fun <get-message>(): eu.vendeli.tgbot.types.msg/Message // eu.vendeli.tgbot.types.component/MessageUpdate.message.<get-message>|<get-message>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/MessageUpdate.origin|{}origin[0]
@@ -4356,9 +4463,11 @@ final class eu.vendeli.tgbot.types.component/MessageUpdate : eu.vendeli.tgbot.ty
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/MessageUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.component/MyChatMemberUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/MyChatMemberUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/MyChatMemberUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/MyChatMemberUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.chat/ChatMemberUpdated) // eu.vendeli.tgbot.types.component/MyChatMemberUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.chat.ChatMemberUpdated){}[0]
 
+    final val chat // eu.vendeli.tgbot.types.component/MyChatMemberUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/MyChatMemberUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val myChatMember // eu.vendeli.tgbot.types.component/MyChatMemberUpdate.myChatMember|{}myChatMember[0]
         final fun <get-myChatMember>(): eu.vendeli.tgbot.types.chat/ChatMemberUpdated // eu.vendeli.tgbot.types.component/MyChatMemberUpdate.myChatMember.<get-myChatMember>|<get-myChatMember>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/MyChatMemberUpdate.origin|{}origin[0]
@@ -4442,6 +4551,34 @@ final class eu.vendeli.tgbot.types.component/PreCheckoutQueryUpdate : eu.vendeli
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/PreCheckoutQueryUpdate.toString|toString(){}[0]
 }
 
+final class eu.vendeli.tgbot.types.component/ProcessingContext { // eu.vendeli.tgbot.types.component/ProcessingContext|null[0]
+    constructor <init>(eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot, eu.vendeli.tgbot.core/ActivityRegistry) // eu.vendeli.tgbot.types.component/ProcessingContext.<init>|<init>(eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot;eu.vendeli.tgbot.core.ActivityRegistry){}[0]
+
+    final val additionalContext // eu.vendeli.tgbot.types.component/ProcessingContext.additionalContext|{}additionalContext[0]
+        final fun <get-additionalContext>(): eu.vendeli.tgbot.types.component/AdditionalContext // eu.vendeli.tgbot.types.component/ProcessingContext.additionalContext.<get-additionalContext>|<get-additionalContext>(){}[0]
+    final val bot // eu.vendeli.tgbot.types.component/ProcessingContext.bot|{}bot[0]
+        final fun <get-bot>(): eu.vendeli.tgbot/TelegramBot // eu.vendeli.tgbot.types.component/ProcessingContext.bot.<get-bot>|<get-bot>(){}[0]
+    final val registry // eu.vendeli.tgbot.types.component/ProcessingContext.registry|{}registry[0]
+        final fun <get-registry>(): eu.vendeli.tgbot.core/ActivityRegistry // eu.vendeli.tgbot.types.component/ProcessingContext.registry.<get-registry>|<get-registry>(){}[0]
+    final val update // eu.vendeli.tgbot.types.component/ProcessingContext.update|{}update[0]
+        final fun <get-update>(): eu.vendeli.tgbot.types.component/ProcessedUpdate // eu.vendeli.tgbot.types.component/ProcessingContext.update.<get-update>|<get-update>(){}[0]
+
+    final var activity // eu.vendeli.tgbot.types.component/ProcessingContext.activity|{}activity[0]
+        final fun <get-activity>(): eu.vendeli.tgbot.core/Activity? // eu.vendeli.tgbot.types.component/ProcessingContext.activity.<get-activity>|<get-activity>(){}[0]
+        final fun <set-activity>(eu.vendeli.tgbot.core/Activity?) // eu.vendeli.tgbot.types.component/ProcessingContext.activity.<set-activity>|<set-activity>(eu.vendeli.tgbot.core.Activity?){}[0]
+    final var parameters // eu.vendeli.tgbot.types.component/ProcessingContext.parameters|{}parameters[0]
+        final fun <get-parameters>(): kotlin.collections/Map<kotlin/String, kotlin/String> // eu.vendeli.tgbot.types.component/ProcessingContext.parameters.<get-parameters>|<get-parameters>(){}[0]
+        final fun <set-parameters>(kotlin.collections/Map<kotlin/String, kotlin/String>) // eu.vendeli.tgbot.types.component/ProcessingContext.parameters.<set-parameters>|<set-parameters>(kotlin.collections.Map<kotlin.String,kotlin.String>){}[0]
+    final var parsedInput // eu.vendeli.tgbot.types.component/ProcessingContext.parsedInput|{}parsedInput[0]
+        final fun <get-parsedInput>(): kotlin/String // eu.vendeli.tgbot.types.component/ProcessingContext.parsedInput.<get-parsedInput>|<get-parsedInput>(){}[0]
+        final fun <set-parsedInput>(kotlin/String) // eu.vendeli.tgbot.types.component/ProcessingContext.parsedInput.<set-parsedInput>|<set-parsedInput>(kotlin.String){}[0]
+    final var shouldProceed // eu.vendeli.tgbot.types.component/ProcessingContext.shouldProceed|{}shouldProceed[0]
+        final fun <get-shouldProceed>(): kotlin/Boolean // eu.vendeli.tgbot.types.component/ProcessingContext.shouldProceed.<get-shouldProceed>|<get-shouldProceed>(){}[0]
+        final fun <set-shouldProceed>(kotlin/Boolean) // eu.vendeli.tgbot.types.component/ProcessingContext.shouldProceed.<set-shouldProceed>|<set-shouldProceed>(kotlin.Boolean){}[0]
+
+    final fun finish() // eu.vendeli.tgbot.types.component/ProcessingContext.finish|finish(){}[0]
+}
+
 final class eu.vendeli.tgbot.types.component/PurchasedPaidMediaUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot.types.component/UserReference { // eu.vendeli.tgbot.types.component/PurchasedPaidMediaUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.media/PaidMediaPurchased) // eu.vendeli.tgbot.types.component/PurchasedPaidMediaUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.media.PaidMediaPurchased){}[0]
 
@@ -4465,9 +4602,11 @@ final class eu.vendeli.tgbot.types.component/PurchasedPaidMediaUpdate : eu.vende
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/PurchasedPaidMediaUpdate.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.types.component/RemovedChatBoostUpdate : eu.vendeli.tgbot.types.component/ProcessedUpdate { // eu.vendeli.tgbot.types.component/RemovedChatBoostUpdate|null[0]
+final class eu.vendeli.tgbot.types.component/RemovedChatBoostUpdate : eu.vendeli.tgbot.types.component/ChatReference, eu.vendeli.tgbot.types.component/ProcessedUpdate { // eu.vendeli.tgbot.types.component/RemovedChatBoostUpdate|null[0]
     constructor <init>(kotlin/Int, eu.vendeli.tgbot.types.common/Update, eu.vendeli.tgbot.types.boost/ChatBoostRemoved) // eu.vendeli.tgbot.types.component/RemovedChatBoostUpdate.<init>|<init>(kotlin.Int;eu.vendeli.tgbot.types.common.Update;eu.vendeli.tgbot.types.boost.ChatBoostRemoved){}[0]
 
+    final val chat // eu.vendeli.tgbot.types.component/RemovedChatBoostUpdate.chat|{}chat[0]
+        final fun <get-chat>(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/RemovedChatBoostUpdate.chat.<get-chat>|<get-chat>(){}[0]
     final val origin // eu.vendeli.tgbot.types.component/RemovedChatBoostUpdate.origin|{}origin[0]
         final fun <get-origin>(): eu.vendeli.tgbot.types.common/Update // eu.vendeli.tgbot.types.component/RemovedChatBoostUpdate.origin.<get-origin>|<get-origin>(){}[0]
     final val removedChatBoost // eu.vendeli.tgbot.types.component/RemovedChatBoostUpdate.removedChatBoost|{}removedChatBoost[0]
@@ -4508,7 +4647,7 @@ final class eu.vendeli.tgbot.types.component/ShippingQueryUpdate : eu.vendeli.tg
 }
 
 final class eu.vendeli.tgbot.types.configuration/BotConfiguration { // eu.vendeli.tgbot.types.configuration/BotConfiguration|null[0]
-    constructor <init>(kotlin/String = ..., kotlin/String = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.interfaces.ctx/InputListener = ..., eu.vendeli.tgbot.interfaces.ctx/ClassManager = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.types.component/ExceptionHandlingStrategy = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.types.configuration/RateLimiterConfiguration = ..., eu.vendeli.tgbot.types.configuration/HttpConfiguration = ..., eu.vendeli.tgbot.types.configuration/LoggingConfiguration = ..., eu.vendeli.tgbot.types.configuration/UpdatesListenerConfiguration = ..., eu.vendeli.tgbot.types.configuration/CommandParsingConfiguration = ...) // eu.vendeli.tgbot.types.configuration/BotConfiguration.<init>|<init>(kotlin.String;kotlin.String;kotlin.Boolean;eu.vendeli.tgbot.interfaces.ctx.InputListener;eu.vendeli.tgbot.interfaces.ctx.ClassManager;kotlin.Boolean;eu.vendeli.tgbot.types.component.ExceptionHandlingStrategy;kotlin.Boolean;eu.vendeli.tgbot.types.configuration.RateLimiterConfiguration;eu.vendeli.tgbot.types.configuration.HttpConfiguration;eu.vendeli.tgbot.types.configuration.LoggingConfiguration;eu.vendeli.tgbot.types.configuration.UpdatesListenerConfiguration;eu.vendeli.tgbot.types.configuration.CommandParsingConfiguration){}[0]
+    constructor <init>(kotlin/String = ..., kotlin/String = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.interfaces.ctx/InputListener = ..., eu.vendeli.tgbot.interfaces.ctx/ClassManager = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.types.component/ExceptionHandlingStrategy = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.types.configuration/RateLimiterConfiguration = ..., eu.vendeli.tgbot.types.configuration/HttpConfiguration = ..., eu.vendeli.tgbot.types.configuration/UpdatesListenerConfiguration = ..., eu.vendeli.tgbot.types.configuration/CommandParsingConfiguration = ..., eu.vendeli.tgbot.interfaces.helper/LoggerFactory = ...) // eu.vendeli.tgbot.types.configuration/BotConfiguration.<init>|<init>(kotlin.String;kotlin.String;kotlin.Boolean;eu.vendeli.tgbot.interfaces.ctx.InputListener;eu.vendeli.tgbot.interfaces.ctx.ClassManager;kotlin.Boolean;eu.vendeli.tgbot.types.component.ExceptionHandlingStrategy;kotlin.Boolean;eu.vendeli.tgbot.types.configuration.RateLimiterConfiguration;eu.vendeli.tgbot.types.configuration.HttpConfiguration;eu.vendeli.tgbot.types.configuration.UpdatesListenerConfiguration;eu.vendeli.tgbot.types.configuration.CommandParsingConfiguration;eu.vendeli.tgbot.interfaces.helper.LoggerFactory){}[0]
 
     final var apiHost // eu.vendeli.tgbot.types.configuration/BotConfiguration.apiHost|{}apiHost[0]
         final fun <get-apiHost>(): kotlin/String // eu.vendeli.tgbot.types.configuration/BotConfiguration.apiHost.<get-apiHost>|<get-apiHost>(){}[0]
@@ -4544,11 +4683,10 @@ final class eu.vendeli.tgbot.types.configuration/BotConfiguration { // eu.vendel
     final fun component6(): kotlin/Boolean // eu.vendeli.tgbot.types.configuration/BotConfiguration.component6|component6(){}[0]
     final fun component7(): eu.vendeli.tgbot.types.component/ExceptionHandlingStrategy // eu.vendeli.tgbot.types.configuration/BotConfiguration.component7|component7(){}[0]
     final fun component8(): kotlin/Boolean // eu.vendeli.tgbot.types.configuration/BotConfiguration.component8|component8(){}[0]
-    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.interfaces.ctx/InputListener = ..., eu.vendeli.tgbot.interfaces.ctx/ClassManager = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.types.component/ExceptionHandlingStrategy = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.types.configuration/RateLimiterConfiguration = ..., eu.vendeli.tgbot.types.configuration/HttpConfiguration = ..., eu.vendeli.tgbot.types.configuration/LoggingConfiguration = ..., eu.vendeli.tgbot.types.configuration/UpdatesListenerConfiguration = ..., eu.vendeli.tgbot.types.configuration/CommandParsingConfiguration = ...): eu.vendeli.tgbot.types.configuration/BotConfiguration // eu.vendeli.tgbot.types.configuration/BotConfiguration.copy|copy(kotlin.String;kotlin.String;kotlin.Boolean;eu.vendeli.tgbot.interfaces.ctx.InputListener;eu.vendeli.tgbot.interfaces.ctx.ClassManager;kotlin.Boolean;eu.vendeli.tgbot.types.component.ExceptionHandlingStrategy;kotlin.Boolean;eu.vendeli.tgbot.types.configuration.RateLimiterConfiguration;eu.vendeli.tgbot.types.configuration.HttpConfiguration;eu.vendeli.tgbot.types.configuration.LoggingConfiguration;eu.vendeli.tgbot.types.configuration.UpdatesListenerConfiguration;eu.vendeli.tgbot.types.configuration.CommandParsingConfiguration){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.interfaces.ctx/InputListener = ..., eu.vendeli.tgbot.interfaces.ctx/ClassManager = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.types.component/ExceptionHandlingStrategy = ..., kotlin/Boolean = ..., eu.vendeli.tgbot.types.configuration/RateLimiterConfiguration = ..., eu.vendeli.tgbot.types.configuration/HttpConfiguration = ..., eu.vendeli.tgbot.types.configuration/UpdatesListenerConfiguration = ..., eu.vendeli.tgbot.types.configuration/CommandParsingConfiguration = ..., eu.vendeli.tgbot.interfaces.helper/LoggerFactory = ...): eu.vendeli.tgbot.types.configuration/BotConfiguration // eu.vendeli.tgbot.types.configuration/BotConfiguration.copy|copy(kotlin.String;kotlin.String;kotlin.Boolean;eu.vendeli.tgbot.interfaces.ctx.InputListener;eu.vendeli.tgbot.interfaces.ctx.ClassManager;kotlin.Boolean;eu.vendeli.tgbot.types.component.ExceptionHandlingStrategy;kotlin.Boolean;eu.vendeli.tgbot.types.configuration.RateLimiterConfiguration;eu.vendeli.tgbot.types.configuration.HttpConfiguration;eu.vendeli.tgbot.types.configuration.UpdatesListenerConfiguration;eu.vendeli.tgbot.types.configuration.CommandParsingConfiguration;eu.vendeli.tgbot.interfaces.helper.LoggerFactory){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.configuration/BotConfiguration.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.configuration/BotConfiguration.hashCode|hashCode(){}[0]
     final fun httpClient(kotlin/Function1<eu.vendeli.tgbot.types.configuration/HttpConfiguration, kotlin/Unit>) // eu.vendeli.tgbot.types.configuration/BotConfiguration.httpClient|httpClient(kotlin.Function1<eu.vendeli.tgbot.types.configuration.HttpConfiguration,kotlin.Unit>){}[0]
-    final fun logging(kotlin/Function1<eu.vendeli.tgbot.types.configuration/LoggingConfiguration, kotlin/Unit>) // eu.vendeli.tgbot.types.configuration/BotConfiguration.logging|logging(kotlin.Function1<eu.vendeli.tgbot.types.configuration.LoggingConfiguration,kotlin.Unit>){}[0]
     final fun rateLimiter(kotlin/Function1<eu.vendeli.tgbot.types.configuration/RateLimiterConfiguration, kotlin/Unit>) // eu.vendeli.tgbot.types.configuration/BotConfiguration.rateLimiter|rateLimiter(kotlin.Function1<eu.vendeli.tgbot.types.configuration.RateLimiterConfiguration,kotlin.Unit>){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.configuration/BotConfiguration.toString|toString(){}[0]
     final fun updatesListener(kotlin/Function1<eu.vendeli.tgbot.types.configuration/UpdatesListenerConfiguration, kotlin/Unit>) // eu.vendeli.tgbot.types.configuration/BotConfiguration.updatesListener|updatesListener(kotlin.Function1<eu.vendeli.tgbot.types.configuration.UpdatesListenerConfiguration,kotlin.Unit>){}[0]
@@ -4563,6 +4701,8 @@ final class eu.vendeli.tgbot.types.configuration/BotConfiguration { // eu.vendel
     }
 
     final object Companion { // eu.vendeli.tgbot.types.configuration/BotConfiguration.Companion|null[0]
+        final val $childSerializers // eu.vendeli.tgbot.types.configuration/BotConfiguration.Companion.$childSerializers|{}$childSerializers[0]
+
         final fun serializer(): kotlinx.serialization/KSerializer<eu.vendeli.tgbot.types.configuration/BotConfiguration> // eu.vendeli.tgbot.types.configuration/BotConfiguration.Companion.serializer|serializer(){}[0]
     }
 }
@@ -4643,7 +4783,7 @@ final class eu.vendeli.tgbot.types.configuration/CompleteConfig { // eu.vendeli.
 }
 
 final class eu.vendeli.tgbot.types.configuration/HttpConfiguration { // eu.vendeli.tgbot.types.configuration/HttpConfiguration|null[0]
-    constructor <init>(kotlin/Long? = ..., kotlin/Long? = ..., kotlin/Long? = ..., kotlin/Int = ..., kotlin/Function3<io.ktor.client.plugins/HttpRetryShouldRetryContext, io.ktor.client.request/HttpRequest, io.ktor.client.statement/HttpResponse, kotlin/Boolean>? = ..., kotlin/Long = ..., io.ktor.client.engine/ProxyConfig? = ..., kotlin.collections/Map<kotlin/String, kotlin/Any?>? = ...) // eu.vendeli.tgbot.types.configuration/HttpConfiguration.<init>|<init>(kotlin.Long?;kotlin.Long?;kotlin.Long?;kotlin.Int;kotlin.Function3<io.ktor.client.plugins.HttpRetryShouldRetryContext,io.ktor.client.request.HttpRequest,io.ktor.client.statement.HttpResponse,kotlin.Boolean>?;kotlin.Long;io.ktor.client.engine.ProxyConfig?;kotlin.collections.Map<kotlin.String,kotlin.Any?>?){}[0]
+    constructor <init>(kotlin/Long? = ..., kotlin/Long? = ..., kotlin/Long? = ..., kotlin/Int = ..., kotlin/Function3<io.ktor.client.plugins/HttpRetryShouldRetryContext, io.ktor.client.request/HttpRequest, io.ktor.client.statement/HttpResponse, kotlin/Boolean>? = ..., kotlin/Long = ..., io.ktor.client.engine/ProxyConfig? = ..., kotlin.collections/Map<kotlin/String, kotlin/Any?>? = ..., eu.vendeli.tgbot.types.component/HttpLogLevel = ...) // eu.vendeli.tgbot.types.configuration/HttpConfiguration.<init>|<init>(kotlin.Long?;kotlin.Long?;kotlin.Long?;kotlin.Int;kotlin.Function3<io.ktor.client.plugins.HttpRetryShouldRetryContext,io.ktor.client.request.HttpRequest,io.ktor.client.statement.HttpResponse,kotlin.Boolean>?;kotlin.Long;io.ktor.client.engine.ProxyConfig?;kotlin.collections.Map<kotlin.String,kotlin.Any?>?;eu.vendeli.tgbot.types.component.HttpLogLevel){}[0]
 
     final val rawStatus // eu.vendeli.tgbot.types.configuration/HttpConfiguration.rawStatus|@io.ktor.client.statement.HttpResponse{}rawStatus[0]
         final fun (io.ktor.client.statement/HttpResponse).<get-rawStatus>(): kotlin/Int // eu.vendeli.tgbot.types.configuration/HttpConfiguration.rawStatus.<get-rawStatus>|<get-rawStatus>@io.ktor.client.statement.HttpResponse(){}[0]
@@ -4654,6 +4794,9 @@ final class eu.vendeli.tgbot.types.configuration/HttpConfiguration { // eu.vende
     final var connectTimeoutMillis // eu.vendeli.tgbot.types.configuration/HttpConfiguration.connectTimeoutMillis|{}connectTimeoutMillis[0]
         final fun <get-connectTimeoutMillis>(): kotlin/Long? // eu.vendeli.tgbot.types.configuration/HttpConfiguration.connectTimeoutMillis.<get-connectTimeoutMillis>|<get-connectTimeoutMillis>(){}[0]
         final fun <set-connectTimeoutMillis>(kotlin/Long?) // eu.vendeli.tgbot.types.configuration/HttpConfiguration.connectTimeoutMillis.<set-connectTimeoutMillis>|<set-connectTimeoutMillis>(kotlin.Long?){}[0]
+    final var httpLogLevel // eu.vendeli.tgbot.types.configuration/HttpConfiguration.httpLogLevel|{}httpLogLevel[0]
+        final fun <get-httpLogLevel>(): eu.vendeli.tgbot.types.component/HttpLogLevel // eu.vendeli.tgbot.types.configuration/HttpConfiguration.httpLogLevel.<get-httpLogLevel>|<get-httpLogLevel>(){}[0]
+        final fun <set-httpLogLevel>(eu.vendeli.tgbot.types.component/HttpLogLevel) // eu.vendeli.tgbot.types.configuration/HttpConfiguration.httpLogLevel.<set-httpLogLevel>|<set-httpLogLevel>(eu.vendeli.tgbot.types.component.HttpLogLevel){}[0]
     final var maxRequestRetry // eu.vendeli.tgbot.types.configuration/HttpConfiguration.maxRequestRetry|{}maxRequestRetry[0]
         final fun <get-maxRequestRetry>(): kotlin/Int // eu.vendeli.tgbot.types.configuration/HttpConfiguration.maxRequestRetry.<get-maxRequestRetry>|<get-maxRequestRetry>(){}[0]
         final fun <set-maxRequestRetry>(kotlin/Int) // eu.vendeli.tgbot.types.configuration/HttpConfiguration.maxRequestRetry.<set-maxRequestRetry>|<set-maxRequestRetry>(kotlin.Int){}[0]
@@ -4681,7 +4824,8 @@ final class eu.vendeli.tgbot.types.configuration/HttpConfiguration { // eu.vende
     final fun component6(): kotlin/Long // eu.vendeli.tgbot.types.configuration/HttpConfiguration.component6|component6(){}[0]
     final fun component7(): io.ktor.client.engine/ProxyConfig? // eu.vendeli.tgbot.types.configuration/HttpConfiguration.component7|component7(){}[0]
     final fun component8(): kotlin.collections/Map<kotlin/String, kotlin/Any?>? // eu.vendeli.tgbot.types.configuration/HttpConfiguration.component8|component8(){}[0]
-    final fun copy(kotlin/Long? = ..., kotlin/Long? = ..., kotlin/Long? = ..., kotlin/Int = ..., kotlin/Function3<io.ktor.client.plugins/HttpRetryShouldRetryContext, io.ktor.client.request/HttpRequest, io.ktor.client.statement/HttpResponse, kotlin/Boolean>? = ..., kotlin/Long = ..., io.ktor.client.engine/ProxyConfig? = ..., kotlin.collections/Map<kotlin/String, kotlin/Any?>? = ...): eu.vendeli.tgbot.types.configuration/HttpConfiguration // eu.vendeli.tgbot.types.configuration/HttpConfiguration.copy|copy(kotlin.Long?;kotlin.Long?;kotlin.Long?;kotlin.Int;kotlin.Function3<io.ktor.client.plugins.HttpRetryShouldRetryContext,io.ktor.client.request.HttpRequest,io.ktor.client.statement.HttpResponse,kotlin.Boolean>?;kotlin.Long;io.ktor.client.engine.ProxyConfig?;kotlin.collections.Map<kotlin.String,kotlin.Any?>?){}[0]
+    final fun component9(): eu.vendeli.tgbot.types.component/HttpLogLevel // eu.vendeli.tgbot.types.configuration/HttpConfiguration.component9|component9(){}[0]
+    final fun copy(kotlin/Long? = ..., kotlin/Long? = ..., kotlin/Long? = ..., kotlin/Int = ..., kotlin/Function3<io.ktor.client.plugins/HttpRetryShouldRetryContext, io.ktor.client.request/HttpRequest, io.ktor.client.statement/HttpResponse, kotlin/Boolean>? = ..., kotlin/Long = ..., io.ktor.client.engine/ProxyConfig? = ..., kotlin.collections/Map<kotlin/String, kotlin/Any?>? = ..., eu.vendeli.tgbot.types.component/HttpLogLevel = ...): eu.vendeli.tgbot.types.configuration/HttpConfiguration // eu.vendeli.tgbot.types.configuration/HttpConfiguration.copy|copy(kotlin.Long?;kotlin.Long?;kotlin.Long?;kotlin.Int;kotlin.Function3<io.ktor.client.plugins.HttpRetryShouldRetryContext,io.ktor.client.request.HttpRequest,io.ktor.client.statement.HttpResponse,kotlin.Boolean>?;kotlin.Long;io.ktor.client.engine.ProxyConfig?;kotlin.collections.Map<kotlin.String,kotlin.Any?>?;eu.vendeli.tgbot.types.component.HttpLogLevel){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.configuration/HttpConfiguration.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.configuration/HttpConfiguration.hashCode|hashCode(){}[0]
     final fun retryOnTooManyRequests(): kotlin/Function3<io.ktor.client.plugins/HttpRetryShouldRetryContext, io.ktor.client.request/HttpRequest, io.ktor.client.statement/HttpResponse, kotlin/Boolean> // eu.vendeli.tgbot.types.configuration/HttpConfiguration.retryOnTooManyRequests|retryOnTooManyRequests(){}[0]
@@ -4697,40 +4841,9 @@ final class eu.vendeli.tgbot.types.configuration/HttpConfiguration { // eu.vende
     }
 
     final object Companion { // eu.vendeli.tgbot.types.configuration/HttpConfiguration.Companion|null[0]
+        final val $childSerializers // eu.vendeli.tgbot.types.configuration/HttpConfiguration.Companion.$childSerializers|{}$childSerializers[0]
+
         final fun serializer(): kotlinx.serialization/KSerializer<eu.vendeli.tgbot.types.configuration/HttpConfiguration> // eu.vendeli.tgbot.types.configuration/HttpConfiguration.Companion.serializer|serializer(){}[0]
-    }
-}
-
-final class eu.vendeli.tgbot.types.configuration/LoggingConfiguration { // eu.vendeli.tgbot.types.configuration/LoggingConfiguration|null[0]
-    constructor <init>(eu.vendeli.tgbot.types.component/LogLvl = ..., eu.vendeli.tgbot.types.component/HttpLogLevel = ...) // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.<init>|<init>(eu.vendeli.tgbot.types.component.LogLvl;eu.vendeli.tgbot.types.component.HttpLogLevel){}[0]
-
-    final var botLogLevel // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.botLogLevel|{}botLogLevel[0]
-        final fun <get-botLogLevel>(): eu.vendeli.tgbot.types.component/LogLvl // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.botLogLevel.<get-botLogLevel>|<get-botLogLevel>(){}[0]
-        final fun <set-botLogLevel>(eu.vendeli.tgbot.types.component/LogLvl) // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.botLogLevel.<set-botLogLevel>|<set-botLogLevel>(eu.vendeli.tgbot.types.component.LogLvl){}[0]
-    final var httpLogLevel // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.httpLogLevel|{}httpLogLevel[0]
-        final fun <get-httpLogLevel>(): eu.vendeli.tgbot.types.component/HttpLogLevel // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.httpLogLevel.<get-httpLogLevel>|<get-httpLogLevel>(){}[0]
-        final fun <set-httpLogLevel>(eu.vendeli.tgbot.types.component/HttpLogLevel) // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.httpLogLevel.<set-httpLogLevel>|<set-httpLogLevel>(eu.vendeli.tgbot.types.component.HttpLogLevel){}[0]
-
-    final fun component1(): eu.vendeli.tgbot.types.component/LogLvl // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.component1|component1(){}[0]
-    final fun component2(): eu.vendeli.tgbot.types.component/HttpLogLevel // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.component2|component2(){}[0]
-    final fun copy(eu.vendeli.tgbot.types.component/LogLvl = ..., eu.vendeli.tgbot.types.component/HttpLogLevel = ...): eu.vendeli.tgbot.types.configuration/LoggingConfiguration // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.copy|copy(eu.vendeli.tgbot.types.component.LogLvl;eu.vendeli.tgbot.types.component.HttpLogLevel){}[0]
-    final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.equals|equals(kotlin.Any?){}[0]
-    final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.hashCode|hashCode(){}[0]
-    final fun toString(): kotlin/String // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.toString|toString(){}[0]
-
-    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<eu.vendeli.tgbot.types.configuration/LoggingConfiguration> { // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.$serializer|null[0]
-        final val descriptor // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.$serializer.descriptor|{}descriptor[0]
-            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
-
-        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.$serializer.childSerializers|childSerializers(){}[0]
-        final fun deserialize(kotlinx.serialization.encoding/Decoder): eu.vendeli.tgbot.types.configuration/LoggingConfiguration // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
-        final fun serialize(kotlinx.serialization.encoding/Encoder, eu.vendeli.tgbot.types.configuration/LoggingConfiguration) // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;eu.vendeli.tgbot.types.configuration.LoggingConfiguration){}[0]
-    }
-
-    final object Companion { // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.Companion|null[0]
-        final val $childSerializers // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.Companion.$childSerializers|{}$childSerializers[0]
-
-        final fun serializer(): kotlinx.serialization/KSerializer<eu.vendeli.tgbot.types.configuration/LoggingConfiguration> // eu.vendeli.tgbot.types.configuration/LoggingConfiguration.Companion.serializer|serializer(){}[0]
     }
 }
 
@@ -12284,7 +12397,7 @@ sealed class eu.vendeli.tgbot.types.component/CommonMatcher { // eu.vendeli.tgbo
     open val value // eu.vendeli.tgbot.types.component/CommonMatcher.value|{}value[0]
         open fun <get-value>(): kotlin/Any // eu.vendeli.tgbot.types.component/CommonMatcher.value.<get-value>|<get-value>(){}[0]
 
-    abstract suspend fun match(kotlin/String, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot): kotlin/Boolean // eu.vendeli.tgbot.types.component/CommonMatcher.match|match(kotlin.String;eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot){}[0]
+    abstract suspend fun match(kotlin/String, eu.vendeli.tgbot.types.component/ProcessingContext): kotlin/Boolean // eu.vendeli.tgbot.types.component/CommonMatcher.match|match(kotlin.String;eu.vendeli.tgbot.types.component.ProcessingContext){}[0]
     open fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/CommonMatcher.toString|toString(){}[0]
 
     final class Regex : eu.vendeli.tgbot.types.component/CommonMatcher { // eu.vendeli.tgbot.types.component/CommonMatcher.Regex|null[0]
@@ -12293,7 +12406,7 @@ sealed class eu.vendeli.tgbot.types.component/CommonMatcher { // eu.vendeli.tgbo
         final val value // eu.vendeli.tgbot.types.component/CommonMatcher.Regex.value|{}value[0]
             final fun <get-value>(): kotlin.text/Regex // eu.vendeli.tgbot.types.component/CommonMatcher.Regex.value.<get-value>|<get-value>(){}[0]
 
-        final suspend fun match(kotlin/String, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot): kotlin/Boolean // eu.vendeli.tgbot.types.component/CommonMatcher.Regex.match|match(kotlin.String;eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot){}[0]
+        final suspend fun match(kotlin/String, eu.vendeli.tgbot.types.component/ProcessingContext): kotlin/Boolean // eu.vendeli.tgbot.types.component/CommonMatcher.Regex.match|match(kotlin.String;eu.vendeli.tgbot.types.component.ProcessingContext){}[0]
     }
 
     final class String : eu.vendeli.tgbot.types.component/CommonMatcher { // eu.vendeli.tgbot.types.component/CommonMatcher.String|null[0]
@@ -12302,7 +12415,7 @@ sealed class eu.vendeli.tgbot.types.component/CommonMatcher { // eu.vendeli.tgbo
         final val value // eu.vendeli.tgbot.types.component/CommonMatcher.String.value|{}value[0]
             final fun <get-value>(): kotlin/String // eu.vendeli.tgbot.types.component/CommonMatcher.String.value.<get-value>|<get-value>(){}[0]
 
-        final suspend fun match(kotlin/String, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot): kotlin/Boolean // eu.vendeli.tgbot.types.component/CommonMatcher.String.match|match(kotlin.String;eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot){}[0]
+        final suspend fun match(kotlin/String, eu.vendeli.tgbot.types.component/ProcessingContext): kotlin/Boolean // eu.vendeli.tgbot.types.component/CommonMatcher.String.match|match(kotlin.String;eu.vendeli.tgbot.types.component.ProcessingContext){}[0]
     }
 }
 
@@ -15532,6 +15645,10 @@ final object eu.vendeli.tgbot.implementations/DefaultGuard : eu.vendeli.tgbot.in
     final suspend fun condition(eu.vendeli.tgbot.types/User?, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot): kotlin/Boolean // eu.vendeli.tgbot.implementations/DefaultGuard.condition|condition(eu.vendeli.tgbot.types.User?;eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot){}[0]
 }
 
+final object eu.vendeli.tgbot.implementations/DefaultLoggerFactory : eu.vendeli.tgbot.interfaces.helper/LoggerFactory { // eu.vendeli.tgbot.implementations/DefaultLoggerFactory|null[0]
+    final fun get(kotlin/String): io.ktor.util.logging/Logger // eu.vendeli.tgbot.implementations/DefaultLoggerFactory.get|get(kotlin.String){}[0]
+}
+
 final object eu.vendeli.tgbot.types.forum/ForumTopicClosed : kotlinx.serialization.internal/SerializerFactory { // eu.vendeli.tgbot.types.forum/ForumTopicClosed|null[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.forum/ForumTopicClosed.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.forum/ForumTopicClosed.hashCode|hashCode(){}[0]
@@ -15585,18 +15702,14 @@ final const val eu.vendeli.tgbot.utils.common/DEFAULT_CONTENT_TYPE // eu.vendeli
 final const val eu.vendeli.tgbot.utils.common/DEFAULT_FILENAME // eu.vendeli.tgbot.utils.common/DEFAULT_FILENAME|{}DEFAULT_FILENAME[0]
     final fun <get-DEFAULT_FILENAME>(): kotlin/String // eu.vendeli.tgbot.utils.common/DEFAULT_FILENAME.<get-DEFAULT_FILENAME>|<get-DEFAULT_FILENAME>(){}[0]
 
+final val eu.vendeli.tgbot.types.component/chatOrNull // eu.vendeli.tgbot.types.component/chatOrNull|@eu.vendeli.tgbot.types.component.ProcessedUpdate{}chatOrNull[0]
+    final inline fun (eu.vendeli.tgbot.types.component/ProcessedUpdate).<get-chatOrNull>(): eu.vendeli.tgbot.types.chat/Chat? // eu.vendeli.tgbot.types.component/chatOrNull.<get-chatOrNull>|<get-chatOrNull>@eu.vendeli.tgbot.types.component.ProcessedUpdate(){}[0]
 final val eu.vendeli.tgbot.types.component/userOrNull // eu.vendeli.tgbot.types.component/userOrNull|@eu.vendeli.tgbot.types.component.ProcessedUpdate{}userOrNull[0]
     final inline fun (eu.vendeli.tgbot.types.component/ProcessedUpdate).<get-userOrNull>(): eu.vendeli.tgbot.types/User? // eu.vendeli.tgbot.types.component/userOrNull.<get-userOrNull>|<get-userOrNull>@eu.vendeli.tgbot.types.component.ProcessedUpdate(){}[0]
 final val eu.vendeli.tgbot.utils.common/DEFAULT_HANDLING_BEHAVIOUR // eu.vendeli.tgbot.utils.common/DEFAULT_HANDLING_BEHAVIOUR|{}DEFAULT_HANDLING_BEHAVIOUR[0]
     final fun <get-DEFAULT_HANDLING_BEHAVIOUR>(): kotlin.coroutines/SuspendFunction2<eu.vendeli.tgbot.core/TgUpdateHandler, eu.vendeli.tgbot.types.component/ProcessedUpdate, kotlin/Unit> // eu.vendeli.tgbot.utils.common/DEFAULT_HANDLING_BEHAVIOUR.<get-DEFAULT_HANDLING_BEHAVIOUR>|<get-DEFAULT_HANDLING_BEHAVIOUR>(){}[0]
-final val eu.vendeli.tgbot.utils.common/_OperatingActivities // eu.vendeli.tgbot.utils.common/_OperatingActivities|{}_OperatingActivities[0]
-    final fun <get-_OperatingActivities>(): kotlin.collections/Map<kotlin/String, kotlin.collections/List<kotlin/Any?>> // eu.vendeli.tgbot.utils.common/_OperatingActivities.<get-_OperatingActivities>|<get-_OperatingActivities>(){}[0]
 final val eu.vendeli.tgbot.utils.common/fqName // eu.vendeli.tgbot.utils.common/fqName|@kotlin.reflect.KClass<*>{}fqName[0]
-    // Targets: [native]
     final fun (kotlin.reflect/KClass<*>).<get-fqName>(): kotlin/String // eu.vendeli.tgbot.utils.common/fqName.<get-fqName>|<get-fqName>@kotlin.reflect.KClass<*>(){}[0]
-
-    // Targets: [js]
-    final inline fun (kotlin.reflect/KClass<*>).<get-fqName>(): kotlin/String // eu.vendeli.tgbot.utils.common/fqName.<get-fqName>|<get-fqName>@kotlin.reflect.KClass<*>(){}[0]
 
 final fun (eu.vendeli.tgbot.core/FunctionalHandlingDsl).eu.vendeli.tgbot.utils.common/onBusinessConnection(kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/BusinessConnectionUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.utils.common/onBusinessConnection|onBusinessConnection@eu.vendeli.tgbot.core.FunctionalHandlingDsl(kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.BusinessConnectionUpdate>,kotlin.Unit>){}[0]
 final fun (eu.vendeli.tgbot.core/FunctionalHandlingDsl).eu.vendeli.tgbot.utils.common/onBusinessMessage(kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/BusinessMessageUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.utils.common/onBusinessMessage|onBusinessMessage@eu.vendeli.tgbot.core.FunctionalHandlingDsl(kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.BusinessMessageUpdate>,kotlin.Unit>){}[0]
@@ -15621,7 +15734,6 @@ final fun (eu.vendeli.tgbot.core/FunctionalHandlingDsl).eu.vendeli.tgbot.utils.c
 final fun (eu.vendeli.tgbot.core/FunctionalHandlingDsl).eu.vendeli.tgbot.utils.common/onPurchasedPaidMedia(kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/PurchasedPaidMediaUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.utils.common/onPurchasedPaidMedia|onPurchasedPaidMedia@eu.vendeli.tgbot.core.FunctionalHandlingDsl(kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.PurchasedPaidMediaUpdate>,kotlin.Unit>){}[0]
 final fun (eu.vendeli.tgbot.core/FunctionalHandlingDsl).eu.vendeli.tgbot.utils.common/onRemovedChatBoost(kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/RemovedChatBoostUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.utils.common/onRemovedChatBoost|onRemovedChatBoost@eu.vendeli.tgbot.core.FunctionalHandlingDsl(kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.RemovedChatBoostUpdate>,kotlin.Unit>){}[0]
 final fun (eu.vendeli.tgbot.core/FunctionalHandlingDsl).eu.vendeli.tgbot.utils.common/onShippingQuery(kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ShippingQueryUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.utils.common/onShippingQuery|onShippingQuery@eu.vendeli.tgbot.core.FunctionalHandlingDsl(kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ShippingQueryUpdate>,kotlin.Unit>){}[0]
-final fun (eu.vendeli.tgbot/TelegramBot).eu.vendeli.tgbot.utils.common/defineActivities(kotlin.collections/Map<kotlin/String, kotlin.collections/List<kotlin/Any?>>) // eu.vendeli.tgbot.utils.common/defineActivities|defineActivities@eu.vendeli.tgbot.TelegramBot(kotlin.collections.Map<kotlin.String,kotlin.collections.List<kotlin.Any?>>){}[0]
 final fun (kotlin/ByteArray).eu.vendeli.tgbot.utils.common/toImplicitFile(kotlin/String = ..., kotlin/String = ...): eu.vendeli.tgbot.types.component/ImplicitFile.InpFile // eu.vendeli.tgbot.utils.common/toImplicitFile|toImplicitFile@kotlin.ByteArray(kotlin.String;kotlin.String){}[0]
 final fun (kotlin/ByteArray).eu.vendeli.tgbot.utils.common/toInputFile(kotlin/String = ..., kotlin/String = ...): eu.vendeli.tgbot.types.component/InputFile // eu.vendeli.tgbot.utils.common/toInputFile|toInputFile@kotlin.ByteArray(kotlin.String;kotlin.String){}[0]
 final fun (kotlin/String).eu.vendeli.tgbot.utils.common/escapeHTML(): kotlin/String // eu.vendeli.tgbot.utils.common/escapeHTML|escapeHTML@kotlin.String(){}[0]
@@ -15650,6 +15762,7 @@ final fun eu.vendeli.tgbot.api.passport/setPassportDataErrors(kotlin/Long, kotli
 final fun eu.vendeli.tgbot.utils.builders/inlineKeyboardMarkup(kotlin/Function1<eu.vendeli.tgbot.utils.builders/InlineKeyboardMarkupBuilder, kotlin/Unit>): eu.vendeli.tgbot.types.keyboard/InlineKeyboardMarkup // eu.vendeli.tgbot.utils.builders/inlineKeyboardMarkup|inlineKeyboardMarkup(kotlin.Function1<eu.vendeli.tgbot.utils.builders.InlineKeyboardMarkupBuilder,kotlin.Unit>){}[0]
 final fun eu.vendeli.tgbot.utils.builders/replyKeyboardMarkup(kotlin/Function1<eu.vendeli.tgbot.utils.builders/ReplyKeyboardMarkupBuilder, kotlin/Unit>): eu.vendeli.tgbot.types.keyboard/ReplyKeyboardMarkup // eu.vendeli.tgbot.utils.builders/replyKeyboardMarkup|replyKeyboardMarkup(kotlin.Function1<eu.vendeli.tgbot.utils.builders.ReplyKeyboardMarkupBuilder,kotlin.Unit>){}[0]
 final inline fun (eu.vendeli.tgbot.types.component/InputFile).eu.vendeli.tgbot.utils.common/toImplicitFile(): eu.vendeli.tgbot.types.component/ImplicitFile.InpFile // eu.vendeli.tgbot.utils.common/toImplicitFile|toImplicitFile@eu.vendeli.tgbot.types.component.InputFile(){}[0]
+final inline fun (eu.vendeli.tgbot.types.component/ProcessedUpdate).eu.vendeli.tgbot.types.component/getChat(): eu.vendeli.tgbot.types.chat/Chat // eu.vendeli.tgbot.types.component/getChat|getChat@eu.vendeli.tgbot.types.component.ProcessedUpdate(){}[0]
 final inline fun (eu.vendeli.tgbot.types.component/ProcessedUpdate).eu.vendeli.tgbot.types.component/getUser(): eu.vendeli.tgbot.types/User // eu.vendeli.tgbot.types.component/getUser|getUser@eu.vendeli.tgbot.types.component.ProcessedUpdate(){}[0]
 final inline fun (kotlin/String).eu.vendeli.tgbot.utils.common/escapeFormatting(eu.vendeli.tgbot.types.component/ParseMode): kotlin/String // eu.vendeli.tgbot.utils.common/escapeFormatting|escapeFormatting@kotlin.String(eu.vendeli.tgbot.types.component.ParseMode){}[0]
 final inline fun (kotlin/String).eu.vendeli.tgbot.utils.common/toImplicitFile(): eu.vendeli.tgbot.types.component/ImplicitFile.Str // eu.vendeli.tgbot.utils.common/toImplicitFile|toImplicitFile@kotlin.String(){}[0]

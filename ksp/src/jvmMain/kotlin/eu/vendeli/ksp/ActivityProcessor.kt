@@ -2,17 +2,13 @@
 
 package eu.vendeli.ksp
 
-import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.processing.*
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.squareup.kotlinpoet.*
-import com.squareup.kotlinpoet.ksp.toClassName
-import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
 import eu.vendeli.ksp.dto.CollectorsContext
 import eu.vendeli.ksp.utils.*
-import eu.vendeli.tgbot.annotations.*
-import eu.vendeli.tgbot.annotations.CommandHandler.CallbackQuery
+import eu.vendeli.ksp.collectors.*
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 
@@ -21,125 +17,145 @@ class ActivityProcessor(
     private val logger: KSPLogger,
     private val codeGenerator: CodeGenerator,
 ) : SymbolProcessor {
+    private var isProcessed = false
     private val targetPackage = options["package"]?.split(';')
     private val autoCleanClassData = options["autoCleanClassData"]?.toBooleanStrictOrNull() != false
     private val autoAnswerCallback = options["autoAnswerCallback"]?.toBooleanStrictOrNull() == true
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
-        val fileSpec = FileSpec.builder("eu.vendeli.tgbot.generated", "ActivitiesData").apply {
+        if (isProcessed) return emptyList()
+
+        val activitiesFile = FileSpec.builder("eu.vendeli.tgbot.generated", "ActivitiesData").apply {
             addSuppressions()
             addOptIn()
 
-            addImport("eu.vendeli.tgbot.utils.common", "InvocationLambda", "Invocable")
-            addImport("eu.vendeli.tgbot.types.component", "InvocationMeta")
+            addImport("eu.vendeli.tgbot.core", "Activity")
+            addImport("eu.vendeli.tgbot.types.component", "ProcessingContext", "UpdateType", "CommonMatcher", "userOrNull")
             addImport("eu.vendeli.tgbot.types.configuration", "RateLimits")
+            addImport("eu.vendeli.tgbot.implementations", "DefaultGuard", "DefaultArgParser")
 
-            addSuspendCallFun()
-            addSuspendCallFun(true)
             addImport("eu.vendeli.tgbot.utils.common", "getInstance")
         }
 
-        targetPackage?.forEachIndexed { idx, pkg ->
-            if (pkg.isBlank()) logger.error("Defined package #$idx is blank.")
-            processPackage(fileSpec, resolver, idx to pkg)
-        } ?: processPackage(fileSpec, resolver)
+        val loaders = mutableListOf<TypeSpec>()
+        val packages = targetPackage ?: listOf(null)
+        val isMultiPackage = packages.size > 1
 
-        fileSpec.apply {
-            val paramInitBlock = StringBuilder()
-            paramInitBlock.append("mapOf(")
-            (targetPackage ?: listOf("default")).forEachIndexed { idx, pkg ->
-                val block = "listOf(__TG_COMMANDS$idx, __TG_INPUTS$idx, " +
-                    "  __TG_COMMONS$idx, __TG_UPDATE_TYPES$idx, __TG_UNPROCESSED$idx)"
-                paramInitBlock.append("\"$pkg\" to $block,")
+        packages.forEachIndexed { idx, pkg ->
+            if (pkg != null && pkg.isBlank()) logger.error("Defined package #$idx is blank.")
+
+            val className = if (isMultiPackage && pkg != null) {
+                pkg.split('.').joinToString("") { it.replaceFirstChar { c -> c.uppercaseChar() } } + "Loader"
+            } else {
+                "KtGramCtxLoader"
             }
-            paramInitBlock.append(")")
-            addProperty(
-                PropertySpec
-                    .builder(
-                        "__ACTIVITIES",
-                        activitiesType,
-                        KModifier.INTERNAL,
-                    ).apply {
-                        initializer(paramInitBlock.toString())
-                    }.build(),
+
+            val filePkg = pkg ?: "eu.vendeli.tgbot.generated"
+
+            val loadFun = FunSpec.builder("load")
+                .addModifiers(KModifier.OVERRIDE)
+                .addParameter("bot", ClassName("eu.vendeli.tgbot", "TelegramBot"))
+                .addCode("return bot.update.registry.run {\n")
+                .addStatement("bot.update.____ctxUtils = %T", ClassName(filePkg, "__CtxUtils"))
+
+            processPackage(activitiesFile, loadFun, resolver, if (pkg != null) idx to pkg else null)
+
+            loadFun.addCode("}\n")
+
+            loaders.add(
+                TypeSpec.classBuilder(className)
+                    .addSuperinterface(ClassName("eu.vendeli.tgbot.interfaces.helper", "ContextLoader"))
+                    .apply {
+                        if (isMultiPackage && pkg != null) {
+                            addProperty(
+                                PropertySpec.builder("pkg", String::class, KModifier.OVERRIDE)
+                                    .initializer("%S", pkg)
+                                    .build(),
+                            )
+                        }
+                    }
+                    .addFunction(loadFun.build())
+                    .build(),
             )
+        }
+
+        val loaderFile = FileSpec.builder("eu.vendeli.tgbot.generated", "KtGramCtxLoader").apply {
+            addSuppressions()
+            addOptIn()
+
+            addImport("eu.vendeli.tgbot.interfaces.helper", "ContextLoader")
+            addImport("eu.vendeli.tgbot", "TelegramBot")
+            addImport("eu.vendeli.tgbot.core", "ActivityRegistry")
+            addImport("eu.vendeli.tgbot.types.component", "UpdateType")
+
+            loaders.forEach { addType(it) }
         }
 
         @Suppress("SpreadOperator")
-        fileSpec.build().runCatching {
+        val dependencies = Dependencies(false, *resolver.getAllFiles().toList().toTypedArray())
+        activitiesFile.build().runCatching {
             writeTo(
                 codeGenerator = codeGenerator,
-                dependencies = Dependencies(false, *resolver.getAllFiles().toList().toTypedArray()),
+                dependencies = dependencies,
+            )
+        }
+        loaderFile.build().runCatching {
+            writeTo(
+                codeGenerator = codeGenerator,
+                dependencies = dependencies,
             )
         }
 
+        codeGenerator.createNewFile(
+            dependencies = dependencies,
+            packageName = "META-INF.services",
+            fileName = "eu.vendeli.tgbot.interfaces.helper.ContextLoader",
+            "",
+        ).bufferedWriter().use { writer ->
+            loaders.forEach {
+                writer.write("eu.vendeli.tgbot.generated.${it.name}\n")
+            }
+        }
+
+        isProcessed = true
         return emptyList()
     }
 
-    private fun processPackage(fileSpec: FileBuilder, resolver: Resolver, target: Pair<Int, String>? = null) {
+    private fun processPackage(
+        fileSpec: FileBuilder,
+        loadFun: FunSpec.Builder,
+        resolver: Resolver,
+        target: Pair<Int, String>? = null,
+    ) {
         val pkg = target?.second
-        val idxPostfix = target?.first?.let { "$it" } ?: "0"
         val filePkg = pkg ?: "eu.vendeli.tgbot.generated"
 
         val botCtxSpec = FileSpec.builder(filePkg, "BotCtx")
-        processCtxProviders(botCtxSpec, resolver, pkg)
 
-        val commandHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, CommandHandler::class, CallbackQuery::class)
-        val inputHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, InputHandler::class)
-        val updateHandlerSymbols = resolver.getAnnotatedFnSymbols(pkg, UpdateHandler::class)
-        val unprocessedHandlerSymbol = resolver
-            .getAnnotatedFnSymbols(pkg, UnprocessedHandler::class)
-            .firstOrNull()
+        val injectableTypes = resolver.getInjectableTypes(pkg)
 
-        val targetNames = setOf(
-            CommonHandler.Text::class.qualifiedName!!,
-            CommonHandler.Regex::class.qualifiedName!!,
-        )
-
-        resolver
-            .getAnnotatedFnSymbols(
-                pkg,
-                CommonHandler.Text::class,
-                CommonHandler.Regex::class,
-            )
-            .forEach { function ->
-                function.annotations
-                    .flatMap { it.expandToBaseAnnotations(targetNames) }
-                    .forEach { baseAnno ->
-                        CommonAnnotationHandler.parse(function, baseAnno.arguments)
-                    }
-            }
-
-        val commonHandlerData = CommonAnnotationHandler.collect()
-
-        val inputChainSymbols = resolver.getAnnotatedClassSymbols(InputChain::class, pkg)
-
-        val injectableTypes = resolver.getAnnotatedClassSymbols(Injectable::class, pkg).associate { c ->
-            c
-                .getAllSuperTypes()
-                .first {
-                    it.declaration.qualifiedName!!.asString() == autowiringFQName
-                }.arguments
-                .first()
-                .toTypeName() to
-                c.toClassName()
-        }
         val context = CollectorsContext(
             activitiesFile = fileSpec,
             botCtxFile = botCtxSpec,
             injectableTypes = injectableTypes,
             logger = logger,
-            idxPostfix = idxPostfix,
+            loadFun = loadFun,
             pkg = filePkg,
             autoCleanClassData = autoCleanClassData,
             autoAnswerCallback = autoAnswerCallback,
         )
 
-        collectCommandActivities(commandHandlerSymbols, context)
-        collectInputActivities(inputHandlerSymbols, inputChainSymbols, context)
-        collectCommonActivities(commonHandlerData, context)
-        collectUpdateTypeActivities(updateHandlerSymbols, context)
-        collectUnprocessed(unprocessedHandlerSymbol, context)
+        val collectors = listOf(
+            BotCtxCollector(),
+            CommandCollector(),
+            InputCollector(),
+            InputChainCollector(),
+            CommonCollector(),
+            UpdateHandlerCollector(),
+            UnprocessedHandlerCollector(),
+        )
+
+        collectors.forEach { it.collect(resolver, context) }
 
         @Suppress("SpreadOperator")
         botCtxSpec.build().runCatching {
@@ -186,34 +202,4 @@ class ActivityProcessor(
                 .build(),
         )
     }
-
-    private fun FileBuilder.addSuspendCallFun(withMeta: Boolean = false) = addFunction(
-        FunSpec
-            .builder("suspendCall")
-            .apply {
-                addModifiers(KModifier.PRIVATE, KModifier.INLINE)
-                if (withMeta) addParameter(
-                    ParameterSpec
-                        .builder(
-                            "meta",
-                            TypeVariableName("InvocationMeta"),
-                        ).build(),
-                )
-                addParameter(
-                    ParameterSpec
-                        .builder(
-                            "block",
-                            TypeVariableName("InvocationLambda"),
-                            KModifier.NOINLINE,
-                        ).build(),
-                )
-                if (!withMeta) {
-                    returns(TypeVariableName("InvocationLambda"))
-                    addStatement("return block")
-                } else {
-                    returns(TypeVariableName("Invocable"))
-                    addStatement("return block to meta")
-                }
-            }.build(),
-    )
 }

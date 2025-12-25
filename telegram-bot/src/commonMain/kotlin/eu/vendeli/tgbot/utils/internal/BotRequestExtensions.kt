@@ -5,20 +5,11 @@ import eu.vendeli.tgbot.types.component.Response
 import eu.vendeli.tgbot.utils.common.TgFailureException
 import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.tgbot.utils.serde.primitiveOrNull
-import io.ktor.client.request.HttpRequestBuilder
-import io.ktor.client.request.forms.MultiPartFormDataContent
-import io.ktor.client.request.post
-import io.ktor.client.request.setBody
-import io.ktor.client.statement.bodyAsText
-import io.ktor.client.statement.request
-import io.ktor.http.ContentType
-import io.ktor.http.HeadersBuilder
-import io.ktor.http.HttpHeaders
-import io.ktor.http.append
-import io.ktor.http.content.PartData
-import io.ktor.http.contentType
-import io.ktor.http.escapeIfNeeded
-import io.ktor.http.isSuccess
+import io.ktor.client.request.*
+import io.ktor.client.request.forms.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
+import io.ktor.http.content.*
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
@@ -63,13 +54,14 @@ internal suspend inline fun <T> TelegramBot.makeRequestReturning(
     val response = httpClient.post(baseUrl + method) {
         formReqBody(data, multipartData)
     }
+    val logger = config.loggerFactory.get("eu.vendeli.tgbot.TelegramBot")
 
     return@coroutineScope async {
         response.bodyAsText().let {
             if (response.status.isSuccess()) serde.decodeFromString(Response.Success.serializer(returnType), it)
             else serde.decodeFromString(Response.Failure.serializer(), it).also { f ->
                 val stringFailure = f.toString()
-                logger.error { "Request - ${response.call.request.content} received failure response: $stringFailure" }
+                logger.error("Request - ${response.call.request.content} received failure response: $stringFailure")
                 if (config.throwExOnActionsFailure) throw TgFailureException(stringFailure)
             }
         }
@@ -86,7 +78,8 @@ internal suspend inline fun TelegramBot.makeSilentRequest(
     }.also { call ->
         if (!call.status.isSuccess()) {
             val body = call.bodyAsText()
-            logger.error { "Request - ${call.request.content} received failure response: $body" }
+            val logger = config.loggerFactory.get("eu.vendeli.tgbot.TelegramBot")
+            logger.error("Request - ${call.request.content} received failure response: $body")
             if (config.throwExOnActionsFailure) throw TgFailureException(body)
         }
     }

@@ -30,7 +30,7 @@ private val __TG_COMMANDS0: Map<Pair<String, UpdateType>, Invocable> = mapOf(
     ("test2" to UpdateType.MESSAGE) to (
         suspendCall { classManager, update, user, bot, parameters ->
             if (user != null && bot.update.userClassSteps[user.id] != "eu.vendeli.fixtures")
-                eu.vendeli.fixtures.____clearClassData(user.id)
+                eu.vendeli.fixtures.__CtxUtils.clearClassData(user.id)
             ::testMethod.invoke()
         }
             to InvocationMeta(
@@ -48,7 +48,7 @@ private val __TG_COMMANDS0: Map<Pair<String, UpdateType>, Invocable> = mapOf(
             if (user != null &&
                 bot.update.userClassSteps[user.id] !=
                 "eu.vendeli.fixtures.TgAnnotationsModel"
-            ) eu.vendeli.fixtures.____clearClassData(user.id)
+            ) eu.vendeli.fixtures.__CtxUtils.clearClassData(user.id)
             eu.vendeli.fixtures.TgAnnotationsModel::test.invoke(
                 inst,
                 param0,
@@ -69,7 +69,7 @@ private val __TG_COMMANDS0: Map<Pair<String, UpdateType>, Invocable> = mapOf(
             if (user != null &&
                 bot.update.userClassSteps[user.id] !=
                 "eu.vendeli.fixtures.TgAnnotationsModel"
-            ) eu.vendeli.fixtures.____clearClassData(user.id)
+            ) eu.vendeli.fixtures.__CtxUtils.clearClassData(user.id)
             eu.vendeli.fixtures.TgAnnotationsModel::stopHandling.invoke(
                 inst,
                 param0,
@@ -85,7 +85,7 @@ private val __TG_COMMANDS0: Map<Pair<String, UpdateType>, Invocable> = mapOf(
     ("test3" to UpdateType.MESSAGE) to (
         suspendCall { classManager, update, user, bot, parameters ->
             if (user != null && bot.update.userClassSteps[user.id] != "eu.vendeli.fixtures.TestObj")
-                eu.vendeli.fixtures.____clearClassData(user.id)
+                eu.vendeli.fixtures.__CtxUtils.clearClassData(user.id)
             eu.vendeli.fixtures.TestObj::test.invoke()
         }
             to InvocationMeta(
@@ -101,7 +101,7 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
     "testInp2" to (
         suspendCall { classManager, update, user, bot, parameters ->
             if (user != null && bot.update.userClassSteps[user.id] != "eu.vendeli.fixtures")
-                eu.vendeli.fixtures.____clearClassData(user.id)
+                eu.vendeli.fixtures.__CtxUtils.clearClassData(user.id)
             ::testMethod2.invoke()
         }
             to InvocationMeta(
@@ -118,7 +118,7 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
             if (user != null &&
                 bot.update.userClassSteps[user.id] !=
                 "eu.vendeli.fixtures.TgAnnotationsModel"
-            ) eu.vendeli.fixtures.____clearClassData(user.id)
+            ) eu.vendeli.fixtures.__CtxUtils.clearClassData(user.id)
             eu.vendeli.fixtures.TgAnnotationsModel::test2.invoke(
                 inst,
             )
@@ -133,7 +133,7 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
     "testInp3" to (
         suspendCall { classManager, update, user, bot, parameters ->
             if (user != null && bot.update.userClassSteps[user.id] != "eu.vendeli.fixtures.TestObj")
-                eu.vendeli.fixtures.____clearClassData(user.id)
+                eu.vendeli.fixtures.__CtxUtils.clearClassData(user.id)
             eu.vendeli.fixtures.TestObj::test2.invoke()
         }
             to InvocationMeta(
@@ -165,7 +165,7 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
                 return@suspendCall Unit
             }
             if (bot.update.userClassSteps[user.id] != "eu.vendeli.fixtures.Conversation")
-                eu.vendeli.fixtures.____clearClassData(user.id)
+                eu.vendeli.fixtures.__CtxUtils.clearClassData(user.id)
             val linkState = inst.action(user, update, bot)
             inst.state.set(user, linkState)
             if (nextLink != null) bot.inputListener[user] = nextLink
@@ -200,7 +200,7 @@ private val __TG_INPUTS0: Map<String, Invocable> = mapOf(
                 return@suspendCall Unit
             }
             if (bot.update.userClassSteps[user.id] != "eu.vendeli.fixtures.Conversation")
-                eu.vendeli.fixtures.____clearClassData(user.id)
+                eu.vendeli.fixtures.__CtxUtils.clearClassData(user.id)
             inst.action(user, update, bot)
             if (nextLink != null) bot.inputListener[user] = nextLink
             inst.afterAction?.invoke(user, update, bot)
@@ -227,7 +227,7 @@ private val __TG_COMMONS0: Map<CommonMatcher, Invocable> = mapOf(
                 bot.update.userClassSteps[user.id] !=
                 "eu.vendeli.fixtures.TgAnnotationsModel"
             )
-                eu.vendeli.fixtures.____clearClassData(user.id)
+                eu.vendeli.fixtures.__CtxUtils.clearClassData(user.id)
             eu.vendeli.fixtures.TgAnnotationsModel::common.invoke(
                 inst,
             )
@@ -246,7 +246,7 @@ private val __TG_COMMONS0: Map<CommonMatcher, Invocable> = mapOf(
                 bot.update.userClassSteps[user.id] !=
                 "eu.vendeli.fixtures.TgAnnotationsModel"
             )
-                eu.vendeli.fixtures.____clearClassData(user.id)
+                eu.vendeli.fixtures.__CtxUtils.clearClassData(user.id)
             eu.vendeli.fixtures.TgAnnotationsModel::common.invoke(
                 inst,
             )
@@ -272,7 +272,7 @@ private val __TG_COMMONS0: Map<CommonMatcher, Invocable> = mapOf(
             if (user != null &&
                 bot.update.userClassSteps[user.id] !=
                 "eu.vendeli.fixtures.RegexCommands"
-            ) eu.vendeli.fixtures.____clearClassData(user.id)
+            ) eu.vendeli.fixtures.__CtxUtils.clearClassData(user.id)
             eu.vendeli.fixtures.RegexCommands::testR.invoke(
                 inst,
                 param0,

@@ -2,7 +2,6 @@ package eu.vendeli.tgbot.utils.common
 
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 import eu.vendeli.tgbot.types.configuration.HttpConfiguration
-import eu.vendeli.tgbot.types.configuration.LoggingConfiguration
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpTimeout
@@ -14,10 +13,10 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNamingStrategy
 
 @KtGramInternal
-fun getConfiguredHttpClient(httpCfg: HttpConfiguration, loggingCfg: LoggingConfiguration) = httpCfg.run cfg@{
+fun getConfiguredHttpClient(httpCfg: HttpConfiguration) = httpCfg.run cfg@{
     HttpClient {
         install(Logging) {
-            level = loggingCfg.httpLogLevel.toKtorLvl()
+            level = httpCfg.httpLogLevel.toKtorLvl()
         }
 
         install(HttpTimeout) {

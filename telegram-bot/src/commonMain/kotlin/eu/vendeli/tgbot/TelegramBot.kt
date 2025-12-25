@@ -6,15 +6,10 @@ import eu.vendeli.tgbot.interfaces.helper.ConfigLoader
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.media.File
-import eu.vendeli.tgbot.utils.common.BotConfigurator
-import eu.vendeli.tgbot.utils.common.DEFAULT_HANDLING_BEHAVIOUR
-import eu.vendeli.tgbot.utils.common.FunctionalHandlingBlock
-import eu.vendeli.tgbot.utils.common.fqName
-import eu.vendeli.tgbot.utils.common.getConfiguredHttpClient
-import eu.vendeli.tgbot.utils.internal.getLogger
-import io.ktor.client.HttpClient
-import io.ktor.client.request.get
-import io.ktor.client.statement.readRawBytes
+import eu.vendeli.tgbot.utils.common.*
+import io.ktor.client.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
 import kotlinx.coroutines.SupervisorJob
 
 /**
@@ -28,7 +23,7 @@ import kotlinx.coroutines.SupervisorJob
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class TelegramBot(
     internal val token: String,
-    commandsPackage: String? = null,
+    internal val commandsPackage: String? = null,
     botConfiguration: BotConfigurator = {},
 ) {
     /**
@@ -47,12 +42,12 @@ class TelegramBot(
         httpClient: HttpClient? = null,
         botConfiguration: BotConfigurator = {},
     ) : this(token, commandsPackage, botConfiguration) {
-        this.httpClient = httpClient ?: getConfiguredHttpClient(config.httpClient, config.logging)
+        this.httpClient = httpClient ?: getConfiguredHttpClient(config.httpClient)
     }
 
     internal val rootJob = SupervisorJob()
     internal val config = BotConfiguration().apply(botConfiguration)
-    internal val logger = getLogger(config.logging.botLogLevel, this::class.fqName)
+    private val logger = config.loggerFactory.get(this::class.fqName)
 
     internal val baseUrl by lazy { "${config.apiHost}/bot$token" + if (config.isTestEnv) "/test/" else "/" }
 
@@ -69,11 +64,12 @@ class TelegramBot(
     /**
      * Current bot UpdateHandler instance
      */
-    val update = TgUpdateHandler(commandsPackage, this)
+    val update = TgUpdateHandler(this)
 
-    internal var httpClient = getConfiguredHttpClient(config.httpClient, config.logging)
+    internal var httpClient = getConfiguredHttpClient(config.httpClient)
 
     init {
+        loadContext()
         logger.debug("[$identifier] Ktor using engine: ${httpClient.engine::class.simpleName}")
     }
 

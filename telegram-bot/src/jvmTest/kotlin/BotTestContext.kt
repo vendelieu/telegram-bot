@@ -86,13 +86,10 @@ abstract class BotTestContext(
         val ctx = BotResource.swapAndGet()
         BOT_ID = ctx.id
         if (withPreparedBot) bot = TelegramBot(ctx.token, "eu.vendeli") {
-            logging {
-                botLogLevel = LogLvl.TRACE
-                httpLogLevel = HttpLogLevel.BODY
-            }
             httpClient {
                 maxRequestRetry = 0
                 connectTimeoutMillis = 10.seconds.inWholeMilliseconds
+                httpLogLevel = HttpLogLevel.BODY
             }
             updatesListener {
                 pullingDelay = 100
