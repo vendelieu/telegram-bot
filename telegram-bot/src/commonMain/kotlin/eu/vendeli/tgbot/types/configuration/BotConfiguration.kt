@@ -73,22 +73,21 @@ data class BotConfiguration(
     fun commandParsing(block: CommandParsingConfiguration.() -> Unit) {
         commandParsing.block()
     }
+}
 
-    internal fun rewriteWith(new: BotConfiguration): BotConfiguration {
-        identifier = new.identifier
-        apiHost = new.apiHost
-        isTestEnv = new.isTestEnv
-        inputListener = new.inputListener
-        classManager = new.classManager
-        inputAutoRemoval = new.inputAutoRemoval
-        exceptionHandlingStrategy = new.exceptionHandlingStrategy
-        throwExOnActionsFailure = new.throwExOnActionsFailure
-        rateLimiter = new.rateLimiter
-        httpClient = new.httpClient
-        rateLimiter = new.rateLimiter
-        updatesListener = new.updatesListener
-        commandParsing = new.commandParsing
-
-        return this
-    }
+internal fun BotConfiguration.rewriteWith(new: BotConfiguration): BotConfiguration {
+    identifier = new.identifier
+    apiHost = new.apiHost
+    isTestEnv = new.isTestEnv
+    inputListener = new.inputListener
+    classManager = new.classManager
+    inputAutoRemoval = new.inputAutoRemoval
+    exceptionHandlingStrategy = new.exceptionHandlingStrategy
+    throwExOnActionsFailure = new.throwExOnActionsFailure
+    rateLimiter = new.rateLimiter
+    httpClient = new.httpClient
+    updatesListener = new.updatesListener
+    commandParsing = new.commandParsing
+    loggerFactory = new.loggerFactory
+    return this
 }

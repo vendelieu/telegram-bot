@@ -50,7 +50,12 @@ class InvocationCodeGenerator(
             }
 
             is ParameterResolutionStrategy.StringParameter -> {
-                CodeBlock.of("val param%L = parameters[%S]%L\n", parameterIndex, strategy.parameterName, nullabilityMark)
+                CodeBlock.of(
+                    "val param%L = parameters[%S]%L\n",
+                    parameterIndex,
+                    strategy.parameterName,
+                    nullabilityMark,
+                )
             }
 
             is ParameterResolutionStrategy.PrimitiveParameter -> {
@@ -99,11 +104,8 @@ class InvocationCodeGenerator(
      * @param hasInstance Whether instance resolution is needed (non-static, non-object)
      * @param instanceQualifier Qualified name of the class if instance needed
      * @param parameterStrategies Map of parameter index to resolution strategy
-     * @param qualifierForClearData Qualifier for class data clearing
      * @param updateType UpdateType for special handling (e.g., callback auto-answer)
      * @param parameters Additional lambda parameters (e.g., CallbackQueryAutoAnswer)
-     * @param autoCleanClassData Whether to generate class data cleanup code
-     * @param pkg Package name for cleanup function reference
      * @return Complete invocation code block
      */
     fun generateInvocationCode(
@@ -111,18 +113,14 @@ class InvocationCodeGenerator(
         hasInstance: Boolean,
         instanceQualifier: String?,
         parameterStrategies: Map<Int, ParameterResolutionStrategy>,
-        qualifierForClearData: String,
         updateType: UpdateType?,
         parameters: List<LambdaParameters>,
-        autoCleanClassData: Boolean,
-        pkg: String?,
     ): CodeBlock = CodeBlock.builder().apply {
         val isCallbackAutoAnswer = updateType == UpdateType.CALLBACK_QUERY &&
             parameters.contains(CommandHandlerParams.CallbackQueryAutoAnswer)
-        val isCleanupNeeded = autoCleanClassData && pkg != null
 
         val strategies = parameterStrategies.values
-        val isBotNeeded = hasInstance || isCallbackAutoAnswer || isCleanupNeeded || strategies.any {
+        val isBotNeeded = hasInstance || isCallbackAutoAnswer || strategies.any {
             it is ParameterResolutionStrategy.Bot || it is ParameterResolutionStrategy.Injectable
         }
         val isUpdateNeeded = isCallbackAutoAnswer || strategies.any {
@@ -133,7 +131,7 @@ class InvocationCodeGenerator(
             it is ParameterResolutionStrategy.StringParameter || it is ParameterResolutionStrategy.PrimitiveParameter
         }
         val isCtxNeeded = strategies.any { it is ParameterResolutionStrategy.AdditionalContext }
-        val isUserNeeded = isCleanupNeeded || strategies.any { it is ParameterResolutionStrategy.User }
+        val isUserNeeded = strategies.any { it is ParameterResolutionStrategy.User }
 
         beginControlFlow("return context.run {")
         if (isBotNeeded) add("val bot = context.bot\n")
@@ -151,34 +149,15 @@ class InvocationCodeGenerator(
         }
 
         // User resolution
-        var isUserNullable = true
         if (isUserNeeded) {
             fileBuilder.addImport("eu.vendeli.tgbot.types.component", "userOrNull")
             add("val user = update.userOrNull\n")
-
-            // Track if user is nullable for class data cleanup
-            parameterStrategies.values.forEach { strategy ->
-                if (strategy is ParameterResolutionStrategy.User && !strategy.isNullable) {
-                    isUserNullable = false
-                }
-            }
         }
 
         parameterStrategies.keys.sorted().forEach { index ->
             val strategy = parameterStrategies[index]!!
             add(generateParameterResolution(strategy, index))
             callArgs.add("param$index")
-        }
-
-        // Class data cleanup
-        if (isCleanupNeeded) {
-            add(
-                "\nif (\n\t" +
-                    (if (isUserNullable) "user != null\n && " else "") +
-                    "bot.update.userClassSteps[user.id] != %S\n) %L.__CtxUtils.clearClassData(user.id)\n",
-                qualifierForClearData,
-                pkg,
-            )
         }
 
         // Callback query auto-answer

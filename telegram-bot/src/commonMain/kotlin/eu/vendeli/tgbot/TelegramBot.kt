@@ -5,6 +5,7 @@ import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.interfaces.helper.ConfigLoader
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.configuration.BotConfiguration
+import eu.vendeli.tgbot.types.configuration.rewriteWith
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.common.*
 import io.ktor.client.*

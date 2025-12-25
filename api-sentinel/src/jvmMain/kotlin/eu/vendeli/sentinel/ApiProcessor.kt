@@ -3,6 +3,8 @@
 package eu.vendeli.sentinel
 
 import com.google.devtools.ksp.getAllSuperTypes
+import com.google.devtools.ksp.getClassDeclarationByName
+import com.google.devtools.ksp.getDeclaredProperties
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
@@ -79,8 +81,44 @@ class ApiProcessor(
         validateTypes(types, apiJson)
 
         addUpdateEvent2FDSL()
+        generateRewriteWith(resolver)
 
         return emptyList()
+    }
+
+    private fun generateRewriteWith(resolver: Resolver) {
+        val botConfig = resolver.getClassDeclarationByName(
+            resolver.getKSNameFromString("eu.vendeli.tgbot.types.configuration.BotConfiguration"),
+        ) ?: return
+
+        val properties = botConfig.getDeclaredProperties().filter { it.isMutable }
+
+        val codeBlock = StringBuilder()
+        codeBlock.append("\n\ninternal fun BotConfiguration.rewriteWith(new: BotConfiguration): BotConfiguration {\n")
+        properties.forEach { prop ->
+            val name = prop.simpleName.getShortName()
+            codeBlock.append("    $name = new.$name\n")
+        }
+        codeBlock.append("    return this\n")
+        codeBlock.append("}\n")
+
+        val configFile = botConfig.containingFile?.filePath?.let { File(it) } ?: return
+        var content = configFile.readText()
+
+        val rewriteWithRegex = Regex(
+            """\n\s*internal fun rewriteWith\(new: BotConfiguration\): BotConfiguration \{[\s\S]*?\n\s*\}""",
+            RegexOption.MULTILINE,
+        )
+        val extensionRewriteWithRegex = Regex(
+            """\n\s*internal fun BotConfiguration\.rewriteWith\(new: BotConfiguration\): BotConfiguration \{[\s\S]*?\}""",
+            RegexOption.MULTILINE,
+        )
+
+        content = content.replace(rewriteWithRegex, "")
+        content = content.replace(extensionRewriteWithRegex, "")
+        content = content.trimEnd() + codeBlock.toString()
+
+        configFile.writeText(content)
     }
 
     private val tgBotType = TelegramBot::class.asTypeName()

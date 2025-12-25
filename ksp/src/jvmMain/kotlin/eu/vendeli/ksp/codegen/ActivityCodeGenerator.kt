@@ -86,11 +86,8 @@ class ActivityCodeGenerator(
                     hasInstance = hasInstance,
                     instanceQualifier = instanceQualifier,
                     parameterStrategies = parameterStrategies,
-                    qualifierForClearData = funQualifier,
                     updateType = updateType,
                     parameters = parameters,
-                    autoCleanClassData = ctx?.autoCleanClassData ?: true,
-                    pkg = ctx?.pkg,
                 ),
             )
 

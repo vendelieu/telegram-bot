@@ -13,6 +13,5 @@ data class CollectorsContext(
     val logger: KSPLogger,
     val loadFun: FunSpec.Builder,
     val pkg: String? = null,
-    val autoCleanClassData: Boolean = true,
     val autoAnswerCallback: Boolean = false,
 )

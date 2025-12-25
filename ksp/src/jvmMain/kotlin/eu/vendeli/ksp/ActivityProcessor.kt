@@ -19,7 +19,6 @@ class ActivityProcessor(
 ) : SymbolProcessor {
     private var isProcessed = false
     private val targetPackage = options["package"]?.split(';')
-    private val autoCleanClassData = options["autoCleanClassData"]?.toBooleanStrictOrNull() != false
     private val autoAnswerCallback = options["autoAnswerCallback"]?.toBooleanStrictOrNull() == true
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
@@ -141,7 +140,6 @@ class ActivityProcessor(
             logger = logger,
             loadFun = loadFun,
             pkg = filePkg,
-            autoCleanClassData = autoCleanClassData,
             autoAnswerCallback = autoAnswerCallback,
         )
 

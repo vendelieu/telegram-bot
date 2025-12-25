@@ -119,11 +119,6 @@ internal class InputChainCollector : Collector {
                                 curLinkId,
                             )
                             add("if (breakPoint) {\n\tinst.breakAction(user, update, bot)\n\treturn@run Unit\n}\n")
-                            if (ctx.autoCleanClassData && ctx.pkg != null) add(
-                                "if (\n\tbot.update.userClassSteps[user.id] != %S\n) %L.__CtxUtils.clearClassData(user.id)\n",
-                                qualifier,
-                                ctx.pkg,
-                            )
                             if (isStatefulLink) {
                                 add("val linkState = inst.action(user, update, bot)\n")
                                 add("val stateKey = inst.state.stateKey.select(update)\n")
