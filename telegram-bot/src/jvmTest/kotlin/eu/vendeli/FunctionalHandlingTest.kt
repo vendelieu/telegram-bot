@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.component.ActivityCtx
 import eu.vendeli.tgbot.types.component.MessageUpdate
+import eu.vendeli.tgbot.types.component.ProcessingContext
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.configuration.RateLimits
 import eu.vendeli.tgbot.types.component.userOrNull
@@ -246,7 +247,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             ) { }
             functionalActivities.commonActivities.entries
                 .find {
-                    it.key.match("t", MockUpdate.SINGLE("t").updates.first(), bot)
+                    it.key.match("t", ProcessingContext(MockUpdate.SINGLE("t").updates.first(), bot, bot.update.registry))
                 }.shouldNotBeNull()
 
             onInput("test") { }

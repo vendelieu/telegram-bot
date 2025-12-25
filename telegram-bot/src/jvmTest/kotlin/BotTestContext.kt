@@ -1,5 +1,5 @@
 
-import eu.vendeli.fixtures.__ACTIVITIES
+import eu.vendeli.fixtures.TestActivitiesLoader
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.action.MediaAction
@@ -13,7 +13,7 @@ import eu.vendeli.tgbot.types.component.Response
 import eu.vendeli.tgbot.types.component.getOrNull
 import eu.vendeli.tgbot.types.component.isSuccess
 import eu.vendeli.tgbot.utils.common.GET_UPDATES_ACTION
-import eu.vendeli.tgbot.utils.common.defineActivities
+import eu.vendeli.tgbot.utils.common.loadContext
 import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
@@ -62,10 +62,10 @@ abstract class BotTestContext(
     internal val updatesAction = spyk(GET_UPDATES_ACTION)
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
-    protected val TG_ID by lazy { System.getenv("TELEGRAM_ID").toLong() }
+    protected val TG_ID by lazy { System.getenv("TELEGRAM_ID")?.toLongOrNull() ?: 1L }
     protected var BOT_ID by Delegates.notNull<Long>()
-    protected val CHAT_ID by lazy { System.getenv("CHAT_ID").toLong() }
-    protected val CHANNEL_ID by lazy { System.getenv("CHANNEL_ID").toLong() }
+    protected val CHAT_ID by lazy { System.getenv("CHAT_ID")?.toLongOrNull() ?: -1L }
+    protected val CHANNEL_ID by lazy { System.getenv("CHANNEL_ID")?.toLongOrNull() ?: -2L }
     protected val PAYMENT_PROVIDER_TOKEN: String? by lazy { System.getenv("PAYMENT_PROVIDER_TOKEN") }
 
     protected val RANDOM_PIC: ByteArray?
@@ -95,7 +95,7 @@ abstract class BotTestContext(
                 pullingDelay = 100
             }
         }
-        bot.defineActivities(__ACTIVITIES)
+        bot.loadContext(TestActivitiesLoader())
         if (spykIt) spykIt()
 
         if (mockHttp) doMockHttp()
