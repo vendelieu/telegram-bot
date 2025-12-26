@@ -66,7 +66,7 @@ internal class CommonCollector : BaseCollector() {
                 ctx.logger.info("Common: ${data.value} UpdateType: ${updT.name} --> ${function.qualifiedName?.asString()}")
                 ctx.loadFun.addStatement(
                     "registerMatcher(%L, UpdateType.%L, %L.id)",
-                    data.value.toCommonMatcher(data.filter, data.scope),
+                    data.value.toCommonMatcher(data.filters, data.scope),
                     updT.name,
                     activityId,
                 )

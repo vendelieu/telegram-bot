@@ -197,9 +197,8 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
 
         var onUpdateInvocationsCount = 0
 
-        bot.update.functionalHandlingBehavior.functionalActivities.onUpdateActivities
-            .clear()
-        bot.update.functionalHandlingBehavior.apply {
+        bot.update.registry.clear()
+        bot.update.functionalDsl.apply {
             onMessage { onUpdateInvocationsCount++ }
             onEditedMessage { onUpdateInvocationsCount++ }
             onChannelPost { onUpdateInvocationsCount++ }
@@ -225,19 +224,19 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             onPurchasedPaidMedia { onUpdateInvocationsCount++ }
         }
 
-        UpdateType.entries.forEach {
+        UpdateType.entries.forEach { type ->
             shouldNotThrowAny {
-                bot.update.functionalHandlingBehavior.functionalActivities
-                    .onUpdateActivities[it]
-                    .shouldNotBeNull()
-                    .invoke(ctx)
+                val handlers = bot.update.registry.getUpdateTypeHandlers(type)
+                handlers.forEach {
+                    it.invoke(ProcessingContext(ctx.update, bot, bot.update.registry))
+                }
             }
         }
 
         delay(1)
         onUpdateInvocationsCount shouldBe UpdateType.entries.size
 
-        bot.update.functionalHandlingBehavior.apply {
+        bot.update.functionalDsl.apply {
             val scope = setOf(UpdateType.MESSAGE)
             val regex = "^*.".toRegex()
             common(
@@ -245,13 +244,14 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 scope = scope,
                 rateLimits = RateLimits.NOT_LIMITED,
             ) { }
-            functionalActivities.commonActivities.entries
-                .find {
-                    it.key.match("t", ProcessingContext(MockUpdate.SINGLE("t").updates.first(), bot, bot.update.registry))
-                }.shouldNotBeNull()
+
+            bot.update.registry.findMatcher(
+                "t",
+                ProcessingContext(MockUpdate.SINGLE("t").updates.first(), bot, bot.update.registry),
+            ).shouldNotBeNull()
 
             onInput("test") { }
-            functionalActivities.inputs["test"].shouldNotBeNull()
+            bot.update.registry.findInput("test").shouldNotBeNull()
         }
     }
 }

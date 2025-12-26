@@ -3,184 +3,179 @@ package eu.vendeli.tgbot.core
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.dsl.FunctionalDSL
 import eu.vendeli.tgbot.implementations.DefaultArgParser
-import eu.vendeli.tgbot.implementations.DefaultFilter
 import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.interfaces.helper.ArgumentParser
 import eu.vendeli.tgbot.interfaces.helper.Filter
 import eu.vendeli.tgbot.interfaces.helper.Guard
-import eu.vendeli.tgbot.types.component.ActivityCtx
-import eu.vendeli.tgbot.types.component.CommonMatcher
-import eu.vendeli.tgbot.types.component.FunctionalActivities
-import eu.vendeli.tgbot.types.component.FunctionalInvocation
-import eu.vendeli.tgbot.types.component.InputBreakPoint
-import eu.vendeli.tgbot.types.component.ProcessedUpdate
-import eu.vendeli.tgbot.types.component.UpdateType
-import eu.vendeli.tgbot.types.chain.SingleInputChain
+import eu.vendeli.tgbot.types.component.*
+import eu.vendeli.tgbot.types.component.CommonMatcher.Companion.DEFAULT_FILTERS
 import eu.vendeli.tgbot.types.configuration.RateLimits
-import eu.vendeli.tgbot.utils.common.DEFAULT_SCOPE
-import eu.vendeli.tgbot.utils.common.OnCommandActivity
-import eu.vendeli.tgbot.utils.common.OnInputActivity
-import eu.vendeli.tgbot.utils.common.WhenNotHandledActivity
-import eu.vendeli.tgbot.utils.common.fqName
+import eu.vendeli.tgbot.utils.common.*
 import kotlin.reflect.KClass
 
-/**
- * DSL for functional update management.
- *
- * @property bot
- */
 @Suppress("unused", "MemberVisibilityCanBePrivate", "TooManyFunctions")
 @FunctionalDSL
 class FunctionalHandlingDsl internal constructor(
     internal val bot: TelegramBot,
+    internal val registry: ActivityRegistry = bot.update.registry,
 ) {
-    internal val functionalActivities = FunctionalActivities()
     internal val logger = bot.config.loggerFactory.get(this::class.fqName)
 
-    /**
-     * The action that is performed when the command is matched.
-     *
-     * @param command The command that will be processed.
-     * @param scope update type that should match for command.
-     * @param rateLimits Restriction of command requests.
-     * @param block Action that will be applied.
-     */
+    private val pendingChains = mutableListOf<InputChainBuilder>()
+
+    // ===== Commands =====
+
     fun onCommand(
         command: String,
         scope: Set<UpdateType> = DEFAULT_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: Guard = DefaultGuard,
+        guard: KClass<out Guard> = DefaultGuard::class,
         argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
         block: OnCommandActivity,
     ) {
-        scope.forEach {
-            functionalActivities.commands[command to it] =
-                FunctionalInvocation(command, block, rateLimits, guard, argParser = argParser)
+        val activity = LambdaActivity(
+            id = "functional:cmd:$command".hashCode(),
+            function = command,
+            rateLimits = rateLimits,
+            guardClass = guard,
+            argParser = argParser,
+        ) {
+            val cmdCtx = CommandContext(update, parameters)
+            block.invoke(cmdCtx)
+        }
+
+        registry.registerActivity(activity)
+        scope.forEach { type ->
+            registry.registerCommand(command, type, activity.id)
         }
     }
 
-    /**
-     * The action that is performed when the input is matched.
-     *
-     * @param identifier Input identifier.
-     * @param rateLimits Restriction of input requests.
-     * @param block Action that will be applied.
-     */
+    // ===== Inputs =====
+
     fun onInput(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: Guard = DefaultGuard,
+        guard: KClass<out Guard> = DefaultGuard::class,
         block: OnInputActivity,
     ) {
-        functionalActivities.inputs[identifier] = SingleInputChain(identifier, block, rateLimits, guard)
+        val activity = LambdaActivity(
+            id = "functional:input:$identifier".hashCode(),
+            function = identifier,
+            rateLimits = rateLimits,
+            guardClass = guard,
+        ) {
+            val ctx = ActivityCtx(update)
+            block.invoke(ctx)
+        }
+
+        registry.registerActivity(activity)
+        registry.registerInput(identifier, activity.id)
     }
 
-    /**
-     * Action that will be applied when none of the other handlers process the data
-     */
-    fun whenNotHandled(block: WhenNotHandledActivity) {
-        functionalActivities.whenNotHandled = block
-    }
+    // ===== Input Chains =====
 
-    /**
-     * Common action that will be checked after other activities.
-     *
-     * @param value value that will be matched.
-     * @param filter condition that will be checked in a matching process.
-     * @param scope update type that should match for command.
-     * @param rateLimits restriction of command requests.
-     * @param block action that will be applied.
-     */
-    fun common(
-        value: String,
-        filter: KClass<out Filter> = DefaultFilter::class,
-        scope: Set<UpdateType> = DEFAULT_SCOPE,
-        rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
-        block: OnCommandActivity,
-    ) {
-        functionalActivities.commonActivities[CommonMatcher.String(value, filter, scope)] =
-            FunctionalInvocation(value, block, rateLimits, argParser = argParser)
-    }
-
-    /**
-     * Common action that will be checked after other activities.
-     *
-     * @param value value that will be matched.
-     * @param filter condition that will be checked in a matching process.
-     * @param scope update type that should match for command.
-     * @param rateLimits restriction of command requests.
-     * @param block action that will be applied.
-     */
-    fun common(
-        value: Regex,
-        filter: KClass<out Filter> = DefaultFilter::class,
-        scope: Set<UpdateType> = DEFAULT_SCOPE,
-        rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
-        block: OnCommandActivity,
-    ) {
-        functionalActivities.commonActivities[CommonMatcher.Regex(value, filter, scope)] =
-            FunctionalInvocation(value.pattern, block, rateLimits, argParser = argParser)
-    }
-
-    /**
-     * Dsl for creating a chain of input processing
-     *
-     * @param identifier id of input
-     * @param rateLimits Restriction of input requests.
-     * @param block action that will be applied if input matches
-     * @return [SingleInputChain] for further chaining
-     */
     fun inputChain(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: Guard = DefaultGuard,
+        guard: KClass<out Guard> = DefaultGuard::class,
         block: OnInputActivity,
-    ): SingleInputChain {
-        val firstChain = SingleInputChain(identifier, block, rateLimits, guard)
-        functionalActivities.inputs[identifier] = firstChain
-
-        return firstChain
+    ): InputChainBuilder {
+        val builder = InputChainBuilder(identifier, rateLimits, guard, block)
+        pendingChains.add(builder)
+        return builder
     }
 
-    /**
-     * Adding a chain to the input data processing
-     *
-     * @param rateLimits Restriction of input requests.
-     * @param block action that will be applied if the inputs match the current chain level
-     * @return [SingleInputChain] for further chaining
-     */
-    fun SingleInputChain.andThen(
+    // ===== Common Handlers =====
+
+    fun common(
+        value: String,
+        filters: Set<KClass<out Filter>> = DEFAULT_FILTERS,
+        scope: Set<UpdateType> = DEFAULT_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: Guard = DefaultGuard,
-        block: OnInputActivity,
-    ): SingleInputChain {
-        val nextLevel = currentLevel + 1
-        val newId = if (currentLevel > 0) {
-            id.replace(
-                "_chain_lvl_$currentLevel",
-                "_chain_lvl_$nextLevel",
-            )
-        } else {
-            id + "_chain_lvl_1"
+        argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
+        block: OnCommandActivity,
+    ) {
+        val activity = LambdaActivity(
+            id = "functional:common:$value".hashCode(),
+            function = value,
+            rateLimits = rateLimits,
+            argParser = argParser,
+        ) {
+            val cmdCtx = CommandContext(update, parameters)
+            block.invoke(cmdCtx)
         }
 
-        functionalActivities.inputs[id]?.tail = newId
-        functionalActivities.inputs[newId] = SingleInputChain(newId, block, rateLimits, guard, nextLevel)
-        return this
+        registry.registerActivity(activity)
+        val matcher = CommonMatcher.String(value, filters, scope)
+        scope.forEach { type ->
+            registry.registerMatcher(matcher, type, activity.id)
+        }
     }
 
-    /**
-     * Condition, which will cause the chain to be interrupted if it matches.
-     *
-     */
-    fun SingleInputChain.breakIf(
-        condition: ActivityCtx<ProcessedUpdate>.() -> Boolean,
-        repeat: Boolean = true,
-        block: OnInputActivity? = null,
-    ): SingleInputChain {
-        functionalActivities.inputs[id]?.breakPoint = InputBreakPoint(condition, block, repeat)
-        return this
+    fun common(
+        value: Regex,
+        filters: Set<KClass<out Filter>> = DEFAULT_FILTERS,
+        scope: Set<UpdateType> = DEFAULT_SCOPE,
+        rateLimits: RateLimits = RateLimits.NOT_LIMITED,
+        argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
+        block: OnCommandActivity,
+    ) {
+        val activity = LambdaActivity(
+            id = "functional:common:${value.pattern}".hashCode(),
+            function = value.pattern,
+            rateLimits = rateLimits,
+            argParser = argParser,
+        ) {
+            val cmdCtx = CommandContext(update, parameters)
+            block.invoke(cmdCtx)
+        }
+
+        registry.registerActivity(activity)
+        val matcher = CommonMatcher.Regex(value, filters, scope)
+        scope.forEach { type ->
+            registry.registerMatcher(matcher, type, activity.id)
+        }
+    }
+
+    // ===== Update Type Handlers =====
+
+    fun onUpdate(
+        vararg types: UpdateType,
+        block: suspend ActivityCtx<ProcessedUpdate>.() -> Unit,
+    ) {
+        types.forEach { type ->
+            val activity = LambdaActivity(
+                id = "functional:update:${type.name}".hashCode(),
+                function = "onUpdate:${type.name}",
+            ) {
+                val ctx = ActivityCtx(update)
+                block.invoke(ctx)
+            }
+
+            registry.registerActivity(activity)
+            registry.registerUpdateTypeHandler(type, activity.id)
+        }
+    }
+
+    // ===== Fallback =====
+
+    fun whenNotHandled(block: WhenNotHandledActivity) {
+        val activity = LambdaActivity(
+            id = "functional:unprocessed".hashCode(),
+            function = "whenNotHandled",
+        ) {
+            val ctx = ActivityCtx(update)
+            block.invoke(ctx)
+        }
+
+        registry.registerActivity(activity)
+        registry.registerUnprocessed(activity.id)
+    }
+
+    // ===== Finalize =====
+
+    internal fun apply() {
+        pendingChains.forEach { it.build(registry, bot) }
+        pendingChains.clear()
     }
 }

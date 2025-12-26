@@ -108,9 +108,8 @@ class TelegramBot(
      * @param block [FunctionalHandlingDsl]
      */
     suspend fun handleUpdates(allowedUpdates: List<UpdateType>? = null, block: FunctionalHandlingBlock) {
-        update.setListener(allowedUpdates) {
-            handle(it, block)
-        }
+        update.setFunctionality(block)
+        update.setListener(allowedUpdates, DEFAULT_HANDLING_BEHAVIOUR)
     }
 
     companion object

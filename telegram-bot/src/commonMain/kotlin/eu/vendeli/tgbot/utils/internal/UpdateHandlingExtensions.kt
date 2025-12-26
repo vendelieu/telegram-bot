@@ -79,6 +79,7 @@ internal fun TgUpdateHandler.getParameters(
             .parse(request.tail)
     } ?: emptyMap()
 
+/*
 /**
  * Method that tries to find activity in given text and invoke it.
  *
@@ -222,3 +223,4 @@ internal suspend fun FunctionalHandlingDsl.process(update: ProcessedUpdate) = wi
 
     logger.debug { "Number of affected functional activities - $affectedActivities." }
 }
+*/

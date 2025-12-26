@@ -32,159 +32,228 @@ import kotlin.Unit
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.message] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onMessage(block: suspend ActivityCtx<MessageUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.MESSAGE] = block.cast()
+  onUpdate(UpdateType.MESSAGE) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<MessageUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.editedMessage] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onEditedMessage(block: suspend ActivityCtx<EditedMessageUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.EDITED_MESSAGE] = block.cast()
+  onUpdate(UpdateType.EDITED_MESSAGE) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<EditedMessageUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.channelPost] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onChannelPost(block: suspend ActivityCtx<ChannelPostUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.CHANNEL_POST] = block.cast()
+  onUpdate(UpdateType.CHANNEL_POST) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<ChannelPostUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.editedChannelPost] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onEditedChannelPost(block: suspend ActivityCtx<EditedChannelPostUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.EDITED_CHANNEL_POST] = block.cast()
+  onUpdate(UpdateType.EDITED_CHANNEL_POST) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<EditedChannelPostUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.businessConnection] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onBusinessConnection(block: suspend ActivityCtx<BusinessConnectionUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.BUSINESS_CONNECTION] = block.cast()
+  onUpdate(UpdateType.BUSINESS_CONNECTION) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<BusinessConnectionUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.businessMessage] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onBusinessMessage(block: suspend ActivityCtx<BusinessMessageUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.BUSINESS_MESSAGE] = block.cast()
+  onUpdate(UpdateType.BUSINESS_MESSAGE) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<BusinessMessageUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.editedBusinessMessage] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onEditedBusinessMessage(block: suspend ActivityCtx<EditedBusinessMessageUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.EDITED_BUSINESS_MESSAGE] = block.cast()
+  onUpdate(UpdateType.EDITED_BUSINESS_MESSAGE) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<EditedBusinessMessageUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.deletedBusinessMessages] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onDeletedBusinessMessages(block: suspend ActivityCtx<DeletedBusinessMessagesUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.DELETED_BUSINESS_MESSAGES] = block.cast()
+  onUpdate(UpdateType.DELETED_BUSINESS_MESSAGES) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<DeletedBusinessMessagesUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.messageReaction] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onMessageReaction(block: suspend ActivityCtx<MessageReactionUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.MESSAGE_REACTION] = block.cast()
+  onUpdate(UpdateType.MESSAGE_REACTION) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<MessageReactionUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.messageReactionCount] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onMessageReactionCount(block: suspend ActivityCtx<MessageReactionCountUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.MESSAGE_REACTION_COUNT] = block.cast()
+  onUpdate(UpdateType.MESSAGE_REACTION_COUNT) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<MessageReactionCountUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.inlineQuery] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onInlineQuery(block: suspend ActivityCtx<InlineQueryUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.INLINE_QUERY] = block.cast()
+  onUpdate(UpdateType.INLINE_QUERY) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<InlineQueryUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.chosenInlineResult] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onChosenInlineResult(block: suspend ActivityCtx<ChosenInlineResultUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.CHOSEN_INLINE_RESULT] = block.cast()
+  onUpdate(UpdateType.CHOSEN_INLINE_RESULT) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<ChosenInlineResultUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.callbackQuery] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onCallbackQuery(block: suspend ActivityCtx<CallbackQueryUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.CALLBACK_QUERY] = block.cast()
+  onUpdate(UpdateType.CALLBACK_QUERY) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<CallbackQueryUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.shippingQuery] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onShippingQuery(block: suspend ActivityCtx<ShippingQueryUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.SHIPPING_QUERY] = block.cast()
+  onUpdate(UpdateType.SHIPPING_QUERY) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<ShippingQueryUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.preCheckoutQuery] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onPreCheckoutQuery(block: suspend ActivityCtx<PreCheckoutQueryUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.PRE_CHECKOUT_QUERY] = block.cast()
+  onUpdate(UpdateType.PRE_CHECKOUT_QUERY) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<PreCheckoutQueryUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.poll] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onPoll(block: suspend ActivityCtx<PollUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.POLL] = block.cast()
+  onUpdate(UpdateType.POLL) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<PollUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.pollAnswer] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onPollAnswer(block: suspend ActivityCtx<PollAnswerUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.POLL_ANSWER] = block.cast()
+  onUpdate(UpdateType.POLL_ANSWER) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<PollAnswerUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.myChatMember] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onMyChatMember(block: suspend ActivityCtx<MyChatMemberUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.MY_CHAT_MEMBER] = block.cast()
+  onUpdate(UpdateType.MY_CHAT_MEMBER) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<MyChatMemberUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.chatMember] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onChatMember(block: suspend ActivityCtx<ChatMemberUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.CHAT_MEMBER] = block.cast()
+  onUpdate(UpdateType.CHAT_MEMBER) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<ChatMemberUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.chatJoinRequest] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onChatJoinRequest(block: suspend ActivityCtx<ChatJoinRequestUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.CHAT_JOIN_REQUEST] = block.cast()
+  onUpdate(UpdateType.CHAT_JOIN_REQUEST) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<ChatJoinRequestUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.chatBoost] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onChatBoost(block: suspend ActivityCtx<ChatBoostUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.CHAT_BOOST] = block.cast()
+  onUpdate(UpdateType.CHAT_BOOST) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<ChatBoostUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.removedChatBoost] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onRemovedChatBoost(block: suspend ActivityCtx<RemovedChatBoostUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.REMOVED_CHAT_BOOST] = block.cast()
+  onUpdate(UpdateType.REMOVED_CHAT_BOOST) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<RemovedChatBoostUpdate>).block()
+  }
 }
 
 /**
  * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.purchasedPaidMedia] in the [eu.vendeli.tgbot.types.common.Update].
  */
 public fun FunctionalHandlingDsl.onPurchasedPaidMedia(block: suspend ActivityCtx<PurchasedPaidMediaUpdate>.() -> Unit) {
-  functionalActivities.onUpdateActivities[UpdateType.PURCHASED_PAID_MEDIA] = block.cast()
+  onUpdate(UpdateType.PURCHASED_PAID_MEDIA) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<PurchasedPaidMediaUpdate>).block()
+  }
 }

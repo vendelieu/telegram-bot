@@ -10,14 +10,17 @@ internal object DefaultMatchInterceptor : PipelineInterceptor {
     override suspend fun invoke(context: ProcessingContext) {
         val user = context.update.userOrNull
         context.activity = context.registry.findCommand(context.parsedInput, context)
-        if (context.activity == null && user != null) {
-            context.bot.inputListener.getAsync(user.id).await()?.let {
-                val request = context.bot.update.parseCommand(it)
-                context.parsedInput = request.command
-                context.activity = context.registry.findInput(context.parsedInput)
+        if (user != null) {
+            val input = context.bot.inputListener.getAsync(user.id).await()
+            if (input != null) {
+                if (context.bot.config.inputAutoRemoval) context.bot.inputListener.del(user.id)
+                if (context.activity == null) {
+                    val request = context.bot.update.parseCommand(input)
+                    context.parsedInput = request.command
+                    context.activity = context.registry.findInput(context.parsedInput)
+                }
             }
         }
-        if (user != null && context.bot.config.inputAutoRemoval) context.bot.inputListener.del(user.id)
 
         if (context.activity == null) {
             context.activity = context.registry.findMatcher(context.parsedInput, context)

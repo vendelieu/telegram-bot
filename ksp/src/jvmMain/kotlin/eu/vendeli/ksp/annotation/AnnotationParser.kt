@@ -66,11 +66,11 @@ object AnnotationParser {
      */
     fun parseCommonHandler(arguments: List<KSValueArgument>): CommonHandlerData {
         val value = arguments.first { it.name?.asString() == CommonHandler.Text::value.name }.value
-        val filter = arguments.firstOrNull {
-            it.name?.asString() == CommonHandler.Text::filter.name
-        }?.value?.safeCast<KSType>()?.let {
+        val filters = arguments.firstOrNull {
+            it.name?.asString() == CommonHandler.Text::filters.name
+        }?.value?.safeCast<List<KSType>>()?.map {
             it.declaration.qualifiedName!!.asString()
-        } ?: eu.vendeli.tgbot.implementations.DefaultFilter::class.qualifiedName!!
+        } ?: emptyList()
 
         val priority = arguments.firstOrNull {
             it.name?.asString() == CommonHandler.Text::priority.name
@@ -84,7 +84,7 @@ object AnnotationParser {
             emptyList()
         }
 
-        return CommonHandlerData(value!!, filter, priority, scope, regexOptions)
+        return CommonHandlerData(value!!, filters, priority, scope, regexOptions)
     }
 
     /**
@@ -162,7 +162,7 @@ data class CommandHandlerData(
  */
 data class CommonHandlerData(
     val value: Any, // String or List<String>
-    val filter: String,
+    val filters: List<String>,
     val priority: Int,
     val scope: List<UpdateType>,
     val regexOptions: List<RegexOption>,

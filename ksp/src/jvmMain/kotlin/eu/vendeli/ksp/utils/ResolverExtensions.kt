@@ -36,7 +36,7 @@ fun Resolver.getInjectableTypes(pkg: String?): Map<TypeName, ClassName> =
  * Gets function symbols annotated with specified annotations,
  * including support for meta-annotations.
  *
- * @param targetPackage Optional package filter
+ * @param targetPackage Optional package filters
  * @param kClasses Annotation classes to search for
  * @return Sequence of annotated functions
  */
@@ -79,7 +79,7 @@ fun <T : Annotation> Resolver.getAnnotatedFnSymbols(
  * Gets class symbols annotated with specified annotation.
  *
  * @param clazz Annotation class to search for
- * @param targetPackage Optional package filter
+ * @param targetPackage Optional package filters
  * @return Sequence of annotated classes
  */
 fun <T : Annotation> Resolver.getAnnotatedClassSymbols(

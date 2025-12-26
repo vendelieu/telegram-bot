@@ -227,8 +227,14 @@ class ApiProcessor(
                                 "Action that is performed on the presence of " +
                                     "[eu.vendeli.tgbot.types.common.Update.$nameRef] in the [eu.vendeli.tgbot.types.common.Update].",
                             ).addParameter(ParameterSpec.builder("block", blockTypeRef).build())
-                            .addCode("functionalActivities.onUpdateActivities[$type] = block.cast()")
-                            .build(),
+                            .addCode(
+                                "onUpdate(UpdateType.%N) {\n" +
+                                    "    @Suppress(\"UNCHECKED_CAST\")\n" +
+                                    "    (this as %T).block()\n" +
+                                    "}",
+                                type.name,
+                                activityCtxType,
+                            ).build(),
                     )
                 }
             }.build()

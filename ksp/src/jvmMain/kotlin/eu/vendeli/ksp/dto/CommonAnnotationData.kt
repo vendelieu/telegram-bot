@@ -17,9 +17,11 @@ sealed class CommonAnnotationValue {
         override val value: kotlin.text.Regex,
     ) : CommonAnnotationValue()
 
-    internal fun toCommonMatcher(filter: kotlin.String, scope: List<UpdateType>): kotlin.String {
+    internal fun toCommonMatcher(filters: List<kotlin.String>, scope: List<UpdateType>): kotlin.String {
         val parametersString = buildString {
-            if (filter != DefaultFilter::class.fqName) append(", filter = $filter::class")
+            if (filters.isNotEmpty()) append(
+                ", filters = setOf(${filters.joinToString { "$it::class" }})",
+            )
             if (scope != messageList) append(", scope = setOf(${scope.joinToString()})")
         }
         return when (this) {
@@ -36,7 +38,7 @@ data class CommonAnnotationData(
     val funQualifier: String,
     val funSimpleName: String,
     val value: CommonAnnotationValue,
-    val filter: String,
+    val filters: List<String>,
     val argParser: String,
     val priority: Int,
     val rateLimits: RateLimits,

@@ -34,13 +34,14 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
             exceeded = true
         }
 
+        bot.update.setFunctionality {
+            onMessage {
+                hitsCounter.incrementAndGet()
+            }
+        }
         bot.update.setListener {
             if (loopCounter.incrementAndGet() == 10) stopListener()
-            bot.update.handle(it) {
-                onMessage {
-                    hitsCounter.incrementAndGet()
-                }
-            }
+            bot.update.handle(it)
         }
         hitsCounter.get() shouldBe 5
         loopCounter.get() shouldBe 10
@@ -57,16 +58,17 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
             exceeded = true
         }
 
+        bot.update.setFunctionality {
+            onMessage {
+                messageHitsCounter.incrementAndGet()
+            }
+            onCommand("/start", rateLimits = RateLimits(10000, 2)) {
+                commandHitsCounter.incrementAndGet()
+            }
+        }
         bot.update.setListener {
             if (loopsCounter.incrementAndGet() == 20) stopListener()
-            bot.update.handle(it) {
-                onMessage {
-                    messageHitsCounter.incrementAndGet()
-                }
-                onCommand("/start", rateLimits = RateLimits(10000, 2)) {
-                    commandHitsCounter.incrementAndGet()
-                }
-            }
+            bot.update.handle(it)
         }
         messageHitsCounter.get() shouldBe 5
         commandHitsCounter.get() shouldBe 2

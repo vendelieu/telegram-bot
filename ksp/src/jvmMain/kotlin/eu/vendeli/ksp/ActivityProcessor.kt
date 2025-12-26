@@ -82,6 +82,7 @@ class ActivityProcessor(
             addSuppressions()
             addOptIn()
 
+            addImport("eu.vendeli.tgbot.types.component", "CommonMatcher")
             addImport("eu.vendeli.tgbot.interfaces.helper", "ContextLoader")
             addImport("eu.vendeli.tgbot", "TelegramBot")
             addImport("eu.vendeli.tgbot.core", "ActivityRegistry")

@@ -31,7 +31,6 @@ kotlinCompileTesting = "0.8.0"
 binvalid = "0.18.1"
 publisher = "0.34.0"
 gradle-publish = "1.3.1"
-env = "1.0.6"
 
 [libraries]
 # ktor
@@ -76,7 +75,6 @@ spring-starter = { module = "org.springframework.boot:spring-boot-starter", vers
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 publisher = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "publisher" }
 redis = { module = "eu.vendeli:re.this", version.ref = "redis" }
-env = { module = "dev.scottpierce:kotlin-env-var", version.ref = "env" }
 toml = { module = "net.peanuuutz.tomlkt:tomlkt", version.ref = "toml" }
 
 # plugin dependencies

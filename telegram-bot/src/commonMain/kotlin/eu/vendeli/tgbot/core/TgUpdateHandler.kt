@@ -5,7 +5,6 @@ import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 import eu.vendeli.tgbot.types.component.*
 import eu.vendeli.tgbot.utils.common.*
-import eu.vendeli.tgbot.utils.internal.process
 import eu.vendeli.tgbot.utils.internal.toJsonElement
 import io.ktor.client.plugins.*
 import io.ktor.util.logging.*
@@ -33,7 +32,7 @@ class TgUpdateHandler internal constructor(
     internal val handlerScope = bot.config.updatesListener.run {
         CoroutineScope(handlerJob + dispatcher + CoroutineName("TgBot"))
     }
-    internal val functionalHandlingBehavior by lazy { FunctionalHandlingDsl(bot) }
+    internal val functionalDsl by lazy { FunctionalHandlingDsl(bot) }
 
     /**
      * The channel where errors caught during update processing is stored with update that caused them.
@@ -148,27 +147,17 @@ class TgUpdateHandler internal constructor(
             .getOrNull()
     }
 
+    suspend fun setFunctionality(block: FunctionalHandlingBlock) {
+        functionalDsl.block()
+        functionalDsl.apply()
+    }
+
     /**
-     * Handle the update.
-     *
-     * @param update
+     * Handle update through the unified pipeline.
+     * Works for both annotation-based and functional handlers.
      */
     suspend fun handle(update: ProcessedUpdate): Unit =
         pipeline.execute(ProcessingContext(update, bot, registry))
-
-    /**
-     * Functional handling dsl
-     *
-     * @param update
-     * @param block
-     */
-    suspend fun handle(update: ProcessedUpdate, block: FunctionalHandlingBlock) {
-        logger.debug { "Functionally handling update: $update" }
-        functionalHandlingBehavior.apply {
-            block()
-            process(update)
-        }
-    }
 
     companion object
 }

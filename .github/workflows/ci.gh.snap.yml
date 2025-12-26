@@ -10,7 +10,6 @@ on:
       - 'webapps/**'
       - 'ktgram-utils/**'
       - 'ktgram-botctx-redis/**'
-      - 'ktgram-config-env/**'
       - 'ktgram-config-toml/**'
       - 'ktor-starter/**'
       - 'spring-ktgram-starter/**'
@@ -28,7 +27,6 @@ jobs:
           ":webapps",
           ":ktgram-utils",
           ":ktgram-botctx-redis",
-          ":ktgram-config-env",
           ":ktgram-config-toml",
           ":ktor-starter",
           ":spring-ktgram-starter"

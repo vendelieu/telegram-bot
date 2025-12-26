@@ -34,6 +34,15 @@ class ActivityRegistry internal constructor() {
     // Fallback
     private var unprocessedId: Int? = null
 
+    fun clear() {
+        activities.clear()
+        commands.clear()
+        inputs.clear()
+        matchers.clear()
+        updateTypeHandlers.clear()
+        unprocessedId = null
+    }
+
     // ===== Registration =====
 
     fun registerActivity(activity: Activity) {
