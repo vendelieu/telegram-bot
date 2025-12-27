@@ -49,7 +49,7 @@ class SuggestedPostsActionsTest : BotTestContext() {
         approveSuggestedPost(messageId = 1L)
             .sendReq(TG_ID, bot)
             .shouldFailure()
-            .description shouldBe "Bad Request: suggested post not found"
+            .description shouldBe "Bad Request: message can't be used in the method"
     }
 
     @Test
@@ -59,6 +59,6 @@ class SuggestedPostsActionsTest : BotTestContext() {
         declineSuggestedPost(messageId = 1L, comment = "test")
             .sendReq(TG_ID, bot)
             .shouldFailure()
-            .description shouldBe "Bad Request: suggested post not found"
+            .description shouldBe "Bad Request: message can't be used in the method"
     }
 }

@@ -19,7 +19,7 @@ class CreateInvoiceLinkTest : BotTestContext() {
         val result = createInvoiceLink(
             "test",
             "test1",
-            Currency.AED,
+            Currency.USD,
             LabeledPrice("test3", 1000),
         ) {
             "test2"

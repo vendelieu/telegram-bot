@@ -1,8 +1,11 @@
 package eu.vendeli.tgbot.core.interceptors
 
+import eu.vendeli.tgbot.core.Activity
 import eu.vendeli.tgbot.core.PipelineInterceptor
 import eu.vendeli.tgbot.types.component.ProcessingContext
 import eu.vendeli.tgbot.types.component.userOrNull
+import eu.vendeli.tgbot.utils.common.handleFailure
+import io.ktor.util.logging.*
 
 internal object DefaultInvokeInterceptor : PipelineInterceptor {
     private val userClassCrumbs = mutableMapOf<Long, String>()
@@ -10,7 +13,7 @@ internal object DefaultInvokeInterceptor : PipelineInterceptor {
     override suspend fun invoke(context: ProcessingContext) {
         val logger = context.bot.config.loggerFactory.get("eu.vendeli.core.interceptors.InvokeInterceptor")
         context.registry.getUpdateTypeHandlers(context.update.type).forEach {
-            it.invoke(context)
+            it.invokeCatching(context, logger)
         }
 
         val activity = context.activity ?: context.registry.getUnprocessedHandler()
@@ -20,8 +23,21 @@ internal object DefaultInvokeInterceptor : PipelineInterceptor {
         }
 
         handleClassCrumbs(context = context, clean = true)
-        activity.invoke(context)
+        activity.invokeCatching(context, logger)
         handleClassCrumbs(context)
+    }
+
+    private suspend fun Activity.invokeCatching(
+        context: ProcessingContext,
+        logger: Logger,
+    ) = runCatching { invoke(context) }.onFailure {
+        logger.error(
+            "Invocation error at update handling in $id with update: ${context.update.toJsonString()}",
+            it,
+        )
+        context.bot.update.handleFailure(context.update, it)
+    }.onSuccess {
+        logger.debug { "Handled update#${context.update.updateId} to $this" }
     }
 
     private suspend fun handleClassCrumbs(context: ProcessingContext, clean: Boolean = false) {
