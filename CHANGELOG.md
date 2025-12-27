@@ -1,5 +1,16 @@
 # Telegram-bot (KtGram) Changelog
 
+# 9.0.0
+
+* Unified functional declaration with annotation-based. \
+  Now they don't differ in behavior and just give different ways to describe functionality. To use `FunctionalDSL` now
+  you just need to call `bot.setFunctionality`.
+* Changed generated code to more robust entities, which give a duplicate-free solution with same function having different handlers.
+* Introduced new interceptor mechanism for handling updates which replaced middlewares.
+* Removed log level handling and added option to pass your own logging factory in configuration.
+* Added to `CommonHadler` option to pass multiple filters.
+* Option to define multiple update type handlers.
+
 ### 8.4.1
 
 * Fixed `Middleware` interface and corrected behaviour.
@@ -10,7 +21,7 @@
 * Fixed the Regex options-related bug.
 * Added `Chat` as resolvable type similar to `User`.
 * Added experimentally processing context, where can be accessed some processing related information. \
-    Scope of context can be changed through config parameter `processingCtxTargets`.
+  Scope of context can be changed through config parameter `processingCtxTargets`.
 * Added support of middlewares, you can extend `Middleware` and add it through config `middlewares` parameter.
 
 ### 8.3.1
