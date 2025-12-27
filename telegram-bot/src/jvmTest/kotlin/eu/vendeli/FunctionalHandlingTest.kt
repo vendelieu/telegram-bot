@@ -65,7 +65,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             inputChain("test") {
                 update.userOrNull?.id shouldBe 1
             }.breakIf(
-                { update !is MessageUpdate },
+                { update is MessageUpdate },
                 false,
             ) {
                 (update as? MessageUpdate)?.message?.chat?.id shouldBe 1
