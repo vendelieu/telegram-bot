@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.dsl.BotDSL
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 import eu.vendeli.tgbot.types.component.*
@@ -18,6 +19,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
  *
  * @property bot bot instance.
  */
+@BotDSL
 class TgUpdateHandler internal constructor(
     internal val bot: TelegramBot,
 ) {
@@ -145,11 +147,6 @@ class TgUpdateHandler internal constructor(
                 logger.error("error during the update parsing process.", it)
             }.onSuccess { logger.debug { "Successfully parsed update to $it" } }
             .getOrNull()
-    }
-
-    suspend fun setFunctionality(block: FunctionalHandlingBlock) {
-        functionalDsl.block()
-        functionalDsl.apply()
     }
 
     /**

@@ -1,6 +1,5 @@
 package eu.vendeli.tgbot
 
-import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.interfaces.helper.ConfigLoader
 import eu.vendeli.tgbot.types.component.UpdateType
@@ -100,16 +99,19 @@ class TelegramBot(
         update.setListener(allowedUpdates, DEFAULT_HANDLING_BEHAVIOUR)
     }
 
+
     /**
-     * Function for processing updates by long-pulling using functional handling.
+     * Sets the functionality handling logic for the bot.
      *
-     * Note that when using this method, other processing will be interrupted and reassigned.
+     * This method allows the configuration of specific actions and behaviors using
+     * a provided block of type [FunctionalHandlingBlock]. The changes are applied
+     * immediately after the block execution.
      *
-     * @param block [FunctionalHandlingDsl]
+     * @param block A lambda for defining the functional behavior to be configured.
      */
-    suspend fun handleUpdates(allowedUpdates: List<UpdateType>? = null, block: FunctionalHandlingBlock) {
-        update.setFunctionality(block)
-        update.setListener(allowedUpdates, DEFAULT_HANDLING_BEHAVIOUR)
+    suspend fun setFunctionality(block: FunctionalHandlingBlock) {
+        update.functionalDsl.block()
+        update.functionalDsl.apply()
     }
 
     companion object

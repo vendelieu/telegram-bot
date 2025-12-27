@@ -34,7 +34,7 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
             exceeded = true
         }
 
-        bot.update.setFunctionality {
+        bot.setFunctionality {
             onMessage {
                 hitsCounter.incrementAndGet()
             }
@@ -58,7 +58,7 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
             exceeded = true
         }
 
-        bot.update.setFunctionality {
+        bot.setFunctionality {
             onMessage {
                 messageHitsCounter.incrementAndGet()
             }

@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.core
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.dsl.FunctionalDSL
 import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.types.component.ActivityCtx
@@ -13,6 +14,7 @@ import kotlin.reflect.KClass
 /**
  * Builder for input chains. Collects steps, builds activities on demand.
  */
+@FunctionalDSL
 class InputChainBuilder internal constructor(
     private val rootId: String,
     rootRateLimits: RateLimits,
@@ -75,6 +77,8 @@ class InputChainBuilder internal constructor(
                 val ctx = ActivityCtx(update)
                 val user = update.userOrNull ?: return@LambdaActivity Unit
 
+                step.action.invoke(ctx)
+
                 if (step.breakCondition?.invoke(this) == true) {
                     step.breakAction?.invoke(this)
                     if (step.repeatOnBreak) {
@@ -82,8 +86,6 @@ class InputChainBuilder internal constructor(
                     }
                     return@LambdaActivity Unit
                 }
-
-                step.action.invoke(ctx)
 
                 nextStepId?.let { bot.inputListener.set(user.id, it) }
             }

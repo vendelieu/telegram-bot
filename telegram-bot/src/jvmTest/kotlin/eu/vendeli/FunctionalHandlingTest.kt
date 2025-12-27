@@ -61,7 +61,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         val loopCounter = AtomicInteger(0)
 
         bot.inputListener.set(1, "test")
-        bot.handleUpdates {
+        bot.setFunctionality {
             inputChain("test") {
                 update.userOrNull?.id shouldBe 1
             }.breakIf(
@@ -79,7 +79,9 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             ) {
                 println(this)
             }
-
+        }
+        bot.update.setListener {
+            handle(it)
             if (loopCounter.incrementAndGet() == 5) bot.update.stopListener()
         }
 
@@ -97,10 +99,9 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         val secondChainCounter = AtomicInteger(0)
 
         bot.inputListener.set(1, "test")
-        bot.handleUpdates {
+        bot.setFunctionality {
             inputChain("test") {
                 firstChainCounter.incrementAndGet()
-                // first handling (because we set listener before handler start) + 5 general entries
                 update.userOrNull?.id shouldBe 1
             }.breakIf({ generalCounter.get() < 3 }) {
                 breakCounter.incrementAndGet()
@@ -109,15 +110,22 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 secondChainCounter.incrementAndGet()
                 (update as? MessageUpdate)?.message?.text shouldBe "/start"
             }
-
+        }
+        bot.update.setListener {
+            val steps = StringBuilder()
+            steps.append(bot.inputListener.get(1))
+            handle(it)
+            steps.append(" -> ")
+            steps.append(bot.inputListener.get(1))
+            println(steps)
             if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
             delay(1)
         }
 
         generalCounter.get() shouldBe 5
-        firstChainCounter.get() shouldBe 1
-        breakCounter.get() shouldBe 1
-        secondChainCounter.get() shouldBe 2
+        firstChainCounter.get() shouldBe 4
+        breakCounter.get() shouldBe 3
+        secondChainCounter.get() shouldBe 1
         bot.update.caughtExceptions
             .tryReceive()
             .getOrNull()
@@ -132,7 +140,8 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
 
         doMockHttp(MockUpdate.TEXT_LIST("test", "/start"))
 
-        bot.handleUpdates {
+        bot.update.registry.clear()
+        bot.setFunctionality {
             onCommand("/start") {
                 startCounter.incrementAndGet()
             }
@@ -140,7 +149,9 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             whenNotHandled {
                 notHandledCounter.incrementAndGet()
             }
-
+        }
+        bot.update.setListener {
+            handle(it)
             if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
         }
 
@@ -158,7 +169,8 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
 
         doMockHttp(MockUpdate.TEXT_LIST("test", "/start", "123"))
 
-        bot.handleUpdates {
+        bot.update.registry.clear()
+        bot.setFunctionality {
             onCommand("/start") {
                 startCounter.incrementAndGet()
             }
@@ -170,14 +182,16 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             common("^\\d+\$".toRegex()) {
                 regexCommonHandler.incrementAndGet()
             }
-
+        }
+        bot.update.setListener {
+            handle(it)
             if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
         }
 
-        generalCounter.get() shouldBeGreaterThanOrEqual 5
-        startCounter.get() shouldBeGreaterThanOrEqual 2
+        generalCounter.get() shouldBe 6
+        startCounter.get() shouldBe 2
         commonHandler.get() shouldBe 2
-        commonHandler.get() shouldBe 2
+        regexCommonHandler.get() shouldBe 2
     }
 
     @Test
