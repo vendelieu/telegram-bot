@@ -32,7 +32,7 @@ internal object DefaultInvokeInterceptor : PipelineInterceptor {
         logger: Logger,
     ) = runCatching { invoke(context) }.onFailure {
         logger.error(
-            "Invocation error at update handling in $id with update: ${context.update.toJsonString()}",
+            "Invocation error at update handling in ${this::class}[${context.parsedInput}] with update: ${context.update.toJsonString()}",
             it,
         )
         context.bot.update.handleFailure(context.update, it)
