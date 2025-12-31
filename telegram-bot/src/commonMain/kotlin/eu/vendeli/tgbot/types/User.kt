@@ -20,6 +20,7 @@ import kotlinx.serialization.Serializable
  * @property supportsInlineQueries Optional. True, if the bot supports inline queries. Returned only in getMe.
  * @property canConnectToBusiness Optional. True, if the bot can be connected to a Telegram Business account to receive its messages. Returned only in getMe.
  * @property hasMainWebApp Optional. True, if the bot has a main Web App. Returned only in getMe.
+ * @property hasTopicsEnabled Optional. True, if the bot has forum topic mode enabled in private chats. Returned only in getMe.
  */
 @Serializable
 data class User(
@@ -36,4 +37,5 @@ data class User(
     val supportsInlineQueries: Boolean? = null,
     val canConnectToBusiness: Boolean? = null,
     val hasMainWebApp: Boolean? = null,
+    val hasTopicsEnabled: Boolean? = null,
 ) : IdLong

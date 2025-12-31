@@ -14,6 +14,8 @@ data class ForwardMessageOptions(
     var messageThreadId: Int? = null,
     override var directMessagesTopicId: Int? = null,
     override var suggestedPostParameters: SuggestedPostParameters? = null,
+    override var messageEffectId: String? = null,
 ) : Options,
     DirectMessagesTopicProp,
+    MessageEffectIdProp,
     SuggestedPostParametersProp

@@ -1,15 +1,13 @@
 package eu.vendeli.tgbot.types.gift
 
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.common.IsUpgradeSeparateProp
+import eu.vendeli.tgbot.types.common.UniqueGiftNumberProp
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.story.StoryAreaType
 import eu.vendeli.tgbot.types.user.Gift
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.InternalSerializationApi
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.serializer
+import kotlinx.serialization.*
 import kotlin.time.Instant
 
 /**
@@ -43,7 +41,9 @@ sealed class OwnedGift {
         val wasRefunded: Boolean? = null,
         val convertStarCount: Int? = null,
         val prepaidUpgradeStarCount: Int? = null,
-    ) : OwnedGift()
+        override val isUpgradeSeparate: Boolean? = null,
+        override val uniqueGiftNumber: Long? = null,
+    ) : OwnedGift(), IsUpgradeSeparateProp, UniqueGiftNumberProp
 
     @Serializable
     @SerialName("unique")

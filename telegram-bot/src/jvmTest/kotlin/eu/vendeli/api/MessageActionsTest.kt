@@ -8,6 +8,7 @@ import eu.vendeli.tgbot.api.message.deleteMessages
 import eu.vendeli.tgbot.api.message.forwardMessage
 import eu.vendeli.tgbot.api.message.forwardMessages
 import eu.vendeli.tgbot.api.message.message
+import eu.vendeli.tgbot.api.message.sendMessageDraft
 import eu.vendeli.tgbot.api.message.setMessageReaction
 import eu.vendeli.tgbot.types.common.EmojiType
 import eu.vendeli.tgbot.types.common.ReactionType
@@ -112,5 +113,33 @@ class MessageActionsTest : BotTestContext() {
 
         result.shouldBeTrue()
         listingResult.shouldBeTrue()
+    }
+
+    @Test
+    suspend fun `send message draft method test`() {
+        val result = sendMessageDraft(TG_ID, 1, "test draft")
+            .sendReq()
+            .shouldSuccess()
+
+        result.shouldBeTrue()
+    }
+
+    @Test
+    suspend fun `send message draft with message thread id method test`() {
+        val result = sendMessageDraft(TG_ID, 2, "test draft", 123)
+            .sendReq()
+            .shouldSuccess()
+
+        result.shouldBeTrue()
+    }
+
+    @Test
+    suspend fun `send message draft with entities method test`() {
+        val result = sendMessageDraft(TG_ID, 3, messageThreadId = null) {
+            "test" - bold { " draft" }
+        }.sendReq()
+            .shouldSuccess()
+
+        result.shouldBeTrue()
     }
 }

@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.forum
 
+import eu.vendeli.tgbot.types.common.IsNameImplicitProp
 import kotlinx.serialization.Serializable
 
 /**
@@ -17,4 +18,5 @@ data class ForumTopic(
     val name: String,
     val iconColor: IconColor,
     val iconCustomEmojiId: String? = null,
-)
+    override val isNameImplicit: Boolean? = null,
+) : IsNameImplicitProp

@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.types.gift
 
+import eu.vendeli.tgbot.types.common.IsUpgradeSeparateProp
+import eu.vendeli.tgbot.types.common.UniqueGiftNumberProp
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.user.Gift
 import kotlinx.serialization.Serializable
@@ -27,4 +29,6 @@ data class GiftInfo(
     val text: String? = null,
     val entities: List<MessageEntity>? = null,
     val isPrivate: Boolean? = null,
-)
+    override val isUpgradeSeparate: Boolean? = null,
+    override val uniqueGiftNumber: Long? = null,
+) : IsUpgradeSeparateProp, UniqueGiftNumberProp

@@ -11,6 +11,7 @@
 * Added to `CommonHadler` option to pass multiple filters.
 * Option to define multiple update type handlers.
 * Renamed ksp plugin name to `ktnip`.
+* Covered TgApi version `9.3`.
 
 ### 8.4.1
 

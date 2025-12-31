@@ -8,6 +8,7 @@ import eu.vendeli.ktnip.utils.cast
 import eu.vendeli.ktnip.utils.safeCast
 import eu.vendeli.ktnip.utils.toRateLimits
 import eu.vendeli.tgbot.annotations.ArgParser
+import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.CommonHandler
 import eu.vendeli.tgbot.annotations.Guard
 import eu.vendeli.tgbot.implementations.DefaultArgParser
@@ -34,7 +35,7 @@ object AnnotationParser {
             listOf(UpdateType.MESSAGE)
         }
         val autoAnswer = arguments.firstOrNull {
-            it.name?.asString() == "autoAnswer"
+            it.name?.asString() == CommandHandler.CallbackQuery::autoAnswer.name
         }?.takeIf { !it.isDefault() }?.value?.safeCast<Boolean>()
 
         return CommandHandlerData(commands, scope, autoAnswer)

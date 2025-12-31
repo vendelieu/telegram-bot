@@ -3,7 +3,6 @@
 package eu.vendeli.sentinel
 
 import com.google.devtools.ksp.getAllSuperTypes
-import com.google.devtools.ksp.getClassDeclarationByName
 import com.google.devtools.ksp.getDeclaredProperties
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
@@ -12,16 +11,8 @@ import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
-import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.LambdaTypeName
-import com.squareup.kotlinpoet.ParameterSpec
+import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import com.squareup.kotlinpoet.UNIT
-import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.TgAPI
@@ -73,11 +64,10 @@ class ApiProcessor(
         validateApi(apiClasses, apiJson)
 
         @Suppress("UNCHECKED_CAST")
-        val types = (
-            resolver.resolveSymbolsFromDir("$tgBaseDir/types") {
-                it is KSClassDeclaration && it.classKind != ClassKind.ENUM_CLASS
-            } as List<KSClassDeclaration>
-        ).asSequence()
+        val types = resolver.resolveSymbolsFromDir("$tgBaseDir/types") {
+            it.typesExcludeCondition()
+        }.cast<List<KSClassDeclaration>>()
+            .asSequence()
         validateTypes(types, apiJson)
 
         addUpdateEvent2FDSL()

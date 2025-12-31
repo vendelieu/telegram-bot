@@ -20,10 +20,12 @@ data class CopyMessageOptions(
     override var allowPaidBroadcast: Boolean? = null,
     override var directMessagesTopicId: Int? = null,
     override var suggestedPostParameters: SuggestedPostParameters? = null,
+    override var messageEffectId: String? = null,
 ) : OptionsParseMode,
     ForumProps,
     OptionsCommon,
     ShowCaptionAboveMediaProp,
     AllowPaidBroadcastProp,
     DirectMessagesTopicProp,
+    MessageEffectIdProp,
     SuggestedPostParametersProp
