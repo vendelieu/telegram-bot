@@ -464,15 +464,15 @@ public suspend inline fun TelegramBot.declineSuggestedPost(
 ): Unit = eu.vendeli.tgbot.api.message.declineSuggestedPost(messageId, comment).send(chatId, this)
 
 public suspend inline fun TelegramBot.sendMessageDraft(
-  chatId: Long,
   draftId: Int,
   text: String,
+  chatId: Long,
 ): Unit = eu.vendeli.tgbot.api.message.sendMessageDraft(draftId, text).send(chatId, this)
 
 public suspend inline fun TelegramBot.sendMessageDraft(
-  chatId: Long,
   draftId: Int,
   noinline block: EntitiesCtxBuilder<SendMessageDraftAction>.() -> String,
+  chatId: Long,
 ): Unit = eu.vendeli.tgbot.api.message.sendMessageDraft(draftId, block).send(chatId, this)
 
 public suspend inline fun TelegramBot.forwardMessage(
@@ -700,11 +700,11 @@ public suspend inline fun TelegramBot.getUserGifts(userId: Long): Unit = eu.vend
 
 public suspend inline fun TelegramBot.getUserGifts(user: User): Unit = eu.vendeli.tgbot.api.gift.getUserGifts(user).send(this)
 
-public suspend inline fun TelegramBot.getChatGifts(chatId: String, chatId: Long): Unit = eu.vendeli.tgbot.api.gift.getChatGifts().send(chatId, this)
+public suspend inline fun TelegramBot.getChatGifts(chatId: String): Unit = eu.vendeli.tgbot.api.gift.getChatGifts(chatId).send(this)
 
-public suspend inline fun TelegramBot.getChatGifts(chatId: Long): Unit = eu.vendeli.tgbot.api.gift.getChatGifts().send(chatId, this)
+public suspend inline fun TelegramBot.getChatGifts(chatId: Long): Unit = eu.vendeli.tgbot.api.gift.getChatGifts(chatId).send(this)
 
-public suspend inline fun TelegramBot.getChatGifts(chat: Chat, chatId: Long): Unit = eu.vendeli.tgbot.api.gift.getChatGifts(chat).send(chatId, this)
+public suspend inline fun TelegramBot.getChatGifts(chat: Chat): Unit = eu.vendeli.tgbot.api.gift.getChatGifts(chat).send(this)
 
 public suspend inline fun TelegramBot.giftPremiumSubscription(
   userId: Long,

@@ -1232,7 +1232,7 @@ public final class eu/vendeli/tgbot/api/gift/ConvertGiftToStarsActionKt {
 	public static final fun convertGiftToStars (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/api/gift/ConvertGiftToStarsAction;
 }
 
-public final class eu/vendeli/tgbot/api/gift/GetChatGiftsAction : eu/vendeli/tgbot/interfaces/action/Action, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
+public final class eu/vendeli/tgbot/api/gift/GetChatGiftsAction : eu/vendeli/tgbot/interfaces/action/SimpleAction, eu/vendeli/tgbot/interfaces/features/OptionsFeature {
 	public fun <init> (Leu/vendeli/tgbot/types/component/Identifier;)V
 	public synthetic fun getOptions$telegram_bot ()Leu/vendeli/tgbot/types/options/Options;
 	public fun options (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/gift/GetChatGiftsAction;
@@ -2250,7 +2250,7 @@ public final class eu/vendeli/tgbot/api/message/SendMessageAction : eu/vendeli/t
 }
 
 public final class eu/vendeli/tgbot/api/message/SendMessageDraftAction : eu/vendeli/tgbot/interfaces/action/Action, eu/vendeli/tgbot/interfaces/features/EntitiesFeature, eu/vendeli/tgbot/interfaces/features/OptionsFeature, eu/vendeli/tgbot/utils/builders/EntitiesCtxBuilder {
-	public fun <init> (JILjava/lang/String;)V
+	public fun <init> (ILjava/lang/String;)V
 	public fun addEntity (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Leu/vendeli/tgbot/types/msg/MessageEntity;)V
 	public fun blockquote (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
 	public fun bold (Leu/vendeli/tgbot/utils/builders/EntitiesExtBuilder;Lkotlin/jvm/functions/Function0;)Lkotlin/Pair;
@@ -2286,8 +2286,8 @@ public final class eu/vendeli/tgbot/api/message/SendMessageDraftAction : eu/vend
 }
 
 public final class eu/vendeli/tgbot/api/message/SendMessageDraftActionKt {
-	public static final fun sendMessageDraft (JILjava/lang/String;)Leu/vendeli/tgbot/api/message/SendMessageDraftAction;
-	public static final fun sendMessageDraft (JILkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/SendMessageDraftAction;
+	public static final fun sendMessageDraft (ILjava/lang/String;)Leu/vendeli/tgbot/api/message/SendMessageDraftAction;
+	public static final fun sendMessageDraft (ILkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/api/message/SendMessageDraftAction;
 }
 
 public final class eu/vendeli/tgbot/api/message/SetMessageReactionAction : eu/vendeli/tgbot/interfaces/action/Action {

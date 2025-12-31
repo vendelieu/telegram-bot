@@ -23,21 +23,17 @@ class SendMessageDraftAction private constructor() :
         override val options = SendMessageDraftOptions()
 
         constructor(
-            chatId: Long,
             draftId: Int,
             text: String,
         ) : this() {
-            parameters["chat_id"] = chatId.toJsonElement()
             parameters["draft_id"] = draftId.toJsonElement()
             parameters["text"] = text.toJsonElement()
         }
 
         internal constructor(
-            chatId: Long,
             draftId: Int,
             block: EntitiesCtxBuilder<SendMessageDraftAction>.() -> String,
         ) : this() {
-            parameters["chat_id"] = chatId.toJsonElement()
             parameters["draft_id"] = draftId.toJsonElement()
             parameters["text"] = block.invoke(this).toJsonElement()
         }
@@ -57,14 +53,12 @@ class SendMessageDraftAction private constructor() :
  */
 @TgAPI
 inline fun sendMessageDraft(
-    chatId: Long,
     draftId: Int,
     text: String,
-) = SendMessageDraftAction(chatId, draftId, text)
+) = SendMessageDraftAction(draftId, text)
 
 @TgAPI
 fun sendMessageDraft(
-    chatId: Long,
     draftId: Int,
     block: EntitiesCtxBuilder<SendMessageDraftAction>.() -> String,
-) = SendMessageDraftAction(chatId, draftId, block)
+) = SendMessageDraftAction(draftId, block)

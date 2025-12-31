@@ -3,7 +3,7 @@
 package eu.vendeli.tgbot.api.gift
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
-import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.component.Identifier
@@ -15,7 +15,7 @@ import eu.vendeli.tgbot.utils.internal.getReturnType
 @TgAPI
 class GetChatGiftsAction(
     chatId: Identifier,
-) : Action<OwnedGifts>(),
+) : SimpleAction<OwnedGifts>(),
     OptionsFeature<GetChatGiftsAction, GetChatGiftsOptions> {
     @TgAPI.Name("getChatGifts")
     override val method = "getChatGifts"
