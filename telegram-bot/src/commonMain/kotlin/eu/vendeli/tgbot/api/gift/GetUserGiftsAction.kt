@@ -46,4 +46,3 @@ inline fun getUserGifts(userId: Long) = GetUserGiftsAction(userId)
 
 @TgAPI
 inline fun getUserGifts(user: User) = getUserGifts(user.id)
-

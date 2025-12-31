@@ -12,6 +12,7 @@ import eu.vendeli.tgbot.utils.common.CtxUtils
 private val _userData: UserDataMapImpl = eu.vendeli.tgbot.implementations
     .UserDataMapImpl()
 
+@Suppress("ClassName")
 @KtGramInternal
 object __CtxUtils : CtxUtils {
     override val isClassDataInitialized: Lazy<Unit> = lazy { Unit }

@@ -8,7 +8,6 @@ import eu.vendeli.tgbot.interfaces.ctx.ClassManager
 import eu.vendeli.tgbot.interfaces.ctx.InputListener
 import eu.vendeli.tgbot.interfaces.helper.LoggerFactory
 import eu.vendeli.tgbot.types.component.ExceptionHandlingStrategy
-import eu.vendeli.tgbot.utils.common.ProcessingCtxKey
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 

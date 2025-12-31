@@ -8,7 +8,6 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.component.HttpLogLevel
-import eu.vendeli.tgbot.types.component.LogLvl
 import eu.vendeli.tgbot.types.component.Response
 import eu.vendeli.tgbot.types.component.getOrNull
 import eu.vendeli.tgbot.types.component.isSuccess

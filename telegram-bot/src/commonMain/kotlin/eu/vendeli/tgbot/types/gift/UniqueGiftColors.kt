@@ -22,4 +22,3 @@ data class UniqueGiftColors(
     val darkThemeMainColor: Int,
     val darkThemeOtherColors: List<Int>,
 )
-

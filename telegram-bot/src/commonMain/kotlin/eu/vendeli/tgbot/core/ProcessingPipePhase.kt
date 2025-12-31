@@ -1,11 +1,11 @@
 package eu.vendeli.tgbot.core
 
-import eu.vendeli.tgbot.types.component.ProcessingContext
-
 /**
  * Represents a phase in the update processing pipeline.
  */
-class ProcessingPipePhase private constructor(val name: String) {
+class ProcessingPipePhase private constructor(
+    val name: String,
+) {
     override fun toString(): String = "ProcessingPipePhase('$name')"
 
     companion object {

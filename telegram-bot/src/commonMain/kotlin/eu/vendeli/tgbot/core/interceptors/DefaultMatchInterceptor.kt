@@ -2,7 +2,6 @@ package eu.vendeli.tgbot.core.interceptors
 
 import eu.vendeli.tgbot.core.PipelineInterceptor
 import eu.vendeli.tgbot.types.component.ProcessingContext
-import eu.vendeli.tgbot.types.component.TgInvocationKind
 import eu.vendeli.tgbot.types.component.userOrNull
 import eu.vendeli.tgbot.utils.common.parseCommand
 
@@ -11,7 +10,9 @@ internal object DefaultMatchInterceptor : PipelineInterceptor {
         val user = context.update.userOrNull
         context.activity = context.registry.findCommand(context.parsedInput, context)
         if (user != null) {
-            val input = context.bot.inputListener.getAsync(user.id).await()
+            val input = context.bot.inputListener
+                .getAsync(user.id)
+                .await()
             if (input != null) {
                 if (context.bot.config.inputAutoRemoval) context.bot.inputListener.del(user.id)
                 if (context.activity == null) {

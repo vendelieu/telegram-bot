@@ -23,6 +23,6 @@ tasks.register("prepareRelease") {
     dependsOn("api-sentinel:formatKotlin")
     dependsOn("aide:formatKotlin")
 
-    dependsOn("ksp:detekt")
+    dependsOn("ktnip:detekt")
     dependsOn("telegram-bot:detekt")
 }

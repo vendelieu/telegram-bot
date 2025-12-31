@@ -45,23 +45,27 @@ class TestActivity(
 class TestActivitiesLoader : ContextLoader {
     override fun load(bot: TelegramBot): Unit = bot.update.registry.run {
         bot.update.____ctxUtils = __CtxUtils
-        
+
         // Commands
         val testMethodActivity = TestActivity(1, "eu.vendeli.fixtures", "testMethod") { testMethod() }
         registerActivity(testMethodActivity)
         registerCommand("test2", UpdateType.MESSAGE, testMethodActivity.id)
 
-        val tgAnnotationsModelTestActivity = TestActivity(2, "eu.vendeli.fixtures.TgAnnotationsModel", "test") { context ->
-            val inst = context.bot.config.classManager.getInstance(TgAnnotationsModel::class) as TgAnnotationsModel
-            inst.test(context.bot)
-        }
+        val tgAnnotationsModelTestActivity =
+            TestActivity(2, "eu.vendeli.fixtures.TgAnnotationsModel", "test") { context ->
+                val inst = context.bot.config.classManager
+                    .getInstance(TgAnnotationsModel::class) as TgAnnotationsModel
+                inst.test(context.bot)
+            }
         registerActivity(tgAnnotationsModelTestActivity)
         registerCommand("test", UpdateType.MESSAGE, tgAnnotationsModelTestActivity.id)
 
-        val stopHandlingActivity = TestActivity(3, "eu.vendeli.fixtures.TgAnnotationsModel", "stopHandling") { context ->
-            val inst = context.bot.config.classManager.getInstance(TgAnnotationsModel::class) as TgAnnotationsModel
-            inst.stopHandling(context.bot)
-        }
+        val stopHandlingActivity =
+            TestActivity(3, "eu.vendeli.fixtures.TgAnnotationsModel", "stopHandling") { context ->
+                val inst = context.bot.config.classManager
+                    .getInstance(TgAnnotationsModel::class) as TgAnnotationsModel
+                inst.stopHandling(context.bot)
+            }
         registerActivity(stopHandlingActivity)
         registerCommand("STOP", UpdateType.MESSAGE, stopHandlingActivity.id)
 
@@ -74,10 +78,12 @@ class TestActivitiesLoader : ContextLoader {
         registerActivity(testMethod2Activity)
         registerInput("testInp2", testMethod2Activity.id)
 
-        val tgAnnotationsModelTest2Activity = TestActivity(6, "eu.vendeli.fixtures.TgAnnotationsModel", "test2") { context ->
-            val inst = context.bot.config.classManager.getInstance(TgAnnotationsModel::class) as TgAnnotationsModel
-            inst.test2()
-        }
+        val tgAnnotationsModelTest2Activity =
+            TestActivity(6, "eu.vendeli.fixtures.TgAnnotationsModel", "test2") { context ->
+                val inst = context.bot.config.classManager
+                    .getInstance(TgAnnotationsModel::class) as TgAnnotationsModel
+                inst.test2()
+            }
         registerActivity(tgAnnotationsModelTest2Activity)
         registerInput("testInp", tgAnnotationsModelTest2Activity.id)
 
@@ -86,7 +92,8 @@ class TestActivitiesLoader : ContextLoader {
         registerInput("testInp3", testObjTest2Activity.id)
 
         val conversationNameActivity = TestActivity(8, "eu.vendeli.fixtures.Conversation", "Name") { context ->
-            val inst = context.bot.config.classManager.getInstance(Conversation.Name::class) as Conversation.Name
+            val inst = context.bot.config.classManager
+                .getInstance(Conversation.Name::class) as Conversation.Name
             val user = context.update.userOrNull!!
             inst.beforeAction?.invoke(user, context.update, context.bot)
             val breakPoint = inst.breakCondition?.invoke(user, context.update, context.bot) ?: false
@@ -104,7 +111,8 @@ class TestActivitiesLoader : ContextLoader {
         registerInput("eu.vendeli.fixtures.Conversation.Name", conversationNameActivity.id)
 
         val conversationAgeActivity = TestActivity(9, "eu.vendeli.fixtures.Conversation", "Age") { context ->
-            val inst = context.bot.config.classManager.getInstance(Conversation.Age::class) as Conversation.Age
+            val inst = context.bot.config.classManager
+                .getInstance(Conversation.Age::class) as Conversation.Age
             val user = context.update.userOrNull!!
             inst.beforeAction?.invoke(user, context.update, context.bot)
             val breakPoint = inst.breakCondition?.invoke(user, context.update, context.bot) ?: false
@@ -121,7 +129,8 @@ class TestActivitiesLoader : ContextLoader {
 
         // Commons
         val commonActivity = TestActivity(10, "eu.vendeli.fixtures.TgAnnotationsModel", "common") { context ->
-            val inst = context.bot.config.classManager.getInstance(TgAnnotationsModel::class) as TgAnnotationsModel
+            val inst = context.bot.config.classManager
+                .getInstance(TgAnnotationsModel::class) as TgAnnotationsModel
             inst.common()
         }
         registerActivity(commonActivity)
@@ -129,24 +138,28 @@ class TestActivitiesLoader : ContextLoader {
         registerMatcher(CommonMatcher.String("common2"), UpdateType.MESSAGE, commonActivity.id)
 
         val testColorActivity = TestActivity(11, "eu.vendeli.fixtures.RegexCommands", "testR") { context ->
-            val inst = context.bot.config.classManager.getInstance(RegexCommands::class) as RegexCommands
+            val inst = context.bot.config.classManager
+                .getInstance(RegexCommands::class) as RegexCommands
             inst.testR(context.bot)
         }
         registerActivity(testColorActivity)
         registerMatcher(CommonMatcher.Regex(Regex("test colou?r")), UpdateType.MESSAGE, testColorActivity.id)
 
         // Update handlers
-        val updateHandlerActivity = TestActivity(12, "eu.vendeli.fixtures.TgAnnotationsModel", "updateHandler") { context ->
-            val inst = context.bot.config.classManager.getInstance(TgAnnotationsModel::class) as TgAnnotationsModel
-            inst.updateHandler()
-        }
+        val updateHandlerActivity =
+            TestActivity(12, "eu.vendeli.fixtures.TgAnnotationsModel", "updateHandler") { context ->
+                val inst = context.bot.config.classManager
+                    .getInstance(TgAnnotationsModel::class) as TgAnnotationsModel
+                inst.updateHandler()
+            }
         registerActivity(updateHandlerActivity)
         registerUpdateTypeHandler(UpdateType.MESSAGE, updateHandlerActivity.id)
         registerUpdateTypeHandler(UpdateType.CALLBACK_QUERY, updateHandlerActivity.id)
 
         // Unprocessed
         val unprocessedActivity = TestActivity(13, "eu.vendeli.fixtures.TgAnnotationsModel", "test3") { context ->
-            val inst = context.bot.config.classManager.getInstance(TgAnnotationsModel::class) as TgAnnotationsModel
+            val inst = context.bot.config.classManager
+                .getInstance(TgAnnotationsModel::class) as TgAnnotationsModel
             inst.test3()
         }
         registerActivity(unprocessedActivity)

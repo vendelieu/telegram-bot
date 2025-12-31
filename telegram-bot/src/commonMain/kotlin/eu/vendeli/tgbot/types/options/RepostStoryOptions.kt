@@ -7,4 +7,3 @@ data class RepostStoryOptions(
     var postToChatPage: Boolean? = null,
     var protectContent: Boolean? = null,
 ) : Options
-

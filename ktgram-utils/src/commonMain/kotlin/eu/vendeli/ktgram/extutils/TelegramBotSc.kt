@@ -989,6 +989,13 @@ public suspend inline fun TelegramBot.repostStory(
   activePeriod: Int,
 ): Unit = eu.vendeli.tgbot.api.story.repostStory(businessConnectionId, fromChatId, fromStoryId, activePeriod).send(this)
 
+public suspend inline fun TelegramBot.repostStory(
+  businessConnectionId: String,
+  fromChatId: Long,
+  fromStoryId: Int,
+  activePeriod: Duration,
+): Unit = eu.vendeli.tgbot.api.story.repostStory(businessConnectionId, fromChatId, fromStoryId, activePeriod).send(this)
+
 public suspend inline fun TelegramBot.editStory(
   businessConnectionId: String,
   storyId: String,

@@ -61,7 +61,7 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
                     ?.let {
                         dependencies {
                             add(this@cfg.name, "eu.vendeli:telegram-bot:$targetVer")
-                            add(this@cfg.name, "eu.vendeli:ksp:$targetVer")
+                            add(this@cfg.name, "eu.vendeli:ktnip:$targetVer")
                         }
                     }
             }
@@ -140,7 +140,7 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
 
                 dependencies.add(
                     "ksp$tName",
-                    "eu.vendeli:ksp:$depVersion",
+                    "eu.vendeli:ktnip:$depVersion",
                 )
             }
         }
@@ -157,14 +157,14 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
                 }
 
                 dependencies {
-                    add("ksp", "eu.vendeli:ksp:$depVersion")
+                    add("ksp", "eu.vendeli:ktnip:$depVersion")
                 }
             }
 
             else -> {
                 dependencies.add("implementation", "eu.vendeli:telegram-bot:$depVersion")
                 dependencies {
-                    add("ksp", "eu.vendeli:ksp:$depVersion")
+                    add("ksp", "eu.vendeli:ktnip:$depVersion")
                 }
             }
         }

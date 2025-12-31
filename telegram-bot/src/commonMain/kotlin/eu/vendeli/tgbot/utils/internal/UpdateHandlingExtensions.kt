@@ -1,7 +1,6 @@
 package eu.vendeli.tgbot.utils.internal
 
 import eu.vendeli.tgbot.TelegramBot
-import eu.vendeli.tgbot.core.FunctionalHandlingDsl
 import eu.vendeli.tgbot.core.TgUpdateHandler
 import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultFilter
@@ -13,7 +12,6 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chain.SingleInputChain
 import eu.vendeli.tgbot.types.component.*
 import eu.vendeli.tgbot.utils.common.*
-import io.ktor.util.logging.debug
 import kotlin.reflect.KClass
 
 private inline val SingleInputChain.prevChainId: String?

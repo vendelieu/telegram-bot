@@ -15,4 +15,3 @@ data class GetChatGiftsOptions(
     var offset: String? = null,
     var limit: Int? = null,
 ) : Options
-

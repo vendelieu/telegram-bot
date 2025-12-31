@@ -43,7 +43,9 @@ sealed class OwnedGift {
         val prepaidUpgradeStarCount: Int? = null,
         override val isUpgradeSeparate: Boolean? = null,
         override val uniqueGiftNumber: Long? = null,
-    ) : OwnedGift(), IsUpgradeSeparateProp, UniqueGiftNumberProp
+    ) : OwnedGift(),
+        IsUpgradeSeparateProp,
+        UniqueGiftNumberProp
 
     @Serializable
     @SerialName("unique")

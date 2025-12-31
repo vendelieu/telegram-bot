@@ -16,4 +16,3 @@ data class GiftBackground(
     val edgeColor: Int,
     val textColor: Int,
 )
-

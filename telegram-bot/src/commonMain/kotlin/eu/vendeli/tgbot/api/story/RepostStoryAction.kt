@@ -59,4 +59,3 @@ inline fun repostStory(
     fromStoryId: Int,
     activePeriod: Duration,
 ) = RepostStoryAction(businessConnectionId, fromChatId, fromStoryId, activePeriod.inWholeSeconds.toInt())
-

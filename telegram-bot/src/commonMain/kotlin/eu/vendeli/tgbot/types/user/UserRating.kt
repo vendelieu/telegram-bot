@@ -18,4 +18,3 @@ data class UserRating(
     val currentLevelRating: Int,
     val nextLevelRating: Int? = null,
 )
-

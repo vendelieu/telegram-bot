@@ -44,7 +44,7 @@ class SendVideoAction(
  * [Api reference](https://core.telegram.org/bots/api#sendvideo)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
- * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+ * @param messageThreadId Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
  * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
  * @param video Video to send. Pass a file_id as String to send a video that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a video from the Internet, or upload a new video using multipart/form-data. More information on Sending Files: https://core.telegram.org/bots/api#sending-files
  * @param duration Duration of sent video in seconds

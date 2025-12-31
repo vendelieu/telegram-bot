@@ -37,12 +37,13 @@ class ForwardMessageAction(
  *
  * [Api reference](https://core.telegram.org/bots/api#forwardmessage)
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
- * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+ * @param messageThreadId Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
  * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be forwarded; required if the message is forwarded to a direct messages chat
  * @param fromChatId Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername)
  * @param videoStartTimestamp New start timestamp for the forwarded video in the message
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the forwarded message from forwarding and saving
+ * @param messageEffectId Unique identifier of the message effect to be added to the message; only available when forwarding to private chats
  * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only
  * @param messageId Message identifier in the chat specified in from_chat_id
  * @returns [Message]

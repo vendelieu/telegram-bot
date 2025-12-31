@@ -99,7 +99,6 @@ class TelegramBot(
         update.setListener(allowedUpdates, DEFAULT_HANDLING_BEHAVIOUR)
     }
 
-
     /**
      * Sets the functionality handling logic for the bot.
      *

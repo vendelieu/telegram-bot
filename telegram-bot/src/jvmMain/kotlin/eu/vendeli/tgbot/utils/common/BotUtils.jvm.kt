@@ -2,7 +2,6 @@ package eu.vendeli.tgbot.utils.common
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
-import eu.vendeli.tgbot.core.ActivityRegistry
 import eu.vendeli.tgbot.interfaces.helper.ContextLoader
 import kotlinx.coroutines.Dispatchers
 import java.util.*

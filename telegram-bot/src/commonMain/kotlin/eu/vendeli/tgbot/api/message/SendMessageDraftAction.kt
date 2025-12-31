@@ -17,31 +17,31 @@ class SendMessageDraftAction private constructor() :
     OptionsFeature<SendMessageDraftAction, SendMessageDraftOptions>,
     EntitiesFeature<SendMessageDraftAction>,
     EntitiesCtxBuilder<SendMessageDraftAction> {
-    @TgAPI.Name("sendMessageDraft")
-    override val method = "sendMessageDraft"
-    override val returnType = getReturnType()
-    override val options = SendMessageDraftOptions()
+        @TgAPI.Name("sendMessageDraft")
+        override val method = "sendMessageDraft"
+        override val returnType = getReturnType()
+        override val options = SendMessageDraftOptions()
 
-    constructor(
-        chatId: Long,
-        draftId: Int,
-        text: String,
-    ) : this() {
-        parameters["chat_id"] = chatId.toJsonElement()
-        parameters["draft_id"] = draftId.toJsonElement()
-        parameters["text"] = text.toJsonElement()
-    }
+        constructor(
+            chatId: Long,
+            draftId: Int,
+            text: String,
+        ) : this() {
+            parameters["chat_id"] = chatId.toJsonElement()
+            parameters["draft_id"] = draftId.toJsonElement()
+            parameters["text"] = text.toJsonElement()
+        }
 
-    internal constructor(
-        chatId: Long,
-        draftId: Int,
-        block: EntitiesCtxBuilder<SendMessageDraftAction>.() -> String,
-    ) : this() {
-        parameters["chat_id"] = chatId.toJsonElement()
-        parameters["draft_id"] = draftId.toJsonElement()
-        parameters["text"] = block.invoke(this).toJsonElement()
+        internal constructor(
+            chatId: Long,
+            draftId: Int,
+            block: EntitiesCtxBuilder<SendMessageDraftAction>.() -> String,
+        ) : this() {
+            parameters["chat_id"] = chatId.toJsonElement()
+            parameters["draft_id"] = draftId.toJsonElement()
+            parameters["text"] = block.invoke(this).toJsonElement()
+        }
     }
-}
 
 /**
  * Use this method to stream a partial message to a user while the message is being generated; supported only for bots with forum topic mode enabled. Returns True on success.
@@ -68,4 +68,3 @@ fun sendMessageDraft(
     draftId: Int,
     block: EntitiesCtxBuilder<SendMessageDraftAction>.() -> String,
 ) = SendMessageDraftAction(chatId, draftId, block)
-

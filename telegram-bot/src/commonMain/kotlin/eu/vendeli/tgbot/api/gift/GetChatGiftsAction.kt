@@ -11,7 +11,6 @@ import eu.vendeli.tgbot.types.gift.OwnedGifts
 import eu.vendeli.tgbot.types.options.GetChatGiftsOptions
 import eu.vendeli.tgbot.utils.internal.encodeWith
 import eu.vendeli.tgbot.utils.internal.getReturnType
-import eu.vendeli.tgbot.utils.internal.toJsonElement
 
 @TgAPI
 class GetChatGiftsAction(
@@ -53,4 +52,3 @@ inline fun getChatGifts(chatId: Long) = GetChatGiftsAction(Identifier.from(chatI
 
 @TgAPI
 inline fun getChatGifts(chat: Chat) = getChatGifts(chat.id)
-

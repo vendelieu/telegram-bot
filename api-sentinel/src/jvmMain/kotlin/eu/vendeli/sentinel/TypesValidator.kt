@@ -69,13 +69,15 @@ private fun ApiProcessor.processClass(
 
     val leftParams = params
         .mapNotNull { p ->
-            p.takeIf { np ->
-                np.value.annotations.none {
-                    it.shortName.getShortName() == TgAPI.Ignore::class.simpleName!!
-                } && np.value.findOverridee()?.annotations?.none {
-                    it.shortName.getShortName() == TgAPI.Ignore::class.simpleName!!
-                } != false
-            }?.key
+            p
+                .takeIf { np ->
+                    np.value.annotations.none {
+                        it.shortName.getShortName() == TgAPI.Ignore::class.simpleName!!
+                    } &&
+                        np.value.findOverridee()?.annotations?.none {
+                            it.shortName.getShortName() == TgAPI.Ignore::class.simpleName!!
+                        } != false
+                }?.key
         }.toMutableList()
 
     typeInfo["fields"]?.jsonArray?.forEach {

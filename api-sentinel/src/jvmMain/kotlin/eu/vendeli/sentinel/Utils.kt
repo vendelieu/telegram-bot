@@ -69,17 +69,16 @@ internal fun Resolver.resolveSymbolsFromDir(
             getDeclarationsFromPackage(pkg).filter {
                 additionalFilter(it)
             } as Sequence<KSClassDeclaration>
-            ).toList().let {
-                output.addAll(it)
-            }
+        ).toList().let {
+            output.addAll(it)
+        }
     }
 
     return output
 }
 
-
 fun KSDeclaration.typesExcludeCondition(): Boolean =
-    !simpleName.asString().contains(".*Prop".toRegex()) // exclude *Prop declaration from checking
-        &&
+    !simpleName.asString().contains(".*Prop".toRegex()) &&
+        // exclude *Prop declaration from checking
         this is KSClassDeclaration &&
         classKind != ClassKind.ENUM_CLASS

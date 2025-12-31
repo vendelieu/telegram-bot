@@ -259,13 +259,16 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 rateLimits = RateLimits.NOT_LIMITED,
             ) { }
 
-            bot.update.registry.findMatcher(
-                "t",
-                ProcessingContext(MockUpdate.SINGLE("t").updates.first(), bot, bot.update.registry),
-            ).shouldNotBeNull()
+            bot.update.registry
+                .findMatcher(
+                    "t",
+                    ProcessingContext(MockUpdate.SINGLE("t").updates.first(), bot, bot.update.registry),
+                ).shouldNotBeNull()
 
             onInput("test") { }
-            bot.update.registry.findInput("test").shouldNotBeNull()
+            bot.update.registry
+                .findInput("test")
+                .shouldNotBeNull()
         }
     }
 }

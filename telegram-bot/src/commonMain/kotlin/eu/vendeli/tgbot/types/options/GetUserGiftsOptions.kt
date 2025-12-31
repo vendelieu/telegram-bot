@@ -13,4 +13,3 @@ data class GetUserGiftsOptions(
     var offset: String? = null,
     var limit: Int? = null,
 ) : Options
-

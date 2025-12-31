@@ -9,7 +9,8 @@ import io.ktor.util.logging.*
 
 internal object DefaultValidationInterceptor : PipelineInterceptor {
     override suspend fun invoke(context: ProcessingContext) {
-        val logger = context.bot.config.loggerFactory.get("eu.vendeli.core.interceptors.ValidationInterceptor")
+        val logger = context.bot.config.loggerFactory
+            .get("eu.vendeli.core.interceptors.ValidationInterceptor")
         val activity = context.activity ?: return
         val user = context.update.userOrNull
 
