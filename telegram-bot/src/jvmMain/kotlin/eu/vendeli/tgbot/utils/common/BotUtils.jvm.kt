@@ -19,7 +19,7 @@ actual fun TelegramBot.loadContext(ctx: ContextLoader?) {
     val ctxLoaders = ServiceLoader.load(ContextLoader::class.java)
     val ctxLoader = ctxLoaders.find {
         it.pkg == commandsPackage
-    } ?: ctxLoaders.singleOrNull() ?: error("No registrar found")
+    } ?: ctxLoaders.singleOrNull() ?: error("No context loader found (check ksp generated sources)")
 
     ctxLoader.load(this)
 }

@@ -37,7 +37,7 @@ internal object DefaultInvokeInterceptor : PipelineInterceptor {
         )
         context.bot.update.handleFailure(context.update, it)
     }.onSuccess {
-        logger.debug { "Handled update#${context.update.updateId} to $this" }
+        logger.debug { "Handled update#${context.update.updateId} to $qualifier::$function [${this::class.simpleName}]" }
     }
 
     private suspend fun handleClassCrumbs(context: ProcessingContext, clean: Boolean = false) {

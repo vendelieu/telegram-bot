@@ -6,7 +6,7 @@ on:
       - 'buildSrc/**'
       - 'api-sentinel/**'
       - 'telegram-bot/**'
-      - 'ksp/**'
+      - 'ktnip/**'
       - 'webapps/**'
       - 'ktgram-utils/**'
       - 'ktgram-botctx-redis/**'

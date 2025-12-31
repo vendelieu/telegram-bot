@@ -40,7 +40,7 @@ plugins {
 dependencies {
     // ...
     implementation("eu.vendeli:telegram-bot:8.4.0")
-    ksp("eu.vendeli:ksp:8.4.0")
+    ksp("eu.vendeli:ktnip:8.4.0")
 }
 ```
 

@@ -1,0 +1,17 @@
+package eu.vendeli.ktnip.dto
+
+import com.google.devtools.ksp.processing.KSPLogger
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.TypeName
+import eu.vendeli.ktnip.utils.FileBuilder
+
+data class CollectorsContext(
+    val activitiesFile: FileBuilder,
+    val botCtxFile: FileBuilder,
+    val injectableTypes: Map<TypeName, ClassName>,
+    val logger: KSPLogger,
+    val loadFun: FunSpec.Builder,
+    val pkg: String? = null,
+    val autoAnswerCallback: Boolean = false,
+)

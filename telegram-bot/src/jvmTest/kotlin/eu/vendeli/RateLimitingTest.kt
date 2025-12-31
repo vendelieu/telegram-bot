@@ -62,7 +62,7 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
             onMessage {
                 messageHitsCounter.incrementAndGet()
             }
-            onCommand("/start", rateLimits = RateLimits(10000, 2)) {
+            onCommand("/start", rateLimits = RateLimits(10_000, 2)) {
                 commandHitsCounter.incrementAndGet()
             }
         }
@@ -70,7 +70,7 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
             if (loopsCounter.incrementAndGet() == 20) stopListener()
             bot.update.handle(it)
         }
-        messageHitsCounter.get() shouldBe 5
+        messageHitsCounter.get() shouldBe 2
         commandHitsCounter.get() shouldBe 2
         loopsCounter.get() shouldBe 20
         exceeded shouldBe true

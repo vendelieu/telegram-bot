@@ -55,7 +55,7 @@ fun <T : Link<*>> InputListener.setChain(user: User, firstLink: T) = set(user, f
  */
 @ExperimentalFeature
 fun <T : Any> TelegramBot.getInstance(kClass: KClass<T>, vararg initParams: Any?): T? =
-    config.classManager.getInstance(kClass, initParams).safeCast()
+    config.classManager.getInstance(kClass, *initParams).safeCast()
 
 /**
  * Helper function to paginate over a collection.

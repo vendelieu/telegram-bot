@@ -10,6 +10,7 @@
 * Removed log level handling and added option to pass your own logging factory in configuration.
 * Added to `CommonHadler` option to pass multiple filters.
 * Option to define multiple update type handlers.
+* Renamed ksp plugin name to `ktnip`.
 
 ### 8.4.1
 
