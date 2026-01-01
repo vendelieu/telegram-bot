@@ -456,20 +456,6 @@ final enum class eu.vendeli.tgbot.types.component/ParseMode : kotlin/Enum<eu.ven
     }
 }
 
-final enum class eu.vendeli.tgbot.types.component/TgInvocationKind : kotlin/Enum<eu.vendeli.tgbot.types.component/TgInvocationKind> { // eu.vendeli.tgbot.types.component/TgInvocationKind|null[0]
-    enum entry COMMAND // eu.vendeli.tgbot.types.component/TgInvocationKind.COMMAND|null[0]
-    enum entry COMMON // eu.vendeli.tgbot.types.component/TgInvocationKind.COMMON|null[0]
-    enum entry INPUT // eu.vendeli.tgbot.types.component/TgInvocationKind.INPUT|null[0]
-    enum entry TYPE // eu.vendeli.tgbot.types.component/TgInvocationKind.TYPE|null[0]
-    enum entry UNPROCESSED // eu.vendeli.tgbot.types.component/TgInvocationKind.UNPROCESSED|null[0]
-
-    final val entries // eu.vendeli.tgbot.types.component/TgInvocationKind.entries|#static{}entries[0]
-        final fun <get-entries>(): kotlin.enums/EnumEntries<eu.vendeli.tgbot.types.component/TgInvocationKind> // eu.vendeli.tgbot.types.component/TgInvocationKind.entries.<get-entries>|<get-entries>#static(){}[0]
-
-    final fun valueOf(kotlin/String): eu.vendeli.tgbot.types.component/TgInvocationKind // eu.vendeli.tgbot.types.component/TgInvocationKind.valueOf|valueOf#static(kotlin.String){}[0]
-    final fun values(): kotlin/Array<eu.vendeli.tgbot.types.component/TgInvocationKind> // eu.vendeli.tgbot.types.component/TgInvocationKind.values|values#static(){}[0]
-}
-
 final enum class eu.vendeli.tgbot.types.component/UpdateType : kotlin/Enum<eu.vendeli.tgbot.types.component/UpdateType> { // eu.vendeli.tgbot.types.component/UpdateType|null[0]
     enum entry BUSINESS_CONNECTION // eu.vendeli.tgbot.types.component/UpdateType.BUSINESS_CONNECTION|null[0]
     enum entry BUSINESS_MESSAGE // eu.vendeli.tgbot.types.component/UpdateType.BUSINESS_MESSAGE|null[0]
@@ -2570,15 +2556,6 @@ final class eu.vendeli.tgbot.types.business/BusinessOpeningHoursInterval { // eu
     }
 }
 
-final class eu.vendeli.tgbot.types.chain/SingleInputChain { // eu.vendeli.tgbot.types.chain/SingleInputChain|null[0]
-    constructor <init>(kotlin/String, kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit>, eu.vendeli.tgbot.types.configuration/RateLimits, eu.vendeli.tgbot.interfaces.helper/Guard, kotlin/Int = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.component/InputBreakPoint? = ...) // eu.vendeli.tgbot.types.chain/SingleInputChain.<init>|<init>(kotlin.String;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Unit>;eu.vendeli.tgbot.types.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.Int;kotlin.String?;eu.vendeli.tgbot.types.component.InputBreakPoint?){}[0]
-
-    final fun copy(kotlin/String = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit> = ..., eu.vendeli.tgbot.types.configuration/RateLimits = ..., eu.vendeli.tgbot.interfaces.helper/Guard = ..., kotlin/Int = ..., kotlin/String? = ..., eu.vendeli.tgbot.types.component/InputBreakPoint? = ...): eu.vendeli.tgbot.types.chain/SingleInputChain // eu.vendeli.tgbot.types.chain/SingleInputChain.copy|copy(kotlin.String;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Unit>;eu.vendeli.tgbot.types.configuration.RateLimits;eu.vendeli.tgbot.interfaces.helper.Guard;kotlin.Int;kotlin.String?;eu.vendeli.tgbot.types.component.InputBreakPoint?){}[0]
-    final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.chain/SingleInputChain.equals|equals(kotlin.Any?){}[0]
-    final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.chain/SingleInputChain.hashCode|hashCode(){}[0]
-    final fun toString(): kotlin/String // eu.vendeli.tgbot.types.chain/SingleInputChain.toString|toString(){}[0]
-}
-
 final class eu.vendeli.tgbot.types.chat/Chat : eu.vendeli.tgbot.types.component/IdLong { // eu.vendeli.tgbot.types.chat/Chat|null[0]
     constructor <init>(kotlin/Long, eu.vendeli.tgbot.types.chat/ChatType, kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ..., kotlin/Boolean? = ...) // eu.vendeli.tgbot.types.chat/Chat.<init>|<init>(kotlin.Long;eu.vendeli.tgbot.types.chat.ChatType;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.Boolean?;kotlin.Boolean?){}[0]
 
@@ -4416,25 +4393,6 @@ final class eu.vendeli.tgbot.types.component/InlineQueryUpdate : eu.vendeli.tgbo
     final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.component/InlineQueryUpdate.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.component/InlineQueryUpdate.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/InlineQueryUpdate.toString|toString(){}[0]
-}
-
-final class eu.vendeli.tgbot.types.component/InputBreakPoint { // eu.vendeli.tgbot.types.component/InputBreakPoint|null[0]
-    constructor <init>(kotlin/Function1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Boolean>, kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit>? = ..., kotlin/Boolean = ...) // eu.vendeli.tgbot.types.component/InputBreakPoint.<init>|<init>(kotlin.Function1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Boolean>;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Unit>?;kotlin.Boolean){}[0]
-
-    final val activity // eu.vendeli.tgbot.types.component/InputBreakPoint.activity|{}activity[0]
-        final fun <get-activity>(): kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit>? // eu.vendeli.tgbot.types.component/InputBreakPoint.activity.<get-activity>|<get-activity>(){}[0]
-    final val condition // eu.vendeli.tgbot.types.component/InputBreakPoint.condition|{}condition[0]
-        final fun <get-condition>(): kotlin/Function1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Boolean> // eu.vendeli.tgbot.types.component/InputBreakPoint.condition.<get-condition>|<get-condition>(){}[0]
-    final val repeat // eu.vendeli.tgbot.types.component/InputBreakPoint.repeat|{}repeat[0]
-        final fun <get-repeat>(): kotlin/Boolean // eu.vendeli.tgbot.types.component/InputBreakPoint.repeat.<get-repeat>|<get-repeat>(){}[0]
-
-    final fun component1(): kotlin/Function1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Boolean> // eu.vendeli.tgbot.types.component/InputBreakPoint.component1|component1(){}[0]
-    final fun component2(): kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit>? // eu.vendeli.tgbot.types.component/InputBreakPoint.component2|component2(){}[0]
-    final fun component3(): kotlin/Boolean // eu.vendeli.tgbot.types.component/InputBreakPoint.component3|component3(){}[0]
-    final fun copy(kotlin/Function1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Boolean> = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit>? = ..., kotlin/Boolean = ...): eu.vendeli.tgbot.types.component/InputBreakPoint // eu.vendeli.tgbot.types.component/InputBreakPoint.copy|copy(kotlin.Function1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Boolean>;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Unit>?;kotlin.Boolean){}[0]
-    final fun equals(kotlin/Any?): kotlin/Boolean // eu.vendeli.tgbot.types.component/InputBreakPoint.equals|equals(kotlin.Any?){}[0]
-    final fun hashCode(): kotlin/Int // eu.vendeli.tgbot.types.component/InputBreakPoint.hashCode|hashCode(){}[0]
-    final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/InputBreakPoint.toString|toString(){}[0]
 }
 
 final class eu.vendeli.tgbot.types.component/InputFile { // eu.vendeli.tgbot.types.component/InputFile|null[0]
