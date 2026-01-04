@@ -100,7 +100,7 @@ internal class WizardCollector : BaseCollector() {
             // Generate wizard code using code generator
             val wizardCodeGenerator = WizardCodeGenerator(ctx.activitiesFile)
             
-            // Generate concrete WizardEngine implementation as Activity
+            // Generate concrete WizardActivity implementation as Activity
             wizardCodeGenerator.generateWizardEngine(
                 engineObjectName = engineObjectName,
                 activityId = activityId,

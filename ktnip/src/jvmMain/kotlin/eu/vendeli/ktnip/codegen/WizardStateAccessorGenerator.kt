@@ -29,11 +29,11 @@ class WizardStateAccessorGenerator(
         }
 
         val wizardContextClassName = ClassName("eu.vendeli.tgbot.types.chain", "WizardContext")
-        val wizardEngineClassName = ClassName("eu.vendeli.tgbot.types.chain", "WizardEngine")
+        val wizardEngineClassName = ClassName("eu.vendeli.tgbot.types.chain", "WizardActivity")
         val wizardStateManagerClassName = ClassName("eu.vendeli.tgbot.types.chain", "WizardStateManager")
 
         // Add necessary imports
-        fileBuilder.addImport("eu.vendeli.tgbot.types.chain", "WizardEngine", "WizardStateManager", "UserChatReference", "WizardStep")
+        fileBuilder.addImport("eu.vendeli.tgbot.types.chain", "WizardActivity", "WizardStateManager", "UserChatReference", "WizardStep")
 
         // Build a map of step class to return type for the when expression
         val stepReturnTypeMap = mutableMapOf<KSClassDeclaration, TypeName>()

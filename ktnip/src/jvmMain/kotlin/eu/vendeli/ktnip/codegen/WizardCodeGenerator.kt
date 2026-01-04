@@ -8,14 +8,14 @@ import eu.vendeli.ktnip.dto.ActivityMetadata
 import eu.vendeli.ktnip.utils.FileBuilder
 
 /**
- * Generates wizard-related code: WizardEngine, start activity, and input activity.
+ * Generates wizard-related code: WizardActivity, start activity, and input activity.
  * Separates code generation logic from collection logic.
  */
 class WizardCodeGenerator(
     private val fileBuilder: FileBuilder,
 ) {
     /**
-     * Generates the WizardEngine object implementation.
+     * Generates the WizardActivity object implementation.
      */
     fun generateWizardEngine(
         engineObjectName: String,
@@ -26,7 +26,7 @@ class WizardCodeGenerator(
         metadata: ActivityMetadata,
         stepsListCode: String,
     ) {
-        fileBuilder.addImport("eu.vendeli.tgbot.types.chain", "WizardEngine", "WizardStep", "WizardStateManager")
+        fileBuilder.addImport("eu.vendeli.tgbot.types.chain", "WizardActivity", "WizardStep", "WizardStateManager")
         fileBuilder.addImport("eu.vendeli.tgbot", "TelegramBot")
         fileBuilder.addImport("eu.vendeli.tgbot.types", "User")
         fileBuilder.addImport("eu.vendeli.tgbot.utils.common", "getInstance")
@@ -39,7 +39,7 @@ class WizardCodeGenerator(
         val stepsType = List::class.asTypeName().parameterizedBy(ClassName("eu.vendeli.tgbot.types.chain", "WizardStep"))
         val engineObject = TypeSpec.objectBuilder(engineObjectName)
             .addModifiers(KModifier.INTERNAL)
-            .superclass(ClassName("eu.vendeli.tgbot.types.chain", "WizardEngine"))
+            .superclass(ClassName("eu.vendeli.tgbot.types.chain", "WizardActivity"))
             // Activity properties
             .addProperty(
                 PropertySpec.builder("id", INT, KModifier.OVERRIDE)
@@ -75,7 +75,7 @@ class WizardCodeGenerator(
                     .initializer("%T::class", ClassName.bestGuess(metadata.argParserClass))
                     .build(),
             )
-            // WizardEngine properties - steps are hardcoded
+            // WizardActivity properties - steps are hardcoded
             .addProperty(
                 PropertySpec.builder("steps", stepsType)
                     .addModifiers(KModifier.OVERRIDE)
@@ -213,7 +213,7 @@ class WizardCodeGenerator(
         activityId: Int,
     ): CodeBlock {
         return CodeBlock.builder().apply {
-            fileBuilder.addImport("eu.vendeli.tgbot.types.chain", "WizardContext", "WizardEngine")
+            fileBuilder.addImport("eu.vendeli.tgbot.types.chain", "WizardContext", "WizardActivity")
             fileBuilder.addImport("eu.vendeli.tgbot.types.component", "userOrNull")
 
             beginControlFlow("return context.run {")
@@ -223,7 +223,7 @@ class WizardCodeGenerator(
             add("val user = update.userOrNull ?: return@run Unit\n")
 
             // Get engine from registry
-            add("val wizardEngine = registry.getActivity(%L) as? %T ?: return@run Unit\n", activityId, ClassName("eu.vendeli.tgbot.types.chain", "WizardEngine"))
+            add("val wizardEngine = registry.getActivity(%L) as? %T ?: return@run Unit\n", activityId, ClassName("eu.vendeli.tgbot.types.chain", "WizardActivity"))
 
             // Create wizard context
             add("val wizardCtx = WizardContext(user, update, bot)\n")
@@ -239,7 +239,7 @@ class WizardCodeGenerator(
         activityId: Int,
     ): CodeBlock {
         return CodeBlock.builder().apply {
-            fileBuilder.addImport("eu.vendeli.tgbot.types.chain", "WizardContext", "WizardEngine")
+            fileBuilder.addImport("eu.vendeli.tgbot.types.chain", "WizardContext", "WizardActivity")
             fileBuilder.addImport("eu.vendeli.tgbot.types.component", "userOrNull")
 
             beginControlFlow("return context.run {")
@@ -249,7 +249,7 @@ class WizardCodeGenerator(
             add("val user = update.userOrNull ?: return@run Unit\n")
 
             // Get engine from registry
-            add("val wizardEngine = registry.getActivity(%L) as? %T ?: return@run Unit\n", activityId, ClassName("eu.vendeli.tgbot.types.chain", "WizardEngine"))
+            add("val wizardEngine = registry.getActivity(%L) as? %T ?: return@run Unit\n", activityId, ClassName("eu.vendeli.tgbot.types.chain", "WizardActivity"))
 
             // Create wizard context
             add("val wizardCtx = WizardContext(user, update, bot)\n")

@@ -103,7 +103,7 @@ class WizardContext(
     }
 
     private fun getStateManagerForStep(step: KClass<out WizardStep>): WizardStateManager<Any>? {
-        val wizardInst = bot.update.registry.getActivity(currentWizardId).safeCast<WizardEngine>() ?: return null
+        val wizardInst = bot.update.registry.getActivity(currentWizardId).safeCast<WizardActivity>() ?: return null
         return wizardInst.getStateManagerForStep(step, bot).safeCast()
     }
 
