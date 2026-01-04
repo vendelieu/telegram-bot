@@ -23,7 +23,7 @@ jobs:
       matrix:
         module: [
           ":telegram-bot",
-          ":ksp",
+          ":ktnip",
           ":webapps",
           ":ktgram-utils",
           ":ktgram-botctx-redis",

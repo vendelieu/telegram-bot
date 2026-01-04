@@ -37,8 +37,8 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
         } != null
 
         target.configurations.configureEach {
-            if (name.startsWith("ksp")) dependencies.whenObjectAdded {
-                if (group == "eu.vendeli" && name == "ksp") kspProcessorApplied = true
+            if (name.startsWith("ktnip")) dependencies.whenObjectAdded {
+                if (group == "eu.vendeli" && name == "ktnip") kspProcessorApplied = true
             }
         }
         target.applyDependencies(libVer, isMultiplatform, kspProcessorApplied)
@@ -56,7 +56,7 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
             if (pluginExtension.forceVersion.isPresent) target.configurations.configureEach cfg@{
                 dependencies
                     .removeIf {
-                        it.group == "eu.vendeli" && (it.name == "telegram-bot" || it.name == "ksp")
+                        it.group == "eu.vendeli" && (it.name == "telegram-bot" || it.name == "ktnip")
                     }.takeIf { it }
                     ?.let {
                         dependencies {
