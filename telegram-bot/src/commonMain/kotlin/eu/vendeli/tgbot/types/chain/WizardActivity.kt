@@ -40,8 +40,9 @@ abstract class WizardActivity : Activity {
      * Starts the wizard by entering the initial step.
      */
     suspend fun start(ctx: WizardContext) {
-        val initial = steps.firstOrNull { it.isInitial }
-            ?: error("Wizard must have exactly one initial step")
+        val initial = steps.firstOrNull {
+            it.isInitial
+        } ?: steps.firstOrNull() ?: error("Wizard must have at least one step")
         enterStep(initial, ctx)
         setCurrentStep(ctx.user, ctx.bot, initial)
     }
