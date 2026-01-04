@@ -138,7 +138,7 @@ It is also possible to process updates functionally:
 fun main() = runBlocking {
     val bot = TelegramBot("BOT_TOKEN")
 
-    bot.setFunctionality { update ->
+    bot.setFunctionality {
         onCommand("/start") {
             message { "Hello, what's your name?" }.send(user, bot)
             bot.inputListener[user] = "conversation"
