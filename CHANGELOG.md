@@ -2,6 +2,7 @@
 
 # 9.0.0
 
+* Covered TgApi version `9.3`.
 * Unified functional declaration with annotation-based. \
   Now they don't differ in behavior and just give different ways to describe functionality. To use `FunctionalDSL` now
   you just need to call `bot.setFunctionality`.
@@ -10,8 +11,8 @@
 * Removed log level handling and added option to pass your own logging factory in configuration.
 * Added to `CommonHadler` option to pass multiple filters.
 * Option to define multiple update type handlers.
+* Introduced new `WizardHandler` annotation and new input chanining mechanism.
 * Renamed ksp plugin name to `ktnip`.
-* Covered TgApi version `9.3`.
 
 ### 8.4.1
 

@@ -20,8 +20,8 @@ internal object DefaultMatchInterceptor : PipelineInterceptor {
                     context.parsedInput = request.command
                     context.activity = context.registry.findInput(context.parsedInput)
                 }
-                if (context.bot.config.inputAutoRemoval
-                    && context.activity !is InputSelfManaging
+                if (context.bot.config.inputAutoRemoval &&
+                    context.activity !is InputSelfManaging
                 ) context.bot.inputListener.del(user.id)
             }
         }

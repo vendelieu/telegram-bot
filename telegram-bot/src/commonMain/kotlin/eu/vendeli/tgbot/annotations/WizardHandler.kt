@@ -33,18 +33,18 @@ annotation class WizardHandler(
     /**
      * Annotation to specify a state manager for a specific wizard step.
      * Overrides the default type-based matching from the parent [WizardHandler] annotation.
-     * 
+     *
      * Example:
      * ```
      * @WizardHandler(trigger = ["/start"], stateManagers = [DefaultStateManager::class])
      * object MyWizard {
      *     object NameStep : WizardStep { ... } // Uses DefaultStateManager
-     *     
+     *
      *     @WizardHandler.StateManager(CustomStateManager::class)
      *     object AgeStep : WizardStep { ... } // Uses CustomStateManager
      * }
      * ```
-     * 
+     *
      * @property value The state manager class to use for this step.
      */
     @Target(AnnotationTarget.CLASS)
@@ -53,4 +53,3 @@ annotation class WizardHandler(
         val value: KClass<out WizardStateManager<*>>,
     )
 }
-

@@ -16,12 +16,12 @@ import kotlin.reflect.KClass
  */
 abstract class WizardActivity : Activity {
     abstract val steps: List<WizardStep>
-    
+
     /**
      * Gets the wizard ID from the activity ID.
      * Format: "wizard:${id}"
      */
-    protected fun getWizardId(): String = "wizard:${id}"
+    protected fun getWizardId(): String = "wizard:$id"
 
     /**
      * Resolves the appropriate state manager for a given step and its store return type.
@@ -126,7 +126,8 @@ abstract class WizardActivity : Activity {
     // Helper methods for current step tracking via inputListener
     // Bot is passed from context, not stored in engine
     protected fun getCurrentStep(user: User, bot: TelegramBot): WizardStep? {
-        val stepId = bot.inputListener.get(user.id)
+        val stepId = bot.inputListener
+            .get(user.id)
             ?.takeIf { it.startsWith("${getWizardId()}:") }
             ?.substringAfterLast(":")
             ?: return null
@@ -141,4 +142,3 @@ abstract class WizardActivity : Activity {
         bot.inputListener.del(user.id)
     }
 }
-
