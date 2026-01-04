@@ -76,7 +76,7 @@ jobs:
           BOT_TOKEN_2: ${{ secrets.BOT_TOKEN_2 }}
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
           PAYMENT_PROVIDER_TOKEN: ${{ secrets.PAYMENT_PROVIDER_TOKEN }}
-        run: ./gradlew aide:test ksp:allTests koverXmlReport
+        run: ./gradlew ksp:allTests koverXmlReport
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5

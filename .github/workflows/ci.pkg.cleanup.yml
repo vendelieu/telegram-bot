@@ -30,8 +30,6 @@ jobs:
           "eu.vendeli.ktgram-utils-mingwx64",
           "eu.vendeli.spring-ktgram-starter",
           "eu.vendeli.spring-ktgram-starter-jvm",
-          "eu.vendeli.ktgram-botctx-redis",
-          "eu.vendeli.ktgram-botctx-redis-jvm",
           "eu.vendeli.ktgram-config-toml",
           "eu.vendeli.ktgram-config-toml-jvm",
           "eu.vendeli.ktgram-config-toml-linuxx64",

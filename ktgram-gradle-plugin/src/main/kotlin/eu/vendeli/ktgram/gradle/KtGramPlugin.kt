@@ -11,11 +11,7 @@ import org.gradle.kotlin.dsl.get
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
-import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
-import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
-import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
-import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
+import org.jetbrains.kotlin.gradle.plugin.*
 import org.jetbrains.kotlin.gradle.utils.loadPropertyFromResources
 
 abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
@@ -172,31 +168,17 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
 
     override fun getPluginArtifact(): SubpluginArtifact = SubpluginArtifact(
         groupId = "eu.vendeli",
-        artifactId = "aide",
+        artifactId = "ktnip",
         version = libVer,
     )
 
-    override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean = true
+    override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean = false
 
-    override fun getCompilerPluginId(): String = "eu.vendeli.aide"
+    override fun getCompilerPluginId(): String = "eu.vendeli.ktnip"
 
-    override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {
-        kotlinCompilation.dependencies {
-            compileOnly("eu.vendeli:aide:$libVer")
-        }
-        return kotlinCompilation.target.project.run {
-            providers.provider {
-                listOf(
-                    SubpluginOption(
-                        key = "autoSend",
-                        value = extensions
-                            .getByType(KtGramExt::class.java)
-                            .aideEnabled
-                            .getOrElse(false)
-                            .toString(),
-                    ),
-                )
-            }
-        }
+    override fun applyToCompilation(
+        kotlinCompilation: KotlinCompilation<*>,
+    ): Provider<List<SubpluginOption>> = kotlinCompilation.target.project.provider {
+        emptyList()
     }
 }

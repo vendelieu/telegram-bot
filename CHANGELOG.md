@@ -13,6 +13,7 @@
 * Option to define multiple update type handlers.
 * Introduced new `WizardHandler` annotation and new input chanining mechanism.
 * Renamed ksp plugin name to `ktnip`.
+* Removed `botctx-redis`, `aide` due to its unpopularity.
 
 ### 8.4.1
 
