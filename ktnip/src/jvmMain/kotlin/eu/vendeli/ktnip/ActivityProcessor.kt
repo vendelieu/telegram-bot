@@ -152,6 +152,7 @@ class ActivityProcessor(
             CommonCollector(),
             UpdateHandlerCollector(),
             UnprocessedHandlerCollector(),
+            WizardCollector(),
         )
 
         collectors.forEach { it.collect(resolver, context) }

@@ -42,6 +42,24 @@ object AnnotationParser {
     }
 
     /**
+     * Parses WizardHandler annotation arguments.
+     */
+    fun parseWizardHandler(arguments: List<KSValueArgument>): WizardHandlerData {
+        val triggers = parseValueList(arguments, "trigger")
+        val scope = parseScopes(arguments) ?: listOf(UpdateType.MESSAGE)
+        val stateManagers = arguments.firstOrNull {
+            it.name?.asString() == "stateManagers"
+        }?.value?.safeCast<List<*>>()?.mapNotNull { i ->
+            when (i) {
+                is KSType -> i.declaration as? KSClassDeclaration
+                is KSClassDeclaration -> i
+                else -> null
+            }
+        } ?: emptyList()
+        return WizardHandlerData(triggers, scope, stateManagers)
+    }
+
+    /**
      * Parses InputHandler annotation arguments.
      */
     fun parseInputHandler(arguments: List<KSValueArgument>): List<String> =
@@ -128,8 +146,8 @@ object AnnotationParser {
     /**
      * Parses value list argument.
      */
-    private fun parseValueList(arguments: List<KSValueArgument>): List<String> =
-        arguments.first { it.name?.asString() == "value" }.value.cast()
+    private fun parseValueList(arguments: List<KSValueArgument>, paramName: String = "value"): List<String> =
+        arguments.first { it.name?.asString() == paramName }.value.cast()
 
     /**
      * Parses regex options for CommonHandler.Regex.
@@ -153,6 +171,15 @@ data class CommandHandlerData(
     val commands: List<String>,
     val scope: List<UpdateType>,
     val autoAnswer: Boolean?,
+)
+
+/**
+ * Data class for parsed WizardHandler annotation.
+ */
+data class WizardHandlerData(
+    val triggers: List<String>,
+    val scope: List<UpdateType>,
+    val stateManagers: List<KSClassDeclaration>,
 )
 
 /**

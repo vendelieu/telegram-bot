@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.core.interceptors
 
 import eu.vendeli.tgbot.core.PipelineInterceptor
+import eu.vendeli.tgbot.interfaces.marker.InputSelfManaging
 import eu.vendeli.tgbot.types.component.ProcessingContext
 import eu.vendeli.tgbot.types.component.userOrNull
 import eu.vendeli.tgbot.utils.common.parseCommand
@@ -14,12 +15,14 @@ internal object DefaultMatchInterceptor : PipelineInterceptor {
                 .getAsync(user.id)
                 .await()
             if (input != null) {
-                if (context.bot.config.inputAutoRemoval) context.bot.inputListener.del(user.id)
                 if (context.activity == null) {
                     val request = context.bot.update.parseCommand(input)
                     context.parsedInput = request.command
                     context.activity = context.registry.findInput(context.parsedInput)
                 }
+                if (context.bot.config.inputAutoRemoval
+                    && context.activity !is InputSelfManaging
+                ) context.bot.inputListener.del(user.id)
             }
         }
 
