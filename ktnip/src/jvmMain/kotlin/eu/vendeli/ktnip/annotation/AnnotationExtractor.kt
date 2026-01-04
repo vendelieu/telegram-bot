@@ -50,7 +50,7 @@ object AnnotationExtractor {
                 ?.findAnnotationRecursively(RateLimits::class)
                 ?.arguments
                 ?.let { AnnotationParser.parseRateLimits(it) }
-            ?: RateLimitsConfig(0, 0)
+            ?: RateLimitsConfig.NOT_LIMITED
 
     /**
      * Extracts ArgParser annotation with priority: function > class > default.
@@ -93,7 +93,7 @@ object AnnotationExtractor {
             .findAnnotationRecursively(RateLimits::class)
             ?.arguments
             ?.let { AnnotationParser.parseRateLimits(it) }
-            ?: RateLimitsConfig(0, 0)
+            ?: RateLimitsConfig.NOT_LIMITED
 
     /**
      * Extracts ArgParser annotation from a class declaration.

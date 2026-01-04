@@ -117,13 +117,17 @@ class ActivityCodeGenerator(
                 .build(),
         )
 
-        if (metadata.rateLimits.period > 0 || metadata.rateLimits.rate > 0) {
-            addProperty(
-                PropertySpec.builder("rateLimits", RateLimits::class, KModifier.OVERRIDE)
-                    .initializer("RateLimits(%LL, %LL)", metadata.rateLimits.period, metadata.rateLimits.rate)
-                    .build(),
-            )
-        }
+        addProperty(
+            PropertySpec.builder("rateLimits", RateLimits::class, KModifier.OVERRIDE)
+                .initializer(
+                    if (metadata.rateLimits.period > 0 || metadata.rateLimits.rate > 0) {
+                        CodeBlock.of("RateLimits(%LL, %LL)", metadata.rateLimits.period, metadata.rateLimits.rate)
+                    } else {
+                        CodeBlock.of("%T.NOT_LIMITED", RateLimits::class)
+                    }
+                )
+                .build(),
+        )
 
         if (metadata.guardClass != DefaultGuard::class.fqName) {
             addProperty(
@@ -155,7 +159,7 @@ class ActivityCodeGenerator(
  * Extension function to create ActivityMetadata from a function declaration.
  */
 fun KSFunctionDeclaration.toActivityMetadata(
-    rateLimits: RateLimits = RateLimits(0, 0),
+    rateLimits: RateLimits = RateLimits.NOT_LIMITED,
     guardClass: String? = null,
     argParserClass: String? = null,
 ): ActivityMetadata {

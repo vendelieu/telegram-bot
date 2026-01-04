@@ -20,7 +20,7 @@ data class ActivityMetadata(
     val function: String,
 
     /** Rate limits configuration. */
-    val rateLimits: RateLimits = RateLimits(0, 0),
+    val rateLimits: RateLimits = RateLimits.NOT_LIMITED,
 
     /** Fully qualified name of Guard class. */
     val guardClass: String = DefaultGuard::class.fqName,

@@ -58,7 +58,13 @@ class WizardCodeGenerator(
             )
             .addProperty(
                 PropertySpec.builder("rateLimits", ClassName("eu.vendeli.tgbot.types.configuration", "RateLimits"), KModifier.OVERRIDE)
-                    .initializer("%T(%L, %L)", ClassName("eu.vendeli.tgbot.types.configuration", "RateLimits"), metadata.rateLimits.rate, metadata.rateLimits.period)
+                    .initializer(
+                        if (metadata.rateLimits.period > 0 || metadata.rateLimits.rate > 0) {
+                            CodeBlock.of("%T(%L, %L)", ClassName("eu.vendeli.tgbot.types.configuration", "RateLimits"), metadata.rateLimits.rate, metadata.rateLimits.period)
+                        } else {
+                            CodeBlock.of("%T.NOT_LIMITED", ClassName("eu.vendeli.tgbot.types.configuration", "RateLimits"))
+                        }
+                    )
                     .build(),
             )
             .addProperty(
