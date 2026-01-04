@@ -84,6 +84,16 @@ public abstract interface annotation class eu/vendeli/tgbot/annotations/UpdateHa
 	public abstract fun type ()[Leu/vendeli/tgbot/types/component/UpdateType;
 }
 
+public abstract interface annotation class eu/vendeli/tgbot/annotations/WizardHandler : java/lang/annotation/Annotation {
+	public abstract fun scope ()[Leu/vendeli/tgbot/types/component/UpdateType;
+	public abstract fun stateManagers ()[Ljava/lang/Class;
+	public abstract fun trigger ()[Ljava/lang/String;
+}
+
+public abstract interface annotation class eu/vendeli/tgbot/annotations/WizardHandler$StateManager : java/lang/annotation/Annotation {
+	public abstract fun value ()Ljava/lang/Class;
+}
+
 public abstract interface annotation class eu/vendeli/tgbot/annotations/dsl/BotDSL : java/lang/annotation/Annotation {
 }
 
@@ -3144,6 +3154,9 @@ public abstract interface class eu/vendeli/tgbot/interfaces/marker/Autowiring {
 public abstract interface class eu/vendeli/tgbot/interfaces/marker/Button {
 }
 
+public abstract interface class eu/vendeli/tgbot/interfaces/marker/InputSelfManaging {
+}
+
 public abstract interface class eu/vendeli/tgbot/interfaces/marker/Keyboard {
 	public static final field Companion Leu/vendeli/tgbot/interfaces/marker/Keyboard$Companion;
 }
@@ -4082,6 +4095,91 @@ public abstract class eu/vendeli/tgbot/types/chain/StatefulLink : eu/vendeli/tgb
 	public fun getChainingStrategy ()Leu/vendeli/tgbot/types/chain/ChainingStrategy;
 	public fun getRetryAfterBreak ()Z
 	public abstract fun getState ()Leu/vendeli/tgbot/types/chain/LinkStateManager;
+}
+
+public abstract class eu/vendeli/tgbot/types/chain/Transition {
+}
+
+public final class eu/vendeli/tgbot/types/chain/Transition$Finish : eu/vendeli/tgbot/types/chain/Transition {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/chain/Transition$Finish;
+}
+
+public final class eu/vendeli/tgbot/types/chain/Transition$JumpTo : eu/vendeli/tgbot/types/chain/Transition {
+	public fun <init> (Lkotlin/reflect/KClass;)V
+	public final fun component1 ()Lkotlin/reflect/KClass;
+	public final fun copy (Lkotlin/reflect/KClass;)Leu/vendeli/tgbot/types/chain/Transition$JumpTo;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/chain/Transition$JumpTo;Lkotlin/reflect/KClass;ILjava/lang/Object;)Leu/vendeli/tgbot/types/chain/Transition$JumpTo;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getStep ()Lkotlin/reflect/KClass;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class eu/vendeli/tgbot/types/chain/Transition$Next : eu/vendeli/tgbot/types/chain/Transition {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/chain/Transition$Next;
+}
+
+public final class eu/vendeli/tgbot/types/chain/Transition$Retry : eu/vendeli/tgbot/types/chain/Transition {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/chain/Transition$Retry;
+}
+
+public final class eu/vendeli/tgbot/types/chain/UserChatReference {
+	public fun <init> (JJ)V
+	public final fun component1 ()J
+	public final fun component2 ()J
+	public final fun copy (JJ)Leu/vendeli/tgbot/types/chain/UserChatReference;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/chain/UserChatReference;JJILjava/lang/Object;)Leu/vendeli/tgbot/types/chain/UserChatReference;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChatId ()J
+	public final fun getUserId ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract class eu/vendeli/tgbot/types/chain/WizardActivity : eu/vendeli/tgbot/core/Activity {
+	public fun <init> ()V
+	protected final fun clearCurrentStep (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;)V
+	public fun getArgParser ()Lkotlin/reflect/KClass;
+	protected final fun getCurrentStep (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;)Leu/vendeli/tgbot/types/chain/WizardStep;
+	public fun getGuardClass ()Lkotlin/reflect/KClass;
+	public fun getRateLimits ()Leu/vendeli/tgbot/types/configuration/RateLimits;
+	public abstract fun getStateManagerForStep (Lkotlin/reflect/KClass;Leu/vendeli/tgbot/TelegramBot;)Leu/vendeli/tgbot/types/chain/WizardStateManager;
+	public abstract fun getSteps ()Ljava/util/List;
+	protected final fun getWizardId ()Ljava/lang/String;
+	public final fun handleInput (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun invoke (Leu/vendeli/tgbot/types/component/ProcessingContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	protected final fun setCurrentStep (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/types/chain/WizardStep;)V
+	public final fun start (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class eu/vendeli/tgbot/types/chain/WizardContext {
+	public fun <init> (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;)V
+	public final fun delState (Lkotlin/reflect/KClass;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getBot ()Leu/vendeli/tgbot/TelegramBot;
+	public final fun getCurrentWizardId ()I
+	public final fun getState (Lkotlin/reflect/KClass;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getUpdate ()Leu/vendeli/tgbot/types/component/ProcessedUpdate;
+	public final fun getUser ()Leu/vendeli/tgbot/types/User;
+	public final fun getUserReference ()Leu/vendeli/tgbot/types/chain/UserChatReference;
+	public final fun setState (Lkotlin/reflect/KClass;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class eu/vendeli/tgbot/types/chain/WizardStateManager {
+	public abstract fun del (Lkotlin/reflect/KClass;Leu/vendeli/tgbot/types/chain/UserChatReference;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun get (Lkotlin/reflect/KClass;Leu/vendeli/tgbot/types/chain/UserChatReference;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun set (Lkotlin/reflect/KClass;Leu/vendeli/tgbot/types/chain/UserChatReference;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract class eu/vendeli/tgbot/types/chain/WizardStep {
+	public fun <init> ()V
+	public fun <init> (Z)V
+	public synthetic fun <init> (ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getId ()Ljava/lang/String;
+	public final fun isInitial ()Z
+	public abstract fun onEntry (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun onRetry (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun store (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun validate (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class eu/vendeli/tgbot/types/chat/Chat : eu/vendeli/tgbot/types/component/IdLong {
@@ -7238,6 +7336,7 @@ public final class eu/vendeli/tgbot/types/configuration/RateLimiterConfiguration
 }
 
 public final class eu/vendeli/tgbot/types/configuration/RateLimits {
+	public static final field Companion Leu/vendeli/tgbot/types/configuration/RateLimits$Companion;
 	public fun <init> ()V
 	public fun <init> (JJ)V
 	public synthetic fun <init> (JJILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -7252,6 +7351,10 @@ public final class eu/vendeli/tgbot/types/configuration/RateLimits {
 	public final fun setPeriod (J)V
 	public final fun setRate (J)V
 	public fun toString ()Ljava/lang/String;
+}
+
+public final class eu/vendeli/tgbot/types/configuration/RateLimits$Companion {
+	public final fun getNOT_LIMITED ()Leu/vendeli/tgbot/types/configuration/RateLimits;
 }
 
 public final class eu/vendeli/tgbot/types/configuration/UpdatesListenerConfiguration {
