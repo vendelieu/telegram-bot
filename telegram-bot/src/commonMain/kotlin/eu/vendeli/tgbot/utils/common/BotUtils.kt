@@ -55,10 +55,6 @@ internal suspend inline fun TgUpdateHandler.handleFailure(
     is ExceptionHandlingStrategy.Handle -> strategy.handler.handle(throwable, update, bot)
 }
 
-internal suspend inline fun <T> asyncAction(crossinline block: suspend () -> T): Deferred<T> = coroutineScope {
-    async { block() }
-}
-
 @Suppress("UNCHECKED_CAST")
 internal inline fun <T> Any?.cast() = this as T
 
