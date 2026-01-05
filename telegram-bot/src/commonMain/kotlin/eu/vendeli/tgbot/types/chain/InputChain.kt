@@ -12,7 +12,7 @@ fun interface BreakCondition {
     suspend fun invoke(user: User, update: ProcessedUpdate, bot: TelegramBot): Boolean
 }
 
-@Deprecated("Use Wizard instead")
+@Deprecated("Use Wizard instead, will be removed in 9.1")
 abstract class ChainLink : Link<Unit> {
     override val retryAfterBreak = true
     override val breakCondition: BreakCondition? = null
