@@ -5,7 +5,6 @@ import ch.qos.logback.classic.Logger
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
 import eu.vendeli.tgbot.interfaces.helper.ContextLoader
-import eu.vendeli.tgbot.types.component.LogLvl
 import eu.vendeli.tgbot.types.configuration.BotConfiguration
 import kotlinx.coroutines.Dispatchers
 import org.slf4j.LoggerFactory
@@ -31,11 +30,11 @@ actual fun TelegramBot.loadContext(ctx: ContextLoader?) {
 actual val KClass<*>.fqName: String
     get() = qualifiedName ?: simpleName ?: "Unknown"
 
-var BotConfiguration.logLevel: LogLvl?
+var BotConfiguration.logLevel: Level?
     get() = LoggerFactory.getLogger("eu.vendeli.tgbot")
-        .safeCast<Logger>()?.level?.let { LogLvl.valueOf(it.levelStr) }
+        .safeCast<Logger>()?.level
     set(value) {
         if (value == null) return
         val logger = LoggerFactory.getLogger("eu.vendeli.tgbot").safeCast<Logger>()
-        logger?.level = Level.toLevel(value.name, Level.INFO)
+        logger?.level = value
     }
