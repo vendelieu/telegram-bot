@@ -6,9 +6,11 @@
 * Unified functional declaration with annotation-based. \
   Now they don't differ in behavior and just give different ways to describe functionality. To use `FunctionalDSL` now
   you just need to call `bot.setFunctionality`.
-* Changed generated code to more robust entities, which give a duplicate-free solution with same function having different handlers.
+* Changed generated code to more robust entities, which give a duplicate-free solution with same function having
+  different handlers.
 * Introduced new interceptor mechanism for handling updates which replaced middlewares.
-* Removed log level handling and added option to pass your own logging factory in configuration.
+* Removed log level handling (yet still there's fallback as logLevel in `BotConfiguration` for those who use logback)
+  and added option to pass your own logging factory in configuration.
 * Added to `CommonHadler` option to pass multiple filters.
 * Option to define multiple update type handlers.
 * Introduced new `WizardHandler` annotation and new input chanining mechanism.
