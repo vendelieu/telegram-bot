@@ -2883,6 +2883,25 @@ public final class eu/vendeli/tgbot/implementations/InputListenerMapImpl : eu/ve
 	public fun setAsync (Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public final class eu/vendeli/tgbot/implementations/MapIntStateManager : eu/vendeli/tgbot/implementations/MapStateManager {
+	public fun <init> ()V
+}
+
+public final class eu/vendeli/tgbot/implementations/MapLongStateManager : eu/vendeli/tgbot/implementations/MapStateManager {
+	public fun <init> ()V
+}
+
+public abstract class eu/vendeli/tgbot/implementations/MapStateManager : eu/vendeli/tgbot/types/chain/WizardStateManager {
+	public fun <init> ()V
+	public fun del (Lkotlin/reflect/KClass;Leu/vendeli/tgbot/types/chain/UserChatReference;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun get (Lkotlin/reflect/KClass;Leu/vendeli/tgbot/types/chain/UserChatReference;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun set (Lkotlin/reflect/KClass;Leu/vendeli/tgbot/types/chain/UserChatReference;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class eu/vendeli/tgbot/implementations/MapStringStateManager : eu/vendeli/tgbot/implementations/MapStateManager {
+	public fun <init> ()V
+}
+
 public final class eu/vendeli/tgbot/implementations/TokenBucketLimiterImpl : eu/vendeli/tgbot/interfaces/helper/RateLimitMechanism {
 	public fun <init> ()V
 	public fun isLimited (Leu/vendeli/tgbot/types/configuration/RateLimits;JLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -6777,19 +6796,6 @@ public final synthetic class eu/vendeli/tgbot/types/component/InputFile$$seriali
 
 public final class eu/vendeli/tgbot/types/component/InputFile$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class eu/vendeli/tgbot/types/component/LogLvl : java/lang/Enum {
-	public static final field ALL Leu/vendeli/tgbot/types/component/LogLvl;
-	public static final field DEBUG Leu/vendeli/tgbot/types/component/LogLvl;
-	public static final field ERROR Leu/vendeli/tgbot/types/component/LogLvl;
-	public static final field INFO Leu/vendeli/tgbot/types/component/LogLvl;
-	public static final field OFF Leu/vendeli/tgbot/types/component/LogLvl;
-	public static final field TRACE Leu/vendeli/tgbot/types/component/LogLvl;
-	public static final field WARN Leu/vendeli/tgbot/types/component/LogLvl;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Leu/vendeli/tgbot/types/component/LogLvl;
-	public static fun values ()[Leu/vendeli/tgbot/types/component/LogLvl;
 }
 
 public final class eu/vendeli/tgbot/types/component/MessageReactionCountUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference {
@@ -16853,6 +16859,8 @@ public final class eu/vendeli/tgbot/utils/builders/ReplyKeyboardMarkupBuilderKt 
 
 public final class eu/vendeli/tgbot/utils/common/BotUtils_jvmKt {
 	public static final fun getFqName (Lkotlin/reflect/KClass;)Ljava/lang/String;
+	public static final fun getLogLevel (Leu/vendeli/tgbot/types/configuration/BotConfiguration;)Lch/qos/logback/classic/Level;
+	public static final fun setLogLevel (Leu/vendeli/tgbot/types/configuration/BotConfiguration;Lch/qos/logback/classic/Level;)V
 }
 
 public final class eu/vendeli/tgbot/utils/common/CONSTKt {

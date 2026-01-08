@@ -441,22 +441,6 @@ final enum class eu.vendeli.tgbot.types.component/HttpLogLevel : kotlin/Enum<eu.
     final fun values(): kotlin/Array<eu.vendeli.tgbot.types.component/HttpLogLevel> // eu.vendeli.tgbot.types.component/HttpLogLevel.values|values#static(){}[0]
 }
 
-final enum class eu.vendeli.tgbot.types.component/LogLvl : kotlin/Enum<eu.vendeli.tgbot.types.component/LogLvl> { // eu.vendeli.tgbot.types.component/LogLvl|null[0]
-    enum entry ALL // eu.vendeli.tgbot.types.component/LogLvl.ALL|null[0]
-    enum entry DEBUG // eu.vendeli.tgbot.types.component/LogLvl.DEBUG|null[0]
-    enum entry ERROR // eu.vendeli.tgbot.types.component/LogLvl.ERROR|null[0]
-    enum entry INFO // eu.vendeli.tgbot.types.component/LogLvl.INFO|null[0]
-    enum entry OFF // eu.vendeli.tgbot.types.component/LogLvl.OFF|null[0]
-    enum entry TRACE // eu.vendeli.tgbot.types.component/LogLvl.TRACE|null[0]
-    enum entry WARN // eu.vendeli.tgbot.types.component/LogLvl.WARN|null[0]
-
-    final val entries // eu.vendeli.tgbot.types.component/LogLvl.entries|#static{}entries[0]
-        final fun <get-entries>(): kotlin.enums/EnumEntries<eu.vendeli.tgbot.types.component/LogLvl> // eu.vendeli.tgbot.types.component/LogLvl.entries.<get-entries>|<get-entries>#static(){}[0]
-
-    final fun valueOf(kotlin/String): eu.vendeli.tgbot.types.component/LogLvl // eu.vendeli.tgbot.types.component/LogLvl.valueOf|valueOf#static(kotlin.String){}[0]
-    final fun values(): kotlin/Array<eu.vendeli.tgbot.types.component/LogLvl> // eu.vendeli.tgbot.types.component/LogLvl.values|values#static(){}[0]
-}
-
 final enum class eu.vendeli.tgbot.types.component/ParseMode : kotlin/Enum<eu.vendeli.tgbot.types.component/ParseMode> { // eu.vendeli.tgbot.types.component/ParseMode|null[0]
     enum entry HTML // eu.vendeli.tgbot.types.component/ParseMode.HTML|null[0]
     enum entry Markdown // eu.vendeli.tgbot.types.component/ParseMode.Markdown|null[0]
@@ -1085,6 +1069,14 @@ abstract class <#A: eu.vendeli.tgbot.interfaces.marker/Button> eu.vendeli.tgbot.
 
     final fun br() // eu.vendeli.tgbot.utils.builders/KeyboardBuilder.br|br(){}[0]
     final fun newLine() // eu.vendeli.tgbot.utils.builders/KeyboardBuilder.newLine|newLine(){}[0]
+}
+
+abstract class <#A: kotlin/Any> eu.vendeli.tgbot.implementations/MapStateManager : eu.vendeli.tgbot.types.chain/WizardStateManager<#A> { // eu.vendeli.tgbot.implementations/MapStateManager|null[0]
+    constructor <init>() // eu.vendeli.tgbot.implementations/MapStateManager.<init>|<init>(){}[0]
+
+    open suspend fun del(kotlin.reflect/KClass<out eu.vendeli.tgbot.types.chain/WizardStep>, eu.vendeli.tgbot.types.chain/UserChatReference) // eu.vendeli.tgbot.implementations/MapStateManager.del|del(kotlin.reflect.KClass<out|eu.vendeli.tgbot.types.chain.WizardStep>;eu.vendeli.tgbot.types.chain.UserChatReference){}[0]
+    open suspend fun get(kotlin.reflect/KClass<out eu.vendeli.tgbot.types.chain/WizardStep>, eu.vendeli.tgbot.types.chain/UserChatReference): #A? // eu.vendeli.tgbot.implementations/MapStateManager.get|get(kotlin.reflect.KClass<out|eu.vendeli.tgbot.types.chain.WizardStep>;eu.vendeli.tgbot.types.chain.UserChatReference){}[0]
+    open suspend fun set(kotlin.reflect/KClass<out eu.vendeli.tgbot.types.chain/WizardStep>, eu.vendeli.tgbot.types.chain/UserChatReference, #A) // eu.vendeli.tgbot.implementations/MapStateManager.set|set(kotlin.reflect.KClass<out|eu.vendeli.tgbot.types.chain.WizardStep>;eu.vendeli.tgbot.types.chain.UserChatReference;1:0){}[0]
 }
 
 abstract class <#A: kotlin/Any?, #B: kotlin/Any?> eu.vendeli.tgbot.types.chain/StatefulLink : eu.vendeli.tgbot.types.chain/Link<#B> { // eu.vendeli.tgbot.types.chain/StatefulLink|null[0]
@@ -2023,6 +2015,18 @@ final class eu.vendeli.tgbot.implementations/InputListenerMapImpl : eu.vendeli.t
     final suspend fun delAsync(kotlin/Long): kotlinx.coroutines/Deferred<kotlin/Boolean> // eu.vendeli.tgbot.implementations/InputListenerMapImpl.delAsync|delAsync(kotlin.Long){}[0]
     final suspend fun getAsync(kotlin/Long): kotlinx.coroutines/Deferred<kotlin/String?> // eu.vendeli.tgbot.implementations/InputListenerMapImpl.getAsync|getAsync(kotlin.Long){}[0]
     final suspend fun setAsync(kotlin/Long, kotlin/String): kotlinx.coroutines/Deferred<kotlin/Boolean> // eu.vendeli.tgbot.implementations/InputListenerMapImpl.setAsync|setAsync(kotlin.Long;kotlin.String){}[0]
+}
+
+final class eu.vendeli.tgbot.implementations/MapIntStateManager : eu.vendeli.tgbot.implementations/MapStateManager<kotlin/Int> { // eu.vendeli.tgbot.implementations/MapIntStateManager|null[0]
+    constructor <init>() // eu.vendeli.tgbot.implementations/MapIntStateManager.<init>|<init>(){}[0]
+}
+
+final class eu.vendeli.tgbot.implementations/MapLongStateManager : eu.vendeli.tgbot.implementations/MapStateManager<kotlin/Long> { // eu.vendeli.tgbot.implementations/MapLongStateManager|null[0]
+    constructor <init>() // eu.vendeli.tgbot.implementations/MapLongStateManager.<init>|<init>(){}[0]
+}
+
+final class eu.vendeli.tgbot.implementations/MapStringStateManager : eu.vendeli.tgbot.implementations/MapStateManager<kotlin/String> { // eu.vendeli.tgbot.implementations/MapStringStateManager|null[0]
+    constructor <init>() // eu.vendeli.tgbot.implementations/MapStringStateManager.<init>|<init>(){}[0]
 }
 
 final class eu.vendeli.tgbot.implementations/TokenBucketLimiterImpl : eu.vendeli.tgbot.interfaces.helper/RateLimitMechanism { // eu.vendeli.tgbot.implementations/TokenBucketLimiterImpl|null[0]
