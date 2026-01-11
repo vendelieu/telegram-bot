@@ -186,7 +186,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         }
         bot.update.setListener {
             handle(it)
-            if (generalCounter.incrementAndGet() == 2) bot.update.stopListener()
+            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
         }
 
         startReached.shouldBeTrue()
