@@ -10,7 +10,6 @@ import eu.vendeli.tgbot.types.configuration.RateLimits
 
 typealias FileBuilder = com.squareup.kotlinpoet.FileSpec.Builder
 
-const val INVOCATION_LAMBDA_PARAMS = "context"
 const val DEFAULT_CODEGEN_PACKAGE = "eu.vendeli.tgbot.generated"
 
 /**

@@ -148,7 +148,6 @@ class ActivityProcessor(
             BotCtxCollector(),
             CommandCollector(),
             InputCollector(),
-            InputChainCollector(),
             CommonCollector(),
             UpdateHandlerCollector(),
             UnprocessedHandlerCollector(),

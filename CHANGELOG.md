@@ -4,6 +4,7 @@
 
 * Changed resolvable context type from `AdditionalContext` to `ProcessingContext`.
 * Added option to define custom context in `AdditionalContext`.
+* Removed `InputChain` in favor of new `WizardHandler`.
 
 # 9.0.0
 

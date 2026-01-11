@@ -12,8 +12,6 @@ import eu.vendeli.tgbot.interfaces.ctx.ClassData
 import eu.vendeli.tgbot.interfaces.ctx.UserData
 import eu.vendeli.tgbot.interfaces.marker.Autowiring
 import eu.vendeli.tgbot.types.User
-import eu.vendeli.tgbot.types.chain.ChainingStrategy
-import eu.vendeli.tgbot.types.chain.Link
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.component.*
 import eu.vendeli.tgbot.utils.common.fqName
@@ -70,11 +68,6 @@ object TypeConstants {
     val classDataCtx: TypeName = ClassData::class.asTypeName().parameterizedBy(STAR)
     val classDataCtxDef: TypeName = ClassDataImpl::class.asTypeName()
 
-    // Chain types
-    val ChainingStrategyDefault: TypeName = ChainingStrategy.Default::class.asTypeName()
-
-    // Fully qualified names
-    val linkQName: String = Link::class.fqName
     val autowiringFQName: String = Autowiring::class.fqName
 
     val messageList = listOf(UpdateType.MESSAGE)
