@@ -91,42 +91,6 @@ class TestActivitiesLoader : ContextLoader {
         registerActivity(testObjTest2Activity)
         registerInput("testInp3", testObjTest2Activity.id)
 
-        val conversationNameActivity = TestActivity(8, "eu.vendeli.fixtures.Conversation", "Name") { context ->
-            val inst = context.bot.config.classManager
-                .getInstance(Conversation.Name::class) as Conversation.Name
-            val user = context.update.userOrNull!!
-            inst.beforeAction?.invoke(user, context.update, context.bot)
-            val breakPoint = inst.breakCondition?.invoke(user, context.update, context.bot) ?: false
-            if (breakPoint) {
-                if (inst.retryAfterBreak) context.bot.inputListener[user] = "eu.vendeli.fixtures.Conversation.Name"
-                inst.breakAction(user, context.update, context.bot)
-            } else {
-                val linkState = inst.action(user, context.update, context.bot)
-                inst.state.set(user, linkState)
-                context.bot.inputListener[user] = "eu.vendeli.fixtures.Conversation.Age"
-                inst.afterAction?.invoke(user, context.update, context.bot)
-            }
-        }
-        registerActivity(conversationNameActivity)
-        registerInput("eu.vendeli.fixtures.Conversation.Name", conversationNameActivity.id)
-
-        val conversationAgeActivity = TestActivity(9, "eu.vendeli.fixtures.Conversation", "Age") { context ->
-            val inst = context.bot.config.classManager
-                .getInstance(Conversation.Age::class) as Conversation.Age
-            val user = context.update.userOrNull!!
-            inst.beforeAction?.invoke(user, context.update, context.bot)
-            val breakPoint = inst.breakCondition?.invoke(user, context.update, context.bot) ?: false
-            if (breakPoint) {
-                if (inst.retryAfterBreak) context.bot.inputListener[user] = "eu.vendeli.fixtures.Conversation.Age"
-                inst.breakAction(user, context.update, context.bot)
-            } else {
-                inst.action(user, context.update, context.bot)
-                inst.afterAction?.invoke(user, context.update, context.bot)
-            }
-        }
-        registerActivity(conversationAgeActivity)
-        registerInput("eu.vendeli.fixtures.Conversation.Age", conversationAgeActivity.id)
-
         // Commons
         val commonActivity = TestActivity(10, "eu.vendeli.fixtures.TgAnnotationsModel", "common") { context ->
             val inst = context.bot.config.classManager

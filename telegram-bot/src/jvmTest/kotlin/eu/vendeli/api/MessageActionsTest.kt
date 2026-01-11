@@ -117,7 +117,7 @@ class MessageActionsTest : BotTestContext() {
 
     @Test
     suspend fun `send message draft method test`() {
-        val result = sendMessageDraft(TG_ID, 1, "test draft")
+        val result = sendMessageDraft(1, "test draft")
             .sendReq()
             .shouldSuccess()
 
@@ -126,7 +126,10 @@ class MessageActionsTest : BotTestContext() {
 
     @Test
     suspend fun `send message draft with message thread id method test`() {
-        val result = sendMessageDraft(TG_ID, 2, "test draft", 123)
+        val result = sendMessageDraft(2, "test draft")
+            .options {
+                messageThreadId = 3
+            }
             .sendReq()
             .shouldSuccess()
 
@@ -135,7 +138,7 @@ class MessageActionsTest : BotTestContext() {
 
     @Test
     suspend fun `send message draft with entities method test`() {
-        val result = sendMessageDraft(TG_ID, 3, messageThreadId = null) {
+        val result = sendMessageDraft(3) {
             "test" - bold { " draft" }
         }.sendReq()
             .shouldSuccess()
