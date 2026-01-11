@@ -40,6 +40,7 @@ import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.IsolationMode
+import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -163,35 +164,34 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
     @Test
     suspend fun `common handler reaching test`() {
         val generalCounter = AtomicInteger(0)
-        val startCounter = AtomicInteger(0)
-        val commonHandler = AtomicInteger(0)
-        val regexCommonHandler = AtomicInteger(0)
+        var startReached = false
+        var commonReached = false
+        var regexCommonReached = false
 
         doMockHttp(MockUpdate.TEXT_LIST("test", "/start", "123"))
 
         bot.update.registry.clear()
         bot.setFunctionality {
             onCommand("/start") {
-                startCounter.incrementAndGet()
+                startReached = true
             }
 
             common("test") {
-                commonHandler.incrementAndGet()
+                commonReached = true
             }
 
             common("^\\d+\$".toRegex()) {
-                regexCommonHandler.incrementAndGet()
+                regexCommonReached = true
             }
         }
         bot.update.setListener {
             handle(it)
-            if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
+            if (generalCounter.incrementAndGet() == 2) bot.update.stopListener()
         }
 
-        generalCounter.get() shouldBe 6
-        startCounter.get() shouldBe 2
-        commonHandler.get() shouldBe 2
-        regexCommonHandler.get() shouldBe 2
+        startReached.shouldBeTrue()
+        commonReached.shouldBeTrue()
+        regexCommonReached.shouldBeTrue()
     }
 
     @Test

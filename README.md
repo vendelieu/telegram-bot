@@ -132,7 +132,7 @@ suspend fun color(user: User, bot: TelegramBot) {
 *a little more detailed about handlers you can see
 in [handlers](https://github.com/vendelieu/telegram-bot/wiki/Handlers) article.*
 
-It is also possible to process updates functionally:
+It is also possible to set functionality through dsl:
 
 ```kotlin
 fun main() = runBlocking {
