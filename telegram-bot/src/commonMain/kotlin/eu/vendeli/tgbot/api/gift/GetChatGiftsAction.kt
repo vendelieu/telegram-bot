@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.types.gift.OwnedGifts
 import eu.vendeli.tgbot.types.options.GetChatGiftsOptions
 import eu.vendeli.tgbot.utils.internal.encodeWith
 import eu.vendeli.tgbot.utils.internal.getReturnType
+import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
 
 @TgAPI
 class GetChatGiftsAction(
@@ -23,7 +24,7 @@ class GetChatGiftsAction(
     override val options = GetChatGiftsOptions()
 
     init {
-        parameters["chat_id"] = chatId.encodeWith(Identifier.serializer())
+        parameters["chat_id"] = chatId.encodeWith(DynamicLookupSerializer)
     }
 }
 
