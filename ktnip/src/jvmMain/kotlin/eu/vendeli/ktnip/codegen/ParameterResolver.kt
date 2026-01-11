@@ -47,7 +47,7 @@ class ParameterResolver(
             TypeConstants.userClass -> ParameterResolutionStrategy.User(typeName, isNullable)
             TypeConstants.chatClass -> ParameterResolutionStrategy.Chat(typeName, isNullable)
             TypeConstants.botClass -> ParameterResolutionStrategy.Bot(typeName)
-            TypeConstants.processingCtx -> ParameterResolutionStrategy.AdditionalContext(typeName)
+            TypeConstants.processingCtx -> ParameterResolutionStrategy.ProcessingContext(typeName)
             TypeConstants.updateClass -> ParameterResolutionStrategy.Update(typeName)
 
             // String and primitives from parameters map

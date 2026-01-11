@@ -41,8 +41,8 @@ class InvocationCodeGenerator(
                 CodeBlock.of("val param%L = bot\n", parameterIndex)
             }
 
-            is ParameterResolutionStrategy.AdditionalContext -> {
-                CodeBlock.of("val param%L = ctx\n", parameterIndex)
+            is ParameterResolutionStrategy.ProcessingContext -> {
+                CodeBlock.of("val param%L = context\n", parameterIndex)
             }
 
             is ParameterResolutionStrategy.Update -> {
@@ -129,14 +129,12 @@ class InvocationCodeGenerator(
         val isParametersNeeded = strategies.any {
             it is ParameterResolutionStrategy.StringParameter || it is ParameterResolutionStrategy.PrimitiveParameter
         }
-        val isCtxNeeded = strategies.any { it is ParameterResolutionStrategy.AdditionalContext }
         val isUserNeeded = strategies.any { it is ParameterResolutionStrategy.User }
 
         beginControlFlow("return context.run {")
         if (isBotNeeded) add("val bot = context.bot\n")
         if (isUpdateNeeded || isUserNeeded) add("val update = context.update\n")
         if (isParametersNeeded) add("val parameters = context.parameters\n")
-        if (isCtxNeeded) add("val ctx = context.additionalContext\n")
 
         val callArgs = mutableListOf<String>()
 

@@ -34,7 +34,7 @@ object TypeConstants {
     val userClass: TypeName = User::class.asTypeName()
     val chatClass: TypeName = Chat::class.asTypeName()
     val botClass: TypeName = TelegramBot::class.asTypeName()
-    val processingCtx: TypeName = AdditionalContext::class.asTypeName()
+    val processingCtx: TypeName = ProcessingContext::class.asTypeName()
     val idLongClass: TypeName = IdLong::class.asTypeName()
 
     // Update types
