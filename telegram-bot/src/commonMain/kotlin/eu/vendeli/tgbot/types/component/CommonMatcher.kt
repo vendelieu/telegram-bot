@@ -43,7 +43,7 @@ sealed class CommonMatcher(
             update.type in scope &&
                 filters.all { it.checkIsNotFiltered(context.update.userOrNull, update, bot) } &&
                 value.matchEntire(text)?.also {
-                    additionalContext.state[ProcessingCtxKey.REGEX_MATCH] = it
+                    additionalContext.state[ProcessingCtxKey.RegexMatch] = it
                 } != null
         }
     }

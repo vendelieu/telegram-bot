@@ -5,6 +5,8 @@ package eu.vendeli.tgbot.utils.common
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal enum class ProcessingCtxKey {
-    REGEX_MATCH,
+internal sealed class ProcessingCtxKey {
+    data object RegexMatch : ProcessingCtxKey()
+
+    data class Custom(val name: String) : ProcessingCtxKey()
 }
