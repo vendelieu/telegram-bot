@@ -41,7 +41,7 @@ class SendMediaGroupAction(
  * [Api reference](https://core.telegram.org/bots/api#sendmediagroup)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
- * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+ * @param messageThreadId Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
  * @param directMessagesTopicId Identifier of the direct messages topic to which the messages will be sent; required if the messages are sent to a direct messages chat
  * @param media A JSON-serialized array describing messages to be sent, must include 2-10 items
  * @param disableNotification Sends messages silently. Users will receive a notification with no sound.

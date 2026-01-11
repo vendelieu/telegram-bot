@@ -108,6 +108,7 @@ class BusinessApiTest : BotTestContext() {
                 unlimitedGifts = true,
                 limitedGifts = true,
                 uniqueGifts = true,
+                giftsFromChannels = true,
                 premiumSubscription = true,
             ),
         ).sendReq()

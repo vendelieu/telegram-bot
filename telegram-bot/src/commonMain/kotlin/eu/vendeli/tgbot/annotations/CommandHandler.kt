@@ -8,7 +8,7 @@ import eu.vendeli.tgbot.types.component.UpdateType
  * @property value Keywords of the command.
  * @property scope Scope in which the command will be checked.
  */
-@Target(AnnotationTarget.FUNCTION)
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.SOURCE)
 annotation class CommandHandler(
     val value: Array<String>,

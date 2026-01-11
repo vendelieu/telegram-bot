@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.api.checklist.EditMessageChecklistAction
 import eu.vendeli.tgbot.api.checklist.SendChecklistAction
 import eu.vendeli.tgbot.api.message.EditMessageTextAction
 import eu.vendeli.tgbot.api.message.SendMessageAction
+import eu.vendeli.tgbot.api.message.SendMessageDraftAction
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.`inline`.InlineQueryResult
 import eu.vendeli.tgbot.types.bot.BotCommand
@@ -462,6 +463,18 @@ public suspend inline fun TelegramBot.declineSuggestedPost(
   chatId: Long,
 ): Unit = eu.vendeli.tgbot.api.message.declineSuggestedPost(messageId, comment).send(chatId, this)
 
+public suspend inline fun TelegramBot.sendMessageDraft(
+  draftId: Int,
+  text: String,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.sendMessageDraft(draftId, text).send(chatId, this)
+
+public suspend inline fun TelegramBot.sendMessageDraft(
+  draftId: Int,
+  noinline block: EntitiesCtxBuilder<SendMessageDraftAction>.() -> String,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.sendMessageDraft(draftId, block).send(chatId, this)
+
 public suspend inline fun TelegramBot.forwardMessage(
   fromChatId: Identifier,
   messageId: Long,
@@ -682,6 +695,16 @@ public suspend inline fun TelegramBot.transferGift(
   newOwnerChatId: Long,
   starCount: Int? = null,
 ): Unit = eu.vendeli.tgbot.api.gift.transferGift(businessConnectionId, ownedGiftId, newOwnerChatId, starCount).send(this)
+
+public suspend inline fun TelegramBot.getUserGifts(userId: Long): Unit = eu.vendeli.tgbot.api.gift.getUserGifts(userId).send(this)
+
+public suspend inline fun TelegramBot.getUserGifts(user: User): Unit = eu.vendeli.tgbot.api.gift.getUserGifts(user).send(this)
+
+public suspend inline fun TelegramBot.getChatGifts(chatId: String): Unit = eu.vendeli.tgbot.api.gift.getChatGifts(chatId).send(this)
+
+public suspend inline fun TelegramBot.getChatGifts(chatId: Long): Unit = eu.vendeli.tgbot.api.gift.getChatGifts(chatId).send(this)
+
+public suspend inline fun TelegramBot.getChatGifts(chat: Chat): Unit = eu.vendeli.tgbot.api.gift.getChatGifts(chat).send(this)
 
 public suspend inline fun TelegramBot.giftPremiumSubscription(
   userId: Long,
@@ -958,6 +981,20 @@ public suspend inline fun TelegramBot.setMyShortDescription(description: String?
 public suspend inline fun TelegramBot.getMyName(languageCode: String? = null): Unit = eu.vendeli.tgbot.api.botactions.getMyName(languageCode).send(this)
 
 public suspend inline fun TelegramBot.deleteStory(businessConnectionId: String, storyId: String): Unit = eu.vendeli.tgbot.api.story.deleteStory(businessConnectionId, storyId).send(this)
+
+public suspend inline fun TelegramBot.repostStory(
+  businessConnectionId: String,
+  fromChatId: Long,
+  fromStoryId: Int,
+  activePeriod: Int,
+): Unit = eu.vendeli.tgbot.api.story.repostStory(businessConnectionId, fromChatId, fromStoryId, activePeriod).send(this)
+
+public suspend inline fun TelegramBot.repostStory(
+  businessConnectionId: String,
+  fromChatId: Long,
+  fromStoryId: Int,
+  activePeriod: Duration,
+): Unit = eu.vendeli.tgbot.api.story.repostStory(businessConnectionId, fromChatId, fromStoryId, activePeriod).send(this)
 
 public suspend inline fun TelegramBot.editStory(
   businessConnectionId: String,

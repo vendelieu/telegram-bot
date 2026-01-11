@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.forum
 
+import eu.vendeli.tgbot.types.common.IsNameImplicitProp
 import kotlinx.serialization.Serializable
 
 /**
@@ -10,6 +11,7 @@ import kotlinx.serialization.Serializable
  * @property name Name of the topic
  * @property iconColor Color of the topic icon in RGB format
  * @property iconCustomEmojiId Optional. Unique identifier of the custom emoji shown as the topic icon
+ * @property isNameImplicit Optional. True, if the name of the topic wasn't specified explicitly by its creator and likely needs to be changed by the bot
  */
 @Serializable
 data class ForumTopic(
@@ -17,4 +19,5 @@ data class ForumTopic(
     val name: String,
     val iconColor: IconColor,
     val iconCustomEmojiId: String? = null,
-)
+    override val isNameImplicit: Boolean? = null,
+) : IsNameImplicitProp

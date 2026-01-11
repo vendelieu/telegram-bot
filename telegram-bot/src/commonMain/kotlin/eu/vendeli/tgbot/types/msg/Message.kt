@@ -226,6 +226,7 @@ data class Message(
     val usersShared: UsersShared? = null,
     val chatShared: ChatShared? = null,
     val gift: GiftInfo? = null,
+    val giftUpgradeSent: GiftInfo? = null,
     val uniqueGift: UniqueGift? = null,
     val connectedWebsite: String? = null,
     val writeAccessAllowed: WriteAccessAllowed? = null,

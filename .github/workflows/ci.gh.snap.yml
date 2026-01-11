@@ -6,15 +6,12 @@ on:
       - 'buildSrc/**'
       - 'api-sentinel/**'
       - 'telegram-bot/**'
-      - 'ksp/**'
+      - 'ktnip/**'
       - 'webapps/**'
       - 'ktgram-utils/**'
-      - 'ktgram-botctx-redis/**'
-      - 'ktgram-config-env/**'
       - 'ktgram-config-toml/**'
       - 'ktor-starter/**'
       - 'spring-ktgram-starter/**'
-      - 'aide/**'
 
 jobs:
   publish:
@@ -24,11 +21,9 @@ jobs:
       matrix:
         module: [
           ":telegram-bot",
-          ":ksp",
+          ":ktnip",
           ":webapps",
           ":ktgram-utils",
-          ":ktgram-botctx-redis",
-          ":ktgram-config-env",
           ":ktgram-config-toml",
           ":ktor-starter",
           ":spring-ktgram-starter"

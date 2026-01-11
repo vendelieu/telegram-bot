@@ -37,7 +37,7 @@ class SendLocationAction(
  * [Api reference](https://core.telegram.org/bots/api#sendlocation)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
- * @param messageThreadId Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+ * @param messageThreadId Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
  * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
  * @param latitude Latitude of the location
  * @param longitude Longitude of the location

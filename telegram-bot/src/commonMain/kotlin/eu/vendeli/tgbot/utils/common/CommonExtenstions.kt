@@ -44,6 +44,7 @@ fun TgUpdateHandler.runExceptionHandler(
  * @param user The user for whom it will be set.
  * @param firstLink The First link that will be processed (it doesn't have to be the first link in the chain, feel free to set up any of).
  */
+@Deprecated("Use Wizard instead, will be removed in 9.1")
 fun <T : Link<*>> InputListener.setChain(user: User, firstLink: T) = set(user, firstLink::class.fqName)
 
 /**
@@ -54,8 +55,8 @@ fun <T : Link<*>> InputListener.setChain(user: User, firstLink: T) = set(user, f
  * @param initParams option to pass init parameters.
  */
 @ExperimentalFeature
-fun <T : Any> TelegramBot.getInstance(kClass: KClass<T>, vararg initParams: Any?): T =
-    config.classManager.getInstance(kClass, initParams).cast()
+fun <T : Any> TelegramBot.getInstance(kClass: KClass<T>, vararg initParams: Any?): T? =
+    config.classManager.getInstance(kClass, *initParams).safeCast()
 
 /**
  * Helper function to paginate over a collection.

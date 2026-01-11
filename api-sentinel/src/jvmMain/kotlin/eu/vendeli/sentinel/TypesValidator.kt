@@ -4,12 +4,7 @@ import com.google.devtools.ksp.getDeclaredProperties
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
 import eu.vendeli.tgbot.annotations.internal.TgAPI
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.boolean
-import kotlinx.serialization.json.jsonArray
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
-import kotlin.collections.get
+import kotlinx.serialization.json.*
 
 internal fun ApiProcessor.validateTypes(classes: Sequence<KSClassDeclaration>, apiFile: JsonElement) {
     val types = apiFile.jsonObject["types"]!!.jsonObject.toMap()
@@ -31,7 +26,7 @@ internal fun ApiProcessor.validateTypes(classes: Sequence<KSClassDeclaration>, a
             sealedSubclasses.forEach sealedLoop@{ s ->
                 val sealedName = s.simpleName.getShortName()
                 val sealedFullName = s.qualifiedName!!.asString()
-                val sealedParams = s.getAllProperties().associate { it.simpleName.asString() to it }
+                val sealedParams = s.getAllProperties().associateBy { it.simpleName.asString() }
                 val apiName = s.annotations
                     .firstOrNull {
                         it.shortName.getShortName() == TgAPI.Name::class.simpleName!!
@@ -47,7 +42,7 @@ internal fun ApiProcessor.validateTypes(classes: Sequence<KSClassDeclaration>, a
         }
 
         val classFullName = cls.qualifiedName!!.asString()
-        val classParams = cls.getDeclaredProperties().associate { it.simpleName.asString() to it }
+        val classParams = cls.getDeclaredProperties().associateBy { it.simpleName.asString() }
 
         processClass(types, classParams, className, classFullName, visitedTypes)
     }
@@ -73,13 +68,13 @@ private fun ApiProcessor.processClass(
     }
 
     val leftParams = params
-        .mapNotNull {
-            it
-                .takeIf {
-                    it.value.annotations.none {
+        .mapNotNull { p ->
+            p
+                .takeIf { np ->
+                    np.value.annotations.none {
                         it.shortName.getShortName() == TgAPI.Ignore::class.simpleName!!
                     } &&
-                        it.value.findOverridee()?.annotations?.none {
+                        np.value.findOverridee()?.annotations?.none {
                             it.shortName.getShortName() == TgAPI.Ignore::class.simpleName!!
                         } != false
                 }?.key

@@ -1,14 +1,7 @@
 package eu.vendeli.api
 
 import BotTestContext
-import eu.vendeli.tgbot.api.message.copyMessage
-import eu.vendeli.tgbot.api.message.copyMessages
-import eu.vendeli.tgbot.api.message.deleteMessage
-import eu.vendeli.tgbot.api.message.deleteMessages
-import eu.vendeli.tgbot.api.message.forwardMessage
-import eu.vendeli.tgbot.api.message.forwardMessages
-import eu.vendeli.tgbot.api.message.message
-import eu.vendeli.tgbot.api.message.setMessageReaction
+import eu.vendeli.tgbot.api.message.*
 import eu.vendeli.tgbot.types.common.EmojiType
 import eu.vendeli.tgbot.types.common.ReactionType
 import eu.vendeli.tgbot.types.component.getOrNull
@@ -112,5 +105,29 @@ class MessageActionsTest : BotTestContext() {
 
         result.shouldBeTrue()
         listingResult.shouldBeTrue()
+    }
+
+    @Test
+    suspend fun `send message draft method test`() {
+        sendMessageDraft(1, "test draft")
+            .sendReq()
+            .shouldFailure() shouldContainInDescription "TEXTDRAFT_PEER_INVALID"
+    }
+
+    @Test
+    suspend fun `send message draft with message thread id method test`() {
+        sendMessageDraft(2, "test draft")
+            .options {
+                messageThreadId = 3
+            }
+            .sendReq()
+            .shouldFailure() shouldContainInDescription "TEXTDRAFT_PEER_INVALID"
+    }
+
+    @Test
+    suspend fun `send message draft with entities method test`() {
+        sendMessageDraft(3) {
+            "test" - bold { " draft" }
+        }.sendReq().shouldFailure() shouldContainInDescription "TEXTDRAFT_PEER_INVALID"
     }
 }

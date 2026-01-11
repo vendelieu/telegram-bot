@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.component.ActivityCtx
 import eu.vendeli.tgbot.types.component.MessageUpdate
+import eu.vendeli.tgbot.types.component.ProcessingContext
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.configuration.RateLimits
 import eu.vendeli.tgbot.types.component.userOrNull
@@ -60,11 +61,11 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         val loopCounter = AtomicInteger(0)
 
         bot.inputListener.set(1, "test")
-        bot.handleUpdates {
+        bot.setFunctionality {
             inputChain("test") {
                 update.userOrNull?.id shouldBe 1
             }.breakIf(
-                { update !is MessageUpdate },
+                { update is MessageUpdate },
                 false,
             ) {
                 (update as? MessageUpdate)?.message?.chat?.id shouldBe 1
@@ -78,7 +79,9 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             ) {
                 println(this)
             }
-
+        }
+        bot.update.setListener {
+            handle(it)
             if (loopCounter.incrementAndGet() == 5) bot.update.stopListener()
         }
 
@@ -96,10 +99,9 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         val secondChainCounter = AtomicInteger(0)
 
         bot.inputListener.set(1, "test")
-        bot.handleUpdates {
+        bot.setFunctionality {
             inputChain("test") {
                 firstChainCounter.incrementAndGet()
-                // first handling (because we set listener before handler start) + 5 general entries
                 update.userOrNull?.id shouldBe 1
             }.breakIf({ generalCounter.get() < 3 }) {
                 breakCounter.incrementAndGet()
@@ -108,15 +110,22 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 secondChainCounter.incrementAndGet()
                 (update as? MessageUpdate)?.message?.text shouldBe "/start"
             }
-
+        }
+        bot.update.setListener {
+            val steps = StringBuilder()
+            steps.append(bot.inputListener.get(1))
+            handle(it)
+            steps.append(" -> ")
+            steps.append(bot.inputListener.get(1))
+            println(steps)
             if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
             delay(1)
         }
 
         generalCounter.get() shouldBe 5
-        firstChainCounter.get() shouldBe 1
-        breakCounter.get() shouldBe 1
-        secondChainCounter.get() shouldBe 2
+        firstChainCounter.get() shouldBe 4
+        breakCounter.get() shouldBe 3
+        secondChainCounter.get() shouldBe 1
         bot.update.caughtExceptions
             .tryReceive()
             .getOrNull()
@@ -131,7 +140,8 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
 
         doMockHttp(MockUpdate.TEXT_LIST("test", "/start"))
 
-        bot.handleUpdates {
+        bot.update.registry.clear()
+        bot.setFunctionality {
             onCommand("/start") {
                 startCounter.incrementAndGet()
             }
@@ -139,7 +149,9 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             whenNotHandled {
                 notHandledCounter.incrementAndGet()
             }
-
+        }
+        bot.update.setListener {
+            handle(it)
             if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
         }
 
@@ -157,7 +169,8 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
 
         doMockHttp(MockUpdate.TEXT_LIST("test", "/start", "123"))
 
-        bot.handleUpdates {
+        bot.update.registry.clear()
+        bot.setFunctionality {
             onCommand("/start") {
                 startCounter.incrementAndGet()
             }
@@ -169,14 +182,16 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             common("^\\d+\$".toRegex()) {
                 regexCommonHandler.incrementAndGet()
             }
-
+        }
+        bot.update.setListener {
+            handle(it)
             if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
         }
 
-        generalCounter.get() shouldBeGreaterThanOrEqual 5
-        startCounter.get() shouldBeGreaterThanOrEqual 2
+        generalCounter.get() shouldBe 6
+        startCounter.get() shouldBe 2
         commonHandler.get() shouldBe 2
-        commonHandler.get() shouldBe 2
+        regexCommonHandler.get() shouldBe 2
     }
 
     @Test
@@ -196,9 +211,8 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
 
         var onUpdateInvocationsCount = 0
 
-        bot.update.functionalHandlingBehavior.functionalActivities.onUpdateActivities
-            .clear()
-        bot.update.functionalHandlingBehavior.apply {
+        bot.update.registry.clear()
+        bot.update.functionalDsl.apply {
             onMessage { onUpdateInvocationsCount++ }
             onEditedMessage { onUpdateInvocationsCount++ }
             onChannelPost { onUpdateInvocationsCount++ }
@@ -224,19 +238,19 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             onPurchasedPaidMedia { onUpdateInvocationsCount++ }
         }
 
-        UpdateType.entries.forEach {
+        UpdateType.entries.forEach { type ->
             shouldNotThrowAny {
-                bot.update.functionalHandlingBehavior.functionalActivities
-                    .onUpdateActivities[it]
-                    .shouldNotBeNull()
-                    .invoke(ctx)
+                val handlers = bot.update.registry.getUpdateTypeHandlers(type)
+                handlers.forEach {
+                    it.invoke(ProcessingContext(ctx.update, bot, bot.update.registry))
+                }
             }
         }
 
         delay(1)
         onUpdateInvocationsCount shouldBe UpdateType.entries.size
 
-        bot.update.functionalHandlingBehavior.apply {
+        bot.update.functionalDsl.apply {
             val scope = setOf(UpdateType.MESSAGE)
             val regex = "^*.".toRegex()
             common(
@@ -244,13 +258,17 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 scope = scope,
                 rateLimits = RateLimits.NOT_LIMITED,
             ) { }
-            functionalActivities.commonActivities.entries
-                .find {
-                    it.key.match("t", MockUpdate.SINGLE("t").updates.first(), bot)
-                }.shouldNotBeNull()
+
+            bot.update.registry
+                .findMatcher(
+                    "t",
+                    ProcessingContext(MockUpdate.SINGLE("t").updates.first(), bot, bot.update.registry),
+                ).shouldNotBeNull()
 
             onInput("test") { }
-            functionalActivities.inputs["test"].shouldNotBeNull()
+            bot.update.registry
+                .findInput("test")
+                .shouldNotBeNull()
         }
     }
 }

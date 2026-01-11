@@ -10,6 +10,7 @@ import kotlinx.serialization.Serializable
  * @property limitedGifts True, if limited regular gifts are accepted
  * @property uniqueGifts True, if unique gifts or gifts that can be upgraded to unique for free are accepted
  * @property premiumSubscription True, if a Telegram Premium subscription is accepted
+ * @property giftsFromChannels True, if transfers of unique gifts from channels are accepted
  */
 @Serializable
 data class AcceptedGiftTypes(
@@ -17,4 +18,5 @@ data class AcceptedGiftTypes(
     val limitedGifts: Boolean,
     val uniqueGifts: Boolean,
     val premiumSubscription: Boolean,
+    val giftsFromChannels: Boolean,
 )

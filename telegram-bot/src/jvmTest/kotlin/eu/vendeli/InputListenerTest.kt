@@ -1,9 +1,7 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.fixtures.Conversation
 import eu.vendeli.tgbot.implementations.InputListenerMapImpl
-import eu.vendeli.tgbot.utils.common.setChain
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
@@ -34,11 +32,5 @@ class InputListenerTest : BotTestContext() {
 
         mapImpl.setAsync(DUMB_USER) { "test2" }.await().shouldBeTrue()
         mapImpl.getAsync(DUMB_USER.id).await() shouldBe "test2"
-    }
-
-    @Test
-    fun `set chain test`() {
-        bot.inputListener.setChain(DUMB_USER, Conversation.Name)
-        bot.inputListener[DUMB_USER] shouldBe "eu.vendeli.fixtures.Conversation.Name"
     }
 }

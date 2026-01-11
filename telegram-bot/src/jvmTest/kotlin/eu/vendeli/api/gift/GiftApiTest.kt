@@ -2,6 +2,8 @@ package eu.vendeli.api.gift
 
 import BotTestContext
 import eu.vendeli.tgbot.api.gift.convertGiftToStars
+import eu.vendeli.tgbot.api.gift.getChatGifts
+import eu.vendeli.tgbot.api.gift.getUserGifts
 import eu.vendeli.tgbot.api.gift.giftPremiumSubscription
 import eu.vendeli.tgbot.api.gift.transferGift
 import eu.vendeli.tgbot.api.gift.upgradeGift
@@ -49,5 +51,23 @@ class GiftApiTest : BotTestContext() {
             .shouldFailure()
             .description
             .shouldBe("Bad Request: user not found")
+    }
+
+    @Test
+    fun `getUserGifts test`() = runTest {
+        getUserGifts(123456L)
+            .sendReq()
+            .shouldFailure()
+            .description
+            .shouldBe("Bad Request: user not found")
+    }
+
+    @Test
+    fun `getChatGifts test`() = runTest {
+        getChatGifts(123456L.asChat())
+            .sendReq()
+            .shouldFailure()
+            .description
+            .shouldBe("Bad Request: chat not found")
     }
 }

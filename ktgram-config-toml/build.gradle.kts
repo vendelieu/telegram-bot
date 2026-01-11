@@ -16,6 +16,6 @@ onlyJvmConfiguredKotlin {
 }
 
 libraryData {
-    name = "KtGram Config Env"
-    description = "ConfigLoader implementation which works with Environment."
+    name = "KtGram Config Toml"
+    description = "ConfigLoader implementation which works with Toml."
 }

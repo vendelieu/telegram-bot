@@ -7,11 +7,11 @@ data class BotData(
 
 object BotResource : ResourcePicker<BotData>(
     listOf(
-        System.getenv("BOT_TOKEN").let {
-            BotData(it.substringBefore(':').toLong(), it)
+        (System.getenv("BOT_TOKEN") ?: "1:token").let {
+            BotData(it.substringBefore(':').toLongOrNull() ?: 0L, it)
         },
-        System.getenv("BOT_TOKEN_2").let {
-            BotData(it.substringBefore(':').toLong(), it)
+        (System.getenv("BOT_TOKEN_2") ?: "2:token2").let {
+            BotData(it.substringBefore(':').toLongOrNull() ?: 0L, it)
         },
     ),
 )

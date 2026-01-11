@@ -1,19 +1,6 @@
 package eu.vendeli.tgbot.types.component
 
-import io.ktor.client.plugins.logging.LogLevel
-
-/**
- * Proxy enum for Bot logger leveling.
- */
-enum class LogLvl {
-    OFF,
-    ERROR,
-    WARN,
-    INFO,
-    DEBUG,
-    TRACE,
-    ALL,
-}
+import io.ktor.client.plugins.logging.*
 
 /**
  * Proxy enum class for Ktor log leveling.

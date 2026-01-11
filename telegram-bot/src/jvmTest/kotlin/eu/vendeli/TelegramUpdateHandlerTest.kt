@@ -67,10 +67,13 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             .getOrNull()
             .shouldBeNull()
 
-        bot.handleUpdates {
+        bot.setFunctionality {
             onMessage {
                 throw NoSuchElementException("test")
             }
+        }
+        bot.update.setListener {
+            handle(it)
             delay(100)
             bot.update.stopListener()
         }
@@ -134,11 +137,14 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         doMockHttp(MockUpdate.SINGLE("/start test"))
 
         var commandReached = false
-        bot.handleUpdates {
+        bot.setFunctionality {
             onCommand("/start") {
                 commandReached = true
                 parameters shouldContainExactly mapOf("param_1" to "test")
             }
+        }
+        bot.update.setListener {
+            handle(it)
             bot.update.stopListener()
         }
         commandReached shouldBe true
@@ -189,11 +195,14 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         }
 
         var inputReached = false
-        bot.handleUpdates {
-            bot.inputListener.set(1, "testInp")
+        bot.setFunctionality {
             onInput("testInp") {
                 inputReached = true
             }
+        }
+        bot.update.setListener {
+            bot.inputListener.set(1, "testInp")
+            handle(it)
             bot.update.stopListener()
         }
         inputReached.shouldBeTrue()
@@ -234,7 +243,10 @@ class TelegramUpdateHandlerTest : BotTestContext() {
                 .toList(collectedUpdates)
         }
         doMockHttp(MockUpdate.TEXT_LIST("test1", "test2", "test3", "4test"))
-        bot.handleUpdates { bot.update.stopListener() }
+        bot.update.setListener {
+            handle(it)
+            bot.update.stopListener()
+        }
 
         delay(100)
         collectedUpdates.forEach { it.text shouldStartWith "test" }

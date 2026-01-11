@@ -7,7 +7,7 @@ import eu.vendeli.tgbot.types.component.UpdateType
  *
  * @property type Type of update.
  */
-@Target(AnnotationTarget.FUNCTION)
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.SOURCE)
 annotation class UpdateHandler(
     val type: Array<UpdateType>,

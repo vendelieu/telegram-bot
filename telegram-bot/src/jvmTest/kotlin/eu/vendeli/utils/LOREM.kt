@@ -39,7 +39,11 @@ sealed class LOREM(
         "video/mp4",
     )
 
-    data object VIDEO_NOTE : LOREM("https://rb.gy/y0egi", "golden-ratio-240px.mp4", "video/mp4")
+    data object VIDEO_NOTE : LOREM(
+        "https://rx.vendeli.eu/files/2bd7bfd3-6821-40f5-a1f9-5138f7b81d14_file_2.mp4",
+        "file.mp4",
+        "video/mp4",
+    )
     data object VOICE : LOREM(
         "https://github.com/rafaelreis-hotmart/Audio-Sample-files/raw/master/sample.ogg?raw=true",
         "sample.ogg",

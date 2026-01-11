@@ -3,6 +3,7 @@ package eu.vendeli.sentinel
 import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
+import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSDeclaration
 import com.squareup.kotlinpoet.LIST
@@ -15,7 +16,6 @@ import eu.vendeli.tgbot.interfaces.marker.Keyboard
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.utils.common.fqName
 import java.io.File
-import java.io.FileFilter
 
 internal val replyMarkupType = Keyboard::class.asTypeName()
 internal val entitiesType = LIST.parameterizedBy(MessageEntity::class.asTypeName())
@@ -25,6 +25,9 @@ internal val mediaActionFQ = MediaAction::class.fqName
 
 @Suppress("UNCHECKED_CAST")
 internal inline fun <R> Any?.safeCast(): R? = this as? R
+
+@Suppress("UNCHECKED_CAST")
+internal inline fun <R> Any?.cast(): R = this as R
 
 internal inline fun KSPLogger.invalid(message: () -> String) = exception(IllegalStateException(message()))
 
@@ -55,7 +58,7 @@ internal fun Resolver.resolveSymbolsFromDir(
 ): List<KSDeclaration> {
     val basePkg = path.substringAfter("commonMain/kotlin/").replace('/', '.')
     val packages = mutableListOf(basePkg)
-    File(path).listFiles(FileFilter { it.isDirectory && it.name !in omittedDirectories })?.map {
+    File(path).listFiles { it.isDirectory && it.name !in omittedDirectories }?.forEach {
         packages.add("$basePkg.${it.name}")
     }
 
@@ -73,3 +76,9 @@ internal fun Resolver.resolveSymbolsFromDir(
 
     return output
 }
+
+fun KSDeclaration.typesExcludeCondition(): Boolean =
+    !simpleName.asString().contains(".*Prop".toRegex()) &&
+        // exclude *Prop declaration from checking
+        this is KSClassDeclaration &&
+        classKind != ClassKind.ENUM_CLASS

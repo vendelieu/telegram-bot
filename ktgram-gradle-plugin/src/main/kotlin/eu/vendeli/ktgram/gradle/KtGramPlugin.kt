@@ -11,11 +11,7 @@ import org.gradle.kotlin.dsl.get
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
-import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
-import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
-import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
-import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
+import org.jetbrains.kotlin.gradle.plugin.*
 import org.jetbrains.kotlin.gradle.utils.loadPropertyFromResources
 
 abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
@@ -37,8 +33,8 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
         } != null
 
         target.configurations.configureEach {
-            if (name.startsWith("ksp")) dependencies.whenObjectAdded {
-                if (group == "eu.vendeli" && name == "ksp") kspProcessorApplied = true
+            if (name.startsWith("ktnip")) dependencies.whenObjectAdded {
+                if (group == "eu.vendeli" && name == "ktnip") kspProcessorApplied = true
             }
         }
         target.applyDependencies(libVer, isMultiplatform, kspProcessorApplied)
@@ -56,12 +52,12 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
             if (pluginExtension.forceVersion.isPresent) target.configurations.configureEach cfg@{
                 dependencies
                     .removeIf {
-                        it.group == "eu.vendeli" && (it.name == "telegram-bot" || it.name == "ksp")
+                        it.group == "eu.vendeli" && (it.name == "telegram-bot" || it.name == "ktnip")
                     }.takeIf { it }
                     ?.let {
                         dependencies {
                             add(this@cfg.name, "eu.vendeli:telegram-bot:$targetVer")
-                            add(this@cfg.name, "eu.vendeli:ksp:$targetVer")
+                            add(this@cfg.name, "eu.vendeli:ktnip:$targetVer")
                         }
                     }
             }
@@ -77,9 +73,6 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
             target.extensions.configure<KspExtension> {
                 pluginExtension.packages.orNull?.takeIf { it.isNotEmpty() }?.joinToString(";")?.let {
                     arg("package", it)
-                }
-                pluginExtension.autoCleanClassData.getOrElse(true).takeIf { !it }?.let {
-                    arg("autoCleanClassData", "false")
                 }
                 pluginExtension.autoAnswerCallback.getOrElse(false).takeIf { it }?.let {
                     arg("autoAnswerCallback", "true")
@@ -143,7 +136,7 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
 
                 dependencies.add(
                     "ksp$tName",
-                    "eu.vendeli:ksp:$depVersion",
+                    "eu.vendeli:ktnip:$depVersion",
                 )
             }
         }
@@ -160,14 +153,14 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
                 }
 
                 dependencies {
-                    add("ksp", "eu.vendeli:ksp:$depVersion")
+                    add("ksp", "eu.vendeli:ktnip:$depVersion")
                 }
             }
 
             else -> {
                 dependencies.add("implementation", "eu.vendeli:telegram-bot:$depVersion")
                 dependencies {
-                    add("ksp", "eu.vendeli:ksp:$depVersion")
+                    add("ksp", "eu.vendeli:ktnip:$depVersion")
                 }
             }
         }
@@ -175,31 +168,17 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
 
     override fun getPluginArtifact(): SubpluginArtifact = SubpluginArtifact(
         groupId = "eu.vendeli",
-        artifactId = "aide",
+        artifactId = "ktnip",
         version = libVer,
     )
 
-    override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean = true
+    override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean = false
 
-    override fun getCompilerPluginId(): String = "eu.vendeli.aide"
+    override fun getCompilerPluginId(): String = "eu.vendeli.ktnip"
 
-    override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {
-        kotlinCompilation.dependencies {
-            compileOnly("eu.vendeli:aide:$libVer")
-        }
-        return kotlinCompilation.target.project.run {
-            providers.provider {
-                listOf(
-                    SubpluginOption(
-                        key = "autoSend",
-                        value = extensions
-                            .getByType(KtGramExt::class.java)
-                            .aideEnabled
-                            .getOrElse(false)
-                            .toString(),
-                    ),
-                )
-            }
-        }
+    override fun applyToCompilation(
+        kotlinCompilation: KotlinCompilation<*>,
+    ): Provider<List<SubpluginOption>> = kotlinCompilation.target.project.provider {
+        emptyList()
     }
 }

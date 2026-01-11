@@ -3,23 +3,15 @@
 package eu.vendeli.sentinel
 
 import com.google.devtools.ksp.getAllSuperTypes
+import com.google.devtools.ksp.getDeclaredProperties
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
-import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
-import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.LambdaTypeName
-import com.squareup.kotlinpoet.ParameterSpec
+import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import com.squareup.kotlinpoet.UNIT
-import com.squareup.kotlinpoet.asTypeName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.TgAPI
@@ -71,16 +63,52 @@ class ApiProcessor(
         validateApi(apiClasses, apiJson)
 
         @Suppress("UNCHECKED_CAST")
-        val types = (
-            resolver.resolveSymbolsFromDir("$tgBaseDir/types") {
-                it is KSClassDeclaration && it.classKind != ClassKind.ENUM_CLASS
-            } as List<KSClassDeclaration>
-        ).asSequence()
+        val types = resolver
+            .resolveSymbolsFromDir("$tgBaseDir/types") {
+                it.typesExcludeCondition()
+            }.cast<List<KSClassDeclaration>>()
+            .asSequence()
         validateTypes(types, apiJson)
 
         addUpdateEvent2FDSL()
+        generateRewriteWith(resolver)
 
         return emptyList()
+    }
+
+    private fun generateRewriteWith(resolver: Resolver) {
+        val botConfig = resolver.getClassDeclarationByName(
+            resolver.getKSNameFromString("eu.vendeli.tgbot.types.configuration.BotConfiguration"),
+        ) ?: return
+
+        val properties = botConfig.getDeclaredProperties().filter { it.isMutable }
+
+        val codeBlock = StringBuilder()
+        codeBlock.append("\n\ninternal fun BotConfiguration.rewriteWith(new: BotConfiguration): BotConfiguration {\n")
+        properties.forEach { prop ->
+            val name = prop.simpleName.getShortName()
+            codeBlock.append("    $name = new.$name\n")
+        }
+        codeBlock.append("    return this\n")
+        codeBlock.append("}\n")
+
+        val configFile = botConfig.containingFile?.filePath?.let { File(it) } ?: return
+        var content = configFile.readText()
+
+        val rewriteWithRegex = Regex(
+            """\n\s*internal fun rewriteWith\(new: BotConfiguration\): BotConfiguration \{[\s\S]*?\n\s*\}""",
+            RegexOption.MULTILINE,
+        )
+        val extensionRewriteWithRegex = Regex(
+            """\n\s*internal fun BotConfiguration\.rewriteWith\(new: BotConfiguration\): BotConfiguration \{[\s\S]*?\}""",
+            RegexOption.MULTILINE,
+        )
+
+        content = content.replace(rewriteWithRegex, "")
+        content = content.replace(extensionRewriteWithRegex, "")
+        content = content.trimEnd() + codeBlock.toString()
+
+        configFile.writeText(content)
     }
 
     private val tgBotType = TelegramBot::class.asTypeName()
@@ -189,8 +217,14 @@ class ApiProcessor(
                                 "Action that is performed on the presence of " +
                                     "[eu.vendeli.tgbot.types.common.Update.$nameRef] in the [eu.vendeli.tgbot.types.common.Update].",
                             ).addParameter(ParameterSpec.builder("block", blockTypeRef).build())
-                            .addCode("functionalActivities.onUpdateActivities[$type] = block.cast()")
-                            .build(),
+                            .addCode(
+                                "onUpdate(UpdateType.%N) {\n" +
+                                    "    @Suppress(\"UNCHECKED_CAST\")\n" +
+                                    "    (this as %T).block()\n" +
+                                    "}",
+                                type.name,
+                                activityCtxType,
+                            ).build(),
                     )
                 }
             }.build()

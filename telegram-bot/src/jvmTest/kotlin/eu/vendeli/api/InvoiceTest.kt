@@ -21,7 +21,7 @@ class InvoiceTest : BotTestContext() {
             "test1",
             "test2",
             PAYMENT_PROVIDER_TOKEN,
-            Currency.AED,
+            Currency.USD,
             listOf(LabeledPrice("test3", 1000)),
         ).sendReq().shouldSuccess()
 
@@ -29,7 +29,7 @@ class InvoiceTest : BotTestContext() {
             shouldNotBeNull()
             title shouldBe "test"
             description shouldBe "test1"
-            currency shouldBe Currency.AED
+            currency shouldBe Currency.USD
         }
     }
 }
