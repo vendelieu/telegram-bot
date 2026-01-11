@@ -28,7 +28,7 @@ abstract class WizardStep(
     /**
      * Called when validation fails and the step should retry.
      */
-    abstract suspend fun onRetry(ctx: WizardContext)
+    open suspend fun onRetry(ctx: WizardContext) = Unit
 
     /**
      * Validates the current input and decides what happens next.
@@ -79,7 +79,8 @@ class WizardContext(
     val bot: TelegramBot,
 ) {
     val userReference = UserChatReference(user.id, update.getChat().id)
-    val currentWizardId = bot.inputListener.get(user.id)?.extractWizardId() ?: error("No wizard active")
+    val currentWizardId = bot.inputListener.get(user.id)?.extractWizardId()
+        ?: error("No active wizard for user ${user.id}")
 
     /**
      * Fallback method to get state for any step (returns Any?).

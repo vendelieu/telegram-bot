@@ -2,20 +2,22 @@ package eu.vendeli.ktnip.collectors
 
 import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.processing.Resolver
+import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSType
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ktnip.annotation.AnnotationParser
 import eu.vendeli.ktnip.codegen.WizardCodeGenerator
 import eu.vendeli.ktnip.codegen.WizardStateAccessorGenerator
+import eu.vendeli.ktnip.dto.ActivityMetadata
 import eu.vendeli.ktnip.dto.CollectorsContext
 import eu.vendeli.ktnip.utils.findAnnotationRecursively
 import eu.vendeli.ktnip.utils.getActivityId
 import eu.vendeli.ktnip.utils.getActivityObjectName
 import eu.vendeli.ktnip.utils.getAnnotatedClassSymbols
 import eu.vendeli.tgbot.annotations.WizardHandler
-import eu.vendeli.tgbot.types.chain.WizardStep
 import eu.vendeli.tgbot.types.chain.WizardStateManager
+import eu.vendeli.tgbot.types.chain.WizardStep
 import eu.vendeli.tgbot.utils.common.fqName
 
 /**
@@ -30,7 +32,7 @@ internal class WizardCollector : BaseCollector() {
         symbols.forEach { classDecl ->
             val annotation = classDecl.annotations
                 .findAnnotationRecursively(WizardHandler::class)
-                ?: throw IllegalStateException("No WizardHandler annotation found for $classDecl")
+                ?: error("No WizardHandler annotation found for $classDecl")
 
             // Parse annotation
             val annotationData = AnnotationParser.parseWizardHandler(annotation.arguments)
@@ -57,9 +59,9 @@ internal class WizardCollector : BaseCollector() {
             val classQualifier = classDecl.qualifiedName!!.getQualifier()
             val classShortName = classDecl.simpleName.asString()
             val classQualifiedName = classDecl.qualifiedName!!.asString()
-            
-            val isObject = classDecl.classKind == com.google.devtools.ksp.symbol.ClassKind.OBJECT
-            
+
+            val isObject = classDecl.classKind == ClassKind.OBJECT
+
             // Build list of step accessors
             val stepsList = nestedSteps.map { step ->
                 val stepName = step.simpleName.asString()
@@ -80,7 +82,6 @@ internal class WizardCollector : BaseCollector() {
             val stepToManagerMap = matchStepsToStateManagers(
                 nestedSteps,
                 annotationData.stateManagers,
-                resolver,
                 ctx,
             )
 
@@ -88,7 +89,7 @@ internal class WizardCollector : BaseCollector() {
             val rateLimits = eu.vendeli.ktnip.annotation.AnnotationExtractor.extractRateLimits(classDecl)
             val guardClass = eu.vendeli.ktnip.annotation.AnnotationExtractor.extractGuard(classDecl)
             val argParserClass = eu.vendeli.ktnip.annotation.AnnotationExtractor.extractArgParser(classDecl)
-            val metadata = eu.vendeli.ktnip.dto.ActivityMetadata(
+            val metadata = ActivityMetadata(
                 id = activityId,
                 qualifier = classQualifier,
                 function = classShortName,
@@ -99,7 +100,7 @@ internal class WizardCollector : BaseCollector() {
 
             // Generate wizard code using code generator
             val wizardCodeGenerator = WizardCodeGenerator(ctx.activitiesFile)
-            
+
             // Generate concrete WizardActivity implementation as Activity
             wizardCodeGenerator.generateWizardEngine(
                 engineObjectName = engineObjectName,
@@ -160,7 +161,7 @@ internal class WizardCollector : BaseCollector() {
             nestedSteps.forEach { step ->
                 // Use the step's qualified name as the stepId (matches default id property)
                 val stepQualifiedName = step.qualifiedName!!.asString()
-                
+
                 // Register input for this specific step
                 // Format: "wizard:${activityId}:${stepQualifiedName}"
                 ctx.loadFun.addStatement(
@@ -182,12 +183,11 @@ internal class WizardCollector : BaseCollector() {
     private fun matchStepsToStateManagers(
         allSteps: List<KSClassDeclaration>,
         stateManagers: List<KSClassDeclaration>,
-        resolver: Resolver,
         ctx: CollectorsContext,
     ): Map<KSClassDeclaration, KSClassDeclaration> {
         val stepToManagerMap = mutableMapOf<KSClassDeclaration, KSClassDeclaration>()
         val wizardStateManagerFqName = WizardStateManager::class.fqName
-        val stateManagerAnnotationFqName = "eu.vendeli.tgbot.annotations.WizardHandler.StateManager"
+        val stateManagerAnnotationFqName = WizardHandler.StateManager::class.fqName
 
         allSteps.forEach { stepClass ->
             // Find store() function
@@ -219,6 +219,7 @@ internal class WizardCollector : BaseCollector() {
                     is KSType -> {
                         value.declaration as? KSClassDeclaration
                     }
+
                     else -> null
                 }
             } else {
@@ -243,6 +244,11 @@ internal class WizardCollector : BaseCollector() {
                 ctx.logger.info(
                     "Matched step ${stepClass.simpleName.asString()} (returns $returnTypeName) " +
                         "with state manager ${matchingManager.simpleName.asString()} via $source",
+                )
+            } else {
+                ctx.logger.warn(
+                    "Step ${stepClass.simpleName.asString()} (returns $returnTypeName) " +
+                        "does not have a matching state manager. Be aware that NOOP state manager will be used for it.",
                 )
             }
         }

@@ -1188,8 +1188,8 @@ abstract class eu.vendeli.tgbot.types.chain/WizardStep { // eu.vendeli.tgbot.typ
         open fun <get-id>(): kotlin/String // eu.vendeli.tgbot.types.chain/WizardStep.id.<get-id>|<get-id>(){}[0]
 
     abstract suspend fun onEntry(eu.vendeli.tgbot.types.chain/WizardContext) // eu.vendeli.tgbot.types.chain/WizardStep.onEntry|onEntry(eu.vendeli.tgbot.types.chain.WizardContext){}[0]
-    abstract suspend fun onRetry(eu.vendeli.tgbot.types.chain/WizardContext) // eu.vendeli.tgbot.types.chain/WizardStep.onRetry|onRetry(eu.vendeli.tgbot.types.chain.WizardContext){}[0]
     abstract suspend fun validate(eu.vendeli.tgbot.types.chain/WizardContext): eu.vendeli.tgbot.types.chain/Transition // eu.vendeli.tgbot.types.chain/WizardStep.validate|validate(eu.vendeli.tgbot.types.chain.WizardContext){}[0]
+    open suspend fun onRetry(eu.vendeli.tgbot.types.chain/WizardContext) // eu.vendeli.tgbot.types.chain/WizardStep.onRetry|onRetry(eu.vendeli.tgbot.types.chain.WizardContext){}[0]
     open suspend fun store(eu.vendeli.tgbot.types.chain/WizardContext): kotlin/Any? // eu.vendeli.tgbot.types.chain/WizardStep.store|store(eu.vendeli.tgbot.types.chain.WizardContext){}[0]
 }
 

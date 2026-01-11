@@ -2,20 +2,16 @@
 
 # 9.0.0
 
-* Covered TgApi version `9.3`.
-* Unified functional declaration with annotation-based. \
-  Now they don't differ in behavior and just give different ways to describe functionality. To use `FunctionalDSL` now
-  you just need to call `bot.setFunctionality`.
-* Changed generated code to more robust entities, which give a duplicate-free solution with same function having
-  different handlers.
-* Introduced new interceptor mechanism for handling updates which replaced middlewares.
-* Removed log level handling (yet still there's fallback as logLevel in `BotConfiguration` for those who use logback)
-  and added option to pass your own logging factory in configuration.
-* Added to `CommonHadler` option to pass multiple filters.
-* Option to define multiple update type handlers.
-* Introduced new `WizardHandler` annotation and new input chanining mechanism.
-* Renamed ksp plugin name to `ktnip`.
-* Removed `botctx-redis`, `aide` due to its unpopularity.
+* Updated TgApi support to version `9.3`.
+* Unified functional DSL and annotation-based declarations. Both approaches are now behaviorally identical and differ only in how functionality is described. To use the Functional DSL, simply call `bot.setFunctionality`.
+* Refactored generated code to use more robust entities, providing a duplicate-free solution when the same function has multiple handlers.
+* Introduced a new interceptor mechanism for update handling, replacing the previous middleware system.
+* Removed built-in log level handling. A fallback via `logLevel` in `BotConfiguration` remains for Logback users, and a custom logging factory can now be supplied via configuration.
+* Added support for multiple filters in `CommonHandler`.
+* Added support for defining multiple update-type handlers.
+* Introduced the `@WizardHandler` annotation and a new input chaining mechanism.
+* Renamed the KSP plugin to `ktnip` (you need to update your build only if you use manual configuration).
+* Removed `botctx-redis` and `aide` modules due to low adoption.
 
 ### 8.4.1
 

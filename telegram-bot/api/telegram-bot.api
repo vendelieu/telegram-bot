@@ -4196,7 +4196,7 @@ public abstract class eu/vendeli/tgbot/types/chain/WizardStep {
 	public fun getId ()Ljava/lang/String;
 	public final fun isInitial ()Z
 	public abstract fun onEntry (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun onRetry (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun onRetry (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun store (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun validate (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
