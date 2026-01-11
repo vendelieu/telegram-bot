@@ -42,7 +42,7 @@
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">8.4.1
+        <div class="library-version" id="library-version">9.0.0
         </div>
         <div class="navigation-controls">
         <div class="filter-section filter-section_loading" id="filter-section">
@@ -96,24 +96,24 @@
   <div class="breadcrumbs"><a href="../../index.html">telegram-bot</a><span class="delimiter">/</span><a href="../index.html">eu.vendeli.tgbot.types.gift</a><span class="delimiter">/</span><span class="current">UniqueGift</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Unique</span><wbr><span><span>Gift</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">UniqueGift</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>baseName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>number<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>model<span class="token operator">: </span><a href="../-unique-gift-model/index.html">UniqueGiftModel</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>symbol<span class="token operator">: </span><a href="../-unique-gift-symbol/index.html">UniqueGiftSymbol</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>backdrop<span class="token operator">: </span><a href="../-unique-gift-backdrop/index.html">UniqueGiftBackdrop</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>publisherChat<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.chat/-chat/index.html">Chat</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="clearfix"><span class="floating-right">(<a href="https://github.com/vendelieu/telegram-bot/blob/master/telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/types/gift/UniqueGift.kt#L19">source</a>)</span></span></div><p class="paragraph">This object describes a unique gift that was upgraded from a regular gift.</p><p class="paragraph"><a href="https://core.telegram.org/bots/api#uniquegift">Api reference</a></p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">UniqueGift</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>giftId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>baseName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>number<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>model<span class="token operator">: </span><a href="../-unique-gift-model/index.html">UniqueGiftModel</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>symbol<span class="token operator">: </span><a href="../-unique-gift-symbol/index.html">UniqueGiftSymbol</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>backdrop<span class="token operator">: </span><a href="../-unique-gift-backdrop/index.html">UniqueGiftBackdrop</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>isFromBlockchain<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>colors<span class="token operator">: </span><a href="../-unique-gift-colors/index.html">UniqueGiftColors</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>publisherChat<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.chat/-chat/index.html">Chat</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>isPremium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="../../eu.vendeli.tgbot.types.common/-is-premium-prop/index.html">IsPremiumProp</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/vendelieu/telegram-bot/blob/master/telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/types/gift/UniqueGift.kt#L24">source</a>)</span></span></div><p class="paragraph">This object describes a unique gift that was upgraded from a regular gift.</p><p class="paragraph"><a href="https://core.telegram.org/bots/api#uniquegift">Api reference</a></p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
       <div data-togglable="CONSTRUCTOR">
         <h2 class="">Constructors</h2>
-        <div class="table"><a data-name="-605257996%2FConstructors%2F1596435014" anchor-label="UniqueGift" id="-605257996%2FConstructors%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+        <div class="table"><a data-name="1772823298%2FConstructors%2F1596435014" anchor-label="UniqueGift" id="1772823298%2FConstructors%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
           <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-unique-gift.html"><span>Unique</span><wbr><span><span>Gift</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-605257996%2FConstructors%2F1596435014"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1772823298%2FConstructors%2F1596435014"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">baseName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">number<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">model<span class="token operator">: </span><a href="../-unique-gift-model/index.html">UniqueGiftModel</a><span class="token punctuation">, </span></span><span class="parameter ">symbol<span class="token operator">: </span><a href="../-unique-gift-symbol/index.html">UniqueGiftSymbol</a><span class="token punctuation">, </span></span><span class="parameter ">backdrop<span class="token operator">: </span><a href="../-unique-gift-backdrop/index.html">UniqueGiftBackdrop</a><span class="token punctuation">, </span></span><span class="parameter ">publisherChat<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.chat/-chat/index.html">Chat</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">giftId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">baseName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">number<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">model<span class="token operator">: </span><a href="../-unique-gift-model/index.html">UniqueGiftModel</a><span class="token punctuation">, </span></span><span class="parameter ">symbol<span class="token operator">: </span><a href="../-unique-gift-symbol/index.html">UniqueGiftSymbol</a><span class="token punctuation">, </span></span><span class="parameter ">backdrop<span class="token operator">: </span><a href="../-unique-gift-backdrop/index.html">UniqueGiftBackdrop</a><span class="token punctuation">, </span></span><span class="parameter ">isFromBlockchain<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">colors<span class="token operator">: </span><a href="../-unique-gift-colors/index.html">UniqueGiftColors</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">publisherChat<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.chat/-chat/index.html">Chat</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">isPremium<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -148,6 +148,66 @@
               <div>
                 <div class="title">
                   <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="base-name.html">baseName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Human-readable name of the regular gift from which this unique gift was upgraded</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="95154944%2FProperties%2F1596435014" anchor-label="colors" id="95154944%2FProperties%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="colors.html"><span><span>colors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="95154944%2FProperties%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="colors.html">colors</a><span class="token operator">: </span><a href="../-unique-gift-colors/index.html">UniqueGiftColors</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">Optional. The color scheme that can be used by the gift's owner for the chat's name, replies to messages and link previews; for business account gifts and gifts that are currently on sale only</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-943633819%2FProperties%2F1596435014" anchor-label="giftId" id="-943633819%2FProperties%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="gift-id.html"><span>gift</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-943633819%2FProperties%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="gift-id.html">giftId</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Identifier of the regular gift from which the gift was upgraded</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1222589880%2FProperties%2F1596435014" anchor-label="isFromBlockchain" id="-1222589880%2FProperties%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-from-blockchain.html"><span>is</span><wbr><span>From</span><wbr><span><span>Blockchain</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1222589880%2FProperties%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-from-blockchain.html">isFromBlockchain</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">Optional. True, if the gift is assigned from the TON blockchain and can't be resold or transferred in Telegram</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-506900739%2FProperties%2F1596435014" anchor-label="isPremium" id="-506900739%2FProperties%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-premium.html"><span>is</span><wbr><span><span>Premium</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-506900739%2FProperties%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="is-premium.html">isPremium</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">Optional. True, if the original regular gift was exclusively purchaseable by Telegram Premium subscribers</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -234,7 +294,7 @@
 </div>
     <div class="footer">
         <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Vendelieu</span>
+        <span>© 2026 Vendelieu</span>
         <span class="pull-right">
             <span>Generated by </span>
             <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
