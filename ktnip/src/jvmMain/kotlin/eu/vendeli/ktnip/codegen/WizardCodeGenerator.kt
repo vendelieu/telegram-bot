@@ -6,6 +6,8 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.ksp.toClassName
 import eu.vendeli.ktnip.dto.ActivityMetadata
 import eu.vendeli.ktnip.utils.FileBuilder
+import eu.vendeli.tgbot.core.Activity
+import eu.vendeli.tgbot.interfaces.marker.InputSelfManaging
 
 /**
  * Generates wizard-related code: WizardActivity, start activity, and input activity.
@@ -158,7 +160,8 @@ class WizardCodeGenerator(
         classShortName: String,
     ) {
         val inputActivityObject = TypeSpec.objectBuilder("${objectName}Input")
-            .addSuperinterface(ClassName("eu.vendeli.tgbot.core", "Activity"))
+            .addSuperinterface(Activity::class.asClassName())
+            .addSuperinterface(InputSelfManaging::class.asClassName())
             .addModifiers(KModifier.INTERNAL)
             .addProperty(
                 PropertySpec.builder("id", INT, KModifier.OVERRIDE)
