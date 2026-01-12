@@ -1,20 +1,34 @@
 package eu.vendeli.ktnip.utils
 
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.STAR
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeVariableName
+import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.asTypeName
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.core.Activity
 import eu.vendeli.tgbot.implementations.ClassDataImpl
 import eu.vendeli.tgbot.implementations.UserDataMapImpl
 import eu.vendeli.tgbot.interfaces.ctx.ClassData
 import eu.vendeli.tgbot.interfaces.ctx.UserData
+import eu.vendeli.tgbot.interfaces.helper.ArgumentParser
+import eu.vendeli.tgbot.interfaces.helper.ContextLoader
+import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.interfaces.marker.Autowiring
+import eu.vendeli.tgbot.interfaces.marker.InputSelfManaging
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.chain.WizardActivity
+import eu.vendeli.tgbot.types.chain.WizardContext
+import eu.vendeli.tgbot.types.chain.WizardStateManager
+import eu.vendeli.tgbot.types.chain.WizardStep
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.component.*
+import eu.vendeli.tgbot.types.configuration.RateLimits
+import eu.vendeli.tgbot.utils.common.CtxUtils
 import eu.vendeli.tgbot.utils.common.fqName
+import kotlin.reflect.KClass
 
 /**
  * Type name constants used throughout KSP code generation.
@@ -33,7 +47,6 @@ object TypeConstants {
     val chatClass: TypeName = Chat::class.asTypeName()
     val botClass: TypeName = TelegramBot::class.asTypeName()
     val processingCtx: TypeName = ProcessingContext::class.asTypeName()
-    val idLongClass: TypeName = IdLong::class.asTypeName()
 
     // Update types
     val updateClass: TypeName = ProcessedUpdate::class.asTypeName()
@@ -71,4 +84,19 @@ object TypeConstants {
     val autowiringFQName: String = Autowiring::class.fqName
 
     val messageList = listOf(UpdateType.MESSAGE)
+
+    val activity = Activity::class.asClassName()
+    val inputSelfManaging = InputSelfManaging::class.asClassName()
+    val rateLimits = RateLimits::class.asClassName()
+    val kClass = KClass::class.asClassName()
+    val wizardStep = WizardStep::class.asClassName()
+    val wizardActivity = WizardActivity::class.asClassName()
+    val wizardStateManager = WizardStateManager::class.asClassName()
+    val wizardContext = WizardContext::class.asClassName()
+    val argumentParser = ArgumentParser::class.asClassName()
+    val contextLoader = ContextLoader::class.asClassName()
+    val guard = Guard::class.asClassName()
+    val ctxUtils = CtxUtils::class.asClassName()
+    val optIn = ClassName("kotlin", "OptIn")
+    val lazy = ClassName("kotlin", "Lazy")
 }

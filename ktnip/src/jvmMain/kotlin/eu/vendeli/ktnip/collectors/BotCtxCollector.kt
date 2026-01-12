@@ -3,18 +3,11 @@ package eu.vendeli.ktnip.collectors
 import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.ClassKind
-import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.LONG
+import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import com.squareup.kotlinpoet.PropertySpec
-import com.squareup.kotlinpoet.STRING
-import com.squareup.kotlinpoet.TypeSpec
-import com.squareup.kotlinpoet.UNIT
 import com.squareup.kotlinpoet.ksp.toClassName
 import eu.vendeli.ktnip.dto.CollectorsContext
+import eu.vendeli.ktnip.utils.TypeConstants
 import eu.vendeli.ktnip.utils.TypeConstants.botClass
 import eu.vendeli.ktnip.utils.TypeConstants.classDataCtx
 import eu.vendeli.ktnip.utils.TypeConstants.classDataCtxDef
@@ -71,11 +64,11 @@ internal class BotCtxCollector : Collector {
             addType(
                 TypeSpec.objectBuilder("__CtxUtils")
                     .addAnnotation(KtGramInternal::class)
-                    .addSuperinterface(ClassName("eu.vendeli.tgbot.utils.common", "CtxUtils"))
+                    .addSuperinterface(TypeConstants.ctxUtils)
                     .addProperty(
                         PropertySpec.builder(
                             "isClassDataInitialized",
-                            ClassName("kotlin", "Lazy").parameterizedBy(UNIT),
+                            TypeConstants.lazy.parameterizedBy(UNIT),
                             KModifier.OVERRIDE,
                         ).initializer("lazy { %T }", UNIT)
                             .build(),
@@ -97,7 +90,7 @@ internal class BotCtxCollector : Collector {
                         KModifier.PRIVATE,
                     ).apply {
                         addAnnotation(
-                            AnnotationSpec.builder(ClassName("kotlin", "OptIn"))
+                            AnnotationSpec.builder(TypeConstants.optIn)
                                 .addMember("%T::class", KtGramInternal::class)
                                 .build(),
                         )

@@ -6,8 +6,7 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.ksp.toClassName
 import eu.vendeli.ktnip.dto.ActivityMetadata
 import eu.vendeli.ktnip.utils.FileBuilder
-import eu.vendeli.tgbot.core.Activity
-import eu.vendeli.tgbot.interfaces.marker.InputSelfManaging
+import eu.vendeli.ktnip.utils.TypeConstants
 
 /**
  * Generates wizard-related code: WizardActivity, start activity, and input activity.
@@ -34,14 +33,14 @@ class WizardCodeGenerator(
         fileBuilder.addImport("eu.vendeli.tgbot.utils.common", "getInstance")
         fileBuilder.addImport("eu.vendeli.tgbot.types.configuration", "RateLimits")
         fileBuilder.addImport("kotlin.reflect", "KClass")
-        
+
         // Add import for the wizard class (to access nested steps)
         fileBuilder.addImport(funQualifier, funShortName)
 
-        val stepsType = List::class.asTypeName().parameterizedBy(ClassName("eu.vendeli.tgbot.types.chain", "WizardStep"))
+        val stepsType = LIST.parameterizedBy(TypeConstants.wizardStep)
         val engineObject = TypeSpec.objectBuilder(engineObjectName)
             .addModifiers(KModifier.INTERNAL)
-            .superclass(ClassName("eu.vendeli.tgbot.types.chain", "WizardActivity"))
+            .superclass(TypeConstants.wizardActivity)
             // Activity properties
             .addProperty(
                 PropertySpec.builder("id", INT, KModifier.OVERRIDE)
@@ -59,27 +58,47 @@ class WizardCodeGenerator(
                     .build(),
             )
             .addProperty(
-                PropertySpec.builder("rateLimits", ClassName("eu.vendeli.tgbot.types.configuration", "RateLimits"), KModifier.OVERRIDE)
+                PropertySpec.builder(
+                    "rateLimits",
+                    TypeConstants.rateLimits,
+                    KModifier.OVERRIDE,
+                )
                     .initializer(
                         if (metadata.rateLimits.period > 0 || metadata.rateLimits.rate > 0) {
-                            CodeBlock.of("%T(%L, %L)", ClassName("eu.vendeli.tgbot.types.configuration", "RateLimits"), metadata.rateLimits.rate, metadata.rateLimits.period)
+                            CodeBlock.of(
+                                "%T(%L, %L)",
+                                TypeConstants.rateLimits,
+                                metadata.rateLimits.rate,
+                                metadata.rateLimits.period,
+                            )
                         } else {
-                            CodeBlock.of("%T.NOT_LIMITED", ClassName("eu.vendeli.tgbot.types.configuration", "RateLimits"))
-                        }
+                            CodeBlock.of(
+                                "%T.NOT_LIMITED",
+                                TypeConstants.rateLimits,
+                            )
+                        },
                     )
                     .build(),
             )
             .addProperty(
-                PropertySpec.builder("guardClass", ClassName("kotlin.reflect", "KClass").parameterizedBy(
-                    WildcardTypeName.producerOf(ClassName("eu.vendeli.tgbot.interfaces.helper", "Guard")),
-                ), KModifier.OVERRIDE)
+                PropertySpec.builder(
+                    "guardClass",
+                    TypeConstants.kClass.parameterizedBy(
+                        WildcardTypeName.producerOf(TypeConstants.guard),
+                    ),
+                    KModifier.OVERRIDE,
+                )
                     .initializer("%T::class", ClassName.bestGuess(metadata.guardClass))
                     .build(),
             )
             .addProperty(
-                PropertySpec.builder("argParser", ClassName("kotlin.reflect", "KClass").parameterizedBy(
-                    WildcardTypeName.producerOf(ClassName("eu.vendeli.tgbot.interfaces.helper", "ArgumentParser")),
-                ), KModifier.OVERRIDE)
+                PropertySpec.builder(
+                    "argParser",
+                    TypeConstants.kClass.parameterizedBy(
+                        WildcardTypeName.producerOf(TypeConstants.argumentParser),
+                    ),
+                    KModifier.OVERRIDE,
+                )
                     .initializer("%T::class", ClassName.bestGuess(metadata.argParserClass))
                     .build(),
             )
@@ -93,11 +112,18 @@ class WizardCodeGenerator(
             .addFunction(
                 FunSpec.builder("getStateManagerForStep")
                     .addModifiers(KModifier.OVERRIDE)
-                    .addParameter("step", ClassName("kotlin.reflect", "KClass").parameterizedBy(
-                        WildcardTypeName.producerOf(ClassName("eu.vendeli.tgbot.types.chain", "WizardStep")),
-                    ))
-                    .addParameter("bot", ClassName("eu.vendeli.tgbot", "TelegramBot"))
-                    .returns(ClassName("eu.vendeli.tgbot.types.chain", "WizardStateManager").parameterizedBy(WildcardTypeName.producerOf(Any::class.asTypeName())).copy(nullable = true))
+                    .addParameter(
+                        "step",
+                        TypeConstants.kClass.parameterizedBy(
+                            WildcardTypeName.producerOf(TypeConstants.wizardStep),
+                        ),
+                    )
+                    .addParameter("bot", TypeConstants.botClass)
+                    .returns(
+                        TypeConstants.wizardStateManager.parameterizedBy(
+                            WildcardTypeName.producerOf(ANY),
+                        ).copy(nullable = true),
+                    )
                     .addCode(
                         buildStateManagerResolutionCode(stepToManagerMap),
                     )
@@ -118,7 +144,7 @@ class WizardCodeGenerator(
         classShortName: String,
     ) {
         val startActivityObject = TypeSpec.objectBuilder("${objectName}Start")
-            .addSuperinterface(ClassName("eu.vendeli.tgbot.core", "Activity"))
+            .addSuperinterface(TypeConstants.activity)
             .addModifiers(KModifier.INTERNAL)
             .addProperty(
                 PropertySpec.builder("id", INT, KModifier.OVERRIDE)
@@ -138,7 +164,7 @@ class WizardCodeGenerator(
             .addFunction(
                 FunSpec.builder("invoke")
                     .addModifiers(KModifier.OVERRIDE, KModifier.SUSPEND)
-                    .addParameter("context", ClassName("eu.vendeli.tgbot.types.component", "ProcessingContext"))
+                    .addParameter("context", TypeConstants.processingCtx)
                     .returns(Any::class.asTypeName().copy(nullable = true))
                     .addCode(
                         buildStartWizardCode(activityId),
@@ -160,8 +186,8 @@ class WizardCodeGenerator(
         classShortName: String,
     ) {
         val inputActivityObject = TypeSpec.objectBuilder("${objectName}Input")
-            .addSuperinterface(Activity::class.asClassName())
-            .addSuperinterface(InputSelfManaging::class.asClassName())
+            .addSuperinterface(TypeConstants.activity)
+            .addSuperinterface(TypeConstants.inputSelfManaging)
             .addModifiers(KModifier.INTERNAL)
             .addProperty(
                 PropertySpec.builder("id", INT, KModifier.OVERRIDE)
@@ -181,8 +207,8 @@ class WizardCodeGenerator(
             .addFunction(
                 FunSpec.builder("invoke")
                     .addModifiers(KModifier.OVERRIDE, KModifier.SUSPEND)
-                    .addParameter("context", ClassName("eu.vendeli.tgbot.types.component", "ProcessingContext"))
-                    .returns(Any::class.asTypeName().copy(nullable = true))
+                    .addParameter("context", TypeConstants.processingCtx)
+                    .returns(ANY.copy(nullable = true))
                     .addCode(
                         buildWizardInputCode(activityId),
                     )
@@ -209,7 +235,11 @@ class WizardCodeGenerator(
                 fileBuilder.addImport(managerClass.packageName.asString(), managerClass.simpleName.asString())
 
                 add("    %T::class -> {\n", stepClassName)
-                add("        val manager = bot.getInstance(%T::class) as? %T<*>\n", managerClassName, ClassName("eu.vendeli.tgbot.types.chain", "WizardStateManager"))
+                add(
+                    "        val manager = bot.getInstance(%T::class) as? %T<*>\n",
+                    managerClassName,
+                    TypeConstants.wizardStateManager,
+                )
                 add("        manager\n")
                 add("    }\n")
             }
@@ -232,7 +262,11 @@ class WizardCodeGenerator(
             add("val user = update.userOrNull ?: return@run Unit\n")
 
             // Get engine from registry
-            add("val wizardEngine = registry.getActivity(%L) as? %T ?: return@run Unit\n", activityId, ClassName("eu.vendeli.tgbot.types.chain", "WizardActivity"))
+            add(
+                "val wizardEngine = registry.getActivity(%L) as? %T ?: return@run Unit\n",
+                activityId,
+                TypeConstants.wizardActivity,
+            )
 
             // Create wizard context
             add("val wizardCtx = WizardContext(user, update, bot)\n")
@@ -258,7 +292,11 @@ class WizardCodeGenerator(
             add("val user = update.userOrNull ?: return@run Unit\n")
 
             // Get engine from registry
-            add("val wizardEngine = registry.getActivity(%L) as? %T ?: return@run Unit\n", activityId, ClassName("eu.vendeli.tgbot.types.chain", "WizardActivity"))
+            add(
+                "val wizardEngine = registry.getActivity(%L) as? %T ?: return@run Unit\n",
+                activityId,
+                TypeConstants.wizardActivity,
+            )
 
             // Create wizard context
             add("val wizardCtx = WizardContext(user, update, bot)\n")

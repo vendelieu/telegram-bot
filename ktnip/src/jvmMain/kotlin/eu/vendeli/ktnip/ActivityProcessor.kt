@@ -53,7 +53,7 @@ class ActivityProcessor(
 
             val loadFun = FunSpec.builder("load")
                 .addModifiers(KModifier.OVERRIDE)
-                .addParameter("bot", ClassName("eu.vendeli.tgbot", "TelegramBot"))
+                .addParameter("bot", TypeConstants.botClass)
                 .addCode("return bot.update.registry.run {\n")
                 .addStatement("bot.update.____ctxUtils = %T", ClassName(filePkg, "__CtxUtils"))
 
@@ -63,7 +63,7 @@ class ActivityProcessor(
 
             loaders.add(
                 TypeSpec.classBuilder(className)
-                    .addSuperinterface(ClassName("eu.vendeli.tgbot.interfaces.helper", "ContextLoader"))
+                    .addSuperinterface(TypeConstants.contextLoader)
                     .apply {
                         if (isMultiPackage && pkg != null) {
                             addProperty(
@@ -194,7 +194,7 @@ class ActivityProcessor(
 
         addAnnotation(
             AnnotationSpec
-                .builder(ClassName("kotlin", "OptIn"))
+                .builder(TypeConstants.optIn)
                 .useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
                 .addMember("$internalAnnoName::class")
                 .addMember("$experimentalAnnoName::class")
