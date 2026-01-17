@@ -8,7 +8,6 @@ import eu.vendeli.tgbot.utils.common.handleFailure
 import io.ktor.util.logging.*
 
 internal object DefaultInvokeInterceptor : PipelineInterceptor {
-    private val userClassCrumbs = mutableMapOf<Long, String>()
 
     override suspend fun invoke(context: ProcessingContext) {
         val logger = context.bot.config.loggerFactory
@@ -56,12 +55,20 @@ internal object DefaultInvokeInterceptor : PipelineInterceptor {
 
         if (
             clean &&
-            context.activity!!.qualifier != userClassCrumbs[user.id]
+            context.activity!!.qualifier != ClassDataHelper.get(user.id)
         ) {
             context.bot.update.____ctxUtils
                 ?.clearClassData(user.id)
             return
         }
-        userClassCrumbs[user.id] = context.activity!!.qualifier
+        ClassDataHelper.set(user.id, context.activity!!.qualifier)
+    }
+}
+
+private object ClassDataHelper {
+    private val userClassCrumbs = mutableMapOf<Long, String>()
+    fun get(userId: Long) = userClassCrumbs[userId]
+    fun set(userId: Long, crumb: String) {
+        userClassCrumbs[userId] = crumb
     }
 }
