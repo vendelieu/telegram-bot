@@ -79,8 +79,10 @@ class WizardContext(
     val bot: TelegramBot,
 ) {
     val userReference = UserChatReference(user.id, update.getChat().id)
-    val currentWizardId = bot.inputListener.get(user.id)?.extractWizardId()
-        ?: error("No active wizard for user ${user.id}")
+    val currentWizardId by lazy {
+        bot.inputListener.get(user.id)?.extractWizardId()
+            ?: error("No active wizard for user ${user.id}")
+    }
 
     /**
      * Fallback method to get state for any step (returns Any?).

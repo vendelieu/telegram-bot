@@ -72,11 +72,9 @@ class WizardStateAccessorGenerator(
                 .build()
 
             // Generate getState function for this specific step
-            val stepTypeGeneric = TypeVariableName("S", stepClassName).copy(reified = true)
             val getFun = FunSpec.builder("getState")
                 .addModifiers(KModifier.SUSPEND, KModifier.INLINE)
                 .receiver(TypeConstants.wizardContext)
-                .addTypeVariable(stepTypeGeneric)
                 .addParameter(stepTypeParam)
                 .returns(returnType.copy(nullable = true))
                 .addCode(
@@ -100,7 +98,6 @@ class WizardStateAccessorGenerator(
             val setFun = FunSpec.builder("setState")
                 .addModifiers(KModifier.SUSPEND, KModifier.INLINE)
                 .receiver(TypeConstants.wizardContext)
-                .addTypeVariable(stepTypeGeneric)
                 .addParameter("value", returnType.copy(nullable = false))
                 .addParameter(stepTypeParam)
                 .addCode(
@@ -124,7 +121,6 @@ class WizardStateAccessorGenerator(
             val delFun = FunSpec.builder("delState")
                 .addModifiers(KModifier.SUSPEND, KModifier.INLINE)
                 .receiver(TypeConstants.wizardContext)
-                .addTypeVariable(stepTypeGeneric)
                 .addParameter(stepTypeParam)
                 .addCode(
                     CodeBlock.builder()

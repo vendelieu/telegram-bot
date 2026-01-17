@@ -18,6 +18,7 @@ import eu.vendeli.ktnip.utils.getAnnotatedClassSymbols
 import eu.vendeli.ktnip.utils.toKSPClassName
 import eu.vendeli.tgbot.annotations.CtxProvider
 import eu.vendeli.tgbot.annotations.internal.KtGramInternal
+import eu.vendeli.tgbot.utils.common.CtxUtils
 
 internal class BotCtxCollector : Collector {
     override fun collect(resolver: Resolver, ctx: CollectorsContext) {
@@ -67,14 +68,14 @@ internal class BotCtxCollector : Collector {
                     .addSuperinterface(TypeConstants.ctxUtils)
                     .addProperty(
                         PropertySpec.builder(
-                            "isClassDataInitialized",
+                            CtxUtils::isClassDataInitialized.name,
                             TypeConstants.lazy.parameterizedBy(UNIT),
                             KModifier.OVERRIDE,
                         ).initializer("lazy { %T }", UNIT)
                             .build(),
                     )
                     .addFunction(
-                        FunSpec.builder("clearClassData")
+                        FunSpec.builder(CtxUtils::clearClassData.name)
                             .addModifiers(KModifier.OVERRIDE, KModifier.SUSPEND)
                             .addParameter("tgId", LONG)
                             .addCode("_classData.clearAll(tgId)")
