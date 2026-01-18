@@ -7,6 +7,7 @@ import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ktnip.dto.CollectorsContext
 import eu.vendeli.ktnip.utils.FileBuilder
 import eu.vendeli.ktnip.utils.TypeConstants
+import eu.vendeli.tgbot.types.chain.WizardStep
 
 /**
  * Generates type-safe state accessor extension functions for WizardContext.
@@ -43,7 +44,7 @@ class WizardStateAccessorGenerator(
         stepToManagerMap.forEach { (stepClass, _) ->
             val storeFunction = stepClass
                 .getAllFunctions()
-                .find { it.simpleName.asString() == "store" && it.parameters.size == 1 }
+                .find { it.simpleName.asString() == WizardStep::store.name && it.parameters.size == 1 }
                 ?: return@forEach
 
             val returnType = storeFunction.returnType?.resolve()?.toTypeName()

@@ -7,6 +7,7 @@ import com.squareup.kotlinpoet.ksp.toClassName
 import eu.vendeli.ktnip.dto.ActivityMetadata
 import eu.vendeli.ktnip.utils.FileBuilder
 import eu.vendeli.ktnip.utils.TypeConstants
+import eu.vendeli.tgbot.types.chain.WizardActivity
 
 /**
  * Generates wizard-related code: WizardActivity, start activity, and input activity.
@@ -43,23 +44,23 @@ class WizardCodeGenerator(
             .superclass(TypeConstants.wizardActivity)
             // Activity properties
             .addProperty(
-                PropertySpec.builder("id", INT, KModifier.OVERRIDE)
+                PropertySpec.builder(WizardActivity::id.name, INT, KModifier.OVERRIDE)
                     .initializer("%L", activityId)
                     .build(),
             )
             .addProperty(
-                PropertySpec.builder("qualifier", STRING, KModifier.OVERRIDE)
+                PropertySpec.builder(WizardActivity::qualifier.name, STRING, KModifier.OVERRIDE)
                     .initializer("%S", funQualifier)
                     .build(),
             )
             .addProperty(
-                PropertySpec.builder("function", STRING, KModifier.OVERRIDE)
+                PropertySpec.builder(WizardActivity::function.name, STRING, KModifier.OVERRIDE)
                     .initializer("%S", funShortName)
                     .build(),
             )
             .addProperty(
                 PropertySpec.builder(
-                    "rateLimits",
+                    WizardActivity::rateLimits.name,
                     TypeConstants.rateLimits,
                     KModifier.OVERRIDE,
                 )
@@ -82,7 +83,7 @@ class WizardCodeGenerator(
             )
             .addProperty(
                 PropertySpec.builder(
-                    "guardClass",
+                    WizardActivity::guardClass.name,
                     TypeConstants.kClass.parameterizedBy(
                         WildcardTypeName.producerOf(TypeConstants.guard),
                     ),
@@ -93,7 +94,7 @@ class WizardCodeGenerator(
             )
             .addProperty(
                 PropertySpec.builder(
-                    "argParser",
+                    WizardActivity::argParser.name,
                     TypeConstants.kClass.parameterizedBy(
                         WildcardTypeName.producerOf(TypeConstants.argumentParser),
                     ),
@@ -104,13 +105,13 @@ class WizardCodeGenerator(
             )
             // WizardActivity properties - steps are hardcoded
             .addProperty(
-                PropertySpec.builder("steps", stepsType)
+                PropertySpec.builder(WizardActivity::steps.name, stepsType)
                     .addModifiers(KModifier.OVERRIDE)
                     .initializer(CodeBlock.of("%L", stepsListCode))
                     .build(),
             )
             .addFunction(
-                FunSpec.builder("getStateManagerForStep")
+                FunSpec.builder(WizardActivity::getStateManagerForStep.name)
                     .addModifiers(KModifier.OVERRIDE)
                     .addParameter(
                         "step",
@@ -147,22 +148,22 @@ class WizardCodeGenerator(
             .addSuperinterface(TypeConstants.activity)
             .addModifiers(KModifier.INTERNAL)
             .addProperty(
-                PropertySpec.builder("id", INT, KModifier.OVERRIDE)
+                PropertySpec.builder(WizardActivity::id.name, INT, KModifier.OVERRIDE)
                     .initializer("%L", activityId)
                     .build(),
             )
             .addProperty(
-                PropertySpec.builder("qualifier", STRING, KModifier.OVERRIDE)
+                PropertySpec.builder(WizardActivity::qualifier.name, STRING, KModifier.OVERRIDE)
                     .initializer("%S", classQualifier)
                     .build(),
             )
             .addProperty(
-                PropertySpec.builder("function", STRING, KModifier.OVERRIDE)
+                PropertySpec.builder(WizardActivity::function.name, STRING, KModifier.OVERRIDE)
                     .initializer("%S", classShortName)
                     .build(),
             )
             .addFunction(
-                FunSpec.builder("invoke")
+                FunSpec.builder(WizardActivity::invoke.name)
                     .addModifiers(KModifier.OVERRIDE, KModifier.SUSPEND)
                     .addParameter("context", TypeConstants.processingCtx)
                     .returns(Any::class.asTypeName().copy(nullable = true))
@@ -190,22 +191,22 @@ class WizardCodeGenerator(
             .addSuperinterface(TypeConstants.inputSelfManaging)
             .addModifiers(KModifier.INTERNAL)
             .addProperty(
-                PropertySpec.builder("id", INT, KModifier.OVERRIDE)
+                PropertySpec.builder(WizardActivity::id.name, INT, KModifier.OVERRIDE)
                     .initializer("%L", activityId + 1)
                     .build(),
             )
             .addProperty(
-                PropertySpec.builder("qualifier", STRING, KModifier.OVERRIDE)
+                PropertySpec.builder(WizardActivity::qualifier.name, STRING, KModifier.OVERRIDE)
                     .initializer("%S", classQualifier)
                     .build(),
             )
             .addProperty(
-                PropertySpec.builder("function", STRING, KModifier.OVERRIDE)
+                PropertySpec.builder(WizardActivity::function.name, STRING, KModifier.OVERRIDE)
                     .initializer("%S", classShortName)
                     .build(),
             )
             .addFunction(
-                FunSpec.builder("invoke")
+                FunSpec.builder(WizardActivity::invoke.name)
                     .addModifiers(KModifier.OVERRIDE, KModifier.SUSPEND)
                     .addParameter("context", TypeConstants.processingCtx)
                     .returns(ANY.copy(nullable = true))
