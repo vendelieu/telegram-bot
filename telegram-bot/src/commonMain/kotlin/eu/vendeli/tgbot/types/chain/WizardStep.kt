@@ -34,7 +34,7 @@ abstract class WizardStep(
      * Validates the current input and decides what happens next.
      * Must return a [Transition] indicating the next action.
      */
-    abstract suspend fun validate(ctx: WizardContext): Transition
+    open suspend fun validate(ctx: WizardContext): Transition = Transition.Next
 
     /**
      * Value to be persisted for this step (if any).
