@@ -39,25 +39,13 @@ class WizardCodeGenerator(
         fileBuilder.addImport(funQualifier, funShortName)
 
         val stepsType = LIST.parameterizedBy(TypeConstants.wizardStep)
-        val engineObject = TypeSpec.objectBuilder(engineObjectName)
-            .addModifiers(KModifier.INTERNAL)
-            .superclass(TypeConstants.wizardActivity)
+        val engineObject = createActivityBuilder(
+            name = engineObjectName,
+            activityId = activityId,
+            qualifier = funQualifier,
+            function = funShortName,
+        ).superclass(TypeConstants.wizardActivity)
             // Activity properties
-            .addProperty(
-                PropertySpec.builder(WizardActivity::id.name, INT, KModifier.OVERRIDE)
-                    .initializer("%L", activityId)
-                    .build(),
-            )
-            .addProperty(
-                PropertySpec.builder(WizardActivity::qualifier.name, STRING, KModifier.OVERRIDE)
-                    .initializer("%S", funQualifier)
-                    .build(),
-            )
-            .addProperty(
-                PropertySpec.builder(WizardActivity::function.name, STRING, KModifier.OVERRIDE)
-                    .initializer("%S", funShortName)
-                    .build(),
-            )
             .addProperty(
                 PropertySpec.builder(
                     WizardActivity::rateLimits.name,
@@ -144,24 +132,12 @@ class WizardCodeGenerator(
         classQualifier: String,
         classShortName: String,
     ) {
-        val startActivityObject = TypeSpec.objectBuilder("${objectName}Start")
-            .addSuperinterface(TypeConstants.activity)
-            .addModifiers(KModifier.INTERNAL)
-            .addProperty(
-                PropertySpec.builder(WizardActivity::id.name, INT, KModifier.OVERRIDE)
-                    .initializer("%L", activityId)
-                    .build(),
-            )
-            .addProperty(
-                PropertySpec.builder(WizardActivity::qualifier.name, STRING, KModifier.OVERRIDE)
-                    .initializer("%S", classQualifier)
-                    .build(),
-            )
-            .addProperty(
-                PropertySpec.builder(WizardActivity::function.name, STRING, KModifier.OVERRIDE)
-                    .initializer("%S", classShortName)
-                    .build(),
-            )
+        val startActivityObject = createActivityBuilder(
+            name = "${objectName}Start",
+            activityId = activityId,
+            qualifier = classQualifier,
+            function = classShortName,
+        ).addSuperinterface(TypeConstants.activity)
             .addFunction(
                 FunSpec.builder(WizardActivity::invoke.name)
                     .addModifiers(KModifier.OVERRIDE, KModifier.SUSPEND)
@@ -186,25 +162,13 @@ class WizardCodeGenerator(
         classQualifier: String,
         classShortName: String,
     ) {
-        val inputActivityObject = TypeSpec.objectBuilder("${objectName}Input")
-            .addSuperinterface(TypeConstants.activity)
+        val inputActivityObject = createActivityBuilder(
+            name = "${objectName}Input",
+            activityId = activityId + 1,
+            qualifier = classQualifier,
+            function = classShortName,
+        ).addSuperinterface(TypeConstants.activity)
             .addSuperinterface(TypeConstants.inputSelfManaging)
-            .addModifiers(KModifier.INTERNAL)
-            .addProperty(
-                PropertySpec.builder(WizardActivity::id.name, INT, KModifier.OVERRIDE)
-                    .initializer("%L", activityId + 1)
-                    .build(),
-            )
-            .addProperty(
-                PropertySpec.builder(WizardActivity::qualifier.name, STRING, KModifier.OVERRIDE)
-                    .initializer("%S", classQualifier)
-                    .build(),
-            )
-            .addProperty(
-                PropertySpec.builder(WizardActivity::function.name, STRING, KModifier.OVERRIDE)
-                    .initializer("%S", classShortName)
-                    .build(),
-            )
             .addFunction(
                 FunSpec.builder(WizardActivity::invoke.name)
                     .addModifiers(KModifier.OVERRIDE, KModifier.SUSPEND)
@@ -251,62 +215,81 @@ class WizardCodeGenerator(
 
     private fun buildStartWizardCode(
         activityId: Int,
-    ): CodeBlock {
-        return CodeBlock.builder().apply {
-            fileBuilder.addImport("eu.vendeli.tgbot.types.chain", "WizardContext", "WizardActivity")
-            fileBuilder.addImport("eu.vendeli.tgbot.types.component", "userOrNull")
+    ): CodeBlock = CodeBlock.builder().apply {
+        fileBuilder.addImport("eu.vendeli.tgbot.types.chain", "WizardContext", "WizardActivity")
+        fileBuilder.addImport("eu.vendeli.tgbot.types.component", "userOrNull")
 
-            beginControlFlow("return context.run {")
-            add("val bot = context.bot\n")
-            add("val update = context.update\n")
-            add("val registry = context.registry\n")
-            add("val user = update.userOrNull ?: return@run Unit\n")
+        beginControlFlow("return context.run {")
+        add("val bot = context.bot\n")
+        add("val update = context.update\n")
+        add("val registry = context.registry\n")
+        add("val user = update.userOrNull ?: return@run Unit\n")
 
-            // Get engine from registry
-            add(
-                "val wizardEngine = registry.getActivity(%L) as? %T ?: return@run Unit\n",
-                activityId,
-                TypeConstants.wizardActivity,
-            )
+        // Get engine from registry
+        add(
+            "val wizardEngine = registry.getActivity(%L) as? %T ?: return@run Unit\n",
+            activityId,
+            TypeConstants.wizardActivity,
+        )
 
-            // Create wizard context
-            add("val wizardCtx = WizardContext(user, update, bot)\n")
+        // Create wizard context
+        add("val wizardCtx = WizardContext(user, update, bot)\n")
 
-            // Start wizard (this will call onEntry of initial step and set inputListener)
-            add("wizardEngine.start(wizardCtx)\n")
+        // Start wizard (this will call onEntry of initial step and set inputListener)
+        add("wizardEngine.start(wizardCtx)\n")
 
-            endControlFlow()
-        }.build()
-    }
+        endControlFlow()
+    }.build()
 
     private fun buildWizardInputCode(
         activityId: Int,
-    ): CodeBlock {
-        return CodeBlock.builder().apply {
-            fileBuilder.addImport("eu.vendeli.tgbot.types.chain", "WizardContext", "WizardActivity")
-            fileBuilder.addImport("eu.vendeli.tgbot.types.component", "userOrNull")
+    ): CodeBlock = CodeBlock.builder().apply {
+        fileBuilder.addImport("eu.vendeli.tgbot.types.chain", "WizardContext", "WizardActivity")
+        fileBuilder.addImport("eu.vendeli.tgbot.types.component", "userOrNull")
 
-            beginControlFlow("return context.run {")
-            add("val bot = context.bot\n")
-            add("val update = context.update\n")
-            add("val registry = context.registry\n")
-            add("val user = update.userOrNull ?: return@run Unit\n")
+        beginControlFlow("return context.run {")
+        add("val bot = context.bot\n")
+        add("val update = context.update\n")
+        add("val registry = context.registry\n")
+        add("val user = update.userOrNull ?: return@run Unit\n")
 
-            // Get engine from registry
-            add(
-                "val wizardEngine = registry.getActivity(%L) as? %T ?: return@run Unit\n",
-                activityId,
-                TypeConstants.wizardActivity,
-            )
+        // Get engine from registry
+        add(
+            "val wizardEngine = registry.getActivity(%L) as? %T ?: return@run Unit\n",
+            activityId,
+            TypeConstants.wizardActivity,
+        )
 
-            // Create wizard context
-            add("val wizardCtx = WizardContext(user, update, bot)\n")
+        // Create wizard context
+        add("val wizardCtx = WizardContext(user, update, bot)\n")
 
-            // Handle input through wizard engine (it will update inputListener internally)
-            add("wizardEngine.handleInput(wizardCtx)\n")
+        // Handle input through wizard engine (it will update inputListener internally)
+        add("wizardEngine.handleInput(wizardCtx)\n")
 
-            endControlFlow()
-        }.build()
-    }
+        endControlFlow()
+    }.build()
+
+    private fun createActivityBuilder(
+        name: String,
+        activityId: Int,
+        qualifier: String,
+        function: String,
+    ) = TypeSpec.objectBuilder(name)
+        .addModifiers(KModifier.INTERNAL)
+        .addProperty(
+            PropertySpec.builder(WizardActivity::id.name, INT, KModifier.OVERRIDE)
+                .initializer("%L", activityId)
+                .build(),
+        )
+        .addProperty(
+            PropertySpec.builder(WizardActivity::qualifier.name, STRING, KModifier.OVERRIDE)
+                .initializer("%S", qualifier)
+                .build(),
+        )
+        .addProperty(
+            PropertySpec.builder(WizardActivity::function.name, STRING, KModifier.OVERRIDE)
+                .initializer("%S", function)
+                .build(),
+        )
 }
 
