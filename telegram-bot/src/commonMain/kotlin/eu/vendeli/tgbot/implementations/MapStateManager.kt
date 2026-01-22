@@ -20,9 +20,7 @@ abstract class MapStateManager<T : Any> : WizardStateManager<T> {
     override suspend fun get(
         key: KClass<out WizardStep>,
         reference: UserChatReference,
-    ): T? {
-        return storage["$key-$reference"]
-    }
+    ): T? = storage["$key-$reference"]
 
     override suspend fun set(
         key: KClass<out WizardStep>,

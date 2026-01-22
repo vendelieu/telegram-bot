@@ -3,10 +3,8 @@ package eu.vendeli.tgbot.utils.common
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.internal.ExperimentalFeature
 import eu.vendeli.tgbot.core.TgUpdateHandler
-import eu.vendeli.tgbot.interfaces.ctx.InputListener
 import eu.vendeli.tgbot.interfaces.helper.ExceptionHandler
 import eu.vendeli.tgbot.types.component.ParseMode
-import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
 import eu.vendeli.tgbot.utils.builders.inlineKeyboardMarkup
 import kotlinx.coroutines.CoroutineDispatcher

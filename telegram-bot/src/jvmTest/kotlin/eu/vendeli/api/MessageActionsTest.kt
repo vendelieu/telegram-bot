@@ -119,8 +119,7 @@ class MessageActionsTest : BotTestContext() {
         sendMessageDraft(2, "test draft")
             .options {
                 messageThreadId = 3
-            }
-            .sendReq()
+            }.sendReq()
             .shouldFailure() shouldContainInDescription "TEXTDRAFT_PEER_INVALID"
     }
 

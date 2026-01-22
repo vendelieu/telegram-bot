@@ -27,7 +27,6 @@ import eu.vendeli.tgbot.types.component.ProcessingContext
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.configuration.RateLimits
 import kotlin.reflect.KClass
-import eu.vendeli.tgbot.types.component.userOrNull
 
 class TestActivity(
     override val id: Int,

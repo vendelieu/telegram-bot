@@ -8,5 +8,7 @@ import kotlinx.serialization.Serializable
 internal sealed class ProcessingCtxKey {
     data object RegexMatch : ProcessingCtxKey()
 
-    data class Custom(val name: String) : ProcessingCtxKey()
+    data class Custom(
+        val name: String,
+    ) : ProcessingCtxKey()
 }

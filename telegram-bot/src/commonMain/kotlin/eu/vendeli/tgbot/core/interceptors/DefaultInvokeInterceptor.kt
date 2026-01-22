@@ -8,7 +8,6 @@ import eu.vendeli.tgbot.utils.common.handleFailure
 import io.ktor.util.logging.*
 
 internal object DefaultInvokeInterceptor : PipelineInterceptor {
-
     override suspend fun invoke(context: ProcessingContext) {
         val logger = context.bot.config.loggerFactory
             .get("eu.vendeli.core.interceptors.InvokeInterceptor")

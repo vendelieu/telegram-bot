@@ -5,9 +5,7 @@ package eu.vendeli.fixtures
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.implementations.MapIntStateManager
 import eu.vendeli.tgbot.implementations.MapStringStateManager
-import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chain.Transition
-import eu.vendeli.tgbot.types.chain.UserChatReference
 import eu.vendeli.tgbot.types.chain.WizardActivity
 import eu.vendeli.tgbot.types.chain.WizardContext
 import eu.vendeli.tgbot.types.chain.WizardStateManager

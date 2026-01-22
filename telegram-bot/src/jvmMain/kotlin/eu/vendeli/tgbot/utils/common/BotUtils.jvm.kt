@@ -31,8 +31,10 @@ actual val KClass<*>.fqName: String
     get() = qualifiedName ?: simpleName ?: "Unknown"
 
 var BotConfiguration.logLevel: Level?
-    get() = LoggerFactory.getLogger("eu.vendeli.tgbot")
-        .safeCast<Logger>()?.level
+    get() = LoggerFactory
+        .getLogger("eu.vendeli.tgbot")
+        .safeCast<Logger>()
+        ?.level
     set(value) {
         if (value == null) return
         val logger = LoggerFactory.getLogger("eu.vendeli.tgbot").safeCast<Logger>()

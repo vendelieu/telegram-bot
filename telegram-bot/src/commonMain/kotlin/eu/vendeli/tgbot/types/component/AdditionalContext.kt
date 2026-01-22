@@ -10,29 +10,29 @@ class AdditionalContext internal constructor() : MutableMap<String, Any?> {
     val regexMatch: MatchResult? get() = state[ProcessingCtxKey.RegexMatch].safeCast()
 
     override val keys: MutableSet<String>
-        get() = state.keys.mapNotNull {
-            it.safeCast<ProcessingCtxKey.Custom>()?.name
-        }.toMutableSet()
+        get() = state.keys
+            .mapNotNull {
+                it.safeCast<ProcessingCtxKey.Custom>()?.name
+            }.toMutableSet()
 
     override val values: MutableCollection<Any?>
-        get() = state.entries.filter {
-            it.key is ProcessingCtxKey.Custom
-        }.map { it.value }.toMutableList()
+        get() = state.entries
+            .filter {
+                it.key is ProcessingCtxKey.Custom
+            }.map { it.value }
+            .toMutableList()
 
     override val entries: MutableSet<MutableMap.MutableEntry<String, Any?>>
-        get() = state.entries.filter {
-            it.key is ProcessingCtxKey.Custom
-        }.map {
-            (it.key.cast<ProcessingCtxKey.Custom>().name to it.value).toEntry()
-        }.toMutableSet()
+        get() = state.entries
+            .filter {
+                it.key is ProcessingCtxKey.Custom
+            }.map {
+                (it.key.cast<ProcessingCtxKey.Custom>().name to it.value).toEntry()
+            }.toMutableSet()
 
-    override fun put(key: String, value: Any?): Any? {
-        return state.put(ProcessingCtxKey.Custom(key), value)
-    }
+    override fun put(key: String, value: Any?): Any? = state.put(ProcessingCtxKey.Custom(key), value)
 
-    override fun remove(key: String): Any? {
-        return state.remove(ProcessingCtxKey.Custom(key))
-    }
+    override fun remove(key: String): Any? = state.remove(ProcessingCtxKey.Custom(key))
 
     override fun putAll(from: Map<out String, Any?>) {
         from.forEach { (key, value) -> put(key, value) }
@@ -45,21 +45,13 @@ class AdditionalContext internal constructor() : MutableMap<String, Any?> {
     override val size: Int
         get() = state.count { it.key is ProcessingCtxKey.Custom }
 
-    override fun isEmpty(): Boolean {
-        return size == 0
-    }
+    override fun isEmpty(): Boolean = size == 0
 
-    override fun containsKey(key: String): Boolean {
-        return keys.contains(key)
-    }
+    override fun containsKey(key: String): Boolean = keys.contains(key)
 
-    override fun containsValue(value: Any?): Boolean {
-        return values.contains(value)
-    }
+    override fun containsValue(value: Any?): Boolean = values.contains(value)
 
-    override fun get(key: String): Any? {
-        return state[ProcessingCtxKey.Custom(key)]
-    }
+    override fun get(key: String): Any? = state[ProcessingCtxKey.Custom(key)]
 
     internal companion object {
         val EMPTY = AdditionalContext()
