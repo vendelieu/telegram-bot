@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) Changelog
 
+### 9.1.1
+
+* Fixed error when using `WizardStateManager` indirectly.
+
 ## 9.1.0
 
 * Changed resolvable context type from `AdditionalContext` to `ProcessingContext`.

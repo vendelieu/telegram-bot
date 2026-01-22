@@ -5,16 +5,20 @@ import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSType
+import com.google.devtools.ksp.symbol.KSTypeParameter
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ktnip.annotation.AnnotationParser
 import eu.vendeli.ktnip.codegen.WizardCodeGenerator
 import eu.vendeli.ktnip.codegen.WizardStateAccessorGenerator
 import eu.vendeli.ktnip.dto.ActivityMetadata
 import eu.vendeli.ktnip.dto.CollectorsContext
+import eu.vendeli.ktnip.utils.TypeConstants
 import eu.vendeli.ktnip.utils.findAnnotationRecursively
 import eu.vendeli.ktnip.utils.getActivityId
 import eu.vendeli.ktnip.utils.getActivityObjectName
 import eu.vendeli.ktnip.utils.getAnnotatedClassSymbols
+import eu.vendeli.ktnip.utils.safeCast
+import eu.vendeli.ktnip.utils.toKSPClassName
 import eu.vendeli.tgbot.annotations.WizardHandler
 import eu.vendeli.tgbot.types.chain.WizardStateManager
 import eu.vendeli.tgbot.types.chain.WizardStep
@@ -186,7 +190,6 @@ internal class WizardCollector : BaseCollector() {
         ctx: CollectorsContext,
     ): Map<KSClassDeclaration, KSClassDeclaration> {
         val stepToManagerMap = mutableMapOf<KSClassDeclaration, KSClassDeclaration>()
-        val wizardStateManagerFqName = WizardStateManager::class.fqName
         val stateManagerAnnotationFqName = WizardHandler.StateManager::class.fqName
 
         allSteps.forEach { stepClass ->
@@ -217,24 +220,22 @@ internal class WizardCollector : BaseCollector() {
                 val annotationValue = stateManagerAnnotation.arguments.firstOrNull()?.value
                 when (val value = annotationValue) {
                     is KSType -> {
-                        value.declaration as? KSClassDeclaration
+                        value.declaration.safeCast<KSClassDeclaration>()?.also {
+                            if (resolveWizardStateManagerTypeArg(it) != storeReturnType) {
+                                ctx.logger.warn(
+                                    "WizardStateManager type mismatch: ${it.simpleName.asString()} " +
+                                        "handles $returnTypeName, but WizardStep.store() returns $storeReturnType",
+                                )
+                            }
+                        }
                     }
 
                     else -> null
                 }
             } else {
                 // Fall back to type-based matching
-                stateManagers.firstOrNull { managerClass ->
-                    managerClass.getAllSuperTypes().any { superType ->
-                        val decl = superType.declaration as? KSClassDeclaration
-                        if (decl?.qualifiedName?.asString() == wizardStateManagerFqName) {
-                            // Check type argument
-                            val typeArg = superType.arguments.firstOrNull()?.type?.resolve()
-                            typeArg?.toTypeName()?.toString() == returnTypeName
-                        } else {
-                            false
-                        }
-                    }
+                stateManagers.find { manager ->
+                    resolveWizardStateManagerTypeArg(manager) != storeReturnType
                 }
             }
 
@@ -254,5 +255,62 @@ internal class WizardCollector : BaseCollector() {
         }
 
         return stepToManagerMap
+    }
+
+    private fun resolveWizardStateManagerTypeArg(
+        manager: KSClassDeclaration,
+    ): KSType? {
+        // Build a map of type parameter substitutions as we traverse the hierarchy
+        val typeParamMap = mutableMapOf<String, KSType>()
+
+        fun resolveType(type: KSType): KSType {
+            val declaration = type.declaration
+            if (declaration is KSTypeParameter) {
+                // Look up in our substitution map
+                return typeParamMap[declaration.name.asString()] ?: type
+            }
+            return type
+        }
+
+        // Start from the manager class and traverse up
+        var currentClass: KSClassDeclaration? = manager
+
+        while (currentClass != null) {
+            // Check each supertype
+            for (superTypeRef in currentClass.superTypes) {
+                val superType = superTypeRef.resolve()
+                val superDecl = superType.declaration
+
+                if (superDecl is KSClassDeclaration) {
+                    // Map type arguments to type parameters of the superclass
+                    val typeParams = superDecl.typeParameters
+                    val typeArgs = superType.arguments
+
+                    typeParams.zip(typeArgs).forEach { (param, arg) ->
+                        val argType = arg.type?.resolve()
+                        if (argType != null) {
+                            // Resolve through existing mappings (for chained generics)
+                            val resolved = resolveType(argType)
+                            typeParamMap[param.name.asString()] = resolved
+                        }
+                    }
+
+                    // Check if this is WizardStateManager
+                    if (superDecl.qualifiedName?.asString() == TypeConstants.wizardStateManagerFqName) {
+                        val typeArg = superType.arguments.firstOrNull()?.type?.resolve()
+                            ?: return null
+                        return resolveType(typeArg)
+                    }
+                }
+            }
+
+            // Move to the primary superclass for next iteration
+            currentClass = currentClass.superTypes
+                .map { it.resolve().declaration }
+                .filterIsInstance<KSClassDeclaration>()
+                .firstOrNull { it.classKind == ClassKind.CLASS }
+        }
+
+        return null
     }
 }

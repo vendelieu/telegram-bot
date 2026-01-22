@@ -62,6 +62,7 @@ class ActivityProcessor(
             loadFun.addCode("}\n")
 
             loaders.add(
+                // service loader requires it to have constructor so object is not an option
                 TypeSpec.classBuilder(className)
                     .addSuperinterface(TypeConstants.contextLoader)
                     .apply {
