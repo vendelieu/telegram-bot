@@ -1,6 +1,6 @@
 # Telegram-bot (KtGram) Changelog
 
-## 9.1.0 [not released]
+## 9.1.0
 
 * Changed resolvable context type from `AdditionalContext` to `ProcessingContext`.
 * Added option to define custom context in `AdditionalContext`.

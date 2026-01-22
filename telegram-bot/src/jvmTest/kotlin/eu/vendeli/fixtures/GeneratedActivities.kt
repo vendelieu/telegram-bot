@@ -128,5 +128,14 @@ class TestActivitiesLoader : ContextLoader {
         }
         registerActivity(unprocessedActivity)
         registerUnprocessed(unprocessedActivity.id)
+
+        // Wizard activities
+        val testWizardActivity = TestWizardActivity()
+        registerActivity(testWizardActivity)
+        registerCommand("/wizard", UpdateType.MESSAGE, testWizardActivity.id)
+
+        val jumpTestWizardActivity = JumpTestWizardActivity()
+        registerActivity(jumpTestWizardActivity)
+        registerCommand("/jumpwizard", UpdateType.MESSAGE, jumpTestWizardActivity.id)
     }
 }
