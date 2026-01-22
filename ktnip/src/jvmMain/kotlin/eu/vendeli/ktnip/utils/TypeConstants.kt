@@ -92,6 +92,7 @@ object TypeConstants {
     val wizardStep = WizardStep::class.asClassName()
     val wizardActivity = WizardActivity::class.asClassName()
     val wizardStateManager = WizardStateManager::class.asClassName()
+    val wizardStateManagerFqName = WizardStateManager::class.fqName
     val wizardContext = WizardContext::class.asClassName()
     val argumentParser = ArgumentParser::class.asClassName()
     val contextLoader = ContextLoader::class.asClassName()
