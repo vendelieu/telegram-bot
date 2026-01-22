@@ -1,7 +1,10 @@
 package eu.vendeli.tgbot.annotations
 
-import eu.vendeli.tgbot.types.component.UpdateType
+import eu.vendeli.tgbot.implementations.MapIntStateManager
+import eu.vendeli.tgbot.implementations.MapLongStateManager
+import eu.vendeli.tgbot.implementations.MapStringStateManager
 import eu.vendeli.tgbot.types.chain.WizardStateManager
+import eu.vendeli.tgbot.types.component.UpdateType
 import kotlin.reflect.KClass
 
 /**
@@ -22,13 +25,18 @@ import kotlin.reflect.KClass
  *                         Each state manager should implement [WizardStateManager] with a specific type parameter.
  *                         KSP will match step's store() return type to the appropriate state manager.
  *                         Can be overridden per-step using [StateManager] annotation.
+ *                         By default provides [MapStringStateManager], [MapIntStateManager], and [MapLongStateManager].
  */
 @Target(AnnotationTarget.CLASS, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.SOURCE)
 annotation class WizardHandler(
     val trigger: Array<String>,
     val scope: Array<UpdateType> = [UpdateType.MESSAGE],
-    val stateManagers: Array<KClass<out WizardStateManager<*>>> = [],
+    val stateManagers: Array<KClass<out WizardStateManager<*>>> = [
+        MapStringStateManager::class,
+        MapIntStateManager::class,
+        MapLongStateManager::class,
+    ],
 ) {
     /**
      * Annotation to specify a state manager for a specific wizard step.

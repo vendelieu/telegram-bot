@@ -6,9 +6,8 @@ import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ktnip.dto.CollectorsContext
 import eu.vendeli.ktnip.utils.FileBuilder
-import eu.vendeli.tgbot.types.chain.WizardActivity
-import eu.vendeli.tgbot.types.chain.WizardContext
-import eu.vendeli.tgbot.types.chain.WizardStateManager
+import eu.vendeli.ktnip.utils.TypeConstants
+import eu.vendeli.tgbot.types.chain.WizardStep
 
 /**
  * Generates type-safe state accessor extension functions for WizardContext.
@@ -31,10 +30,6 @@ class WizardStateAccessorGenerator(
             return
         }
 
-        val wizardContextClassName = WizardContext::class.asClassName()
-        val wizardEngineClassName = WizardActivity::class.asClassName()
-        val wizardStateManagerClassName = WizardStateManager::class.asClassName()
-
         // Add necessary imports
         fileBuilder.addImport(
             "eu.vendeli.tgbot.types.chain",
@@ -49,7 +44,7 @@ class WizardStateAccessorGenerator(
         stepToManagerMap.forEach { (stepClass, _) ->
             val storeFunction = stepClass
                 .getAllFunctions()
-                .find { it.simpleName.asString() == "store" && it.parameters.size == 1 }
+                .find { it.simpleName.asString() == WizardStep::store.name && it.parameters.size == 1 }
                 ?: return@forEach
 
             val returnType = storeFunction.returnType?.resolve()?.toTypeName()
@@ -81,7 +76,7 @@ class WizardStateAccessorGenerator(
             val stepTypeGeneric = TypeVariableName("S", stepClassName).copy(reified = true)
             val getFun = FunSpec.builder("getState")
                 .addModifiers(KModifier.SUSPEND, KModifier.INLINE)
-                .receiver(wizardContextClassName)
+                .receiver(TypeConstants.wizardContext)
                 .addTypeVariable(stepTypeGeneric)
                 .addParameter(stepTypeParam)
                 .returns(returnType.copy(nullable = true))
@@ -89,12 +84,12 @@ class WizardStateAccessorGenerator(
                     CodeBlock.builder()
                         .addStatement(
                             "val engine = bot.update.registry.getActivity(currentWizardId) as? %T ?: return null",
-                            wizardEngineClassName,
+                            TypeConstants.wizardActivity,
                         )
                         .addStatement(
                             "val manager = engine.getStateManagerForStep(%T::class, bot) as? %T<%T> ?: return null",
                             stepClassName,
-                            wizardStateManagerClassName,
+                            TypeConstants.wizardStateManager,
                             returnType,
                         )
                         .addStatement("return manager.get(%T::class, userReference)", stepClassName)
@@ -105,7 +100,7 @@ class WizardStateAccessorGenerator(
             // Generate setState function for this specific step
             val setFun = FunSpec.builder("setState")
                 .addModifiers(KModifier.SUSPEND, KModifier.INLINE)
-                .receiver(wizardContextClassName)
+                .receiver(TypeConstants.wizardContext)
                 .addTypeVariable(stepTypeGeneric)
                 .addParameter("value", returnType.copy(nullable = false))
                 .addParameter(stepTypeParam)
@@ -113,12 +108,12 @@ class WizardStateAccessorGenerator(
                     CodeBlock.builder()
                         .addStatement(
                             "val engine = bot.update.registry.getActivity(currentWizardId) as? %T ?: return",
-                            wizardEngineClassName,
+                            TypeConstants.wizardActivity,
                         )
                         .addStatement(
                             "val manager = engine.getStateManagerForStep(%T::class, bot) as? %T<%T> ?: return",
                             stepClassName,
-                            wizardStateManagerClassName,
+                            TypeConstants.wizardStateManager,
                             returnType,
                         )
                         .addStatement("manager.set(%T::class, userReference, value)", stepClassName)
@@ -129,19 +124,19 @@ class WizardStateAccessorGenerator(
             // Generate delState function for this specific step
             val delFun = FunSpec.builder("delState")
                 .addModifiers(KModifier.SUSPEND, KModifier.INLINE)
-                .receiver(wizardContextClassName)
+                .receiver(TypeConstants.wizardContext)
                 .addTypeVariable(stepTypeGeneric)
                 .addParameter(stepTypeParam)
                 .addCode(
                     CodeBlock.builder()
                         .addStatement(
                             "val engine = bot.update.registry.getActivity(currentWizardId) as? %T ?: return",
-                            wizardEngineClassName,
+                            TypeConstants.wizardActivity,
                         )
                         .addStatement(
                             "val manager = engine.getStateManagerForStep(%T::class, bot) as? %T<%T> ?: return",
                             stepClassName,
-                            wizardStateManagerClassName,
+                            TypeConstants.wizardStateManager,
                             returnType,
                         )
                         .addStatement("manager.del(%T::class, userReference)", stepClassName)

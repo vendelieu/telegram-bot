@@ -1,5 +1,11 @@
 # Telegram-bot (KtGram) Changelog
 
+## 9.1.0
+
+* Changed resolvable context type from `AdditionalContext` to `ProcessingContext`.
+* Added option to define custom context in `AdditionalContext`.
+* Removed `InputChain` in favor of new `WizardHandler`.
+
 # 9.0.0
 
 * Updated TgApi support to version `9.3`.

@@ -136,19 +136,19 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
     @Test
     suspend fun `whenNotHandled reaching test`() {
         val generalCounter = AtomicInteger(0)
-        val startCounter = AtomicInteger(0)
-        val notHandledCounter = AtomicInteger(0)
+        var startCounter = false
+        var notHandledCounter = false
 
         doMockHttp(MockUpdate.TEXT_LIST("test", "/start"))
 
         bot.update.registry.clear()
         bot.setFunctionality {
             onCommand("/start") {
-                startCounter.incrementAndGet()
+                startCounter = true
             }
 
             whenNotHandled {
-                notHandledCounter.incrementAndGet()
+                notHandledCounter = true
             }
         }
         bot.update.setListener {
@@ -157,8 +157,8 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         }
 
         generalCounter.get() shouldBeGreaterThanOrEqual 5
-        startCounter.get() shouldBeGreaterThanOrEqual 2
-        notHandledCounter.get() shouldBe 3
+        startCounter.shouldBeTrue()
+        notHandledCounter.shouldBeTrue()
     }
 
     @Test

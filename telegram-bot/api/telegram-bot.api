@@ -60,10 +60,6 @@ public abstract interface annotation class eu/vendeli/tgbot/annotations/Guard : 
 public abstract interface annotation class eu/vendeli/tgbot/annotations/Injectable : java/lang/annotation/Annotation {
 }
 
-public abstract interface annotation class eu/vendeli/tgbot/annotations/InputChain : java/lang/annotation/Annotation {
-	public abstract fun autoClean ()Z
-}
-
 public abstract interface annotation class eu/vendeli/tgbot/annotations/InputHandler : java/lang/annotation/Annotation {
 	public abstract fun value ()[Ljava/lang/String;
 }
@@ -4014,108 +4010,6 @@ public final class eu/vendeli/tgbot/types/business/BusinessOpeningHoursInterval$
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public class eu/vendeli/tgbot/types/chain/BaseLinkStateManager : eu/vendeli/tgbot/types/chain/LinkStateManager {
-	public fun <init> ()V
-	public fun <init> (Leu/vendeli/tgbot/types/chain/KeySelector;)V
-	public synthetic fun <init> (Leu/vendeli/tgbot/types/chain/KeySelector;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public fun del (Leu/vendeli/tgbot/types/component/IdLong;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public synthetic fun del (Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun get (Leu/vendeli/tgbot/types/component/IdLong;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public synthetic fun get (Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	protected final fun getData ()Lco/touchlab/stately/collections/ConcurrentMutableMap;
-	public fun getStateKey ()Leu/vendeli/tgbot/types/chain/KeySelector;
-	public fun set (Leu/vendeli/tgbot/types/component/IdLong;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public synthetic fun set (Ljava/lang/Object;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public abstract class eu/vendeli/tgbot/types/chain/BaseStatefulLink : eu/vendeli/tgbot/types/chain/StatefulLink {
-	public fun <init> ()V
-	public fun getState ()Leu/vendeli/tgbot/types/chain/LinkStateManager;
-}
-
-public abstract interface class eu/vendeli/tgbot/types/chain/BreakCondition {
-	public abstract fun invoke (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public abstract interface class eu/vendeli/tgbot/types/chain/ChainAction {
-	public abstract fun invoke (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public abstract class eu/vendeli/tgbot/types/chain/ChainLink : eu/vendeli/tgbot/types/chain/Link {
-	public fun <init> ()V
-	public fun breakAction (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getAfterAction ()Leu/vendeli/tgbot/types/chain/ChainAction;
-	public fun getBeforeAction ()Leu/vendeli/tgbot/types/chain/ChainAction;
-	public fun getBreakCondition ()Leu/vendeli/tgbot/types/chain/BreakCondition;
-	public fun getChainingStrategy ()Leu/vendeli/tgbot/types/chain/ChainingStrategy;
-	public fun getRetryAfterBreak ()Z
-}
-
-public abstract class eu/vendeli/tgbot/types/chain/ChainingStrategy {
-}
-
-public final class eu/vendeli/tgbot/types/chain/ChainingStrategy$Default : eu/vendeli/tgbot/types/chain/ChainingStrategy {
-	public static final field INSTANCE Leu/vendeli/tgbot/types/chain/ChainingStrategy$Default;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class eu/vendeli/tgbot/types/chain/ChainingStrategy$DoNothing : eu/vendeli/tgbot/types/chain/ChainingStrategy {
-	public static final field INSTANCE Leu/vendeli/tgbot/types/chain/ChainingStrategy$DoNothing;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class eu/vendeli/tgbot/types/chain/ChainingStrategy$LinkTo : eu/vendeli/tgbot/types/chain/ChainingStrategy {
-	public fun <init> (Lkotlin/jvm/functions/Function0;)V
-	public final fun component1 ()Lkotlin/jvm/functions/Function0;
-	public final fun copy (Lkotlin/jvm/functions/Function0;)Leu/vendeli/tgbot/types/chain/ChainingStrategy$LinkTo;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/chain/ChainingStrategy$LinkTo;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Leu/vendeli/tgbot/types/chain/ChainingStrategy$LinkTo;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getTarget ()Lkotlin/jvm/functions/Function0;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public abstract interface class eu/vendeli/tgbot/types/chain/KeySelector {
-	public abstract fun select (Leu/vendeli/tgbot/types/component/ProcessedUpdate;)Ljava/lang/Object;
-}
-
-public abstract interface class eu/vendeli/tgbot/types/chain/Link {
-	public abstract fun action (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun breakAction (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun getAfterAction ()Leu/vendeli/tgbot/types/chain/ChainAction;
-	public abstract fun getBeforeAction ()Leu/vendeli/tgbot/types/chain/ChainAction;
-	public abstract fun getBreakCondition ()Leu/vendeli/tgbot/types/chain/BreakCondition;
-	public fun getChainingStrategy ()Leu/vendeli/tgbot/types/chain/ChainingStrategy;
-	public abstract fun getRetryAfterBreak ()Z
-}
-
-public final class eu/vendeli/tgbot/types/chain/Link$DefaultImpls {
-	public static fun breakAction (Leu/vendeli/tgbot/types/chain/Link;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static fun getChainingStrategy (Leu/vendeli/tgbot/types/chain/Link;)Leu/vendeli/tgbot/types/chain/ChainingStrategy;
-}
-
-public abstract interface class eu/vendeli/tgbot/types/chain/LinkStateManager {
-	public abstract fun del (Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun get (Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun getStateKey ()Leu/vendeli/tgbot/types/chain/KeySelector;
-	public abstract fun set (Ljava/lang/Object;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public abstract class eu/vendeli/tgbot/types/chain/StatefulLink : eu/vendeli/tgbot/types/chain/Link {
-	public fun <init> ()V
-	public fun breakAction (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getAfterAction ()Leu/vendeli/tgbot/types/chain/ChainAction;
-	public fun getBeforeAction ()Leu/vendeli/tgbot/types/chain/ChainAction;
-	public fun getBreakCondition ()Leu/vendeli/tgbot/types/chain/BreakCondition;
-	public fun getChainingStrategy ()Leu/vendeli/tgbot/types/chain/ChainingStrategy;
-	public fun getRetryAfterBreak ()Z
-	public abstract fun getState ()Leu/vendeli/tgbot/types/chain/LinkStateManager;
-}
-
 public abstract class eu/vendeli/tgbot/types/chain/Transition {
 }
 
@@ -4198,7 +4092,7 @@ public abstract class eu/vendeli/tgbot/types/chain/WizardStep {
 	public abstract fun onEntry (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun onRetry (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun store (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun validate (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun validate (Leu/vendeli/tgbot/types/chain/WizardContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class eu/vendeli/tgbot/types/chat/Chat : eu/vendeli/tgbot/types/component/IdLong {
@@ -6230,8 +6124,28 @@ public final class eu/vendeli/tgbot/types/component/ActivityCtx {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class eu/vendeli/tgbot/types/component/AdditionalContext {
+public final class eu/vendeli/tgbot/types/component/AdditionalContext : java/util/Map, kotlin/jvm/internal/markers/KMutableMap {
+	public fun clear ()V
+	public final fun containsKey (Ljava/lang/Object;)Z
+	public fun containsKey (Ljava/lang/String;)Z
+	public fun containsValue (Ljava/lang/Object;)Z
+	public final fun entrySet ()Ljava/util/Set;
+	public final fun get (Ljava/lang/Object;)Ljava/lang/Object;
+	public fun get (Ljava/lang/String;)Ljava/lang/Object;
+	public fun getEntries ()Ljava/util/Set;
+	public fun getKeys ()Ljava/util/Set;
 	public final fun getRegexMatch ()Lkotlin/text/MatchResult;
+	public fun getSize ()I
+	public fun getValues ()Ljava/util/Collection;
+	public fun isEmpty ()Z
+	public final fun keySet ()Ljava/util/Set;
+	public synthetic fun put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+	public fun put (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+	public fun putAll (Ljava/util/Map;)V
+	public final fun remove (Ljava/lang/Object;)Ljava/lang/Object;
+	public fun remove (Ljava/lang/String;)Ljava/lang/Object;
+	public final fun size ()I
+	public final fun values ()Ljava/util/Collection;
 }
 
 public final class eu/vendeli/tgbot/types/component/BusinessConnectionUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/UserReference {
@@ -14131,6 +14045,7 @@ public final class eu/vendeli/tgbot/types/options/SendChecklistOptions$Companion
 }
 
 public final class eu/vendeli/tgbot/types/options/SendMessageDraftOptions : eu/vendeli/tgbot/types/options/ForumProps, eu/vendeli/tgbot/types/options/OptionsParseMode {
+	public static final field Companion Leu/vendeli/tgbot/types/options/SendMessageDraftOptions$Companion;
 	public fun <init> ()V
 	public fun <init> (Leu/vendeli/tgbot/types/component/ParseMode;Ljava/lang/Integer;)V
 	public synthetic fun <init> (Leu/vendeli/tgbot/types/component/ParseMode;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -14145,6 +14060,21 @@ public final class eu/vendeli/tgbot/types/options/SendMessageDraftOptions : eu/v
 	public fun setMessageThreadId (Ljava/lang/Integer;)V
 	public fun setParseMode (Leu/vendeli/tgbot/types/component/ParseMode;)V
 	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class eu/vendeli/tgbot/types/options/SendMessageDraftOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/options/SendMessageDraftOptions$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/options/SendMessageDraftOptions;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/options/SendMessageDraftOptions;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/options/SendMessageDraftOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public final class eu/vendeli/tgbot/types/options/SetGameScoreOptions : eu/vendeli/tgbot/types/options/Options {
@@ -16874,7 +16804,6 @@ public final class eu/vendeli/tgbot/utils/common/CommonExtenstionsKt {
 	public static final fun escapeHTML (Ljava/lang/String;)Ljava/lang/String;
 	public static final fun escapeMarkdown (Ljava/lang/String;)Ljava/lang/String;
 	public static final fun escapeMarkdownV2 (Ljava/lang/String;)Ljava/lang/String;
-	public static final fun setChain (Leu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/chain/Link;)V
 }
 
 public final class eu/vendeli/tgbot/utils/common/FileExtHelpersKt {

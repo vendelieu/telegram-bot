@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.annotations.ArgParser
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.CommonHandler
 import eu.vendeli.tgbot.annotations.Guard
+import eu.vendeli.tgbot.annotations.WizardHandler
 import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.types.component.UpdateType
@@ -45,10 +46,10 @@ object AnnotationParser {
      * Parses WizardHandler annotation arguments.
      */
     fun parseWizardHandler(arguments: List<KSValueArgument>): WizardHandlerData {
-        val triggers = parseValueList(arguments, "trigger")
+        val triggers = parseValueList(arguments, WizardHandler::trigger.name)
         val scope = parseScopes(arguments) ?: listOf(UpdateType.MESSAGE)
         val stateManagers = arguments.firstOrNull {
-            it.name?.asString() == "stateManagers"
+            it.name?.asString() == WizardHandler::stateManagers.name
         }?.value?.safeCast<List<*>>()?.mapNotNull { i ->
             when (i) {
                 is KSType -> i.declaration as? KSClassDeclaration
@@ -73,7 +74,7 @@ object AnnotationParser {
             when (i) {
                 is KSType -> i.declaration.toString()
                 is KSClassDeclaration -> i.simpleName.getShortName()
-                else -> throw IllegalStateException("Unknown type $i")
+                else -> error("Unknown type $i")
             }.let { UpdateType.valueOf(it) }
         }
 
@@ -138,7 +139,7 @@ object AnnotationParser {
             val value = when (it) {
                 is KSType -> it.declaration.toString()
                 is KSClassDeclaration -> it.simpleName.getShortName()
-                else -> throw IllegalStateException("Unknown type $it")
+                else -> error("Unknown type $it")
             }
             UpdateType.valueOf(value)
         }
@@ -159,7 +160,7 @@ object AnnotationParser {
             when (i) {
                 is KSType -> i.declaration.toString()
                 is KSClassDeclaration -> i.simpleName.getShortName()
-                else -> throw IllegalStateException("Unknown type $i")
+                else -> error("Unknown type $i")
             }.let { RegexOption.valueOf(it) }
         } ?: emptyList()
 }

@@ -33,8 +33,9 @@ abstract class WizardStep(
     /**
      * Validates the current input and decides what happens next.
      * Must return a [Transition] indicating the next action.
+     * Defaults to moving to the next step.
      */
-    abstract suspend fun validate(ctx: WizardContext): Transition
+    open suspend fun validate(ctx: WizardContext): Transition = Transition.Next
 
     /**
      * Value to be persisted for this step (if any).
@@ -79,8 +80,10 @@ class WizardContext(
     val bot: TelegramBot,
 ) {
     val userReference = UserChatReference(user.id, update.getChat().id)
-    val currentWizardId = bot.inputListener.get(user.id)?.extractWizardId()
-        ?: error("No active wizard for user ${user.id}")
+    val currentWizardId by lazy {
+        bot.inputListener.get(user.id)?.extractWizardId()
+            ?: error("No active wizard for user ${user.id}")
+    }
 
     /**
      * Fallback method to get state for any step (returns Any?).

@@ -27,7 +27,6 @@ import eu.vendeli.tgbot.types.component.ProcessingContext
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.configuration.RateLimits
 import kotlin.reflect.KClass
-import eu.vendeli.tgbot.types.component.userOrNull
 
 class TestActivity(
     override val id: Int,
@@ -128,5 +127,14 @@ class TestActivitiesLoader : ContextLoader {
         }
         registerActivity(unprocessedActivity)
         registerUnprocessed(unprocessedActivity.id)
+
+        // Wizard activities
+        val testWizardActivity = TestWizardActivity()
+        registerActivity(testWizardActivity)
+        registerCommand("/wizard", UpdateType.MESSAGE, testWizardActivity.id)
+
+        val jumpTestWizardActivity = JumpTestWizardActivity()
+        registerActivity(jumpTestWizardActivity)
+        registerCommand("/jumpwizard", UpdateType.MESSAGE, jumpTestWizardActivity.id)
     }
 }

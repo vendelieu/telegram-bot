@@ -10,6 +10,7 @@ import eu.vendeli.ktnip.dto.ActivityMetadata
 import eu.vendeli.ktnip.dto.CollectorsContext
 import eu.vendeli.ktnip.dto.LambdaParameters
 import eu.vendeli.ktnip.utils.FileBuilder
+import eu.vendeli.ktnip.utils.TypeConstants
 import eu.vendeli.ktnip.utils.getActivityId
 import eu.vendeli.ktnip.utils.getActivityObjectName
 import eu.vendeli.tgbot.implementations.DefaultArgParser
@@ -64,7 +65,7 @@ class ActivityCodeGenerator(
 
         // Build Activity object
         val activityObject = TypeSpec.objectBuilder(objectName)
-            .addSuperinterface(ClassName("eu.vendeli.tgbot.core", "Activity"))
+            .addSuperinterface(TypeConstants.activity)
             .addModifiers(KModifier.INTERNAL)
             .addActivityProperties(metadata)
 
@@ -78,8 +79,8 @@ class ActivityCodeGenerator(
         // Build invoke function
         val invokeFun = FunSpec.builder("invoke")
             .addModifiers(KModifier.OVERRIDE, KModifier.SUSPEND)
-            .addParameter("context", ClassName("eu.vendeli.tgbot.types.component", "ProcessingContext"))
-            .returns(Any::class.asTypeName().copy(nullable = true))
+            .addParameter("context", TypeConstants.processingCtx)
+            .returns(ANY.copy(nullable = true))
             .addCode(
                 invocationCodeGenerator.generateInvocationCode(
                     funName = funName,
@@ -133,8 +134,8 @@ class ActivityCodeGenerator(
             addProperty(
                 PropertySpec.builder(
                     "guardClass",
-                    KClass::class.asClassName()
-                        .parameterizedBy(WildcardTypeName.producerOf(Guard::class.asClassName())),
+                    TypeConstants.kClass
+                        .parameterizedBy(WildcardTypeName.producerOf(TypeConstants.guard)),
                     KModifier.OVERRIDE,
                 ).initializer("%L::class", metadata.guardClass)
                     .build(),
@@ -145,8 +146,8 @@ class ActivityCodeGenerator(
             addProperty(
                 PropertySpec.builder(
                     "argParser",
-                    KClass::class.asClassName()
-                        .parameterizedBy(WildcardTypeName.producerOf(ArgumentParser::class.asClassName())),
+                    TypeConstants.kClass
+                        .parameterizedBy(WildcardTypeName.producerOf(TypeConstants.argumentParser)),
                     KModifier.OVERRIDE,
                 ).initializer("%L::class", metadata.argParserClass)
                     .build(),

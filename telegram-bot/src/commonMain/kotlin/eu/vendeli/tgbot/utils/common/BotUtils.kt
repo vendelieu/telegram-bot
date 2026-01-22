@@ -12,9 +12,6 @@ import eu.vendeli.tgbot.types.component.FailedUpdate
 import eu.vendeli.tgbot.types.component.ProcessedUpdate
 import eu.vendeli.tgbot.types.configuration.RateLimits
 import io.ktor.util.logging.*
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
 import kotlin.reflect.KClass
 
 inline fun <reified T : Any> ClassManager.getInstance(vararg initParams: Any?): T? =

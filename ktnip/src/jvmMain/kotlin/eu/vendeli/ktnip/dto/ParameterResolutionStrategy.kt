@@ -37,9 +37,9 @@ sealed class ParameterResolutionStrategy {
     }
 
     /**
-     * Resolved from context.additionalContext
+     * Resolved from processing context
      */
-    data class AdditionalContext(
+    data class ProcessingContext(
         override val typeName: TypeName,
     ) : ParameterResolutionStrategy() {
         override val isNullable: Boolean = false

@@ -3,6 +3,8 @@ package eu.vendeli.ktnip.utils
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 
+private const val STRING_RADIX = 16
+
 /**
  * Functions for generating activity IDs and object names.
  */
@@ -39,7 +41,7 @@ fun KSFunctionDeclaration.getActivityObjectName(): String {
     val funShortName = simpleName.getShortName()
     val id = getActivityId()
     val prefix = funQualifier.replace(".", "_")
-    return "${prefix}_${funShortName}_${id.toUInt().toString(16)}"
+    return "${prefix}_${funShortName}_${id.toUInt().toString(STRING_RADIX)}"
 }
 
 /**
@@ -55,5 +57,5 @@ fun KSClassDeclaration.getActivityObjectName(): String {
     val name = simpleName.asString()
     val id = getActivityId()
     val prefix = qualifier.replace(".", "_")
-    return "${prefix}_${name}_${id.toUInt().toString(16)}"
+    return "${prefix}_${name}_${id.toUInt().toString(STRING_RADIX)}"
 }

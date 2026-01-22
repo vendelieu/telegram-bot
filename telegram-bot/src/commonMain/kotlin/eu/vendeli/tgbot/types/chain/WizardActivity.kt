@@ -5,6 +5,7 @@ import eu.vendeli.tgbot.core.Activity
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.component.ProcessingContext
 import eu.vendeli.tgbot.types.component.userOrNull
+import eu.vendeli.tgbot.utils.common.fqName
 import eu.vendeli.tgbot.utils.common.safeCast
 import kotlin.reflect.KClass
 
@@ -74,7 +75,12 @@ abstract class WizardActivity : Activity {
 
             Transition.Next -> {
                 persist(currentStep, ctx)
-                val next = nextOf(currentStep)
+                val next = nextOf(currentStep) ?: run {
+                    ctx.bot.config.loggerFactory.get(this::class.fqName).debug(
+                        "No next step for ${currentStep::class}",
+                    )
+                    return null
+                }
                 setCurrentStep(ctx.user, ctx.bot, next)
                 enterStep(next, ctx)
                 next
@@ -113,11 +119,9 @@ abstract class WizardActivity : Activity {
         step.onEntry(ctx)
     }
 
-    private fun nextOf(step: WizardStep): WizardStep {
+    private fun nextOf(step: WizardStep): WizardStep? {
         val idx = steps.indexOf(step)
-        return steps.getOrElse(idx + 1) {
-            error("No next step after ${step::class.simpleName}")
-        }
+        return steps.getOrNull(idx + 1)
     }
 
     private suspend fun finish(ctx: WizardContext) {
