@@ -5,6 +5,7 @@ import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSType
+import com.google.devtools.ksp.symbol.KSTypeParameter
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ktnip.annotation.AnnotationParser
 import eu.vendeli.ktnip.codegen.WizardCodeGenerator
@@ -229,7 +230,9 @@ internal class WizardCollector : BaseCollector() {
                         val decl = superType.declaration as? KSClassDeclaration
                         if (decl?.qualifiedName?.asString() == wizardStateManagerFqName) {
                             // Check type argument
-                            val typeArg = superType.arguments.firstOrNull()?.type?.resolve()
+                            val typeArg = superType.arguments.firstOrNull()?.type?.resolve()?.takeIf {
+                                it.declaration !is KSTypeParameter // skip if generic
+                            }
                             typeArg?.toTypeName()?.toString() == returnTypeName
                         } else {
                             false
