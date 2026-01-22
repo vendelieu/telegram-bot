@@ -47,7 +47,7 @@ class TelegramBot(
 
     internal val rootJob = SupervisorJob()
     internal val config = BotConfiguration().apply(botConfiguration)
-    private val logger = config.loggerFactory.get(this::class.fqName)
+    internal val logger = config.loggerFactory.get(this::class.fqName)
 
     internal val baseUrl by lazy { "${config.apiHost}/bot$token" + if (config.isTestEnv) "/test/" else "/" }
 

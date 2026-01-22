@@ -260,7 +260,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             ) { }
 
             bot.update.registry
-                .findMatcher(
+                .findCommonHandler(
                     "t",
                     ProcessingContext(MockUpdate.SINGLE("t").updates.first(), bot, bot.update.registry),
                 ).shouldNotBeNull()

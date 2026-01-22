@@ -108,7 +108,7 @@ class FunctionalHandlingDsl internal constructor(
         registry.registerActivity(activity)
         val matcher = CommonMatcher.String(value, filters, scope)
         scope.forEach { type ->
-            registry.registerMatcher(matcher, type, activity.id)
+            registry.registerCommonHandler(matcher, type, activity.id)
         }
     }
 
@@ -133,7 +133,7 @@ class FunctionalHandlingDsl internal constructor(
         registry.registerActivity(activity)
         val matcher = CommonMatcher.Regex(value, filters, scope)
         scope.forEach { type ->
-            registry.registerMatcher(matcher, type, activity.id)
+            registry.registerCommonHandler(matcher, type, activity.id)
         }
     }
 

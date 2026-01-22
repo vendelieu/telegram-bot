@@ -22,6 +22,14 @@ expect fun TelegramBot.loadContext(ctx: ContextLoader? = null)
 
 expect val KClass<*>.fqName: String
 
+internal inline fun TelegramBot.watchAndPrintRegistry(block: () -> Unit) {
+    val registryBefore = update.registry.getAllActivities().toList()
+    block()
+    val registryAfter = update.registry.getAllActivities().toList()
+
+    if (registryBefore != registryAfter) logger.info("Updated bot registry:\n${update.registry.prettyPrint()}")
+}
+
 internal suspend inline fun TgUpdateHandler.checkIsLimited(
     limits: RateLimits,
     telegramId: Long? = null,

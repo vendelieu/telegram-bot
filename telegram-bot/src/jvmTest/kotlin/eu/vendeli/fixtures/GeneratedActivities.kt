@@ -97,8 +97,8 @@ class TestActivitiesLoader : ContextLoader {
             inst.common()
         }
         registerActivity(commonActivity)
-        registerMatcher(CommonMatcher.String("common"), UpdateType.MESSAGE, commonActivity.id)
-        registerMatcher(CommonMatcher.String("common2"), UpdateType.MESSAGE, commonActivity.id)
+        registerCommonHandler(CommonMatcher.String("common"), UpdateType.MESSAGE, commonActivity.id)
+        registerCommonHandler(CommonMatcher.String("common2"), UpdateType.MESSAGE, commonActivity.id)
 
         val testColorActivity = TestActivity(11, "eu.vendeli.fixtures.RegexCommands", "testR") { context ->
             val inst = context.bot.config.classManager
@@ -106,7 +106,7 @@ class TestActivitiesLoader : ContextLoader {
             inst.testR(context.bot)
         }
         registerActivity(testColorActivity)
-        registerMatcher(CommonMatcher.Regex(Regex("test colou?r")), UpdateType.MESSAGE, testColorActivity.id)
+        registerCommonHandler(CommonMatcher.Regex(Regex("test colou?r")), UpdateType.MESSAGE, testColorActivity.id)
 
         // Update handlers
         val updateHandlerActivity =
