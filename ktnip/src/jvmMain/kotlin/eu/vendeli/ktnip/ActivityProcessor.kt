@@ -62,7 +62,7 @@ class ActivityProcessor(
             loadFun.addCode("}\n")
 
             loaders.add(
-                TypeSpec.classBuilder(className)
+                TypeSpec.objectBuilder(className)
                     .addSuperinterface(TypeConstants.contextLoader)
                     .apply {
                         if (isMultiPackage && pkg != null) {
