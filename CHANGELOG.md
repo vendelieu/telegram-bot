@@ -1,5 +1,10 @@
 # Telegram-bot (KtGram) Changelog
 
+### [Unreleased]
+
+* Added logging of activities registry context.
+* Added an option to pass reason in `WizardStep`.
+
 ### 9.1.1
 
 * Fixed error when using `WizardStateManager` indirectly.
