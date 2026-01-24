@@ -201,11 +201,10 @@ class WizardCodeGenerator(
 
                 add("    %T::class -> {\n", stepClassName)
                 add(
-                    "        val manager = bot.getInstance(%T::class) as? %T<*>\n",
+                    "        bot.getInstance(%T::class) as? %T<*>\n",
                     managerClassName,
                     TypeConstants.wizardStateManager,
                 )
-                add("        manager\n")
                 add("    }\n")
             }
             add("    else -> null\n")
