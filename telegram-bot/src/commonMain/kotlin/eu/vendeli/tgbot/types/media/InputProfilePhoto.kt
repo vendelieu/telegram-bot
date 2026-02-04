@@ -34,8 +34,8 @@ sealed class InputProfilePhoto {
         var photo: ImplicitFile,
     ) : InputProfilePhoto() {
         init {
-            require(photo is ImplicitFile.InpFile) {
-                "photo must be ImplicitFile.InpFile"
+            require(photo is ImplicitFile.FileData) {
+                "photo must be ImplicitFile.FileData"
             }
         }
 
@@ -53,8 +53,8 @@ sealed class InputProfilePhoto {
         val mainFrameTimestamp: Double = 0.0,
     ) : InputProfilePhoto() {
         init {
-            require(animation is ImplicitFile.InpFile) {
-                "animation must be ImplicitFile.InpFile"
+            require(animation is ImplicitFile.FileData) {
+                "animation must be ImplicitFile.FileData"
             }
         }
 

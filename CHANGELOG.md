@@ -4,6 +4,7 @@
 
 * Added logging of activities registry context.
 * Added an option to pass reason in `WizardStep`.
+* Renamed `ImplicitFile.Str` -> `ImplicitFile.FileId`, `ImplicitFile.InpFile` -> `ImplicitFile.FileData`, to avoid confusion.
 
 ### 9.1.1
 

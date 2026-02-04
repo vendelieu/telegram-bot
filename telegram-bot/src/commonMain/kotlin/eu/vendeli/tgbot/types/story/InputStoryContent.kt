@@ -33,12 +33,12 @@ sealed class InputStoryContent {
     @Serializable
     @SerialName("photo")
     data class Photo(
-        @Serializable(ImplicitFile.Companion::class)
+        @Serializable(ImplicitFile.Serde::class)
         var photo: ImplicitFile,
     ) : InputStoryContent() {
         init {
-            require(photo is ImplicitFile.InpFile) {
-                "photo must be ImplicitFile.InpFile"
+            require(photo is ImplicitFile.FileData) {
+                "photo must be ImplicitFile.FileData"
             }
         }
 
@@ -53,7 +53,7 @@ sealed class InputStoryContent {
     @Serializable
     @SerialName("video")
     data class Video(
-        @Serializable(ImplicitFile.Companion::class)
+        @Serializable(ImplicitFile.Serde::class)
         var video: ImplicitFile,
         @Serializable(with = DurationSerializer::class)
         val duration: Duration? = null,
@@ -61,8 +61,8 @@ sealed class InputStoryContent {
         val isAnimation: Boolean? = null,
     ) : InputStoryContent() {
         init {
-            require(video is ImplicitFile.InpFile) {
-                "video must be ImplicitFile.InpFile"
+            require(video is ImplicitFile.FileData) {
+                "video must be ImplicitFile.FileData"
             }
         }
 
