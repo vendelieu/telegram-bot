@@ -3,11 +3,11 @@
 package eu.vendeli.utils
 
 import eu.vendeli.tgbot.types.component.InputFile
-import io.kotest.common.runBlocking
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.readRawBytes
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import java.io.File
 import kotlin.random.Random

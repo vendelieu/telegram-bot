@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.component
 
+import eu.vendeli.tgbot.utils.common.safeCast
 import eu.vendeli.tgbot.utils.serde.ToStringSerializer
 import kotlinx.serialization.Serializable
 
@@ -17,5 +18,5 @@ sealed class ImplicitFile {
         override val file: InputFile,
     ) : ImplicitFile()
 
-    internal companion object : ToStringSerializer<ImplicitFile>({ (this as? Str)?.file.toString() })
+    internal companion object : ToStringSerializer<ImplicitFile>({ this.safeCast<Str>()?.file.toString() })
 }

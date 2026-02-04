@@ -8,11 +8,10 @@ import eu.vendeli.tgbot.api.gift.giftPremiumSubscription
 import eu.vendeli.tgbot.api.gift.transferGift
 import eu.vendeli.tgbot.api.gift.upgradeGift
 import io.kotest.matchers.shouldBe
-import kotlinx.coroutines.test.runTest
 
 class GiftApiTest : BotTestContext() {
     @Test
-    fun `convertGiftToStars test`() = runTest {
+    suspend fun `convertGiftToStars test`()  {
         convertGiftToStars("test", "gift_id")
             .sendReq()
             .shouldFailure()
@@ -21,7 +20,7 @@ class GiftApiTest : BotTestContext() {
     }
 
     @Test
-    fun `upgradeGift test`() = runTest {
+    suspend fun `upgradeGift test`()  {
         upgradeGift("test", "gift_id")
             .sendReq()
             .shouldFailure()
@@ -30,7 +29,7 @@ class GiftApiTest : BotTestContext() {
     }
 
     @Test
-    fun `transferGift test`() = runTest {
+    suspend fun `transferGift test`()  {
         transferGift("test", "gift_id", 123456L)
             .sendReq()
             .shouldFailure()
@@ -39,7 +38,7 @@ class GiftApiTest : BotTestContext() {
     }
 
     @Test
-    fun `giftPremiumSubscription test`() = runTest {
+    suspend fun `giftPremiumSubscription test`()  {
         // Using obviously invalid user and values to trigger a known error response
         giftPremiumSubscription(
             userId = 123456L,
@@ -54,7 +53,7 @@ class GiftApiTest : BotTestContext() {
     }
 
     @Test
-    fun `getUserGifts test`() = runTest {
+    suspend fun `getUserGifts test`()  {
         getUserGifts(123456L)
             .sendReq()
             .shouldFailure()
@@ -63,7 +62,7 @@ class GiftApiTest : BotTestContext() {
     }
 
     @Test
-    fun `getChatGifts test`() = runTest {
+    suspend fun `getChatGifts test`()  {
         getChatGifts(123456L.asChat())
             .sendReq()
             .shouldFailure()

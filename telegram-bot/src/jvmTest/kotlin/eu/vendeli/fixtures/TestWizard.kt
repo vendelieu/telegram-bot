@@ -39,17 +39,17 @@ object TestWizard {
             onEntryCalls.add("NameStep")
         }
 
-        override suspend fun onRetry(ctx: WizardContext) {
+        override suspend fun onRetry(ctx: WizardContext, reason: String?) {
             onRetryCalls.add("NameStep")
         }
 
         override suspend fun validate(ctx: WizardContext): Transition {
             validateCalls.add("NameStep")
-            val text = (ctx.update as? MessageUpdate)?.message?.text ?: return Transition.Retry
+            val text = (ctx.update as? MessageUpdate)?.message?.text ?: return Transition.Retry()
             return if (text.isNotBlank() && text.length >= 2) {
                 Transition.Next
             } else {
-                Transition.Retry
+                Transition.Retry()
             }
         }
 
@@ -67,18 +67,18 @@ object TestWizard {
             onEntryCalls.add("AgeStep")
         }
 
-        override suspend fun onRetry(ctx: WizardContext) {
+        override suspend fun onRetry(ctx: WizardContext, reason: String?) {
             onRetryCalls.add("AgeStep")
         }
 
         override suspend fun validate(ctx: WizardContext): Transition {
             validateCalls.add("AgeStep")
-            val text = (ctx.update as? MessageUpdate)?.message?.text ?: return Transition.Retry
+            val text = (ctx.update as? MessageUpdate)?.message?.text ?: return Transition.Retry()
             val age = text.toIntOrNull()
             return if (age != null && age in 1..150) {
                 Transition.Next
             } else {
-                Transition.Retry
+                Transition.Retry()
             }
         }
 
@@ -98,11 +98,11 @@ object TestWizard {
 
         override suspend fun validate(ctx: WizardContext): Transition {
             validateCalls.add("ConfirmStep")
-            val text = (ctx.update as? MessageUpdate)?.message?.text?.lowercase() ?: return Transition.Retry
+            val text = (ctx.update as? MessageUpdate)?.message?.text?.lowercase() ?: return Transition.Retry()
             return when (text) {
                 "yes", "y" -> Transition.Finish
                 "no", "n" -> Transition.JumpTo(NameStep::class)
-                else -> Transition.Retry
+                else -> Transition.Retry()
             }
         }
 

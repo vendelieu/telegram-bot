@@ -36,9 +36,6 @@ import kotlinx.serialization.builtins.ListSerializer
 class TelegramUpdateHandlerTest : BotTestContext() {
     override fun isolationMode() = IsolationMode.InstancePerLeaf
 
-    @ExperimentalKotest
-    override fun concurrency(): Int = 1
-
     @Test
     suspend fun `listener workflow`() {
         doMockHttp(MockUpdate.RAW_RESPONSE(updates))

@@ -24,13 +24,6 @@ class SendMediaGroupAction(
     override val options = MediaGroupOptions()
 
     init {
-        // check api restricts
-        val mediaType = media.first().type
-        require(mediaType != "animation") { "Animation type is not supported by Telegram API" }
-        require(media.all { it.type == mediaType && it.type != "animation" }) {
-            "All elements must be of the same specific type"
-        }
-
         handleImplicitFileGroup(media, serializer = InputMedia.serializer())
     }
 }

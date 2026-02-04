@@ -46,6 +46,7 @@ sealed class InputStoryContent {
         override var file: ImplicitFile = photo.cast()
             set(value) {
                 photo = value
+                field = value
             }
     }
 
@@ -69,6 +70,7 @@ sealed class InputStoryContent {
         override var file: ImplicitFile = video.cast()
             set(value) {
                 video = value
+                field = value
             }
     }
 }

@@ -1,18 +1,17 @@
 package eu.vendeli
 
 import BotTestContext
-import eu.vendeli.tgbot.api.media.SendMediaGroupAction
 import eu.vendeli.tgbot.api.media.mediaGroup
 import eu.vendeli.tgbot.api.media.photo
+import eu.vendeli.tgbot.api.media.sendMediaGroup
 import eu.vendeli.tgbot.types.component.ParseMode
 import eu.vendeli.tgbot.types.component.getOrNull
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.utils.common.toImplicitFile
+import eu.vendeli.utils.LOREM
 import io.kotest.matchers.nulls.shouldNotBeNull
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import org.junit.jupiter.api.assertThrows
 import utils.RandomPicResource
 import java.io.File
 import java.nio.file.Files
@@ -45,8 +44,8 @@ class MediaRequestTesting : BotTestContext() {
         photoFile.shouldNotBeNull()
     }
 
-    @org.junit.jupiter.api.Test
-    fun `media group requests testing via action`(): Unit = runBlocking {
+    @Test
+    suspend fun `media group requests testing via action`() {
         prepareTestBot()
         val image = classloader.getResource("image.png")?.toURI()
         image.shouldNotBeNull()
@@ -85,26 +84,32 @@ class MediaRequestTesting : BotTestContext() {
     }
 
     @Test
-    fun `check mediaGroup action for different types passing`() {
-        assertThrows<IllegalArgumentException>("All elements must be of the same specific type") {
-            SendMediaGroupAction(
-                listOf(
-                    InputMedia.Photo("".toImplicitFile()),
-                    InputMedia.Audio("".toImplicitFile()),
-                ),
-            )
-        }
-    }
+    suspend fun `media group thumbnail test`() {
+        val image = classloader.getResource("image.png")?.toURI()
+        image.shouldNotBeNull()
+        val video = LOREM.VIDEO.file
 
-    @Test
-    fun `check mediaGroup action for unsupported types passing`() {
-        assertThrows<IllegalArgumentException>("Only Audio/Document/Photo/Video is possible.") {
-            SendMediaGroupAction(
-                listOf(
-                    InputMedia.Animation("".toImplicitFile()),
-                    InputMedia.Photo("".toImplicitFile()),
-                ),
-            )
+        val mediaRequest = sendMediaGroup(
+            InputMedia.Video(
+                video.toImplicitFile("video.mp4", "video/mp4"),
+                caption = "<b>test</b>",
+                parseMode = ParseMode.HTML,
+                thumbnail = File(image).toImplicitFile("thumb.png", "image/png"),
+            ),
+            InputMedia.Photo(
+                File(image).toImplicitFile("thumb.png", "image/png")
+            ),
+        ).sendReq().shouldSuccess()
+
+        with(mediaRequest.first()) {
+            mediaGroupId.shouldNotBeNull()
+            this.video.shouldNotBeNull()
+            this.video.thumbnail.shouldNotBeNull()
+        }
+
+        with(mediaRequest.get(1)) {
+            mediaGroupId.shouldNotBeNull()
+            this.photo.shouldNotBeNull()
         }
     }
 }
