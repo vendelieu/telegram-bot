@@ -32,5 +32,5 @@ sealed class ImplicitFile {
         ) = FileId(file)
     }
 
-    internal object Serde : ToStringSerializer<ImplicitFile>({ this.safeCast<FileId>()?.file.toString() })
+    internal object Serde : ToStringSerializer<ImplicitFile>({ (this as? FileId)?.file.toString() })
 }

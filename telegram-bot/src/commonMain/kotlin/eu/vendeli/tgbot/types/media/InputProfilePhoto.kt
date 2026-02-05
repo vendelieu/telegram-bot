@@ -43,6 +43,7 @@ sealed class InputProfilePhoto {
         override var file: ImplicitFile = photo.cast()
             set(value) {
                 photo = value
+                field = value
             }
     }
 
@@ -62,6 +63,7 @@ sealed class InputProfilePhoto {
         override var file: ImplicitFile = animation.cast()
             set(value) {
                 animation = value
+                field = value
             }
     }
 }
