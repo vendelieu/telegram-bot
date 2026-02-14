@@ -42,7 +42,7 @@
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.1.1
+        <div class="library-version" id="library-version">9.2.0
         </div>
         <div class="navigation-controls">
         <div class="filter-section filter-section_loading" id="filter-section">
@@ -96,7 +96,7 @@
   <div class="breadcrumbs"><a href="../../index.html">telegram-bot</a><span class="delimiter">/</span><a href="../index.html">eu.vendeli.tgbot.core</a><span class="delimiter">/</span><span class="current">ActivityRegistry</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Activity</span><wbr><span><span>Registry</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">ActivityRegistry</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/vendelieu/telegram-bot/blob/master/telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/core/ActivityRegistry.kt#L18">source</a>)</span></span></div><p class="paragraph">Registry for activities with hierarchical indexes.</p><p class="paragraph">Structure:</p><ul><li><p class="paragraph">activities: Map<activityid, activity></activityid,></p></li><li><p class="paragraph">commands: Map<updatetype, map<command, activityid>&gt;</updatetype,></p></li><li><p class="paragraph">inputs: Map<inputid, activityid></inputid,></p></li><li><p class="paragraph">matchers: Map<updatetype, list<pair<matchpattern, activityid>&gt;&gt;</updatetype,></p></li><li><p class="paragraph">updateTypeHandlers: Map<updatetype, list<activityid>&gt;</updatetype,></p></li><li><p class="paragraph">unprocessed: ActivityId?</p></li></ul></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">ActivityRegistry</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/vendelieu/telegram-bot/blob/master/telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/core/ActivityRegistry.kt#L19">source</a>)</span></span></div><p class="paragraph">Registry for activities with hierarchical indexes.</p><p class="paragraph">Structure:</p><ul><li><p class="paragraph">activities: Map<activityid, activity></activityid,></p></li><li><p class="paragraph">commands: Map<updatetype, map<command, activityid>&gt;</updatetype,></p></li><li><p class="paragraph">inputs: Map<inputid, activityid></inputid,></p></li><li><p class="paragraph">matchers: Map<updatetype, list<pair<matchpattern, activityid>&gt;&gt;</updatetype,></p></li><li><p class="paragraph">updateTypeHandlers: Map<updatetype, list<activityid>&gt;</updatetype,></p></li><li><p class="paragraph">unprocessed: ActivityId?</p></li></ul></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
@@ -133,6 +133,21 @@
               </div>
             </div>
           </div>
+<a data-name="-903006207%2FFunctions%2F1596435014" anchor-label="findCommonHandler" id="-903006207%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-common-handler.html"><span>find</span><wbr><span>Common</span><wbr><span><span>Handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-903006207%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="find-common-handler.html"><span class="token function">findCommonHandler</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">input<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">context<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.component/-processing-context/index.html">ProcessingContext</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-activity/index.html">Activity</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
 <a data-name="-105733796%2FFunctions%2F1596435014" anchor-label="findInput" id="-105733796%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
           <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
@@ -144,21 +159,6 @@
               <div>
                 <div class="title">
                   <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="find-input.html"><span class="token function">findInput</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">inputId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-activity/index.html">Activity</a><span class="token operator">?</span></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="1747553486%2FFunctions%2F1596435014" anchor-label="findMatcher" id="1747553486%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="find-matcher.html"><span>find</span><wbr><span><span>Matcher</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1747553486%2FFunctions%2F1596435014"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="find-matcher.html"><span class="token function">findMatcher</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">input<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">context<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.component/-processing-context/index.html">ProcessingContext</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-activity/index.html">Activity</a><span class="token operator">?</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -238,6 +238,21 @@
               </div>
             </div>
           </div>
+<a data-name="1620622882%2FFunctions%2F1596435014" anchor-label="prettyPrint" id="1620622882%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pretty-print.html"><span>pretty</span><wbr><span><span>Print</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1620622882%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="pretty-print.html"><span class="token function">prettyPrint</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
 <a data-name="-39919782%2FFunctions%2F1596435014" anchor-label="registerActivity" id="-39919782%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
           <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
@@ -268,6 +283,21 @@
               </div>
             </div>
           </div>
+<a data-name="-336130329%2FFunctions%2F1596435014" anchor-label="registerCommonHandler" id="-336130329%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="register-common-handler.html"><span>register</span><wbr><span>Common</span><wbr><span><span>Handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-336130329%2FFunctions%2F1596435014"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="register-common-handler.html"><span class="token function">registerCommonHandler</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pattern<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.component/-common-matcher/index.html">CommonMatcher</a><span class="token punctuation">, </span></span><span class="parameter ">type<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.component/-update-type/index.html">UpdateType</a><span class="token punctuation">, </span></span><span class="parameter ">activityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
 <a data-name="100327915%2FFunctions%2F1596435014" anchor-label="registerInput" id="100327915%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
           <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
@@ -279,21 +309,6 @@
               <div>
                 <div class="title">
                   <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="register-input.html"><span class="token function">registerInput</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">inputId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">activityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="2134113978%2FFunctions%2F1596435014" anchor-label="registerMatcher" id="2134113978%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="register-matcher.html"><span>register</span><wbr><span><span>Matcher</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2134113978%2FFunctions%2F1596435014"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="register-matcher.html"><span class="token function">registerMatcher</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pattern<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.component/-common-matcher/index.html">CommonMatcher</a><span class="token punctuation">, </span></span><span class="parameter ">type<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.component/-update-type/index.html">UpdateType</a><span class="token punctuation">, </span></span><span class="parameter ">activityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
