@@ -3,11 +3,11 @@
 package eu.vendeli.tgbot.api.botactions
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
-import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.utils.internal.getReturnType
 
 @TgAPI
-class RemoveMyProfilePhotoAction : Action<Boolean>() {
+class RemoveMyProfilePhotoAction : SimpleAction<Boolean>() {
     @TgAPI.Name("removeMyProfilePhoto")
     override val method = "removeMyProfilePhoto"
     override val returnType = getReturnType()

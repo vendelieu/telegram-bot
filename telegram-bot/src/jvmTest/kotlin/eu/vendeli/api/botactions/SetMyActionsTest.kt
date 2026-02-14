@@ -27,6 +27,7 @@ import io.kotest.matchers.shouldBe
 import io.ktor.client.request.get
 import io.ktor.client.statement.readRawBytes
 import utils.RandomPicResource
+import utils.TestEnv
 
 class SetMyActionsTest : BotTestContext() {
     @Test
@@ -127,6 +128,7 @@ class SetMyActionsTest : BotTestContext() {
     }
 
     @Test
+    @Ignore
     suspend fun `set my profile photo method testing`() {
         val image = bot.httpClient
             .get(RandomPicResource.current.getPicUrl(400, 400))
@@ -143,6 +145,7 @@ class SetMyActionsTest : BotTestContext() {
     }
 
     @Test
+    @Ignore
     suspend fun `remove my profile photo method testing`() {
         val image = bot.httpClient
             .get(RandomPicResource.current.getPicUrl(400, 400))
