@@ -1,6 +1,5 @@
 package eu.vendeli.tgbot.types.component
 
-import eu.vendeli.tgbot.utils.common.safeCast
 import eu.vendeli.tgbot.utils.serde.ToStringSerializer
 import kotlinx.serialization.Serializable
 

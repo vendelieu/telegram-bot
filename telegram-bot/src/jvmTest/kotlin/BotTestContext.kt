@@ -16,7 +16,6 @@ import eu.vendeli.tgbot.utils.common.loadContext
 import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
-import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue

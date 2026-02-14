@@ -2,6 +2,7 @@ package eu.vendeli.api
 
 import BotTestContext
 import eu.vendeli.tgbot.api.chat.getUserChatBoosts
+import eu.vendeli.tgbot.api.media.getUserProfileAudios
 import eu.vendeli.tgbot.api.media.getUserProfilePhotos
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.comparables.shouldBeGreaterThan
@@ -20,6 +21,19 @@ class UserTest : BotTestContext() {
                 shouldNotBeNull()
                 totalCount shouldBeGreaterThan 1
                 photos.shouldNotBeNull()
+            }
+        }
+    }
+
+    @Test
+    suspend fun `get user profile audios method test`() {
+        val idResult = getUserProfileAudios(TG_ID, 0, 10).sendReq().shouldSuccess()
+        val userResult = getUserProfileAudios(TG_ID.asUser(), 0, 10).sendReq().shouldSuccess()
+
+        listOf(idResult, userResult).forEach { result ->
+            with(result) {
+                shouldNotBeNull()
+                audios.shouldNotBeNull()
             }
         }
     }

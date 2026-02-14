@@ -920,6 +920,8 @@ public suspend inline fun TelegramBot.setUserEmojiStatus(
 
 public suspend inline fun TelegramBot.setMyDescription(description: String? = null, languageCode: String? = null): Unit = eu.vendeli.tgbot.api.botactions.setMyDescription(description, languageCode).send(this)
 
+public suspend inline fun TelegramBot.removeMyProfilePhoto(chatId: Long): Unit = eu.vendeli.tgbot.api.botactions.removeMyProfilePhoto().send(chatId, this)
+
 public suspend inline fun TelegramBot.getMyCommands(languageCode: String? = null, scope: BotCommandScope? = null): Unit = eu.vendeli.tgbot.api.botactions.getMyCommands(languageCode, scope).send(this)
 
 public suspend inline fun TelegramBot.deleteWebhook(dropPendingUpdates: Boolean): Unit = eu.vendeli.tgbot.api.botactions.deleteWebhook(dropPendingUpdates).send(this)
@@ -971,6 +973,8 @@ public suspend inline fun TelegramBot.setMyCommands(
   scope: BotCommandScope? = null,
   noinline block: BotCommandsBuilder.() -> Unit,
 ): Unit = eu.vendeli.tgbot.api.botactions.setMyCommands(languageCode, scope, block).send(this)
+
+public suspend inline fun TelegramBot.setMyProfilePhoto(photo: InputProfilePhoto): Unit = eu.vendeli.tgbot.api.botactions.setMyProfilePhoto(photo).send(this)
 
 public suspend inline fun TelegramBot.getUpdates(): Unit = eu.vendeli.tgbot.api.botactions.getUpdates().send(this)
 
@@ -1107,6 +1111,18 @@ public suspend inline fun TelegramBot.audio(`file`: InputFile, chatId: Long): Un
 public suspend inline fun TelegramBot.sendAudio(noinline block: () -> String, chatId: Long): Unit = eu.vendeli.tgbot.api.media.sendAudio(block).send(chatId, this)
 
 public suspend inline fun TelegramBot.sendAudio(`file`: ImplicitFile, chatId: Long): Unit = eu.vendeli.tgbot.api.media.sendAudio(file).send(chatId, this)
+
+public suspend inline fun TelegramBot.getUserProfileAudios(
+  userId: Long,
+  offset: Int? = null,
+  limit: Int? = null,
+): Unit = eu.vendeli.tgbot.api.media.getUserProfileAudios(userId, offset, limit).send(this)
+
+public suspend inline fun TelegramBot.getUserProfileAudios(
+  user: User,
+  offset: Int? = null,
+  limit: Int? = null,
+): Unit = eu.vendeli.tgbot.api.media.getUserProfileAudios(user, offset, limit).send(this)
 
 public suspend inline fun TelegramBot.sendPaidMedia(
   starCount: Int,

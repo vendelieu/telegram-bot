@@ -97,7 +97,7 @@ class MediaRequestTesting : BotTestContext() {
                 thumbnail = File(image).toImplicitFile("thumb.png", "image/png"),
             ),
             InputMedia.Photo(
-                File(image).toImplicitFile("thumb.png", "image/png")
+                File(image).toImplicitFile("thumb.png", "image/png"),
             ),
         ).sendReq().shouldSuccess()
 

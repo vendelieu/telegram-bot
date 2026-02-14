@@ -27,7 +27,7 @@ class StoryApiTest : BotTestContext() {
 
     @Test
     @Ignore // todo fix and return; possible related to serde
-    suspend fun `postStory test`()  {
+    suspend fun `postStory test`() {
         postStory("test", InputStoryContent.Photo(image), 10.seconds)
             .sendReq()
             .shouldFailure()
@@ -37,7 +37,7 @@ class StoryApiTest : BotTestContext() {
 
     @Test
     @Ignore // todo fix and return
-    suspend fun `editStory test`()  {
+    suspend fun `editStory test`() {
         editStory("test", "story_id", InputStoryContent.Photo(image))
             .sendReq()
             .shouldFailure()
@@ -46,7 +46,7 @@ class StoryApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `deleteStory test`()  {
+    suspend fun `deleteStory test`() {
         deleteStory("test", "story_id")
             .sendReq()
             .shouldFailure()
@@ -55,7 +55,7 @@ class StoryApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `repostStory test`()  {
+    suspend fun `repostStory test`() {
         repostStory("test", 123456L, 1, 86400.seconds)
             .sendReq()
             .shouldFailure()

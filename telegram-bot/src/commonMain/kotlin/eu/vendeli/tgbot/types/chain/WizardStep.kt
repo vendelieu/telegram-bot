@@ -63,7 +63,9 @@ sealed class Transition {
     /**
      * Retry the current step (validation failed).
      */
-    data class Retry(val reason: String? = null) : Transition()
+    data class Retry(
+        val reason: String? = null,
+    ) : Transition()
 
     /**
      * Finish the wizard.

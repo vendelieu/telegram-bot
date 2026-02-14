@@ -31,7 +31,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `transferBusinessAccountStars test`()  {
+    suspend fun `transferBusinessAccountStars test`() {
         transferBusinessAccountStars("test", 1)
             .sendReq()
             .shouldFailure()
@@ -40,7 +40,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `getBusinessAccountGifts test`()  {
+    suspend fun `getBusinessAccountGifts test`() {
         getBusinessAccountGifts("test")
             .sendReq()
             .shouldFailure()
@@ -49,7 +49,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `set business account profile photo test`()  {
+    suspend fun `set business account profile photo test`() {
         val image = bot.httpClient
             .get(RandomPicResource.current.getPicUrl(400, 400))
             .readRawBytes()
@@ -63,7 +63,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `delete business messages test`()  {
+    suspend fun `delete business messages test`() {
         deleteBusinessMessages("test", listOf(1L, 2L))
             .sendReq()
             .shouldFailure()
@@ -72,7 +72,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `read business message test`()  {
+    suspend fun `read business message test`() {
         readBusinessMessage("test", 1L)
             .sendReq()
             .shouldFailure()
@@ -81,7 +81,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `remove business account profile photo test`()  {
+    suspend fun `remove business account profile photo test`() {
         removeBusinessAccountProfilePhoto("test")
             .sendReq()
             .shouldFailure()
@@ -90,7 +90,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `set business account bio test`()  {
+    suspend fun `set business account bio test`() {
         setBusinessAccountBio("test", "bio")
             .sendReq()
             .shouldFailure()
@@ -99,7 +99,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `set business account gift settings test`()  {
+    suspend fun `set business account gift settings test`() {
         setBusinessAccountGiftSettings(
             "test",
             true,
@@ -117,7 +117,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `set business account name test`()  {
+    suspend fun `set business account name test`() {
         setBusinessAccountName("test", "name")
             .sendReq()
             .shouldFailure()
@@ -126,7 +126,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `set business account username test`()  {
+    suspend fun `set business account username test`() {
         setBusinessAccountUsername("test", "username")
             .sendReq()
             .shouldFailure()

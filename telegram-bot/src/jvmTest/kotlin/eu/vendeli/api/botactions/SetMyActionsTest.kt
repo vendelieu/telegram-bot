@@ -9,17 +9,24 @@ import eu.vendeli.tgbot.api.botactions.getMyShortDescription
 import eu.vendeli.tgbot.api.botactions.setMyCommands
 import eu.vendeli.tgbot.api.botactions.setMyDefaultAdministratorRights
 import eu.vendeli.tgbot.api.botactions.setMyDescription
+import eu.vendeli.tgbot.api.botactions.removeMyProfilePhoto
 import eu.vendeli.tgbot.api.botactions.setMyName
+import eu.vendeli.tgbot.api.botactions.setMyProfilePhoto
 import eu.vendeli.tgbot.api.botactions.setMyShortDescription
 import eu.vendeli.tgbot.types.bot.BotCommand
 import eu.vendeli.tgbot.types.bot.BotCommandScope
 import eu.vendeli.tgbot.types.chat.ChatAdministratorRights
+import eu.vendeli.tgbot.types.media.InputProfilePhoto
+import eu.vendeli.tgbot.utils.common.toImplicitFile
 import eu.vendeli.tgbot.types.component.onFailure
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import io.ktor.client.request.get
+import io.ktor.client.statement.readRawBytes
+import utils.RandomPicResource
 
 class SetMyActionsTest : BotTestContext() {
     @Test
@@ -117,5 +124,32 @@ class SetMyActionsTest : BotTestContext() {
             .name shouldBe "testbot2"
 
         setMyName("testbot").send(bot)
+    }
+
+    @Test
+    suspend fun `set my profile photo method testing`() {
+        val image = bot.httpClient
+            .get(RandomPicResource.current.getPicUrl(400, 400))
+            .readRawBytes()
+            .toImplicitFile("test.png", "image/png")
+
+        val result = setMyProfilePhoto(InputProfilePhoto.Static(image)).sendReq()
+        result.onFailure {
+            if (it.errorCode == 429) return
+        }
+        result.shouldSuccess().shouldBeTrue()
+
+        removeMyProfilePhoto().sendReq().shouldSuccess().shouldBeTrue()
+    }
+
+    @Test
+    suspend fun `remove my profile photo method testing`() {
+        val image = bot.httpClient
+            .get(RandomPicResource.current.getPicUrl(400, 400))
+            .readRawBytes()
+            .toImplicitFile("test.png", "image/png")
+        setMyProfilePhoto(InputProfilePhoto.Static(image)).sendReq().onFailure { return }
+
+        removeMyProfilePhoto().sendReq().shouldSuccess().shouldBeTrue()
     }
 }

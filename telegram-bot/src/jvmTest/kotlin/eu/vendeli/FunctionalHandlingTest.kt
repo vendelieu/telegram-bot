@@ -38,7 +38,6 @@ import eu.vendeli.tgbot.utils.common.onShippingQuery
 import eu.vendeli.tgbot.utils.common.processUpdate
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
-import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual

@@ -21,6 +21,7 @@ import kotlinx.serialization.Serializable
  * @property canConnectToBusiness Optional. True, if the bot can be connected to a Telegram Business account to receive its messages. Returned only in getMe.
  * @property hasMainWebApp Optional. True, if the bot has a main Web App. Returned only in getMe.
  * @property hasTopicsEnabled Optional. True, if the bot has forum topic mode enabled in private chats. Returned only in getMe.
+ * @property allowsUsersToCreateTopics Optional. True, if the bot allows users to create and delete topics in private chats. Returned only in getMe.
  */
 @Serializable
 data class User(
@@ -38,4 +39,5 @@ data class User(
     val canConnectToBusiness: Boolean? = null,
     val hasMainWebApp: Boolean? = null,
     val hasTopicsEnabled: Boolean? = null,
+    val allowsUsersToCreateTopics: Boolean? = null,
 ) : IdLong

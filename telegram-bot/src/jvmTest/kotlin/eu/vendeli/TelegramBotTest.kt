@@ -28,7 +28,6 @@ import eu.vendeli.tgbot.utils.internal.toJsonElement
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue

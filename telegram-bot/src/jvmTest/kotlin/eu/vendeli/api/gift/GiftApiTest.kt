@@ -11,7 +11,7 @@ import io.kotest.matchers.shouldBe
 
 class GiftApiTest : BotTestContext() {
     @Test
-    suspend fun `convertGiftToStars test`()  {
+    suspend fun `convertGiftToStars test`() {
         convertGiftToStars("test", "gift_id")
             .sendReq()
             .shouldFailure()
@@ -20,7 +20,7 @@ class GiftApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `upgradeGift test`()  {
+    suspend fun `upgradeGift test`() {
         upgradeGift("test", "gift_id")
             .sendReq()
             .shouldFailure()
@@ -29,7 +29,7 @@ class GiftApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `transferGift test`()  {
+    suspend fun `transferGift test`() {
         transferGift("test", "gift_id", 123456L)
             .sendReq()
             .shouldFailure()
@@ -38,7 +38,7 @@ class GiftApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `giftPremiumSubscription test`()  {
+    suspend fun `giftPremiumSubscription test`() {
         // Using obviously invalid user and values to trigger a known error response
         giftPremiumSubscription(
             userId = 123456L,
@@ -53,7 +53,7 @@ class GiftApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `getUserGifts test`()  {
+    suspend fun `getUserGifts test`() {
         getUserGifts(123456L)
             .sendReq()
             .shouldFailure()
@@ -62,7 +62,7 @@ class GiftApiTest : BotTestContext() {
     }
 
     @Test
-    suspend fun `getChatGifts test`()  {
+    suspend fun `getChatGifts test`() {
         getChatGifts(123456L.asChat())
             .sendReq()
             .shouldFailure()
