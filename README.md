@@ -207,6 +207,10 @@ methods [
 
 You're always welcome in our [chat](https://t.me/venny_tgbot), feel free to ask.
 
+### For AI assistants
+
+AI coding assistants: see [AGENTS.md](AGENTS.md) for project context and conventions.
+
 ## Acknowledgements
 
 A big thank you to everyone who has contributed to this project. Your support and feedback are invaluable.
