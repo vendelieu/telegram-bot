@@ -36,6 +36,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.serializer
 import utils.BotResource
+import utils.TestEnv
 import utils.RandomPicResource
 import kotlin.properties.Delegates
 import kotlin.random.Random
@@ -55,11 +56,11 @@ abstract class BotTestContext(
     internal val updatesAction = spyk(GET_UPDATES_ACTION)
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
-    protected val TG_ID by lazy { System.getenv("TELEGRAM_ID")?.toLongOrNull() ?: 1L }
+    protected val TG_ID by lazy { TestEnv.getLong("TELEGRAM_ID") ?: 1L }
     protected var BOT_ID by Delegates.notNull<Long>()
-    protected val CHAT_ID by lazy { System.getenv("CHAT_ID")?.toLongOrNull() ?: -1L }
-    protected val CHANNEL_ID by lazy { System.getenv("CHANNEL_ID")?.toLongOrNull() ?: -2L }
-    protected val PAYMENT_PROVIDER_TOKEN: String? by lazy { System.getenv("PAYMENT_PROVIDER_TOKEN") }
+    protected val CHAT_ID by lazy { TestEnv.getLong("CHAT_ID") ?: -1L }
+    protected val CHANNEL_ID by lazy { TestEnv.getLong("CHANNEL_ID") ?: -2L }
+    protected val PAYMENT_PROVIDER_TOKEN: String? by lazy { TestEnv.get("PAYMENT_PROVIDER_TOKEN") }
 
     protected val RANDOM_PIC: ByteArray?
         get() = getRandomPic() ?: run {

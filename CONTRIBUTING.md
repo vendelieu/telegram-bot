@@ -27,21 +27,29 @@ Helpful gradle tasks are:
 
 ### Environment
 
-Environment parameters that are required for testing:
+Tests load environment variables from a `.env` file (project root) or system environment.
+Host environment variables take precedence over `.env`.
 
-* Token - a token for the bot that is obtained from [BotFather](https://t.me/BotFather). (don't forget to write some
-  message to the bot for correct
-  interaction)
-* Telegram Id - can be found out through the bots if you still don't know it. (for
-  example [this one](https://t.me/my_id_bot))
+**Setup:**
 
-#### The final parameters look like this:
+1. Copy `env.example` to `.env` in the project root.
+2. Fill in your values. `.env` is gitignored.
 
-`TELEGRAM_ID` - your telegram id. :)
+**Required for most tests:**
 
-`BOT_TOKEN` - token for testing bot.
+| Variable | Description |
+|----------|-------------|
+| `TELEGRAM_ID` | Your Telegram user ID (e.g. from [@my_id_bot](https://t.me/my_id_bot)) |
+| `BOT_TOKEN` | Bot token from [@BotFather](https://t.me/BotFather). Send a message to the bot first. |
 
-`BOT_TOKEN_2` - second bot for testing (for limits purpose).
+**Optional (enables additional tests):**
+
+| Variable | Description |
+|----------|-------------|
+| `BOT_TOKEN_2` | Second bot for rate-limit testing |
+| `CHAT_ID` | Chat ID for chat-related tests |
+| `CHANNEL_ID` | Channel ID for channel tests |
+| `PAYMENT_PROVIDER_TOKEN` | Payment provider token for payment tests |
 
 ## Any contributions you make will be under the Apache 2.0 Software License
 
