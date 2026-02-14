@@ -1,0 +1,32 @@
+---
+description: Project-wide conventions for Telegram Bot library
+alwaysApply: true
+---
+
+# Telegram Bot General Rules
+
+## Kotlin Conventions
+
+- Follow [Kotlin coding conventions](https://kotlinlang.org/docs/coding-conventions.html)
+- Run `./gradlew prepareRelease` before committing
+
+## Gradle Tasks
+
+- `./gradlew prepareRelease` - format, api validation, kdocs, api violations check
+- `./gradlew apiDump` - generate api dump
+
+## Contributing
+
+- Target branch for PRs: **dev**
+- Add tests for new code
+- Use `@TgAPI` on Action classes and top-level API functions for validation
+
+## API Validation
+
+- api-sentinel validates actions against Telegram API spec
+- Required params must be non-null; optional params must be nullable
+- Method names must match `@TgAPI.Name` annotation
+
+## Handling Architecture
+
+For Activity, WizardActivity, functional DSL vs annotation approach, and ProcessingPipeline, see [telegram-bot-handling.mdc](.cursor/rules/telegram-bot-handling.mdc).

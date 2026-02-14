@@ -1,0 +1,98 @@
+---
+description: API actions, features, and options for Telegram Bot library
+globs: "**/api/**/*.kt", "**/interfaces/**/*.kt"
+alwaysApply: false
+---
+
+# Telegram Bot API Rules
+
+## TgAPI Annotation
+
+- Mark Action classes and top-level API functions with `@TgAPI` (required for api-sentinel validation)
+- Use `@TgAPI.Name("methodName")` on the `method` property when the Kotlin name differs from the Telegram API method (e.g. `sendMessage` vs `message`)
+- Use `@TgAPI.Ignore` on params/classes to exclude from validation
+
+## beforeReq
+
+- `protected open val beforeReq = {}` runs right before the request (in `doRequest` / `doRequestReturning`)
+- Override when you need to process data at request time (e.g. multipart, transform files)
+- Use for: uploading files from Options (thumbnail, certificate), transforming nested ImplicitFile in complex types (InputProfilePhoto, InputStoryContent)
+- `beforeReq` runs after `init`; it has access to `parameters`, `multipartData`, and `options`
+
+```kotlin
+override val beforeReq: () -> Unit = {
+    handleImplicitFile(options::thumbnail)  // optional file from Options
+}
+```
+
+## ImplicitFile Handling
+
+- **ImplicitFile** = `FileId` (String file_id) or `FileData` (InputFile for upload)
+- Use `handleImplicitFile(file, "paramName")` in `init` for required media params
+- For optional media in Options (thumbnail, cover): `handleImplicitFile(options::thumbnail)` in `beforeReq`
+- `transform(multipartData)`: FileData -> uploads to multipart, returns FileId with `attach://filename`
+- Convert: `String.toImplicitFile()`, `InputFile.toImplicitFile()`, `ByteArray.toImplicitFile("name.ext")`
+- Complex types (InputProfilePhoto, InputStoryContent): use `file.transform(multipartData)` in beforeReq, then replace `file` with result and encode
+
+## Action Hierarchy
+
+- **TgAction** (base) -> **Action** (chat-based: `send(to, via)`) or **SimpleAction** (no chat: `send(via)`)
+- Use **Action** when the method requires `chat_id` (messages, media, etc.)
+- Use **SimpleAction** when no chat context (getMe, getUpdates, setWebhook, etc.)
+- **MediaAction** extends Action; overrides `entitiesFieldName = "caption_entities"`
+- Extensions: **BusinessActionExt** (business connection), **InlineActionExt** (inline message ID)
+
+## Feature Composition
+
+- **OptionsFeature** - `options { }` block; serializes Options into parameters. For optional params: use mixin interfaces (in IOptions.kt) when reusable across Options classes; keep single-use params in the Options data class.
+- **MarkupFeature** - `markup()`, `inlineKeyboardMarkup()`, `replyKeyboardMarkup()`, `forceReply()`, `replyKeyboardRemove()`
+- **EntitiesFeature** - `entities { }` DSL or `entities(list)`
+- **CaptionFeature** - `caption { }`, `captionEntities()`; extends EntitiesCtxBuilder
+
+## Action Class Template
+
+```kotlin
+@TgAPI
+class MyAction(param: RequiredType) : Action<ReturnType>(),
+    BusinessActionExt<ReturnType>,  // if chat-based
+    OptionsFeature<MyAction, MyOptions>,
+    MarkupFeature<MyAction> {
+    @TgAPI.Name("methodName")
+    override val method = "methodName"
+    override val returnType = getReturnType()
+    override val options = MyOptions()
+
+    init {
+        parameters["param"] = param.toJsonElement()
+    }
+}
+```
+
+## Parameter Handling
+
+- Simple values (String, Long, Int, Boolean): `parameters["key"] = value.toJsonElement()`
+- Complex types: `value.encodeWith(SomeSerializer)`
+- Polymorphic IDs (chat/user): `value.encodeWith(DynamicLookupSerializer)`
+- Media: `handleImplicitFile(file, "paramName")`; multipart in `beforeReq`
+
+## encodeWith
+
+Use `encodeWith(serializer)` for any non-primitive type that needs JSON serialization. Produces `JsonElement` for `parameters`.
+
+- **Complex objects**: `value.encodeWith(MyType.serializer())` - e.g. InputMedia, ChatPermissions, BotCommand
+- **Lists**: `list.encodeWith(ListSerializer(ItemType.serializer()))` - e.g. `messageIds.encodeWith(Long.serializer())` for List<Long>
+- **Polymorphic IDs** (Long or String for chat/user): `value.encodeWith(DynamicLookupSerializer)`
+- **Enums**: `value.encodeWith(StickerFormat.serializer())`
+- **Custom serializers**: `value.encodeWith(DurationSerializer)` when type has `@Serializable(with = ...)`
+
+Use `toJsonElement()` only for primitives. For `@Serializable` classes, lists, or polymorphic types, use `encodeWith`.
+
+## Top-Level Functions
+
+- Provide `actionName(...)` and optionally `sendActionName(...)` alias
+- Use `inline fun` for simple wrappers
+
+```kotlin
+@TgAPI
+inline fun myAction(param: RequiredType) = MyAction(param)
+```

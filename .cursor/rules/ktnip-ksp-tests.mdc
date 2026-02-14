@@ -1,0 +1,36 @@
+---
+description: KSP processor test conventions for ktnip
+globs: "**/ktnip/**/*Test*.kt", "**/ktnip/**/jvmTest/**/*.kt"
+alwaysApply: false
+---
+
+# KSP Processor Test Rules
+
+## Test Base
+
+- Extend **AbstractKspTest**
+- Kotest AnnotationSpec with `@Test`
+
+```kotlin
+class ProcessorK1Test : AbstractKspTest() {
+    @Test
+    fun defaultHandlers() = runTest("test-data/DefaultHandlers.kt")
+}
+```
+
+## runTest vs compile
+
+- **runTest(path)**: Load from `jvmTest/resources/test-data/<name>.kt`, compile with ActivityProcessorProvider, assert exitCode OK, verify generated files (ActivitiesData.kt, BotCtx.kt for K1)
+- **compile(vararg SourceFile)**: Inline sources, custom processors; returns JvmCompilationResult for custom assertions
+
+## K1 vs K2
+
+- Add tests to both **ProcessorK1Test** and **ProcessorK2Test**
+- K2: `runTest("test-data/File.kt", useK2 = true)`
+- K2 tests skip generated file checks (marked "improve")
+
+## Test Data
+
+- Place in `ktnip/src/jvmTest/resources/test-data/`
+- Must import from telegram-bot (project dependency)
+- Examples: DefaultHandlers.kt, InputChain.kt, Injectables.kt, CtxProviders.kt
