@@ -28,7 +28,7 @@ abstract class WizardStep(
     /**
      * Called when validation fails and the step should retry.
      */
-    open suspend fun onRetry(ctx: WizardContext) = Unit
+    open suspend fun onRetry(ctx: WizardContext, reason: String? = null) = Unit
 
     /**
      * Validates the current input and decides what happens next.
@@ -63,12 +63,14 @@ sealed class Transition {
     /**
      * Retry the current step (validation failed).
      */
-    object Retry : Transition()
+    data class Retry(
+        val reason: String? = null,
+    ) : Transition()
 
     /**
      * Finish the wizard.
      */
-    object Finish : Transition()
+    data object Finish : Transition()
 }
 
 /**

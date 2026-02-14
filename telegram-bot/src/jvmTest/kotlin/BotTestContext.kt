@@ -16,8 +16,6 @@ import eu.vendeli.tgbot.utils.common.loadContext
 import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
-import io.kotest.common.ExperimentalKotest
-import io.kotest.common.runBlocking
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -34,9 +32,11 @@ import io.mockk.mockkStatic
 import io.mockk.spyk
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.serializer
 import utils.BotResource
+import utils.TestEnv
 import utils.RandomPicResource
 import kotlin.properties.Delegates
 import kotlin.random.Random
@@ -50,22 +50,17 @@ abstract class BotTestContext(
     private val mockHttp: Boolean = false,
     private val spykIt: Boolean = true,
 ) : AnnotationSpec() {
-    override fun threads() = 1
-
-    @ExperimentalKotest
-    override fun concurrency() = 1
-
     private val INT_ITERATOR = (1..Int.MAX_VALUE).iterator()
     private val RANDOM_INST: Random get() = Random(CUR_INSTANT.epochSeconds)
     internal lateinit var bot: TelegramBot
     internal val updatesAction = spyk(GET_UPDATES_ACTION)
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
-    protected val TG_ID by lazy { System.getenv("TELEGRAM_ID")?.toLongOrNull() ?: 1L }
+    protected val TG_ID by lazy { TestEnv.getLong("TELEGRAM_ID") ?: 1L }
     protected var BOT_ID by Delegates.notNull<Long>()
-    protected val CHAT_ID by lazy { System.getenv("CHAT_ID")?.toLongOrNull() ?: -1L }
-    protected val CHANNEL_ID by lazy { System.getenv("CHANNEL_ID")?.toLongOrNull() ?: -2L }
-    protected val PAYMENT_PROVIDER_TOKEN: String? by lazy { System.getenv("PAYMENT_PROVIDER_TOKEN") }
+    protected val CHAT_ID by lazy { TestEnv.getLong("CHAT_ID") ?: -1L }
+    protected val CHANNEL_ID by lazy { TestEnv.getLong("CHANNEL_ID") ?: -2L }
+    protected val PAYMENT_PROVIDER_TOKEN: String? by lazy { TestEnv.get("PAYMENT_PROVIDER_TOKEN") }
 
     protected val RANDOM_PIC: ByteArray?
         get() = getRandomPic() ?: run {

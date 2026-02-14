@@ -18,12 +18,11 @@ import eu.vendeli.tgbot.utils.common.toImplicitFile
 import io.kotest.matchers.shouldBe
 import io.ktor.client.request.get
 import io.ktor.client.statement.readRawBytes
-import kotlinx.coroutines.test.runTest
 import utils.RandomPicResource
 
 class BusinessApiTest : BotTestContext() {
     @Test
-    fun `getBusinessAccountStarBalance test`() = runTest {
+    suspend fun `getBusinessAccountStarBalance test`() {
         getBusinessAccountStarBalance("test")
             .sendReq()
             .shouldFailure()
@@ -32,7 +31,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    fun `transferBusinessAccountStars test`() = runTest {
+    suspend fun `transferBusinessAccountStars test`() {
         transferBusinessAccountStars("test", 1)
             .sendReq()
             .shouldFailure()
@@ -41,7 +40,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    fun `getBusinessAccountGifts test`() = runTest {
+    suspend fun `getBusinessAccountGifts test`() {
         getBusinessAccountGifts("test")
             .sendReq()
             .shouldFailure()
@@ -50,7 +49,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    fun `set business account profile photo test`() = runTest {
+    suspend fun `set business account profile photo test`() {
         val image = bot.httpClient
             .get(RandomPicResource.current.getPicUrl(400, 400))
             .readRawBytes()
@@ -64,7 +63,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    fun `delete business messages test`() = runTest {
+    suspend fun `delete business messages test`() {
         deleteBusinessMessages("test", listOf(1L, 2L))
             .sendReq()
             .shouldFailure()
@@ -73,7 +72,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    fun `read business message test`() = runTest {
+    suspend fun `read business message test`() {
         readBusinessMessage("test", 1L)
             .sendReq()
             .shouldFailure()
@@ -82,7 +81,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    fun `remove business account profile photo test`() = runTest {
+    suspend fun `remove business account profile photo test`() {
         removeBusinessAccountProfilePhoto("test")
             .sendReq()
             .shouldFailure()
@@ -91,7 +90,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    fun `set business account bio test`() = runTest {
+    suspend fun `set business account bio test`() {
         setBusinessAccountBio("test", "bio")
             .sendReq()
             .shouldFailure()
@@ -100,7 +99,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    fun `set business account gift settings test`() = runTest {
+    suspend fun `set business account gift settings test`() {
         setBusinessAccountGiftSettings(
             "test",
             true,
@@ -118,7 +117,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    fun `set business account name test`() = runTest {
+    suspend fun `set business account name test`() {
         setBusinessAccountName("test", "name")
             .sendReq()
             .shouldFailure()
@@ -127,7 +126,7 @@ class BusinessApiTest : BotTestContext() {
     }
 
     @Test
-    fun `set business account username test`() = runTest {
+    suspend fun `set business account username test`() {
         setBusinessAccountUsername("test", "username")
             .sendReq()
             .shouldFailure()

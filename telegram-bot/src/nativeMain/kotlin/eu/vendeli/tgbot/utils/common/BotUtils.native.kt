@@ -11,7 +11,7 @@ internal actual val PROCESSING_DISPATCHER = Dispatchers.IO
 
 @KtGramInternal
 actual fun TelegramBot.loadContext(ctx: ContextLoader?) {
-    ctx?.load(this)
+    watchAndPrintRegistry { ctx?.load(this) }
 }
 
 actual val KClass<*>.fqName: String

@@ -1,5 +1,13 @@
 # Telegram-bot (KtGram) Changelog
 
+## 9.2.0
+
+* Added logging of activities registry context.
+* Added an option to pass reason in `WizardStep`.
+* Renamed `ImplicitFile.Str` -> `ImplicitFile.FileId`, `ImplicitFile.InpFile` -> `ImplicitFile.FileData`, to avoid confusion.
+* Fixed the wrong constraint issue with `sendMediaGroup`.
+* Covered Tg API [`9.4`](https://core.telegram.org/bots/api-changelog#february-9-2026)
+
 ### 9.1.1
 
 * Fixed error when using `WizardStateManager` indirectly.
@@ -12,7 +20,7 @@
 
 # 9.0.0
 
-* Updated TgApi support to version `9.3`.
+* Updated TgApi support to version [`9.3`](https://core.telegram.org/bots/api-changelog#december-31-2025).
 * Unified functional DSL and annotation-based declarations. Both approaches are now behaviorally identical and differ only in how functionality is described. To use the Functional DSL, simply call `bot.setFunctionality`.
 * Refactored generated code to use more robust entities, providing a duplicate-free solution when the same function has multiple handlers.
 * Introduced a new interceptor mechanism for update handling, replacing the previous middleware system.

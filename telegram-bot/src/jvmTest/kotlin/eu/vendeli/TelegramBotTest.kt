@@ -28,7 +28,6 @@ import eu.vendeli.tgbot.utils.internal.toJsonElement
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -44,10 +43,6 @@ import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.serializer
 
 class TelegramBotTest : BotTestContext() {
-    override fun threads() = 1
-
-    @ExperimentalKotest
-    override fun concurrency() = 1
     override fun isolationMode() = IsolationMode.InstancePerLeaf
 
     @Test

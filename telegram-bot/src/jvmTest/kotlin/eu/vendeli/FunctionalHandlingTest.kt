@@ -38,7 +38,6 @@ import eu.vendeli.tgbot.utils.common.onShippingQuery
 import eu.vendeli.tgbot.utils.common.processUpdate
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
-import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
@@ -52,9 +51,6 @@ import kotlin.random.Random
 
 class FunctionalHandlingTest : BotTestContext(true, true) {
     override fun isolationMode(): IsolationMode = IsolationMode.InstancePerTest
-
-    @ExperimentalKotest
-    override fun concurrency(): Int = 1
 
     @Test
     suspend fun `input chaining`() {
@@ -260,7 +256,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             ) { }
 
             bot.update.registry
-                .findMatcher(
+                .findCommonHandler(
                     "t",
                     ProcessingContext(MockUpdate.SINGLE("t").updates.first(), bot, bot.update.registry),
                 ).shouldNotBeNull()

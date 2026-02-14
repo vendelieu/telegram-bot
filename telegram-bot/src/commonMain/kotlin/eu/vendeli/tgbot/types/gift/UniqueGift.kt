@@ -16,6 +16,7 @@ import kotlinx.serialization.Serializable
  * @property symbol Symbol of the gift
  * @property backdrop Backdrop of the gift
  * @property isPremium Optional. True, if the original regular gift was exclusively purchaseable by Telegram Premium subscribers
+ * @property isBurned Optional. True, if the gift was used to craft another gift and isn't available anymore
  * @property isFromBlockchain Optional. True, if the gift is assigned from the TON blockchain and can't be resold or transferred in Telegram
  * @property colors Optional. The color scheme that can be used by the gift's owner for the chat's name, replies to messages and link previews; for business account gifts and gifts that are currently on sale only
  * @property publisherChat Optional. Information about the chat that published the gift
@@ -30,6 +31,7 @@ data class UniqueGift(
     val symbol: UniqueGiftSymbol,
     val backdrop: UniqueGiftBackdrop,
     val isFromBlockchain: Boolean? = null,
+    val isBurned: Boolean? = null,
     val colors: UniqueGiftColors? = null,
     val publisherChat: Chat? = null,
     override val isPremium: Boolean? = null,

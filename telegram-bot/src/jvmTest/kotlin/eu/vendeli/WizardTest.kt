@@ -101,7 +101,7 @@ class WizardTest : BotTestContext(true, true) {
         val ctx = createWizardContext("J") // Too short
         val transition = TestWizard.NameStep.validate(ctx)
 
-        transition shouldBe Transition.Retry
+        transition shouldBe Transition.Retry()
     }
 
     @Test
@@ -126,7 +126,7 @@ class WizardTest : BotTestContext(true, true) {
         val ctx = createWizardContext("not a number")
         val transition = TestWizard.AgeStep.validate(ctx)
 
-        transition shouldBe Transition.Retry
+        transition shouldBe Transition.Retry()
     }
 
     @Test
@@ -138,7 +138,7 @@ class WizardTest : BotTestContext(true, true) {
         val ctx = createWizardContext("200")
         val transition = TestWizard.AgeStep.validate(ctx)
 
-        transition shouldBe Transition.Retry
+        transition shouldBe Transition.Retry()
     }
 
     @Test
@@ -201,7 +201,7 @@ class WizardTest : BotTestContext(true, true) {
         val ctx = createWizardContext("maybe")
         val transition = TestWizard.ConfirmStep.validate(ctx)
 
-        transition shouldBe Transition.Retry
+        transition shouldBe Transition.Retry()
     }
 
     // ==================== WizardActivity Tests ====================

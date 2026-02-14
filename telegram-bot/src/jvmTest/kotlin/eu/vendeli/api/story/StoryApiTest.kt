@@ -12,7 +12,6 @@ import io.kotest.matchers.shouldBe
 import io.ktor.client.request.get
 import io.ktor.client.statement.readRawBytes
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runTest
 import utils.RandomPicResource
 import kotlin.time.Duration.Companion.seconds
 
@@ -28,7 +27,7 @@ class StoryApiTest : BotTestContext() {
 
     @Test
     @Ignore // todo fix and return; possible related to serde
-    fun `postStory test`() = runTest {
+    suspend fun `postStory test`() {
         postStory("test", InputStoryContent.Photo(image), 10.seconds)
             .sendReq()
             .shouldFailure()
@@ -38,7 +37,7 @@ class StoryApiTest : BotTestContext() {
 
     @Test
     @Ignore // todo fix and return
-    fun `editStory test`() = runTest {
+    suspend fun `editStory test`() {
         editStory("test", "story_id", InputStoryContent.Photo(image))
             .sendReq()
             .shouldFailure()
@@ -47,7 +46,7 @@ class StoryApiTest : BotTestContext() {
     }
 
     @Test
-    fun `deleteStory test`() = runTest {
+    suspend fun `deleteStory test`() {
         deleteStory("test", "story_id")
             .sendReq()
             .shouldFailure()
@@ -56,7 +55,7 @@ class StoryApiTest : BotTestContext() {
     }
 
     @Test
-    fun `repostStory test`() = runTest {
+    suspend fun `repostStory test`() {
         repostStory("test", 123456L, 1, 86400.seconds)
             .sendReq()
             .shouldFailure()

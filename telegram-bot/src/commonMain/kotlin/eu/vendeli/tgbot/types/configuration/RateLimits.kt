@@ -10,6 +10,8 @@ data class RateLimits(
     var period: Long = 0L,
     var rate: Long = 0L,
 ) {
+    internal fun prettyPrint() = "[\uD83D\uDEA6 Period: $period, Rate: $rate]"
+
     companion object {
         val NOT_LIMITED = RateLimits(0L, 0L)
     }

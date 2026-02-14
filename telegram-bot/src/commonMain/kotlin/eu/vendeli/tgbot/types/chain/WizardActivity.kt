@@ -68,12 +68,12 @@ abstract class WizardActivity : Activity {
             ?: error("No current step for user ${ctx.user.id}")
 
         return when (val transition = currentStep.validate(ctx)) {
-            Transition.Retry -> {
-                currentStep.onRetry(ctx)
+            is Transition.Retry -> {
+                currentStep.onRetry(ctx, transition.reason)
                 currentStep
             }
 
-            Transition.Next -> {
+            is Transition.Next -> {
                 persist(currentStep, ctx)
                 val next = nextOf(currentStep) ?: run {
                     ctx.bot.config.loggerFactory.get(this::class.fqName).debug(
@@ -95,7 +95,7 @@ abstract class WizardActivity : Activity {
                 target
             }
 
-            Transition.Finish -> {
+            is Transition.Finish -> {
                 persist(currentStep, ctx)
                 finish(ctx)
                 clearCurrentStep(ctx.user, ctx.bot)

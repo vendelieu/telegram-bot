@@ -1,0 +1,56 @@
+---
+description: Options, types, and serialization for Telegram Bot library
+globs: "**/types/**/*.kt"
+alwaysApply: false
+---
+
+# Telegram Bot Types Rules
+
+## Options Pattern
+
+- Implement **Options** sealed interface plus mixins: `OptionsCommon`, `OptionsParseMode`, `MediaSpoiler`, `ForumProps`, etc.
+- Use `data class` with `var prop: Type? = null` for all optional parameters
+- Never use non-null types for optional API parameters
+- **Mixin interfaces**: Put optional parameters into separate mixin interfaces in [IOptions.kt](telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/types/options/IOptions.kt) when they can be reused across multiple Options classes (e.g. parseMode in OptionsParseMode, thumbnail in ThumbnailProp). Add a new mixin only when the param is shared; single-use params stay in the Options data class.
+
+```kotlin
+@Serializable
+data class MyOptions(
+    override var parseMode: ParseMode? = null,
+    override var disableNotification: Boolean? = null,
+    override var protectContent: Boolean? = null,
+) : OptionsCommon, OptionsParseMode
+```
+
+## Options Mixins (from IOptions.kt)
+
+- **OptionsCommon** - disableNotification, replyParameters, protectContent
+- **OptionsParseMode** - parseMode
+- **MediaSpoiler** - hasSpoiler
+- **LinkPreviewProp** - linkPreviewOptions
+- **ForumProps** - messageThreadId
+- **ThumbnailProp** - thumbnail
+- **ProtectContentProp** - protectContent
+
+## Serialization
+
+- Serde uses `explicitNulls = false` - null values are omitted from JSON
+- `namingStrategy = JsonNamingStrategy.SnakeCase` - camelCase in Kotlin maps to snake_case in JSON
+- Options classes must be `@Serializable`
+
+## ImplicitFile and InputFile
+
+- **ImplicitFile** (sealed): `FileId(file: String)` for file_id; `FileData(file: InputFile)` for upload
+- **InputFile**: `data class` with `data: ByteArray`, `fileName`, `contentType`
+- ImplicitFile.Serde serializes FileId as string; FileData must be transformed before JSON (via `transform(multipartData)`)
+- Use `InputFile.toImplicitFile()` or `String.toImplicitFile()` for conversion
+
+## Bad vs Good
+
+```kotlin
+// BAD - non-null for optional param
+var disableNotification: Boolean = false
+
+// GOOD - nullable for optional param
+var disableNotification: Boolean? = null
+```

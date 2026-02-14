@@ -1,0 +1,45 @@
+---
+description: KSP processor architecture, collectors, and codegen for ktnip
+globs: "**/ktnip/**/jvmMain/**/*.kt"
+alwaysApply: false
+---
+
+# KSP Processor Rules
+
+## Architecture
+
+**ActivityProcessor** -> Collectors -> ActivityCodeGenerator -> ParameterResolver + InvocationCodeGenerator
+
+- **ActivityProcessorProvider**: Entry; passes options, logger, codeGenerator
+- **Collectors**: BotCtxCollector, CommandCollector, InputCollector, CommonCollector, UpdateHandlerCollector, UnprocessedHandlerCollector, WizardCollector
+- **Outputs**: ActivitiesData.kt, BotCtx.kt (per package), KtGramCtxLoader, META-INF/services
+
+## ActivityProcessor
+
+- Single-pass; `isProcessed` guard
+- Options: `package` (semicolon-separated), `autoAnswerCallback`
+- FileBuilder = KotlinPoet FileSpec.Builder
+- Add `@Suppress` and `@OptIn` to generated files
+
+## Collectors
+
+- Implement `Collector`: `collect(resolver: Resolver, ctx: CollectorsContext)`
+- **BaseCollector**: `extractActivityMetadata()`, `generateAndRegisterActivity()`
+- Discovery: `resolver.getAnnotatedFnSymbols(pkg, Annotation::class)`
+- Annotations: use `findAnnotationRecursively` for meta-annotations
+- New collector: add to `processPackage` list in ActivityProcessor
+
+## ParameterResolutionStrategy
+
+- User, Chat, Bot, ProcessingContext, Update, TypedUpdate
+- StringParameter, PrimitiveParameter (Int, Long, etc.) - from parameters map
+- Injectable - from injectableTypes; @ParamMapping for name override
+- Unsupported - generates error
+- New strategy: add to ParameterResolver + InvocationCodeGenerator
+
+## Conventions
+
+- Use **TypeConstants** for type references (User, Chat, Bot, Update types)
+- **DEFAULT_CODEGEN_PACKAGE** = "eu.vendeli.tgbot.generated"
+- **AnnotationExtractor**: function > class > default for Guard, RateLimits, ArgParser
+- **KSPExtensions**: findAnnotationRecursively, hasAnnotationRecursively for meta-annotations

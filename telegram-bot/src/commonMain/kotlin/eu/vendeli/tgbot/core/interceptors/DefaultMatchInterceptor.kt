@@ -27,7 +27,7 @@ internal object DefaultMatchInterceptor : PipelineInterceptor {
         }
 
         if (context.activity == null) {
-            context.activity = context.registry.findMatcher(context.parsedInput, context)
+            context.activity = context.registry.findCommonHandler(context.parsedInput, context)
         }
     }
 }

@@ -6,6 +6,8 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.boost.ChatBoostAdded
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatBackground
+import eu.vendeli.tgbot.types.chat.ChatOwnerChanged
+import eu.vendeli.tgbot.types.chat.ChatOwnerLeft
 import eu.vendeli.tgbot.types.chat.ChatShared
 import eu.vendeli.tgbot.types.checklist.Checklist
 import eu.vendeli.tgbot.types.checklist.ChecklistTasksAdded
@@ -201,6 +203,8 @@ data class Message(
     val location: Location? = null,
     val newChatMembers: List<User>? = null,
     val leftChatMember: User? = null,
+    val chatOwnerLeft: ChatOwnerLeft? = null,
+    val chatOwnerChanged: ChatOwnerChanged? = null,
     val newChatTitle: String? = null,
     val newChatPhoto: List<PhotoSize>? = null,
     val deleteChatPhoto: Boolean? = null,

@@ -14,7 +14,6 @@ import eu.vendeli.tgbot.utils.common.processUpdate
 import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
-import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.maps.shouldContainExactly
@@ -35,9 +34,6 @@ import kotlinx.serialization.builtins.ListSerializer
 
 class TelegramUpdateHandlerTest : BotTestContext() {
     override fun isolationMode() = IsolationMode.InstancePerLeaf
-
-    @ExperimentalKotest
-    override fun concurrency(): Int = 1
 
     @Test
     suspend fun `listener workflow`() {

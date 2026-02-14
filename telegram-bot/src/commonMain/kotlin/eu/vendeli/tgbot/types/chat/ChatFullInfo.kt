@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types.chat
 
 import eu.vendeli.tgbot.types.business.BusinessIntro
+import eu.vendeli.tgbot.types.media.Audio
 import eu.vendeli.tgbot.types.business.BusinessLocation
 import eu.vendeli.tgbot.types.business.BusinessOpeningHours
 import eu.vendeli.tgbot.types.common.ReactionType
@@ -63,6 +64,7 @@ import kotlinx.serialization.Serializable
  * @property linkedChatId Optional. Unique identifier for the linked chat, i.e. the discussion group identifier for a channel and vice versa; for supergroups and channel chats. This identifier may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
  * @property location Optional. For supergroups, the location to which the supergroup is connected
  * @property rating Optional. For private chats, the rating of the user if any
+ * @property firstProfileAudio Optional. For private chats, the first audio added to the profile of the user
  * @property uniqueGiftColors Optional. The color scheme based on a unique gift that must be used for the chat's name, message replies and link previews
  * @property paidMessageStarCount Optional. The number of Telegram Stars a general user have to pay to send a message to the chat
  */
@@ -116,6 +118,7 @@ data class ChatFullInfo(
     val linkedChatId: Long? = null,
     val location: ChatLocation? = null,
     val rating: UserRating? = null,
+    val firstProfileAudio: Audio? = null,
     val uniqueGiftColors: UniqueGiftColors? = null,
     val paidMessageStarCount: Int? = null,
 )

@@ -16,6 +16,7 @@ import kotlin.time.Duration
  * @property thumbnail Optional. Video thumbnail
  * @property cover Optional. Available sizes of the cover of the video in the message
  * @property startTimestamp Optional. Timestamp in seconds from which the video will play in the message
+ * @property qualities Optional. List of available qualities of the video
  * @property fileName Optional. Original filename as defined by the sender
  * @property mimeType Optional. MIME type of the file as defined by the sender
  * @property fileSize Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
@@ -31,6 +32,7 @@ data class Video(
     val cover: List<PhotoSize>? = null,
     @Serializable(DurationSerializer::class)
     val startTimestamp: Duration? = null,
+    val qualities: List<VideoQuality>? = null,
     val fileName: String? = null,
     val mimeType: String? = null,
     val fileSize: Long? = null,

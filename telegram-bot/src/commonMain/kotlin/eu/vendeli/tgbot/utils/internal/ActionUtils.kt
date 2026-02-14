@@ -6,7 +6,7 @@ import eu.vendeli.tgbot.interfaces.helper.ImplicitMediaData
 import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
 import eu.vendeli.tgbot.types.component.ImplicitFile
 import eu.vendeli.tgbot.types.component.InputFile
-import eu.vendeli.tgbot.utils.serde.DynamicLookupSerializer
+import eu.vendeli.tgbot.utils.common.cast
 import eu.vendeli.tgbot.utils.common.toImplicitFile
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
@@ -45,23 +45,23 @@ internal inline fun <R : Any> TgAction<R>.handleImplicitFile(parameter: KMutable
 internal inline fun <T : ImplicitMediaData, R : Any, S : KSerializer<T>> MediaAction<R>.handleImplicitFileGroup(
     input: List<T>,
     fieldName: String = "media",
-    serializer: S = DynamicLookupSerializer as S,
+    serializer: S,
 ) {
     parameters[fieldName] = buildList {
         input.forEach {
-            if (it.media is ImplicitFile.Str && it.thumbnail is ImplicitFile.Str) {
-                add(it.encodeWith(serializer as KSerializer<T>))
+            if (it.media is ImplicitFile.FileId && it.thumbnail is ImplicitFile.FileId) {
+                add(it.encodeWith(serializer.cast<KSerializer<T>>()))
                 return@forEach
             }
             it.media = it.media.transform(multipartData)
             it.thumbnail = it.thumbnail?.transform(multipartData)
-            add(it.encodeWith(serializer as KSerializer<T>))
+            add(it.encodeWith(serializer.cast<KSerializer<T>>()))
         }
     }.encodeWith(JsonElement.serializer())
 }
 
-internal inline fun ImplicitFile.transform(multiParts: MutableList<PartData.BinaryItem>): ImplicitFile.Str {
-    if (this is ImplicitFile.Str) return file.toImplicitFile()
+internal inline fun ImplicitFile.transform(multiParts: MutableList<PartData.BinaryItem>): ImplicitFile.FileId {
+    if (this is ImplicitFile.FileId) return file.toImplicitFile()
     val media = file as InputFile
     multiParts += media.toPartData(media.fileName)
 
