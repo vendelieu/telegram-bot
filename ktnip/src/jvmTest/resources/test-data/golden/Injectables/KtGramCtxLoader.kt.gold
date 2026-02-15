@@ -1,0 +1,36 @@
+@file:Suppress(	
+            "NOTHING_TO_INLINE",
+            "ObjectPropertyName",
+            "UNUSED_ANONYMOUS_PARAMETER",
+            "UnnecessaryVariable",
+            "TopLevelPropertyNaming",
+            "UNNECESSARY_SAFE_CALL",
+            "RedundantNullableReturnType",
+            "KotlinConstantConditions",
+            "USELESS_ELVIS",
+)
+@file:OptIn(
+  KtGramInternal::class,
+  ExperimentalFeature::class,
+)
+
+package eu.vendeli.tgbot.generated
+
+import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.`internal`.ExperimentalFeature
+import eu.vendeli.tgbot.annotations.`internal`.KtGramInternal
+import eu.vendeli.tgbot.core.ActivityRegistry
+import eu.vendeli.tgbot.interfaces.helper.ContextLoader
+import eu.vendeli.tgbot.types.component.CommonMatcher
+import eu.vendeli.tgbot.types.component.UpdateType
+import kotlin.OptIn
+import kotlin.Suppress
+import kotlin.Unit
+
+public class KtGramCtxLoader : ContextLoader {
+  override fun load(bot: TelegramBot): Unit = bot.update.registry.run {
+  bot.update.____ctxUtils = __CtxUtils
+  registerActivity(_test_7d9743ae)
+  registerCommand("/test", UpdateType.MESSAGE, _test_7d9743ae.id)
+  }
+}

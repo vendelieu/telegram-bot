@@ -1,0 +1,67 @@
+@file:Suppress(	
+            "NOTHING_TO_INLINE",
+            "ObjectPropertyName",
+            "UNUSED_ANONYMOUS_PARAMETER",
+            "UnnecessaryVariable",
+            "TopLevelPropertyNaming",
+            "UNNECESSARY_SAFE_CALL",
+            "RedundantNullableReturnType",
+            "KotlinConstantConditions",
+            "USELESS_ELVIS",
+)
+@file:OptIn(
+  KtGramInternal::class,
+  ExperimentalFeature::class,
+)
+
+package eu.vendeli.tgbot.generated
+
+import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.annotations.`internal`.ExperimentalFeature
+import eu.vendeli.tgbot.annotations.`internal`.KtGramInternal
+import eu.vendeli.tgbot.core.ActivityRegistry
+import eu.vendeli.tgbot.interfaces.helper.ContextLoader
+import eu.vendeli.tgbot.types.component.CommonMatcher
+import eu.vendeli.tgbot.types.component.UpdateType
+import kotlin.OptIn
+import kotlin.Suppress
+import kotlin.Unit
+
+public class KtGramCtxLoader : ContextLoader {
+  override fun load(bot: TelegramBot): Unit = bot.update.registry.run {
+  bot.update.____ctxUtils = __CtxUtils
+  registerActivity(_testGlobal_7c42e262)
+  registerCommand("/test", UpdateType.MESSAGE, _testGlobal_7c42e262.id)
+  registerActivity(Test_inClass_bc8e9556)
+  registerCommand("/test2", UpdateType.MESSAGE, Test_inClass_bc8e9556.id)
+  registerActivity(Test_inClass2_20655eb5)
+  registerCommand("/test3", UpdateType.MESSAGE, Test_inClass2_20655eb5.id)
+  registerActivity(Test_inClass3_9024b933)
+  registerCommand("/test4", UpdateType.MESSAGE, Test_inClass3_9024b933.id)
+  registerActivity(Test_inClass4_c0540504)
+  registerCommand("/test5", UpdateType.MESSAGE, Test_inClass4_c0540504.id)
+  registerActivity(Test_inClass5_c657d063)
+  registerCommand("/test6", UpdateType.MESSAGE, Test_inClass5_c657d063.id)
+  registerActivity(Test_inClass6_34a43bee)
+  registerCommand("/test7", UpdateType.MESSAGE, Test_inClass6_34a43bee.id)
+  registerActivity(Test_cls_4d92df79)
+  registerCommand("/", UpdateType.MESSAGE, Test_cls_4d92df79.id)
+  registerActivity(Test2_obj_b0902b40)
+  registerCommand("/obj", UpdateType.MESSAGE, Test2_obj_b0902b40.id)
+  registerActivity(Test2_obj2_6493f0f2)
+  registerCommand("/obj2", UpdateType.MESSAGE, Test2_obj2_6493f0f2.id)
+  registerActivity(Test2_obj4_69295ab0)
+  registerCommand("/obj4", UpdateType.CALLBACK_QUERY, Test2_obj4_69295ab0.id)
+  registerActivity(Test2_obj3_d7cd175f)
+  registerInput("/obj3", Test2_obj3_d7cd175f.id)
+  registerActivity(Test2_obj5_eb740f8f)
+  registerCommonHandler(CommonMatcher.String(value = "/obj5", filters = setOf(CustomTestFilter::class)), UpdateType.MESSAGE, Test2_obj5_eb740f8f.id)
+  registerActivity(Test2_obj6_6dbec46e)
+  registerCommonHandler(CommonMatcher.Regex(value = Regex("(.*)" , setOf(RegexOption.IGNORE_CASE)), filters = setOf(CustomTestFilter::class)), UpdateType.MESSAGE, Test2_obj6_6dbec46e.id)
+  registerActivity(Test2_updateHandler_6cd5d602)
+  registerUpdateTypeHandler(UpdateType.MESSAGE, Test2_updateHandler_6cd5d602.id)
+  registerUpdateTypeHandler(UpdateType.CALLBACK_QUERY, Test2_updateHandler_6cd5d602.id)
+  registerActivity(_testUnprocessed_193c038b)
+  registerUnprocessed(_testUnprocessed_193c038b.id)
+  }
+}

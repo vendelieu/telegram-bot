@@ -1,0 +1,43 @@
+name: Release Create Tag
+
+on:
+  workflow_run:
+    workflows: [build]
+    types: [completed]
+    branches: [master]
+
+jobs:
+  create-tag:
+    if: github.event.workflow_run.event == 'push' && github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+
+      - name: Extract version from merge commit
+        id: version
+        run: |
+          MSG=$(git log -1 --format=%B)
+          # "Merge pull request #123 from owner/9.1.2" -> 9.1.2
+          if [[ "$MSG" =~ from\ [^/]+/([0-9]+\.[0-9]+\.[0-9]+) ]]; then
+            echo "version=${BASH_REMATCH[1]}" >> $GITHUB_OUTPUT
+          else
+            echo "version=" >> $GITHUB_OUTPUT
+            echo "Not a release merge, skipping"
+          fi
+
+      - name: Verify CHANGELOG has version
+        if: steps.version.outputs.version != ''
+        run: grep -q "## ${{ steps.version.outputs.version }}" CHANGELOG.md || exit 1
+
+      - name: Create and push tag
+        if: steps.version.outputs.version != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "${{ steps.version.outputs.version }}"
+          git push origin "${{ steps.version.outputs.version }}"

@@ -29,24 +29,46 @@ description: Adds tests for the ktnip KSP processor. Use when adding tests for a
 
 - Loads source from resources
 - Compiles with ActivityProcessorProvider (default)
-- Asserts `exitCode == OK`
+- Asserts `exitCode == OK` (or `COMPILATION_ERROR` when error directives present)
 - Verifies generated files exist (ActivitiesData.kt, KtGramCtxLoader.kt, BotCtx.kt)
-- Parses `// @generated` comments for golden output (partial inclusion) checks
+- Parses `/* G-EXPECT ... */` blocks for golden output checks
 
 ## Golden Output
 
-Add to test data for content assertions:
+**Two modes (hybrid):**
+
+1. **Golden files** (preferred): If `test-data/golden/<TestName>/<FileName>.gold` exists, full file content is compared.
+2. **G-EXPECT** (fallback): When no golden exists, use inline `/* G-EXPECT ... */` block in test data.
+
+**G-EXPECT is optional** when golden files exist — expectations are discovered from golden files automatically.
+
+**Update golden files:** `./gradlew :ktnip:updateGolden` — run when generated output changes intentionally.
+
+## G-EXPECT (fallback)
+
+Add `/* G-EXPECT ... */` block to test data when no golden file exists:
 
 ```kotlin
-// @generated KtGramCtxLoader.kt: registerCommand, registerActivity
-// @generated BotCtx.kt: userData, getState
+/* G-EXPECT
+file=KtGramCtxLoader.kt
+contains="registerCommand"
+contains="registerActivity"
+
+file=BotCtx.kt
+contains="userData"
+contains="getState"
+notContains="TODO"
+
+noError
+*/
 ```
 
-Single-line: comma-separated substrings. Multi-line: `// @generated File.kt:` then `//   substring` lines.
+**Directives:** `file=`, `contains="..."`, `notContains="..."`, `matches="regex"`, `notMatches="regex"`, `noError`, `error contains=`, `error exact=`, `error count=`, `error file=X line=Y contains=`
 
 ## Reference
 
 - [AbstractKspTest.kt](ktnip/src/jvmTest/kotlin/eu/vendeli/ktnip/utils/AbstractKspTest.kt)
+- [ksptest/](ktnip/src/jvmTest/kotlin/eu/vendeli/ktnip/utils/ksptest/) — GExpectParser, ExpectationAssertor, GoldenFileHandler, etc.
 - [ProcessorTest.kt](ktnip/src/jvmTest/kotlin/eu/vendeli/ktnip/ProcessorTest.kt)
 - [DefaultHandlers.kt](ktnip/src/jvmTest/resources/test-data/DefaultHandlers.kt)
 - [WizardHandlers.kt](ktnip/src/jvmTest/resources/test-data/WizardHandlers.kt)

@@ -1,0 +1,41 @@
+name: Release Auto-Merge
+
+on:
+  workflow_run:
+    workflows: [build]
+    types: [completed]
+
+jobs:
+  merge-when-green:
+    if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - name: Get PR from commit and check release label
+        id: pr
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: pulls } = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: '${{ github.event.workflow_run.head_sha }}'
+            });
+            const pr = pulls.find(p => p.state === 'open' && p.base.ref === 'master');
+            if (!pr) return;
+            const { data: fullPr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number
+            });
+            if (!fullPr.labels.some(l => l.name === 'release')) return;
+            core.setOutput('number', pr.number);
+
+      - name: Merge PR
+        if: steps.pr.outputs.number != ''
+        run: gh pr merge ${{ steps.pr.outputs.number }} --merge
+        env:
+          # PAT required so merge triggers push workflow (GITHUB_TOKEN does not)
+          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}

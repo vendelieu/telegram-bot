@@ -1,11 +1,20 @@
 @file:Suppress("EmptyFunctionBlock")
 
-// @generated ActivitiesData.kt: Activity, TestWizard
-// @generated KtGramCtxLoader.kt: registerCommand, registerActivity, TestWizard
-// @generated BotCtx.kt:
-//   getState
-//   String?
-//   Int?
+/* G-EXPECT
+file=ActivitiesData.kt
+contains="Activity"
+contains="TestWizard"
+
+file=KtGramCtxLoader.kt
+contains="registerCommand"
+contains="registerActivity"
+contains="TestWizard"
+
+file=BotCtx.kt
+contains="getState"
+contains="String?"
+contains="Int?"
+*/
 
 import eu.vendeli.tgbot.annotations.WizardHandler
 import eu.vendeli.tgbot.generated.getState

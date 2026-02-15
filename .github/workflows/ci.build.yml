@@ -7,7 +7,7 @@ on:
     paths-ignore:
       - '.editorconfig'
       - '.gitignore'
-      - 'CHANGELOG.md'
+      # CHANGELOG.md included so release merges (CHANGELOG-only) trigger build
       - 'CODE_OF_CONDUCT.md'
       - 'CONTRIBUTING.md'
       - 'FUNDING.yml'

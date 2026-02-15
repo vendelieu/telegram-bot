@@ -1,6 +1,14 @@
-// @generated ActivitiesData.kt: Activity, TestInjectable
-// @generated KtGramCtxLoader.kt: registerCommand
-// @generated BotCtx.kt: userData
+/* G-EXPECT
+file=ActivitiesData.kt
+contains="Activity"
+contains="TestInjectable"
+
+file=KtGramCtxLoader.kt
+contains="registerCommand"
+
+file=BotCtx.kt
+contains="userData"
+*/
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.CommandHandler

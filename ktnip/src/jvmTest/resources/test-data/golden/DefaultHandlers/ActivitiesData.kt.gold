@@ -1,0 +1,406 @@
+@file:Suppress(	
+            "NOTHING_TO_INLINE",
+            "ObjectPropertyName",
+            "UNUSED_ANONYMOUS_PARAMETER",
+            "UnnecessaryVariable",
+            "TopLevelPropertyNaming",
+            "UNNECESSARY_SAFE_CALL",
+            "RedundantNullableReturnType",
+            "KotlinConstantConditions",
+            "USELESS_ELVIS",
+)
+@file:OptIn(
+  KtGramInternal::class,
+  ExperimentalFeature::class,
+)
+
+package eu.vendeli.tgbot.generated
+
+import eu.vendeli.tgbot.annotations.`internal`.ExperimentalFeature
+import eu.vendeli.tgbot.annotations.`internal`.KtGramInternal
+import eu.vendeli.tgbot.api.answer.answerCallbackQuery
+import eu.vendeli.tgbot.core.Activity
+import eu.vendeli.tgbot.implementations.DefaultArgParser
+import eu.vendeli.tgbot.implementations.DefaultGuard
+import eu.vendeli.tgbot.interfaces.helper.ArgumentParser
+import eu.vendeli.tgbot.interfaces.helper.Guard
+import eu.vendeli.tgbot.types.component.CallbackQueryUpdate
+import eu.vendeli.tgbot.types.component.CommonMatcher
+import eu.vendeli.tgbot.types.component.ProcessingContext
+import eu.vendeli.tgbot.types.component.UpdateType
+import eu.vendeli.tgbot.types.component.getUser
+import eu.vendeli.tgbot.types.component.userOrNull
+import eu.vendeli.tgbot.types.configuration.RateLimits
+import eu.vendeli.tgbot.utils.common.getInstance
+import kotlin.Any
+import kotlin.Int
+import kotlin.OptIn
+import kotlin.String
+import kotlin.Suppress
+import kotlin.reflect.KClass
+import testGlobal
+import testUnprocessed
+
+internal object _testGlobal_7c42e262 : Activity {
+  override val id: Int = 2_084_758_114
+
+  override val qualifier: String = ""
+
+  override val function: String = "testGlobal"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val user = update.userOrNull
+    val param0 = user!!
+    val param1 = bot
+
+    ::testGlobal.invoke(
+    	param0, param1
+    )
+  }
+}
+
+internal object Test_inClass_bc8e9556 : Activity {
+  override val id: Int = -1_131_506_346
+
+  override val qualifier: String = "Test"
+
+  override val function: String = "inClass"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val inst = bot.getInstance(Test::class)!!
+    val user = update.userOrNull
+    val param0 = user!!
+    val param1 = bot
+
+    Test::inClass.invoke(
+    	inst, param0, param1
+    )
+  }
+}
+
+internal object Test_inClass2_20655eb5 : Activity {
+  override val id: Int = 543_514_293
+
+  override val qualifier: String = "Test"
+
+  override val function: String = "inClass2"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val inst = bot.getInstance(Test::class)!!
+    val param0 = bot
+
+    Test::inClass2.invoke(
+    	inst, param0
+    )
+  }
+}
+
+internal object Test_inClass3_9024b933 : Activity {
+  override val id: Int = -1_876_641_485
+
+  override val qualifier: String = "Test"
+
+  override val function: String = "inClass3"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val inst = bot.getInstance(Test::class)!!
+
+    Test::inClass3.invoke(
+    	inst
+    )
+  }
+}
+
+internal object Test_inClass4_c0540504 : Activity {
+  override val id: Int = -1_068_235_516
+
+  override val qualifier: String = "Test"
+
+  override val function: String = "inClass4"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val inst = bot.getInstance(Test::class)!!
+    val user = update.userOrNull
+    val param0 = user
+    val param1 = bot
+
+    Test::inClass4.invoke(
+    	inst, param0, param1
+    )
+  }
+}
+
+internal object Test_inClass5_c657d063 : Activity {
+  override val id: Int = -967_323_549
+
+  override val qualifier: String = "Test"
+
+  override val function: String = "inClass5"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val inst = bot.getInstance(Test::class)!!
+    val user = update.userOrNull
+    val param0 = user!!
+    val param1 = bot
+
+    Test::inClass5.invoke(
+    	inst, param0, param1
+    )
+  }
+}
+
+internal object Test_inClass6_34a43bee : Activity {
+  override val id: Int = 883_178_478
+
+  override val qualifier: String = "Test"
+
+  override val function: String = "inClass6"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val parameters = context.parameters
+    val inst = bot.getInstance(Test::class)!!
+    val user = update.userOrNull
+    val param0 = parameters["test"]
+    val param1 = user
+    val param2 = bot
+
+    Test::inClass6.invoke(
+    	inst, param0, param1, param2
+    )
+  }
+}
+
+internal object Test_cls_4d92df79 : Activity {
+  override val id: Int = 1_301_471_097
+
+  override val qualifier: String = "Test"
+
+  override val function: String = "cls"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val inst = bot.getInstance(Test::class)!!
+
+    Test::cls.invoke(
+    	inst
+    )
+  }
+}
+
+internal object Test2_obj_b0902b40 : Activity {
+  override val id: Int = -1_332_729_024
+
+  override val qualifier: String = "Test2"
+
+  override val function: String = "obj"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val user = update.userOrNull
+    val param0 = user!!
+    val param1 = bot
+
+    Test2::obj.invoke(
+    	param0, param1
+    )
+  }
+}
+
+internal object Test2_obj2_6493f0f2 : Activity {
+  override val id: Int = 1_687_417_074
+
+  override val qualifier: String = "Test2"
+
+  override val function: String = "obj2"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override val guardClass: KClass<out Guard> = CustomTestGuard::class
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val parameters = context.parameters
+    val user = update.userOrNull
+    val param0 = parameters["test"]?.toIntOrNull()!!
+    val param1 = user!!
+    val param2 = bot
+
+    Test2::obj2.invoke(
+    	param0, param1, param2
+    )
+  }
+}
+
+internal object Test2_obj4_69295ab0 : Activity {
+  override val id: Int = 1_764_317_872
+
+  override val qualifier: String = "Test2"
+
+  override val function: String = "obj4"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override val guardClass: KClass<out Guard> = CustomTestGuard::class
+
+  override val argParser: KClass<out ArgumentParser> = CustomTestArgParser::class
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val parameters = context.parameters
+    val user = update.userOrNull
+    val param0 = parameters["test"]?.toIntOrNull()!!
+    val param1 = user!!
+    val param2 = bot
+    answerCallbackQuery((update as CallbackQueryUpdate).callbackQuery.id).send(update.getUser(), bot)
+
+    Test2::obj4.invoke(
+    	param0, param1, param2
+    )
+  }
+}
+
+internal object Test2_obj3_d7cd175f : Activity {
+  override val id: Int = -674_424_993
+
+  override val qualifier: String = "Test2"
+
+  override val function: String = "obj3"
+
+  override val rateLimits: RateLimits = RateLimits(1L, 200L)
+
+  override val guardClass: KClass<out Guard> = CustomTestGuard::class
+
+  override val argParser: KClass<out ArgumentParser> = CustomTestArgParser::class
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val user = update.userOrNull
+    val param0 = user!!
+    val param1 = update
+    val param2 = bot
+
+    Test2::obj3.invoke(
+    	param0, param1, param2
+    )
+  }
+}
+
+internal object Test2_obj5_eb740f8f : Activity {
+  override val id: Int = -344_715_377
+
+  override val qualifier: String = "Test2"
+
+  override val function: String = "obj5"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val parameters = context.parameters
+    val user = update.userOrNull
+    val param0 = parameters["test"]?.toIntOrNull()!!
+    val param1 = user!!
+    val param2 = bot
+
+    Test2::obj5.invoke(
+    	param0, param1, param2
+    )
+  }
+}
+
+internal object Test2_obj6_6dbec46e : Activity {
+  override val id: Int = 1_841_218_670
+
+  override val qualifier: String = "Test2"
+
+  override val function: String = "obj6"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val parameters = context.parameters
+    val user = update.userOrNull
+    val param0 = parameters["test"]?.toIntOrNull()!!
+    val param1 = user!!
+    val param2 = bot
+
+    Test2::obj6.invoke(
+    	param0, param1, param2
+    )
+  }
+}
+
+internal object Test2_updateHandler_6cd5d602 : Activity {
+  override val id: Int = 1_825_953_282
+
+  override val qualifier: String = "Test2"
+
+  override val function: String = "updateHandler"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+
+    Test2::updateHandler.invoke(
+    	
+    )
+  }
+}
+
+internal object _testUnprocessed_193c038b : Activity {
+  override val id: Int = 423_363_467
+
+  override val qualifier: String = ""
+
+  override val function: String = "testUnprocessed"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val param0 = update
+    val param1 = bot
+
+    ::testUnprocessed.invoke(
+    	param0, param1
+    )
+  }
+}
