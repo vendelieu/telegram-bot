@@ -1,3 +1,7 @@
+// @generated ActivitiesData.kt: Activity, TestInjectable
+// @generated KtGramCtxLoader.kt: registerCommand
+// @generated BotCtx.kt: userData
+
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.Injectable

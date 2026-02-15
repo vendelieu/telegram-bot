@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) Changelog
 
+## 9.2.1
+
+* Fixed `@Injectable` resolving in generated code
+
 ## 9.2.0
 
 * Added logging of activities registry context.

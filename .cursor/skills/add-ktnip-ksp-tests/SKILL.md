@@ -1,6 +1,6 @@
 ---
 name: add-ktnip-ksp-tests
-description: [Library contributor] Adds tests for the ktnip KSP processor. Use when adding tests for a new collector, testing processor behavior with new annotations, or verifying KSP code generation for the telegram-bot library.
+description: Adds tests for the ktnip KSP processor. Use when adding tests for a new collector, testing processor behavior with new annotations, or verifying KSP code generation for the telegram-bot library.
 ---
 
 # Add Ktnip KSP Tests

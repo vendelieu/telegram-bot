@@ -79,8 +79,9 @@ class InvocationCodeGenerator(
             }
 
             is ParameterResolutionStrategy.Injectable -> {
+                fileBuilder.addImport("eu.vendeli.tgbot.utils.common", "getInstance")
                 CodeBlock.of(
-                    "val param%L = bot.config.classManager.getInstance(%L::class)!!.get(update, bot)\n",
+                    "val param%L = bot.getInstance(%L::class)!!.get(update, bot)\n",
                     parameterIndex,
                     strategy.injectableClassName.canonicalName,
                 )

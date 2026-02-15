@@ -307,7 +307,7 @@ public final class eu/vendeli/tgbot/api/botactions/LogoutKt {
 	public static final fun logOut ()Leu/vendeli/tgbot/api/botactions/LogOutAction;
 }
 
-public final class eu/vendeli/tgbot/api/botactions/RemoveMyProfilePhotoAction : eu/vendeli/tgbot/interfaces/action/Action {
+public final class eu/vendeli/tgbot/api/botactions/RemoveMyProfilePhotoAction : eu/vendeli/tgbot/interfaces/action/SimpleAction {
 	public fun <init> ()V
 }
 

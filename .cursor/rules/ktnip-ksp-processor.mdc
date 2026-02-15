@@ -43,3 +43,8 @@ alwaysApply: false
 - **DEFAULT_CODEGEN_PACKAGE** = "eu.vendeli.tgbot.generated"
 - **AnnotationExtractor**: function > class > default for Guard, RateLimits, ArgParser
 - **KSPExtensions**: findAnnotationRecursively, hasAnnotationRecursively for meta-annotations
+
+## Tests
+
+- KSP tests: `./gradlew :ktnip:jvmTest` (see ktnip-ksp-tests rule)
+- New collectors: add test data and `runTest` in ProcessorTest

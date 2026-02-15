@@ -1,6 +1,6 @@
 ---
 name: add-ktnip-collector
-description: [Library contributor] Adds a new collector to the ktnip KSP processor. Use when implementing a new handler type (e.g. new annotation like @MyHandler), adding a collector for a new activity pattern, or extending the ktnip processor to collect additional annotated functions.
+description: Adds a new collector to the ktnip KSP processor. Use when implementing a new handler type (e.g. new annotation like @MyHandler), adding a collector for a new activity pattern, or extending the ktnip processor to collect additional annotated functions.
 ---
 
 # Add Ktnip Collector
