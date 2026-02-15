@@ -30,12 +30,25 @@ description: Adds tests for the ktnip KSP processor. Use when adding tests for a
 - Loads source from resources
 - Compiles with ActivityProcessorProvider (default)
 - Asserts `exitCode == OK`
-- Verifies generated files exist (ActivitiesData.kt, BotCtx.kt)
+- Verifies generated files exist (ActivitiesData.kt, KtGramCtxLoader.kt, BotCtx.kt)
+- Parses `// @generated` comments for golden output (partial inclusion) checks
+
+## Golden Output
+
+Add to test data for content assertions:
+
+```kotlin
+// @generated KtGramCtxLoader.kt: registerCommand, registerActivity
+// @generated BotCtx.kt: userData, getState
+```
+
+Single-line: comma-separated substrings. Multi-line: `// @generated File.kt:` then `//   substring` lines.
 
 ## Reference
 
 - [AbstractKspTest.kt](ktnip/src/jvmTest/kotlin/eu/vendeli/ktnip/utils/AbstractKspTest.kt)
 - [ProcessorTest.kt](ktnip/src/jvmTest/kotlin/eu/vendeli/ktnip/ProcessorTest.kt)
 - [DefaultHandlers.kt](ktnip/src/jvmTest/resources/test-data/DefaultHandlers.kt)
-- [Injectables.kt](ktnip/src/jvmTest/resources/test-data/Injectables.kt)
 - [WizardHandlers.kt](ktnip/src/jvmTest/resources/test-data/WizardHandlers.kt)
+- [Injectables.kt](ktnip/src/jvmTest/resources/test-data/Injectables.kt)
+- [CtxProviders.kt](ktnip/src/jvmTest/resources/test-data/CtxProviders.kt)

@@ -12,8 +12,9 @@ alwaysApply: true
 
 ## Gradle Tasks
 
-- `./gradlew prepareRelease` - format, api validation, kdocs, api violations check
+- `./gradlew prepareRelease` - format, api validation, kdocs, api violations check, ktnip:jvmTest
 - `./gradlew apiDump` - generate api dump
+- `./gradlew :ktnip:jvmTest` - run KSP processor tests (included in prepareRelease)
 
 ## Contributing
 

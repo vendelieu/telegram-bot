@@ -12,7 +12,7 @@ alwaysApply: false
 - Kotest AnnotationSpec with `@Test`
 
 ```kotlin
-class ProcessorK1Test : AbstractKspTest() {
+class ProcessorTest : AbstractKspTest() {
     @Test
     fun defaultHandlers() = runTest("test-data/DefaultHandlers.kt")
 }
@@ -20,17 +20,23 @@ class ProcessorK1Test : AbstractKspTest() {
 
 ## runTest vs compile
 
-- **runTest(path)**: Load from `jvmTest/resources/test-data/<name>.kt`, compile with ActivityProcessorProvider, assert exitCode OK, verify generated files (ActivitiesData.kt, BotCtx.kt for K1)
+- **runTest(path)**: Load from `jvmTest/resources/test-data/<name>.kt`, compile with ActivityProcessorProvider, assert exitCode OK, verify generated files (ActivitiesData.kt, KtGramCtxLoader.kt, BotCtx.kt)
 - **compile(vararg SourceFile)**: Inline sources, custom processors; returns JvmCompilationResult for custom assertions
 
-## K1 vs K2
+## Golden Output in Comments
 
-- Add tests to both **ProcessorK1Test** and **ProcessorK2Test**
-- K2: `runTest("test-data/File.kt", useK2 = true)`
-- K2 tests skip generated file checks (marked "improve")
+- Add `// @generated <filename>: substring1, substring2` to test data for partial inclusion checks
+- Supports ActivitiesData.kt, KtGramCtxLoader.kt, BotCtx.kt
+- Multi-line: `// @generated BotCtx.kt:` followed by `//   substring` lines
 
 ## Test Data
 
 - Place in `ktnip/src/jvmTest/resources/test-data/`
 - Must import from telegram-bot (project dependency)
-- Examples: DefaultHandlers.kt, InputChain.kt, Injectables.kt, CtxProviders.kt
+- Use non-default annotation params (Guard, ArgParser, scope, etc.) where relevant
+- Examples: DefaultHandlers.kt, WizardHandlers.kt, Injectables.kt, CtxProviders.kt
+
+## Verification
+
+- `./gradlew :ktnip:jvmTest` runs all KSP tests
+- prepareRelease includes ktnip:jvmTest

@@ -41,6 +41,12 @@ description: Adds a new collector to the ktnip KSP processor. Use when implement
 - `getAnnotatedFnSymbols(pkg, MyAnnotation::class)` works for any annotation (generic)
 - Custom discovery logic only if collecting non-function symbols
 
+### 7. Add KSP Tests
+
+- Add test data in `ktnip/src/jvmTest/resources/test-data/` (or extend DefaultHandlers.kt, WizardHandlers.kt, etc.)
+- Add `runTest("test-data/YourFile.kt")` in [ProcessorTest.kt](ktnip/src/jvmTest/kotlin/eu/vendeli/ktnip/ProcessorTest.kt)
+- Use `// @generated` comments for golden output checks (see add-ktnip-ksp-tests skill)
+
 ## Reference
 
 - [InputCollector.kt](ktnip/src/jvmMain/kotlin/eu/vendeli/ktnip/collectors/InputCollector.kt) - simple collector
