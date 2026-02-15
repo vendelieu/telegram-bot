@@ -25,6 +25,8 @@ Helpful gradle tasks are:
 * `./gradlew apiDump` - generates api dump
 * `./gradlew prepareRelease` - formats code, does api validation, updates kdocs, runs api violations check.
 
+**Pre-push hook (optional):** Run `./scripts/install-hooks.sh` to install a git hook that runs `prepareRelease` before each push. This ensures code is formatted and validated before it reaches the remote.
+
 ### Environment
 
 Tests load environment variables from a `.env` file (project root) or system environment.

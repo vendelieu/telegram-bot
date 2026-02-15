@@ -233,9 +233,11 @@ internal class WizardCollector : BaseCollector() {
                     else -> null
                 }
             } else {
-                // Fall back to type-based matching
+                // Fall back to type-based matching.
+                // Manager type param (e.g. String) matches store return type (e.g. String?) when equal when stripped of nullability.
+                val storeBaseType = storeReturnType.copy(nullable = false)
                 stateManagers.find { manager ->
-                    resolveWizardStateManagerTypeArg(manager) != storeReturnType
+                    resolveWizardStateManagerTypeArg(manager)?.toTypeName() == storeBaseType
                 }
             }
 

@@ -14,17 +14,12 @@ description: Adds tests for the ktnip KSP processor. Use when adding tests for a
 - Must import from telegram-bot (project dependency)
 - Include valid handlers with annotations being tested
 
-### 2. Add to ProcessorK1Test
+### 2. Add to ProcessorTest
 
-- In [ProcessorK1Test.kt](ktnip/src/jvmTest/kotlin/eu/vendeli/ktnip/ProcessorK1Test.kt)
+- In [ProcessorTest.kt](ktnip/src/jvmTest/kotlin/eu/vendeli/ktnip/ProcessorTest.kt)
 - Add `@Test fun featureName() = runTest("test-data/FeatureName.kt")`
 
-### 3. Add to ProcessorK2Test
-
-- In [ProcessorK2Test.kt](ktnip/src/jvmTest/kotlin/eu/vendeli/ktnip/ProcessorK2Test.kt)
-- Add `@Test fun featureName() = runTest("test-data/FeatureName.kt", useK2 = true)`
-
-### 4. Custom Assertions (optional)
+### 3. Custom Assertions (optional)
 
 - Use `compile(vararg SourceFile, ...)` instead of `runTest` for custom checks
 - Returns `JvmCompilationResult`; inspect `exitCode`, `kspSourcesDir`, generated files
@@ -35,11 +30,12 @@ description: Adds tests for the ktnip KSP processor. Use when adding tests for a
 - Loads source from resources
 - Compiles with ActivityProcessorProvider (default)
 - Asserts `exitCode == OK`
-- Verifies generated files exist (ActivitiesData.kt, BotCtx.kt for K1)
-- K2 tests skip file checks (marked "improve")
+- Verifies generated files exist (ActivitiesData.kt, BotCtx.kt)
 
 ## Reference
 
 - [AbstractKspTest.kt](ktnip/src/jvmTest/kotlin/eu/vendeli/ktnip/utils/AbstractKspTest.kt)
+- [ProcessorTest.kt](ktnip/src/jvmTest/kotlin/eu/vendeli/ktnip/ProcessorTest.kt)
 - [DefaultHandlers.kt](ktnip/src/jvmTest/resources/test-data/DefaultHandlers.kt)
 - [Injectables.kt](ktnip/src/jvmTest/resources/test-data/Injectables.kt)
+- [WizardHandlers.kt](ktnip/src/jvmTest/resources/test-data/WizardHandlers.kt)

@@ -1,0 +1,9 @@
+#!/bin/sh
+# Pre-push hook: runs prepareRelease before allowing push.
+# Install with: ./scripts/install-hooks.sh
+
+set -e
+cd "$(git rev-parse --show-toplevel)"
+echo "Running prepareRelease before push..."
+./gradlew prepareRelease --no-daemon
+echo "prepareRelease passed. Proceeding with push."
