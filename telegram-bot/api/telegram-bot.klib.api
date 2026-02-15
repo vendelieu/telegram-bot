@@ -1229,7 +1229,7 @@ final class eu.vendeli.tgbot.api.botactions/LogOutAction : eu.vendeli.tgbot.inte
     constructor <init>() // eu.vendeli.tgbot.api.botactions/LogOutAction.<init>|<init>(){}[0]
 }
 
-final class eu.vendeli.tgbot.api.botactions/RemoveMyProfilePhotoAction : eu.vendeli.tgbot.interfaces.action/Action<kotlin/Boolean> { // eu.vendeli.tgbot.api.botactions/RemoveMyProfilePhotoAction|null[0]
+final class eu.vendeli.tgbot.api.botactions/RemoveMyProfilePhotoAction : eu.vendeli.tgbot.interfaces.action/SimpleAction<kotlin/Boolean> { // eu.vendeli.tgbot.api.botactions/RemoveMyProfilePhotoAction|null[0]
     constructor <init>() // eu.vendeli.tgbot.api.botactions/RemoveMyProfilePhotoAction.<init>|<init>(){}[0]
 }
 

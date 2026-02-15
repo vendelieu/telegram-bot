@@ -920,7 +920,7 @@ public suspend inline fun TelegramBot.setUserEmojiStatus(
 
 public suspend inline fun TelegramBot.setMyDescription(description: String? = null, languageCode: String? = null): Unit = eu.vendeli.tgbot.api.botactions.setMyDescription(description, languageCode).send(this)
 
-public suspend inline fun TelegramBot.removeMyProfilePhoto(chatId: Long): Unit = eu.vendeli.tgbot.api.botactions.removeMyProfilePhoto().send(chatId, this)
+public suspend inline fun TelegramBot.removeMyProfilePhoto(): Unit = eu.vendeli.tgbot.api.botactions.removeMyProfilePhoto().send(this)
 
 public suspend inline fun TelegramBot.getMyCommands(languageCode: String? = null, scope: BotCommandScope? = null): Unit = eu.vendeli.tgbot.api.botactions.getMyCommands(languageCode, scope).send(this)
 
