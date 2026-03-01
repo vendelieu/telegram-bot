@@ -8,6 +8,7 @@ import eu.vendeli.tgbot.api.chat.deleteChatStickerSet
 import eu.vendeli.tgbot.api.chat.promoteChatMember
 import eu.vendeli.tgbot.api.chat.setChatAdministratorCustomTitle
 import eu.vendeli.tgbot.api.chat.setChatDescription
+import eu.vendeli.tgbot.api.chat.setChatMemberTag
 import eu.vendeli.tgbot.api.chat.setChatMenuButton
 import eu.vendeli.tgbot.api.chat.setChatPermissions
 import eu.vendeli.tgbot.api.chat.setChatPhoto
@@ -41,6 +42,13 @@ class ChatSetMethodsTest : BotTestContext() {
         result.shouldBeTrue()
         setChatAdministratorCustomTitle(TG_ID, "").sendReturning(CHAT_ID, bot).shouldSuccess()
         promoteChatMember(TG_ID).sendReturning(CHAT_ID, bot).shouldSuccess().shouldBeTrue()
+    }
+
+    @Test
+    suspend fun `set chat member tag method test`() {
+        val result = setChatMemberTag(TG_ID, "test-tag").sendReturning(CHAT_ID, bot).shouldSuccess()
+        result.shouldBeTrue()
+        setChatMemberTag(TG_ID.asUser()).sendReturning(CHAT_ID, bot).shouldSuccess()
     }
 
     @Test

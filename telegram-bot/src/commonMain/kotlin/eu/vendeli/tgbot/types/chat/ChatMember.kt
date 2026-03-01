@@ -52,12 +52,14 @@ sealed class ChatMember : MultipleResponse {
         val canDeleteStories: Boolean,
         val customTitle: String? = null,
         val canManageDirectMessages: Boolean? = null,
+        val canManageTags: Boolean? = null,
     ) : ChatMember()
 
     @Serializable
     @SerialName("member")
     data class Member(
         override val user: User,
+        val tag: String? = null,
         @Serializable(InstantSerializer::class)
         val untilDate: Instant? = null,
     ) : ChatMember()
@@ -66,10 +68,8 @@ sealed class ChatMember : MultipleResponse {
     @SerialName("restricted")
     data class Restricted(
         override val user: User,
+        val tag: String? = null,
         val isMember: Boolean,
-        val canChangeInfo: Boolean,
-        val canInviteUsers: Boolean,
-        val canPinMessages: Boolean,
         val canSendMessages: Boolean,
         val canSendAudios: Boolean,
         val canSendDocuments: Boolean,
@@ -80,6 +80,10 @@ sealed class ChatMember : MultipleResponse {
         val canSendPolls: Boolean,
         val canSendOtherMessages: Boolean,
         val canAddWebPagePreviews: Boolean,
+        val canEditTag: Boolean = false,
+        val canChangeInfo: Boolean,
+        val canInviteUsers: Boolean,
+        val canPinMessages: Boolean,
         val canManageTopics: Boolean,
         @Serializable(InstantSerializer::class)
         val untilDate: Instant,

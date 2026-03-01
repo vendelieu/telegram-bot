@@ -12,19 +12,14 @@ import eu.vendeli.tgbot.utils.common.fqName
 data class ActivityMetadata(
     /** Unique identifier (hash of function signature). */
     val id: Int,
-
     /** Qualified class name. */
     val qualifier: String,
-
     /** Function name. */
     val function: String,
-
     /** Rate limits configuration. */
     val rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-
     /** Fully qualified name of Guard class. */
     val guardClass: String = DefaultGuard::class.fqName,
-
     /** Fully qualified name of ArgumentParser class. */
     val argParserClass: String = DefaultArgParser::class.fqName,
 )

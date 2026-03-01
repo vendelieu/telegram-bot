@@ -28,8 +28,7 @@ internal class CommonCollector : BaseCollector() {
                 ctx.pkg,
                 CommonHandler.Text::class,
                 CommonHandler.Regex::class,
-            )
-            .forEach { function ->
+            ).forEach { function ->
                 function.annotations
                     .flatMap { it.expandToBaseAnnotations(targetNames) }
                     .forEach { baseAnno ->

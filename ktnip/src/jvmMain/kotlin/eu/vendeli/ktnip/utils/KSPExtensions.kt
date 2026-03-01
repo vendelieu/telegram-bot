@@ -29,7 +29,10 @@ fun Sequence<KSAnnotation>.hasAnnotationRecursively(
     val targetFqName = target.qualifiedName ?: return false
 
     fun KSAnnotation.matchesOrMetaVisited(visited: MutableSet<String>): Boolean {
-        val fqName = annotationType.resolve().declaration.qualifiedName?.asString() ?: return false
+        val fqName = annotationType
+            .resolve()
+            .declaration.qualifiedName
+            ?.asString() ?: return false
         if (fqName == targetFqName) return true
         if (!visited.add(fqName)) return false // already checked -> avoid cycles
 
@@ -55,7 +58,10 @@ fun Sequence<KSAnnotation>.findAnnotationRecursively(
     val targetFqName = target.qualifiedName ?: return null
 
     fun KSAnnotation.findRecursive(visited: MutableSet<String>): KSAnnotation? {
-        val fqName = annotationType.resolve().declaration.qualifiedName?.asString() ?: return null
+        val fqName = annotationType
+            .resolve()
+            .declaration.qualifiedName
+            ?.asString() ?: return null
         if (fqName == targetFqName) return this
         if (!visited.add(fqName)) return null // already visited → avoid cycles
 
@@ -85,7 +91,10 @@ fun KSAnnotation.expandToBaseAnnotations(
     targets: Set<String>,
     visited: MutableSet<String> = mutableSetOf(),
 ): Sequence<KSAnnotation> {
-    val fqName = annotationType.resolve().declaration.qualifiedName?.asString() ?: return emptySequence()
+    val fqName = annotationType
+        .resolve()
+        .declaration.qualifiedName
+        ?.asString() ?: return emptySequence()
     if (!visited.add(fqName)) return emptySequence()
 
     // If this annotation is itself one of the targets → yield it

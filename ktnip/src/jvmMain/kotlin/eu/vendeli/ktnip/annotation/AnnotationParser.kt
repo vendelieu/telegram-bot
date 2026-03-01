@@ -35,9 +35,12 @@ object AnnotationParser {
         } else {
             listOf(UpdateType.MESSAGE)
         }
-        val autoAnswer = arguments.firstOrNull {
-            it.name?.asString() == CommandHandler.CallbackQuery::autoAnswer.name
-        }?.takeIf { !it.isDefault() }?.value?.safeCast<Boolean>()
+        val autoAnswer = arguments
+            .firstOrNull {
+                it.name?.asString() == CommandHandler.CallbackQuery::autoAnswer.name
+            }?.takeIf { !it.isDefault() }
+            ?.value
+            ?.safeCast<Boolean>()
 
         return CommandHandlerData(commands, scope, autoAnswer)
     }
@@ -48,15 +51,18 @@ object AnnotationParser {
     fun parseWizardHandler(arguments: List<KSValueArgument>): WizardHandlerData {
         val triggers = parseValueList(arguments, WizardHandler::trigger.name)
         val scope = parseScopes(arguments) ?: listOf(UpdateType.MESSAGE)
-        val stateManagers = arguments.firstOrNull {
-            it.name?.asString() == WizardHandler::stateManagers.name
-        }?.value?.safeCast<List<*>>()?.mapNotNull { i ->
-            when (i) {
-                is KSType -> i.declaration as? KSClassDeclaration
-                is KSClassDeclaration -> i
-                else -> null
-            }
-        } ?: emptyList()
+        val stateManagers = arguments
+            .firstOrNull {
+                it.name?.asString() == WizardHandler::stateManagers.name
+            }?.value
+            ?.safeCast<List<*>>()
+            ?.mapNotNull { i ->
+                when (i) {
+                    is KSType -> i.declaration as? KSClassDeclaration
+                    is KSClassDeclaration -> i
+                    else -> null
+                }
+            } ?: emptyList()
         return WizardHandlerData(triggers, scope, stateManagers)
     }
 
@@ -83,15 +89,20 @@ object AnnotationParser {
      */
     fun parseCommonHandler(arguments: List<KSValueArgument>): CommonHandlerData {
         val value = arguments.first { it.name?.asString() == CommonHandler.Text::value.name }.value
-        val filters = arguments.firstOrNull {
-            it.name?.asString() == CommonHandler.Text::filters.name
-        }?.value?.safeCast<List<KSType>>()?.map {
-            it.declaration.qualifiedName!!.asString()
-        } ?: emptyList()
+        val filters = arguments
+            .firstOrNull {
+                it.name?.asString() == CommonHandler.Text::filters.name
+            }?.value
+            ?.safeCast<List<KSType>>()
+            ?.map {
+                it.declaration.qualifiedName!!.asString()
+            } ?: emptyList()
 
-        val priority = arguments.firstOrNull {
-            it.name?.asString() == CommonHandler.Text::priority.name
-        }?.value?.safeCast<Int>() ?: 0
+        val priority = arguments
+            .firstOrNull {
+                it.name?.asString() == CommonHandler.Text::priority.name
+            }?.value
+            ?.safeCast<Int>() ?: 0
 
         val scope = parseScopes(arguments) ?: listOf(UpdateType.MESSAGE)
 
@@ -108,8 +119,10 @@ object AnnotationParser {
      * Parses Guard annotation.
      */
     fun parseGuard(arguments: List<KSValueArgument>): String =
-        arguments.firstOrNull { it.name?.asString() == Guard::guard.name }
-            ?.value?.safeCast<KSType>()
+        arguments
+            .firstOrNull { it.name?.asString() == Guard::guard.name }
+            ?.value
+            ?.safeCast<KSType>()
             ?.let { it.declaration.qualifiedName!!.asString() }
             ?: DefaultGuard::class.qualifiedName!!
 
@@ -117,8 +130,10 @@ object AnnotationParser {
      * Parses ArgParser annotation.
      */
     fun parseArgParser(arguments: List<KSValueArgument>): String =
-        arguments.firstOrNull { it.name?.asString() == ArgParser::argParser.name }
-            ?.value?.safeCast<KSType>()
+        arguments
+            .firstOrNull { it.name?.asString() == ArgParser::argParser.name }
+            ?.value
+            ?.safeCast<KSType>()
             ?.let { it.declaration.qualifiedName!!.asString() }
             ?: DefaultArgParser::class.qualifiedName!!
 
@@ -126,23 +141,28 @@ object AnnotationParser {
      * Parses RateLimits annotation.
      */
     fun parseRateLimits(arguments: List<KSValueArgument>): RateLimits =
-        ((arguments.firstOrNull()?.value?.safeCast<Long>() ?: 0) to
-            (arguments.lastOrNull()?.value?.safeCast<Long>() ?: 0)).toRateLimits()
+        (
+            (arguments.firstOrNull()?.value?.safeCast<Long>() ?: 0) to
+                (arguments.lastOrNull()?.value?.safeCast<Long>() ?: 0)
+        ).toRateLimits()
 
     /**
      * Parses scope argument (list of UpdateTypes).
      */
     private fun parseScopes(arguments: List<KSValueArgument>): List<UpdateType>? =
-        arguments.firstOrNull {
-            it.name?.asString() == "scope"
-        }?.value?.safeCast<List<*>>()?.map {
-            val value = when (it) {
-                is KSType -> it.declaration.toString()
-                is KSClassDeclaration -> it.simpleName.getShortName()
-                else -> error("Unknown type $it")
+        arguments
+            .firstOrNull {
+                it.name?.asString() == "scope"
+            }?.value
+            ?.safeCast<List<*>>()
+            ?.map {
+                val value = when (it) {
+                    is KSType -> it.declaration.toString()
+                    is KSClassDeclaration -> it.simpleName.getShortName()
+                    else -> error("Unknown type $it")
+                }
+                UpdateType.valueOf(value)
             }
-            UpdateType.valueOf(value)
-        }
 
     /**
      * Parses value list argument.
@@ -154,15 +174,18 @@ object AnnotationParser {
      * Parses regex options for CommonHandler.Regex.
      */
     private fun parseRegexOptions(arguments: List<KSValueArgument>): List<RegexOption> =
-        arguments.firstOrNull {
-            it.name?.asString() == CommonHandler.Regex::options.name
-        }?.value?.safeCast<List<*>>()?.map { i ->
-            when (i) {
-                is KSType -> i.declaration.toString()
-                is KSClassDeclaration -> i.simpleName.getShortName()
-                else -> error("Unknown type $i")
-            }.let { RegexOption.valueOf(it) }
-        } ?: emptyList()
+        arguments
+            .firstOrNull {
+                it.name?.asString() == CommonHandler.Regex::options.name
+            }?.value
+            ?.safeCast<List<*>>()
+            ?.map { i ->
+                when (i) {
+                    is KSType -> i.declaration.toString()
+                    is KSClassDeclaration -> i.simpleName.getShortName()
+                    else -> error("Unknown type $i")
+                }.let { RegexOption.valueOf(it) }
+            } ?: emptyList()
 }
 
 /**

@@ -15,12 +15,9 @@ import eu.vendeli.ktnip.utils.getActivityId
 import eu.vendeli.ktnip.utils.getActivityObjectName
 import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultGuard
-import eu.vendeli.tgbot.interfaces.helper.ArgumentParser
-import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.configuration.RateLimits
 import eu.vendeli.tgbot.utils.common.fqName
-import kotlin.reflect.KClass
 
 /**
  * Generates Activity objects from function declarations.
@@ -64,7 +61,8 @@ class ActivityCodeGenerator(
         val objectName = function.getActivityObjectName()
 
         // Build Activity object
-        val activityObject = TypeSpec.objectBuilder(objectName)
+        val activityObject = TypeSpec
+            .objectBuilder(objectName)
             .addSuperinterface(TypeConstants.activity)
             .addModifiers(KModifier.INTERNAL)
             .addActivityProperties(metadata)
@@ -77,7 +75,8 @@ class ActivityCodeGenerator(
         val instanceQualifier = if (hasInstance) funQualifier else null
 
         // Build invoke function
-        val invokeFun = FunSpec.builder("invoke")
+        val invokeFun = FunSpec
+            .builder("invoke")
             .addModifiers(KModifier.OVERRIDE, KModifier.SUSPEND)
             .addParameter("context", TypeConstants.processingCtx)
             .returns(ANY.copy(nullable = true))
@@ -103,53 +102,58 @@ class ActivityCodeGenerator(
      */
     private fun TypeSpec.Builder.addActivityProperties(metadata: ActivityMetadata) = apply {
         addProperty(
-            PropertySpec.builder("id", INT, KModifier.OVERRIDE)
+            PropertySpec
+                .builder("id", INT, KModifier.OVERRIDE)
                 .initializer("%L", metadata.id)
                 .build(),
         )
         addProperty(
-            PropertySpec.builder("qualifier", STRING, KModifier.OVERRIDE)
+            PropertySpec
+                .builder("qualifier", STRING, KModifier.OVERRIDE)
                 .initializer("%S", metadata.qualifier)
                 .build(),
         )
         addProperty(
-            PropertySpec.builder("function", STRING, KModifier.OVERRIDE)
+            PropertySpec
+                .builder("function", STRING, KModifier.OVERRIDE)
                 .initializer("%S", metadata.function)
                 .build(),
         )
 
         addProperty(
-            PropertySpec.builder("rateLimits", RateLimits::class, KModifier.OVERRIDE)
+            PropertySpec
+                .builder("rateLimits", RateLimits::class, KModifier.OVERRIDE)
                 .initializer(
                     if (metadata.rateLimits.period > 0 || metadata.rateLimits.rate > 0) {
                         CodeBlock.of("RateLimits(%LL, %LL)", metadata.rateLimits.period, metadata.rateLimits.rate)
                     } else {
                         CodeBlock.of("%T.NOT_LIMITED", RateLimits::class)
-                    }
-                )
-                .build(),
+                    },
+                ).build(),
         )
 
         if (metadata.guardClass != DefaultGuard::class.fqName) {
             addProperty(
-                PropertySpec.builder(
-                    "guardClass",
-                    TypeConstants.kClass
-                        .parameterizedBy(WildcardTypeName.producerOf(TypeConstants.guard)),
-                    KModifier.OVERRIDE,
-                ).initializer("%L::class", metadata.guardClass)
+                PropertySpec
+                    .builder(
+                        "guardClass",
+                        TypeConstants.kClass
+                            .parameterizedBy(WildcardTypeName.producerOf(TypeConstants.guard)),
+                        KModifier.OVERRIDE,
+                    ).initializer("%L::class", metadata.guardClass)
                     .build(),
             )
         }
 
         if (metadata.argParserClass != DefaultArgParser::class.fqName) {
             addProperty(
-                PropertySpec.builder(
-                    "argParser",
-                    TypeConstants.kClass
-                        .parameterizedBy(WildcardTypeName.producerOf(TypeConstants.argumentParser)),
-                    KModifier.OVERRIDE,
-                ).initializer("%L::class", metadata.argParserClass)
+                PropertySpec
+                    .builder(
+                        "argParser",
+                        TypeConstants.kClass
+                            .parameterizedBy(WildcardTypeName.producerOf(TypeConstants.argumentParser)),
+                        KModifier.OVERRIDE,
+                    ).initializer("%L::class", metadata.argParserClass)
                     .build(),
             )
         }

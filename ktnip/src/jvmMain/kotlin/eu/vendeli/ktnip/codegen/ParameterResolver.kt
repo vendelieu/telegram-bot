@@ -104,8 +104,9 @@ class ParameterResolver(
      * @return Map of parameter index to resolution strategy
      */
     fun resolveAll(parameters: List<KSValueParameter>): Map<Int, ParameterResolutionStrategy> =
-        parameters.mapIndexedNotNull { index, param ->
-            if (param.name == null) null
-            else index to resolve(param)
-        }.toMap()
+        parameters
+            .mapIndexedNotNull { index, param ->
+                if (param.name == null) null
+                else index to resolve(param)
+            }.toMap()
 }

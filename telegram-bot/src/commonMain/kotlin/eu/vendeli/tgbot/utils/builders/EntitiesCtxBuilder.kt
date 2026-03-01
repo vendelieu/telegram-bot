@@ -1,30 +1,14 @@
 package eu.vendeli.tgbot.utils.builders
 
 import eu.vendeli.tgbot.interfaces.action.TgAction
-import eu.vendeli.tgbot.types.msg.EntityType
-import eu.vendeli.tgbot.types.msg.EntityType.Blockquote
-import eu.vendeli.tgbot.types.msg.EntityType.Bold
-import eu.vendeli.tgbot.types.msg.EntityType.BotCommand
-import eu.vendeli.tgbot.types.msg.EntityType.Cashtag
-import eu.vendeli.tgbot.types.msg.EntityType.Code
-import eu.vendeli.tgbot.types.msg.EntityType.CustomEmoji
-import eu.vendeli.tgbot.types.msg.EntityType.Email
-import eu.vendeli.tgbot.types.msg.EntityType.ExpandableBlockQuote
-import eu.vendeli.tgbot.types.msg.EntityType.Hashtag
-import eu.vendeli.tgbot.types.msg.EntityType.Italic
-import eu.vendeli.tgbot.types.msg.EntityType.Mention
-import eu.vendeli.tgbot.types.msg.EntityType.PhoneNumber
-import eu.vendeli.tgbot.types.msg.EntityType.Pre
-import eu.vendeli.tgbot.types.msg.EntityType.Spoiler
-import eu.vendeli.tgbot.types.msg.EntityType.Strikethrough
-import eu.vendeli.tgbot.types.msg.EntityType.TextLink
-import eu.vendeli.tgbot.types.msg.EntityType.TextMention
-import eu.vendeli.tgbot.types.msg.EntityType.Underline
-import eu.vendeli.tgbot.types.msg.EntityType.Url
-import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.User
+import eu.vendeli.tgbot.types.msg.EntityType
+import eu.vendeli.tgbot.types.msg.EntityType.*
+import eu.vendeli.tgbot.types.msg.MessageEntity
+import eu.vendeli.tgbot.utils.common.cast
 import eu.vendeli.tgbot.utils.internal.encodeWith
 import kotlinx.serialization.json.JsonArray
+import kotlin.time.Instant
 
 @Suppress("TooManyFunctions")
 interface EntitiesExtBuilder {
@@ -73,18 +57,35 @@ interface EntitiesExtBuilder {
                 user = other.third as? User,
             )
 
+            DateTime -> {
+                val pair = other.third.cast<Pair<Instant, String>>()
+                MessageEntity(
+                    DateTime,
+                    length,
+                    other.second.length,
+                    unixTime = pair.first,
+                    dateTimeFormat = pair.second,
+                )
+            }
+
             else -> throw IllegalArgumentException("An unexpected EntityType - ${other.first}.")
         }
         addEntity(entity)
         return this + other.second
     }
 
+    @Suppress("UNCHECKED_CAST")
     operator fun <T> Triple<EntityType, String, T?>.minus(other: String): String {
         val entity = when (first) {
             Pre -> MessageEntity(Pre, 0, second.length, language = third?.toString())
             TextLink -> MessageEntity(TextLink, 0, second.length, url = third?.toString())
             CustomEmoji -> MessageEntity(CustomEmoji, 0, second.length, customEmojiId = third?.toString())
             TextMention -> MessageEntity(TextMention, 0, second.length, user = third as? User)
+            DateTime -> {
+                val pair = third.cast<Pair<Instant, String>>()
+                MessageEntity(DateTime, 0, second.length, unixTime = pair.first, dateTimeFormat = pair.second)
+            }
+
             else -> throw IllegalArgumentException("An unexpected EntityType - $first.")
         }
         addEntity(entity)
@@ -127,6 +128,16 @@ interface EntitiesExtBuilder {
         user: User? = null,
         block: () -> String,
     ) = Triple(TextMention, block(), user)
+
+    /**
+     * Add a [EntityType.DateTime] entity. Use to show a formatted date and time to the user.
+     * The format string is used as the visible text (client will display the formatted date).
+     * Example: `"Event at " - dateTime(instant, "dd.MM.yyyy HH:mm")`
+     */
+    fun EntitiesExtBuilder.dateTime(
+        unixTime: Instant,
+        dateTimeFormat: String,
+    ) = Triple(DateTime, dateTimeFormat, unixTime to dateTimeFormat)
 }
 
 interface EntitiesCtxBuilder<Action : TgAction<*>> : EntitiesExtBuilder {

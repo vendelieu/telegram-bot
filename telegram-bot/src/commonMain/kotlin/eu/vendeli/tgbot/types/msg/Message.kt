@@ -69,6 +69,7 @@ import kotlin.time.Instant
  * @property senderChat Optional. Sender of the message, sent on behalf of a chat. For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group. For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
  * @property senderBoostCount Optional. If the sender of the message boosted the chat, the number of boosts added by the user
  * @property senderBusinessBot Optional. The bot that actually sent the message on behalf of the business account. Available only for outgoing messages sent on behalf of the connected business account.
+ * @property senderTag Optional. Tag or custom title of the sender of the message; for supergroups only
  * @property date Date the message was sent in Unix time. It is always a positive number, representing a valid date.
  * @property businessConnectionId Optional. Unique identifier of the business connection from which the message was received. If non-empty, the message belongs to a chat of the corresponding business account that is independent from any potential bot chat which might share the same identifier.
  * @property chat Chat the message belongs to
@@ -158,6 +159,7 @@ data class Message(
     val senderChat: Chat? = null,
     val senderBoostCount: Int? = null,
     val senderBusinessBot: User? = null,
+    val senderTag: String? = null,
     @Serializable(InstantSerializer::class)
     override val date: Instant,
     val businessConnectionId: String? = null,

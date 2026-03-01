@@ -217,6 +217,18 @@ public suspend inline fun TelegramBot.createChatInviteLink(chatId: Long): Unit =
 
 public suspend inline fun TelegramBot.setChatStickerSet(stickerSetName: String, chatId: Long): Unit = eu.vendeli.tgbot.api.chat.setChatStickerSet(stickerSetName).send(chatId, this)
 
+public suspend inline fun TelegramBot.setChatMemberTag(
+  userId: Long,
+  tag: String? = null,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat.setChatMemberTag(userId, tag).send(chatId, this)
+
+public suspend inline fun TelegramBot.setChatMemberTag(
+  user: User,
+  tag: String? = null,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.chat.setChatMemberTag(user, tag).send(chatId, this)
+
 public suspend inline fun TelegramBot.setChatPhoto(`file`: ImplicitFile, chatId: Long): Unit = eu.vendeli.tgbot.api.chat.setChatPhoto(file).send(chatId, this)
 
 public suspend inline fun TelegramBot.setChatPhoto(noinline block: () -> String, chatId: Long): Unit = eu.vendeli.tgbot.api.chat.setChatPhoto(block).send(chatId, this)

@@ -63,19 +63,21 @@ internal class BotCtxCollector : Collector {
             )
 
             addType(
-                TypeSpec.objectBuilder("__CtxUtils")
+                TypeSpec
+                    .objectBuilder("__CtxUtils")
                     .addAnnotation(KtGramInternal::class)
                     .addSuperinterface(TypeConstants.ctxUtils)
                     .addProperty(
-                        PropertySpec.builder(
-                            CtxUtils::isClassDataInitialized.name,
-                            TypeConstants.lazy.parameterizedBy(UNIT),
-                            KModifier.OVERRIDE,
-                        ).initializer("lazy { %T }", UNIT)
+                        PropertySpec
+                            .builder(
+                                CtxUtils::isClassDataInitialized.name,
+                                TypeConstants.lazy.parameterizedBy(UNIT),
+                                KModifier.OVERRIDE,
+                            ).initializer("lazy { %T }", UNIT)
                             .build(),
-                    )
-                    .addFunction(
-                        FunSpec.builder(CtxUtils::clearClassData.name)
+                    ).addFunction(
+                        FunSpec
+                            .builder(CtxUtils::clearClassData.name)
                             .addModifiers(KModifier.OVERRIDE, KModifier.SUSPEND)
                             .addParameter("tgId", LONG)
                             .addCode("_classData.clearAll(tgId)")
@@ -91,7 +93,8 @@ internal class BotCtxCollector : Collector {
                         KModifier.PRIVATE,
                     ).apply {
                         addAnnotation(
-                            AnnotationSpec.builder(TypeConstants.optIn)
+                            AnnotationSpec
+                                .builder(TypeConstants.optIn)
                                 .addMember("%T::class", KtGramInternal::class)
                                 .build(),
                         )

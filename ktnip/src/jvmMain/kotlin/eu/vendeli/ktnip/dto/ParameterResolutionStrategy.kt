@@ -63,20 +63,35 @@ sealed class ParameterResolutionStrategy {
         val parameterName: String,
         val conversionMethod: String,
     ) : ParameterResolutionStrategy() {
-        class Int(typeName: TypeName, isNullable: Boolean, parameterName: String) :
-            PrimitiveParameter(typeName, isNullable, parameterName, "toIntOrNull()")
+        class Int(
+            typeName: TypeName,
+            isNullable: Boolean,
+            parameterName: String,
+        ) : PrimitiveParameter(typeName, isNullable, parameterName, "toIntOrNull()")
 
-        class Long(typeName: TypeName, isNullable: Boolean, parameterName: String) :
-            PrimitiveParameter(typeName, isNullable, parameterName, "toLongOrNull()")
+        class Long(
+            typeName: TypeName,
+            isNullable: Boolean,
+            parameterName: String,
+        ) : PrimitiveParameter(typeName, isNullable, parameterName, "toLongOrNull()")
 
-        class Short(typeName: TypeName, isNullable: Boolean, parameterName: String) :
-            PrimitiveParameter(typeName, isNullable, parameterName, "toShortOrNull()")
+        class Short(
+            typeName: TypeName,
+            isNullable: Boolean,
+            parameterName: String,
+        ) : PrimitiveParameter(typeName, isNullable, parameterName, "toShortOrNull()")
 
-        class Float(typeName: TypeName, isNullable: Boolean, parameterName: String) :
-            PrimitiveParameter(typeName, isNullable, parameterName, "toFloatOrNull()")
+        class Float(
+            typeName: TypeName,
+            isNullable: Boolean,
+            parameterName: String,
+        ) : PrimitiveParameter(typeName, isNullable, parameterName, "toFloatOrNull()")
 
-        class Double(typeName: TypeName, isNullable: Boolean, parameterName: String) :
-            PrimitiveParameter(typeName, isNullable, parameterName, "toDoubleOrNull()")
+        class Double(
+            typeName: TypeName,
+            isNullable: Boolean,
+            parameterName: String,
+        ) : PrimitiveParameter(typeName, isNullable, parameterName, "toDoubleOrNull()")
     }
 
     /**

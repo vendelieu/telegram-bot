@@ -27,7 +27,8 @@ object AnnotationExtractor {
             .findAnnotationRecursively(Guard::class)
             ?.arguments
             ?.let { AnnotationParser.parseGuard(it) }
-            ?: function.closestClassDeclaration()
+            ?: function
+                .closestClassDeclaration()
                 ?.annotations
                 ?.findAnnotationRecursively(Guard::class)
                 ?.arguments
@@ -45,7 +46,8 @@ object AnnotationExtractor {
             .findAnnotationRecursively(RateLimits::class)
             ?.arguments
             ?.let { AnnotationParser.parseRateLimits(it) }
-            ?: function.closestClassDeclaration()
+            ?: function
+                .closestClassDeclaration()
                 ?.annotations
                 ?.findAnnotationRecursively(RateLimits::class)
                 ?.arguments
@@ -63,7 +65,8 @@ object AnnotationExtractor {
             .findAnnotationRecursively(ArgParser::class)
             ?.arguments
             ?.let { AnnotationParser.parseArgParser(it) }
-            ?: function.closestClassDeclaration()
+            ?: function
+                .closestClassDeclaration()
                 ?.annotations
                 ?.findAnnotationRecursively(ArgParser::class)
                 ?.arguments

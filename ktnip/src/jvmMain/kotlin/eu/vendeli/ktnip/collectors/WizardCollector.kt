@@ -18,9 +18,7 @@ import eu.vendeli.ktnip.utils.getActivityId
 import eu.vendeli.ktnip.utils.getActivityObjectName
 import eu.vendeli.ktnip.utils.getAnnotatedClassSymbols
 import eu.vendeli.ktnip.utils.safeCast
-import eu.vendeli.ktnip.utils.toKSPClassName
 import eu.vendeli.tgbot.annotations.WizardHandler
-import eu.vendeli.tgbot.types.chain.WizardStateManager
 import eu.vendeli.tgbot.types.chain.WizardStep
 import eu.vendeli.tgbot.utils.common.fqName
 
@@ -49,8 +47,7 @@ internal class WizardCollector : BaseCollector() {
                     nestedClass.getAllSuperTypes().any { superType ->
                         superType.declaration.qualifiedName?.asString() == wizardStepFqName
                     }
-                }
-                .toList()
+                }.toList()
 
             if (nestedSteps.isEmpty()) {
                 ctx.logger.warn(
@@ -90,9 +87,12 @@ internal class WizardCollector : BaseCollector() {
             )
 
             // Extract metadata for engine activity from class
-            val rateLimits = eu.vendeli.ktnip.annotation.AnnotationExtractor.extractRateLimits(classDecl)
-            val guardClass = eu.vendeli.ktnip.annotation.AnnotationExtractor.extractGuard(classDecl)
-            val argParserClass = eu.vendeli.ktnip.annotation.AnnotationExtractor.extractArgParser(classDecl)
+            val rateLimits = eu.vendeli.ktnip.annotation.AnnotationExtractor
+                .extractRateLimits(classDecl)
+            val guardClass = eu.vendeli.ktnip.annotation.AnnotationExtractor
+                .extractGuard(classDecl)
+            val argParserClass = eu.vendeli.ktnip.annotation.AnnotationExtractor
+                .extractArgParser(classDecl)
             val metadata = ActivityMetadata(
                 id = activityId,
                 qualifier = classQualifier,
@@ -135,7 +135,9 @@ internal class WizardCollector : BaseCollector() {
             // Register commands
             annotationData.triggers.forEach { trigger ->
                 annotationData.scope.forEach { updT ->
-                    ctx.logger.info("Wizard trigger: $trigger UpdateType: ${updT.name} --> ${classDecl.qualifiedName?.asString()}")
+                    ctx.logger.info(
+                        "Wizard trigger: $trigger UpdateType: ${updT.name} --> ${classDecl.qualifiedName?.asString()}",
+                    )
                     ctx.loadFun.addStatement(
                         "registerCommand(%S, UpdateType.%L, %N.id)",
                         trigger,
@@ -170,7 +172,7 @@ internal class WizardCollector : BaseCollector() {
                 // Format: "wizard:${activityId}:${stepQualifiedName}"
                 ctx.loadFun.addStatement(
                     "registerInput(%S, %N.id)",
-                    "wizard:${activityId}:$stepQualifiedName",
+                    "wizard:$activityId:$stepQualifiedName",
                     "${objectName}Input",
                 )
             }
@@ -212,7 +214,11 @@ internal class WizardCollector : BaseCollector() {
 
             // First, check if step has @WizardHandler.StateManager annotation
             val stateManagerAnnotation = stepClass.annotations.firstOrNull { annotation ->
-                annotation.annotationType.resolve().declaration.qualifiedName?.asString() == stateManagerAnnotationFqName
+                annotation.annotationType
+                    .resolve()
+                    .declaration.qualifiedName
+                    ?.asString() ==
+                    stateManagerAnnotationFqName
             }
 
             val matchingManager = if (stateManagerAnnotation != null) {
@@ -299,7 +305,10 @@ internal class WizardCollector : BaseCollector() {
 
                     // Check if this is WizardStateManager
                     if (superDecl.qualifiedName?.asString() == TypeConstants.wizardStateManagerFqName) {
-                        val typeArg = superType.arguments.firstOrNull()?.type?.resolve()
+                        val typeArg = superType.arguments
+                            .firstOrNull()
+                            ?.type
+                            ?.resolve()
                             ?: return null
                         return resolveType(typeArg)
                     }
