@@ -29,7 +29,13 @@ class ActivityProcessor(
             addOptIn()
 
             addImport("eu.vendeli.tgbot.core", "Activity")
-            addImport("eu.vendeli.tgbot.types.component", "ProcessingContext", "UpdateType", "CommonMatcher", "userOrNull")
+            addImport(
+                "eu.vendeli.tgbot.types.component",
+                "ProcessingContext",
+                "UpdateType",
+                "CommonMatcher",
+                "userOrNull",
+            )
             addImport("eu.vendeli.tgbot.types.configuration", "RateLimits")
             addImport("eu.vendeli.tgbot.implementations", "DefaultGuard", "DefaultArgParser")
 
@@ -51,7 +57,8 @@ class ActivityProcessor(
 
             val filePkg = pkg ?: DEFAULT_CODEGEN_PACKAGE
 
-            val loadFun = FunSpec.builder("load")
+            val loadFun = FunSpec
+                .builder("load")
                 .addModifiers(KModifier.OVERRIDE)
                 .addParameter("bot", TypeConstants.botClass)
                 .addCode("return bot.update.registry.run {\n")
@@ -63,18 +70,19 @@ class ActivityProcessor(
 
             loaders.add(
                 // service loader requires it to have constructor so object is not an option
-                TypeSpec.classBuilder(className)
+                TypeSpec
+                    .classBuilder(className)
                     .addSuperinterface(TypeConstants.contextLoader)
                     .apply {
                         if (isMultiPackage && pkg != null) {
                             addProperty(
-                                PropertySpec.builder("pkg", String::class, KModifier.OVERRIDE)
+                                PropertySpec
+                                    .builder("pkg", String::class, KModifier.OVERRIDE)
                                     .initializer("%S", pkg)
                                     .build(),
                             )
                         }
-                    }
-                    .addFunction(loadFun.build())
+                    }.addFunction(loadFun.build())
                     .build(),
             )
         }
@@ -107,16 +115,18 @@ class ActivityProcessor(
             )
         }
 
-        codeGenerator.createNewFile(
-            dependencies = dependencies,
-            packageName = "META-INF.services",
-            fileName = "eu.vendeli.tgbot.interfaces.helper.ContextLoader",
-            "",
-        ).bufferedWriter().use { writer ->
-            loaders.forEach {
-                writer.write("$DEFAULT_CODEGEN_PACKAGE.${it.name}\n")
+        codeGenerator
+            .createNewFile(
+                dependencies = dependencies,
+                packageName = "META-INF.services",
+                fileName = "eu.vendeli.tgbot.interfaces.helper.ContextLoader",
+                "",
+            ).bufferedWriter()
+            .use { writer ->
+                loaders.forEach {
+                    writer.write("$DEFAULT_CODEGEN_PACKAGE.${it.name}\n")
+                }
             }
-        }
 
         isProcessed = true
         return emptyList()

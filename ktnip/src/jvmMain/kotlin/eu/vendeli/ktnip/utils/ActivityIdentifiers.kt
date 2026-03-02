@@ -15,7 +15,10 @@ private const val STRING_RADIX = 16
  */
 fun KSFunctionDeclaration.getSignature(): String {
     val params = parameters.joinToString(prefix = "(", postfix = ")") {
-        it.type.resolve().declaration.qualifiedName?.asString() ?: ""
+        it.type
+            .resolve()
+            .declaration.qualifiedName
+            ?.asString() ?: ""
     }
     val qualifiedName = qualifiedName?.asString() ?: ""
     val lastDot = qualifiedName.lastIndexOf('.')

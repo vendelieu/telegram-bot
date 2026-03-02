@@ -1,6 +1,3 @@
-// @generated KtGramCtxLoader.kt: KtGramCtxLoader, load
-// @generated BotCtx.kt: TestProviderUser, TestProviderClass
-
 import eu.vendeli.tgbot.annotations.CtxProvider
 import eu.vendeli.tgbot.interfaces.ctx.ClassData
 import eu.vendeli.tgbot.interfaces.ctx.UserData

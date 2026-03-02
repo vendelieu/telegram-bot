@@ -35,6 +35,19 @@ dependencies {
 
 tasks.withType<Test> { useJUnitPlatform() }
 
+val goldenOutputDir = layout.projectDirectory.dir("src/jvmTest/resources/test-data/golden")
+
+tasks.register<Test>("updateGolden") {
+    group = "verification"
+    description = "Updates golden files for KSP processor tests. Run when generated output changes intentionally."
+    testClassesDirs = sourceSets["jvmTest"].output.classesDirs
+    classpath = sourceSets["jvmTest"].runtimeClasspath
+    useJUnitPlatform()
+    systemProperty("ktnip.golden.update", "true")
+    systemProperty("ktnip.golden.outputDir", goldenOutputDir.asFile.absolutePath)
+    outputs.upToDateWhen { false }
+}
+
 detekt {
     buildUponDefaultConfig = true
     allRules = false

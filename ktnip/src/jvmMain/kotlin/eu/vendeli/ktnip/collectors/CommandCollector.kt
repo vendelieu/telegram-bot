@@ -66,7 +66,9 @@ internal class CommandCollector : BaseCollector() {
             // Register commands
             annotationData.commands.forEach { command ->
                 annotationData.scope.forEach { updT ->
-                    ctx.logger.info("Command: $command UpdateType: ${updT.name} --> ${function.qualifiedName?.asString()}")
+                    ctx.logger.info(
+                        "Command: $command UpdateType: ${updT.name} --> ${function.qualifiedName?.asString()}",
+                    )
                     ctx.loadFun.addStatement(
                         "registerCommand(%S, UpdateType.%L, %L.id)",
                         command,

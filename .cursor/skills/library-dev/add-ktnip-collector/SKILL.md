@@ -45,7 +45,7 @@ description: [Library contributor] Adds a new collector to the ktnip KSP process
 
 - Add test data in `ktnip/src/jvmTest/resources/test-data/` (or extend DefaultHandlers.kt, WizardHandlers.kt, etc.)
 - Add `runTest("test-data/YourFile.kt")` in [ProcessorTest.kt](ktnip/src/jvmTest/kotlin/eu/vendeli/ktnip/ProcessorTest.kt)
-- Use `// @generated` comments for golden output checks (see add-ktnip-ksp-tests skill)
+- Use `/* G-EXPECT ... */` block for golden output checks (see add-ktnip-ksp-tests skill)
 
 ## Reference
 

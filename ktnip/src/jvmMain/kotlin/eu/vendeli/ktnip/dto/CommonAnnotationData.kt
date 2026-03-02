@@ -26,7 +26,10 @@ sealed class CommonAnnotationValue {
             is String -> "CommonMatcher.String(value = \"$value\"$parametersString)"
             is Regex ->
                 "CommonMatcher.Regex(value = Regex(\"$value\"${
-                    value.options.takeIf { it.isNotEmpty() }?.joinToString(prefix = " , setOf(", postfix = ")") { "RegexOption.$it" } ?: ""
+                    value.options.takeIf { it.isNotEmpty() }?.joinToString(
+                        prefix = " , setOf(",
+                        postfix = ")",
+                    ) { "RegexOption.$it" } ?: ""
                 })$parametersString)"
         }
     }

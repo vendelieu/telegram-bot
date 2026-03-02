@@ -48,12 +48,13 @@ fun <T : Annotation> Resolver.getAnnotatedFnSymbols(
 
     // Clean Step 1: Find meta-annotations by asking the resolver
     // for annotation classes that are themselves annotated with our targets.
-    val metaAnnotations = targetAnnoNames.flatMap { annoName ->
-        getSymbolsWithAnnotation(annoName)
-            .filterIsInstance<KSClassDeclaration>()
-            .filter { it.classKind == ClassKind.ANNOTATION_CLASS }
-            .mapNotNull { it.qualifiedName?.asString() }
-    }.toSet()
+    val metaAnnotations = targetAnnoNames
+        .flatMap { annoName ->
+            getSymbolsWithAnnotation(annoName)
+                .filterIsInstance<KSClassDeclaration>()
+                .filter { it.classKind == ClassKind.ANNOTATION_CLASS }
+                .mapNotNull { it.qualifiedName?.asString() }
+        }.toSet()
 
     val allTargetNames = targetAnnoNames + metaAnnotations
 

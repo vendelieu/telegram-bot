@@ -23,11 +23,47 @@ class ProcessorTest : AbstractKspTest() {
 - **runTest(path)**: Load from `jvmTest/resources/test-data/<name>.kt`, compile with ActivityProcessorProvider, assert exitCode OK, verify generated files (ActivitiesData.kt, KtGramCtxLoader.kt, BotCtx.kt)
 - **compile(vararg SourceFile)**: Inline sources, custom processors; returns JvmCompilationResult for custom assertions
 
-## Golden Output in Comments
+## Golden Output
 
-- Add `// @generated <filename>: substring1, substring2` to test data for partial inclusion checks
-- Supports ActivitiesData.kt, KtGramCtxLoader.kt, BotCtx.kt
-- Multi-line: `// @generated BotCtx.kt:` followed by `//   substring` lines
+**Hybrid:** If `test-data/golden/<TestName>/<FileName>.gold` exists, full-file comparison is used. Otherwise, fall back to G-EXPECT.
+
+**G-EXPECT optional:** When golden files exist, the G-EXPECT block can be omitted — expectations are discovered from golden files.
+
+**Update:** `./gradlew :ktnip:updateGolden` — run when generated output changes intentionally.
+
+## G-EXPECT (fallback)
+
+Add `/* G-EXPECT ... */` block comments to test data when no golden file exists. One block can contain multiple checks:
+
+```kotlin
+/* G-EXPECT
+file=ActivitiesData.kt
+contains="Activity"
+
+file=KtGramCtxLoader.kt
+contains="registerCommand"
+contains="registerActivity"
+
+file=BotCtx.kt
+contains="userData"
+contains="getState"
+notContains="TODO"
+
+noError
+*/
+```
+
+**Directives:**
+- `file=FileName.kt` — target generated file (can appear multiple times)
+- `contains="..."` — file must contain substring
+- `notContains="..."` — file must not contain substring
+- `matches="regex"` — file must contain a substring matching the regex
+- `notMatches="regex"` — file must not contain any substring matching the regex
+- `noError` — expect compilation success (default when no error directives)
+- `error contains="..."` — expect compilation error, message contains
+- `error exact="..."` — error message equals
+- `error count=N` — exactly N error lines
+- `error file=Foo.kt line=12 contains="..."` — error at file/line contains
 
 ## Test Data
 
@@ -39,4 +75,5 @@ class ProcessorTest : AbstractKspTest() {
 ## Verification
 
 - `./gradlew :ktnip:jvmTest` runs all KSP tests
+- `./gradlew :ktnip:updateGolden` updates golden files
 - prepareRelease includes ktnip:jvmTest

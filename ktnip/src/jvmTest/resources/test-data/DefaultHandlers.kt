@@ -1,6 +1,18 @@
-// @generated ActivitiesData.kt: Activity
-// @generated KtGramCtxLoader.kt: registerCommand, registerInput, registerCommonHandler, registerUpdate, registerUnprocessed
-// @generated BotCtx.kt: userData, classData
+/* G-EXPECT
+file=ActivitiesData.kt
+contains="Activity"
+
+file=KtGramCtxLoader.kt
+contains="registerCommand"
+contains="registerInput"
+contains="registerCommonHandler"
+contains="registerUpdate"
+contains="registerUnprocessed"
+
+file=BotCtx.kt
+contains="userData"
+contains="classData"
+*/
 
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.types.User

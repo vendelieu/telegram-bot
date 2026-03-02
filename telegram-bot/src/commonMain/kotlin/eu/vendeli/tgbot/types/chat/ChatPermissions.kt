@@ -16,6 +16,7 @@ import kotlinx.serialization.Serializable
  * @property canSendPolls Optional. True, if the user is allowed to send polls and checklists
  * @property canSendOtherMessages Optional. True, if the user is allowed to send animations, games, stickers and use inline bots
  * @property canAddWebPagePreviews Optional. True, if the user is allowed to add web page previews to their messages
+ * @property canEditTag Optional. True, if the user is allowed to edit their own tag
  * @property canChangeInfo Optional. True, if the user is allowed to change the chat title, photo and other settings. Ignored in public supergroups
  * @property canInviteUsers Optional. True, if the user is allowed to invite new users to the chat
  * @property canPinMessages Optional. True, if the user is allowed to pin messages. Ignored in public supergroups
@@ -37,4 +38,5 @@ data class ChatPermissions(
     var canInviteUsers: Boolean? = null,
     var canPinMessages: Boolean? = null,
     var canManageTopics: Boolean? = null,
+    var canEditTag: Boolean? = null,
 )

@@ -1,6 +1,10 @@
 # Telegram-bot (KtGram) Changelog
 
-## 9.2.1
+## 9.3.0
+
+* Covered Tg API [`9.5`](https://core.telegram.org/bots/api-changelog#march-1-2026).
+
+### 9.2.1
 
 * Fixed `@Injectable` resolving in generated code
 

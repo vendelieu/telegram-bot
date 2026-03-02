@@ -115,58 +115,68 @@ class InvocationCodeGenerator(
         parameterStrategies: Map<Int, ParameterResolutionStrategy>,
         updateType: UpdateType?,
         parameters: List<LambdaParameters>,
-    ): CodeBlock = CodeBlock.builder().apply {
-        val isCallbackAutoAnswer = updateType == UpdateType.CALLBACK_QUERY &&
-            parameters.contains(CommandHandlerParams.CallbackQueryAutoAnswer)
+    ): CodeBlock = CodeBlock
+        .builder()
+        .apply {
+            val isCallbackAutoAnswer = updateType == UpdateType.CALLBACK_QUERY &&
+                parameters.contains(CommandHandlerParams.CallbackQueryAutoAnswer)
 
-        val strategies = parameterStrategies.values
-        val isBotNeeded = hasInstance || isCallbackAutoAnswer || strategies.any {
-            it is ParameterResolutionStrategy.Bot || it is ParameterResolutionStrategy.Injectable
-        }
-        val isUpdateNeeded = isCallbackAutoAnswer || strategies.any {
-            it is ParameterResolutionStrategy.Chat || it is ParameterResolutionStrategy.Update ||
-                it is ParameterResolutionStrategy.TypedUpdate || it is ParameterResolutionStrategy.Injectable
-        }
-        val isParametersNeeded = strategies.any {
-            it is ParameterResolutionStrategy.StringParameter || it is ParameterResolutionStrategy.PrimitiveParameter
-        }
-        val isUserNeeded = strategies.any { it is ParameterResolutionStrategy.User }
+            val strategies = parameterStrategies.values
+            val isBotNeeded = hasInstance ||
+                isCallbackAutoAnswer ||
+                strategies.any {
+                    it is ParameterResolutionStrategy.Bot || it is ParameterResolutionStrategy.Injectable
+                }
+            val isUpdateNeeded = isCallbackAutoAnswer ||
+                strategies.any {
+                    it is ParameterResolutionStrategy.Chat ||
+                        it is ParameterResolutionStrategy.Update ||
+                        it is ParameterResolutionStrategy.TypedUpdate ||
+                        it is ParameterResolutionStrategy.Injectable
+                }
+            val isParametersNeeded = strategies.any {
+                it is ParameterResolutionStrategy.StringParameter ||
+                    it is ParameterResolutionStrategy.PrimitiveParameter
+            }
+            val isUserNeeded = strategies.any { it is ParameterResolutionStrategy.User }
 
-        beginControlFlow("return context.run {")
-        if (isBotNeeded) add("val bot = context.bot\n")
-        if (isUpdateNeeded || isUserNeeded) add("val update = context.update\n")
-        if (isParametersNeeded) add("val parameters = context.parameters\n")
+            beginControlFlow("return context.run {")
+            if (isBotNeeded) add("val bot = context.bot\n")
+            if (isUpdateNeeded || isUserNeeded) add("val update = context.update\n")
+            if (isParametersNeeded) add("val parameters = context.parameters\n")
 
-        val callArgs = mutableListOf<String>()
+            val callArgs = mutableListOf<String>()
 
-        // Instance resolution if needed
-        if (hasInstance && instanceQualifier != null) {
-            callArgs.add("inst")
-            fileBuilder.addImport("eu.vendeli.tgbot.utils.common", "getInstance")
-            add("val inst = bot.getInstance(%L::class)!!\n", instanceQualifier)
-        }
+            // Instance resolution if needed
+            if (hasInstance && instanceQualifier != null) {
+                callArgs.add("inst")
+                fileBuilder.addImport("eu.vendeli.tgbot.utils.common", "getInstance")
+                add("val inst = bot.getInstance(%L::class)!!\n", instanceQualifier)
+            }
 
-        // User resolution
-        if (isUserNeeded) {
-            fileBuilder.addImport("eu.vendeli.tgbot.types.component", "userOrNull")
-            add("val user = update.userOrNull\n")
-        }
+            // User resolution
+            if (isUserNeeded) {
+                fileBuilder.addImport("eu.vendeli.tgbot.types.component", "userOrNull")
+                add("val user = update.userOrNull\n")
+            }
 
-        parameterStrategies.keys.sorted().forEach { index ->
-            val strategy = parameterStrategies[index]!!
-            add(generateParameterResolution(strategy, index))
-            callArgs.add("param$index")
-        }
+            parameterStrategies.keys.sorted().forEach { index ->
+                val strategy = parameterStrategies[index]!!
+                add(generateParameterResolution(strategy, index))
+                callArgs.add("param$index")
+            }
 
-        // Callback query auto-answer
-        if (isCallbackAutoAnswer) {
-            fileBuilder.addImport("eu.vendeli.tgbot.api.answer", "answerCallbackQuery")
-            fileBuilder.addImport("eu.vendeli.tgbot.types.component", "CallbackQueryUpdate", "getUser")
-            add("answerCallbackQuery((update as CallbackQueryUpdate).callbackQuery.id).send(update.getUser(), bot)\n")
-        }
+            // Callback query auto-answer
+            if (isCallbackAutoAnswer) {
+                fileBuilder.addImport("eu.vendeli.tgbot.api.answer", "answerCallbackQuery")
+                fileBuilder.addImport("eu.vendeli.tgbot.types.component", "CallbackQueryUpdate", "getUser")
+                add(
+                    "answerCallbackQuery((update as CallbackQueryUpdate).callbackQuery.id).send(update.getUser(), bot)\n",
+                )
+            }
 
-        // Actual invocation
-        add("\n%L.invoke(\n\t%L\n)\n", funName, callArgs.joinToString(", "))
-        endControlFlow()
-    }.build()
+            // Actual invocation
+            add("\n%L.invoke(\n\t%L\n)\n", funName, callArgs.joinToString(", "))
+            endControlFlow()
+        }.build()
 }
