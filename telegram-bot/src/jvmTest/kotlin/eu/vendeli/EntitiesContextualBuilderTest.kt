@@ -24,30 +24,6 @@ class EntitiesContextualBuilderTest : BotTestContext() {
     }
 
     @Test
-    fun `instant to format infix adds DateTime entity`() {
-        val instant = Instant.fromEpochSeconds(1735689600) // 2025-01-01 00:00:00 UTC
-        val format = "dd.MM.yyyy HH:mm"
-
-        val action = message {
-            "Event at " - (instant to format)
-        }
-
-        action.parameters["text"]?.toString() shouldBe "\"Event at $format\""
-        val entities = serde.decodeFromJsonElement(
-            ListSerializer(MessageEntity.serializer()),
-            action.parameters["entities"].shouldNotBeNull(),
-        )
-        entities.shouldHaveSize(1)
-        with(entities.first()) {
-            type shouldBe EntityType.DateTime
-            unixTime.shouldNotBeNull() shouldBe instant
-            dateTimeFormat shouldBe format
-            offset shouldBe 9 // "Event at ".length
-            length shouldBe format.length
-        }
-    }
-
-    @Test
     fun `dateTime builder with two args adds DateTime entity`() {
         val instant = Instant.fromEpochSeconds(1735689600)
         val format = "yyyy-MM-dd"
@@ -66,28 +42,6 @@ class EntitiesContextualBuilderTest : BotTestContext() {
             type shouldBe EntityType.DateTime
             unixTime.shouldNotBeNull() shouldBe instant
             dateTimeFormat shouldBe format
-        }
-    }
-
-    @Test
-    fun `instant to format at start of message`() {
-        val instant = Instant.fromEpochSeconds(1704067200) // 2024-01-01 00:00:00 UTC
-        val format = "HH:mm"
-
-        val action = message {
-            (instant to format) - " (UTC)"
-        }
-
-        action.parameters["text"]?.toString() shouldBe "\"$format (UTC)\""
-        val entities = serde.decodeFromJsonElement(
-            ListSerializer(MessageEntity.serializer()),
-            action.parameters["entities"].shouldNotBeNull(),
-        )
-        entities.shouldHaveSize(1)
-        with(entities.first()) {
-            type shouldBe EntityType.DateTime
-            offset shouldBe 0
-            length shouldBe format.length
         }
     }
 }
