@@ -111,7 +111,8 @@ class MessageActionsTest : BotTestContext() {
     suspend fun `send message draft method test`() {
         sendMessageDraft(1, "test draft")
             .sendReq()
-            .shouldFailure() shouldContainInDescription "TEXTDRAFT_PEER_INVALID"
+            .shouldSuccess()
+            .shouldBeTrue()
     }
 
     @Test
@@ -120,13 +121,16 @@ class MessageActionsTest : BotTestContext() {
             .options {
                 messageThreadId = 3
             }.sendReq()
-            .shouldFailure() shouldContainInDescription "TEXTDRAFT_PEER_INVALID"
+            .shouldSuccess()
+            .shouldBeTrue()
     }
 
     @Test
     suspend fun `send message draft with entities method test`() {
         sendMessageDraft(3) {
             "test" - bold { " draft" }
-        }.sendReq().shouldFailure() shouldContainInDescription "TEXTDRAFT_PEER_INVALID"
+        }.sendReq()
+            .shouldSuccess()
+            .shouldBeTrue()
     }
 }
