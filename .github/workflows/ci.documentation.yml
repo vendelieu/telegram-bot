@@ -33,7 +33,7 @@ jobs:
           gradle-version: current
 
       - name: Cache konan dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.konan
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/libs.versions.toml')}}
