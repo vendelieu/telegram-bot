@@ -1,6 +1,5 @@
 plugins {
     kotlin("jvm")
-    `kotlin-dsl`
     `java-gradle-plugin`
     alias(libs.plugins.ktlinter)
     alias(libs.plugins.gradle.publish)

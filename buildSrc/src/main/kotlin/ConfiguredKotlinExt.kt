@@ -5,7 +5,9 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinCommonCompilerOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-private val jvmTargetVer = JvmTarget.JVM_17
+const val JVM_TARGET = "17"
+
+private val jvmTargetVer = JvmTarget.fromTarget(JVM_TARGET)
 
 private fun KotlinCommonCompilerOptions.configureCompilerOptions() {
     freeCompilerArgs.addAll(
@@ -25,7 +27,7 @@ private fun KotlinMultiplatformExtension.configureJvm() {
                     jvmTarget.set(jvmTargetVer)
                     freeCompilerArgs.addAll(
                         "-Xjsr305=strict",
-                        "-Xjvm-default=all-compatibility",
+                        "-jvm-default=enable",
                     )
                 }
             }
