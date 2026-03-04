@@ -87,7 +87,7 @@ abstract class WizardActivity : Activity {
             }
 
             is Transition.JumpTo -> {
-                persist(currentStep, ctx)
+                if (!transition.skipPersist) persist(currentStep, ctx)
                 val target = steps.find { it::class == transition.step }
                     ?: error("Unknown step: ${transition.step}")
                 setCurrentStep(ctx.user, ctx.bot, target)

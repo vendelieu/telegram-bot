@@ -1,5 +1,9 @@
 # Telegram-bot (KtGram) Changelog
 
+## [unreleased]
+
+* Added `skipPersist` to `Transition.JumpTo` to give control over persisting.
+
 ## 9.3.0
 
 * Covered Tg API [`9.5`](https://core.telegram.org/bots/api-changelog#march-1-2026).
