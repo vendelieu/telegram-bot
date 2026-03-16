@@ -6,7 +6,7 @@ slf4j = "2.0.17"
 serialization = "1.10.0"
 stately = "2.1.0"
 
-kotlin = "2.3.10"
+kotlin = "2.3.20"
 coroutines = "1.10.2"
 dokka = "2.1.0"
 kotlinter = "5.4.2"
