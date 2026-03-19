@@ -30,7 +30,7 @@ kotlinCompileTesting = "0.12.1"
 
 binvalid = "0.18.1"
 publisher = "0.36.0"
-gradle-publish = "2.1.0"
+gradle-publish = "2.1.1"
 
 [libraries]
 # ktor
