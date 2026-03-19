@@ -34,7 +34,9 @@ internal fun TgUpdateHandler.parseCommand(
                         state = CommandParserState.MATCHING_IDENTIFIER
                     }
 
-                    else -> commandBuilder.append(i)
+                    else -> {
+                        commandBuilder.append(i)
+                    }
                 }
             }
 
@@ -80,7 +82,9 @@ fun defaultArgParser(
                         paramNameBuilder.clear()
                     }
 
-                    else -> paramNameBuilder.append(i)
+                    else -> {
+                        paramNameBuilder.append(i)
+                    }
                 }
             }
 

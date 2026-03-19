@@ -44,12 +44,19 @@ internal suspend inline fun TgUpdateHandler.handleFailure(
     update: ProcessedUpdate,
     throwable: Throwable,
 ) = when (val strategy = bot.config.exceptionHandlingStrategy) {
-    is ExceptionHandlingStrategy.CollectToChannel -> caughtExceptions.send(FailedUpdate(throwable, update))
-    is ExceptionHandlingStrategy.DoNothing -> {}
-    is ExceptionHandlingStrategy.Throw ->
-        throw TgException(message = "Caught exception while processing $update", cause = throwable)
+    is ExceptionHandlingStrategy.CollectToChannel -> {
+        caughtExceptions.send(FailedUpdate(throwable, update))
+    }
 
-    is ExceptionHandlingStrategy.Handle -> strategy.handler.handle(throwable, update, bot)
+    is ExceptionHandlingStrategy.DoNothing -> {}
+
+    is ExceptionHandlingStrategy.Throw -> {
+        throw TgException(message = "Caught exception while processing $update", cause = throwable)
+    }
+
+    is ExceptionHandlingStrategy.Handle -> {
+        strategy.handler.handle(throwable, update, bot)
+    }
 }
 
 @Suppress("UNCHECKED_CAST")

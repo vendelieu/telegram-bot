@@ -1,8 +1,9 @@
 # Telegram-bot (KtGram) Changelog
 
-## [unreleased]
+## 9.3.1
 
 * Added `skipPersist` to `Transition.JumpTo` to give control over persisting.
+* Fixed parsing of parameters with default arg parser.
 
 ## 9.3.0
 

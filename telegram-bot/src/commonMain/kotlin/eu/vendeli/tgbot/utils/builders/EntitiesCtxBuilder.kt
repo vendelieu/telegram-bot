@@ -29,33 +29,41 @@ interface EntitiesExtBuilder {
 
     operator fun <T> String.minus(other: Triple<EntityType, String, T?>): String {
         val entity = when (other.first) {
-            Pre -> MessageEntity(
-                Pre,
-                length,
-                other.second.length,
-                language = other.third?.toString(),
-            )
+            Pre -> {
+                MessageEntity(
+                    Pre,
+                    length,
+                    other.second.length,
+                    language = other.third?.toString(),
+                )
+            }
 
-            TextLink -> MessageEntity(
-                TextLink,
-                length,
-                other.second.length,
-                url = other.third?.toString(),
-            )
+            TextLink -> {
+                MessageEntity(
+                    TextLink,
+                    length,
+                    other.second.length,
+                    url = other.third?.toString(),
+                )
+            }
 
-            CustomEmoji -> MessageEntity(
-                CustomEmoji,
-                length,
-                other.second.length,
-                customEmojiId = other.third?.toString(),
-            )
+            CustomEmoji -> {
+                MessageEntity(
+                    CustomEmoji,
+                    length,
+                    other.second.length,
+                    customEmojiId = other.third?.toString(),
+                )
+            }
 
-            TextMention -> MessageEntity(
-                TextMention,
-                length,
-                other.second.length,
-                user = other.third as? User,
-            )
+            TextMention -> {
+                MessageEntity(
+                    TextMention,
+                    length,
+                    other.second.length,
+                    user = other.third as? User,
+                )
+            }
 
             DateTime -> {
                 val pair = other.third.cast<Pair<Instant, String>>()
@@ -68,7 +76,9 @@ interface EntitiesExtBuilder {
                 )
             }
 
-            else -> throw IllegalArgumentException("An unexpected EntityType - ${other.first}.")
+            else -> {
+                throw IllegalArgumentException("An unexpected EntityType - ${other.first}.")
+            }
         }
         addEntity(entity)
         return this + other.second
@@ -77,16 +87,30 @@ interface EntitiesExtBuilder {
     @Suppress("UNCHECKED_CAST")
     operator fun <T> Triple<EntityType, String, T?>.minus(other: String): String {
         val entity = when (first) {
-            Pre -> MessageEntity(Pre, 0, second.length, language = third?.toString())
-            TextLink -> MessageEntity(TextLink, 0, second.length, url = third?.toString())
-            CustomEmoji -> MessageEntity(CustomEmoji, 0, second.length, customEmojiId = third?.toString())
-            TextMention -> MessageEntity(TextMention, 0, second.length, user = third as? User)
+            Pre -> {
+                MessageEntity(Pre, 0, second.length, language = third?.toString())
+            }
+
+            TextLink -> {
+                MessageEntity(TextLink, 0, second.length, url = third?.toString())
+            }
+
+            CustomEmoji -> {
+                MessageEntity(CustomEmoji, 0, second.length, customEmojiId = third?.toString())
+            }
+
+            TextMention -> {
+                MessageEntity(TextMention, 0, second.length, user = third as? User)
+            }
+
             DateTime -> {
                 val pair = third.cast<Pair<Instant, String>>()
                 MessageEntity(DateTime, 0, second.length, unixTime = pair.first, dateTimeFormat = pair.second)
             }
 
-            else -> throw IllegalArgumentException("An unexpected EntityType - $first.")
+            else -> {
+                throw IllegalArgumentException("An unexpected EntityType - $first.")
+            }
         }
         addEntity(entity)
         return this.second + other
