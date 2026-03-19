@@ -89,9 +89,17 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
                     parameters[paramName] = entitiesType
                 }
 
-                MarkupFeature::class.fqName -> parameters["replyMarkup"] = replyMarkupType
-                BusinessActionExt::class.fqName -> parameters["businessConnectionId"] = STRING
-                InlineActionExt::class.fqName -> parameters["inlineMessageId"] = STRING
+                MarkupFeature::class.fqName -> {
+                    parameters["replyMarkup"] = replyMarkupType
+                }
+
+                BusinessActionExt::class.fqName -> {
+                    parameters["businessConnectionId"] = STRING
+                }
+
+                InlineActionExt::class.fqName -> {
+                    parameters["inlineMessageId"] = STRING
+                }
             }
         }
 
@@ -117,7 +125,7 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
                 .resolve()
 
             val apiReturnMatchType = when (val simpleName = methodActionRet.declaration.simpleName.getShortName()) {
-                "List" ->
+                "List" -> {
                     "Array of " + methodActionRet.arguments
                         .first()
                         .type!!
@@ -125,8 +133,11 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
                         .toClassName()
                         .simpleName
                         .returnTypeCorrection()
+                }
 
-                else -> simpleName.returnTypeCorrection()
+                else -> {
+                    simpleName.returnTypeCorrection()
+                }
             }
 
             if (returns.find { (it as? JsonPrimitive)?.content == apiReturnMatchType } == null)

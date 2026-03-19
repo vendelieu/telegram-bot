@@ -22,14 +22,6 @@ expect fun TelegramBot.loadContext(ctx: ContextLoader? = null)
 
 expect val KClass<*>.fqName: String
 
-internal inline fun TelegramBot.watchAndPrintRegistry(block: () -> Unit) {
-    val registryBefore = update.registry.getAllActivities().toList()
-    block()
-    val registryAfter = update.registry.getAllActivities().toList()
-
-    if (registryBefore != registryAfter) logger.info("Updated bot registry:\n${update.registry.prettyPrint()}")
-}
-
 internal suspend inline fun TgUpdateHandler.checkIsLimited(
     limits: RateLimits,
     telegramId: Long? = null,
@@ -52,12 +44,19 @@ internal suspend inline fun TgUpdateHandler.handleFailure(
     update: ProcessedUpdate,
     throwable: Throwable,
 ) = when (val strategy = bot.config.exceptionHandlingStrategy) {
-    is ExceptionHandlingStrategy.CollectToChannel -> caughtExceptions.send(FailedUpdate(throwable, update))
-    is ExceptionHandlingStrategy.DoNothing -> {}
-    is ExceptionHandlingStrategy.Throw ->
-        throw TgException(message = "Caught exception while processing $update", cause = throwable)
+    is ExceptionHandlingStrategy.CollectToChannel -> {
+        caughtExceptions.send(FailedUpdate(throwable, update))
+    }
 
-    is ExceptionHandlingStrategy.Handle -> strategy.handler.handle(throwable, update, bot)
+    is ExceptionHandlingStrategy.DoNothing -> {}
+
+    is ExceptionHandlingStrategy.Throw -> {
+        throw TgException(message = "Caught exception while processing $update", cause = throwable)
+    }
+
+    is ExceptionHandlingStrategy.Handle -> {
+        strategy.handler.handle(throwable, update, bot)
+    }
 }
 
 @Suppress("UNCHECKED_CAST")

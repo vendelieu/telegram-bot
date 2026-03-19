@@ -10,7 +10,8 @@ internal actual val PROCESSING_DISPATCHER = Dispatchers.Unconfined
 
 @KtGramInternal
 actual fun TelegramBot.loadContext(ctx: ContextLoader?) {
-    watchAndPrintRegistry { ctx?.load(this) }
+    ctx?.load(this)
+    logger.info("Loaded context, current registry:\n${update.registry.prettyPrint()}")
 }
 
 @Suppress("unused")

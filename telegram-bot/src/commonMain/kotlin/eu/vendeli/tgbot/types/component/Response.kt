@@ -29,7 +29,10 @@ sealed class Response<T>(
 }
 
 inline fun <T> Response<T>.onFailure(block: (Response.Failure) -> Unit): T? = when (this) {
-    is Response.Success<T> -> result
+    is Response.Success<T> -> {
+        result
+    }
+
     is Response.Failure -> {
         block(this)
         null

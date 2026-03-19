@@ -132,7 +132,7 @@ class MarkupBuilderTest : BotTestContext() {
             row1el2.text shouldBe "test2"
 
             row1el2.requestPoll.shouldNotBeNull()
-            row1el2.requestPoll?.type.shouldBeNull()
+            row1el2.requestPoll.type.shouldBeNull()
 
             row1el2.requestChat.shouldBeNull()
             row1el2.requestUsers.shouldBeNull()
@@ -145,7 +145,7 @@ class MarkupBuilderTest : BotTestContext() {
             row2el1.text shouldBe "test3"
 
             row2el1.webApp.shouldNotBeNull()
-            row2el1.webApp?.url shouldBe "test"
+            row2el1.webApp.url shouldBe "test"
 
             row2el1.requestChat.shouldBeNull()
             row2el1.requestUsers.shouldBeNull()
@@ -176,9 +176,9 @@ class MarkupBuilderTest : BotTestContext() {
             row3el1.requestChat.shouldBeNull()
 
             row3el1.requestUsers.shouldNotBeNull()
-            row3el1.requestUsers?.requestId shouldBe 1
-            row3el1.requestUsers?.userIsBot shouldBe true
-            row3el1.requestUsers?.userIsPremium shouldBe false
+            row3el1.requestUsers.requestId shouldBe 1
+            row3el1.requestUsers.userIsBot shouldBe true
+            row3el1.requestUsers.userIsPremium shouldBe false
 
             // 3 row 2 element
             val row3el2 = get(2)[1]

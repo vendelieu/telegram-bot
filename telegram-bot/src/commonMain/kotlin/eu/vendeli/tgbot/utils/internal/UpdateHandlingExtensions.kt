@@ -50,8 +50,8 @@ internal fun TgUpdateHandler.getParameters(
     parser: KClass<out ArgumentParser>?,
     request: ParsedText,
 ): Map<String, String> = parser
-    ?.let {
-        if (it.fqName == DefaultArgParser::class.fqName) bot.config.commandParsing.run {
+    .let {
+        if (it == null || it.fqName == DefaultArgParser::class.fqName) bot.config.commandParsing.run {
             defaultArgParser(
                 request.tail,
                 parametersDelimiter,
@@ -62,4 +62,4 @@ internal fun TgUpdateHandler.getParameters(
             .getInstance(it)
             .cast<ArgumentParser>()
             .parse(request.tail)
-    } ?: emptyMap()
+    }

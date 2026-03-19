@@ -16,7 +16,8 @@ internal actual val PROCESSING_DISPATCHER = Dispatchers.IO
 @KtGramInternal
 actual fun TelegramBot.loadContext(ctx: ContextLoader?) {
     if (ctx != null) {
-        watchAndPrintRegistry { ctx.load(this) }
+        ctx.load(this)
+        logger.info("Loaded context, current registry:\n${update.registry.prettyPrint()}")
         return
     }
     val ctxLoaders = ServiceLoader.load(ContextLoader::class.java)
@@ -24,7 +25,8 @@ actual fun TelegramBot.loadContext(ctx: ContextLoader?) {
         it.pkg == commandsPackage
     } ?: ctxLoaders.singleOrNull() ?: error("No context loader found (check ksp generated sources)")
 
-    watchAndPrintRegistry { ctxLoader.load(this) }
+    ctxLoader.load(this)
+    logger.info("Loaded context, current registry:\n${update.registry.prettyPrint()}")
 }
 
 actual val KClass<*>.fqName: String

@@ -189,7 +189,7 @@ class WizardTest : BotTestContext(true, true) {
         val transition = TestWizard.ConfirmStep.validate(ctx)
 
         transition.shouldBeInstanceOf<Transition.JumpTo>()
-        (transition as Transition.JumpTo).step shouldBe TestWizard.NameStep::class
+        transition.step shouldBe TestWizard.NameStep::class
     }
 
     @Test

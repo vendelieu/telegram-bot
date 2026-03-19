@@ -137,6 +137,7 @@ class MediaTest : BotTestContext() {
     }
 
     @Test
+    @Ignore // return when source fixed
     suspend fun `video note method test`() {
         val lorem = LOREM.VIDEO_NOTE
         val bytesResult = videoNote(lorem.bytes).sendReq().shouldSuccess()

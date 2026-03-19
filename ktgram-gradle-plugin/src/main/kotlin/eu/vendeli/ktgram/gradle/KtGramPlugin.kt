@@ -4,14 +4,14 @@ import com.google.devtools.ksp.gradle.KspExtension
 import org.gradle.api.Project
 import org.gradle.api.logging.Logging
 import org.gradle.api.provider.Provider
-import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.findByType
-import org.gradle.kotlin.dsl.get
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-import org.jetbrains.kotlin.gradle.plugin.*
+import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
+import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
+import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
+import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
+import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 import org.jetbrains.kotlin.gradle.utils.loadPropertyFromResources
 
 abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
@@ -27,14 +27,14 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
         val isMultiplatform = target.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")
 
         val isJvm = target.project.extensions.let { ext ->
-            ext.findByType<KotlinMultiplatformExtension>()?.targets?.any {
+            ext.findByType(KotlinMultiplatformExtension::class.java)?.targets?.any {
                 it.platformType == KotlinPlatformType.jvm
-            } ?: ext.findByType<KotlinJvmExtension>()
+            } ?: ext.findByType(KotlinJvmExtension::class.java)
         } != null
 
-        target.configurations.configureEach {
-            if (name.startsWith("ktnip")) dependencies.whenObjectAdded {
-                if (group == "eu.vendeli" && name == "ktnip") kspProcessorApplied = true
+        target.configurations.configureEach { config ->
+            if (config.name.startsWith("ktnip")) config.dependencies.whenObjectAdded { dep ->
+                if (dep.group == "eu.vendeli" && dep.name == "ktnip") kspProcessorApplied = true
             }
         }
         target.applyDependencies(libVer, isMultiplatform, kspProcessorApplied)
@@ -42,40 +42,39 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
         target.afterEvaluate {
             val targetVer = pluginExtension.forceVersion.getOrElse(libVer)
             if (pluginExtension.addSnapshotRepo.getOrElse(false)) {
-                target.repositories.maven {
-                    name = "KtGramSnapRepo"
-                    setUrl("https://mvn.vendeli.eu/telegram-bot")
+                target.repositories.maven { repo ->
+                    repo.name = "KtGramSnapRepo"
+                    repo.setUrl(java.net.URI.create("https://mvn.vendeli.eu/telegram-bot"))
                 }
             }
 
             // correct version by forced one
-            if (pluginExtension.forceVersion.isPresent) target.configurations.configureEach cfg@{
-                dependencies
-                    .removeIf {
+            if (pluginExtension.forceVersion.isPresent) target.configurations.configureEach { config ->
+                val toRemove = config.dependencies
+                    .filter {
                         it.group == "eu.vendeli" && (it.name == "telegram-bot" || it.name == "ktnip")
-                    }.takeIf { it }
-                    ?.let {
-                        dependencies {
-                            add(this@cfg.name, "eu.vendeli:telegram-bot:$targetVer")
-                            add(this@cfg.name, "eu.vendeli:ktnip:$targetVer")
-                        }
-                    }
+                    }.toList()
+                toRemove.forEach { config.dependencies.remove(it) }
+                if (toRemove.isNotEmpty()) {
+                    target.dependencies.add(config.name, "eu.vendeli:telegram-bot:$targetVer")
+                    target.dependencies.add(config.name, "eu.vendeli:ktnip:$targetVer")
+                }
             }
 
             if (isJvm) {
                 val ktorEngine = pluginExtension.ktorJvmEngine.getOrElse(KtorJvmEngine.JAVA)
-                handleKtorEngine(ktorEngine)
+                target.handleKtorEngine(ktorEngine)
 
                 val handleLoggingProvider = pluginExtension.handleLoggingProvider.getOrElse(true)
-                if (handleLoggingProvider) handleLoggingProvider()
+                if (handleLoggingProvider) target.handleLoggingProvider()
             }
 
-            target.extensions.configure<KspExtension> {
+            target.extensions.configure(KspExtension::class.java) { ksp ->
                 pluginExtension.packages.orNull?.takeIf { it.isNotEmpty() }?.joinToString(";")?.let {
-                    arg("package", it)
+                    ksp.arg("package", it)
                 }
                 pluginExtension.autoAnswerCallback.getOrElse(false).takeIf { it }?.let {
-                    arg("autoAnswerCallback", "true")
+                    ksp.arg("autoAnswerCallback", "true")
                 }
             }
 
@@ -91,12 +90,15 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
         val isNone = engine == KtorJvmEngine.NONE
         val isNotJava = engine != KtorJvmEngine.JAVA
 
-        if (isNone || isNotJava) configurations.configureEach {
-            log.debug("Removing ktor-client-java-jvm from $name configuration")
-            dependencies.removeIf { it.group == "io.ktor" && it.name == "ktor-client-java-jvm" }
+        if (isNone || isNotJava) configurations.configureEach { config ->
+            log.debug("Removing ktor-client-java-jvm from ${config.name} configuration")
+            config.dependencies
+                .filter { it.group == "io.ktor" && it.name == "ktor-client-java-jvm" }
+                .toList()
+                .forEach { config.dependencies.remove(it) }
         }
         if (!isNone && isNotJava) {
-            log.debug("Adding ktor-client-${engine.artifact}-jvm to $name configuration")
+            log.debug("Adding ktor-client-${engine.artifact}-jvm to configuration")
             dependencies.add(
                 "implementation",
                 "io.ktor:ktor-client-${engine.artifact}-jvm:$ktorVer",
@@ -108,19 +110,18 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
         log.debug("Checking for logging providers")
         var isProviderPresent = false
 
-        configurations.configureEach {
-            dependencies
-                .any {
-                    it.group to it.name in loggerProviders
-                }.takeIf { it }
-                ?.let {
-                    log.debug("Found logging provider in $name configuration")
-                    isProviderPresent = true
-                }
+        configurations.configureEach { config ->
+            val hasLogger = config.dependencies.any {
+                (it.group to it.name) in loggerProviders
+            }
+            if (hasLogger) {
+                log.debug("Found logging provider in ${config.name} configuration")
+                isProviderPresent = true
+            }
         }
 
         if (!isProviderPresent) {
-            log.debug("Adding logback-classic to $name configuration")
+            log.debug("Adding logback-classic to configuration")
             dependencies.add(
                 "implementation",
                 "ch.qos.logback:logback-classic:$logbackVer",
@@ -129,10 +130,10 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
     }
 
     private fun Project.applyDependencies(depVersion: String, isMultiplatform: Boolean, kspProcessorApplied: Boolean) {
-        if (isMultiplatform) extensions.configure<KotlinMultiplatformExtension> {
-            targets.forEach { target ->
-                val tName = if (target.targetName == "metadata") "CommonMainMetadata"
-                else target.targetName.replaceFirstChar { it.uppercaseChar() }
+        if (isMultiplatform) extensions.configure(KotlinMultiplatformExtension::class.java) { kmp ->
+            kmp.targets.forEach { kotlinTarget ->
+                val tName = if (kotlinTarget.targetName == "metadata") "CommonMainMetadata"
+                else kotlinTarget.targetName.replaceFirstChar { it.uppercaseChar() }
 
                 dependencies.add(
                     "ksp$tName",
@@ -143,25 +144,21 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
 
         when {
             kspProcessorApplied -> {}
+
             isMultiplatform -> {
                 extensions.configure(KotlinProjectExtension::class.java) {
-                    sourceSets["commonMain"].apply {
-                        dependencies {
-                            implementation("eu.vendeli:telegram-bot:$depVersion")
-                        }
-                    }
+                    this@applyDependencies.dependencies.add(
+                        "commonMainImplementation",
+                        "eu.vendeli:telegram-bot:$depVersion",
+                    )
                 }
 
-                dependencies {
-                    add("ksp", "eu.vendeli:ktnip:$depVersion")
-                }
+                dependencies.add("ksp", "eu.vendeli:ktnip:$depVersion")
             }
 
             else -> {
                 dependencies.add("implementation", "eu.vendeli:telegram-bot:$depVersion")
-                dependencies {
-                    add("ksp", "eu.vendeli:ktnip:$depVersion")
-                }
+                dependencies.add("ksp", "eu.vendeli:ktnip:$depVersion")
             }
         }
     }

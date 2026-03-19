@@ -1,8 +1,6 @@
 package eu.vendeli.ktgram.gradle
 
 import org.gradle.api.model.ObjectFactory
-import org.gradle.kotlin.dsl.listProperty
-import org.gradle.kotlin.dsl.property
 import javax.inject.Inject
 
 /**
@@ -20,10 +18,10 @@ abstract class KtGramExt
     constructor(
         factory: ObjectFactory,
     ) {
-        val packages = factory.listProperty<String>()
-        val addSnapshotRepo = factory.property<Boolean>()
-        val forceVersion = factory.property<String>()
-        val autoAnswerCallback = factory.property<Boolean>()
-        val ktorJvmEngine = factory.property<KtorJvmEngine>()
-        val handleLoggingProvider = factory.property<Boolean>()
+        val packages = factory.listProperty(String::class.java)
+        val addSnapshotRepo = factory.property(Boolean::class.java)
+        val forceVersion = factory.property(String::class.java)
+        val autoAnswerCallback = factory.property(Boolean::class.java)
+        val ktorJvmEngine = factory.property(KtorJvmEngine::class.java)
+        val handleLoggingProvider = factory.property(Boolean::class.java)
     }

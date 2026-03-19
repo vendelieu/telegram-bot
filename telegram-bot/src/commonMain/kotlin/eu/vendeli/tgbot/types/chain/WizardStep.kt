@@ -58,6 +58,7 @@ sealed class Transition {
      */
     data class JumpTo(
         val step: KClass<out WizardStep>,
+        val skipPersist: Boolean = false,
     ) : Transition()
 
     /**

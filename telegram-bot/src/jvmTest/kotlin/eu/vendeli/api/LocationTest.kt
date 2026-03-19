@@ -94,8 +94,8 @@ class LocationTest : BotTestContext() {
 
         with(result) {
             venue.shouldNotBeNull()
-            venue?.title shouldBe "test"
-            venue?.address shouldBe "address"
+            venue.title shouldBe "test"
+            venue.address shouldBe "address"
 
             location?.latitude shouldBe 1f
             location?.longitude shouldBe 1.999999F
