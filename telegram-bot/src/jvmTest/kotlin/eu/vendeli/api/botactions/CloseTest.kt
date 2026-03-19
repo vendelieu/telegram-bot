@@ -40,7 +40,7 @@ class CloseTest : BotTestContext() {
         result.onFailure {
             it.errorCode shouldBe 429
             it.parameters?.retryAfter.shouldNotBeNull()
-            ((it.parameters?.retryAfter ?: 0) > 0).shouldBeTrue()
+            (it.parameters.retryAfter > 0).shouldBeTrue()
         }
     }
 }

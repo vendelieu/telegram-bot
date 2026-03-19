@@ -100,44 +100,44 @@ class ActivityRegistry internal constructor() {
     fun prettyPrint(): String = buildString {
         appendLine("ActivityRegistry State:")
 
-        appendLine("Commands:")
+        appendLine("Command handlers:")
         if (commands.isEmpty()) appendLine("  (none)")
         commands.forEach { (type, typeCommands) ->
-            appendLine("  $type")
+            appendLine("  $type:")
             typeCommands.forEach { (command, activityId) ->
                 val activity = activities[activityId]
                 appendLine("    \"$command\" -> ${activity?.prettyPrint()}")
             }
         }
 
-        appendLine("\nInputs:")
+        appendLine("\nInput handlers:")
         if (inputs.isEmpty()) appendLine("  (none)")
         inputs.forEach { (inputId, activityId) ->
             val activity = activities[activityId]
             appendLine("  \"$inputId\" -> ${activity?.prettyPrint()}")
         }
 
-        appendLine("\nCommon Handlers:")
+        appendLine("\nCommon handlers:")
         if (commonHandlers.isEmpty()) appendLine("  (none)")
         commonHandlers.forEach { (type, typeMatchers) ->
-            appendLine("  $type")
+            appendLine("  $type:")
             typeMatchers.forEach { (matcher, activityId) ->
                 val activity = activities[activityId]
                 appendLine("    $matcher -> ${activity?.prettyPrint()}")
             }
         }
 
-        appendLine("\nUpdate Type Handlers:")
+        appendLine("\nUpdateType handlers:")
         if (updateTypeHandlers.isEmpty()) appendLine("  (none)")
         updateTypeHandlers.forEach { (type, handlers) ->
-            appendLine("  $type")
+            appendLine("  $type:")
             handlers.forEach { activityId ->
                 val activity = activities[activityId]
                 appendLine("    -> ${activity?.prettyPrint()}")
             }
         }
 
-        appendLine("\nUnprocessed Handler:")
+        appendLine("\nUnprocessed handler:")
         unprocessedId?.let { activityId ->
             val activity = activities[activityId]
             appendLine("  -> ${activity?.prettyPrint()}")
