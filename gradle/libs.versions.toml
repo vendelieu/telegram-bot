@@ -19,7 +19,7 @@ mockk = "1.14.9"
 kover = "0.9.7"
 krypto = "4.0.10"
 urlencoder = "1.6.0"
-ayza = "10.0.3"
+ayza = "10.0.4"
 spring = "4.0.3"
 
 ksp = "2.3.6"
