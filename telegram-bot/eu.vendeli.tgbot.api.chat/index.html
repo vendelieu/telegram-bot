@@ -1,22 +1,22 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>eu.vendeli.tgbot.api.chat</title>
-<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
@@ -24,35 +24,33 @@
 <link href="../../styles/main.css" rel="Stylesheet">
 <link href="../../styles/prism.css" rel="Stylesheet">
 <link href="../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../scripts/prism.js" async></script>
 <script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
 <link href="../../images/logo-icon.svg"></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../index.html" tabindex="1">
                     KtGram
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.3.0
+        <div class="library-version" id="library-version">9.3.1
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":telegram-bot/commonMain">common</button>
-                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":telegram-bot/jvmMain">jvm</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true" data-filter=":telegram-bot/commonMain">common</button>
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":telegram-bot/jvmMain">jvm</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
@@ -73,7 +71,7 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
                 <a class="navigation-controls--btn navigation-controls--btn_homepage" id="homepage-link" href="https://github.com/vendelieu/telegram-bot"></a>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
@@ -81,25 +79,27 @@
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     KtGram
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
 <div class="main-content" data-page-type="package" id="content" pageids="telegram-bot::eu.vendeli.tgbot.api.chat////PointingToDeclaration//-446080522">
   <div class="breadcrumbs"><a href="../index.html">telegram-bot</a><span class="delimiter">/</span><span class="current">eu.vendeli.tgbot.api.chat</span></div>
   <div class="cover ">
@@ -109,9 +109,9 @@
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
     <div class="tabs-section-body">
       <div data-togglable="TYPE">
-        <h2 class="">Types</h2>
+        <h2 class="tableheader">Types</h2>
         <div class="table"><a data-name="-1586267775%2FClasslikes%2F1596435014" anchor-label="ApproveChatJoinRequestAction" id="-1586267775%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-approve-chat-join-request-action/index.html"><span>Approve</span><wbr><span>Chat</span><wbr><span>Join</span><wbr><span>Request</span><wbr><span><span>Action</span></span></a></div>
@@ -126,7 +126,7 @@
             </div>
           </div>
 <a data-name="1922624212%2FClasslikes%2F1596435014" anchor-label="BanChatMemberAction" id="1922624212%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-ban-chat-member-action/index.html"><span>Ban</span><wbr><span>Chat</span><wbr><span>Member</span><wbr><span><span>Action</span></span></a></div>
@@ -141,7 +141,7 @@
             </div>
           </div>
 <a data-name="1311203937%2FClasslikes%2F1596435014" anchor-label="BanChatSenderChatAction" id="1311203937%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-ban-chat-sender-chat-action/index.html"><span>Ban</span><wbr><span>Chat</span><wbr><span>Sender</span><wbr><span>Chat</span><wbr><span><span>Action</span></span></a></div>
@@ -156,7 +156,7 @@
             </div>
           </div>
 <a data-name="-1845321622%2FClasslikes%2F1596435014" anchor-label="CreateChatInviteLinkAction" id="-1845321622%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-create-chat-invite-link-action/index.html"><span>Create</span><wbr><span>Chat</span><wbr><span>Invite</span><wbr><span>Link</span><wbr><span><span>Action</span></span></a></div>
@@ -171,7 +171,7 @@
             </div>
           </div>
 <a data-name="-838967091%2FClasslikes%2F1596435014" anchor-label="CreateChatSubscriptionInviteLinkAction" id="-838967091%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-create-chat-subscription-invite-link-action/index.html"><span>Create</span><wbr><span>Chat</span><wbr><span>Subscription</span><wbr><span>Invite</span><wbr><span>Link</span><wbr><span><span>Action</span></span></a></div>
@@ -186,7 +186,7 @@
             </div>
           </div>
 <a data-name="1832638826%2FClasslikes%2F1596435014" anchor-label="DeclineChatJoinRequestAction" id="1832638826%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-decline-chat-join-request-action/index.html"><span>Decline</span><wbr><span>Chat</span><wbr><span>Join</span><wbr><span>Request</span><wbr><span><span>Action</span></span></a></div>
@@ -201,7 +201,7 @@
             </div>
           </div>
 <a data-name="940023750%2FClasslikes%2F1596435014" anchor-label="DeleteChatPhotoAction" id="940023750%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-delete-chat-photo-action/index.html"><span>Delete</span><wbr><span>Chat</span><wbr><span>Photo</span><wbr><span><span>Action</span></span></a></div>
@@ -216,7 +216,7 @@
             </div>
           </div>
 <a data-name="796849305%2FClasslikes%2F1596435014" anchor-label="DeleteChatStickerSetAction" id="796849305%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-delete-chat-sticker-set-action/index.html"><span>Delete</span><wbr><span>Chat</span><wbr><span>Sticker</span><wbr><span>Set</span><wbr><span><span>Action</span></span></a></div>
@@ -231,7 +231,7 @@
             </div>
           </div>
 <a data-name="-1463733348%2FClasslikes%2F1596435014" anchor-label="EditChatInviteLinkAction" id="-1463733348%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-edit-chat-invite-link-action/index.html"><span>Edit</span><wbr><span>Chat</span><wbr><span>Invite</span><wbr><span>Link</span><wbr><span><span>Action</span></span></a></div>
@@ -246,7 +246,7 @@
             </div>
           </div>
 <a data-name="-1978681089%2FClasslikes%2F1596435014" anchor-label="EditChatSubscriptionInviteLinkAction" id="-1978681089%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-edit-chat-subscription-invite-link-action/index.html"><span>Edit</span><wbr><span>Chat</span><wbr><span>Subscription</span><wbr><span>Invite</span><wbr><span>Link</span><wbr><span><span>Action</span></span></a></div>
@@ -261,7 +261,7 @@
             </div>
           </div>
 <a data-name="-635553614%2FClasslikes%2F1596435014" anchor-label="ExportChatInviteLinkAction" id="-635553614%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-export-chat-invite-link-action/index.html"><span>Export</span><wbr><span>Chat</span><wbr><span>Invite</span><wbr><span>Link</span><wbr><span><span>Action</span></span></a></div>
@@ -276,7 +276,7 @@
             </div>
           </div>
 <a data-name="2094352999%2FClasslikes%2F1596435014" anchor-label="GetChatAction" id="2094352999%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-get-chat-action/index.html"><span>Get</span><wbr><span>Chat</span><wbr><span><span>Action</span></span></a></div>
@@ -291,7 +291,7 @@
             </div>
           </div>
 <a data-name="-1468930751%2FClasslikes%2F1596435014" anchor-label="GetChatAdministratorsAction" id="-1468930751%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-get-chat-administrators-action/index.html"><span>Get</span><wbr><span>Chat</span><wbr><span>Administrators</span><wbr><span><span>Action</span></span></a></div>
@@ -306,7 +306,7 @@
             </div>
           </div>
 <a data-name="43774829%2FClasslikes%2F1596435014" anchor-label="GetChatMemberAction" id="43774829%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-get-chat-member-action/index.html"><span>Get</span><wbr><span>Chat</span><wbr><span>Member</span><wbr><span><span>Action</span></span></a></div>
@@ -321,7 +321,7 @@
             </div>
           </div>
 <a data-name="1180135994%2FClasslikes%2F1596435014" anchor-label="GetChatMemberCountAction" id="1180135994%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-get-chat-member-count-action/index.html"><span>Get</span><wbr><span>Chat</span><wbr><span>Member</span><wbr><span>Count</span><wbr><span><span>Action</span></span></a></div>
@@ -336,7 +336,7 @@
             </div>
           </div>
 <a data-name="-1291958346%2FClasslikes%2F1596435014" anchor-label="GetChatMenuButtonAction" id="-1291958346%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-get-chat-menu-button-action/index.html"><span>Get</span><wbr><span>Chat</span><wbr><span>Menu</span><wbr><span>Button</span><wbr><span><span>Action</span></span></a></div>
@@ -351,7 +351,7 @@
             </div>
           </div>
 <a data-name="-1900422004%2FClasslikes%2F1596435014" anchor-label="GetUserChatBoostsAction" id="-1900422004%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-get-user-chat-boosts-action/index.html"><span>Get</span><wbr><span>User</span><wbr><span>Chat</span><wbr><span>Boosts</span><wbr><span><span>Action</span></span></a></div>
@@ -366,7 +366,7 @@
             </div>
           </div>
 <a data-name="-487778074%2FClasslikes%2F1596435014" anchor-label="LeaveChatAction" id="-487778074%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-leave-chat-action/index.html"><span>Leave</span><wbr><span>Chat</span><wbr><span><span>Action</span></span></a></div>
@@ -381,7 +381,7 @@
             </div>
           </div>
 <a data-name="1056610311%2FClasslikes%2F1596435014" anchor-label="PinChatMessageAction" id="1056610311%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-pin-chat-message-action/index.html"><span>Pin</span><wbr><span>Chat</span><wbr><span>Message</span><wbr><span><span>Action</span></span></a></div>
@@ -396,7 +396,7 @@
             </div>
           </div>
 <a data-name="-102353597%2FClasslikes%2F1596435014" anchor-label="PromoteChatMemberAction" id="-102353597%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-promote-chat-member-action/index.html"><span>Promote</span><wbr><span>Chat</span><wbr><span>Member</span><wbr><span><span>Action</span></span></a></div>
@@ -411,7 +411,7 @@
             </div>
           </div>
 <a data-name="-1551748269%2FClasslikes%2F1596435014" anchor-label="RestrictChatMemberAction" id="-1551748269%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-restrict-chat-member-action/index.html"><span>Restrict</span><wbr><span>Chat</span><wbr><span>Member</span><wbr><span><span>Action</span></span></a></div>
@@ -426,7 +426,7 @@
             </div>
           </div>
 <a data-name="1098427168%2FClasslikes%2F1596435014" anchor-label="RevokeChatInviteLinkAction" id="1098427168%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-revoke-chat-invite-link-action/index.html"><span>Revoke</span><wbr><span>Chat</span><wbr><span>Invite</span><wbr><span>Link</span><wbr><span><span>Action</span></span></a></div>
@@ -441,7 +441,7 @@
             </div>
           </div>
 <a data-name="-283136021%2FClasslikes%2F1596435014" anchor-label="SendChatActionAction" id="-283136021%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-send-chat-action-action/index.html"><span>Send</span><wbr><span>Chat</span><wbr><span>Action</span><wbr><span><span>Action</span></span></a></div>
@@ -456,7 +456,7 @@
             </div>
           </div>
 <a data-name="-954829279%2FClasslikes%2F1596435014" anchor-label="SetChatAdministratorCustomTitleAction" id="-954829279%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-set-chat-administrator-custom-title-action/index.html"><span>Set</span><wbr><span>Chat</span><wbr><span>Administrator</span><wbr><span>Custom</span><wbr><span>Title</span><wbr><span><span>Action</span></span></a></div>
@@ -471,7 +471,7 @@
             </div>
           </div>
 <a data-name="-221405185%2FClasslikes%2F1596435014" anchor-label="SetChatDescriptionAction" id="-221405185%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-set-chat-description-action/index.html"><span>Set</span><wbr><span>Chat</span><wbr><span>Description</span><wbr><span><span>Action</span></span></a></div>
@@ -486,7 +486,7 @@
             </div>
           </div>
 <a data-name="1521584347%2FClasslikes%2F1596435014" anchor-label="SetChatMemberTagAction" id="1521584347%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-set-chat-member-tag-action/index.html"><span>Set</span><wbr><span>Chat</span><wbr><span>Member</span><wbr><span>Tag</span><wbr><span><span>Action</span></span></a></div>
@@ -501,7 +501,7 @@
             </div>
           </div>
 <a data-name="1753079338%2FClasslikes%2F1596435014" anchor-label="SetChatMenuButtonAction" id="1753079338%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-set-chat-menu-button-action/index.html"><span>Set</span><wbr><span>Chat</span><wbr><span>Menu</span><wbr><span>Button</span><wbr><span><span>Action</span></span></a></div>
@@ -516,7 +516,7 @@
             </div>
           </div>
 <a data-name="-1302061449%2FClasslikes%2F1596435014" anchor-label="SetChatPermissionsAction" id="-1302061449%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-set-chat-permissions-action/index.html"><span>Set</span><wbr><span>Chat</span><wbr><span>Permissions</span><wbr><span><span>Action</span></span></a></div>
@@ -531,7 +531,7 @@
             </div>
           </div>
 <a data-name="1691862793%2FClasslikes%2F1596435014" anchor-label="SetChatPhotoAction" id="1691862793%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-set-chat-photo-action/index.html"><span>Set</span><wbr><span>Chat</span><wbr><span>Photo</span><wbr><span><span>Action</span></span></a></div>
@@ -546,7 +546,7 @@
             </div>
           </div>
 <a data-name="-2080121034%2FClasslikes%2F1596435014" anchor-label="SetChatStickerSetAction" id="-2080121034%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-set-chat-sticker-set-action/index.html"><span>Set</span><wbr><span>Chat</span><wbr><span>Sticker</span><wbr><span>Set</span><wbr><span><span>Action</span></span></a></div>
@@ -561,7 +561,7 @@
             </div>
           </div>
 <a data-name="-1918116317%2FClasslikes%2F1596435014" anchor-label="SetChatTitleAction" id="-1918116317%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-set-chat-title-action/index.html"><span>Set</span><wbr><span>Chat</span><wbr><span>Title</span><wbr><span><span>Action</span></span></a></div>
@@ -576,7 +576,7 @@
             </div>
           </div>
 <a data-name="-380589715%2FClasslikes%2F1596435014" anchor-label="UnbanChatMemberAction" id="-380589715%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-unban-chat-member-action/index.html"><span>Unban</span><wbr><span>Chat</span><wbr><span>Member</span><wbr><span><span>Action</span></span></a></div>
@@ -591,7 +591,7 @@
             </div>
           </div>
 <a data-name="255601786%2FClasslikes%2F1596435014" anchor-label="UnbanChatSenderChatAction" id="255601786%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-unban-chat-sender-chat-action/index.html"><span>Unban</span><wbr><span>Chat</span><wbr><span>Sender</span><wbr><span>Chat</span><wbr><span><span>Action</span></span></a></div>
@@ -606,7 +606,7 @@
             </div>
           </div>
 <a data-name="-1388000936%2FClasslikes%2F1596435014" anchor-label="UnpinAllChatMessagesAction" id="-1388000936%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-unpin-all-chat-messages-action/index.html"><span>Unpin</span><wbr><span>All</span><wbr><span>Chat</span><wbr><span>Messages</span><wbr><span><span>Action</span></span></a></div>
@@ -621,7 +621,7 @@
             </div>
           </div>
 <a data-name="-1623544690%2FClasslikes%2F1596435014" anchor-label="UnpinChatMessageAction" id="-1623544690%2FClasslikes%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-unpin-chat-message-action/index.html"><span>Unpin</span><wbr><span>Chat</span><wbr><span>Message</span><wbr><span><span>Action</span></span></a></div>
@@ -638,9 +638,9 @@
         </div>
       </div>
       <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
+        <h2 class="tableheader">Functions</h2>
         <div class="table"><a data-name="-1061327380%2FFunctions%2F1596435014" anchor-label="approveChatJoinRequest" id="-1061327380%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="approve-chat-join-request.html"><span>approve</span><wbr><span>Chat</span><wbr><span>Join</span><wbr><span><span>Request</span></span></a></div>
@@ -655,7 +655,7 @@
             </div>
           </div>
 <a data-name="-715154804%2FFunctions%2F1596435014" anchor-label="banChatMember" id="-715154804%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="ban-chat-member.html"><span>ban</span><wbr><span>Chat</span><wbr><span><span>Member</span></span></a></div>
@@ -670,7 +670,7 @@
             </div>
           </div>
 <a data-name="-1655202578%2FFunctions%2F1596435014" anchor-label="banChatSenderChat" id="-1655202578%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="ban-chat-sender-chat.html"><span>ban</span><wbr><span>Chat</span><wbr><span>Sender</span><wbr><span><span>Chat</span></span></a></div>
@@ -685,7 +685,7 @@
             </div>
           </div>
 <a data-name="-828832421%2FFunctions%2F1596435014" anchor-label="chatAction" id="-828832421%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="chat-action.html"><span>chat</span><wbr><span><span>Action</span></span></a></div>
@@ -700,7 +700,7 @@
             </div>
           </div>
 <a data-name="-513403695%2FFunctions%2F1596435014" anchor-label="createChatInviteLink" id="-513403695%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="create-chat-invite-link.html"><span>create</span><wbr><span>Chat</span><wbr><span>Invite</span><wbr><span><span>Link</span></span></a></div>
@@ -715,7 +715,7 @@
             </div>
           </div>
 <a data-name="-1435917141%2FFunctions%2F1596435014" anchor-label="createChatSubscriptionInviteLink" id="-1435917141%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="create-chat-subscription-invite-link.html"><span>create</span><wbr><span>Chat</span><wbr><span>Subscription</span><wbr><span>Invite</span><wbr><span><span>Link</span></span></a></div>
@@ -730,7 +730,7 @@
             </div>
           </div>
 <a data-name="428914188%2FFunctions%2F1596435014" anchor-label="declineChatJoinRequest" id="428914188%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="decline-chat-join-request.html"><span>decline</span><wbr><span>Chat</span><wbr><span>Join</span><wbr><span><span>Request</span></span></a></div>
@@ -745,7 +745,7 @@
             </div>
           </div>
 <a data-name="729060867%2FFunctions%2F1596435014" anchor-label="deleteChatPhoto" id="729060867%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="delete-chat-photo.html"><span>delete</span><wbr><span>Chat</span><wbr><span><span>Photo</span></span></a></div>
@@ -760,7 +760,7 @@
             </div>
           </div>
 <a data-name="-1761281984%2FFunctions%2F1596435014" anchor-label="deleteChatStickerSet" id="-1761281984%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="delete-chat-sticker-set.html"><span>delete</span><wbr><span>Chat</span><wbr><span>Sticker</span><wbr><span><span>Set</span></span></a></div>
@@ -775,7 +775,7 @@
             </div>
           </div>
 <a data-name="1788588833%2FFunctions%2F1596435014" anchor-label="editChatInviteLink" id="1788588833%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-chat-invite-link.html"><span>edit</span><wbr><span>Chat</span><wbr><span>Invite</span><wbr><span><span>Link</span></span></a></div>
@@ -790,7 +790,7 @@
             </div>
           </div>
 <a data-name="1098703616%2FFunctions%2F1596435014" anchor-label="editChatSubscriptionInviteLink" id="1098703616%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-chat-subscription-invite-link.html"><span>edit</span><wbr><span>Chat</span><wbr><span>Subscription</span><wbr><span>Invite</span><wbr><span><span>Link</span></span></a></div>
@@ -805,7 +805,7 @@
             </div>
           </div>
 <a data-name="-351567079%2FFunctions%2F1596435014" anchor-label="exportChatInviteLink" id="-351567079%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="export-chat-invite-link.html"><span>export</span><wbr><span>Chat</span><wbr><span>Invite</span><wbr><span><span>Link</span></span></a></div>
@@ -820,7 +820,7 @@
             </div>
           </div>
 <a data-name="1467553892%2FFunctions%2F1596435014" anchor-label="getChat" id="1467553892%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-chat.html"><span>get</span><wbr><span><span>Chat</span></span></a></div>
@@ -835,7 +835,7 @@
             </div>
           </div>
 <a data-name="494764926%2FFunctions%2F1596435014" anchor-label="getChatAdministrators" id="494764926%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-chat-administrators.html"><span>get</span><wbr><span>Chat</span><wbr><span><span>Administrators</span></span></a></div>
@@ -850,7 +850,7 @@
             </div>
           </div>
 <a data-name="-150485550%2FFunctions%2F1596435014" anchor-label="getChatMember" id="-150485550%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-chat-member.html"><span>get</span><wbr><span>Chat</span><wbr><span><span>Member</span></span></a></div>
@@ -865,7 +865,7 @@
             </div>
           </div>
 <a data-name="929775585%2FFunctions%2F1596435014" anchor-label="getChatMemberCount" id="929775585%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-chat-member-count.html"><span>get</span><wbr><span>Chat</span><wbr><span>Member</span><wbr><span><span>Count</span></span></a></div>
@@ -880,7 +880,7 @@
             </div>
           </div>
 <a data-name="-784095437%2FFunctions%2F1596435014" anchor-label="getChatMenuButton" id="-784095437%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-chat-menu-button.html"><span>get</span><wbr><span>Chat</span><wbr><span>Menu</span><wbr><span><span>Button</span></span></a></div>
@@ -895,7 +895,7 @@
             </div>
           </div>
 <a data-name="142500756%2FFunctions%2F1596435014" anchor-label="getUserChatBoosts" id="142500756%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-user-chat-boosts.html"><span>get</span><wbr><span>User</span><wbr><span>Chat</span><wbr><span><span>Boosts</span></span></a></div>
@@ -910,7 +910,7 @@
             </div>
           </div>
 <a data-name="542795619%2FFunctions%2F1596435014" anchor-label="leaveChat" id="542795619%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="leave-chat.html"><span>leave</span><wbr><span><span>Chat</span></span></a></div>
@@ -925,7 +925,7 @@
             </div>
           </div>
 <a data-name="1521289834%2FFunctions%2F1596435014" anchor-label="pinChatMessage" id="1521289834%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="pin-chat-message.html"><span>pin</span><wbr><span>Chat</span><wbr><span><span>Message</span></span></a></div>
@@ -940,7 +940,7 @@
             </div>
           </div>
 <a data-name="1097331878%2FFunctions%2F1596435014" anchor-label="promoteChatMember" id="1097331878%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="promote-chat-member.html"><span>promote</span><wbr><span>Chat</span><wbr><span><span>Member</span></span></a></div>
@@ -955,7 +955,7 @@
             </div>
           </div>
 <a data-name="1051288338%2FFunctions%2F1596435014" anchor-label="restrictChatMember" id="1051288338%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="restrict-chat-member.html"><span>restrict</span><wbr><span>Chat</span><wbr><span><span>Member</span></span></a></div>
@@ -970,7 +970,7 @@
             </div>
           </div>
 <a data-name="719893597%2FFunctions%2F1596435014" anchor-label="revokeChatInviteLink" id="719893597%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="revoke-chat-invite-link.html"><span>revoke</span><wbr><span>Chat</span><wbr><span>Invite</span><wbr><span><span>Link</span></span></a></div>
@@ -985,7 +985,7 @@
             </div>
           </div>
 <a data-name="725110795%2FFunctions%2F1596435014" anchor-label="sendChatAction" id="725110795%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-chat-action.html"><span>send</span><wbr><span>Chat</span><wbr><span><span>Action</span></span></a></div>
@@ -1000,7 +1000,7 @@
             </div>
           </div>
 <a data-name="1942185076%2FFunctions%2F1596435014" anchor-label="setChatAdministratorCustomTitle" id="1942185076%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-administrator-custom-title.html"><span>set</span><wbr><span>Chat</span><wbr><span>Administrator</span><wbr><span>Custom</span><wbr><span><span>Title</span></span></a></div>
@@ -1015,7 +1015,7 @@
             </div>
           </div>
 <a data-name="-642047675%2FFunctions%2F1596435014" anchor-label="setChatDescription" id="-642047675%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-description.html"><span>set</span><wbr><span>Chat</span><wbr><span><span>Description</span></span></a></div>
@@ -1030,7 +1030,7 @@
             </div>
           </div>
 <a data-name="-1846533886%2FFunctions%2F1596435014" anchor-label="setChatMemberTag" id="-1846533886%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-member-tag.html"><span>set</span><wbr><span>Chat</span><wbr><span>Member</span><wbr><span><span>Tag</span></span></a></div>
@@ -1045,7 +1045,7 @@
             </div>
           </div>
 <a data-name="494527789%2FFunctions%2F1596435014" anchor-label="setChatMenuButton" id="494527789%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-menu-button.html"><span>set</span><wbr><span>Chat</span><wbr><span>Menu</span><wbr><span><span>Button</span></span></a></div>
@@ -1060,7 +1060,7 @@
             </div>
           </div>
 <a data-name="-834451539%2FFunctions%2F1596435014" anchor-label="setChatPermissions" id="-834451539%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-permissions.html"><span>set</span><wbr><span>Chat</span><wbr><span><span>Permissions</span></span></a></div>
@@ -1075,7 +1075,7 @@
             </div>
           </div>
 <a data-name="2107964852%2FFunctions%2F-446080522" anchor-label="setChatPhoto" id="2107964852%2FFunctions%2F-446080522" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jvmMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain,:telegram-bot/jvmMain" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jvmMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain,:telegram-bot/jvmMain" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jvmMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-photo.html"><span>set</span><wbr><span>Chat</span><wbr><span><span>Photo</span></span></a></div>
@@ -1092,7 +1092,7 @@
             </div>
           </div>
 <a data-name="-1982337743%2FFunctions%2F1596435014" anchor-label="setChatStickerSet" id="-1982337743%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-sticker-set.html"><span>set</span><wbr><span>Chat</span><wbr><span>Sticker</span><wbr><span><span>Set</span></span></a></div>
@@ -1107,7 +1107,7 @@
             </div>
           </div>
 <a data-name="219869946%2FFunctions%2F1596435014" anchor-label="setChatTitle" id="219869946%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-title.html"><span>set</span><wbr><span>Chat</span><wbr><span><span>Title</span></span></a></div>
@@ -1122,7 +1122,7 @@
             </div>
           </div>
 <a data-name="484342864%2FFunctions%2F1596435014" anchor-label="unbanChatMember" id="484342864%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="unban-chat-member.html"><span>unban</span><wbr><span>Chat</span><wbr><span><span>Member</span></span></a></div>
@@ -1137,7 +1137,7 @@
             </div>
           </div>
 <a data-name="-1673352473%2FFunctions%2F1596435014" anchor-label="unbanChatSenderChat" id="-1673352473%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="unban-chat-sender-chat.html"><span>unban</span><wbr><span>Chat</span><wbr><span>Sender</span><wbr><span><span>Chat</span></span></a></div>
@@ -1152,7 +1152,7 @@
             </div>
           </div>
 <a data-name="2147289151%2FFunctions%2F1596435014" anchor-label="unpinAllChatMessages" id="2147289151%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="unpin-all-chat-messages.html"><span>unpin</span><wbr><span>All</span><wbr><span>Chat</span><wbr><span><span>Messages</span></span></a></div>
@@ -1167,7 +1167,7 @@
             </div>
           </div>
 <a data-name="2141411748%2FFunctions%2F1596435014" anchor-label="unpinChatMessage" id="2141411748%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-          <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="unpin-chat-message.html"><span>unpin</span><wbr><span>Chat</span><wbr><span><span>Message</span></span></a></div>
@@ -1187,17 +1187,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2026 Vendelieu</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Vendelieu</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

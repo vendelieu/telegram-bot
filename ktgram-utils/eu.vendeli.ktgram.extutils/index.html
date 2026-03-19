@@ -1,22 +1,22 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>eu.vendeli.ktgram.extutils</title>
-<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
@@ -24,34 +24,32 @@
 <link href="../../styles/main.css" rel="Stylesheet">
 <link href="../../styles/prism.css" rel="Stylesheet">
 <link href="../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../scripts/main.js" defer></script>
 <script type="text/javascript" src="../../scripts/prism.js" async></script>
 <script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
 <link href="../../images/logo-icon.svg"></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../index.html" tabindex="1">
                     KtGram
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.3.0
+        <div class="library-version" id="library-version">9.3.1
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":ktgram-utils/commonMain">common</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true" data-filter=":ktgram-utils/commonMain">common</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
@@ -65,7 +63,7 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
                 <a class="navigation-controls--btn navigation-controls--btn_homepage" id="homepage-link" href="https://github.com/vendelieu/telegram-bot"></a>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
@@ -73,25 +71,27 @@
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     KtGram
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
 <div class="main-content" data-page-type="package" id="content" pageids="ktgram-utils::eu.vendeli.ktgram.extutils////PointingToDeclaration//1630514607">
   <div class="breadcrumbs"><a href="../index.html">ktgram-utils</a><span class="delimiter">/</span><span class="current">eu.vendeli.ktgram.extutils</span></div>
   <div class="cover ">
@@ -101,9 +101,9 @@
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
     <div class="tabs-section-body">
       <div data-togglable="EXTENSION_FUNCTION">
-        <h2 class="">Functions</h2>
+        <h2 class="tableheader">Functions</h2>
         <div class="table"><a data-name="1651195573%2FFunctions%2F1630514607" anchor-label="addStickerToSet" id="1651195573%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="add-sticker-to-set.html"><span>add</span><wbr><span>Sticker</span><wbr><span>To</span><wbr><span><span>Set</span></span></a></div>
@@ -118,7 +118,7 @@
             </div>
           </div>
 <a data-name="-2147453566%2FFunctions%2F1630514607" anchor-label="animation" id="-2147453566%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="animation.html"><span><span>animation</span></span></a></div>
@@ -133,7 +133,7 @@
             </div>
           </div>
 <a data-name="-1885140198%2FFunctions%2F1630514607" anchor-label="answerCallbackQuery" id="-1885140198%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="answer-callback-query.html"><span>answer</span><wbr><span>Callback</span><wbr><span><span>Query</span></span></a></div>
@@ -147,12 +147,12 @@
               </div>
             </div>
           </div>
-<a data-name="2053436640%2FFunctions%2F1630514607" anchor-label="answerInlineQuery" id="2053436640%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="-2021688706%2FFunctions%2F1630514607" anchor-label="answerInlineQuery" id="-2021688706%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="answer-inline-query.html"><span>answer</span><wbr><span>Inline</span><wbr><span><span>Query</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2053436640%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2021688706%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -163,7 +163,7 @@
             </div>
           </div>
 <a data-name="1158278160%2FFunctions%2F1630514607" anchor-label="answerPreCheckoutQuery" id="1158278160%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="answer-pre-checkout-query.html"><span>answer</span><wbr><span>Pre</span><wbr><span>Checkout</span><wbr><span><span>Query</span></span></a></div>
@@ -177,12 +177,12 @@
               </div>
             </div>
           </div>
-<a data-name="-1831078946%2FFunctions%2F1630514607" anchor-label="answerShippingQuery" id="-1831078946%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="-2070266024%2FFunctions%2F1630514607" anchor-label="answerShippingQuery" id="-2070266024%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="answer-shipping-query.html"><span>answer</span><wbr><span>Shipping</span><wbr><span><span>Query</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1831078946%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2070266024%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -193,7 +193,7 @@
             </div>
           </div>
 <a data-name="-1720201498%2FFunctions%2F1630514607" anchor-label="answerWebAppQuery" id="-1720201498%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="answer-web-app-query.html"><span>answer</span><wbr><span>Web</span><wbr><span>App</span><wbr><span><span>Query</span></span></a></div>
@@ -208,7 +208,7 @@
             </div>
           </div>
 <a data-name="-383468732%2FFunctions%2F1630514607" anchor-label="approveChatJoinRequest" id="-383468732%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="approve-chat-join-request.html"><span>approve</span><wbr><span>Chat</span><wbr><span>Join</span><wbr><span><span>Request</span></span></a></div>
@@ -223,7 +223,7 @@
             </div>
           </div>
 <a data-name="204640484%2FFunctions%2F1630514607" anchor-label="approveSuggestedPost" id="204640484%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="approve-suggested-post.html"><span>approve</span><wbr><span>Suggested</span><wbr><span><span>Post</span></span></a></div>
@@ -238,7 +238,7 @@
             </div>
           </div>
 <a data-name="-2092059546%2FFunctions%2F1630514607" anchor-label="audio" id="-2092059546%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="audio.html"><span><span>audio</span></span></a></div>
@@ -253,7 +253,7 @@
             </div>
           </div>
 <a data-name="-95159394%2FFunctions%2F1630514607" anchor-label="banChatMember" id="-95159394%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="ban-chat-member.html"><span>ban</span><wbr><span>Chat</span><wbr><span><span>Member</span></span></a></div>
@@ -268,7 +268,7 @@
             </div>
           </div>
 <a data-name="-1209936647%2FFunctions%2F1630514607" anchor-label="banChatSenderChat" id="-1209936647%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="ban-chat-sender-chat.html"><span>ban</span><wbr><span>Chat</span><wbr><span>Sender</span><wbr><span><span>Chat</span></span></a></div>
@@ -283,7 +283,7 @@
             </div>
           </div>
 <a data-name="-268931937%2FFunctions%2F1630514607" anchor-label="chatAction" id="-268931937%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="chat-action.html"><span>chat</span><wbr><span><span>Action</span></span></a></div>
@@ -298,7 +298,7 @@
             </div>
           </div>
 <a data-name="-1803671838%2FFunctions%2F1630514607" anchor-label="checkIsInitDataSafe" id="-1803671838%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="check-is-init-data-safe.html"><span>check</span><wbr><span>Is</span><wbr><span>Init</span><wbr><span>Data</span><wbr><span><span>Safe</span></span></a></div>
@@ -313,7 +313,7 @@
             </div>
           </div>
 <a data-name="983312977%2FFunctions%2F1630514607" anchor-label="close" id="983312977%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="close.html"><span><span>close</span></span></a></div>
@@ -328,7 +328,7 @@
             </div>
           </div>
 <a data-name="-284546725%2FFunctions%2F1630514607" anchor-label="closeForumTopic" id="-284546725%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="close-forum-topic.html"><span>close</span><wbr><span>Forum</span><wbr><span><span>Topic</span></span></a></div>
@@ -343,7 +343,7 @@
             </div>
           </div>
 <a data-name="-1246887412%2FFunctions%2F1630514607" anchor-label="closeGeneralForumTopic" id="-1246887412%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="close-general-forum-topic.html"><span>close</span><wbr><span>General</span><wbr><span>Forum</span><wbr><span><span>Topic</span></span></a></div>
@@ -358,7 +358,7 @@
             </div>
           </div>
 <a data-name="-1994980550%2FFunctions%2F1630514607" anchor-label="contact" id="-1994980550%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="contact.html"><span><span>contact</span></span></a></div>
@@ -373,7 +373,7 @@
             </div>
           </div>
 <a data-name="530278497%2FFunctions%2F1630514607" anchor-label="convertGiftToStars" id="530278497%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="convert-gift-to-stars.html"><span>convert</span><wbr><span>Gift</span><wbr><span>To</span><wbr><span><span>Stars</span></span></a></div>
@@ -388,7 +388,7 @@
             </div>
           </div>
 <a data-name="219053337%2FFunctions%2F1630514607" anchor-label="copyMessage" id="219053337%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="copy-message.html"><span>copy</span><wbr><span><span>Message</span></span></a></div>
@@ -402,12 +402,12 @@
               </div>
             </div>
           </div>
-<a data-name="1323313074%2FFunctions%2F1630514607" anchor-label="copyMessages" id="1323313074%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="411280924%2FFunctions%2F1630514607" anchor-label="copyMessages" id="411280924%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="copy-messages.html"><span>copy</span><wbr><span><span>Messages</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1323313074%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="411280924%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -418,7 +418,7 @@
             </div>
           </div>
 <a data-name="1269028229%2FFunctions%2F1630514607" anchor-label="createChatInviteLink" id="1269028229%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="create-chat-invite-link.html"><span>create</span><wbr><span>Chat</span><wbr><span>Invite</span><wbr><span><span>Link</span></span></a></div>
@@ -433,7 +433,7 @@
             </div>
           </div>
 <a data-name="-555612504%2FFunctions%2F1630514607" anchor-label="createChatSubscriptionInviteLink" id="-555612504%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="create-chat-subscription-invite-link.html"><span>create</span><wbr><span>Chat</span><wbr><span>Subscription</span><wbr><span>Invite</span><wbr><span><span>Link</span></span></a></div>
@@ -448,7 +448,7 @@
             </div>
           </div>
 <a data-name="1315996018%2FFunctions%2F1630514607" anchor-label="createForumTopic" id="1315996018%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="create-forum-topic.html"><span>create</span><wbr><span>Forum</span><wbr><span><span>Topic</span></span></a></div>
@@ -462,12 +462,12 @@
               </div>
             </div>
           </div>
-<a data-name="1039103389%2FFunctions%2F1630514607" anchor-label="createInvoiceLink" id="1039103389%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="-1508268975%2FFunctions%2F1630514607" anchor-label="createInvoiceLink" id="-1508268975%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="create-invoice-link.html"><span>create</span><wbr><span>Invoice</span><wbr><span><span>Link</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1039103389%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1508268975%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -478,7 +478,7 @@
             </div>
           </div>
 <a data-name="-1832161341%2FFunctions%2F1630514607" anchor-label="createNewStickerSet" id="-1832161341%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="create-new-sticker-set.html"><span>create</span><wbr><span>New</span><wbr><span>Sticker</span><wbr><span><span>Set</span></span></a></div>
@@ -493,7 +493,7 @@
             </div>
           </div>
 <a data-name="-349189454%2FFunctions%2F1630514607" anchor-label="declineChatJoinRequest" id="-349189454%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="decline-chat-join-request.html"><span>decline</span><wbr><span>Chat</span><wbr><span>Join</span><wbr><span><span>Request</span></span></a></div>
@@ -508,7 +508,7 @@
             </div>
           </div>
 <a data-name="787255229%2FFunctions%2F1630514607" anchor-label="declineSuggestedPost" id="787255229%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="decline-suggested-post.html"><span>decline</span><wbr><span>Suggested</span><wbr><span><span>Post</span></span></a></div>
@@ -523,7 +523,7 @@
             </div>
           </div>
 <a data-name="480638500%2FFunctions%2F1630514607" anchor-label="deleteBusinessMessages" id="480638500%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="delete-business-messages.html"><span>delete</span><wbr><span>Business</span><wbr><span><span>Messages</span></span></a></div>
@@ -538,7 +538,7 @@
             </div>
           </div>
 <a data-name="1293447519%2FFunctions%2F1630514607" anchor-label="deleteChatPhoto" id="1293447519%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="delete-chat-photo.html"><span>delete</span><wbr><span>Chat</span><wbr><span><span>Photo</span></span></a></div>
@@ -553,7 +553,7 @@
             </div>
           </div>
 <a data-name="-220789962%2FFunctions%2F1630514607" anchor-label="deleteChatStickerSet" id="-220789962%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="delete-chat-sticker-set.html"><span>delete</span><wbr><span>Chat</span><wbr><span>Sticker</span><wbr><span><span>Set</span></span></a></div>
@@ -568,7 +568,7 @@
             </div>
           </div>
 <a data-name="698519818%2FFunctions%2F1630514607" anchor-label="deleteForumTopic" id="698519818%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="delete-forum-topic.html"><span>delete</span><wbr><span>Forum</span><wbr><span><span>Topic</span></span></a></div>
@@ -583,7 +583,7 @@
             </div>
           </div>
 <a data-name="-2136113530%2FFunctions%2F1630514607" anchor-label="deleteMessage" id="-2136113530%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="delete-message.html"><span>delete</span><wbr><span><span>Message</span></span></a></div>
@@ -597,12 +597,12 @@
               </div>
             </div>
           </div>
-<a data-name="-2029799119%2FFunctions%2F1630514607" anchor-label="deleteMessages" id="-2029799119%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="-1652826672%2FFunctions%2F1630514607" anchor-label="deleteMessages" id="-1652826672%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="delete-messages.html"><span>delete</span><wbr><span><span>Messages</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2029799119%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1652826672%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -613,7 +613,7 @@
             </div>
           </div>
 <a data-name="-157206566%2FFunctions%2F1630514607" anchor-label="deleteMyCommands" id="-157206566%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="delete-my-commands.html"><span>delete</span><wbr><span>My</span><wbr><span><span>Commands</span></span></a></div>
@@ -628,7 +628,7 @@
             </div>
           </div>
 <a data-name="2097689407%2FFunctions%2F1630514607" anchor-label="deleteStickerFromSet" id="2097689407%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="delete-sticker-from-set.html"><span>delete</span><wbr><span>Sticker</span><wbr><span>From</span><wbr><span><span>Set</span></span></a></div>
@@ -643,7 +643,7 @@
             </div>
           </div>
 <a data-name="-1101686967%2FFunctions%2F1630514607" anchor-label="deleteStickerSet" id="-1101686967%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="delete-sticker-set.html"><span>delete</span><wbr><span>Sticker</span><wbr><span><span>Set</span></span></a></div>
@@ -658,7 +658,7 @@
             </div>
           </div>
 <a data-name="-1459621558%2FFunctions%2F1630514607" anchor-label="deleteStory" id="-1459621558%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="delete-story.html"><span>delete</span><wbr><span><span>Story</span></span></a></div>
@@ -673,7 +673,7 @@
             </div>
           </div>
 <a data-name="-1574855678%2FFunctions%2F1630514607" anchor-label="deleteWebhook" id="-1574855678%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="delete-webhook.html"><span>delete</span><wbr><span><span>Webhook</span></span></a></div>
@@ -688,7 +688,7 @@
             </div>
           </div>
 <a data-name="928633352%2FFunctions%2F1630514607" anchor-label="dice" id="928633352%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="dice.html"><span><span>dice</span></span></a></div>
@@ -703,7 +703,7 @@
             </div>
           </div>
 <a data-name="-479217568%2FFunctions%2F1630514607" anchor-label="document" id="-479217568%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="document.html"><span><span>document</span></span></a></div>
@@ -718,7 +718,7 @@
             </div>
           </div>
 <a data-name="863559026%2FFunctions%2F1630514607" anchor-label="editCaption" id="863559026%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-caption.html"><span>edit</span><wbr><span><span>Caption</span></span></a></div>
@@ -733,7 +733,7 @@
             </div>
           </div>
 <a data-name="1795931000%2FFunctions%2F1630514607" anchor-label="editChatInviteLink" id="1795931000%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-chat-invite-link.html"><span>edit</span><wbr><span>Chat</span><wbr><span>Invite</span><wbr><span><span>Link</span></span></a></div>
@@ -748,7 +748,7 @@
             </div>
           </div>
 <a data-name="-1827124547%2FFunctions%2F1630514607" anchor-label="editChatSubscriptionInviteLink" id="-1827124547%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-chat-subscription-invite-link.html"><span>edit</span><wbr><span>Chat</span><wbr><span>Subscription</span><wbr><span>Invite</span><wbr><span><span>Link</span></span></a></div>
@@ -763,7 +763,7 @@
             </div>
           </div>
 <a data-name="833482443%2FFunctions%2F1630514607" anchor-label="editForumTopic" id="833482443%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-forum-topic.html"><span>edit</span><wbr><span>Forum</span><wbr><span><span>Topic</span></span></a></div>
@@ -778,7 +778,7 @@
             </div>
           </div>
 <a data-name="-538011423%2FFunctions%2F1630514607" anchor-label="editGeneralForumTopic" id="-538011423%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-general-forum-topic.html"><span>edit</span><wbr><span>General</span><wbr><span>Forum</span><wbr><span><span>Topic</span></span></a></div>
@@ -793,7 +793,7 @@
             </div>
           </div>
 <a data-name="1680063886%2FFunctions%2F1630514607" anchor-label="editMarkup" id="1680063886%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-markup.html"><span>edit</span><wbr><span><span>Markup</span></span></a></div>
@@ -808,7 +808,7 @@
             </div>
           </div>
 <a data-name="-67781498%2FFunctions%2F1630514607" anchor-label="editMedia" id="-67781498%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-media.html"><span>edit</span><wbr><span><span>Media</span></span></a></div>
@@ -823,7 +823,7 @@
             </div>
           </div>
 <a data-name="-1834673028%2FFunctions%2F1630514607" anchor-label="editMessageCaption" id="-1834673028%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-message-caption.html"><span>edit</span><wbr><span>Message</span><wbr><span><span>Caption</span></span></a></div>
@@ -838,7 +838,7 @@
             </div>
           </div>
 <a data-name="-1307339368%2FFunctions%2F1630514607" anchor-label="editMessageChecklist" id="-1307339368%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-message-checklist.html"><span>edit</span><wbr><span>Message</span><wbr><span><span>Checklist</span></span></a></div>
@@ -853,7 +853,7 @@
             </div>
           </div>
 <a data-name="-791012826%2FFunctions%2F1630514607" anchor-label="editMessageLiveLocation" id="-791012826%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-message-live-location.html"><span>edit</span><wbr><span>Message</span><wbr><span>Live</span><wbr><span><span>Location</span></span></a></div>
@@ -868,7 +868,7 @@
             </div>
           </div>
 <a data-name="-731155974%2FFunctions%2F1630514607" anchor-label="editMessageMedia" id="-731155974%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-message-media.html"><span>edit</span><wbr><span>Message</span><wbr><span><span>Media</span></span></a></div>
@@ -883,7 +883,7 @@
             </div>
           </div>
 <a data-name="502560660%2FFunctions%2F1630514607" anchor-label="editMessageReplyMarkup" id="502560660%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-message-reply-markup.html"><span>edit</span><wbr><span>Message</span><wbr><span>Reply</span><wbr><span><span>Markup</span></span></a></div>
@@ -898,7 +898,7 @@
             </div>
           </div>
 <a data-name="1437027084%2FFunctions%2F1630514607" anchor-label="editMessageText" id="1437027084%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-message-text.html"><span>edit</span><wbr><span>Message</span><wbr><span><span>Text</span></span></a></div>
@@ -913,7 +913,7 @@
             </div>
           </div>
 <a data-name="-2004877155%2FFunctions%2F1630514607" anchor-label="editStory" id="-2004877155%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-story.html"><span>edit</span><wbr><span><span>Story</span></span></a></div>
@@ -928,7 +928,7 @@
             </div>
           </div>
 <a data-name="-567617564%2FFunctions%2F1630514607" anchor-label="editText" id="-567617564%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-text.html"><span>edit</span><wbr><span><span>Text</span></span></a></div>
@@ -943,7 +943,7 @@
             </div>
           </div>
 <a data-name="-526570547%2FFunctions%2F1630514607" anchor-label="editUserStarSubscription" id="-526570547%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="edit-user-star-subscription.html"><span>edit</span><wbr><span>User</span><wbr><span>Star</span><wbr><span><span>Subscription</span></span></a></div>
@@ -958,7 +958,7 @@
             </div>
           </div>
 <a data-name="-1068865987%2FFunctions%2F1630514607" anchor-label="exportChatInviteLink" id="-1068865987%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="export-chat-invite-link.html"><span>export</span><wbr><span>Chat</span><wbr><span>Invite</span><wbr><span><span>Link</span></span></a></div>
@@ -973,7 +973,7 @@
             </div>
           </div>
 <a data-name="-1548984359%2FFunctions%2F1630514607" anchor-label="forwardMessage" id="-1548984359%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="forward-message.html"><span>forward</span><wbr><span><span>Message</span></span></a></div>
@@ -987,12 +987,12 @@
               </div>
             </div>
           </div>
-<a data-name="-1180281118%2FFunctions%2F1630514607" anchor-label="forwardMessages" id="-1180281118%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="1522204736%2FFunctions%2F1630514607" anchor-label="forwardMessages" id="1522204736%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="forward-messages.html"><span>forward</span><wbr><span><span>Messages</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1180281118%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1522204736%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -1003,7 +1003,7 @@
             </div>
           </div>
 <a data-name="1338712613%2FFunctions%2F1630514607" anchor-label="game" id="1338712613%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="game.html"><span><span>game</span></span></a></div>
@@ -1018,7 +1018,7 @@
             </div>
           </div>
 <a data-name="1237008345%2FFunctions%2F1630514607" anchor-label="getAvailableGifts" id="1237008345%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-available-gifts.html"><span>get</span><wbr><span>Available</span><wbr><span><span>Gifts</span></span></a></div>
@@ -1033,7 +1033,7 @@
             </div>
           </div>
 <a data-name="767419527%2FFunctions%2F1630514607" anchor-label="getBusinessAccountGifts" id="767419527%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-business-account-gifts.html"><span>get</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span><span>Gifts</span></span></a></div>
@@ -1048,7 +1048,7 @@
             </div>
           </div>
 <a data-name="487597614%2FFunctions%2F1630514607" anchor-label="getBusinessAccountStarBalance" id="487597614%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-business-account-star-balance.html"><span>get</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Star</span><wbr><span><span>Balance</span></span></a></div>
@@ -1063,7 +1063,7 @@
             </div>
           </div>
 <a data-name="-1835483121%2FFunctions%2F1630514607" anchor-label="getBusinessConnection" id="-1835483121%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-business-connection.html"><span>get</span><wbr><span>Business</span><wbr><span><span>Connection</span></span></a></div>
@@ -1078,7 +1078,7 @@
             </div>
           </div>
 <a data-name="1824250334%2FFunctions%2F1630514607" anchor-label="getChat" id="1824250334%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-chat.html"><span>get</span><wbr><span><span>Chat</span></span></a></div>
@@ -1093,7 +1093,7 @@
             </div>
           </div>
 <a data-name="-184737020%2FFunctions%2F1630514607" anchor-label="getChatAdministrators" id="-184737020%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-chat-administrators.html"><span>get</span><wbr><span>Chat</span><wbr><span><span>Administrators</span></span></a></div>
@@ -1108,7 +1108,7 @@
             </div>
           </div>
 <a data-name="362548351%2FFunctions%2F1630514607" anchor-label="getChatGifts" id="362548351%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-chat-gifts.html"><span>get</span><wbr><span>Chat</span><wbr><span><span>Gifts</span></span></a></div>
@@ -1123,7 +1123,7 @@
             </div>
           </div>
 <a data-name="-358981940%2FFunctions%2F1630514607" anchor-label="getChatMember" id="-358981940%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-chat-member.html"><span>get</span><wbr><span>Chat</span><wbr><span><span>Member</span></span></a></div>
@@ -1138,7 +1138,7 @@
             </div>
           </div>
 <a data-name="-253468939%2FFunctions%2F1630514607" anchor-label="getChatMemberCount" id="-253468939%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-chat-member-count.html"><span>get</span><wbr><span>Chat</span><wbr><span>Member</span><wbr><span><span>Count</span></span></a></div>
@@ -1153,7 +1153,7 @@
             </div>
           </div>
 <a data-name="-1810571089%2FFunctions%2F1630514607" anchor-label="getChatMenuButton" id="-1810571089%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-chat-menu-button.html"><span>get</span><wbr><span>Chat</span><wbr><span>Menu</span><wbr><span><span>Button</span></span></a></div>
@@ -1167,12 +1167,12 @@
               </div>
             </div>
           </div>
-<a data-name="-148503570%2FFunctions%2F1630514607" anchor-label="getCustomEmojiStickers" id="-148503570%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="982388606%2FFunctions%2F1630514607" anchor-label="getCustomEmojiStickers" id="982388606%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-custom-emoji-stickers.html"><span>get</span><wbr><span>Custom</span><wbr><span>Emoji</span><wbr><span><span>Stickers</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-148503570%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="982388606%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -1183,7 +1183,7 @@
             </div>
           </div>
 <a data-name="-1241660531%2FFunctions%2F1630514607" anchor-label="getFile" id="-1241660531%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-file.html"><span>get</span><wbr><span><span>File</span></span></a></div>
@@ -1198,7 +1198,7 @@
             </div>
           </div>
 <a data-name="-1203149597%2FFunctions%2F1630514607" anchor-label="getForumTopicIconStickers" id="-1203149597%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-forum-topic-icon-stickers.html"><span>get</span><wbr><span>Forum</span><wbr><span>Topic</span><wbr><span>Icon</span><wbr><span><span>Stickers</span></span></a></div>
@@ -1213,7 +1213,7 @@
             </div>
           </div>
 <a data-name="-1712093544%2FFunctions%2F1630514607" anchor-label="getGameHighScores" id="-1712093544%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-game-high-scores.html"><span>get</span><wbr><span>Game</span><wbr><span>High</span><wbr><span><span>Scores</span></span></a></div>
@@ -1228,7 +1228,7 @@
             </div>
           </div>
 <a data-name="1255095931%2FFunctions%2F1630514607" anchor-label="getMe" id="1255095931%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-me.html"><span>get</span><wbr><span><span>Me</span></span></a></div>
@@ -1243,7 +1243,7 @@
             </div>
           </div>
 <a data-name="-1263831091%2FFunctions%2F1630514607" anchor-label="getMyCommands" id="-1263831091%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-my-commands.html"><span>get</span><wbr><span>My</span><wbr><span><span>Commands</span></span></a></div>
@@ -1258,7 +1258,7 @@
             </div>
           </div>
 <a data-name="178849370%2FFunctions%2F1630514607" anchor-label="getMyDefaultAdministratorRights" id="178849370%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-my-default-administrator-rights.html"><span>get</span><wbr><span>My</span><wbr><span>Default</span><wbr><span>Administrator</span><wbr><span><span>Rights</span></span></a></div>
@@ -1273,7 +1273,7 @@
             </div>
           </div>
 <a data-name="-96162960%2FFunctions%2F1630514607" anchor-label="getMyDescription" id="-96162960%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-my-description.html"><span>get</span><wbr><span>My</span><wbr><span><span>Description</span></span></a></div>
@@ -1288,7 +1288,7 @@
             </div>
           </div>
 <a data-name="-1491451909%2FFunctions%2F1630514607" anchor-label="getMyName" id="-1491451909%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-my-name.html"><span>get</span><wbr><span>My</span><wbr><span><span>Name</span></span></a></div>
@@ -1303,7 +1303,7 @@
             </div>
           </div>
 <a data-name="-1949390586%2FFunctions%2F1630514607" anchor-label="getMyShortDescription" id="-1949390586%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-my-short-description.html"><span>get</span><wbr><span>My</span><wbr><span>Short</span><wbr><span><span>Description</span></span></a></div>
@@ -1318,7 +1318,7 @@
             </div>
           </div>
 <a data-name="609053539%2FFunctions%2F1630514607" anchor-label="getMyStarBalance" id="609053539%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-my-star-balance.html"><span>get</span><wbr><span>My</span><wbr><span>Star</span><wbr><span><span>Balance</span></span></a></div>
@@ -1333,7 +1333,7 @@
             </div>
           </div>
 <a data-name="474841663%2FFunctions%2F1630514607" anchor-label="getStarTransactions" id="474841663%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-star-transactions.html"><span>get</span><wbr><span>Star</span><wbr><span><span>Transactions</span></span></a></div>
@@ -1348,7 +1348,7 @@
             </div>
           </div>
 <a data-name="2020301942%2FFunctions%2F1630514607" anchor-label="getStickerSet" id="2020301942%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-sticker-set.html"><span>get</span><wbr><span>Sticker</span><wbr><span><span>Set</span></span></a></div>
@@ -1363,7 +1363,7 @@
             </div>
           </div>
 <a data-name="2130589239%2FFunctions%2F1630514607" anchor-label="getUpdates" id="2130589239%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-updates.html"><span>get</span><wbr><span><span>Updates</span></span></a></div>
@@ -1378,7 +1378,7 @@
             </div>
           </div>
 <a data-name="2090671916%2FFunctions%2F1630514607" anchor-label="getUserChatBoosts" id="2090671916%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-user-chat-boosts.html"><span>get</span><wbr><span>User</span><wbr><span>Chat</span><wbr><span><span>Boosts</span></span></a></div>
@@ -1393,7 +1393,7 @@
             </div>
           </div>
 <a data-name="544517396%2FFunctions%2F1630514607" anchor-label="getUserGifts" id="544517396%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-user-gifts.html"><span>get</span><wbr><span>User</span><wbr><span><span>Gifts</span></span></a></div>
@@ -1408,7 +1408,7 @@
             </div>
           </div>
 <a data-name="362518322%2FFunctions%2F1630514607" anchor-label="getUserProfileAudios" id="362518322%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-user-profile-audios.html"><span>get</span><wbr><span>User</span><wbr><span>Profile</span><wbr><span><span>Audios</span></span></a></div>
@@ -1423,7 +1423,7 @@
             </div>
           </div>
 <a data-name="566766714%2FFunctions%2F1630514607" anchor-label="getUserProfilePhotos" id="566766714%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-user-profile-photos.html"><span>get</span><wbr><span>User</span><wbr><span>Profile</span><wbr><span><span>Photos</span></span></a></div>
@@ -1438,7 +1438,7 @@
             </div>
           </div>
 <a data-name="1669174940%2FFunctions%2F1630514607" anchor-label="getWebhookInfo" id="1669174940%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-webhook-info.html"><span>get</span><wbr><span>Webhook</span><wbr><span><span>Info</span></span></a></div>
@@ -1453,7 +1453,7 @@
             </div>
           </div>
 <a data-name="-98668944%2FFunctions%2F1630514607" anchor-label="giftPremiumSubscription" id="-98668944%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="gift-premium-subscription.html"><span>gift</span><wbr><span>Premium</span><wbr><span><span>Subscription</span></span></a></div>
@@ -1468,7 +1468,7 @@
             </div>
           </div>
 <a data-name="-1185934652%2FFunctions%2F1630514607" anchor-label="hideGeneralForumTopic" id="-1185934652%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="hide-general-forum-topic.html"><span>hide</span><wbr><span>General</span><wbr><span>Forum</span><wbr><span><span>Topic</span></span></a></div>
@@ -1482,12 +1482,12 @@
               </div>
             </div>
           </div>
-<a data-name="1627983931%2FFunctions%2F1630514607" anchor-label="invoice" id="1627983931%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="-1770839057%2FFunctions%2F1630514607" anchor-label="invoice" id="-1770839057%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="invoice.html"><span><span>invoice</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1627983931%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1770839057%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -1498,7 +1498,7 @@
             </div>
           </div>
 <a data-name="1277145215%2FFunctions%2F1630514607" anchor-label="leaveChat" id="1277145215%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="leave-chat.html"><span>leave</span><wbr><span><span>Chat</span></span></a></div>
@@ -1513,7 +1513,7 @@
             </div>
           </div>
 <a data-name="-642359229%2FFunctions%2F1630514607" anchor-label="location" id="-642359229%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="location.html"><span><span>location</span></span></a></div>
@@ -1528,7 +1528,7 @@
             </div>
           </div>
 <a data-name="744083361%2FFunctions%2F1630514607" anchor-label="logOut" id="744083361%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="log-out.html"><span>log</span><wbr><span><span>Out</span></span></a></div>
@@ -1542,12 +1542,12 @@
               </div>
             </div>
           </div>
-<a data-name="994897090%2FFunctions%2F1630514607" anchor-label="mediaGroup" id="994897090%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="1223760312%2FFunctions%2F1630514607" anchor-label="mediaGroup" id="1223760312%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="media-group.html"><span>media</span><wbr><span><span>Group</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="994897090%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1223760312%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -1558,7 +1558,7 @@
             </div>
           </div>
 <a data-name="-332460718%2FFunctions%2F1630514607" anchor-label="message" id="-332460718%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="message.html"><span><span>message</span></span></a></div>
@@ -1573,7 +1573,7 @@
             </div>
           </div>
 <a data-name="-1011177826%2FFunctions%2F1630514607" anchor-label="photo" id="-1011177826%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="photo.html"><span><span>photo</span></span></a></div>
@@ -1588,7 +1588,7 @@
             </div>
           </div>
 <a data-name="551725569%2FFunctions%2F1630514607" anchor-label="pinChatMessage" id="551725569%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="pin-chat-message.html"><span>pin</span><wbr><span>Chat</span><wbr><span><span>Message</span></span></a></div>
@@ -1602,12 +1602,12 @@
               </div>
             </div>
           </div>
-<a data-name="-511143764%2FFunctions%2F1630514607" anchor-label="poll" id="-511143764%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="-412053282%2FFunctions%2F1630514607" anchor-label="poll" id="-412053282%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="poll.html"><span><span>poll</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-511143764%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-412053282%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -1618,7 +1618,7 @@
             </div>
           </div>
 <a data-name="1272619071%2FFunctions%2F1630514607" anchor-label="postStory" id="1272619071%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="post-story.html"><span>post</span><wbr><span><span>Story</span></span></a></div>
@@ -1633,7 +1633,7 @@
             </div>
           </div>
 <a data-name="-2026218612%2FFunctions%2F1630514607" anchor-label="promoteChatMember" id="-2026218612%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="promote-chat-member.html"><span>promote</span><wbr><span>Chat</span><wbr><span><span>Member</span></span></a></div>
@@ -1648,7 +1648,7 @@
             </div>
           </div>
 <a data-name="-1380140096%2FFunctions%2F1630514607" anchor-label="readBusinessMessage" id="-1380140096%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="read-business-message.html"><span>read</span><wbr><span>Business</span><wbr><span><span>Message</span></span></a></div>
@@ -1663,7 +1663,7 @@
             </div>
           </div>
 <a data-name="706996081%2FFunctions%2F1630514607" anchor-label="refundStarPayment" id="706996081%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="refund-star-payment.html"><span>refund</span><wbr><span>Star</span><wbr><span><span>Payment</span></span></a></div>
@@ -1678,7 +1678,7 @@
             </div>
           </div>
 <a data-name="583991820%2FFunctions%2F1630514607" anchor-label="removeBusinessAccountProfilePhoto" id="583991820%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="remove-business-account-profile-photo.html"><span>remove</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Profile</span><wbr><span><span>Photo</span></span></a></div>
@@ -1693,7 +1693,7 @@
             </div>
           </div>
 <a data-name="1823188893%2FFunctions%2F1630514607" anchor-label="removeChatVerification" id="1823188893%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="remove-chat-verification.html"><span>remove</span><wbr><span>Chat</span><wbr><span><span>Verification</span></span></a></div>
@@ -1708,7 +1708,7 @@
             </div>
           </div>
 <a data-name="185178930%2FFunctions%2F1630514607" anchor-label="removeMyProfilePhoto" id="185178930%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="remove-my-profile-photo.html"><span>remove</span><wbr><span>My</span><wbr><span>Profile</span><wbr><span><span>Photo</span></span></a></div>
@@ -1723,7 +1723,7 @@
             </div>
           </div>
 <a data-name="1994794980%2FFunctions%2F1630514607" anchor-label="removeUserVerification" id="1994794980%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="remove-user-verification.html"><span>remove</span><wbr><span>User</span><wbr><span><span>Verification</span></span></a></div>
@@ -1738,7 +1738,7 @@
             </div>
           </div>
 <a data-name="-306664712%2FFunctions%2F1630514607" anchor-label="reopenForumTopic" id="-306664712%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="reopen-forum-topic.html"><span>reopen</span><wbr><span>Forum</span><wbr><span><span>Topic</span></span></a></div>
@@ -1753,7 +1753,7 @@
             </div>
           </div>
 <a data-name="-1754277335%2FFunctions%2F1630514607" anchor-label="reopenGeneralForumTopic" id="-1754277335%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="reopen-general-forum-topic.html"><span>reopen</span><wbr><span>General</span><wbr><span>Forum</span><wbr><span><span>Topic</span></span></a></div>
@@ -1768,7 +1768,7 @@
             </div>
           </div>
 <a data-name="1364914960%2FFunctions%2F1630514607" anchor-label="replaceStickerInSet" id="1364914960%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="replace-sticker-in-set.html"><span>replace</span><wbr><span>Sticker</span><wbr><span>In</span><wbr><span><span>Set</span></span></a></div>
@@ -1783,7 +1783,7 @@
             </div>
           </div>
 <a data-name="987362374%2FFunctions%2F1630514607" anchor-label="repostStory" id="987362374%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="repost-story.html"><span>repost</span><wbr><span><span>Story</span></span></a></div>
@@ -1798,7 +1798,7 @@
             </div>
           </div>
 <a data-name="1816130250%2FFunctions%2F1630514607" anchor-label="restrictChatMember" id="1816130250%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="restrict-chat-member.html"><span>restrict</span><wbr><span>Chat</span><wbr><span><span>Member</span></span></a></div>
@@ -1813,7 +1813,7 @@
             </div>
           </div>
 <a data-name="-1576392140%2FFunctions%2F1630514607" anchor-label="revokeChatInviteLink" id="-1576392140%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="revoke-chat-invite-link.html"><span>revoke</span><wbr><span>Chat</span><wbr><span>Invite</span><wbr><span><span>Link</span></span></a></div>
@@ -1828,7 +1828,7 @@
             </div>
           </div>
 <a data-name="-2001430743%2FFunctions%2F1630514607" anchor-label="savePreparedInlineMessage" id="-2001430743%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="save-prepared-inline-message.html"><span>save</span><wbr><span>Prepared</span><wbr><span>Inline</span><wbr><span><span>Message</span></span></a></div>
@@ -1843,7 +1843,7 @@
             </div>
           </div>
 <a data-name="1662647336%2FFunctions%2F1630514607" anchor-label="sendAnd" id="1662647336%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-and.html"><span>send</span><wbr><span><span>And</span></span></a></div>
@@ -1858,7 +1858,7 @@
             </div>
           </div>
 <a data-name="-45346003%2FFunctions%2F1630514607" anchor-label="sendAnimation" id="-45346003%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-animation.html"><span>send</span><wbr><span><span>Animation</span></span></a></div>
@@ -1873,7 +1873,7 @@
             </div>
           </div>
 <a data-name="-158230291%2FFunctions%2F1630514607" anchor-label="sendAudio" id="-158230291%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-audio.html"><span>send</span><wbr><span><span>Audio</span></span></a></div>
@@ -1888,7 +1888,7 @@
             </div>
           </div>
 <a data-name="1138257695%2FFunctions%2F1630514607" anchor-label="sendChatAction" id="1138257695%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-chat-action.html"><span>send</span><wbr><span>Chat</span><wbr><span><span>Action</span></span></a></div>
@@ -1903,7 +1903,7 @@
             </div>
           </div>
 <a data-name="1804473781%2FFunctions%2F1630514607" anchor-label="sendChecklist" id="1804473781%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-checklist.html"><span>send</span><wbr><span><span>Checklist</span></span></a></div>
@@ -1918,7 +1918,7 @@
             </div>
           </div>
 <a data-name="-1106948590%2FFunctions%2F1630514607" anchor-label="sendContact" id="-1106948590%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-contact.html"><span>send</span><wbr><span><span>Contact</span></span></a></div>
@@ -1933,7 +1933,7 @@
             </div>
           </div>
 <a data-name="1647694549%2FFunctions%2F1630514607" anchor-label="sendDice" id="1647694549%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-dice.html"><span>send</span><wbr><span><span>Dice</span></span></a></div>
@@ -1948,7 +1948,7 @@
             </div>
           </div>
 <a data-name="-1309347523%2FFunctions%2F1630514607" anchor-label="sendDocument" id="-1309347523%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-document.html"><span>send</span><wbr><span><span>Document</span></span></a></div>
@@ -1963,7 +1963,7 @@
             </div>
           </div>
 <a data-name="-1069192115%2FFunctions%2F1630514607" anchor-label="sendGame" id="-1069192115%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-game.html"><span>send</span><wbr><span><span>Game</span></span></a></div>
@@ -1978,7 +1978,7 @@
             </div>
           </div>
 <a data-name="2075982577%2FFunctions%2F1630514607" anchor-label="sendGift" id="2075982577%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-gift.html"><span>send</span><wbr><span><span>Gift</span></span></a></div>
@@ -1993,7 +1993,7 @@
             </div>
           </div>
 <a data-name="-1948125462%2FFunctions%2F1630514607" anchor-label="sendInvoice" id="-1948125462%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-invoice.html"><span>send</span><wbr><span><span>Invoice</span></span></a></div>
@@ -2008,7 +2008,7 @@
             </div>
           </div>
 <a data-name="-890807701%2FFunctions%2F1630514607" anchor-label="sendLocation" id="-890807701%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-location.html"><span>send</span><wbr><span><span>Location</span></span></a></div>
@@ -2022,12 +2022,12 @@
               </div>
             </div>
           </div>
-<a data-name="354894482%2FFunctions%2F1630514607" anchor-label="sendMediaGroup" id="354894482%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="1633325226%2FFunctions%2F1630514607" anchor-label="sendMediaGroup" id="1633325226%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-media-group.html"><span>send</span><wbr><span>Media</span><wbr><span><span>Group</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="354894482%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1633325226%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -2038,7 +2038,7 @@
             </div>
           </div>
 <a data-name="-620496894%2FFunctions%2F1630514607" anchor-label="sendMessage" id="-620496894%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-message.html"><span>send</span><wbr><span><span>Message</span></span></a></div>
@@ -2053,7 +2053,7 @@
             </div>
           </div>
 <a data-name="2045077457%2FFunctions%2F1630514607" anchor-label="sendMessageDraft" id="2045077457%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-message-draft.html"><span>send</span><wbr><span>Message</span><wbr><span><span>Draft</span></span></a></div>
@@ -2067,12 +2067,12 @@
               </div>
             </div>
           </div>
-<a data-name="-1080915434%2FFunctions%2F1630514607" anchor-label="sendPaidMedia" id="-1080915434%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="527179862%2FFunctions%2F1630514607" anchor-label="sendPaidMedia" id="527179862%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-paid-media.html"><span>send</span><wbr><span>Paid</span><wbr><span><span>Media</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1080915434%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="527179862%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -2083,7 +2083,7 @@
             </div>
           </div>
 <a data-name="2077338221%2FFunctions%2F1630514607" anchor-label="sendPhoto" id="2077338221%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-photo.html"><span>send</span><wbr><span><span>Photo</span></span></a></div>
@@ -2098,7 +2098,7 @@
             </div>
           </div>
 <a data-name="-81138436%2FFunctions%2F1630514607" anchor-label="sendPoll" id="-81138436%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-poll.html"><span>send</span><wbr><span><span>Poll</span></span></a></div>
@@ -2113,7 +2113,7 @@
             </div>
           </div>
 <a data-name="429898317%2FFunctions%2F1630514607" anchor-label="sendSticker" id="429898317%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-sticker.html"><span>send</span><wbr><span><span>Sticker</span></span></a></div>
@@ -2128,7 +2128,7 @@
             </div>
           </div>
 <a data-name="-1967794719%2FFunctions%2F1630514607" anchor-label="sendVenue" id="-1967794719%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-venue.html"><span>send</span><wbr><span><span>Venue</span></span></a></div>
@@ -2143,7 +2143,7 @@
             </div>
           </div>
 <a data-name="-1942638067%2FFunctions%2F1630514607" anchor-label="sendVideo" id="-1942638067%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-video.html"><span>send</span><wbr><span><span>Video</span></span></a></div>
@@ -2158,7 +2158,7 @@
             </div>
           </div>
 <a data-name="400654157%2FFunctions%2F1630514607" anchor-label="sendVideoNote" id="400654157%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-video-note.html"><span>send</span><wbr><span>Video</span><wbr><span><span>Note</span></span></a></div>
@@ -2173,7 +2173,7 @@
             </div>
           </div>
 <a data-name="917867117%2FFunctions%2F1630514607" anchor-label="sendVoice" id="917867117%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="send-voice.html"><span>send</span><wbr><span><span>Voice</span></span></a></div>
@@ -2188,7 +2188,7 @@
             </div>
           </div>
 <a data-name="399307526%2FFunctions%2F1630514607" anchor-label="setBusinessAccountBio" id="399307526%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-business-account-bio.html"><span>set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span><span>Bio</span></span></a></div>
@@ -2203,7 +2203,7 @@
             </div>
           </div>
 <a data-name="-692310034%2FFunctions%2F1630514607" anchor-label="setBusinessAccountGiftSettings" id="-692310034%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-business-account-gift-settings.html"><span>set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Gift</span><wbr><span><span>Settings</span></span></a></div>
@@ -2218,7 +2218,7 @@
             </div>
           </div>
 <a data-name="1224665642%2FFunctions%2F1630514607" anchor-label="setBusinessAccountName" id="1224665642%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-business-account-name.html"><span>set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span><span>Name</span></span></a></div>
@@ -2233,7 +2233,7 @@
             </div>
           </div>
 <a data-name="202112902%2FFunctions%2F1630514607" anchor-label="setBusinessAccountProfilePhoto" id="202112902%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-business-account-profile-photo.html"><span>set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span>Profile</span><wbr><span><span>Photo</span></span></a></div>
@@ -2248,7 +2248,7 @@
             </div>
           </div>
 <a data-name="-2013283964%2FFunctions%2F1630514607" anchor-label="setBusinessAccountUsername" id="-2013283964%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-business-account-username.html"><span>set</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span><span>Username</span></span></a></div>
@@ -2263,7 +2263,7 @@
             </div>
           </div>
 <a data-name="1898270636%2FFunctions%2F1630514607" anchor-label="setChatAdministratorCustomTitle" id="1898270636%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-administrator-custom-title.html"><span>set</span><wbr><span>Chat</span><wbr><span>Administrator</span><wbr><span>Custom</span><wbr><span><span>Title</span></span></a></div>
@@ -2278,7 +2278,7 @@
             </div>
           </div>
 <a data-name="-1223033918%2FFunctions%2F1630514607" anchor-label="setChatDescription" id="-1223033918%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-description.html"><span>set</span><wbr><span>Chat</span><wbr><span><span>Description</span></span></a></div>
@@ -2293,7 +2293,7 @@
             </div>
           </div>
 <a data-name="-2076622708%2FFunctions%2F1630514607" anchor-label="setChatMemberTag" id="-2076622708%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-member-tag.html"><span>set</span><wbr><span>Chat</span><wbr><span>Member</span><wbr><span><span>Tag</span></span></a></div>
@@ -2308,7 +2308,7 @@
             </div>
           </div>
 <a data-name="-201929506%2FFunctions%2F1630514607" anchor-label="setChatMenuButton" id="-201929506%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-menu-button.html"><span>set</span><wbr><span>Chat</span><wbr><span>Menu</span><wbr><span><span>Button</span></span></a></div>
@@ -2323,7 +2323,7 @@
             </div>
           </div>
 <a data-name="1891282177%2FFunctions%2F1630514607" anchor-label="setChatPermissions" id="1891282177%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-permissions.html"><span>set</span><wbr><span>Chat</span><wbr><span><span>Permissions</span></span></a></div>
@@ -2338,7 +2338,7 @@
             </div>
           </div>
 <a data-name="2052390935%2FFunctions%2F1630514607" anchor-label="setChatPhoto" id="2052390935%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-photo.html"><span>set</span><wbr><span>Chat</span><wbr><span><span>Photo</span></span></a></div>
@@ -2353,7 +2353,7 @@
             </div>
           </div>
 <a data-name="-1857678892%2FFunctions%2F1630514607" anchor-label="setChatStickerSet" id="-1857678892%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-sticker-set.html"><span>set</span><wbr><span>Chat</span><wbr><span>Sticker</span><wbr><span><span>Set</span></span></a></div>
@@ -2368,7 +2368,7 @@
             </div>
           </div>
 <a data-name="-1797447215%2FFunctions%2F1630514607" anchor-label="setChatTitle" id="-1797447215%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-chat-title.html"><span>set</span><wbr><span>Chat</span><wbr><span><span>Title</span></span></a></div>
@@ -2383,7 +2383,7 @@
             </div>
           </div>
 <a data-name="1595885807%2FFunctions%2F1630514607" anchor-label="setCustomEmojiStickerSetThumbnail" id="1595885807%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-custom-emoji-sticker-set-thumbnail.html"><span>set</span><wbr><span>Custom</span><wbr><span>Emoji</span><wbr><span>Sticker</span><wbr><span>Set</span><wbr><span><span>Thumbnail</span></span></a></div>
@@ -2398,7 +2398,7 @@
             </div>
           </div>
 <a data-name="-1162853104%2FFunctions%2F1630514607" anchor-label="setGameScore" id="-1162853104%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-game-score.html"><span>set</span><wbr><span>Game</span><wbr><span><span>Score</span></span></a></div>
@@ -2412,12 +2412,12 @@
               </div>
             </div>
           </div>
-<a data-name="790817947%2FFunctions%2F1630514607" anchor-label="setMessageReaction" id="790817947%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="2119747449%2FFunctions%2F1630514607" anchor-label="setMessageReaction" id="2119747449%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-message-reaction.html"><span>set</span><wbr><span>Message</span><wbr><span><span>Reaction</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="790817947%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2119747449%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -2427,12 +2427,12 @@
               </div>
             </div>
           </div>
-<a data-name="1321589155%2FFunctions%2F1630514607" anchor-label="setMyCommands" id="1321589155%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="-1575248931%2FFunctions%2F1630514607" anchor-label="setMyCommands" id="-1575248931%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-my-commands.html"><span>set</span><wbr><span>My</span><wbr><span><span>Commands</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1321589155%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1575248931%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -2443,7 +2443,7 @@
             </div>
           </div>
 <a data-name="556544108%2FFunctions%2F1630514607" anchor-label="setMyDefaultAdministratorRights" id="556544108%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-my-default-administrator-rights.html"><span>set</span><wbr><span>My</span><wbr><span>Default</span><wbr><span>Administrator</span><wbr><span><span>Rights</span></span></a></div>
@@ -2458,7 +2458,7 @@
             </div>
           </div>
 <a data-name="-237475166%2FFunctions%2F1630514607" anchor-label="setMyDescription" id="-237475166%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-my-description.html"><span>set</span><wbr><span>My</span><wbr><span><span>Description</span></span></a></div>
@@ -2473,7 +2473,7 @@
             </div>
           </div>
 <a data-name="581084751%2FFunctions%2F1630514607" anchor-label="setMyName" id="581084751%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-my-name.html"><span>set</span><wbr><span>My</span><wbr><span><span>Name</span></span></a></div>
@@ -2488,7 +2488,7 @@
             </div>
           </div>
 <a data-name="-2122868953%2FFunctions%2F1630514607" anchor-label="setMyProfilePhoto" id="-2122868953%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-my-profile-photo.html"><span>set</span><wbr><span>My</span><wbr><span>Profile</span><wbr><span><span>Photo</span></span></a></div>
@@ -2503,7 +2503,7 @@
             </div>
           </div>
 <a data-name="595751908%2FFunctions%2F1630514607" anchor-label="setMyShortDescription" id="595751908%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-my-short-description.html"><span>set</span><wbr><span>My</span><wbr><span>Short</span><wbr><span><span>Description</span></span></a></div>
@@ -2517,12 +2517,12 @@
               </div>
             </div>
           </div>
-<a data-name="1235040789%2FFunctions%2F1630514607" anchor-label="setPassportDataError" id="1235040789%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="1080053003%2FFunctions%2F1630514607" anchor-label="setPassportDataError" id="1080053003%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-passport-data-error.html"><span>set</span><wbr><span>Passport</span><wbr><span>Data</span><wbr><span><span>Error</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1235040789%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1080053003%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -2533,7 +2533,7 @@
             </div>
           </div>
 <a data-name="435618708%2FFunctions%2F1630514607" anchor-label="setPassportDataErrors" id="435618708%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-passport-data-errors.html"><span>set</span><wbr><span>Passport</span><wbr><span>Data</span><wbr><span><span>Errors</span></span></a></div>
@@ -2548,7 +2548,7 @@
             </div>
           </div>
 <a data-name="1635831397%2FFunctions%2F1630514607" anchor-label="setStickerEmojiList" id="1635831397%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-sticker-emoji-list.html"><span>set</span><wbr><span>Sticker</span><wbr><span>Emoji</span><wbr><span><span>List</span></span></a></div>
@@ -2562,12 +2562,12 @@
               </div>
             </div>
           </div>
-<a data-name="-1264014561%2FFunctions%2F1630514607" anchor-label="setStickerKeywords" id="-1264014561%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+<a data-name="-424386993%2FFunctions%2F1630514607" anchor-label="setStickerKeywords" id="-424386993%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-sticker-keywords.html"><span>set</span><wbr><span>Sticker</span><wbr><span><span>Keywords</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1264014561%2FFunctions%2F1630514607"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-424386993%2FFunctions%2F1630514607"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
@@ -2578,7 +2578,7 @@
             </div>
           </div>
 <a data-name="-1331670028%2FFunctions%2F1630514607" anchor-label="setStickerMaskPosition" id="-1331670028%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-sticker-mask-position.html"><span>set</span><wbr><span>Sticker</span><wbr><span>Mask</span><wbr><span><span>Position</span></span></a></div>
@@ -2593,7 +2593,7 @@
             </div>
           </div>
 <a data-name="2144698473%2FFunctions%2F1630514607" anchor-label="setStickerPositionInSet" id="2144698473%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-sticker-position-in-set.html"><span>set</span><wbr><span>Sticker</span><wbr><span>Position</span><wbr><span>In</span><wbr><span><span>Set</span></span></a></div>
@@ -2608,7 +2608,7 @@
             </div>
           </div>
 <a data-name="1785708309%2FFunctions%2F1630514607" anchor-label="setStickerSetThumbnail" id="1785708309%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-sticker-set-thumbnail.html"><span>set</span><wbr><span>Sticker</span><wbr><span>Set</span><wbr><span><span>Thumbnail</span></span></a></div>
@@ -2623,7 +2623,7 @@
             </div>
           </div>
 <a data-name="1037314927%2FFunctions%2F1630514607" anchor-label="setStickerSetTitle" id="1037314927%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-sticker-set-title.html"><span>set</span><wbr><span>Sticker</span><wbr><span>Set</span><wbr><span><span>Title</span></span></a></div>
@@ -2638,7 +2638,7 @@
             </div>
           </div>
 <a data-name="-1028203576%2FFunctions%2F1630514607" anchor-label="setUserEmojiStatus" id="-1028203576%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-user-emoji-status.html"><span>set</span><wbr><span>User</span><wbr><span>Emoji</span><wbr><span><span>Status</span></span></a></div>
@@ -2653,7 +2653,7 @@
             </div>
           </div>
 <a data-name="-1854438642%2FFunctions%2F1630514607" anchor-label="setWebhook" id="-1854438642%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-webhook.html"><span>set</span><wbr><span><span>Webhook</span></span></a></div>
@@ -2668,7 +2668,7 @@
             </div>
           </div>
 <a data-name="-790547948%2FFunctions%2F1630514607" anchor-label="sticker" id="-790547948%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="sticker.html"><span><span>sticker</span></span></a></div>
@@ -2683,7 +2683,7 @@
             </div>
           </div>
 <a data-name="-790121038%2FFunctions%2F1630514607" anchor-label="stopMessageLiveLocation" id="-790121038%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="stop-message-live-location.html"><span>stop</span><wbr><span>Message</span><wbr><span>Live</span><wbr><span><span>Location</span></span></a></div>
@@ -2698,7 +2698,7 @@
             </div>
           </div>
 <a data-name="-577631351%2FFunctions%2F1630514607" anchor-label="stopPoll" id="-577631351%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="stop-poll.html"><span>stop</span><wbr><span><span>Poll</span></span></a></div>
@@ -2713,7 +2713,7 @@
             </div>
           </div>
 <a data-name="-8487771%2FFunctions%2F1630514607" anchor-label="transferBusinessAccountStars" id="-8487771%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="transfer-business-account-stars.html"><span>transfer</span><wbr><span>Business</span><wbr><span>Account</span><wbr><span><span>Stars</span></span></a></div>
@@ -2728,7 +2728,7 @@
             </div>
           </div>
 <a data-name="-139488711%2FFunctions%2F1630514607" anchor-label="transferGift" id="-139488711%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="transfer-gift.html"><span>transfer</span><wbr><span><span>Gift</span></span></a></div>
@@ -2743,7 +2743,7 @@
             </div>
           </div>
 <a data-name="153059116%2FFunctions%2F1630514607" anchor-label="unbanChatMember" id="153059116%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="unban-chat-member.html"><span>unban</span><wbr><span>Chat</span><wbr><span><span>Member</span></span></a></div>
@@ -2758,7 +2758,7 @@
             </div>
           </div>
 <a data-name="1540804064%2FFunctions%2F1630514607" anchor-label="unbanChatSenderChat" id="1540804064%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="unban-chat-sender-chat.html"><span>unban</span><wbr><span>Chat</span><wbr><span>Sender</span><wbr><span><span>Chat</span></span></a></div>
@@ -2773,7 +2773,7 @@
             </div>
           </div>
 <a data-name="176504203%2FFunctions%2F1630514607" anchor-label="unhideGeneralForumTopic" id="176504203%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="unhide-general-forum-topic.html"><span>unhide</span><wbr><span>General</span><wbr><span>Forum</span><wbr><span><span>Topic</span></span></a></div>
@@ -2788,7 +2788,7 @@
             </div>
           </div>
 <a data-name="-355532201%2FFunctions%2F1630514607" anchor-label="unpinAllChatMessages" id="-355532201%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="unpin-all-chat-messages.html"><span>unpin</span><wbr><span>All</span><wbr><span>Chat</span><wbr><span><span>Messages</span></span></a></div>
@@ -2803,7 +2803,7 @@
             </div>
           </div>
 <a data-name="824507428%2FFunctions%2F1630514607" anchor-label="unpinAllForumTopicMessages" id="824507428%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="unpin-all-forum-topic-messages.html"><span>unpin</span><wbr><span>All</span><wbr><span>Forum</span><wbr><span>Topic</span><wbr><span><span>Messages</span></span></a></div>
@@ -2818,7 +2818,7 @@
             </div>
           </div>
 <a data-name="2069117357%2FFunctions%2F1630514607" anchor-label="unpinAllGeneralForumTopicMessages" id="2069117357%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="unpin-all-general-forum-topic-messages.html"><span>unpin</span><wbr><span>All</span><wbr><span>General</span><wbr><span>Forum</span><wbr><span>Topic</span><wbr><span><span>Messages</span></span></a></div>
@@ -2833,7 +2833,7 @@
             </div>
           </div>
 <a data-name="1972540987%2FFunctions%2F1630514607" anchor-label="unpinChatMessage" id="1972540987%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="unpin-chat-message.html"><span>unpin</span><wbr><span>Chat</span><wbr><span><span>Message</span></span></a></div>
@@ -2848,7 +2848,7 @@
             </div>
           </div>
 <a data-name="1122392369%2FFunctions%2F1630514607" anchor-label="upgradeGift" id="1122392369%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="upgrade-gift.html"><span>upgrade</span><wbr><span><span>Gift</span></span></a></div>
@@ -2863,7 +2863,7 @@
             </div>
           </div>
 <a data-name="-623201421%2FFunctions%2F1630514607" anchor-label="uploadStickerFile" id="-623201421%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="upload-sticker-file.html"><span>upload</span><wbr><span>Sticker</span><wbr><span><span>File</span></span></a></div>
@@ -2878,7 +2878,7 @@
             </div>
           </div>
 <a data-name="1086624521%2FFunctions%2F1630514607" anchor-label="venue" id="1086624521%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="venue.html"><span><span>venue</span></span></a></div>
@@ -2893,7 +2893,7 @@
             </div>
           </div>
 <a data-name="-1590909132%2FFunctions%2F1630514607" anchor-label="verifyChat" id="-1590909132%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="verify-chat.html"><span>verify</span><wbr><span><span>Chat</span></span></a></div>
@@ -2908,7 +2908,7 @@
             </div>
           </div>
 <a data-name="-689044276%2FFunctions%2F1630514607" anchor-label="verifyUser" id="-689044276%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="verify-user.html"><span>verify</span><wbr><span><span>User</span></span></a></div>
@@ -2923,7 +2923,7 @@
             </div>
           </div>
 <a data-name="-866331696%2FFunctions%2F1630514607" anchor-label="video" id="-866331696%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="video.html"><span><span>video</span></span></a></div>
@@ -2938,7 +2938,7 @@
             </div>
           </div>
 <a data-name="503070004%2FFunctions%2F1630514607" anchor-label="videoNote" id="503070004%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="video-note.html"><span>video</span><wbr><span><span>Note</span></span></a></div>
@@ -2953,7 +2953,7 @@
             </div>
           </div>
 <a data-name="-1157575522%2FFunctions%2F1630514607" anchor-label="voice" id="-1157575522%2FFunctions%2F1630514607" data-filterable-set=":ktgram-utils/commonMain"></a>
-          <div class="table-row" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
+          <div class="table-row table-row_content" data-filterable-current=":ktgram-utils/commonMain" data-filterable-set=":ktgram-utils/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="voice.html"><span><span>voice</span></span></a></div>
@@ -2973,17 +2973,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2026 Vendelieu</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Vendelieu</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

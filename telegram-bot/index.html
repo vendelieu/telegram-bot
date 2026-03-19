@@ -1,22 +1,22 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>telegram-bot</title>
-<link href="../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+<link href="../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../scripts/sourceset_dependencies.js" async></script>
@@ -24,37 +24,35 @@
 <link href="../styles/main.css" rel="Stylesheet">
 <link href="../styles/prism.css" rel="Stylesheet">
 <link href="../styles/logo-styles.css" rel="Stylesheet">
-<link href="../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../scripts/main.js" defer></script>
 <script type="text/javascript" src="../scripts/prism.js" async></script>
 <script type="text/javascript" src="../ui-kit/ui-kit.min.js" defer></script>
-<script type="text/javascript" src="../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
 <link href="../images/logo-icon.svg"></head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-<a class="library-name--link" href="../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../index.html" tabindex="1">
                     KtGram
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.3.0
+        <div class="library-version" id="library-version">9.3.1
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":telegram-bot/commonMain">common</button>
-                <button class="platform-tag platform-selector js-like" data-active="" data-filter=":telegram-bot/jsMain">js</button>
-                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":telegram-bot/jvmMain">jvm</button>
-                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":telegram-bot/nativeMain">native</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true" data-filter=":telegram-bot/commonMain">common</button>
+                <button class="platform-tag platform-selector js-like" data-active="" aria-pressed="true" data-filter=":telegram-bot/jsMain">js</button>
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":telegram-bot/jvmMain">jvm</button>
+                <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true" data-filter=":telegram-bot/nativeMain">native</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
@@ -89,7 +87,7 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
                 <a class="navigation-controls--btn navigation-controls--btn_homepage" id="homepage-link" href="https://github.com/vendelieu/telegram-bot"></a>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
             </button>
@@ -97,25 +95,27 @@
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     KtGram
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
 <div class="main-content" id="content" pageids="telegram-bot::////PointingToDeclaration//1008479060">
   <div class="breadcrumbs"></div>
   <div class="cover ">
@@ -123,7 +123,7 @@
   </div>
   <h2 class="">Packages</h2>
   <div class="table"><a data-name="-1390072057%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot" id="-1390072057%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -131,7 +131,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1390072057%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -141,7 +141,7 @@
       </div>
     </div>
 <a data-name="631003709%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.annotations" id="631003709%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -149,7 +149,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="631003709%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -159,7 +159,7 @@
       </div>
     </div>
 <a data-name="187412172%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.annotations.dsl" id="187412172%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -167,7 +167,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="187412172%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -177,7 +177,7 @@
       </div>
     </div>
 <a data-name="1690912530%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.annotations.internal" id="1690912530%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -185,7 +185,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1690912530%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -195,7 +195,7 @@
       </div>
     </div>
 <a data-name="1037996637%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.api.answer" id="1037996637%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -203,7 +203,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1037996637%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -213,7 +213,7 @@
       </div>
     </div>
 <a data-name="1976576885%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.api.botactions" id="1976576885%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -221,7 +221,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1976576885%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -231,7 +231,7 @@
       </div>
     </div>
 <a data-name="-1780131681%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.api.business" id="-1780131681%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -239,7 +239,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1780131681%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -249,7 +249,7 @@
       </div>
     </div>
 <a data-name="-318184265%2FPackages%2F-446080522" anchor-label="eu.vendeli.tgbot.api.chat" id="-318184265%2FPackages%2F-446080522" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jvmMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain,:telegram-bot/jvmMain" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jvmMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain,:telegram-bot/jvmMain" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jvmMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -257,7 +257,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-318184265%2FPackages%2F-446080522"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
               <div class="platform-tag jvm-like">jvm</div>
@@ -268,7 +268,7 @@
       </div>
     </div>
 <a data-name="2034030251%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.api.checklist" id="2034030251%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -276,7 +276,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2034030251%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -286,7 +286,7 @@
       </div>
     </div>
 <a data-name="1155722826%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.api.common" id="1155722826%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -294,7 +294,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1155722826%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -304,7 +304,7 @@
       </div>
     </div>
 <a data-name="95954918%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.api.forum" id="95954918%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -312,7 +312,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="95954918%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -322,7 +322,7 @@
       </div>
     </div>
 <a data-name="-1130843951%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.api.game" id="-1130843951%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -330,7 +330,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1130843951%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -340,7 +340,7 @@
       </div>
     </div>
 <a data-name="-853500785%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.api.gift" id="-853500785%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -348,7 +348,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-853500785%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -358,7 +358,7 @@
       </div>
     </div>
 <a data-name="1432308969%2FPackages%2F-446080522" anchor-label="eu.vendeli.tgbot.api.media" id="1432308969%2FPackages%2F-446080522" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jvmMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain,:telegram-bot/jvmMain" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jvmMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain,:telegram-bot/jvmMain" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jvmMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -366,7 +366,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1432308969%2FPackages%2F-446080522"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
               <div class="platform-tag jvm-like">jvm</div>
@@ -377,7 +377,7 @@
       </div>
     </div>
 <a data-name="771385996%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.api.message" id="771385996%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -385,7 +385,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="771385996%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -395,7 +395,7 @@
       </div>
     </div>
 <a data-name="-791182735%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.api.passport" id="-791182735%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -403,7 +403,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-791182735%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -413,7 +413,7 @@
       </div>
     </div>
 <a data-name="-65402420%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.api.payments" id="-65402420%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -421,7 +421,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-65402420%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -431,7 +431,7 @@
       </div>
     </div>
 <a data-name="12083044%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.api.stickerset" id="12083044%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -439,7 +439,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="12083044%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -449,7 +449,7 @@
       </div>
     </div>
 <a data-name="2052305594%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.api.story" id="2052305594%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -457,7 +457,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2052305594%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -467,7 +467,7 @@
       </div>
     </div>
 <a data-name="-1006265158%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.api.verification" id="-1006265158%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -475,7 +475,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1006265158%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -485,7 +485,7 @@
       </div>
     </div>
 <a data-name="-144939926%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.core" id="-144939926%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -493,7 +493,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-144939926%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -503,7 +503,7 @@
       </div>
     </div>
 <a data-name="1764682842%2FPackages%2F1008479060" anchor-label="eu.vendeli.tgbot.implementations" id="1764682842%2FPackages%2F1008479060" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jsMain,:telegram-bot/jvmMain,:telegram-bot/nativeMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain,:telegram-bot/jsMain,:telegram-bot/jvmMain,:telegram-bot/nativeMain" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jsMain,:telegram-bot/jvmMain,:telegram-bot/nativeMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain,:telegram-bot/jsMain,:telegram-bot/jvmMain,:telegram-bot/nativeMain" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jsMain,:telegram-bot/jvmMain,:telegram-bot/nativeMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -511,7 +511,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1764682842%2FPackages%2F1008479060"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
               <div class="platform-tag js-like">js</div>
@@ -524,7 +524,7 @@
       </div>
     </div>
 <a data-name="-202111325%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.interfaces.action" id="-202111325%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -532,7 +532,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-202111325%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -542,7 +542,7 @@
       </div>
     </div>
 <a data-name="-999647970%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.interfaces.ctx" id="-999647970%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -550,7 +550,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-999647970%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -560,7 +560,7 @@
       </div>
     </div>
 <a data-name="465029930%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.interfaces.features" id="465029930%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -568,7 +568,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="465029930%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -578,7 +578,7 @@
       </div>
     </div>
 <a data-name="1878733339%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.interfaces.helper" id="1878733339%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -586,7 +586,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1878733339%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -596,7 +596,7 @@
       </div>
     </div>
 <a data-name="-87695449%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.interfaces.marker" id="-87695449%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -604,7 +604,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-87695449%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -614,7 +614,7 @@
       </div>
     </div>
 <a data-name="-1027801966%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types" id="-1027801966%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -622,7 +622,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1027801966%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -632,7 +632,7 @@
       </div>
     </div>
 <a data-name="-572784505%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.boost" id="-572784505%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -640,7 +640,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-572784505%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -650,7 +650,7 @@
       </div>
     </div>
 <a data-name="-1132610005%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.bot" id="-1132610005%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -658,7 +658,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1132610005%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -668,7 +668,7 @@
       </div>
     </div>
 <a data-name="-1148952672%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.business" id="-1148952672%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -676,7 +676,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1148952672%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -686,7 +686,7 @@
       </div>
     </div>
 <a data-name="-342037979%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.chain" id="-342037979%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -694,7 +694,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-342037979%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -704,7 +704,7 @@
       </div>
     </div>
 <a data-name="-1015180232%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.chat" id="-1015180232%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -712,7 +712,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1015180232%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -722,7 +722,7 @@
       </div>
     </div>
 <a data-name="125743050%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.checklist" id="125743050%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -730,7 +730,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="125743050%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -740,7 +740,7 @@
       </div>
     </div>
 <a data-name="1357496715%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.common" id="1357496715%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -748,7 +748,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1357496715%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -758,7 +758,7 @@
       </div>
     </div>
 <a data-name="-2009731999%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.component" id="-2009731999%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -766,7 +766,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2009731999%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -776,7 +776,7 @@
       </div>
     </div>
 <a data-name="385785370%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.configuration" id="385785370%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -784,7 +784,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="385785370%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -794,7 +794,7 @@
       </div>
     </div>
 <a data-name="-36083579%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.forum" id="-36083579%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -802,7 +802,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-36083579%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -812,7 +812,7 @@
       </div>
     </div>
 <a data-name="-1827839918%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.game" id="-1827839918%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -820,7 +820,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1827839918%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -830,7 +830,7 @@
       </div>
     </div>
 <a data-name="-1550496752%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.gift" id="-1550496752%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -838,7 +838,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1550496752%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -848,7 +848,7 @@
       </div>
     </div>
 <a data-name="-1811858273%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.giveaway" id="-1811858273%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -856,7 +856,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1811858273%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -866,7 +866,7 @@
       </div>
     </div>
 <a data-name="-762602311%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.inline" id="-762602311%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -874,7 +874,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-762602311%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -884,7 +884,7 @@
       </div>
     </div>
 <a data-name="-1312382713%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.keyboard" id="-1312382713%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -892,7 +892,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1312382713%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -902,7 +902,7 @@
       </div>
     </div>
 <a data-name="1300270472%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.media" id="1300270472%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -910,7 +910,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1300270472%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -920,7 +920,7 @@
       </div>
     </div>
 <a data-name="1561514853%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.msg" id="1561514853%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -928,7 +928,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1561514853%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -938,7 +938,7 @@
       </div>
     </div>
 <a data-name="-2126583998%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.options" id="-2126583998%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -946,7 +946,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2126583998%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -956,7 +956,7 @@
       </div>
     </div>
 <a data-name="-160003726%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.passport" id="-160003726%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -964,7 +964,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-160003726%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -974,7 +974,7 @@
       </div>
     </div>
 <a data-name="196321450%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.payment" id="196321450%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -982,7 +982,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="196321450%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -992,7 +992,7 @@
       </div>
     </div>
 <a data-name="2078561759%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.poll" id="2078561759%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -1000,7 +1000,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2078561759%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -1010,7 +1010,7 @@
       </div>
     </div>
 <a data-name="-667938875%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.stars" id="-667938875%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -1018,7 +1018,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-667938875%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -1028,7 +1028,7 @@
       </div>
     </div>
 <a data-name="1920267097%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.story" id="1920267097%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -1036,7 +1036,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1920267097%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -1046,7 +1046,7 @@
       </div>
     </div>
 <a data-name="-424512789%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.user" id="-424512789%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -1054,7 +1054,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-424512789%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -1064,7 +1064,7 @@
       </div>
     </div>
 <a data-name="-1881145491%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.types.webapp" id="-1881145491%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -1072,7 +1072,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1881145491%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -1082,7 +1082,7 @@
       </div>
     </div>
 <a data-name="-80078112%2FPackages%2F1596435014" anchor-label="eu.vendeli.tgbot.utils.builders" id="-80078112%2FPackages%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -1090,7 +1090,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-80078112%2FPackages%2F1596435014"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
             </div>
@@ -1100,7 +1100,7 @@
       </div>
     </div>
 <a data-name="-232263597%2FPackages%2F1008479060" anchor-label="eu.vendeli.tgbot.utils.common" id="-232263597%2FPackages%2F1008479060" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jsMain,:telegram-bot/jvmMain,:telegram-bot/nativeMain"></a>
-    <div class="table-row" data-filterable-current=":telegram-bot/commonMain,:telegram-bot/jsMain,:telegram-bot/jvmMain,:telegram-bot/nativeMain" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jsMain,:telegram-bot/jvmMain,:telegram-bot/nativeMain">
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":telegram-bot/commonMain,:telegram-bot/jsMain,:telegram-bot/jvmMain,:telegram-bot/nativeMain" data-filterable-set=":telegram-bot/commonMain,:telegram-bot/jsMain,:telegram-bot/jvmMain,:telegram-bot/nativeMain">
       <div>
         <div class="main-subrow ">
           <div class=""><span class="inline-flex">
@@ -1108,7 +1108,7 @@
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-232263597%2FPackages%2F1008479060"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right">
+          <div class="pull-right platform-tags--wrapper">
             <div class="platform-tags no-gutters">
               <div class="platform-tag common-like">common</div>
               <div class="platform-tag js-like">js</div>
@@ -1123,17 +1123,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2026 Vendelieu</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Vendelieu</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

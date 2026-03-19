@@ -2,7 +2,7 @@ $dokka.format:html-v1
 $dokka.linkExtension:html
 $dokka.location:////PointingToDeclaration/ktgram-config-toml/[root]/index.html
 $dokka.location://fromToml/eu.vendeli.tgbot.TelegramBot#kotlin.String/PointingToDeclaration/ktgram-config-toml/[root]/from-toml.html
-$dokka.location:eu.vendeli.tgbot.implementations/ClassManagerImpl/getInstance/#kotlin.reflect.KClass[*]#kotlin.Array[kotlin.Any?]/PointingToDeclaration/telegram-bot/eu.vendeli.tgbot.implementations/-class-manager-impl/[native]get-instance.html
+$dokka.location:eu.vendeli.tgbot.implementations/ClassManagerImpl/getInstance/#kotlin.reflect.KClass[*]#kotlin.Any?/PointingToDeclaration/telegram-bot/eu.vendeli.tgbot.implementations/-class-manager-impl/[native]get-instance.html
 module:ktgram-config-toml
 eu.vendeli.ktgram.config.env
 module:ktgram-gradle-plugin
