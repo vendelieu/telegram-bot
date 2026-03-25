@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.core.PipelineInterceptor
 import eu.vendeli.tgbot.types.component.ProcessingContext
 import eu.vendeli.tgbot.types.component.userOrNull
 import eu.vendeli.tgbot.utils.common.checkIsLimited
+import eu.vendeli.tgbot.utils.common.handleFailure
 import eu.vendeli.tgbot.utils.internal.checkIsGuarded
 import io.ktor.util.logging.*
 
@@ -14,7 +15,11 @@ internal object DefaultValidationInterceptor : PipelineInterceptor {
         val activity = context.activity ?: return
         val user = context.update.userOrNull
 
-        val isGuarded = activity.guardClass.checkIsGuarded(user, context.update, context.bot)
+        val isGuarded = activity.guardClass.runCatching {
+            checkIsGuarded(user, context.update, context.bot)
+        }.onFailure {
+            context.bot.update.handleFailure(context.update, it)
+        }.getOrDefault(false)
         if (!isGuarded) {
             logger.debug { "Invocation guarded: $activity" }
             context.finish()
