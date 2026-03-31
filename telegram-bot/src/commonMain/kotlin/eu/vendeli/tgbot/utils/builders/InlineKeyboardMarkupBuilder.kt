@@ -2,11 +2,7 @@ package eu.vendeli.tgbot.utils.builders
 
 import eu.vendeli.tgbot.types.game.CallbackGame
 import eu.vendeli.tgbot.types.inline.SwitchInlineQueryChosenChat
-import eu.vendeli.tgbot.types.keyboard.CopyTextButton
-import eu.vendeli.tgbot.types.keyboard.InlineKeyboardButton
-import eu.vendeli.tgbot.types.keyboard.InlineKeyboardMarkup
-import eu.vendeli.tgbot.types.keyboard.LoginUrl
-import eu.vendeli.tgbot.types.keyboard.WebAppInfo
+import eu.vendeli.tgbot.types.keyboard.*
 import kotlin.jvm.JvmName
 
 /**
@@ -20,48 +16,76 @@ class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
     /**
      * Url button
      */
-    fun url(name: String, value: () -> String): InlineKeyboardMarkupBuilder {
-        buttons += InlineKeyboardButton(name, url = value())
+    fun url(
+        name: String,
+        iconCustomEmojiId: String? = null,
+        value: () -> String
+    ): InlineKeyboardMarkupBuilder {
+        buttons += InlineKeyboardButton(name, url = value(), iconCustomEmojiId = iconCustomEmojiId)
         return this
     }
 
     /**
      * CallbackData button
      */
-    fun callbackData(name: String, value: () -> String): InlineKeyboardMarkupBuilder {
-        buttons += InlineKeyboardButton(name, callbackData = value())
+    fun callbackData(
+        name: String,
+        iconCustomEmojiId: String? = null,
+        value: () -> String,
+    ): InlineKeyboardMarkupBuilder {
+        buttons += InlineKeyboardButton(name, callbackData = value(), iconCustomEmojiId = iconCustomEmojiId)
         return this
     }
 
     /**
      * Web app info button
      */
-    fun webAppInfo(name: String, value: () -> String): InlineKeyboardMarkupBuilder {
-        buttons += InlineKeyboardButton(name, webApp = WebAppInfo(value()))
+    fun webAppInfo(
+        name: String,
+        iconCustomEmojiId: String? = null,
+        value: () -> String
+    ): InlineKeyboardMarkupBuilder {
+        buttons += InlineKeyboardButton(name, webApp = WebAppInfo(value()), iconCustomEmojiId = iconCustomEmojiId)
         return this
     }
 
     /**
      * Login url button
      */
-    fun loginUrl(name: String, value: () -> LoginUrl): InlineKeyboardMarkupBuilder {
-        buttons += InlineKeyboardButton(name, loginUrl = value())
+    fun loginUrl(
+        name: String,
+        iconCustomEmojiId: String? = null,
+        value: () -> LoginUrl
+    ): InlineKeyboardMarkupBuilder {
+        buttons += InlineKeyboardButton(name, loginUrl = value(), iconCustomEmojiId = iconCustomEmojiId)
         return this
     }
 
     /**
      * Switch inline query button
      */
-    fun switchInlineQuery(name: String, value: () -> String): InlineKeyboardMarkupBuilder {
-        buttons += InlineKeyboardButton(name, switchInlineQuery = value())
+    fun switchInlineQuery(
+        name: String,
+        iconCustomEmojiId: String? = null,
+        value: () -> String,
+    ): InlineKeyboardMarkupBuilder {
+        buttons += InlineKeyboardButton(name, switchInlineQuery = value(), iconCustomEmojiId = iconCustomEmojiId)
         return this
     }
 
     /**
      * Switch inline query button for current chat
      */
-    fun switchInlineQueryCurrentChat(name: String, value: () -> String): InlineKeyboardMarkupBuilder {
-        buttons += InlineKeyboardButton(name, switchInlineQueryCurrentChat = value())
+    fun switchInlineQueryCurrentChat(
+        name: String,
+        iconCustomEmojiId: String? = null,
+        value: () -> String,
+    ): InlineKeyboardMarkupBuilder {
+        buttons += InlineKeyboardButton(
+            name,
+            switchInlineQueryCurrentChat = value(),
+            iconCustomEmojiId = iconCustomEmojiId,
+        )
         return this
     }
 
@@ -70,33 +94,51 @@ class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
      */
     fun switchInlineQueryChosenChat(
         name: String,
+        iconCustomEmojiId: String? = null,
         value: () -> SwitchInlineQueryChosenChat,
     ): InlineKeyboardMarkupBuilder {
-        buttons += InlineKeyboardButton(name, switchInlineQueryChosenChat = value())
+        buttons += InlineKeyboardButton(
+            name,
+            switchInlineQueryChosenChat = value(),
+            iconCustomEmojiId = iconCustomEmojiId,
+        )
         return this
     }
 
     /**
      * Callback game button
      */
-    fun callbackGame(name: String): InlineKeyboardMarkupBuilder {
-        buttons += InlineKeyboardButton(name, callbackGame = CallbackGame)
+    fun callbackGame(name: String, iconCustomEmojiId: String? = null): InlineKeyboardMarkupBuilder {
+        buttons += InlineKeyboardButton(name, callbackGame = CallbackGame, iconCustomEmojiId = iconCustomEmojiId)
         return this
     }
 
     /**
      * Pay button
      */
-    fun pay(name: String): InlineKeyboardMarkupBuilder {
-        buttons += InlineKeyboardButton(name, pay = true)
+    fun pay(name: String, iconCustomEmojiId: String? = null): InlineKeyboardMarkupBuilder {
+        buttons += InlineKeyboardButton(name, pay = true, iconCustomEmojiId = iconCustomEmojiId)
         return this
     }
 
     /**
      * CopyText button
      */
-    fun copyText(name: String, copyText: () -> String): InlineKeyboardMarkupBuilder {
-        buttons += InlineKeyboardButton(name, copyText = CopyTextButton(copyText()))
+    fun copyText(
+        name: String,
+        iconCustomEmojiId: String? = null,
+        copyText: () -> String
+    ): InlineKeyboardMarkupBuilder {
+        buttons += InlineKeyboardButton(
+            name,
+            copyText = CopyTextButton(copyText()),
+            iconCustomEmojiId = iconCustomEmojiId,
+        )
+        return this
+    }
+
+    fun button(value: InlineKeyboardButton): InlineKeyboardMarkupBuilder {
+        buttons += value
         return this
     }
 
