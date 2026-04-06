@@ -23,7 +23,7 @@ ayza = "10.0.4"
 spring = "4.0.5"
 
 ksp = "2.3.6"
-poet = "2.2.0"
+poet = "2.3.0"
 autoservice-annotations = "1.1.1"
 autoservice-ksp = "1.2.0"
 kotlinCompileTesting = "0.12.1"
