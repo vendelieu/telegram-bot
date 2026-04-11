@@ -12,6 +12,7 @@ import kotlinx.serialization.Serializable
  * @property voterChat Optional. The chat that changed the answer to the poll, if the voter is anonymous
  * @property user Optional. The user that changed the answer to the poll, if the voter isn't anonymous
  * @property optionIds 0-based identifiers of chosen answer options. May be empty if the vote was retracted.
+ * @property optionPersistentIds Persistent identifiers of the chosen answer options. May be empty if the vote was retracted.
  */
 @Serializable
 data class PollAnswer(
@@ -19,4 +20,5 @@ data class PollAnswer(
     val voterChat: Chat? = null,
     val user: User? = null,
     val optionIds: List<Int>,
+    val optionPersistentIds: List<String>,
 )

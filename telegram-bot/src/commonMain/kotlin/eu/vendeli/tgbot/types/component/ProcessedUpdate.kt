@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.boost.ChatBoostRemoved
 import eu.vendeli.tgbot.types.boost.ChatBoostUpdated
+import eu.vendeli.tgbot.types.bot.ManagedBotUpdated
 import eu.vendeli.tgbot.types.business.BusinessConnection
 import eu.vendeli.tgbot.types.business.BusinessMessagesDeleted
 import eu.vendeli.tgbot.types.chat.Chat
@@ -357,6 +358,18 @@ data class PurchasedPaidMediaUpdate(
     override val text: String = purchasedPaidMedia.paidMediaPayload
 
     internal companion object : UpdateSerializer<PurchasedPaidMediaUpdate>()
+}
+
+@Serializable(ManagedBotUpdate.Companion::class)
+data class ManagedBotUpdate(
+    override val updateId: Int,
+    override val origin: Update,
+    val managedBot: ManagedBotUpdated,
+) : ProcessedUpdate(updateId, origin, UpdateType.MANAGED_BOT),
+    UserReference {
+    override val user: User = managedBot.user
+
+    internal companion object : UpdateSerializer<ManagedBotUpdate>()
 }
 
 inline val ProcessedUpdate.userOrNull: User? get() = (this as? UserReference)?.user

@@ -16,6 +16,7 @@ import kotlinx.serialization.Serializable
  * @property quoteEntities Optional. A JSON-serialized list of special entities that appear in the quote. It can be specified instead of quote_parse_mode.
  * @property quotePosition Optional. Position of the quote in the original message in UTF-16 code units
  * @property checklistTaskId Optional. Identifier of the specific checklist task to be replied to
+ * @property pollOptionId Optional. Persistent identifier of the specific poll option to be replied to
  */
 @Serializable
 data class ReplyParameters(
@@ -27,4 +28,5 @@ data class ReplyParameters(
     var quoteEntities: List<MessageEntity>? = null,
     var quotePosition: Int? = null,
     var checklistTaskId: Long? = null,
+    var pollOptionId: String? = null,
 )

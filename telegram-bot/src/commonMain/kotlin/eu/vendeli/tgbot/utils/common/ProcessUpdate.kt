@@ -15,6 +15,7 @@ import eu.vendeli.tgbot.types.component.EditedBusinessMessageUpdate
 import eu.vendeli.tgbot.types.component.EditedChannelPostUpdate
 import eu.vendeli.tgbot.types.component.EditedMessageUpdate
 import eu.vendeli.tgbot.types.component.InlineQueryUpdate
+import eu.vendeli.tgbot.types.component.ManagedBotUpdate
 import eu.vendeli.tgbot.types.component.MessageReactionCountUpdate
 import eu.vendeli.tgbot.types.component.MessageReactionUpdate
 import eu.vendeli.tgbot.types.component.MessageUpdate
@@ -53,5 +54,6 @@ fun Update.processUpdate(): ProcessedUpdate = when {
     editedBusinessMessage != null -> EditedBusinessMessageUpdate(updateId, this, editedBusinessMessage)
     deletedBusinessMessages != null -> DeletedBusinessMessagesUpdate(updateId, this, deletedBusinessMessages)
     purchasedPaidMedia != null -> PurchasedPaidMediaUpdate(updateId, this, purchasedPaidMedia)
+    managedBot != null -> ManagedBotUpdate(updateId, this, managedBot)
     else -> throw TgException("Unknown type of update.")
 }

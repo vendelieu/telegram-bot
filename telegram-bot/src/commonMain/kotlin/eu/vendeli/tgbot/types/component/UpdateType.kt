@@ -74,6 +74,9 @@ enum class UpdateType {
     @SerialName("purchased_paid_media")
     PURCHASED_PAID_MEDIA,
 
+    @SerialName("managed_bot")
+    MANAGED_BOT,
+
     ;
 
     override fun toString(): String = "UpdateType.$name"

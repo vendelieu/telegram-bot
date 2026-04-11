@@ -28,11 +28,14 @@ enum class PollType {
  * @property isAnonymous True, if the poll is anonymous
  * @property type Poll type, currently can be "regular" or "quiz"
  * @property allowsMultipleAnswers True, if the poll allows multiple answers
- * @property correctOptionId Optional. 0-based identifier of the correct answer option. Available only for polls in the quiz mode, which are closed, or was sent (not forwarded) by the bot or to the private chat with the bot.
+ * @property allowsRevoting True, if the poll allows to change the chosen answer options
+ * @property correctOptionIds Optional. Array of 0-based identifiers of the correct answer options. Available only for polls in quiz mode which are closed or were sent (not forwarded) by the bot or to the private chat with the bot.
  * @property explanation Optional. Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters
  * @property explanationEntities Optional. Special entities like usernames, URLs, bot commands, etc. that appear in the explanation
  * @property openPeriod Optional. Amount of time in seconds the poll will be active after creation
  * @property closeDate Optional. Point in time (Unix timestamp) when the poll will be automatically closed
+ * @property description Optional. Description of the poll; for polls inside the Message object only
+ * @property descriptionEntities Optional. Special entities like usernames, URLs, bot commands, etc. that appear in the description
  */
 @Serializable
 data class Poll(
@@ -45,10 +48,13 @@ data class Poll(
     val isAnonymous: Boolean,
     val type: PollType,
     val allowsMultipleAnswers: Boolean,
-    val correctOptionId: Int? = null,
+    val allowsRevoting: Boolean,
+    val correctOptionIds: List<Int>? = null,
     val explanation: String? = null,
     val explanationEntities: List<MessageEntity>? = null,
     val openPeriod: Int? = null,
     @Serializable(InstantSerializer::class)
     val closeDate: Instant? = null,
+    val description: String? = null,
+    val descriptionEntities: List<MessageEntity>? = null,
 )
