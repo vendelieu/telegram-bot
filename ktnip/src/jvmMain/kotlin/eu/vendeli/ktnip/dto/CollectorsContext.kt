@@ -14,4 +14,12 @@ data class CollectorsContext(
     val loadFun: FunSpec.Builder,
     val pkg: String? = null,
     val autoAnswerCallback: Boolean = false,
+    // Tracks Activity object names already emitted into activitiesFile/loadFun
+    // during the current processing pass, mapped to the activityId reference
+    // returned from generateAndRegisterActivity. Ensures idempotent emission
+    // so no caller can append a duplicate object declaration for the same
+    // function — covers both CommonHandler.Text multi-value flattening and
+    // the hypothetical case of a single function being picked up by multiple
+    // collectors.
+    val emittedActivities: MutableMap<String, String>,
 )

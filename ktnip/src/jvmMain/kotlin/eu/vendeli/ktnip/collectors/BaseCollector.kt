@@ -7,6 +7,7 @@ import eu.vendeli.ktnip.dto.ActivityMetadata
 import eu.vendeli.ktnip.dto.CollectorsContext
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import eu.vendeli.ktnip.dto.LambdaParameters
+import eu.vendeli.ktnip.utils.getActivityObjectName
 import eu.vendeli.tgbot.types.component.UpdateType
 
 /**
@@ -45,6 +46,16 @@ abstract class BaseCollector : Collector {
         parameters: List<LambdaParameters> = emptyList(),
         updateType: UpdateType? = null,
     ): String {
+        val objectName = function.getActivityObjectName()
+
+        // Idempotency guard: if this function's Activity has already been emitted
+        // into activitiesFile/loadFun during the current processing pass (by this
+        // collector or any other), reuse the existing reference instead of
+        // appending a duplicate `object …` declaration. Prevents conflicting
+        // declarations for CommonHandler.Text multi-value flattening and any
+        // future cross-collector overlap.
+        ctx.emittedActivities[objectName]?.let { return it }
+
         val activityCodeGenerator = ActivityCodeGenerator(ctx.activitiesFile, ctx.injectableTypes)
         val activityCodeBlock = activityCodeGenerator.buildActivityCodeBlock(
             function = function,
@@ -55,6 +66,8 @@ abstract class BaseCollector : Collector {
         )
 
         ctx.loadFun.addStatement("registerActivity(%L)", activityCodeBlock)
-        return activityCodeBlock.toString()
+        val activityId = activityCodeBlock.toString()
+        ctx.emittedActivities[objectName] = activityId
+        return activityId
     }
 }
