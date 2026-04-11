@@ -26,6 +26,7 @@ import eu.vendeli.tgbot.types.component.InputFile
 import eu.vendeli.tgbot.types.component.ParseMode
 import eu.vendeli.tgbot.types.forum.IconColor
 import eu.vendeli.tgbot.types.gift.AcceptedGiftTypes
+import eu.vendeli.tgbot.types.keyboard.KeyboardButton
 import eu.vendeli.tgbot.types.keyboard.MenuButton
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.types.media.InputPaidMedia
@@ -938,6 +939,8 @@ public suspend inline fun TelegramBot.getMyCommands(languageCode: String? = null
 
 public suspend inline fun TelegramBot.deleteWebhook(dropPendingUpdates: Boolean): Unit = eu.vendeli.tgbot.api.botactions.deleteWebhook(dropPendingUpdates).send(this)
 
+public suspend inline fun TelegramBot.getManagedBotToken(userId: Long): Unit = eu.vendeli.tgbot.api.botactions.getManagedBotToken(userId).send(this)
+
 public suspend inline fun TelegramBot.getMyShortDescription(languageCode: String? = null): Unit = eu.vendeli.tgbot.api.botactions.getMyShortDescription(languageCode).send(this)
 
 public suspend inline fun TelegramBot.setWebhook(url: String): Unit = eu.vendeli.tgbot.api.botactions.setWebhook(url).send(this)
@@ -950,6 +953,8 @@ public suspend inline fun TelegramBot.getMe(): Unit = eu.vendeli.tgbot.api.botac
 
 public suspend inline fun TelegramBot.setMyDefaultAdministratorRights(rights: ChatAdministratorRights? = null, forChannel: Boolean? = null): Unit = eu.vendeli.tgbot.api.botactions.setMyDefaultAdministratorRights(rights, forChannel).send(this)
 
+public suspend inline fun TelegramBot.savePreparedKeyboardButton(userId: Long, button: KeyboardButton): Unit = eu.vendeli.tgbot.api.botactions.savePreparedKeyboardButton(userId, button).send(this)
+
 public suspend inline fun TelegramBot.getWebhookInfo(): Unit = eu.vendeli.tgbot.api.botactions.getWebhookInfo().send(this)
 
 public suspend inline fun TelegramBot.close(): Unit = eu.vendeli.tgbot.api.botactions.close().send(this)
@@ -957,6 +962,8 @@ public suspend inline fun TelegramBot.close(): Unit = eu.vendeli.tgbot.api.botac
 public suspend inline fun TelegramBot.getMyDescription(languageCode: String? = null): Unit = eu.vendeli.tgbot.api.botactions.getMyDescription(languageCode).send(this)
 
 public suspend inline fun TelegramBot.setMyName(name: String? = null, languageCode: String? = null): Unit = eu.vendeli.tgbot.api.botactions.setMyName(name, languageCode).send(this)
+
+public suspend inline fun TelegramBot.replaceManagedBotToken(userId: Long): Unit = eu.vendeli.tgbot.api.botactions.replaceManagedBotToken(userId).send(this)
 
 public suspend inline fun TelegramBot.sendGift(
   giftId: String,

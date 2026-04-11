@@ -14,4 +14,7 @@ class ProcessorTest : AbstractKspTest() {
 
     @Test
     fun ctxProviders() = runTest("test-data/CtxProviders.kt")
+
+    @Test
+    fun commonHandlerMultiValue() = runTest("test-data/CommonHandlerMultiValue.kt")
 }

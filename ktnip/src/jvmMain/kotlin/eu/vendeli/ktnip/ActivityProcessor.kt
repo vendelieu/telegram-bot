@@ -153,6 +153,7 @@ class ActivityProcessor(
             loadFun = loadFun,
             pkg = pkg,
             autoAnswerCallback = autoAnswerCallback,
+            emittedActivities = mutableMapOf(),
         )
 
         val collectors = listOf(

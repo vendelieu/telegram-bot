@@ -25,6 +25,7 @@ import eu.vendeli.tgbot.utils.common.onEditedBusinessMessage
 import eu.vendeli.tgbot.utils.common.onEditedChannelPost
 import eu.vendeli.tgbot.utils.common.onEditedMessage
 import eu.vendeli.tgbot.utils.common.onInlineQuery
+import eu.vendeli.tgbot.utils.common.onManagedBot
 import eu.vendeli.tgbot.utils.common.onMessage
 import eu.vendeli.tgbot.utils.common.onMessageReaction
 import eu.vendeli.tgbot.utils.common.onMessageReactionCount
@@ -232,6 +233,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             onEditedBusinessMessage { onUpdateInvocationsCount++ }
             onDeletedBusinessMessages { onUpdateInvocationsCount++ }
             onPurchasedPaidMedia { onUpdateInvocationsCount++ }
+            onManagedBot { onUpdateInvocationsCount++ }
         }
 
         UpdateType.entries.forEach { type ->

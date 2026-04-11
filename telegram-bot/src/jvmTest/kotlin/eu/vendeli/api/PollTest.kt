@@ -7,7 +7,6 @@ import eu.vendeli.tgbot.types.msg.EntityType
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.component.getOrNull
 import eu.vendeli.tgbot.types.poll.InputPollOption
-import eu.vendeli.tgbot.types.poll.PollOption
 import eu.vendeli.tgbot.types.poll.PollType
 import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.tgbot.utils.internal.toJsonElement
@@ -36,7 +35,7 @@ class PollTest : BotTestContext() {
                 .options {
                     type = PollType.Quiz
                     openPeriod = 2.minutes
-                    correctOptionId = 1
+                    correctOptionIds = listOf(1)
                     isAnonymous = false
                 }.sendReq()
                 .shouldSuccess()
@@ -45,10 +44,11 @@ class PollTest : BotTestContext() {
                 shouldNotBeNull()
                 question shouldBe "Test"
                 isAnonymous shouldBe false
-                options shouldContainExactly listOf(PollOption("test1", 0), PollOption("test2", 0))
+                options.map { it.text } shouldContainExactly listOf("test1", "test2")
+                options.map { it.voterCount } shouldContainExactly listOf(0, 0)
                 openPeriod?.toLong() shouldBe 120.seconds.inWholeSeconds
                 type shouldBe PollType.Quiz
-                correctOptionId shouldBe 1
+                correctOptionIds shouldBe listOf(1)
             }
         }
     }
@@ -59,7 +59,7 @@ class PollTest : BotTestContext() {
             .options {
                 type = PollType.Quiz
                 openPeriod = 565.seconds
-                correctOptionId = 1
+                correctOptionIds = listOf(1)
                 isAnonymous = false
             }.sendReq()
 

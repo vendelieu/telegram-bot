@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.boost.ChatBoostAdded
+import eu.vendeli.tgbot.types.bot.ManagedBotCreated
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatBackground
 import eu.vendeli.tgbot.types.chat.ChatOwnerChanged
@@ -53,6 +54,8 @@ import eu.vendeli.tgbot.types.payment.Invoice
 import eu.vendeli.tgbot.types.payment.RefundedPayment
 import eu.vendeli.tgbot.types.payment.SuccessfulPayment
 import eu.vendeli.tgbot.types.poll.Poll
+import eu.vendeli.tgbot.types.poll.PollOptionAdded
+import eu.vendeli.tgbot.types.poll.PollOptionDeleted
 import eu.vendeli.tgbot.types.user.UsersShared
 import eu.vendeli.tgbot.types.webapp.WriteAccessAllowed
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
@@ -222,6 +225,7 @@ data class Message(
     val refundedPayment: RefundedPayment? = null,
     val directMessagesTopic: DirectMessagesTopic? = null,
     val replyToChecklistTaskId: Long? = null,
+    val replyToPollOptionId: String? = null,
     val isPaidPost: Boolean? = null,
     val suggestedPostInfo: SuggestedPostInfo? = null,
     val suggestedPostApproved: SuggestedPostApproved? = null,
@@ -254,6 +258,9 @@ data class Message(
     val giveawayWinners: GiveawayWinners? = null,
     val giveawayCompleted: GiveawayCompleted? = null,
     val paidMessagePriceChanged: PaidMessagePriceChanged? = null,
+    val managedBotCreated: ManagedBotCreated? = null,
+    val pollOptionAdded: PollOptionAdded? = null,
+    val pollOptionDeleted: PollOptionDeleted? = null,
     val videoChatScheduled: VideoChatScheduled? = null,
     val videoChatStarted: VideoChatStarted? = null,
     val videoChatEnded: VideoChatEnded? = null,

@@ -1,5 +1,5 @@
 [versions]
-ktor = "3.4.1"
+ktor = "3.4.2"
 logback = "1.5.32"
 slf4j = "2.0.17"
 
@@ -8,29 +8,29 @@ stately = "2.1.0"
 
 kotlin = "2.3.20"
 coroutines = "1.10.2"
-dokka = "2.1.0"
+dokka = "2.2.0"
 kotlinter = "5.4.2"
 deteKT = "1.23.8"
 toml = "0.5.0"
 
 dotenv-kotlin = "6.5.1"
-kotest = "6.1.7"
+kotest = "6.1.11"
 mockk = "1.14.9"
-kover = "0.9.7"
+kover = "0.9.8"
 krypto = "4.0.10"
 urlencoder = "1.6.0"
-ayza = "10.0.3"
-spring = "4.0.3"
+ayza = "10.0.4"
+spring = "4.0.5"
 
 ksp = "2.3.6"
-poet = "2.2.0"
+poet = "2.3.0"
 autoservice-annotations = "1.1.1"
 autoservice-ksp = "1.2.0"
 kotlinCompileTesting = "0.12.1"
 
 binvalid = "0.18.1"
 publisher = "0.36.0"
-gradle-publish = "2.1.0"
+gradle-publish = "2.1.1"
 
 [libraries]
 # ktor
