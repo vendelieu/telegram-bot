@@ -1,6 +1,13 @@
 # Telegram-bot (KtGram) Changelog
 
-## 9.3.1
+## 9.4.0
+
+* Covered Tg API [`9.6`](https://core.telegram.org/bots/api-changelog#april-3-2026).
+* Fixed `@CommonHandler` duplicate issue #471.
+* Added catching exceptions in `Guard` checks.
+* Added `iconCustomEmojiId` to `InlineKeyboardMarkupBuilder` buttons and generic `button` function.
+
+### 9.3.1
 
 * Added `skipPersist` to `Transition.JumpTo` to give control over persisting.
 * Fixed parsing of parameters with default arg parser.
