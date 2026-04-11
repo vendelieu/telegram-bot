@@ -19,7 +19,7 @@ class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
     fun url(
         name: String,
         iconCustomEmojiId: String? = null,
-        value: () -> String
+        value: () -> String,
     ): InlineKeyboardMarkupBuilder {
         buttons += InlineKeyboardButton(name, url = value(), iconCustomEmojiId = iconCustomEmojiId)
         return this
@@ -43,7 +43,7 @@ class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
     fun webAppInfo(
         name: String,
         iconCustomEmojiId: String? = null,
-        value: () -> String
+        value: () -> String,
     ): InlineKeyboardMarkupBuilder {
         buttons += InlineKeyboardButton(name, webApp = WebAppInfo(value()), iconCustomEmojiId = iconCustomEmojiId)
         return this
@@ -55,7 +55,7 @@ class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
     fun loginUrl(
         name: String,
         iconCustomEmojiId: String? = null,
-        value: () -> LoginUrl
+        value: () -> LoginUrl,
     ): InlineKeyboardMarkupBuilder {
         buttons += InlineKeyboardButton(name, loginUrl = value(), iconCustomEmojiId = iconCustomEmojiId)
         return this
@@ -127,7 +127,7 @@ class InlineKeyboardMarkupBuilder : KeyboardBuilder<InlineKeyboardButton>() {
     fun copyText(
         name: String,
         iconCustomEmojiId: String? = null,
-        copyText: () -> String
+        copyText: () -> String,
     ): InlineKeyboardMarkupBuilder {
         buttons += InlineKeyboardButton(
             name,
