@@ -20,7 +20,9 @@ class ProcessingPipeline internal constructor() {
         intercept(ProcessingPipePhase.Parsing, DefaultParsingInterceptor)
         intercept(ProcessingPipePhase.Match, DefaultMatchInterceptor)
         intercept(ProcessingPipePhase.Validation, DefaultValidationInterceptor)
+        intercept(ProcessingPipePhase.PreInvoke, DefaultPreInvokeInterceptor)
         intercept(ProcessingPipePhase.Invoke, DefaultInvokeInterceptor)
+        intercept(ProcessingPipePhase.PostInvoke, DefaultPostInvokeInterceptor)
     }
 
     fun intercept(phase: ProcessingPipePhase, interceptor: PipelineInterceptor) {
