@@ -135,23 +135,26 @@ class ApiProcessor(
         val isSimple = actionTypeFQ == simpleActionFQ
 
         val parameters = declaration.parameters
-            .mapIndexed { _, it ->
-                val resolvedType = it.type.resolve()
+            .mapIndexed { _, valueParameter ->
+                val resolvedType = valueParameter.type.resolve()
                 val isFunType = resolvedType.isFunctionType
                 when {
                     isFunType -> ParameterSpec.builder(
-                        it.name!!.getShortName(),
-                        it.type.toTypeName(),
+                        valueParameter.name!!.getShortName(),
+                        valueParameter.type.toTypeName(),
                         KModifier.NOINLINE,
                     )
 
-                    it.isVararg -> ParameterSpec.builder(
-                        it.name!!.getShortName(),
-                        it.type.toTypeName(),
+                    valueParameter.isVararg -> ParameterSpec.builder(
+                        valueParameter.name!!.getShortName(),
+                        valueParameter.type.toTypeName(),
                         KModifier.VARARG,
                     )
 
-                    else -> ParameterSpec.builder(it.name!!.getShortName(), it.type.toTypeName())
+                    else -> ParameterSpec.builder(
+                        name = valueParameter.name!!.getShortName(),
+                        type = valueParameter.type.toTypeName()
+                    )
                 }.apply {
                     if (resolvedType.isMarkedNullable) defaultValue("null")
                 }.build()
@@ -214,8 +217,8 @@ class ApiProcessor(
                             .builder("on$funName")
                             .receiver(fdslType)
                             .addKdoc(
-                                "Action that is performed on the presence of " +
-                                    "[eu.vendeli.tgbot.types.common.Update.$nameRef] in the [eu.vendeli.tgbot.types.common.Update].",
+                                "Action that is performed on the presence of [eu.vendeli.tgbot.types.common." +
+                                    "Update.$nameRef] in the [eu.vendeli.tgbot.types.common.Update].",
                             ).addParameter(ParameterSpec.builder("block", blockTypeRef).build())
                             .addCode(
                                 "onUpdate(UpdateType.%N) {\n" +
