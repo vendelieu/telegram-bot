@@ -1,12 +1,16 @@
 package eu.vendeli.tgbot
 
+import eu.vendeli.tgbot.core.ProcessingPipePhase
 import eu.vendeli.tgbot.core.TgUpdateHandler
+import eu.vendeli.tgbot.core.interceptors.SessionTrackingInterceptor
 import eu.vendeli.tgbot.interfaces.helper.ConfigLoader
+import eu.vendeli.tgbot.interfaces.session.SessionManager
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.configuration.BotConfiguration
 import eu.vendeli.tgbot.types.configuration.rewriteWith
 import eu.vendeli.tgbot.types.media.File
 import eu.vendeli.tgbot.utils.common.*
+import eu.vendeli.tgbot.utils.internal.setupSessionManager
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -66,11 +70,20 @@ class TelegramBot(
      */
     val update = TgUpdateHandler(this)
 
+    /**
+     * Session tracking manager.
+     *
+     * `null` unless `sessions { }` was called in the [BotConfiguration] block; that's the
+     * opt-in signal — leaving the block out means zero overhead on the update pipeline.
+     */
+    val sessions: SessionManager? get() = config.sessions?.manager
+
     internal var httpClient = getConfiguredHttpClient(config.httpClient)
 
     init {
         loadContext()
         logger.debug("[$identifier] Ktor using engine: ${httpClient.engine::class.simpleName}")
+        setupSessionManager()
     }
 
     /**

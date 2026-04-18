@@ -37,6 +37,16 @@ sealed class ParameterResolutionStrategy {
     }
 
     /**
+     * Resolved from context.bot.sessions?.of(context.update, qualifier).
+     * [qualifier] is non-null when the parameter carries a `@SessionQualifier("…")` annotation.
+     */
+    data class Session(
+        override val typeName: TypeName,
+        override val isNullable: Boolean,
+        val qualifier: String? = null,
+    ) : ParameterResolutionStrategy()
+
+    /**
      * Resolved from processing context
      */
     data class ProcessingContext(

@@ -44,6 +44,8 @@ data class BotConfiguration(
     internal var updatesListener: UpdatesListenerConfiguration = UpdatesListenerConfiguration(),
     internal var commandParsing: CommandParsingConfiguration = CommandParsingConfiguration(),
     internal var loggerFactory: LoggerFactory = DefaultLoggerFactory,
+    @Transient
+    internal var sessions: SessionConfiguration? = null,
 ) {
     /**
      * Function for configuring the http client. See [HttpConfiguration].
@@ -72,6 +74,15 @@ data class BotConfiguration(
     fun commandParsing(block: CommandParsingConfiguration.() -> Unit) {
         commandParsing.block()
     }
+
+    /**
+     * Enables session tracking and configures the [eu.vendeli.tgbot.interfaces.session.SessionManager].
+     * See [SessionConfiguration]. Must be called (even with an empty body) for
+     * `TelegramBot.sessions` to be non-null.
+     */
+    fun sessions(block: SessionConfiguration.() -> Unit) {
+        sessions = (sessions ?: SessionConfiguration()).apply(block)
+    }
 }
 
 internal fun BotConfiguration.rewriteWith(new: BotConfiguration): BotConfiguration {
@@ -88,5 +99,6 @@ internal fun BotConfiguration.rewriteWith(new: BotConfiguration): BotConfigurati
     updatesListener = new.updatesListener
     commandParsing = new.commandParsing
     loggerFactory = new.loggerFactory
+    sessions = new.sessions
     return this
 }
