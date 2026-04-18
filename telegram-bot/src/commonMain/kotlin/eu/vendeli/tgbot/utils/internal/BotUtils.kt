@@ -12,7 +12,7 @@ fun TelegramBot.setupSessionManager() {
             logger.debug("Tracking incoming messages")
             update.pipeline.intercept(
                 ProcessingPipePhase.Setup,
-                SessionTrackingInterceptor(cfg.manager)
+                SessionTrackingInterceptor(cfg.manager),
             )
         }
     }

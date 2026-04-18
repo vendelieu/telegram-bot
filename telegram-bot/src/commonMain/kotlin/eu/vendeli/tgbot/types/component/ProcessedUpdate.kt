@@ -70,9 +70,7 @@ data class MessageUpdate(
     override val chat = message.chat
     override val messageKind = message.detectKind()
 
-    override fun MessageReference.getMessage(): Message {
-        return message
-    }
+    override fun MessageReference.getMessage(): Message = message
 
     internal companion object : UpdateSerializer<MessageUpdate>()
 }
@@ -91,9 +89,7 @@ data class EditedMessageUpdate(
     override val chat = editedMessage.chat
     override val messageKind = editedMessage.detectKind()
 
-    override fun MessageReference.getMessage(): Message {
-        return editedMessage
-    }
+    override fun MessageReference.getMessage(): Message = editedMessage
 
     internal companion object : UpdateSerializer<EditedMessageUpdate>()
 }
@@ -112,9 +108,7 @@ data class ChannelPostUpdate(
     override val chat = channelPost.chat
     override val messageKind = channelPost.detectKind()
 
-    override fun MessageReference.getMessage(): Message {
-        return channelPost
-    }
+    override fun MessageReference.getMessage(): Message = channelPost
 
     internal companion object : UpdateSerializer<ChannelPostUpdate>()
 }
@@ -133,9 +127,7 @@ data class EditedChannelPostUpdate(
     override val chat = editedChannelPost.chat
     override val messageKind = editedChannelPost.detectKind()
 
-    override fun MessageReference.getMessage(): Message {
-        return editedChannelPost
-    }
+    override fun MessageReference.getMessage(): Message = editedChannelPost
 
     internal companion object : UpdateSerializer<EditedChannelPostUpdate>()
 }
@@ -166,9 +158,7 @@ data class BusinessMessageUpdate(
     override val chat = businessMessage.chat
     override val messageKind = businessMessage.detectKind()
 
-    override fun MessageReference.getMessage(): Message {
-        return businessMessage
-    }
+    override fun MessageReference.getMessage(): Message = businessMessage
 
     internal companion object : UpdateSerializer<BusinessMessageUpdate>()
 }
@@ -187,9 +177,7 @@ data class EditedBusinessMessageUpdate(
     override val chat = editedBusinessMessage.chat
     override val messageKind = editedBusinessMessage.detectKind()
 
-    override fun MessageReference.getMessage(): Message {
-        return editedBusinessMessage
-    }
+    override fun MessageReference.getMessage(): Message = editedBusinessMessage
 
     internal companion object : UpdateSerializer<EditedBusinessMessageUpdate>()
 }
@@ -272,10 +260,7 @@ data class CallbackQueryUpdate(
     override val chat = callbackQuery.message?.chat
     override val messageKind = getMessage()?.detectKind()
 
-    override fun MessageReference.getMessage(): Message? {
-        return callbackQuery.message?.accessibleOrNull()
-    }
-
+    override fun MessageReference.getMessage(): Message? = callbackQuery.message?.accessibleOrNull()
 
     internal companion object : UpdateSerializer<CallbackQueryUpdate>()
 }

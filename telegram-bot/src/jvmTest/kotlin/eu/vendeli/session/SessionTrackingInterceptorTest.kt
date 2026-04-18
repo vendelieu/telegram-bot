@@ -16,7 +16,6 @@ import kotlinx.coroutines.runBlocking
  * `CoroutineContext` is involved.
  */
 class SessionTrackingInterceptorTest : AnnotationSpec() {
-
     @Test
     fun setupInterceptorRecordsIncomingMessages() = runBlocking {
         val bot = TelegramBot("000000:TEST") {
@@ -24,7 +23,8 @@ class SessionTrackingInterceptorTest : AnnotationSpec() {
         }
         val mgr = checkNotNull(bot.sessions) { "sessions manager should be non-null after sessions { }" }
 
-        val mock = eu.vendeli.utils.MockUpdate.SINGLE(text = "/track")
+        val mock = eu.vendeli.utils.MockUpdate
+            .SINGLE(text = "/track")
         val update = mock.updates.single()
 
         bot.update.handle(update)
@@ -50,7 +50,10 @@ class SessionTrackingInterceptorTest : AnnotationSpec() {
         }
         val mgr = checkNotNull(bot.sessions)
 
-        val update = eu.vendeli.utils.MockUpdate.SINGLE().updates.single()
+        val update = eu.vendeli.utils.MockUpdate
+            .SINGLE()
+            .updates
+            .single()
         bot.update.handle(update)
 
         mgr.of(update)!!.messages() shouldHaveSize 0
@@ -66,7 +69,8 @@ class SessionTrackingInterceptorTest : AnnotationSpec() {
         }
         val bot = TelegramBot("000000:TEST") {
             sessions {
-                managerFactory = eu.vendeli.tgbot.interfaces.session.SessionManagerFactory { _, _ -> sentinel }
+                managerFactory = eu.vendeli.tgbot.interfaces.session
+                    .SessionManagerFactory { _, _ -> sentinel }
             }
         }
         (bot.sessions === sentinel) shouldBe true

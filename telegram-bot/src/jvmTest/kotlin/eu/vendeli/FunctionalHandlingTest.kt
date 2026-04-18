@@ -346,11 +346,13 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             }
         }
 
-        val inlineUpdate = MockUpdate.RAW_RESPONSE(
-            """{"ok":true,"result":[{"update_id":1,"inline_query":""" +
-                """{"id":"1","from":{"id":1,"is_bot":false,"first_name":"Test"},""" +
-                """"query":"hi","offset":""}}]}""",
-        ).updates.first()
+        val inlineUpdate = MockUpdate
+            .RAW_RESPONSE(
+                """{"ok":true,"result":[{"update_id":1,"inline_query":""" +
+                    """{"id":"1","from":{"id":1,"is_bot":false,"first_name":"Test"},""" +
+                    """"query":"hi","offset":""}}]}""",
+            ).updates
+            .first()
 
         bot.update.registry.getUpdateTypeHandlers(inlineUpdate).forEach {
             it.invoke(ProcessingContext(inlineUpdate, bot, bot.update.registry))
@@ -368,7 +370,9 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             onUpdate(UpdateType.MESSAGE) { }
         }
 
-        bot.update.registry.getUpdateTypeHandlers(UpdateType.MESSAGE).size shouldBe 3
+        bot.update.registry
+            .getUpdateTypeHandlers(UpdateType.MESSAGE)
+            .size shouldBe 3
     }
 
     @Test

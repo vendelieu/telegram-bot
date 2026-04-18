@@ -38,9 +38,9 @@ internal fun String.beginWithUpperCase(): String = when (this.length) {
 }
 
 internal fun String.snakeToCamelCase() = split('_')
-    .mapIndexed { i, it ->
-        if (i == 0) return@mapIndexed it
-        it.beginWithUpperCase()
+    .mapIndexed { i, str ->
+        if (i == 0) return@mapIndexed str
+        str.beginWithUpperCase()
     }.joinToString("")
 
 private val omittedDirectories = setOf(
@@ -77,8 +77,13 @@ internal fun Resolver.resolveSymbolsFromDir(
     return output
 }
 
+private val omittedPackages = setOf(
+    "eu.vendeli.tgbot.types.session",
+)
+
 fun KSDeclaration.typesExcludeCondition(): Boolean =
     !simpleName.asString().contains(".*Prop".toRegex()) &&
         // exclude *Prop declaration from checking
         this is KSClassDeclaration &&
-        classKind != ClassKind.ENUM_CLASS
+        classKind != ClassKind.ENUM_CLASS &&
+        packageName.asString() !in omittedPackages

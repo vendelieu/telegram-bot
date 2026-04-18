@@ -18,7 +18,6 @@ import kotlin.time.Instant
  * stays a fast unit-level check.
  */
 class SessionTrackTest : AnnotationSpec() {
-
     private fun mkBot() = TelegramBot("000000:TEST") { sessions { trackIncoming = false } }
 
     private fun mkMessage(id: Long) = Message(
@@ -39,7 +38,8 @@ class SessionTrackTest : AnnotationSpec() {
 
         val all = session.messages()
         all.shouldHaveSize(2)
-        all.map { it.messageId to it.direction }
+        all
+            .map { it.messageId to it.direction }
             .toSet() shouldBe setOf(1L to Direction.Outgoing, 2L to Direction.Incoming)
     }
 

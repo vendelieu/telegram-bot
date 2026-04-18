@@ -14,7 +14,6 @@ internal object DefaultPostInvokeInterceptor : PipelineInterceptor {
         val user = context.update.userOrNull ?: return // there's no user in this update
         val activity = context.activity ?: return // update is not handled by any activity so there's no crumbs
 
-
         ClassCrumbsStore.set(user.id, activity.qualifier)
     }
 }
