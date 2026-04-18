@@ -6,9 +6,11 @@ import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatType
 import eu.vendeli.tgbot.types.component.ActivityCtx
+import eu.vendeli.tgbot.types.component.MessageKind
 import eu.vendeli.tgbot.types.component.MessageUpdate
 import eu.vendeli.tgbot.types.component.ProcessingContext
 import eu.vendeli.tgbot.types.component.UpdateType
+import eu.vendeli.tgbot.types.media.PhotoSize
 import eu.vendeli.tgbot.types.configuration.RateLimits
 import eu.vendeli.tgbot.types.component.userOrNull
 import eu.vendeli.tgbot.types.msg.Message
@@ -269,4 +271,141 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 .shouldNotBeNull()
         }
     }
+
+    @Test
+    suspend fun `onUpdate messageKind filter dispatches only matching kinds`() {
+        val photoCount = AtomicInteger(0)
+        val textCount = AtomicInteger(0)
+        val anyKindCount = AtomicInteger(0)
+
+        bot.update.registry.clear()
+        bot.update.functionalDsl.apply {
+            onUpdate(UpdateType.MESSAGE, messageKind = setOf(MessageKind.PHOTO)) { photoCount.incrementAndGet() }
+            onUpdate(UpdateType.MESSAGE, messageKind = setOf(MessageKind.TEXT)) { textCount.incrementAndGet() }
+            onUpdate(UpdateType.MESSAGE) { anyKindCount.incrementAndGet() }
+        }
+
+        val photoUpdate = Update(
+            Random.nextInt(),
+            message = baseMessage().copy(photo = listOf(PhotoSize("id", "uid", 10, 10))),
+        ).processUpdate()
+        val textUpdate = Update(
+            Random.nextInt(),
+            message = baseMessage().copy(text = "hello"),
+        ).processUpdate()
+
+        listOf(photoUpdate, textUpdate).forEach { update ->
+            bot.update.registry.getUpdateTypeHandlers(update).forEach {
+                it.invoke(ProcessingContext(update, bot, bot.update.registry))
+            }
+        }
+
+        photoCount.get() shouldBe 1
+        textCount.get() shouldBe 1
+        anyKindCount.get() shouldBe 2
+    }
+
+    @Test
+    suspend fun `onUpdate messageKind filter treats kinds as OR`() {
+        val mediaCount = AtomicInteger(0)
+
+        bot.update.registry.clear()
+        bot.update.functionalDsl.apply {
+            onUpdate(
+                UpdateType.MESSAGE,
+                messageKind = setOf(MessageKind.PHOTO, MessageKind.VIDEO, MessageKind.AUDIO),
+            ) { mediaCount.incrementAndGet() }
+        }
+
+        val photoUpdate = Update(
+            Random.nextInt(),
+            message = baseMessage().copy(photo = listOf(PhotoSize("id", "uid", 10, 10))),
+        ).processUpdate()
+        val textUpdate = Update(
+            Random.nextInt(),
+            message = baseMessage().copy(text = "hello"),
+        ).processUpdate()
+
+        listOf(photoUpdate, textUpdate).forEach { update ->
+            bot.update.registry.getUpdateTypeHandlers(update).forEach {
+                it.invoke(ProcessingContext(update, bot, bot.update.registry))
+            }
+        }
+
+        mediaCount.get() shouldBe 1
+    }
+
+    @Test
+    suspend fun `messageKind filter on non-MessageReference update never fires`() {
+        val inlineCount = AtomicInteger(0)
+
+        bot.update.registry.clear()
+        bot.update.functionalDsl.apply {
+            onUpdate(UpdateType.INLINE_QUERY, messageKind = setOf(MessageKind.PHOTO)) {
+                inlineCount.incrementAndGet()
+            }
+        }
+
+        val inlineUpdate = MockUpdate.RAW_RESPONSE(
+            """{"ok":true,"result":[{"update_id":1,"inline_query":""" +
+                """{"id":"1","from":{"id":1,"is_bot":false,"first_name":"Test"},""" +
+                """"query":"hi","offset":""}}]}""",
+        ).updates.first()
+
+        bot.update.registry.getUpdateTypeHandlers(inlineUpdate).forEach {
+            it.invoke(ProcessingContext(inlineUpdate, bot, bot.update.registry))
+        }
+
+        inlineCount.get() shouldBe 0
+    }
+
+    @Test
+    suspend fun `registry getUpdateTypeHandlers returns all handlers regardless of filter`() {
+        bot.update.registry.clear()
+        bot.update.functionalDsl.apply {
+            onUpdate(UpdateType.MESSAGE, messageKind = setOf(MessageKind.PHOTO)) { }
+            onUpdate(UpdateType.MESSAGE, messageKind = setOf(MessageKind.TEXT)) { }
+            onUpdate(UpdateType.MESSAGE) { }
+        }
+
+        bot.update.registry.getUpdateTypeHandlers(UpdateType.MESSAGE).size shouldBe 3
+    }
+
+    @Test
+    suspend fun `onUpdate with empty messageKind preserves legacy behavior`() {
+        val fired = AtomicInteger(0)
+
+        bot.update.registry.clear()
+        bot.update.functionalDsl.apply {
+            onUpdate(UpdateType.MESSAGE) { fired.incrementAndGet() }
+        }
+
+        val photoUpdate = Update(
+            Random.nextInt(),
+            message = baseMessage().copy(photo = listOf(PhotoSize("id", "uid", 10, 10))),
+        ).processUpdate()
+        val textUpdate = Update(
+            Random.nextInt(),
+            message = baseMessage().copy(text = "hi"),
+        ).processUpdate()
+        val stickerlikeUpdate = Update(
+            Random.nextInt(),
+            message = baseMessage(),
+        ).processUpdate()
+
+        listOf(photoUpdate, textUpdate, stickerlikeUpdate).forEach { update ->
+            bot.update.registry.getUpdateTypeHandlers(update).forEach {
+                it.invoke(ProcessingContext(update, bot, bot.update.registry))
+            }
+        }
+
+        fired.get() shouldBe 3
+    }
+
+    private fun baseMessage() = Message(
+        Random.nextLong(),
+        from = User(1, false, "Test"),
+        chat = Chat(1, ChatType.Private),
+        date = Instant.fromEpochMilliseconds(0),
+    )
 }

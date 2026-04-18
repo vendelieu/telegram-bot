@@ -22,7 +22,7 @@ internal class UpdateHandlerCollector : BaseCollector() {
                 .findAnnotationRecursively(UpdateHandler::class)
                 ?: throw IllegalStateException("No UpdateHandler annotation found for $function")
 
-            val updateTypes = AnnotationParser.parseUpdateHandler(annotation.arguments)
+            val (updateTypes, messageKinds) = AnnotationParser.parseUpdateHandler(annotation.arguments)
 
             // Extract metadata
             val metadata = extractActivityMetadata(function)
@@ -37,11 +37,23 @@ internal class UpdateHandlerCollector : BaseCollector() {
             // Register update type handlers
             updateTypes.forEach { updT ->
                 ctx.logger.info("UpdateHandler: ${updT.name} --> ${function.qualifiedName?.asString()}")
-                ctx.loadFun.addStatement(
-                    "registerUpdateTypeHandler(UpdateType.%L, %L.id)",
-                    updT.name,
-                    activityId,
-                )
+                if (messageKinds.isEmpty()) {
+                    ctx.loadFun.addStatement(
+                        "registerUpdateTypeHandler(UpdateType.%L, %L.id)",
+                        updT.name,
+                        activityId,
+                    )
+                } else {
+                    val kindsExpr = messageKinds.joinToString(", ") {
+                        "eu.vendeli.tgbot.types.component.MessageKind.${it.name}"
+                    }
+                    ctx.loadFun.addStatement(
+                        "registerUpdateTypeHandler(UpdateType.%L, %L.id, setOf(%L))",
+                        updT.name,
+                        activityId,
+                        kindsExpr,
+                    )
+                }
             }
         }
     }

@@ -141,19 +141,21 @@ class FunctionalHandlingDsl internal constructor(
 
     fun onUpdate(
         vararg types: UpdateType,
+        messageKind: Set<MessageKind> = emptySet(),
         block: suspend ActivityCtx<ProcessedUpdate>.() -> Unit,
     ) {
+        val kindSuffix = if (messageKind.isEmpty()) "" else ":${messageKind.joinToString(",") { it.name }}"
         types.forEach { type ->
             val activity = LambdaActivity(
-                id = "functional:update:${type.name}".hashCode(),
-                function = "onUpdate:${type.name}",
+                id = "functional:update:${type.name}$kindSuffix".hashCode(),
+                function = "onUpdate:${type.name}$kindSuffix",
             ) {
                 val ctx = ActivityCtx(update)
                 block.invoke(ctx)
             }
 
             registry.registerActivity(activity)
-            registry.registerUpdateTypeHandler(type, activity.id)
+            registry.registerUpdateTypeHandler(type, activity.id, messageKind)
         }
     }
 

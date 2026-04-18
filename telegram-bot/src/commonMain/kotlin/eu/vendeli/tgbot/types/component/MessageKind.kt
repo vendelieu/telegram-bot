@@ -4,6 +4,63 @@ package eu.vendeli.tgbot.types.component
 
 import eu.vendeli.tgbot.types.msg.Message
 
+private val serviceMessageKinds = setOf(
+    MessageKind.NEW_CHAT_MEMBERS,
+    MessageKind.LEFT_CHAT_MEMBER,
+    MessageKind.CHAT_OWNER_LEFT,
+    MessageKind.CHAT_OWNER_CHANGED,
+    MessageKind.NEW_CHAT_TITLE,
+    MessageKind.NEW_CHAT_PHOTO,
+    MessageKind.DELETE_CHAT_PHOTO,
+    MessageKind.GROUP_CHAT_CREATED,
+    MessageKind.SUPERGROUP_CHAT_CREATED,
+    MessageKind.CHANNEL_CHAT_CREATED,
+    MessageKind.MESSAGE_AUTO_DELETE_TIMER_CHANGED,
+    MessageKind.MIGRATE_TO_CHAT,
+    MessageKind.MIGRATE_FROM_CHAT,
+    MessageKind.PINNED_MESSAGE,
+    MessageKind.SUCCESSFUL_PAYMENT,
+    MessageKind.REFUNDED_PAYMENT,
+    MessageKind.SUGGESTED_POST_INFO,
+    MessageKind.SUGGESTED_POST_APPROVED,
+    MessageKind.SUGGESTED_POST_APPROVAL_FAILED,
+    MessageKind.SUGGESTED_POST_DECLINED,
+    MessageKind.SUGGESTED_POST_PAID,
+    MessageKind.SUGGESTED_POST_REFUNDED,
+    MessageKind.USERS_SHARED,
+    MessageKind.CHAT_SHARED,
+    MessageKind.GIFT,
+    MessageKind.GIFT_UPGRADE_SENT,
+    MessageKind.UNIQUE_GIFT,
+    MessageKind.CONNECTED_WEBSITE,
+    MessageKind.WRITE_ACCESS_ALLOWED,
+    MessageKind.PASSPORT_DATA,
+    MessageKind.PROXIMITY_ALERT_TRIGGERED,
+    MessageKind.BOOST_ADDED,
+    MessageKind.FORUM_TOPIC_CREATED,
+    MessageKind.FORUM_TOPIC_EDITED,
+    MessageKind.FORUM_TOPIC_CLOSED,
+    MessageKind.FORUM_TOPIC_REOPENED,
+    MessageKind.GENERAL_FORUM_TOPIC_HIDDEN,
+    MessageKind.GENERAL_FORUM_TOPIC_UNHIDDEN,
+    MessageKind.GIVEAWAY_CREATED,
+    MessageKind.GIVEAWAY,
+    MessageKind.GIVEAWAY_WINNERS,
+    MessageKind.GIVEAWAY_COMPLETED,
+    MessageKind.CHAT_BACKGROUND_SET,
+    MessageKind.CHECKLIST_TASKS_DONE,
+    MessageKind.CHECKLIST_TASKS_ADDED,
+    MessageKind.DIRECT_MESSAGE_PRICE_CHANGED,
+    MessageKind.PAID_MESSAGE_PRICE_CHANGED,
+    MessageKind.MANAGED_BOT_CREATED,
+    MessageKind.POLL_OPTION_ADDED,
+    MessageKind.POLL_OPTION_DELETED,
+    MessageKind.VIDEO_CHAT_SCHEDULED,
+    MessageKind.VIDEO_CHAT_STARTED,
+    MessageKind.VIDEO_CHAT_ENDED,
+    MessageKind.VIDEO_CHAT_PARTICIPANTS_INVITED,
+)
+
 /**
  * Kind of a [Message] — derived from its populated content or service field rather than from the
  * sender action, so a mixed media group resolves each child to its actual kind (e.g. [PHOTO] +
@@ -91,7 +148,9 @@ enum class MessageKind {
     WEB_APP_DATA,
 
     // --- fallback ---
-    OTHER,
+    OTHER;
+
+    fun isServiceMessage(): Boolean = this in serviceMessageKinds
 }
 
 /**

@@ -1,5 +1,12 @@
 # Telegram-bot (KtGram) Changelog
 
+## [unreleased]
+
+* Added sessions — opt in with `sessions { }` in `BotConfiguration` to keep per-user/per-chat state with automatic incoming-message tracking (toggleable), a pluggable storage backend (in-memory by default), a configurable key strategy, and `@SessionQualifier("name")` to inject multiple independent sessions into the same handler.
+* Added `MessageKind` — every message-bearing update now exposes a `messageKind` property (photo, video, text, service events, etc.) so you can route on the message kind instead of inspecting nullable fields yourself.
+* Added option to filter `@UpdateHandler` with `MessageKind`.
+* Renamed `Identifier.String` → `Identifier.Literal` and `Identifier.Long` → `Identifier.Numeric` to avoid shadowing Kotlin built-ins. `Identifier.from(...)` keeps working unchanged; update direct references if you construct these types by name.
+
 ## 9.4.0
 
 * Covered Tg API [`9.6`](https://core.telegram.org/bots/api-changelog#april-3-2026).

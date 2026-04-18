@@ -11,9 +11,11 @@ import eu.vendeli.tgbot.annotations.ArgParser
 import eu.vendeli.tgbot.annotations.CommandHandler
 import eu.vendeli.tgbot.annotations.CommonHandler
 import eu.vendeli.tgbot.annotations.Guard
+import eu.vendeli.tgbot.annotations.UpdateHandler
 import eu.vendeli.tgbot.annotations.WizardHandler
 import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultGuard
+import eu.vendeli.tgbot.types.component.MessageKind
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.configuration.RateLimits
 
@@ -75,14 +77,11 @@ object AnnotationParser {
     /**
      * Parses UpdateHandler annotation arguments.
      */
-    fun parseUpdateHandler(arguments: List<KSValueArgument>): List<UpdateType> =
-        arguments.first().value.cast<List<*>>().map { i ->
-            when (i) {
-                is KSType -> i.declaration.toString()
-                is KSClassDeclaration -> i.simpleName.getShortName()
-                else -> error("Unknown type $i")
-            }.let { UpdateType.valueOf(it) }
-        }
+    fun parseUpdateHandler(arguments: List<KSValueArgument>): UpdateHandlerData {
+        val types = parseEnumList(arguments, UpdateHandler::type.name) { UpdateType.valueOf(it) }
+        val messageKinds = parseEnumList(arguments, UpdateHandler::messageKind.name) { MessageKind.valueOf(it) }
+        return UpdateHandlerData(types, messageKinds)
+    }
 
     /**
      * Parses CommonHandler.Text or CommonHandler.Regex arguments.
@@ -174,18 +173,27 @@ object AnnotationParser {
      * Parses regex options for CommonHandler.Regex.
      */
     private fun parseRegexOptions(arguments: List<KSValueArgument>): List<RegexOption> =
-        arguments
-            .firstOrNull {
-                it.name?.asString() == CommonHandler.Regex::options.name
-            }?.value
-            ?.safeCast<List<*>>()
-            ?.map { i ->
-                when (i) {
-                    is KSType -> i.declaration.toString()
-                    is KSClassDeclaration -> i.simpleName.getShortName()
-                    else -> error("Unknown type $i")
-                }.let { RegexOption.valueOf(it) }
-            } ?: emptyList()
+        parseEnumList(arguments, CommonHandler.Regex::options.name) { RegexOption.valueOf(it) }
+
+    /**
+     * Generic parser for an array-of-enum annotation argument identified by [paramName].
+     * Returns an empty list when the argument is absent or not a list.
+     */
+    private inline fun <T> parseEnumList(
+        arguments: List<KSValueArgument>,
+        paramName: String,
+        convert: (String) -> T,
+    ): List<T> = arguments
+        .firstOrNull { it.name?.asString() == paramName }
+        ?.value
+        ?.safeCast<List<*>>()
+        ?.map { i ->
+            when (i) {
+                is KSType -> i.declaration.toString()
+                is KSClassDeclaration -> i.simpleName.getShortName()
+                else -> error("Unknown type $i")
+            }.let(convert)
+        } ?: emptyList()
 }
 
 /**
@@ -204,6 +212,14 @@ data class WizardHandlerData(
     val triggers: List<String>,
     val scope: List<UpdateType>,
     val stateManagers: List<KSClassDeclaration>,
+)
+
+/**
+ * Data class for parsed UpdateHandler annotation.
+ */
+data class UpdateHandlerData(
+    val types: List<UpdateType>,
+    val messageKinds: List<MessageKind>,
 )
 
 /**

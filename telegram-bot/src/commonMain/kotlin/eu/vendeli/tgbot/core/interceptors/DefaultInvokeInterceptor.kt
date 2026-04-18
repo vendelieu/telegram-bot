@@ -10,7 +10,7 @@ internal object DefaultInvokeInterceptor : PipelineInterceptor {
     override suspend fun invoke(context: ProcessingContext) {
         val logger = context.bot.config.loggerFactory
             .get("eu.vendeli.core.interceptors.InvokeInterceptor")
-        context.registry.getUpdateTypeHandlers(context.update.type).forEach {
+        context.registry.getUpdateTypeHandlers(context.update).forEach {
             it.invokeCatching(context, logger)
         }
 
