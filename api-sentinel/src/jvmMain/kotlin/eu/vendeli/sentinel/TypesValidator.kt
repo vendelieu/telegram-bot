@@ -103,7 +103,8 @@ private fun ApiProcessor.processClass(
     }
 
     if (leftParams.isNotEmpty()) logger.invalid {
-        "Probably some parameters are redundant in $fullName\n$leftParams\n${typeInfo["href"]!!.jsonPrimitive.content}\n"
+        "Probably some parameters are redundant in " +
+            "$fullName\n$leftParams\n${typeInfo["href"]!!.jsonPrimitive.content}\n"
     }
 
     visitedTypesRef.add(name)

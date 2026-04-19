@@ -16,6 +16,7 @@ import eu.vendeli.tgbot.types.session.SessionKey
 import eu.vendeli.tgbot.types.session.SessionKeyStrategy
 import eu.vendeli.tgbot.types.session.TrackedMessage
 import eu.vendeli.tgbot.utils.common.fqName
+import io.ktor.util.logging.debug
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
@@ -104,10 +105,10 @@ private class DefaultSession(
                     val ids = chunk.map { it.messageId }
                     runCatching { deleteMessages(ids).sendReturning(chatId, bot).await() }
                         .onSuccess { response ->
-                            response.ok.takeIf { !it }?.let {
-                                logger.warn(
-                                    "session($key) delete batch for chat=$chatId size=${chunk.size} failed",
-                                )
+                            if (!response.ok) {
+                                logger.warn("session($key) delete batch for chat=$chatId size=${chunk.size} failed")
+                            } else {
+                                logger.debug { "session($key) delete batch for chat=$chatId size=${chunk.size}" }
                             }
                         }.onFailure {
                             logger.error("session($key) delete batch for chat=$chatId threw", it)
