@@ -228,8 +228,11 @@ class WizardCodeGenerator(
                 TypeConstants.wizardActivity,
             )
 
+            // Resolve wizard-scoped session (null when sessions aren't configured)
+            add("val session = bot.sessions?.of(update, qualifier = %S)\n", "wizard:$activityId")
+
             // Create wizard context
-            add("val wizardCtx = WizardContext(user, update, bot)\n")
+            add("val wizardCtx = WizardContext(user, update, bot, session)\n")
 
             // Start wizard (this will call onEntry of initial step and set inputListener)
             add("wizardEngine.start(wizardCtx)\n")
@@ -258,8 +261,11 @@ class WizardCodeGenerator(
                 TypeConstants.wizardActivity,
             )
 
+            // Resolve wizard-scoped session (null when sessions aren't configured)
+            add("val session = bot.sessions?.of(update, qualifier = %S)\n", "wizard:$activityId")
+
             // Create wizard context
-            add("val wizardCtx = WizardContext(user, update, bot)\n")
+            add("val wizardCtx = WizardContext(user, update, bot, session)\n")
 
             // Handle input through wizard engine (it will update inputListener internally)
             add("wizardEngine.handleInput(wizardCtx)\n")

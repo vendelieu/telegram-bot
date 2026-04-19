@@ -4305,10 +4305,12 @@ public abstract class eu/vendeli/tgbot/types/chain/WizardActivity : eu/vendeli/t
 }
 
 public final class eu/vendeli/tgbot/types/chain/WizardContext {
-	public fun <init> (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;)V
+	public fun <init> (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;)V
+	public synthetic fun <init> (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun delState (Lkotlin/reflect/KClass;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getBot ()Leu/vendeli/tgbot/TelegramBot;
 	public final fun getCurrentWizardId ()I
+	public final fun getSession ()Leu/vendeli/tgbot/interfaces/session/Session;
 	public final fun getState (Lkotlin/reflect/KClass;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getUpdate ()Leu/vendeli/tgbot/types/component/ProcessedUpdate;
 	public final fun getUser ()Leu/vendeli/tgbot/types/User;

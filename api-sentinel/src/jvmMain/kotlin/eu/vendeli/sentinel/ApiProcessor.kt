@@ -153,7 +153,7 @@ class ApiProcessor(
 
                     else -> ParameterSpec.builder(
                         name = valueParameter.name!!.getShortName(),
-                        type = valueParameter.type.toTypeName()
+                        type = valueParameter.type.toTypeName(),
                     )
                 }.apply {
                     if (resolvedType.isMarkedNullable) defaultValue("null")

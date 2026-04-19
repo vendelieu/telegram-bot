@@ -2819,12 +2819,14 @@ final class eu.vendeli.tgbot.types.chain/UserChatReference { // eu.vendeli.tgbot
 }
 
 final class eu.vendeli.tgbot.types.chain/WizardContext { // eu.vendeli.tgbot.types.chain/WizardContext|null[0]
-    constructor <init>(eu.vendeli.tgbot.types/User, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot) // eu.vendeli.tgbot.types.chain/WizardContext.<init>|<init>(eu.vendeli.tgbot.types.User;eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot){}[0]
+    constructor <init>(eu.vendeli.tgbot.types/User, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot, eu.vendeli.tgbot.interfaces.session/Session? = ...) // eu.vendeli.tgbot.types.chain/WizardContext.<init>|<init>(eu.vendeli.tgbot.types.User;eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot;eu.vendeli.tgbot.interfaces.session.Session?){}[0]
 
     final val bot // eu.vendeli.tgbot.types.chain/WizardContext.bot|{}bot[0]
         final fun <get-bot>(): eu.vendeli.tgbot/TelegramBot // eu.vendeli.tgbot.types.chain/WizardContext.bot.<get-bot>|<get-bot>(){}[0]
     final val currentWizardId // eu.vendeli.tgbot.types.chain/WizardContext.currentWizardId|{}currentWizardId[0]
         final fun <get-currentWizardId>(): kotlin/Int // eu.vendeli.tgbot.types.chain/WizardContext.currentWizardId.<get-currentWizardId>|<get-currentWizardId>(){}[0]
+    final val session // eu.vendeli.tgbot.types.chain/WizardContext.session|{}session[0]
+        final fun <get-session>(): eu.vendeli.tgbot.interfaces.session/Session? // eu.vendeli.tgbot.types.chain/WizardContext.session.<get-session>|<get-session>(){}[0]
     final val update // eu.vendeli.tgbot.types.chain/WizardContext.update|{}update[0]
         final fun <get-update>(): eu.vendeli.tgbot.types.component/ProcessedUpdate // eu.vendeli.tgbot.types.chain/WizardContext.update.<get-update>|<get-update>(){}[0]
     final val user // eu.vendeli.tgbot.types.chain/WizardContext.user|{}user[0]
