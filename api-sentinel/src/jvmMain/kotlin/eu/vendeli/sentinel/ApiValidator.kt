@@ -140,7 +140,7 @@ internal fun ApiProcessor.validateApi(classes: Sequence<KSClassDeclaration>, api
                 }
             }
 
-            if (returns.find { (it as? JsonPrimitive)?.content == apiReturnMatchType } == null)
+            if (returns.find { it.safeCast<JsonPrimitive>()?.content == apiReturnMatchType } == null)
                 logger.invalid {
                     "Possibly return type of $classFullname ($apiReturnMatchType) is wrong, should be one of $returns"
                 }

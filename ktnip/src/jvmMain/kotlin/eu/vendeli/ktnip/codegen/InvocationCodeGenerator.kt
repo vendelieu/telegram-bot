@@ -45,18 +45,18 @@ class InvocationCodeGenerator(
                 val fallback = if (strategy.isNullable) {
                     ""
                 } else {
-                    " ?: error(\"Session requested but `sessions { }` is not configured on this bot\")"
+                    " ?: error(\"Session requested but update has no chat context\")"
                 }
                 if (strategy.qualifier != null) {
                     CodeBlock.of(
-                        "val param%L = bot.sessions?.of(update, %S)%L\n",
+                        "val param%L = bot.sessions.of(update, %S)%L\n",
                         parameterIndex,
                         strategy.qualifier,
                         fallback,
                     )
                 } else {
                     CodeBlock.of(
-                        "val param%L = bot.sessions?.of(update)%L\n",
+                        "val param%L = bot.sessions.of(update)%L\n",
                         parameterIndex,
                         fallback,
                     )

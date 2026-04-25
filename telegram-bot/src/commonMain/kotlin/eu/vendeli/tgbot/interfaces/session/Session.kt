@@ -55,4 +55,11 @@ interface Session {
 
     /** Drop matching entries from storage without touching Telegram. */
     suspend fun forget(predicate: (TrackedMessage) -> Boolean = { true }): Int
+
+    /**
+     * End this session: unsubscribe from incoming updates and drop every stored entry.
+     * After [close] further updates won't be auto-tracked under [key]. The session object
+     * itself remains usable — calling `bot.sessions.get(...)` (or [track]) again resubscribes.
+     */
+    suspend fun close()
 }

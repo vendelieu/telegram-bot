@@ -16,7 +16,6 @@ import eu.vendeli.tgbot.types.session.Direction
 import eu.vendeli.tgbot.types.session.SessionKey
 import eu.vendeli.tgbot.utils.common.processUpdate
 import io.kotest.core.spec.style.AnnotationSpec
-import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
@@ -26,11 +25,10 @@ import kotlin.reflect.KClass
 import kotlin.time.Instant
 
 /**
- * Verifies [WizardContext.session] wiring: when sessions are enabled on the bot,
- * the context handed to a wizard step must carry a session scoped to that wizard
- * (qualifier = `wizard:<id>`), isolated from the bot's default chat session.
- * When sessions are not configured, the context exposes a `null` session so
- * wizards remain usable without the subsystem.
+ * Verifies [WizardContext.session] wiring under the always-on, predicate-based session
+ * subsystem: every wizard activation receives a session scoped to that wizard
+ * (qualifier = `wizard:<id>`), isolated from the bot's default chat session, and
+ * `Transition.Finish` closes the wizard session (unsubscribes + drops storage).
  */
 class WizardSessionIntegrationTest : AnnotationSpec() {
     private val user = User(id = 42, isBot = false, firstName = "U")
@@ -55,6 +53,7 @@ class WizardSessionIntegrationTest : AnnotationSpec() {
 
         var captured: eu.vendeli.tgbot.interfaces.session.Session? = null
         var captureAttempted: Boolean = false
+        var finishOnValidate: Boolean = false
 
         override val steps: List<WizardStep> = listOf(CaptureStep)
 
@@ -69,7 +68,8 @@ class WizardSessionIntegrationTest : AnnotationSpec() {
                 captured = ctx.session
             }
 
-            override suspend fun validate(ctx: WizardContext): Transition = Transition.Finish
+            override suspend fun validate(ctx: WizardContext): Transition =
+                if (finishOnValidate) Transition.Finish else Transition.Retry()
         }
     }
 
@@ -77,22 +77,12 @@ class WizardSessionIntegrationTest : AnnotationSpec() {
     fun resetCapture() {
         CapturingWizard.captured = null
         CapturingWizard.captureAttempted = false
+        CapturingWizard.finishOnValidate = false
     }
 
     @Test
-    fun sessionIsNullWhenSubsystemDisabled() = runBlocking {
+    fun sessionIsWizardQualified() = runBlocking {
         val bot = TelegramBot("000000:TEST")
-        bot.update.registry.registerActivity(CapturingWizard)
-
-        CapturingWizard.invoke(ProcessingContext(mkUpdate("/go"), bot, bot.update.registry))
-
-        CapturingWizard.captureAttempted shouldBe true
-        CapturingWizard.captured.shouldBeNull()
-    }
-
-    @Test
-    fun sessionIsWizardQualifiedWhenSubsystemEnabled() = runBlocking {
-        val bot = TelegramBot("000000:TEST") { sessions { trackIncoming = false } }
         bot.update.registry.registerActivity(CapturingWizard)
 
         CapturingWizard.invoke(ProcessingContext(mkUpdate("/go"), bot, bot.update.registry))
@@ -106,7 +96,7 @@ class WizardSessionIntegrationTest : AnnotationSpec() {
 
     @Test
     fun wizardSessionIsIsolatedFromDefaultChatSession() = runBlocking {
-        val bot = TelegramBot("000000:TEST") { sessions { trackIncoming = false } }
+        val bot = TelegramBot("000000:TEST")
         bot.update.registry.registerActivity(CapturingWizard)
 
         CapturingWizard.invoke(ProcessingContext(mkUpdate("/go"), bot, bot.update.registry))
@@ -123,7 +113,7 @@ class WizardSessionIntegrationTest : AnnotationSpec() {
             Direction.Outgoing,
         )
 
-        val defaultSession = bot.sessions!!.get(chatId = chat.id, userId = user.id)
+        val defaultSession = bot.sessions.get(chatId = chat.id, userId = user.id)
         defaultSession.track(
             Message(
                 messageId = 2,
@@ -137,5 +127,40 @@ class WizardSessionIntegrationTest : AnnotationSpec() {
 
         wizardSession.messages().map { it.messageId } shouldBe listOf(1L)
         defaultSession.messages().map { it.messageId } shouldBe listOf(2L)
+    }
+
+    @Test
+    fun wizardFinishClosesSession() = runBlocking {
+        val bot = TelegramBot("000000:TEST")
+        bot.update.registry.registerActivity(CapturingWizard)
+
+        // Start the wizard and capture the session.
+        CapturingWizard.invoke(ProcessingContext(mkUpdate("/go"), bot, bot.update.registry))
+        val wizardSession = CapturingWizard.captured.shouldNotBeNull()
+
+        // Track something in the wizard session.
+        wizardSession.track(
+            Message(
+                messageId = 1,
+                from = user,
+                chat = chat,
+                date = Instant.DISTANT_PAST,
+                text = "in-progress",
+            ),
+            Direction.Incoming,
+        )
+        wizardSession.messages().map { it.messageId } shouldBe listOf(1L)
+
+        // Drive a Finish transition; handleInput closes the wizard session.
+        CapturingWizard.finishOnValidate = true
+        val wizardCtx = WizardContext(user, mkUpdate("/done"), bot, wizardSession)
+        CapturingWizard.handleInput(wizardCtx)
+
+        // Storage cleared and a fresh resolution starts empty (subscription torn down,
+        // recreated on the next of() call).
+        bot.sessions
+            .get(chatId = chat.id, userId = user.id, qualifier = "wizard:${CapturingWizard.id}")
+            .messages()
+            .map { it.messageId } shouldBe emptyList()
     }
 }

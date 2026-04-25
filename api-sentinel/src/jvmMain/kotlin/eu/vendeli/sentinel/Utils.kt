@@ -23,8 +23,7 @@ internal val simpleActionFQ = SimpleAction::class.fqName
 internal val actionFQ = Action::class.fqName
 internal val mediaActionFQ = MediaAction::class.fqName
 
-@Suppress("UNCHECKED_CAST")
-internal inline fun <R> Any?.safeCast(): R? = this as? R
+internal inline fun <reified R> Any?.safeCast(): R? = this as? R
 
 @Suppress("UNCHECKED_CAST")
 internal inline fun <R> Any?.cast(): R = this as R

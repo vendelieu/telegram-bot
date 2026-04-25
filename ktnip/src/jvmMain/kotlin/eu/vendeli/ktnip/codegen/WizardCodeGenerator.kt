@@ -228,8 +228,8 @@ class WizardCodeGenerator(
                 TypeConstants.wizardActivity,
             )
 
-            // Resolve wizard-scoped session (null when sessions aren't configured)
-            add("val session = bot.sessions?.of(update, qualifier = %S)\n", "wizard:$activityId")
+            // Resolve wizard-scoped session (null only when update has no chat context)
+            add("val session = bot.sessions.of(update, qualifier = %S)\n", "wizard:$activityId")
 
             // Create wizard context
             add("val wizardCtx = WizardContext(user, update, bot, session)\n")
@@ -261,8 +261,8 @@ class WizardCodeGenerator(
                 TypeConstants.wizardActivity,
             )
 
-            // Resolve wizard-scoped session (null when sessions aren't configured)
-            add("val session = bot.sessions?.of(update, qualifier = %S)\n", "wizard:$activityId")
+            // Resolve wizard-scoped session (null only when update has no chat context)
+            add("val session = bot.sessions.of(update, qualifier = %S)\n", "wizard:$activityId")
 
             // Create wizard context
             add("val wizardCtx = WizardContext(user, update, bot, session)\n")

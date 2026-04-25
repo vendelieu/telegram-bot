@@ -72,11 +72,8 @@ class TelegramBot(
 
     /**
      * Session tracking manager.
-     *
-     * `null` unless `sessions { }` was called in the [BotConfiguration] block; that's the
-     * opt-in signal — leaving the block out means zero overhead on the update pipeline.
      */
-    val sessions: SessionManager? get() = config.sessions?.manager
+    val sessions: SessionManager get() = config.sessions.manager
 
     internal var httpClient = getConfiguredHttpClient(config.httpClient)
 

@@ -13,6 +13,7 @@ import eu.vendeli.ktnip.utils.FileBuilder
 import eu.vendeli.ktnip.utils.TypeConstants
 import eu.vendeli.ktnip.utils.getActivityId
 import eu.vendeli.ktnip.utils.getActivityObjectName
+import eu.vendeli.ktnip.utils.safeCast
 import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.types.component.UpdateType
@@ -57,7 +58,7 @@ class ActivityCodeGenerator(
             "::$funShortName"
         }
 
-        val isObject = (function.parent as? KSClassDeclaration)?.classKind == ClassKind.OBJECT
+        val isObject = function.parent.safeCast<KSClassDeclaration>()?.classKind == ClassKind.OBJECT
         val objectName = function.getActivityObjectName()
 
         // Build Activity object

@@ -11,18 +11,19 @@ import eu.vendeli.tgbot.types.session.SessionKeyStrategy
 /**
  * Configuration block for the [SessionManager] subsystem.
  *
- * Calling `sessions { }` (even with an empty body) in [BotConfiguration] opts into the feature;
- * leaving it out keeps `TelegramBot.sessions` at `null` and skips the tracking interceptor.
+ * The subsystem is always-on with sensible defaults; calling `sessions { }` in
+ * [BotConfiguration] is only required to override [keyStrategy], [storage], or
+ * [managerFactory]. Auto-tracking is predicate-driven — the interceptor only writes when a
+ * session has been opened (via `bot.sessions.of(update)` / `bot.sessions.get(...)`), so
+ * untouched bots pay no storage cost.
  *
  * @property keyStrategy How session keys are derived from a [eu.vendeli.tgbot.types.component.ProcessedUpdate].
- * @property trackIncoming When `true`, a pipeline interceptor records every incoming message-bearing update into its session.
  * @property storage Backend that stores tracked messages. Consumed by the default factory; custom factories may ignore it.
  * @property managerFactory Builds the [SessionManager] once the bot is constructed. Override to plug in a custom manager.
  */
 @ConfigurationDSL
 data class SessionConfiguration(
     var keyStrategy: SessionKeyStrategy = SessionKeyStrategy.ChatUser,
-    var trackIncoming: Boolean = true,
     var storage: SessionStorage = InMemorySessionStorage(),
     var managerFactory: SessionManagerFactory = SessionManagerFactory { bot, cfg ->
         DefaultSessionManager(bot, cfg.storage, cfg.keyStrategy, bot.config.loggerFactory)

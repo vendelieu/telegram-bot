@@ -1,8 +1,8 @@
 /* G-EXPECT
 file=ActivitiesData.kt
-contains="bot.sessions?.of(update)"
-contains="bot.sessions?.of(update, "
-contains="is not configured on this bot"
+contains="bot.sessions.of(update)"
+contains="bot.sessions.of(update, "
+contains="update has no chat context"
 matches="of\(update, .wizard.\)"
 matches="of\(update, .support.\)"
 notContains="Can't acquire"

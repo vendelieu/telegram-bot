@@ -8,14 +8,17 @@ import eu.vendeli.tgbot.interfaces.session.SessionManager
 import eu.vendeli.tgbot.interfaces.session.SessionStorage
 import eu.vendeli.tgbot.types.component.MessageReference
 import eu.vendeli.tgbot.types.component.ProcessedUpdate
-import eu.vendeli.tgbot.types.component.userOrNull
+import eu.vendeli.tgbot.types.component.chatOrNull
 import eu.vendeli.tgbot.types.component.detectKind
+import eu.vendeli.tgbot.types.component.userOrNull
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.session.Direction
 import eu.vendeli.tgbot.types.session.SessionKey
 import eu.vendeli.tgbot.types.session.SessionKeyStrategy
 import eu.vendeli.tgbot.types.session.TrackedMessage
 import eu.vendeli.tgbot.utils.common.fqName
+import eu.vendeli.tgbot.utils.common.safeCast
+import io.ktor.util.collections.ConcurrentMap
 import io.ktor.util.logging.debug
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
@@ -26,6 +29,11 @@ private const val TELEGRAM_DELETE_BATCH_SIZE = 100
  * Default [SessionManager] — dispatches deletions through the given [bot], stores tracked entries
  * in [storage], and uses [strategy] to derive keys from updates. Public so custom
  * [eu.vendeli.tgbot.interfaces.session.SessionManagerFactory] implementations can delegate to it.
+ *
+ * Owns the live-subscription registry: every `get`/`of` call auto-subscribes the resolved key
+ * with a default predicate derived from the key shape, and `Session.close()` unsubscribes plus
+ * clears storage. The pipeline interceptor consults [matchingSubscriptions] / [isIdle] to decide
+ * what to track.
  */
 class DefaultSessionManager(
     private val bot: TelegramBot,
@@ -34,6 +42,8 @@ class DefaultSessionManager(
     loggerFactory: LoggerFactory,
 ) : SessionManager {
     private val logger = loggerFactory.get(this::class.fqName)
+    private val subscriptions = ConcurrentMap<SessionKey, (ProcessedUpdate) -> Boolean>()
+    private val sessionCache = ConcurrentMap<SessionKey, Session>()
 
     override fun get(chatId: Long, userId: Long?, qualifier: String?): Session {
         val key = if (userId != null) {
@@ -41,12 +51,51 @@ class DefaultSessionManager(
         } else {
             SessionKey.Chat(chatId, qualifier)
         }
-        return DefaultSession(key, bot, storage, logger)
+        autoSubscribe(key)
+        return sessionFor(key)
     }
 
     override fun of(update: ProcessedUpdate, qualifier: String?): Session? {
         val key = strategy.resolve(update)?.withQualifier(qualifier) ?: return null
-        return DefaultSession(key, bot, storage, logger)
+        autoSubscribe(key)
+        return sessionFor(key)
+    }
+
+    override fun subscribe(key: SessionKey, predicate: (ProcessedUpdate) -> Boolean) {
+        subscriptions[key] = predicate
+    }
+
+    /**
+     * Idempotent default-predicate registration used by [get] / [of]. Preserves any predicate
+     * a caller already installed via the public [subscribe].
+     */
+    private fun autoSubscribe(key: SessionKey) {
+        subscriptions.computeIfAbsent(key) { defaultPredicateFor(key) }
+    }
+
+    override fun unsubscribe(key: SessionKey) {
+        subscriptions.remove(key)
+        sessionCache.remove(key)
+    }
+
+    private fun sessionFor(key: SessionKey): Session =
+        sessionCache.computeIfAbsent(key) { DefaultSession(key, bot, storage, this, logger) }
+
+    override fun matchingSubscriptions(update: ProcessedUpdate): List<SessionKey> {
+        if (subscriptions.isEmpty()) return emptyList()
+        return subscriptions.entries.mapNotNull { (key, pred) ->
+            key.takeIf { runCatching { pred(update) }.getOrDefault(false) }
+        }
+    }
+
+    override fun isIdle(): Boolean = subscriptions.isEmpty()
+
+    private fun defaultPredicateFor(key: SessionKey): (ProcessedUpdate) -> Boolean = when (key) {
+        is SessionKey.ChatUser -> { update ->
+            update.chatOrNull?.id == key.chatId && update.userOrNull?.id == key.userId
+        }
+
+        is SessionKey.Chat -> { update -> update.chatOrNull?.id == key.chatId }
     }
 }
 
@@ -55,10 +104,11 @@ private class DefaultSession(
     override val key: SessionKey,
     override val bot: TelegramBot,
     private val storage: SessionStorage,
+    private val manager: SessionManager,
     private val logger: io.ktor.util.logging.Logger,
 ) : Session {
     override val chatId: Long get() = key.chatId
-    override val userId: Long? get() = (key as? SessionKey.ChatUser)?.userId
+    override val userId: Long? get() = key.safeCast<SessionKey.ChatUser>()?.userId
 
     override suspend fun track(message: Message, direction: Direction) {
         storage.add(
@@ -76,7 +126,7 @@ private class DefaultSession(
     }
 
     override suspend fun track(update: ProcessedUpdate, direction: Direction) {
-        val ref = update as? MessageReference ?: return
+        val ref = update.safeCast<MessageReference>() ?: return
         val message = with(ref) { getMessage() } ?: return
         storage.add(
             key,
@@ -121,4 +171,9 @@ private class DefaultSession(
 
     override suspend fun forget(predicate: (TrackedMessage) -> Boolean): Int =
         storage.remove(key, predicate)
+
+    override suspend fun close() {
+        manager.unsubscribe(key)
+        storage.clear(key)
+    }
 }

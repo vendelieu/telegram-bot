@@ -39,6 +39,7 @@ import eu.vendeli.tgbot.utils.common.onPurchasedPaidMedia
 import eu.vendeli.tgbot.utils.common.onRemovedChatBoost
 import eu.vendeli.tgbot.utils.common.onShippingQuery
 import eu.vendeli.tgbot.utils.common.processUpdate
+import eu.vendeli.tgbot.utils.common.safeCast
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.core.spec.IsolationMode
@@ -68,7 +69,11 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 { update is MessageUpdate },
                 false,
             ) {
-                (update as? MessageUpdate)?.message?.chat?.id shouldBe 1
+                update
+                    .safeCast<MessageUpdate>()
+                    ?.message
+                    ?.chat
+                    ?.id shouldBe 1
             }.andThen {
                 update.userOrNull?.id shouldBe 2
                 // processing should not reach this point, so the check will not fail our test
@@ -105,10 +110,14 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
                 update.userOrNull?.id shouldBe 1
             }.breakIf({ generalCounter.get() < 3 }) {
                 breakCounter.incrementAndGet()
-                (update as? MessageUpdate)?.message?.chat?.id shouldBe 1
+                update
+                    .safeCast<MessageUpdate>()
+                    ?.message
+                    ?.chat
+                    ?.id shouldBe 1
             }.andThen {
                 secondChainCounter.incrementAndGet()
-                (update as? MessageUpdate)?.message?.text shouldBe "/start"
+                update.safeCast<MessageUpdate>()?.message?.text shouldBe "/start"
             }
         }
         bot.update.setListener {

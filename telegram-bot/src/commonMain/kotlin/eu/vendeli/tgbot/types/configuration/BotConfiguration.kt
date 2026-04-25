@@ -45,7 +45,7 @@ data class BotConfiguration(
     internal var commandParsing: CommandParsingConfiguration = CommandParsingConfiguration(),
     internal var loggerFactory: LoggerFactory = DefaultLoggerFactory,
     @Transient
-    internal var sessions: SessionConfiguration? = null,
+    internal var sessions: SessionConfiguration = SessionConfiguration(),
 ) {
     /**
      * Function for configuring the http client. See [HttpConfiguration].
@@ -76,12 +76,12 @@ data class BotConfiguration(
     }
 
     /**
-     * Enables session tracking and configures the [eu.vendeli.tgbot.interfaces.session.SessionManager].
-     * See [SessionConfiguration]. Must be called (even with an empty body) for
-     * `TelegramBot.sessions` to be non-null.
+     * Customizes the always-on [eu.vendeli.tgbot.interfaces.session.SessionManager] subsystem.
+     * See [SessionConfiguration]. Calling this block is optional — the default storage,
+     * key strategy, and manager work out of the box.
      */
     fun sessions(block: SessionConfiguration.() -> Unit) {
-        sessions = (sessions ?: SessionConfiguration()).apply(block)
+        sessions.block()
     }
 }
 

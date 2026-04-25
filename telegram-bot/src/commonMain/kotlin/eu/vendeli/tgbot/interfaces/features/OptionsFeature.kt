@@ -19,7 +19,8 @@ interface OptionsFeature<Action : TgAction<*>, out Opts> : Feature where Opts : 
      * Lambda function to change options
      */
     fun options(block: Opts.() -> Unit): Action = this.cast<Action>().apply {
-        options.safeCast<Opts>()?.also {
+        @Suppress("UNCHECKED_CAST")
+        (options as? Opts)?.also {
             block.invoke(it)
             parameters.putAll(serde.encodeToJsonElement(DynamicLookupSerializer, it).jsonObject)
         }

@@ -37,7 +37,7 @@ sealed class ParameterResolutionStrategy {
     }
 
     /**
-     * Resolved from context.bot.sessions?.of(context.update, qualifier).
+     * Resolved from context.bot.sessions.of(context.update, qualifier).
      * [qualifier] is non-null when the parameter carries a `@SessionQualifier("…")` annotation.
      */
     data class Session(

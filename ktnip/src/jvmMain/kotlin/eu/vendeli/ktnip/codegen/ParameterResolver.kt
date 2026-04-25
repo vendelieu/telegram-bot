@@ -13,6 +13,7 @@ import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ktnip.dto.ParameterResolutionStrategy
 import eu.vendeli.ktnip.utils.TypeConstants
 import eu.vendeli.ktnip.utils.findAnnotationRecursively
+import eu.vendeli.ktnip.utils.safeCast
 import eu.vendeli.tgbot.annotations.ParamMapping
 import eu.vendeli.tgbot.annotations.SessionQualifier
 
@@ -39,7 +40,7 @@ class ParameterResolver(
             .findAnnotationRecursively(ParamMapping::class)
             ?.arguments
             ?.firstOrNull { it.name?.asString() == ParamMapping::name.name }
-            ?.value as? String
+            ?.value.safeCast<String>()
             ?: parameter.name?.getShortName()
             ?: return ParameterResolutionStrategy.Unsupported(typeName)
 
@@ -53,7 +54,7 @@ class ParameterResolver(
                     .findAnnotationRecursively(SessionQualifier::class)
                     ?.arguments
                     ?.firstOrNull { it.name?.asString() == SessionQualifier::value.name }
-                    ?.value as? String
+                    ?.value.safeCast<String>()
                 ParameterResolutionStrategy.Session(typeName, isNullable, qualifier)
             }
             TypeConstants.processingCtx -> ParameterResolutionStrategy.ProcessingContext(typeName)

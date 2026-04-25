@@ -13,7 +13,7 @@ package eu.vendeli.tgbot.annotations
  * ) { … }
  * ```
  *
- * Resolves to `bot.sessions?.of(update, qualifier = "wizard")` at codegen time. Omit the
+ * Resolves to `bot.sessions.of(update, qualifier = "wizard")` at codegen time. Omit the
  * annotation for the default (unqualified) session.
  *
  * @property value Qualifier string stored in [eu.vendeli.tgbot.types.session.SessionKey.qualifier].

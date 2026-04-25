@@ -18,7 +18,7 @@ import kotlin.time.Instant
  * stays a fast unit-level check.
  */
 class SessionTrackTest : AnnotationSpec() {
-    private fun mkBot() = TelegramBot("000000:TEST") { sessions { trackIncoming = false } }
+    private fun mkBot() = TelegramBot("000000:TEST")
 
     private fun mkMessage(id: Long) = Message(
         messageId = id,
@@ -31,7 +31,7 @@ class SessionTrackTest : AnnotationSpec() {
     @Test
     fun trackRecordsOutgoingAndIncoming() = runBlocking {
         val bot = mkBot()
-        val session = bot.sessions!!.get(chatId = 10, userId = 20)
+        val session = bot.sessions.get(chatId = 10, userId = 20)
 
         session.track(mkMessage(1), Direction.Outgoing)
         session.track(mkMessage(2), Direction.Incoming)
@@ -46,7 +46,7 @@ class SessionTrackTest : AnnotationSpec() {
     @Test
     fun forgetAppliesPredicate() = runBlocking {
         val bot = mkBot()
-        val session = bot.sessions!!.get(chatId = 10, userId = 20)
+        val session = bot.sessions.get(chatId = 10, userId = 20)
 
         repeat(250) { session.track(mkMessage(it.toLong()), Direction.Outgoing) }
         session.track(mkMessage(999), Direction.Incoming)
@@ -61,7 +61,7 @@ class SessionTrackTest : AnnotationSpec() {
     @Test
     fun forgetAllByDefault() = runBlocking {
         val bot = mkBot()
-        val session = bot.sessions!!.get(chatId = 10, userId = 20)
+        val session = bot.sessions.get(chatId = 10, userId = 20)
         session.track(mkMessage(1))
         session.track(mkMessage(2))
 
@@ -72,7 +72,7 @@ class SessionTrackTest : AnnotationSpec() {
     @Test
     fun qualifierIsolatesParallelSessions() = runBlocking {
         val bot = mkBot()
-        val mgr = bot.sessions!!
+        val mgr = bot.sessions
         val wizard = mgr.get(chatId = 10, userId = 20, qualifier = "wizard")
         val support = mgr.get(chatId = 10, userId = 20, qualifier = "support")
         val defaultSession = mgr.get(chatId = 10, userId = 20)

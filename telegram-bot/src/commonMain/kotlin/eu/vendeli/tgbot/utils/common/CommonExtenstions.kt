@@ -40,8 +40,10 @@ fun TgUpdateHandler.runExceptionHandler(
  * @param initParams option to pass init parameters.
  */
 @ExperimentalFeature
-fun <T : Any> TelegramBot.getInstance(kClass: KClass<T>, vararg initParams: Any?): T? =
-    config.classManager.getInstance(kClass, *initParams).safeCast()
+fun <T : Any> TelegramBot.getInstance(kClass: KClass<T>, vararg initParams: Any?): T? {
+    @Suppress("UNCHECKED_CAST")
+    return config.classManager.getInstance(kClass, *initParams) as? T
+}
 
 /**
  * Helper function to paginate over a collection.

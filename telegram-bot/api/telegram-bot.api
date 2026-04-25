@@ -2954,7 +2954,11 @@ public final class eu/vendeli/tgbot/implementations/DefaultSessionManager : eu/v
 	public fun <init> (Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/SessionStorage;Leu/vendeli/tgbot/types/session/SessionKeyStrategy;Leu/vendeli/tgbot/interfaces/helper/LoggerFactory;)V
 	public fun get (JLjava/lang/Long;Ljava/lang/String;)Leu/vendeli/tgbot/interfaces/session/Session;
 	public fun get (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public fun isIdle ()Z
+	public fun matchingSubscriptions (Leu/vendeli/tgbot/types/component/ProcessedUpdate;)Ljava/util/List;
 	public fun of (Leu/vendeli/tgbot/types/component/ProcessedUpdate;Ljava/lang/String;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public fun subscribe (Leu/vendeli/tgbot/types/session/SessionKey;Lkotlin/jvm/functions/Function1;)V
+	public fun unsubscribe (Leu/vendeli/tgbot/types/session/SessionKey;)V
 }
 
 public final class eu/vendeli/tgbot/implementations/InMemorySessionStorage : eu/vendeli/tgbot/interfaces/session/SessionStorage {
@@ -3300,6 +3304,7 @@ public abstract interface class eu/vendeli/tgbot/interfaces/marker/MultipleRespo
 public abstract interface class eu/vendeli/tgbot/interfaces/session/Session {
 	public abstract fun clear (Leu/vendeli/tgbot/TelegramBot;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun clear$default (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/TelegramBot;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun forget (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun forget$default (Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public abstract fun getBot ()Leu/vendeli/tgbot/TelegramBot;
@@ -3325,8 +3330,12 @@ public abstract interface class eu/vendeli/tgbot/interfaces/session/SessionManag
 	public fun get (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Leu/vendeli/tgbot/interfaces/session/Session;
 	public static synthetic fun get$default (Leu/vendeli/tgbot/interfaces/session/SessionManager;JLjava/lang/Long;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/interfaces/session/Session;
 	public static synthetic fun get$default (Leu/vendeli/tgbot/interfaces/session/SessionManager;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/User;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public abstract fun isIdle ()Z
+	public abstract fun matchingSubscriptions (Leu/vendeli/tgbot/types/component/ProcessedUpdate;)Ljava/util/List;
 	public abstract fun of (Leu/vendeli/tgbot/types/component/ProcessedUpdate;Ljava/lang/String;)Leu/vendeli/tgbot/interfaces/session/Session;
 	public static synthetic fun of$default (Leu/vendeli/tgbot/interfaces/session/SessionManager;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public abstract fun subscribe (Leu/vendeli/tgbot/types/session/SessionKey;Lkotlin/jvm/functions/Function1;)V
+	public abstract fun unsubscribe (Leu/vendeli/tgbot/types/session/SessionKey;)V
 }
 
 public final class eu/vendeli/tgbot/interfaces/session/SessionManager$DefaultImpls {
@@ -7730,24 +7739,21 @@ public final class eu/vendeli/tgbot/types/configuration/RateLimits$Companion {
 
 public final class eu/vendeli/tgbot/types/configuration/SessionConfiguration {
 	public fun <init> ()V
-	public fun <init> (Leu/vendeli/tgbot/types/session/SessionKeyStrategy;ZLeu/vendeli/tgbot/interfaces/session/SessionStorage;Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;)V
-	public synthetic fun <init> (Leu/vendeli/tgbot/types/session/SessionKeyStrategy;ZLeu/vendeli/tgbot/interfaces/session/SessionStorage;Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Leu/vendeli/tgbot/types/session/SessionKeyStrategy;Leu/vendeli/tgbot/interfaces/session/SessionStorage;Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;)V
+	public synthetic fun <init> (Leu/vendeli/tgbot/types/session/SessionKeyStrategy;Leu/vendeli/tgbot/interfaces/session/SessionStorage;Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Leu/vendeli/tgbot/types/session/SessionKeyStrategy;
-	public final fun component2 ()Z
-	public final fun component3 ()Leu/vendeli/tgbot/interfaces/session/SessionStorage;
-	public final fun component4 ()Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;
-	public final fun copy (Leu/vendeli/tgbot/types/session/SessionKeyStrategy;ZLeu/vendeli/tgbot/interfaces/session/SessionStorage;Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;)Leu/vendeli/tgbot/types/configuration/SessionConfiguration;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/configuration/SessionConfiguration;Leu/vendeli/tgbot/types/session/SessionKeyStrategy;ZLeu/vendeli/tgbot/interfaces/session/SessionStorage;Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;ILjava/lang/Object;)Leu/vendeli/tgbot/types/configuration/SessionConfiguration;
+	public final fun component2 ()Leu/vendeli/tgbot/interfaces/session/SessionStorage;
+	public final fun component3 ()Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;
+	public final fun copy (Leu/vendeli/tgbot/types/session/SessionKeyStrategy;Leu/vendeli/tgbot/interfaces/session/SessionStorage;Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;)Leu/vendeli/tgbot/types/configuration/SessionConfiguration;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/configuration/SessionConfiguration;Leu/vendeli/tgbot/types/session/SessionKeyStrategy;Leu/vendeli/tgbot/interfaces/session/SessionStorage;Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;ILjava/lang/Object;)Leu/vendeli/tgbot/types/configuration/SessionConfiguration;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getKeyStrategy ()Leu/vendeli/tgbot/types/session/SessionKeyStrategy;
 	public final fun getManagerFactory ()Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;
 	public final fun getStorage ()Leu/vendeli/tgbot/interfaces/session/SessionStorage;
-	public final fun getTrackIncoming ()Z
 	public fun hashCode ()I
 	public final fun setKeyStrategy (Leu/vendeli/tgbot/types/session/SessionKeyStrategy;)V
 	public final fun setManagerFactory (Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;)V
 	public final fun setStorage (Leu/vendeli/tgbot/interfaces/session/SessionStorage;)V
-	public final fun setTrackIncoming (Z)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -17674,6 +17680,10 @@ public final class eu/vendeli/tgbot/utils/builders/ReplyKeyboardMarkupBuilder : 
 
 public final class eu/vendeli/tgbot/utils/builders/ReplyKeyboardMarkupBuilderKt {
 	public static final fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/types/keyboard/ReplyKeyboardMarkup;
+}
+
+public final class eu/vendeli/tgbot/utils/common/BotUtilsKt {
+	public static final fun cast (Ljava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class eu/vendeli/tgbot/utils/common/BotUtils_jvmKt {

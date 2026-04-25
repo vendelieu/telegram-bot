@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.types.component.MessageReference
 import eu.vendeli.tgbot.types.component.ProcessedUpdate
 import eu.vendeli.tgbot.types.component.ProcessingContext
 import eu.vendeli.tgbot.types.component.UpdateType
+import eu.vendeli.tgbot.utils.common.safeCast
 import eu.vendeli.tgbot.utils.internal.prettyPrint
 
 /**
@@ -103,7 +104,7 @@ class ActivityRegistry internal constructor() {
      */
     fun getUpdateTypeHandlers(update: ProcessedUpdate): List<Activity> {
         val entries = updateTypeHandlers[update.type] ?: return emptyList()
-        val kind = (update as? MessageReference)?.messageKind
+        val kind = update.safeCast<MessageReference>()?.messageKind
         return entries.mapNotNull { (filter, id) ->
             if (filter.isEmpty() || kind in filter) activities[id] else null
         }

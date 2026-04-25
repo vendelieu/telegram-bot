@@ -60,7 +60,7 @@ object AnnotationParser {
             ?.safeCast<List<*>>()
             ?.mapNotNull { i ->
                 when (i) {
-                    is KSType -> i.declaration as? KSClassDeclaration
+                    is KSType -> i.declaration.safeCast<KSClassDeclaration>()
                     is KSClassDeclaration -> i
                     else -> null
                 }
