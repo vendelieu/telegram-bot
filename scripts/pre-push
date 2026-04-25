@@ -1,9 +1,36 @@
 #!/bin/sh
 # Pre-push hook: runs prepareRelease before allowing push.
 # Install with: ./scripts/install-hooks.sh
+#
+# Bypass: SKIP_PRE_PUSH=1 git push   (or git push --no-verify)
 
-set -e
+set -eu
+
+if [ "${SKIP_PRE_PUSH:-0}" = "1" ]; then
+    echo "pre-push: SKIP_PRE_PUSH=1 set, skipping prepareRelease."
+    exit 0
+fi
+
+# git feeds "<local_ref> <local_sha> <remote_ref> <remote_sha>" lines on stdin.
+# If every line is a delete (local_sha == zero), there's nothing to validate.
+zero="0000000000000000000000000000000000000000"
+has_update=0
+while read -r _local_ref local_sha _remote_ref _remote_sha; do
+    [ -z "${local_sha:-}" ] && continue
+    if [ "$local_sha" != "$zero" ]; then
+        has_update=1
+    fi
+done
+
+if [ "$has_update" -eq 0 ]; then
+    echo "pre-push: only deletes, skipping prepareRelease."
+    exit 0
+fi
+
 cd "$(git rev-parse --show-toplevel)"
-echo "Running prepareRelease before push..."
-./gradlew prepareRelease --no-daemon
-echo "prepareRelease passed. Proceeding with push."
+
+start=$(date +%s)
+echo "pre-push: running ./gradlew prepareRelease..."
+./gradlew prepareRelease
+elapsed=$(( $(date +%s) - start ))
+echo "pre-push: prepareRelease passed in ${elapsed}s. Proceeding with push."
