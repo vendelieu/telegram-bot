@@ -73,6 +73,32 @@ class SessionTrackingInterceptorTest : AnnotationSpec() {
     }
 
     @Test
+    fun qualifiedSessionsAutoTrackInSeparateBuckets() = runBlocking {
+        val bot = TelegramBot("000000:TEST")
+        val update = eu.vendeli.utils.MockUpdate.SINGLE().updates.single()
+
+        // Open three sessions for the same chat/user differing only by qualifier.
+        val unqualified = bot.sessions.of(update)!!
+        val wizard = bot.sessions.of(update, qualifier = "wizard")!!
+        val support = bot.sessions.get(chatId = 1, userId = 1, qualifier = "support")
+
+        bot.update.handle(update)
+
+        // Each catches the message in its own storage bucket — qualifier isolates storage,
+        // not routing.
+        unqualified.messages() shouldHaveSize 1
+        wizard.messages() shouldHaveSize 1
+        support.messages() shouldHaveSize 1
+
+        // And distinct sessions remain isolated when one closes.
+        wizard.close()
+        bot.update.handle(update)
+        unqualified.messages() shouldHaveSize 2
+        support.messages() shouldHaveSize 2
+        wizard.messages().shouldBeEmpty()
+    }
+
+    @Test
     fun closeRemovesSubscriptionAndClearsStorage() = runBlocking {
         val bot = TelegramBot("000000:TEST")
         val update = eu.vendeli.utils.MockUpdate

@@ -90,6 +90,13 @@ class DefaultSessionManager(
 
     override fun isIdle(): Boolean = subscriptions.isEmpty()
 
+    /**
+     * Auto-subscription predicate. Matches by chat (and user, for [SessionKey.ChatUser]) only —
+     * qualifier is a storage namespace, not a routing criterion, so a qualified session still
+     * receives every update for its chat/user. Open multiple qualified sessions for the same
+     * chat and they'll each catch the same incoming traffic in their own bucket; close the ones
+     * you don't want via [Session.close].
+     */
     private fun defaultPredicateFor(key: SessionKey): (ProcessedUpdate) -> Boolean = when (key) {
         is SessionKey.ChatUser -> { update ->
             update.chatOrNull?.id == key.chatId && update.userOrNull?.id == key.userId
