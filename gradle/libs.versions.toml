@@ -7,7 +7,7 @@ serialization = "1.11.0"
 stately = "2.1.0"
 
 kotlin = "2.3.21"
-coroutines = "1.10.2"
+coroutines = "1.11.0"
 dokka = "2.2.0"
 kotlinter = "5.4.2"
 deteKT = "1.23.8"
