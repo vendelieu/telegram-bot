@@ -1,7 +1,7 @@
 [versions]
 ktor = "3.4.3"
 logback = "1.5.32"
-slf4j = "2.0.17"
+slf4j = "2.0.18"
 
 serialization = "1.11.0"
 stately = "2.1.0"
