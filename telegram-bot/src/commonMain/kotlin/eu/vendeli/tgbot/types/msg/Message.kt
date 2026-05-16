@@ -38,6 +38,7 @@ import eu.vendeli.tgbot.types.keyboard.WebAppData
 import eu.vendeli.tgbot.types.media.Animation
 import eu.vendeli.tgbot.types.media.Audio
 import eu.vendeli.tgbot.types.media.Document
+import eu.vendeli.tgbot.types.media.LivePhoto
 import eu.vendeli.tgbot.types.media.PaidMediaInfo
 import eu.vendeli.tgbot.types.media.PhotoSize
 import eu.vendeli.tgbot.types.media.Sticker
@@ -73,6 +74,10 @@ import kotlin.time.Instant
  * @property senderBoostCount Optional. If the sender of the message boosted the chat, the number of boosts added by the user
  * @property senderBusinessBot Optional. The bot that actually sent the message on behalf of the business account. Available only for outgoing messages sent on behalf of the connected business account.
  * @property senderTag Optional. Tag or custom title of the sender of the message; for supergroups only
+ * @property guestQueryId Optional. Unique identifier of the guest bot query that prompted this message; received by guest bots only
+ * @property guestBotCallerUser Optional. User that triggered the guest bot to send the message; received by guest bots only
+ * @property guestBotCallerChat Optional. Chat that triggered the guest bot to send the message; received by guest bots only
+ * @property livePhoto Optional. Message is a live photo, information about the live photo
  * @property date Date the message was sent in Unix time. It is always a positive number, representing a valid date.
  * @property businessConnectionId Optional. Unique identifier of the business connection from which the message was received. If non-empty, the message belongs to a chat of the corresponding business account that is independent from any potential bot chat which might share the same identifier.
  * @property chat Chat the message belongs to
@@ -163,6 +168,9 @@ data class Message(
     val senderBoostCount: Int? = null,
     val senderBusinessBot: User? = null,
     val senderTag: String? = null,
+    val guestQueryId: String? = null,
+    val guestBotCallerUser: User? = null,
+    val guestBotCallerChat: Chat? = null,
     @Serializable(InstantSerializer::class)
     override val date: Instant,
     val businessConnectionId: String? = null,
@@ -196,6 +204,7 @@ data class Message(
     val video: Video? = null,
     val videoNote: VideoNote? = null,
     val voice: Voice? = null,
+    val livePhoto: LivePhoto? = null,
     val caption: String? = null,
     val captionEntities: List<MessageEntity>? = null,
     val showCaptionAboveMedia: Boolean? = null,

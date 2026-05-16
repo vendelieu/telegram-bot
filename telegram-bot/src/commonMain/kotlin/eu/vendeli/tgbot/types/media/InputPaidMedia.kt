@@ -42,4 +42,14 @@ sealed class InputPaidMedia : ImplicitMediaData {
         val duration: Int? = null,
         val supportsStreaming: Boolean? = null,
     ) : InputPaidMedia()
+
+    @Serializable
+    @SerialName("live_photo")
+    data class LivePhoto(
+        override var media: ImplicitFile,
+        var photo: ImplicitFile,
+    ) : InputPaidMedia() {
+        constructor(media: String, photo: String) : this(media.toImplicitFile(), photo.toImplicitFile())
+        constructor(media: InputFile, photo: InputFile) : this(media.toImplicitFile(), photo.toImplicitFile())
+    }
 }

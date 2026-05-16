@@ -76,6 +76,7 @@ object TypeConstants {
     val deletedBusinessMessagesClass: TypeName = DeletedBusinessMessagesUpdate::class.asTypeName()
     val purchasedPaidMediaUpdateClass: TypeName = PurchasedPaidMediaUpdate::class.asTypeName()
     val managedBotUpdateClass: TypeName = ManagedBotUpdate::class.asTypeName()
+    val guestMessageUpdateClass: TypeName = GuestMessageUpdate::class.asTypeName()
 
     // Context types
     val commonMatcherClass: TypeName = CommonMatcher::class.asTypeName()

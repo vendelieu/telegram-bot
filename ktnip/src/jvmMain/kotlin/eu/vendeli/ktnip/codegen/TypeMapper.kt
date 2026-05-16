@@ -38,6 +38,7 @@ object TypeMapper {
         TypeConstants.deletedBusinessMessagesClass to DeletedBusinessMessagesUpdate::class,
         TypeConstants.purchasedPaidMediaUpdateClass to PurchasedPaidMediaUpdate::class,
         TypeConstants.managedBotUpdateClass to ManagedBotUpdate::class,
+        TypeConstants.guestMessageUpdateClass to GuestMessageUpdate::class,
     )
 
     /**

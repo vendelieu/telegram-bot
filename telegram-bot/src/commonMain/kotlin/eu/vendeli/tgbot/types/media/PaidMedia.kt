@@ -11,6 +11,7 @@ import kotlinx.serialization.serializer
  * - PaidMediaPreview
  * - PaidMediaPhoto
  * - PaidMediaVideo
+ * - PaidMediaLivePhoto
  *
  * [Api reference](https://core.telegram.org/bots/api#paidmedia)
  *
@@ -40,5 +41,11 @@ sealed class PaidMedia {
     @SerialName("video")
     data class Video(
         val video: eu.vendeli.tgbot.types.media.Video,
+    ) : PaidMedia()
+
+    @Serializable
+    @SerialName("live_photo")
+    data class LivePhoto(
+        val livePhoto: eu.vendeli.tgbot.types.media.LivePhoto,
     ) : PaidMedia()
 }

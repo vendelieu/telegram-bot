@@ -405,6 +405,25 @@ data class ManagedBotUpdate(
     internal companion object : UpdateSerializer<ManagedBotUpdate>()
 }
 
+@Serializable(GuestMessageUpdate.Companion::class)
+data class GuestMessageUpdate(
+    override val updateId: Int,
+    override val origin: Update,
+    val guestMessage: Message,
+) : ProcessedUpdate(updateId, origin, UpdateType.GUEST_MESSAGE),
+    UserReference,
+    ChatReference,
+    MessageReference {
+    override val user = guestMessage.from
+    override val text = guestMessage.text.orEmpty()
+    override val chat = guestMessage.chat
+    override val messageKind = guestMessage.detectKind()
+
+    override fun MessageReference.getMessage(): Message = guestMessage
+
+    internal companion object : UpdateSerializer<GuestMessageUpdate>()
+}
+
 inline val ProcessedUpdate.userOrNull: User? get() = (this as? UserReference)?.user
 inline val ProcessedUpdate.chatOrNull: Chat? get() = (this as? ChatReference)?.chat
 

@@ -9,6 +9,7 @@ import eu.vendeli.tgbot.types.giveaway.GiveawayWinners
 import eu.vendeli.tgbot.types.media.Animation
 import eu.vendeli.tgbot.types.media.Audio
 import eu.vendeli.tgbot.types.media.Document
+import eu.vendeli.tgbot.types.media.LivePhoto
 import eu.vendeli.tgbot.types.media.PaidMediaInfo
 import eu.vendeli.tgbot.types.media.PhotoSize
 import eu.vendeli.tgbot.types.media.Sticker
@@ -39,6 +40,7 @@ import kotlinx.serialization.Serializable
  * @property video Optional. Message is a video, information about the video
  * @property videoNote Optional. Message is a video note, information about the video message
  * @property voice Optional. Message is a voice message, information about the file
+ * @property livePhoto Optional. Message is a live photo, information about the live photo
  * @property hasMediaSpoiler Optional. True, if the message media is covered by a spoiler animation
  * @property checklist Optional. Message is a checklist
  * @property contact Optional. Message is a shared contact, information about the contact
@@ -67,6 +69,7 @@ data class ExternalReplyInfo(
     val video: Video? = null,
     val videoNote: VideoNote? = null,
     val voice: Voice? = null,
+    val livePhoto: LivePhoto? = null,
     val hasMediaSpoiler: Boolean? = null,
     val checklist: Checklist? = null,
     val contact: Contact? = null,

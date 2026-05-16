@@ -77,6 +77,9 @@ enum class UpdateType {
     @SerialName("managed_bot")
     MANAGED_BOT,
 
+    @SerialName("guest_message")
+    GUEST_MESSAGE,
+
     ;
 
     override fun toString(): String = "UpdateType.$name"

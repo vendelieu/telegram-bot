@@ -52,6 +52,7 @@ class TgUpdateHandler internal constructor(
     var ____ctxUtils: CtxUtils? = null
 
     private var processingEx: TgException? = null
+    @Suppress("DEPRECATION")
     private fun collectUpdates(types: List<UpdateType>?) = handlerScope.launch(Job(handlerJob)) {
         val cfg = bot.config.updatesListener
         logger.debug { "Starting updates collector." }
