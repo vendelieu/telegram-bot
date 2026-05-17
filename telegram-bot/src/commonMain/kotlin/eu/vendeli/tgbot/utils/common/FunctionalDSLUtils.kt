@@ -14,6 +14,7 @@ import eu.vendeli.tgbot.types.component.DeletedBusinessMessagesUpdate
 import eu.vendeli.tgbot.types.component.EditedBusinessMessageUpdate
 import eu.vendeli.tgbot.types.component.EditedChannelPostUpdate
 import eu.vendeli.tgbot.types.component.EditedMessageUpdate
+import eu.vendeli.tgbot.types.component.GuestMessageUpdate
 import eu.vendeli.tgbot.types.component.InlineQueryUpdate
 import eu.vendeli.tgbot.types.component.ManagedBotUpdate
 import eu.vendeli.tgbot.types.component.MessageReactionCountUpdate
@@ -266,5 +267,15 @@ public fun FunctionalHandlingDsl.onManagedBot(block: suspend ActivityCtx<Managed
   onUpdate(UpdateType.MANAGED_BOT) {
       @Suppress("UNCHECKED_CAST")
       (this as ActivityCtx<ManagedBotUpdate>).block()
+  }
+}
+
+/**
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.guestMessage] in the [eu.vendeli.tgbot.types.common.Update].
+ */
+public fun FunctionalHandlingDsl.onGuestMessage(block: suspend ActivityCtx<GuestMessageUpdate>.() -> Unit) {
+  onUpdate(UpdateType.GUEST_MESSAGE) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<GuestMessageUpdate>).block()
   }
 }

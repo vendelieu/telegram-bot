@@ -1,5 +1,6 @@
 package eu.vendeli.ktnip.utils.ksptest
 
+import eu.vendeli.ktnip.utils.safeCast
 import java.io.File
 import java.net.JarURLConnection
 import java.nio.file.Paths
@@ -56,7 +57,7 @@ object GoldenFileHandler {
                 }
             }
             "jar" -> {
-                val connection = resource.openConnection() as? JarURLConnection ?: return emptyList()
+                val connection = resource.openConnection().safeCast<JarURLConnection>() ?: return emptyList()
                 connection.jarFile.use { jar ->
                     jar.entries()
                         .asSequence()

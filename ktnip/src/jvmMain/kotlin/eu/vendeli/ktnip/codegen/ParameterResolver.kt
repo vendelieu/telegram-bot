@@ -13,7 +13,9 @@ import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ktnip.dto.ParameterResolutionStrategy
 import eu.vendeli.ktnip.utils.TypeConstants
 import eu.vendeli.ktnip.utils.findAnnotationRecursively
+import eu.vendeli.ktnip.utils.safeCast
 import eu.vendeli.tgbot.annotations.ParamMapping
+import eu.vendeli.tgbot.annotations.SessionQualifier
 
 /**
  * Resolves function parameters to their appropriate resolution strategies.
@@ -38,7 +40,7 @@ class ParameterResolver(
             .findAnnotationRecursively(ParamMapping::class)
             ?.arguments
             ?.firstOrNull { it.name?.asString() == ParamMapping::name.name }
-            ?.value as? String
+            ?.value.safeCast<String>()
             ?: parameter.name?.getShortName()
             ?: return ParameterResolutionStrategy.Unsupported(typeName)
 
@@ -47,6 +49,14 @@ class ParameterResolver(
             TypeConstants.userClass -> ParameterResolutionStrategy.User(typeName, isNullable)
             TypeConstants.chatClass -> ParameterResolutionStrategy.Chat(typeName, isNullable)
             TypeConstants.botClass -> ParameterResolutionStrategy.Bot(typeName)
+            TypeConstants.sessionClass -> {
+                val qualifier = parameter.annotations
+                    .findAnnotationRecursively(SessionQualifier::class)
+                    ?.arguments
+                    ?.firstOrNull { it.name?.asString() == SessionQualifier::value.name }
+                    ?.value.safeCast<String>()
+                ParameterResolutionStrategy.Session(typeName, isNullable, qualifier)
+            }
             TypeConstants.processingCtx -> ParameterResolutionStrategy.ProcessingContext(typeName)
             TypeConstants.updateClass -> ParameterResolutionStrategy.Update(typeName)
 

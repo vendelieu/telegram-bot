@@ -18,6 +18,7 @@ import kotlinx.serialization.Serializable
  * @property addedByUser Optional. User who added the option; omitted if the option wasn't added by a user after poll creation
  * @property addedByChat Optional. Chat that added the option; omitted if the option wasn't added by a chat after poll creation
  * @property additionDate Optional. Point in time (Unix timestamp) when the option was added; omitted if the option existed in the original poll
+ * @property media Optional. Media attached to the option
  */
 @Serializable
 data class PollOption(
@@ -29,4 +30,5 @@ data class PollOption(
     val addedByChat: Chat? = null,
     @Serializable(InstantSerializer::class)
     val additionDate: Instant? = null,
+    val media: PollMedia? = null,
 )

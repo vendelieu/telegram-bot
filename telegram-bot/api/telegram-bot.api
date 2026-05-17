@@ -9,6 +9,7 @@ public final class eu/vendeli/tgbot/TelegramBot {
 	public final fun getFileDirectUrl (Leu/vendeli/tgbot/types/media/File;)Ljava/lang/String;
 	public final fun getIdentifier ()Ljava/lang/String;
 	public final fun getInputListener ()Leu/vendeli/tgbot/interfaces/ctx/InputListener;
+	public final fun getSessions ()Leu/vendeli/tgbot/interfaces/session/SessionManager;
 	public final fun getUpdate ()Leu/vendeli/tgbot/core/TgUpdateHandler;
 	public final fun handleUpdates (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun handleUpdates$default (Leu/vendeli/tgbot/TelegramBot;Ljava/util/List;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
@@ -73,10 +74,15 @@ public abstract interface annotation class eu/vendeli/tgbot/annotations/RateLimi
 	public abstract fun rate ()J
 }
 
+public abstract interface annotation class eu/vendeli/tgbot/annotations/SessionQualifier : java/lang/annotation/Annotation {
+	public abstract fun value ()Ljava/lang/String;
+}
+
 public abstract interface annotation class eu/vendeli/tgbot/annotations/UnprocessedHandler : java/lang/annotation/Annotation {
 }
 
 public abstract interface annotation class eu/vendeli/tgbot/annotations/UpdateHandler : java/lang/annotation/Annotation {
+	public abstract fun messageKind ()[Leu/vendeli/tgbot/types/component/MessageKind;
 	public abstract fun type ()[Leu/vendeli/tgbot/types/component/UpdateType;
 }
 
@@ -2811,6 +2817,7 @@ public final class eu/vendeli/tgbot/core/ActivityRegistry {
 	public final fun getAllActivities ()Ljava/util/Collection;
 	public final fun getCommandsForType (Leu/vendeli/tgbot/types/component/UpdateType;)Ljava/util/Map;
 	public final fun getUnprocessedHandler ()Leu/vendeli/tgbot/core/Activity;
+	public final fun getUpdateTypeHandlers (Leu/vendeli/tgbot/types/component/ProcessedUpdate;)Ljava/util/List;
 	public final fun getUpdateTypeHandlers (Leu/vendeli/tgbot/types/component/UpdateType;)Ljava/util/List;
 	public final fun prettyPrint ()Ljava/lang/String;
 	public final fun registerActivity (Leu/vendeli/tgbot/core/Activity;)V
@@ -2818,7 +2825,8 @@ public final class eu/vendeli/tgbot/core/ActivityRegistry {
 	public final fun registerCommonHandler (Leu/vendeli/tgbot/types/component/CommonMatcher;Leu/vendeli/tgbot/types/component/UpdateType;I)V
 	public final fun registerInput (Ljava/lang/String;I)V
 	public final fun registerUnprocessed (I)V
-	public final fun registerUpdateTypeHandler (Leu/vendeli/tgbot/types/component/UpdateType;I)V
+	public final fun registerUpdateTypeHandler (Leu/vendeli/tgbot/types/component/UpdateType;ILjava/util/Set;)V
+	public static synthetic fun registerUpdateTypeHandler$default (Leu/vendeli/tgbot/core/ActivityRegistry;Leu/vendeli/tgbot/types/component/UpdateType;ILjava/util/Set;ILjava/lang/Object;)V
 }
 
 public final class eu/vendeli/tgbot/core/FunctionalHandlingDsl {
@@ -2832,7 +2840,8 @@ public final class eu/vendeli/tgbot/core/FunctionalHandlingDsl {
 	public static synthetic fun onCommand$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Ljava/lang/String;Ljava/util/Set;Leu/vendeli/tgbot/types/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
 	public final fun onInput (Ljava/lang/String;Leu/vendeli/tgbot/types/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;)V
 	public static synthetic fun onInput$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Ljava/lang/String;Leu/vendeli/tgbot/types/configuration/RateLimits;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
-	public final fun onUpdate ([Leu/vendeli/tgbot/types/component/UpdateType;Lkotlin/jvm/functions/Function2;)V
+	public final fun onUpdate ([Leu/vendeli/tgbot/types/component/UpdateType;Ljava/util/Set;Lkotlin/jvm/functions/Function2;)V
+	public static synthetic fun onUpdate$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;[Leu/vendeli/tgbot/types/component/UpdateType;Ljava/util/Set;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
 	public final fun whenNotHandled (Lkotlin/jvm/functions/Function2;)V
 }
 
@@ -2941,6 +2950,25 @@ public final class eu/vendeli/tgbot/implementations/DefaultLoggerFactory : eu/ve
 	public fun get (Ljava/lang/String;)Lorg/slf4j/Logger;
 }
 
+public final class eu/vendeli/tgbot/implementations/DefaultSessionManager : eu/vendeli/tgbot/interfaces/session/SessionManager {
+	public fun <init> (Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/SessionStorage;Leu/vendeli/tgbot/types/session/SessionKeyStrategy;Leu/vendeli/tgbot/interfaces/helper/LoggerFactory;)V
+	public fun get (JLjava/lang/Long;Ljava/lang/String;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public fun get (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public fun isIdle ()Z
+	public fun matchingSubscriptions (Leu/vendeli/tgbot/types/component/ProcessedUpdate;)Ljava/util/List;
+	public fun of (Leu/vendeli/tgbot/types/component/ProcessedUpdate;Ljava/lang/String;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public fun subscribe (Leu/vendeli/tgbot/types/session/SessionKey;Lkotlin/jvm/functions/Function1;)V
+	public fun unsubscribe (Leu/vendeli/tgbot/types/session/SessionKey;)V
+}
+
+public final class eu/vendeli/tgbot/implementations/InMemorySessionStorage : eu/vendeli/tgbot/interfaces/session/SessionStorage {
+	public fun <init> ()V
+	public fun add (Leu/vendeli/tgbot/types/session/SessionKey;Leu/vendeli/tgbot/types/session/TrackedMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun clear (Leu/vendeli/tgbot/types/session/SessionKey;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun list (Leu/vendeli/tgbot/types/session/SessionKey;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun remove (Leu/vendeli/tgbot/types/session/SessionKey;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
 public final class eu/vendeli/tgbot/implementations/InputListenerMapImpl : eu/vendeli/tgbot/interfaces/ctx/InputListener {
 	public fun <init> ()V
 	public fun del (J)V
@@ -2988,14 +3016,24 @@ public final class eu/vendeli/tgbot/implementations/UserDataMapImpl : eu/vendeli
 
 public abstract class eu/vendeli/tgbot/interfaces/action/Action : eu/vendeli/tgbot/interfaces/action/TgAction {
 	public fun <init> ()V
-	public final fun send (JLeu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun send (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun send (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun send (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun sendReturning (JLeu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun sendReturning (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun sendReturning (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun sendReturning (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun send (JLeu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun send (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun send (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun send (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun send$default (Leu/vendeli/tgbot/interfaces/action/Action;JLeu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun send$default (Leu/vendeli/tgbot/interfaces/action/Action;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun send$default (Leu/vendeli/tgbot/interfaces/action/Action;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun send$default (Leu/vendeli/tgbot/interfaces/action/Action;Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun sendReturning (JLeu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendReturning (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendReturning (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendReturning (Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun sendReturning$default (Leu/vendeli/tgbot/interfaces/action/Action;JLeu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun sendReturning$default (Leu/vendeli/tgbot/interfaces/action/Action;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun sendReturning$default (Leu/vendeli/tgbot/interfaces/action/Action;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun sendReturning$default (Leu/vendeli/tgbot/interfaces/action/Action;Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun sendReturningTracked (Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendTracked (Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/action/BusinessActionExt : eu/vendeli/tgbot/interfaces/action/Request {
@@ -3261,6 +3299,61 @@ public final class eu/vendeli/tgbot/interfaces/marker/Keyboard$Companion {
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/marker/MultipleResponse {
+}
+
+public abstract interface class eu/vendeli/tgbot/interfaces/session/Session {
+	public abstract fun clear (Leu/vendeli/tgbot/TelegramBot;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun clear$default (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/TelegramBot;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun forget (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun forget$default (Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun getBot ()Leu/vendeli/tgbot/TelegramBot;
+	public abstract fun getChatId ()J
+	public abstract fun getKey ()Leu/vendeli/tgbot/types/session/SessionKey;
+	public abstract fun getUserId ()Ljava/lang/Long;
+	public abstract fun messages (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun track (Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/types/session/Direction;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun track (Leu/vendeli/tgbot/types/msg/Message;Leu/vendeli/tgbot/types/session/Direction;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun track$default (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/types/session/Direction;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun track$default (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/types/msg/Message;Leu/vendeli/tgbot/types/session/Direction;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class eu/vendeli/tgbot/interfaces/session/Session$DefaultImpls {
+	public static synthetic fun clear$default (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/TelegramBot;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun forget$default (Leu/vendeli/tgbot/interfaces/session/Session;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun track$default (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/types/session/Direction;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun track$default (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/types/msg/Message;Leu/vendeli/tgbot/types/session/Direction;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public abstract interface class eu/vendeli/tgbot/interfaces/session/SessionManager {
+	public abstract fun get (JLjava/lang/Long;Ljava/lang/String;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public fun get (Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public static synthetic fun get$default (Leu/vendeli/tgbot/interfaces/session/SessionManager;JLjava/lang/Long;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public static synthetic fun get$default (Leu/vendeli/tgbot/interfaces/session/SessionManager;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/User;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public abstract fun isIdle ()Z
+	public abstract fun matchingSubscriptions (Leu/vendeli/tgbot/types/component/ProcessedUpdate;)Ljava/util/List;
+	public abstract fun of (Leu/vendeli/tgbot/types/component/ProcessedUpdate;Ljava/lang/String;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public static synthetic fun of$default (Leu/vendeli/tgbot/interfaces/session/SessionManager;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public abstract fun subscribe (Leu/vendeli/tgbot/types/session/SessionKey;Lkotlin/jvm/functions/Function1;)V
+	public abstract fun unsubscribe (Leu/vendeli/tgbot/types/session/SessionKey;)V
+}
+
+public final class eu/vendeli/tgbot/interfaces/session/SessionManager$DefaultImpls {
+	public static fun get (Leu/vendeli/tgbot/interfaces/session/SessionManager;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public static synthetic fun get$default (Leu/vendeli/tgbot/interfaces/session/SessionManager;JLjava/lang/Long;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public static synthetic fun get$default (Leu/vendeli/tgbot/interfaces/session/SessionManager;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/types/User;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/interfaces/session/Session;
+	public static synthetic fun of$default (Leu/vendeli/tgbot/interfaces/session/SessionManager;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/interfaces/session/Session;
+}
+
+public abstract interface class eu/vendeli/tgbot/interfaces/session/SessionManagerFactory {
+	public abstract fun create (Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/types/configuration/SessionConfiguration;)Leu/vendeli/tgbot/interfaces/session/SessionManager;
+}
+
+public abstract interface class eu/vendeli/tgbot/interfaces/session/SessionStorage {
+	public abstract fun add (Leu/vendeli/tgbot/types/session/SessionKey;Leu/vendeli/tgbot/types/session/TrackedMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun clear (Leu/vendeli/tgbot/types/session/SessionKey;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun list (Leu/vendeli/tgbot/types/session/SessionKey;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun remove (Leu/vendeli/tgbot/types/session/SessionKey;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class eu/vendeli/tgbot/types/User : eu/vendeli/tgbot/types/component/IdLong {
@@ -4221,10 +4314,12 @@ public abstract class eu/vendeli/tgbot/types/chain/WizardActivity : eu/vendeli/t
 }
 
 public final class eu/vendeli/tgbot/types/chain/WizardContext {
-	public fun <init> (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;)V
+	public fun <init> (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;)V
+	public synthetic fun <init> (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Leu/vendeli/tgbot/interfaces/session/Session;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun delState (Lkotlin/reflect/KClass;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getBot ()Leu/vendeli/tgbot/TelegramBot;
 	public final fun getCurrentWizardId ()I
+	public final fun getSession ()Leu/vendeli/tgbot/interfaces/session/Session;
 	public final fun getState (Lkotlin/reflect/KClass;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getUpdate ()Leu/vendeli/tgbot/types/component/ProcessedUpdate;
 	public final fun getUser ()Leu/vendeli/tgbot/types/User;
@@ -6399,7 +6494,7 @@ public final class eu/vendeli/tgbot/types/component/BusinessConnectionUpdate : e
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class eu/vendeli/tgbot/types/component/BusinessMessageUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference, eu/vendeli/tgbot/types/component/UserReference {
+public final class eu/vendeli/tgbot/types/component/BusinessMessageUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference, eu/vendeli/tgbot/types/component/MessageReference, eu/vendeli/tgbot/types/component/UserReference {
 	public fun <init> (ILeu/vendeli/tgbot/types/common/Update;Leu/vendeli/tgbot/types/msg/Message;)V
 	public final fun component1 ()I
 	public final fun component2 ()Leu/vendeli/tgbot/types/common/Update;
@@ -6409,6 +6504,8 @@ public final class eu/vendeli/tgbot/types/component/BusinessMessageUpdate : eu/v
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBusinessMessage ()Leu/vendeli/tgbot/types/msg/Message;
 	public fun getChat ()Leu/vendeli/tgbot/types/chat/Chat;
+	public fun getMessage (Leu/vendeli/tgbot/types/component/MessageReference;)Leu/vendeli/tgbot/types/msg/Message;
+	public fun getMessageKind ()Leu/vendeli/tgbot/types/component/MessageKind;
 	public fun getOrigin ()Leu/vendeli/tgbot/types/common/Update;
 	public fun getText ()Ljava/lang/String;
 	public fun getUpdateId ()I
@@ -6417,7 +6514,7 @@ public final class eu/vendeli/tgbot/types/component/BusinessMessageUpdate : eu/v
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class eu/vendeli/tgbot/types/component/CallbackQueryUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference, eu/vendeli/tgbot/types/component/UserReference {
+public final class eu/vendeli/tgbot/types/component/CallbackQueryUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference, eu/vendeli/tgbot/types/component/MessageReference, eu/vendeli/tgbot/types/component/UserReference {
 	public fun <init> (ILeu/vendeli/tgbot/types/common/Update;Leu/vendeli/tgbot/types/common/CallbackQuery;)V
 	public final fun component1 ()I
 	public final fun component2 ()Leu/vendeli/tgbot/types/common/Update;
@@ -6427,6 +6524,8 @@ public final class eu/vendeli/tgbot/types/component/CallbackQueryUpdate : eu/ven
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCallbackQuery ()Leu/vendeli/tgbot/types/common/CallbackQuery;
 	public fun getChat ()Leu/vendeli/tgbot/types/chat/Chat;
+	public fun getMessage (Leu/vendeli/tgbot/types/component/MessageReference;)Leu/vendeli/tgbot/types/msg/Message;
+	public fun getMessageKind ()Leu/vendeli/tgbot/types/component/MessageKind;
 	public fun getOrigin ()Leu/vendeli/tgbot/types/common/Update;
 	public fun getText ()Ljava/lang/String;
 	public fun getUpdateId ()I
@@ -6435,7 +6534,7 @@ public final class eu/vendeli/tgbot/types/component/CallbackQueryUpdate : eu/ven
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class eu/vendeli/tgbot/types/component/ChannelPostUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference, eu/vendeli/tgbot/types/component/UserReference {
+public final class eu/vendeli/tgbot/types/component/ChannelPostUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference, eu/vendeli/tgbot/types/component/MessageReference, eu/vendeli/tgbot/types/component/UserReference {
 	public fun <init> (ILeu/vendeli/tgbot/types/common/Update;Leu/vendeli/tgbot/types/msg/Message;)V
 	public final fun component1 ()I
 	public final fun component2 ()Leu/vendeli/tgbot/types/common/Update;
@@ -6445,6 +6544,8 @@ public final class eu/vendeli/tgbot/types/component/ChannelPostUpdate : eu/vende
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getChannelPost ()Leu/vendeli/tgbot/types/msg/Message;
 	public fun getChat ()Leu/vendeli/tgbot/types/chat/Chat;
+	public fun getMessage (Leu/vendeli/tgbot/types/component/MessageReference;)Leu/vendeli/tgbot/types/msg/Message;
+	public fun getMessageKind ()Leu/vendeli/tgbot/types/component/MessageKind;
 	public fun getOrigin ()Leu/vendeli/tgbot/types/common/Update;
 	public fun getText ()Ljava/lang/String;
 	public fun getUpdateId ()I
@@ -6694,7 +6795,7 @@ public final class eu/vendeli/tgbot/types/component/DiceEmoji$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/component/EditedBusinessMessageUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference, eu/vendeli/tgbot/types/component/UserReference {
+public final class eu/vendeli/tgbot/types/component/EditedBusinessMessageUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference, eu/vendeli/tgbot/types/component/MessageReference, eu/vendeli/tgbot/types/component/UserReference {
 	public fun <init> (ILeu/vendeli/tgbot/types/common/Update;Leu/vendeli/tgbot/types/msg/Message;)V
 	public final fun component1 ()I
 	public final fun component2 ()Leu/vendeli/tgbot/types/common/Update;
@@ -6704,6 +6805,8 @@ public final class eu/vendeli/tgbot/types/component/EditedBusinessMessageUpdate 
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getChat ()Leu/vendeli/tgbot/types/chat/Chat;
 	public final fun getEditedBusinessMessage ()Leu/vendeli/tgbot/types/msg/Message;
+	public fun getMessage (Leu/vendeli/tgbot/types/component/MessageReference;)Leu/vendeli/tgbot/types/msg/Message;
+	public fun getMessageKind ()Leu/vendeli/tgbot/types/component/MessageKind;
 	public fun getOrigin ()Leu/vendeli/tgbot/types/common/Update;
 	public fun getText ()Ljava/lang/String;
 	public fun getUpdateId ()I
@@ -6712,7 +6815,7 @@ public final class eu/vendeli/tgbot/types/component/EditedBusinessMessageUpdate 
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class eu/vendeli/tgbot/types/component/EditedChannelPostUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference, eu/vendeli/tgbot/types/component/UserReference {
+public final class eu/vendeli/tgbot/types/component/EditedChannelPostUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference, eu/vendeli/tgbot/types/component/MessageReference, eu/vendeli/tgbot/types/component/UserReference {
 	public fun <init> (ILeu/vendeli/tgbot/types/common/Update;Leu/vendeli/tgbot/types/msg/Message;)V
 	public final fun component1 ()I
 	public final fun component2 ()Leu/vendeli/tgbot/types/common/Update;
@@ -6722,6 +6825,8 @@ public final class eu/vendeli/tgbot/types/component/EditedChannelPostUpdate : eu
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getChat ()Leu/vendeli/tgbot/types/chat/Chat;
 	public final fun getEditedChannelPost ()Leu/vendeli/tgbot/types/msg/Message;
+	public fun getMessage (Leu/vendeli/tgbot/types/component/MessageReference;)Leu/vendeli/tgbot/types/msg/Message;
+	public fun getMessageKind ()Leu/vendeli/tgbot/types/component/MessageKind;
 	public fun getOrigin ()Leu/vendeli/tgbot/types/common/Update;
 	public fun getText ()Ljava/lang/String;
 	public fun getUpdateId ()I
@@ -6730,7 +6835,7 @@ public final class eu/vendeli/tgbot/types/component/EditedChannelPostUpdate : eu
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class eu/vendeli/tgbot/types/component/EditedMessageUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference, eu/vendeli/tgbot/types/component/UserReference {
+public final class eu/vendeli/tgbot/types/component/EditedMessageUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference, eu/vendeli/tgbot/types/component/MessageReference, eu/vendeli/tgbot/types/component/UserReference {
 	public fun <init> (ILeu/vendeli/tgbot/types/common/Update;Leu/vendeli/tgbot/types/msg/Message;)V
 	public final fun component1 ()I
 	public final fun component2 ()Leu/vendeli/tgbot/types/common/Update;
@@ -6740,6 +6845,8 @@ public final class eu/vendeli/tgbot/types/component/EditedMessageUpdate : eu/ven
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getChat ()Leu/vendeli/tgbot/types/chat/Chat;
 	public final fun getEditedMessage ()Leu/vendeli/tgbot/types/msg/Message;
+	public fun getMessage (Leu/vendeli/tgbot/types/component/MessageReference;)Leu/vendeli/tgbot/types/msg/Message;
+	public fun getMessageKind ()Leu/vendeli/tgbot/types/component/MessageKind;
 	public fun getOrigin ()Leu/vendeli/tgbot/types/common/Update;
 	public fun getText ()Ljava/lang/String;
 	public fun getUpdateId ()I
@@ -6817,35 +6924,35 @@ public abstract class eu/vendeli/tgbot/types/component/Identifier {
 }
 
 public final class eu/vendeli/tgbot/types/component/Identifier$Companion {
-	public final fun from (J)Leu/vendeli/tgbot/types/component/Identifier$Long;
-	public final fun from (Leu/vendeli/tgbot/types/User;)Leu/vendeli/tgbot/types/component/Identifier$Long;
-	public final fun from (Leu/vendeli/tgbot/types/chat/Chat;)Leu/vendeli/tgbot/types/component/Identifier$Long;
-	public final fun from (Ljava/lang/String;)Leu/vendeli/tgbot/types/component/Identifier$String;
+	public final fun from (J)Leu/vendeli/tgbot/types/component/Identifier$Numeric;
+	public final fun from (Leu/vendeli/tgbot/types/User;)Leu/vendeli/tgbot/types/component/Identifier$Numeric;
+	public final fun from (Leu/vendeli/tgbot/types/chat/Chat;)Leu/vendeli/tgbot/types/component/Identifier$Numeric;
+	public final fun from (Ljava/lang/String;)Leu/vendeli/tgbot/types/component/Identifier$Literal;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class eu/vendeli/tgbot/types/component/Identifier$Long : eu/vendeli/tgbot/types/component/Identifier {
-	public fun <init> (J)V
-	public final fun component1 ()J
-	public final fun copy (J)Leu/vendeli/tgbot/types/component/Identifier$Long;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/component/Identifier$Long;JILjava/lang/Object;)Leu/vendeli/tgbot/types/component/Identifier$Long;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getGet ()Ljava/lang/Long;
-	public synthetic fun getGet ()Ljava/lang/Object;
-	public final fun getTo ()J
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class eu/vendeli/tgbot/types/component/Identifier$String : eu/vendeli/tgbot/types/component/Identifier {
+public final class eu/vendeli/tgbot/types/component/Identifier$Literal : eu/vendeli/tgbot/types/component/Identifier {
 	public fun <init> (Ljava/lang/String;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;)Leu/vendeli/tgbot/types/component/Identifier$String;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/component/Identifier$String;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/component/Identifier$String;
+	public final fun copy (Ljava/lang/String;)Leu/vendeli/tgbot/types/component/Identifier$Literal;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/component/Identifier$Literal;Ljava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/component/Identifier$Literal;
 	public fun equals (Ljava/lang/Object;)Z
 	public synthetic fun getGet ()Ljava/lang/Object;
 	public fun getGet ()Ljava/lang/String;
 	public final fun getTo ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class eu/vendeli/tgbot/types/component/Identifier$Numeric : eu/vendeli/tgbot/types/component/Identifier {
+	public fun <init> (J)V
+	public final fun component1 ()J
+	public final fun copy (J)Leu/vendeli/tgbot/types/component/Identifier$Numeric;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/component/Identifier$Numeric;JILjava/lang/Object;)Leu/vendeli/tgbot/types/component/Identifier$Numeric;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getGet ()Ljava/lang/Long;
+	public synthetic fun getGet ()Ljava/lang/Object;
+	public final fun getTo ()J
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -6970,6 +7077,92 @@ public final class eu/vendeli/tgbot/types/component/ManagedBotUpdate : eu/vendel
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class eu/vendeli/tgbot/types/component/MessageKind : java/lang/Enum {
+	public static final field ANIMATION Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field AUDIO Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field BOOST_ADDED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field CHANNEL_CHAT_CREATED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field CHAT_BACKGROUND_SET Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field CHAT_OWNER_CHANGED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field CHAT_OWNER_LEFT Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field CHAT_SHARED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field CHECKLIST Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field CHECKLIST_TASKS_ADDED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field CHECKLIST_TASKS_DONE Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field CONNECTED_WEBSITE Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field CONTACT Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field DELETE_CHAT_PHOTO Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field DICE Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field DIRECT_MESSAGE_PRICE_CHANGED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field DOCUMENT Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field FORUM_TOPIC_CLOSED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field FORUM_TOPIC_CREATED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field FORUM_TOPIC_EDITED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field FORUM_TOPIC_REOPENED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field GAME Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field GENERAL_FORUM_TOPIC_HIDDEN Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field GENERAL_FORUM_TOPIC_UNHIDDEN Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field GIFT Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field GIFT_UPGRADE_SENT Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field GIVEAWAY Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field GIVEAWAY_COMPLETED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field GIVEAWAY_CREATED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field GIVEAWAY_WINNERS Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field GROUP_CHAT_CREATED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field INVOICE Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field LEFT_CHAT_MEMBER Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field LOCATION Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field MANAGED_BOT_CREATED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field MESSAGE_AUTO_DELETE_TIMER_CHANGED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field MIGRATE_FROM_CHAT Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field MIGRATE_TO_CHAT Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field NEW_CHAT_MEMBERS Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field NEW_CHAT_PHOTO Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field NEW_CHAT_TITLE Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field OTHER Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field PAID_MEDIA Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field PAID_MESSAGE_PRICE_CHANGED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field PASSPORT_DATA Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field PHOTO Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field PINNED_MESSAGE Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field POLL Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field POLL_OPTION_ADDED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field POLL_OPTION_DELETED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field PROXIMITY_ALERT_TRIGGERED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field REFUNDED_PAYMENT Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field STICKER Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field STORY Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field SUCCESSFUL_PAYMENT Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field SUGGESTED_POST_APPROVAL_FAILED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field SUGGESTED_POST_APPROVED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field SUGGESTED_POST_DECLINED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field SUGGESTED_POST_INFO Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field SUGGESTED_POST_PAID Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field SUGGESTED_POST_REFUNDED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field SUPERGROUP_CHAT_CREATED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field TEXT Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field UNIQUE_GIFT Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field USERS_SHARED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field VENUE Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field VIDEO Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field VIDEO_CHAT_ENDED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field VIDEO_CHAT_PARTICIPANTS_INVITED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field VIDEO_CHAT_SCHEDULED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field VIDEO_CHAT_STARTED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field VIDEO_NOTE Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field VOICE Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field WEB_APP_DATA Leu/vendeli/tgbot/types/component/MessageKind;
+	public static final field WRITE_ACCESS_ALLOWED Leu/vendeli/tgbot/types/component/MessageKind;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun isServiceMessage ()Z
+	public static fun valueOf (Ljava/lang/String;)Leu/vendeli/tgbot/types/component/MessageKind;
+	public static fun values ()[Leu/vendeli/tgbot/types/component/MessageKind;
+}
+
+public final class eu/vendeli/tgbot/types/component/MessageKindKt {
+	public static final fun detectKind (Leu/vendeli/tgbot/types/msg/Message;)Leu/vendeli/tgbot/types/component/MessageKind;
+}
+
 public final class eu/vendeli/tgbot/types/component/MessageReactionCountUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference {
 	public fun <init> (ILeu/vendeli/tgbot/types/common/Update;Leu/vendeli/tgbot/types/msg/MessageReactionCountUpdated;)V
 	public final fun component1 ()I
@@ -7003,7 +7196,12 @@ public final class eu/vendeli/tgbot/types/component/MessageReactionUpdate : eu/v
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class eu/vendeli/tgbot/types/component/MessageUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference, eu/vendeli/tgbot/types/component/UserReference {
+public abstract interface class eu/vendeli/tgbot/types/component/MessageReference {
+	public abstract fun getMessage (Leu/vendeli/tgbot/types/component/MessageReference;)Leu/vendeli/tgbot/types/msg/Message;
+	public abstract fun getMessageKind ()Leu/vendeli/tgbot/types/component/MessageKind;
+}
+
+public final class eu/vendeli/tgbot/types/component/MessageUpdate : eu/vendeli/tgbot/types/component/ProcessedUpdate, eu/vendeli/tgbot/types/component/ChatReference, eu/vendeli/tgbot/types/component/MessageReference, eu/vendeli/tgbot/types/component/UserReference {
 	public fun <init> (ILeu/vendeli/tgbot/types/common/Update;Leu/vendeli/tgbot/types/msg/Message;)V
 	public final fun component1 ()I
 	public final fun component2 ()Leu/vendeli/tgbot/types/common/Update;
@@ -7013,6 +7211,8 @@ public final class eu/vendeli/tgbot/types/component/MessageUpdate : eu/vendeli/t
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getChat ()Leu/vendeli/tgbot/types/chat/Chat;
 	public final fun getMessage ()Leu/vendeli/tgbot/types/msg/Message;
+	public fun getMessage (Leu/vendeli/tgbot/types/component/MessageReference;)Leu/vendeli/tgbot/types/msg/Message;
+	public fun getMessageKind ()Leu/vendeli/tgbot/types/component/MessageKind;
 	public fun getOrigin ()Leu/vendeli/tgbot/types/common/Update;
 	public fun getText ()Ljava/lang/String;
 	public fun getUpdateId ()I
@@ -7313,8 +7513,8 @@ public abstract interface class eu/vendeli/tgbot/types/component/UserReference {
 public final class eu/vendeli/tgbot/types/configuration/BotConfiguration {
 	public static final field Companion Leu/vendeli/tgbot/types/configuration/BotConfiguration$Companion;
 	public fun <init> ()V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/interfaces/ctx/ClassManager;ZLeu/vendeli/tgbot/types/component/ExceptionHandlingStrategy;ZLeu/vendeli/tgbot/types/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/configuration/CommandParsingConfiguration;Leu/vendeli/tgbot/interfaces/helper/LoggerFactory;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/interfaces/ctx/ClassManager;ZLeu/vendeli/tgbot/types/component/ExceptionHandlingStrategy;ZLeu/vendeli/tgbot/types/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/configuration/CommandParsingConfiguration;Leu/vendeli/tgbot/interfaces/helper/LoggerFactory;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/interfaces/ctx/ClassManager;ZLeu/vendeli/tgbot/types/component/ExceptionHandlingStrategy;ZLeu/vendeli/tgbot/types/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/configuration/CommandParsingConfiguration;Leu/vendeli/tgbot/interfaces/helper/LoggerFactory;Leu/vendeli/tgbot/types/configuration/SessionConfiguration;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/interfaces/ctx/ClassManager;ZLeu/vendeli/tgbot/types/component/ExceptionHandlingStrategy;ZLeu/vendeli/tgbot/types/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/configuration/CommandParsingConfiguration;Leu/vendeli/tgbot/interfaces/helper/LoggerFactory;Leu/vendeli/tgbot/types/configuration/SessionConfiguration;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun commandParsing (Lkotlin/jvm/functions/Function1;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
@@ -7324,8 +7524,8 @@ public final class eu/vendeli/tgbot/types/configuration/BotConfiguration {
 	public final fun component6 ()Z
 	public final fun component7 ()Leu/vendeli/tgbot/types/component/ExceptionHandlingStrategy;
 	public final fun component8 ()Z
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/interfaces/ctx/ClassManager;ZLeu/vendeli/tgbot/types/component/ExceptionHandlingStrategy;ZLeu/vendeli/tgbot/types/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/configuration/CommandParsingConfiguration;Leu/vendeli/tgbot/interfaces/helper/LoggerFactory;)Leu/vendeli/tgbot/types/configuration/BotConfiguration;
-	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/configuration/BotConfiguration;Ljava/lang/String;Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/interfaces/ctx/ClassManager;ZLeu/vendeli/tgbot/types/component/ExceptionHandlingStrategy;ZLeu/vendeli/tgbot/types/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/configuration/CommandParsingConfiguration;Leu/vendeli/tgbot/interfaces/helper/LoggerFactory;ILjava/lang/Object;)Leu/vendeli/tgbot/types/configuration/BotConfiguration;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/interfaces/ctx/ClassManager;ZLeu/vendeli/tgbot/types/component/ExceptionHandlingStrategy;ZLeu/vendeli/tgbot/types/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/configuration/CommandParsingConfiguration;Leu/vendeli/tgbot/interfaces/helper/LoggerFactory;Leu/vendeli/tgbot/types/configuration/SessionConfiguration;)Leu/vendeli/tgbot/types/configuration/BotConfiguration;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/configuration/BotConfiguration;Ljava/lang/String;Ljava/lang/String;ZLeu/vendeli/tgbot/interfaces/ctx/InputListener;Leu/vendeli/tgbot/interfaces/ctx/ClassManager;ZLeu/vendeli/tgbot/types/component/ExceptionHandlingStrategy;ZLeu/vendeli/tgbot/types/configuration/RateLimiterConfiguration;Leu/vendeli/tgbot/types/configuration/HttpConfiguration;Leu/vendeli/tgbot/types/configuration/UpdatesListenerConfiguration;Leu/vendeli/tgbot/types/configuration/CommandParsingConfiguration;Leu/vendeli/tgbot/interfaces/helper/LoggerFactory;Leu/vendeli/tgbot/types/configuration/SessionConfiguration;ILjava/lang/Object;)Leu/vendeli/tgbot/types/configuration/BotConfiguration;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getApiHost ()Ljava/lang/String;
 	public final fun getClassManager ()Leu/vendeli/tgbot/interfaces/ctx/ClassManager;
@@ -7338,6 +7538,7 @@ public final class eu/vendeli/tgbot/types/configuration/BotConfiguration {
 	public final fun httpClient (Lkotlin/jvm/functions/Function1;)V
 	public final fun isTestEnv ()Z
 	public final fun rateLimiter (Lkotlin/jvm/functions/Function1;)V
+	public final fun sessions (Lkotlin/jvm/functions/Function1;)V
 	public final fun setApiHost (Ljava/lang/String;)V
 	public final fun setClassManager (Leu/vendeli/tgbot/interfaces/ctx/ClassManager;)V
 	public final fun setExceptionHandlingStrategy (Leu/vendeli/tgbot/types/component/ExceptionHandlingStrategy;)V
@@ -7534,6 +7735,26 @@ public final class eu/vendeli/tgbot/types/configuration/RateLimits {
 
 public final class eu/vendeli/tgbot/types/configuration/RateLimits$Companion {
 	public final fun getNOT_LIMITED ()Leu/vendeli/tgbot/types/configuration/RateLimits;
+}
+
+public final class eu/vendeli/tgbot/types/configuration/SessionConfiguration {
+	public fun <init> ()V
+	public fun <init> (Leu/vendeli/tgbot/types/session/SessionKeyStrategy;Leu/vendeli/tgbot/interfaces/session/SessionStorage;Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;)V
+	public synthetic fun <init> (Leu/vendeli/tgbot/types/session/SessionKeyStrategy;Leu/vendeli/tgbot/interfaces/session/SessionStorage;Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Leu/vendeli/tgbot/types/session/SessionKeyStrategy;
+	public final fun component2 ()Leu/vendeli/tgbot/interfaces/session/SessionStorage;
+	public final fun component3 ()Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;
+	public final fun copy (Leu/vendeli/tgbot/types/session/SessionKeyStrategy;Leu/vendeli/tgbot/interfaces/session/SessionStorage;Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;)Leu/vendeli/tgbot/types/configuration/SessionConfiguration;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/configuration/SessionConfiguration;Leu/vendeli/tgbot/types/session/SessionKeyStrategy;Leu/vendeli/tgbot/interfaces/session/SessionStorage;Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;ILjava/lang/Object;)Leu/vendeli/tgbot/types/configuration/SessionConfiguration;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getKeyStrategy ()Leu/vendeli/tgbot/types/session/SessionKeyStrategy;
+	public final fun getManagerFactory ()Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;
+	public final fun getStorage ()Leu/vendeli/tgbot/interfaces/session/SessionStorage;
+	public fun hashCode ()I
+	public final fun setKeyStrategy (Leu/vendeli/tgbot/types/session/SessionKeyStrategy;)V
+	public final fun setManagerFactory (Leu/vendeli/tgbot/interfaces/session/SessionManagerFactory;)V
+	public final fun setStorage (Leu/vendeli/tgbot/interfaces/session/SessionStorage;)V
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class eu/vendeli/tgbot/types/configuration/UpdatesListenerConfiguration {
@@ -15905,6 +16126,139 @@ public final class eu/vendeli/tgbot/types/poll/PollType$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class eu/vendeli/tgbot/types/session/Direction : java/lang/Enum {
+	public static final field Incoming Leu/vendeli/tgbot/types/session/Direction;
+	public static final field Outgoing Leu/vendeli/tgbot/types/session/Direction;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Leu/vendeli/tgbot/types/session/Direction;
+	public static fun values ()[Leu/vendeli/tgbot/types/session/Direction;
+}
+
+public abstract class eu/vendeli/tgbot/types/session/SessionKey {
+	public static final field Companion Leu/vendeli/tgbot/types/session/SessionKey$Companion;
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public abstract fun getChatId ()J
+	public abstract fun getQualifier ()Ljava/lang/String;
+	public final fun withQualifier (Ljava/lang/String;)Leu/vendeli/tgbot/types/session/SessionKey;
+	public static final synthetic fun write$Self (Leu/vendeli/tgbot/types/session/SessionKey;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class eu/vendeli/tgbot/types/session/SessionKey$Chat : eu/vendeli/tgbot/types/session/SessionKey {
+	public static final field Companion Leu/vendeli/tgbot/types/session/SessionKey$Chat$Companion;
+	public fun <init> (JLjava/lang/String;)V
+	public synthetic fun <init> (JLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()J
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (JLjava/lang/String;)Leu/vendeli/tgbot/types/session/SessionKey$Chat;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/session/SessionKey$Chat;JLjava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/session/SessionKey$Chat;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getChatId ()J
+	public fun getQualifier ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class eu/vendeli/tgbot/types/session/SessionKey$Chat$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/session/SessionKey$Chat$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/session/SessionKey$Chat;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/session/SessionKey$Chat;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/session/SessionKey$Chat$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/session/SessionKey$ChatUser : eu/vendeli/tgbot/types/session/SessionKey {
+	public static final field Companion Leu/vendeli/tgbot/types/session/SessionKey$ChatUser$Companion;
+	public fun <init> (JJLjava/lang/String;)V
+	public synthetic fun <init> (JJLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()J
+	public final fun component2 ()J
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (JJLjava/lang/String;)Leu/vendeli/tgbot/types/session/SessionKey$ChatUser;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/session/SessionKey$ChatUser;JJLjava/lang/String;ILjava/lang/Object;)Leu/vendeli/tgbot/types/session/SessionKey$ChatUser;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getChatId ()J
+	public fun getQualifier ()Ljava/lang/String;
+	public final fun getUserId ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class eu/vendeli/tgbot/types/session/SessionKey$ChatUser$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/session/SessionKey$ChatUser$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/session/SessionKey$ChatUser;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/session/SessionKey$ChatUser;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/session/SessionKey$ChatUser$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/session/SessionKey$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract interface class eu/vendeli/tgbot/types/session/SessionKeyStrategy {
+	public static final field Companion Leu/vendeli/tgbot/types/session/SessionKeyStrategy$Companion;
+	public abstract fun resolve (Leu/vendeli/tgbot/types/component/ProcessedUpdate;)Leu/vendeli/tgbot/types/session/SessionKey;
+}
+
+public final class eu/vendeli/tgbot/types/session/SessionKeyStrategy$Companion {
+	public final fun getAuto ()Leu/vendeli/tgbot/types/session/SessionKeyStrategy;
+	public final fun getChat ()Leu/vendeli/tgbot/types/session/SessionKeyStrategy;
+	public final fun getChatUser ()Leu/vendeli/tgbot/types/session/SessionKeyStrategy;
+}
+
+public final class eu/vendeli/tgbot/types/session/TrackedMessage {
+	public static final field Companion Leu/vendeli/tgbot/types/session/TrackedMessage$Companion;
+	public fun <init> (JJLjava/lang/Long;Leu/vendeli/tgbot/types/component/MessageKind;Leu/vendeli/tgbot/types/session/Direction;Ljava/lang/String;Lkotlin/time/Instant;)V
+	public final fun component1 ()J
+	public final fun component2 ()J
+	public final fun component3 ()Ljava/lang/Long;
+	public final fun component4 ()Leu/vendeli/tgbot/types/component/MessageKind;
+	public final fun component5 ()Leu/vendeli/tgbot/types/session/Direction;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Lkotlin/time/Instant;
+	public final fun copy (JJLjava/lang/Long;Leu/vendeli/tgbot/types/component/MessageKind;Leu/vendeli/tgbot/types/session/Direction;Ljava/lang/String;Lkotlin/time/Instant;)Leu/vendeli/tgbot/types/session/TrackedMessage;
+	public static synthetic fun copy$default (Leu/vendeli/tgbot/types/session/TrackedMessage;JJLjava/lang/Long;Leu/vendeli/tgbot/types/component/MessageKind;Leu/vendeli/tgbot/types/session/Direction;Ljava/lang/String;Lkotlin/time/Instant;ILjava/lang/Object;)Leu/vendeli/tgbot/types/session/TrackedMessage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAt ()Lkotlin/time/Instant;
+	public final fun getBusinessConnectionId ()Ljava/lang/String;
+	public final fun getChatId ()J
+	public final fun getDirection ()Leu/vendeli/tgbot/types/session/Direction;
+	public final fun getKind ()Leu/vendeli/tgbot/types/component/MessageKind;
+	public final fun getMessageId ()J
+	public final fun getUserId ()Ljava/lang/Long;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class eu/vendeli/tgbot/types/session/TrackedMessage$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Leu/vendeli/tgbot/types/session/TrackedMessage$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Leu/vendeli/tgbot/types/session/TrackedMessage;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Leu/vendeli/tgbot/types/session/TrackedMessage;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class eu/vendeli/tgbot/types/session/TrackedMessage$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class eu/vendeli/tgbot/types/stars/AffiliateInfo {
 	public static final field Companion Leu/vendeli/tgbot/types/stars/AffiliateInfo$Companion;
 	public fun <init> (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/chat/Chat;IILjava/lang/Integer;)V
@@ -17328,6 +17682,10 @@ public final class eu/vendeli/tgbot/utils/builders/ReplyKeyboardMarkupBuilderKt 
 	public static final fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/types/keyboard/ReplyKeyboardMarkup;
 }
 
+public final class eu/vendeli/tgbot/utils/common/BotUtilsKt {
+	public static final fun cast (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
 public final class eu/vendeli/tgbot/utils/common/BotUtils_jvmKt {
 	public static final fun getFqName (Lkotlin/reflect/KClass;)Ljava/lang/String;
 	public static final fun getLogLevel (Leu/vendeli/tgbot/types/configuration/BotConfiguration;)Lch/qos/logback/classic/Level;
@@ -17390,6 +17748,19 @@ public final class eu/vendeli/tgbot/utils/common/FunctionalDSLUtilsKt {
 	public static final fun onShippingQuery (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Lkotlin/jvm/functions/Function2;)V
 }
 
+public final class eu/vendeli/tgbot/utils/common/SessionContextSendKt {
+	public static final fun send (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/interfaces/action/Action;JLeu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun send (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/interfaces/action/Action;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun send (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/interfaces/action/Action;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun send (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/interfaces/action/Action;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun send (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/interfaces/action/Action;Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun sendReturning (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/interfaces/action/Action;JLeu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun sendReturning (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/interfaces/action/Action;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun sendReturning (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/interfaces/action/Action;Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun sendReturning (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/interfaces/action/Action;Leu/vendeli/tgbot/types/chat/Chat;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun sendReturning (Leu/vendeli/tgbot/interfaces/session/Session;Leu/vendeli/tgbot/interfaces/action/Action;Ljava/lang/String;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
 public class eu/vendeli/tgbot/utils/common/TgException : java/lang/RuntimeException {
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
@@ -17401,5 +17772,9 @@ public class eu/vendeli/tgbot/utils/common/TgException : java/lang/RuntimeExcept
 public final class eu/vendeli/tgbot/utils/common/TgFailureException : eu/vendeli/tgbot/utils/common/TgException {
 	public fun <init> (Ljava/lang/String;)V
 	public final fun getResponse ()Ljava/lang/String;
+}
+
+public final class eu/vendeli/tgbot/utils/internal/BotUtilsKt {
+	public static final fun setupSessionManager (Leu/vendeli/tgbot/TelegramBot;)V
 }
 

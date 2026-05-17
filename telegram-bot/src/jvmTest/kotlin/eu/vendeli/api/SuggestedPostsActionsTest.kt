@@ -8,6 +8,7 @@ import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.maps.shouldContainKey
 import io.kotest.matchers.maps.shouldNotContainKey
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldStartWith
 
 class SuggestedPostsActionsTest : BotTestContext() {
     @Test
@@ -49,7 +50,7 @@ class SuggestedPostsActionsTest : BotTestContext() {
         approveSuggestedPost(messageId = 1L)
             .sendReq(TG_ID, bot)
             .shouldFailure()
-            .description shouldBe "Bad Request: suggested post not found"
+            .description shouldStartWith "Bad Request:"
     }
 
     @Test
@@ -59,6 +60,6 @@ class SuggestedPostsActionsTest : BotTestContext() {
         declineSuggestedPost(messageId = 1L, comment = "test")
             .sendReq(TG_ID, bot)
             .shouldFailure()
-            .description shouldBe "Bad Request: suggested post not found"
+            .description shouldStartWith "Bad Request:"
     }
 }

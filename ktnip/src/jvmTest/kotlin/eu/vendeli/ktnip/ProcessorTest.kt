@@ -17,4 +17,10 @@ class ProcessorTest : AbstractKspTest() {
 
     @Test
     fun commonHandlerMultiValue() = runTest("test-data/CommonHandlerMultiValue.kt")
+
+    @Test
+    fun sessionInjectable() = runTest("test-data/SessionInjectable.kt")
+
+    @Test
+    fun updateHandlerMessageKind() = runTest("test-data/UpdateHandlerMessageKind.kt")
 }

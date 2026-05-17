@@ -80,6 +80,7 @@ sealed class ChatMember : MultipleResponse {
         val canSendPolls: Boolean,
         val canSendOtherMessages: Boolean,
         val canAddWebPagePreviews: Boolean,
+        val canReactToMessages: Boolean = false,
         val canEditTag: Boolean = false,
         val canChangeInfo: Boolean,
         val canInviteUsers: Boolean,

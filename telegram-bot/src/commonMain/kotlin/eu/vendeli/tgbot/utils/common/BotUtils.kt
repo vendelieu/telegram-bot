@@ -60,7 +60,6 @@ internal suspend inline fun TgUpdateHandler.handleFailure(
 }
 
 @Suppress("UNCHECKED_CAST")
-internal inline fun <T> Any?.cast() = this as T
+inline fun <T> Any?.cast(): T = this as T
 
-@Suppress("UNCHECKED_CAST")
-internal inline fun <T> Any?.safeCast() = this as? T
+inline fun <reified T> Any?.safeCast(): T? = this as? T

@@ -18,6 +18,7 @@ import eu.vendeli.tgbot.interfaces.helper.ContextLoader
 import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.interfaces.marker.Autowiring
 import eu.vendeli.tgbot.interfaces.marker.InputSelfManaging
+import eu.vendeli.tgbot.interfaces.session.Session
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.chain.WizardActivity
 import eu.vendeli.tgbot.types.chain.WizardContext
@@ -46,6 +47,7 @@ object TypeConstants {
     val userClass: TypeName = User::class.asTypeName()
     val chatClass: TypeName = Chat::class.asTypeName()
     val botClass: TypeName = TelegramBot::class.asTypeName()
+    val sessionClass: TypeName = Session::class.asTypeName()
     val processingCtx: TypeName = ProcessingContext::class.asTypeName()
 
     // Update types
@@ -74,6 +76,7 @@ object TypeConstants {
     val deletedBusinessMessagesClass: TypeName = DeletedBusinessMessagesUpdate::class.asTypeName()
     val purchasedPaidMediaUpdateClass: TypeName = PurchasedPaidMediaUpdate::class.asTypeName()
     val managedBotUpdateClass: TypeName = ManagedBotUpdate::class.asTypeName()
+    val guestMessageUpdateClass: TypeName = GuestMessageUpdate::class.asTypeName()
 
     // Context types
     val commonMatcherClass: TypeName = CommonMatcher::class.asTypeName()

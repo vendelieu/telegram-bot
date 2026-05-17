@@ -19,6 +19,7 @@ import kotlin.time.Duration
  * - InputMediaAudio
  * - InputMediaPhoto
  * - InputMediaVideo
+ * - InputMediaLivePhoto
  *
  * [Api reference](https://core.telegram.org/bots/api#inputmedia)
  *
@@ -42,7 +43,8 @@ sealed class InputMedia : ImplicitMediaData {
         val duration: Int? = null,
         val performer: String? = null,
         val title: String? = null,
-    ) : InputMedia()
+    ) : InputMedia(),
+        InputPollMedia
 
     @Serializable
     @SerialName("document")
@@ -53,7 +55,8 @@ sealed class InputMedia : ImplicitMediaData {
         val parseMode: ParseMode? = null,
         val captionEntities: List<MessageEntity>? = null,
         val disableContentTypeDetection: Boolean? = null,
-    ) : InputMedia()
+    ) : InputMedia(),
+        InputPollMedia
 
     @Serializable
     @SerialName("photo")
@@ -64,7 +67,9 @@ sealed class InputMedia : ImplicitMediaData {
         val captionEntities: List<MessageEntity>? = null,
         val hasSpoiler: Boolean? = null,
         val showCaptionAboveMedia: Boolean? = null,
-    ) : InputMedia()
+    ) : InputMedia(),
+        InputPollMedia,
+        InputPollOptionMedia
 
     @Serializable
     @SerialName("video")
@@ -83,7 +88,9 @@ sealed class InputMedia : ImplicitMediaData {
         val supportsStreaming: Boolean? = null,
         val hasSpoiler: Boolean? = null,
         val showCaptionAboveMedia: Boolean? = null,
-    ) : InputMedia()
+    ) : InputMedia(),
+        InputPollMedia,
+        InputPollOptionMedia
 
     @Serializable
     @SerialName("animation")
@@ -98,5 +105,21 @@ sealed class InputMedia : ImplicitMediaData {
         val duration: Int? = null,
         val hasSpoiler: Boolean? = null,
         val showCaptionAboveMedia: Boolean? = null,
-    ) : InputMedia()
+    ) : InputMedia(),
+        InputPollMedia,
+        InputPollOptionMedia
+
+    @Serializable
+    @SerialName("live_photo")
+    data class LivePhoto(
+        override var media: ImplicitFile,
+        var photo: ImplicitFile,
+        val caption: String? = null,
+        val parseMode: ParseMode? = null,
+        val captionEntities: List<MessageEntity>? = null,
+        val showCaptionAboveMedia: Boolean? = null,
+        val hasSpoiler: Boolean? = null,
+    ) : InputMedia(),
+        InputPollMedia,
+        InputPollOptionMedia
 }

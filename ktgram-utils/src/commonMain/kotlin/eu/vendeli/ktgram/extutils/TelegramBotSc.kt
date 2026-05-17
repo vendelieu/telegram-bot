@@ -138,6 +138,8 @@ public suspend inline fun TelegramBot.answerShippingQuery(
   vararg shippingOption: ShippingOption,
 ): Unit = eu.vendeli.tgbot.api.answer.answerShippingQuery(shippingQueryId, ok, errorMessage, shippingOption = shippingOption).send(this)
 
+public suspend inline fun TelegramBot.answerGuestQuery(guestQueryId: String, result: InlineQueryResult): Unit = eu.vendeli.tgbot.api.answer.answerGuestQuery(guestQueryId, result).send(this)
+
 public suspend inline fun TelegramBot.answerInlineQuery(inlineQueryId: String, results: List<InlineQueryResult>): Unit = eu.vendeli.tgbot.api.answer.answerInlineQuery(inlineQueryId, results).send(this)
 
 public suspend inline fun TelegramBot.answerInlineQuery(inlineQueryId: String, noinline results: ListingBuilder<InlineQueryResult>.() -> Unit): Unit = eu.vendeli.tgbot.api.answer.answerInlineQuery(inlineQueryId, results).send(this)
@@ -240,7 +242,7 @@ public suspend inline fun TelegramBot.getChatMember(userId: Long, chatId: Long):
 
 public suspend inline fun TelegramBot.getChatMember(user: User, chatId: Long): Unit = eu.vendeli.tgbot.api.chat.getChatMember(user).send(chatId, this)
 
-public suspend inline fun TelegramBot.getChatAdministrators(chatId: Long): Unit = eu.vendeli.tgbot.api.chat.getChatAdministrators().send(chatId, this)
+public suspend inline fun TelegramBot.getChatAdministrators(returnBots: Boolean? = null, chatId: Long): Unit = eu.vendeli.tgbot.api.chat.getChatAdministrators(returnBots).send(chatId, this)
 
 public suspend inline fun TelegramBot.banChatSenderChat(senderChatId: Long, chatId: Long): Unit = eu.vendeli.tgbot.api.chat.banChatSenderChat(senderChatId).send(chatId, this)
 
@@ -270,6 +272,8 @@ public suspend inline fun TelegramBot.unbanChatMember(
   onlyIfBanned: Boolean? = null,
   chatId: Long,
 ): Unit = eu.vendeli.tgbot.api.chat.unbanChatMember(user, onlyIfBanned).send(chatId, this)
+
+public suspend inline fun TelegramBot.getUserPersonalChatMessages(userId: Long, limit: Int): Unit = eu.vendeli.tgbot.api.chat.getUserPersonalChatMessages(userId, limit).send(this)
 
 public suspend inline fun TelegramBot.setChatDescription(title: String? = null, chatId: Long): Unit = eu.vendeli.tgbot.api.chat.setChatDescription(title).send(chatId, this)
 
@@ -517,6 +521,49 @@ public suspend inline fun TelegramBot.forwardMessage(
   messageId: Long,
   chatId: Long,
 ): Unit = eu.vendeli.tgbot.api.message.forwardMessage(fromChatId, messageId).send(chatId, this)
+
+public suspend inline fun TelegramBot.deleteMessageReaction(
+  messageId: Long,
+  userId: Long? = null,
+  actorChatId: Long? = null,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.deleteMessageReaction(messageId, userId, actorChatId).send(chatId, this)
+
+public suspend inline fun TelegramBot.livePhoto(
+  livePhoto: ImplicitFile,
+  photo: ImplicitFile,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.livePhoto(livePhoto, photo).send(chatId, this)
+
+public suspend inline fun TelegramBot.livePhoto(
+  livePhoto: String,
+  photo: String,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.livePhoto(livePhoto, photo).send(chatId, this)
+
+public suspend inline fun TelegramBot.livePhoto(
+  livePhoto: InputFile,
+  photo: InputFile,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.livePhoto(livePhoto, photo).send(chatId, this)
+
+public suspend inline fun TelegramBot.sendLivePhoto(
+  livePhoto: ImplicitFile,
+  photo: ImplicitFile,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.sendLivePhoto(livePhoto, photo).send(chatId, this)
+
+public suspend inline fun TelegramBot.sendLivePhoto(
+  livePhoto: String,
+  photo: String,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.sendLivePhoto(livePhoto, photo).send(chatId, this)
+
+public suspend inline fun TelegramBot.deleteAllMessageReactions(
+  userId: Long? = null,
+  actorChatId: Long? = null,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.deleteAllMessageReactions(userId, actorChatId).send(chatId, this)
 
 public suspend inline fun TelegramBot.copyMessage(
   fromChatId: Identifier,
@@ -925,6 +972,12 @@ public suspend inline fun TelegramBot.savePreparedInlineMessage(userId: Long, re
 
 public suspend inline fun TelegramBot.savePreparedInlineMessage(userId: Long, noinline result: () -> InlineQueryResult): Unit = eu.vendeli.tgbot.api.botactions.savePreparedInlineMessage(userId, result).send(this)
 
+public suspend inline fun TelegramBot.setManagedBotAccessSettings(
+  userId: Long,
+  isAccessRestricted: Boolean,
+  addedUserIds: List<Long>? = null,
+): Unit = eu.vendeli.tgbot.api.botactions.setManagedBotAccessSettings(userId, isAccessRestricted, addedUserIds).send(this)
+
 public suspend inline fun TelegramBot.setUserEmojiStatus(
   userId: Long,
   emojiStatusCustomEmojiId: String? = null,
@@ -948,6 +1001,8 @@ public suspend inline fun TelegramBot.setWebhook(url: String): Unit = eu.vendeli
 public suspend inline fun TelegramBot.getBusinessConnection(businessConnectionId: String): Unit = eu.vendeli.tgbot.api.botactions.getBusinessConnection(businessConnectionId).send(this)
 
 public suspend inline fun TelegramBot.deleteMyCommands(languageCode: String? = null, scope: BotCommandScope? = null): Unit = eu.vendeli.tgbot.api.botactions.deleteMyCommands(languageCode, scope).send(this)
+
+public suspend inline fun TelegramBot.getManagedBotAccessSettings(userId: Long): Unit = eu.vendeli.tgbot.api.botactions.getManagedBotAccessSettings(userId).send(this)
 
 public suspend inline fun TelegramBot.getMe(): Unit = eu.vendeli.tgbot.api.botactions.getMe().send(this)
 

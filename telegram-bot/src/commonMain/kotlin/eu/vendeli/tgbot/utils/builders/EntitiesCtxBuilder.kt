@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.types.msg.EntityType
 import eu.vendeli.tgbot.types.msg.EntityType.*
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.utils.common.cast
+import eu.vendeli.tgbot.utils.common.safeCast
 import eu.vendeli.tgbot.utils.internal.encodeWith
 import kotlinx.serialization.json.JsonArray
 import kotlin.time.Instant
@@ -61,7 +62,7 @@ interface EntitiesExtBuilder {
                     TextMention,
                     length,
                     other.second.length,
-                    user = other.third as? User,
+                    user = other.third.safeCast<User>(),
                 )
             }
 
@@ -100,7 +101,7 @@ interface EntitiesExtBuilder {
             }
 
             TextMention -> {
-                MessageEntity(TextMention, 0, second.length, user = third as? User)
+                MessageEntity(TextMention, 0, second.length, user = third.safeCast<User>())
             }
 
             DateTime -> {
@@ -168,7 +169,7 @@ interface EntitiesCtxBuilder<Action : TgAction<*>> : EntitiesExtBuilder {
     @Suppress("unused")
     override fun EntitiesExtBuilder.addEntity(entity: MessageEntity) {
         this as TgAction<*>
-        val oldEntity = (parameters[entitiesFieldName] as? JsonArray)?.toMutableList() ?: mutableListOf()
+        val oldEntity = parameters[entitiesFieldName].safeCast<JsonArray>()?.toMutableList() ?: mutableListOf()
 
         parameters[entitiesFieldName] = oldEntity
             .also {

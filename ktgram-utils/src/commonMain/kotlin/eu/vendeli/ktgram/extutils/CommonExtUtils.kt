@@ -26,11 +26,11 @@ private suspend fun <R> Action<R>.sendAnd(
     block: suspend R.() -> Unit,
 ) {
     val result = when (to) {
-        is Identifier.String -> {
+        is Identifier.Literal -> {
             sendReturning(to.get, bot).getOrNull()
         }
 
-        is Identifier.Long -> {
+        is Identifier.Numeric -> {
             sendReturning(to.get, bot).getOrNull()
         }
     } ?: onFailure()

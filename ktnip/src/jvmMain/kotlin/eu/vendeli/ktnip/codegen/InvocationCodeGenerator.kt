@@ -41,6 +41,28 @@ class InvocationCodeGenerator(
                 CodeBlock.of("val param%L = bot\n", parameterIndex)
             }
 
+            is ParameterResolutionStrategy.Session -> {
+                val fallback = if (strategy.isNullable) {
+                    ""
+                } else {
+                    " ?: error(\"Session requested but update has no chat context\")"
+                }
+                if (strategy.qualifier != null) {
+                    CodeBlock.of(
+                        "val param%L = bot.sessions.of(update, %S)%L\n",
+                        parameterIndex,
+                        strategy.qualifier,
+                        fallback,
+                    )
+                } else {
+                    CodeBlock.of(
+                        "val param%L = bot.sessions.of(update)%L\n",
+                        parameterIndex,
+                        fallback,
+                    )
+                }
+            }
+
             is ParameterResolutionStrategy.ProcessingContext -> {
                 CodeBlock.of("val param%L = context\n", parameterIndex)
             }
@@ -125,13 +147,16 @@ class InvocationCodeGenerator(
             val isBotNeeded = hasInstance ||
                 isCallbackAutoAnswer ||
                 strategies.any {
-                    it is ParameterResolutionStrategy.Bot || it is ParameterResolutionStrategy.Injectable
+                    it is ParameterResolutionStrategy.Bot ||
+                        it is ParameterResolutionStrategy.Session ||
+                        it is ParameterResolutionStrategy.Injectable
                 }
             val isUpdateNeeded = isCallbackAutoAnswer ||
                 strategies.any {
                     it is ParameterResolutionStrategy.Chat ||
                         it is ParameterResolutionStrategy.Update ||
                         it is ParameterResolutionStrategy.TypedUpdate ||
+                        it is ParameterResolutionStrategy.Session ||
                         it is ParameterResolutionStrategy.Injectable
                 }
             val isParametersNeeded = strategies.any {

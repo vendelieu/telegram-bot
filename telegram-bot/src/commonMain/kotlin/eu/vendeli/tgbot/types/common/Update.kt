@@ -49,6 +49,7 @@ import kotlinx.serialization.Serializable
  * @property chatBoost Optional. A chat boost was added or changed. The bot must be an administrator in the chat to receive these updates.
  * @property removedChatBoost Optional. A boost was removed from a chat. The bot must be an administrator in the chat to receive these updates.
  * @property managedBot Optional. A new bot was created to be managed by the bot or token of a bot was changed
+ * @property guestMessage Optional. New incoming guest message; received by guest bots only
  */
 @Serializable
 data class Update(
@@ -77,4 +78,5 @@ data class Update(
     val chatBoost: ChatBoostUpdated? = null,
     val removedChatBoost: ChatBoostRemoved? = null,
     val managedBot: ManagedBotUpdated? = null,
+    val guestMessage: Message? = null,
 ) : MultipleResponse

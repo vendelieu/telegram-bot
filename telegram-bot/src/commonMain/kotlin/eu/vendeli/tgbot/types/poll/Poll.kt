@@ -36,6 +36,10 @@ enum class PollType {
  * @property closeDate Optional. Point in time (Unix timestamp) when the poll will be automatically closed
  * @property description Optional. Description of the poll; for polls inside the Message object only
  * @property descriptionEntities Optional. Special entities like usernames, URLs, bot commands, etc. that appear in the description
+ * @property media Optional. Media attached to the poll
+ * @property explanationMedia Optional. Media attached to the quiz explanation
+ * @property membersOnly Optional. True, if the poll allows voting only for members of the chat
+ * @property countryCodes Optional. List of two-letter ISO 3166-1 alpha-2 country codes whose users are allowed to vote in the poll. Available only for polls in chats where members must be from the listed countries.
  */
 @Serializable
 data class Poll(
@@ -57,4 +61,8 @@ data class Poll(
     val closeDate: Instant? = null,
     val description: String? = null,
     val descriptionEntities: List<MessageEntity>? = null,
+    val media: PollMedia? = null,
+    val explanationMedia: PollMedia? = null,
+    val membersOnly: Boolean = false,
+    val countryCodes: List<String>? = null,
 )

@@ -18,51 +18,52 @@ import kotlinx.serialization.json.jsonPrimitive
 sealed class Identifier {
     abstract val get: Any
 
-    @Serializable(String.Companion::class)
-    data class String(
-        val to: kotlin.String,
+    @Serializable(Literal.Companion::class)
+    data class Literal(
+        val to: String,
     ) : Identifier() {
-        override val get: kotlin.String get(): kotlin.String = to
-        internal companion object : KSerializer<String> {
+        override val get: String get(): String = to
+
+        internal companion object : KSerializer<Literal> {
             override val descriptor = PrimitiveSerialDescriptor("String serde", PrimitiveKind.STRING)
-            override fun serialize(encoder: Encoder, value: String) {
+            override fun serialize(encoder: Encoder, value: Literal) {
                 encoder.encodeString(value.to)
             }
 
-            override fun deserialize(decoder: Decoder): String = String(decoder.decodeString())
+            override fun deserialize(decoder: Decoder): Literal = Literal(decoder.decodeString())
         }
     }
 
-    @Serializable(Long.Companion::class)
-    data class Long(
-        val to: kotlin.Long,
+    @Serializable(Numeric.Companion::class)
+    data class Numeric(
+        val to: Long,
     ) : Identifier() {
-        override val get: kotlin.Long get(): kotlin.Long = to
+        override val get: Long get(): Long = to
 
-        internal companion object : KSerializer<Long> {
+        internal companion object : KSerializer<Numeric> {
             override val descriptor = PrimitiveSerialDescriptor("Long serde", PrimitiveKind.LONG)
-            override fun serialize(encoder: Encoder, value: Long) {
+            override fun serialize(encoder: Encoder, value: Numeric) {
                 encoder.encodeLong(value.to)
             }
 
-            override fun deserialize(decoder: Decoder): Long = Long(decoder.decodeLong())
+            override fun deserialize(decoder: Decoder): Numeric = Numeric(decoder.decodeLong())
         }
     }
 
     companion object {
-        fun from(recipient: kotlin.Long) = Long(recipient)
-        fun from(recipient: kotlin.String) = String(recipient)
+        fun from(recipient: Long) = Numeric(recipient)
+        fun from(recipient: String) = Literal(recipient)
 
-        fun from(recipient: User) = Long(recipient.id)
-        fun from(recipient: Chat) = Long(recipient.id)
+        fun from(recipient: User) = Numeric(recipient.id)
+        fun from(recipient: Chat) = Numeric(recipient.id)
     }
 
     internal object Serde : JsonContentPolymorphicSerializer<Identifier>(Identifier::class) {
         override fun selectDeserializer(element: JsonElement): DeserializationStrategy<Identifier> {
             val content = element.jsonPrimitive.content
             return when {
-                content.toLongOrNull() != null -> Long.serializer()
-                content.isNotBlank() -> String.serializer()
+                content.toLongOrNull() != null -> Numeric.serializer()
+                content.isNotBlank() -> Literal.serializer()
                 else -> throw TgException("Unsupported identifier - $content")
             }
         }

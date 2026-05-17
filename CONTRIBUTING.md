@@ -25,7 +25,7 @@ Helpful gradle tasks are:
 * `./gradlew apiDump` - generates api dump
 * `./gradlew prepareRelease` - formats code, does api validation, updates kdocs, runs api violations check.
 
-**Pre-push hook (optional):** Run `./scripts/install-hooks.sh` to install a git hook that runs `prepareRelease` before each push. This ensures code is formatted and validated before it reaches the remote.
+**Pre-push hook (optional):** Run `./scripts/install-hooks.sh` once to wire `prepareRelease` into your push flow. This ensures code is formatted and validated before it reaches the remote. To bypass for a single push, prefix with `SKIP_PRE_PUSH=1` or pass `--no-verify`.
 
 ### Environment
 

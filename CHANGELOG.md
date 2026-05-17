@@ -1,5 +1,13 @@
 # Telegram-bot (KtGram) Changelog
 
+## 9.5.0
+
+* Covered Tg API [`10.0`](https://core.telegram.org/bots/api-changelog#may-8-2026): guest-mode (`answerGuestQuery`, `User.supportsGuestQueries`, `Message.guestQueryId`/`guestBotCallerUser`/`guestBotCallerChat`, `Update.guestMessage`, `SentGuestMessage`); live photos (`sendLivePhoto`, `LivePhoto`, `InputMedia.LivePhoto`, `PaidMedia.LivePhoto`, `InputPaidMedia.LivePhoto`, `Message.livePhoto`, `ExternalReplyInfo.livePhoto`); reaction management (`deleteMessageReaction`, `deleteAllMessageReactions`, `ChatPermissions.canReactToMessages`, `ChatMember.Restricted.canReactToMessages`); poll media (`PollMedia`, `InputPollMedia`, `InputPollOptionMedia`, `InputMediaSticker`/`Location`/`Venue`, `Poll.media`/`explanationMedia`/`membersOnly`/`countryCodes`, `PollOption.media`, `InputPollOption.media`); managed-bot access (`getManagedBotAccessSettings`, `setManagedBotAccessSettings`, `BotAccessSettings`); plus `getUserPersonalChatMessages` and `returnBots` parameter on `getChatAdministrators`.
+* Added sessions — to keep per-user/per-chat state with automatic incoming-message tracking, a pluggable storage backend (in-memory by default), a configurable key strategy, and `@SessionQualifier("name")` to inject multiple independent sessions into the same handler.
+* Added `MessageKind` — every message-bearing update now exposes a `messageKind` property (photo, video, text, service events, etc.) so you can route on the message kind instead of inspecting nullable fields yourself.
+* Added option to filter `@UpdateHandler` with `MessageKind`.
+* Renamed `Identifier.String` → `Identifier.Literal` and `Identifier.Long` → `Identifier.Numeric` to avoid shadowing Kotlin built-ins. `Identifier.from(...)` keeps working unchanged; update direct references if you construct these types by name.
+
 ## 9.4.0
 
 * Covered Tg API [`9.6`](https://core.telegram.org/bots/api-changelog#april-3-2026).

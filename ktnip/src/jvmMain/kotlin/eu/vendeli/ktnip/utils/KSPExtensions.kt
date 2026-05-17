@@ -36,7 +36,7 @@ fun Sequence<KSAnnotation>.hasAnnotationRecursively(
         if (fqName == targetFqName) return true
         if (!visited.add(fqName)) return false // already checked -> avoid cycles
 
-        val annoDecl = annotationType.resolve().declaration as? KSClassDeclaration
+        val annoDecl = annotationType.resolve().declaration.safeCast<KSClassDeclaration>()
             ?: return false
 
         // recurse into the annotations on this annotation class
@@ -65,7 +65,7 @@ fun Sequence<KSAnnotation>.findAnnotationRecursively(
         if (fqName == targetFqName) return this
         if (!visited.add(fqName)) return null // already visited → avoid cycles
 
-        val annoDecl = annotationType.resolve().declaration as? KSClassDeclaration
+        val annoDecl = annotationType.resolve().declaration.safeCast<KSClassDeclaration>()
             ?: return null
 
         // Recurse into the annotations present on this annotation class
@@ -101,7 +101,7 @@ fun KSAnnotation.expandToBaseAnnotations(
     if (fqName in targets) return sequenceOf(this)
 
     // Otherwise recurse into annotations on its annotation class
-    val annoDecl = annotationType.resolve().declaration as? KSClassDeclaration ?: return emptySequence()
+    val annoDecl = annotationType.resolve().declaration.safeCast<KSClassDeclaration>() ?: return emptySequence()
     return annoDecl.annotations.flatMap { it.expandToBaseAnnotations(targets, visited) }
 }
 
@@ -114,5 +114,4 @@ inline fun <R> Any?.cast(): R = this as R
 /**
  * Type-safe safe cast helper.
  */
-@Suppress("UNCHECKED_CAST")
-inline fun <R> Any?.safeCast(): R? = this as? R
+inline fun <reified R> Any?.safeCast(): R? = this as? R

@@ -2,6 +2,7 @@ package eu.vendeli.tgbot.types.options
 
 import eu.vendeli.tgbot.types.component.ParseMode
 import eu.vendeli.tgbot.types.common.ReplyParameters
+import eu.vendeli.tgbot.types.media.InputPollMedia
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.poll.PollType
 import eu.vendeli.tgbot.utils.serde.DurationSerializer
@@ -32,6 +33,10 @@ data class PollOptions(
     var description: String? = null,
     var descriptionParseMode: ParseMode? = null,
     var descriptionEntities: List<MessageEntity>? = null,
+    var media: InputPollMedia? = null,
+    var explanationMedia: InputPollMedia? = null,
+    var membersOnly: Boolean? = null,
+    var countryCodes: List<String>? = null,
     override var disableNotification: Boolean? = null,
     override var replyParameters: ReplyParameters? = null,
     override var protectContent: Boolean? = null,

@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.types.chain.WizardContext
 import eu.vendeli.tgbot.types.chain.WizardStateManager
 import eu.vendeli.tgbot.types.chain.WizardStep
 import eu.vendeli.tgbot.types.component.MessageUpdate
+import eu.vendeli.tgbot.utils.common.safeCast
 import kotlin.reflect.KClass
 
 /**
@@ -45,7 +46,10 @@ object TestWizard {
 
         override suspend fun validate(ctx: WizardContext): Transition {
             validateCalls.add("NameStep")
-            val text = (ctx.update as? MessageUpdate)?.message?.text ?: return Transition.Retry()
+            val text = ctx.update
+                .safeCast<MessageUpdate>()
+                ?.message
+                ?.text ?: return Transition.Retry()
             return if (text.isNotBlank() && text.length >= 2) {
                 Transition.Next
             } else {
@@ -55,7 +59,10 @@ object TestWizard {
 
         override suspend fun store(ctx: WizardContext): String? {
             storeCalls.add("NameStep")
-            return (ctx.update as? MessageUpdate)?.message?.text
+            return ctx.update
+                .safeCast<MessageUpdate>()
+                ?.message
+                ?.text
         }
     }
 
@@ -73,7 +80,10 @@ object TestWizard {
 
         override suspend fun validate(ctx: WizardContext): Transition {
             validateCalls.add("AgeStep")
-            val text = (ctx.update as? MessageUpdate)?.message?.text ?: return Transition.Retry()
+            val text = ctx.update
+                .safeCast<MessageUpdate>()
+                ?.message
+                ?.text ?: return Transition.Retry()
             val age = text.toIntOrNull()
             return if (age != null && age in 1..150) {
                 Transition.Next
@@ -84,7 +94,11 @@ object TestWizard {
 
         override suspend fun store(ctx: WizardContext): Int? {
             storeCalls.add("AgeStep")
-            return (ctx.update as? MessageUpdate)?.message?.text?.toIntOrNull()
+            return ctx.update
+                .safeCast<MessageUpdate>()
+                ?.message
+                ?.text
+                ?.toIntOrNull()
         }
     }
 
@@ -98,7 +112,11 @@ object TestWizard {
 
         override suspend fun validate(ctx: WizardContext): Transition {
             validateCalls.add("ConfirmStep")
-            val text = (ctx.update as? MessageUpdate)?.message?.text?.lowercase() ?: return Transition.Retry()
+            val text = ctx.update
+                .safeCast<MessageUpdate>()
+                ?.message
+                ?.text
+                ?.lowercase() ?: return Transition.Retry()
             return when (text) {
                 "yes", "y" -> Transition.Finish
                 "no", "n" -> Transition.JumpTo(NameStep::class)
@@ -108,7 +126,10 @@ object TestWizard {
 
         override suspend fun store(ctx: WizardContext): String? {
             storeCalls.add("ConfirmStep")
-            return (ctx.update as? MessageUpdate)?.message?.text
+            return ctx.update
+                .safeCast<MessageUpdate>()
+                ?.message
+                ?.text
         }
     }
 }

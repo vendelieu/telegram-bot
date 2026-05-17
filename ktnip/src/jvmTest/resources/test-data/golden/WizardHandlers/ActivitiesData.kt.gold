@@ -90,7 +90,8 @@ internal object _TestWizard_e4091cbdStart : Activity {
     val registry = context.registry
     val user = update.userOrNull ?: return@run Unit
     val wizardEngine = registry.getActivity(-469_164_867) as? WizardActivity ?: return@run Unit
-    val wizardCtx = WizardContext(user, update, bot)
+    val session = bot.sessions.of(update, qualifier = "wizard:-469164867")
+    val wizardCtx = WizardContext(user, update, bot, session)
     wizardEngine.start(wizardCtx)
   }
 }
@@ -108,7 +109,8 @@ internal object _TestWizard_e4091cbdInput : Activity, InputSelfManaging {
     val registry = context.registry
     val user = update.userOrNull ?: return@run Unit
     val wizardEngine = registry.getActivity(-469_164_867) as? WizardActivity ?: return@run Unit
-    val wizardCtx = WizardContext(user, update, bot)
+    val session = bot.sessions.of(update, qualifier = "wizard:-469164867")
+    val wizardCtx = WizardContext(user, update, bot, session)
     wizardEngine.handleInput(wizardCtx)
   }
 }

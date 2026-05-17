@@ -53,7 +53,8 @@ abstract class WizardActivity : Activity {
      */
     override suspend fun invoke(context: ProcessingContext): Any? {
         val user = context.update.userOrNull ?: return Unit
-        val wizardCtx = WizardContext(user, context.update, context.bot)
+        val session = context.bot.sessions.of(context.update, qualifier = getWizardId())
+        val wizardCtx = WizardContext(user, context.update, context.bot, session)
 
         return start(wizardCtx)
     }
@@ -98,6 +99,7 @@ abstract class WizardActivity : Activity {
             is Transition.Finish -> {
                 persist(currentStep, ctx)
                 finish(ctx)
+                ctx.session?.close()
                 clearCurrentStep(ctx.user, ctx.bot)
                 null
             }

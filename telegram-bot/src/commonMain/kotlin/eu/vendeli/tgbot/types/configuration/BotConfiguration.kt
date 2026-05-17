@@ -44,6 +44,8 @@ data class BotConfiguration(
     internal var updatesListener: UpdatesListenerConfiguration = UpdatesListenerConfiguration(),
     internal var commandParsing: CommandParsingConfiguration = CommandParsingConfiguration(),
     internal var loggerFactory: LoggerFactory = DefaultLoggerFactory,
+    @Transient
+    internal var sessions: SessionConfiguration = SessionConfiguration(),
 ) {
     /**
      * Function for configuring the http client. See [HttpConfiguration].
@@ -72,6 +74,15 @@ data class BotConfiguration(
     fun commandParsing(block: CommandParsingConfiguration.() -> Unit) {
         commandParsing.block()
     }
+
+    /**
+     * Customizes the always-on [eu.vendeli.tgbot.interfaces.session.SessionManager] subsystem.
+     * See [SessionConfiguration]. Calling this block is optional — the default storage,
+     * key strategy, and manager work out of the box.
+     */
+    fun sessions(block: SessionConfiguration.() -> Unit) {
+        sessions.block()
+    }
 }
 
 internal fun BotConfiguration.rewriteWith(new: BotConfiguration): BotConfiguration {
@@ -88,5 +99,6 @@ internal fun BotConfiguration.rewriteWith(new: BotConfiguration): BotConfigurati
     updatesListener = new.updatesListener
     commandParsing = new.commandParsing
     loggerFactory = new.loggerFactory
+    sessions = new.sessions
     return this
 }

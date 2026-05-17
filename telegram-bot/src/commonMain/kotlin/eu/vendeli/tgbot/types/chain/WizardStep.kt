@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types.chain
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.interfaces.session.Session
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.component.ProcessedUpdate
 import eu.vendeli.tgbot.types.component.getChat
@@ -76,11 +77,18 @@ sealed class Transition {
 
 /**
  * Context passed to wizard steps, containing all necessary information.
+ *
+ * [session] is a wizard-scoped [Session] (qualifier `wizard:<wizardId>`) resolved from
+ * [TelegramBot.sessions] at dispatch time. It is `null` when the bot does not have
+ * session tracking enabled, allowing wizards to work without the session subsystem.
+ * Use `with(ctx.session!!) { action.send(bot) }` inside a step to track sends against
+ * the wizard's own session, isolated from the user's default chat session.
  */
 class WizardContext(
     val user: User,
     val update: ProcessedUpdate,
     val bot: TelegramBot,
+    val session: Session? = null,
 ) {
     val userReference = UserChatReference(user.id, update.getChat().id)
     val currentWizardId by lazy {
