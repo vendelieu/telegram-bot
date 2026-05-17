@@ -39,7 +39,7 @@
             </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
-        <div class="library-version" id="library-version">9.4.0
+        <div class="library-version" id="library-version">9.5.0
         </div>
         <div class="navigation-controls">
         <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
@@ -95,7 +95,7 @@
   <div class="breadcrumbs"><a href="../../index.html">telegram-bot</a><span class="delimiter">/</span><a href="../index.html">eu.vendeli.tgbot.core</a><span class="delimiter">/</span><span class="current">ActivityRegistry</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Activity</span><wbr><span><span>Registry</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">ActivityRegistry</a><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/vendelieu/telegram-bot/blob/master/telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/core/ActivityRegistry.kt#L19">source</a>)</span></span></div><p class="paragraph">Registry for activities with hierarchical indexes.</p><p class="paragraph">Structure:</p><ul><li><p class="paragraph">activities: Map<activityid, activity></activityid,></p></li><li><p class="paragraph">commands: Map<updatetype, map<command, activityid>&gt;</updatetype,></p></li><li><p class="paragraph">inputs: Map<inputid, activityid></inputid,></p></li><li><p class="paragraph">matchers: Map<updatetype, list<pair<matchpattern, activityid>&gt;&gt;</updatetype,></p></li><li><p class="paragraph">updateTypeHandlers: Map<updatetype, list<activityid>&gt;</updatetype,></p></li><li><p class="paragraph">unprocessed: ActivityId?</p></li></ul></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">ActivityRegistry</a><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/vendelieu/telegram-bot/blob/master/telegram-bot/src/commonMain/kotlin/eu/vendeli/tgbot/core/ActivityRegistry.kt#L23">source</a>)</span></span></div><p class="paragraph">Registry for activities with hierarchical indexes.</p><p class="paragraph">Structure:</p><ul><li><p class="paragraph">activities: Map<activityid, activity></activityid,></p></li><li><p class="paragraph">commands: Map<updatetype, map<command, activityid>&gt;</updatetype,></p></li><li><p class="paragraph">inputs: Map<inputid, activityid></inputid,></p></li><li><p class="paragraph">matchers: Map<updatetype, list<pair<matchpattern, activityid>&gt;&gt;</updatetype,></p></li><li><p class="paragraph">updateTypeHandlers: Map<updatetype, list<activityid>&gt;</updatetype,></p></li><li><p class="paragraph">unprocessed: ActivityId?</p></li></ul></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
@@ -222,17 +222,17 @@
               </div>
             </div>
           </div>
-<a data-name="982493977%2FFunctions%2F1596435014" anchor-label="getUpdateTypeHandlers" id="982493977%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+<a data-name="1827269148%2FFunctions%2F1596435014" anchor-label="getUpdateTypeHandlers" id="1827269148%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
           <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="get-update-type-handlers.html"><span>get</span><wbr><span>Update</span><wbr><span>Type</span><wbr><span><span>Handlers</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="982493977%2FFunctions%2F1596435014"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1827269148%2FFunctions%2F1596435014"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-update-type-handlers.html"><span class="token function">getUpdateTypeHandlers</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.component/-update-type/index.html">UpdateType</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-activity/index.html">Activity</a><span class="token operator">&gt;</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-update-type-handlers.html"><span class="token function">getUpdateTypeHandlers</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">update<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.component/-processed-update/index.html">ProcessedUpdate</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-activity/index.html">Activity</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns update-type handlers eligible for <a href="get-update-type-handlers.html">update</a>, applying the per-handler <a href="../../eu.vendeli.tgbot.types.component/-message-kind/index.html">MessageKind</a> filter: empty filter matches any kind; a non-empty filter only matches when the update is a <a href="../../eu.vendeli.tgbot.types.component/-message-reference/index.html">MessageReference</a> whose detected <a href="../../eu.vendeli.tgbot.types.component/-message-reference/message-kind.html">MessageReference.messageKind</a> is in the filter set.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-update-type-handlers.html"><span class="token function">getUpdateTypeHandlers</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.component/-update-type/index.html">UpdateType</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-activity/index.html">Activity</a><span class="token operator">&gt;</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -327,17 +327,17 @@
               </div>
             </div>
           </div>
-<a data-name="872028610%2FFunctions%2F1596435014" anchor-label="registerUpdateTypeHandler" id="872028610%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
+<a data-name="442424779%2FFunctions%2F1596435014" anchor-label="registerUpdateTypeHandler" id="442424779%2FFunctions%2F1596435014" data-filterable-set=":telegram-bot/commonMain"></a>
           <div class="table-row table-row_content" data-filterable-current=":telegram-bot/commonMain" data-filterable-set=":telegram-bot/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="register-update-type-handler.html"><span>register</span><wbr><span>Update</span><wbr><span>Type</span><wbr><span><span>Handler</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="872028610%2FFunctions%2F1596435014"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="442424779%2FFunctions%2F1596435014"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="register-update-type-handler.html"><span class="token function">registerUpdateTypeHandler</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.component/-update-type/index.html">UpdateType</a><span class="token punctuation">, </span></span><span class="parameter ">activityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":telegram-bot/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="register-update-type-handler.html"><span class="token function">registerUpdateTypeHandler</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="../../eu.vendeli.tgbot.types.component/-update-type/index.html">UpdateType</a><span class="token punctuation">, </span></span><span class="parameter ">activityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">messageKind<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-set/index.html">Set</a><span class="token operator">&lt;</span><a href="../../eu.vendeli.tgbot.types.component/-message-kind/index.html">MessageKind</a><span class="token operator">&gt;</span><span class="token operator"> = </span>emptySet()</span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>

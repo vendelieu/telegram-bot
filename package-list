@@ -41,6 +41,7 @@ eu.vendeli.tgbot.interfaces.ctx
 eu.vendeli.tgbot.interfaces.features
 eu.vendeli.tgbot.interfaces.helper
 eu.vendeli.tgbot.interfaces.marker
+eu.vendeli.tgbot.interfaces.session
 eu.vendeli.tgbot.types
 eu.vendeli.tgbot.types.boost
 eu.vendeli.tgbot.types.bot
@@ -63,12 +64,14 @@ eu.vendeli.tgbot.types.options
 eu.vendeli.tgbot.types.passport
 eu.vendeli.tgbot.types.payment
 eu.vendeli.tgbot.types.poll
+eu.vendeli.tgbot.types.session
 eu.vendeli.tgbot.types.stars
 eu.vendeli.tgbot.types.story
 eu.vendeli.tgbot.types.user
 eu.vendeli.tgbot.types.webapp
 eu.vendeli.tgbot.utils.builders
 eu.vendeli.tgbot.utils.common
+eu.vendeli.tgbot.utils.internal
 module:webapps
 eu.vendeli.webapps.biometric
 eu.vendeli.webapps.button
