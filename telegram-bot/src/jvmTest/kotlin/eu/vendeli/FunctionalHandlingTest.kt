@@ -26,6 +26,7 @@ import eu.vendeli.tgbot.utils.common.onDeletedBusinessMessages
 import eu.vendeli.tgbot.utils.common.onEditedBusinessMessage
 import eu.vendeli.tgbot.utils.common.onEditedChannelPost
 import eu.vendeli.tgbot.utils.common.onEditedMessage
+import eu.vendeli.tgbot.utils.common.onGuestMessage
 import eu.vendeli.tgbot.utils.common.onInlineQuery
 import eu.vendeli.tgbot.utils.common.onManagedBot
 import eu.vendeli.tgbot.utils.common.onMessage
@@ -245,6 +246,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             onDeletedBusinessMessages { onUpdateInvocationsCount++ }
             onPurchasedPaidMedia { onUpdateInvocationsCount++ }
             onManagedBot { onUpdateInvocationsCount++ }
+            onGuestMessage { onUpdateInvocationsCount++ }
         }
 
         UpdateType.entries.forEach { type ->
