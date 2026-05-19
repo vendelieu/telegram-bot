@@ -6,11 +6,7 @@ import eu.vendeli.tgbot.interfaces.helper.LoggerFactory
 import eu.vendeli.tgbot.interfaces.session.Session
 import eu.vendeli.tgbot.interfaces.session.SessionManager
 import eu.vendeli.tgbot.interfaces.session.SessionStorage
-import eu.vendeli.tgbot.types.component.MessageReference
-import eu.vendeli.tgbot.types.component.ProcessedUpdate
-import eu.vendeli.tgbot.types.component.chatOrNull
-import eu.vendeli.tgbot.types.component.detectKind
-import eu.vendeli.tgbot.types.component.userOrNull
+import eu.vendeli.tgbot.types.component.*
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.session.Direction
 import eu.vendeli.tgbot.types.session.SessionKey
@@ -18,8 +14,8 @@ import eu.vendeli.tgbot.types.session.SessionKeyStrategy
 import eu.vendeli.tgbot.types.session.TrackedMessage
 import eu.vendeli.tgbot.utils.common.fqName
 import eu.vendeli.tgbot.utils.common.safeCast
-import io.ktor.util.collections.ConcurrentMap
-import io.ktor.util.logging.debug
+import io.ktor.util.collections.*
+import io.ktor.util.logging.*
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
@@ -160,16 +156,19 @@ private class DefaultSession(
             .forEach { (chatId, entries) ->
                 entries.chunked(TELEGRAM_DELETE_BATCH_SIZE).forEach { chunk ->
                     val ids = chunk.map { it.messageId }
-                    runCatching { deleteMessages(ids).sendReturning(chatId, bot).await() }
-                        .onSuccess { response ->
-                            if (!response.ok) {
-                                logger.warn("session($key) delete batch for chat=$chatId size=${chunk.size} failed")
-                            } else {
-                                logger.debug { "session($key) delete batch for chat=$chatId size=${chunk.size}" }
-                            }
-                        }.onFailure {
-                            logger.error("session($key) delete batch for chat=$chatId threw", it)
+                    runCatching {
+                        deleteMessages(ids)
+                            .sendReturning(chatId, bot)
+                            .await()
+                    }.onSuccess { response ->
+                        if (!response.ok) {
+                            logger.warn("session($key) delete batch for chat=$chatId size=${chunk.size} failed")
+                        } else {
+                            logger.debug { "session($key) delete batch for chat=$chatId size=${chunk.size}" }
                         }
+                    }.onFailure {
+                        logger.error("session($key) delete batch for chat=$chatId threw", it)
+                    }
                 }
             }
 
