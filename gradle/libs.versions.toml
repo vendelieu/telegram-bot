@@ -29,7 +29,7 @@ autoservice-ksp = "1.2.0"
 kotlinCompileTesting = "0.13.0"
 
 binvalid = "0.18.1"
-publisher = "0.36.0"
+publisher = "0.37.0"
 gradle-publish = "2.1.1"
 
 [libraries]
