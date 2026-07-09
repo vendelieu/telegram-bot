@@ -36,11 +36,17 @@ configuredKotlin {
         jsMain.dependencies {
             implementation(libs.ktor.client.js)
         }
-        named("linuxX64Main").dependencies {
+        linuxX64Main.dependencies {
             implementation(libs.ktor.client.curl)
         }
-        named("mingwX64Main").dependencies {
+        linuxArm64Main.dependencies {
+            implementation(libs.ktor.client.curl)
+        }
+        mingwX64Main.dependencies {
             implementation(libs.ktor.client.winhttp)
+        }
+        macosArm64Main.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
     }
 

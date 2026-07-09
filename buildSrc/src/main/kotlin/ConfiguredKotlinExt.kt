@@ -57,6 +57,8 @@ fun Project.configuredKotlin(block: KotlinMultiplatformExtension.() -> Unit) {
         js { nodejs() }
         mingwX64()
         linuxX64()
+        linuxArm64()
+        macosArm64()
         block()
     }
 }
