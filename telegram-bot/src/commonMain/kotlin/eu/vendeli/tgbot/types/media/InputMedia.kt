@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.media
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.helper.ImplicitMediaData
 import eu.vendeli.tgbot.types.component.ParseMode
 import eu.vendeli.tgbot.types.component.ImplicitFile
@@ -34,6 +35,7 @@ sealed class InputMedia : ImplicitMediaData {
 
     @Serializable
     @SerialName("audio")
+    @TgAPI.Name("InputMediaAudio")
     data class Audio(
         override var media: ImplicitFile,
         override var thumbnail: ImplicitFile? = null,
@@ -44,10 +46,12 @@ sealed class InputMedia : ImplicitMediaData {
         val performer: String? = null,
         val title: String? = null,
     ) : InputMedia(),
-        InputPollMedia
+        InputPollMedia,
+        InputRichMedia
 
     @Serializable
     @SerialName("document")
+    @TgAPI.Name("InputMediaDocument")
     data class Document(
         override var media: ImplicitFile,
         override var thumbnail: ImplicitFile? = null,
@@ -60,6 +64,7 @@ sealed class InputMedia : ImplicitMediaData {
 
     @Serializable
     @SerialName("photo")
+    @TgAPI.Name("InputMediaPhoto")
     data class Photo(
         override var media: ImplicitFile,
         val caption: String? = null,
@@ -69,10 +74,12 @@ sealed class InputMedia : ImplicitMediaData {
         val showCaptionAboveMedia: Boolean? = null,
     ) : InputMedia(),
         InputPollMedia,
-        InputPollOptionMedia
+        InputPollOptionMedia,
+        InputRichMedia
 
     @Serializable
     @SerialName("video")
+    @TgAPI.Name("InputMediaVideo")
     data class Video(
         override var media: ImplicitFile,
         override var thumbnail: ImplicitFile? = null,
@@ -90,10 +97,12 @@ sealed class InputMedia : ImplicitMediaData {
         val showCaptionAboveMedia: Boolean? = null,
     ) : InputMedia(),
         InputPollMedia,
-        InputPollOptionMedia
+        InputPollOptionMedia,
+        InputRichMedia
 
     @Serializable
     @SerialName("animation")
+    @TgAPI.Name("InputMediaAnimation")
     data class Animation(
         override var media: ImplicitFile,
         override var thumbnail: ImplicitFile? = null,
@@ -107,10 +116,12 @@ sealed class InputMedia : ImplicitMediaData {
         val showCaptionAboveMedia: Boolean? = null,
     ) : InputMedia(),
         InputPollMedia,
-        InputPollOptionMedia
+        InputPollOptionMedia,
+        InputRichMedia
 
     @Serializable
     @SerialName("live_photo")
+    @TgAPI.Name("InputMediaLivePhoto")
     data class LivePhoto(
         override var media: ImplicitFile,
         var photo: ImplicitFile,

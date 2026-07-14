@@ -17,7 +17,7 @@ import kotlinx.serialization.Serializable
  * @property lastErrorMessage Optional. Error message in human-readable format for the most recent error that happened when trying to deliver an update via webhook
  * @property lastSynchronizationErrorDate Optional. Unix time of the most recent error that happened when trying to synchronize available updates with Telegram datacenters
  * @property maxConnections Optional. The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery
- * @property allowedUpdates Optional. A list of update types the bot is subscribed to. Defaults to all update types except chat_member
+ * @property allowedUpdates Optional. A list of update types the bot is subscribed to. Defaults to all update types except chat_member, message_reaction, and message_reaction_count.
  */
 @Serializable
 data class WebhookInfo(

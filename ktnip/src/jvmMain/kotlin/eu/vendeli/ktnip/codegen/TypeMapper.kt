@@ -39,6 +39,7 @@ object TypeMapper {
         TypeConstants.purchasedPaidMediaUpdateClass to PurchasedPaidMediaUpdate::class,
         TypeConstants.managedBotUpdateClass to ManagedBotUpdate::class,
         TypeConstants.guestMessageUpdateClass to GuestMessageUpdate::class,
+        TypeConstants.subscriptionUpdateClass to SubscriptionUpdate::class,
     )
 
     /**

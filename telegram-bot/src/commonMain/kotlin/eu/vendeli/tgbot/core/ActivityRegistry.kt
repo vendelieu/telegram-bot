@@ -20,6 +20,7 @@ import eu.vendeli.tgbot.utils.internal.prettyPrint
  * - updateTypeHandlers: Map<UpdateType, List<ActivityId>>
  * - unprocessed: ActivityId?
  */
+@Suppress("detekt:TooManyFunctions")
 class ActivityRegistry internal constructor() {
     // Core activity storage
     private val activities = mutableMapOf<Int, Activity>()
@@ -118,6 +119,7 @@ class ActivityRegistry internal constructor() {
     fun getCommandsForType(type: UpdateType): Map<String, Activity> =
         commands[type]?.mapValues { activities[it.value]!! } ?: emptyMap()
 
+    @Suppress("detekt:CyclomaticComplexMethod")
     fun prettyPrint(): String = buildString {
         appendLine("ActivityRegistry State:")
 

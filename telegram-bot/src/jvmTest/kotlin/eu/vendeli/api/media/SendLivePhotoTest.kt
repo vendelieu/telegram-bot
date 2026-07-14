@@ -17,8 +17,7 @@ class SendLivePhotoTest : BotTestContext() {
                 parseMode = ParseMode.HTML
                 hasSpoiler = true
                 showCaptionAboveMedia = true
-            }
-            .apply {
+            }.apply {
                 parameters["live_photo"]?.jsonPrimitive?.content shouldBe "video_id_42"
                 parameters["photo"]?.jsonPrimitive?.content shouldBe "photo_id_84"
                 parameters["parse_mode"]?.jsonPrimitive?.content shouldBe "HTML"

@@ -15,7 +15,6 @@ private fun KotlinCommonCompilerOptions.configureCompilerOptions() {
         "-opt-in=eu.vendeli.tgbot.annotations.internal.ExperimentalFeature",
         "-opt-in=kotlin.time.ExperimentalTime",
         "-Xwarning-level=NOTHING_TO_INLINE:disabled",
-        "-Xcontext-parameters"
     )
 }
 
@@ -57,6 +56,8 @@ fun Project.configuredKotlin(block: KotlinMultiplatformExtension.() -> Unit) {
         js { nodejs() }
         mingwX64()
         linuxX64()
+        linuxArm64()
+        macosArm64()
         block()
     }
 }

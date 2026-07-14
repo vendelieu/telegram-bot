@@ -33,6 +33,7 @@ import kotlinx.serialization.Serializable
  * @property animation Optional. Message is an animation, information about the animation
  * @property audio Optional. Message is an audio file, information about the file
  * @property document Optional. Message is a general file, information about the file
+ * @property livePhoto Optional. Message is a live photo, information about the live photo
  * @property paidMedia Optional. Message contains paid media; information about the paid media
  * @property photo Optional. Message is a photo, available sizes of the photo
  * @property sticker Optional. Message is a sticker, information about the sticker
@@ -40,7 +41,6 @@ import kotlinx.serialization.Serializable
  * @property video Optional. Message is a video, information about the video
  * @property videoNote Optional. Message is a video note, information about the video message
  * @property voice Optional. Message is a voice message, information about the file
- * @property livePhoto Optional. Message is a live photo, information about the live photo
  * @property hasMediaSpoiler Optional. True, if the message media is covered by a spoiler animation
  * @property checklist Optional. Message is a checklist
  * @property contact Optional. Message is a shared contact, information about the contact

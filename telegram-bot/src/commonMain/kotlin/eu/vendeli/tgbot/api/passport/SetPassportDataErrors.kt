@@ -32,7 +32,7 @@ class SetPassportDataErrorsAction(
  *
  * [Api reference](https://core.telegram.org/bots/api#setpassportdataerrors)
  * @param userId User identifier
- * @param errors A JSON-serialized array describing the errors
+ * @param errors A JSON-serialized Array describing the errors
  * @returns [Boolean]
  */
 @TgAPI

@@ -30,9 +30,9 @@ class StopPollAction(
  *
  * [Api reference](https://core.telegram.org/bots/api#stoppoll)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message to be edited was sent
- * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param chatId Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
  * @param messageId Identifier of the original message with the poll
- * @param replyMarkup A JSON-serialized object for a new message inline keyboard.
+ * @param replyMarkup A JSON-serialized object for a new message inline keyboard
  * @returns [Poll]
  */
 @TgAPI

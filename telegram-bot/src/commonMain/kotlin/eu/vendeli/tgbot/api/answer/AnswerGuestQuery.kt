@@ -26,7 +26,7 @@ class AnswerGuestQueryAction(
 }
 
 /**
- * Use this method to send answers to a guest bot query. On success, a SentGuestMessage object is returned.
+ * Use this method to reply to a received guest message. On success, a SentGuestMessage object is returned.
  *
  * [Api reference](https://core.telegram.org/bots/api#answerguestquery)
  * @param guestQueryId Unique identifier for the query to be answered

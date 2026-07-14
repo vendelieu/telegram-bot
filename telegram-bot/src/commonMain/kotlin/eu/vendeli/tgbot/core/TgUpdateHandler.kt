@@ -64,18 +64,28 @@ class TgUpdateHandler internal constructor(
     var ____ctxUtils: CtxUtils? = null
 
     private sealed interface PollOutcome {
-        data class Retry(val reason: String) : PollOutcome
-        data class Fatal(val ex: TgException) : PollOutcome
+        data class Retry(
+            val reason: String,
+        ) : PollOutcome
+        data class Fatal(
+            val ex: TgException,
+        ) : PollOutcome
     }
 
     private fun classify(e: Throwable): PollOutcome = when (e) {
         is HttpRequestTimeoutException -> PollOutcome.Fatal(TgException("Connection timeout", e))
+
         is SocketTimeoutException -> PollOutcome.Retry("socket timeout")
+
         is ConnectTimeoutException -> PollOutcome.Retry("connect timeout")
+
         is SerializationException -> PollOutcome.Fatal(TgException("Update deserialization failed", e))
+
         is TgFailureException -> PollOutcome.Fatal(TgException("Telegram returned failure: ${e.message}", e))
+
         is ClientRequestException -> when (e.response.status.value) {
             TOO_MANY_REQUESTS -> PollOutcome.Retry("rate limited (429)")
+
             UNAUTHORIZED, FORBIDDEN -> PollOutcome.Fatal(
                 TgException("Telegram rejected token (${e.response.status.value})", e),
             )
@@ -84,6 +94,7 @@ class TgUpdateHandler internal constructor(
         }
 
         is ServerResponseException -> PollOutcome.Retry("server ${e.response.status.value}")
+
         else -> PollOutcome.Fatal(TgException("Unexpected polling failure", e))
     }
 
@@ -115,7 +126,11 @@ class TgUpdateHandler internal constructor(
                 cfg.pullingDelay.takeIf { it > 0 }?.let { delay(it.milliseconds) }
             } catch (e: CancellationException) {
                 throw e
-            } catch (e: @Suppress("detekt:TooGenericExceptionCaught") Throwable) {
+            } catch (
+                e:
+                    @Suppress("detekt:TooGenericExceptionCaught")
+                    Throwable,
+            ) {
                 when (val outcome = classify(e)) {
                     is PollOutcome.Retry -> {
                         logger.warn("Recoverable poll error: ${outcome.reason}. Backing off ${backoff}ms.")

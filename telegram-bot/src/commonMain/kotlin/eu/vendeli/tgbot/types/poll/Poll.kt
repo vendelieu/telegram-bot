@@ -29,17 +29,17 @@ enum class PollType {
  * @property type Poll type, currently can be "regular" or "quiz"
  * @property allowsMultipleAnswers True, if the poll allows multiple answers
  * @property allowsRevoting True, if the poll allows to change the chosen answer options
+ * @property membersOnly True if voting is limited to users who have been members of the chat where the poll was originally sent for more than 24 hours
+ * @property countryCodes Optional. A list of two-letter ISO 3166-1 alpha-2 country codes indicating the countries from which users can vote in the poll. The country code "FT" is used for users with anonymous numbers. If omitted, then users from any country can participate in the poll.
  * @property correctOptionIds Optional. Array of 0-based identifiers of the correct answer options. Available only for polls in quiz mode which are closed or were sent (not forwarded) by the bot or to the private chat with the bot.
  * @property explanation Optional. Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters
  * @property explanationEntities Optional. Special entities like usernames, URLs, bot commands, etc. that appear in the explanation
+ * @property explanationMedia Optional. Media added to the quiz explanation
  * @property openPeriod Optional. Amount of time in seconds the poll will be active after creation
  * @property closeDate Optional. Point in time (Unix timestamp) when the poll will be automatically closed
  * @property description Optional. Description of the poll; for polls inside the Message object only
  * @property descriptionEntities Optional. Special entities like usernames, URLs, bot commands, etc. that appear in the description
- * @property media Optional. Media attached to the poll
- * @property explanationMedia Optional. Media attached to the quiz explanation
- * @property membersOnly Optional. True, if the poll allows voting only for members of the chat
- * @property countryCodes Optional. List of two-letter ISO 3166-1 alpha-2 country codes whose users are allowed to vote in the poll. Available only for polls in chats where members must be from the listed countries.
+ * @property media Optional. Media added to the poll description; for polls inside the Message object only
  */
 @Serializable
 data class Poll(

@@ -10,9 +10,9 @@ import kotlinx.serialization.Serializable
  *
  * [Api reference](https://core.telegram.org/bots/api#inputpolloption)
  * @property text Option text, 1-100 characters
- * @property textParseMode Optional. Mode for parsing entities in the text. See formatting options for more details. Currently, only custom emoji entities are allowed
- * @property textEntities Optional. A JSON-serialized list of special entities that appear in the poll option text. It can be specified instead of text_parse_mode
- * @property media Optional. Media attached to the option
+ * @property textParseMode Optional. Mode for parsing entities in the text. See formatting options for more details. Currently, only custom emoji entities are allowed.
+ * @property textEntities Optional. A JSON-serialized list of special entities that appear in the poll option text. It can be specified instead of text_parse_mode.
+ * @property media Optional. Media added to the poll option
  */
 @Serializable
 data class InputPollOption(

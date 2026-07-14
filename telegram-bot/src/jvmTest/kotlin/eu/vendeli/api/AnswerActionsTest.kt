@@ -10,7 +10,9 @@ import eu.vendeli.tgbot.types.inline.InlineQueryResult
 import eu.vendeli.tgbot.types.component.Response
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 import eu.vendeli.tgbot.types.payment.ShippingOption
+import io.kotest.assertions.withClue
 import io.kotest.matchers.booleans.shouldBeFalse
+import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.types.shouldBeInstanceOf
@@ -87,7 +89,12 @@ class AnswerActionsTest : BotTestContext() {
 
             with(result) {
                 errorCode shouldBe 400
-                description shouldContain "ID is invalid"
+                // validation order on the live api varies: fake query id or option checks may fire first
+                withClue("unexpected error description: $description") {
+                    listOf("ID is invalid", "shipping option")
+                        .any { description?.contains(it) == true }
+                        .shouldBeTrue()
+                }
             }
         }
     }

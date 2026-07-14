@@ -24,7 +24,7 @@ class GetUserPersonalChatMessagesAction(
 }
 
 /**
- * Use this method to fetch messages from a user's personal chat with the bot. Returns an Array of Message objects.
+ * Use this method to get the last messages from the personal chat (i.e., the chat currently added to their profile) of a given user. On success, an Array of Message objects is returned.
  *
  * [Api reference](https://core.telegram.org/bots/api#getuserpersonalchatmessages)
  * @param userId Unique identifier for the target user

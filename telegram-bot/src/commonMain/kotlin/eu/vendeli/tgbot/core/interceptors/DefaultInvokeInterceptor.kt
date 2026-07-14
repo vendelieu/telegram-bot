@@ -29,8 +29,8 @@ internal object DefaultInvokeInterceptor : PipelineInterceptor {
     ) = runCatching { invoke(context) }
         .onFailure {
             logger.error(
-                "Invocation e" +
-                    "rror while handling update in ${this::class}[${context.parsedInput}] " +
+                "Invocation error " +
+                    "while handling update in ${this::class}[${context.parsedInput}] " +
                     "with update: ${context.update.toJsonString()}",
                 it,
             )

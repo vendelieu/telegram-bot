@@ -32,7 +32,7 @@ class GetChatGiftsAction(
  * Returns the gifts owned by a chat. Returns OwnedGifts on success.
  *
  * [Api reference](https://core.telegram.org/bots/api#getchatgifts)
- * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param chatId Unique identifier for the target chat or username of the target channel in the format @username
  * @param excludeUnsaved Pass True to exclude gifts that aren't saved to the chat's profile page. Always True, unless the bot has the can_post_messages administrator right in the channel.
  * @param excludeSaved Pass True to exclude gifts that are saved to the chat's profile page. Always False, unless the bot has the can_post_messages administrator right in the channel.
  * @param excludeUnlimited Pass True to exclude gifts that can be purchased an unlimited number of times
@@ -42,7 +42,7 @@ class GetChatGiftsAction(
  * @param excludeUnique Pass True to exclude unique gifts
  * @param sortByPrice Pass True to sort results by gift price instead of send date. Sorting is applied before pagination.
  * @param offset Offset of the first entry to return as received from the previous request; use an empty string to get the first chunk of results
- * @param limit The maximum number of gifts to be returned; 1-100. Defaults to 100
+ * @param limit The maximum number of gifts to be returned; 1-100. Defaults to 100.
  * @returns [OwnedGifts]
  */
 @TgAPI

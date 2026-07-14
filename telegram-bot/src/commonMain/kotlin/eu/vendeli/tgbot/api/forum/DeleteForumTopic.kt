@@ -24,7 +24,7 @@ class DeleteForumTopicAction(
  * Use this method to delete a forum topic along with all its messages in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_delete_messages administrator rights. Returns True on success.
  *
  * [Api reference](https://core.telegram.org/bots/api#deleteforumtopic)
- * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+ * @param chatId Unique identifier for the target chat or username of the target supergroup in the format @username
  * @param messageThreadId Unique identifier for the target message thread of the forum topic
  * @returns [Boolean]
  */

@@ -29,7 +29,7 @@ class PinChatMessageAction(
  *
  * [Api reference](https://core.telegram.org/bots/api#pinchatmessage)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be pinned
- * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param chatId Unique identifier for the target chat or username of the target channel in the format @username
  * @param messageId Identifier of a message to pin
  * @param disableNotification Pass True if it is not necessary to send a notification to all chat members about the new pinned message. Notifications are always disabled in channels and private chats.
  * @returns [Boolean]

@@ -27,7 +27,7 @@ class SetChatMemberTagAction(
  * Use this method to set a tag for a regular member in a group or a supergroup. The bot must be an administrator in the chat for this to work and must have the can_manage_tags administrator right. Returns True on success.
  *
  * [Api reference](https://core.telegram.org/bots/api#setchatmembertag)
- * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+ * @param chatId Unique identifier for the target chat or username of the target supergroup in the format @username
  * @param userId Unique identifier of the target user
  * @param tag New tag for the member; 0-16 characters, emoji are not allowed
  * @returns [Boolean]

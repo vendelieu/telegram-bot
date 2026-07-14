@@ -39,7 +39,7 @@ class GetBusinessAccountGiftsAction(
  * @param excludeFromBlockchain Pass True to exclude gifts that were assigned from the TON blockchain and can't be resold or transferred in Telegram
  * @param sortByPrice Pass True to sort results by gift price instead of send date. Sorting is applied before pagination.
  * @param offset Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
- * @param limit The maximum number of gifts to be returned; 1-100. Defaults to 100
+ * @param limit The maximum number of gifts to be returned; 1-100. Defaults to 100.
  * @returns [OwnedGifts]
  */
 @TgAPI

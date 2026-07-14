@@ -67,6 +67,20 @@ interface SuggestedPostParametersProp : Options {
     var suggestedPostParameters: SuggestedPostParameters?
 }
 
+interface EphemeralMessageProps : Options {
+    /**
+     * Identifier of the user who will receive the message. The message will be ephemeral,
+     * i.e. sent without being saved in the chat, and will be received only by this user.
+     */
+    var receiverUserId: Long?
+
+    /**
+     * Identifier of the callback query in response to which the message is sent.
+     * If specified, the message is sent to the corresponding user only if the query is still valid.
+     */
+    var callbackQueryId: String?
+}
+
 @Serializable
 sealed interface OptionsCommon :
     Options,

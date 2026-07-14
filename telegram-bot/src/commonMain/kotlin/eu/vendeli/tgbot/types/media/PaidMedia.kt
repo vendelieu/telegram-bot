@@ -8,10 +8,10 @@ import kotlinx.serialization.serializer
 
 /**
  * This object describes paid media. Currently, it can be one of
- * - PaidMediaPreview
- * - PaidMediaPhoto
- * - PaidMediaVideo
  * - PaidMediaLivePhoto
+ * - PaidMediaPhoto
+ * - PaidMediaPreview
+ * - PaidMediaVideo
  *
  * [Api reference](https://core.telegram.org/bots/api#paidmedia)
  *

@@ -19,7 +19,7 @@ import kotlinx.serialization.Serializable
  * @property text Optional. Text of the message that was added to the gift
  * @property entities Optional. Special entities that appear in the text
  * @property isPrivate Optional. True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
- * @property uniqueGiftNumber Optional. Unique number reserved for this gift when upgraded. See the number field in UniqueGift
+ * @property uniqueGiftNumber Optional. Unique number reserved for this gift when upgraded. See the number field in UniqueGift.
  */
 @Serializable
 data class GiftInfo(

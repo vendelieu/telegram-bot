@@ -4,7 +4,7 @@ import eu.vendeli.tgbot.types.User
 import kotlinx.serialization.Serializable
 
 /**
- * This object contains information about the creation or token update of a bot that is managed by the current bot.
+ * This object contains information about the creation, token update, or owner update of a bot that is managed by the current bot.
  *
  * [Api reference](https://core.telegram.org/bots/api#managedbotupdated)
  * @property user User that created the bot

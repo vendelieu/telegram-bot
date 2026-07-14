@@ -24,7 +24,7 @@ class SetChatDescriptionAction(
  * Use this method to change the description of a group, a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
  *
  * [Api reference](https://core.telegram.org/bots/api#setchatdescription)
- * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param chatId Unique identifier for the target chat or username of the target channel in the format @username
  * @param description New chat description, 0-255 characters
  * @returns [Boolean]
  */

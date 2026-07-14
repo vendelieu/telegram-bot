@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
  * Describes actions that a non-administrator user is allowed to take in a chat.
  *
  * [Api reference](https://core.telegram.org/bots/api#chatpermissions)
- * @property canSendMessages Optional. True, if the user is allowed to send text messages, contacts, giveaways, giveaway winners, invoices, locations and venues
+ * @property canSendMessages Optional. True, if the user is allowed to send text messages, rich messages, contacts, giveaways, giveaway winners, invoices, locations and venues
  * @property canSendAudios Optional. True, if the user is allowed to send audios
  * @property canSendDocuments Optional. True, if the user is allowed to send documents
  * @property canSendPhotos Optional. True, if the user is allowed to send photos
@@ -16,12 +16,12 @@ import kotlinx.serialization.Serializable
  * @property canSendPolls Optional. True, if the user is allowed to send polls and checklists
  * @property canSendOtherMessages Optional. True, if the user is allowed to send animations, games, stickers and use inline bots
  * @property canAddWebPagePreviews Optional. True, if the user is allowed to add web page previews to their messages
- * @property canReactToMessages Optional. True, if the user is allowed to react to messages
- * @property canEditTag Optional. True, if the user is allowed to edit their own tag
- * @property canChangeInfo Optional. True, if the user is allowed to change the chat title, photo and other settings. Ignored in public supergroups
+ * @property canReactToMessages Optional. True, if the user is allowed to react to messages. If omitted, defaults to the value of can_send_messages.
+ * @property canEditTag Optional. True, if the user is allowed to edit their own tag. If omitted, defaults to the value of can_pin_messages.
+ * @property canChangeInfo Optional. True, if the user is allowed to change the chat title, photo and other settings. Ignored in public supergroups.
  * @property canInviteUsers Optional. True, if the user is allowed to invite new users to the chat
- * @property canPinMessages Optional. True, if the user is allowed to pin messages. Ignored in public supergroups
- * @property canManageTopics Optional. True, if the user is allowed to create forum topics. If omitted defaults to the value of can_pin_messages
+ * @property canPinMessages Optional. True, if the user is allowed to pin messages. Ignored in public supergroups.
+ * @property canManageTopics Optional. True, if the user is allowed to create forum topics. If omitted, defaults to the value of can_pin_messages.
  */
 @Serializable
 data class ChatPermissions(

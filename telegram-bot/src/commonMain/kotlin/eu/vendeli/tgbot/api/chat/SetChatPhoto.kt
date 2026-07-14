@@ -27,7 +27,7 @@ class SetChatPhotoAction(
  * Use this method to set a new profile photo for the chat. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
  *
  * [Api reference](https://core.telegram.org/bots/api#setchatphoto)
- * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param chatId Unique identifier for the target chat or username of the target channel in the format @username
  * @param photo New chat photo, uploaded using multipart/form-data
  * @returns [Boolean]
  */

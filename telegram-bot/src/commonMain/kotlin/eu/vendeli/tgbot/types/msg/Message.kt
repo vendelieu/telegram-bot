@@ -10,6 +10,8 @@ import eu.vendeli.tgbot.types.chat.ChatBackground
 import eu.vendeli.tgbot.types.chat.ChatOwnerChanged
 import eu.vendeli.tgbot.types.chat.ChatOwnerLeft
 import eu.vendeli.tgbot.types.chat.ChatShared
+import eu.vendeli.tgbot.types.chat.CommunityChatAdded
+import eu.vendeli.tgbot.types.chat.CommunityChatRemoved
 import eu.vendeli.tgbot.types.checklist.Checklist
 import eu.vendeli.tgbot.types.checklist.ChecklistTasksAdded
 import eu.vendeli.tgbot.types.checklist.ChecklistTasksDone
@@ -68,11 +70,13 @@ import kotlin.time.Instant
  *
  * [Api reference](https://core.telegram.org/bots/api#message)
  * @property messageId Unique message identifier inside this chat
+ * @property ephemeralMessageId For ephemeral messages, identifier of the ephemeral message inside this chat; 0 for regular messages. The identifier may be reused for another ephemeral message after the message is deleted or expires.
  * @property messageThreadId Optional. Unique identifier of a message thread to which the message belongs; for supergroups only
  * @property from Optional. Sender of the message; empty for messages sent to channels. For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
  * @property senderChat Optional. Sender of the message, sent on behalf of a chat. For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group. For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
  * @property senderBoostCount Optional. If the sender of the message boosted the chat, the number of boosts added by the user
  * @property senderBusinessBot Optional. The bot that actually sent the message on behalf of the business account. Available only for outgoing messages sent on behalf of the connected business account.
+ * @property receiverUser Optional. For ephemeral messages, the user who received the message
  * @property senderTag Optional. Tag or custom title of the sender of the message; for supergroups only
  * @property guestQueryId Optional. Unique identifier of the guest bot query that prompted this message; received by guest bots only
  * @property guestBotCallerUser Optional. User that triggered the guest bot to send the message; received by guest bots only
@@ -95,6 +99,7 @@ import kotlin.time.Instant
  * @property mediaGroupId Optional. The unique identifier of a media message group this message belongs to
  * @property authorSignature Optional. Signature of the post author for messages in channels, or the custom title of an anonymous group administrator
  * @property text Optional. For text messages, the actual UTF-8 text of the message
+ * @property richMessage Optional. Message is a rich formatted message
  * @property entities Optional. For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text
  * @property linkPreviewOptions Optional. Options used for link preview generation for the message, if it is a text message and link preview options were changed
  * @property effectId Optional. Unique identifier of the message effect added to the message
@@ -141,6 +146,8 @@ import kotlin.time.Instant
  * @property proximityAlertTriggered Optional. Service message. A user in the chat triggered another user's proximity alert while sharing Live Location.
  * @property boostAdded Optional. Service message: user boosted the chat
  * @property chatBackgroundSet Optional. Service message: chat background set
+ * @property communityChatAdded Optional. Service message: chat added to a Community
+ * @property communityChatRemoved Optional. Service message: chat removed from a Community
  * @property forumTopicCreated Optional. Service message: forum topic created
  * @property forumTopicEdited Optional. Service message: forum topic edited
  * @property forumTopicClosed Optional. Service message: forum topic closed
@@ -162,11 +169,13 @@ import kotlin.time.Instant
 @TgAPI.Name("Message")
 data class Message(
     override val messageId: Long,
+    val ephemeralMessageId: Long = 0,
     val messageThreadId: Int? = null,
     val from: User? = null,
     val senderChat: Chat? = null,
     val senderBoostCount: Int? = null,
     val senderBusinessBot: User? = null,
+    val receiverUser: User? = null,
     val senderTag: String? = null,
     val guestQueryId: String? = null,
     val guestBotCallerUser: User? = null,
@@ -191,6 +200,7 @@ data class Message(
     val paidStarCount: Int? = null,
     val authorSignature: String? = null,
     val text: String? = null,
+    val richMessage: RichMessage? = null,
     val entities: List<MessageEntity>? = null,
     val effectId: String? = null,
     val linkPreviewOptions: LinkPreviewOptions? = null,
@@ -252,6 +262,8 @@ data class Message(
     val passportData: PassportData? = null,
     val proximityAlertTriggered: ProximityAlertTriggered? = null,
     val boostAdded: ChatBoostAdded? = null,
+    val communityChatAdded: CommunityChatAdded? = null,
+    val communityChatRemoved: CommunityChatRemoved? = null,
     val forumTopicCreated: ForumTopicCreated? = null,
     val forumTopicEdited: ForumTopicEdited? = null,
     val forumTopicClosed: ForumTopicClosed? = null,

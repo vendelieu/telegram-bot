@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.media
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.SerialName
@@ -13,6 +14,7 @@ import kotlinx.serialization.serializer
  */
 @Serializable
 @SerialName("venue")
+@TgAPI.Name("InputMediaVenue")
 data class InputMediaVenue(
     val latitude: Double,
     val longitude: Double,
