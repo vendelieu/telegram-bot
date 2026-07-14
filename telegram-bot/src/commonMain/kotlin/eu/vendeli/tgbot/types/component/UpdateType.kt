@@ -80,6 +80,9 @@ enum class UpdateType {
     @SerialName("guest_message")
     GUEST_MESSAGE,
 
+    @SerialName("subscription")
+    SUBSCRIPTION,
+
     ;
 
     override fun toString(): String = "UpdateType.$name"

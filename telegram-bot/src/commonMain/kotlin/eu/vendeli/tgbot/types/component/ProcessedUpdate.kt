@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.interfaces.marker.MultipleResponse
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.boost.ChatBoostRemoved
 import eu.vendeli.tgbot.types.boost.ChatBoostUpdated
+import eu.vendeli.tgbot.types.bot.BotSubscriptionUpdated
 import eu.vendeli.tgbot.types.bot.ManagedBotUpdated
 import eu.vendeli.tgbot.types.business.BusinessConnection
 import eu.vendeli.tgbot.types.business.BusinessMessagesDeleted
@@ -422,6 +423,19 @@ data class GuestMessageUpdate(
     override fun MessageReference.getMessage(): Message = guestMessage
 
     internal companion object : UpdateSerializer<GuestMessageUpdate>()
+}
+
+@Serializable(SubscriptionUpdate.Companion::class)
+data class SubscriptionUpdate(
+    override val updateId: Int,
+    override val origin: Update,
+    val subscription: BotSubscriptionUpdated,
+) : ProcessedUpdate(updateId, origin, UpdateType.SUBSCRIPTION),
+    UserReference {
+    override val user: User = subscription.user
+    override val text: String = subscription.invoicePayload
+
+    internal companion object : UpdateSerializer<SubscriptionUpdate>()
 }
 
 inline val ProcessedUpdate.userOrNull: User? get() = (this as? UserReference)?.user

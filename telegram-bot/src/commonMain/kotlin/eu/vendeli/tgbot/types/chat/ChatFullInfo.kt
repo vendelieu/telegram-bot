@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.chat
 
+import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.types.business.BusinessIntro
 import eu.vendeli.tgbot.types.media.Audio
 import eu.vendeli.tgbot.types.business.BusinessLocation
@@ -66,7 +67,9 @@ import kotlinx.serialization.Serializable
  * @property rating Optional. For private chats, the rating of the user if any
  * @property firstProfileAudio Optional. For private chats, the first audio added to the profile of the user
  * @property uniqueGiftColors Optional. The color scheme based on a unique gift that must be used for the chat's name, message replies and link previews
- * @property paidMessageStarCount Optional. The number of Telegram Stars a general user have to pay to send a message to the chat
+ * @property paidMessageStarCount Optional. The number of Telegram Stars a general user has to pay to send a message to the chat
+ * @property guardBot Optional. The bot that processes join request queries in the chat. The field is only available to chat administrators.
+ * @property community Optional. The Community to which the chat belongs
  */
 @Serializable
 data class ChatFullInfo(
@@ -121,4 +124,6 @@ data class ChatFullInfo(
     val firstProfileAudio: Audio? = null,
     val uniqueGiftColors: UniqueGiftColors? = null,
     val paidMessageStarCount: Int? = null,
+    val guardBot: User? = null,
+    val community: Community? = null,
 )

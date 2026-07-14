@@ -75,7 +75,10 @@ class SessionTrackingInterceptorTest : AnnotationSpec() {
     @Test
     fun qualifiedSessionsAutoTrackInSeparateBuckets() = runBlocking {
         val bot = TelegramBot("000000:TEST")
-        val update = eu.vendeli.utils.MockUpdate.SINGLE().updates.single()
+        val update = eu.vendeli.utils.MockUpdate
+            .SINGLE()
+            .updates
+            .single()
 
         // Open three sessions for the same chat/user differing only by qualifier.
         val unqualified = bot.sessions.of(update)!!

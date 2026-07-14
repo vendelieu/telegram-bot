@@ -36,22 +36,24 @@ class SendLocationAction(
  *
  * [Api reference](https://core.telegram.org/bots/api#sendlocation)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
- * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param chatId Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
  * @param messageThreadId Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
  * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
+ * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
+ * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which triggerred the message if any
  * @param latitude Latitude of the location
  * @param longitude Longitude of the location
  * @param horizontalAccuracy The radius of uncertainty for the location, measured in meters; 0-1500
- * @param livePeriod Period in seconds during which the location will be updated (see Live Locations, should be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely.
+ * @param livePeriod Period in seconds during which the location will be updated (see Live Locations), must be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely. Must be 0 for ephemeral messages.
  * @param heading For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.
  * @param proximityAlertRadius For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving
- * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
+ * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance.
  * @param messageEffectId Unique identifier of the message effect to be added to the message; for private chats only
  * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
  * @param replyParameters Description of the message to reply to
- * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
+ * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
  * @returns [Message]
  */
 @TgAPI

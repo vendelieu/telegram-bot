@@ -36,7 +36,7 @@ class AnswerInlineQueryAction(
  *
  * [Api reference](https://core.telegram.org/bots/api#answerinlinequery)
  * @param inlineQueryId Unique identifier for the answered query
- * @param results A JSON-serialized array of results for the inline query
+ * @param results A JSON-serialized Array of results for the inline query
  * @param cacheTime The maximum amount of time in seconds that the result of the inline query may be cached on the server. Defaults to 300.
  * @param isPersonal Pass True if results may be cached on the server side only for the user that sent the query. By default, results may be returned to any user who sends the same query.
  * @param nextOffset Pass the offset that a client should send in the next query with the same text to receive more results. Pass an empty string if there are no more results or if you don't support pagination. Offset length can't exceed 64 bytes.

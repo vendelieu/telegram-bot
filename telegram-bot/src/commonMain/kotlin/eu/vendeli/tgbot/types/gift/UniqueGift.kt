@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
  * [Api reference](https://core.telegram.org/bots/api#uniquegift)
  * @property giftId Identifier of the regular gift from which the gift was upgraded
  * @property baseName Human-readable name of the regular gift from which this unique gift was upgraded
- * @property name Unique name of the gift. This name can be used in https://t.me/nft/... links and story areas
+ * @property name Unique name of the gift. This name can be used in https://t.me/nft/... links and story areas.
  * @property number Unique number of the upgraded gift among gifts upgraded from the same regular gift
  * @property model Model of the gift
  * @property symbol Symbol of the gift

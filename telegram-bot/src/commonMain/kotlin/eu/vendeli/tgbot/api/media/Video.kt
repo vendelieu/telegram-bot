@@ -43,9 +43,11 @@ class SendVideoAction(
  *
  * [Api reference](https://core.telegram.org/bots/api#sendvideo)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
- * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param chatId Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
  * @param messageThreadId Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
  * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
+ * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
+ * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which triggerred the message if any
  * @param video Video to send. Pass a file_id as String to send a video that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a video from the Internet, or upload a new video using multipart/form-data. More information on Sending Files: https://core.telegram.org/bots/api#sending-files
  * @param duration Duration of sent video in seconds
  * @param width Video width
@@ -56,16 +58,16 @@ class SendVideoAction(
  * @param caption Video caption (may also be used when resending videos by file_id), 0-1024 characters after entities parsing
  * @param parseMode Mode for parsing entities in the video caption. See formatting options for more details.
  * @param captionEntities A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parse_mode
- * @param showCaptionAboveMedia Pass True, if the caption must be shown above the message media
+ * @param showCaptionAboveMedia Pass True if the caption must be shown above the message media
  * @param hasSpoiler Pass True if the video needs to be covered with a spoiler animation
  * @param supportsStreaming Pass True if the uploaded video is suitable for streaming
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving
- * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
+ * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance.
  * @param messageEffectId Unique identifier of the message effect to be added to the message; for private chats only
  * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
  * @param replyParameters Description of the message to reply to
- * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user
+ * @param replyMarkup Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
  * @returns [Message]
  */
 @TgAPI

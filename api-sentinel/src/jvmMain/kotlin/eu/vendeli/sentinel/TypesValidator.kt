@@ -24,6 +24,10 @@ internal fun ApiProcessor.validateTypes(classes: Sequence<KSClassDeclaration>, a
         if (sealedSubclasses.any()) {
             visitedTypes.add(className)
             sealedSubclasses.forEach sealedLoop@{ s ->
+                // skip lib-specific helper subclasses that have no telegram spec counterpart
+                if (s.annotations.any { it.shortName.getShortName() == TgAPI.Ignore::class.simpleName!! }) {
+                    return@sealedLoop
+                }
                 val sealedName = s.simpleName.getShortName()
                 val sealedFullName = s.qualifiedName!!.asString()
                 val sealedParams = s.getAllProperties().associateBy { it.simpleName.asString() }

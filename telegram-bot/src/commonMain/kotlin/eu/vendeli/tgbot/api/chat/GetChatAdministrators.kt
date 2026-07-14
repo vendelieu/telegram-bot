@@ -25,8 +25,8 @@ class GetChatAdministratorsAction(
  * Use this method to get a list of administrators in a chat. Returns an Array of ChatMember objects.
  *
  * [Api reference](https://core.telegram.org/bots/api#getchatadministrators)
- * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
- * @param returnBots Pass True if the result must contain bots, otherwise the result will not contain bots that are administrators in the chat.
+ * @param chatId Unique identifier for the target chat or username of the target supergroup or channel in the format @username
+ * @param returnBots Pass True to additionally receive all bots that are administrators of the chat. By default, bots other than the current bot are omitted.
  * @returns [Array of ChatMember]
  */
 @TgAPI

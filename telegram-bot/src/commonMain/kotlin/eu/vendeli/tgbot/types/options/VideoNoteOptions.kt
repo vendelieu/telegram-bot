@@ -18,10 +18,13 @@ data class VideoNoteOptions(
     override var allowPaidBroadcast: Boolean? = null,
     override var directMessagesTopicId: Int? = null,
     override var suggestedPostParameters: SuggestedPostParameters? = null,
+    override var receiverUserId: Long? = null,
+    override var callbackQueryId: String? = null,
 ) : OptionsCommon,
     ForumProps,
     ThumbnailProp,
     MessageEffectIdProp,
     AllowPaidBroadcastProp,
     DirectMessagesTopicProp,
-    SuggestedPostParametersProp
+    SuggestedPostParametersProp,
+    EphemeralMessageProps

@@ -29,7 +29,7 @@ class DeleteMyCommandsAction(
  *
  * [Api reference](https://core.telegram.org/bots/api#deletemycommands)
  * @param scope A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to BotCommandScopeDefault.
- * @param languageCode A two-letter ISO 639-1 language code. If empty, commands will be applied to all users from the given scope, for whose language there are no dedicated commands
+ * @param languageCode A two-letter ISO 639-1 language code. If empty, commands will be applied to all users from the given scope, for whose language there are no dedicated commands.
  * @returns [Boolean]
  */
 @TgAPI

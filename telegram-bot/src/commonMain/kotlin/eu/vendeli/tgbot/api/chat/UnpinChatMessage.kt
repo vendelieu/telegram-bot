@@ -27,7 +27,7 @@ class UnpinChatMessageAction(
  *
  * [Api reference](https://core.telegram.org/bots/api#unpinchatmessage)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be unpinned
- * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param chatId Unique identifier for the target chat or username of the target channel in the format @username
  * @param messageId Identifier of the message to unpin. Required if business_connection_id is specified. If not specified, the most recent pinned message (by sending date) will be unpinned.
  * @returns [Boolean]
  */

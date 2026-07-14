@@ -21,6 +21,8 @@ data class AudioOptions(
     override var messageEffectId: String? = null,
     override var directMessagesTopicId: Int? = null,
     override var suggestedPostParameters: SuggestedPostParameters? = null,
+    override var receiverUserId: Long? = null,
+    override var callbackQueryId: String? = null,
 ) : OptionsCommon,
     ForumProps,
     OptionsParseMode,
@@ -28,4 +30,5 @@ data class AudioOptions(
     MessageEffectIdProp,
     AllowPaidBroadcastProp,
     DirectMessagesTopicProp,
-    SuggestedPostParametersProp
+    SuggestedPostParametersProp,
+    EphemeralMessageProps

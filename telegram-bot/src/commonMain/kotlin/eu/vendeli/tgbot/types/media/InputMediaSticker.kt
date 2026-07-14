@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.media
 
+import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.component.ImplicitFile
 import eu.vendeli.tgbot.types.component.InputFile
 import eu.vendeli.tgbot.utils.common.toImplicitFile
@@ -18,6 +19,7 @@ import kotlinx.serialization.serializer
  */
 @Serializable
 @SerialName("sticker")
+@TgAPI.Name("InputMediaSticker")
 data class InputMediaSticker(
     val media: ImplicitFile,
     val emoji: String? = null,

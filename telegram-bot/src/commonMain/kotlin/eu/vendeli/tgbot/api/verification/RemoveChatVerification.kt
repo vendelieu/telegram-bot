@@ -25,7 +25,7 @@ class RemoveChatVerificationAction(
  * Removes verification from a chat that is currently verified on behalf of the organization represented by the bot. Returns True on success.
  *
  * [Api reference](https://core.telegram.org/bots/api#removechatverification)
- * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param chatId Unique identifier for the target chat or username of the target bot or channel in the format @username
  * @returns [Boolean]
  */
 @TgAPI

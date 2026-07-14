@@ -33,7 +33,7 @@ class SendChecklistAction(
  *
  * [Api reference](https://core.telegram.org/bots/api#sendchecklist)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
- * @param chatId Unique identifier for the target chat
+ * @param chatId Unique identifier for the target chat or username of the target bot in the format @username
  * @param checklist A JSON-serialized object for the checklist to send
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving

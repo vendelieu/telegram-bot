@@ -5,6 +5,7 @@ package eu.vendeli.ktgram.extutils
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.api.checklist.EditMessageChecklistAction
 import eu.vendeli.tgbot.api.checklist.SendChecklistAction
+import eu.vendeli.tgbot.api.message.EditEphemeralMessageTextAction
 import eu.vendeli.tgbot.api.message.EditMessageTextAction
 import eu.vendeli.tgbot.api.message.SendMessageAction
 import eu.vendeli.tgbot.api.message.SendMessageDraftAction
@@ -16,6 +17,7 @@ import eu.vendeli.tgbot.types.chat.Chat
 import eu.vendeli.tgbot.types.chat.ChatAction
 import eu.vendeli.tgbot.types.chat.ChatAdministratorRights
 import eu.vendeli.tgbot.types.chat.ChatPermissions
+import eu.vendeli.tgbot.types.chat.JoinRequestQueryResult
 import eu.vendeli.tgbot.types.checklist.InputChecklist
 import eu.vendeli.tgbot.types.common.ReactionType
 import eu.vendeli.tgbot.types.component.Currency
@@ -31,6 +33,7 @@ import eu.vendeli.tgbot.types.keyboard.MenuButton
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.types.media.InputPaidMedia
 import eu.vendeli.tgbot.types.media.InputProfilePhoto
+import eu.vendeli.tgbot.types.media.InputRichMessage
 import eu.vendeli.tgbot.types.media.InputSticker
 import eu.vendeli.tgbot.types.media.MaskPosition
 import eu.vendeli.tgbot.types.media.StickerFormat
@@ -174,6 +177,8 @@ public suspend inline fun TelegramBot.pinChatMessage(
   chatId: Long,
 ): Unit = eu.vendeli.tgbot.api.chat.pinChatMessage(messageId, disableNotification).send(chatId, this)
 
+public suspend inline fun TelegramBot.sendChatJoinRequestWebApp(chatJoinRequestQueryId: String, webAppUrl: String): Unit = eu.vendeli.tgbot.api.chat.sendChatJoinRequestWebApp(chatJoinRequestQueryId, webAppUrl).send(this)
+
 public suspend inline fun TelegramBot.declineChatJoinRequest(userId: Long, chatId: Long): Unit = eu.vendeli.tgbot.api.chat.declineChatJoinRequest(userId).send(chatId, this)
 
 public suspend inline fun TelegramBot.declineChatJoinRequest(user: User, chatId: Long): Unit = eu.vendeli.tgbot.api.chat.declineChatJoinRequest(user).send(chatId, this)
@@ -290,6 +295,8 @@ public suspend inline fun TelegramBot.setChatAdministratorCustomTitle(
 ): Unit = eu.vendeli.tgbot.api.chat.setChatAdministratorCustomTitle(user, customTitle).send(chatId, this)
 
 public suspend inline fun TelegramBot.getChat(chatId: Long): Unit = eu.vendeli.tgbot.api.chat.getChat().send(chatId, this)
+
+public suspend inline fun TelegramBot.answerChatJoinRequestQuery(chatJoinRequestQueryId: String, result: JoinRequestQueryResult): Unit = eu.vendeli.tgbot.api.chat.answerChatJoinRequestQuery(chatJoinRequestQueryId, result).send(this)
 
 public suspend inline fun TelegramBot.getUserChatBoosts(userId: Long, chatId: Long): Unit = eu.vendeli.tgbot.api.chat.getUserChatBoosts(userId).send(chatId, this)
 
@@ -480,6 +487,12 @@ public suspend inline fun TelegramBot.declineSuggestedPost(
   chatId: Long,
 ): Unit = eu.vendeli.tgbot.api.message.declineSuggestedPost(messageId, comment).send(chatId, this)
 
+public suspend inline fun TelegramBot.editEphemeralMessageReplyMarkup(
+  receiverUserId: Long,
+  ephemeralMessageId: Long,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.editEphemeralMessageReplyMarkup(receiverUserId, ephemeralMessageId).send(chatId, this)
+
 public suspend inline fun TelegramBot.sendMessageDraft(
   draftId: Int,
   text: String,
@@ -529,6 +542,20 @@ public suspend inline fun TelegramBot.deleteMessageReaction(
   chatId: Long,
 ): Unit = eu.vendeli.tgbot.api.message.deleteMessageReaction(messageId, userId, actorChatId).send(chatId, this)
 
+public suspend inline fun TelegramBot.editEphemeralMessageText(
+  receiverUserId: Long,
+  ephemeralMessageId: Long,
+  text: String,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.editEphemeralMessageText(receiverUserId, ephemeralMessageId, text).send(chatId, this)
+
+public suspend inline fun TelegramBot.editEphemeralMessageText(
+  receiverUserId: Long,
+  ephemeralMessageId: Long,
+  noinline block: EntitiesCtxBuilder<EditEphemeralMessageTextAction>.() -> String,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.editEphemeralMessageText(receiverUserId, ephemeralMessageId, block).send(chatId, this)
+
 public suspend inline fun TelegramBot.livePhoto(
   livePhoto: ImplicitFile,
   photo: ImplicitFile,
@@ -558,6 +585,14 @@ public suspend inline fun TelegramBot.sendLivePhoto(
   photo: String,
   chatId: Long,
 ): Unit = eu.vendeli.tgbot.api.message.sendLivePhoto(livePhoto, photo).send(chatId, this)
+
+public suspend inline fun TelegramBot.richMessage(richMessage: InputRichMessage, chatId: Long): Unit = eu.vendeli.tgbot.api.message.richMessage(richMessage).send(chatId, this)
+
+public suspend inline fun TelegramBot.richMessage(noinline block: InputRichMessage.() -> Unit, chatId: Long): Unit = eu.vendeli.tgbot.api.message.richMessage(block).send(chatId, this)
+
+public suspend inline fun TelegramBot.sendRichMessage(richMessage: InputRichMessage, chatId: Long): Unit = eu.vendeli.tgbot.api.message.sendRichMessage(richMessage).send(chatId, this)
+
+public suspend inline fun TelegramBot.sendRichMessage(noinline block: InputRichMessage.() -> Unit, chatId: Long): Unit = eu.vendeli.tgbot.api.message.sendRichMessage(block).send(chatId, this)
 
 public suspend inline fun TelegramBot.deleteAllMessageReactions(
   userId: Long? = null,
@@ -634,6 +669,12 @@ public suspend inline fun TelegramBot.editMessageLiveLocation(
   chatId: Long,
 ): Unit = eu.vendeli.tgbot.api.message.editMessageLiveLocation(latitude, longitude).send(chatId, this)
 
+public suspend inline fun TelegramBot.editEphemeralMessageCaption(
+  receiverUserId: Long,
+  ephemeralMessageId: Long,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.editEphemeralMessageCaption(receiverUserId, ephemeralMessageId).send(chatId, this)
+
 public suspend inline fun TelegramBot.editMessageMedia(
   messageId: Long,
   inputMedia: InputMedia,
@@ -649,6 +690,31 @@ public suspend inline fun TelegramBot.editMedia(
 ): Unit = eu.vendeli.tgbot.api.message.editMedia(messageId, inputMedia).send(chatId, this)
 
 public suspend inline fun TelegramBot.editMedia(inputMedia: InputMedia, chatId: Long): Unit = eu.vendeli.tgbot.api.message.editMedia(inputMedia).send(chatId, this)
+
+public suspend inline fun TelegramBot.deleteEphemeralMessage(
+  receiverUserId: Long,
+  ephemeralMessageId: Long,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.deleteEphemeralMessage(receiverUserId, ephemeralMessageId).send(chatId, this)
+
+public suspend inline fun TelegramBot.editEphemeralMessageMedia(
+  receiverUserId: Long,
+  ephemeralMessageId: Long,
+  inputMedia: InputMedia,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.editEphemeralMessageMedia(receiverUserId, ephemeralMessageId, inputMedia).send(chatId, this)
+
+public suspend inline fun TelegramBot.sendRichMessageDraft(
+  draftId: Int,
+  richMessage: InputRichMessage,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.sendRichMessageDraft(draftId, richMessage).send(chatId, this)
+
+public suspend inline fun TelegramBot.sendRichMessageDraft(
+  draftId: Int,
+  noinline block: InputRichMessage.() -> Unit,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.sendRichMessageDraft(draftId, block).send(chatId, this)
 
 public suspend inline fun TelegramBot.copyMessages(
   fromChatId: Identifier,

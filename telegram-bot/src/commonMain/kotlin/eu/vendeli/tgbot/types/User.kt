@@ -17,13 +17,14 @@ import kotlinx.serialization.Serializable
  * @property addedToAttachmentMenu Optional. True, if this user added the bot to the attachment menu
  * @property canJoinGroups Optional. True, if the bot can be invited to groups. Returned only in getMe.
  * @property canReadAllGroupMessages Optional. True, if privacy mode is disabled for the bot. Returned only in getMe.
+ * @property supportsGuestQueries Optional. True, if the bot supports guest queries from chats it is not a member of. Returned only in getMe.
  * @property supportsInlineQueries Optional. True, if the bot supports inline queries. Returned only in getMe.
- * @property canConnectToBusiness Optional. True, if the bot can be connected to a Telegram Business account to receive its messages. Returned only in getMe.
+ * @property canConnectToBusiness Optional. True, if the bot can be connected to a user account to manage it. Returned only in getMe.
  * @property hasMainWebApp Optional. True, if the bot has a main Web App. Returned only in getMe.
  * @property hasTopicsEnabled Optional. True, if the bot has forum topic mode enabled in private chats. Returned only in getMe.
  * @property allowsUsersToCreateTopics Optional. True, if the bot allows users to create and delete topics in private chats. Returned only in getMe.
  * @property canManageBots Optional. True, if other bots can be created to be controlled by the bot. Returned only in getMe.
- * @property supportsGuestQueries Optional. True, if the bot supports guest queries. Returned only in getMe.
+ * @property supportsJoinRequestQueries Optional. True, if the bot supports join request queries and can be assigned to process them. Returned only in getMe.
  */
 @Serializable
 data class User(
@@ -44,4 +45,5 @@ data class User(
     val allowsUsersToCreateTopics: Boolean? = null,
     val canManageBots: Boolean? = null,
     val supportsGuestQueries: Boolean? = null,
+    val supportsJoinRequestQueries: Boolean? = null,
 ) : IdLong

@@ -32,7 +32,7 @@ class EditMessageChecklistAction(
  *
  * [Api reference](https://core.telegram.org/bots/api#editmessagechecklist)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
- * @param chatId Unique identifier for the target chat
+ * @param chatId Unique identifier for the target chat or username of the target bot in the format @username
  * @param messageId Unique identifier for the target message
  * @param checklist A JSON-serialized object for the new checklist
  * @param replyMarkup A JSON-serialized object for the new inline keyboard for the message

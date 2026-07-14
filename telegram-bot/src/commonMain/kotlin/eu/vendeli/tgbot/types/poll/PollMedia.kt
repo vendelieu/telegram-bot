@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.poll
 
+import eu.vendeli.tgbot.types.common.Link
 import eu.vendeli.tgbot.types.common.Location
 import eu.vendeli.tgbot.types.common.Venue
 import eu.vendeli.tgbot.types.media.Animation
@@ -12,12 +13,13 @@ import eu.vendeli.tgbot.types.media.Video
 import kotlinx.serialization.Serializable
 
 /**
- * This object describes the media to be displayed in a poll. At most one of the optional fields can be present in any given object.
+ * At most one of the optional fields can be present in any given object.
  *
  * [Api reference](https://core.telegram.org/bots/api#pollmedia)
  * @property animation Optional. Media is an animation, information about the animation
  * @property audio Optional. Media is an audio file, information about the file; currently, can't be received in a poll option
  * @property document Optional. Media is a general file, information about the file; currently, can't be received in a poll option
+ * @property link Optional. The HTTP link attached to the poll option
  * @property livePhoto Optional. Media is a live photo, information about the live photo
  * @property location Optional. Media is a shared location, information about the location
  * @property photo Optional. Media is a photo, available sizes of the photo
@@ -30,6 +32,7 @@ data class PollMedia(
     val animation: Animation? = null,
     val audio: Audio? = null,
     val document: Document? = null,
+    val link: Link? = null,
     val livePhoto: LivePhoto? = null,
     val location: Location? = null,
     val photo: List<PhotoSize>? = null,

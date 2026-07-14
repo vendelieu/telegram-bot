@@ -18,6 +18,8 @@ data class PhotoOptions(
     override var allowPaidBroadcast: Boolean? = null,
     override var directMessagesTopicId: Int? = null,
     override var suggestedPostParameters: SuggestedPostParameters? = null,
+    override var receiverUserId: Long? = null,
+    override var callbackQueryId: String? = null,
 ) : OptionsCommon,
     ForumProps,
     OptionsParseMode,
@@ -26,4 +28,5 @@ data class PhotoOptions(
     ShowCaptionAboveMediaProp,
     AllowPaidBroadcastProp,
     DirectMessagesTopicProp,
-    SuggestedPostParametersProp
+    SuggestedPostParametersProp,
+    EphemeralMessageProps

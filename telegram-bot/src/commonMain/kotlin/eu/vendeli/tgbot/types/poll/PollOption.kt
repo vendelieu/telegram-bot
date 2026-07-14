@@ -14,11 +14,11 @@ import kotlinx.serialization.Serializable
  * @property persistentId Unique identifier of the option, persistent on option addition and deletion
  * @property text Option text, 1-100 characters
  * @property textEntities Optional. Special entities that appear in the option text. Currently, only custom emoji entities are allowed in poll option texts
+ * @property media Optional. Media added to the poll option
  * @property voterCount Number of users who voted for this option; may be 0 if unknown
  * @property addedByUser Optional. User who added the option; omitted if the option wasn't added by a user after poll creation
  * @property addedByChat Optional. Chat that added the option; omitted if the option wasn't added by a chat after poll creation
  * @property additionDate Optional. Point in time (Unix timestamp) when the option was added; omitted if the option existed in the original poll
- * @property media Optional. Media attached to the option
  */
 @Serializable
 data class PollOption(

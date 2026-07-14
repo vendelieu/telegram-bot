@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
  * This object represents a venue.
  *
  * [Api reference](https://core.telegram.org/bots/api#venue)
- * @property location Venue location. Can't be a live location
+ * @property location Venue location. Can't be a live location.
  * @property title Name of the venue
  * @property address Address of the venue
  * @property foursquareId Optional. Foursquare identifier of the venue

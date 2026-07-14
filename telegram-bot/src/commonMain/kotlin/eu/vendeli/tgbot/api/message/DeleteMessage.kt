@@ -34,7 +34,7 @@ class DeleteMessageAction(
  * Returns True on success.
  *
  * [Api reference](https://core.telegram.org/bots/api#deletemessage)
- * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param chatId Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
  * @param messageId Identifier of the message to delete
  * @returns [Boolean]
  */

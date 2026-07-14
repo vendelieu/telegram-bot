@@ -38,7 +38,7 @@ class GetUserGiftsAction(
  * @param excludeUnique Pass True to exclude unique gifts
  * @param sortByPrice Pass True to sort results by gift price instead of send date. Sorting is applied before pagination.
  * @param offset Offset of the first entry to return as received from the previous request; use an empty string to get the first chunk of results
- * @param limit The maximum number of gifts to be returned; 1-100. Defaults to 100
+ * @param limit The maximum number of gifts to be returned; 1-100. Defaults to 100.
  * @returns [OwnedGifts]
  */
 @TgAPI

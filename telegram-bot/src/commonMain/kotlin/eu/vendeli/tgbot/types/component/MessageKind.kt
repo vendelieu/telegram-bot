@@ -59,6 +59,8 @@ private val serviceMessageKinds = setOf(
     MessageKind.VIDEO_CHAT_STARTED,
     MessageKind.VIDEO_CHAT_ENDED,
     MessageKind.VIDEO_CHAT_PARTICIPANTS_INVITED,
+    MessageKind.COMMUNITY_CHAT_ADDED,
+    MessageKind.COMMUNITY_CHAT_REMOVED,
 )
 
 /**
@@ -89,6 +91,7 @@ enum class MessageKind {
     GAME,
     CHECKLIST,
     STORY,
+    RICH_MESSAGE,
 
     // --- service ---
     NEW_CHAT_MEMBERS,
@@ -146,6 +149,8 @@ enum class MessageKind {
     VIDEO_CHAT_ENDED,
     VIDEO_CHAT_PARTICIPANTS_INVITED,
     WEB_APP_DATA,
+    COMMUNITY_CHAT_ADDED,
+    COMMUNITY_CHAT_REMOVED,
 
     // --- fallback ---
     OTHER,
@@ -199,6 +204,8 @@ fun Message.detectKind(): MessageKind = when {
     location != null -> MessageKind.LOCATION
 
     invoice != null -> MessageKind.INVOICE
+
+    richMessage != null -> MessageKind.RICH_MESSAGE
 
     // Service
     newChatMembers != null -> MessageKind.NEW_CHAT_MEMBERS
@@ -310,6 +317,10 @@ fun Message.detectKind(): MessageKind = when {
     videoChatParticipantsInvited != null -> MessageKind.VIDEO_CHAT_PARTICIPANTS_INVITED
 
     webAppData != null -> MessageKind.WEB_APP_DATA
+
+    communityChatAdded != null -> MessageKind.COMMUNITY_CHAT_ADDED
+
+    communityChatRemoved != null -> MessageKind.COMMUNITY_CHAT_REMOVED
 
     // Text comes last so a photo-with-caption is PHOTO, not TEXT.
     !text.isNullOrEmpty() -> MessageKind.TEXT

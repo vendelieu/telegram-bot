@@ -36,10 +36,10 @@ class ForwardMessageAction(
  * Use this method to forward messages of any kind. Service messages and messages with protected content can't be forwarded. On success, the sent Message is returned.
  *
  * [Api reference](https://core.telegram.org/bots/api#forwardmessage)
- * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+ * @param chatId Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
  * @param messageThreadId Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
  * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be forwarded; required if the message is forwarded to a direct messages chat
- * @param fromChatId Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername)
+ * @param fromChatId Unique identifier for the chat where the original message was sent (or username of the target bot, supergroup or channel in the format @username)
  * @param videoStartTimestamp New start timestamp for the forwarded video in the message
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the forwarded message from forwarding and saving

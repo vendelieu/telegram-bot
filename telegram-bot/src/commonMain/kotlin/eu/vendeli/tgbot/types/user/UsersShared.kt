@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  *
  * [Api reference](https://core.telegram.org/bots/api#usersshared)
  * @property requestId Identifier of the request
- * @property users Information about users shared with the bot.
+ * @property users Information about users shared with the bot
  */
 @Serializable
 data class UsersShared(

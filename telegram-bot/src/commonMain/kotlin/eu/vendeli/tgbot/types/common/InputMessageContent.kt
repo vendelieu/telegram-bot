@@ -3,13 +3,15 @@ package eu.vendeli.tgbot.types.common
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.component.Currency
 import eu.vendeli.tgbot.types.component.ParseMode
+import eu.vendeli.tgbot.types.media.InputRichMessage
 import eu.vendeli.tgbot.types.msg.MessageEntity
 import eu.vendeli.tgbot.types.payment.LabeledPrice
 import kotlinx.serialization.Serializable
 
 /**
- * This object represents the content of a message to be sent as a result of an inline query. Telegram clients currently support the following 5 types:
+ * This object represents the content of a message to be sent as a result of an inline query. Telegram clients currently support the following types:
  * - InputTextMessageContent
+ * - InputRichMessageContent
  * - InputLocationMessageContent
  * - InputVenueMessageContent
  * - InputContactMessageContent
@@ -27,6 +29,12 @@ sealed class InputMessageContent {
         val parseMode: ParseMode? = null,
         val entities: List<MessageEntity>? = null,
         val linkPreviewOptions: LinkPreviewOptions? = null,
+    ) : InputMessageContent()
+
+    @Serializable
+    @TgAPI.Name("InputRichMessageContent")
+    data class RichMessageContent(
+        val richMessage: InputRichMessage,
     ) : InputMessageContent()
 
     @Serializable
