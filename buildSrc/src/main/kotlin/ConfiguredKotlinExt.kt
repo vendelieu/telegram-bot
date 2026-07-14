@@ -15,7 +15,6 @@ private fun KotlinCommonCompilerOptions.configureCompilerOptions() {
         "-opt-in=eu.vendeli.tgbot.annotations.internal.ExperimentalFeature",
         "-opt-in=kotlin.time.ExperimentalTime",
         "-Xwarning-level=NOTHING_TO_INLINE:disabled",
-        "-Xcontext-parameters"
     )
 }
 
