@@ -12,6 +12,8 @@ import javax.inject.Inject
  * @property autoAnswerCallback set to true to automatically respond to callbacks unless otherwise specified in the annotation.
  * @property ktorJvmEngine the Ktor JVM engine to use, defaults to [KtorJvmEngine.JAVA].
  * @property handleLoggingProvider set to false to disable the logging provider handling.
+ * @property bumpKotlinxVersions set to false to disable bumping kotlinx-coroutines/kotlinx-serialization
+ * dependencies to at least the versions used by the library (BOM-like alignment), defaults to true.
  */
 abstract class KtGramExt
     @Inject
@@ -24,4 +26,5 @@ abstract class KtGramExt
         val autoAnswerCallback = factory.property(Boolean::class.java)
         val ktorJvmEngine = factory.property(KtorJvmEngine::class.java)
         val handleLoggingProvider = factory.property(Boolean::class.java)
+        val bumpKotlinxVersions = factory.property(Boolean::class.java)
     }

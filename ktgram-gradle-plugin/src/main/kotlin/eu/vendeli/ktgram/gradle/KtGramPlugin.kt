@@ -19,6 +19,10 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
     private val libVer = loadPropertyFromResources("ktgram.properties", "ktgram.version")
     private val ktorVer = loadPropertyFromResources("ktgram.properties", "ktgram.ktor")
     private val logbackVer = loadPropertyFromResources("ktgram.properties", "ktgram.logback")
+    private val kotlinxMinVersions = mapOf(
+        "kotlinx-coroutines" to loadPropertyFromResources("ktgram.properties", "ktgram.coroutines"),
+        "kotlinx-serialization" to loadPropertyFromResources("ktgram.properties", "ktgram.serialization"),
+    )
 
     final override fun apply(target: Project) {
         val pluginExtension = target.extensions.create("ktGram", KtGramExt::class.java)
@@ -69,6 +73,8 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
                 if (handleLoggingProvider) target.handleLoggingProvider()
             }
 
+            if (pluginExtension.bumpKotlinxVersions.getOrElse(true)) target.bumpKotlinxDependencies()
+
             target.extensions.configure(KspExtension::class.java) { ksp ->
                 pluginExtension.packages.orNull?.takeIf { it.isNotEmpty() }?.joinToString(";")?.let {
                     ksp.arg("package", it)
@@ -103,6 +109,27 @@ abstract class KtGramPlugin : KotlinCompilerPluginSupportPlugin {
                 "implementation",
                 "io.ktor:ktor-client-${engine.artifact}-jvm:$ktorVer",
             )
+        }
+    }
+
+    private fun Project.bumpKotlinxDependencies() {
+        configurations.configureEach { config ->
+            config.resolutionStrategy.eachDependency { details ->
+                val requested = details.requested
+                if (requested.group != "org.jetbrains.kotlinx") return@eachDependency
+                val minVersion = kotlinxMinVersions.entries
+                    .firstOrNull { requested.name.startsWith(it.key) }
+                    ?.value
+                    ?: return@eachDependency
+
+                val requestedVersion = requested.version
+                if (requestedVersion?.isDynamicVersion() == true) return@eachDependency
+                if (requestedVersion.isNullOrBlank() || compareVersions(requestedVersion, minVersion) < 0) {
+                    log.debug("Bumping ${requested.group}:${requested.name} to $minVersion in ${config.name}")
+                    details.useVersion(minVersion)
+                    details.because("ktgram: aligned to the minimum version required by the library")
+                }
+            }
         }
     }
 
