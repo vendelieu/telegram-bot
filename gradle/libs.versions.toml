@@ -1,6 +1,6 @@
 [versions]
 ktor = "3.5.1"
-logback = "1.6.0"
+logback = "1.6.1"
 slf4j = "2.0.18"
 
 serialization = "1.11.0"
