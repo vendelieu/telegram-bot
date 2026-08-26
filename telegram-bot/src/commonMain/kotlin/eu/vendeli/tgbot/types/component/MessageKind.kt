@@ -60,6 +60,7 @@ private val serviceMessageKinds = setOf(
     MessageKind.VIDEO_CHAT_ENDED,
     MessageKind.VIDEO_CHAT_PARTICIPANTS_INVITED,
     MessageKind.COMMUNITY_CHAT_ADDED,
+    MessageKind.COMMUNITY_CHAT_JOINED,
     MessageKind.COMMUNITY_CHAT_REMOVED,
 )
 
@@ -150,6 +151,7 @@ enum class MessageKind {
     VIDEO_CHAT_PARTICIPANTS_INVITED,
     WEB_APP_DATA,
     COMMUNITY_CHAT_ADDED,
+    COMMUNITY_CHAT_JOINED,
     COMMUNITY_CHAT_REMOVED,
 
     // --- fallback ---
@@ -319,6 +321,8 @@ fun Message.detectKind(): MessageKind = when {
     webAppData != null -> MessageKind.WEB_APP_DATA
 
     communityChatAdded != null -> MessageKind.COMMUNITY_CHAT_ADDED
+
+    communityChatJoined != null -> MessageKind.COMMUNITY_CHAT_JOINED
 
     communityChatRemoved != null -> MessageKind.COMMUNITY_CHAT_REMOVED
 

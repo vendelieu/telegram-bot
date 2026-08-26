@@ -27,6 +27,7 @@ import eu.vendeli.tgbot.types.component.PreCheckoutQueryUpdate
 import eu.vendeli.tgbot.types.component.PurchasedPaidMediaUpdate
 import eu.vendeli.tgbot.types.component.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.component.ShippingQueryUpdate
+import eu.vendeli.tgbot.types.component.StoppedMessageGenerationUpdate
 import eu.vendeli.tgbot.types.component.SubscriptionUpdate
 import eu.vendeli.tgbot.types.component.UpdateType
 import kotlin.Unit
@@ -288,5 +289,15 @@ public fun FunctionalHandlingDsl.onSubscription(block: suspend ActivityCtx<Subsc
   onUpdate(UpdateType.SUBSCRIPTION) {
       @Suppress("UNCHECKED_CAST")
       (this as ActivityCtx<SubscriptionUpdate>).block()
+  }
+}
+
+/**
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.stoppedMessageGeneration] in the [eu.vendeli.tgbot.types.common.Update].
+ */
+public fun FunctionalHandlingDsl.onStoppedMessageGeneration(block: suspend ActivityCtx<StoppedMessageGenerationUpdate>.() -> Unit) {
+  onUpdate(UpdateType.STOPPED_MESSAGE_GENERATION) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<StoppedMessageGenerationUpdate>).block()
   }
 }

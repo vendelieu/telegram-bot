@@ -53,6 +53,7 @@ sealed class ChatMember : MultipleResponse {
         val customTitle: String? = null,
         val canManageDirectMessages: Boolean? = null,
         val canManageTags: Boolean? = null,
+        val canSendWelcomeMessages: Boolean = false,
     ) : ChatMember()
 
     @Serializable

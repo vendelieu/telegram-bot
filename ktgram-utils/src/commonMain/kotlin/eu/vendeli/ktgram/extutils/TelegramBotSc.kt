@@ -552,6 +552,13 @@ public suspend inline fun TelegramBot.editEphemeralMessageText(
 public suspend inline fun TelegramBot.editEphemeralMessageText(
   receiverUserId: Long,
   ephemeralMessageId: Long,
+  richMessage: InputRichMessage,
+  chatId: Long,
+): Unit = eu.vendeli.tgbot.api.message.editEphemeralMessageText(receiverUserId, ephemeralMessageId, richMessage).send(chatId, this)
+
+public suspend inline fun TelegramBot.editEphemeralMessageText(
+  receiverUserId: Long,
+  ephemeralMessageId: Long,
   noinline block: EntitiesCtxBuilder<EditEphemeralMessageTextAction>.() -> String,
   chatId: Long,
 ): Unit = eu.vendeli.tgbot.api.message.editEphemeralMessageText(receiverUserId, ephemeralMessageId, block).send(chatId, this)

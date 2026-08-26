@@ -2,14 +2,17 @@ package eu.vendeli.api
 
 import BotTestContext
 import eu.vendeli.tgbot.api.message.richMessage
+import eu.vendeli.tgbot.api.message.message
 import eu.vendeli.tgbot.api.message.sendRichMessage
 import eu.vendeli.tgbot.api.message.sendRichMessageDraft
+import eu.vendeli.tgbot.types.common.EphemeralMessageParameters
 import eu.vendeli.tgbot.types.media.InputMedia
 import eu.vendeli.tgbot.types.media.InputRichBlock
 import eu.vendeli.tgbot.types.media.InputRichMessage
 import eu.vendeli.tgbot.types.media.InputRichMessageMedia
 import eu.vendeli.tgbot.types.msg.RichBlock
 import eu.vendeli.tgbot.types.msg.RichMessage
+import eu.vendeli.tgbot.types.msg.RichMessageButton
 import eu.vendeli.tgbot.types.msg.RichText
 import eu.vendeli.tgbot.types.msg.toRichText
 import eu.vendeli.tgbot.utils.common.serde
@@ -118,5 +121,35 @@ class RichMessageTest : BotTestContext() {
             parameters["rich_message"]!!.jsonObject["markdown"]?.jsonPrimitive?.content shouldBe "*partial*"
             parameters["message_thread_id"]?.jsonPrimitive?.int shouldBe 7
         }
+    }
+
+    @Test
+    fun `rich message buttons and blocks use their type discriminators`() {
+        val button = RichMessageButton(
+            text = "Continue".toRichText(),
+            callbackData = "continue",
+        )
+        val block = InputRichBlock.Buttons(listOf(button), align = "center")
+        val json = serde.encodeToString(InputRichBlock.serializer(), block)
+
+        json shouldContain "\"type\":\"buttons\""
+        json shouldContain "\"callback_data\":\"continue\""
+    }
+
+    @Test
+    fun `send message uses shared ephemeral parameters`() {
+        message("Ephemeral")
+            .options {
+                ephemeralMessageParameters = EphemeralMessageParameters(
+                    receiverUserId = 42,
+                    callbackQueryId = "query",
+                    replaceCallbackQueryMessage = true,
+                )
+            }.apply {
+                val parameters = parameters["ephemeral_message_parameters"]!!.jsonObject
+                parameters["receiver_user_id"]?.jsonPrimitive?.int shouldBe 42
+                parameters["callback_query_id"]?.jsonPrimitive?.content shouldBe "query"
+                parameters["replace_callback_query_message"]?.jsonPrimitive?.content shouldBe "true"
+            }
     }
 }

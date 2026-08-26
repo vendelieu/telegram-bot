@@ -13,6 +13,7 @@ import eu.vendeli.tgbot.types.inline.ChosenInlineResult
 import eu.vendeli.tgbot.types.inline.InlineQuery
 import eu.vendeli.tgbot.types.media.PaidMediaPurchased
 import eu.vendeli.tgbot.types.msg.Message
+import eu.vendeli.tgbot.types.msg.MessageGenerationStopped
 import eu.vendeli.tgbot.types.msg.MessageReactionCountUpdated
 import eu.vendeli.tgbot.types.msg.MessageReactionUpdated
 import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
@@ -52,6 +53,7 @@ import kotlinx.serialization.Serializable
  * @property removedChatBoost Optional. A boost was removed from a chat. The bot must be an administrator in the chat to receive these updates.
  * @property managedBot Optional. A new bot was created to be managed by the bot, or token or owner of a managed bot was changed
  * @property subscription Optional. User payment subscription has changed
+ * @property stoppedMessageGeneration Optional. A user asked the bot to stop the generation of a message
  */
 @Serializable
 data class Update(
@@ -82,4 +84,5 @@ data class Update(
     val managedBot: ManagedBotUpdated? = null,
     val guestMessage: Message? = null,
     val subscription: BotSubscriptionUpdated? = null,
+    val stoppedMessageGeneration: MessageGenerationStopped? = null,
 ) : MultipleResponse

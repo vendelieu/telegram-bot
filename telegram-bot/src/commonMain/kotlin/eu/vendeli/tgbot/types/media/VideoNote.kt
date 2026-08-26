@@ -3,7 +3,7 @@ package eu.vendeli.tgbot.types.media
 import kotlinx.serialization.Serializable
 
 /**
- * This object represents a video message (available in Telegram apps as of v.4.0).
+ * This object represents a video message.
  *
  * [Api reference](https://core.telegram.org/bots/api#videonote)
  * @property fileId Identifier for this file, which can be used to download or reuse the file

@@ -7,8 +7,12 @@ import eu.vendeli.tgbot.api.message.editEphemeralMessageMedia
 import eu.vendeli.tgbot.api.message.editEphemeralMessageReplyMarkup
 import eu.vendeli.tgbot.api.message.editEphemeralMessageText
 import eu.vendeli.tgbot.api.message.sendMessage
+import eu.vendeli.tgbot.types.common.EphemeralMessageParameters
 import eu.vendeli.tgbot.types.component.ParseMode
 import eu.vendeli.tgbot.types.media.InputMedia
+import eu.vendeli.tgbot.types.media.InputRichBlock
+import eu.vendeli.tgbot.types.media.InputRichMessage
+import eu.vendeli.tgbot.types.msg.toRichText
 import eu.vendeli.tgbot.utils.common.toImplicitFile
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.json.jsonObject
@@ -17,14 +21,14 @@ import kotlinx.serialization.json.long
 
 class EphemeralMessageActionsTest : BotTestContext() {
     @Test
-    fun `sendMessage supports ephemeral receiver options`() {
+    fun `sendMessage supports ephemeral message parameters`() {
         sendMessage("hi")
             .options {
-                receiverUserId = 1L
-                callbackQueryId = "query"
+                ephemeralMessageParameters = EphemeralMessageParameters(1L, "query")
             }.apply {
-                parameters["receiver_user_id"]?.jsonPrimitive?.long shouldBe 1L
-                parameters["callback_query_id"]?.jsonPrimitive?.content shouldBe "query"
+                val ephemeralParameters = parameters["ephemeral_message_parameters"]!!.jsonObject
+                ephemeralParameters["receiver_user_id"]?.jsonPrimitive?.long shouldBe 1L
+                ephemeralParameters["callback_query_id"]?.jsonPrimitive?.content shouldBe "query"
             }
     }
 
@@ -40,6 +44,18 @@ class EphemeralMessageActionsTest : BotTestContext() {
                 parameters["text"]?.jsonPrimitive?.content shouldBe "new text"
                 parameters["parse_mode"]?.jsonPrimitive?.content shouldBe "HTML"
             }
+    }
+
+    @Test
+    fun `editEphemeralMessageText accepts rich messages`() {
+        editEphemeralMessageText(
+            receiverUserId = 1L,
+            ephemeralMessageId = 2L,
+            richMessage = InputRichMessage(blocks = listOf(InputRichBlock.Paragraph("New text".toRichText()))),
+        ).apply {
+            parameters["rich_message"]!!.jsonObject["blocks"].toString() shouldBe
+                "[{\"type\":\"paragraph\",\"text\":\"New text\"}]"
+        }
     }
 
     @Test

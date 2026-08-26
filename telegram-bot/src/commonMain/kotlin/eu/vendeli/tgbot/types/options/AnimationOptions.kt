@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.options
 
+import eu.vendeli.tgbot.types.common.EphemeralMessageParameters
 import eu.vendeli.tgbot.types.common.ReplyParameters
 import eu.vendeli.tgbot.types.component.ImplicitFile
 import eu.vendeli.tgbot.types.component.ParseMode
@@ -23,8 +24,7 @@ data class AnimationOptions(
     override var messageEffectId: String? = null,
     override var directMessagesTopicId: Int? = null,
     override var suggestedPostParameters: SuggestedPostParameters? = null,
-    override var receiverUserId: Long? = null,
-    override var callbackQueryId: String? = null,
+    override var ephemeralMessageParameters: EphemeralMessageParameters? = null,
 ) : OptionsCommon,
     ForumProps,
     OptionsParseMode,
@@ -35,4 +35,4 @@ data class AnimationOptions(
     AllowPaidBroadcastProp,
     DirectMessagesTopicProp,
     SuggestedPostParametersProp,
-    EphemeralMessageProps
+    EphemeralMessageParametersProp

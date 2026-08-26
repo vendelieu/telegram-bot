@@ -44,8 +44,7 @@ class SendMessageAction private constructor() :
  * @param chatId Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
  * @param messageThreadId Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
  * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
- * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
- * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which triggerred the message if any
+ * @param ephemeralMessageParameters A JSON-serialized object containing the parameters of the ephemeral message to send
  * @param text Text of the message to be sent, 1-4096 characters after entities parsing
  * @param parseMode Mode for parsing entities in the message text. See formatting options for more details.
  * @param entities A JSON-serialized list of special entities that appear in message text, which can be specified instead of parse_mode

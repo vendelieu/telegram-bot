@@ -4,6 +4,7 @@ import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.common.Location
 import eu.vendeli.tgbot.types.msg.RichBlockCaption
 import eu.vendeli.tgbot.types.msg.RichBlockTableCell
+import eu.vendeli.tgbot.types.msg.RichMessageButton
 import eu.vendeli.tgbot.types.msg.RichText
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
@@ -22,6 +23,7 @@ import kotlinx.serialization.serializer
  * - InputRichBlockAnchor
  * - InputRichBlockList
  * - InputRichBlockBlockQuotation
+ * - InputRichBlockExpandableBlockQuotation
  * - InputRichBlockPullQuotation
  * - InputRichBlockCollage
  * - InputRichBlockSlideshow
@@ -30,9 +32,11 @@ import kotlinx.serialization.serializer
  * - InputRichBlockMap
  * - InputRichBlockAnimation
  * - InputRichBlockAudio
+ * - InputRichBlockDocument
  * - InputRichBlockPhoto
  * - InputRichBlockVideo
  * - InputRichBlockVoiceNote
+ * - InputRichBlockButtons
  * - InputRichBlockThinking
  *
  * [Api reference](https://core.telegram.org/bots/api#inputrichblock)
@@ -139,6 +143,13 @@ sealed class InputRichBlock {
         val credit: RichText? = null,
     ) : InputRichBlock()
 
+    @Serializable
+    @SerialName("expandable_blockquote")
+    data class ExpandableBlockQuotation(
+        val text: RichText,
+        val credit: RichText? = null,
+    ) : InputRichBlock()
+
     /**
      * A pull quotation, corresponding to the HTML tag <aside>.
      * @property text Text of the block
@@ -188,6 +199,7 @@ sealed class InputRichBlock {
         val cells: List<List<RichBlockTableCell>>,
         val isBordered: Boolean? = null,
         val isStriped: Boolean? = null,
+        val isCompact: Boolean? = null,
         val caption: RichText? = null,
     ) : InputRichBlock()
 
@@ -218,9 +230,9 @@ sealed class InputRichBlock {
     @TgAPI.Name("InputRichBlockMap")
     data class MapBlock(
         val location: Location,
-        val zoom: Int,
-        val width: Int,
-        val height: Int,
+        val zoom: Int? = null,
+        val width: Int? = null,
+        val height: Int? = null,
         val caption: RichBlockCaption? = null,
     ) : InputRichBlock()
 
@@ -246,6 +258,20 @@ sealed class InputRichBlock {
     data class Audio(
         val audio: InputMedia.Audio,
         val caption: RichBlockCaption? = null,
+    ) : InputRichBlock()
+
+    @Serializable
+    @SerialName("document")
+    data class Document(
+        val document: InputMedia.Document,
+        val caption: RichBlockCaption? = null,
+    ) : InputRichBlock()
+
+    @Serializable
+    @SerialName("buttons")
+    data class Buttons(
+        val buttons: List<RichMessageButton>,
+        val align: String? = null,
     ) : InputRichBlock()
 
     /**

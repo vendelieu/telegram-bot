@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Covered Tg API [`10.3`](https://core.telegram.org/bots/api-changelog#august-24-2026): shared ephemeral-message parameters; rich message buttons, button/document/expandable quote blocks, and compact tables; draft stop controls and `MessageGenerationStopped`; community joins; welcome-message administrator rights; and updated keyboard, gift, and rich-media fields.
 * Gradle plugin: kotlinx dependencies (`kotlinx-coroutines-*`, `kotlinx-serialization-*`) are now bumped to at least the versions used by the library; explicitly declared newer versions are kept. Can be disabled via `ktGram { bumpKotlinxVersions = false }`.
 
 ## 9.6.0

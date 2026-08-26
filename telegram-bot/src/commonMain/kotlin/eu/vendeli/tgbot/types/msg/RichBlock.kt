@@ -21,6 +21,7 @@ import kotlinx.serialization.serializer
  * - RichBlockAnchor
  * - RichBlockList
  * - RichBlockBlockQuotation
+ * - RichBlockExpandableBlockQuotation
  * - RichBlockPullQuotation
  * - RichBlockCollage
  * - RichBlockSlideshow
@@ -29,9 +30,11 @@ import kotlinx.serialization.serializer
  * - RichBlockMap
  * - RichBlockAnimation
  * - RichBlockAudio
+ * - RichBlockDocument
  * - RichBlockPhoto
  * - RichBlockVideo
  * - RichBlockVoiceNote
+ * - RichBlockButtons
  * - RichBlockThinking
  *
  * [Api reference](https://core.telegram.org/bots/api#richblock)
@@ -138,6 +141,13 @@ sealed class RichBlock {
         val credit: RichText? = null,
     ) : RichBlock()
 
+    @Serializable
+    @SerialName("expandable_blockquote")
+    data class ExpandableBlockQuotation(
+        val text: RichText,
+        val credit: RichText? = null,
+    ) : RichBlock()
+
     /**
      * A pull quotation, corresponding to the HTML tag <aside>.
      * @property text Text of the block
@@ -187,6 +197,7 @@ sealed class RichBlock {
         val cells: List<List<RichBlockTableCell>>,
         val isBordered: Boolean? = null,
         val isStriped: Boolean? = null,
+        val isCompact: Boolean? = null,
         val caption: RichText? = null,
     ) : RichBlock()
 
@@ -247,6 +258,20 @@ sealed class RichBlock {
     data class Audio(
         val audio: eu.vendeli.tgbot.types.media.Audio,
         val caption: RichBlockCaption? = null,
+    ) : RichBlock()
+
+    @Serializable
+    @SerialName("document")
+    data class Document(
+        val document: eu.vendeli.tgbot.types.media.Document,
+        val caption: RichBlockCaption? = null,
+    ) : RichBlock()
+
+    @Serializable
+    @SerialName("buttons")
+    data class Buttons(
+        val buttons: List<RichMessageButton>,
+        val align: String? = null,
     ) : RichBlock()
 
     /**

@@ -18,6 +18,7 @@ import eu.vendeli.tgbot.types.inline.ChosenInlineResult
 import eu.vendeli.tgbot.types.inline.InlineQuery
 import eu.vendeli.tgbot.types.media.PaidMediaPurchased
 import eu.vendeli.tgbot.types.msg.Message
+import eu.vendeli.tgbot.types.msg.MessageGenerationStopped
 import eu.vendeli.tgbot.types.msg.MessageReactionCountUpdated
 import eu.vendeli.tgbot.types.msg.MessageReactionUpdated
 import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
@@ -436,6 +437,18 @@ data class SubscriptionUpdate(
     override val text: String = subscription.invoicePayload
 
     internal companion object : UpdateSerializer<SubscriptionUpdate>()
+}
+
+@Serializable(StoppedMessageGenerationUpdate.Companion::class)
+data class StoppedMessageGenerationUpdate(
+    override val updateId: Int,
+    override val origin: Update,
+    val stoppedMessageGeneration: MessageGenerationStopped,
+) : ProcessedUpdate(updateId, origin, UpdateType.STOPPED_MESSAGE_GENERATION),
+    ChatReference {
+    override val chat: Chat = stoppedMessageGeneration.chat
+
+    internal companion object : UpdateSerializer<StoppedMessageGenerationUpdate>()
 }
 
 inline val ProcessedUpdate.userOrNull: User? get() = (this as? UserReference)?.user

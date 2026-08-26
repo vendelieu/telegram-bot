@@ -13,6 +13,7 @@ class ReplyKeyboardMarkup : Keyboard {
     var inputFieldPlaceholder: String? = null
     var selective: Boolean? = null
     var isPersistent: Boolean? = null
+    var forceReply: Boolean? = null
 
     constructor(vararg buttons: List<KeyboardButton>) {
         keyboard = buttons.asList()
@@ -29,6 +30,7 @@ class ReplyKeyboardMarkup : Keyboard {
         inputFieldPlaceholder: String? = null,
         selective: Boolean? = null,
         isPersistent: Boolean? = null,
+        forceReply: Boolean? = null,
     ) {
         this.keyboard = keyboard.toMutableList()
         this.resizeKeyboard = resizeKeyboard
@@ -36,5 +38,6 @@ class ReplyKeyboardMarkup : Keyboard {
         this.inputFieldPlaceholder = inputFieldPlaceholder
         this.selective = selective
         this.isPersistent = isPersistent
+        this.forceReply = forceReply
     }
 }

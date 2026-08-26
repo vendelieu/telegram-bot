@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types.options
 
 import eu.vendeli.tgbot.types.common.ReplyParameters
+import eu.vendeli.tgbot.types.common.EphemeralMessageParameters
 import eu.vendeli.tgbot.types.msg.SuggestedPostParameters
 import kotlinx.serialization.Serializable
 
@@ -14,9 +15,11 @@ data class RichMessageOptions(
     override var allowPaidBroadcast: Boolean? = null,
     override var directMessagesTopicId: Int? = null,
     override var suggestedPostParameters: SuggestedPostParameters? = null,
+    override var ephemeralMessageParameters: EphemeralMessageParameters? = null,
 ) : OptionsCommon,
     ForumProps,
     MessageEffectIdProp,
     AllowPaidBroadcastProp,
     DirectMessagesTopicProp,
-    SuggestedPostParametersProp
+    SuggestedPostParametersProp,
+    EphemeralMessageParametersProp

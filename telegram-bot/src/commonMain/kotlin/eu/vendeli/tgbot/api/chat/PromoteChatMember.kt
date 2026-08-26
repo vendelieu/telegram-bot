@@ -48,6 +48,7 @@ class PromoteChatMemberAction(
  * @param canManageTopics Pass True if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only
  * @param canManageDirectMessages Pass True if the administrator can manage direct messages within the channel and decline suggested posts; for channels only
  * @param canManageTags Pass True if the administrator can edit the tags of regular members; for groups and supergroups only
+ * @param canSendWelcomeMessages Pass True if the administrator can manage chat welcome messages or directly send them in the case of bots
  * @returns [Boolean]
  */
 @TgAPI
