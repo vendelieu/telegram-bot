@@ -20,7 +20,7 @@ kover = "0.9.9"
 krypto = "4.0.10"
 urlencoder = "1.6.0"
 ayza = "10.0.7"
-spring = "4.1.0"
+spring = "4.1.1"
 
 ksp = "2.3.11"
 poet = "2.3.0"
