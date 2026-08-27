@@ -16,10 +16,13 @@ import eu.vendeli.tgbot.api.chat.setChatStickerSet
 import eu.vendeli.tgbot.api.chat.setChatTitle
 import eu.vendeli.tgbot.types.component.getOrNull
 import eu.vendeli.tgbot.types.component.onFailure
+import eu.vendeli.tgbot.types.component.Response
 import eu.vendeli.tgbot.types.keyboard.MenuButton
 import io.kotest.core.annotation.EnabledIf
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.string.shouldContain
 import io.ktor.client.request.get
 import io.ktor.client.statement.readRawBytes
 import kotlinx.coroutines.Dispatchers
@@ -78,13 +81,24 @@ class ChatSetMethodsTest : BotTestContext() {
             canSendPolls = true
             canSendOtherMessages = true
             canAddWebPagePreviews = true
+			canReactToMessages = true
             canChangeInfo = true
             canInviteUsers = true
             canPinMessages = true
             canManageTopics = true
-            canChangeInfo = true
-        }.sendReturning(CHAT_ID, bot).shouldSuccess()
-        result.shouldBeTrue()
+			canEditTag = true
+		}.sendReturning(CHAT_ID, bot).await()
+
+		when (result) {
+			is Response.Success -> {
+				result.result.shouldBeTrue()
+			}
+
+			is Response.Failure -> {
+				result.errorCode shouldBe 400
+				result.description.shouldNotBeNull().shouldContain("CHAT_NOT_MODIFIED")
+			}
+		}
     }
 
     @Test
