@@ -29,7 +29,7 @@ class FunctionalHandlingDsl internal constructor(
         command: String,
         scope: Set<UpdateType> = DEFAULT_SCOPE,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Guard> = DefaultGuard::class,
+        guards: List<KClass<out Guard>> = listOf(DefaultGuard::class),
         argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
         block: OnCommandActivity,
     ) {
@@ -37,7 +37,7 @@ class FunctionalHandlingDsl internal constructor(
             id = "functional:cmd:$command".hashCode(),
             function = command,
             rateLimits = rateLimits,
-            guardClass = guard,
+            guardClasses = guards,
             argParser = argParser,
         ) {
             val cmdCtx = CommandContext(update, parameters)
@@ -55,14 +55,14 @@ class FunctionalHandlingDsl internal constructor(
     fun onInput(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Guard> = DefaultGuard::class,
+        guards: List<KClass<out Guard>> = listOf(DefaultGuard::class),
         block: OnInputActivity,
     ) {
         val activity = LambdaActivity(
             id = "functional:input:$identifier".hashCode(),
             function = identifier,
             rateLimits = rateLimits,
-            guardClass = guard,
+            guardClasses = guards,
         ) {
             val ctx = ActivityCtx(update)
             block.invoke(ctx)
@@ -77,7 +77,7 @@ class FunctionalHandlingDsl internal constructor(
     fun inputChain(
         identifier: String,
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Guard> = DefaultGuard::class,
+        guard: List<KClass<out Guard>> = listOf(DefaultGuard::class),
         block: OnInputActivity,
     ): InputChainBuilder {
         val builder = InputChainBuilder(identifier, rateLimits, guard, block)

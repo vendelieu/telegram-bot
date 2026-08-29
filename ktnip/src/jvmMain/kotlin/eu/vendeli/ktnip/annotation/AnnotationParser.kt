@@ -7,12 +7,7 @@ import com.google.devtools.ksp.symbol.KSValueArgument
 import eu.vendeli.ktnip.utils.cast
 import eu.vendeli.ktnip.utils.safeCast
 import eu.vendeli.ktnip.utils.toRateLimits
-import eu.vendeli.tgbot.annotations.ArgParser
-import eu.vendeli.tgbot.annotations.CommandHandler
-import eu.vendeli.tgbot.annotations.CommonHandler
-import eu.vendeli.tgbot.annotations.Guard
-import eu.vendeli.tgbot.annotations.UpdateHandler
-import eu.vendeli.tgbot.annotations.WizardHandler
+import eu.vendeli.tgbot.annotations.*
 import eu.vendeli.tgbot.implementations.DefaultArgParser
 import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.types.component.MessageKind
@@ -117,13 +112,13 @@ object AnnotationParser {
     /**
      * Parses Guard annotation.
      */
-    fun parseGuard(arguments: List<KSValueArgument>): String =
+    fun parseGuard(arguments: List<KSValueArgument>): List<String> =
         arguments
-            .firstOrNull { it.name?.asString() == Guard::guard.name }
+            .firstOrNull { it.name?.asString() == Guard::guards.name }
             ?.value
-            ?.safeCast<KSType>()
-            ?.let { it.declaration.qualifiedName!!.asString() }
-            ?: DefaultGuard::class.qualifiedName!!
+            ?.safeCast<List<KSType>>()
+            ?.map { it.declaration.qualifiedName!!.asString() }
+            ?: listOf(DefaultGuard::class.qualifiedName!!)
 
     /**
      * Parses ArgParser annotation.

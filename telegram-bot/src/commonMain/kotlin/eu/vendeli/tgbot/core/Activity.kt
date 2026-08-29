@@ -27,8 +27,8 @@ interface Activity {
         get() = RateLimits.NOT_LIMITED
 
     /** Guard class, [eu.vendeli.tgbot.implementations.DefaultGuard] if not set. */
-    val guardClass: KClass<out Guard>
-        get() = DefaultGuard::class
+    val guardClasses: List<KClass<out Guard>>
+        get() = listOf(DefaultGuard::class)
 
     /** Argument parser class, [eu.vendeli.tgbot.implementations.DefaultArgParser] if not set. */
     val argParser: KClass<out ArgumentParser>
