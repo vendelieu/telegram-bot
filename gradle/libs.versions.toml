@@ -28,7 +28,7 @@ autoservice-annotations = "1.1.1"
 autoservice-ksp = "1.2.0"
 kotlinCompileTesting = "0.13.0"
 
-binvalid = "0.18.1"
+binvalid = "0.18.2"
 publisher = "0.37.0"
 gradle-publish = "2.1.1"
 
