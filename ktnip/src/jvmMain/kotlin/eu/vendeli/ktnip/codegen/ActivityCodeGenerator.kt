@@ -133,15 +133,20 @@ class ActivityCodeGenerator(
                 ).build(),
         )
 
-        if (metadata.guardClass != DefaultGuard::class.fqName) {
+        if (metadata.guardClasses != listOf(DefaultGuard::class.fqName)) {
             addProperty(
                 PropertySpec
                     .builder(
-                        "guardClass",
-                        TypeConstants.kClass
-                            .parameterizedBy(WildcardTypeName.producerOf(TypeConstants.guard)),
+                        "guardClasses",
+                        LIST.parameterizedBy(
+                            TypeConstants.kClass
+                                .parameterizedBy(WildcardTypeName.producerOf(TypeConstants.guard)),
+                        ),
                         KModifier.OVERRIDE,
-                    ).initializer("%L::class", metadata.guardClass)
+                    ).initializer(
+                        "listOf(${metadata.guardClasses.joinToString { "%L::class" }})",
+                        *metadata.guardClasses.toTypedArray(),
+                    )
                     .build(),
             )
         }
@@ -166,7 +171,7 @@ class ActivityCodeGenerator(
  */
 fun KSFunctionDeclaration.toActivityMetadata(
     rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-    guardClass: String? = null,
+    guardClasses: List<String> = listOf(),
     argParserClass: String? = null,
 ): ActivityMetadata {
     val funQualifier = qualifiedName!!.getQualifier()
@@ -177,7 +182,7 @@ fun KSFunctionDeclaration.toActivityMetadata(
         qualifier = funQualifier,
         function = funShortName,
         rateLimits = rateLimits,
-        guardClass = guardClass ?: DefaultGuard::class.fqName,
+        guardClasses = guardClasses,
         argParserClass = argParserClass ?: DefaultArgParser::class.fqName,
     )
 }

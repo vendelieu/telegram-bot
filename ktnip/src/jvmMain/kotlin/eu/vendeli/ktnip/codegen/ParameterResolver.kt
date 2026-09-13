@@ -57,6 +57,7 @@ class ParameterResolver(
                     ?.value.safeCast<String>()
                 ParameterResolutionStrategy.Session(typeName, isNullable, qualifier)
             }
+
             TypeConstants.processingCtx -> ParameterResolutionStrategy.ProcessingContext(typeName)
             TypeConstants.updateClass -> ParameterResolutionStrategy.Update(typeName)
 
@@ -67,21 +68,25 @@ class ParameterResolver(
                 isNullable,
                 parameterName,
             )
+
             LONG, TypeConstants.longPrimitiveType -> ParameterResolutionStrategy.PrimitiveParameter.Long(
                 typeName,
                 isNullable,
                 parameterName,
             )
+
             SHORT, TypeConstants.shortPrimitiveType -> ParameterResolutionStrategy.PrimitiveParameter.Short(
                 typeName,
                 isNullable,
                 parameterName,
             )
+
             FLOAT, TypeConstants.floatPrimitiveType -> ParameterResolutionStrategy.PrimitiveParameter.Float(
                 typeName,
                 isNullable,
                 parameterName,
             )
+
             DOUBLE, TypeConstants.doublePrimitiveType -> ParameterResolutionStrategy.PrimitiveParameter.Double(
                 typeName,
                 isNullable,

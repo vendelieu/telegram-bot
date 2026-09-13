@@ -70,12 +70,17 @@ class WizardCodeGenerator(
             ).addProperty(
                 PropertySpec
                     .builder(
-                        WizardActivity::guardClass.name,
-                        TypeConstants.kClass.parameterizedBy(
-                            WildcardTypeName.producerOf(TypeConstants.guard),
+                        WizardActivity::guardClasses.name,
+                        LIST.parameterizedBy(
+                            TypeConstants.kClass.parameterizedBy(
+                                WildcardTypeName.producerOf(TypeConstants.guard),
+                            ),
                         ),
                         KModifier.OVERRIDE,
-                    ).initializer("%T::class", ClassName.bestGuess(metadata.guardClass))
+                    ).initializer(
+                        metadata.guardClasses.joinToString(prefix = "listOf(", postfix = ")") { "%T::class" },
+                        *metadata.guardClasses.map { ClassName.bestGuess(it) }.toTypedArray(),
+                    )
                     .build(),
             ).addProperty(
                 PropertySpec

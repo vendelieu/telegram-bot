@@ -22,7 +22,7 @@ object AnnotationExtractor {
      * @param function The function to extract from
      * @return Fully qualified name of the Guard class
      */
-    fun extractGuard(function: KSFunctionDeclaration): String =
+    fun extractGuard(function: KSFunctionDeclaration): List<String> =
         function.annotations
             .findAnnotationRecursively(Guard::class)
             ?.arguments
@@ -33,7 +33,7 @@ object AnnotationExtractor {
                 ?.findAnnotationRecursively(Guard::class)
                 ?.arguments
                 ?.let { AnnotationParser.parseGuard(it) }
-            ?: DefaultGuard::class.qualifiedName!!
+            ?: listOf(DefaultGuard::class.qualifiedName!!)
 
     /**
      * Extracts RateLimits annotation with priority: function > class > default.
@@ -79,7 +79,7 @@ object AnnotationExtractor {
      * @param classDecl The class to extract from
      * @return Fully qualified name of the Guard class
      */
-    fun extractGuard(classDecl: KSClassDeclaration): String? =
+    fun extractGuard(classDecl: KSClassDeclaration): List<String>? =
         classDecl.annotations
             .findAnnotationRecursively(Guard::class)
             ?.arguments
