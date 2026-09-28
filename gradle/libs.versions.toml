@@ -1,5 +1,5 @@
 [versions]
-ktor = "3.5.1"
+ktor = "3.6.0"
 logback = "1.6.4"
 slf4j = "2.0.20"
 
