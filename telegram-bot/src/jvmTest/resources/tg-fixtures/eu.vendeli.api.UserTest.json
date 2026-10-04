@@ -1,0 +1,141 @@
+{
+  "tests": {
+    "get user chat boost method test": [
+      {
+        "method": "getUserChatBoosts",
+        "requestKeys": [
+          "chat_id",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "boosts": []
+          }
+        }
+      }
+    ],
+    "get user profile audios method test": [
+      {
+        "method": "getUserProfileAudios",
+        "requestKeys": [
+          "limit",
+          "offset",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "total_count": 0,
+            "audios": []
+          }
+        }
+      },
+      {
+        "method": "getUserProfileAudios",
+        "requestKeys": [
+          "limit",
+          "offset",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "total_count": 0,
+            "audios": []
+          }
+        }
+      }
+    ],
+    "get user profile photos method test": [
+      {
+        "method": "getUserProfilePhotos",
+        "requestKeys": [
+          "limit",
+          "offset",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "total_count": 2,
+            "photos": [
+              [
+                {
+                  "file_id": "AgACAgIAAxUAAWrCd1bTtHOCosm9qEaa6_xCbOgZAAKzpzEbl5TzHkc9-BQVTF7qAQADAgADYQADPQQ",
+                  "file_unique_id": "AQADs6cxG5eU8x4AAQ",
+                  "file_size": 6368,
+                  "width": 160,
+                  "height": 160
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWrCd1bTtHOCosm9qEaa6_xCbOgZAAKzpzEbl5TzHkc9-BQVTF7qAQADAgADYgADPQQ",
+                  "file_unique_id": "AQADs6cxG5eU8x5n",
+                  "file_size": 20230,
+                  "width": 320,
+                  "height": 320
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWrCd1bTtHOCosm9qEaa6_xCbOgZAAKzpzEbl5TzHkc9-BQVTF7qAQADAgADYwADPQQ",
+                  "file_unique_id": "AQADs6cxG5eU8x4B",
+                  "file_size": 56913,
+                  "width": 640,
+                  "height": 640
+                }
+              ]
+            ]
+          }
+        }
+      },
+      {
+        "method": "getUserProfilePhotos",
+        "requestKeys": [
+          "limit",
+          "offset",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "total_count": 2,
+            "photos": [
+              [
+                {
+                  "file_id": "AgACAgIAAxUAAWrCd1ZhL4LkZ3CnXTfjLWsX4jucAAKspzEbl5TzHrfbKAwiVDIZAQADAgADYQADPQQ",
+                  "file_unique_id": "AQADrKcxG5eU8x4AAQ",
+                  "file_size": 12744,
+                  "width": 160,
+                  "height": 160
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWrCd1ZhL4LkZ3CnXTfjLWsX4jucAAKspzEbl5TzHrfbKAwiVDIZAQADAgADYgADPQQ",
+                  "file_unique_id": "AQADrKcxG5eU8x5n",
+                  "file_size": 58365,
+                  "width": 320,
+                  "height": 320
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWrCd1ZhL4LkZ3CnXTfjLWsX4jucAAKspzEbl5TzHrfbKAwiVDIZAQADAgADYwADPQQ",
+                  "file_unique_id": "AQADrKcxG5eU8x4B",
+                  "file_size": 253882,
+                  "width": 640,
+                  "height": 640
+                }
+              ]
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

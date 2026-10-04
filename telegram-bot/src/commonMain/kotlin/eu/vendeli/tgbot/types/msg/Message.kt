@@ -11,6 +11,7 @@ import eu.vendeli.tgbot.types.chat.ChatOwnerChanged
 import eu.vendeli.tgbot.types.chat.ChatOwnerLeft
 import eu.vendeli.tgbot.types.chat.ChatShared
 import eu.vendeli.tgbot.types.chat.CommunityChatAdded
+import eu.vendeli.tgbot.types.chat.CommunityChatJoined
 import eu.vendeli.tgbot.types.chat.CommunityChatRemoved
 import eu.vendeli.tgbot.types.checklist.Checklist
 import eu.vendeli.tgbot.types.checklist.ChecklistTasksAdded
@@ -169,7 +170,7 @@ import kotlin.time.Instant
 @TgAPI.Name("Message")
 data class Message(
     override val messageId: Long,
-    val ephemeralMessageId: Long = 0,
+    val ephemeralMessageId: Long? = null,
     val messageThreadId: Int? = null,
     val from: User? = null,
     val senderChat: Chat? = null,
@@ -263,6 +264,7 @@ data class Message(
     val proximityAlertTriggered: ProximityAlertTriggered? = null,
     val boostAdded: ChatBoostAdded? = null,
     val communityChatAdded: CommunityChatAdded? = null,
+    val communityChatJoined: CommunityChatJoined? = null,
     val communityChatRemoved: CommunityChatRemoved? = null,
     val forumTopicCreated: ForumTopicCreated? = null,
     val forumTopicEdited: ForumTopicEdited? = null,

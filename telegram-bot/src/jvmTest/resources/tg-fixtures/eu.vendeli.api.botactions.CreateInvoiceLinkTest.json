@@ -1,0 +1,41 @@
+{
+  "tests": {
+    "create invoice link method testing": [
+      {
+        "method": "createInvoiceLink",
+        "requestKeys": [
+          "currency",
+          "description",
+          "payload",
+          "prices",
+          "provider_token",
+          "title"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: PAYMENT_PROVIDER_INVALID"
+        }
+      },
+      {
+        "method": "createInvoiceLink",
+        "requestKeys": [
+          "currency",
+          "description",
+          "payload",
+          "prices",
+          "provider_token",
+          "title"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": "https://t.me/$T8yyvRF7GEq6FQAAlSX8vEYQtwQ"
+        }
+      }
+    ]
+  }
+}

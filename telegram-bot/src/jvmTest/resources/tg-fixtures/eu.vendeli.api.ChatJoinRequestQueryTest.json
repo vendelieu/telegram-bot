@@ -1,0 +1,20 @@
+{
+  "tests": {
+    "answerChatJoinRequestQuery request is sent": [
+      {
+        "method": "answerChatJoinRequestQuery",
+        "requestKeys": [
+          "chat_join_request_query_id",
+          "result"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: BOT_GUARD_NOT_SUPPORTED"
+        }
+      }
+    ]
+  }
+}

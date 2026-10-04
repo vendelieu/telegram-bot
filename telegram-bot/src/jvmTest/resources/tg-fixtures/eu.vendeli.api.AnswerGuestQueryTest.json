@@ -1,0 +1,20 @@
+{
+  "tests": {
+    "answer guest query test": [
+      {
+        "method": "answerGuestQuery",
+        "requestKeys": [
+          "guest_query_id",
+          "result"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: USER_BOT_INVALID"
+        }
+      }
+    ]
+  }
+}

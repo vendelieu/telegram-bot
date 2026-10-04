@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.deteKT)
     alias(libs.plugins.kover)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.test.retry)
     publish
     dokka
 }
@@ -25,6 +26,9 @@ configuredKotlin {
             implementation(libs.test.dotenv.kotlin)
             implementation(libs.test.kotest.junit5)
             implementation(libs.test.kotest.assertions)
+            implementation(libs.test.kotest.property)
+            implementation(libs.test.coroutines)
+            implementation(libs.test.ktor.client.mock)
             implementation(libs.logback)
             implementation(libs.mockk)
         }
@@ -91,7 +95,36 @@ ksp {
 
 tasks {
     register<Kdokker>("kdocUpdate")
-    withType<Test> { useJUnitPlatform() }
+    withType<Test> {
+        useJUnitPlatform()
+        // Retry once on CI so that a flaky test is reported as flaky instead of failing the whole build.
+        retry {
+            maxRetries.set(System.getenv("TEST_RETRIES")?.toIntOrNull() ?: if (System.getenv("CI") != null) 1 else 0)
+            maxFailures.set(10)
+            failOnPassedAfterRetry.set(false)
+        }
+    }
+    // Re-records Telegram responses into src/jvmTest/resources/tg-fixtures (needs real credentials in .env).
+    register<Test>("recordFixtures") {
+        group = "verification"
+        description = "Runs the jvm tests against live Telegram and records the responses as replay fixtures."
+        val jvmTest = named<Test>("jvmTest").get()
+        testClassesDirs = jvmTest.testClassesDirs
+        classpath = jvmTest.classpath
+        environment("TG_TEST_MODE", "record")
+        systemProperty("tg.fixtures.dir", layout.projectDirectory.dir("src/jvmTest/resources/tg-fixtures").asFile.absolutePath)
+        outputs.upToDateWhen { false }
+    }
+    // Runs the same tests against live Telegram without touching fixtures.
+    register<Test>("liveTest") {
+        group = "verification"
+        description = "Runs the jvm tests against live Telegram (no replay)."
+        val jvmTest = named<Test>("jvmTest").get()
+        testClassesDirs = jvmTest.testClassesDirs
+        classpath = jvmTest.classpath
+        environment("TG_TEST_MODE", "live")
+        outputs.upToDateWhen { false }
+    }
     named("build") { dependsOn("kspCommonMainKotlinMetadata") }
 }
 

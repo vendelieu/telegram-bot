@@ -1,0 +1,195 @@
+{
+  "tests": {
+    "check failure throws exception": [
+      {
+        "method": "editMessageText",
+        "requestKeys": [
+          "inline_message_id",
+          "text"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: invalid inline message identifier specified"
+        }
+      },
+      {
+        "method": "editMessageText",
+        "requestKeys": [
+          "inline_message_id",
+          "text"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: invalid inline message identifier specified"
+        }
+      }
+    ],
+    "failure response handling": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "text"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: chat_id is empty"
+        }
+      }
+    ],
+    "fold response handling": [
+      {
+        "method": "getMe",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "id": 700000001,
+            "is_bot": true,
+            "first_name": "redacted",
+            "username": "redacted",
+            "can_join_groups": true,
+            "can_read_all_group_messages": false,
+            "supports_inline_queries": true,
+            "supports_guest_queries": false,
+            "can_connect_to_business": true,
+            "has_main_web_app": false,
+            "has_topics_enabled": false,
+            "allows_users_to_create_topics": false,
+            "can_manage_bots": false,
+            "supports_join_request_queries": false
+          }
+        }
+      }
+    ],
+    "getting file url": [
+      {
+        "method": "sendPhoto",
+        "requestKeys": [
+          "chat_id",
+          "photo",
+          "photo.jpg"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57793,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131866,
+            "photo": [
+              {
+                "file_id": "AgACAgIAAxkDAALhPmrCdz7VVPFwODVwFQ7IAAHv7AxNZAACoSJrG48JEEoodFNNvVAeCQEAAwIAA20AAz0E",
+                "file_unique_id": "AQADoSJrG48JEEpy",
+                "file_size": 287,
+                "width": 1,
+                "height": 1
+              }
+            ]
+          }
+        }
+      },
+      {
+        "method": "getFile",
+        "requestKeys": [
+          "file_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "file_id": "AgACAgIAAxkDAALhPmrCdz7VVPFwODVwFQ7IAAHv7AxNZAACoSJrG48JEEoodFNNvVAeCQEAAwIAA20AAz0E",
+            "file_unique_id": "AQADoSJrG48JEEpy",
+            "file_size": 287,
+            "file_path": "photos/file_102.jpg"
+          }
+        }
+      },
+      {
+        "method": "file:photos/file_102.jpg",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "base64": "/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAQDAwQDAwQEAwQFBAQFBgoHBgYGBg0JCggKDw0QEA8NDw4RExgUERIXEg4PFRwVFxkZGxsbEBQdHx0aHxgaGxr/2wBDAQQFBQYFBgwHBwwaEQ8RGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhr/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAX/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAABQf/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwC4Avwt/9k="
+      }
+    ],
+    "requests testing": [
+      {
+        "method": "getMe",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "id": 700000001,
+            "is_bot": true,
+            "first_name": "redacted",
+            "username": "redacted",
+            "can_join_groups": true,
+            "can_read_all_group_messages": false,
+            "supports_inline_queries": true,
+            "supports_guest_queries": false,
+            "can_connect_to_business": true,
+            "has_main_web_app": false,
+            "has_topics_enabled": false,
+            "allows_users_to_create_topics": false,
+            "can_manage_bots": false,
+            "supports_join_request_queries": false
+          }
+        }
+      }
+    ],
+    "test silent requesting": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24180,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131867,
+            "text": "test"
+          }
+        }
+      }
+    ]
+  }
+}

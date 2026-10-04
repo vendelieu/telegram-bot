@@ -1,0 +1,66 @@
+name: record fixtures
+
+# Re-records the replay fixtures against the real Telegram Bot API and opens a pull request with the diff.
+# Run it after a new Bot API version (see tg-spec-scrapper.yml) so the fixture diff shows what Telegram changed.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: live-telegram
+  cancel-in-progress: false
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: dev
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v6
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: current
+
+      - name: Record fixtures
+        env:
+          TELEGRAM_ID: ${{ secrets.TELEGRAM_ID }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          BOT_ID: ${{ secrets.BOT_ID }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          BOT_TOKEN_2: ${{ secrets.BOT_TOKEN_2 }}
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+          PAYMENT_PROVIDER_TOKEN: ${{ secrets.PAYMENT_PROVIDER_TOKEN }}
+        run: ./gradlew :telegram-bot:recordFixtures
+
+      - name: Verify the recorded fixtures replay offline and contain no secrets
+        run: ./gradlew :telegram-bot:jvmTest
+
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -z "$(git status --porcelain -- telegram-bot/src/jvmTest/resources/tg-fixtures)" ]; then
+            echo "Fixtures are unchanged."
+            exit 0
+          fi
+          branch="chore/re-record-fixtures-$(date +%Y%m%d)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add telegram-bot/src/jvmTest/resources/tg-fixtures
+          git commit -m "test: re-record Telegram fixtures"
+          git push -u origin "$branch"
+          gh pr create --base dev --head "$branch" \
+            --title "test: re-record Telegram fixtures" \
+            --body "Automated re-recording against the live Bot API. Review the fixture diff for API changes."

@@ -1,0 +1,20 @@
+{
+  "tests": {
+    "getUserPersonalChatMessages fails for unknown user": [
+      {
+        "method": "getUserPersonalChatMessages",
+        "requestKeys": [
+          "limit",
+          "user_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: user not found"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,298 @@
+{
+  "tests": {
+    "delete chat sticker set method test": [
+      {
+        "method": "deleteChatStickerSet",
+        "requestKeys": [
+          "chat_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: can't set supergroup sticker set"
+        }
+      }
+    ],
+    "set chat custom title method test": [
+      {
+        "method": "promoteChatMember",
+        "requestKeys": [
+          "can_delete_messages",
+          "chat_id",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "setChatAdministratorCustomTitle",
+        "requestKeys": [
+          "chat_id",
+          "custom_title",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "setChatAdministratorCustomTitle",
+        "requestKeys": [
+          "chat_id",
+          "custom_title",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "promoteChatMember",
+        "requestKeys": [
+          "chat_id",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "set chat description method test": [
+      {
+        "method": "setChatDescription",
+        "requestKeys": [
+          "chat_id",
+          "description"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "setChatDescription",
+        "requestKeys": [
+          "chat_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "set chat member tag method test": [
+      {
+        "method": "setChatMemberTag",
+        "requestKeys": [
+          "chat_id",
+          "tag",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "setChatMemberTag",
+        "requestKeys": [
+          "chat_id",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "set chat menu button method test": [
+      {
+        "method": "setChatMenuButton",
+        "requestKeys": [
+          "chat_id",
+          "menu_button"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "setChatMenuButton",
+        "requestKeys": [
+          "chat_id",
+          "menu_button"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "set chat permissions method test": [
+      {
+        "method": "setChatPermissions",
+        "requestKeys": [
+          "chat_id",
+          "permissions",
+          "use_independent_chat_permissions"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: CHAT_NOT_MODIFIED"
+        }
+      }
+    ],
+    "set chat photo method test": [
+      {
+        "method": "ext:picsum.photos/400/400",
+        "status": 302,
+        "base64": ""
+      },
+      {
+        "method": "ext:fastly.picsum.photos/id/496/400/400.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "base64": "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"
+      },
+      {
+        "method": "setChatPhoto",
+        "requestKeys": [
+          "chat_id",
+          "image.jpg",
+          "photo"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "setChatPhoto",
+        "requestKeys": [
+          "chat_id",
+          "image.jpg",
+          "photo"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "deleteChatPhoto",
+        "requestKeys": [
+          "chat_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "set chat sticker set method test": [
+      {
+        "method": "getMe",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "id": 700000001,
+            "is_bot": true,
+            "first_name": "redacted",
+            "username": "redacted",
+            "can_join_groups": true,
+            "can_read_all_group_messages": false,
+            "supports_inline_queries": true,
+            "supports_guest_queries": false,
+            "can_connect_to_business": true,
+            "has_main_web_app": false,
+            "has_topics_enabled": false,
+            "allows_users_to_create_topics": false,
+            "can_manage_bots": false,
+            "supports_join_request_queries": false
+          }
+        }
+      },
+      {
+        "method": "setChatStickerSet",
+        "requestKeys": [
+          "chat_id",
+          "sticker_set_name"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: can't set supergroup sticker set"
+        }
+      }
+    ],
+    "set chat title method test": [
+      {
+        "method": "setChatTitle",
+        "requestKeys": [
+          "chat_id",
+          "title"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "setChatTitle",
+        "requestKeys": [
+          "chat_id",
+          "title"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ]
+  }
+}

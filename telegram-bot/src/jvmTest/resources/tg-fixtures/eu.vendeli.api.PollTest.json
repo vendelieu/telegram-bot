@@ -1,0 +1,233 @@
+{
+  "tests": {
+    "close poll method test": [
+      {
+        "method": "sendPoll",
+        "requestKeys": [
+          "chat_id",
+          "correct_option_ids",
+          "is_anonymous",
+          "open_period",
+          "options",
+          "question",
+          "type"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24195,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131888,
+            "poll": {
+              "id": "5339469502339880820",
+              "question": "Test",
+              "options": [
+                {
+                  "persistent_id": "0",
+                  "text": "test1",
+                  "voter_count": 0
+                },
+                {
+                  "persistent_id": "1",
+                  "text": "test1",
+                  "voter_count": 0
+                }
+              ],
+              "total_voter_count": 0,
+              "open_period": 565,
+              "close_date": 1791132453,
+              "is_closed": false,
+              "is_anonymous": false,
+              "allows_multiple_answers": false,
+              "allows_revoting": false,
+              "members_only": false,
+              "type": "quiz",
+              "correct_option_id": 1,
+              "correct_option_ids": [
+                1
+              ]
+            }
+          }
+        }
+      },
+      {
+        "method": "stopPoll",
+        "requestKeys": [
+          "chat_id",
+          "message_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "id": "5339469502339880820",
+            "question": "Test",
+            "options": [
+              {
+                "persistent_id": "0",
+                "text": "test1",
+                "voter_count": 0
+              },
+              {
+                "persistent_id": "1",
+                "text": "test1",
+                "voter_count": 0
+              }
+            ],
+            "total_voter_count": 0,
+            "is_closed": true,
+            "is_anonymous": false,
+            "allows_multiple_answers": false,
+            "allows_revoting": false,
+            "members_only": false,
+            "type": "quiz",
+            "correct_option_id": 1,
+            "correct_option_ids": [
+              1
+            ]
+          }
+        }
+      }
+    ],
+    "poll method test": [
+      {
+        "method": "sendPoll",
+        "requestKeys": [
+          "chat_id",
+          "correct_option_ids",
+          "is_anonymous",
+          "open_period",
+          "options",
+          "question",
+          "type"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24196,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131888,
+            "poll": {
+              "id": "5339469502339880821",
+              "question": "Test",
+              "options": [
+                {
+                  "persistent_id": "0",
+                  "text": "test1",
+                  "voter_count": 0
+                },
+                {
+                  "persistent_id": "1",
+                  "text": "test2",
+                  "voter_count": 0
+                }
+              ],
+              "total_voter_count": 0,
+              "open_period": 120,
+              "close_date": 1791132008,
+              "is_closed": false,
+              "is_anonymous": false,
+              "allows_multiple_answers": false,
+              "allows_revoting": false,
+              "members_only": false,
+              "type": "quiz",
+              "correct_option_id": 1,
+              "correct_option_ids": [
+                1
+              ]
+            }
+          }
+        }
+      },
+      {
+        "method": "sendPoll",
+        "requestKeys": [
+          "chat_id",
+          "correct_option_ids",
+          "is_anonymous",
+          "open_period",
+          "options",
+          "question",
+          "type"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24197,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131889,
+            "poll": {
+              "id": "5339469502339880822",
+              "question": "Test",
+              "options": [
+                {
+                  "persistent_id": "0",
+                  "text": "test1",
+                  "voter_count": 0
+                },
+                {
+                  "persistent_id": "1",
+                  "text": "test2",
+                  "voter_count": 0
+                }
+              ],
+              "total_voter_count": 0,
+              "open_period": 120,
+              "close_date": 1791132009,
+              "is_closed": false,
+              "is_anonymous": false,
+              "allows_multiple_answers": false,
+              "allows_revoting": false,
+              "members_only": false,
+              "type": "quiz",
+              "correct_option_id": 1,
+              "correct_option_ids": [
+                1
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -29,6 +29,7 @@ import kotlinx.serialization.serializer
  * (represented as [RichText.Plain]), an Array of RichText (represented as [RichText.Chunks]),
  * or any of the following types:
  * - RichTextBold
+ * - RichTextButton
  * - RichTextItalic
  * - RichTextUnderline
  * - RichTextStrikethrough
@@ -95,6 +96,12 @@ sealed class RichText {
     @SerialName("bold")
     data class Bold(
         val text: RichText,
+    ) : RichText()
+
+    @Serializable
+    @SerialName("button")
+    data class Button(
+        val button: RichMessageButton,
     ) : RichText()
 
     /**
@@ -375,6 +382,7 @@ sealed class RichText {
         private val subtypeSerializers: Map<String, KSerializer<out RichText>> by lazy {
             listOf(
                 Bold.serializer(),
+                Button.serializer(),
                 Italic.serializer(),
                 Underline.serializer(),
                 Strikethrough.serializer(),

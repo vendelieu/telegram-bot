@@ -40,6 +40,7 @@ import eu.vendeli.tgbot.utils.common.onPurchasedPaidMedia
 import eu.vendeli.tgbot.utils.common.onRemovedChatBoost
 import eu.vendeli.tgbot.utils.common.onShippingQuery
 import eu.vendeli.tgbot.utils.common.onSubscription
+import eu.vendeli.tgbot.utils.common.onStoppedMessageGeneration
 import eu.vendeli.tgbot.utils.common.processUpdate
 import eu.vendeli.tgbot.utils.common.safeCast
 import eu.vendeli.utils.MockUpdate
@@ -50,8 +51,8 @@ import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import kotlinx.coroutines.delay
 import kotlin.time.Instant
+import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.random.Random
 
@@ -130,7 +131,6 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             steps.append(bot.inputListener.get(1))
             println(steps)
             if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
-            delay(1)
         }
 
         generalCounter.get() shouldBe 5
@@ -146,19 +146,19 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
     @Test
     suspend fun `whenNotHandled reaching test`() {
         val generalCounter = AtomicInteger(0)
-        var startCounter = false
-        var notHandledCounter = false
+        val startCounter = AtomicBoolean(false)
+        val notHandledCounter = AtomicBoolean(false)
 
         doMockHttp(MockUpdate.TEXT_LIST("test", "/start"))
 
         bot.update.registry.clear()
         bot.setFunctionality {
             onCommand("/start") {
-                startCounter = true
+                startCounter.set(true)
             }
 
             whenNotHandled {
-                notHandledCounter = true
+                notHandledCounter.set(true)
             }
         }
         bot.update.setListener {
@@ -167,31 +167,31 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
         }
 
         generalCounter.get() shouldBeGreaterThanOrEqual 5
-        startCounter.shouldBeTrue()
-        notHandledCounter.shouldBeTrue()
+        startCounter.get().shouldBeTrue()
+        notHandledCounter.get().shouldBeTrue()
     }
 
     @Test
     suspend fun `common handler reaching test`() {
         val generalCounter = AtomicInteger(0)
-        var startReached = false
-        var commonReached = false
-        var regexCommonReached = false
+        val startReached = AtomicBoolean(false)
+        val commonReached = AtomicBoolean(false)
+        val regexCommonReached = AtomicBoolean(false)
 
         doMockHttp(MockUpdate.TEXT_LIST("test", "/start", "123"))
 
         bot.update.registry.clear()
         bot.setFunctionality {
             onCommand("/start") {
-                startReached = true
+                startReached.set(true)
             }
 
             common("test") {
-                commonReached = true
+                commonReached.set(true)
             }
 
             common("^\\d+\$".toRegex()) {
-                regexCommonReached = true
+                regexCommonReached.set(true)
             }
         }
         bot.update.setListener {
@@ -199,9 +199,9 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             if (generalCounter.incrementAndGet() == 5) bot.update.stopListener()
         }
 
-        startReached.shouldBeTrue()
-        commonReached.shouldBeTrue()
-        regexCommonReached.shouldBeTrue()
+        startReached.get().shouldBeTrue()
+        commonReached.get().shouldBeTrue()
+        regexCommonReached.get().shouldBeTrue()
     }
 
     @Test
@@ -219,36 +219,37 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             ).processUpdate(),
         )
 
-        var onUpdateInvocationsCount = 0
+        val onUpdateInvocationsCount = AtomicInteger(0)
 
         bot.update.registry.clear()
         bot.update.functionalDsl.apply {
-            onMessage { onUpdateInvocationsCount++ }
-            onEditedMessage { onUpdateInvocationsCount++ }
-            onChannelPost { onUpdateInvocationsCount++ }
-            onEditedChannelPost { onUpdateInvocationsCount++ }
-            onMessageReaction { onUpdateInvocationsCount++ }
-            onMessageReactionCount { onUpdateInvocationsCount++ }
-            onInlineQuery { onUpdateInvocationsCount++ }
-            onChosenInlineResult { onUpdateInvocationsCount++ }
-            onCallbackQuery { onUpdateInvocationsCount++ }
-            onShippingQuery { onUpdateInvocationsCount++ }
-            onPreCheckoutQuery { onUpdateInvocationsCount++ }
-            onPoll { onUpdateInvocationsCount++ }
-            onPollAnswer { onUpdateInvocationsCount++ }
-            onMyChatMember { onUpdateInvocationsCount++ }
-            onChatMember { onUpdateInvocationsCount++ }
-            onChatJoinRequest { onUpdateInvocationsCount++ }
-            onChatBoost { onUpdateInvocationsCount++ }
-            onRemovedChatBoost { onUpdateInvocationsCount++ }
-            onBusinessConnection { onUpdateInvocationsCount++ }
-            onBusinessMessage { onUpdateInvocationsCount++ }
-            onEditedBusinessMessage { onUpdateInvocationsCount++ }
-            onDeletedBusinessMessages { onUpdateInvocationsCount++ }
-            onPurchasedPaidMedia { onUpdateInvocationsCount++ }
-            onManagedBot { onUpdateInvocationsCount++ }
-            onGuestMessage { onUpdateInvocationsCount++ }
-            onSubscription { onUpdateInvocationsCount++ }
+            onMessage { onUpdateInvocationsCount.incrementAndGet() }
+            onEditedMessage { onUpdateInvocationsCount.incrementAndGet() }
+            onChannelPost { onUpdateInvocationsCount.incrementAndGet() }
+            onEditedChannelPost { onUpdateInvocationsCount.incrementAndGet() }
+            onMessageReaction { onUpdateInvocationsCount.incrementAndGet() }
+            onMessageReactionCount { onUpdateInvocationsCount.incrementAndGet() }
+            onInlineQuery { onUpdateInvocationsCount.incrementAndGet() }
+            onChosenInlineResult { onUpdateInvocationsCount.incrementAndGet() }
+            onCallbackQuery { onUpdateInvocationsCount.incrementAndGet() }
+            onShippingQuery { onUpdateInvocationsCount.incrementAndGet() }
+            onPreCheckoutQuery { onUpdateInvocationsCount.incrementAndGet() }
+            onPoll { onUpdateInvocationsCount.incrementAndGet() }
+            onPollAnswer { onUpdateInvocationsCount.incrementAndGet() }
+            onMyChatMember { onUpdateInvocationsCount.incrementAndGet() }
+            onChatMember { onUpdateInvocationsCount.incrementAndGet() }
+            onChatJoinRequest { onUpdateInvocationsCount.incrementAndGet() }
+            onChatBoost { onUpdateInvocationsCount.incrementAndGet() }
+            onRemovedChatBoost { onUpdateInvocationsCount.incrementAndGet() }
+            onBusinessConnection { onUpdateInvocationsCount.incrementAndGet() }
+            onBusinessMessage { onUpdateInvocationsCount.incrementAndGet() }
+            onEditedBusinessMessage { onUpdateInvocationsCount.incrementAndGet() }
+            onDeletedBusinessMessages { onUpdateInvocationsCount.incrementAndGet() }
+            onPurchasedPaidMedia { onUpdateInvocationsCount.incrementAndGet() }
+            onManagedBot { onUpdateInvocationsCount.incrementAndGet() }
+            onGuestMessage { onUpdateInvocationsCount.incrementAndGet() }
+            onSubscription { onUpdateInvocationsCount.incrementAndGet() }
+            onStoppedMessageGeneration { onUpdateInvocationsCount.incrementAndGet() }
         }
 
         UpdateType.entries.forEach { type ->
@@ -260,8 +261,7 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             }
         }
 
-        delay(1)
-        onUpdateInvocationsCount shouldBe UpdateType.entries.size
+        onUpdateInvocationsCount.get() shouldBe UpdateType.entries.size
 
         bot.update.functionalDsl.apply {
             val scope = setOf(UpdateType.MESSAGE)

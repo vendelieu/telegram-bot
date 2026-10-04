@@ -7,9 +7,11 @@ import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
 import eu.vendeli.tgbot.interfaces.features.MarkupFeature
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
+import eu.vendeli.tgbot.types.media.InputRichMessage
 import eu.vendeli.tgbot.types.options.EditEphemeralMessageOptions
 import eu.vendeli.tgbot.utils.builders.EntitiesCtxBuilder
 import eu.vendeli.tgbot.utils.internal.getReturnType
+import eu.vendeli.tgbot.utils.internal.encodeWith
 import eu.vendeli.tgbot.utils.internal.toJsonElement
 
 @TgAPI
@@ -30,6 +32,16 @@ class EditEphemeralMessageTextAction private constructor() :
             parameters["text"] = text.toJsonElement()
         }
 
+        constructor(
+            receiverUserId: Long,
+            ephemeralMessageId: Long,
+            richMessage: InputRichMessage,
+        ) : this() {
+            parameters["receiver_user_id"] = receiverUserId.toJsonElement()
+            parameters["ephemeral_message_id"] = ephemeralMessageId.toJsonElement()
+            parameters["rich_message"] = richMessage.encodeWith(InputRichMessage.serializer())
+        }
+
         internal constructor(
             receiverUserId: Long,
             ephemeralMessageId: Long,
@@ -42,15 +54,16 @@ class EditEphemeralMessageTextAction private constructor() :
     }
 
 /**
- * Use this method to edit an ephemeral text message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned.
+ * Use this method to edit an ephemeral text or rich message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned.
  *
  * [Api reference](https://core.telegram.org/bots/api#editephemeralmessagetext)
  * @param chatId Unique identifier for the target chat or username of the target supergroup in the format @username
  * @param receiverUserId Identifier of the user who received the message
  * @param ephemeralMessageId Identifier of the ephemeral message to edit
- * @param text New text of the message, 1-4096 characters after entity parsing
+ * @param text New text of the message, 1-4096 characters after entity parsing; required if rich_message isn't specified
  * @param parseMode Mode for parsing entities in the message text. See formatting options for more details.
  * @param entities A JSON-serialized list of special entities that appear in message text, which can be specified instead of parse_mode
+ * @param richMessage New rich content of the message; required if text isn't specified
  * @param linkPreviewOptions Link preview generation options for the message
  * @param replyMarkup A JSON-serialized object for an inline keyboard
  * @returns [Boolean]
@@ -58,6 +71,13 @@ class EditEphemeralMessageTextAction private constructor() :
 @TgAPI
 inline fun editEphemeralMessageText(receiverUserId: Long, ephemeralMessageId: Long, text: String) =
     EditEphemeralMessageTextAction(receiverUserId, ephemeralMessageId, text)
+
+@TgAPI
+inline fun editEphemeralMessageText(
+    receiverUserId: Long,
+    ephemeralMessageId: Long,
+    richMessage: InputRichMessage,
+) = EditEphemeralMessageTextAction(receiverUserId, ephemeralMessageId, richMessage)
 
 @TgAPI
 fun editEphemeralMessageText(

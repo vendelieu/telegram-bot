@@ -1,0 +1,38 @@
+{
+  "tests": {
+    "BusinessExt test": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "business_connection_id",
+          "chat_id",
+          "text"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: business connection not found"
+        }
+      }
+    ],
+    "InlineExt test": [
+      {
+        "method": "editMessageText",
+        "requestKeys": [
+          "entities",
+          "inline_message_id",
+          "text"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: invalid inline message identifier specified"
+        }
+      }
+    ]
+  }
+}

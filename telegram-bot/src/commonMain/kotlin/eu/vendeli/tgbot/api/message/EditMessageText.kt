@@ -53,7 +53,7 @@ class EditMessageTextAction private constructor() :
  * @param parseMode Mode for parsing entities in the message text. See formatting options for more details.
  * @param entities A JSON-serialized list of special entities that appear in message text, which can be specified instead of parse_mode
  * @param linkPreviewOptions Link preview generation options for the message
- * @param richMessage New rich content of the message; required if text isn't specified. Direct upload of new files isn't supported when an inline message is edited.
+ * @param richMessage New rich content of the message; required if text isn't specified. Direct upload of new files and explicit upload of files by a URL isn't supported when an inline message is edited.
  * @param replyMarkup A JSON-serialized object for an inline keyboard
  * @returns [Message]|[Boolean]
  */

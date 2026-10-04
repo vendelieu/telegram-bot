@@ -83,6 +83,9 @@ enum class UpdateType {
     @SerialName("subscription")
     SUBSCRIPTION,
 
+    @SerialName("stopped_message_generation")
+    STOPPED_MESSAGE_GENERATION,
+
     ;
 
     override fun toString(): String = "UpdateType.$name"

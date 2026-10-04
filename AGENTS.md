@@ -13,6 +13,9 @@ Project context and conventions for AI coding assistants working on the telegram
 - Add tests for new code
 - Run `./gradlew prepareRelease` to validate
 - Run `./gradlew apiDump` to generate api dump
+- Tests replay recorded Telegram responses by default (no network, no `.env`); see [TESTING.md](TESTING.md)
+- New or changed API action: `./gradlew :telegram-bot:recordFixtures --tests '*YourTest'` and commit the fixture
+- Never wait with `delay()` or use `GlobalScope` in tests; echoed values must be constants, not `now`/random
 
 ## Project structure
 

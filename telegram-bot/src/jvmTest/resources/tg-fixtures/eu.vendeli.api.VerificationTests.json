@@ -1,0 +1,66 @@
+{
+  "tests": {
+    "remove chat verification test": [
+      {
+        "method": "removeChatVerification",
+        "requestKeys": [
+          "chat_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: BOT_VERIFIER_FORBIDDEN"
+        }
+      }
+    ],
+    "remove user verification test": [
+      {
+        "method": "removeUserVerification",
+        "requestKeys": [
+          "user_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: BOT_VERIFIER_FORBIDDEN"
+        }
+      }
+    ],
+    "verify chat test": [
+      {
+        "method": "verifyChat",
+        "requestKeys": [
+          "chat_id",
+          "custom_description"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: BOT_VERIFIER_FORBIDDEN"
+        }
+      }
+    ],
+    "verify user test": [
+      {
+        "method": "verifyUser",
+        "requestKeys": [
+          "custom_description",
+          "user_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: BOT_VERIFIER_FORBIDDEN"
+        }
+      }
+    ]
+  }
+}

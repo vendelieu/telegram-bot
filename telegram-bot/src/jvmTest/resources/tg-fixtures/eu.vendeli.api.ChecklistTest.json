@@ -1,0 +1,39 @@
+{
+  "tests": {
+    "editMessageChecklist method test": [
+      {
+        "method": "editMessageChecklist",
+        "requestKeys": [
+          "business_connection_id",
+          "chat_id",
+          "checklist",
+          "message_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: business connection not found"
+        }
+      }
+    ],
+    "sendChecklist method test": [
+      {
+        "method": "sendChecklist",
+        "requestKeys": [
+          "business_connection_id",
+          "chat_id",
+          "checklist"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: business connection not found"
+        }
+      }
+    ]
+  }
+}

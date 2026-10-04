@@ -36,15 +36,14 @@ class SendVideoNoteAction(
 }
 
 /**
- * As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
+ * Use this method to send a rounded square MPEG4 video of up to 1 minute long. On success, the sent Message is returned.
  *
  * [Api reference](https://core.telegram.org/bots/api#sendvideonote)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
  * @param chatId Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
  * @param messageThreadId Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
  * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
- * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
- * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which triggerred the message if any
+ * @param ephemeralMessageParameters A JSON-serialized object containing the parameters of the ephemeral message to send
  * @param videoNote Video note to send. Pass a file_id as String to send a video note that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data. More information on Sending Files: https://core.telegram.org/bots/api#sending-files. Sending video notes by a URL is currently unsupported.
  * @param duration Duration of sent video in seconds
  * @param length Video width and height, i.e. diameter of the video message

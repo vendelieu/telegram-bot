@@ -7,5 +7,7 @@ import kotlinx.serialization.Serializable
 data class SendMessageDraftOptions(
     override var parseMode: ParseMode? = null,
     override var messageThreadId: Int? = null,
+    var canStop: Boolean? = null,
+    var keepOnStop: Boolean? = null,
 ) : ForumProps,
     OptionsParseMode

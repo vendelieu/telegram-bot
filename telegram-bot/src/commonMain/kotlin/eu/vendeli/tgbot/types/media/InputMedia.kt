@@ -60,7 +60,8 @@ sealed class InputMedia : ImplicitMediaData {
         val captionEntities: List<MessageEntity>? = null,
         val disableContentTypeDetection: Boolean? = null,
     ) : InputMedia(),
-        InputPollMedia
+        InputPollMedia,
+        InputRichMedia
 
     @Serializable
     @SerialName("photo")

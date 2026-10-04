@@ -1,0 +1,19 @@
+{
+  "tests": {
+    "set emoji status test": [
+      {
+        "method": "setUserEmojiStatus",
+        "requestKeys": [
+          "user_id"
+        ],
+        "status": 403,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 403,
+          "description": "Forbidden: not enough rights to change the user's emoji status"
+        }
+      }
+    ]
+  }
+}

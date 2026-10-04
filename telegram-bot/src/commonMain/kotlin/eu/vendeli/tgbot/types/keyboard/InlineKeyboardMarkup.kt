@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 class InlineKeyboardMarkup : Keyboard {
     internal var inlineKeyboard: MutableList<List<InlineKeyboardButton>> = mutableListOf()
+    var forceReply: Boolean? = null
 
     @TgAPI.Ignore
     val keyboard: List<List<InlineKeyboardButton>> get() = inlineKeyboard

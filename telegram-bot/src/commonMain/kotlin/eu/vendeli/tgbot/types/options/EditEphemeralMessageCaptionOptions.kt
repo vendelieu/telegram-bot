@@ -6,4 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class EditEphemeralMessageCaptionOptions(
     override var parseMode: ParseMode? = null,
-) : OptionsParseMode
+    override var showCaptionAboveMedia: Boolean? = null,
+) : OptionsParseMode,
+    ShowCaptionAboveMediaProp

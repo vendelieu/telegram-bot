@@ -1,0 +1,542 @@
+{
+  "tests": {
+    "get game high score method test": [
+      {
+        "method": "sendGame",
+        "requestKeys": [
+          "chat_id",
+          "game_short_name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24222,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791132269,
+            "game": {
+              "title": "test",
+              "text": "Top Players\n1. ᵛᵉⁿᵈᵉˡⁱᵉᵘ – 2",
+              "text_entities": [
+                {
+                  "offset": 0,
+                  "length": 11,
+                  "type": "bold"
+                },
+                {
+                  "offset": 27,
+                  "length": 1,
+                  "type": "bold"
+                }
+              ],
+              "description": "test2",
+              "photo": [
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEp4",
+                  "file_size": 786,
+                  "width": 90,
+                  "height": 51
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEpy",
+                  "file_size": 10825,
+                  "width": 320,
+                  "height": 180
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEp9",
+                  "file_size": 27003,
+                  "width": 640,
+                  "height": 360
+                }
+              ]
+            },
+            "reply_markup": {
+              "inline_keyboard": [
+                [
+                  {
+                    "text": "Play test",
+                    "callback_game": {}
+                  }
+                ]
+              ]
+            }
+          }
+        }
+      },
+      {
+        "method": "setGameScore",
+        "requestKeys": [
+          "chat_id",
+          "force",
+          "message_id",
+          "score",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24222,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791132269,
+            "edit_date": 1791132269,
+            "game": {
+              "title": "test",
+              "text": "Top Players\n1. ᵛᵉⁿᵈᵉˡⁱᵉᵘ – 4242",
+              "text_entities": [
+                {
+                  "offset": 0,
+                  "length": 11,
+                  "type": "bold"
+                },
+                {
+                  "offset": 27,
+                  "length": 4,
+                  "type": "bold"
+                }
+              ],
+              "description": "test2",
+              "photo": [
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEp4",
+                  "file_size": 786,
+                  "width": 90,
+                  "height": 51
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEpy",
+                  "file_size": 10825,
+                  "width": 320,
+                  "height": 180
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEp9",
+                  "file_size": 27003,
+                  "width": 640,
+                  "height": 360
+                }
+              ]
+            },
+            "reply_markup": {
+              "inline_keyboard": [
+                [
+                  {
+                    "text": "Play test",
+                    "callback_game": {}
+                  }
+                ]
+              ]
+            }
+          }
+        }
+      },
+      {
+        "method": "getGameHighScores",
+        "requestKeys": [
+          "chat_id",
+          "message_id",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": [
+            {
+              "position": 1,
+              "user": {
+                "id": 100000001,
+                "is_bot": false,
+                "first_name": "redacted",
+                "username": "redacted",
+                "language_code": "en",
+                "is_premium": true
+              },
+              "score": 4242
+            }
+          ]
+        }
+      },
+      {
+        "method": "getGameHighScores",
+        "requestKeys": [
+          "chat_id",
+          "message_id",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": [
+            {
+              "position": 1,
+              "user": {
+                "id": 100000001,
+                "is_bot": false,
+                "first_name": "redacted",
+                "username": "redacted",
+                "language_code": "en",
+                "is_premium": true
+              },
+              "score": 4242
+            }
+          ]
+        }
+      }
+    ],
+    "send game method test": [
+      {
+        "method": "sendGame",
+        "requestKeys": [
+          "chat_id",
+          "game_short_name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24224,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791132270,
+            "game": {
+              "title": "test",
+              "text": "Top Players\n1. ᵛᵉⁿᵈᵉˡⁱᵉᵘ – 4242",
+              "text_entities": [
+                {
+                  "offset": 0,
+                  "length": 11,
+                  "type": "bold"
+                },
+                {
+                  "offset": 27,
+                  "length": 4,
+                  "type": "bold"
+                }
+              ],
+              "description": "test2",
+              "photo": [
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEp4",
+                  "file_size": 786,
+                  "width": 90,
+                  "height": 51
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEpy",
+                  "file_size": 10825,
+                  "width": 320,
+                  "height": 180
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEp9",
+                  "file_size": 27003,
+                  "width": 640,
+                  "height": 360
+                }
+              ]
+            },
+            "reply_markup": {
+              "inline_keyboard": [
+                [
+                  {
+                    "text": "Play test",
+                    "callback_game": {}
+                  }
+                ]
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "set score method test": [
+      {
+        "method": "sendGame",
+        "requestKeys": [
+          "chat_id",
+          "game_short_name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24225,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791132270,
+            "game": {
+              "title": "test",
+              "text": "Top Players\n1. ᵛᵉⁿᵈᵉˡⁱᵉᵘ – 4242",
+              "text_entities": [
+                {
+                  "offset": 0,
+                  "length": 11,
+                  "type": "bold"
+                },
+                {
+                  "offset": 27,
+                  "length": 4,
+                  "type": "bold"
+                }
+              ],
+              "description": "test2",
+              "photo": [
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEp4",
+                  "file_size": 786,
+                  "width": 90,
+                  "height": 51
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEpy",
+                  "file_size": 10825,
+                  "width": 320,
+                  "height": 180
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEp9",
+                  "file_size": 27003,
+                  "width": 640,
+                  "height": 360
+                }
+              ]
+            },
+            "reply_markup": {
+              "inline_keyboard": [
+                [
+                  {
+                    "text": "Play test",
+                    "callback_game": {}
+                  }
+                ]
+              ]
+            }
+          }
+        }
+      },
+      {
+        "method": "setGameScore",
+        "requestKeys": [
+          "chat_id",
+          "force",
+          "message_id",
+          "score",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24225,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791132270,
+            "game": {
+              "title": "test",
+              "text": "Top Players\n1. ᵛᵉⁿᵈᵉˡⁱᵉᵘ – 4242",
+              "text_entities": [
+                {
+                  "offset": 0,
+                  "length": 11,
+                  "type": "bold"
+                },
+                {
+                  "offset": 27,
+                  "length": 4,
+                  "type": "bold"
+                }
+              ],
+              "description": "test2",
+              "photo": [
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEp4",
+                  "file_size": 786,
+                  "width": 90,
+                  "height": 51
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEpy",
+                  "file_size": 10825,
+                  "width": 320,
+                  "height": 180
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEp9",
+                  "file_size": 27003,
+                  "width": 640,
+                  "height": 360
+                }
+              ]
+            },
+            "reply_markup": {
+              "inline_keyboard": [
+                [
+                  {
+                    "text": "Play test",
+                    "callback_game": {}
+                  }
+                ]
+              ]
+            }
+          }
+        }
+      },
+      {
+        "method": "setGameScore",
+        "requestKeys": [
+          "chat_id",
+          "force",
+          "message_id",
+          "score",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24225,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791132270,
+            "game": {
+              "title": "test",
+              "text": "Top Players\n1. ᵛᵉⁿᵈᵉˡⁱᵉᵘ – 4242",
+              "text_entities": [
+                {
+                  "offset": 0,
+                  "length": 11,
+                  "type": "bold"
+                },
+                {
+                  "offset": 27,
+                  "length": 4,
+                  "type": "bold"
+                }
+              ],
+              "description": "test2",
+              "photo": [
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEp4",
+                  "file_size": 786,
+                  "width": 90,
+                  "height": 51
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEpy",
+                  "file_size": 10825,
+                  "width": 320,
+                  "height": 180
+                },
+                {
+                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
+                  "file_unique_id": "AQADj8sxG0fGOEp9",
+                  "file_size": 27003,
+                  "width": 640,
+                  "height": 360
+                }
+              ]
+            },
+            "reply_markup": {
+              "inline_keyboard": [
+                [
+                  {
+                    "text": "Play test",
+                    "callback_game": {}
+                  }
+                ]
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -29,6 +29,7 @@ import eu.vendeli.tgbot.types.component.PurchasedPaidMediaUpdate
 import eu.vendeli.tgbot.types.component.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.component.ShippingQueryUpdate
 import eu.vendeli.tgbot.types.component.SubscriptionUpdate
+import eu.vendeli.tgbot.types.component.StoppedMessageGenerationUpdate
 
 @KtGramInternal
 @Suppress("CyclomaticComplexMethod")
@@ -59,5 +60,6 @@ fun Update.processUpdate(): ProcessedUpdate = when {
     managedBot != null -> ManagedBotUpdate(updateId, this, managedBot)
     guestMessage != null -> GuestMessageUpdate(updateId, this, guestMessage)
     subscription != null -> SubscriptionUpdate(updateId, this, subscription)
+    stoppedMessageGeneration != null -> StoppedMessageGenerationUpdate(updateId, this, stoppedMessageGeneration)
     else -> throw TgException("Unknown type of update.")
 }

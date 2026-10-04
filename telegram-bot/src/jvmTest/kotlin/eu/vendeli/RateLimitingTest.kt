@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.types.configuration.RateLimits
 import eu.vendeli.tgbot.utils.common.onMessage
 import io.kotest.core.spec.IsolationMode
 import io.kotest.matchers.shouldBe
+import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 
 class RateLimitingTest : BotTestContext(mockHttp = true) {
@@ -26,11 +27,11 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
 
     @Test
     suspend fun `test limit exceeding`() {
-        var exceeded = false
+        val exceeded = AtomicBoolean(false)
         val hitsCounter = AtomicInteger(0)
         val loopCounter = AtomicInteger(0)
         bot.config.rateLimiter.exceededAction = { _: Long, _: TelegramBot ->
-            exceeded = true
+            exceeded.set(true)
         }
 
         bot.setFunctionality {
@@ -44,17 +45,17 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
         }
         hitsCounter.get() shouldBe 5
         loopCounter.get() shouldBe 10
-        exceeded shouldBe true
+        exceeded.get() shouldBe true
     }
 
     @Test
     suspend fun `test certain command limit exceeding`() {
-        var exceeded = false
+        val exceeded = AtomicBoolean(false)
         val messageHitsCounter = AtomicInteger(0)
         val commandHitsCounter = AtomicInteger(0)
         val loopsCounter = AtomicInteger(0)
         bot.config.rateLimiter.exceededAction = { _: Long, _: TelegramBot ->
-            exceeded = true
+            exceeded.set(true)
         }
 
         bot.setFunctionality {
@@ -72,6 +73,6 @@ class RateLimitingTest : BotTestContext(mockHttp = true) {
         messageHitsCounter.get() shouldBe 2
         commandHitsCounter.get() shouldBe 2
         loopsCounter.get() shouldBe 20
-        exceeded shouldBe true
+        exceeded.get() shouldBe true
     }
 }

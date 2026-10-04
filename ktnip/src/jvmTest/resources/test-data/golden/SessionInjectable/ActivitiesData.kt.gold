@@ -1,0 +1,101 @@
+@file:Suppress(	
+            "NOTHING_TO_INLINE",
+            "ObjectPropertyName",
+            "UNUSED_ANONYMOUS_PARAMETER",
+            "UnnecessaryVariable",
+            "TopLevelPropertyNaming",
+            "UNNECESSARY_SAFE_CALL",
+            "RedundantNullableReturnType",
+            "KotlinConstantConditions",
+            "USELESS_ELVIS",
+)
+@file:OptIn(
+  KtGramInternal::class,
+  ExperimentalFeature::class,
+)
+
+package eu.vendeli.tgbot.generated
+
+import eu.vendeli.tgbot.annotations.`internal`.ExperimentalFeature
+import eu.vendeli.tgbot.annotations.`internal`.KtGramInternal
+import eu.vendeli.tgbot.core.Activity
+import eu.vendeli.tgbot.implementations.DefaultArgParser
+import eu.vendeli.tgbot.implementations.DefaultGuard
+import eu.vendeli.tgbot.types.component.CommonMatcher
+import eu.vendeli.tgbot.types.component.ProcessingContext
+import eu.vendeli.tgbot.types.component.UpdateType
+import eu.vendeli.tgbot.types.component.userOrNull
+import eu.vendeli.tgbot.types.configuration.RateLimits
+import eu.vendeli.tgbot.utils.common.getInstance
+import kotlin.Any
+import kotlin.Int
+import kotlin.OptIn
+import kotlin.String
+import kotlin.Suppress
+import multiSession
+import sessionMaybe
+import sessionStart
+
+internal object _sessionStart_93cbc0e1 : Activity {
+  override val id: Int = -1_815_363_359
+
+  override val qualifier: String = ""
+
+  override val function: String = "sessionStart"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val param0 = bot.sessions.of(update) ?: error("Session requested but update has no chat context")
+    val param1 = bot
+
+    ::sessionStart.invoke(
+    	param0, param1
+    )
+  }
+}
+
+internal object _sessionMaybe_43eaa91b : Activity {
+  override val id: Int = 1_139_452_187
+
+  override val qualifier: String = ""
+
+  override val function: String = "sessionMaybe"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val param0 = bot.sessions.of(update)
+    val param1 = bot
+
+    ::sessionMaybe.invoke(
+    	param0, param1
+    )
+  }
+}
+
+internal object _multiSession_c33b7bc1 : Activity {
+  override val id: Int = -1_019_511_871
+
+  override val qualifier: String = ""
+
+  override val function: String = "multiSession"
+
+  override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
+
+  override suspend fun invoke(context: ProcessingContext): Any? = context.run {
+    val bot = context.bot
+    val update = context.update
+    val param0 = bot.sessions.of(update, "wizard") ?: error("Session requested but update has no chat context")
+    val param1 = bot.sessions.of(update, "support") ?: error("Session requested but update has no chat context")
+    val param2 = bot
+
+    ::multiSession.invoke(
+    	param0, param1, param2
+    )
+  }
+}

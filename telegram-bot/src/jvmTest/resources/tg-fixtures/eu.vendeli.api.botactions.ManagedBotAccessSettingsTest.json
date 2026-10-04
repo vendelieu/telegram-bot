@@ -1,0 +1,35 @@
+{
+  "tests": {
+    "getManagedBotAccessSettings fails for unknown user": [
+      {
+        "method": "getManagedBotAccessSettings",
+        "requestKeys": [
+          "user_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: user not found"
+        }
+      }
+    ],
+    "setManagedBotAccessSettings fails for unknown user": [
+      {
+        "method": "setManagedBotAccessSettings",
+        "requestKeys": [
+          "is_access_restricted",
+          "user_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: user not found"
+        }
+      }
+    ]
+  }
+}

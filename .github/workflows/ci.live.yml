@@ -1,0 +1,52 @@
+name: live
+
+# Runs the jvm tests against the real Telegram Bot API. This is a drift detector, not a merge gate:
+# the required build (ci.build.yml) replays recorded responses. Failures here mean either Telegram
+# changed its behaviour or the shared test chat is in an unexpected state.
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # Live tests mutate one shared bot and chat, so never run two of them at the same time.
+  group: live-telegram
+  cancel-in-progress: false
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v6
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: current
+
+      - name: Run live tests
+        env:
+          TELEGRAM_ID: ${{ secrets.TELEGRAM_ID }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          BOT_ID: ${{ secrets.BOT_ID }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          BOT_TOKEN_2: ${{ secrets.BOT_TOKEN_2 }}
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+          PAYMENT_PROVIDER_TOKEN: ${{ secrets.PAYMENT_PROVIDER_TOKEN }}
+        run: ./gradlew :telegram-bot:liveTest
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-test-report
+          path: telegram-bot/build/reports/tests/liveTest

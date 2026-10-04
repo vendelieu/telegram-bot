@@ -35,7 +35,7 @@ class EditEphemeralMessageMediaAction(
  * @param chatId Unique identifier for the target chat or username of the target supergroup in the format @username
  * @param receiverUserId Identifier of the user who received the message
  * @param ephemeralMessageId Identifier of the ephemeral message to edit
- * @param media A JSON-serialized object for the new media content of the message. A new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL.
+ * @param media A JSON-serialized object for the new media content of the message
  * @param replyMarkup A JSON-serialized object for an inline keyboard
  * @returns [Boolean]
  */

@@ -1,12 +1,15 @@
 package utils
 
+import utils.replay.FakeIds
+import utils.replay.TestMode
+
 data class BotData(
     val id: Long,
     val token: String,
 )
 
 object BotResource : ResourcePicker<BotData>(
-    listOf(
+    if (TestMode.current.isReplay) listOf(BotData(FakeIds.BOT_ID, FakeIds.BOT_TOKEN)) else listOf(
         (TestEnv.get("BOT_TOKEN") ?: "1:token").let {
             BotData(it.substringBefore(':').toLongOrNull() ?: 0L, it)
         },

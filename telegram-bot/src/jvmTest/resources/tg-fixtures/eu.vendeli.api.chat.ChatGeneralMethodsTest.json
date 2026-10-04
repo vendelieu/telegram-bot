@@ -1,0 +1,213 @@
+{
+  "tests": {
+    "approve chat join request method test": [
+      {
+        "method": "approveChatJoinRequest",
+        "requestKeys": [
+          "chat_id",
+          "user_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: USER_ALREADY_PARTICIPANT"
+        }
+      }
+    ],
+    "chat action method test": [
+      {
+        "method": "sendChatAction",
+        "requestKeys": [
+          "action",
+          "chat_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "sendChatAction",
+        "requestKeys": [
+          "action",
+          "chat_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "decline chat join request method test": [
+      {
+        "method": "declineChatJoinRequest",
+        "requestKeys": [
+          "chat_id",
+          "user_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: HIDE_REQUESTER_MISSING"
+        }
+      }
+    ],
+    "pin chat message method test": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 25615,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": -1000000000002,
+              "title": "testchat",
+              "is_forum": true,
+              "type": "supergroup"
+            },
+            "date": 1791131910,
+            "text": "test",
+            "sender_tag": "bot"
+          }
+        }
+      },
+      {
+        "method": "pinChatMessage",
+        "requestKeys": [
+          "chat_id",
+          "message_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "restrict chat member method test": [
+      {
+        "method": "restrictChatMember",
+        "requestKeys": [
+          "chat_id",
+          "permissions",
+          "until_date",
+          "use_independent_chat_permissions",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "restrictChatMember",
+        "requestKeys": [
+          "chat_id",
+          "permissions",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "unpin all chat message method test": [
+      {
+        "method": "unpinAllChatMessages",
+        "requestKeys": [
+          "chat_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "unpin chat message method test": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 25617,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": -1000000000002,
+              "title": "testchat",
+              "is_forum": true,
+              "type": "supergroup"
+            },
+            "date": 1791131911,
+            "text": "test",
+            "sender_tag": "bot"
+          }
+        }
+      },
+      {
+        "method": "pinChatMessage",
+        "requestKeys": [
+          "chat_id",
+          "message_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "unpinChatMessage",
+        "requestKeys": [
+          "chat_id",
+          "message_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ]
+  }
+}

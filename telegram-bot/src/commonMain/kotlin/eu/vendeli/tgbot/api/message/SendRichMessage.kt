@@ -10,6 +10,8 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.media.InputRichMessage
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.options.RichMessageOptions
+import eu.vendeli.tgbot.utils.builders.InputRichMessage
+import eu.vendeli.tgbot.utils.builders.RichMessageBuilder
 import eu.vendeli.tgbot.utils.internal.encodeWith
 import eu.vendeli.tgbot.utils.internal.getReturnType
 import eu.vendeli.tgbot.utils.internal.transform
@@ -40,6 +42,7 @@ class SendRichMessageAction(
  * @param chatId Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
  * @param messageThreadId Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
  * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
+ * @param ephemeralMessageParameters A JSON-serialized object containing the parameters of the ephemeral message to send
  * @param richMessage The message to be sent
  * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
  * @param protectContent Protects the contents of the sent message from forwarding and saving
@@ -54,10 +57,10 @@ class SendRichMessageAction(
 inline fun richMessage(richMessage: InputRichMessage) = SendRichMessageAction(richMessage)
 
 @TgAPI
-fun richMessage(block: InputRichMessage.() -> Unit) = SendRichMessageAction(InputRichMessage().apply(block))
+fun richMessage(block: RichMessageBuilder.() -> Unit) = SendRichMessageAction(InputRichMessage(block))
 
 @TgAPI
 inline fun sendRichMessage(richMessage: InputRichMessage) = richMessage(richMessage)
 
 @TgAPI
-fun sendRichMessage(block: InputRichMessage.() -> Unit) = richMessage(block)
+fun sendRichMessage(block: RichMessageBuilder.() -> Unit) = richMessage(block)

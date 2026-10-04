@@ -1,6 +1,7 @@
 package eu.vendeli.tgbot.types.gift
 
 import eu.vendeli.tgbot.utils.serde.InstantSerializer
+import eu.vendeli.tgbot.types.msg.MessageEntity
 import kotlinx.serialization.Serializable
 import kotlin.time.Instant
 
@@ -10,6 +11,9 @@ import kotlin.time.Instant
  * [Api reference](https://core.telegram.org/bots/api#uniquegiftinfo)
  * @property gift Information about the gift
  * @property origin Origin of the gift. Currently, either "upgrade" for gifts upgraded from regular gifts, "transfer" for gifts transferred from other users or channels, "resale" for gifts bought from other users, "gifted_upgrade" for upgrades purchased after the gift was sent, or "offer" for gifts bought or sold through gift purchase offers.
+ * @property text Optional. Text of the message that was added to the gift
+ * @property entities Optional. Special entities that appear in the text
+ * @property isPrivate Optional. True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
  * @property lastResaleCurrency Optional. For gifts bought from other users, the currency in which the payment for the gift was done. Currently, one of "XTR" for Telegram Stars or "TON" for TON grams.
  * @property lastResaleAmount Optional. For gifts bought from other users, the price paid for the gift in either Telegram Stars or nanograms
  * @property ownedGiftId Optional. Unique identifier of the received gift for the bot; only present for gifts received on behalf of business accounts
@@ -23,6 +27,9 @@ data class UniqueGiftInfo(
     val lastResaleCurrency: String? = null,
     val lastResaleAmount: Int? = null,
     val ownedGiftId: String? = null,
+    val text: String? = null,
+    val entities: List<MessageEntity>? = null,
+    val isPrivate: Boolean? = null,
     val transferStarCount: Int? = null,
     @Serializable(InstantSerializer::class)
     val nextTransferDate: Instant? = null,

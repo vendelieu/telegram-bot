@@ -1,0 +1,63 @@
+{
+  "tests": {
+    "sendPaidMedia action testing": [
+      {
+        "method": "sendPaidMedia",
+        "requestKeys": [
+          "chat_id",
+          "file",
+          "media",
+          "star_count"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 476,
+            "sender_chat": {
+              "id": -1000000000003,
+              "title": "testChannel",
+              "type": "channel"
+            },
+            "chat": {
+              "id": -1000000000003,
+              "title": "testChannel",
+              "type": "channel"
+            },
+            "date": 1791132042,
+            "paid_media": {
+              "star_count": 1,
+              "paid_media": [
+                {
+                  "type": "photo",
+                  "photo": [
+                    {
+                      "file_id": "AgACAgQAAxkDAAJdgmq-3OHxzAEJXM9KHyHxy3WZoB85AAJDqTEbpu51UubZigAB-b5vFQEAAwIAA20AAz0E",
+                      "file_unique_id": "AQADQ6kxG6budVJy",
+                      "file_size": 380,
+                      "width": 10,
+                      "height": 10
+                    }
+                  ]
+                },
+                {
+                  "type": "photo",
+                  "photo": [
+                    {
+                      "file_id": "AgACAgIAAxUHar7c3-A9PInUC_g8RCQf3E1H7pMAAkcmaxuPi_lJt9F2w255zgcBAAMCAANtAAM9BA",
+                      "file_unique_id": "AQADRyZrG4-L-Uly",
+                      "file_size": 287,
+                      "width": 1,
+                      "height": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}

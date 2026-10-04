@@ -44,8 +44,7 @@ class SendLivePhotoAction(
  * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
  * @param messageThreadId Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
  * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
- * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
- * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which triggerred the message if any
+ * @param ephemeralMessageParameters A JSON-serialized object containing the parameters of the ephemeral message to send
  * @param livePhoto Live photo video to send. The video must be no longer than 10 seconds and must not exceed 10 MB in size. Pass a file_id as String to send a video that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data. More information on Sending Files: https://core.telegram.org/bots/api#sending-files. Sending live photos by a URL is currently unsupported.
  * @param photo The static photo to send. Pass a file_id as String to send a photo that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data. More information on Sending Files: https://core.telegram.org/bots/api#sending-files. Sending live photos by a URL is currently unsupported.
  * @param caption Video caption (may also be used when resending videos by file_id), 0-1024 characters after entities parsing

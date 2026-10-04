@@ -1,0 +1,21 @@
+{
+  "tests": {
+    "edit user star subscription test": [
+      {
+        "method": "editUserStarSubscription",
+        "requestKeys": [
+          "is_canceled",
+          "telegram_payment_charge_id",
+          "user_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: CHARGE_ID_INVALID"
+        }
+      }
+    ]
+  }
+}

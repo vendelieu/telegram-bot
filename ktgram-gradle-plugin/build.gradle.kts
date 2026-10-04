@@ -29,11 +29,19 @@ tasks.processResources {
     val logbackVersion = libs.versions.logback.get()
     inputs.property("logback", logbackVersion)
 
+    val coroutinesVersion = libs.versions.coroutines.get()
+    inputs.property("coroutines", coroutinesVersion)
+
+    val serializationVersion = libs.versions.serialization.get()
+    inputs.property("serialization", serializationVersion)
+
     filesMatching("ktgram.properties") {
         expand(
             "ktgramVer" to projectVersion,
             "ktorVer" to ktorVersion,
             "logbackVer" to logbackVersion,
+            "coroutinesVer" to coroutinesVersion,
+            "serializationVer" to serializationVersion,
         )
     }
 }
@@ -41,4 +49,11 @@ tasks.processResources {
 dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.plugin)
+
+    testImplementation(libs.test.kotest.junit5)
+    testImplementation(libs.test.kotest.assertions)
+}
+
+tasks.test {
+    useJUnitPlatform()
 }

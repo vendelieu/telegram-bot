@@ -1,0 +1,52 @@
+{
+  "tests": {
+    "several entity usage test": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "entities",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24169,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131854,
+            "text": "test message testtest plus test2",
+            "entities": [
+              {
+                "offset": 12,
+                "length": 5,
+                "type": "bold"
+              },
+              {
+                "offset": 27,
+                "length": 5,
+                "type": "text_link",
+                "url": "https://google.com/"
+              }
+            ],
+            "link_preview_options": {
+              "url": "http://google.com/"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
