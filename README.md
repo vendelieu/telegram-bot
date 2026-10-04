@@ -22,7 +22,7 @@ build.gradle.kts example:
 ```gradle
 plugins {
     // ...
-    id("com.google.devtools.ksp") version "2.3.10"
+    id("com.google.devtools.ksp") version "2.3.12"
     id("eu.vendeli.telegram-bot") version "9.7.0"
 }
 ```
@@ -34,7 +34,7 @@ To set up the project without using the plugin, you need to add a dependency and
 ```gradle
 plugins {
     // ...
-    id("com.google.devtools.ksp") version "2.3.10"
+    id("com.google.devtools.ksp") version "2.3.12"
 }
 
 dependencies {
