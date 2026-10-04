@@ -23,10 +23,10 @@ abstract class BaseCollector : Collector {
      */
     protected fun extractActivityMetadata(function: KSFunctionDeclaration): ActivityMetadata {
         val rateLimits = AnnotationExtractor.extractRateLimits(function)
-        val guardClass = AnnotationExtractor.extractGuard(function)
+        val guardClasses = AnnotationExtractor.extractGuard(function)
         val argParserClass = AnnotationExtractor.extractArgParser(function)
 
-        return function.toActivityMetadata(rateLimits, guardClass, argParserClass)
+        return function.toActivityMetadata(rateLimits, guardClasses, argParserClass)
     }
 
     /**

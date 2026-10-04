@@ -37,6 +37,7 @@ import kotlin.Int
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.collections.List
 import kotlin.reflect.KClass
 import testGlobal
 import testUnprocessed
@@ -246,7 +247,7 @@ internal object Test2_obj2_6493f0f2 : Activity {
 
   override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
 
-  override val guardClass: KClass<out Guard> = CustomTestGuard::class
+  override val guardClasses: List<KClass<out Guard>> = listOf(CustomTestGuard::class)
 
   override suspend fun invoke(context: ProcessingContext): Any? = context.run {
     val bot = context.bot
@@ -272,7 +273,7 @@ internal object Test2_obj4_69295ab0 : Activity {
 
   override val rateLimits: RateLimits = RateLimits.NOT_LIMITED
 
-  override val guardClass: KClass<out Guard> = CustomTestGuard::class
+  override val guardClasses: List<KClass<out Guard>> = listOf(CustomTestGuard::class)
 
   override val argParser: KClass<out ArgumentParser> = CustomTestArgParser::class
 
@@ -301,7 +302,7 @@ internal object Test2_obj3_d7cd175f : Activity {
 
   override val rateLimits: RateLimits = RateLimits(1L, 200L)
 
-  override val guardClass: KClass<out Guard> = CustomTestGuard::class
+  override val guardClasses: List<KClass<out Guard>> = listOf(CustomTestGuard::class)
 
   override val argParser: KClass<out ArgumentParser> = CustomTestArgParser::class
 

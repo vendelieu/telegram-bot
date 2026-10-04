@@ -35,7 +35,7 @@ class TestActivity(
     override val rateLimits: RateLimits = RateLimits.NOT_LIMITED,
     private val block: suspend (ProcessingContext) -> Any?,
 ) : Activity {
-    override val guardClass: KClass<out Guard> = DefaultGuard::class
+    override val guardClasses: List<KClass<out Guard>> = listOf(DefaultGuard::class)
     override val argParser: KClass<out ArgumentParser> = DefaultArgParser::class
 
     override suspend fun invoke(context: ProcessingContext): Any? = block(context)

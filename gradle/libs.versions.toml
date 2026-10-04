@@ -1,36 +1,36 @@
 [versions]
-ktor = "3.5.2"
-logback = "1.6.1"
-slf4j = "2.0.18"
+ktor = "3.6.0"
+logback = "1.6.5"
+slf4j = "2.0.20"
 
 serialization = "1.11.0"
 stately = "2.1.0"
 
-kotlin = "2.4.10"
+kotlin = "2.4.20"
 coroutines = "1.11.0"
 dokka = "2.2.0"
-kotlinter = "5.6.0"
+kotlinter = "5.7.0"
 deteKT = "1.23.8"
 toml = "0.5.0"
 
 dotenv-kotlin = "6.5.1"
-kotest = "6.2.3"
+kotest = "6.2.5"
 mockk = "1.14.11"
-kover = "0.9.9"
+kover = "0.9.11"
 krypto = "4.0.10"
 urlencoder = "1.6.0"
-ayza = "10.0.6"
-spring = "4.1.0"
+ayza = "10.1.0"
+spring = "4.1.1"
 
-ksp = "2.3.11"
-poet = "2.3.0"
+ksp = "2.3.12"
+poet = "2.4.0"
 autoservice-annotations = "1.1.1"
 autoservice-ksp = "1.2.0"
-kotlinCompileTesting = "0.13.0"
+kotlinCompileTesting = "0.14.0"
 
-binvalid = "0.18.1"
+binvalid = "0.18.2"
 publisher = "0.37.0"
-gradle-publish = "2.1.1"
+gradle-publish = "2.2.1"
 
 [libraries]
 # ktor

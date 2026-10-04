@@ -17,7 +17,7 @@ class LambdaActivity(
     override val qualifier: String = "functional",
     override val function: String,
     override val rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-    override val guardClass: KClass<out Guard> = DefaultGuard::class,
+    override val guardClasses: List<KClass<out Guard>> = listOf(DefaultGuard::class),
     override val argParser: KClass<out ArgumentParser> = DefaultArgParser::class,
     private val action: suspend ProcessingContext.() -> Any?,
 ) : Activity {

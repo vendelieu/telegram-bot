@@ -15,13 +15,16 @@ internal object DefaultValidationInterceptor : PipelineInterceptor {
         val activity = context.activity ?: return
         val user = context.update.userOrNull
 
-        val isGuarded = activity.guardClass
-            .runCatching {
-                checkIsGuarded(user, context.update, context.bot)
-            }.onFailure {
-                context.bot.update.handleFailure(context.update, it)
-            }.getOrDefault(false)
-        if (!isGuarded) {
+        val isGuarded = activity.guardClasses.map {
+            it
+                .runCatching {
+                    checkIsGuarded(user, context.update, context.bot)
+                }.onFailure {
+                    context.bot.update.handleFailure(context.update, it)
+                }.getOrDefault(false)
+        }
+
+        if (isGuarded.none { it }) {
             logger.debug { "Invocation guarded: $activity" }
             context.finish()
             return

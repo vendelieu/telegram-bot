@@ -18,13 +18,13 @@ import kotlin.reflect.KClass
 class InputChainBuilder internal constructor(
     private val rootId: String,
     rootRateLimits: RateLimits,
-    rootGuard: KClass<out Guard>,
+    rootGuard: List<KClass<out Guard>>,
     rootBlock: OnInputActivity,
 ) {
     internal data class Step(
         val id: String,
         val rateLimits: RateLimits,
-        val guard: KClass<out Guard>,
+        val guard: List<KClass<out Guard>>,
         val action: OnInputActivity,
         var breakCondition: (suspend ProcessingContext.() -> Boolean)? = null,
         var breakAction: (suspend ProcessingContext.() -> Unit)? = null,
@@ -40,7 +40,7 @@ class InputChainBuilder internal constructor(
 
     fun andThen(
         rateLimits: RateLimits = RateLimits.NOT_LIMITED,
-        guard: KClass<out Guard> = DefaultGuard::class,
+        guard: List<KClass<out Guard>> = listOf(DefaultGuard::class),
         block: OnInputActivity,
     ): InputChainBuilder {
         stepIndex++
@@ -72,7 +72,7 @@ class InputChainBuilder internal constructor(
                 id = "functional:input:${step.id}".hashCode(),
                 function = step.id,
                 rateLimits = step.rateLimits,
-                guardClass = step.guard,
+                guardClasses = step.guard,
             ) {
                 val ctx = ActivityCtx(update)
                 val user = update.userOrNull ?: return@LambdaActivity Unit

@@ -19,6 +19,7 @@ import eu.vendeli.ktnip.utils.getActivityObjectName
 import eu.vendeli.ktnip.utils.getAnnotatedClassSymbols
 import eu.vendeli.ktnip.utils.safeCast
 import eu.vendeli.tgbot.annotations.WizardHandler
+import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.types.chain.WizardStep
 import eu.vendeli.tgbot.utils.common.fqName
 
@@ -89,7 +90,7 @@ internal class WizardCollector : BaseCollector() {
             // Extract metadata for engine activity from class
             val rateLimits = eu.vendeli.ktnip.annotation.AnnotationExtractor
                 .extractRateLimits(classDecl)
-            val guardClass = eu.vendeli.ktnip.annotation.AnnotationExtractor
+            val guardClasses = eu.vendeli.ktnip.annotation.AnnotationExtractor
                 .extractGuard(classDecl)
             val argParserClass = eu.vendeli.ktnip.annotation.AnnotationExtractor
                 .extractArgParser(classDecl)
@@ -98,7 +99,7 @@ internal class WizardCollector : BaseCollector() {
                 qualifier = classQualifier,
                 function = classShortName,
                 rateLimits = rateLimits,
-                guardClass = guardClass ?: eu.vendeli.tgbot.implementations.DefaultGuard::class.fqName,
+                guardClasses = guardClasses ?: listOf(DefaultGuard::class.fqName),
                 argParserClass = argParserClass ?: eu.vendeli.tgbot.implementations.DefaultArgParser::class.fqName,
             )
 

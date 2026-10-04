@@ -1,5 +1,7 @@
 package eu.vendeli.tgbot.types.media
 
+import eu.vendeli.tgbot.types.msg.RichText
+import eu.vendeli.tgbot.utils.builders.RichEntitiesBuilder
 import kotlinx.serialization.Serializable
 
 /**
@@ -21,4 +23,8 @@ data class InputRichMessage(
     var media: List<InputRichMessageMedia>? = null,
     var isRtl: Boolean? = null,
     var skipEntityDetection: Boolean? = null,
-)
+) {
+    operator fun String.minus(richText: RichText) = RichEntitiesBuilder(mutableListOf(RichText.Plain(this), richText))
+    operator fun RichEntitiesBuilder.minus(string: String) = this.apply { richTexts += RichText.Plain(string) }
+    operator fun RichEntitiesBuilder.minus(richText: RichText) = this.apply { richTexts += richText }
+}

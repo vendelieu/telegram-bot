@@ -9,9 +9,9 @@ import kotlin.reflect.KClass
  *
  * Supported by [CommandHandler], [CommandHandler.CallbackQuery], [InputHandler].
  *
- * @property guard Guard condition that will be checked.
+ * @property guards Guard conditions that will be checked.
  */
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION, AnnotationTarget.ANNOTATION_CLASS)
 annotation class Guard(
-    val guard: KClass<out Guard> = DefaultGuard::class,
+    vararg val guards: KClass<out Guard> = [DefaultGuard::class],
 )
