@@ -194,10 +194,8 @@ class InvocationCodeGenerator(
             // Callback query auto-answer
             if (isCallbackAutoAnswer) {
                 fileBuilder.addImport("eu.vendeli.tgbot.api.answer", "answerCallbackQuery")
-                fileBuilder.addImport("eu.vendeli.tgbot.types.component", "CallbackQueryUpdate", "getUser")
-                add(
-                    "answerCallbackQuery((update as CallbackQueryUpdate).callbackQuery.id).send(update.getUser(), bot)\n",
-                )
+                fileBuilder.addImport("eu.vendeli.tgbot.types.component", "CallbackQueryUpdate")
+                add("answerCallbackQuery((update as CallbackQueryUpdate).callbackQuery.id).send(bot)\n")
             }
 
             // Actual invocation

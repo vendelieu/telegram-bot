@@ -28,7 +28,6 @@ import eu.vendeli.tgbot.types.component.CallbackQueryUpdate
 import eu.vendeli.tgbot.types.component.CommonMatcher
 import eu.vendeli.tgbot.types.component.ProcessingContext
 import eu.vendeli.tgbot.types.component.UpdateType
-import eu.vendeli.tgbot.types.component.getUser
 import eu.vendeli.tgbot.types.component.userOrNull
 import eu.vendeli.tgbot.types.configuration.RateLimits
 import eu.vendeli.tgbot.utils.common.getInstance
@@ -285,7 +284,7 @@ internal object Test2_obj4_69295ab0 : Activity {
     val param0 = parameters["test"]?.toIntOrNull()!!
     val param1 = user!!
     val param2 = bot
-    answerCallbackQuery((update as CallbackQueryUpdate).callbackQuery.id).send(update.getUser(), bot)
+    answerCallbackQuery((update as CallbackQueryUpdate).callbackQuery.id).send(bot)
 
     Test2::obj4.invoke(
     	param0, param1, param2

@@ -119,7 +119,7 @@ public suspend inline fun TelegramBot.createInvoiceLink(
 
 public suspend inline fun TelegramBot.answerWebAppQuery(webAppQueryId: String, result: InlineQueryResult): Unit = eu.vendeli.tgbot.api.answer.answerWebAppQuery(webAppQueryId, result).send(this)
 
-public suspend inline fun TelegramBot.answerCallbackQuery(callbackQueryId: String, chatId: Long): Unit = eu.vendeli.tgbot.api.answer.answerCallbackQuery(callbackQueryId).send(chatId, this)
+public suspend inline fun TelegramBot.answerCallbackQuery(callbackQueryId: String): Unit = eu.vendeli.tgbot.api.answer.answerCallbackQuery(callbackQueryId).send(this)
 
 public suspend inline fun TelegramBot.answerShippingQuery(
   shippingQueryId: String,

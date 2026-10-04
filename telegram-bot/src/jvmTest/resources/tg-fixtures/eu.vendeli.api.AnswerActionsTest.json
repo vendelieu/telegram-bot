@@ -4,8 +4,7 @@
       {
         "method": "answerCallbackQuery",
         "requestKeys": [
-          "callback_query_id",
-          "chat_id"
+          "callback_query_id"
         ],
         "status": 400,
         "contentType": "application/json",

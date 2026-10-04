@@ -13,7 +13,7 @@ Register a handler and **always** answer the callback query to stop the loading 
 bot.setFunctionality {
     onCallbackQuery {
         val cq = update.callbackQuery
-        answerCallbackQuery(cq.id).options { text = "Done!" }.send(user, bot)
+        answerCallbackQuery(cq.id).options { text = "Done!" }.send(bot)
         when (cq.data) {
             "yes" -> message("You said yes!").send(user, bot)
             "no" -> message("You said no.").send(user, bot)
@@ -40,7 +40,7 @@ bot.setFunctionality {
 **Always call** `answerCallbackQuery` to remove the loading state:
 
 ```kotlin
-answerCallbackQuery(callbackQuery.id).send(user, bot)
+answerCallbackQuery(callbackQuery.id).send(bot)
 ```
 
 With options:

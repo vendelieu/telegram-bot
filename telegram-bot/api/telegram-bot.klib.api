@@ -1428,7 +1428,7 @@ final class <#A: out eu.vendeli.tgbot.types.component/ProcessedUpdate> eu.vendel
     final fun toString(): kotlin/String // eu.vendeli.tgbot.types.component/CommandContext.toString|toString(){}[0]
 }
 
-final class eu.vendeli.tgbot.api.answer/AnswerCallbackQueryAction : eu.vendeli.tgbot.interfaces.action/Action<kotlin/Boolean>, eu.vendeli.tgbot.interfaces.features/OptionsFeature<eu.vendeli.tgbot.api.answer/AnswerCallbackQueryAction, eu.vendeli.tgbot.types.options/AnswerCallbackQueryOptions> { // eu.vendeli.tgbot.api.answer/AnswerCallbackQueryAction|null[0]
+final class eu.vendeli.tgbot.api.answer/AnswerCallbackQueryAction : eu.vendeli.tgbot.interfaces.action/SimpleAction<kotlin/Boolean>, eu.vendeli.tgbot.interfaces.features/OptionsFeature<eu.vendeli.tgbot.api.answer/AnswerCallbackQueryAction, eu.vendeli.tgbot.types.options/AnswerCallbackQueryOptions> { // eu.vendeli.tgbot.api.answer/AnswerCallbackQueryAction|null[0]
     constructor <init>(kotlin/String) // eu.vendeli.tgbot.api.answer/AnswerCallbackQueryAction.<init>|<init>(kotlin.String){}[0]
 }
 
