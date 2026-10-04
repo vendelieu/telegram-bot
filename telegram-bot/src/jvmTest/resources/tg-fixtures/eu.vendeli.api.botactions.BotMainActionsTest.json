@@ -1,0 +1,677 @@
+{
+  "tests": {
+    "get updates method testing": [
+      {
+        "method": "getUpdates",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": [
+            {
+              "update_id": 986722161,
+              "message": {
+                "message_id": 25590,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "testchat",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130381,
+                "new_chat_photo": [
+                  {
+                    "file_id": "AgACAgIAAx0EbTMcyAACY_ZqwnsNk5FxGZ9RaE9Hp8qTgFErUAACOiNrG_NQGUpYLHbsLBnuMAEAAwIAA2EAAz0E",
+                    "file_unique_id": "AQADOiNrG_NQGUoAAQ",
+                    "file_size": 14132,
+                    "width": 160,
+                    "height": 160
+                  },
+                  {
+                    "file_id": "AgACAgIAAx0EbTMcyAACY_ZqwnsNk5FxGZ9RaE9Hp8qTgFErUAACOiNrG_NQGUpYLHbsLBnuMAEAAwIAA2IAAz0E",
+                    "file_unique_id": "AQADOiNrG_NQGUpn",
+                    "file_size": 48451,
+                    "width": 320,
+                    "height": 320
+                  },
+                  {
+                    "file_id": "AgACAgIAAx0EbTMcyAACY_ZqwnsNk5FxGZ9RaE9Hp8qTgFErUAACOiNrG_NQGUpYLHbsLBnuMAEAAwIAA2MAAz0E",
+                    "file_unique_id": "AQADOiNrG_NQGUoB",
+                    "file_size": 131636,
+                    "width": 640,
+                    "height": 640
+                  }
+                ]
+              }
+            },
+            {
+              "update_id": 986722162,
+              "message": {
+                "message_id": 25591,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "testchat",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130388,
+                "new_chat_photo": [
+                  {
+                    "file_id": "AgACAgIAAx0EbTMcyAACY_dqwnsUKEah4PqeX7-Dekl81b9gwQACdCJrGyyoGEptlzVWNt4L4QEAAwIAA2EAAz0E",
+                    "file_unique_id": "AQADdCJrGyyoGEoAAQ",
+                    "file_size": 14132,
+                    "width": 160,
+                    "height": 160
+                  },
+                  {
+                    "file_id": "AgACAgIAAx0EbTMcyAACY_dqwnsUKEah4PqeX7-Dekl81b9gwQACdCJrGyyoGEptlzVWNt4L4QEAAwIAA2IAAz0E",
+                    "file_unique_id": "AQADdCJrGyyoGEpn",
+                    "file_size": 48451,
+                    "width": 320,
+                    "height": 320
+                  },
+                  {
+                    "file_id": "AgACAgIAAx0EbTMcyAACY_dqwnsUKEah4PqeX7-Dekl81b9gwQACdCJrGyyoGEptlzVWNt4L4QEAAwIAA2MAAz0E",
+                    "file_unique_id": "AQADdCJrGyyoGEoB",
+                    "file_size": 131636,
+                    "width": 640,
+                    "height": 640
+                  }
+                ]
+              }
+            },
+            {
+              "update_id": 986722163,
+              "message": {
+                "message_id": 25592,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "testchat",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130388,
+                "delete_chat_photo": true
+              }
+            },
+            {
+              "update_id": 986722164,
+              "message": {
+                "message_id": 25593,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "test",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130389,
+                "new_chat_title": "test"
+              }
+            },
+            {
+              "update_id": 986722165,
+              "message": {
+                "message_id": 25594,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "testchat",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130389,
+                "new_chat_title": "testchat"
+              }
+            },
+            {
+              "update_id": 986722166,
+              "message": {
+                "message_id": 25595,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "testchat",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130450,
+                "message_thread_id": 25595,
+                "forum_topic_created": {
+                  "name": "testTopic",
+                  "icon_color": 7322096
+                },
+                "is_topic_message": true
+              }
+            },
+            {
+              "update_id": 986722167,
+              "message": {
+                "message_id": 25596,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "testchat",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130450,
+                "message_thread_id": 25595,
+                "reply_to_message": {
+                  "message_id": 25595,
+                  "from": {
+                    "id": 700000001,
+                    "is_bot": true,
+                    "first_name": "redacted",
+                    "username": "redacted"
+                  },
+                  "chat": {
+                    "id": -1000000000002,
+                    "title": "testchat",
+                    "is_forum": true,
+                    "type": "supergroup"
+                  },
+                  "date": 1791130450,
+                  "message_thread_id": 25595,
+                  "forum_topic_created": {
+                    "name": "testTopic",
+                    "icon_color": 7322096
+                  },
+                  "is_topic_message": true
+                },
+                "forum_topic_closed": {},
+                "is_topic_message": true
+              }
+            },
+            {
+              "update_id": 986722168,
+              "message": {
+                "message_id": 25597,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "testchat",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130451,
+                "message_thread_id": 25597,
+                "forum_topic_created": {
+                  "name": "testTopic",
+                  "icon_color": 9367192
+                },
+                "is_topic_message": true
+              }
+            },
+            {
+              "update_id": 986722169,
+              "message": {
+                "message_id": 25598,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "testchat",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130451,
+                "message_thread_id": 25598,
+                "forum_topic_created": {
+                  "name": "testTopic",
+                  "icon_color": 7322096
+                },
+                "is_topic_message": true
+              }
+            },
+            {
+              "update_id": 986722170,
+              "message": {
+                "message_id": 25599,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "testchat",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130451,
+                "message_thread_id": 25599,
+                "forum_topic_created": {
+                  "name": "testTopic",
+                  "icon_color": 7322096
+                },
+                "is_topic_message": true
+              }
+            },
+            {
+              "update_id": 986722171,
+              "message": {
+                "message_id": 25600,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "testchat",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130458,
+                "message_thread_id": 25599,
+                "reply_to_message": {
+                  "message_id": 25599,
+                  "from": {
+                    "id": 700000001,
+                    "is_bot": true,
+                    "first_name": "redacted",
+                    "username": "redacted"
+                  },
+                  "chat": {
+                    "id": -1000000000002,
+                    "title": "testchat",
+                    "is_forum": true,
+                    "type": "supergroup"
+                  },
+                  "date": 1791130451,
+                  "message_thread_id": 25599,
+                  "forum_topic_created": {
+                    "name": "testTopic",
+                    "icon_color": 7322096
+                  },
+                  "is_topic_message": true
+                },
+                "forum_topic_edited": {
+                  "name": "testTopic2"
+                },
+                "is_topic_message": true
+              }
+            },
+            {
+              "update_id": 986722172,
+              "message": {
+                "message_id": 25601,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "testchat",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130458,
+                "message_thread_id": 25601,
+                "forum_topic_created": {
+                  "name": "testTopic",
+                  "icon_color": 7322096
+                },
+                "is_topic_message": true
+              }
+            },
+            {
+              "update_id": 986722173,
+              "message": {
+                "message_id": 25602,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "testchat",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130458,
+                "message_thread_id": 25601,
+                "reply_to_message": {
+                  "message_id": 25601,
+                  "from": {
+                    "id": 700000001,
+                    "is_bot": true,
+                    "first_name": "redacted",
+                    "username": "redacted"
+                  },
+                  "chat": {
+                    "id": -1000000000002,
+                    "title": "testchat",
+                    "is_forum": true,
+                    "type": "supergroup"
+                  },
+                  "date": 1791130458,
+                  "message_thread_id": 25601,
+                  "forum_topic_created": {
+                    "name": "testTopic",
+                    "icon_color": 7322096
+                  },
+                  "is_topic_message": true
+                },
+                "forum_topic_closed": {},
+                "is_topic_message": true
+              }
+            },
+            {
+              "update_id": 986722174,
+              "message": {
+                "message_id": 25603,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "testchat",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130459,
+                "message_thread_id": 25601,
+                "reply_to_message": {
+                  "message_id": 25601,
+                  "from": {
+                    "id": 700000001,
+                    "is_bot": true,
+                    "first_name": "redacted",
+                    "username": "redacted"
+                  },
+                  "chat": {
+                    "id": -1000000000002,
+                    "title": "testchat",
+                    "is_forum": true,
+                    "type": "supergroup"
+                  },
+                  "date": 1791130458,
+                  "message_thread_id": 25601,
+                  "forum_topic_created": {
+                    "name": "testTopic",
+                    "icon_color": 7322096
+                  },
+                  "is_topic_message": true
+                },
+                "forum_topic_reopened": {},
+                "is_topic_message": true
+              }
+            },
+            {
+              "update_id": 986722175,
+              "message": {
+                "message_id": 25604,
+                "from": {
+                  "id": 700000001,
+                  "is_bot": true,
+                  "first_name": "redacted",
+                  "username": "redacted"
+                },
+                "chat": {
+                  "id": -1000000000002,
+                  "title": "testchat",
+                  "is_forum": true,
+                  "type": "supergroup"
+                },
+                "date": 1791130459,
+                "message_thread_id": 25604,
+                "forum_topic_created": {
+                  "name": "testTopic",
+                  "icon_color": 7322096
+                },
+                "is_topic_message": true
+              }
+            },
+            {
+              "update_id": 986722176,
+              "channel_post": {
+                "message_id": 475,
+                "sender_chat": {
+                  "id": -1000000000003,
+                  "title": "testChannel",
+                  "type": "channel"
+                },
+                "chat": {
+                  "id": -1000000000003,
+                  "title": "testChannel",
+                  "type": "channel"
+                },
+                "date": 1791130492,
+                "paid_media": {
+                  "star_count": 1,
+                  "paid_media": [
+                    {
+                      "type": "photo",
+                      "photo": [
+                        {
+                          "file_id": "AgACAgQAAyEFAASAvyiNAAIB2GrCd-I93PDMxuq6kAgbn2IkC70mAAJDqTEbpu51UqHnZlCddaZ0AQADAgADbQADPQQ",
+                          "file_unique_id": "AQADQ6kxG6budVJy",
+                          "file_size": 380,
+                          "width": 10,
+                          "height": 10
+                        }
+                      ]
+                    },
+                    {
+                      "type": "photo",
+                      "photo": [
+                        {
+                          "file_id": "AgACAgIAAyEFAASAvyiNAAIB2GrCd-KXk-oI8hy5-fkQBWZjwbunAAJHJmsbj4v5SeNHpnmq10C6AQADAgADbQADPQQ",
+                          "file_unique_id": "AQADRyZrG4-L-Uly",
+                          "file_size": 287,
+                          "width": 1,
+                          "height": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "update_id": 986722177,
+              "message": {
+                "message_id": 372,
+                "from": {
+                  "id": 777000,
+                  "is_bot": false,
+                  "first_name": "redacted"
+                },
+                "sender_chat": {
+                  "id": -1000000000003,
+                  "title": "testChannel",
+                  "type": "channel"
+                },
+                "chat": {
+                  "id": -1002185380734,
+                  "title": "testChannel Chat",
+                  "type": "supergroup"
+                },
+                "date": 1791130495,
+                "forward_origin": {
+                  "type": "channel",
+                  "chat": {
+                    "id": -1000000000003,
+                    "title": "testChannel",
+                    "type": "channel"
+                  },
+                  "message_id": 475,
+                  "date": 1791130492
+                },
+                "is_automatic_forward": true,
+                "forward_from_chat": {
+                  "id": -1000000000003,
+                  "title": "testChannel",
+                  "type": "channel"
+                },
+                "forward_from_message_id": 475,
+                "forward_date": 1791130492,
+                "paid_media": {
+                  "star_count": 1,
+                  "paid_media": [
+                    {
+                      "type": "photo",
+                      "photo": [
+                        {
+                          "file_id": "AgACAgQAAyEFAASAvyiNAAIB2GrCd-I93PDMxuq6kAgbn2IkC70mAAJDqTEbpu51UqHnZlCddaZ0AQADAgADbQADPQQ",
+                          "file_unique_id": "AQADQ6kxG6budVJy",
+                          "file_size": 380,
+                          "width": 10,
+                          "height": 10
+                        }
+                      ]
+                    },
+                    {
+                      "type": "photo",
+                      "photo": [
+                        {
+                          "file_id": "AgACAgIAAyEFAASAvyiNAAIB2GrCd-KXk-oI8hy5-fkQBWZjwbunAAJHJmsbj4v5SeNHpnmq10C6AQADAgADbQADPQQ",
+                          "file_unique_id": "AQADRyZrG4-L-Uly",
+                          "file_size": 287,
+                          "width": 1,
+                          "height": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "get webhook info method testing": [
+      {
+        "method": "getWebhookInfo",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "url": "",
+            "has_custom_certificate": false,
+            "pending_update_count": 17
+          }
+        }
+      }
+    ],
+    "set webhook info method testing": [
+      {
+        "method": "setWebhook",
+        "requestKeys": [
+          "url"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true,
+          "description": "Webhook was set"
+        }
+      },
+      {
+        "method": "setWebhook",
+        "requestKeys": [
+          "url"
+        ],
+        "status": 429,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 429,
+          "description": "Too Many Requests: retry after 1",
+          "parameters": {
+            "retry_after": 1
+          }
+        }
+      },
+      {
+        "method": "getWebhookInfo",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "url": "https://vendeli.eu",
+            "has_custom_certificate": false,
+            "pending_update_count": 5,
+            "max_connections": 40,
+            "ip_address": "193.178.169.156"
+          }
+        }
+      },
+      {
+        "method": "deleteWebhook",
+        "requestKeys": [
+          "drop_pending_updates"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true,
+          "description": "Webhook was deleted"
+        }
+      }
+    ]
+  }
+}

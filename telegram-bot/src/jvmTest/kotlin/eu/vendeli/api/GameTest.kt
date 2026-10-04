@@ -7,8 +7,8 @@ import eu.vendeli.tgbot.api.game.setGameScore
 import eu.vendeli.tgbot.types.component.getOrNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import kotlin.random.Random
-import kotlin.random.nextLong
+
+private const val HIGH_SCORE = 4_242L
 
 class GameTest : BotTestContext() {
     @Test
@@ -49,7 +49,7 @@ class GameTest : BotTestContext() {
     @Test
     suspend fun `get game high score method test`() {
         val game = game("testestes").sendReq().getOrNull()
-        val newScore = Random.nextLong(1L..10_000)
+        val newScore = HIGH_SCORE
         setGameScore(TG_ID, game!!.messageId, newScore)
             .options {
                 force = true

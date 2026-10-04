@@ -1,0 +1,406 @@
+{
+  "tests": {
+    "media group requests testing via action": [
+      {
+        "method": "sendMediaGroup",
+        "requestKeys": [
+          "chat_id",
+          "file",
+          "media"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": [
+            {
+              "message_id": 24170,
+              "from": {
+                "id": 700000001,
+                "is_bot": true,
+                "first_name": "redacted",
+                "username": "redacted"
+              },
+              "chat": {
+                "id": 100000001,
+                "first_name": "redacted",
+                "username": "redacted",
+                "type": "private"
+              },
+              "date": 1791131856,
+              "media_group_id": "14329054855937634",
+              "photo": [
+                {
+                  "file_id": "AgACAgIAAxUHar7c3-A9PInUC_g8RCQf3E1H7pMAAkcmaxuPi_lJt9F2w255zgcBAAMCAANtAAM9BA",
+                  "file_unique_id": "AQADRyZrG4-L-Uly",
+                  "file_size": 287,
+                  "width": 1,
+                  "height": 1
+                }
+              ],
+              "caption": "test",
+              "caption_entities": [
+                {
+                  "offset": 0,
+                  "length": 4,
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "message_id": 24171,
+              "from": {
+                "id": 700000001,
+                "is_bot": true,
+                "first_name": "redacted",
+                "username": "redacted"
+              },
+              "chat": {
+                "id": 100000001,
+                "first_name": "redacted",
+                "username": "redacted",
+                "type": "private"
+              },
+              "date": 1791131857,
+              "media_group_id": "14329054855937634",
+              "photo": [
+                {
+                  "file_id": "AgACAgIAAxUHar7c3-A9PInUC_g8RCQf3E1H7pMAAkcmaxuPi_lJt9F2w255zgcBAAMCAANtAAM9BA",
+                  "file_unique_id": "AQADRyZrG4-L-Uly",
+                  "file_size": 287,
+                  "width": 1,
+                  "height": 1
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "media group thumbnail test": [
+      {
+        "method": "sendMediaGroup",
+        "requestKeys": [
+          "chat_id",
+          "media",
+          "thumb.png",
+          "video.mp4"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": [
+            {
+              "message_id": 24172,
+              "from": {
+                "id": 700000001,
+                "is_bot": true,
+                "first_name": "redacted",
+                "username": "redacted"
+              },
+              "chat": {
+                "id": 100000001,
+                "first_name": "redacted",
+                "username": "redacted",
+                "type": "private"
+              },
+              "date": 1791131859,
+              "media_group_id": "14329054873861482",
+              "video": {
+                "duration": 6,
+                "width": 560,
+                "height": 320,
+                "file_name": "video.mp4",
+                "mime_type": "video/mp4",
+                "thumbnail": {
+                  "file_id": "AAMCAgADFQdqwoDTx-uvtzVT0DJOw5s8j2XHsgACVbIAAjmbGUrwZFSVNIvcDQEAB20AAz0E",
+                  "file_unique_id": "AQADVbIAAjmbGUpy",
+                  "file_size": 11643,
+                  "width": 320,
+                  "height": 183
+                },
+                "thumb": {
+                  "file_id": "AAMCAgADFQdqwoDTx-uvtzVT0DJOw5s8j2XHsgACVbIAAjmbGUrwZFSVNIvcDQEAB20AAz0E",
+                  "file_unique_id": "AQADVbIAAjmbGUpy",
+                  "file_size": 11643,
+                  "width": 320,
+                  "height": 183
+                },
+                "file_id": "BAACAgIAAxUHasKA08frr7c1U9AyTsObPI9lx7IAAlWyAAI5mxlK8GRUlTSL3A09BA",
+                "file_unique_id": "AgADVbIAAjmbGUo",
+                "file_size": 383631
+              },
+              "caption": "test",
+              "caption_entities": [
+                {
+                  "offset": 0,
+                  "length": 4,
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "message_id": 24173,
+              "from": {
+                "id": 700000001,
+                "is_bot": true,
+                "first_name": "redacted",
+                "username": "redacted"
+              },
+              "chat": {
+                "id": 100000001,
+                "first_name": "redacted",
+                "username": "redacted",
+                "type": "private"
+              },
+              "date": 1791131859,
+              "media_group_id": "14329054873861482",
+              "photo": [
+                {
+                  "file_id": "AgACAgIAAxUHar7c3-A9PInUC_g8RCQf3E1H7pMAAkcmaxuPi_lJt9F2w255zgcBAAMCAANtAAM9BA",
+                  "file_unique_id": "AQADRyZrG4-L-Uly",
+                  "file_size": 287,
+                  "width": 1,
+                  "height": 1
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "media requests testing": [
+      {
+        "method": "ext:picsum.photos/10",
+        "status": 302,
+        "base64": ""
+      },
+      {
+        "method": "ext:fastly.picsum.photos/id/45/10/10.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "base64": "/9j/4QDeRXhpZgAASUkqAAgAAAAGABIBAwABAAAAAQAAABoBBQABAAAAVgAAABsBBQABAAAAXgAAACgBAwABAAAAAgAAABMCAwABAAAAAQAAAGmHBAABAAAAZgAAAAAAAABIAAAAAQAAAEgAAAABAAAABwAAkAcABAAAADAyMTABkQcABAAAAAECAwCGkgcAFQAAAMAAAAAAoAcABAAAADAxMDABoAMAAQAAAP//AAACoAQAAQAAAAoAAAADoAQAAQAAAAoAAAAAAAAAQVNDSUkAAABQaWNzdW0gSUQ6IDQ1AP/bAEMACAYGBwYFCAcHBwkJCAoMFA0MCwsMGRITDxQdGh8eHRocHCAkLicgIiwjHBwoNyksMDE0NDQfJzk9ODI8LjM0Mv/bAEMBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/CABEIAAoACgMBIgACEQEDEQH/xAAXAAADAQAAAAAAAAAAAAAAAAACAwUG/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQP/2gAMAwEAAhADEAAAAVFH3jP/xAAaEAEAAQUAAAAAAAAAAAAAAAABAgAEEhMx/9oACAEBAAEFApEIGq3pXE5//8QAFhEAAwAAAAAAAAAAAAAAAAAAAAMj/9oACAEDAQE/AV0P/8QAFhEAAwAAAAAAAAAAAAAAAAAAAAMi/9oACAECAQE/AWQf/8QAHRAAAQIHAAAAAAAAAAAAAAAAAAECEBIhMTJRkv/aAAgBAQAGPwLc1jN3AlYf/8QAHBABAAIBBQAAAAAAAAAAAAAAAQAhETFBUWGB/9oACAEBAAE/IbLydIoql6iBVg0uAwraf//aAAwDAQACAAMAAAAQo//EABoRAAICAwAAAAAAAAAAAAAAAAERACFBUYH/2gAIAQMBAT8QRgQKW89n/8QAGREBAAIDAAAAAAAAAAAAAAAAAQARITHw/9oACAECAQE/EEkRc32p/8QAGhABAQEBAAMAAAAAAAAAAAAAAREAIXGh8P/aAAgBAQABPxBGGhV7D0kPrlIi1Lz3lCVQKh4xDAAOTf/Z"
+      },
+      {
+        "method": "sendPhoto",
+        "requestKeys": [
+          "caption",
+          "chat_id",
+          "parse_mode",
+          "photo"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24174,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131859,
+            "photo": [
+              {
+                "file_id": "AgACAgQAAxkDAAJdgmq-3OHxzAEJXM9KHyHxy3WZoB85AAJDqTEbpu51UubZigAB-b5vFQEAAwIAA20AAz0E",
+                "file_unique_id": "AQADQ6kxG6budVJy",
+                "file_size": 380,
+                "width": 10,
+                "height": 10
+              }
+            ],
+            "caption": "test"
+          }
+        }
+      },
+      {
+        "method": "sendPhoto",
+        "requestKeys": [
+          "chat_id",
+          "photo",
+          "photo.jpg"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24175,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131860,
+            "photo": [
+              {
+                "file_id": "AgACAgIAAxkDAAJeb2rCgNRvgOUbaRRnOVCKDU4ICRFRAAIuKWsbOZsZSsSHSnsob7A3AQADAgADbQADPQQ",
+                "file_unique_id": "AQADLilrGzmbGUpy",
+                "file_size": 409,
+                "width": 10,
+                "height": 10
+              }
+            ]
+          }
+        }
+      },
+      {
+        "method": "sendPhoto",
+        "requestKeys": [
+          "chat_id",
+          "photo",
+          "photo.jpg"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24176,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131860,
+            "photo": [
+              {
+                "file_id": "AgACAgIAAxkDAAJeb2rCgNRvgOUbaRRnOVCKDU4ICRFRAAIuKWsbOZsZSsSHSnsob7A3AQADAgADbQADPQQ",
+                "file_unique_id": "AQADLilrGzmbGUpy",
+                "file_size": 409,
+                "width": 10,
+                "height": 10
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "passing mixed implicit types to media group": [
+      {
+        "method": "sendMediaGroup",
+        "requestKeys": [
+          "chat_id",
+          "file",
+          "media"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": [
+            {
+              "message_id": 24177,
+              "from": {
+                "id": 700000001,
+                "is_bot": true,
+                "first_name": "redacted",
+                "username": "redacted"
+              },
+              "chat": {
+                "id": 100000001,
+                "first_name": "redacted",
+                "username": "redacted",
+                "type": "private"
+              },
+              "date": 1791131861,
+              "media_group_id": "14329054887991994",
+              "photo": [
+                {
+                  "file_id": "AgACAgIAAxUHar7c3-A9PInUC_g8RCQf3E1H7pMAAkcmaxuPi_lJt9F2w255zgcBAAMCAANtAAM9BA",
+                  "file_unique_id": "AQADRyZrG4-L-Uly",
+                  "file_size": 287,
+                  "width": 1,
+                  "height": 1
+                }
+              ],
+              "caption": "test",
+              "caption_entities": [
+                {
+                  "offset": 0,
+                  "length": 4,
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "message_id": 24178,
+              "from": {
+                "id": 700000001,
+                "is_bot": true,
+                "first_name": "redacted",
+                "username": "redacted"
+              },
+              "chat": {
+                "id": 100000001,
+                "first_name": "redacted",
+                "username": "redacted",
+                "type": "private"
+              },
+              "date": 1791131861,
+              "media_group_id": "14329054887991994",
+              "photo": [
+                {
+                  "file_id": "AgACAgIAAxUHar7c3-A9PInUC_g8RCQf3E1H7pMAAkcmaxuPi_lJt9F2w255zgcBAAMCAANtAAM9BA",
+                  "file_unique_id": "AQADRyZrG4-L-Uly",
+                  "file_size": 287,
+                  "width": 1,
+                  "height": 1
+                }
+              ]
+            },
+            {
+              "message_id": 24179,
+              "from": {
+                "id": 700000001,
+                "is_bot": true,
+                "first_name": "redacted",
+                "username": "redacted"
+              },
+              "chat": {
+                "id": 100000001,
+                "first_name": "redacted",
+                "username": "redacted",
+                "type": "private"
+              },
+              "date": 1791131861,
+              "media_group_id": "14329054887991994",
+              "photo": [
+                {
+                  "file_id": "AgACAgQAAxkDAAJdgmq-3OHxzAEJXM9KHyHxy3WZoB85AAJDqTEbpu51UubZigAB-b5vFQEAAwIAA20AAz0E",
+                  "file_unique_id": "AQADQ6kxG6budVJy",
+                  "file_size": 380,
+                  "width": 10,
+                  "height": 10
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

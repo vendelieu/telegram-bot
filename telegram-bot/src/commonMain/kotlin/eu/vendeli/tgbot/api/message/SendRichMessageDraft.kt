@@ -7,6 +7,8 @@ import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.media.InputRichMessage
 import eu.vendeli.tgbot.types.options.SendRichMessageDraftOptions
+import eu.vendeli.tgbot.utils.builders.InputRichMessage
+import eu.vendeli.tgbot.utils.builders.RichMessageBuilder
 import eu.vendeli.tgbot.utils.internal.encodeWith
 import eu.vendeli.tgbot.utils.internal.getReturnType
 import eu.vendeli.tgbot.utils.internal.toJsonElement
@@ -45,5 +47,5 @@ inline fun sendRichMessageDraft(draftId: Int, richMessage: InputRichMessage) =
     SendRichMessageDraftAction(draftId, richMessage)
 
 @TgAPI
-fun sendRichMessageDraft(draftId: Int, block: InputRichMessage.() -> Unit) =
-    SendRichMessageDraftAction(draftId, InputRichMessage().apply(block))
+fun sendRichMessageDraft(draftId: Int, block: RichMessageBuilder.() -> Unit) =
+    SendRichMessageDraftAction(draftId, InputRichMessage(block))

@@ -1,0 +1,123 @@
+{
+  "tests": {
+    "ban chat member method test": [
+      {
+        "method": "banChatMember",
+        "requestKeys": [
+          "chat_id",
+          "revoke_messages",
+          "until_date",
+          "user_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: PARTICIPANT_ID_INVALID"
+        }
+      }
+    ],
+    "ban unban sender chat chat member method test": [
+      {
+        "method": "banChatSenderChat",
+        "requestKeys": [
+          "chat_id",
+          "sender_chat_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: PARTICIPANT_ID_INVALID"
+        }
+      },
+      {
+        "method": "banChatSenderChat",
+        "requestKeys": [
+          "chat_id",
+          "sender_chat_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: PARTICIPANT_ID_INVALID"
+        }
+      },
+      {
+        "method": "banChatSenderChat",
+        "requestKeys": [
+          "chat_id",
+          "sender_chat_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: PARTICIPANT_ID_INVALID"
+        }
+      }
+    ],
+    "unban chat member method test": [
+      {
+        "method": "unbanChatMember",
+        "requestKeys": [
+          "chat_id",
+          "only_if_banned",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "unban chat sender chat method test": [
+      {
+        "method": "unbanChatSenderChat",
+        "requestKeys": [
+          "chat_id",
+          "sender_chat_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "unbanChatSenderChat",
+        "requestKeys": [
+          "chat_id",
+          "sender_chat_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "unbanChatSenderChat",
+        "requestKeys": [
+          "chat_id",
+          "sender_chat_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ]
+  }
+}

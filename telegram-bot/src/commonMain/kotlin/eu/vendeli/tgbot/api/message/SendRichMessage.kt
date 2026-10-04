@@ -10,6 +10,8 @@ import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.media.InputRichMessage
 import eu.vendeli.tgbot.types.msg.Message
 import eu.vendeli.tgbot.types.options.RichMessageOptions
+import eu.vendeli.tgbot.utils.builders.InputRichMessage
+import eu.vendeli.tgbot.utils.builders.RichMessageBuilder
 import eu.vendeli.tgbot.utils.internal.encodeWith
 import eu.vendeli.tgbot.utils.internal.getReturnType
 import eu.vendeli.tgbot.utils.internal.transform
@@ -55,10 +57,10 @@ class SendRichMessageAction(
 inline fun richMessage(richMessage: InputRichMessage) = SendRichMessageAction(richMessage)
 
 @TgAPI
-fun richMessage(block: InputRichMessage.() -> Unit) = SendRichMessageAction(InputRichMessage().apply(block))
+fun richMessage(block: RichMessageBuilder.() -> Unit) = SendRichMessageAction(InputRichMessage(block))
 
 @TgAPI
 inline fun sendRichMessage(richMessage: InputRichMessage) = richMessage(richMessage)
 
 @TgAPI
-fun sendRichMessage(block: InputRichMessage.() -> Unit) = richMessage(block)
+fun sendRichMessage(block: RichMessageBuilder.() -> Unit) = richMessage(block)

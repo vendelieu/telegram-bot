@@ -42,9 +42,9 @@ public val TelegramBot.userData: UserDataMapImpl
 public val TelegramBot.classData: ClassDataImpl
   get() = _classData
 
-public operator fun User.`get`(key: String): String? = _userData[id, key]
+public operator fun User.get(key: String): String? = _userData[id, key]
 
-public operator fun User.`set`(key: String, `value`: String): Unit = _userData.set(id, key, value)
+public operator fun User.set(key: String, `value`: String): Unit = _userData.set(id, key, value)
 
 public suspend inline fun <reified S : TestWizard.NameStep> WizardContext.getState(step: TestWizard.NameStep? = null): String? {
   val engine = bot.update.registry.getActivity(currentWizardId) as? WizardActivity ?: return null

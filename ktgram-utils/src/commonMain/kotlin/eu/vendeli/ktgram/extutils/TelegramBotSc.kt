@@ -46,6 +46,7 @@ import eu.vendeli.tgbot.utils.builders.BotCommandsBuilder
 import eu.vendeli.tgbot.utils.builders.EntitiesCtxBuilder
 import eu.vendeli.tgbot.utils.builders.ListingBuilder
 import eu.vendeli.tgbot.utils.builders.PollOptionsBuilder
+import eu.vendeli.tgbot.utils.builders.RichMessageBuilder
 import kotlin.Boolean
 import kotlin.ByteArray
 import kotlin.Float
@@ -595,11 +596,11 @@ public suspend inline fun TelegramBot.sendLivePhoto(
 
 public suspend inline fun TelegramBot.richMessage(richMessage: InputRichMessage, chatId: Long): Unit = eu.vendeli.tgbot.api.message.richMessage(richMessage).send(chatId, this)
 
-public suspend inline fun TelegramBot.richMessage(noinline block: InputRichMessage.() -> Unit, chatId: Long): Unit = eu.vendeli.tgbot.api.message.richMessage(block).send(chatId, this)
+public suspend inline fun TelegramBot.richMessage(noinline block: RichMessageBuilder.() -> Unit, chatId: Long): Unit = eu.vendeli.tgbot.api.message.richMessage(block).send(chatId, this)
 
 public suspend inline fun TelegramBot.sendRichMessage(richMessage: InputRichMessage, chatId: Long): Unit = eu.vendeli.tgbot.api.message.sendRichMessage(richMessage).send(chatId, this)
 
-public suspend inline fun TelegramBot.sendRichMessage(noinline block: InputRichMessage.() -> Unit, chatId: Long): Unit = eu.vendeli.tgbot.api.message.sendRichMessage(block).send(chatId, this)
+public suspend inline fun TelegramBot.sendRichMessage(noinline block: RichMessageBuilder.() -> Unit, chatId: Long): Unit = eu.vendeli.tgbot.api.message.sendRichMessage(block).send(chatId, this)
 
 public suspend inline fun TelegramBot.deleteAllMessageReactions(
   userId: Long? = null,
@@ -719,7 +720,7 @@ public suspend inline fun TelegramBot.sendRichMessageDraft(
 
 public suspend inline fun TelegramBot.sendRichMessageDraft(
   draftId: Int,
-  noinline block: InputRichMessage.() -> Unit,
+  noinline block: RichMessageBuilder.() -> Unit,
   chatId: Long,
 ): Unit = eu.vendeli.tgbot.api.message.sendRichMessageDraft(draftId, block).send(chatId, this)
 

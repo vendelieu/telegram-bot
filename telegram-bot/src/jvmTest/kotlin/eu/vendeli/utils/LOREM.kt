@@ -6,23 +6,25 @@ import eu.vendeli.tgbot.types.component.InputFile
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.readRawBytes
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
+import utils.replay.TestMode
 import java.io.File
 import kotlin.random.Random
 
+private const val PLACEHOLDER_SIZE = 64
+
 sealed class LOREM(
     val url: String,
-    fileName: String,
+    private val fileName: String,
     contentType: String,
 ) {
-    val bytes: ByteArray by lazy { runBlocking { httpClient.get(url).readRawBytes() } }
-    val file: File = runBlocking {
-        withContext(Dispatchers.IO) {
-            val tempFile = File.createTempFile("test-$rand", "")
-            tempFile.writeBytes(bytes)
-            tempFile
+    val bytes: ByteArray by lazy {
+        if (TestMode.current.isReplay) PLACEHOLDER_BYTES else cachedDownload()
+    }
+    val file: File by lazy {
+        File.createTempFile("test-$rand", "").apply {
+            deleteOnExit()
+            writeBytes(bytes)
         }
     }
     val inputFile by lazy { InputFile(data = bytes, fileName = fileName, contentType = contentType) }
@@ -69,7 +71,19 @@ sealed class LOREM(
         "application/pdf",
     )
 
+    /** Downloads once per machine, later runs (and parallel CI jobs) read the copy from the build directory. */
+    private fun cachedDownload(): ByteArray {
+        val cached = File(CACHE_DIR, fileName)
+        if (cached.exists() && cached.length() > 0) return cached.readBytes()
+        val downloaded = runBlocking { httpClient.get(url).readRawBytes() }
+        cached.parentFile.mkdirs()
+        cached.writeBytes(downloaded)
+        return downloaded
+    }
+
     private companion object {
+        val CACHE_DIR = File(System.getProperty("java.io.tmpdir"), "ktgram-test-assets")
+        val PLACEHOLDER_BYTES = ByteArray(PLACEHOLDER_SIZE) { it.toByte() }
         val httpClient = HttpClient()
         val rand: String
             get() {

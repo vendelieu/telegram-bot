@@ -1,0 +1,254 @@
+{
+  "tests": {
+    "edit live location method test": [
+      {
+        "method": "sendLocation",
+        "requestKeys": [
+          "chat_id",
+          "heading",
+          "horizontal_accuracy",
+          "latitude",
+          "live_period",
+          "longitude",
+          "proximity_alert_radius"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24191,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131878,
+            "location": {
+              "latitude": 1.000002,
+              "longitude": 1.999996,
+              "live_period": 1000,
+              "heading": 4,
+              "proximity_alert_radius": 10,
+              "horizontal_accuracy": 3.0
+            }
+          }
+        }
+      },
+      {
+        "method": "editMessageLiveLocation",
+        "requestKeys": [
+          "chat_id",
+          "heading",
+          "horizontal_accuracy",
+          "latitude",
+          "longitude",
+          "message_id",
+          "proximity_alert_radius"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24191,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131878,
+            "edit_date": 1791131878,
+            "location": {
+              "latitude": 2.000004,
+              "longitude": 2.999999,
+              "live_period": 1000,
+              "heading": 3,
+              "proximity_alert_radius": 9,
+              "horizontal_accuracy": 2.0
+            }
+          }
+        }
+      }
+    ],
+    "location method test": [
+      {
+        "method": "sendLocation",
+        "requestKeys": [
+          "chat_id",
+          "heading",
+          "horizontal_accuracy",
+          "latitude",
+          "live_period",
+          "longitude",
+          "proximity_alert_radius"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24192,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131878,
+            "location": {
+              "latitude": 1.000002,
+              "longitude": 1.999996,
+              "live_period": 1000,
+              "heading": 4,
+              "proximity_alert_radius": 10,
+              "horizontal_accuracy": 3.0
+            }
+          }
+        }
+      }
+    ],
+    "stop live location method test": [
+      {
+        "method": "sendLocation",
+        "requestKeys": [
+          "chat_id",
+          "heading",
+          "horizontal_accuracy",
+          "latitude",
+          "live_period",
+          "longitude",
+          "proximity_alert_radius"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24193,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131878,
+            "location": {
+              "latitude": 1.000002,
+              "longitude": 1.999996,
+              "live_period": 1000,
+              "heading": 4,
+              "proximity_alert_radius": 10,
+              "horizontal_accuracy": 3.0
+            }
+          }
+        }
+      },
+      {
+        "method": "stopMessageLiveLocation",
+        "requestKeys": [
+          "chat_id",
+          "message_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24193,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131878,
+            "edit_date": 1791131879,
+            "location": {
+              "latitude": 1.000002,
+              "longitude": 1.999996,
+              "horizontal_accuracy": 3.0
+            }
+          }
+        }
+      }
+    ],
+    "venue location method test": [
+      {
+        "method": "sendVenue",
+        "requestKeys": [
+          "address",
+          "chat_id",
+          "latitude",
+          "longitude",
+          "title"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24194,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131879,
+            "location": {
+              "latitude": 1.0,
+              "longitude": 1.999999
+            },
+            "venue": {
+              "location": {
+                "latitude": 1.0,
+                "longitude": 1.999999
+              },
+              "title": "test",
+              "address": "address"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

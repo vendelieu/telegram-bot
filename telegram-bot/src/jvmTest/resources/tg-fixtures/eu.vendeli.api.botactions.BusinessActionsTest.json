@@ -1,0 +1,19 @@
+{
+  "tests": {
+    "getBusinessConnection method testing": [
+      {
+        "method": "getBusinessConnection",
+        "requestKeys": [
+          "business_connection_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: business connection not found"
+        }
+      }
+    ]
+  }
+}

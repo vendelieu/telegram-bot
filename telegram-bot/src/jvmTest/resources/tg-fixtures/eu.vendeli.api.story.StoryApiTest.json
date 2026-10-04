@@ -1,0 +1,38 @@
+{
+  "tests": {
+    "deleteStory test": [
+      {
+        "method": "deleteStory",
+        "requestKeys": [
+          "business_connection_id",
+          "story_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: business connection not found"
+        }
+      }
+    ],
+    "repostStory test": [
+      {
+        "method": "repostStory",
+        "requestKeys": [
+          "active_period",
+          "business_connection_id",
+          "from_chat_id",
+          "from_story_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: business connection not found"
+        }
+      }
+    ]
+  }
+}

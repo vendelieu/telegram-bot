@@ -1,0 +1,193 @@
+{
+  "tests": {
+    "create chat invite link method test": [
+      {
+        "method": "createChatInviteLink",
+        "requestKeys": [
+          "chat_id",
+          "creates_join_request",
+          "expire_date",
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "invite_link": "https://t.me/+redacted",
+            "name": "test",
+            "creator": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "expire_date": 1893456120,
+            "creates_join_request": true,
+            "is_primary": false,
+            "is_revoked": false
+          }
+        }
+      }
+    ],
+    "create chat subscription invite link method test": [
+      {
+        "method": "createChatSubscriptionInviteLink",
+        "requestKeys": [
+          "chat_id",
+          "name",
+          "subscription_period",
+          "subscription_price"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: PRICING_CHAT_INVALID"
+        }
+      }
+    ],
+    "edit chat invite link method test": [
+      {
+        "method": "createChatInviteLink",
+        "requestKeys": [
+          "chat_id",
+          "creates_join_request",
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "invite_link": "https://t.me/+redacted",
+            "name": "test",
+            "creator": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "creates_join_request": true,
+            "is_primary": false,
+            "is_revoked": false
+          }
+        }
+      },
+      {
+        "method": "editChatInviteLink",
+        "requestKeys": [
+          "chat_id",
+          "creates_join_request",
+          "expire_date",
+          "invite_link",
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "invite_link": "https://t.me/+redacted",
+            "name": "test2",
+            "creator": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "expire_date": 1893456001,
+            "creates_join_request": false,
+            "is_primary": false,
+            "is_revoked": false
+          }
+        }
+      }
+    ],
+    "edit chat subscription invite link method test": [
+      {
+        "method": "editChatSubscriptionInviteLink",
+        "requestKeys": [
+          "chat_id",
+          "invite_link",
+          "name"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: INVITE_HASH_EXPIRED"
+        }
+      }
+    ],
+    "export chat invite link method test": [
+      {
+        "method": "exportChatInviteLink",
+        "requestKeys": [
+          "chat_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": "https://t.me/+redacted"
+        }
+      }
+    ],
+    "revoke chat invite link method test": [
+      {
+        "method": "createChatInviteLink",
+        "requestKeys": [
+          "chat_id",
+          "creates_join_request",
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "invite_link": "https://t.me/+redacted",
+            "name": "test",
+            "creator": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "creates_join_request": true,
+            "is_primary": false,
+            "is_revoked": false
+          }
+        }
+      },
+      {
+        "method": "revokeChatInviteLink",
+        "requestKeys": [
+          "chat_id",
+          "invite_link"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "invite_link": "https://t.me/+redacted",
+            "name": "test",
+            "creator": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "creates_join_request": true,
+            "is_primary": false,
+            "is_revoked": true
+          }
+        }
+      }
+    ]
+  }
+}

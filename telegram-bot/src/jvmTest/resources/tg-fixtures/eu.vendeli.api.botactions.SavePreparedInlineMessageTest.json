@@ -1,0 +1,39 @@
+{
+  "tests": {
+    "save prepared inline message test": [
+      {
+        "method": "savePreparedInlineMessage",
+        "requestKeys": [
+          "allow_bot_chats",
+          "result",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "id": "Blw8qJqCR3iobaga",
+            "expiration_date": 1791135501
+          }
+        }
+      }
+    ],
+    "save prepared inline message without allowing options test": [
+      {
+        "method": "savePreparedInlineMessage",
+        "requestKeys": [
+          "result",
+          "user_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: at least one chat type must be allowed"
+        }
+      }
+    ]
+  }
+}

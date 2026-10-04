@@ -34,6 +34,6 @@ public val TelegramBot.userData: TestProviderUser
 public val TelegramBot.classData: TestProviderClass
   get() = _classData
 
-public operator fun User.`get`(key: String): Int? = _userData[id, key]
+public operator fun User.get(key: String): Int? = _userData[id, key]
 
-public operator fun User.`set`(key: String, `value`: Int): Unit = _userData.set(id, key, value)
+public operator fun User.set(key: String, `value`: Int): Unit = _userData.set(id, key, value)

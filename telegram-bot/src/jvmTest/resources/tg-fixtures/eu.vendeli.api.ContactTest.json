@@ -1,0 +1,43 @@
+{
+  "tests": {
+    "contact method test": [
+      {
+        "method": "sendContact",
+        "requestKeys": [
+          "chat_id",
+          "first_name",
+          "last_name",
+          "phone_number",
+          "vcard"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57826,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791132268,
+            "contact": {
+              "phone_number": "+000000000000",
+              "first_name": "test",
+              "last_name": "test1",
+              "vcard": "test2"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

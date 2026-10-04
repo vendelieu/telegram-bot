@@ -1,0 +1,40 @@
+{
+  "tests": {
+    "dice method test": [
+      {
+        "method": "sendDice",
+        "requestKeys": [
+          "chat_id",
+          "emoji",
+          "protect_content"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57794,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131872,
+            "dice": {
+              "emoji": "🏀",
+              "value": 1
+            },
+            "has_protected_content": true
+          }
+        }
+      }
+    ]
+  }
+}

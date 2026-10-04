@@ -1,0 +1,413 @@
+{
+  "tests": {
+    "create new sticker set method test": [
+      {
+        "method": "getMe",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "id": 700000001,
+            "is_bot": true,
+            "first_name": "redacted",
+            "username": "redacted",
+            "can_join_groups": true,
+            "can_read_all_group_messages": false,
+            "supports_inline_queries": true,
+            "supports_guest_queries": false,
+            "can_connect_to_business": true,
+            "has_main_web_app": false,
+            "has_topics_enabled": false,
+            "allows_users_to_create_topics": false,
+            "can_manage_bots": false,
+            "supports_join_request_queries": false
+          }
+        }
+      },
+      {
+        "method": "deleteStickerSet",
+        "requestKeys": [
+          "name"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: STICKERSET_INVALID"
+        }
+      },
+      {
+        "method": "createNewStickerSet",
+        "requestKeys": [
+          "name",
+          "stickers",
+          "title",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "getStickerSet",
+        "requestKeys": [
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "name": "Test_1_by_redacted",
+            "title": "test_2",
+            "sticker_type": "regular",
+            "contains_masks": false,
+            "stickers": [
+              {
+                "width": 512,
+                "height": 430,
+                "emoji": "💯",
+                "set_name": "Test_1_by_redacted",
+                "is_animated": false,
+                "is_video": false,
+                "type": "regular",
+                "thumbnail": {
+                  "file_id": "AAMCAgADFQABasKCqytcAnkPHWCgCj7hsElTCssAAjOtAAIothlKXKNRC4Md0e0BAAdtAAM9BA",
+                  "file_unique_id": "AQADM60AAii2GUpy",
+                  "file_size": 14592,
+                  "width": 320,
+                  "height": 269
+                },
+                "thumb": {
+                  "file_id": "AAMCAgADFQABasKCqytcAnkPHWCgCj7hsElTCssAAjOtAAIothlKXKNRC4Md0e0BAAdtAAM9BA",
+                  "file_unique_id": "AQADM60AAii2GUpy",
+                  "file_size": 14592,
+                  "width": 320,
+                  "height": 269
+                },
+                "file_id": "CAACAgIAAxUAAWrCgqsrXAJ5Dx1goAo-4bBJUwrLAAIzrQACKLYZSlyjUQuDHdHtPQQ",
+                "file_unique_id": "AgADM60AAii2GUo",
+                "file_size": 30060
+              }
+            ]
+          }
+        }
+      },
+      {
+        "method": "replaceStickerInSet",
+        "requestKeys": [
+          "chat_id",
+          "name",
+          "old_sticker",
+          "sticker",
+          "sticker.tgs",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "deleteStickerSet",
+        "requestKeys": [
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "crud sticker in set methods test": [
+      {
+        "method": "getMe",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "id": 700000001,
+            "is_bot": true,
+            "first_name": "redacted",
+            "username": "redacted",
+            "can_join_groups": true,
+            "can_read_all_group_messages": false,
+            "supports_inline_queries": true,
+            "supports_guest_queries": false,
+            "can_connect_to_business": true,
+            "has_main_web_app": false,
+            "has_topics_enabled": false,
+            "allows_users_to_create_topics": false,
+            "can_manage_bots": false,
+            "supports_join_request_queries": false
+          }
+        }
+      },
+      {
+        "method": "addStickerToSet",
+        "requestKeys": [
+          "name",
+          "sticker",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "getStickerSet",
+        "requestKeys": [
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "name": "Test_2_by_redacted",
+            "title": "test_2",
+            "sticker_type": "regular",
+            "contains_masks": false,
+            "stickers": [
+              {
+                "width": 512,
+                "height": 430,
+                "emoji": "👍",
+                "set_name": "Test_2_by_redacted",
+                "is_animated": false,
+                "is_video": false,
+                "type": "regular",
+                "thumbnail": {
+                  "file_id": "AAMCAgADFQABar7dkV9ZSfHWoGuh9lMdZiTUgSAAAo4wAAK2oFBL6ywl2bVoD9ABAAdtAAM9BA",
+                  "file_unique_id": "AQADjjAAAragUEty",
+                  "file_size": 14588,
+                  "width": 320,
+                  "height": 269
+                },
+                "thumb": {
+                  "file_id": "AAMCAgADFQABar7dkV9ZSfHWoGuh9lMdZiTUgSAAAo4wAAK2oFBL6ywl2bVoD9ABAAdtAAM9BA",
+                  "file_unique_id": "AQADjjAAAragUEty",
+                  "file_size": 14588,
+                  "width": 320,
+                  "height": 269
+                },
+                "file_id": "CAACAgIAAxUAAWq-3ZFfWUnx1qBrofZTHWYk1IEgAAKOMAACtqBQS-ssJdm1aA_QPQQ",
+                "file_unique_id": "AgADjjAAAragUEs",
+                "file_size": 30060
+              }
+            ]
+          }
+        }
+      },
+      {
+        "method": "setStickerEmojiList",
+        "requestKeys": [
+          "emoji_list",
+          "sticker"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "setStickerKeywords",
+        "requestKeys": [
+          "keywords",
+          "sticker"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "setStickerPositionInSet",
+        "requestKeys": [
+          "position",
+          "sticker"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "setStickerSetThumbnail",
+        "requestKeys": [
+          "format",
+          "name",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "setStickerMaskPosition",
+        "requestKeys": [
+          "mask_position",
+          "sticker"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: STICKER_MASK_COORDS_NOT_SUPPORTED"
+        }
+      },
+      {
+        "method": "deleteStickerFromSet",
+        "requestKeys": [
+          "sticker"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "get sticker set method test": [
+      {
+        "method": "getMe",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "id": 700000001,
+            "is_bot": true,
+            "first_name": "redacted",
+            "username": "redacted",
+            "can_join_groups": true,
+            "can_read_all_group_messages": false,
+            "supports_inline_queries": true,
+            "supports_guest_queries": false,
+            "can_connect_to_business": true,
+            "has_main_web_app": false,
+            "has_topics_enabled": false,
+            "allows_users_to_create_topics": false,
+            "can_manage_bots": false,
+            "supports_join_request_queries": false
+          }
+        }
+      },
+      {
+        "method": "getStickerSet",
+        "requestKeys": [
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "name": "Test_2_by_redacted",
+            "title": "test_2",
+            "sticker_type": "regular",
+            "contains_masks": false,
+            "stickers": []
+          }
+        }
+      }
+    ],
+    "set sticker set title method test": [
+      {
+        "method": "getMe",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "id": 700000001,
+            "is_bot": true,
+            "first_name": "redacted",
+            "username": "redacted",
+            "can_join_groups": true,
+            "can_read_all_group_messages": false,
+            "supports_inline_queries": true,
+            "supports_guest_queries": false,
+            "can_connect_to_business": true,
+            "has_main_web_app": false,
+            "has_topics_enabled": false,
+            "allows_users_to_create_topics": false,
+            "can_manage_bots": false,
+            "supports_join_request_queries": false
+          }
+        }
+      },
+      {
+        "method": "setStickerSetTitle",
+        "requestKeys": [
+          "name",
+          "title"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "setStickerSetTitle",
+        "requestKeys": [
+          "name",
+          "title"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "upload sticker file method test": [
+      {
+        "method": "uploadStickerFile",
+        "requestKeys": [
+          "sticker",
+          "sticker.tgs",
+          "sticker_format",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "file_id": "CAACAgIAAxUHasKCscaCTnrb2_dSwHf4FVItsS4AAnuyAAI5mxlKPO2kkaXjprw9BA",
+            "file_unique_id": "AgADe7IAAjmbGUo",
+            "file_size": 63709
+          }
+        }
+      }
+    ]
+  }
+}

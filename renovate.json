@@ -1,10 +1,28 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
-    ":disableDependencyDashboard",
-    ":automergeMinor"
+    "config:recommended",
+    "helpers:pinGitHubActionDigests"
   ],
   "baseBranches": ["dev"],
-  "branchConcurrentLimit": 1,
-  "prHourlyLimit": 1
+  "prConcurrentLimit": 5,
+  "branchConcurrentLimit": 5,
+  "prHourlyLimit": 3,
+  "minimumReleaseAge": "3 days",
+  "internalChecksFilter": "strict",
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "github actions",
+      "automerge": true
+    }
+  ]
 }

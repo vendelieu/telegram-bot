@@ -1,0 +1,101 @@
+{
+  "tests": {
+    "convertGiftToStars test": [
+      {
+        "method": "convertGiftToStars",
+        "requestKeys": [
+          "business_connection_id",
+          "owned_gift_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: business connection not found"
+        }
+      }
+    ],
+    "getChatGifts test": [
+      {
+        "method": "getChatGifts",
+        "requestKeys": [
+          "chat_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: chat not found"
+        }
+      }
+    ],
+    "getUserGifts test": [
+      {
+        "method": "getUserGifts",
+        "requestKeys": [
+          "user_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: user not found"
+        }
+      }
+    ],
+    "giftPremiumSubscription test": [
+      {
+        "method": "giftPremiumSubscription",
+        "requestKeys": [
+          "month_count",
+          "star_count",
+          "text",
+          "user_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: user not found"
+        }
+      }
+    ],
+    "transferGift test": [
+      {
+        "method": "transferGift",
+        "requestKeys": [
+          "business_connection_id",
+          "new_owner_chat_id",
+          "owned_gift_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: business connection not found"
+        }
+      }
+    ],
+    "upgradeGift test": [
+      {
+        "method": "upgradeGift",
+        "requestKeys": [
+          "business_connection_id",
+          "owned_gift_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: business connection not found"
+        }
+      }
+    ]
+  }
+}

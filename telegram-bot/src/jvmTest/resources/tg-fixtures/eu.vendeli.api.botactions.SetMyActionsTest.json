@@ -1,0 +1,188 @@
+{
+  "tests": {
+    "delete my commands method testing": [
+      {
+        "method": "setMyCommands",
+        "requestKeys": [
+          "commands",
+          "language_code",
+          "scope"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "getMyCommands",
+        "requestKeys": [
+          "language_code",
+          "scope"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": [
+            {
+              "command": "test",
+              "description": "testD"
+            }
+          ]
+        }
+      },
+      {
+        "method": "deleteMyCommands",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "set description method testing": [
+      {
+        "method": "setMyDescription",
+        "requestKeys": [
+          "description"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "getMyDescription",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "description": "test"
+          }
+        }
+      },
+      {
+        "method": "setMyDescription",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "set my commands method testing": [
+      {
+        "method": "setMyCommands",
+        "requestKeys": [
+          "commands"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "getMyCommands",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": [
+            {
+              "command": "test",
+              "description": "testD"
+            },
+            {
+              "command": "test2",
+              "description": "testC"
+            }
+          ]
+        }
+      },
+      {
+        "method": "deleteMyCommands",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "set my default administrator rights method testing": [
+      {
+        "method": "setMyDefaultAdministratorRights",
+        "requestKeys": [
+          "rights"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "set my name method testing": [
+      {
+        "method": "setMyName",
+        "requestKeys": [
+          "name"
+        ],
+        "status": 429,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 429,
+          "description": "Too Many Requests: retry after 83943",
+          "parameters": {
+            "retry_after": 83943
+          }
+        }
+      }
+    ],
+    "set short description method testing": [
+      {
+        "method": "setMyShortDescription",
+        "requestKeys": [
+          "short_description"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "getMyShortDescription",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "short_description": "test"
+          }
+        }
+      },
+      {
+        "method": "setMyShortDescription",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ]
+  }
+}

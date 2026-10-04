@@ -16694,6 +16694,7 @@ public final class eu/vendeli/tgbot/types/options/ContactOptions$Companion {
 
 public final class eu/vendeli/tgbot/types/options/CopyMessageOptions : eu/vendeli/tgbot/types/options/AllowPaidBroadcastProp, eu/vendeli/tgbot/types/options/DirectMessagesTopicProp, eu/vendeli/tgbot/types/options/ForumProps, eu/vendeli/tgbot/types/options/MessageEffectIdProp, eu/vendeli/tgbot/types/options/OptionsCommon, eu/vendeli/tgbot/types/options/OptionsParseMode, eu/vendeli/tgbot/types/options/ShowCaptionAboveMediaProp, eu/vendeli/tgbot/types/options/SuggestedPostParametersProp {
 	public static final field Companion Leu/vendeli/tgbot/types/options/CopyMessageOptions$Companion;
+	public fun <init> ()V
 	public synthetic fun <init> (Lkotlin/time/Duration;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/component/ParseMode;Leu/vendeli/tgbot/types/common/ReplyParameters;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Integer;Leu/vendeli/tgbot/types/msg/SuggestedPostParameters;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public synthetic fun <init> (Lkotlin/time/Duration;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/component/ParseMode;Leu/vendeli/tgbot/types/common/ReplyParameters;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Integer;Leu/vendeli/tgbot/types/msg/SuggestedPostParameters;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1-FghU774 ()Lkotlin/time/Duration;
@@ -16798,6 +16799,7 @@ public final class eu/vendeli/tgbot/types/options/CopyMessagesOptions$Companion 
 
 public final class eu/vendeli/tgbot/types/options/CreateInvoiceLinkOptions : eu/vendeli/tgbot/types/options/Options {
 	public static final field Companion Leu/vendeli/tgbot/types/options/CreateInvoiceLinkOptions$Companion;
+	public fun <init> ()V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Lkotlin/time/Duration;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Lkotlin/time/Duration;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
@@ -17246,6 +17248,7 @@ public abstract interface class eu/vendeli/tgbot/types/options/ForumProps : eu/v
 
 public final class eu/vendeli/tgbot/types/options/ForwardMessageOptions : eu/vendeli/tgbot/types/options/DirectMessagesTopicProp, eu/vendeli/tgbot/types/options/MessageEffectIdProp, eu/vendeli/tgbot/types/options/Options, eu/vendeli/tgbot/types/options/SuggestedPostParametersProp {
 	public static final field Companion Leu/vendeli/tgbot/types/options/ForwardMessageOptions$Companion;
+	public fun <init> ()V
 	public synthetic fun <init> (Lkotlin/time/Duration;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/msg/SuggestedPostParameters;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public synthetic fun <init> (Lkotlin/time/Duration;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Leu/vendeli/tgbot/types/msg/SuggestedPostParameters;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1-FghU774 ()Lkotlin/time/Duration;
@@ -18120,6 +18123,7 @@ public final class eu/vendeli/tgbot/types/options/PhotoOptions$Companion {
 
 public final class eu/vendeli/tgbot/types/options/PollOptions : eu/vendeli/tgbot/types/options/AllowPaidBroadcastProp, eu/vendeli/tgbot/types/options/ForumProps, eu/vendeli/tgbot/types/options/MessageEffectIdProp, eu/vendeli/tgbot/types/options/OptionsCommon {
 	public static final field Companion Leu/vendeli/tgbot/types/options/PollOptions$Companion;
+	public fun <init> ()V
 	public synthetic fun <init> (Ljava/lang/Boolean;Leu/vendeli/tgbot/types/poll/PollType;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/String;Leu/vendeli/tgbot/types/component/ParseMode;Ljava/util/List;Lkotlin/time/Duration;Lkotlin/time/Instant;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/component/ParseMode;Ljava/lang/String;Leu/vendeli/tgbot/types/component/ParseMode;Ljava/util/List;Leu/vendeli/tgbot/types/media/InputPollMedia;Leu/vendeli/tgbot/types/media/InputPollMedia;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/common/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public synthetic fun <init> (Ljava/lang/Boolean;Leu/vendeli/tgbot/types/poll/PollType;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/String;Leu/vendeli/tgbot/types/component/ParseMode;Ljava/util/List;Lkotlin/time/Duration;Lkotlin/time/Instant;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/component/ParseMode;Ljava/lang/String;Leu/vendeli/tgbot/types/component/ParseMode;Ljava/util/List;Leu/vendeli/tgbot/types/media/InputPollMedia;Leu/vendeli/tgbot/types/media/InputPollMedia;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/common/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/Boolean;
@@ -18934,6 +18938,7 @@ public final class eu/vendeli/tgbot/types/options/VideoNoteOptions$Companion {
 
 public final class eu/vendeli/tgbot/types/options/VideoOptions : eu/vendeli/tgbot/types/options/AllowPaidBroadcastProp, eu/vendeli/tgbot/types/options/DirectMessagesTopicProp, eu/vendeli/tgbot/types/options/EphemeralMessageParametersProp, eu/vendeli/tgbot/types/options/ForumProps, eu/vendeli/tgbot/types/options/MediaSpoiler, eu/vendeli/tgbot/types/options/MessageEffectIdProp, eu/vendeli/tgbot/types/options/OptionsCommon, eu/vendeli/tgbot/types/options/OptionsParseMode, eu/vendeli/tgbot/types/options/ShowCaptionAboveMediaProp, eu/vendeli/tgbot/types/options/SuggestedPostParametersProp, eu/vendeli/tgbot/types/options/ThumbnailProp {
 	public static final field Companion Leu/vendeli/tgbot/types/options/VideoOptions$Companion;
+	public fun <init> ()V
 	public synthetic fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/component/ImplicitFile;Lkotlin/time/Duration;Leu/vendeli/tgbot/types/component/ImplicitFile;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/component/ParseMode;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/common/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Leu/vendeli/tgbot/types/msg/SuggestedPostParameters;Leu/vendeli/tgbot/types/common/EphemeralMessageParameters;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public synthetic fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/component/ImplicitFile;Lkotlin/time/Duration;Leu/vendeli/tgbot/types/component/ImplicitFile;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/component/ParseMode;Ljava/lang/Boolean;Leu/vendeli/tgbot/types/common/ReplyParameters;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Leu/vendeli/tgbot/types/msg/SuggestedPostParameters;Leu/vendeli/tgbot/types/common/EphemeralMessageParameters;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/Integer;
@@ -21684,6 +21689,204 @@ public final class eu/vendeli/tgbot/utils/builders/ReplyKeyboardMarkupBuilder : 
 
 public final class eu/vendeli/tgbot/utils/builders/ReplyKeyboardMarkupBuilderKt {
 	public static final fun replyKeyboardMarkup (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/types/keyboard/ReplyKeyboardMarkup;
+}
+
+public class eu/vendeli/tgbot/utils/builders/RichBlocksBuilder {
+	public final fun anchor (Ljava/lang/String;)V
+	public final fun blockquote (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun blockquote$default (Leu/vendeli/tgbot/utils/builders/RichBlocksBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun details (Ljava/lang/String;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun details$default (Leu/vendeli/tgbot/utils/builders/RichBlocksBuilder;Ljava/lang/String;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun divider ()V
+	public final fun expandableBlockquote (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun expandableBlockquote$default (Leu/vendeli/tgbot/utils/builders/RichBlocksBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun footer (Ljava/lang/String;)V
+	public final fun footer (Lkotlin/jvm/functions/Function1;)V
+	public final fun heading (ILjava/lang/String;)V
+	public final fun heading (ILkotlin/jvm/functions/Function1;)V
+	public static synthetic fun heading$default (Leu/vendeli/tgbot/utils/builders/RichBlocksBuilder;ILkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun list (Lkotlin/jvm/functions/Function1;)V
+	public final fun mathematicalExpression (Ljava/lang/String;)V
+	public final fun paragraph (Ljava/lang/String;)V
+	public final fun paragraph (Lkotlin/jvm/functions/Function1;)V
+	public final fun preformatted (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun preformatted (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun preformatted$default (Leu/vendeli/tgbot/utils/builders/RichBlocksBuilder;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public static synthetic fun preformatted$default (Leu/vendeli/tgbot/utils/builders/RichBlocksBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun pullquote (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun pullquote$default (Leu/vendeli/tgbot/utils/builders/RichBlocksBuilder;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun thinking (Ljava/lang/String;)V
+	public final fun thinking (Lkotlin/jvm/functions/Function1;)V
+	public final fun unaryPlus (Leu/vendeli/tgbot/types/media/InputRichBlock;)V
+}
+
+public final class eu/vendeli/tgbot/utils/builders/RichBlocksBuilderKt {
+	public static final fun InputRichMessage (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/types/media/InputRichMessage;
+}
+
+public final class eu/vendeli/tgbot/utils/builders/RichEntitiesBuilder {
+	public fun <init> (Ljava/util/List;)V
+	public final fun build ()Leu/vendeli/tgbot/types/msg/RichText$Chunks;
+	public final fun getRichTexts ()Ljava/util/List;
+	public final fun minus (Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/utils/builders/RichEntitiesBuilder;
+	public final fun minus (Ljava/lang/String;)Leu/vendeli/tgbot/utils/builders/RichEntitiesBuilder;
+}
+
+public final class eu/vendeli/tgbot/utils/builders/RichEntitiesBuilderKt {
+	public static final fun minus (Leu/vendeli/tgbot/types/msg/RichText;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/utils/builders/RichEntitiesBuilder;
+	public static final fun minus (Leu/vendeli/tgbot/types/msg/RichText;Ljava/lang/String;)Leu/vendeli/tgbot/utils/builders/RichEntitiesBuilder;
+	public static final fun minus (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/utils/builders/RichEntitiesBuilder;
+}
+
+public final class eu/vendeli/tgbot/utils/builders/RichListBuilder {
+	public final fun item (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun item (Ljava/lang/String;)V
+	public static synthetic fun item$default (Leu/vendeli/tgbot/utils/builders/RichListBuilder;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+}
+
+public final class eu/vendeli/tgbot/utils/builders/RichMessageBuilder : eu/vendeli/tgbot/utils/builders/RichBlocksBuilder {
+	public final fun getHtml ()Ljava/lang/String;
+	public final fun getMarkdown ()Ljava/lang/String;
+	public final fun getSkipEntityDetection ()Ljava/lang/Boolean;
+	public final fun isRtl ()Ljava/lang/Boolean;
+	public final fun media ([Leu/vendeli/tgbot/types/media/InputRichMessageMedia;)V
+	public final fun setHtml (Ljava/lang/String;)V
+	public final fun setMarkdown (Ljava/lang/String;)V
+	public final fun setRtl (Ljava/lang/Boolean;)V
+	public final fun setSkipEntityDetection (Ljava/lang/Boolean;)V
+}
+
+public final class eu/vendeli/tgbot/utils/builders/RichTextBuilder {
+	public final fun anchor (Ljava/lang/String;)V
+	public final fun anchorLink (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun anchorLink (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun anchorLink (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun bankCardNumber (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun bankCardNumber (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun bankCardNumber (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun bold (Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun bold (Ljava/lang/String;)V
+	public final fun bold (Lkotlin/jvm/functions/Function1;)V
+	public final fun botCommand (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun botCommand (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun botCommand (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun button (Leu/vendeli/tgbot/types/msg/RichMessageButton;)V
+	public final fun cashtag (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun cashtag (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun cashtag (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun code (Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun code (Ljava/lang/String;)V
+	public final fun code (Lkotlin/jvm/functions/Function1;)V
+	public final fun customEmoji (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun dateTime (JLjava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun dateTime (JLjava/lang/String;Ljava/lang/String;)V
+	public final fun dateTime (JLjava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun emailAddress (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun emailAddress (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun emailAddress (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun hashtag (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun hashtag (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun hashtag (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun italic (Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun italic (Ljava/lang/String;)V
+	public final fun italic (Lkotlin/jvm/functions/Function1;)V
+	public final fun marked (Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun marked (Ljava/lang/String;)V
+	public final fun marked (Lkotlin/jvm/functions/Function1;)V
+	public final fun mathematicalExpression (Ljava/lang/String;)V
+	public final fun mention (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun mention (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun mention (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun phoneNumber (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun phoneNumber (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun phoneNumber (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun reference (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun reference (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun reference (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun referenceLink (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun referenceLink (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun referenceLink (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun spoiler (Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun spoiler (Ljava/lang/String;)V
+	public final fun spoiler (Lkotlin/jvm/functions/Function1;)V
+	public final fun strikethrough (Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun strikethrough (Ljava/lang/String;)V
+	public final fun strikethrough (Lkotlin/jvm/functions/Function1;)V
+	public final fun subscript (Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun subscript (Ljava/lang/String;)V
+	public final fun subscript (Lkotlin/jvm/functions/Function1;)V
+	public final fun superscript (Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun superscript (Ljava/lang/String;)V
+	public final fun superscript (Lkotlin/jvm/functions/Function1;)V
+	public final fun textMention (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun textMention (Leu/vendeli/tgbot/types/User;Ljava/lang/String;)V
+	public final fun textMention (Leu/vendeli/tgbot/types/User;Lkotlin/jvm/functions/Function1;)V
+	public final fun unaryPlus (Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun unaryPlus (Ljava/lang/String;)V
+	public final fun underline (Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun underline (Ljava/lang/String;)V
+	public final fun underline (Lkotlin/jvm/functions/Function1;)V
+	public final fun url (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)V
+	public final fun url (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun url (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class eu/vendeli/tgbot/utils/builders/RichTextBuilderKt {
+	public static final fun richText (Lkotlin/jvm/functions/Function1;)Leu/vendeli/tgbot/types/msg/RichText;
+}
+
+public abstract interface annotation class eu/vendeli/tgbot/utils/builders/RichTextDsl : java/lang/annotation/Annotation {
+}
+
+public final class eu/vendeli/tgbot/utils/builders/RichTextFactoriesKt {
+	public static final fun anchor (Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Anchor;
+	public static final fun anchorLink (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$AnchorLink;
+	public static final fun anchorLink (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$AnchorLink;
+	public static final fun bankCardNumber (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$BankCardNumber;
+	public static final fun bankCardNumber (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$BankCardNumber;
+	public static final fun bold (Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$Bold;
+	public static final fun bold (Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Bold;
+	public static final fun botCommand (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$BotCommand;
+	public static final fun botCommand (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$BotCommand;
+	public static final fun button (Leu/vendeli/tgbot/types/msg/RichMessageButton;)Leu/vendeli/tgbot/types/msg/RichText$Button;
+	public static final fun cashtag (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$Cashtag;
+	public static final fun cashtag (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Cashtag;
+	public static final fun code (Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$Code;
+	public static final fun code (Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Code;
+	public static final fun customEmoji (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$CustomEmoji;
+	public static final fun dateTime (JLjava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$DateTime;
+	public static final fun dateTime (JLjava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$DateTime;
+	public static final fun emailAddress (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$EmailAddress;
+	public static final fun emailAddress (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$EmailAddress;
+	public static final fun hashtag (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$Hashtag;
+	public static final fun hashtag (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Hashtag;
+	public static final fun italic (Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$Italic;
+	public static final fun italic (Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Italic;
+	public static final fun marked (Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$Marked;
+	public static final fun marked (Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Marked;
+	public static final fun mathematicalExpression (Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$MathematicalExpression;
+	public static final fun mention (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$Mention;
+	public static final fun mention (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Mention;
+	public static final fun phoneNumber (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$PhoneNumber;
+	public static final fun phoneNumber (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$PhoneNumber;
+	public static final fun reference (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$Reference;
+	public static final fun reference (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Reference;
+	public static final fun referenceLink (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$ReferenceLink;
+	public static final fun referenceLink (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$ReferenceLink;
+	public static final fun spoiler (Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$Spoiler;
+	public static final fun spoiler (Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Spoiler;
+	public static final fun strikethrough (Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$Strikethrough;
+	public static final fun strikethrough (Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Strikethrough;
+	public static final fun subscript (Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$Subscript;
+	public static final fun subscript (Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Subscript;
+	public static final fun superscript (Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$Superscript;
+	public static final fun superscript (Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Superscript;
+	public static final fun textMention (Leu/vendeli/tgbot/types/User;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$TextMention;
+	public static final fun textMention (Leu/vendeli/tgbot/types/User;Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$TextMention;
+	public static final fun underline (Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$Underline;
+	public static final fun underline (Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Underline;
+	public static final fun url (Ljava/lang/String;Leu/vendeli/tgbot/types/msg/RichText;)Leu/vendeli/tgbot/types/msg/RichText$Url;
+	public static final fun url (Ljava/lang/String;Ljava/lang/String;)Leu/vendeli/tgbot/types/msg/RichText$Url;
 }
 
 public final class eu/vendeli/tgbot/utils/common/BotUtilsKt {

@@ -23,14 +23,17 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldStartWith
 import io.kotest.matchers.types.shouldBeTypeOf
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.take
-import kotlinx.coroutines.flow.takeWhile
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
+import java.util.concurrent.atomic.AtomicBoolean
+import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withTimeout
 import kotlin.time.Instant
 import kotlinx.serialization.builtins.ListSerializer
+
+private const val AWAIT_TIMEOUT_MS = 5_000L
 
 class TelegramUpdateHandlerTest : BotTestContext() {
     override fun isolationMode() = IsolationMode.InstancePerLeaf
@@ -70,7 +73,6 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         }
         bot.update.setListener {
             handle(it)
-            delay(100)
             bot.update.stopListener()
         }
         val throwableUpdatePair = bot.update.caughtExceptions
@@ -132,10 +134,10 @@ class TelegramUpdateHandlerTest : BotTestContext() {
     suspend fun `deeplink test`() {
         doMockHttp(MockUpdate.SINGLE("/start test"))
 
-        var commandReached = false
+        val commandReached = AtomicBoolean(false)
         bot.setFunctionality {
             onCommand("/start") {
-                commandReached = true
+                commandReached.set(true)
                 parameters shouldContainExactly mapOf("param_1" to "test")
             }
         }
@@ -143,7 +145,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             handle(it)
             bot.update.stopListener()
         }
-        commandReached shouldBe true
+        commandReached.get() shouldBe true
     }
 
     @Test
@@ -152,7 +154,6 @@ class TelegramUpdateHandlerTest : BotTestContext() {
         bot.update.setListener {
             bot.inputListener.set(1, "testInp")
             handle(it)
-            delay(200)
             if (it.text == "aaaa") stopListener()
         }
 
@@ -190,10 +191,10 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             exception.message shouldBe "test3"
         }
 
-        var inputReached = false
+        val inputReached = AtomicBoolean(false)
         bot.setFunctionality {
             onInput("testInp") {
-                inputReached = true
+                inputReached.set(true)
             }
         }
         bot.update.setListener {
@@ -201,7 +202,7 @@ class TelegramUpdateHandlerTest : BotTestContext() {
             handle(it)
             bot.update.stopListener()
         }
-        inputReached.shouldBeTrue()
+        inputReached.get().shouldBeTrue()
     }
 
     @Test
@@ -215,37 +216,26 @@ class TelegramUpdateHandlerTest : BotTestContext() {
                 ).result.first(),
             )
         }
-        var update: ProcessedUpdate? = null
+        val received = CompletableDeferred<ProcessedUpdate>()
         bot.update.setBehaviour {
-            update = it
+            received.complete(it)
         }
         shouldNotThrowAny {
-            bot.update.parseAndHandle(rawUpdate)
-            delay(1)
+            withTimeout(AWAIT_TIMEOUT_MS) { bot.update.parseAndHandle(rawUpdate).join() }
         }
-        update.shouldNotBeNull()
+        received.isCompleted.shouldBeTrue()
     }
 
     @Test
-    suspend fun `update flow test`() {
-        val collectedUpdates = mutableListOf<ProcessedUpdate>()
-
-        @Suppress("OPT_IN_USAGE")
-        GlobalScope.launch {
-            bot.update.flow
-                .takeWhile {
-                    it.text.startsWith("test")
-                }.take(10)
-                .toList(collectedUpdates)
-        }
+    suspend fun `update flow test`() = coroutineScope {
+        val firstUpdate = async(start = CoroutineStart.UNDISPATCHED) { bot.update.flow.first() }
         doMockHttp(MockUpdate.TEXT_LIST("test1", "test2", "test3", "4test"))
         bot.update.setListener {
             handle(it)
             bot.update.stopListener()
         }
 
-        delay(100)
-        collectedUpdates.forEach { it.text shouldStartWith "test" }
+        withTimeout(AWAIT_TIMEOUT_MS) { firstUpdate.await() }.text shouldStartWith "test"
     }
 
     companion object {

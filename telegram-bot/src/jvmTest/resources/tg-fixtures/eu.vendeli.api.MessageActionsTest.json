@@ -1,0 +1,727 @@
+{
+  "tests": {
+    "copy message method test": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57796,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131879,
+            "text": "test"
+          }
+        }
+      },
+      {
+        "method": "copyMessage",
+        "requestKeys": [
+          "chat_id",
+          "from_chat_id",
+          "message_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57797
+          }
+        }
+      },
+      {
+        "method": "copyMessage",
+        "requestKeys": [
+          "chat_id",
+          "from_chat_id",
+          "message_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57798
+          }
+        }
+      },
+      {
+        "method": "copyMessage",
+        "requestKeys": [
+          "chat_id",
+          "from_chat_id",
+          "message_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57799
+          }
+        }
+      }
+    ],
+    "copy messageS method test": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57800,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131881,
+            "text": "test"
+          }
+        }
+      },
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57801,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131881,
+            "text": "test2"
+          }
+        }
+      },
+      {
+        "method": "copyMessages",
+        "requestKeys": [
+          "chat_id",
+          "from_chat_id",
+          "message_ids"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": [
+            {
+              "message_id": 57802
+            },
+            {
+              "message_id": 57803
+            }
+          ]
+        }
+      },
+      {
+        "method": "copyMessages",
+        "requestKeys": [
+          "chat_id",
+          "from_chat_id",
+          "message_ids"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": [
+            {
+              "message_id": 57804
+            },
+            {
+              "message_id": 57805
+            }
+          ]
+        }
+      },
+      {
+        "method": "copyMessages",
+        "requestKeys": [
+          "chat_id",
+          "from_chat_id",
+          "message_ids"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": [
+            {
+              "message_id": 57806
+            },
+            {
+              "message_id": 57807
+            }
+          ]
+        }
+      }
+    ],
+    "delete message method test": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57808,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131882,
+            "text": "test"
+          }
+        }
+      },
+      {
+        "method": "deleteMessage",
+        "requestKeys": [
+          "chat_id",
+          "message_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "delete messageS method test": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57809,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131882,
+            "text": "test"
+          }
+        }
+      },
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57810,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131882,
+            "text": "test2"
+          }
+        }
+      },
+      {
+        "method": "deleteMessages",
+        "requestKeys": [
+          "chat_id",
+          "message_ids"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "forward message method test": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57811,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131883,
+            "text": "test"
+          }
+        }
+      },
+      {
+        "method": "forwardMessage",
+        "requestKeys": [
+          "chat_id",
+          "from_chat_id",
+          "message_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57812,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131883,
+            "forward_origin": {
+              "type": "user",
+              "sender_user": {
+                "id": 700000001,
+                "is_bot": true,
+                "first_name": "redacted",
+                "username": "redacted"
+              },
+              "date": 1791131883
+            },
+            "forward_from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "forward_date": 1791131883,
+            "text": "test"
+          }
+        }
+      },
+      {
+        "method": "forwardMessage",
+        "requestKeys": [
+          "chat_id",
+          "from_chat_id",
+          "message_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57813,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131883,
+            "forward_origin": {
+              "type": "user",
+              "sender_user": {
+                "id": 700000001,
+                "is_bot": true,
+                "first_name": "redacted",
+                "username": "redacted"
+              },
+              "date": 1791131883
+            },
+            "forward_from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "forward_date": 1791131883,
+            "text": "test"
+          }
+        }
+      },
+      {
+        "method": "forwardMessage",
+        "requestKeys": [
+          "chat_id",
+          "from_chat_id",
+          "message_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57814,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131884,
+            "forward_origin": {
+              "type": "user",
+              "sender_user": {
+                "id": 700000001,
+                "is_bot": true,
+                "first_name": "redacted",
+                "username": "redacted"
+              },
+              "date": 1791131883
+            },
+            "forward_from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "forward_date": 1791131883,
+            "text": "test"
+          }
+        }
+      }
+    ],
+    "forward messageS method test": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57815,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131884,
+            "text": "test"
+          }
+        }
+      },
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57816,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131884,
+            "text": "test2"
+          }
+        }
+      },
+      {
+        "method": "forwardMessages",
+        "requestKeys": [
+          "chat_id",
+          "from_chat_id",
+          "message_ids"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": [
+            {
+              "message_id": 57817
+            },
+            {
+              "message_id": 57818
+            }
+          ]
+        }
+      },
+      {
+        "method": "forwardMessages",
+        "requestKeys": [
+          "chat_id",
+          "from_chat_id",
+          "message_ids"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": [
+            {
+              "message_id": 57819
+            },
+            {
+              "message_id": 57820
+            }
+          ]
+        }
+      },
+      {
+        "method": "forwardMessages",
+        "requestKeys": [
+          "chat_id",
+          "from_chat_id",
+          "message_ids"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": [
+            {
+              "message_id": 57821
+            },
+            {
+              "message_id": 57822
+            }
+          ]
+        }
+      }
+    ],
+    "send message draft method test": [
+      {
+        "method": "sendMessageDraft",
+        "requestKeys": [
+          "chat_id",
+          "draft_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "send message draft with entities method test": [
+      {
+        "method": "sendMessageDraft",
+        "requestKeys": [
+          "chat_id",
+          "draft_id",
+          "entities",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "send message draft with message thread id method test": [
+      {
+        "method": "sendMessageDraft",
+        "requestKeys": [
+          "chat_id",
+          "draft_id",
+          "message_thread_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "set message reaction method test": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57823,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131886,
+            "text": "test"
+          }
+        }
+      },
+      {
+        "method": "setMessageReaction",
+        "requestKeys": [
+          "chat_id",
+          "message_id",
+          "reaction"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "setMessageReaction",
+        "requestKeys": [
+          "chat_id",
+          "message_id",
+          "reaction"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ]
+  }
+}

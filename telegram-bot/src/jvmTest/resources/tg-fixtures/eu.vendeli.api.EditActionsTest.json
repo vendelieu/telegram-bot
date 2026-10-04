@@ -1,0 +1,330 @@
+{
+  "tests": {
+    "edit markup test method test": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "reply_markup",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24182,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131872,
+            "text": "test1",
+            "reply_markup": {
+              "inline_keyboard": [
+                [
+                  {
+                    "text": "test",
+                    "switch_inline_query_current_chat": "test"
+                  }
+                ]
+              ]
+            }
+          }
+        }
+      },
+      {
+        "method": "editMessageReplyMarkup",
+        "requestKeys": [
+          "chat_id",
+          "message_id",
+          "reply_markup"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24182,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131872,
+            "edit_date": 1791131873,
+            "text": "test1",
+            "reply_markup": {
+              "inline_keyboard": [
+                [
+                  {
+                    "text": "test2",
+                    "switch_inline_query": "test"
+                  }
+                ]
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "edit media caption test method test": [
+      {
+        "method": "ext:picsum.photos/10",
+        "status": 302,
+        "base64": ""
+      },
+      {
+        "method": "ext:fastly.picsum.photos/id/409/10/10.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "base64": "/9j/4QDeRXhpZgAASUkqAAgAAAAGABIBAwABAAAAAQAAABoBBQABAAAAVgAAABsBBQABAAAAXgAAACgBAwABAAAAAgAAABMCAwABAAAAAQAAAGmHBAABAAAAZgAAAAAAAABIAAAAAQAAAEgAAAABAAAABwAAkAcABAAAADAyMTABkQcABAAAAAECAwCGkgcAFgAAAMAAAAAAoAcABAAAADAxMDABoAMAAQAAAP//AAACoAQAAQAAAAoAAAADoAQAAQAAAAoAAAAAAAAAQVNDSUkAAABQaWNzdW0gSUQ6IDQwOf/bAEMACAYGBwYFCAcHBwkJCAoMFA0MCwsMGRITDxQdGh8eHRocHCAkLicgIiwjHBwoNyksMDE0NDQfJzk9ODI8LjM0Mv/bAEMBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/CABEIAAoACgMBIgACEQEDEQH/xAAWAAEBAQAAAAAAAAAAAAAAAAAFAQP/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAABO3PsP//EABgQAAIDAAAAAAAAAAAAAAAAAAEDEBET/9oACAEBAAEFAg01rP8A/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAgBAwEBPwF//8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAgBAgEBPwF//8QAFxAAAwEAAAAAAAAAAAAAAAAAAREgIf/aAAgBAQAGPwJE64//xAAZEAADAAMAAAAAAAAAAAAAAAAAATEQYXH/2gAIAQEAAT8h3RFIdCrx/9oADAMBAAIAAwAAABDP/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAgBAwEBPxB//8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQIBAT8Qj//EABsQAQACAgMAAAAAAAAAAAAAAAEAESExQYHB/9oACAEBAAE/EKdJcQdMTb5gxcVDU//Z"
+      },
+      {
+        "method": "sendPhoto",
+        "requestKeys": [
+          "chat_id",
+          "photo",
+          "photo.jpg"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24183,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131873,
+            "photo": [
+              {
+                "file_id": "AgACAgIAAxkDAAJed2rCgOEgBXxUHO45Ttqf22cOKm4TAAIvKWsbOZsZSlCaYbTHyQgLAQADAgADbQADPQQ",
+                "file_unique_id": "AQADLylrGzmbGUpy",
+                "file_size": 331,
+                "width": 10,
+                "height": 10
+              }
+            ]
+          }
+        }
+      },
+      {
+        "method": "editMessageCaption",
+        "requestKeys": [
+          "caption",
+          "chat_id",
+          "message_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24183,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131873,
+            "edit_date": 1791131873,
+            "photo": [
+              {
+                "file_id": "AgACAgIAAxkDAAJed2rCgOEgBXxUHO45Ttqf22cOKm4TAAIvKWsbOZsZSlCaYbTHyQgLAQADAgADbQADPQQ",
+                "file_unique_id": "AQADLylrGzmbGUpy",
+                "file_size": 331,
+                "width": 10,
+                "height": 10
+              }
+            ],
+            "caption": "test"
+          }
+        }
+      }
+    ],
+    "edit media test method test": [
+      {
+        "method": "ext:picsum.photos/10",
+        "status": 302,
+        "base64": ""
+      },
+      {
+        "method": "ext:fastly.picsum.photos/id/1025/10/10.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "base64": "/9j/4QDgRXhpZgAASUkqAAgAAAAGABIBAwABAAAAAQAAABoBBQABAAAAVgAAABsBBQABAAAAXgAAACgBAwABAAAAAgAAABMCAwABAAAAAQAAAGmHBAABAAAAZgAAAAAAAABIAAAAAQAAAEgAAAABAAAABwAAkAcABAAAADAyMTABkQcABAAAAAECAwCGkgcAFwAAAMAAAAAAoAcABAAAADAxMDABoAMAAQAAAP//AAACoAQAAQAAAAoAAAADoAQAAQAAAAoAAAAAAAAAQVNDSUkAAABQaWNzdW0gSUQ6IDEwMjUA/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8IAEQgACgAKAwEiAAIRAQMRAf/EABYAAQEBAAAAAAAAAAAAAAAAAAQBA//EABUBAQEAAAAAAAAAAAAAAAAAAAED/9oADAMBAAIQAxAAAAGHyLN//8QAGRAAAgMBAAAAAAAAAAAAAAAAAQMAAhEE/9oACAEBAAEFAlc+qNQCixyf/8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQMBAT8Bj//EABYRAAMAAAAAAAAAAAAAAAAAAAABEv/aAAgBAgEBPwGUf//EABsQAAEEAwAAAAAAAAAAAAAAAAIAARExECGR/9oACAEBAAY/ApJrUSPUW3rH/8QAGRABAAMBAQAAAAAAAAAAAAAAAQARMUFx/9oACAEBAAE/IaIwZ8ifG1ASKuLhk//aAAwDAQACAAMAAAAQW//EABYRAAMAAAAAAAAAAAAAAAAAAAABEf/aAAgBAwEBPxCGf//EABYRAQEBAAAAAAAAAAAAAAAAAAEAIf/aAAgBAgEBPxBbL//EABkQAQADAQEAAAAAAAAAAAAAAAEAESGRUf/aAAgBAQABPxAGtgugNXe1yXD7sGsyDFHIdE0F8n//2Q=="
+      },
+      {
+        "method": "sendPhoto",
+        "requestKeys": [
+          "chat_id",
+          "photo",
+          "photo.jpg"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24184,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131874,
+            "photo": [
+              {
+                "file_id": "AgACAgIAAxkDAAJeeGrCgOKwK9VeYPYDDOpJH0fTPhG5AAIwKWsbOZsZSuJPyr9vJI-uAQADAgADbQADPQQ",
+                "file_unique_id": "AQADMClrGzmbGUpy",
+                "file_size": 380,
+                "width": 10,
+                "height": 10
+              }
+            ]
+          }
+        }
+      },
+      {
+        "method": "editMessageMedia",
+        "requestKeys": [
+          "chat_id",
+          "media",
+          "message_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24184,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131874,
+            "edit_date": 1791131874,
+            "photo": [
+              {
+                "file_id": "AgACAgQAAxkDAAJdgmq-3OHxzAEJXM9KHyHxy3WZoB85AAJDqTEbpu51UubZigAB-b5vFQEAAwIAA20AAz0E",
+                "file_unique_id": "AQADQ6kxG6budVJy",
+                "file_size": 380,
+                "width": 10,
+                "height": 10
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "edit message test method test": [
+      {
+        "method": "sendMessage",
+        "requestKeys": [
+          "chat_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24185,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131874,
+            "text": "test1"
+          }
+        }
+      },
+      {
+        "method": "editMessageText",
+        "requestKeys": [
+          "chat_id",
+          "message_id",
+          "text"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 24185,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131874,
+            "edit_date": 1791131875,
+            "text": "test2"
+          }
+        }
+      }
+    ]
+  }
+}

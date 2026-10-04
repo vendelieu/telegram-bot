@@ -1,0 +1,56 @@
+{
+  "tests": {
+    "invoice method test": [
+      {
+        "method": "sendInvoice",
+        "requestKeys": [
+          "chat_id",
+          "currency",
+          "description",
+          "payload",
+          "prices",
+          "provider_token",
+          "title"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 57795,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1791131877,
+            "invoice": {
+              "title": "test",
+              "description": "test1",
+              "start_parameter": "",
+              "currency": "USD",
+              "total_amount": 1000
+            },
+            "reply_markup": {
+              "inline_keyboard": [
+                [
+                  {
+                    "text": "Pay $10.00",
+                    "pay": true
+                  }
+                ]
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}

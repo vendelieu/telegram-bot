@@ -81,24 +81,24 @@ class ChatSetMethodsTest : BotTestContext() {
             canSendPolls = true
             canSendOtherMessages = true
             canAddWebPagePreviews = true
-			canReactToMessages = true
+            canReactToMessages = true
             canChangeInfo = true
             canInviteUsers = true
             canPinMessages = true
             canManageTopics = true
-			canEditTag = true
-		}.sendReturning(CHAT_ID, bot).await()
+            canEditTag = true
+        }.sendReturning(CHAT_ID, bot).await()
 
-		when (result) {
-			is Response.Success -> {
-				result.result.shouldBeTrue()
-			}
+        when (result) {
+            is Response.Success -> {
+                result.result.shouldBeTrue()
+            }
 
-			is Response.Failure -> {
-				result.errorCode shouldBe 400
-				result.description.shouldNotBeNull().shouldContain("CHAT_NOT_MODIFIED")
-			}
-		}
+            is Response.Failure -> {
+                result.errorCode shouldBe 400
+                result.description.shouldNotBeNull().shouldContain("CHAT_NOT_MODIFIED")
+            }
+        }
     }
 
     @Test

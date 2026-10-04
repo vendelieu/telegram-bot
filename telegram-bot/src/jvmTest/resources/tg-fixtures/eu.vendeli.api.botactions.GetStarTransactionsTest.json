@@ -1,0 +1,21 @@
+{
+  "tests": {
+    "getStarTransactions method testing": [
+      {
+        "method": "getStarTransactions",
+        "requestKeys": [
+          "limit",
+          "offset"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "transactions": []
+          }
+        }
+      }
+    ]
+  }
+}

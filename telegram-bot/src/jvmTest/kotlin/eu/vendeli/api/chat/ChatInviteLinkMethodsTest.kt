@@ -22,7 +22,7 @@ import kotlin.time.Duration.Companion.seconds
 class ChatInviteLinkMethodsTest : BotTestContext() {
     @Test
     suspend fun `create chat invite link method test`() {
-        val expireUnix = CUR_INSTANT.plus(120.seconds)
+        val expireUnix = FIXED_EXPIRY.plus(120.seconds)
         val result = createChatInviteLink()
             .options {
                 name = "test"
@@ -43,7 +43,7 @@ class ChatInviteLinkMethodsTest : BotTestContext() {
 
     @Test
     suspend fun `create chat subscription invite link method test`() {
-        val expireUnix = CUR_INSTANT.plus(30.days)
+        val expireUnix = FIXED_EXPIRY.plus(30.days)
         createChatSubscriptionInviteLink(10, "test")
             .sendReturning(CHAT_ID, bot)
             .getOrNull()
@@ -80,7 +80,7 @@ class ChatInviteLinkMethodsTest : BotTestContext() {
             }.sendReturning(CHAT_ID, bot)
             .shouldSuccess()
 
-        val expireUnix = CUR_INSTANT.plus(1000.milliseconds)
+        val expireUnix = FIXED_EXPIRY.plus(1000.milliseconds)
         val result = editChatInviteLink(inviteLink.inviteLink)
             .options {
                 name = "test2"

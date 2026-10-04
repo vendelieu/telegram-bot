@@ -1,0 +1,19 @@
+{
+  "tests": {
+    "set passport data errors method test": [
+      {
+        "method": "setPassportDataErrors",
+        "requestKeys": [
+          "errors",
+          "user_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ]
+  }
+}

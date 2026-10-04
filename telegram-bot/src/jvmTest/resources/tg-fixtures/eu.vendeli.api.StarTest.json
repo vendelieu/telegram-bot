@@ -1,0 +1,17 @@
+{
+  "tests": {
+    "getMyStarBalance method test": [
+      {
+        "method": "getMyStarBalance",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "amount": 0
+          }
+        }
+      }
+    ]
+  }
+}

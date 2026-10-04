@@ -1,0 +1,81 @@
+{
+  "tests": {
+    "get description method testing": [
+      {
+        "method": "getMyDescription",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "description": ""
+          }
+        }
+      }
+    ],
+    "get my commands method testing": [
+      {
+        "method": "getMyCommands",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": []
+        }
+      }
+    ],
+    "get my default administrator rights method testing": [
+      {
+        "method": "getMyDefaultAdministratorRights",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "can_manage_chat": true,
+            "can_change_info": false,
+            "can_delete_messages": false,
+            "can_invite_users": false,
+            "can_restrict_members": false,
+            "can_pin_messages": false,
+            "can_manage_topics": false,
+            "can_promote_members": false,
+            "can_manage_video_chats": false,
+            "can_post_stories": false,
+            "can_edit_stories": false,
+            "can_delete_stories": false,
+            "can_manage_tags": false,
+            "can_send_welcome_messages": false,
+            "is_anonymous": true
+          }
+        }
+      }
+    ],
+    "get my name method testing": [
+      {
+        "method": "getMyName",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "name": "testbot2"
+          }
+        }
+      }
+    ],
+    "get short description method testing": [
+      {
+        "method": "getMyShortDescription",
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "short_description": ""
+          }
+        }
+      }
+    ]
+  }
+}

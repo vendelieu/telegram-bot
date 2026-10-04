@@ -81,9 +81,7 @@ class RichMessageTest : BotTestContext() {
     @Test
     fun `sendRichMessage wires rich_message parameter`() {
         sendRichMessage {
-            blocks = listOf(
-                InputRichBlock.Paragraph("hello".toRichText()),
-            )
+            paragraph("hello")
             isRtl = true
         }.apply {
             method shouldBe "sendRichMessage"

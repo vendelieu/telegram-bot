@@ -16,7 +16,10 @@ import eu.vendeli.tgbot.utils.common.loadContext
 import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
+import io.kotest.core.spec.Spec
 import io.kotest.core.spec.style.AnnotationSpec
+import io.kotest.core.test.TestCase
+import io.kotest.engine.test.TestResult
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
@@ -37,12 +40,25 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.serializer
 import utils.BotResource
 import utils.TestEnv
+import utils.replay.FakeIds
+import utils.replay.FixtureSession
+import utils.replay.TestMode
 import utils.RandomPicResource
+import java.util.Base64
 import kotlin.properties.Delegates
 import kotlin.random.Random
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Instant
+
+private const val FIXED_EXPIRY_EPOCH_SECONDS = 1_893_456_000L // 2030-01-01
+private const val MIN_LIVE_DELAY_MS = 10L
+private const val MAX_LIVE_DELAY_MS = 200L
+
+/** Smallest valid PNG, stands in for downloaded pictures in replay mode. */
+private val PLACEHOLDER_PIC = Base64.getDecoder().decode(
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==",
+)
 
 @Suppress("VariableNaming", "PropertyName", "PrivatePropertyName", "SpellCheckingInspection")
 abstract class BotTestContext(
@@ -51,24 +67,36 @@ abstract class BotTestContext(
     private val spykIt: Boolean = true,
 ) : AnnotationSpec() {
     private val INT_ITERATOR = (1..Int.MAX_VALUE).iterator()
-    private val RANDOM_INST: Random get() = Random(CUR_INSTANT.epochSeconds)
+    private val RANDOM_INST: Random = Random.Default
     internal lateinit var bot: TelegramBot
     internal val updatesAction = spyk(GET_UPDATES_ACTION)
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
-    protected val TG_ID by lazy { TestEnv.getLong("TELEGRAM_ID") ?: 1L }
+    protected val TG_ID by lazy { if (testMode.isReplay) FakeIds.TG_ID else TestEnv.getLong("TELEGRAM_ID") ?: 1L }
     protected var BOT_ID by Delegates.notNull<Long>()
-    protected val CHAT_ID by lazy { TestEnv.getLong("CHAT_ID") ?: -1L }
-    protected val CHANNEL_ID by lazy { TestEnv.getLong("CHANNEL_ID") ?: -2L }
-    protected val PAYMENT_PROVIDER_TOKEN: String? by lazy { TestEnv.get("PAYMENT_PROVIDER_TOKEN") }
+    protected val CHAT_ID by lazy { if (testMode.isReplay) FakeIds.CHAT_ID else TestEnv.getLong("CHAT_ID") ?: -1L }
+    protected val CHANNEL_ID by lazy {
+        if (testMode.isReplay) FakeIds.CHANNEL_ID else TestEnv.getLong("CHANNEL_ID") ?: -2L
+    }
+    protected val PAYMENT_PROVIDER_TOKEN: String? by lazy {
+        if (testMode.isReplay) FakeIds.PAYMENT_PROVIDER_TOKEN else TestEnv.get("PAYMENT_PROVIDER_TOKEN")
+    }
+
+    protected val testMode: TestMode get() = TestMode.current
+
+    /** Per-spec record/replay state, see [FixtureSession]. */
+    internal val fixtures by lazy { FixtureSession(this::class.qualifiedName.orEmpty(), testMode) }
 
     protected val RANDOM_PIC: ByteArray?
-        get() = getRandomPic() ?: run {
+        get() = if (testMode.isReplay) PLACEHOLDER_PIC else getRandomPic() ?: run {
             RandomPicResource.swapAndGet()
             getRandomPic()
         }
 
     protected val CUR_INSTANT: Instant get() = Clock.System.now()
+
+    /** A stable point in the future for values the server echoes back, so that recorded responses stay valid. */
+    protected val FIXED_EXPIRY: Instant = Instant.fromEpochSeconds(FIXED_EXPIRY_EPOCH_SECONDS)
     protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()
     protected val RAND_INT: Int get() = RANDOM_INST.nextInt()
     protected val DUMB_USER = User(id = 1, isBot = false, firstName = "Test")
@@ -79,7 +107,11 @@ abstract class BotTestContext(
     fun prepareTestBot() {
         val ctx = BotResource.swapAndGet()
         BOT_ID = ctx.id
-        if (withPreparedBot) bot = TelegramBot(ctx.token, "eu.vendeli") {
+        if (withPreparedBot) bot = TelegramBot(
+            ctx.token,
+            "eu.vendeli",
+            if (testMode.isReplay) fixtures.replayClient() else null,
+        ) {
             httpClient {
                 maxRequestRetry = 0
                 connectTimeoutMillis = 10.seconds.inWholeMilliseconds
@@ -89,6 +121,7 @@ abstract class BotTestContext(
                 pullingDelay = 100
             }
         }
+        if (testMode.isRecord) bot.httpClient = fixtures.recording(bot.httpClient)
         bot.loadContext(TestActivitiesLoader())
         if (spykIt) spykIt()
 
@@ -105,24 +138,48 @@ abstract class BotTestContext(
         bot = spyk(bot, recordPrivateCalls = true)
     }
 
+    override suspend fun beforeTest(testCase: TestCase) {
+        fixtures.currentTest = testCase.name.name
+        super.beforeTest(testCase)
+    }
+
+    override suspend fun afterTest(testCase: TestCase, result: TestResult) {
+        super.afterTest(testCase, result)
+        if (testMode.isRecord && !result.isSuccess) fixtures.discard(testCase.name.name)
+    }
+
+    override suspend fun afterSpec(spec: Spec) {
+        super.afterSpec(spec)
+        fixtures.flush()
+    }
+
     private fun getRandomPic(): ByteArray? = runBlocking {
-        bot.httpClient.get(RandomPicResource.RANDOM_PIC_URL).takeIf { it.status.isSuccess() }?.readRawBytes()?.also {
-            logger.warn("RANDOM PIC OBTAINING ERROR.")
-        }
+        bot.httpClient
+            .get(RandomPicResource.RANDOM_PIC_URL)
+            .takeIf { it.status.isSuccess() }
+            ?.readRawBytes()
+            ?: run {
+                logger.warn("RANDOM PIC OBTAINING ERROR.")
+                null
+            }
+    }
+
+    private suspend fun throttleLive() {
+        if (!testMode.isReplay) delay(RANDOM_INST.nextLong(MIN_LIVE_DELAY_MS, MAX_LIVE_DELAY_MS))
     }
 
     protected suspend fun <T> Action<T>.sendReq(to: Long = TG_ID, via: TelegramBot = bot): Response<out T> {
-        delay(RANDOM_INST.nextLong(10, 200))
+        throttleLive()
         return sendReturning(to, via).await()
     }
 
     protected suspend fun <T : Any> SimpleAction<T>.sendReq(via: TelegramBot = bot): Response<out T> {
-        delay(RANDOM_INST.nextLong(10, 200))
+        throttleLive()
         return sendReturning(via).await()
     }
 
     protected suspend fun <T> MediaAction<T>.sendReq(to: Long = TG_ID, via: TelegramBot = bot): Response<out T> {
-        delay(RANDOM_INST.nextLong(10, 200))
+        throttleLive()
         return sendReturning(to, via).await()
     }
 

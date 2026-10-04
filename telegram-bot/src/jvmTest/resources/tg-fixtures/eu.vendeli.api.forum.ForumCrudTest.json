@@ -1,0 +1,263 @@
+{
+  "tests": {
+    "close forum topic method test": [
+      {
+        "method": "createForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_thread_id": 25624,
+            "name": "testTopic",
+            "icon_color": 7322096
+          }
+        }
+      },
+      {
+        "method": "closeForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "message_thread_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "deleteForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "message_thread_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "create forum topic method test": [
+      {
+        "method": "createForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "icon_color",
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_thread_id": 25626,
+            "name": "testTopic",
+            "icon_color": 9367192
+          }
+        }
+      },
+      {
+        "method": "deleteForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "message_thread_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "delete forum topic method test": [
+      {
+        "method": "createForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_thread_id": 25627,
+            "name": "testTopic",
+            "icon_color": 7322096
+          }
+        }
+      },
+      {
+        "method": "deleteForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "message_thread_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "edit forum topic method test": [
+      {
+        "method": "createForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_thread_id": 25628,
+            "name": "testTopic",
+            "icon_color": 7322096
+          }
+        }
+      },
+      {
+        "method": "editForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "message_thread_id",
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "deleteForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "message_thread_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "open forum topic method test": [
+      {
+        "method": "createForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_thread_id": 25630,
+            "name": "testTopic",
+            "icon_color": 7322096
+          }
+        }
+      },
+      {
+        "method": "closeForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "message_thread_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "reopenForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "message_thread_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "deleteForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "message_thread_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ],
+    "unpin all forum topic method test": [
+      {
+        "method": "createForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "name"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_thread_id": 25633,
+            "name": "testTopic",
+            "icon_color": 7322096
+          }
+        }
+      },
+      {
+        "method": "unpinAllForumTopicMessages",
+        "requestKeys": [
+          "chat_id",
+          "message_thread_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "deleteForumTopic",
+        "requestKeys": [
+          "chat_id",
+          "message_thread_id"
+        ],
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
+        }
+      }
+    ]
+  }
+}

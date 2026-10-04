@@ -1,0 +1,131 @@
+{
+  "tests": {
+    "answer callback query test": [
+      {
+        "method": "answerCallbackQuery",
+        "requestKeys": [
+          "callback_query_id",
+          "chat_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: query is too old and response timeout expired or query ID is invalid"
+        }
+      }
+    ],
+    "answer inline query test": [
+      {
+        "method": "answerInlineQuery",
+        "requestKeys": [
+          "inline_query_id",
+          "results"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: query is too old and response timeout expired or query ID is invalid"
+        }
+      }
+    ],
+    "answer pre checkout query test": [
+      {
+        "method": "answerPreCheckoutQuery",
+        "requestKeys": [
+          "error_message",
+          "ok",
+          "pre_checkout_query_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: query is too old and response timeout expired or query ID is invalid"
+        }
+      },
+      {
+        "method": "answerPreCheckoutQuery",
+        "requestKeys": [
+          "ok",
+          "pre_checkout_query_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: query is too old and response timeout expired or query ID is invalid"
+        }
+      }
+    ],
+    "answer shipping query test": [
+      {
+        "method": "answerShippingQuery",
+        "requestKeys": [
+          "ok",
+          "shipping_options",
+          "shipping_query_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: query is too old and response timeout expired or query ID is invalid"
+        }
+      },
+      {
+        "method": "answerShippingQuery",
+        "requestKeys": [
+          "ok",
+          "shipping_options",
+          "shipping_query_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: query is too old and response timeout expired or query ID is invalid"
+        }
+      },
+      {
+        "method": "answerShippingQuery",
+        "requestKeys": [
+          "error_message",
+          "ok",
+          "shipping_options",
+          "shipping_query_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: there must be at least one shipping option"
+        }
+      }
+    ],
+    "answer web app query test": [
+      {
+        "method": "answerWebAppQuery",
+        "requestKeys": [
+          "result",
+          "web_app_query_id"
+        ],
+        "status": 400,
+        "contentType": "application/json",
+        "json": {
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: query is too old and response timeout expired or query ID is invalid"
+        }
+      }
+    ]
+  }
+}
