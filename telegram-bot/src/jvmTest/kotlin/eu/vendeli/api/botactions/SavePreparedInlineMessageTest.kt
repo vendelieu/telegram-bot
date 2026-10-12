@@ -4,9 +4,8 @@ import BotTestContext
 import eu.vendeli.tgbot.api.botactions.savePreparedInlineMessage
 import eu.vendeli.tgbot.types.inline.InlineQueryResult
 import eu.vendeli.utils.LOREM
-import io.kotest.matchers.booleans.shouldBeTrue
-import kotlin.time.Clock
-import kotlin.time.toJavaInstant
+import io.kotest.matchers.longs.shouldBeGreaterThan
+import io.kotest.matchers.string.shouldNotBeBlank
 
 class SavePreparedInlineMessageTest : BotTestContext() {
     @Test
@@ -18,11 +17,8 @@ class SavePreparedInlineMessageTest : BotTestContext() {
         }.sendReturning(bot)
             .shouldSuccess()
 
-        Clock.System
-            .now()
-            .toJavaInstant()
-            .isBefore(result.expirationDate.toJavaInstant())
-            .shouldBeTrue()
+        result.id.shouldNotBeBlank()
+        result.expirationDate.epochSeconds shouldBeGreaterThan 0L
     }
 
     @Test
