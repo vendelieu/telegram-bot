@@ -7,6 +7,10 @@
           "inline_message_id",
           "text"
         ],
+        "request": {
+          "text": "test",
+          "inline_message_id": "test"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -21,6 +25,10 @@
           "inline_message_id",
           "text"
         ],
+        "request": {
+          "text": "test",
+          "inline_message_id": "test"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -36,6 +44,9 @@
         "requestKeys": [
           "text"
         ],
+        "request": {
+          "text": "test"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -48,6 +59,7 @@
     "fold response handling": [
       {
         "method": "getMe",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -79,12 +91,17 @@
           "photo",
           "photo.jpg"
         ],
+        "request": {
+          "photo.jpg": "<file>",
+          "photo": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57793,
+            "message_id": 25823,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -97,11 +114,11 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131866,
+            "date": 1794253018,
             "photo": [
               {
-                "file_id": "AgACAgIAAxkDAALhPmrCdz7VVPFwODVwFQ7IAAHv7AxNZAACoSJrG48JEEoodFNNvVAeCQEAAwIAA20AAz0E",
-                "file_unique_id": "AQADoSJrG48JEEpy",
+                "file_id": "AgACAgIAAxUHavIgzRB3i6C722QRCkqgHBo0kWQAAj8iaxuhUJBLGk10qeWFvm8BAAMCAANtAAM9BA",
+                "file_unique_id": "AQADPyJrG6FQkEty",
                 "file_size": 287,
                 "width": 1,
                 "height": 1
@@ -115,20 +132,24 @@
         "requestKeys": [
           "file_id"
         ],
+        "request": {
+          "file_id": "AgACAgIAAxUHavIgzRB3i6C722QRCkqgHBo0kWQAAj8iaxuhUJBLGk10qeWFvm8BAAMCAANtAAM9BA"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "file_id": "AgACAgIAAxkDAALhPmrCdz7VVPFwODVwFQ7IAAHv7AxNZAACoSJrG48JEEoodFNNvVAeCQEAAwIAA20AAz0E",
-            "file_unique_id": "AQADoSJrG48JEEpy",
+            "file_id": "AgACAgIAAxUHavIgzRB3i6C722QRCkqgHBo0kWQAAj8iaxuhUJBLGk10qeWFvm8BAAMCAANtAAM9BA",
+            "file_unique_id": "AQADPyJrG6FQkEty",
             "file_size": 287,
-            "file_path": "photos/file_102.jpg"
+            "file_path": "photos/file_286.jpg"
           }
         }
       },
       {
-        "method": "file:photos/file_102.jpg",
+        "method": "file:photos/file_286.jpg",
+        "request": {},
         "status": 200,
         "contentType": "application/octet-stream",
         "base64": "/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAQDAwQDAwQEAwQFBAQFBgoHBgYGBg0JCggKDw0QEA8NDw4RExgUERIXEg4PFRwVFxkZGxsbEBQdHx0aHxgaGxr/2wBDAQQFBQYFBgwHBwwaEQ8RGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhr/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAX/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAABQf/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwC4Avwt/9k="
@@ -137,6 +158,7 @@
     "requests testing": [
       {
         "method": "getMe",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -167,12 +189,16 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24180,
+            "message_id": 59355,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -185,7 +211,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131867,
+            "date": 1794253020,
             "text": "test"
           }
         }

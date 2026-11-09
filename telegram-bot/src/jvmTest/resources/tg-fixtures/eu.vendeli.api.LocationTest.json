@@ -12,12 +12,21 @@
           "longitude",
           "proximity_alert_radius"
         ],
+        "request": {
+          "latitude": 1.0,
+          "longitude": 2.0,
+          "horizontal_accuracy": 3.0,
+          "live_period": 1000,
+          "heading": 4,
+          "proximity_alert_radius": 10,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24191,
+            "message_id": 25834,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -30,7 +39,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131878,
+            "date": 1794253035,
             "location": {
               "latitude": 1.000002,
               "longitude": 1.999996,
@@ -53,12 +62,21 @@
           "message_id",
           "proximity_alert_radius"
         ],
+        "request": {
+          "message_id": 25834,
+          "latitude": 2.0,
+          "longitude": 3.0,
+          "horizontal_accuracy": 2.0,
+          "heading": 3,
+          "proximity_alert_radius": 9,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24191,
+            "message_id": 25834,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -71,8 +89,8 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131878,
-            "edit_date": 1791131878,
+            "date": 1794253035,
+            "edit_date": 1794253035,
             "location": {
               "latitude": 2.000004,
               "longitude": 2.999999,
@@ -97,12 +115,21 @@
           "longitude",
           "proximity_alert_radius"
         ],
+        "request": {
+          "latitude": 1.0,
+          "longitude": 2.0,
+          "horizontal_accuracy": 3.0,
+          "live_period": 1000,
+          "heading": 4,
+          "proximity_alert_radius": 10,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24192,
+            "message_id": 25835,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -115,7 +142,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131878,
+            "date": 1794253036,
             "location": {
               "latitude": 1.000002,
               "longitude": 1.999996,
@@ -140,12 +167,21 @@
           "longitude",
           "proximity_alert_radius"
         ],
+        "request": {
+          "latitude": 1.0,
+          "longitude": 2.0,
+          "horizontal_accuracy": 3.0,
+          "live_period": 1000,
+          "heading": 4,
+          "proximity_alert_radius": 10,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24193,
+            "message_id": 25836,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -158,7 +194,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131878,
+            "date": 1794253036,
             "location": {
               "latitude": 1.000002,
               "longitude": 1.999996,
@@ -176,12 +212,16 @@
           "chat_id",
           "message_id"
         ],
+        "request": {
+          "message_id": 25836,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24193,
+            "message_id": 25836,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -194,11 +234,13 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131878,
-            "edit_date": 1791131879,
+            "date": 1794253036,
+            "edit_date": 1794253036,
             "location": {
               "latitude": 1.000002,
               "longitude": 1.999996,
+              "live_period": 1000,
+              "heading": 4,
               "horizontal_accuracy": 3.0
             }
           }
@@ -215,12 +257,19 @@
           "longitude",
           "title"
         ],
+        "request": {
+          "latitude": 1.0,
+          "longitude": 2.0,
+          "title": "test",
+          "address": "address",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24194,
+            "message_id": 25837,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -233,7 +282,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131879,
+            "date": 1794253036,
             "location": {
               "latitude": 1.0,
               "longitude": 1.999999

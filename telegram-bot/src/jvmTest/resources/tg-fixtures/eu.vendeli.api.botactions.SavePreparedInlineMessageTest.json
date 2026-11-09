@@ -8,13 +8,23 @@
           "result",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "result": {
+            "type": "audio",
+            "id": "test",
+            "audio_url": "https://github.com/malcomio/dummy-content/raw/master/audio/audio.mp3?raw=true",
+            "title": "testTitle"
+          },
+          "allow_bot_chats": true
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "id": "Blw8qJqCR3iobaga",
-            "expiration_date": 1791135501
+            "id": "d3EiX7NSpCVxk1KR",
+            "expiration_date": 1794256669
           }
         }
       }
@@ -26,6 +36,15 @@
           "result",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "result": {
+            "type": "audio",
+            "id": "test",
+            "audio_url": "https://github.com/malcomio/dummy-content/raw/master/audio/audio.mp3?raw=true",
+            "title": "testTitle"
+          }
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

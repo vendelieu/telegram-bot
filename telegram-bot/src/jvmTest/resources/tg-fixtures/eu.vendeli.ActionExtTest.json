@@ -8,6 +8,11 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test",
+          "chat_id": -1000000000002,
+          "business_connection_id": "test"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -25,6 +30,17 @@
           "inline_message_id",
           "text"
         ],
+        "request": {
+          "text": "test",
+          "entities": [
+            {
+              "type": "bold",
+              "offset": 0,
+              "length": 5
+            }
+          ],
+          "inline_message_id": "test"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

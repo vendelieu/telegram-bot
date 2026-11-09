@@ -8,6 +8,18 @@
           "language_code",
           "scope"
         ],
+        "request": {
+          "commands": [
+            {
+              "command": "test",
+              "description": "testD"
+            }
+          ],
+          "scope": {
+            "type": "all_private_chats"
+          },
+          "language_code": "en"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -21,6 +33,12 @@
           "language_code",
           "scope"
         ],
+        "request": {
+          "scope": {
+            "type": "all_private_chats"
+          },
+          "language_code": "en"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -35,6 +53,7 @@
       },
       {
         "method": "deleteMyCommands",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -49,6 +68,9 @@
         "requestKeys": [
           "description"
         ],
+        "request": {
+          "description": "test"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -58,6 +80,7 @@
       },
       {
         "method": "getMyDescription",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -69,6 +92,7 @@
       },
       {
         "method": "setMyDescription",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -83,6 +107,18 @@
         "requestKeys": [
           "commands"
         ],
+        "request": {
+          "commands": [
+            {
+              "command": "test",
+              "description": "testD"
+            },
+            {
+              "command": "test2",
+              "description": "testC"
+            }
+          ]
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -92,6 +128,7 @@
       },
       {
         "method": "getMyCommands",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -110,6 +147,7 @@
       },
       {
         "method": "deleteMyCommands",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -124,6 +162,26 @@
         "requestKeys": [
           "rights"
         ],
+        "request": {
+          "rights": {
+            "is_anonymous": true,
+            "can_manage_chat": true,
+            "can_delete_messages": false,
+            "can_restrict_members": false,
+            "can_promote_members": false,
+            "can_change_info": false,
+            "can_invite_users": false,
+            "can_post_messages": false,
+            "can_edit_messages": false,
+            "can_pin_messages": false,
+            "can_manage_video_chats": false,
+            "can_manage_topics": false,
+            "can_post_stories": false,
+            "can_edit_stories": false,
+            "can_delete_stories": false,
+            "can_send_welcome_messages": false
+          }
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -138,15 +196,41 @@
         "requestKeys": [
           "name"
         ],
-        "status": 429,
+        "request": {
+          "name": "testbot2"
+        },
+        "status": 200,
         "contentType": "application/json",
         "json": {
-          "ok": false,
-          "error_code": 429,
-          "description": "Too Many Requests: retry after 83943",
-          "parameters": {
-            "retry_after": 83943
+          "ok": true,
+          "result": true
+        }
+      },
+      {
+        "method": "getMyName",
+        "request": {},
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "name": "testbot2"
           }
+        }
+      },
+      {
+        "method": "setMyName",
+        "requestKeys": [
+          "name"
+        ],
+        "request": {
+          "name": "testbot"
+        },
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": true
         }
       }
     ],
@@ -156,6 +240,9 @@
         "requestKeys": [
           "short_description"
         ],
+        "request": {
+          "short_description": "test"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -165,6 +252,7 @@
       },
       {
         "method": "getMyShortDescription",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -176,6 +264,7 @@
       },
       {
         "method": "setMyShortDescription",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {

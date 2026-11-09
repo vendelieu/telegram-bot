@@ -3,6 +3,7 @@
     "get description method testing": [
       {
         "method": "getMyDescription",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -16,6 +17,7 @@
     "get my commands method testing": [
       {
         "method": "getMyCommands",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -27,6 +29,7 @@
     "get my default administrator rights method testing": [
       {
         "method": "getMyDefaultAdministratorRights",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -54,12 +57,13 @@
     "get my name method testing": [
       {
         "method": "getMyName",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "name": "testbot2"
+            "name": "testbot"
           }
         }
       }
@@ -67,6 +71,7 @@
     "get short description method testing": [
       {
         "method": "getMyShortDescription",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {

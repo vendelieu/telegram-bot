@@ -7,6 +7,10 @@
           "chat_id",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "chat_id": -1000000000002
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -23,6 +27,10 @@
           "action",
           "chat_id"
         ],
+        "request": {
+          "action": "choose_sticker",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -36,6 +44,10 @@
           "action",
           "chat_id"
         ],
+        "request": {
+          "action": "record_video",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -51,6 +63,10 @@
           "chat_id",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "chat_id": -1000000000002
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -67,12 +83,16 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test",
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 25615,
+            "message_id": 26688,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -85,7 +105,7 @@
               "is_forum": true,
               "type": "supergroup"
             },
-            "date": 1791131910,
+            "date": 1794253082,
             "text": "test",
             "sender_tag": "bot"
           }
@@ -97,6 +117,10 @@
           "chat_id",
           "message_id"
         ],
+        "request": {
+          "message_id": 26688,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -115,6 +139,15 @@
           "use_independent_chat_permissions",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "permissions": {
+            "can_change_info": false
+          },
+          "until_date": 1794253093,
+          "use_independent_chat_permissions": true,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -129,6 +162,13 @@
           "permissions",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "permissions": {
+            "can_change_info": true
+          },
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -143,6 +183,9 @@
         "requestKeys": [
           "chat_id"
         ],
+        "request": {
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -158,12 +201,16 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test",
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 25617,
+            "message_id": 26690,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -176,7 +223,7 @@
               "is_forum": true,
               "type": "supergroup"
             },
-            "date": 1791131911,
+            "date": 1794253083,
             "text": "test",
             "sender_tag": "bot"
           }
@@ -188,6 +235,10 @@
           "chat_id",
           "message_id"
         ],
+        "request": {
+          "message_id": 26690,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -201,6 +252,10 @@
           "chat_id",
           "message_id"
         ],
+        "request": {
+          "message_id": 26690,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {

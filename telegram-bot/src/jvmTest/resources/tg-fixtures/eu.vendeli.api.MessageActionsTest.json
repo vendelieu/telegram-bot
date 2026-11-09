@@ -7,12 +7,16 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57796,
+            "message_id": 59358,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -25,7 +29,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131879,
+            "date": 1794253037,
             "text": "test"
           }
         }
@@ -37,12 +41,17 @@
           "from_chat_id",
           "message_id"
         ],
+        "request": {
+          "from_chat_id": 100000001,
+          "message_id": 59358,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57797
+            "message_id": 59359
           }
         }
       },
@@ -53,12 +62,17 @@
           "from_chat_id",
           "message_id"
         ],
+        "request": {
+          "from_chat_id": 100000001,
+          "message_id": 59358,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57798
+            "message_id": 59360
           }
         }
       },
@@ -69,12 +83,17 @@
           "from_chat_id",
           "message_id"
         ],
+        "request": {
+          "from_chat_id": 100000001,
+          "message_id": 59358,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57799
+            "message_id": 59361
           }
         }
       }
@@ -86,12 +105,16 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57800,
+            "message_id": 59362,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -104,7 +127,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131881,
+            "date": 1794253039,
             "text": "test"
           }
         }
@@ -115,12 +138,16 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test2",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57801,
+            "message_id": 59363,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -133,7 +160,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131881,
+            "date": 1794253039,
             "text": "test2"
           }
         }
@@ -145,16 +172,24 @@
           "from_chat_id",
           "message_ids"
         ],
+        "request": {
+          "from_chat_id": 100000001,
+          "message_ids": [
+            59362,
+            59363
+          ],
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": [
             {
-              "message_id": 57802
+              "message_id": 59364
             },
             {
-              "message_id": 57803
+              "message_id": 59365
             }
           ]
         }
@@ -166,16 +201,24 @@
           "from_chat_id",
           "message_ids"
         ],
+        "request": {
+          "from_chat_id": 100000001,
+          "message_ids": [
+            59362,
+            59363
+          ],
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": [
             {
-              "message_id": 57804
+              "message_id": 59366
             },
             {
-              "message_id": 57805
+              "message_id": 59367
             }
           ]
         }
@@ -187,16 +230,24 @@
           "from_chat_id",
           "message_ids"
         ],
+        "request": {
+          "from_chat_id": 100000001,
+          "message_ids": [
+            59362,
+            59363
+          ],
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": [
             {
-              "message_id": 57806
+              "message_id": 59368
             },
             {
-              "message_id": 57807
+              "message_id": 59369
             }
           ]
         }
@@ -209,12 +260,16 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57808,
+            "message_id": 59370,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -227,7 +282,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131882,
+            "date": 1794253040,
             "text": "test"
           }
         }
@@ -238,6 +293,10 @@
           "chat_id",
           "message_id"
         ],
+        "request": {
+          "message_id": 59370,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -253,12 +312,16 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57809,
+            "message_id": 59371,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -271,7 +334,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131882,
+            "date": 1794253041,
             "text": "test"
           }
         }
@@ -282,12 +345,16 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test2",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57810,
+            "message_id": 59372,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -300,7 +367,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131882,
+            "date": 1794253041,
             "text": "test2"
           }
         }
@@ -311,6 +378,13 @@
           "chat_id",
           "message_ids"
         ],
+        "request": {
+          "message_ids": [
+            59371,
+            59372
+          ],
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -326,12 +400,16 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57811,
+            "message_id": 59373,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -344,7 +422,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131883,
+            "date": 1794253042,
             "text": "test"
           }
         }
@@ -356,12 +434,17 @@
           "from_chat_id",
           "message_id"
         ],
+        "request": {
+          "from_chat_id": 100000001,
+          "message_id": 59373,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57812,
+            "message_id": 59374,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -374,7 +457,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131883,
+            "date": 1794253042,
             "forward_origin": {
               "type": "user",
               "sender_user": {
@@ -383,7 +466,7 @@
                 "first_name": "redacted",
                 "username": "redacted"
               },
-              "date": 1791131883
+              "date": 1794253042
             },
             "forward_from": {
               "id": 700000001,
@@ -391,7 +474,7 @@
               "first_name": "redacted",
               "username": "redacted"
             },
-            "forward_date": 1791131883,
+            "forward_date": 1794253042,
             "text": "test"
           }
         }
@@ -403,12 +486,17 @@
           "from_chat_id",
           "message_id"
         ],
+        "request": {
+          "from_chat_id": 100000001,
+          "message_id": 59373,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57813,
+            "message_id": 59375,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -421,7 +509,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131883,
+            "date": 1794253043,
             "forward_origin": {
               "type": "user",
               "sender_user": {
@@ -430,7 +518,7 @@
                 "first_name": "redacted",
                 "username": "redacted"
               },
-              "date": 1791131883
+              "date": 1794253042
             },
             "forward_from": {
               "id": 700000001,
@@ -438,7 +526,7 @@
               "first_name": "redacted",
               "username": "redacted"
             },
-            "forward_date": 1791131883,
+            "forward_date": 1794253042,
             "text": "test"
           }
         }
@@ -450,12 +538,17 @@
           "from_chat_id",
           "message_id"
         ],
+        "request": {
+          "from_chat_id": 100000001,
+          "message_id": 59373,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57814,
+            "message_id": 59376,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -468,7 +561,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131884,
+            "date": 1794253043,
             "forward_origin": {
               "type": "user",
               "sender_user": {
@@ -477,7 +570,7 @@
                 "first_name": "redacted",
                 "username": "redacted"
               },
-              "date": 1791131883
+              "date": 1794253042
             },
             "forward_from": {
               "id": 700000001,
@@ -485,7 +578,7 @@
               "first_name": "redacted",
               "username": "redacted"
             },
-            "forward_date": 1791131883,
+            "forward_date": 1794253042,
             "text": "test"
           }
         }
@@ -498,12 +591,16 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57815,
+            "message_id": 59377,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -516,7 +613,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131884,
+            "date": 1794253043,
             "text": "test"
           }
         }
@@ -527,12 +624,16 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test2",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57816,
+            "message_id": 59378,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -545,7 +646,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131884,
+            "date": 1794253043,
             "text": "test2"
           }
         }
@@ -557,16 +658,24 @@
           "from_chat_id",
           "message_ids"
         ],
+        "request": {
+          "from_chat_id": 100000001,
+          "message_ids": [
+            59377,
+            59378
+          ],
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": [
             {
-              "message_id": 57817
+              "message_id": 59379
             },
             {
-              "message_id": 57818
+              "message_id": 59380
             }
           ]
         }
@@ -578,16 +687,24 @@
           "from_chat_id",
           "message_ids"
         ],
+        "request": {
+          "from_chat_id": 100000001,
+          "message_ids": [
+            59377,
+            59378
+          ],
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": [
             {
-              "message_id": 57819
+              "message_id": 59381
             },
             {
-              "message_id": 57820
+              "message_id": 59382
             }
           ]
         }
@@ -599,16 +716,24 @@
           "from_chat_id",
           "message_ids"
         ],
+        "request": {
+          "from_chat_id": 100000001,
+          "message_ids": [
+            59377,
+            59378
+          ],
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": [
             {
-              "message_id": 57821
+              "message_id": 59383
             },
             {
-              "message_id": 57822
+              "message_id": 59384
             }
           ]
         }
@@ -622,6 +747,11 @@
           "draft_id",
           "text"
         ],
+        "request": {
+          "draft_id": 1,
+          "text": "test draft",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -639,6 +769,18 @@
           "entities",
           "text"
         ],
+        "request": {
+          "draft_id": 3,
+          "entities": [
+            {
+              "type": "bold",
+              "offset": 4,
+              "length": 6
+            }
+          ],
+          "text": "test draft",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -656,6 +798,12 @@
           "message_thread_id",
           "text"
         ],
+        "request": {
+          "draft_id": 2,
+          "text": "test draft",
+          "message_thread_id": 3,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -671,12 +819,16 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57823,
+            "message_id": 59385,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -689,7 +841,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131886,
+            "date": 1794253046,
             "text": "test"
           }
         }
@@ -701,6 +853,16 @@
           "message_id",
           "reaction"
         ],
+        "request": {
+          "message_id": 59385,
+          "reaction": [
+            {
+              "type": "emoji",
+              "emoji": "👀"
+            }
+          ],
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -715,6 +877,16 @@
           "message_id",
           "reaction"
         ],
+        "request": {
+          "message_id": 59385,
+          "reaction": [
+            {
+              "type": "emoji",
+              "emoji": "🎃"
+            }
+          ],
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {

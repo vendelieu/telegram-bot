@@ -11,12 +11,28 @@
           "protect_content",
           "text"
         ],
+        "request": {
+          "entities": [
+            {
+              "type": "bold",
+              "offset": 12,
+              "length": 5
+            }
+          ],
+          "text": "test message test",
+          "link_preview_options": {
+            "is_disabled": true
+          },
+          "parse_mode": "HTML",
+          "protect_content": true,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57824,
+            "message_id": 59386,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -29,7 +45,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131887,
+            "date": 1794253047,
             "text": "test message test",
             "has_protected_content": true
           }

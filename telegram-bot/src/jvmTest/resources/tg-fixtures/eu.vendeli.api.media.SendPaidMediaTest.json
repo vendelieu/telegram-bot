@@ -9,12 +9,18 @@
           "media",
           "star_count"
         ],
+        "request": {
+          "file": "<file>",
+          "star_count": "<file>",
+          "media": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 476,
+            "message_id": 513,
             "sender_chat": {
               "id": -1000000000003,
               "title": "testChannel",
@@ -25,7 +31,7 @@
               "title": "testChannel",
               "type": "channel"
             },
-            "date": 1791132042,
+            "date": 1794253223,
             "paid_media": {
               "star_count": 1,
               "paid_media": [
@@ -33,7 +39,7 @@
                   "type": "photo",
                   "photo": [
                     {
-                      "file_id": "AgACAgQAAxkDAAJdgmq-3OHxzAEJXM9KHyHxy3WZoB85AAJDqTEbpu51UubZigAB-b5vFQEAAwIAA20AAz0E",
+                      "file_id": "AgACAgQAAxkDAAJk2WryINEvPsSQodtQQ2OunoGoKoCuAAJDqTEbpu51UubZigAB-b5vFQEAAwIAA20AAz0E",
                       "file_unique_id": "AQADQ6kxG6budVJy",
                       "file_size": 380,
                       "width": 10,
@@ -45,8 +51,8 @@
                   "type": "photo",
                   "photo": [
                     {
-                      "file_id": "AgACAgIAAxUHar7c3-A9PInUC_g8RCQf3E1H7pMAAkcmaxuPi_lJt9F2w255zgcBAAMCAANtAAM9BA",
-                      "file_unique_id": "AQADRyZrG4-L-Uly",
+                      "file_id": "AgACAgIAAxUHavIgzRB3i6C722QRCkqgHBo0kWQAAj8iaxuhUJBLGk10qeWFvm8BAAMCAANtAAM9BA",
+                      "file_unique_id": "AQADPyJrG6FQkEty",
                       "file_size": 287,
                       "width": 1,
                       "height": 1

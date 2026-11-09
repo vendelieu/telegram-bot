@@ -8,12 +8,26 @@
           "reply_markup",
           "text"
         ],
+        "request": {
+          "text": "test1",
+          "reply_markup": {
+            "inline_keyboard": [
+              [
+                {
+                  "text": "test",
+                  "switch_inline_query_current_chat": "test"
+                }
+              ]
+            ]
+          },
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24182,
+            "message_id": 25825,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -26,7 +40,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131872,
+            "date": 1794253027,
             "text": "test1",
             "reply_markup": {
               "inline_keyboard": [
@@ -48,12 +62,26 @@
           "message_id",
           "reply_markup"
         ],
+        "request": {
+          "message_id": 25825,
+          "reply_markup": {
+            "inline_keyboard": [
+              [
+                {
+                  "text": "test2",
+                  "switch_inline_query": "test"
+                }
+              ]
+            ]
+          },
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24182,
+            "message_id": 25825,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -66,8 +94,8 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131872,
-            "edit_date": 1791131873,
+            "date": 1794253027,
+            "edit_date": 1794253028,
             "text": "test1",
             "reply_markup": {
               "inline_keyboard": [
@@ -86,14 +114,16 @@
     "edit media caption test method test": [
       {
         "method": "ext:picsum.photos/10",
+        "request": {},
         "status": 302,
         "base64": ""
       },
       {
-        "method": "ext:fastly.picsum.photos/id/409/10/10.jpg",
+        "method": "ext:fastly.picsum.photos/id/802/10/10.jpg",
+        "request": {},
         "status": 200,
         "contentType": "image/jpeg",
-        "base64": "/9j/4QDeRXhpZgAASUkqAAgAAAAGABIBAwABAAAAAQAAABoBBQABAAAAVgAAABsBBQABAAAAXgAAACgBAwABAAAAAgAAABMCAwABAAAAAQAAAGmHBAABAAAAZgAAAAAAAABIAAAAAQAAAEgAAAABAAAABwAAkAcABAAAADAyMTABkQcABAAAAAECAwCGkgcAFgAAAMAAAAAAoAcABAAAADAxMDABoAMAAQAAAP//AAACoAQAAQAAAAoAAAADoAQAAQAAAAoAAAAAAAAAQVNDSUkAAABQaWNzdW0gSUQ6IDQwOf/bAEMACAYGBwYFCAcHBwkJCAoMFA0MCwsMGRITDxQdGh8eHRocHCAkLicgIiwjHBwoNyksMDE0NDQfJzk9ODI8LjM0Mv/bAEMBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/CABEIAAoACgMBIgACEQEDEQH/xAAWAAEBAQAAAAAAAAAAAAAAAAAFAQP/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAABO3PsP//EABgQAAIDAAAAAAAAAAAAAAAAAAEDEBET/9oACAEBAAEFAg01rP8A/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAgBAwEBPwF//8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAgBAgEBPwF//8QAFxAAAwEAAAAAAAAAAAAAAAAAAREgIf/aAAgBAQAGPwJE64//xAAZEAADAAMAAAAAAAAAAAAAAAAAATEQYXH/2gAIAQEAAT8h3RFIdCrx/9oADAMBAAIAAwAAABDP/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAgBAwEBPxB//8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQIBAT8Qj//EABsQAQACAgMAAAAAAAAAAAAAAAEAESExQYHB/9oACAEBAAE/EKdJcQdMTb5gxcVDU//Z"
+        "base64": "/9j/4QDeRXhpZgAASUkqAAgAAAAGABIBAwABAAAAAQAAABoBBQABAAAAVgAAABsBBQABAAAAXgAAACgBAwABAAAAAgAAABMCAwABAAAAAQAAAGmHBAABAAAAZgAAAAAAAABIAAAAAQAAAEgAAAABAAAABwAAkAcABAAAADAyMTABkQcABAAAAAECAwCGkgcAFgAAAMAAAAAAoAcABAAAADAxMDABoAMAAQAAAP//AAACoAQAAQAAAAoAAAADoAQAAQAAAAoAAAAAAAAAQVNDSUkAAABQaWNzdW0gSUQ6IDgwMv/bAEMACAYGBwYFCAcHBwkJCAoMFA0MCwsMGRITDxQdGh8eHRocHCAkLicgIiwjHBwoNyksMDE0NDQfJzk9ODI8LjM0Mv/bAEMBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/CABEIAAoACgMBIgACEQEDEQH/xAAWAAEBAQAAAAAAAAAAAAAAAAAEAAP/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAv/aAAwDAQACEAMQAAAB0gjT/8QAGRABAQADAQAAAAAAAAAAAAAAAgABAxES/9oACAEBAAEFAgNd4ckjdzf/xAAWEQADAAAAAAAAAAAAAAAAAAAAARH/2gAIAQMBAT8BiP/EABYRAAMAAAAAAAAAAAAAAAAAAAABEf/aAAgBAgEBPwGs/8QAHhAAAQMEAwAAAAAAAAAAAAAAAAECAxEhIjEygZH/2gAIAQEABj8C4R+lnRJ2SUcqZGz/xAAcEAEAAQQDAAAAAAAAAAAAAAABABEhQWGBkdH/2gAIAQEAAT8hYXTT5Ig2LBVacZo0xNzuf//aAAwDAQACAAMAAAAQh//EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQMBAT8QX//EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQIBAT8QX//EABsQAQADAAMBAAAAAAAAAAAAAAEAESExQVFh/9oACAEBAAE/EAQnVJHfdIoALS4OjiDAluj2aeS/V1+p/9k="
       },
       {
         "method": "sendPhoto",
@@ -102,12 +132,17 @@
           "photo",
           "photo.jpg"
         ],
+        "request": {
+          "photo.jpg": "<file>",
+          "photo": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24183,
+            "message_id": 25826,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -120,12 +155,12 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131873,
+            "date": 1794253028,
             "photo": [
               {
-                "file_id": "AgACAgIAAxkDAAJed2rCgOEgBXxUHO45Ttqf22cOKm4TAAIvKWsbOZsZSlCaYbTHyQgLAQADAgADbQADPQQ",
-                "file_unique_id": "AQADLylrGzmbGUpy",
-                "file_size": 331,
+                "file_id": "AgACAgIAAxkDAAJk4mryIOTFZRRtP3wWEc0K-39knQH8AAJBImsboVCQS4oHOj1aNiy1AQADAgADbQADPQQ",
+                "file_unique_id": "AQADQSJrG6FQkEty",
+                "file_size": 382,
                 "width": 10,
                 "height": 10
               }
@@ -140,12 +175,17 @@
           "chat_id",
           "message_id"
         ],
+        "request": {
+          "message_id": 25826,
+          "caption": "test",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24183,
+            "message_id": 25826,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -158,13 +198,13 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131873,
-            "edit_date": 1791131873,
+            "date": 1794253028,
+            "edit_date": 1794253029,
             "photo": [
               {
-                "file_id": "AgACAgIAAxkDAAJed2rCgOEgBXxUHO45Ttqf22cOKm4TAAIvKWsbOZsZSlCaYbTHyQgLAQADAgADbQADPQQ",
-                "file_unique_id": "AQADLylrGzmbGUpy",
-                "file_size": 331,
+                "file_id": "AgACAgIAAxkDAAJk4mryIOTFZRRtP3wWEc0K-39knQH8AAJBImsboVCQS4oHOj1aNiy1AQADAgADbQADPQQ",
+                "file_unique_id": "AQADQSJrG6FQkEty",
+                "file_size": 382,
                 "width": 10,
                 "height": 10
               }
@@ -177,14 +217,16 @@
     "edit media test method test": [
       {
         "method": "ext:picsum.photos/10",
+        "request": {},
         "status": 302,
         "base64": ""
       },
       {
-        "method": "ext:fastly.picsum.photos/id/1025/10/10.jpg",
+        "method": "ext:fastly.picsum.photos/id/660/10/10.jpg",
+        "request": {},
         "status": 200,
         "contentType": "image/jpeg",
-        "base64": "/9j/4QDgRXhpZgAASUkqAAgAAAAGABIBAwABAAAAAQAAABoBBQABAAAAVgAAABsBBQABAAAAXgAAACgBAwABAAAAAgAAABMCAwABAAAAAQAAAGmHBAABAAAAZgAAAAAAAABIAAAAAQAAAEgAAAABAAAABwAAkAcABAAAADAyMTABkQcABAAAAAECAwCGkgcAFwAAAMAAAAAAoAcABAAAADAxMDABoAMAAQAAAP//AAACoAQAAQAAAAoAAAADoAQAAQAAAAoAAAAAAAAAQVNDSUkAAABQaWNzdW0gSUQ6IDEwMjUA/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8IAEQgACgAKAwEiAAIRAQMRAf/EABYAAQEBAAAAAAAAAAAAAAAAAAQBA//EABUBAQEAAAAAAAAAAAAAAAAAAAED/9oADAMBAAIQAxAAAAGHyLN//8QAGRAAAgMBAAAAAAAAAAAAAAAAAQMAAhEE/9oACAEBAAEFAlc+qNQCixyf/8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQMBAT8Bj//EABYRAAMAAAAAAAAAAAAAAAAAAAABEv/aAAgBAgEBPwGUf//EABsQAAEEAwAAAAAAAAAAAAAAAAIAARExECGR/9oACAEBAAY/ApJrUSPUW3rH/8QAGRABAAMBAQAAAAAAAAAAAAAAAQARMUFx/9oACAEBAAE/IaIwZ8ifG1ASKuLhk//aAAwDAQACAAMAAAAQW//EABYRAAMAAAAAAAAAAAAAAAAAAAABEf/aAAgBAwEBPxCGf//EABYRAQEBAAAAAAAAAAAAAAAAAAEAIf/aAAgBAgEBPxBbL//EABkQAQADAQEAAAAAAAAAAAAAAAEAESGRUf/aAAgBAQABPxAGtgugNXe1yXD7sGsyDFHIdE0F8n//2Q=="
+        "base64": "/9j/4QDeRXhpZgAASUkqAAgAAAAGABIBAwABAAAAAQAAABoBBQABAAAAVgAAABsBBQABAAAAXgAAACgBAwABAAAAAgAAABMCAwABAAAAAQAAAGmHBAABAAAAZgAAAAAAAABIAAAAAQAAAEgAAAABAAAABwAAkAcABAAAADAyMTABkQcABAAAAAECAwCGkgcAFgAAAMAAAAAAoAcABAAAADAxMDABoAMAAQAAAP//AAACoAQAAQAAAAoAAAADoAQAAQAAAAoAAAAAAAAAQVNDSUkAAABQaWNzdW0gSUQ6IDY2MP/bAEMACAYGBwYFCAcHBwkJCAoMFA0MCwsMGRITDxQdGh8eHRocHCAkLicgIiwjHBwoNyksMDE0NDQfJzk9ODI8LjM0Mv/bAEMBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/CABEIAAoACgMBIgACEQEDEQH/xAAWAAEBAQAAAAAAAAAAAAAAAAADAgX/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAABwzOk/8QAGRAAAwADAAAAAAAAAAAAAAAAAAECAxEx/9oACAEBAAEFAslKhLSoXP/EABURAQEAAAAAAAAAAAAAAAAAAABB/9oACAEDAQE/AY//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAECAQE/AX//xAAaEAACAgMAAAAAAAAAAAAAAAAAAQISMnKR/9oACAEBAAY/AqtrhkS1Ef/EABoQAAMBAAMAAAAAAAAAAAAAAAABIRFBcaH/2gAIAQEAAT8haYkjdLowFwRTDzH/2gAMAwEAAgADAAAAEK//xAAXEQADAQAAAAAAAAAAAAAAAAAAAREh/9oACAEDAQE/ELhH/8QAFxEBAAMAAAAAAAAAAAAAAAAAAQARIf/aAAgBAgEBPxCtWf/EABwQAAICAgMAAAAAAAAAAAAAAAERACExQWGhsf/aAAgBAQABPxBN4VNG12dPfEEHoADMyFoE9XOk8n//2Q=="
       },
       {
         "method": "sendPhoto",
@@ -193,12 +235,17 @@
           "photo",
           "photo.jpg"
         ],
+        "request": {
+          "photo.jpg": "<file>",
+          "photo": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24184,
+            "message_id": 25827,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -211,12 +258,12 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131874,
+            "date": 1794253029,
             "photo": [
               {
-                "file_id": "AgACAgIAAxkDAAJeeGrCgOKwK9VeYPYDDOpJH0fTPhG5AAIwKWsbOZsZSuJPyr9vJI-uAQADAgADbQADPQQ",
-                "file_unique_id": "AQADMClrGzmbGUpy",
-                "file_size": 380,
+                "file_id": "AgACAgIAAxkDAAJk42ryIOWhE1iI-FrOrJYwwmsQ1QgeAAJCImsboVCQS7lElsjKHnSqAQADAgADbQADPQQ",
+                "file_unique_id": "AQADQiJrG6FQkEty",
+                "file_size": 375,
                 "width": 10,
                 "height": 10
               }
@@ -231,12 +278,20 @@
           "media",
           "message_id"
         ],
+        "request": {
+          "message_id": 25827,
+          "media": {
+            "type": "photo",
+            "media": "https://picsum.photos/10"
+          },
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24184,
+            "message_id": 25827,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -249,11 +304,11 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131874,
-            "edit_date": 1791131874,
+            "date": 1794253029,
+            "edit_date": 1794253030,
             "photo": [
               {
-                "file_id": "AgACAgQAAxkDAAJdgmq-3OHxzAEJXM9KHyHxy3WZoB85AAJDqTEbpu51UubZigAB-b5vFQEAAwIAA20AAz0E",
+                "file_id": "AgACAgQAAxkDAAJk2WryINEvPsSQodtQQ2OunoGoKoCuAAJDqTEbpu51UubZigAB-b5vFQEAAwIAA20AAz0E",
                 "file_unique_id": "AQADQ6kxG6budVJy",
                 "file_size": 380,
                 "width": 10,
@@ -271,12 +326,16 @@
           "chat_id",
           "text"
         ],
+        "request": {
+          "text": "test1",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24185,
+            "message_id": 25828,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -289,7 +348,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131874,
+            "date": 1794253030,
             "text": "test1"
           }
         }
@@ -301,12 +360,17 @@
           "message_id",
           "text"
         ],
+        "request": {
+          "message_id": 25828,
+          "text": "test2",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24185,
+            "message_id": 25828,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -319,8 +383,8 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131874,
-            "edit_date": 1791131875,
+            "date": 1794253030,
+            "edit_date": 1794253030,
             "text": "test2"
           }
         }

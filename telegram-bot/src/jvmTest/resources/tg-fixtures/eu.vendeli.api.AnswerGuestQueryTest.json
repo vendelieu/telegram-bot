@@ -7,6 +7,15 @@
           "guest_query_id",
           "result"
         ],
+        "request": {
+          "guest_query_id": "test",
+          "result": {
+            "type": "photo",
+            "id": "testPhoto",
+            "photo_url": "https://test.com",
+            "thumbnail_url": "https://test.com"
+          }
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

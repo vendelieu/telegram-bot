@@ -11,6 +11,19 @@
           "provider_token",
           "title"
         ],
+        "request": {
+          "title": "test",
+          "description": "test1",
+          "payload": "test2",
+          "currency": "USD",
+          "prices": [
+            {
+              "label": "test3",
+              "amount": 1000
+            }
+          ],
+          "provider_token": "2051251535:TEST:OTk5MDA4ODgxLTAwNQ"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -29,11 +42,24 @@
           "provider_token",
           "title"
         ],
+        "request": {
+          "title": "test",
+          "description": "test1",
+          "payload": "test2",
+          "currency": "USD",
+          "prices": [
+            {
+              "label": "test3",
+              "amount": 1000
+            }
+          ],
+          "provider_token": "2051251535:TEST:OTk5MDA4ODgxLTAwNQ"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
-          "result": "https://t.me/$T8yyvRF7GEq6FQAAlSX8vEYQtwQ"
+          "result": "https://t.me/$sAGCHxtZkUubHAAAj-VoggwMl1o"
         }
       }
     ]

@@ -7,12 +7,16 @@
           "chat_id",
           "name"
         ],
+        "request": {
+          "name": "testTopic",
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_thread_id": 25624,
+            "message_thread_id": 26697,
             "name": "testTopic",
             "icon_color": 7322096
           }
@@ -24,6 +28,10 @@
           "chat_id",
           "message_thread_id"
         ],
+        "request": {
+          "message_thread_id": 26697,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -37,6 +45,10 @@
           "chat_id",
           "message_thread_id"
         ],
+        "request": {
+          "message_thread_id": 26697,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -53,12 +65,17 @@
           "icon_color",
           "name"
         ],
+        "request": {
+          "name": "testTopic",
+          "icon_color": "9367192",
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_thread_id": 25626,
+            "message_thread_id": 26699,
             "name": "testTopic",
             "icon_color": 9367192
           }
@@ -70,6 +87,10 @@
           "chat_id",
           "message_thread_id"
         ],
+        "request": {
+          "message_thread_id": 26699,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -85,12 +106,16 @@
           "chat_id",
           "name"
         ],
+        "request": {
+          "name": "testTopic",
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_thread_id": 25627,
+            "message_thread_id": 26700,
             "name": "testTopic",
             "icon_color": 7322096
           }
@@ -102,6 +127,10 @@
           "chat_id",
           "message_thread_id"
         ],
+        "request": {
+          "message_thread_id": 26700,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -117,12 +146,16 @@
           "chat_id",
           "name"
         ],
+        "request": {
+          "name": "testTopic",
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_thread_id": 25628,
+            "message_thread_id": 26701,
             "name": "testTopic",
             "icon_color": 7322096
           }
@@ -135,6 +168,11 @@
           "message_thread_id",
           "name"
         ],
+        "request": {
+          "message_thread_id": 26701,
+          "name": "testTopic2",
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -148,6 +186,10 @@
           "chat_id",
           "message_thread_id"
         ],
+        "request": {
+          "message_thread_id": 26701,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -163,12 +205,16 @@
           "chat_id",
           "name"
         ],
+        "request": {
+          "name": "testTopic",
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_thread_id": 25630,
+            "message_thread_id": 26703,
             "name": "testTopic",
             "icon_color": 7322096
           }
@@ -180,6 +226,10 @@
           "chat_id",
           "message_thread_id"
         ],
+        "request": {
+          "message_thread_id": 26703,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -193,6 +243,10 @@
           "chat_id",
           "message_thread_id"
         ],
+        "request": {
+          "message_thread_id": 26703,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -206,6 +260,10 @@
           "chat_id",
           "message_thread_id"
         ],
+        "request": {
+          "message_thread_id": 26703,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -221,12 +279,16 @@
           "chat_id",
           "name"
         ],
+        "request": {
+          "name": "testTopic",
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_thread_id": 25633,
+            "message_thread_id": 26706,
             "name": "testTopic",
             "icon_color": 7322096
           }
@@ -238,6 +300,10 @@
           "chat_id",
           "message_thread_id"
         ],
+        "request": {
+          "message_thread_id": 26706,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -251,6 +317,10 @@
           "chat_id",
           "message_thread_id"
         ],
+        "request": {
+          "message_thread_id": 26706,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {

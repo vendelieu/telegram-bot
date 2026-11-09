@@ -7,12 +7,16 @@
           "chat_id",
           "game_short_name"
         ],
+        "request": {
+          "game_short_name": "testestes",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24222,
+            "message_id": 25829,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -25,7 +29,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132269,
+            "date": 1794253031,
             "game": {
               "title": "test",
               "text": "Top Players\n1. ᵛᵉⁿᵈᵉˡⁱᵉᵘ – 2",
@@ -44,21 +48,21 @@
               "description": "test2",
               "photo": [
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEp4",
                   "file_size": 786,
                   "width": 90,
                   "height": 51
                 },
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEpy",
                   "file_size": 10825,
                   "width": 320,
                   "height": 180
                 },
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEp9",
                   "file_size": 27003,
                   "width": 640,
@@ -88,12 +92,19 @@
           "score",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "score": 4242,
+          "message_id": 25829,
+          "force": true,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24222,
+            "message_id": 25829,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -106,8 +117,8 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132269,
-            "edit_date": 1791132269,
+            "date": 1794253031,
+            "edit_date": 1794253031,
             "game": {
               "title": "test",
               "text": "Top Players\n1. ᵛᵉⁿᵈᵉˡⁱᵉᵘ – 4242",
@@ -126,21 +137,21 @@
               "description": "test2",
               "photo": [
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEp4",
                   "file_size": 786,
                   "width": 90,
                   "height": 51
                 },
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEpy",
                   "file_size": 10825,
                   "width": 320,
                   "height": 180
                 },
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEp9",
                   "file_size": 27003,
                   "width": 640,
@@ -168,6 +179,11 @@
           "message_id",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "message_id": 25829,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -195,6 +211,11 @@
           "message_id",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "message_id": 25829,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -223,12 +244,16 @@
           "chat_id",
           "game_short_name"
         ],
+        "request": {
+          "game_short_name": "testestes",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24224,
+            "message_id": 25831,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -241,7 +266,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132270,
+            "date": 1794253032,
             "game": {
               "title": "test",
               "text": "Top Players\n1. ᵛᵉⁿᵈᵉˡⁱᵉᵘ – 4242",
@@ -260,21 +285,21 @@
               "description": "test2",
               "photo": [
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEp4",
                   "file_size": 786,
                   "width": 90,
                   "height": 51
                 },
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEpy",
                   "file_size": 10825,
                   "width": 320,
                   "height": 180
                 },
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEp9",
                   "file_size": 27003,
                   "width": 640,
@@ -303,12 +328,16 @@
           "chat_id",
           "game_short_name"
         ],
+        "request": {
+          "game_short_name": "testestes",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24225,
+            "message_id": 25832,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -321,7 +350,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132270,
+            "date": 1794253033,
             "game": {
               "title": "test",
               "text": "Top Players\n1. ᵛᵉⁿᵈᵉˡⁱᵉᵘ – 4242",
@@ -340,21 +369,21 @@
               "description": "test2",
               "photo": [
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEp4",
                   "file_size": 786,
                   "width": 90,
                   "height": 51
                 },
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEpy",
                   "file_size": 10825,
                   "width": 320,
                   "height": 180
                 },
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEp9",
                   "file_size": 27003,
                   "width": 640,
@@ -384,12 +413,19 @@
           "score",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "score": 1,
+          "message_id": 25832,
+          "force": true,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24225,
+            "message_id": 25832,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -402,7 +438,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132270,
+            "date": 1794253033,
             "game": {
               "title": "test",
               "text": "Top Players\n1. ᵛᵉⁿᵈᵉˡⁱᵉᵘ – 4242",
@@ -421,21 +457,21 @@
               "description": "test2",
               "photo": [
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEp4",
                   "file_size": 786,
                   "width": 90,
                   "height": 51
                 },
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEpy",
                   "file_size": 10825,
                   "width": 320,
                   "height": 180
                 },
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEp9",
                   "file_size": 27003,
                   "width": 640,
@@ -465,12 +501,19 @@
           "score",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "score": 2,
+          "message_id": 25832,
+          "force": true,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24225,
+            "message_id": 25832,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -483,7 +526,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132270,
+            "date": 1794253033,
             "game": {
               "title": "test",
               "text": "Top Players\n1. ᵛᵉⁿᵈᵉˡⁱᵉᵘ – 4242",
@@ -502,21 +545,21 @@
               "description": "test2",
               "photo": [
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADcwADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEp4",
                   "file_size": 786,
                   "width": 90,
                   "height": 51
                 },
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADbQADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEpy",
                   "file_size": 10825,
                   "width": 320,
                   "height": 180
                 },
                 {
-                  "file_id": "AgACAgIAAxUAAWq-3PHJvav1hmtcT0z3cbz-IEa4AAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
+                  "file_id": "AgACAgIAAxUAAWryIOdVqsdUT9z6u_bZwFVGJdbOAAKPyzEbR8Y4SvFtD8uLNoxcAQADAgADeAADPQQ",
                   "file_unique_id": "AQADj8sxG0fGOEp9",
                   "file_size": 27003,
                   "width": 640,

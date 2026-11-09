@@ -7,6 +7,10 @@
           "telegram_payment_charge_id",
           "user_id"
         ],
+        "request": {
+          "telegram_payment_charge_id": "test",
+          "user_id": 1
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

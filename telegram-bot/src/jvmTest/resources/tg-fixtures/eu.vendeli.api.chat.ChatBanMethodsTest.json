@@ -9,6 +9,12 @@
           "until_date",
           "user_id"
         ],
+        "request": {
+          "user_id": 1000,
+          "until_date": 1794253078,
+          "revoke_messages": true,
+          "chat_id": -1000000000002
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -25,6 +31,10 @@
           "chat_id",
           "sender_chat_id"
         ],
+        "request": {
+          "sender_chat_id": 1000,
+          "chat_id": -1000000000002
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -39,6 +49,10 @@
           "chat_id",
           "sender_chat_id"
         ],
+        "request": {
+          "sender_chat_id": 1000,
+          "chat_id": -1000000000002
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -53,6 +67,10 @@
           "chat_id",
           "sender_chat_id"
         ],
+        "request": {
+          "sender_chat_id": 1000,
+          "chat_id": -1000000000002
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -70,6 +88,11 @@
           "only_if_banned",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "only_if_banned": true,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -85,6 +108,10 @@
           "chat_id",
           "sender_chat_id"
         ],
+        "request": {
+          "sender_chat_id": 1000,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -98,6 +125,10 @@
           "chat_id",
           "sender_chat_id"
         ],
+        "request": {
+          "sender_chat_id": 1000,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -111,6 +142,10 @@
           "chat_id",
           "sender_chat_id"
         ],
+        "request": {
+          "sender_chat_id": 1000,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {

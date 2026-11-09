@@ -7,6 +7,17 @@
           "errors",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "errors": [
+            {
+              "source": "selfie",
+              "type": "passport",
+              "file_hash": "rvrAIw/dzwLEBykk4guKZw3P+Ld/2RtkyZuVDGsJEqQ=",
+              "message": "test1"
+            }
+          ]
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {

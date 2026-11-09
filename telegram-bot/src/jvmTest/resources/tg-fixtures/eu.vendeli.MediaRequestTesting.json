@@ -8,13 +8,18 @@
           "file",
           "media"
         ],
+        "request": {
+          "file": "<file>",
+          "media": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": [
             {
-              "message_id": 24170,
+              "message_id": 25813,
               "from": {
                 "id": 700000001,
                 "is_bot": true,
@@ -27,12 +32,12 @@
                 "username": "redacted",
                 "type": "private"
               },
-              "date": 1791131856,
-              "media_group_id": "14329054855937634",
+              "date": 1794253005,
+              "media_group_id": "14354024047797282",
               "photo": [
                 {
-                  "file_id": "AgACAgIAAxUHar7c3-A9PInUC_g8RCQf3E1H7pMAAkcmaxuPi_lJt9F2w255zgcBAAMCAANtAAM9BA",
-                  "file_unique_id": "AQADRyZrG4-L-Uly",
+                  "file_id": "AgACAgIAAxUHavIgzRB3i6C722QRCkqgHBo0kWQAAj8iaxuhUJBLGk10qeWFvm8BAAMCAANtAAM9BA",
+                  "file_unique_id": "AQADPyJrG6FQkEty",
                   "file_size": 287,
                   "width": 1,
                   "height": 1
@@ -48,7 +53,7 @@
               ]
             },
             {
-              "message_id": 24171,
+              "message_id": 25814,
               "from": {
                 "id": 700000001,
                 "is_bot": true,
@@ -61,12 +66,12 @@
                 "username": "redacted",
                 "type": "private"
               },
-              "date": 1791131857,
-              "media_group_id": "14329054855937634",
+              "date": 1794253005,
+              "media_group_id": "14354024047797282",
               "photo": [
                 {
-                  "file_id": "AgACAgIAAxUHar7c3-A9PInUC_g8RCQf3E1H7pMAAkcmaxuPi_lJt9F2w255zgcBAAMCAANtAAM9BA",
-                  "file_unique_id": "AQADRyZrG4-L-Uly",
+                  "file_id": "AgACAgIAAxUHavIgzRB3i6C722QRCkqgHBo0kWQAAj8iaxuhUJBLGk10qeWFvm8BAAMCAANtAAM9BA",
+                  "file_unique_id": "AQADPyJrG6FQkEty",
                   "file_size": 287,
                   "width": 1,
                   "height": 1
@@ -86,13 +91,19 @@
           "thumb.png",
           "video.mp4"
         ],
+        "request": {
+          "video.mp4": "<file>",
+          "thumb.png": "<file>",
+          "media": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": [
             {
-              "message_id": 24172,
+              "message_id": 25815,
               "from": {
                 "id": 700000001,
                 "is_bot": true,
@@ -105,8 +116,8 @@
                 "username": "redacted",
                 "type": "private"
               },
-              "date": 1791131859,
-              "media_group_id": "14329054873861482",
+              "date": 1794253008,
+              "media_group_id": "14354024069190362",
               "video": {
                 "duration": 6,
                 "width": 560,
@@ -114,21 +125,21 @@
                 "file_name": "video.mp4",
                 "mime_type": "video/mp4",
                 "thumbnail": {
-                  "file_id": "AAMCAgADFQdqwoDTx-uvtzVT0DJOw5s8j2XHsgACVbIAAjmbGUrwZFSVNIvcDQEAB20AAz0E",
-                  "file_unique_id": "AQADVbIAAjmbGUpy",
+                  "file_id": "AAMCAgADFQdq8iDQ42ux5OUlszje2xHQXIFdIAACB6wAAqFQkEtBr1Kyglvd6gEAB20AAz0E",
+                  "file_unique_id": "AQADB6wAAqFQkEty",
                   "file_size": 11643,
                   "width": 320,
                   "height": 183
                 },
                 "thumb": {
-                  "file_id": "AAMCAgADFQdqwoDTx-uvtzVT0DJOw5s8j2XHsgACVbIAAjmbGUrwZFSVNIvcDQEAB20AAz0E",
-                  "file_unique_id": "AQADVbIAAjmbGUpy",
+                  "file_id": "AAMCAgADFQdq8iDQ42ux5OUlszje2xHQXIFdIAACB6wAAqFQkEtBr1Kyglvd6gEAB20AAz0E",
+                  "file_unique_id": "AQADB6wAAqFQkEty",
                   "file_size": 11643,
                   "width": 320,
                   "height": 183
                 },
-                "file_id": "BAACAgIAAxUHasKA08frr7c1U9AyTsObPI9lx7IAAlWyAAI5mxlK8GRUlTSL3A09BA",
-                "file_unique_id": "AgADVbIAAjmbGUo",
+                "file_id": "BAACAgIAAxUHavIg0ONrseTlJbM43tsR0FyBXSAAAgesAAKhUJBLQa9SsoJb3eo9BA",
+                "file_unique_id": "AgADB6wAAqFQkEs",
                 "file_size": 383631
               },
               "caption": "test",
@@ -141,7 +152,7 @@
               ]
             },
             {
-              "message_id": 24173,
+              "message_id": 25816,
               "from": {
                 "id": 700000001,
                 "is_bot": true,
@@ -154,12 +165,12 @@
                 "username": "redacted",
                 "type": "private"
               },
-              "date": 1791131859,
-              "media_group_id": "14329054873861482",
+              "date": 1794253008,
+              "media_group_id": "14354024069190362",
               "photo": [
                 {
-                  "file_id": "AgACAgIAAxUHar7c3-A9PInUC_g8RCQf3E1H7pMAAkcmaxuPi_lJt9F2w255zgcBAAMCAANtAAM9BA",
-                  "file_unique_id": "AQADRyZrG4-L-Uly",
+                  "file_id": "AgACAgIAAxUHavIgzRB3i6C722QRCkqgHBo0kWQAAj8iaxuhUJBLGk10qeWFvm8BAAMCAANtAAM9BA",
+                  "file_unique_id": "AQADPyJrG6FQkEty",
                   "file_size": 287,
                   "width": 1,
                   "height": 1
@@ -173,14 +184,16 @@
     "media requests testing": [
       {
         "method": "ext:picsum.photos/10",
+        "request": {},
         "status": 302,
         "base64": ""
       },
       {
-        "method": "ext:fastly.picsum.photos/id/45/10/10.jpg",
+        "method": "ext:fastly.picsum.photos/id/511/10/10.jpg",
+        "request": {},
         "status": 200,
         "contentType": "image/jpeg",
-        "base64": "/9j/4QDeRXhpZgAASUkqAAgAAAAGABIBAwABAAAAAQAAABoBBQABAAAAVgAAABsBBQABAAAAXgAAACgBAwABAAAAAgAAABMCAwABAAAAAQAAAGmHBAABAAAAZgAAAAAAAABIAAAAAQAAAEgAAAABAAAABwAAkAcABAAAADAyMTABkQcABAAAAAECAwCGkgcAFQAAAMAAAAAAoAcABAAAADAxMDABoAMAAQAAAP//AAACoAQAAQAAAAoAAAADoAQAAQAAAAoAAAAAAAAAQVNDSUkAAABQaWNzdW0gSUQ6IDQ1AP/bAEMACAYGBwYFCAcHBwkJCAoMFA0MCwsMGRITDxQdGh8eHRocHCAkLicgIiwjHBwoNyksMDE0NDQfJzk9ODI8LjM0Mv/bAEMBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/CABEIAAoACgMBIgACEQEDEQH/xAAXAAADAQAAAAAAAAAAAAAAAAACAwUG/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQP/2gAMAwEAAhADEAAAAVFH3jP/xAAaEAEAAQUAAAAAAAAAAAAAAAABAgAEEhMx/9oACAEBAAEFApEIGq3pXE5//8QAFhEAAwAAAAAAAAAAAAAAAAAAAAMj/9oACAEDAQE/AV0P/8QAFhEAAwAAAAAAAAAAAAAAAAAAAAMi/9oACAECAQE/AWQf/8QAHRAAAQIHAAAAAAAAAAAAAAAAAAECEBIhMTJRkv/aAAgBAQAGPwLc1jN3AlYf/8QAHBABAAIBBQAAAAAAAAAAAAAAAQAhETFBUWGB/9oACAEBAAE/IbLydIoql6iBVg0uAwraf//aAAwDAQACAAMAAAAQo//EABoRAAICAwAAAAAAAAAAAAAAAAERACFBUYH/2gAIAQMBAT8QRgQKW89n/8QAGREBAAIDAAAAAAAAAAAAAAAAAQARITHw/9oACAECAQE/EEkRc32p/8QAGhABAQEBAAMAAAAAAAAAAAAAAREAIXGh8P/aAAgBAQABPxBGGhV7D0kPrlIi1Lz3lCVQKh4xDAAOTf/Z"
+        "base64": "/9j/4QDeRXhpZgAASUkqAAgAAAAGABIBAwABAAAAAQAAABoBBQABAAAAVgAAABsBBQABAAAAXgAAACgBAwABAAAAAgAAABMCAwABAAAAAQAAAGmHBAABAAAAZgAAAAAAAABIAAAAAQAAAEgAAAABAAAABwAAkAcABAAAADAyMTABkQcABAAAAAECAwCGkgcAFgAAAMAAAAAAoAcABAAAADAxMDABoAMAAQAAAP//AAACoAQAAQAAAAoAAAADoAQAAQAAAAoAAAAAAAAAQVNDSUkAAABQaWNzdW0gSUQ6IDUxMf/bAEMACAYGBwYFCAcHBwkJCAoMFA0MCwsMGRITDxQdGh8eHRocHCAkLicgIiwjHBwoNyksMDE0NDQfJzk9ODI8LjM0Mv/bAEMBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/CABEIAAoACgMBIgACEQEDEQH/xAAWAAEBAQAAAAAAAAAAAAAAAAAEAwX/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//aAAwDAQACEAMQAAABoHJPF//EABwQAAEDBQAAAAAAAAAAAAAAAAABAgMEBRIVM//aAAgBAQABBQJLnUYbCcbyP//EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQMBAT8Bf//EABYRAQEBAAAAAAAAAAAAAAAAABEAAf/aAAgBAgEBPwF0v//EABkQAAIDAQAAAAAAAAAAAAAAAAABAhCRMv/aAAgBAQAGPwJttYdz0nX/xAAbEAACAQUAAAAAAAAAAAAAAAABEQAQITFRkf/aAAgBAQABPyEoYJXkvMhMusdp/9oADAMBAAIAAwAAABBD/8QAFhEBAQEAAAAAAAAAAAAAAAAAEQAB/9oACAEDAQE/EDG//8QAFhEBAQEAAAAAAAAAAAAAAAAAAREA/9oACAECAQE/EKBu/8QAGxABAAICAwAAAAAAAAAAAAAAAQARMUEhYeH/2gAIAQEAAT8QMggVLSta4PI9hhclRjLKoLOukoTBP//Z"
       },
       {
         "method": "sendPhoto",
@@ -190,12 +203,18 @@
           "parse_mode",
           "photo"
         ],
+        "request": {
+          "photo": "https://picsum.photos/10",
+          "parse_mode": "HTML",
+          "caption": "test",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24174,
+            "message_id": 25817,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -208,10 +227,10 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131859,
+            "date": 1794253009,
             "photo": [
               {
-                "file_id": "AgACAgQAAxkDAAJdgmq-3OHxzAEJXM9KHyHxy3WZoB85AAJDqTEbpu51UubZigAB-b5vFQEAAwIAA20AAz0E",
+                "file_id": "AgACAgQAAxkDAAJk2WryINEvPsSQodtQQ2OunoGoKoCuAAJDqTEbpu51UubZigAB-b5vFQEAAwIAA20AAz0E",
                 "file_unique_id": "AQADQ6kxG6budVJy",
                 "file_size": 380,
                 "width": 10,
@@ -229,12 +248,17 @@
           "photo",
           "photo.jpg"
         ],
+        "request": {
+          "photo.jpg": "<file>",
+          "photo": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24175,
+            "message_id": 25818,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -247,12 +271,12 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131860,
+            "date": 1794253010,
             "photo": [
               {
-                "file_id": "AgACAgIAAxkDAAJeb2rCgNRvgOUbaRRnOVCKDU4ICRFRAAIuKWsbOZsZSsSHSnsob7A3AQADAgADbQADPQQ",
-                "file_unique_id": "AQADLilrGzmbGUpy",
-                "file_size": 409,
+                "file_id": "AgACAgIAAxkDAAJk2mryINJQgPpklP4XwXj1kE6Wnw1gAAJAImsboVCQS9289prdi7FIAQADAgADbQADPQQ",
+                "file_unique_id": "AQADQCJrG6FQkEty",
+                "file_size": 377,
                 "width": 10,
                 "height": 10
               }
@@ -267,12 +291,17 @@
           "photo",
           "photo.jpg"
         ],
+        "request": {
+          "photo.jpg": "<file>",
+          "photo": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24176,
+            "message_id": 25819,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -285,12 +314,12 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131860,
+            "date": 1794253010,
             "photo": [
               {
-                "file_id": "AgACAgIAAxkDAAJeb2rCgNRvgOUbaRRnOVCKDU4ICRFRAAIuKWsbOZsZSsSHSnsob7A3AQADAgADbQADPQQ",
-                "file_unique_id": "AQADLilrGzmbGUpy",
-                "file_size": 409,
+                "file_id": "AgACAgIAAxkDAAJk2mryINJQgPpklP4XwXj1kE6Wnw1gAAJAImsboVCQS9289prdi7FIAQADAgADbQADPQQ",
+                "file_unique_id": "AQADQCJrG6FQkEty",
+                "file_size": 377,
                 "width": 10,
                 "height": 10
               }
@@ -307,13 +336,18 @@
           "file",
           "media"
         ],
+        "request": {
+          "file": "<file>",
+          "media": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": [
             {
-              "message_id": 24177,
+              "message_id": 25820,
               "from": {
                 "id": 700000001,
                 "is_bot": true,
@@ -326,12 +360,12 @@
                 "username": "redacted",
                 "type": "private"
               },
-              "date": 1791131861,
-              "media_group_id": "14329054887991994",
+              "date": 1794253011,
+              "media_group_id": "14354024088207698",
               "photo": [
                 {
-                  "file_id": "AgACAgIAAxUHar7c3-A9PInUC_g8RCQf3E1H7pMAAkcmaxuPi_lJt9F2w255zgcBAAMCAANtAAM9BA",
-                  "file_unique_id": "AQADRyZrG4-L-Uly",
+                  "file_id": "AgACAgIAAxUHavIgzRB3i6C722QRCkqgHBo0kWQAAj8iaxuhUJBLGk10qeWFvm8BAAMCAANtAAM9BA",
+                  "file_unique_id": "AQADPyJrG6FQkEty",
                   "file_size": 287,
                   "width": 1,
                   "height": 1
@@ -347,7 +381,7 @@
               ]
             },
             {
-              "message_id": 24178,
+              "message_id": 25821,
               "from": {
                 "id": 700000001,
                 "is_bot": true,
@@ -360,12 +394,12 @@
                 "username": "redacted",
                 "type": "private"
               },
-              "date": 1791131861,
-              "media_group_id": "14329054887991994",
+              "date": 1794253011,
+              "media_group_id": "14354024088207698",
               "photo": [
                 {
-                  "file_id": "AgACAgIAAxUHar7c3-A9PInUC_g8RCQf3E1H7pMAAkcmaxuPi_lJt9F2w255zgcBAAMCAANtAAM9BA",
-                  "file_unique_id": "AQADRyZrG4-L-Uly",
+                  "file_id": "AgACAgIAAxUHavIgzRB3i6C722QRCkqgHBo0kWQAAj8iaxuhUJBLGk10qeWFvm8BAAMCAANtAAM9BA",
+                  "file_unique_id": "AQADPyJrG6FQkEty",
                   "file_size": 287,
                   "width": 1,
                   "height": 1
@@ -373,7 +407,7 @@
               ]
             },
             {
-              "message_id": 24179,
+              "message_id": 25822,
               "from": {
                 "id": 700000001,
                 "is_bot": true,
@@ -386,11 +420,11 @@
                 "username": "redacted",
                 "type": "private"
               },
-              "date": 1791131861,
-              "media_group_id": "14329054887991994",
+              "date": 1794253011,
+              "media_group_id": "14354024088207698",
               "photo": [
                 {
-                  "file_id": "AgACAgQAAxkDAAJdgmq-3OHxzAEJXM9KHyHxy3WZoB85AAJDqTEbpu51UubZigAB-b5vFQEAAwIAA20AAz0E",
+                  "file_id": "AgACAgQAAxkDAAJk2WryINEvPsSQodtQQ2OunoGoKoCuAAJDqTEbpu51UubZigAB-b5vFQEAAwIAA20AAz0E",
                   "file_unique_id": "AQADQ6kxG6budVJy",
                   "file_size": 380,
                   "width": 10,

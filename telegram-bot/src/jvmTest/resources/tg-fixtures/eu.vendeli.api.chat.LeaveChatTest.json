@@ -6,6 +6,9 @@
         "requestKeys": [
           "chat_id"
         ],
+        "request": {
+          "chat_id": 1
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

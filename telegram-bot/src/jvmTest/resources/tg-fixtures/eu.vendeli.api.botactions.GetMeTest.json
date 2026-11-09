@@ -3,6 +3,7 @@
     "getme method testing": [
       {
         "method": "getMe",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {

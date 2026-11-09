@@ -9,6 +9,12 @@
           "expire_date",
           "name"
         ],
+        "request": {
+          "name": "test",
+          "expire_date": 1893456120,
+          "creates_join_request": true,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -39,6 +45,12 @@
           "subscription_period",
           "subscription_price"
         ],
+        "request": {
+          "subscription_price": 10,
+          "subscription_period": 2592000,
+          "name": "test",
+          "chat_id": -1000000000002
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -56,6 +68,11 @@
           "creates_join_request",
           "name"
         ],
+        "request": {
+          "name": "test",
+          "creates_join_request": true,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -84,6 +101,13 @@
           "invite_link",
           "name"
         ],
+        "request": {
+          "invite_link": "https://t.me/+redacted",
+          "name": "test2",
+          "expire_date": 1893456001,
+          "creates_join_request": false,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -113,6 +137,11 @@
           "invite_link",
           "name"
         ],
+        "request": {
+          "invite_link": "test",
+          "name": "test2",
+          "chat_id": -1000000000002
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -128,6 +157,9 @@
         "requestKeys": [
           "chat_id"
         ],
+        "request": {
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -144,6 +176,11 @@
           "creates_join_request",
           "name"
         ],
+        "request": {
+          "name": "test",
+          "creates_join_request": true,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -169,6 +206,10 @@
           "chat_id",
           "invite_link"
         ],
+        "request": {
+          "invite_link": "https://t.me/+redacted",
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {

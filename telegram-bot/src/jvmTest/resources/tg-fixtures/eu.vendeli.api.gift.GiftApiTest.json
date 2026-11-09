@@ -7,6 +7,10 @@
           "business_connection_id",
           "owned_gift_id"
         ],
+        "request": {
+          "business_connection_id": "test",
+          "owned_gift_id": "gift_id"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -22,6 +26,9 @@
         "requestKeys": [
           "chat_id"
         ],
+        "request": {
+          "chat_id": 123456
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -37,6 +44,9 @@
         "requestKeys": [
           "user_id"
         ],
+        "request": {
+          "user_id": 123456
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -55,6 +65,12 @@
           "text",
           "user_id"
         ],
+        "request": {
+          "user_id": 123456,
+          "month_count": 3,
+          "star_count": 1000,
+          "text": "Enjoy!"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -72,6 +88,11 @@
           "new_owner_chat_id",
           "owned_gift_id"
         ],
+        "request": {
+          "business_connection_id": "test",
+          "owned_gift_id": "gift_id",
+          "new_owner_chat_id": 123456
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -88,6 +109,10 @@
           "business_connection_id",
           "owned_gift_id"
         ],
+        "request": {
+          "business_connection_id": "test",
+          "owned_gift_id": "gift_id"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

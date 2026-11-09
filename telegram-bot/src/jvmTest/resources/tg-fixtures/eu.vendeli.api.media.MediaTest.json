@@ -9,12 +9,18 @@
           "chat_id",
           "parse_mode"
         ],
+        "request": {
+          "animation": "https://github.com/malcomio/dummy-content/blob/master/images/animated-parabola.gif?raw=true",
+          "caption": "test",
+          "parse_mode": "Markdown",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24198,
+            "message_id": 25841,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -27,7 +33,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132018,
+            "date": 1794253197,
             "animation": {
               "file_name": "animated-parabola.gif.mp4",
               "mime_type": "video/mp4",
@@ -35,20 +41,20 @@
               "width": 250,
               "height": 250,
               "thumbnail": {
-                "file_id": "AAMCBAADGQMAAl2aar7de0DZflNbUnTqo---rJ7LR8gAAokEAAKl301Sw3nuWKreV5UBAAdtAAM9BA",
+                "file_id": "AAMCBAADGQMAAmTxavIhjQGW6gIHMyLqsrEzL_56LgMAAokEAAKl301Sw3nuWKreV5UBAAdtAAM9BA",
                 "file_unique_id": "AQADiQQAAqXfTVJy",
                 "file_size": 1829,
                 "width": 250,
                 "height": 250
               },
               "thumb": {
-                "file_id": "AAMCBAADGQMAAl2aar7de0DZflNbUnTqo---rJ7LR8gAAokEAAKl301Sw3nuWKreV5UBAAdtAAM9BA",
+                "file_id": "AAMCBAADGQMAAmTxavIhjQGW6gIHMyLqsrEzL_56LgMAAokEAAKl301Sw3nuWKreV5UBAAdtAAM9BA",
                 "file_unique_id": "AQADiQQAAqXfTVJy",
                 "file_size": 1829,
                 "width": 250,
                 "height": 250
               },
-              "file_id": "CgACAgQAAxkDAAJdmmq-3XtA2X5TW1J06qPvvqyey0fIAAKJBAACpd9NUsN57liq3leVPQQ",
+              "file_id": "CgACAgQAAxkDAAJk8WryIY0BluoCBzMi6rKxMy_-ei4DAAKJBAACpd9NUsN57liq3leVPQQ",
               "file_unique_id": "AgADiQQAAqXfTVI",
               "file_size": 283399
             },
@@ -56,20 +62,20 @@
               "file_name": "animated-parabola.gif.mp4",
               "mime_type": "video/mp4",
               "thumbnail": {
-                "file_id": "AAMCBAADGQMAAl2aar7de0DZflNbUnTqo---rJ7LR8gAAokEAAKl301Sw3nuWKreV5UBAAdtAAM9BA",
+                "file_id": "AAMCBAADGQMAAmTxavIhjQGW6gIHMyLqsrEzL_56LgMAAokEAAKl301Sw3nuWKreV5UBAAdtAAM9BA",
                 "file_unique_id": "AQADiQQAAqXfTVJy",
                 "file_size": 1829,
                 "width": 250,
                 "height": 250
               },
               "thumb": {
-                "file_id": "AAMCBAADGQMAAl2aar7de0DZflNbUnTqo---rJ7LR8gAAokEAAKl301Sw3nuWKreV5UBAAdtAAM9BA",
+                "file_id": "AAMCBAADGQMAAmTxavIhjQGW6gIHMyLqsrEzL_56LgMAAokEAAKl301Sw3nuWKreV5UBAAdtAAM9BA",
                 "file_unique_id": "AQADiQQAAqXfTVJy",
                 "file_size": 1829,
                 "width": 250,
                 "height": 250
               },
-              "file_id": "CgACAgQAAxkDAAJdmmq-3XtA2X5TW1J06qPvvqyey0fIAAKJBAACpd9NUsN57liq3leVPQQ",
+              "file_id": "CgACAgQAAxkDAAJk8WryIY0BluoCBzMi6rKxMy_-ei4DAAKJBAACpd9NUsN57liq3leVPQQ",
               "file_unique_id": "AgADiQQAAqXfTVI",
               "file_size": 283399
             },
@@ -84,12 +90,17 @@
           "chat_id",
           "image.gif"
         ],
+        "request": {
+          "image.gif": "<file>",
+          "animation": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24199,
+            "message_id": 25842,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -102,7 +113,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132022,
+            "date": 1794253200,
             "animation": {
               "file_name": "image.gif.mp4",
               "mime_type": "video/mp4",
@@ -110,42 +121,42 @@
               "width": 250,
               "height": 250,
               "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6HasKBdXbqRT5GKtuJEajlb4QEBTMAAl2yAAI5mxlKAhnQEELCVdMBAAdtAAM9BA",
-                "file_unique_id": "AQADXbIAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmTyavIhkBGUFUi6qqyr5EAeselOR3UAAgmsAAKhUJBL4l0FGasNNNEBAAdtAAM9BA",
+                "file_unique_id": "AQADCawAAqFQkEty",
                 "file_size": 1827,
                 "width": 250,
                 "height": 250
               },
               "thumb": {
-                "file_id": "AAMCAgADGQMAAl6HasKBdXbqRT5GKtuJEajlb4QEBTMAAl2yAAI5mxlKAhnQEELCVdMBAAdtAAM9BA",
-                "file_unique_id": "AQADXbIAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmTyavIhkBGUFUi6qqyr5EAeselOR3UAAgmsAAKhUJBL4l0FGasNNNEBAAdtAAM9BA",
+                "file_unique_id": "AQADCawAAqFQkEty",
                 "file_size": 1827,
                 "width": 250,
                 "height": 250
               },
-              "file_id": "CgACAgIAAxkDAAJeh2rCgXV26kU-RirbiRGo5W-EBAUzAAJdsgACOZsZSgIZ0BBCwlXTPQQ",
-              "file_unique_id": "AgADXbIAAjmbGUo",
+              "file_id": "CgACAgIAAxkDAAJk8mryIZARlBVIuqqsq-RAHrHpTkd1AAIJrAACoVCQS-JdBRmrDTTRPQQ",
+              "file_unique_id": "AgADCawAAqFQkEs",
               "file_size": 283438
             },
             "document": {
               "file_name": "image.gif.mp4",
               "mime_type": "video/mp4",
               "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6HasKBdXbqRT5GKtuJEajlb4QEBTMAAl2yAAI5mxlKAhnQEELCVdMBAAdtAAM9BA",
-                "file_unique_id": "AQADXbIAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmTyavIhkBGUFUi6qqyr5EAeselOR3UAAgmsAAKhUJBL4l0FGasNNNEBAAdtAAM9BA",
+                "file_unique_id": "AQADCawAAqFQkEty",
                 "file_size": 1827,
                 "width": 250,
                 "height": 250
               },
               "thumb": {
-                "file_id": "AAMCAgADGQMAAl6HasKBdXbqRT5GKtuJEajlb4QEBTMAAl2yAAI5mxlKAhnQEELCVdMBAAdtAAM9BA",
-                "file_unique_id": "AQADXbIAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmTyavIhkBGUFUi6qqyr5EAeselOR3UAAgmsAAKhUJBL4l0FGasNNNEBAAdtAAM9BA",
+                "file_unique_id": "AQADCawAAqFQkEty",
                 "file_size": 1827,
                 "width": 250,
                 "height": 250
               },
-              "file_id": "CgACAgIAAxkDAAJeh2rCgXV26kU-RirbiRGo5W-EBAUzAAJdsgACOZsZSgIZ0BBCwlXTPQQ",
-              "file_unique_id": "AgADXbIAAjmbGUo",
+              "file_id": "CgACAgIAAxkDAAJk8mryIZARlBVIuqqsq-RAHrHpTkd1AAIJrAACoVCQS-JdBRmrDTTRPQQ",
+              "file_unique_id": "AgADCawAAqFQkEs",
               "file_size": 283438
             }
           }
@@ -158,12 +169,17 @@
           "chat_id",
           "image.gif"
         ],
+        "request": {
+          "image.gif": "<file>",
+          "animation": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24200,
+            "message_id": 25843,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -176,7 +192,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132023,
+            "date": 1794253201,
             "animation": {
               "file_name": "image.gif.mp4",
               "mime_type": "video/mp4",
@@ -184,42 +200,42 @@
               "width": 250,
               "height": 250,
               "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6IasKBdhZobjcuEuCv95P5hSbKU8IAAl6yAAI5mxlKFvIjvq7nIx4BAAdtAAM9BA",
-                "file_unique_id": "AQADXrIAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmTzavIhkfaHVJZ2Tiuj9Ce5BhNMtH0AAgqsAAKhUJBL-vhraUt6zbkBAAdtAAM9BA",
+                "file_unique_id": "AQADCqwAAqFQkEty",
                 "file_size": 1827,
                 "width": 250,
                 "height": 250
               },
               "thumb": {
-                "file_id": "AAMCAgADGQMAAl6IasKBdhZobjcuEuCv95P5hSbKU8IAAl6yAAI5mxlKFvIjvq7nIx4BAAdtAAM9BA",
-                "file_unique_id": "AQADXrIAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmTzavIhkfaHVJZ2Tiuj9Ce5BhNMtH0AAgqsAAKhUJBL-vhraUt6zbkBAAdtAAM9BA",
+                "file_unique_id": "AQADCqwAAqFQkEty",
                 "file_size": 1827,
                 "width": 250,
                 "height": 250
               },
-              "file_id": "CgACAgIAAxkDAAJeiGrCgXYWaG43LhLgr_eT-YUmylPCAAJesgACOZsZShbyI76u5yMePQQ",
-              "file_unique_id": "AgADXrIAAjmbGUo",
+              "file_id": "CgACAgIAAxkDAAJk82ryIZH2h1SWdk4ro_QnuQYTTLR9AAIKrAACoVCQS_r4a2lLes25PQQ",
+              "file_unique_id": "AgADCqwAAqFQkEs",
               "file_size": 283438
             },
             "document": {
               "file_name": "image.gif.mp4",
               "mime_type": "video/mp4",
               "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6IasKBdhZobjcuEuCv95P5hSbKU8IAAl6yAAI5mxlKFvIjvq7nIx4BAAdtAAM9BA",
-                "file_unique_id": "AQADXrIAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmTzavIhkfaHVJZ2Tiuj9Ce5BhNMtH0AAgqsAAKhUJBL-vhraUt6zbkBAAdtAAM9BA",
+                "file_unique_id": "AQADCqwAAqFQkEty",
                 "file_size": 1827,
                 "width": 250,
                 "height": 250
               },
               "thumb": {
-                "file_id": "AAMCAgADGQMAAl6IasKBdhZobjcuEuCv95P5hSbKU8IAAl6yAAI5mxlKFvIjvq7nIx4BAAdtAAM9BA",
-                "file_unique_id": "AQADXrIAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmTzavIhkfaHVJZ2Tiuj9Ce5BhNMtH0AAgqsAAKhUJBL-vhraUt6zbkBAAdtAAM9BA",
+                "file_unique_id": "AQADCqwAAqFQkEty",
                 "file_size": 1827,
                 "width": 250,
                 "height": 250
               },
-              "file_id": "CgACAgIAAxkDAAJeiGrCgXYWaG43LhLgr_eT-YUmylPCAAJesgACOZsZShbyI76u5yMePQQ",
-              "file_unique_id": "AgADXrIAAjmbGUo",
+              "file_id": "CgACAgIAAxkDAAJk82ryIZH2h1SWdk4ro_QnuQYTTLR9AAIKrAACoVCQS_r4a2lLes25PQQ",
+              "file_unique_id": "AgADCqwAAqFQkEs",
               "file_size": 283438
             }
           }
@@ -232,12 +248,17 @@
           "animation",
           "chat_id"
         ],
+        "request": {
+          "animated-parabola.gif": "<file>",
+          "animation": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24201,
+            "message_id": 25844,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -250,7 +271,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132024,
+            "date": 1794253202,
             "animation": {
               "file_name": "animated-parabola.gif.mp4",
               "mime_type": "video/mp4",
@@ -258,42 +279,42 @@
               "width": 250,
               "height": 250,
               "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6JasKBeGad89fM1qwTbNgRsLLpY2oAAl-yAAI5mxlKI1hZdo5TMGUBAAdtAAM9BA",
-                "file_unique_id": "AQADX7IAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmT0avIhklaZ6qjshGKAzhtv2-TlHMQAAgusAAKhUJBLsscCNLgmDGUBAAdtAAM9BA",
+                "file_unique_id": "AQADC6wAAqFQkEty",
                 "file_size": 1827,
                 "width": 250,
                 "height": 250
               },
               "thumb": {
-                "file_id": "AAMCAgADGQMAAl6JasKBeGad89fM1qwTbNgRsLLpY2oAAl-yAAI5mxlKI1hZdo5TMGUBAAdtAAM9BA",
-                "file_unique_id": "AQADX7IAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmT0avIhklaZ6qjshGKAzhtv2-TlHMQAAgusAAKhUJBLsscCNLgmDGUBAAdtAAM9BA",
+                "file_unique_id": "AQADC6wAAqFQkEty",
                 "file_size": 1827,
                 "width": 250,
                 "height": 250
               },
-              "file_id": "CgACAgIAAxkDAAJeiWrCgXhmnfPXzNasE2zYEbCy6WNqAAJfsgACOZsZSiNYWXaOUzBlPQQ",
-              "file_unique_id": "AgADX7IAAjmbGUo",
+              "file_id": "CgACAgIAAxkDAAJk9GryIZJWmeqo7IRigM4bb9vk5RzEAAILrAACoVCQS7LHAjS4JgxlPQQ",
+              "file_unique_id": "AgADC6wAAqFQkEs",
               "file_size": 283438
             },
             "document": {
               "file_name": "animated-parabola.gif.mp4",
               "mime_type": "video/mp4",
               "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6JasKBeGad89fM1qwTbNgRsLLpY2oAAl-yAAI5mxlKI1hZdo5TMGUBAAdtAAM9BA",
-                "file_unique_id": "AQADX7IAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmT0avIhklaZ6qjshGKAzhtv2-TlHMQAAgusAAKhUJBLsscCNLgmDGUBAAdtAAM9BA",
+                "file_unique_id": "AQADC6wAAqFQkEty",
                 "file_size": 1827,
                 "width": 250,
                 "height": 250
               },
               "thumb": {
-                "file_id": "AAMCAgADGQMAAl6JasKBeGad89fM1qwTbNgRsLLpY2oAAl-yAAI5mxlKI1hZdo5TMGUBAAdtAAM9BA",
-                "file_unique_id": "AQADX7IAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmT0avIhklaZ6qjshGKAzhtv2-TlHMQAAgusAAKhUJBLsscCNLgmDGUBAAdtAAM9BA",
+                "file_unique_id": "AQADC6wAAqFQkEty",
                 "file_size": 1827,
                 "width": 250,
                 "height": 250
               },
-              "file_id": "CgACAgIAAxkDAAJeiWrCgXhmnfPXzNasE2zYEbCy6WNqAAJfsgACOZsZSiNYWXaOUzBlPQQ",
-              "file_unique_id": "AgADX7IAAjmbGUo",
+              "file_id": "CgACAgIAAxkDAAJk9GryIZJWmeqo7IRigM4bb9vk5RzEAAILrAACoVCQS7LHAjS4JgxlPQQ",
+              "file_unique_id": "AgADC6wAAqFQkEs",
               "file_size": 283438
             }
           }
@@ -312,12 +333,21 @@
           "test.png",
           "thumbnail"
         ],
+        "request": {
+          "audio.mp3": "<file>",
+          "test.png": "<file>",
+          "audio": "<file>",
+          "caption": "<file>",
+          "parse_mode": "<file>",
+          "thumbnail": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24202,
+            "message_id": 25845,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -330,28 +360,28 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132027,
+            "date": 1794253205,
             "audio": {
               "duration": 121,
               "file_name": "audio.mp3",
               "mime_type": "audio/mpeg",
               "performer": "Citizen 020",
               "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6KasKBeijItszETxiNy9geLmUeslkAAmCyAAI5mxlKnidE8kk5XF4BAAdzAAM9BA",
-                "file_unique_id": "AQADYLIAAjmbGUp4",
+                "file_id": "AAMCAgADGQMAAmT1avIhlSCgS2ZsT-k7JjSFszzJvMoAAg2sAAKhUJBL_WArFSymv8kBAAdzAAM9BA",
+                "file_unique_id": "AQADDawAAqFQkEt4",
                 "file_size": 287,
                 "width": 1,
                 "height": 1
               },
               "thumb": {
-                "file_id": "AAMCAgADGQMAAl6KasKBeijItszETxiNy9geLmUeslkAAmCyAAI5mxlKnidE8kk5XF4BAAdzAAM9BA",
-                "file_unique_id": "AQADYLIAAjmbGUp4",
+                "file_id": "AAMCAgADGQMAAmT1avIhlSCgS2ZsT-k7JjSFszzJvMoAAg2sAAKhUJBL_WArFSymv8kBAAdzAAM9BA",
+                "file_unique_id": "AQADDawAAqFQkEt4",
                 "file_size": 287,
                 "width": 1,
                 "height": 1
               },
-              "file_id": "CQACAgIAAxkDAAJeimrCgXooyLbMxE8YjcvYHi5lHrJZAAJgsgACOZsZSp4nRPJJOVxePQQ",
-              "file_unique_id": "AgADYLIAAjmbGUo",
+              "file_id": "CQACAgIAAxkDAAJk9WryIZUgoEtmbE_pOyY0hbM8ybzKAAINrAACoVCQS_1gKxUspr_JPQQ",
+              "file_unique_id": "AgADDawAAqFQkEs",
               "file_size": 1951087
             },
             "caption": "test",
@@ -375,12 +405,20 @@
           "test.png",
           "thumbnail"
         ],
+        "request": {
+          "test.png": "<file>",
+          "audio": "<file>",
+          "caption": "<file>",
+          "parse_mode": "<file>",
+          "thumbnail": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24203,
+            "message_id": 25846,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -393,92 +431,28 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132027,
+            "date": 1794253206,
             "audio": {
               "duration": 121,
               "file_name": "audio.mp3",
               "mime_type": "audio/mpeg",
               "performer": "Citizen 020",
               "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6KasKBeijItszETxiNy9geLmUeslkAAmCyAAI5mxlKnidE8kk5XF4BAAdzAAM9BA",
-                "file_unique_id": "AQADYLIAAjmbGUp4",
+                "file_id": "AAMCAgADGQMAAmT1avIhlSCgS2ZsT-k7JjSFszzJvMoAAg2sAAKhUJBL_WArFSymv8kBAAdzAAM9BA",
+                "file_unique_id": "AQADDawAAqFQkEt4",
                 "file_size": 287,
                 "width": 1,
                 "height": 1
               },
               "thumb": {
-                "file_id": "AAMCAgADGQMAAl6KasKBeijItszETxiNy9geLmUeslkAAmCyAAI5mxlKnidE8kk5XF4BAAdzAAM9BA",
-                "file_unique_id": "AQADYLIAAjmbGUp4",
+                "file_id": "AAMCAgADGQMAAmT1avIhlSCgS2ZsT-k7JjSFszzJvMoAAg2sAAKhUJBL_WArFSymv8kBAAdzAAM9BA",
+                "file_unique_id": "AQADDawAAqFQkEt4",
                 "file_size": 287,
                 "width": 1,
                 "height": 1
               },
-              "file_id": "CQACAgIAAxkDAAJeimrCgXooyLbMxE8YjcvYHi5lHrJZAAJgsgACOZsZSp4nRPJJOVxePQQ",
-              "file_unique_id": "AgADYLIAAjmbGUo",
-              "file_size": 1951087
-            },
-            "caption": "test",
-            "caption_entities": [
-              {
-                "offset": 0,
-                "length": 4,
-                "type": "bold"
-              }
-            ]
-          }
-        }
-      },
-      {
-        "method": "sendAudio",
-        "requestKeys": [
-          "audio",
-          "audio.mp3",
-          "caption",
-          "chat_id",
-          "parse_mode",
-          "test.png",
-          "thumbnail"
-        ],
-        "status": 200,
-        "contentType": "application/json",
-        "json": {
-          "ok": true,
-          "result": {
-            "message_id": 24204,
-            "from": {
-              "id": 700000001,
-              "is_bot": true,
-              "first_name": "redacted",
-              "username": "redacted"
-            },
-            "chat": {
-              "id": 100000001,
-              "first_name": "redacted",
-              "username": "redacted",
-              "type": "private"
-            },
-            "date": 1791132029,
-            "audio": {
-              "duration": 121,
-              "file_name": "audio.mp3",
-              "mime_type": "audio/mpeg",
-              "performer": "Citizen 020",
-              "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6MasKBfBSzw5dLnfl32LH2bmKWCt8AAmGyAAI5mxlKc5vcZNqR6nEBAAdzAAM9BA",
-                "file_unique_id": "AQADYbIAAjmbGUp4",
-                "file_size": 287,
-                "width": 1,
-                "height": 1
-              },
-              "thumb": {
-                "file_id": "AAMCAgADGQMAAl6MasKBfBSzw5dLnfl32LH2bmKWCt8AAmGyAAI5mxlKc5vcZNqR6nEBAAdzAAM9BA",
-                "file_unique_id": "AQADYbIAAjmbGUp4",
-                "file_size": 287,
-                "width": 1,
-                "height": 1
-              },
-              "file_id": "CQACAgIAAxkDAAJejGrCgXwUs8OXS535d9ix9m5ilgrfAAJhsgACOZsZSnOb3GTakepxPQQ",
-              "file_unique_id": "AgADYbIAAjmbGUo",
+              "file_id": "CQACAgIAAxkDAAJk9WryIZUgoEtmbE_pOyY0hbM8ybzKAAINrAACoVCQS_1gKxUspr_JPQQ",
+              "file_unique_id": "AgADDawAAqFQkEs",
               "file_size": 1951087
             },
             "caption": "test",
@@ -503,12 +477,21 @@
           "test.png",
           "thumbnail"
         ],
+        "request": {
+          "audio.mp3": "<file>",
+          "test.png": "<file>",
+          "audio": "<file>",
+          "caption": "<file>",
+          "parse_mode": "<file>",
+          "thumbnail": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24205,
+            "message_id": 25847,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -521,28 +504,101 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132030,
+            "date": 1794253207,
             "audio": {
               "duration": 121,
               "file_name": "audio.mp3",
               "mime_type": "audio/mpeg",
               "performer": "Citizen 020",
               "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6NasKBfRTDGReC5wgZZ7MiUaCalSgAAmKyAAI5mxlK1XdilcUIA3IBAAdzAAM9BA",
-                "file_unique_id": "AQADYrIAAjmbGUp4",
+                "file_id": "AAMCAgADGQMAAmT3avIhl9CmcCaQEeLzIq_REyGqeOYAAg6sAAKhUJBLFS9uxkfDKPEBAAdzAAM9BA",
+                "file_unique_id": "AQADDqwAAqFQkEt4",
                 "file_size": 287,
                 "width": 1,
                 "height": 1
               },
               "thumb": {
-                "file_id": "AAMCAgADGQMAAl6NasKBfRTDGReC5wgZZ7MiUaCalSgAAmKyAAI5mxlK1XdilcUIA3IBAAdzAAM9BA",
-                "file_unique_id": "AQADYrIAAjmbGUp4",
+                "file_id": "AAMCAgADGQMAAmT3avIhl9CmcCaQEeLzIq_REyGqeOYAAg6sAAKhUJBLFS9uxkfDKPEBAAdzAAM9BA",
+                "file_unique_id": "AQADDqwAAqFQkEt4",
                 "file_size": 287,
                 "width": 1,
                 "height": 1
               },
-              "file_id": "CQACAgIAAxkDAAJejWrCgX0UwxkXgucIGWezIlGgmpUoAAJisgACOZsZStV3YpXFCANyPQQ",
-              "file_unique_id": "AgADYrIAAjmbGUo",
+              "file_id": "CQACAgIAAxkDAAJk92ryIZfQpnAmkBHi8yKv0RMhqnjmAAIOrAACoVCQSxUvbsZHwyjxPQQ",
+              "file_unique_id": "AgADDqwAAqFQkEs",
+              "file_size": 1951087
+            },
+            "caption": "test",
+            "caption_entities": [
+              {
+                "offset": 0,
+                "length": 4,
+                "type": "bold"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "method": "sendAudio",
+        "requestKeys": [
+          "audio",
+          "audio.mp3",
+          "caption",
+          "chat_id",
+          "parse_mode",
+          "test.png",
+          "thumbnail"
+        ],
+        "request": {
+          "audio.mp3": "<file>",
+          "test.png": "<file>",
+          "audio": "<file>",
+          "caption": "<file>",
+          "parse_mode": "<file>",
+          "thumbnail": "<file>",
+          "chat_id": "<file>"
+        },
+        "status": 200,
+        "contentType": "application/json",
+        "json": {
+          "ok": true,
+          "result": {
+            "message_id": 25848,
+            "from": {
+              "id": 700000001,
+              "is_bot": true,
+              "first_name": "redacted",
+              "username": "redacted"
+            },
+            "chat": {
+              "id": 100000001,
+              "first_name": "redacted",
+              "username": "redacted",
+              "type": "private"
+            },
+            "date": 1794253209,
+            "audio": {
+              "duration": 121,
+              "file_name": "audio.mp3",
+              "mime_type": "audio/mpeg",
+              "performer": "Citizen 020",
+              "thumbnail": {
+                "file_id": "AAMCAgADGQMAAmT4avIhmPywJ6P166Xs1A39lUUOYO4AAhCsAAKhUJBLGr46o2p_ET4BAAdzAAM9BA",
+                "file_unique_id": "AQADEKwAAqFQkEt4",
+                "file_size": 287,
+                "width": 1,
+                "height": 1
+              },
+              "thumb": {
+                "file_id": "AAMCAgADGQMAAmT4avIhmPywJ6P166Xs1A39lUUOYO4AAhCsAAKhUJBLGr46o2p_ET4BAAdzAAM9BA",
+                "file_unique_id": "AQADEKwAAqFQkEt4",
+                "file_size": 287,
+                "width": 1,
+                "height": 1
+              },
+              "file_id": "CQACAgIAAxkDAAJk-GryIZj8sCej9eul7NQN_ZVFDmDuAAIQrAACoVCQSxq-OqNqfxE-PQQ",
+              "file_unique_id": "AgADEKwAAqFQkEs",
               "file_size": 1951087
             },
             "caption": "test",
@@ -564,12 +620,16 @@
           "chat_id",
           "document"
         ],
+        "request": {
+          "document": "https://github.com/malcomio/dummy-content/blob/master/Lorem_ipsum.pdf?raw=true",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24206,
+            "message_id": 25849,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -582,12 +642,12 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132031,
+            "date": 1794253209,
             "document": {
               "file_name": "Lorem_ipsum.pdf",
               "mime_type": "application/pdf",
-              "file_id": "BQACAgQAAxkDAAJdomq-3YIgvbEU6KRMlxh9CxznXWhlAAKFCwACElXVUSdRROSMaFZFPQQ",
-              "file_unique_id": "AgADhQsAAhJV1VE",
+              "file_id": "BQACAgQAAxkDAAJk-WryIZkd37C_zDzvWNjy2u_NSkuMAAKBDAACzCsFU_VNQ2vqWSn9PQQ",
+              "file_unique_id": "AgADgQwAAswrBVM",
               "file_size": 93830
             }
           }
@@ -600,12 +660,17 @@
           "document",
           "file"
         ],
+        "request": {
+          "file": "<file>",
+          "document": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24207,
+            "message_id": 25850,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -618,11 +683,11 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132032,
+            "date": 1794253211,
             "document": {
               "file_name": "file",
-              "file_id": "BQACAgIAAxkDAAJej2rCgYAyklTnqkkXLEUZYvaIofFNAAJjsgACOZsZSguwEQEI0U5bPQQ",
-              "file_unique_id": "AgADY7IAAjmbGUo",
+              "file_id": "BQACAgIAAxkDAAJk-mryIZsyweYDH4evFs7wC2ol6L2EAAIRrAACoVCQS-PFT1WvAYvgPQQ",
+              "file_unique_id": "AgADEawAAqFQkEs",
               "file_size": 93830
             }
           }
@@ -635,12 +700,17 @@
           "document",
           "file"
         ],
+        "request": {
+          "file": "<file>",
+          "document": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24208,
+            "message_id": 25851,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -653,11 +723,11 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132032,
+            "date": 1794253212,
             "document": {
               "file_name": "file",
-              "file_id": "BQACAgIAAxkDAAJekGrCgYDWS94YnRAn5mJV7d1xC_aPAAJksgACOZsZSoy41sSdBNisPQQ",
-              "file_unique_id": "AgADZLIAAjmbGUo",
+              "file_id": "BQACAgIAAxkDAAJk-2ryIZw7bBKt8Zk8NvojVDmgrq8yAAISrAACoVCQS6UKRSExHbx8PQQ",
+              "file_unique_id": "AgADEqwAAqFQkEs",
               "file_size": 93830
             }
           }
@@ -670,12 +740,17 @@
           "document",
           "ipsum.pdf"
         ],
+        "request": {
+          "ipsum.pdf": "<file>",
+          "document": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24209,
+            "message_id": 25852,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -688,12 +763,12 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132032,
+            "date": 1794253212,
             "document": {
               "file_name": "ipsum.pdf",
               "mime_type": "application/pdf",
-              "file_id": "BQACAgIAAxkDAAJekWrCgYAxmc7893qbDhB_lS_6TkUvAAJlsgACOZsZSryNT1maw_qYPQQ",
-              "file_unique_id": "AgADZbIAAjmbGUo",
+              "file_id": "BQACAgIAAxkDAAJk_GryIZx7TWAJOHp_04ncwalmt7QGAAITrAACoVCQSyPyZBxxFSaAPQQ",
+              "file_unique_id": "AgADE6wAAqFQkEs",
               "file_size": 93830
             }
           }
@@ -708,12 +783,17 @@
           "sticker",
           "sticker.webp"
         ],
+        "request": {
+          "sticker.webp": "<file>",
+          "sticker": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24210,
+            "message_id": 25853,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -726,15 +806,15 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132034,
+            "date": 1794253214,
             "sticker": {
               "width": 0,
               "height": 0,
               "is_animated": false,
               "is_video": false,
               "type": "regular",
-              "file_id": "CAACAgIAAxkDAAJekmrCgYKsSQ7cgy5SmgnSohpuhk8YAAJmsgACOZsZSss9rgbVokk6PQQ",
-              "file_unique_id": "AgADZrIAAjmbGUo",
+              "file_id": "CAACAgIAAxkDAAJk_WryIZ5Mhba7oXOqsSWsYUK8T6qUAAIUrAACoVCQS80q6mH4u7oxPQQ",
+              "file_unique_id": "AgADFKwAAqFQkEs",
               "file_size": 63709
             }
           }
@@ -746,12 +826,16 @@
           "chat_id",
           "sticker"
         ],
+        "request": {
+          "sticker": "CAACAgIAAxkDAAJk_WryIZ5Mhba7oXOqsSWsYUK8T6qUAAIUrAACoVCQS80q6mH4u7oxPQQ",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24211,
+            "message_id": 25854,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -764,15 +848,15 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132034,
+            "date": 1794253215,
             "sticker": {
               "width": 0,
               "height": 0,
               "is_animated": false,
               "is_video": false,
               "type": "regular",
-              "file_id": "CAACAgIAAxkDAAJekmrCgYKsSQ7cgy5SmgnSohpuhk8YAAJmsgACOZsZSss9rgbVokk6PQQ",
-              "file_unique_id": "AgADZrIAAjmbGUo",
+              "file_id": "CAACAgIAAxkDAAJk_WryIZ5Mhba7oXOqsSWsYUK8T6qUAAIUrAACoVCQS80q6mH4u7oxPQQ",
+              "file_unique_id": "AgADFKwAAqFQkEs",
               "file_size": 63709
             }
           }
@@ -785,12 +869,17 @@
           "sticker",
           "sticker.webp"
         ],
+        "request": {
+          "sticker.webp": "<file>",
+          "sticker": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24212,
+            "message_id": 25855,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -803,15 +892,15 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132034,
+            "date": 1794253215,
             "sticker": {
               "width": 0,
               "height": 0,
               "is_animated": false,
               "is_video": false,
               "type": "regular",
-              "file_id": "CAACAgIAAxkDAAJelGrCgYIjf6RiJRsTx8pCiM0wyVgPAAJosgACOZsZSrYfF4F-I1aqPQQ",
-              "file_unique_id": "AgADaLIAAjmbGUo",
+              "file_id": "CAACAgIAAxkDAAJk_2ryIZ9TDgorTL54rYg_cC3L9sp8AAIVrAACoVCQS8nHoZ5r3afRPQQ",
+              "file_unique_id": "AgADFawAAqFQkEs",
               "file_size": 63709
             }
           }
@@ -824,12 +913,17 @@
           "sticker",
           "sticker.tgs"
         ],
+        "request": {
+          "sticker.tgs": "<file>",
+          "sticker": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24213,
+            "message_id": 25856,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -842,7 +936,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132037,
+            "date": 1794253217,
             "sticker": {
               "width": 512,
               "height": 512,
@@ -850,21 +944,21 @@
               "is_video": false,
               "type": "regular",
               "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6VasKBhHTTqi01kyaIqqxKjGM2wzgAAmmyAAI5mxlK4mYWfaW10KcBAAdtAAM9BA",
-                "file_unique_id": "AQADabIAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmUAAWryIaA2MtXyTO99USm-KHGOSvdSAAIWrAACoVCQS8Fz9bLbUetEAQAHbQADPQQ",
+                "file_unique_id": "AQADFqwAAqFQkEty",
                 "file_size": 2478,
                 "width": 128,
                 "height": 128
               },
               "thumb": {
-                "file_id": "AAMCAgADGQMAAl6VasKBhHTTqi01kyaIqqxKjGM2wzgAAmmyAAI5mxlK4mYWfaW10KcBAAdtAAM9BA",
-                "file_unique_id": "AQADabIAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmUAAWryIaA2MtXyTO99USm-KHGOSvdSAAIWrAACoVCQS8Fz9bLbUetEAQAHbQADPQQ",
+                "file_unique_id": "AQADFqwAAqFQkEty",
                 "file_size": 2478,
                 "width": 128,
                 "height": 128
               },
-              "file_id": "CAACAgIAAxkDAAJelWrCgYR006otNZMmiKqsSoxjNsM4AAJpsgACOZsZSuJmFn2ltdCnPQQ",
-              "file_unique_id": "AgADabIAAjmbGUo",
+              "file_id": "CAACAgIAAxkDAAJlAAFq8iGgNjLV8kzvfVEpvihxjkr3UgACFqwAAqFQkEvBc_Wy21HrRD0E",
+              "file_unique_id": "AgADFqwAAqFQkEs",
               "file_size": 63709
             }
           }
@@ -879,12 +973,17 @@
           "video",
           "video.mp4"
         ],
+        "request": {
+          "video.mp4": "<file>",
+          "video": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24214,
+            "message_id": 25857,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -897,7 +996,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132038,
+            "date": 1794253218,
             "video": {
               "duration": 6,
               "width": 560,
@@ -905,21 +1004,21 @@
               "file_name": "video.mp4",
               "mime_type": "video/mp4",
               "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6WasKBhpnWIATinprm7SN7os77raoAAmuyAAI5mxlKQaZSH90IE94BAAdtAAM9BA",
-                "file_unique_id": "AQADa7IAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmUBavIhon4t07OX8CYdvDQ280doaMcAAhesAAKhUJBLT0IJX5uofXIBAAdtAAM9BA",
+                "file_unique_id": "AQADF6wAAqFQkEty",
                 "file_size": 11643,
                 "width": 320,
                 "height": 183
               },
               "thumb": {
-                "file_id": "AAMCAgADGQMAAl6WasKBhpnWIATinprm7SN7os77raoAAmuyAAI5mxlKQaZSH90IE94BAAdtAAM9BA",
-                "file_unique_id": "AQADa7IAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmUBavIhon4t07OX8CYdvDQ280doaMcAAhesAAKhUJBLT0IJX5uofXIBAAdtAAM9BA",
+                "file_unique_id": "AQADF6wAAqFQkEty",
                 "file_size": 11643,
                 "width": 320,
                 "height": 183
               },
-              "file_id": "BAACAgIAAxkDAAJelmrCgYaZ1iAE4p6a5u0je6LO-62qAAJrsgACOZsZSkGmUh_dCBPePQQ",
-              "file_unique_id": "AgADa7IAAjmbGUo",
+              "file_id": "BAACAgIAAxkDAAJlAWryIaJ-LdOzl_AmHbw0NvNHaGjHAAIXrAACoVCQS09CCV-bqH1yPQQ",
+              "file_unique_id": "AgADF6wAAqFQkEs",
               "file_size": 383631
             }
           }
@@ -931,12 +1030,16 @@
           "chat_id",
           "video"
         ],
+        "request": {
+          "video": "BAACAgIAAxkDAAJlAWryIaJ-LdOzl_AmHbw0NvNHaGjHAAIXrAACoVCQS09CCV-bqH1yPQQ",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24215,
+            "message_id": 25858,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -949,7 +1052,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132038,
+            "date": 1794253218,
             "video": {
               "duration": 6,
               "width": 560,
@@ -957,21 +1060,21 @@
               "file_name": "video.mp4",
               "mime_type": "video/mp4",
               "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6WasKBhpnWIATinprm7SN7os77raoAAmuyAAI5mxlKQaZSH90IE94BAAdtAAM9BA",
-                "file_unique_id": "AQADa7IAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmUBavIhon4t07OX8CYdvDQ280doaMcAAhesAAKhUJBLT0IJX5uofXIBAAdtAAM9BA",
+                "file_unique_id": "AQADF6wAAqFQkEty",
                 "file_size": 11643,
                 "width": 320,
                 "height": 183
               },
               "thumb": {
-                "file_id": "AAMCAgADGQMAAl6WasKBhpnWIATinprm7SN7os77raoAAmuyAAI5mxlKQaZSH90IE94BAAdtAAM9BA",
-                "file_unique_id": "AQADa7IAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmUBavIhon4t07OX8CYdvDQ280doaMcAAhesAAKhUJBLT0IJX5uofXIBAAdtAAM9BA",
+                "file_unique_id": "AQADF6wAAqFQkEty",
                 "file_size": 11643,
                 "width": 320,
                 "height": 183
               },
-              "file_id": "BAACAgIAAxkDAAJelmrCgYaZ1iAE4p6a5u0je6LO-62qAAJrsgACOZsZSkGmUh_dCBPePQQ",
-              "file_unique_id": "AgADa7IAAjmbGUo",
+              "file_id": "BAACAgIAAxkDAAJlAWryIaJ-LdOzl_AmHbw0NvNHaGjHAAIXrAACoVCQS09CCV-bqH1yPQQ",
+              "file_unique_id": "AgADF6wAAqFQkEs",
               "file_size": 383631
             }
           }
@@ -984,12 +1087,17 @@
           "video",
           "video.mp4"
         ],
+        "request": {
+          "video.mp4": "<file>",
+          "video": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24216,
+            "message_id": 25859,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -1002,7 +1110,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132039,
+            "date": 1794253219,
             "video": {
               "duration": 6,
               "width": 560,
@@ -1010,21 +1118,21 @@
               "file_name": "video.mp4",
               "mime_type": "video/mp4",
               "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6YasKBhtzJVAzKNLpSOmMJM7zcHA4AAmyyAAI5mxlKLA2o91SaZD8BAAdtAAM9BA",
-                "file_unique_id": "AQADbLIAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmUDavIhoygoeedUgGc8Qr9Lp5MkDrAAAhisAAKhUJBLGP-t_Xh5K7MBAAdtAAM9BA",
+                "file_unique_id": "AQADGKwAAqFQkEty",
                 "file_size": 11643,
                 "width": 320,
                 "height": 183
               },
               "thumb": {
-                "file_id": "AAMCAgADGQMAAl6YasKBhtzJVAzKNLpSOmMJM7zcHA4AAmyyAAI5mxlKLA2o91SaZD8BAAdtAAM9BA",
-                "file_unique_id": "AQADbLIAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmUDavIhoygoeedUgGc8Qr9Lp5MkDrAAAhisAAKhUJBLGP-t_Xh5K7MBAAdtAAM9BA",
+                "file_unique_id": "AQADGKwAAqFQkEty",
                 "file_size": 11643,
                 "width": 320,
                 "height": 183
               },
-              "file_id": "BAACAgIAAxkDAAJemGrCgYbcyVQMyjS6UjpjCTO83BwOAAJssgACOZsZSiwNqPdUmmQ_PQQ",
-              "file_unique_id": "AgADbLIAAjmbGUo",
+              "file_id": "BAACAgIAAxkDAAJlA2ryIaMoKHnnVIBnPEK_S6eTJA6wAAIYrAACoVCQSxj_rf14eSuzPQQ",
+              "file_unique_id": "AgADGKwAAqFQkEs",
               "file_size": 383631
             }
           }
@@ -1037,12 +1145,17 @@
           "small.mp4",
           "video"
         ],
+        "request": {
+          "small.mp4": "<file>",
+          "video": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24217,
+            "message_id": 25860,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -1055,7 +1168,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132039,
+            "date": 1794253219,
             "video": {
               "duration": 6,
               "width": 560,
@@ -1063,21 +1176,21 @@
               "file_name": "small.mp4",
               "mime_type": "video/mp4",
               "thumbnail": {
-                "file_id": "AAMCAgADGQMAAl6ZasKBh5a-Nxp1CbREOHz5OutixNwAAm2yAAI5mxlKm0GQp8qwJxEBAAdtAAM9BA",
-                "file_unique_id": "AQADbbIAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmUEavIho1AZTfEZmkI4Q4sbsmhKB5IAAhmsAAKhUJBLxcKuESIlBcQBAAdtAAM9BA",
+                "file_unique_id": "AQADGawAAqFQkEty",
                 "file_size": 11643,
                 "width": 320,
                 "height": 183
               },
               "thumb": {
-                "file_id": "AAMCAgADGQMAAl6ZasKBh5a-Nxp1CbREOHz5OutixNwAAm2yAAI5mxlKm0GQp8qwJxEBAAdtAAM9BA",
-                "file_unique_id": "AQADbbIAAjmbGUpy",
+                "file_id": "AAMCAgADGQMAAmUEavIho1AZTfEZmkI4Q4sbsmhKB5IAAhmsAAKhUJBLxcKuESIlBcQBAAdtAAM9BA",
+                "file_unique_id": "AQADGawAAqFQkEty",
                 "file_size": 11643,
                 "width": 320,
                 "height": 183
               },
-              "file_id": "BAACAgIAAxkDAAJemWrCgYeWvjcadQm0RDh8-TrrYsTcAAJtsgACOZsZSptBkKfKsCcRPQQ",
-              "file_unique_id": "AgADbbIAAjmbGUo",
+              "file_id": "BAACAgIAAxkDAAJlBGryIaNQGU3xGZpCOEOLG7JoSgeSAAIZrAACoVCQS8XCrhEiJQXEPQQ",
+              "file_unique_id": "AgADGawAAqFQkEs",
               "file_size": 383631
             }
           }
@@ -1092,12 +1205,17 @@
           "voice",
           "voice.ogg"
         ],
+        "request": {
+          "voice.ogg": "<file>",
+          "voice": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24218,
+            "message_id": 25861,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -1110,12 +1228,12 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132040,
+            "date": 1794253221,
             "voice": {
               "duration": 0,
               "mime_type": "audio/ogg",
-              "file_id": "AwACAgIAAxkDAAJemmrCgYhmztmfTxxV4AdubJNFIo3eAAJusgACOZsZStnEEGk_nTIRPQQ",
-              "file_unique_id": "AgADbrIAAjmbGUo",
+              "file_id": "AwACAgIAAxkDAAJlBWryIaXwsmQi4yfpsFZm1oiRFZNAAAIarAACoVCQS1dUgaCT7aJcPQQ",
+              "file_unique_id": "AgADGqwAAqFQkEs",
               "file_size": 105243
             }
           }
@@ -1127,12 +1245,16 @@
           "chat_id",
           "voice"
         ],
+        "request": {
+          "voice": "AwACAgIAAxkDAAJlBWryIaXwsmQi4yfpsFZm1oiRFZNAAAIarAACoVCQS1dUgaCT7aJcPQQ",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24219,
+            "message_id": 25862,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -1145,12 +1267,12 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132040,
+            "date": 1794253221,
             "voice": {
               "duration": 0,
               "mime_type": "audio/ogg",
-              "file_id": "AwACAgIAAxkDAAJemmrCgYhmztmfTxxV4AdubJNFIo3eAAJusgACOZsZStnEEGk_nTIRPQQ",
-              "file_unique_id": "AgADbrIAAjmbGUo",
+              "file_id": "AwACAgIAAxkDAAJlBWryIaXwsmQi4yfpsFZm1oiRFZNAAAIarAACoVCQS1dUgaCT7aJcPQQ",
+              "file_unique_id": "AgADGqwAAqFQkEs",
               "file_size": 105243
             }
           }
@@ -1163,12 +1285,17 @@
           "voice",
           "voice.ogg"
         ],
+        "request": {
+          "voice.ogg": "<file>",
+          "voice": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24220,
+            "message_id": 25863,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -1181,12 +1308,12 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132041,
+            "date": 1794253222,
             "voice": {
               "duration": 0,
               "mime_type": "audio/ogg",
-              "file_id": "AwACAgIAAxkDAAJenGrCgYl4YD2rDahGRzBV58C110M9AAJvsgACOZsZSokbPRNpyiqJPQQ",
-              "file_unique_id": "AgADb7IAAjmbGUo",
+              "file_id": "AwACAgIAAxkDAAJlB2ryIaZZh0lDzjoKUIwa1toa1JIPAAIbrAACoVCQS5ZGCAKHhQORPQQ",
+              "file_unique_id": "AgADG6wAAqFQkEs",
               "file_size": 105243
             }
           }
@@ -1199,12 +1326,17 @@
           "sample.ogg",
           "voice"
         ],
+        "request": {
+          "sample.ogg": "<file>",
+          "voice": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24221,
+            "message_id": 25864,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -1217,12 +1349,12 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791132041,
+            "date": 1794253223,
             "voice": {
               "duration": 0,
               "mime_type": "audio/ogg",
-              "file_id": "AwACAgIAAxkDAAJenWrCgYnldUeBRgpC2zY9Cz0b07XfAAJwsgACOZsZSrL0BgomMv_kPQQ",
-              "file_unique_id": "AgADcLIAAjmbGUo",
+              "file_id": "AwACAgIAAxkDAAJlCGryIaYiQwgXjBD5bxqG1gllyiT3AAIcrAACoVCQS06BICqibEVMPQQ",
+              "file_unique_id": "AgADHKwAAqFQkEs",
               "file_size": 105243
             }
           }
