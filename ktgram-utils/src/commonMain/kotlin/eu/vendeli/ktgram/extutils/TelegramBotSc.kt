@@ -156,6 +156,24 @@ public suspend inline fun TelegramBot.answerPreCheckoutQuery(
   errorMessage: String? = null,
 ): Unit = eu.vendeli.tgbot.api.answer.answerPreCheckoutQuery(preCheckoutQueryId, ok, errorMessage).send(this)
 
+public suspend inline fun TelegramBot.answerWidgetQuery(widgetQueryId: String, `data`: String? = null): Unit = eu.vendeli.tgbot.api.widget.answerWidgetQuery(widgetQueryId, data).send(this)
+
+public suspend inline fun TelegramBot.sendSharedWidget(widgetId: String, chatId: Long): Unit = eu.vendeli.tgbot.api.widget.sendSharedWidget(widgetId).send(chatId, this)
+
+public suspend inline fun TelegramBot.sendWidget(html: String, chatId: Long): Unit = eu.vendeli.tgbot.api.widget.sendWidget(html).send(chatId, this)
+
+public suspend inline fun TelegramBot.widget(html: String, chatId: Long): Unit = eu.vendeli.tgbot.api.widget.widget(html).send(chatId, this)
+
+public suspend inline fun TelegramBot.editSharedWidgetData(
+  widgetId: String,
+  publicData: String,
+  cacheTime: Int? = null,
+): Unit = eu.vendeli.tgbot.api.widget.editSharedWidgetData(widgetId, publicData, cacheTime).send(this)
+
+public suspend inline fun TelegramBot.editMessageWidgetData(chatId: Long): Unit = eu.vendeli.tgbot.api.widget.editMessageWidgetData().send(chatId, this)
+
+public suspend inline fun TelegramBot.editMessageWidgetData(messageId: Long, chatId: Long): Unit = eu.vendeli.tgbot.api.widget.editMessageWidgetData(messageId).send(chatId, this)
+
 public suspend inline fun TelegramBot.setChatPermissions(
   permissions: ChatPermissions,
   useIndependentChatPermissions: Boolean? = null,
@@ -834,6 +852,10 @@ public suspend inline fun TelegramBot.getUserGifts(userId: Long): Unit = eu.vend
 
 public suspend inline fun TelegramBot.getUserGifts(user: User): Unit = eu.vendeli.tgbot.api.gift.getUserGifts(user).send(this)
 
+public suspend inline fun TelegramBot.getUniqueGift(name: String): Unit = eu.vendeli.tgbot.api.gift.getUniqueGift(name).send(this)
+
+public suspend inline fun TelegramBot.deleteBusinessAccountGift(businessConnectionId: String, ownedGiftId: String): Unit = eu.vendeli.tgbot.api.gift.deleteBusinessAccountGift(businessConnectionId, ownedGiftId).send(this)
+
 public suspend inline fun TelegramBot.getChatGifts(chatId: String): Unit = eu.vendeli.tgbot.api.gift.getChatGifts(chatId).send(this)
 
 public suspend inline fun TelegramBot.getChatGifts(chatId: Long): Unit = eu.vendeli.tgbot.api.gift.getChatGifts(chatId).send(this)
@@ -1041,6 +1063,8 @@ public suspend inline fun TelegramBot.setStickerMaskPosition(sticker: String, ma
 public suspend inline fun TelegramBot.getStickerSet(name: String): Unit = eu.vendeli.tgbot.api.stickerset.getStickerSet(name).send(this)
 
 public suspend inline fun TelegramBot.getMyDefaultAdministratorRights(forChannel: Boolean? = null): Unit = eu.vendeli.tgbot.api.botactions.getMyDefaultAdministratorRights(forChannel).send(this)
+
+public suspend inline fun TelegramBot.getChatShareThemeBackdrops(): Unit = eu.vendeli.tgbot.api.botactions.getChatShareThemeBackdrops().send(this)
 
 public suspend inline fun TelegramBot.savePreparedInlineMessage(userId: Long, result: InlineQueryResult): Unit = eu.vendeli.tgbot.api.botactions.savePreparedInlineMessage(userId, result).send(this)
 

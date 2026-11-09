@@ -11,6 +11,7 @@ import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import eu.vendeli.ktnip.dto.ParameterResolutionStrategy
+import eu.vendeli.ktnip.dto.ParameterResolutionStrategy.PrimitiveParameter
 import eu.vendeli.ktnip.utils.TypeConstants
 import eu.vendeli.ktnip.utils.findAnnotationRecursively
 import eu.vendeli.ktnip.utils.safeCast
@@ -63,31 +64,31 @@ class ParameterResolver(
 
             // String and primitives from parameters map
             STRING -> ParameterResolutionStrategy.StringParameter(typeName, isNullable, parameterName)
-            INT, TypeConstants.intPrimitiveType -> ParameterResolutionStrategy.PrimitiveParameter.Int(
+            INT, TypeConstants.intPrimitiveType -> PrimitiveParameter.Int(
                 typeName,
                 isNullable,
                 parameterName,
             )
 
-            LONG, TypeConstants.longPrimitiveType -> ParameterResolutionStrategy.PrimitiveParameter.Long(
+            LONG, TypeConstants.longPrimitiveType -> PrimitiveParameter.Long(
                 typeName,
                 isNullable,
                 parameterName,
             )
 
-            SHORT, TypeConstants.shortPrimitiveType -> ParameterResolutionStrategy.PrimitiveParameter.Short(
+            SHORT, TypeConstants.shortPrimitiveType -> PrimitiveParameter.Short(
                 typeName,
                 isNullable,
                 parameterName,
             )
 
-            FLOAT, TypeConstants.floatPrimitiveType -> ParameterResolutionStrategy.PrimitiveParameter.Float(
+            FLOAT, TypeConstants.floatPrimitiveType -> PrimitiveParameter.Float(
                 typeName,
                 isNullable,
                 parameterName,
             )
 
-            DOUBLE, TypeConstants.doublePrimitiveType -> ParameterResolutionStrategy.PrimitiveParameter.Double(
+            DOUBLE, TypeConstants.doublePrimitiveType -> PrimitiveParameter.Double(
                 typeName,
                 isNullable,
                 parameterName,

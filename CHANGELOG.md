@@ -1,5 +1,11 @@
 # Telegram-bot (KtGram) Changelog
 
+## 9.8.0
+
+* Covered Tg API [`10.4`](https://core.telegram.org/bots/api-changelog#november-9-2026).: HTML widgets (`sendWidget`, `sendSharedWidget`, `answerWidgetQuery`, `editMessageWidgetData`, `editSharedWidgetData`, `widget_query`/`shared_widget_query` updates, `InputWidgetMessageContent`, `InputSharedWidgetMessageContent`); TON wallet cards, NFTs and transfers; chat share themes (`getChatShareThemeBackdrops`); `getUniqueGift`; `deleteBusinessAccountGift`; `paid_messages_waived` service message; rich-text quotes (`TextQuote.richTexts`, `ReplyParameters.quoteRichTexts`) and `RichText.TonAddress`; `verifyChat`/`verifyUser` custom description parse mode and entities.
+* `StoryAreaPosition` renamed to `AreaPosition` (shared with TON wallet cards), the old name stays as a deprecated typealias.
+* Simplified `answerCallbackQuery` usage by removing unnecessary `user` parameter.
+
 ## 9.7.0
 
 * Covered Tg API [`10.3`](https://core.telegram.org/bots/api-changelog#august-24-2026): shared ephemeral-message parameters; rich message buttons, button/document/expandable quote blocks, and compact tables; draft stop controls and `MessageGenerationStopped`; community joins; welcome-message administrator rights; and updated keyboard, gift, and rich-media fields.

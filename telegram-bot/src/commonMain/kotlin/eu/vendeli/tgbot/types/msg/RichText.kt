@@ -3,26 +3,14 @@ package eu.vendeli.tgbot.types.msg
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.types.User
 import eu.vendeli.tgbot.utils.common.TgException
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.InternalSerializationApi
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import eu.vendeli.tgbot.utils.common.fqName
+import kotlinx.serialization.*
 import kotlinx.serialization.descriptors.PolymorphicKind
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.JsonDecoder
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonEncoder
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.JsonPrimitive
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
-import kotlinx.serialization.serializer
+import kotlinx.serialization.json.*
 
 /**
  * This object represents a rich formatted text. Currently, it can be either a String for plain text
@@ -50,6 +38,7 @@ import kotlinx.serialization.serializer
  * - RichTextHashtag
  * - RichTextCashtag
  * - RichTextBotCommand
+ * - RichTextTonAddress
  * - RichTextAnchor
  * - RichTextAnchorLink
  * - RichTextReference
@@ -317,6 +306,18 @@ sealed class RichText {
     ) : RichText()
 
     /**
+     * An address in the TON blockchain.
+     * @property text Text of the address
+     * @property address The address
+     */
+    @Serializable
+    @SerialName("ton_address")
+    data class TonAddress(
+        val text: RichText,
+        val address: String,
+    ) : RichText()
+
+    /**
      * A bot command.
      * @property text The text
      * @property botCommand The bot command
@@ -376,8 +377,10 @@ sealed class RichText {
 
     @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
     internal companion object : KSerializer<RichText> {
-        override val descriptor: SerialDescriptor =
-            buildSerialDescriptor("eu.vendeli.tgbot.types.msg.RichText", PolymorphicKind.SEALED)
+        override val descriptor: SerialDescriptor = buildSerialDescriptor(
+            RichText::class.fqName,
+            PolymorphicKind.SEALED,
+        )
 
         private val subtypeSerializers: Map<String, KSerializer<out RichText>> by lazy {
             listOf(
@@ -403,6 +406,7 @@ sealed class RichText {
                 Hashtag.serializer(),
                 Cashtag.serializer(),
                 BotCommand.serializer(),
+                TonAddress.serializer(),
                 Anchor.serializer(),
                 AnchorLink.serializer(),
                 Reference.serializer(),

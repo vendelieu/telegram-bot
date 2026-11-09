@@ -14,7 +14,7 @@ import kotlinx.serialization.Serializable
  * @property canSendVideoNotes Optional. True, if the user is allowed to send video notes
  * @property canSendVoiceNotes Optional. True, if the user is allowed to send voice notes
  * @property canSendPolls Optional. True, if the user is allowed to send polls and checklists
- * @property canSendOtherMessages Optional. True, if the user is allowed to send animations, games, stickers and use inline bots
+ * @property canSendOtherMessages Optional. True, if the user is allowed to send animations, games, stickers, widgets and use inline bots
  * @property canAddWebPagePreviews Optional. True, if the user is allowed to add web page previews to their messages
  * @property canReactToMessages Optional. True, if the user is allowed to react to messages. If omitted, defaults to the value of can_send_messages.
  * @property canEditTag Optional. True, if the user is allowed to edit their own tag. If omitted, defaults to the value of can_pin_messages.

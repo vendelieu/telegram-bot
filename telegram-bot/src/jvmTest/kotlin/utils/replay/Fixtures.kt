@@ -3,13 +3,20 @@ package utils.replay
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
 import java.io.File
 
-/** A single recorded HTTP exchange. Exactly one of [json], [text] and [base64] holds the response body. */
+/**
+ * A single recorded HTTP exchange. Exactly one of [json], [text] and [base64] holds the response body.
+ *
+ * [request] holds the redacted request parameters (uploaded files are reduced to a placeholder) and is what a replayed
+ * call is matched against. Fixtures recorded before it existed have only [requestKeys] and match by parameter names.
+ */
 @Serializable
 data class RecordedExchange(
     val method: String,
     val requestKeys: List<String> = emptyList(),
+    val request: JsonObject? = null,
     val status: Int,
     val contentType: String? = null,
     val json: JsonElement? = null,

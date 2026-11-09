@@ -86,6 +86,12 @@ enum class UpdateType {
     @SerialName("stopped_message_generation")
     STOPPED_MESSAGE_GENERATION,
 
+    @SerialName("widget_query")
+    WIDGET_QUERY,
+
+    @SerialName("shared_widget_query")
+    SHARED_WIDGET_QUERY,
+
     ;
 
     override fun toString(): String = "UpdateType.$name"

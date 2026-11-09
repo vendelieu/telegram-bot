@@ -40,7 +40,9 @@ import eu.vendeli.tgbot.utils.common.onPurchasedPaidMedia
 import eu.vendeli.tgbot.utils.common.onRemovedChatBoost
 import eu.vendeli.tgbot.utils.common.onShippingQuery
 import eu.vendeli.tgbot.utils.common.onSubscription
+import eu.vendeli.tgbot.utils.common.onSharedWidgetQuery
 import eu.vendeli.tgbot.utils.common.onStoppedMessageGeneration
+import eu.vendeli.tgbot.utils.common.onWidgetQuery
 import eu.vendeli.tgbot.utils.common.processUpdate
 import eu.vendeli.tgbot.utils.common.safeCast
 import eu.vendeli.utils.MockUpdate
@@ -250,6 +252,8 @@ class FunctionalHandlingTest : BotTestContext(true, true) {
             onGuestMessage { onUpdateInvocationsCount.incrementAndGet() }
             onSubscription { onUpdateInvocationsCount.incrementAndGet() }
             onStoppedMessageGeneration { onUpdateInvocationsCount.incrementAndGet() }
+            onWidgetQuery { onUpdateInvocationsCount.incrementAndGet() }
+            onSharedWidgetQuery { onUpdateInvocationsCount.incrementAndGet() }
         }
 
         UpdateType.entries.forEach { type ->

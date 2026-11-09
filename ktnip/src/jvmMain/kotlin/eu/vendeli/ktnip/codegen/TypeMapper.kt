@@ -40,6 +40,8 @@ object TypeMapper {
         TypeConstants.managedBotUpdateClass to ManagedBotUpdate::class,
         TypeConstants.guestMessageUpdateClass to GuestMessageUpdate::class,
         TypeConstants.subscriptionUpdateClass to SubscriptionUpdate::class,
+        TypeConstants.widgetQueryUpdateClass to WidgetQueryUpdate::class,
+        TypeConstants.sharedWidgetQueryUpdateClass to SharedWidgetQueryUpdate::class,
     )
 
     /**

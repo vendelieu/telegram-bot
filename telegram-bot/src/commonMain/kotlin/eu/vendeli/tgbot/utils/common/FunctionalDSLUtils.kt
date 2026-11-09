@@ -26,10 +26,12 @@ import eu.vendeli.tgbot.types.component.PollUpdate
 import eu.vendeli.tgbot.types.component.PreCheckoutQueryUpdate
 import eu.vendeli.tgbot.types.component.PurchasedPaidMediaUpdate
 import eu.vendeli.tgbot.types.component.RemovedChatBoostUpdate
+import eu.vendeli.tgbot.types.component.SharedWidgetQueryUpdate
 import eu.vendeli.tgbot.types.component.ShippingQueryUpdate
 import eu.vendeli.tgbot.types.component.StoppedMessageGenerationUpdate
 import eu.vendeli.tgbot.types.component.SubscriptionUpdate
 import eu.vendeli.tgbot.types.component.UpdateType
+import eu.vendeli.tgbot.types.component.WidgetQueryUpdate
 import kotlin.Unit
 
 /**
@@ -299,5 +301,25 @@ public fun FunctionalHandlingDsl.onStoppedMessageGeneration(block: suspend Activ
   onUpdate(UpdateType.STOPPED_MESSAGE_GENERATION) {
       @Suppress("UNCHECKED_CAST")
       (this as ActivityCtx<StoppedMessageGenerationUpdate>).block()
+  }
+}
+
+/**
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.widgetQuery] in the [eu.vendeli.tgbot.types.common.Update].
+ */
+public fun FunctionalHandlingDsl.onWidgetQuery(block: suspend ActivityCtx<WidgetQueryUpdate>.() -> Unit) {
+  onUpdate(UpdateType.WIDGET_QUERY) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<WidgetQueryUpdate>).block()
+  }
+}
+
+/**
+ * Action that is performed on the presence of [eu.vendeli.tgbot.types.common.Update.sharedWidgetQuery] in the [eu.vendeli.tgbot.types.common.Update].
+ */
+public fun FunctionalHandlingDsl.onSharedWidgetQuery(block: suspend ActivityCtx<SharedWidgetQueryUpdate>.() -> Unit) {
+  onUpdate(UpdateType.SHARED_WIDGET_QUERY) {
+      @Suppress("UNCHECKED_CAST")
+      (this as ActivityCtx<SharedWidgetQueryUpdate>).block()
   }
 }

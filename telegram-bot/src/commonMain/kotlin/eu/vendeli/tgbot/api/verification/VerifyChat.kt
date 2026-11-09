@@ -4,7 +4,10 @@ package eu.vendeli.tgbot.api.verification
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
+import eu.vendeli.tgbot.interfaces.features.EntitiesFeature
+import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.chat.Chat
+import eu.vendeli.tgbot.types.options.VerifyOptions
 import eu.vendeli.tgbot.utils.internal.getReturnType
 import eu.vendeli.tgbot.utils.internal.toJsonElement
 
@@ -12,10 +15,15 @@ import eu.vendeli.tgbot.utils.internal.toJsonElement
 class VerifyChatAction(
     chatId: Long,
     customDescription: String? = null,
-) : SimpleAction<Boolean>() {
+) : SimpleAction<Boolean>(),
+    OptionsFeature<VerifyChatAction, VerifyOptions>,
+    @TgAPI.Name("customDescriptionEntities")
+    EntitiesFeature<VerifyChatAction> {
     @TgAPI.Name("verifyChat")
     override val method = "verifyChat"
     override val returnType = getReturnType()
+    override val options = VerifyOptions()
+    override val entitiesFieldName: String = "custom_description_entities"
 
     init {
         parameters["chat_id"] = chatId.toJsonElement()
@@ -27,8 +35,10 @@ class VerifyChatAction(
  * Verifies a chat on behalf of the organization which is represented by the bot. Returns True on success.
  *
  * [Api reference](https://core.telegram.org/bots/api#verifychat)
- * @param chatId Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username. Channel direct messages chats can't be verified.
+ * @param chatId Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username. Channel direct messages chats can't be verified.
  * @param customDescription Custom description for the verification; 0-70 characters. Must be empty if the organization isn't allowed to provide a custom verification description.
+ * @param customDescriptionParseMode Mode for parsing entities in the custom description. See formatting options for more details. Only "text_link" entities are supported.
+ * @param customDescriptionEntities A JSON-serialized list of special entities that appear in the custom description, which can be specified instead of custom_description_parse_mode. Only "text_link" entities are supported.
  * @returns [Boolean]
  */
 @TgAPI

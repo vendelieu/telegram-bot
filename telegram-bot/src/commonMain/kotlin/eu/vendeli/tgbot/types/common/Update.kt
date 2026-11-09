@@ -19,6 +19,8 @@ import eu.vendeli.tgbot.types.msg.MessageReactionUpdated
 import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
 import eu.vendeli.tgbot.types.payment.ShippingQuery
 import eu.vendeli.tgbot.types.poll.Poll
+import eu.vendeli.tgbot.types.widget.SharedWidgetQuery
+import eu.vendeli.tgbot.types.widget.WidgetQuery
 import kotlinx.serialization.Serializable
 
 /**
@@ -41,6 +43,8 @@ import kotlinx.serialization.Serializable
  * @property inlineQuery Optional. New incoming inline query
  * @property chosenInlineResult Optional. The result of an inline query that was chosen by a user and sent to their chat partner. Please see our documentation on the feedback collecting for details on how to enable these updates for your bot.
  * @property callbackQuery Optional. New incoming callback query
+ * @property widgetQuery Optional. New incoming query from a widget in a message sent by the bot or via the bot
+ * @property sharedWidgetQuery Optional. New incoming query from a forwarded message with a shared widget
  * @property shippingQuery Optional. New incoming shipping query. Only for invoices with flexible price.
  * @property preCheckoutQuery Optional. New incoming pre-checkout query. Contains full information about checkout.
  * @property purchasedPaidMedia Optional. A user purchased paid media with a non-empty payload sent by the bot in a non-channel chat
@@ -85,4 +89,6 @@ data class Update(
     val guestMessage: Message? = null,
     val subscription: BotSubscriptionUpdated? = null,
     val stoppedMessageGeneration: MessageGenerationStopped? = null,
+    val widgetQuery: WidgetQuery? = null,
+    val sharedWidgetQuery: SharedWidgetQuery? = null,
 ) : MultipleResponse

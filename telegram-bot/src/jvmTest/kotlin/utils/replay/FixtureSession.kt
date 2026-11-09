@@ -18,6 +18,7 @@ import io.ktor.http.content.OutgoingContent
 import io.ktor.http.headersOf
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
 import java.util.Base64
 import java.util.Collections
 import java.util.concurrent.ConcurrentHashMap
@@ -30,9 +31,9 @@ class ReplayMissException(
 /**
  * Serves recorded responses ([TestMode.REPLAY]) or records live ones ([TestMode.RECORD]) for one spec.
  *
- * Exchanges are grouped per test. Inside a test they are matched by API method and consumed in the recorded order
- * per method, so stateful sequences (create, edit, delete) replay correctly even when calls of different methods
- * run concurrently.
+ * Exchanges are grouped per test. Inside a test a call is matched by API method **and** request parameters, each
+ * recorded exchange is consumed once and identical calls are served in the recorded order, so stateful sequences
+ * (create, edit, delete) replay correctly and different inputs get their own responses.
  */
 class FixtureSession(
     private val specName: String,
@@ -43,16 +44,17 @@ class FixtureSession(
     var currentTest: String = SPEC_SCOPE
 
     private val cassette by lazy(cassetteProvider)
-    private val replayQueues = ConcurrentHashMap<String, ConcurrentHashMap<String, ArrayDeque<RecordedExchange>>>()
+    private val replayQueues = ConcurrentHashMap<String, ConcurrentHashMap<String, MutableList<RecordedExchange>>>()
     private val recorded = ConcurrentHashMap<String, MutableList<RecordedExchange>>()
     private val redactor by lazy { Redactor.fromEnv() }
+
+    private fun Redactor.redactParams(params: JsonObject) = redact(params) as JsonObject
 
     /** A client that answers every request from the recorded fixtures and never touches the network. */
     fun replayClient(): HttpClient = HttpClient(
         MockEngine { request ->
             val key = exchangeKey(request.url)
-            val requestKeys = requestKeys(request.body)
-            val exchange = nextExchange(key, requestKeys)
+            val exchange = nextExchange(key, redactor.redactParams(requestParams(request.body)))
             respond(
                 content = exchange.bodyBytes(),
                 status = HttpStatusCode.fromValue(exchange.status),
@@ -81,7 +83,7 @@ class FixtureSession(
         CassetteStore.merge(specName, recorded.mapValues { it.value.toList() })
     }
 
-    private fun nextExchange(key: String, requestKeys: List<String>): RecordedExchange {
+    private fun nextExchange(key: String, params: JsonObject): RecordedExchange {
         val queue = replayQueues
             .getOrPut(currentTest) {
                 ConcurrentHashMap(
@@ -90,28 +92,41 @@ class FixtureSession(
                         ?.get(currentTest)
                         .orEmpty()
                         .groupBy { it.method }
-                        .mapValues { ArrayDeque(it.value) },
+                        .mapValues { ArrayList(it.value) },
                 )
-            }.getOrPut(key) { ArrayDeque() }
-        val exchange = synchronized(queue) { queue.removeFirstOrNull() }
-            ?: throw ReplayMissException(
-                "No recorded response for '$key' in $specName > $currentTest. " +
-                    "Re-record with ./gradlew :telegram-bot:recordFixtures --tests '$specName'",
-            )
-        if (exchange.requestKeys != requestKeys) {
-            throw ReplayMissException(
-                "Request parameters of '$key' changed in $specName > $currentTest: " +
-                    "recorded ${exchange.requestKeys}, sent $requestKeys. Re-record the fixtures.",
-            )
+            }.getOrPut(key) { ArrayList() }
+        synchronized(queue) {
+            val index = queue.indexOfFirst { it.matches(params) }
+            if (index >= 0) return queue.removeAt(index)
+            throw ReplayMissException(missMessage(key, params, queue.toList()))
         }
-        return exchange
     }
+
+    private fun missMessage(key: String, params: JsonObject, candidates: List<RecordedExchange>): String {
+        val where = "'$key' in $specName > $currentTest"
+        val hint = "Re-record with ./gradlew :telegram-bot:recordFixtures --tests '$specName'"
+        if (candidates.isEmpty()) return "No recorded response for $where. $hint"
+        val recorded = candidates.joinToString("\n") { "  - ${it.request ?: it.requestKeys}" }
+        return "No recorded response for $where matches the sent request $params. " +
+            "Still available:\n$recorded\n$hint"
+    }
+
+    private fun RecordedExchange.matches(params: JsonObject): Boolean =
+        request?.let { it == params } ?: (requestKeys == params.keys.sorted())
 
     private suspend fun record(request: HttpRequestBuilder, body: ByteArray, status: Int, headers: Headers) {
         val key = exchangeKey(request.url.build())
-        val keys = (request.body as? OutgoingContent)?.let { requestKeys(it) }.orEmpty()
+        val params =
+            (request.body as? OutgoingContent)?.let { redactor.redactParams(requestParams(it)) }
+                ?: JsonObject(emptyMap())
         val contentType = headers[HttpHeaders.ContentType]
-        val exchange = RecordedExchange(key, keys, status, contentType).withBody(body)
+        val exchange = RecordedExchange(
+            method = key,
+            requestKeys = params.keys.sorted(),
+            request = params,
+            status = status,
+            contentType = contentType,
+        ).withBody(body)
         recorded.getOrPut(currentTest) { Collections.synchronizedList(mutableListOf()) }.add(exchange)
     }
 
@@ -137,6 +152,10 @@ class FixtureSession(
 
     companion object {
         const val SPEC_SCOPE = "<spec>"
+        const val FILE_PLACEHOLDER = "<file>"
+        private const val HEADER_END = "\r\n\r\n"
+        private val FILENAME_REGEX = Regex("""filename\*?=""", RegexOption.IGNORE_CASE)
+        private val CONTENT_TYPE_REGEX = Regex("""Content-Type:\s*([^\r\n]+)""", RegexOption.IGNORE_CASE)
         private val FORM_FIELD_REGEX =
             Regex("""Content-Disposition:\s*form-data;\s*name="?([^";\r\n]+)"?""", RegexOption.IGNORE_CASE)
 
@@ -150,22 +169,45 @@ class FixtureSession(
             }
         }
 
-        /** Sorted names of the request parameters, whether the body is a JSON object or multipart. */
-        suspend fun requestKeys(body: OutgoingContent): List<String> {
-            if (body is OutgoingContent.NoContent) return emptyList()
+        /**
+         * Request parameters by name, whether the body is a JSON object or multipart.
+         * Uploaded files are reduced to [FILE_PLACEHOLDER] because their bytes are not stable between runs.
+         */
+        suspend fun requestParams(body: OutgoingContent): JsonObject {
+            if (body is OutgoingContent.NoContent) return JsonObject(emptyMap())
             val raw = body.toByteArray()
-            if (raw.isEmpty()) return emptyList()
-            val asText = raw.toString(Charsets.ISO_8859_1)
-            if (body.contentType?.match(ContentType.Application.Json) == true) {
+            if (raw.isEmpty()) return JsonObject(emptyMap())
+            val contentType = body.contentType
+            if (contentType?.match(ContentType.Application.Json) == true) {
                 val parsed = runCatching { Json.parseToJsonElement(raw.toString(Charsets.UTF_8)) }.getOrNull()
-                return (parsed as? JsonObject)?.keys?.sorted().orEmpty()
+                return parsed as? JsonObject ?: JsonObject(emptyMap())
             }
-            return FORM_FIELD_REGEX
-                .findAll(asText)
-                .map { it.groupValues[1] }
-                .distinct()
-                .sorted()
-                .toList()
+            val boundary = contentType?.parameter("boundary") ?: return JsonObject(emptyMap())
+            return parseMultipart(raw.toString(Charsets.ISO_8859_1), boundary)
         }
+
+        private fun parseMultipart(text: String, boundary: String): JsonObject {
+            val fields = text
+                .split("--$boundary")
+                .mapNotNull { part ->
+                    val headEnd = part.indexOf(HEADER_END)
+                    if (headEnd < 0) return@mapNotNull null
+                    val head = part.substring(0, headEnd)
+                    val name = FORM_FIELD_REGEX.find(head)?.groupValues?.get(1) ?: return@mapNotNull null
+                    val value = part.substring(headEnd + HEADER_END.length).removeSuffix("\r\n")
+                    name to JsonPrimitive(if (head.isFilePart()) FILE_PLACEHOLDER else value.decodeUtf8())
+                }.toMap()
+            return JsonObject(fields)
+        }
+
+        private fun String.isFilePart() = FILENAME_REGEX.containsMatchIn(this) ||
+            CONTENT_TYPE_REGEX
+                .find(this)
+                ?.groupValues
+                ?.get(1)
+                ?.trim()
+                ?.startsWith("text/", ignoreCase = true) == false
+
+        private fun String.decodeUtf8() = toByteArray(Charsets.ISO_8859_1).toString(Charsets.UTF_8)
     }
 }
