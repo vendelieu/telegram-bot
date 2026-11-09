@@ -95,6 +95,9 @@ abstract class BotTestContext(
 
     protected val CUR_INSTANT: Instant get() = Clock.System.now()
 
+    /** Constant far-future instant (2100-01-01) for request values that must be identical across replays. */
+    protected val FIXED_FUTURE_INSTANT: Instant = Instant.fromEpochSeconds(4102444800)
+
     /** A stable point in the future for values the server echoes back, so that recorded responses stay valid. */
     protected val FIXED_EXPIRY: Instant = Instant.fromEpochSeconds(FIXED_EXPIRY_EPOCH_SECONDS)
     protected val ITER_INT: Int get() = INT_ITERATOR.nextInt()

@@ -11,7 +11,6 @@ import io.kotest.core.annotation.EnabledIf
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.string.shouldContain
-import kotlin.time.Duration.Companion.milliseconds
 
 @EnabledIf(ChatTestingOnlyCondition::class)
 class ChatBanMethodsTest : BotTestContext() {
@@ -19,7 +18,7 @@ class ChatBanMethodsTest : BotTestContext() {
     suspend fun `ban chat member method test`() {
         banChatMember(
             1000L.asUser(),
-            CUR_INSTANT.plus(100.milliseconds),
+            FIXED_FUTURE_INSTANT,
             true,
         ).sendReturning(CHAT_ID, bot)
             .onFailure {

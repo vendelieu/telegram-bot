@@ -23,7 +23,7 @@
               "amount": 1000
             }
           ],
-          "provider_token": "2051251535:TEST:OTk5MDA4ODgxLTAwNQ",
+          "provider_token": "replay-provider-token",
           "chat_id": 100000001
         },
         "status": 200,
