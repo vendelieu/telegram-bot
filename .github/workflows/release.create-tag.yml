@@ -17,6 +17,8 @@ jobs:
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 0
+          # PAT required so the tag push triggers the Release workflow (GITHUB_TOKEN pushes do not)
+          token: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Extract version from merge commit
         id: version

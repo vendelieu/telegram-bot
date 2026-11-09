@@ -35,7 +35,7 @@ jobs:
 
       - name: Merge PR
         if: steps.pr.outputs.number != ''
-        run: gh pr merge ${{ steps.pr.outputs.number }} --merge
+        run: gh pr merge ${{ steps.pr.outputs.number }} --merge --repo ${{ github.repository }}
         env:
           # PAT required so merge triggers push workflow (GITHUB_TOKEN does not)
           GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
