@@ -6,6 +6,9 @@
         "requestKeys": [
           "chat_id"
         ],
+        "request": {
+          "chat_id": -1000000000002
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -21,6 +24,9 @@
         "requestKeys": [
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -37,6 +43,10 @@
           "chat_id",
           "custom_description"
         ],
+        "request": {
+          "chat_id": -1000000000002,
+          "custom_description": "test"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -53,6 +63,10 @@
           "custom_description",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "custom_description": "test"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

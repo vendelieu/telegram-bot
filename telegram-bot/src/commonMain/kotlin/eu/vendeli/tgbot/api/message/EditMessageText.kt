@@ -46,7 +46,7 @@ class EditMessageTextAction private constructor() :
  *
  * [Api reference](https://core.telegram.org/bots/api#editmessagetext)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message to be edited was sent
- * @param chatId Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username.
+ * @param chatId Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username.
  * @param messageId Required if inline_message_id is not specified. Identifier of the message to edit.
  * @param inlineMessageId Required if chat_id and message_id are not specified. Identifier of the inline message.
  * @param text New text of the message, 1-4096 characters after entity parsing; required if rich_message isn't specified

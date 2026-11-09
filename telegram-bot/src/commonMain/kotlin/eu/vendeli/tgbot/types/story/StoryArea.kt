@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.types.story
 
+import eu.vendeli.tgbot.types.common.AreaPosition
 import kotlinx.serialization.Serializable
 
 /**
@@ -11,6 +12,6 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class StoryArea(
-    val position: StoryAreaPosition,
+    val position: AreaPosition,
     val type: StoryAreaType,
 )

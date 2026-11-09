@@ -7,6 +7,10 @@
           "chat_join_request_query_id",
           "result"
         ],
+        "request": {
+          "chat_join_request_query_id": "test",
+          "result": "queue"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

@@ -8,12 +8,17 @@
           "emoji",
           "protect_content"
         ],
+        "request": {
+          "emoji": "🏀",
+          "protect_content": true,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57794,
+            "message_id": 59356,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -26,10 +31,10 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131872,
+            "date": 1794253027,
             "dice": {
               "emoji": "🏀",
-              "value": 1
+              "value": 4
             },
             "has_protected_content": true
           }

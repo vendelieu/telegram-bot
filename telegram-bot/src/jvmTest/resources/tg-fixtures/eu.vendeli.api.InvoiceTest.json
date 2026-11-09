@@ -12,12 +12,26 @@
           "provider_token",
           "title"
         ],
+        "request": {
+          "title": "test",
+          "description": "test1",
+          "payload": "test2",
+          "currency": "USD",
+          "prices": [
+            {
+              "label": "test3",
+              "amount": 1000
+            }
+          ],
+          "provider_token": "replay-provider-token",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 57795,
+            "message_id": 59357,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -30,7 +44,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131877,
+            "date": 1794253034,
             "invoice": {
               "title": "test",
               "description": "test1",

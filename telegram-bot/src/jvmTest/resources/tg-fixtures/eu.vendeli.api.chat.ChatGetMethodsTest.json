@@ -6,6 +6,9 @@
         "requestKeys": [
           "chat_id"
         ],
+        "request": {
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -57,6 +60,9 @@
         "requestKeys": [
           "chat_id"
         ],
+        "request": {
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -72,6 +78,10 @@
           "chat_id",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "chat_id": -1000000000002
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -115,6 +125,9 @@
         "requestKeys": [
           "chat_id"
         ],
+        "request": {
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -131,6 +144,9 @@
         "requestKeys": [
           "chat_id"
         ],
+        "request": {
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {

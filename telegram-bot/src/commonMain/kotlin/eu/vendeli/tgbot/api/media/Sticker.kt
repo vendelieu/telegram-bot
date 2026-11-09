@@ -37,7 +37,7 @@ class SendStickerAction(
  *
  * [Api reference](https://core.telegram.org/bots/api#sendsticker)
  * @param businessConnectionId Unique identifier of the business connection on behalf of which the message will be sent
- * @param chatId Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+ * @param chatId Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
  * @param messageThreadId Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
  * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
  * @param ephemeralMessageParameters A JSON-serialized object containing the parameters of the ephemeral message to send

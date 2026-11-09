@@ -6,6 +6,9 @@
         "requestKeys": [
           "user_id"
         ],
+        "request": {
+          "user_id": 1
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -22,6 +25,10 @@
           "is_access_restricted",
           "user_id"
         ],
+        "request": {
+          "user_id": 1,
+          "is_access_restricted": false
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

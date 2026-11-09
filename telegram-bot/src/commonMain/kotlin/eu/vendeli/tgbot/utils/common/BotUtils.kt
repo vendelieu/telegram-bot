@@ -27,7 +27,7 @@ internal suspend inline fun TgUpdateHandler.checkIsLimited(
     telegramId: Long? = null,
     actionId: String? = null,
 ): Boolean = bot.config.rateLimiter.run {
-    if (telegramId == null || limits.period == 0L && limits.rate == 0L) return false
+    if (telegramId == null || (limits.period == 0L && limits.rate == 0L)) return false
     val logger = bot.config.loggerFactory.get("eu.vendeli.tgbot.core.TgUpdateHandler")
 
     logger.debug { "Checking the request for exceeding the limits${if (actionId != null) " for $actionId}" else ""}." }

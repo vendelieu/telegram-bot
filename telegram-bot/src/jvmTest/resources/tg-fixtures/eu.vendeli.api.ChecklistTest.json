@@ -9,6 +9,26 @@
           "checklist",
           "message_id"
         ],
+        "request": {
+          "message_id": 1,
+          "checklist": {
+            "title": "Test Checklist",
+            "tasks": [
+              {
+                "id": 1,
+                "text": "First task"
+              },
+              {
+                "id": 2,
+                "text": "Second task"
+              }
+            ],
+            "others_can_add_tasks": true,
+            "others_can_mark_tasks_as_done": true
+          },
+          "chat_id": -1000000000002,
+          "business_connection_id": "test"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -26,6 +46,25 @@
           "chat_id",
           "checklist"
         ],
+        "request": {
+          "checklist": {
+            "title": "Test Checklist",
+            "tasks": [
+              {
+                "id": 1,
+                "text": "First task"
+              },
+              {
+                "id": 2,
+                "text": "Second task"
+              }
+            ],
+            "others_can_add_tasks": true,
+            "others_can_mark_tasks_as_done": true
+          },
+          "chat_id": -1000000000002,
+          "business_connection_id": "test"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

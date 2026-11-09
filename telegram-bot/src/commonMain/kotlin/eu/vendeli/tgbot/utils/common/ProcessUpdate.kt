@@ -28,7 +28,9 @@ import eu.vendeli.tgbot.types.component.ProcessedUpdate
 import eu.vendeli.tgbot.types.component.PurchasedPaidMediaUpdate
 import eu.vendeli.tgbot.types.component.RemovedChatBoostUpdate
 import eu.vendeli.tgbot.types.component.ShippingQueryUpdate
+import eu.vendeli.tgbot.types.component.SharedWidgetQueryUpdate
 import eu.vendeli.tgbot.types.component.SubscriptionUpdate
+import eu.vendeli.tgbot.types.component.WidgetQueryUpdate
 import eu.vendeli.tgbot.types.component.StoppedMessageGenerationUpdate
 
 @KtGramInternal
@@ -61,5 +63,7 @@ fun Update.processUpdate(): ProcessedUpdate = when {
     guestMessage != null -> GuestMessageUpdate(updateId, this, guestMessage)
     subscription != null -> SubscriptionUpdate(updateId, this, subscription)
     stoppedMessageGeneration != null -> StoppedMessageGenerationUpdate(updateId, this, stoppedMessageGeneration)
+    widgetQuery != null -> WidgetQueryUpdate(updateId, this, widgetQuery)
+    sharedWidgetQuery != null -> SharedWidgetQueryUpdate(updateId, this, sharedWidgetQuery)
     else -> throw TgException("Unknown type of update.")
 }

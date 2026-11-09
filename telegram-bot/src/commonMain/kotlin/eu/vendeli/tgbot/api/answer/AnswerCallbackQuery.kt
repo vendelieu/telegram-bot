@@ -3,7 +3,7 @@
 package eu.vendeli.tgbot.api.answer
 
 import eu.vendeli.tgbot.annotations.internal.TgAPI
-import eu.vendeli.tgbot.interfaces.action.Action
+import eu.vendeli.tgbot.interfaces.action.SimpleAction
 import eu.vendeli.tgbot.interfaces.features.OptionsFeature
 import eu.vendeli.tgbot.types.options.AnswerCallbackQueryOptions
 import eu.vendeli.tgbot.utils.internal.getReturnType
@@ -12,7 +12,7 @@ import eu.vendeli.tgbot.utils.internal.toJsonElement
 @TgAPI
 class AnswerCallbackQueryAction(
     callbackQueryId: String,
-) : Action<Boolean>(),
+) : SimpleAction<Boolean>(),
     OptionsFeature<AnswerCallbackQueryAction, AnswerCallbackQueryOptions> {
     @TgAPI.Name("answerCallbackQuery")
     override val method = "answerCallbackQuery"

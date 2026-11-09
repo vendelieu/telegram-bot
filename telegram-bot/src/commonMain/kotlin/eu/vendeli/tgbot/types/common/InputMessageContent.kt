@@ -16,6 +16,8 @@ import kotlinx.serialization.Serializable
  * - InputVenueMessageContent
  * - InputContactMessageContent
  * - InputInvoiceMessageContent
+ * - InputWidgetMessageContent
+ * - InputSharedWidgetMessageContent
  *
  * [Api reference](https://core.telegram.org/bots/api#inputmessagecontent)
  *
@@ -93,5 +95,32 @@ sealed class InputMessageContent {
         val sendPhoneNumberToProvider: Boolean? = null,
         val sendEmailToProvider: Boolean? = null,
         val isFlexible: Boolean? = null,
+    ) : InputMessageContent()
+
+    @Serializable
+    @TgAPI.Name("InputWidgetMessageContent")
+    data class WidgetContent(
+        val html: String,
+        val width: Int? = null,
+        val height: Int? = null,
+        val publicData: String? = null,
+        val chatData: String? = null,
+        val caption: String? = null,
+        val parseMode: ParseMode? = null,
+        val captionEntities: List<MessageEntity>? = null,
+        val showCaptionAboveMedia: Boolean? = null,
+        val allowQueries: Boolean? = null,
+        val isShared: Boolean? = null,
+    ) : InputMessageContent()
+
+    @Serializable
+    @TgAPI.Name("InputSharedWidgetMessageContent")
+    data class SharedWidgetContent(
+        val widgetId: String,
+        val chatData: String? = null,
+        val caption: String? = null,
+        val parseMode: ParseMode? = null,
+        val captionEntities: List<MessageEntity>? = null,
+        val showCaptionAboveMedia: Boolean? = null,
     ) : InputMessageContent()
 }

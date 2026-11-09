@@ -78,6 +78,8 @@ object TypeConstants {
     val managedBotUpdateClass: TypeName = ManagedBotUpdate::class.asTypeName()
     val guestMessageUpdateClass: TypeName = GuestMessageUpdate::class.asTypeName()
     val subscriptionUpdateClass: TypeName = SubscriptionUpdate::class.asTypeName()
+    val widgetQueryUpdateClass: TypeName = WidgetQueryUpdate::class.asTypeName()
+    val sharedWidgetQueryUpdateClass: TypeName = SharedWidgetQueryUpdate::class.asTypeName()
 
     // Context types
     val commonMatcherClass: TypeName = CommonMatcher::class.asTypeName()

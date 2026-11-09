@@ -24,9 +24,14 @@ The nightly `live` workflow detects drift between the recordings and the real Bo
 ## How replay works
 
 - One fixture file per spec: `tg-fixtures/<fully.qualified.SpecName>.json`, grouped by test name.
-- A request is matched by **API method** and consumed in recorded order **per method**, so stateful flows
-  (create, edit, delete) replay correctly. The names of the sent parameters must match the recording, a test or
-  library change that alters them fails with a "re-record" hint. Parameter *values* are not compared.
+- A request is matched by **API method and request parameters** (names and values, uploaded files reduce to a
+  `<file>` placeholder). Each recorded exchange is consumed once, identical requests are served in recorded order, so
+  stateful flows (create, edit, delete) replay correctly and different inputs get their own response.
+  A miss fails with the sent request, the still-available recorded ones and a "re-record" hint.
+- Values are redacted the same way on both sides (tokens, configured ids), so tests must send constants (`FakeIds`,
+  `FIXED_EXPIRY`), never `now`/random values.
+- Fixtures recorded before request values were stored only compare parameter *names*; they upgrade to full matching
+  the next time they are re-recorded.
 - `BotTestContext` picks the mode. In replay it also swaps in stable ids (`FakeIds`) and placeholder media, so tests
   must use `TG_ID`, `CHAT_ID`, `CHANNEL_ID`, `BOT_ID`, `LOREM.*` from the base class instead of reading `.env`.
 - Re-recording only keeps tests that passed, a failing run never overwrites a good fixture.

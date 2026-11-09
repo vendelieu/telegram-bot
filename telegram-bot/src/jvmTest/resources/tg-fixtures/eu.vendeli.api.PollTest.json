@@ -12,12 +12,30 @@
           "question",
           "type"
         ],
+        "request": {
+          "question": "Test",
+          "options": [
+            {
+              "text": "test1"
+            },
+            {
+              "text": "test1"
+            }
+          ],
+          "is_anonymous": false,
+          "type": "quiz",
+          "correct_option_ids": [
+            1
+          ],
+          "open_period": 565,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24195,
+            "message_id": 25838,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -30,9 +48,9 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131888,
+            "date": 1794253048,
             "poll": {
-              "id": "5339469502339880820",
+              "id": "5444940601910892348",
               "question": "Test",
               "options": [
                 {
@@ -48,7 +66,7 @@
               ],
               "total_voter_count": 0,
               "open_period": 565,
-              "close_date": 1791132453,
+              "close_date": 1794253613,
               "is_closed": false,
               "is_anonymous": false,
               "allows_multiple_answers": false,
@@ -69,12 +87,16 @@
           "chat_id",
           "message_id"
         ],
+        "request": {
+          "message_id": 25838,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "id": "5339469502339880820",
+            "id": "5444940601910892348",
             "question": "Test",
             "options": [
               {
@@ -115,12 +137,30 @@
           "question",
           "type"
         ],
+        "request": {
+          "question": "Test",
+          "options": [
+            {
+              "text": "test1"
+            },
+            {
+              "text": "test2"
+            }
+          ],
+          "is_anonymous": false,
+          "type": "quiz",
+          "correct_option_ids": [
+            1
+          ],
+          "open_period": 120,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24196,
+            "message_id": 25839,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -133,9 +173,9 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131888,
+            "date": 1794253048,
             "poll": {
-              "id": "5339469502339880821",
+              "id": "5444940601910892349",
               "question": "Test",
               "options": [
                 {
@@ -151,7 +191,7 @@
               ],
               "total_voter_count": 0,
               "open_period": 120,
-              "close_date": 1791132008,
+              "close_date": 1794253168,
               "is_closed": false,
               "is_anonymous": false,
               "allows_multiple_answers": false,
@@ -177,12 +217,30 @@
           "question",
           "type"
         ],
+        "request": {
+          "question": "Test",
+          "options": [
+            {
+              "text": "test1"
+            },
+            {
+              "text": "test2"
+            }
+          ],
+          "is_anonymous": false,
+          "type": "quiz",
+          "correct_option_ids": [
+            1
+          ],
+          "open_period": 120,
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24197,
+            "message_id": 25840,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -195,9 +253,9 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131889,
+            "date": 1794253049,
             "poll": {
-              "id": "5339469502339880822",
+              "id": "5444940601910892350",
               "question": "Test",
               "options": [
                 {
@@ -213,7 +271,7 @@
               ],
               "total_voter_count": 0,
               "open_period": 120,
-              "close_date": 1791132009,
+              "close_date": 1794253169,
               "is_closed": false,
               "is_anonymous": false,
               "allows_multiple_answers": false,

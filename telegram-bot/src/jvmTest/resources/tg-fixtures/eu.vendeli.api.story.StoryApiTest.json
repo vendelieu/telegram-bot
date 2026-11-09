@@ -7,6 +7,10 @@
           "business_connection_id",
           "story_id"
         ],
+        "request": {
+          "business_connection_id": "test",
+          "story_id": "story_id"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -25,6 +29,12 @@
           "from_chat_id",
           "from_story_id"
         ],
+        "request": {
+          "business_connection_id": "test",
+          "from_chat_id": 123456,
+          "from_story_id": 1,
+          "active_period": 86400
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

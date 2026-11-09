@@ -3,15 +3,16 @@
     "get updates method testing": [
       {
         "method": "getUpdates",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": [
             {
-              "update_id": 986722161,
+              "update_id": 986722790,
               "message": {
-                "message_id": 25590,
+                "message_id": 26663,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -24,26 +25,26 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130381,
+                "date": 1794227380,
                 "new_chat_photo": [
                   {
-                    "file_id": "AgACAgIAAx0EbTMcyAACY_ZqwnsNk5FxGZ9RaE9Hp8qTgFErUAACOiNrG_NQGUpYLHbsLBnuMAEAAwIAA2EAAz0E",
-                    "file_unique_id": "AQADOiNrG_NQGUoAAQ",
-                    "file_size": 14132,
+                    "file_id": "AgACAgIAAx0EbTMcyAACaCdq8by0OkUZQzTUsg9ZMCg2-oVE5wACgjBrG6-tiEteOm9teJ_0FAEAAwIAA2EAAz0E",
+                    "file_unique_id": "AQADgjBrG6-tiEsAAQ",
+                    "file_size": 3426,
                     "width": 160,
                     "height": 160
                   },
                   {
-                    "file_id": "AgACAgIAAx0EbTMcyAACY_ZqwnsNk5FxGZ9RaE9Hp8qTgFErUAACOiNrG_NQGUpYLHbsLBnuMAEAAwIAA2IAAz0E",
-                    "file_unique_id": "AQADOiNrG_NQGUpn",
-                    "file_size": 48451,
+                    "file_id": "AgACAgIAAx0EbTMcyAACaCdq8by0OkUZQzTUsg9ZMCg2-oVE5wACgjBrG6-tiEteOm9teJ_0FAEAAwIAA2IAAz0E",
+                    "file_unique_id": "AQADgjBrG6-tiEtn",
+                    "file_size": 9899,
                     "width": 320,
                     "height": 320
                   },
                   {
-                    "file_id": "AgACAgIAAx0EbTMcyAACY_ZqwnsNk5FxGZ9RaE9Hp8qTgFErUAACOiNrG_NQGUpYLHbsLBnuMAEAAwIAA2MAAz0E",
-                    "file_unique_id": "AQADOiNrG_NQGUoB",
-                    "file_size": 131636,
+                    "file_id": "AgACAgIAAx0EbTMcyAACaCdq8by0OkUZQzTUsg9ZMCg2-oVE5wACgjBrG6-tiEteOm9teJ_0FAEAAwIAA2MAAz0E",
+                    "file_unique_id": "AQADgjBrG6-tiEsB",
+                    "file_size": 25571,
                     "width": 640,
                     "height": 640
                   }
@@ -51,9 +52,9 @@
               }
             },
             {
-              "update_id": 986722162,
+              "update_id": 986722791,
               "message": {
-                "message_id": 25591,
+                "message_id": 26664,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -66,26 +67,26 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130388,
+                "date": 1794227380,
                 "new_chat_photo": [
                   {
-                    "file_id": "AgACAgIAAx0EbTMcyAACY_dqwnsUKEah4PqeX7-Dekl81b9gwQACdCJrGyyoGEptlzVWNt4L4QEAAwIAA2EAAz0E",
-                    "file_unique_id": "AQADdCJrGyyoGEoAAQ",
-                    "file_size": 14132,
+                    "file_id": "AgACAgIAAx0EbTMcyAACaChq8by0oNHulym4fduZtWEe0PG6aQACmSNrG2WCkEueJ5UVBvIVbAEAAwIAA2EAAz0E",
+                    "file_unique_id": "AQADmSNrG2WCkEsAAQ",
+                    "file_size": 3426,
                     "width": 160,
                     "height": 160
                   },
                   {
-                    "file_id": "AgACAgIAAx0EbTMcyAACY_dqwnsUKEah4PqeX7-Dekl81b9gwQACdCJrGyyoGEptlzVWNt4L4QEAAwIAA2IAAz0E",
-                    "file_unique_id": "AQADdCJrGyyoGEpn",
-                    "file_size": 48451,
+                    "file_id": "AgACAgIAAx0EbTMcyAACaChq8by0oNHulym4fduZtWEe0PG6aQACmSNrG2WCkEueJ5UVBvIVbAEAAwIAA2IAAz0E",
+                    "file_unique_id": "AQADmSNrG2WCkEtn",
+                    "file_size": 9899,
                     "width": 320,
                     "height": 320
                   },
                   {
-                    "file_id": "AgACAgIAAx0EbTMcyAACY_dqwnsUKEah4PqeX7-Dekl81b9gwQACdCJrGyyoGEptlzVWNt4L4QEAAwIAA2MAAz0E",
-                    "file_unique_id": "AQADdCJrGyyoGEoB",
-                    "file_size": 131636,
+                    "file_id": "AgACAgIAAx0EbTMcyAACaChq8by0oNHulym4fduZtWEe0PG6aQACmSNrG2WCkEueJ5UVBvIVbAEAAwIAA2MAAz0E",
+                    "file_unique_id": "AQADmSNrG2WCkEsB",
+                    "file_size": 25571,
                     "width": 640,
                     "height": 640
                   }
@@ -93,9 +94,9 @@
               }
             },
             {
-              "update_id": 986722163,
+              "update_id": 986722792,
               "message": {
-                "message_id": 25592,
+                "message_id": 26665,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -108,14 +109,14 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130388,
+                "date": 1794227383,
                 "delete_chat_photo": true
               }
             },
             {
-              "update_id": 986722164,
+              "update_id": 986722793,
               "message": {
-                "message_id": 25593,
+                "message_id": 26666,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -128,14 +129,14 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130389,
+                "date": 1794227384,
                 "new_chat_title": "test"
               }
             },
             {
-              "update_id": 986722165,
+              "update_id": 986722794,
               "message": {
-                "message_id": 25594,
+                "message_id": 26667,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -148,14 +149,14 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130389,
+                "date": 1794227384,
                 "new_chat_title": "testchat"
               }
             },
             {
-              "update_id": 986722166,
+              "update_id": 986722795,
               "message": {
-                "message_id": 25595,
+                "message_id": 26668,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -168,8 +169,8 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130450,
-                "message_thread_id": 25595,
+                "date": 1794227446,
+                "message_thread_id": 26668,
                 "forum_topic_created": {
                   "name": "testTopic",
                   "icon_color": 7322096
@@ -178,9 +179,9 @@
               }
             },
             {
-              "update_id": 986722167,
+              "update_id": 986722796,
               "message": {
-                "message_id": 25596,
+                "message_id": 26669,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -193,10 +194,10 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130450,
-                "message_thread_id": 25595,
+                "date": 1794227446,
+                "message_thread_id": 26668,
                 "reply_to_message": {
-                  "message_id": 25595,
+                  "message_id": 26668,
                   "from": {
                     "id": 700000001,
                     "is_bot": true,
@@ -209,8 +210,8 @@
                     "is_forum": true,
                     "type": "supergroup"
                   },
-                  "date": 1791130450,
-                  "message_thread_id": 25595,
+                  "date": 1794227446,
+                  "message_thread_id": 26668,
                   "forum_topic_created": {
                     "name": "testTopic",
                     "icon_color": 7322096
@@ -222,9 +223,9 @@
               }
             },
             {
-              "update_id": 986722168,
+              "update_id": 986722797,
               "message": {
-                "message_id": 25597,
+                "message_id": 26670,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -237,8 +238,8 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130451,
-                "message_thread_id": 25597,
+                "date": 1794227447,
+                "message_thread_id": 26670,
                 "forum_topic_created": {
                   "name": "testTopic",
                   "icon_color": 9367192
@@ -247,9 +248,9 @@
               }
             },
             {
-              "update_id": 986722169,
+              "update_id": 986722798,
               "message": {
-                "message_id": 25598,
+                "message_id": 26671,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -262,8 +263,8 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130451,
-                "message_thread_id": 25598,
+                "date": 1794227447,
+                "message_thread_id": 26671,
                 "forum_topic_created": {
                   "name": "testTopic",
                   "icon_color": 7322096
@@ -272,9 +273,9 @@
               }
             },
             {
-              "update_id": 986722170,
+              "update_id": 986722799,
               "message": {
-                "message_id": 25599,
+                "message_id": 26672,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -287,8 +288,8 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130451,
-                "message_thread_id": 25599,
+                "date": 1794227447,
+                "message_thread_id": 26672,
                 "forum_topic_created": {
                   "name": "testTopic",
                   "icon_color": 7322096
@@ -297,9 +298,9 @@
               }
             },
             {
-              "update_id": 986722171,
+              "update_id": 986722800,
               "message": {
-                "message_id": 25600,
+                "message_id": 26673,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -312,10 +313,10 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130458,
-                "message_thread_id": 25599,
+                "date": 1794227454,
+                "message_thread_id": 26672,
                 "reply_to_message": {
-                  "message_id": 25599,
+                  "message_id": 26672,
                   "from": {
                     "id": 700000001,
                     "is_bot": true,
@@ -328,8 +329,8 @@
                     "is_forum": true,
                     "type": "supergroup"
                   },
-                  "date": 1791130451,
-                  "message_thread_id": 25599,
+                  "date": 1794227447,
+                  "message_thread_id": 26672,
                   "forum_topic_created": {
                     "name": "testTopic",
                     "icon_color": 7322096
@@ -343,9 +344,9 @@
               }
             },
             {
-              "update_id": 986722172,
+              "update_id": 986722801,
               "message": {
-                "message_id": 25601,
+                "message_id": 26674,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -358,8 +359,8 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130458,
-                "message_thread_id": 25601,
+                "date": 1794227454,
+                "message_thread_id": 26674,
                 "forum_topic_created": {
                   "name": "testTopic",
                   "icon_color": 7322096
@@ -368,9 +369,9 @@
               }
             },
             {
-              "update_id": 986722173,
+              "update_id": 986722802,
               "message": {
-                "message_id": 25602,
+                "message_id": 26675,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -383,10 +384,10 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130458,
-                "message_thread_id": 25601,
+                "date": 1794227455,
+                "message_thread_id": 26674,
                 "reply_to_message": {
-                  "message_id": 25601,
+                  "message_id": 26674,
                   "from": {
                     "id": 700000001,
                     "is_bot": true,
@@ -399,8 +400,8 @@
                     "is_forum": true,
                     "type": "supergroup"
                   },
-                  "date": 1791130458,
-                  "message_thread_id": 25601,
+                  "date": 1794227454,
+                  "message_thread_id": 26674,
                   "forum_topic_created": {
                     "name": "testTopic",
                     "icon_color": 7322096
@@ -412,9 +413,9 @@
               }
             },
             {
-              "update_id": 986722174,
+              "update_id": 986722803,
               "message": {
-                "message_id": 25603,
+                "message_id": 26676,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -427,10 +428,10 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130459,
-                "message_thread_id": 25601,
+                "date": 1794227455,
+                "message_thread_id": 26674,
                 "reply_to_message": {
-                  "message_id": 25601,
+                  "message_id": 26674,
                   "from": {
                     "id": 700000001,
                     "is_bot": true,
@@ -443,8 +444,8 @@
                     "is_forum": true,
                     "type": "supergroup"
                   },
-                  "date": 1791130458,
-                  "message_thread_id": 25601,
+                  "date": 1794227454,
+                  "message_thread_id": 26674,
                   "forum_topic_created": {
                     "name": "testTopic",
                     "icon_color": 7322096
@@ -456,9 +457,9 @@
               }
             },
             {
-              "update_id": 986722175,
+              "update_id": 986722804,
               "message": {
-                "message_id": 25604,
+                "message_id": 26677,
                 "from": {
                   "id": 700000001,
                   "is_bot": true,
@@ -471,8 +472,8 @@
                   "is_forum": true,
                   "type": "supergroup"
                 },
-                "date": 1791130459,
-                "message_thread_id": 25604,
+                "date": 1794227455,
+                "message_thread_id": 26677,
                 "forum_topic_created": {
                   "name": "testTopic",
                   "icon_color": 7322096
@@ -481,9 +482,9 @@
               }
             },
             {
-              "update_id": 986722176,
+              "update_id": 986722805,
               "channel_post": {
-                "message_id": 475,
+                "message_id": 512,
                 "sender_chat": {
                   "id": -1000000000003,
                   "title": "testChannel",
@@ -494,7 +495,7 @@
                   "title": "testChannel",
                   "type": "channel"
                 },
-                "date": 1791130492,
+                "date": 1794227498,
                 "paid_media": {
                   "star_count": 1,
                   "paid_media": [
@@ -502,7 +503,7 @@
                       "type": "photo",
                       "photo": [
                         {
-                          "file_id": "AgACAgQAAyEFAASAvyiNAAIB2GrCd-I93PDMxuq6kAgbn2IkC70mAAJDqTEbpu51UqHnZlCddaZ0AQADAgADbQADPQQ",
+                          "file_id": "AgACAgQAAxkDAALntWrxvHh8qFMKAAE7Kk-mWQLD_2J_nwACQ6kxG6budVKh52ZQnXWmdAEAAwIAA20AAz0E",
                           "file_unique_id": "AQADQ6kxG6budVJy",
                           "file_size": 380,
                           "width": 10,
@@ -514,8 +515,8 @@
                       "type": "photo",
                       "photo": [
                         {
-                          "file_id": "AgACAgIAAyEFAASAvyiNAAIB2GrCd-KXk-oI8hy5-fkQBWZjwbunAAJHJmsbj4v5SeNHpnmq10C6AQADAgADbQADPQQ",
-                          "file_unique_id": "AQADRyZrG4-L-Uly",
+                          "file_id": "AgACAgIAAyEFAASAvyiNAAICAAFq8b0qyq_djM_ZcNVAIrn6VmYjVgACZyZrG0RekUtvhXGOERKCJwEAAwIAA20AAz0E",
+                          "file_unique_id": "AQADZyZrG0RekUty",
                           "file_size": 287,
                           "width": 1,
                           "height": 1
@@ -527,9 +528,9 @@
               }
             },
             {
-              "update_id": 986722177,
+              "update_id": 986722806,
               "message": {
-                "message_id": 372,
+                "message_id": 409,
                 "from": {
                   "id": 777000,
                   "is_bot": false,
@@ -545,7 +546,7 @@
                   "title": "testChannel Chat",
                   "type": "supergroup"
                 },
-                "date": 1791130495,
+                "date": 1794227502,
                 "forward_origin": {
                   "type": "channel",
                   "chat": {
@@ -553,8 +554,8 @@
                     "title": "testChannel",
                     "type": "channel"
                   },
-                  "message_id": 475,
-                  "date": 1791130492
+                  "message_id": 512,
+                  "date": 1794227498
                 },
                 "is_automatic_forward": true,
                 "forward_from_chat": {
@@ -562,8 +563,8 @@
                   "title": "testChannel",
                   "type": "channel"
                 },
-                "forward_from_message_id": 475,
-                "forward_date": 1791130492,
+                "forward_from_message_id": 512,
+                "forward_date": 1794227498,
                 "paid_media": {
                   "star_count": 1,
                   "paid_media": [
@@ -571,7 +572,7 @@
                       "type": "photo",
                       "photo": [
                         {
-                          "file_id": "AgACAgQAAyEFAASAvyiNAAIB2GrCd-I93PDMxuq6kAgbn2IkC70mAAJDqTEbpu51UqHnZlCddaZ0AQADAgADbQADPQQ",
+                          "file_id": "AgACAgQAAxkDAALntWrxvHh8qFMKAAE7Kk-mWQLD_2J_nwACQ6kxG6budVKh52ZQnXWmdAEAAwIAA20AAz0E",
                           "file_unique_id": "AQADQ6kxG6budVJy",
                           "file_size": 380,
                           "width": 10,
@@ -583,8 +584,8 @@
                       "type": "photo",
                       "photo": [
                         {
-                          "file_id": "AgACAgIAAyEFAASAvyiNAAIB2GrCd-KXk-oI8hy5-fkQBWZjwbunAAJHJmsbj4v5SeNHpnmq10C6AQADAgADbQADPQQ",
-                          "file_unique_id": "AQADRyZrG4-L-Uly",
+                          "file_id": "AgACAgIAAyEFAASAvyiNAAICAAFq8b0qyq_djM_ZcNVAIrn6VmYjVgACZyZrG0RekUtvhXGOERKCJwEAAwIAA20AAz0E",
+                          "file_unique_id": "AQADZyZrG0RekUty",
                           "file_size": 287,
                           "width": 1,
                           "height": 1
@@ -602,6 +603,7 @@
     "get webhook info method testing": [
       {
         "method": "getWebhookInfo",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -620,6 +622,9 @@
         "requestKeys": [
           "url"
         ],
+        "request": {
+          "url": "https://vendeli.eu"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -633,27 +638,30 @@
         "requestKeys": [
           "url"
         ],
-        "status": 429,
+        "request": {
+          "url": "https://vendeli.eu/1"
+        },
+        "status": 200,
         "contentType": "application/json",
         "json": {
-          "ok": false,
-          "error_code": 429,
-          "description": "Too Many Requests: retry after 1",
-          "parameters": {
-            "retry_after": 1
-          }
+          "ok": true,
+          "result": true,
+          "description": "Webhook was set"
         }
       },
       {
         "method": "getWebhookInfo",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "url": "https://vendeli.eu",
+            "url": "https://vendeli.eu/1",
             "has_custom_certificate": false,
-            "pending_update_count": 5,
+            "pending_update_count": 4,
+            "last_error_date": 1794253056,
+            "last_error_message": "Wrong response from the webhook: 404 Not Found",
             "max_connections": 40,
             "ip_address": "193.178.169.156"
           }
@@ -664,6 +672,9 @@
         "requestKeys": [
           "drop_pending_updates"
         ],
+        "request": {
+          "drop_pending_updates": false
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {

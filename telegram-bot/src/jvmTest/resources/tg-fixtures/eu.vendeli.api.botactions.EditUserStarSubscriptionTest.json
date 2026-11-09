@@ -8,6 +8,11 @@
           "telegram_payment_charge_id",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "telegram_payment_charge_id": "test",
+          "is_canceled": true
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

@@ -6,6 +6,9 @@
         "requestKeys": [
           "business_connection_id"
         ],
+        "request": {
+          "business_connection_id": "test"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

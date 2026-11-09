@@ -24,6 +24,8 @@ import eu.vendeli.tgbot.types.msg.MessageReactionUpdated
 import eu.vendeli.tgbot.types.payment.PreCheckoutQuery
 import eu.vendeli.tgbot.types.payment.ShippingQuery
 import eu.vendeli.tgbot.types.poll.Poll
+import eu.vendeli.tgbot.types.widget.SharedWidgetQuery
+import eu.vendeli.tgbot.types.widget.WidgetQuery
 import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.tgbot.utils.serde.UpdateSerializer
 import kotlinx.serialization.Serializable
@@ -466,3 +468,29 @@ inline fun ProcessedUpdate.getUser(): User = userOrNull ?: throw NullPointerExce
  * @throws NullPointerException when chat not found.
  */
 inline fun ProcessedUpdate.getChat(): Chat = chatOrNull ?: throw NullPointerException("Chat not found.")
+
+@Serializable(WidgetQueryUpdate.Companion::class)
+data class WidgetQueryUpdate(
+    override val updateId: Int,
+    override val origin: Update,
+    val widgetQuery: WidgetQuery,
+) : ProcessedUpdate(updateId, origin, UpdateType.WIDGET_QUERY),
+    UserReference {
+    override val user: User = widgetQuery.from
+    override val text: String = widgetQuery.data
+
+    internal companion object : UpdateSerializer<WidgetQueryUpdate>()
+}
+
+@Serializable(SharedWidgetQueryUpdate.Companion::class)
+data class SharedWidgetQueryUpdate(
+    override val updateId: Int,
+    override val origin: Update,
+    val sharedWidgetQuery: SharedWidgetQuery,
+) : ProcessedUpdate(updateId, origin, UpdateType.SHARED_WIDGET_QUERY),
+    UserReference {
+    override val user: User = sharedWidgetQuery.from
+    override val text: String = sharedWidgetQuery.data
+
+    internal companion object : UpdateSerializer<SharedWidgetQueryUpdate>()
+}

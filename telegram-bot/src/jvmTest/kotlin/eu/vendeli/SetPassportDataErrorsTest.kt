@@ -5,8 +5,6 @@ import eu.vendeli.tgbot.api.passport.setPassportDataErrors
 import eu.vendeli.tgbot.types.passport.EncryptedPassportElementType
 import eu.vendeli.tgbot.types.passport.PassportElementError.Selfie
 import io.kotest.matchers.booleans.shouldBeTrue
-import java.util.Base64
-import kotlin.random.Random
 
 class SetPassportDataErrorsTest : BotTestContext() {
     @Test
@@ -16,7 +14,7 @@ class SetPassportDataErrorsTest : BotTestContext() {
             listOf(
                 Selfie(
                     EncryptedPassportElementType.Passport,
-                    Base64.getEncoder().encodeToString(Random.nextBytes(32)),
+                    "rvrAIw/dzwLEBykk4guKZw3P+Ld/2RtkyZuVDGsJEqQ=",
                     "test1",
                 ),
             ),

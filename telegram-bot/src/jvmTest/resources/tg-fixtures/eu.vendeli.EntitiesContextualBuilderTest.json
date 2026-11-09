@@ -8,12 +8,29 @@
           "entities",
           "text"
         ],
+        "request": {
+          "entities": [
+            {
+              "type": "bold",
+              "offset": 12,
+              "length": 5
+            },
+            {
+              "type": "text_link",
+              "offset": 27,
+              "length": 5,
+              "url": "https://google.com"
+            }
+          ],
+          "text": "test message testtest plus test2",
+          "chat_id": 100000001
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "message_id": 24169,
+            "message_id": 25812,
             "from": {
               "id": 700000001,
               "is_bot": true,
@@ -26,7 +43,7 @@
               "username": "redacted",
               "type": "private"
             },
-            "date": 1791131854,
+            "date": 1794253003,
             "text": "test message testtest plus test2",
             "entities": [
               {
@@ -42,7 +59,7 @@
               }
             ],
             "link_preview_options": {
-              "url": "http://google.com/"
+              "url": "https://google.com/"
             }
           }
         }

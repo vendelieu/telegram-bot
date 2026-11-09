@@ -3,6 +3,7 @@
     "create new sticker set method test": [
       {
         "method": "getMe",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -30,12 +31,14 @@
         "requestKeys": [
           "name"
         ],
-        "status": 400,
+        "request": {
+          "name": "Test_1_by_redacted"
+        },
+        "status": 200,
         "contentType": "application/json",
         "json": {
-          "ok": false,
-          "error_code": 400,
-          "description": "Bad Request: STICKERSET_INVALID"
+          "ok": true,
+          "result": true
         }
       },
       {
@@ -46,6 +49,20 @@
           "title",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "name": "Test_1_by_redacted",
+          "title": "test_2",
+          "stickers": [
+            {
+              "sticker": "CAACAgIAAxkBAAEKHjlk6Gex1hZNv_s6-by8ho52CXC9oAACbwEAAhZ8aAOK9nH8d3JcRjAE",
+              "format": "static",
+              "emoji_list": [
+                "💯"
+              ]
+            }
+          ]
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -58,6 +75,9 @@
         "requestKeys": [
           "name"
         ],
+        "request": {
+          "name": "Test_1_by_redacted"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -77,21 +97,21 @@
                 "is_video": false,
                 "type": "regular",
                 "thumbnail": {
-                  "file_id": "AAMCAgADFQABasKCqytcAnkPHWCgCj7hsElTCssAAjOtAAIothlKXKNRC4Md0e0BAAdtAAM9BA",
-                  "file_unique_id": "AQADM60AAii2GUpy",
+                  "file_id": "AAMCAgADFQABavIhq9nSrj14YDT7J7CxrJsHaSkAAk3AAAJzRpFLY4AitFet_3EBAAdtAAM9BA",
+                  "file_unique_id": "AQADTcAAAnNGkUty",
                   "file_size": 14592,
                   "width": 320,
                   "height": 269
                 },
                 "thumb": {
-                  "file_id": "AAMCAgADFQABasKCqytcAnkPHWCgCj7hsElTCssAAjOtAAIothlKXKNRC4Md0e0BAAdtAAM9BA",
-                  "file_unique_id": "AQADM60AAii2GUpy",
+                  "file_id": "AAMCAgADFQABavIhq9nSrj14YDT7J7CxrJsHaSkAAk3AAAJzRpFLY4AitFet_3EBAAdtAAM9BA",
+                  "file_unique_id": "AQADTcAAAnNGkUty",
                   "file_size": 14592,
                   "width": 320,
                   "height": 269
                 },
-                "file_id": "CAACAgIAAxUAAWrCgqsrXAJ5Dx1goAo-4bBJUwrLAAIzrQACKLYZSlyjUQuDHdHtPQQ",
-                "file_unique_id": "AgADM60AAii2GUo",
+                "file_id": "CAACAgIAAxUAAWryIavZ0q49eGA0-yewsaybB2kpAAJNwAACc0aRS2OAIrRXrf9xPQQ",
+                "file_unique_id": "AgADTcAAAnNGkUs",
                 "file_size": 30060
               }
             ]
@@ -108,6 +128,14 @@
           "sticker.tgs",
           "user_id"
         ],
+        "request": {
+          "sticker.tgs": "<file>",
+          "user_id": "<file>",
+          "name": "<file>",
+          "old_sticker": "<file>",
+          "sticker": "<file>",
+          "chat_id": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -120,17 +148,22 @@
         "requestKeys": [
           "name"
         ],
-        "status": 200,
+        "request": {
+          "name": "Test_1_by_redacted"
+        },
+        "status": 400,
         "contentType": "application/json",
         "json": {
-          "ok": true,
-          "result": true
+          "ok": false,
+          "error_code": 400,
+          "description": "Bad Request: STICKERSET_INVALID"
         }
       }
     ],
     "crud sticker in set methods test": [
       {
         "method": "getMe",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -160,6 +193,17 @@
           "sticker",
           "user_id"
         ],
+        "request": {
+          "user_id": 100000001,
+          "name": "Test_2_by_redacted",
+          "sticker": {
+            "sticker": "CAACAgIAAxkBAAEKHjlk6Gex1hZNv_s6-by8ho52CXC9oAACbwEAAhZ8aAOK9nH8d3JcRjAE",
+            "format": "static",
+            "emoji_list": [
+              "👍🏻"
+            ]
+          }
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -172,6 +216,9 @@
         "requestKeys": [
           "name"
         ],
+        "request": {
+          "name": "Test_2_by_redacted"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -191,20 +238,20 @@
                 "is_video": false,
                 "type": "regular",
                 "thumbnail": {
-                  "file_id": "AAMCAgADFQABar7dkV9ZSfHWoGuh9lMdZiTUgSAAAo4wAAK2oFBL6ywl2bVoD9ABAAdtAAM9BA",
+                  "file_id": "AAMCAgADFQABavIhrnbGcJp2-J4lL_juzyuzJT0AAo4wAAK2oFBL6ywl2bVoD9ABAAdtAAM9BA",
                   "file_unique_id": "AQADjjAAAragUEty",
                   "file_size": 14588,
                   "width": 320,
                   "height": 269
                 },
                 "thumb": {
-                  "file_id": "AAMCAgADFQABar7dkV9ZSfHWoGuh9lMdZiTUgSAAAo4wAAK2oFBL6ywl2bVoD9ABAAdtAAM9BA",
+                  "file_id": "AAMCAgADFQABavIhrnbGcJp2-J4lL_juzyuzJT0AAo4wAAK2oFBL6ywl2bVoD9ABAAdtAAM9BA",
                   "file_unique_id": "AQADjjAAAragUEty",
                   "file_size": 14588,
                   "width": 320,
                   "height": 269
                 },
-                "file_id": "CAACAgIAAxUAAWq-3ZFfWUnx1qBrofZTHWYk1IEgAAKOMAACtqBQS-ssJdm1aA_QPQQ",
+                "file_id": "CAACAgIAAxUAAWryIa52xnCadvieJS_47s8rsyU9AAKOMAACtqBQS-ssJdm1aA_QPQQ",
                 "file_unique_id": "AgADjjAAAragUEs",
                 "file_size": 30060
               }
@@ -218,6 +265,12 @@
           "emoji_list",
           "sticker"
         ],
+        "request": {
+          "sticker": "CAACAgIAAxUAAWryIa52xnCadvieJS_47s8rsyU9AAKOMAACtqBQS-ssJdm1aA_QPQQ",
+          "emoji_list": [
+            "👀"
+          ]
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -231,6 +284,12 @@
           "keywords",
           "sticker"
         ],
+        "request": {
+          "sticker": "CAACAgIAAxUAAWryIa52xnCadvieJS_47s8rsyU9AAKOMAACtqBQS-ssJdm1aA_QPQQ",
+          "keywords": [
+            "test"
+          ]
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -244,6 +303,10 @@
           "position",
           "sticker"
         ],
+        "request": {
+          "sticker": "CAACAgIAAxUAAWryIa52xnCadvieJS_47s8rsyU9AAKOMAACtqBQS-ssJdm1aA_QPQQ",
+          "position": 2
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -258,6 +321,11 @@
           "name",
           "user_id"
         ],
+        "request": {
+          "name": "Test_2_by_redacted",
+          "user_id": 100000001,
+          "format": "static"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -271,6 +339,15 @@
           "mask_position",
           "sticker"
         ],
+        "request": {
+          "sticker": "CAACAgIAAxUAAWryIa52xnCadvieJS_47s8rsyU9AAKOMAACtqBQS-ssJdm1aA_QPQQ",
+          "mask_position": {
+            "point": "mouth",
+            "x_shift": -0.1,
+            "y_shift": -0.1,
+            "scale": 2.0
+          }
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -284,6 +361,9 @@
         "requestKeys": [
           "sticker"
         ],
+        "request": {
+          "sticker": "CAACAgIAAxUAAWryIa52xnCadvieJS_47s8rsyU9AAKOMAACtqBQS-ssJdm1aA_QPQQ"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -295,6 +375,7 @@
     "get sticker set method test": [
       {
         "method": "getMe",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -322,6 +403,9 @@
         "requestKeys": [
           "name"
         ],
+        "request": {
+          "name": "Test_2_by_redacted"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -339,6 +423,7 @@
     "set sticker set title method test": [
       {
         "method": "getMe",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -367,6 +452,10 @@
           "name",
           "title"
         ],
+        "request": {
+          "name": "Test_2_by_redacted",
+          "title": "title1"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -380,6 +469,10 @@
           "name",
           "title"
         ],
+        "request": {
+          "name": "Test_2_by_redacted",
+          "title": "test_2"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
@@ -397,13 +490,19 @@
           "sticker_format",
           "user_id"
         ],
+        "request": {
+          "sticker.tgs": "<file>",
+          "sticker": "<file>",
+          "user_id": "<file>",
+          "sticker_format": "<file>"
+        },
         "status": 200,
         "contentType": "application/json",
         "json": {
           "ok": true,
           "result": {
-            "file_id": "CAACAgIAAxUHasKCscaCTnrb2_dSwHf4FVItsS4AAnuyAAI5mxlKPO2kkaXjprw9BA",
-            "file_unique_id": "AgADe7IAAjmbGUo",
+            "file_id": "CAACAgIAAxUHavIhslrcZ_ePKGPKllQSy6bCozQAAh6sAAKhUJBLsncOcA3kzYQ9BA",
+            "file_unique_id": "AgADHqwAAqFQkEs",
             "file_size": 63709
           }
         }

@@ -6,6 +6,7 @@ import eu.vendeli.tgbot.types.media.Audio
 import eu.vendeli.tgbot.types.business.BusinessLocation
 import eu.vendeli.tgbot.types.business.BusinessOpeningHours
 import eu.vendeli.tgbot.types.common.ReactionType
+import eu.vendeli.tgbot.types.ton.TonWalletCard
 import eu.vendeli.tgbot.types.gift.AcceptedGiftTypes
 import eu.vendeli.tgbot.types.gift.UniqueGiftColors
 import eu.vendeli.tgbot.types.msg.Message
@@ -70,6 +71,8 @@ import kotlinx.serialization.Serializable
  * @property paidMessageStarCount Optional. The number of Telegram Stars a general user has to pay to send a message to the chat
  * @property guardBot Optional. The bot that processes join request queries in the chat. The field is only available to chat administrators.
  * @property community Optional. The Community to which the chat belongs
+ * @property tonWalletCard Optional. For private chats, the TON wallet card of the user, which is shown on their profile page
+ * @property shareTheme Optional. For private chats, supergroups and channels, the theme of the screen for sharing a link to the user or the chat; omitted if the default theme is used
  */
 @Serializable
 data class ChatFullInfo(
@@ -126,4 +129,6 @@ data class ChatFullInfo(
     val paidMessageStarCount: Int? = null,
     val guardBot: User? = null,
     val community: Community? = null,
+    val tonWalletCard: TonWalletCard? = null,
+    val shareTheme: ChatShareTheme? = null,
 )

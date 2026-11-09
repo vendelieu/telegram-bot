@@ -20,6 +20,7 @@ import eu.vendeli.tgbot.types.media.Voice
 import eu.vendeli.tgbot.types.msg.MessageOrigin
 import eu.vendeli.tgbot.types.payment.Invoice
 import eu.vendeli.tgbot.types.poll.Poll
+import eu.vendeli.tgbot.types.widget.Widget
 import kotlinx.serialization.Serializable
 
 /**
@@ -41,6 +42,7 @@ import kotlinx.serialization.Serializable
  * @property video Optional. Message is a video, information about the video
  * @property videoNote Optional. Message is a video note, information about the video message
  * @property voice Optional. Message is a voice message, information about the file
+ * @property widget Optional. Message is an HTML widget, information about the widget
  * @property hasMediaSpoiler Optional. True, if the message media is covered by a spoiler animation
  * @property checklist Optional. Message is a checklist
  * @property contact Optional. Message is a shared contact, information about the contact
@@ -81,4 +83,5 @@ data class ExternalReplyInfo(
     val location: Location? = null,
     val poll: Poll? = null,
     val venue: Venue? = null,
+    val widget: Widget? = null,
 )

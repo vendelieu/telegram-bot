@@ -7,6 +7,10 @@
           "chat_id",
           "message_id"
         ],
+        "request": {
+          "message_id": 1,
+          "chat_id": 100000001
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -24,6 +28,11 @@
           "comment",
           "message_id"
         ],
+        "request": {
+          "message_id": 1,
+          "comment": "test",
+          "chat_id": 100000001
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

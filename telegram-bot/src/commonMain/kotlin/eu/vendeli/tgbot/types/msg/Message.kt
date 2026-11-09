@@ -20,8 +20,11 @@ import eu.vendeli.tgbot.types.common.Contact
 import eu.vendeli.tgbot.types.common.ExternalReplyInfo
 import eu.vendeli.tgbot.types.common.LinkPreviewOptions
 import eu.vendeli.tgbot.types.common.Location
+import eu.vendeli.tgbot.types.common.PaidMessagesWaived
 import eu.vendeli.tgbot.types.common.TextQuote
 import eu.vendeli.tgbot.types.common.Venue
+import eu.vendeli.tgbot.types.ton.TonWalletTransfer
+import eu.vendeli.tgbot.types.widget.Widget
 import eu.vendeli.tgbot.types.forum.ForumTopicClosed
 import eu.vendeli.tgbot.types.forum.ForumTopicCreated
 import eu.vendeli.tgbot.types.forum.ForumTopicEdited
@@ -149,6 +152,9 @@ import kotlin.time.Instant
  * @property chatBackgroundSet Optional. Service message: chat background set
  * @property communityChatAdded Optional. Service message: chat added to a Community
  * @property communityChatRemoved Optional. Service message: chat removed from a Community
+ * @property widget Optional. Message is an HTML widget, information about the widget
+ * @property paidMessagesWaived Optional. Service message: the sender of the message used a link of the other user, which allows sending messages to the user without paying Telegram Stars
+ * @property tonWalletTransfer Optional. Service message: a transfer with a TON wallet
  * @property forumTopicCreated Optional. Service message: forum topic created
  * @property forumTopicEdited Optional. Service message: forum topic edited
  * @property forumTopicClosed Optional. Service message: forum topic closed
@@ -266,6 +272,9 @@ data class Message(
     val communityChatAdded: CommunityChatAdded? = null,
     val communityChatJoined: CommunityChatJoined? = null,
     val communityChatRemoved: CommunityChatRemoved? = null,
+    val widget: Widget? = null,
+    val paidMessagesWaived: PaidMessagesWaived? = null,
+    val tonWalletTransfer: TonWalletTransfer? = null,
     val forumTopicCreated: ForumTopicCreated? = null,
     val forumTopicEdited: ForumTopicEdited? = null,
     val forumTopicClosed: ForumTopicClosed? = null,

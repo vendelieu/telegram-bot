@@ -4,9 +4,11 @@
       {
         "method": "answerCallbackQuery",
         "requestKeys": [
-          "callback_query_id",
-          "chat_id"
+          "callback_query_id"
         ],
+        "request": {
+          "callback_query_id": "test"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -23,6 +25,17 @@
           "inline_query_id",
           "results"
         ],
+        "request": {
+          "inline_query_id": "test",
+          "results": [
+            {
+              "type": "photo",
+              "id": "testPhoto",
+              "photo_url": "https://test.com",
+              "thumbnail_url": "https://test.com"
+            }
+          ]
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -40,6 +53,11 @@
           "ok",
           "pre_checkout_query_id"
         ],
+        "request": {
+          "pre_checkout_query_id": "test",
+          "ok": false,
+          "error_message": "test1"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -54,6 +72,10 @@
           "ok",
           "pre_checkout_query_id"
         ],
+        "request": {
+          "pre_checkout_query_id": "test",
+          "ok": true
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -71,6 +93,22 @@
           "shipping_options",
           "shipping_query_id"
         ],
+        "request": {
+          "shipping_query_id": "test",
+          "ok": true,
+          "shipping_options": [
+            {
+              "id": "testOp",
+              "title": "testTitle",
+              "prices": [
+                {
+                  "label": "testLbl",
+                  "amount": 1
+                }
+              ]
+            }
+          ]
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -86,6 +124,22 @@
           "shipping_options",
           "shipping_query_id"
         ],
+        "request": {
+          "shipping_query_id": "test",
+          "ok": true,
+          "shipping_options": [
+            {
+              "id": "testOp",
+              "title": "testTitle",
+              "prices": [
+                {
+                  "label": "testLbl",
+                  "amount": 1
+                }
+              ]
+            }
+          ]
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -102,6 +156,12 @@
           "shipping_options",
           "shipping_query_id"
         ],
+        "request": {
+          "shipping_query_id": "test",
+          "ok": false,
+          "shipping_options": [],
+          "error_message": "test"
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {
@@ -118,6 +178,15 @@
           "result",
           "web_app_query_id"
         ],
+        "request": {
+          "web_app_query_id": "test",
+          "result": {
+            "type": "photo",
+            "id": "testPhoto",
+            "photo_url": "https://test.com",
+            "thumbnail_url": "https://test.com"
+          }
+        },
         "status": 400,
         "contentType": "application/json",
         "json": {

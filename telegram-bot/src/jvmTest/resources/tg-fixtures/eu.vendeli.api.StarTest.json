@@ -3,6 +3,7 @@
     "getMyStarBalance method test": [
       {
         "method": "getMyStarBalance",
+        "request": {},
         "status": 200,
         "contentType": "application/json",
         "json": {

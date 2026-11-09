@@ -63,20 +63,82 @@ class FixtureSessionTest : AnnotationSpec() {
         shouldThrow<ReplayMissException> { s.call("getMe") }
     }
 
+    private fun withRequest(ex: RecordedExchange, request: String) = ex.copy(
+        request = kotlinx.serialization.json.Json
+            .parseToJsonElement(request) as kotlinx.serialization.json.JsonObject,
+    )
+
     @Test
-    suspend fun `fails when request parameters changed`() {
+    suspend fun `fails when legacy fixture parameter names changed`() {
         val s = session(ok("sendMessage", listOf("chat_id", "text"), "x"))
 
         val failure = shouldThrow<ReplayMissException> { s.call("sendMessage", """{"chat_id":1}""") }
 
-        failure.message!! shouldContain "changed"
+        failure.message!! shouldContain "recordFixtures"
     }
 
     @Test
-    suspend fun `matches parameters regardless of their values`() {
+    suspend fun `legacy fixtures without recorded values match by parameter names only`() {
         val s = session(ok("sendMessage", listOf("chat_id", "text"), "x"))
 
         s.call("sendMessage", """{"text":"other","chat_id":99}""") shouldContain "\"x\""
+    }
+
+    @Test
+    suspend fun `returns the response recorded for the same input regardless of call order`() {
+        val s = session(
+            withRequest(ok("sendMessage", listOf("text"), "hello-reply"), """{"text":"hello"}"""),
+            withRequest(ok("sendMessage", listOf("text"), "bye-reply"), """{"text":"bye"}"""),
+        )
+
+        s.call("sendMessage", """{"text":"bye"}""") shouldContain "bye-reply"
+        s.call("sendMessage", """{"text":"hello"}""") shouldContain "hello-reply"
+    }
+
+    @Test
+    suspend fun `serves identical requests in recorded order`() {
+        val s = session(
+            withRequest(ok("getChat", listOf("chat_id"), "first"), """{"chat_id":1}"""),
+            withRequest(ok("getChat", listOf("chat_id"), "second"), """{"chat_id":1}"""),
+        )
+
+        s.call("getChat", """{"chat_id":1}""") shouldContain "first"
+        s.call("getChat", """{"chat_id":1}""") shouldContain "second"
+    }
+
+    @Test
+    suspend fun `fails and lists recorded requests when the input values differ`() {
+        val s = session(withRequest(ok("sendMessage", listOf("text"), "x"), """{"text":"hello"}"""))
+
+        val failure = shouldThrow<ReplayMissException> { s.call("sendMessage", """{"text":"other"}""") }
+
+        failure.message!! shouldContain "matches the sent request"
+        failure.message!! shouldContain "hello"
+    }
+
+    @Test
+    suspend fun `a rejected request does not consume the recorded exchange`() {
+        val s = session(withRequest(ok("sendMessage", listOf("text"), "x"), """{"text":"hello"}"""))
+
+        shouldThrow<ReplayMissException> { s.call("sendMessage", """{"text":"other"}""") }
+
+        s.call("sendMessage", """{"text":"hello"}""") shouldContain "\"x\""
+    }
+
+    @Test
+    suspend fun `reduces uploaded files to a placeholder and keeps text fields`() {
+        val boundary = "b0und"
+        val body = io.ktor.http.content.TextContent(
+            "--$boundary\r\nContent-Disposition: form-data; name=chat_id\r\n\r\n42\r\n" +
+                "--$boundary\r\nContent-Disposition: form-data; name=photo; filename=a.jpg\r\n" +
+                "Content-Type: image/jpeg\r\n\r\nBINARY\r\n--$boundary--\r\n",
+            ContentType.MultiPart.FormData.withParameter("boundary", boundary),
+        )
+
+        val params = FixtureSession.requestParams(body)
+
+        params["chat_id"] shouldBe kotlinx.serialization.json.JsonPrimitive("42")
+        params["photo"] shouldBe kotlinx.serialization.json.JsonPrimitive(FixtureSession.FILE_PLACEHOLDER)
     }
 
     @Test
