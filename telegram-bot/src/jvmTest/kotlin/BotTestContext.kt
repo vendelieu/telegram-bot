@@ -1,5 +1,4 @@
 
-import eu.vendeli.fixtures.TestActivitiesLoader
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.action.MediaAction
@@ -12,7 +11,6 @@ import eu.vendeli.tgbot.types.component.Response
 import eu.vendeli.tgbot.types.component.getOrNull
 import eu.vendeli.tgbot.types.component.isSuccess
 import eu.vendeli.tgbot.utils.common.GET_UPDATES_ACTION
-import eu.vendeli.tgbot.utils.common.loadContext
 import eu.vendeli.tgbot.utils.common.serde
 import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
@@ -125,7 +123,6 @@ abstract class BotTestContext(
             }
         }
         if (testMode.isRecord) bot.httpClient = fixtures.recording(bot.httpClient)
-        bot.loadContext(TestActivitiesLoader())
         if (spykIt) spykIt()
 
         if (mockHttp) doMockHttp()

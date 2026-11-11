@@ -99,6 +99,13 @@ open annotation class eu.vendeli.tgbot.annotations/CommonHandler : kotlin/Annota
     }
 }
 
+open annotation class eu.vendeli.tgbot.annotations/ConditionOf : kotlin/Annotation { // eu.vendeli.tgbot.annotations/ConditionOf|null[0]
+    constructor <init>(kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/UpdateMatcher<*>>) // eu.vendeli.tgbot.annotations/ConditionOf.<init>|<init>(kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.UpdateMatcher<*>>){}[0]
+
+    final val matcher // eu.vendeli.tgbot.annotations/ConditionOf.matcher|{}matcher[0]
+        final fun <get-matcher>(): kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/UpdateMatcher<*>> // eu.vendeli.tgbot.annotations/ConditionOf.matcher.<get-matcher>|<get-matcher>(){}[0]
+}
+
 open annotation class eu.vendeli.tgbot.annotations/CtxProvider : kotlin/Annotation { // eu.vendeli.tgbot.annotations/CtxProvider|null[0]
     constructor <init>() // eu.vendeli.tgbot.annotations/CtxProvider.<init>|<init>(){}[0]
 }
@@ -885,6 +892,10 @@ abstract fun interface eu.vendeli.tgbot.interfaces.helper/RateLimitMechanism { /
     abstract suspend fun isLimited(eu.vendeli.tgbot.types.configuration/RateLimits, kotlin/Long, kotlin/String?): kotlin/Boolean // eu.vendeli.tgbot.interfaces.helper/RateLimitMechanism.isLimited|isLimited(eu.vendeli.tgbot.types.configuration.RateLimits;kotlin.Long;kotlin.String?){}[0]
 }
 
+abstract fun interface eu.vendeli.tgbot.interfaces.helper/UpdateCondition { // eu.vendeli.tgbot.interfaces.helper/UpdateCondition|null[0]
+    abstract suspend fun test(eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot): kotlin/Boolean // eu.vendeli.tgbot.interfaces.helper/UpdateCondition.test|test(eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot){}[0]
+}
+
 abstract fun interface eu.vendeli.tgbot.interfaces.session/SessionManagerFactory { // eu.vendeli.tgbot.interfaces.session/SessionManagerFactory|null[0]
     abstract fun create(eu.vendeli.tgbot/TelegramBot, eu.vendeli.tgbot.types.configuration/SessionConfiguration): eu.vendeli.tgbot.interfaces.session/SessionManager // eu.vendeli.tgbot.interfaces.session/SessionManagerFactory.create|create(eu.vendeli.tgbot.TelegramBot;eu.vendeli.tgbot.types.configuration.SessionConfiguration){}[0]
 }
@@ -928,6 +939,11 @@ abstract interface <#A: eu.vendeli.tgbot.interfaces.action/TgAction<*>> eu.vende
 
 abstract interface <#A: eu.vendeli.tgbot.interfaces.action/TgAction<*>> eu.vendeli.tgbot.utils.builders/EntitiesCtxBuilder : eu.vendeli.tgbot.utils.builders/EntitiesExtBuilder { // eu.vendeli.tgbot.utils.builders/EntitiesCtxBuilder|null[0]
     open fun (eu.vendeli.tgbot.utils.builders/EntitiesExtBuilder).addEntity(eu.vendeli.tgbot.types.msg/MessageEntity) // eu.vendeli.tgbot.utils.builders/EntitiesCtxBuilder.addEntity|addEntity@eu.vendeli.tgbot.utils.builders.EntitiesExtBuilder(eu.vendeli.tgbot.types.msg.MessageEntity){}[0]
+}
+
+abstract interface <#A: kotlin/Annotation> eu.vendeli.tgbot.interfaces.helper/UpdateMatcher { // eu.vendeli.tgbot.interfaces.helper/UpdateMatcher|null[0]
+    abstract suspend fun matches(#A, eu.vendeli.tgbot.types.component/ProcessedUpdate, eu.vendeli.tgbot/TelegramBot): kotlin/Boolean // eu.vendeli.tgbot.interfaces.helper/UpdateMatcher.matches|matches(1:0;eu.vendeli.tgbot.types.component.ProcessedUpdate;eu.vendeli.tgbot.TelegramBot){}[0]
+    open fun bind(#A): eu.vendeli.tgbot.interfaces.helper/UpdateCondition // eu.vendeli.tgbot.interfaces.helper/UpdateMatcher.bind|bind(1:0){}[0]
 }
 
 abstract interface <#A: kotlin/Any> eu.vendeli.tgbot.interfaces.marker/Autowiring { // eu.vendeli.tgbot.interfaces.marker/Autowiring|null[0]
@@ -2231,8 +2247,9 @@ final class eu.vendeli.tgbot.core/ActivityRegistry { // eu.vendeli.tgbot.core/Ac
     final fun registerCommonHandler(eu.vendeli.tgbot.types.component/CommonMatcher, eu.vendeli.tgbot.types.component/UpdateType, kotlin/Int) // eu.vendeli.tgbot.core/ActivityRegistry.registerCommonHandler|registerCommonHandler(eu.vendeli.tgbot.types.component.CommonMatcher;eu.vendeli.tgbot.types.component.UpdateType;kotlin.Int){}[0]
     final fun registerInput(kotlin/String, kotlin/Int) // eu.vendeli.tgbot.core/ActivityRegistry.registerInput|registerInput(kotlin.String;kotlin.Int){}[0]
     final fun registerUnprocessed(kotlin/Int) // eu.vendeli.tgbot.core/ActivityRegistry.registerUnprocessed|registerUnprocessed(kotlin.Int){}[0]
-    final fun registerUpdateTypeHandler(eu.vendeli.tgbot.types.component/UpdateType, kotlin/Int, kotlin.collections/Set<eu.vendeli.tgbot.types.component/MessageKind> = ...) // eu.vendeli.tgbot.core/ActivityRegistry.registerUpdateTypeHandler|registerUpdateTypeHandler(eu.vendeli.tgbot.types.component.UpdateType;kotlin.Int;kotlin.collections.Set<eu.vendeli.tgbot.types.component.MessageKind>){}[0]
+    final fun registerUpdateTypeHandler(eu.vendeli.tgbot.types.component/UpdateType, kotlin/Int, kotlin.collections/Set<eu.vendeli.tgbot.types.component/MessageKind> = ..., kotlin.collections/List<eu.vendeli.tgbot.interfaces.helper/UpdateCondition> = ...) // eu.vendeli.tgbot.core/ActivityRegistry.registerUpdateTypeHandler|registerUpdateTypeHandler(eu.vendeli.tgbot.types.component.UpdateType;kotlin.Int;kotlin.collections.Set<eu.vendeli.tgbot.types.component.MessageKind>;kotlin.collections.List<eu.vendeli.tgbot.interfaces.helper.UpdateCondition>){}[0]
     final suspend fun findCommonHandler(kotlin/String, eu.vendeli.tgbot.types.component/ProcessingContext): eu.vendeli.tgbot.core/Activity? // eu.vendeli.tgbot.core/ActivityRegistry.findCommonHandler|findCommonHandler(kotlin.String;eu.vendeli.tgbot.types.component.ProcessingContext){}[0]
+    final suspend fun getUpdateTypeHandlers(eu.vendeli.tgbot.types.component/ProcessingContext): kotlin.collections/List<eu.vendeli.tgbot.core/Activity> // eu.vendeli.tgbot.core/ActivityRegistry.getUpdateTypeHandlers|getUpdateTypeHandlers(eu.vendeli.tgbot.types.component.ProcessingContext){}[0]
 }
 
 final class eu.vendeli.tgbot.core/FunctionalHandlingDsl { // eu.vendeli.tgbot.core/FunctionalHandlingDsl|null[0]
@@ -2241,7 +2258,7 @@ final class eu.vendeli.tgbot.core/FunctionalHandlingDsl { // eu.vendeli.tgbot.co
     final fun inputChain(kotlin/String, eu.vendeli.tgbot.types.configuration/RateLimits = ..., kotlin.collections/List<kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Guard>> = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit>): eu.vendeli.tgbot.core/InputChainBuilder // eu.vendeli.tgbot.core/FunctionalHandlingDsl.inputChain|inputChain(kotlin.String;eu.vendeli.tgbot.types.configuration.RateLimits;kotlin.collections.List<kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Guard>>;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Unit>){}[0]
     final fun onCommand(kotlin/String, kotlin.collections/Set<eu.vendeli.tgbot.types.component/UpdateType> = ..., eu.vendeli.tgbot.types.configuration/RateLimits = ..., kotlin.collections/List<kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Guard>> = ..., kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/ArgumentParser> = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/CommandContext<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.onCommand|onCommand(kotlin.String;kotlin.collections.Set<eu.vendeli.tgbot.types.component.UpdateType>;eu.vendeli.tgbot.types.configuration.RateLimits;kotlin.collections.List<kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Guard>>;kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.ArgumentParser>;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.CommandContext<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Unit>){}[0]
     final fun onInput(kotlin/String, eu.vendeli.tgbot.types.configuration/RateLimits = ..., kotlin.collections/List<kotlin.reflect/KClass<out eu.vendeli.tgbot.interfaces.helper/Guard>> = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.onInput|onInput(kotlin.String;eu.vendeli.tgbot.types.configuration.RateLimits;kotlin.collections.List<kotlin.reflect.KClass<out|eu.vendeli.tgbot.interfaces.helper.Guard>>;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Unit>){}[0]
-    final fun onUpdate(kotlin/Array<out eu.vendeli.tgbot.types.component/UpdateType>..., kotlin.collections/Set<eu.vendeli.tgbot.types.component/MessageKind> = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.onUpdate|onUpdate(kotlin.Array<out|eu.vendeli.tgbot.types.component.UpdateType>...;kotlin.collections.Set<eu.vendeli.tgbot.types.component.MessageKind>;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Unit>){}[0]
+    final fun onUpdate(kotlin/Array<out eu.vendeli.tgbot.types.component/UpdateType>..., kotlin.collections/Set<eu.vendeli.tgbot.types.component/MessageKind> = ..., kotlin.collections/List<eu.vendeli.tgbot.interfaces.helper/UpdateCondition> = ..., kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.onUpdate|onUpdate(kotlin.Array<out|eu.vendeli.tgbot.types.component.UpdateType>...;kotlin.collections.Set<eu.vendeli.tgbot.types.component.MessageKind>;kotlin.collections.List<eu.vendeli.tgbot.interfaces.helper.UpdateCondition>;kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Unit>){}[0]
     final fun whenNotHandled(kotlin.coroutines/SuspendFunction1<eu.vendeli.tgbot.types.component/ActivityCtx<eu.vendeli.tgbot.types.component/ProcessedUpdate>, kotlin/Unit>) // eu.vendeli.tgbot.core/FunctionalHandlingDsl.whenNotHandled|whenNotHandled(kotlin.coroutines.SuspendFunction1<eu.vendeli.tgbot.types.component.ActivityCtx<eu.vendeli.tgbot.types.component.ProcessedUpdate>,kotlin.Unit>){}[0]
 }
 

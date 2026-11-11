@@ -1,5 +1,10 @@
 # Telegram-bot (KtGram) Changelog
 
+## Unreleased
+
+* Added custom update conditions for `@UpdateHandler`: mark your own annotation with `@ConditionOf(MyMatcher::class)` (and `@UpdateHandler`), implement `UpdateMatcher<MyAnnotation>`, and the annotation's arguments are passed to the matcher at runtime. Update type and `messageKind` are still checked first; multiple conditions on one handler must all match; a throwing matcher counts as "not matched". The functional DSL gets the same via `onUpdate(conditions = listOf(matcher.bind(annotation)))`.
+* `ActivityRegistry.getUpdateTypeHandlers(ProcessingContext)` evaluates conditions; the `ProcessedUpdate` overload only applies the `messageKind` filter.
+
 ## 9.8.0
 
 * Covered Tg API [`10.4`](https://core.telegram.org/bots/api-changelog#november-9-2026).: HTML widgets (`sendWidget`, `sendSharedWidget`, `answerWidgetQuery`, `editMessageWidgetData`, `editSharedWidgetData`, `widget_query`/`shared_widget_query` updates, `InputWidgetMessageContent`, `InputSharedWidgetMessageContent`); TON wallet cards, NFTs and transfers; chat share themes (`getChatShareThemeBackdrops`); `getUniqueGift`; `deleteBusinessAccountGift`; `paid_messages_waived` service message; rich-text quotes (`TextQuote.richTexts`, `ReplyParameters.quoteRichTexts`) and `RichText.TonAddress`; `verifyChat`/`verifyUser` custom description parse mode and entities.

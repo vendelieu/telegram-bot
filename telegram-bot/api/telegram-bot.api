@@ -51,6 +51,10 @@ public abstract interface annotation class eu/vendeli/tgbot/annotations/CommonHa
 	public abstract fun value ()[Ljava/lang/String;
 }
 
+public abstract interface annotation class eu/vendeli/tgbot/annotations/ConditionOf : java/lang/annotation/Annotation {
+	public abstract fun matcher ()Ljava/lang/Class;
+}
+
 public abstract interface annotation class eu/vendeli/tgbot/annotations/CtxProvider : java/lang/annotation/Annotation {
 }
 
@@ -3336,6 +3340,7 @@ public final class eu/vendeli/tgbot/core/ActivityRegistry {
 	public final fun getCommandsForType (Leu/vendeli/tgbot/types/component/UpdateType;)Ljava/util/Map;
 	public final fun getUnprocessedHandler ()Leu/vendeli/tgbot/core/Activity;
 	public final fun getUpdateTypeHandlers (Leu/vendeli/tgbot/types/component/ProcessedUpdate;)Ljava/util/List;
+	public final fun getUpdateTypeHandlers (Leu/vendeli/tgbot/types/component/ProcessingContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getUpdateTypeHandlers (Leu/vendeli/tgbot/types/component/UpdateType;)Ljava/util/List;
 	public final fun prettyPrint ()Ljava/lang/String;
 	public final fun registerActivity (Leu/vendeli/tgbot/core/Activity;)V
@@ -3343,8 +3348,8 @@ public final class eu/vendeli/tgbot/core/ActivityRegistry {
 	public final fun registerCommonHandler (Leu/vendeli/tgbot/types/component/CommonMatcher;Leu/vendeli/tgbot/types/component/UpdateType;I)V
 	public final fun registerInput (Ljava/lang/String;I)V
 	public final fun registerUnprocessed (I)V
-	public final fun registerUpdateTypeHandler (Leu/vendeli/tgbot/types/component/UpdateType;ILjava/util/Set;)V
-	public static synthetic fun registerUpdateTypeHandler$default (Leu/vendeli/tgbot/core/ActivityRegistry;Leu/vendeli/tgbot/types/component/UpdateType;ILjava/util/Set;ILjava/lang/Object;)V
+	public final fun registerUpdateTypeHandler (Leu/vendeli/tgbot/types/component/UpdateType;ILjava/util/Set;Ljava/util/List;)V
+	public static synthetic fun registerUpdateTypeHandler$default (Leu/vendeli/tgbot/core/ActivityRegistry;Leu/vendeli/tgbot/types/component/UpdateType;ILjava/util/Set;Ljava/util/List;ILjava/lang/Object;)V
 }
 
 public final class eu/vendeli/tgbot/core/FunctionalHandlingDsl {
@@ -3358,8 +3363,8 @@ public final class eu/vendeli/tgbot/core/FunctionalHandlingDsl {
 	public static synthetic fun onCommand$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Ljava/lang/String;Ljava/util/Set;Leu/vendeli/tgbot/types/configuration/RateLimits;Ljava/util/List;Lkotlin/reflect/KClass;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
 	public final fun onInput (Ljava/lang/String;Leu/vendeli/tgbot/types/configuration/RateLimits;Ljava/util/List;Lkotlin/jvm/functions/Function2;)V
 	public static synthetic fun onInput$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;Ljava/lang/String;Leu/vendeli/tgbot/types/configuration/RateLimits;Ljava/util/List;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
-	public final fun onUpdate ([Leu/vendeli/tgbot/types/component/UpdateType;Ljava/util/Set;Lkotlin/jvm/functions/Function2;)V
-	public static synthetic fun onUpdate$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;[Leu/vendeli/tgbot/types/component/UpdateType;Ljava/util/Set;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
+	public final fun onUpdate ([Leu/vendeli/tgbot/types/component/UpdateType;Ljava/util/Set;Ljava/util/List;Lkotlin/jvm/functions/Function2;)V
+	public static synthetic fun onUpdate$default (Leu/vendeli/tgbot/core/FunctionalHandlingDsl;[Leu/vendeli/tgbot/types/component/UpdateType;Ljava/util/Set;Ljava/util/List;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
 	public final fun whenNotHandled (Lkotlin/jvm/functions/Function2;)V
 }
 
@@ -3796,6 +3801,19 @@ public abstract interface class eu/vendeli/tgbot/interfaces/helper/LoggerFactory
 
 public abstract interface class eu/vendeli/tgbot/interfaces/helper/RateLimitMechanism {
 	public abstract fun isLimited (Leu/vendeli/tgbot/types/configuration/RateLimits;JLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class eu/vendeli/tgbot/interfaces/helper/UpdateCondition {
+	public abstract fun test (Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class eu/vendeli/tgbot/interfaces/helper/UpdateMatcher {
+	public fun bind (Ljava/lang/annotation/Annotation;)Leu/vendeli/tgbot/interfaces/helper/UpdateCondition;
+	public abstract fun matches (Ljava/lang/annotation/Annotation;Leu/vendeli/tgbot/types/component/ProcessedUpdate;Leu/vendeli/tgbot/TelegramBot;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class eu/vendeli/tgbot/interfaces/helper/UpdateMatcher$DefaultImpls {
+	public static fun bind (Leu/vendeli/tgbot/interfaces/helper/UpdateMatcher;Ljava/lang/annotation/Annotation;)Leu/vendeli/tgbot/interfaces/helper/UpdateCondition;
 }
 
 public abstract interface class eu/vendeli/tgbot/interfaces/marker/Autowiring {

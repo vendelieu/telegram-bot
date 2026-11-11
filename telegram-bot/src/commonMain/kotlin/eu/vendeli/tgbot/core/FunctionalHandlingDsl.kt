@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.implementations.DefaultGuard
 import eu.vendeli.tgbot.interfaces.helper.ArgumentParser
 import eu.vendeli.tgbot.interfaces.helper.Filter
 import eu.vendeli.tgbot.interfaces.helper.Guard
+import eu.vendeli.tgbot.interfaces.helper.UpdateCondition
 import eu.vendeli.tgbot.types.component.*
 import eu.vendeli.tgbot.types.component.CommonMatcher.Companion.DEFAULT_FILTERS
 import eu.vendeli.tgbot.types.configuration.RateLimits
@@ -142,9 +143,12 @@ class FunctionalHandlingDsl internal constructor(
     fun onUpdate(
         vararg types: UpdateType,
         messageKind: Set<MessageKind> = emptySet(),
+        conditions: List<UpdateCondition> = emptyList(),
         block: suspend ActivityCtx<ProcessedUpdate>.() -> Unit,
     ) {
-        val kindSuffix = if (messageKind.isEmpty()) "" else ":${messageKind.joinToString(",") { it.name }}"
+        val kindSuffix = (if (messageKind.isEmpty()) "" else ":${messageKind.joinToString(",") { it.name }}") +
+            // distinct condition sets must not collapse into one activity id
+            (if (conditions.isEmpty()) "" else ":cond${conditions.joinToString(",") { it.hashCode().toString() }}")
         types.forEach { type ->
             val activity = LambdaActivity(
                 id = "functional:update:${type.name}$kindSuffix".hashCode(),
@@ -155,7 +159,7 @@ class FunctionalHandlingDsl internal constructor(
             }
 
             registry.registerActivity(activity)
-            registry.registerUpdateTypeHandler(type, activity.id, messageKind)
+            registry.registerUpdateTypeHandler(type, activity.id, messageKind, conditions)
         }
     }
 

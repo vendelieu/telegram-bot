@@ -22,10 +22,10 @@ object GExpectParser {
         val notContainsRegex = Regex("""notContains="([^"]*)"""")
         val matchesRegex = Regex("""matches="([^"]*)"""")
         val notMatchesRegex = Regex("""notMatches="([^"]*)"""")
-        val errorContainsRegex = Regex("""error\s+contains="([^"]*)" """)
-        val errorExactRegex = Regex("""error\s+exact="([^"]*)" """)
+        val errorContainsRegex = Regex("""error\s+contains="([^"]*)"\s*$""")
+        val errorExactRegex = Regex("""error\s+exact="([^"]*)"\s*$""")
         val errorCountRegex = Regex("""error\s+count=(\d+)""")
-        val errorFileLineContainsRegex = Regex("""error\s+file=(\S+)\s+line=(\d+)\s+contains="([^"]*)" """)
+        val errorFileLineContainsRegex = Regex("""error\s+file=(\S+)\s+line=(\d+)\s+contains="([^"]*)"\s*$""")
 
         val fileExpectations = mutableListOf<FileExpectation>()
         val errorExpectations = mutableListOf<ErrorExpectation>()
@@ -64,22 +64,22 @@ object GExpectParser {
                     currentFile = fileRegex.find(trimmed)!!.groupValues[1]
                 }
 
-                containsRegex.containsMatchIn(trimmed) -> {
+                !trimmed.startsWith("error") && containsRegex.containsMatchIn(trimmed) -> {
                     containsRegex.find(trimmed)?.groupValues?.get(1)?.takeIf { it.isNotEmpty() }
                         ?.let { currentContains.add(it) }
                 }
 
-                notContainsRegex.containsMatchIn(trimmed) -> {
+                !trimmed.startsWith("error") && notContainsRegex.containsMatchIn(trimmed) -> {
                     notContainsRegex.find(trimmed)?.groupValues?.get(1)?.takeIf { it.isNotEmpty() }
                         ?.let { currentNotContains.add(it) }
                 }
 
-                matchesRegex.containsMatchIn(trimmed) -> {
+                !trimmed.startsWith("error") && matchesRegex.containsMatchIn(trimmed) -> {
                     matchesRegex.find(trimmed)?.groupValues?.get(1)?.takeIf { it.isNotEmpty() }
                         ?.let { currentMatches.add(it) }
                 }
 
-                notMatchesRegex.containsMatchIn(trimmed) -> {
+                !trimmed.startsWith("error") && notMatchesRegex.containsMatchIn(trimmed) -> {
                     notMatchesRegex.find(trimmed)?.groupValues?.get(1)?.takeIf { it.isNotEmpty() }
                         ?.let { currentNotMatches.add(it) }
                 }

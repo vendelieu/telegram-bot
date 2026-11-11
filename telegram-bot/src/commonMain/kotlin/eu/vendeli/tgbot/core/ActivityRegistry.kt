@@ -1,5 +1,6 @@
 package eu.vendeli.tgbot.core
 
+import eu.vendeli.tgbot.interfaces.helper.UpdateCondition
 import eu.vendeli.tgbot.types.component.CommonMatcher
 import eu.vendeli.tgbot.types.component.MessageKind
 import eu.vendeli.tgbot.types.component.MessageReference
@@ -7,6 +8,7 @@ import eu.vendeli.tgbot.types.component.ProcessedUpdate
 import eu.vendeli.tgbot.types.component.ProcessingContext
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.utils.common.safeCast
+import kotlinx.coroutines.CancellationException
 import eu.vendeli.tgbot.utils.internal.prettyPrint
 
 /**
@@ -34,8 +36,8 @@ class ActivityRegistry internal constructor() {
     // UpdateType -> List<Pattern, ActivityId> (order matters for matching)
     private val commonHandlers = mutableMapOf<UpdateType, MutableList<Pair<CommonMatcher, Int>>>()
 
-    // UpdateType -> List<Pair<MessageKindFilter, ActivityId>> (empty filter = any kind)
-    private val updateTypeHandlers = mutableMapOf<UpdateType, MutableList<Pair<Set<MessageKind>, Int>>>()
+    // UpdateType -> handlers (empty kind filter = any kind, empty conditions = unconditional)
+    private val updateTypeHandlers = mutableMapOf<UpdateType, MutableList<UpdateTypeEntry>>()
 
     // Fallback
     private var unprocessedId: Int? = null
@@ -71,8 +73,9 @@ class ActivityRegistry internal constructor() {
         type: UpdateType,
         activityId: Int,
         messageKind: Set<MessageKind> = emptySet(),
+        conditions: List<UpdateCondition> = emptyList(),
     ) {
-        updateTypeHandlers.getOrPut(type) { mutableListOf() }.add(messageKind to activityId)
+        updateTypeHandlers.getOrPut(type) { mutableListOf() }.add(UpdateTypeEntry(messageKind, conditions, activityId))
     }
 
     fun registerUnprocessed(activityId: Int) {
@@ -96,19 +99,43 @@ class ActivityRegistry internal constructor() {
             ?.let { activities[it] }
 
     fun getUpdateTypeHandlers(type: UpdateType): List<Activity> =
-        updateTypeHandlers[type]?.mapNotNull { (_, id) -> activities[id] } ?: emptyList()
+        updateTypeHandlers[type]?.mapNotNull { activities[it.activityId] } ?: emptyList()
 
     /**
-     * Returns update-type handlers eligible for [update], applying the per-handler [MessageKind]
+     * Returns update-type handlers eligible for [update], applying only the per-handler [MessageKind]
      * filter: empty filter matches any kind; a non-empty filter only matches when the update is a
      * [MessageReference] whose detected [MessageReference.messageKind] is in the filter set.
+     *
+     * Custom conditions (see [UpdateCondition]) are **not** evaluated here, use the [ProcessingContext] overload.
      */
-    fun getUpdateTypeHandlers(update: ProcessedUpdate): List<Activity> {
+    fun getUpdateTypeHandlers(update: ProcessedUpdate): List<Activity> =
+        eligibleEntries(update).mapNotNull { activities[it.activityId] }
+
+    /**
+     * Same as [getUpdateTypeHandlers] for an update, additionally evaluating the handlers' custom conditions
+     * (in declaration order, short-circuiting). A condition that throws counts as not matched and is logged.
+     */
+    suspend fun getUpdateTypeHandlers(context: ProcessingContext): List<Activity> =
+        eligibleEntries(context.update)
+            .filter { entry -> entry.conditions.all { it.passes(context) } }
+            .mapNotNull { activities[it.activityId] }
+
+    private fun eligibleEntries(update: ProcessedUpdate): List<UpdateTypeEntry> {
         val entries = updateTypeHandlers[update.type] ?: return emptyList()
         val kind = update.safeCast<MessageReference>()?.messageKind
-        return entries.mapNotNull { (filter, id) ->
-            if (filter.isEmpty() || kind in filter) activities[id] else null
-        }
+        return entries.filter { it.messageKinds.isEmpty() || kind in it.messageKinds }
+    }
+
+    @Suppress("TooGenericExceptionCaught")
+    private suspend fun UpdateCondition.passes(context: ProcessingContext): Boolean = try {
+        test(context.update, context.bot)
+    } catch (e: CancellationException) {
+        throw e
+    } catch (e: Exception) {
+        context.bot.config.loggerFactory
+            .get("eu.vendeli.core.ActivityRegistry")
+            .error("Update condition failed for update#${context.update.updateId}, treating as not matched.", e)
+        false
     }
 
     fun getUnprocessedHandler(): Activity? =
@@ -154,10 +181,11 @@ class ActivityRegistry internal constructor() {
         if (updateTypeHandlers.isEmpty()) appendLine("  (none)")
         updateTypeHandlers.forEach { (type, handlers) ->
             appendLine("  $type:")
-            handlers.forEach { (filter, activityId) ->
-                val activity = activities[activityId]
-                val filterStr = if (filter.isEmpty()) "" else " messageKind=$filter"
-                appendLine("    ->$filterStr ${activity?.prettyPrint()}")
+            handlers.forEach { entry ->
+                val activity = activities[entry.activityId]
+                val filterStr = if (entry.messageKinds.isEmpty()) "" else " messageKind=${entry.messageKinds}"
+                val condStr = if (entry.conditions.isEmpty()) "" else " conditions=${entry.conditions.size}"
+                appendLine("    ->$filterStr$condStr ${activity?.prettyPrint()}")
             }
         }
 
@@ -168,3 +196,9 @@ class ActivityRegistry internal constructor() {
         } ?: appendLine("  (none)")
     }
 }
+
+private class UpdateTypeEntry(
+    val messageKinds: Set<MessageKind>,
+    val conditions: List<UpdateCondition>,
+    val activityId: Int,
+)

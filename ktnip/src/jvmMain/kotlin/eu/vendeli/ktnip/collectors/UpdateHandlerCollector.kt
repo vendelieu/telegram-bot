@@ -2,6 +2,7 @@ package eu.vendeli.ktnip.collectors
 
 import com.google.devtools.ksp.processing.Resolver
 import eu.vendeli.ktnip.annotation.AnnotationParser
+import eu.vendeli.ktnip.annotation.ConditionResolver
 import eu.vendeli.ktnip.dto.CollectorsContext
 import eu.vendeli.ktnip.utils.findAnnotationRecursively
 import eu.vendeli.ktnip.utils.getAnnotatedFnSymbols
@@ -24,6 +25,11 @@ internal class UpdateHandlerCollector : BaseCollector() {
 
             val (updateTypes, messageKinds) = AnnotationParser.parseUpdateHandler(annotation.arguments)
 
+            // Custom conditions declared through @ConditionOf-annotated annotations
+            val conditions = ConditionResolver.resolve(function, ctx.logger)
+            // non-breaking spaces keep KotlinPoet from wrapping inside string literals
+            val conditionsExpr = conditions.joinToString(", ", prefix = "listOf(", postfix = ")").replace(" ", "·")
+
             // Extract metadata
             val metadata = extractActivityMetadata(function)
 
@@ -37,17 +43,25 @@ internal class UpdateHandlerCollector : BaseCollector() {
             // Register update type handlers
             updateTypes.forEach { updT ->
                 ctx.logger.info("UpdateHandler: ${updT.name} --> ${function.qualifiedName?.asString()}")
-                if (messageKinds.isEmpty()) {
-                    ctx.loadFun.addStatement(
+                val kindsExpr = messageKinds.joinToString(", ") {
+                    "eu.vendeli.tgbot.types.component.MessageKind.${it.name}"
+                }
+                when {
+                    conditions.isNotEmpty() -> ctx.loadFun.addStatement(
+                        "registerUpdateTypeHandler(UpdateType.%L, %L.id, %L, %L)",
+                        updT.name,
+                        activityId,
+                        if (messageKinds.isEmpty()) "emptySet()" else "setOf($kindsExpr)",
+                        conditionsExpr,
+                    )
+
+                    messageKinds.isEmpty() -> ctx.loadFun.addStatement(
                         "registerUpdateTypeHandler(UpdateType.%L, %L.id)",
                         updT.name,
                         activityId,
                     )
-                } else {
-                    val kindsExpr = messageKinds.joinToString(", ") {
-                        "eu.vendeli.tgbot.types.component.MessageKind.${it.name}"
-                    }
-                    ctx.loadFun.addStatement(
+
+                    else -> ctx.loadFun.addStatement(
                         "registerUpdateTypeHandler(UpdateType.%L, %L.id, setOf(%L))",
                         updT.name,
                         activityId,

@@ -23,4 +23,11 @@ class ProcessorTest : AbstractKspTest() {
 
     @Test
     fun updateHandlerMessageKind() = runTest("test-data/UpdateHandlerMessageKind.kt")
+
+    @Test
+    fun updateHandlerConditions() = runTest("test-data/UpdateHandlerConditions.kt")
+
+    @Test
+    fun updateHandlerConditionsMismatchedMatcher() =
+        runTest("test-data/UpdateHandlerConditionsMismatchedMatcher.kt")
 }

@@ -23,6 +23,7 @@ import eu.vendeli.tgbot.interfaces.helper.ArgumentParser
 import eu.vendeli.tgbot.interfaces.helper.Guard
 import eu.vendeli.tgbot.interfaces.helper.ContextLoader
 import eu.vendeli.tgbot.types.component.CommonMatcher
+import eu.vendeli.tgbot.types.component.MessageKind
 import eu.vendeli.tgbot.types.component.ProcessingContext
 import eu.vendeli.tgbot.types.component.UpdateType
 import eu.vendeli.tgbot.types.configuration.RateLimits
@@ -118,6 +119,52 @@ class TestActivitiesLoader : ContextLoader {
         registerActivity(updateHandlerActivity)
         registerUpdateTypeHandler(UpdateType.MESSAGE, updateHandlerActivity.id)
         registerUpdateTypeHandler(UpdateType.CALLBACK_QUERY, updateHandlerActivity.id)
+
+        // Update handlers with custom conditions (mirrors what ktnip generates for @ConditionOf)
+        val widePhotoActivity = TestActivity(14, "eu.vendeli.fixtures.ConditionHandlers", "widePhoto") { context ->
+            val inst = context.bot.config.classManager
+                .getInstance(ConditionHandlers::class) as ConditionHandlers
+            inst.widePhoto()
+        }
+        registerActivity(widePhotoActivity)
+        registerUpdateTypeHandler(
+            UpdateType.MESSAGE,
+            widePhotoActivity.id,
+            setOf(MessageKind.PHOTO),
+            listOf(MinPhotoWidthMatcher.bind(WidePhoto(minWidth = 800))),
+        )
+
+        val receiptPhotoActivity =
+            TestActivity(15, "eu.vendeli.fixtures.ConditionHandlers", "receiptPhoto") { context ->
+                val inst = context.bot.config.classManager
+                    .getInstance(ConditionHandlers::class) as ConditionHandlers
+                inst.receiptPhoto()
+            }
+        registerActivity(receiptPhotoActivity)
+        registerUpdateTypeHandler(
+            UpdateType.MESSAGE,
+            receiptPhotoActivity.id,
+            setOf(MessageKind.PHOTO),
+            listOf(CaptionContainsMatcher().bind(CaptionContains(text = "receipt"))),
+        )
+
+        // Composed annotation: conditions are collected in declaration order, nested ones included
+        val wideInvoicePhotoActivity =
+            TestActivity(16, "eu.vendeli.fixtures.ConditionHandlers", "wideInvoicePhoto") { context ->
+                val inst = context.bot.config.classManager
+                    .getInstance(ConditionHandlers::class) as ConditionHandlers
+                inst.wideInvoicePhoto()
+            }
+        registerActivity(wideInvoicePhotoActivity)
+        registerUpdateTypeHandler(
+            UpdateType.MESSAGE,
+            wideInvoicePhotoActivity.id,
+            setOf(MessageKind.PHOTO),
+            listOf(
+                MinPhotoWidthMatcher.bind(WidePhoto(minWidth = 500)),
+                CaptionContainsMatcher().bind(CaptionContains(text = "INVOICE", ignoreCase = true)),
+            ),
+        )
 
         // Unprocessed
         val unprocessedActivity = TestActivity(13, "eu.vendeli.fixtures.TgAnnotationsModel", "test3") { context ->
