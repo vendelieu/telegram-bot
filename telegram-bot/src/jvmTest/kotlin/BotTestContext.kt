@@ -1,5 +1,7 @@
 
 import eu.vendeli.tgbot.TelegramBot
+import eu.vendeli.tgbot.mock.BotHandle
+import eu.vendeli.tgbot.mock.MockTelegramServer
 import eu.vendeli.tgbot.interfaces.action.Action
 import eu.vendeli.tgbot.interfaces.action.MediaAction
 import eu.vendeli.tgbot.interfaces.action.SimpleAction
@@ -16,8 +18,6 @@ import eu.vendeli.utils.MockUpdate
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.core.spec.Spec
 import io.kotest.core.spec.style.AnnotationSpec
-import io.kotest.core.test.TestCase
-import io.kotest.engine.test.TestResult
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.nulls.shouldBeNull
@@ -36,11 +36,14 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.serializer
+import utils.BotData
 import utils.BotResource
 import utils.TestEnv
-import utils.replay.FakeIds
-import utils.replay.FixtureSession
-import utils.replay.TestMode
+import utils.FakeIds
+import utils.TestBackend
+import utils.TestBackends
+import utils.TestWorld
+import utils.TestMockServer
 import utils.RandomPicResource
 import java.util.Base64
 import kotlin.properties.Delegates
@@ -63,6 +66,8 @@ abstract class BotTestContext(
     private val withPreparedBot: Boolean = true,
     private val mockHttp: Boolean = false,
     private val spykIt: Boolean = true,
+    /** What the spec talks to, see [TestBackend]. */
+    protected val backend: TestBackend = TestBackends.default,
 ) : AnnotationSpec() {
     private val INT_ITERATOR = (1..Int.MAX_VALUE).iterator()
     private val RANDOM_INST: Random = Random.Default
@@ -70,23 +75,30 @@ abstract class BotTestContext(
     internal val updatesAction = spyk(GET_UPDATES_ACTION)
     protected var classloader: ClassLoader = Thread.currentThread().contextClassLoader
 
-    protected val TG_ID by lazy { if (testMode.isReplay) FakeIds.TG_ID else TestEnv.getLong("TELEGRAM_ID") ?: 1L }
+    protected val TG_ID by lazy { if (isMock) FakeIds.TG_ID else TestEnv.getLong("TELEGRAM_ID") ?: 1L }
     protected var BOT_ID by Delegates.notNull<Long>()
-    protected val CHAT_ID by lazy { if (testMode.isReplay) FakeIds.CHAT_ID else TestEnv.getLong("CHAT_ID") ?: -1L }
+    protected val CHAT_ID by lazy { if (isMock) FakeIds.CHAT_ID else TestEnv.getLong("CHAT_ID") ?: -1L }
     protected val CHANNEL_ID by lazy {
-        if (testMode.isReplay) FakeIds.CHANNEL_ID else TestEnv.getLong("CHANNEL_ID") ?: -2L
+        if (isMock) FakeIds.CHANNEL_ID else TestEnv.getLong("CHANNEL_ID") ?: -2L
     }
     protected val PAYMENT_PROVIDER_TOKEN: String? by lazy {
-        if (testMode.isReplay) FakeIds.PAYMENT_PROVIDER_TOKEN else TestEnv.get("PAYMENT_PROVIDER_TOKEN")
+        if (isMock) FakeIds.PAYMENT_PROVIDER_TOKEN else TestEnv.get("PAYMENT_PROVIDER_TOKEN")
     }
 
-    protected val testMode: TestMode get() = TestMode.current
+    protected val isMock: Boolean get() = backend.isMock
 
-    /** Per-spec record/replay state, see [FixtureSession]. */
-    internal val fixtures by lazy { FixtureSession(this::class.qualifiedName.orEmpty(), testMode) }
+    private var dedicatedServer: MockTelegramServer? = null
+    private var mockHandle: BotHandle? = null
+
+    /**
+     * Control surface of the mock the spec runs on (inject updates, stubs, faults, inspect calls).
+     * Only exists on [TestBackend.Mock].
+     */
+    protected val mock: BotHandle
+        get() = mockHandle ?: error("`mock` is only available when the spec runs on TestBackend.Mock")
 
     protected val RANDOM_PIC: ByteArray?
-        get() = if (testMode.isReplay) PLACEHOLDER_PIC else getRandomPic() ?: run {
+        get() = if (isMock) PLACEHOLDER_PIC else getRandomPic() ?: run {
             RandomPicResource.swapAndGet()
             getRandomPic()
         }
@@ -106,13 +118,10 @@ abstract class BotTestContext(
 
     @BeforeAll
     fun prepareTestBot() {
-        val ctx = BotResource.swapAndGet()
+        val ctx = if (backend is TestBackend.Mock) prepareMock(backend) else BotResource.swapAndGet()
         BOT_ID = ctx.id
-        if (withPreparedBot) bot = TelegramBot(
-            ctx.token,
-            "eu.vendeli",
-            if (testMode.isReplay) fixtures.replayClient() else null,
-        ) {
+        if (withPreparedBot) bot = TelegramBot(ctx.token, "eu.vendeli") {
+            if (backend is TestBackend.Mock) apiHost = mockBaseUrl
             httpClient {
                 maxRequestRetry = 0
                 connectTimeoutMillis = 10.seconds.inWholeMilliseconds
@@ -122,10 +131,22 @@ abstract class BotTestContext(
                 pullingDelay = 100
             }
         }
-        if (testMode.isRecord) bot.httpClient = fixtures.recording(bot.httpClient)
         if (spykIt) spykIt()
 
         if (mockHttp) doMockHttp()
+    }
+
+    private var mockBaseUrl: String = ""
+
+    private fun prepareMock(mockBackend: TestBackend.Mock): BotData {
+        val (server, isPrivate) = TestMockServer.serverFor(mockBackend)
+        if (isPrivate) dedicatedServer = server
+        mockBaseUrl = server.baseUrl
+        mockHandle = server.bot(FakeIds.BOT_TOKEN).also {
+            it.reset()
+            TestWorld.seed(it)
+        }
+        return BotData(FakeIds.BOT_ID, FakeIds.BOT_TOKEN)
     }
 
     fun doMockHttp(mockUpdates: MockUpdate = MockUpdate.SINGLE()) {
@@ -138,19 +159,9 @@ abstract class BotTestContext(
         bot = spyk(bot, recordPrivateCalls = true)
     }
 
-    override suspend fun beforeTest(testCase: TestCase) {
-        fixtures.currentTest = testCase.name.name
-        super.beforeTest(testCase)
-    }
-
-    override suspend fun afterTest(testCase: TestCase, result: TestResult) {
-        super.afterTest(testCase, result)
-        if (testMode.isRecord && !result.isSuccess) fixtures.discard(testCase.name.name)
-    }
-
     override suspend fun afterSpec(spec: Spec) {
         super.afterSpec(spec)
-        fixtures.flush()
+        dedicatedServer?.close()
     }
 
     private fun getRandomPic(): ByteArray? = runBlocking {
@@ -165,7 +176,7 @@ abstract class BotTestContext(
     }
 
     private suspend fun throttleLive() {
-        if (!testMode.isReplay) delay(RANDOM_INST.nextLong(MIN_LIVE_DELAY_MS, MAX_LIVE_DELAY_MS))
+        if (!isMock) delay(RANDOM_INST.nextLong(MIN_LIVE_DELAY_MS, MAX_LIVE_DELAY_MS))
     }
 
     protected suspend fun <T> Action<T>.sendReq(to: Long = TG_ID, via: TelegramBot = bot): Response<out T> {

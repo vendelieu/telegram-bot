@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Added `ktgram-mock-server` (JVM, published with the library as `eu.vendeli:ktgram-mock-server`), a local Telegram Bot API mock built from the scrapped spec: validates requests against the spec, keeps chat/message/file/update state (messages, albums, polls, members, pins, invite links, join requests, forum topics, sticker sets, bot profile, business connections and stories, gifts and Stars, payments, games, `getUpdates` long polling, webhooks), models `HTML`/`Markdown`/`MarkdownV2` parsing, flood limits and blocked users, answers every other method with a schema-valid result, and offers a control API (`BotHandle` or `/__mock` over HTTP) to inject updates, stubs and faults. Run it with `./gradlew :ktgram-mock-server:runMockServer`, see `ktgram-mock-server/README.md`.
+* The library's own jvm tests now run against the mock server by default (no network, no `.env`); a spec can pick `TestBackend.Live` to hit real Telegram, see `TESTING.md`. The record/replay mode and the recorded fixtures are gone.
 * Added custom update conditions for `@UpdateHandler`: mark your own annotation with `@ConditionOf(MyMatcher::class)` (and `@UpdateHandler`), implement `UpdateMatcher<MyAnnotation>`, and the annotation's arguments are passed to the matcher at runtime. Update type and `messageKind` are still checked first; multiple conditions on one handler must all match; a throwing matcher counts as "not matched". The functional DSL gets the same via `onUpdate(conditions = listOf(matcher.bind(annotation)))`.
 * `ActivityRegistry.getUpdateTypeHandlers(ProcessingContext)` evaluates conditions; the `ProcessedUpdate` overload only applies the `messageKind` filter.
 

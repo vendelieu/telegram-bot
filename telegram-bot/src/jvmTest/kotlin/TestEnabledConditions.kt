@@ -2,12 +2,11 @@ import io.kotest.core.annotation.Condition
 import io.kotest.core.spec.Spec
 import kotlin.reflect.KClass
 import utils.TestEnv
-import utils.replay.CassetteStore
-import utils.replay.TestMode
+import utils.TestBackends
 
-/** In replay mode a spec is enabled when it has recorded fixtures, otherwise when its credential is configured. */
+/** The mock can run every spec, against real Telegram a spec needs its credential. */
 private fun KClass<out Spec>.isEnabledWith(envKey: String): Boolean =
-    if (TestMode.current.isReplay) CassetteStore.exists(qualifiedName.orEmpty()) else TestEnv.has(envKey)
+    TestBackends.default.isMock || TestEnv.has(envKey)
 
 class ChatTestingOnlyCondition : Condition {
     override fun evaluate(kclass: KClass<out Spec>): Boolean = kclass.isEnabledWith("CHAT_ID")
@@ -23,5 +22,5 @@ class PaymentProviderTestingOnlyCondition : Condition {
 
 /** For specs that only make sense against the real network (timeouts, rate limits, long waits). */
 class LiveOnlyCondition : Condition {
-    override fun evaluate(kclass: KClass<out Spec>): Boolean = !TestMode.current.isReplay
+    override fun evaluate(kclass: KClass<out Spec>): Boolean = TestBackends.default.isLive
 }

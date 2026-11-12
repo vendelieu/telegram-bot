@@ -1,8 +1,8 @@
 name: live
 
 # Runs the jvm tests against the real Telegram Bot API. This is a drift detector, not a merge gate:
-# the required build (ci.build.yml) replays recorded responses. Failures here mean either Telegram
-# changed its behaviour or the shared test chat is in an unexpected state.
+# the required build (ci.build.yml) runs the same specs against the in-process mock server. Failures here mean
+# either Telegram changed its behaviour (the mock needs to follow) or the shared test chat is in an unexpected state.
 on:
   schedule:
     - cron: '0 4 * * *'

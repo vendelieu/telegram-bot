@@ -24,5 +24,7 @@ tasks.register("prepareRelease") {
 
     dependsOn("ktnip:detekt")
     dependsOn("ktnip:jvmTest")
+    dependsOn("ktgram-mock-server:formatKotlin")
+    dependsOn("ktgram-mock-server:jvmTest")
     dependsOn("telegram-bot:detekt")
 }

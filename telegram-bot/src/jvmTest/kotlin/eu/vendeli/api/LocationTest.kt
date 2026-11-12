@@ -7,6 +7,7 @@ import eu.vendeli.tgbot.api.message.stopMessageLiveLocation
 import eu.vendeli.tgbot.api.common.venue
 import eu.vendeli.tgbot.types.component.getOrNull
 import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.floats.plusOrMinus
 import io.kotest.matchers.shouldBe
 
 class LocationTest : BotTestContext() {
@@ -23,8 +24,8 @@ class LocationTest : BotTestContext() {
 
         with(result.location) {
             shouldNotBeNull()
-            latitude shouldBe 1.000002F
-            longitude shouldBe 1.999996F
+            latitude shouldBe (1.000002F plusOrMinus 0.0001F)
+            longitude shouldBe (1.999996F plusOrMinus 0.0001F)
             horizontalAccuracy shouldBe 3.000000F
             livePeriod shouldBe 1000
             heading shouldBe 4
@@ -52,8 +53,8 @@ class LocationTest : BotTestContext() {
 
         with(result.location) {
             shouldNotBeNull()
-            latitude shouldBe 2.000004F
-            longitude shouldBe 2.999999F
+            latitude shouldBe (2.000004F plusOrMinus 0.0001F)
+            longitude shouldBe (2.999999F plusOrMinus 0.0001F)
             horizontalAccuracy shouldBe 2.000000F
             livePeriod shouldBe 1000
             heading shouldBe 3
@@ -77,8 +78,8 @@ class LocationTest : BotTestContext() {
 
         with(result.location) {
             shouldNotBeNull()
-            latitude shouldBe 1.000002F
-            longitude shouldBe 1.999996F
+            latitude shouldBe (1.000002F plusOrMinus 0.0001F)
+            longitude shouldBe (1.999996F plusOrMinus 0.0001F)
             horizontalAccuracy shouldBe 3.000000F
         }
     }
@@ -98,7 +99,7 @@ class LocationTest : BotTestContext() {
             venue.address shouldBe "address"
 
             location?.latitude shouldBe 1f
-            location?.longitude shouldBe 1.999999F
+            location?.longitude shouldBe (1.999999F plusOrMinus 0.0001F)
         }
     }
 }

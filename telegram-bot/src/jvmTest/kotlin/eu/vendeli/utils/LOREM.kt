@@ -7,7 +7,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.readRawBytes
 import kotlinx.coroutines.runBlocking
-import utils.replay.TestMode
+import utils.TestBackends
 import java.io.File
 import kotlin.random.Random
 
@@ -19,7 +19,7 @@ sealed class LOREM(
     contentType: String,
 ) {
     val bytes: ByteArray by lazy {
-        if (TestMode.current.isReplay) PLACEHOLDER_BYTES else cachedDownload()
+        if (TestBackends.default.isMock) PLACEHOLDER_BYTES else cachedDownload()
     }
     val file: File by lazy {
         File.createTempFile("test-$rand", "").apply {

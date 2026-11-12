@@ -10,6 +10,7 @@ on:
       - 'webapps/**'
       - 'ktgram-utils/**'
       - 'ktgram-config-toml/**'
+      - 'ktgram-mock-server/**'
       - 'ktor-starter/**'
       - 'spring-ktgram-starter/**'
 
@@ -25,6 +26,7 @@ jobs:
           ":webapps",
           ":ktgram-utils",
           ":ktgram-config-toml",
+          ":ktgram-mock-server",
           ":ktor-starter",
           ":spring-ktgram-starter"
         ]

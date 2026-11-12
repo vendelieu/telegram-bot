@@ -31,6 +31,7 @@ configuredKotlin {
             implementation(libs.test.ktor.client.mock)
             implementation(libs.logback)
             implementation(libs.mockk)
+            implementation(project(":ktgram-mock-server"))
         }
         jvmMain.dependencies {
             implementation(libs.ktor.client.java)
@@ -104,25 +105,14 @@ tasks {
             failOnPassedAfterRetry.set(false)
         }
     }
-    // Re-records Telegram responses into src/jvmTest/resources/tg-fixtures (needs real credentials in .env).
-    register<Test>("recordFixtures") {
-        group = "verification"
-        description = "Runs the jvm tests against live Telegram and records the responses as replay fixtures."
-        val jvmTest = named<Test>("jvmTest").get()
-        testClassesDirs = jvmTest.testClassesDirs
-        classpath = jvmTest.classpath
-        environment("TG_TEST_MODE", "record")
-        systemProperty("tg.fixtures.dir", layout.projectDirectory.dir("src/jvmTest/resources/tg-fixtures").asFile.absolutePath)
-        outputs.upToDateWhen { false }
-    }
-    // Runs the same tests against live Telegram without touching fixtures.
+    // Makes live Telegram the default backend of the specs (a spec can still choose its own in code).
     register<Test>("liveTest") {
         group = "verification"
-        description = "Runs the jvm tests against live Telegram (no replay)."
+        description = "Runs the jvm tests against live Telegram instead of the mock server."
         val jvmTest = named<Test>("jvmTest").get()
         testClassesDirs = jvmTest.testClassesDirs
         classpath = jvmTest.classpath
-        environment("TG_TEST_MODE", "live")
+        environment("TG_TEST_BACKEND", "live")
         outputs.upToDateWhen { false }
     }
     named("build") { dependsOn("kspCommonMainKotlinMetadata") }

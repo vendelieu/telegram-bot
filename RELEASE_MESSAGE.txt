@@ -1,0 +1,19 @@
+Hey everyone!
+There is a fresh release out, this one brings Bot API 10.4 :)
+
+💡 9.8.0 (https://github.com/vendelieu/telegram-bot/compare/9.7.0...9.8.0):
+
+• Covered Tg API 10.4 (https://core.telegram.org/bots/api-changelog#november-9-2026).
+    ◦ HTML widgets: sending, answering and editing widgets, plus the widget_query and shared_widget_query updates
+    ◦ TON wallet cards, NFTs and transfers
+    ◦ chat share themes
+    ◦ getUniqueGift and deleteBusinessAccountGift
+    ◦ paid_messages_waived service message
+    ◦ rich-text quotes and TON address rich text
+    ◦ custom description parse mode and entities for verifyChat/verifyUser
+
+• StoryAreaPosition is renamed to AreaPosition since it is now shared with TON wallet cards. The old name stays as a deprecated typealias, so nothing breaks.
+
+• Simplified answerCallbackQuery usage by removing the unnecessary user parameter.
+
+Thanks for your patience, it has been a bit longer than usual since the last one :)

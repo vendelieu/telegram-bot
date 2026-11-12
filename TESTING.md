@@ -1,57 +1,73 @@
 # Testing guide
 
-The `telegram-bot` jvm tests run in one of three modes, selected with `TG_TEST_MODE`:
+The `telegram-bot` jvm tests talk to a **backend** that each spec chooses in code:
 
-| Mode | Network | Credentials | What happens |
+| Backend | Network | Credentials | What answers |
 |---|---|---|---|
-| `replay` (default) | no | no | Telegram responses are served from `telegram-bot/src/jvmTest/resources/tg-fixtures` |
-| `record` | yes | `.env` | Real Telegram is called, passing tests are stored (redacted) as fixtures |
-| `live` | yes | `.env` | Real Telegram is called, nothing is stored |
+| `TestBackend.Mock` (default) | no | no | the in-process `ktgram-mock-server`: stateful, validated against the Bot API spec |
+| `TestBackend.Live` | yes | `.env` | real Telegram |
 
-The required CI build uses `replay`, so it is deterministic and works without secrets (forks, dependency PRs).
-The nightly `live` workflow detects drift between the recordings and the real Bot API.
+The required CI build uses the mock, so it is deterministic and works without secrets (forks, dependency PRs).
+The nightly `live` workflow runs the same suite against real Telegram and detects drift between the mock and the
+real Bot API.
 
 ## Everyday commands
 
 ```bash
-./gradlew :telegram-bot:jvmTest                      # replay, ~15 s, no network
-./gradlew :telegram-bot:liveTest                     # against real Telegram (needs .env, see env.example)
-./gradlew :telegram-bot:recordFixtures               # re-record everything
-./gradlew :telegram-bot:recordFixtures --tests '*ChatSetMethodsTest'   # re-record one spec
-./gradlew :ktnip:updateGolden                        # regenerate KSP golden files after an intended change
+./gradlew :telegram-bot:jvmTest        # mock backend, no network
+./gradlew :telegram-bot:liveTest       # real Telegram (needs .env, see env.example)
+./gradlew :ktnip:updateGolden          # regenerate KSP golden files after an intended change
+./gradlew :ktgram-mock-server:jvmTest  # tests of the mock itself
 ```
 
-## How replay works
+## Choosing the backend in code
 
-- One fixture file per spec: `tg-fixtures/<fully.qualified.SpecName>.json`, grouped by test name.
-- A request is matched by **API method and request parameters** (names and values, uploaded files reduce to a
-  `<file>` placeholder). Each recorded exchange is consumed once, identical requests are served in recorded order, so
-  stateful flows (create, edit, delete) replay correctly and different inputs get their own response.
-  A miss fails with the sent request, the still-available recorded ones and a "re-record" hint.
-- Values are redacted the same way on both sides (tokens, configured ids), so tests must send constants (`FakeIds`,
-  `FIXED_EXPIRY`), never `now`/random values.
-- Fixtures recorded before request values were stored only compare parameter *names*; they upgrade to full matching
-  the next time they are re-recorded.
-- `BotTestContext` picks the mode. In replay it also swaps in stable ids (`FakeIds`) and placeholder media, so tests
-  must use `TG_ID`, `CHAT_ID`, `CHANNEL_ID`, `BOT_ID`, `LOREM.*` from the base class instead of reading `.env`.
-- Re-recording only keeps tests that passed, a failing run never overwrites a good fixture.
-- Fixtures are redacted while recording (tokens, configured ids, names of users, invite links). `FixtureHygieneTest`
-  fails the build if a token, a configured credential or an invite link ever lands in a fixture.
+```kotlin
+class DiceTest : BotTestContext()                                      // default: the mock
+
+class PaymentTest : BotTestContext(backend = TestBackend.Live)         // this spec always hits real Telegram
+
+class FloodTest : BotTestContext(                                      // a mock with its own configuration
+    backend = TestBackend.Mock { copy(rateLimit = RateLimitConfig()) },
+)
+```
+
+Specs that do not choose use `TestBackends.default`. `TG_TEST_BACKEND=live|mock` (set by `liveTest`) only sets that
+default, specs never read it. A configured mock gets a private server for the duration of the spec, plain mocks share
+one server and the bot's state is reset before each spec.
+
+## The mock in a spec
+
+On the mock backend a spec has a `mock` property (the server's `BotHandle`) to inject what users do and to bend the
+server:
+
+```kotlin
+mock.userSays("/start", fromId = TG_ID)                       // an update arrives
+mock.fail("sendMessage", ApiException.tooManyRequests(3))     // the next call is rate limited
+mock.stub("getMe", result)                                    // canned answer
+mock.calls("sendMessage")                                     // what the bot did
+```
+
+It does not exist on `TestBackend.Live`, so a spec that needs it cannot be pointed at real Telegram by accident.
 
 ## Writing tests
 
 - Extend `BotTestContext` for anything that calls the Bot API and use `sendReq`/`sendReturning`.
-- Values the server echoes back must be stable. Use constants (`FIXED_EXPIRY`, fixed scores), not `now` or random
-  numbers, otherwise the replayed echo differs from what the test computed.
+- Use `TG_ID`, `CHAT_ID`, `CHANNEL_ID`, `BOT_ID`, `LOREM.*` from the base class instead of reading `.env`; on the mock
+  they are the stable `FakeIds`.
 - Never synchronize with `delay()`. Wait for the signal: `CompletableDeferred`/`Channel` + `withTimeout`, `Job.join()`
-  (`parseAndHandle` returns a `Job`), or Kotest `eventually`.
+  (`parseAndHandle` returns a `Job`), `mock.awaitCall(...)`, or Kotest `eventually`.
 - Prefer virtual time for handler logic: see `UpdateHandlerVirtualTimeTest` (`runTest` + `StandardTestDispatcher`
   injected through `updatesListener { dispatcher = ...; processingDispatcher = ... }`).
 - Do not use `GlobalScope`. Shared state touched by handlers must be thread safe (`AtomicInteger`, `AtomicBoolean`).
-- A spec that only makes sense against the real network (timeouts, rate limits, long waits) gets
-  `@EnabledIf(LiveOnlyCondition::class)` and is skipped in replay.
-- New Bot API method: add the action, its test, then run `recordFixtures --tests` for that spec and commit the fixture.
-  `SpecCoverageTest` fails when the spec in `buildSrc/.../api.json` lists a method without an implemented action.
+- A spec that only makes sense against the real network (timeouts, rate limits, long waits) is enabled with
+  `@EnabledIf(LiveOnlyCondition::class)` and declares `backend = TestBackend.Live`.
+- Behaviour that depends on the real account (a bot that is not allowed to verify users, rights it lacks) belongs in
+  a `TestBackend.Live` spec, or on the mock gets configured through `mock` (stubs, faults, `addBusinessConnection`,
+  `setStarBalance`, ...).
+- New Bot API method: add the action and its test. `SpecCoverageTest` fails when the spec in `buildSrc/.../api.json`
+  lists a method without an implemented action; if the method needs state the mock does not model yet, add it to
+  `ktgram-mock-server` (the module's tests cover every method of the spec).
 
 ## Flaky tests
 

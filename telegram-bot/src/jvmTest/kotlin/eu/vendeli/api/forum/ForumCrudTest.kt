@@ -20,7 +20,7 @@ import kotlin.time.Duration.Companion.minutes
 class ForumCrudTest : BotTestContext() {
     @BeforeClass
     suspend fun chillOut() {
-        if (!testMode.isReplay) delay(1.minutes)
+        if (!isMock) delay(1.minutes)
     }
 
     @Test

@@ -13,8 +13,8 @@ Project context and conventions for AI coding assistants working on the telegram
 - Add tests for new code
 - Run `./gradlew prepareRelease` to validate
 - Run `./gradlew apiDump` to generate api dump
-- Tests replay recorded Telegram responses by default (no network, no `.env`); see [TESTING.md](TESTING.md)
-- New or changed API action: `./gradlew :telegram-bot:recordFixtures --tests '*YourTest'` and commit the fixture
+- Tests run against the in-process mock server by default (no network, no `.env`); a spec can pick `TestBackend.Live` in code, see [TESTING.md](TESTING.md)
+- New or changed API action: if the mock does not model it yet, extend `ktgram-mock-server`
 - Never wait with `delay()` or use `GlobalScope` in tests; echoed values must be constants, not `now`/random
 
 ## Project structure
@@ -22,6 +22,7 @@ Project context and conventions for AI coding assistants working on the telegram
 - `telegram-bot/` — main library
 - `ktnip/` — KSP processor for annotations
 - `api-sentinel/` — API validation against Telegram spec
+- `ktgram-mock-server/` — local Bot API mock (spec validation, stateful core), published with the library, see its README
 
 ## Key conventions
 

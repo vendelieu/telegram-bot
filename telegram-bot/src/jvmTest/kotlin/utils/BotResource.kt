@@ -1,15 +1,13 @@
 package utils
 
-import utils.replay.FakeIds
-import utils.replay.TestMode
-
 data class BotData(
     val id: Long,
     val token: String,
 )
 
+/** Bots of the real Telegram account, used by [TestBackend.Live] specs. */
 object BotResource : ResourcePicker<BotData>(
-    if (TestMode.current.isReplay) listOf(BotData(FakeIds.BOT_ID, FakeIds.BOT_TOKEN)) else listOf(
+    listOf(
         (TestEnv.get("BOT_TOKEN") ?: "1:token").let {
             BotData(it.substringBefore(':').toLongOrNull() ?: 0L, it)
         },

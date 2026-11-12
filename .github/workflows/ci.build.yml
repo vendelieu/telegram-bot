@@ -61,10 +61,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      # The required gate is deterministic: Telegram responses are replayed from src/jvmTest/resources/tg-fixtures,
+      # The required gate is deterministic: the specs run against the in-process ktgram-mock-server,
       # so no secrets or network are needed (works for forks and dependency PRs too).
       - name: Build artifact
         run: ./gradlew koverXmlReport
+
+      # Runs the whole Bot API spec through the mock server and a real KtGram bot against it, no network needed.
+      - name: Test mock server
+        run: ./gradlew :ktgram-mock-server:jvmTest
 
       - name: Check KSP golden files are up to date
         run: |
