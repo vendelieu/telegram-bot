@@ -13,7 +13,6 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.content.PartData
 import io.ktor.http.escapeIfNeeded
 import kotlinx.io.Buffer
-import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.JsonElement
@@ -21,15 +20,11 @@ import kotlinx.serialization.serializer
 import kotlin.jvm.JvmName
 import kotlin.reflect.KMutableProperty0
 
-@OptIn(InternalSerializationApi::class)
-@Suppress("UnusedReceiverParameter")
-internal inline fun <reified Type : Any> TgAction<Type>.getReturnType(): KSerializer<Type> = Type::class.serializer()
+internal inline fun <reified Type : Any> TgAction<Type>.getReturnType(): KSerializer<Type> = serializer<Type>()
 
-@Suppress("UnusedReceiverParameter")
-@OptIn(InternalSerializationApi::class)
 @JvmName("listReturnType")
 internal inline fun <reified Type : MultipleResponse> TgAction<List<Type>>.getReturnType(): KSerializer<List<Type>> =
-    ListSerializer(Type::class.serializer())
+    ListSerializer(serializer<Type>())
 
 internal inline fun <R : Any> TgAction<R>.handleImplicitFile(input: ImplicitFile, fieldName: String) {
     parameters[fieldName] = input.transform(multipartData).file.toJsonElement()
