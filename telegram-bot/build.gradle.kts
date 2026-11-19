@@ -150,3 +150,41 @@ kover.reports.filters.excludes {
         "eu.vendeli.tgbot.api.stickerset.*CustomEmoji*",
     )
 }
+
+val nativeMetadataDir = layout.buildDirectory.dir("generated/native-image")
+
+val generateNativeImageMetadata = tasks.register("generateNativeImageMetadata") {
+    group = "build"
+    description = "Generates GraalVM reachability metadata for eu.vendeli.tgbot.types"
+
+    val classesDirs = kotlin.jvm().compilations["main"].output.classesDirs
+    inputs.files(classesDirs)
+    outputs.dir(nativeMetadataDir)
+
+    doLast {
+        val types = classesDirs.files
+            .flatMap { root ->
+                val typesRoot = root.resolve("eu/vendeli/tgbot/types")
+                if (!typesRoot.exists()) emptyList()
+                else typesRoot.walkTopDown()
+                    .filter { it.isFile && it.extension == "class" }
+                    .map { it.relativeTo(root).path.removeSuffix(".class").replace(File.separatorChar, '.') }
+                    .toList()
+            }
+            .sorted()
+
+        val json = types.joinToString(",\n", prefix = "{\n  \"reflection\": [\n", postfix = "\n  ]\n}\n") {
+            """    { "type": "$it", "allDeclaredFields": true, "allDeclaredMethods": true, "allPublicMethods": true, "allDeclaredConstructors": true }"""
+        }
+
+        nativeMetadataDir.get().asFile
+            .resolve("META-INF/native-image/eu.vendeli/telegram-bot")
+            .apply { mkdirs() }
+            .resolve("reachability-metadata.json")
+            .writeText(json)
+    }
+}
+
+tasks.named<Jar>("jvmJar") {
+    from(generateNativeImageMetadata)
+}
