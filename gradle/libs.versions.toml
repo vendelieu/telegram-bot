@@ -22,7 +22,7 @@ urlencoder = "1.6.0"
 ayza = "10.1.2"
 spring = "4.1.2"
 
-ksp = "2.3.13"
+ksp = "2.3.14"
 poet = "2.4.0"
 autoservice-annotations = "1.1.1"
 autoservice-ksp = "1.2.0"
