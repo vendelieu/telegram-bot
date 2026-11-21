@@ -6,6 +6,7 @@ import com.google.devtools.ksp.processing.*
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ksp.writeTo
+import eu.vendeli.ktnip.codegen.NativeMetadataGenerator
 import eu.vendeli.ktnip.dto.CollectorsContext
 import eu.vendeli.ktnip.utils.*
 import eu.vendeli.ktnip.collectors.*
@@ -43,6 +44,7 @@ class ActivityProcessor(
         }
 
         val loaders = mutableListOf<TypeSpec>()
+        val nativeClasses = sortedSetOf<String>()
         val packages = targetPackage ?: listOf(null)
         val isMultiPackage = packages.size > 1
 
@@ -64,7 +66,7 @@ class ActivityProcessor(
                 .addCode("return bot.update.registry.run {\n")
                 .addStatement("bot.update.____ctxUtils = %T", ClassName(filePkg, "__CtxUtils"))
 
-            processPackage(activitiesFile, loadFun, resolver, if (pkg != null) idx to pkg else null)
+            processPackage(activitiesFile, loadFun, resolver, nativeClasses, if (pkg != null) idx to pkg else null)
 
             loadFun.addCode("}\n")
 
@@ -128,6 +130,12 @@ class ActivityProcessor(
                 }
             }
 
+        NativeMetadataGenerator(resolver, logger)
+            .apply {
+                nativeClasses.forEach(::addInstantiated)
+                loaders.forEach { addServiceProvider("$DEFAULT_CODEGEN_PACKAGE.${it.name}") }
+            }.write(codeGenerator, dependencies)
+
         isProcessed = true
         return emptyList()
     }
@@ -136,6 +144,7 @@ class ActivityProcessor(
         fileSpec: FileBuilder,
         loadFun: FunSpec.Builder,
         resolver: Resolver,
+        nativeClasses: MutableSet<String>,
         target: Pair<Int, String>? = null,
     ) {
         val pkg = target?.second
@@ -154,6 +163,7 @@ class ActivityProcessor(
             pkg = pkg,
             autoAnswerCallback = autoAnswerCallback,
             emittedActivities = mutableMapOf(),
+            nativeClasses = nativeClasses,
         )
 
         val collectors = listOf(

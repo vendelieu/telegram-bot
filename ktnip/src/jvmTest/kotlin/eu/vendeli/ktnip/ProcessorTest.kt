@@ -23,4 +23,7 @@ class ProcessorTest : AbstractKspTest() {
 
     @Test
     fun updateHandlerMessageKind() = runTest("test-data/UpdateHandlerMessageKind.kt")
+
+    @Test
+    fun nativeMetadata() = runTest("test-data/NativeMetadata.kt")
 }

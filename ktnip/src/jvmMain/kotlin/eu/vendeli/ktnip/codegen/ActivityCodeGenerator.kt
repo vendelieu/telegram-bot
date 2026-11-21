@@ -9,6 +9,7 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import eu.vendeli.ktnip.dto.ActivityMetadata
 import eu.vendeli.ktnip.dto.CollectorsContext
 import eu.vendeli.ktnip.dto.LambdaParameters
+import eu.vendeli.ktnip.dto.ParameterResolutionStrategy
 import eu.vendeli.ktnip.utils.FileBuilder
 import eu.vendeli.ktnip.utils.TypeConstants
 import eu.vendeli.ktnip.utils.getActivityId
@@ -74,6 +75,16 @@ class ActivityCodeGenerator(
         // Determine if instance is needed
         val hasInstance = !isTopLvl && !isObject && function.functionKind != FunctionKind.STATIC
         val instanceQualifier = if (hasInstance) funQualifier else null
+
+        // Classes the generated code resolves through ClassManager at runtime
+        ctx?.nativeClasses?.apply {
+            instanceQualifier?.let(::add)
+            addAll(metadata.guardClasses)
+            add(metadata.argParserClass)
+            parameterStrategies.values
+                .filterIsInstance<ParameterResolutionStrategy.Injectable>()
+                .forEach { add(it.injectableClassName.canonicalName) }
+        }
 
         // Build invoke function
         val invokeFun = FunSpec

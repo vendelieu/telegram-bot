@@ -1,4 +1,7 @@
 /* G-EXPECT
+file=reachability-metadata.json
+contains="KtGramCtxLoader"
+
 file=KtGramCtxLoader.kt
 contains="registerUpdateTypeHandler(UpdateType.MESSAGE,"
 contains="setOf(eu.vendeli.tgbot.types.component.MessageKind.PHOTO"
