@@ -1,0 +1,501 @@
+[
+  {
+    "name": "java.lang.Boolean"
+  },
+  {
+    "name": "java.lang.Byte"
+  },
+  {
+    "name": "java.lang.CharSequence"
+  },
+  {
+    "name": "java.lang.Character"
+  },
+  {
+    "name": "java.lang.ClassValue"
+  },
+  {
+    "name": "java.lang.Cloneable"
+  },
+  {
+    "name": "java.lang.Comparable"
+  },
+  {
+    "name": "java.lang.Double"
+  },
+  {
+    "name": "java.lang.Enum"
+  },
+  {
+    "name": "java.lang.Float"
+  },
+  {
+    "name": "java.lang.Integer"
+  },
+  {
+    "name": "java.lang.Iterable"
+  },
+  {
+    "name": "java.lang.Long"
+  },
+  {
+    "name": "java.lang.Number"
+  },
+  {
+    "name": "java.lang.Object"
+  },
+  {
+    "name": "java.lang.Short"
+  },
+  {
+    "name": "java.lang.String"
+  },
+  {
+    "name": "java.lang.Throwable"
+  },
+  {
+    "name": "java.lang.Void"
+  },
+  {
+    "name": "java.lang.annotation.Annotation"
+  },
+  {
+    "name": "java.util.Collection"
+  },
+  {
+    "name": "java.util.Iterator"
+  },
+  {
+    "name": "java.util.List"
+  },
+  {
+    "name": "java.util.ListIterator"
+  },
+  {
+    "name": "java.util.Map"
+  },
+  {
+    "name": "java.util.Map$Entry"
+  },
+  {
+    "name": "java.util.Set"
+  },
+  {
+    "name": "java.util.concurrent.atomic.AtomicBoolean"
+  },
+  {
+    "name": "java.util.concurrent.atomic.AtomicInteger"
+  },
+  {
+    "name": "java.util.concurrent.atomic.AtomicIntegerArray"
+  },
+  {
+    "name": "java.util.concurrent.atomic.AtomicLong"
+  },
+  {
+    "name": "java.util.concurrent.atomic.AtomicLongArray"
+  },
+  {
+    "name": "java.util.concurrent.atomic.AtomicReference"
+  },
+  {
+    "name": "java.util.concurrent.atomic.AtomicReferenceArray"
+  },
+  {
+    "name": "kotlin.Annotation"
+  },
+  {
+    "name": "kotlin.Any"
+  },
+  {
+    "name": "kotlin.Boolean"
+  },
+  {
+    "name": "kotlin.Boolean$Companion"
+  },
+  {
+    "name": "kotlin.Byte"
+  },
+  {
+    "name": "kotlin.Byte$Companion"
+  },
+  {
+    "name": "kotlin.Char"
+  },
+  {
+    "name": "kotlin.Char$Companion"
+  },
+  {
+    "name": "kotlin.CharSequence"
+  },
+  {
+    "name": "kotlin.Cloneable"
+  },
+  {
+    "name": "kotlin.Comparable"
+  },
+  {
+    "name": "kotlin.Double"
+  },
+  {
+    "name": "kotlin.Double$Companion"
+  },
+  {
+    "name": "kotlin.Enum"
+  },
+  {
+    "name": "kotlin.Enum$Companion"
+  },
+  {
+    "name": "kotlin.Float"
+  },
+  {
+    "name": "kotlin.Float$Companion"
+  },
+  {
+    "name": "kotlin.Function0"
+  },
+  {
+    "name": "kotlin.Function1"
+  },
+  {
+    "name": "kotlin.Function10"
+  },
+  {
+    "name": "kotlin.Function11"
+  },
+  {
+    "name": "kotlin.Function12"
+  },
+  {
+    "name": "kotlin.Function13"
+  },
+  {
+    "name": "kotlin.Function14"
+  },
+  {
+    "name": "kotlin.Function15"
+  },
+  {
+    "name": "kotlin.Function16"
+  },
+  {
+    "name": "kotlin.Function17"
+  },
+  {
+    "name": "kotlin.Function18"
+  },
+  {
+    "name": "kotlin.Function19"
+  },
+  {
+    "name": "kotlin.Function2"
+  },
+  {
+    "name": "kotlin.Function20"
+  },
+  {
+    "name": "kotlin.Function21"
+  },
+  {
+    "name": "kotlin.Function22"
+  },
+  {
+    "name": "kotlin.Function3"
+  },
+  {
+    "name": "kotlin.Function4"
+  },
+  {
+    "name": "kotlin.Function5"
+  },
+  {
+    "name": "kotlin.Function6"
+  },
+  {
+    "name": "kotlin.Function7"
+  },
+  {
+    "name": "kotlin.Function8"
+  },
+  {
+    "name": "kotlin.Function9"
+  },
+  {
+    "name": "kotlin.Int"
+  },
+  {
+    "name": "kotlin.Int$Companion"
+  },
+  {
+    "name": "kotlin.Long"
+  },
+  {
+    "name": "kotlin.Long$Companion"
+  },
+  {
+    "name": "kotlin.Metadata",
+    "methods": [
+      {
+        "name": "bv",
+        "parameterTypes": []
+      },
+      {
+        "name": "d1",
+        "parameterTypes": []
+      },
+      {
+        "name": "d2",
+        "parameterTypes": []
+      },
+      {
+        "name": "k",
+        "parameterTypes": []
+      },
+      {
+        "name": "mv",
+        "parameterTypes": []
+      },
+      {
+        "name": "pn",
+        "parameterTypes": []
+      },
+      {
+        "name": "xi",
+        "parameterTypes": []
+      },
+      {
+        "name": "xs",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "kotlin.Number"
+  },
+  {
+    "name": "kotlin.SafePublicationLazyImpl"
+  },
+  {
+    "name": "kotlin.Short"
+  },
+  {
+    "name": "kotlin.Short$Companion"
+  },
+  {
+    "name": "kotlin.String"
+  },
+  {
+    "name": "kotlin.String$Companion"
+  },
+  {
+    "name": "kotlin.Throwable"
+  },
+  {
+    "name": "kotlin.collections.Collection"
+  },
+  {
+    "name": "kotlin.collections.Iterable"
+  },
+  {
+    "name": "kotlin.collections.Iterator"
+  },
+  {
+    "name": "kotlin.collections.List"
+  },
+  {
+    "name": "kotlin.collections.ListIterator"
+  },
+  {
+    "name": "kotlin.collections.Map"
+  },
+  {
+    "name": "kotlin.collections.Map$Entry"
+  },
+  {
+    "name": "kotlin.collections.MutableCollection"
+  },
+  {
+    "name": "kotlin.collections.MutableIterable"
+  },
+  {
+    "name": "kotlin.collections.MutableIterator"
+  },
+  {
+    "name": "kotlin.collections.MutableList"
+  },
+  {
+    "name": "kotlin.collections.MutableListIterator"
+  },
+  {
+    "name": "kotlin.collections.MutableMap"
+  },
+  {
+    "name": "kotlin.collections.MutableMap$MutableEntry"
+  },
+  {
+    "name": "kotlin.collections.MutableSet"
+  },
+  {
+    "name": "kotlin.collections.Set"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function0"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function1"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function10"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function11"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function12"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function13"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function14"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function15"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function16"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function17"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function18"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function19"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function2"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function20"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function21"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function22"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function3"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function4"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function5"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function6"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function7"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function8"
+  },
+  {
+    "name": "kotlin.jvm.functions.Function9"
+  },
+  {
+    "name": "kotlin.jvm.internal.BooleanCompanionObject"
+  },
+  {
+    "name": "kotlin.jvm.internal.ByteCompanionObject"
+  },
+  {
+    "name": "kotlin.jvm.internal.CharCompanionObject"
+  },
+  {
+    "name": "kotlin.jvm.internal.DefaultConstructorMarker"
+  },
+  {
+    "name": "kotlin.jvm.internal.DoubleCompanionObject"
+  },
+  {
+    "name": "kotlin.jvm.internal.EnumCompanionObject"
+  },
+  {
+    "name": "kotlin.jvm.internal.FloatCompanionObject"
+  },
+  {
+    "name": "kotlin.jvm.internal.IntCompanionObject"
+  },
+  {
+    "name": "kotlin.jvm.internal.LongCompanionObject"
+  },
+  {
+    "name": "kotlin.jvm.internal.ShortCompanionObject"
+  },
+  {
+    "name": "kotlin.jvm.internal.StringCompanionObject"
+  },
+  {
+    "name": "kotlin.reflect.KFunction"
+  },
+  {
+    "name": "kotlin.reflect.jvm.internal.ReflectionFactoryImpl",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "kotlin.reflect.jvm.internal.impl.km.jvm.internal.JvmMetadataExtensions",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "kotlin.reflect.jvm.internal.impl.load.java.ErasedOverridabilityCondition",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "kotlin.reflect.jvm.internal.impl.load.java.FieldOverridabilityCondition",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "kotlin.reflect.jvm.internal.impl.load.java.JavaIncompatibilityRulesOverridabilityCondition",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "kotlin.reflect.jvm.internal.impl.serialization.deserialization.builtins.BuiltInsLoaderImpl",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  }
+]

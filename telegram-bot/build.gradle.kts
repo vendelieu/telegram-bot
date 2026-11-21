@@ -63,6 +63,8 @@ configuredKotlin {
     }
 }
 
+nativeImageMetadata()
+
 libraryData {
     name = "Telegram Bot"
     description = "Telegram Bot API wrapper, with handy Kotlin DSL."
