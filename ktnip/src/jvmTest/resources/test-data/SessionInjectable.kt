@@ -1,4 +1,7 @@
 /* G-EXPECT
+file=reachability-metadata.json
+contains="KtGramCtxLoader"
+
 file=ActivitiesData.kt
 contains="bot.sessions.of(update)"
 contains="bot.sessions.of(update, "

@@ -1,4 +1,7 @@
 /* G-EXPECT
+file=reachability-metadata.json
+contains="KtGramCtxLoader"
+
 file=ActivitiesData.kt
 contains="Activity"
 contains="TestInjectable"

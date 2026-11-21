@@ -1,0 +1,18 @@
+{
+  "reflection": [
+    {
+      "type": "eu.vendeli.tgbot.generated.KtGramCtxLoader",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "glob": "META-INF/services/eu.vendeli.tgbot.interfaces.helper.ContextLoader"
+    }
+  ]
+}
