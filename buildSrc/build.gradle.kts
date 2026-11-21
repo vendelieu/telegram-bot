@@ -21,6 +21,7 @@ dependencies {
     implementation(libs.kotlin.gradlePlugin)
     implementation(libs.dokka)
     implementation(libs.publisher)
+    implementation(libs.asm)
 }
 
 repositories {
