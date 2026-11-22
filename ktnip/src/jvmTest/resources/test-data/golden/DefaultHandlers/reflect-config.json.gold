@@ -1,0 +1,53 @@
+[
+  {
+    "name": "CustomTestArgParser",
+    "fields": [
+      {
+        "name": "INSTANCE"
+      }
+    ]
+  },
+  {
+    "name": "CustomTestFilter",
+    "fields": [
+      {
+        "name": "INSTANCE"
+      }
+    ]
+  },
+  {
+    "name": "CustomTestGuard",
+    "fields": [
+      {
+        "name": "INSTANCE"
+      }
+    ]
+  },
+  {
+    "name": "Test",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "eu.vendeli.tgbot.generated.KtGramCtxLoader",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "eu.vendeli.tgbot.interfaces.helper.ArgumentParser"
+  },
+  {
+    "name": "eu.vendeli.tgbot.interfaces.helper.Filter"
+  },
+  {
+    "name": "eu.vendeli.tgbot.interfaces.helper.Guard"
+  }
+]

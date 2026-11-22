@@ -103,6 +103,13 @@ internal class WizardCollector : BaseCollector() {
                 argParserClass = argParserClass ?: eu.vendeli.tgbot.implementations.DefaultArgParser::class.fqName,
             )
 
+            // Classes the generated wizard resolves through ClassManager at runtime
+            ctx.nativeClasses.addAll(metadata.guardClasses)
+            ctx.nativeClasses.add(metadata.argParserClass)
+            stepToManagerMap.values.forEach { manager ->
+                manager.qualifiedName?.asString()?.let(ctx.nativeClasses::add)
+            }
+
             // Generate wizard code using code generator
             val wizardCodeGenerator = WizardCodeGenerator(ctx.activitiesFile)
 

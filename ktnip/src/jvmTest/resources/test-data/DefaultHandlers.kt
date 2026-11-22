@@ -1,4 +1,13 @@
 /* G-EXPECT
+file=reachability-metadata.json
+contains="KtGramCtxLoader"
+
+file=reflect-config.json
+contains="KtGramCtxLoader"
+
+file=resource-config.json
+contains="ContextLoader"
+
 file=ActivitiesData.kt
 contains="Activity"
 

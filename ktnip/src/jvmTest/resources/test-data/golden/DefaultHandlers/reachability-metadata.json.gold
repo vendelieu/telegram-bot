@@ -1,0 +1,60 @@
+{
+  "reflection": [
+    {
+      "type": "CustomTestArgParser",
+      "fields": [
+        {
+          "name": "INSTANCE"
+        }
+      ]
+    },
+    {
+      "type": "CustomTestFilter",
+      "fields": [
+        {
+          "name": "INSTANCE"
+        }
+      ]
+    },
+    {
+      "type": "CustomTestGuard",
+      "fields": [
+        {
+          "name": "INSTANCE"
+        }
+      ]
+    },
+    {
+      "type": "Test",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "eu.vendeli.tgbot.generated.KtGramCtxLoader",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "eu.vendeli.tgbot.interfaces.helper.ArgumentParser"
+    },
+    {
+      "type": "eu.vendeli.tgbot.interfaces.helper.Filter"
+    },
+    {
+      "type": "eu.vendeli.tgbot.interfaces.helper.Guard"
+    }
+  ],
+  "resources": [
+    {
+      "glob": "META-INF/services/eu.vendeli.tgbot.interfaces.helper.ContextLoader"
+    }
+  ]
+}

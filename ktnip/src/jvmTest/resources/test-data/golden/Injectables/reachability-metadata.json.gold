@@ -1,0 +1,33 @@
+{
+  "reflection": [
+    {
+      "type": "TestEntity"
+    },
+    {
+      "type": "TestInjectable",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "eu.vendeli.tgbot.generated.KtGramCtxLoader",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "eu.vendeli.tgbot.interfaces.marker.Autowiring"
+    }
+  ],
+  "resources": [
+    {
+      "glob": "META-INF/services/eu.vendeli.tgbot.interfaces.helper.ContextLoader"
+    }
+  ]
+}

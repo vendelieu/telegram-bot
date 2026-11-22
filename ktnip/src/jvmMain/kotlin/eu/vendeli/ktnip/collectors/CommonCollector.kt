@@ -50,6 +50,9 @@ internal class CommonCollector : BaseCollector() {
         commonHandlerRegistry.getAll().forEach { data ->
             val function = data.funDeclaration
 
+            // Filters are created through ClassManager at runtime
+            ctx.nativeClasses.addAll(data.filters)
+
             // Extract metadata
             val metadata = extractActivityMetadata(function)
 

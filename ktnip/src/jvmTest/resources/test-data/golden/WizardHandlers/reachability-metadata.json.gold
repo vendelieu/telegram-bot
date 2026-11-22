@@ -1,0 +1,48 @@
+{
+  "reflection": [
+    {
+      "type": "CustomStringStateManager",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "eu.vendeli.tgbot.generated.KtGramCtxLoader",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "eu.vendeli.tgbot.implementations.MapIntStateManager",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "eu.vendeli.tgbot.implementations.MapStateManager"
+    },
+    {
+      "type": "eu.vendeli.tgbot.types.chain.WizardStateManager"
+    },
+    {
+      "type": "kotlin.Int"
+    },
+    {
+      "type": "kotlin.String"
+    }
+  ],
+  "resources": [
+    {
+      "glob": "META-INF/services/eu.vendeli.tgbot.interfaces.helper.ContextLoader"
+    }
+  ]
+}

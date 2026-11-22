@@ -22,4 +22,8 @@ data class CollectorsContext(
     // the hypothetical case of a single function being picked up by multiple
     // collectors.
     val emittedActivities: MutableMap<String, String>,
+    // Qualified names of classes the generated code hands to ClassManager (handlers, guards, filters,
+    // argument parsers, injectables, wizard state managers). Shared across packages; turned into
+    // GraalVM native-image metadata by NativeMetadataGenerator.
+    val nativeClasses: MutableSet<String> = mutableSetOf(),
 )

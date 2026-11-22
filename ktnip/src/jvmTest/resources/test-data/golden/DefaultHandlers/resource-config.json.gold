@@ -1,0 +1,9 @@
+{
+  "resources": {
+    "includes": [
+      {
+        "pattern": "\\QMETA-INF/services/eu.vendeli.tgbot.interfaces.helper.ContextLoader\\E"
+      }
+    ]
+  }
+}

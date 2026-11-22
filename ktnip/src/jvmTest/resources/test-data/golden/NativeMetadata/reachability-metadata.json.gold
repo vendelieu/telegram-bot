@@ -1,0 +1,92 @@
+{
+  "reflection": [
+    {
+      "type": "com.example.bot.BaseFilter"
+    },
+    {
+      "type": "com.example.bot.ClassArgParser",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "com.example.bot.ClassFilter",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "com.example.bot.ClassGuard",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "com.example.bot.Outer"
+    },
+    {
+      "type": "com.example.bot.Outer$NestedHandler",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "java.util.List",
+            "java.util.Map",
+            "int",
+            "long[]"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "eu.vendeli.tgbot.generated.KtGramCtxLoader",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "eu.vendeli.tgbot.interfaces.helper.ArgumentParser"
+    },
+    {
+      "type": "eu.vendeli.tgbot.interfaces.helper.Filter"
+    },
+    {
+      "type": "eu.vendeli.tgbot.interfaces.helper.Guard"
+    },
+    {
+      "type": "eu.vendeli.tgbot.types.media.PhotoSize"
+    },
+    {
+      "type": "kotlin.Int"
+    },
+    {
+      "type": "kotlin.LongArray"
+    },
+    {
+      "type": "kotlin.String"
+    },
+    {
+      "type": "kotlin.collections.List"
+    },
+    {
+      "type": "kotlin.collections.Map"
+    }
+  ],
+  "resources": [
+    {
+      "glob": "META-INF/services/eu.vendeli.tgbot.interfaces.helper.ContextLoader"
+    }
+  ]
+}
