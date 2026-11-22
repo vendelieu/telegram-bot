@@ -146,7 +146,7 @@ private val markdownV1EscapeList = setOf('_', '*', '`', '[')
  * @since 7.7.0
  */
 fun String.escapeMarkdown() = buildString {
-    forEach {
+    this@escapeMarkdown.forEach {
         if (it in markdownV1EscapeList) append("\\$it") else append(it)
     }
 }
@@ -179,7 +179,7 @@ private val markdownV2EscapeList = setOf(
  * @since 7.7.0
  */
 fun String.escapeMarkdownV2() = buildString {
-    forEach {
+    this@escapeMarkdownV2.forEach {
         if (it in markdownV2EscapeList) append("\\$it") else append(it)
     }
 }
@@ -197,7 +197,7 @@ private val HTMLEscapeMap = mapOf(
  * @since 7.7.0
  */
 fun String.escapeHTML() = buildString {
-    forEach { ch ->
+    this@escapeHTML.forEach { ch ->
         HTMLEscapeMap[ch]?.let { append(it) } ?: append(ch)
     }
 }
