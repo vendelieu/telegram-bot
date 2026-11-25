@@ -5,12 +5,14 @@ import eu.vendeli.quarkus.extension.QuarkusClassManager
 import eu.vendeli.tgbot.TelegramBot
 import eu.vendeli.tgbot.interfaces.helper.ContextLoader
 import eu.vendeli.tgbot.utils.common.BotConfigurator
+import io.quarkus.arc.Arc
 import io.quarkus.test.QuarkusExtensionTest
 import jakarta.enterprise.inject.Instance
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
 import org.jboss.shrinkwrap.api.asset.StringAsset
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertSame
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -52,6 +54,11 @@ class KtGramExtensionTest {
     }
 
     @Test
+    fun `beans that ktgram metadata doesn't list are still removed`() {
+        assertFalse(Arc.container().instance(UnlistedBean::class.java).isAvailable)
+    }
+
+    @Test
     fun `class manager falls back to reflection for non-beans`() {
         assertTrue(classManager.getInstance(PlainHandler::class) is PlainHandler)
     }
@@ -78,6 +85,9 @@ class KtGramExtensionTest {
 
     class PlainHandler
 
+    @Singleton
+    class UnlistedBean
+
     /** Stands in for the KSP-generated handler registry. */
     class EmptyContextLoader : ContextLoader {
         override fun load(bot: TelegramBot) = Unit
@@ -89,8 +99,12 @@ class KtGramExtensionTest {
         val test: QuarkusExtensionTest = QuarkusExtensionTest()
             .withApplicationRoot { jar ->
                 jar
-                    .addClasses(FirstBotConfiguration::class.java, SampleHandler::class.java, PlainHandler::class.java)
-                    .addAsServiceProvider(ContextLoader::class.java, EmptyContextLoader::class.java)
+                    .addClasses(
+                        FirstBotConfiguration::class.java,
+                        SampleHandler::class.java,
+                        PlainHandler::class.java,
+                        UnlistedBean::class.java,
+                    ).addAsServiceProvider(ContextLoader::class.java, EmptyContextLoader::class.java)
                     // What ktnip generates for a handler class (only SampleHandler, not PlainHandler).
                     .addAsResource(
                         StringAsset("""{ "reflection": [ { "type": "${SampleHandler::class.java.name}" } ] }"""),

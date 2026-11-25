@@ -13,6 +13,10 @@ quarkusExtension {
     deploymentModule = ":quarkus-ktgram-deployment"
 }
 
+// The 3.x plugin doesn't declare the version as an input of this task, so changing it
+// would leave a stale deployment-artifact version in the descriptor.
+tasks.named("extensionDescriptor") { inputs.property("version", version.toString()) }
+
 dependencies {
     implementation(libs.quarkus.core)
     implementation(libs.quarkus.arc)
