@@ -64,7 +64,7 @@ jobs:
       # The required gate is deterministic: Telegram responses are replayed from src/jvmTest/resources/tg-fixtures,
       # so no secrets or network are needed (works for forks and dependency PRs too).
       - name: Build artifact
-        run: ./gradlew koverXmlReport
+        run: ./gradlew koverXmlReport :quarkus-ktgram-deployment:test
 
       - name: Check KSP golden files are up to date
         run: |

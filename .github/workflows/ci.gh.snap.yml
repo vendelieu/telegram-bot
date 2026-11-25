@@ -12,6 +12,7 @@ on:
       - 'ktgram-config-toml/**'
       - 'ktor-starter/**'
       - 'spring-ktgram-starter/**'
+      - 'quarkus-extension/**'
 
 jobs:
   publish:
@@ -26,7 +27,9 @@ jobs:
           ":ktgram-utils",
           ":ktgram-config-toml",
           ":ktor-starter",
-          ":spring-ktgram-starter"
+          ":spring-ktgram-starter",
+          ":quarkus-ktgram",
+          ":quarkus-ktgram-deployment"
         ]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7

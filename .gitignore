@@ -2,7 +2,7 @@
 HELP.md
 .gradle
 ./build/
-*/build/
+**/build/
 ./out/
 ./lib/build/*
 *.class
