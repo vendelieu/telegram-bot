@@ -20,6 +20,10 @@
       "dependencyDashboardApproval": true
     },
     {
+      "matchPackageNames": ["/^io\\.quarkus/"],
+      "groupName": "quarkus"
+    },
+    {
       "matchManagers": ["github-actions"],
       "groupName": "github actions",
       "automerge": true

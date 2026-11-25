@@ -21,6 +21,7 @@ krypto = "4.0.10"
 urlencoder = "1.6.0"
 ayza = "10.1.0"
 spring = "4.1.2"
+quarkus = "3.40.1.2"
 
 ksp = "2.3.13"
 poet = "2.4.0"
@@ -76,6 +77,11 @@ ksp-plugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.
 
 ayza = { module = "io.github.hakky54:ayza-for-pem", version.ref = "ayza" }
 spring-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "spring" }
+quarkus-core = { module = "io.quarkus:quarkus-core", version.ref = "quarkus" }
+quarkus-arc = { module = "io.quarkus:quarkus-arc", version.ref = "quarkus" }
+quarkus-core-deployment = { module = "io.quarkus:quarkus-core-deployment", version.ref = "quarkus" }
+quarkus-arc-deployment = { module = "io.quarkus:quarkus-arc-deployment", version.ref = "quarkus" }
+quarkus-junit-internal = { module = "io.quarkus:quarkus-junit-internal", version.ref = "quarkus" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 publisher = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "publisher" }
 toml = { module = "net.peanuuutz.tomlkt:tomlkt", version.ref = "toml" }
@@ -94,3 +100,4 @@ kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ktlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
 test-retry = { id = "org.gradle.test-retry", version.ref = "test-retry" }
 deteKT = { id = "io.gitlab.arturbosch.detekt", version.ref = "deteKT" }
+quarkus-extension = { id = "io.quarkus.extension", version.ref = "quarkus" }
