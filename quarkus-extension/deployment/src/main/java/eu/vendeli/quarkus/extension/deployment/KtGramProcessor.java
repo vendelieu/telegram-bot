@@ -4,6 +4,7 @@ import io.quarkus.arc.deployment.AdditionalBeanBuildItem;
 import io.quarkus.arc.deployment.UnremovableBeanBuildItem;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.FeatureBuildItem;
+import io.quarkus.deployment.builditem.nativeimage.ServiceProviderBuildItem;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +25,7 @@ import java.util.regex.Pattern;
 class KtGramProcessor {
 
     private static final String FEATURE = "ktgram";
+    private static final String KTOR_ENGINE_CONTAINER = "io.ktor.client.HttpClientEngineContainer";
     private static final String KTGRAM_METADATA =
             "META-INF/native-image/eu.vendeli.tgbot.generated/ktgram/reachability-metadata.json";
     private static final Pattern METADATA_TYPE = Pattern.compile("\"type\"\\s*:\\s*\"([^\"]+)\"");
@@ -40,6 +42,15 @@ class KtGramProcessor {
                         "eu.vendeli.quarkus.extension.KtGramBots",
                         "eu.vendeli.quarkus.extension.QuarkusClassManager")
                 .build();
+    }
+
+    /**
+     * KtGram builds its ktor client without an explicit engine, so ktor finds one through
+     * {@link java.util.ServiceLoader}; Quarkus doesn't register service providers for native images on its own.
+     */
+    @BuildStep
+    ServiceProviderBuildItem ktorEngines() {
+        return ServiceProviderBuildItem.allProvidersFromClassPath(KTOR_ENGINE_CONTAINER);
     }
 
     /**
